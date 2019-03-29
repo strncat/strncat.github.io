@@ -6,6 +6,31 @@ categories: jekyll update
 mathjax: true
 ---
 
+As always to come up with a dynamic programming solution, we ask the question, given that we know the optimal solution to the string "ba". How can we use that solution to find the optimal value for "bag". We simply iterate through the string and whenever we see the letter "g", then the number of "bag"s seen so far would be exactly the number of "ba"s seen so far before the current "g". We continue doing so until we reach the end of the string we're looking for.
+<br>
+<div center>
+$$
+ opt["bag"] = \sum_i\left\{{@{}lr@{}}
+        \sum_{j < i}opt["ba"] & \text{if }x_i = g\\
+        0                       & \text{otherwise}$$
+</div>
+<br>
+<br>
+Why does this work? assume that we have the optimal solution to the number of "ba"s in the string and suppose toward a contradiction that our solution is wrong and that we can find more "bag"s in the string. Since there were more ocurrences of "bag", then naturally this means that there are more ocurrences of "ba". This is a contradiction because we assumed that the number of "ba"s is optimal. Therefore our solution must be optimal.
+
+
+
+
+| r | a | b | b | b | i | t |
+
+
+Let's look at the number of r's:
+| r | a | b | b | b | i | t |
+| 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+
+
+
 Given that we have an optimal value for a stick of length $$j-i$$. Then we know that we must have the following:
 <br>
 <div center>

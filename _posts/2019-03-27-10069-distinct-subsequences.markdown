@@ -23,7 +23,7 @@ Note that we don't need to compute any subproblem $$opt[i,j]$$ where $$i > j$$ s
 <br>
 
 Inline-style: 
-![alt text](https://github.com/strncat/strncat.github.io/blob/master/_posts/img.jpeg "Logo Title Text 1")
+![alt text](https://github.com/strncat/strncat.github.io/blob/master/_posts/img.png "Logo Title Text 1")
 
 <br>
 <br>

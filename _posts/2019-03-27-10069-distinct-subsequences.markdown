@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "10003 - Cutting Sticks"
-date:   2019-03-25 12:01:36 -0700
+title:  "10069 - Distinct Subsequences"
+date:   2019-03-27 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

@@ -8,12 +8,12 @@ mathjax: true
 
 <b>Solution</b>
 <br>
-As always, to come up with a dynamic programming solution, we ask the question, given that we know the optimal count to the string "ba" in "babgbag". How can we use this solution to find the optimal count for "bag". We simply iterate through the string and whenever we see the letter "g", then the number of "bag"s seen so far would be exactly the number of "ba"s seen so far before the current "g". We continue doing so until we reach the end of the string we're looking for.
+To come up with a dynamic programming solution, we ask the question, given that we know the optimal count to the string "ba" in "babgbag". How can we use this solution to find the optimal count for "bag". We simply iterate through the string and whenever we see the letter "g", then the number of "bag"s seen so far would be the number of "ba"s seen so far before the current "g". The total number of ocurrences of "bag" is then the sum of all the "ba"s seen before each "g".
 <br>
 <div center>
 $$
- opt["bag"] = \sum_i\left\{\begin{array}{@{}lr@{}}
-        \sum_{j < i}opt["ba"] & \text{if }x_i = g\\
+ c[p] = \sum_i\left\{\begin{array}{@{}lr@{}}
+        \sum_{j < i}c[p_0...p_{i-1}] & \text{if }x_i = p_i\\
         0                       & \text{otherwise} 
         \end{array}\right\}
 $$
@@ -22,25 +22,50 @@ $$
 <br>
 <b>Why does this work?</b>
 <br>
-Assume that we have the optimal solution to the number of "ba"s in the string and suppose toward a contradiction that our solution is wrong and that we can find more "bag"s in the string. Since there were more ocurrences of "bag", then naturally this means that there are more ocurrences of "ba". This is a contradiction because we assumed that the number of "ba"s is optimal. Therefore our solution must be optimal.
+Let $$s$$ be a string and let $$p$$ be the string we want to count the occurences of in $$s$$. Let $$n$$ be the length of $$p$$. Assume that we know the optimal count of $$p_0...p_{n-1}$$ in $$s$$ and suppose toward a contradiction that the count of $$p_0...p_{n}$$ is not optimal. Since there are more ocurrences of $$p_0...p_{n-1}$$, then naturally this means that there are more ocurrences of $$p_0...p_{n}$$. This is a contradiction because we assumed that the number of occurrences of $$p_0...p_{n-1}$$ is optimal. Therefore our solution must be optimal.
 <br>
 <br>
 <b>Implementation Details</b>
 <br>
-Base Case: Let $$s$$ be a string and let $$p$$ be the string that we are looking for. We initialize an array to store 1 if we see $$p[0]$$ in $$s$$ otherwise, we store 0.
+Base Case: Let $$s$$ be a string and let $$p$$ be the string that we are looking for. We initialize an array $$c$$ to store 1 if we see $$p[0]$$ in $$s$$ otherwise, we store 0.
 
 | b | a | b | g | b | a | g |
 |-------|--------|---------|
 | 1 | 0 | 1 | 0 | 1 | 0 | 0 |
 
-From this point, we iterate through $$p$$ starting at index $$i=1$$ and apply the above recurrence. Instead of maintaining two arrays or a two dimensional array because we need "i-1" to produce row "i", we simply maintain a sum variable and also resets the cells as we go. 
-
-
-
-<br>
+From this point, we iterate through $$p$$ starting at index $$i=1$$ and apply the above recurrence. At each step we need row "i-1" to produce row "i". Instead of maintaining two arrays or a two dimensional array, we simply maintain a sum variable to keep track of the sum of the previous row and also reset the cells as we go. 
 <br>
 {% highlight c++ %}
-for (int i = 0; i < k; i++)
-	print hello
+// starting matching p[i] at i
+for (int j = i; j < n; j++) {
+	if (s[j] == p[i]) {
+		bignum temp = c[j];
+		c[j] = sum;
+		sum += temp;
+	} else {
+		sum += c[j];
+		c[j] = 0;
+	}
+}
 {% endhighlight %}
+<br>
+<br>
+<b>Example</b>
+<br>
+
+| | b | a | b | g | b | a | g |
+|-------|--------|---------|
+| i=0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 |
+| i=1 | 0 | 1 | 0 | 0 | 0 | 3 | 0 |
+| i=2 | 0 | 0 | 1 | 0 | 0 | 0 | 4 |
+
+
+
+
+
+
+
+
+
+
 

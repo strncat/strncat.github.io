@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Dijkstra | strcat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Dijkstra" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="a s b c t 2 1 1 2 1 6 4" />
+<meta property="og:description" content="a s b c t 2 1 1 2 1 6 4" />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/03/31/dijkstra.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/03/31/dijkstra.html" />
+<meta property="og:site_name" content="strcat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-03-31T12:01:36-07:00" />
+<script type="application/ld+json">
+{"description":"a s b c t 2 1 1 2 1 6 4","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/03/31/dijkstra.html","headline":"Dijkstra","dateModified":"2019-03-31T12:01:36-07:00","datePublished":"2019-03-31T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/03/31/dijkstra.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strcat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strcat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Dijkstra</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-03-31T12:01:36-07:00" itemprop="datePublished">Mar 31, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <svg width="700" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="286.5" cy="93.5" rx="30" ry="30" />
+	<text x="282.5" y="99.5" font-family="Times New Roman" font-size="20">a</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="164.5" cy="234.5" rx="30" ry="30" />
+	<text x="160.5" y="240.5" font-family="Times New Roman" font-size="20">s</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="505.5" cy="93.5" rx="30" ry="30" />
+	<text x="500.5" y="99.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="388.5" cy="234.5" rx="30" ry="30" />
+	<text x="384.5" y="240.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="622.5" cy="234.5" rx="30" ry="30" />
+	<text x="619.5" y="240.5" font-family="Times New Roman" font-size="20">t</text>
+	<polygon stroke="black" stroke-width="1" points="184.13,211.813 266.87,116.187" />
+	<polygon fill="black" stroke-width="1" points="266.87,116.187 257.855,118.965 265.417,125.508" />
+	<text x="230.5" y="184.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="304.084,117.807 370.916,210.193" />
+	<polygon fill="black" stroke-width="1" points="370.916,210.193 370.279,200.781 362.176,206.642" />
+	<text x="343.5" y="156.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="194.5,234.5 358.5,234.5" />
+	<polygon fill="black" stroke-width="1" points="358.5,234.5 350.5,229.5 350.5,239.5" />
+	<text x="271.5" y="255.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="316.5,93.5 475.5,93.5" />
+	<polygon fill="black" stroke-width="1" points="475.5,93.5 467.5,88.5 467.5,98.5" />
+	<text x="391.5" y="114.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="524.657,116.587 603.343,211.413" />
+	<polygon fill="black" stroke-width="1" points="603.343,211.413 602.082,202.064 594.386,208.45" />
+	<text x="548.5" y="184.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="418.5,234.5 592.5,234.5" />
+	<polygon fill="black" stroke-width="1" points="592.5,234.5 584.5,229.5 584.5,239.5" />
+	<text x="500.5" y="255.5" font-family="Times New Roman" font-size="20">6</text>
+	<polygon stroke="black" stroke-width="1" points="407.657,211.413 486.343,116.587" />
+	<polygon fill="black" stroke-width="1" points="486.343,116.587 477.386,119.55 485.082,125.936" />
+	<text x="452.5" y="184.5" font-family="Times New Roman" font-size="20">4</text>
+</svg>
+
+<p><b>1.1 Introduction</b>
+<br />
+Dijkstra solves the shortest weighted path problem in a weighted graph with non-negative edge weights. If we want to find the shortest path between nodes <script type="math/tex">s</script> and <script type="math/tex">t</script> in the above graph then the shortest path is <script type="math/tex">s \rightarrow c \rightarrow b \rightarrow t</script>.
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.2 Algorithm</b>
+<br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Set</span> <span class="n">all</span> <span class="n">vertices</span> <span class="n">to</span> <span class="n">not</span><span class="o">-</span><span class="n">sure</span>
+<span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span> <span class="k">for</span> <span class="n">all</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span>
+<span class="n">d</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">there</span> <span class="n">are</span> <span class="n">not</span><span class="o">-</span><span class="n">sure</span> <span class="n">nodes</span> <span class="p">{</span>
+	<span class="n">pick</span> <span class="n">the</span> <span class="n">not</span><span class="o">-</span><span class="n">sure</span> <span class="n">node</span> <span class="n">u</span> <span class="n">with</span> <span class="n">the</span> <span class="n">smallest</span> <span class="n">estimate</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">].</span>
+	<span class="k">for</span> <span class="n">each</span> <span class="n">neighbor</span> <span class="n">v</span> <span class="n">of</span> <span class="n">u</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
+			<span class="c1">// It is cheaper to reach v from u than the current path</span>
+			<span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">Mark</span> <span class="n">u</span> <span class="n">as</span> <span class="n">sure</span>
+	<span class="c1">// at this point we know that d[u] = distance(s,v) (proof below)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.3 Example</b>
+<br />
+In the above graph, we maintain a set of not-sure nodes <script type="math/tex">\{s, a, b, c, t\}</script>. We then assign <script type="math/tex">d[v] = \infty</script> for all nodes. For the source node, we update its estimate to zero. <script type="math/tex">d[s] = 0</script>.
+<br /><br />
+<i>Iteration 0</i><br />
+We extract the minimum not-sure not <script type="math/tex">s</script>. We we now update each neighbor according to the algorithm. After updating each neightbor we get the following the values. Also, after updating all neighbors, we mark <script type="math/tex">s</script> as sure.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Iteration</th>
+      <th>s</th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>t</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>1</td>
+      <td><script type="math/tex">\infty</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Iteration 1</i><br />
+We extract the minimum again from the not-sure nodes. This time we extract <script type="math/tex">c</script>. We update all the neighbors and at the end of this iteration, we mark <script type="math/tex">c</script> as sure.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Iteration</th>
+      <th>s</th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>t</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>i=0</td>
+      <td>0</td>
+      <td>2</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>1</td>
+      <td><script type="math/tex">\infty</script></td>
+    </tr>
+    <tr>
+      <td>i=1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Final iteration</i><br />
+We continue with the same process. We extract the node <script type="math/tex">a</script> and update its neighbors. We then mark it as sure, meaning that the distance from node <script type="math/tex">s</script> to node <script type="math/tex">a</script> is 2. We next extract <script type="math/tex">b</script> and update the neighbors again. We then mark <script type="math/tex">b</script> as sure. We finally extract <script type="math/tex">t</script> which has no out-going edges. At the end of the algorithm, we see that we generated all the shortest paths from <script type="math/tex">s</script> to all the other nodes in the graph.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Iteration</th>
+      <th>s</th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>t</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>i=0</td>
+      <td>0</td>
+      <td>2</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>1</td>
+      <td><script type="math/tex">\infty</script></td>
+    </tr>
+    <tr>
+      <td>i=1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>i=2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>4</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>i=3</td>
+      <td>0</td>
+      <td>2</td>
+      <td>4</td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><b>Extracting the path</b>
+To reconstruct the actuall path take, we just maintain a pointer to the parent node. We simply keep an additional array <script type="math/tex">p</script> and modify the update step as follows:
+<br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">p</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">all</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span>
+<span class="k">while</span> <span class="n">there</span> <span class="n">are</span> <span class="n">not</span><span class="o">-</span><span class="n">sure</span> <span class="n">nodes</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
+		<span class="c1">// we maintain a parent link</span>
+		<span class="n">p</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.4 Proof of Correctness</b><br />
+Why does Dijkstra work? We need to prove two important claims in order to prove that Dijkstra is correct.
+<br /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Claim 1: For all <script type="math/tex">v</script>, <script type="math/tex">d[v] \geq d(s,v)</script>. That is, <script type="math/tex">d[v]</script> will never be an underestimate for any node <script type="math/tex">v</script>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i> <br />
+<b>Inducive Hypothesis:</b> After <script type="math/tex">t</script> iterations, <script type="math/tex">d[v] \geq d(s,v)</script> for all <script type="math/tex">v</script>. <br /></p>
+
+<p><b>Base Case:</b> After 0 iterations, the algorithms sets <script type="math/tex">d[s]= 0 = d(s,s)</script> and sets <script type="math/tex">d[v]</script> to <script type="math/tex">\infty</script> for all <script type="math/tex">v \neq s</script> and therefore we have <script type="math/tex">d[v] \geq d(s,v)</script>, as required.<br /></p>
+
+<p><b>Inductive Step:</b> Assume that after <script type="math/tex">t</script> iterations, <script type="math/tex">d[v] \geq d(s,v)</script> for all <script type="math/tex">v</script>. We will prove the inequality holds after <script type="math/tex">t+1</script> iterations. At iteration <script type="math/tex">t+1</script>, we pick the minimum not-sure node <script type="math/tex">u</script> and then update all neighbors <script type="math/tex">v</script> such that:
+<script type="math/tex">d[v] = min(d[v], d[u]+w(u,v))</script>. To see that <script type="math/tex">d[v] \geq d(s,v)</script>, notice that: <br />
+(1) <script type="math/tex">d[v] \geq d(s,v)</script> by the inductive hypothesis. <br />
+(2) <script type="math/tex">d[u] + w(u,v) \geq d(s,v)</script>. This is because we know that <script type="math/tex">d(s,v) \leq d(s,u) + d(u,v)</script> and we also know that <script type="math/tex">d[u] \geq d(s,u)</script> by the inductive hypothesis. Therefore, <script type="math/tex">d(s,v) \leq d[u] + d(u,v)</script>.</p>
+
+<p><b>Conclusion:</b> 
+After the algorithm terminates, we have <script type="math/tex">d[v] \geq d(s,v)</script> for all $v$ in $V$, as required. <script type="math/tex">\blacksquare</script>
+<br /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Claim 2: When a vertex <script type="math/tex">u</script> is marked sure, <script type="math/tex">d[u] = d(s,u)</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i> <br />
+<b>Inducive Hypothesis:</b> When the t’th vertex <script type="math/tex">v</script> is marked as sure, <script type="math/tex">d[v] = d(s,v)</script>. <br /></p>
+
+<p><b>Base Case:</b> When the first vertex <script type="math/tex">s</script> is marked sure, we know that <script type="math/tex">d[s]=0=d(s,s)</script>, as required. <br /></p>
+
+<p><b>Inductive Step:</b> Suppose we’re about to mark vertex <script type="math/tex">u</script> as sure, and assume every vertex already marked as sure has <script type="math/tex">d[v]=d(s,v)</script>. We will show that <script type="math/tex">d[u]=d(s,u)</script>. Consider a shortest path from <script type="math/tex">s</script> to <script type="math/tex">u</script>.</p>
+
+<svg width="800" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="101.5" cy="106.5" rx="30" ry="30" />
+	<text x="97.5" y="112.5" font-family="Times New Roman" font-size="20">s</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="366.5" cy="122.5" rx="30" ry="30" />
+	<text x="362.5" y="128.5" font-family="Times New Roman" font-size="20">z</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="235.5" cy="65.5" rx="30" ry="30" />
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="516.5" cy="65.5" rx="30" ry="30" />
+	<text x="510.5" y="71.5" font-family="Times New Roman" font-size="20">z'</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="645.5" cy="106.5" rx="30" ry="30" />
+	<text x="640.5" y="112.5" font-family="Times New Roman" font-size="20">u</text>
+	<polygon stroke="black" stroke-width="1" points="130.187,97.723 206.813,74.277" />
+	<polygon fill="black" stroke-width="1" points="206.813,74.277 197.7,71.837 200.626,81.399" />
+	<polygon stroke="black" stroke-width="1" points="394.544,111.843 488.456,76.157" />
+	<polygon fill="black" stroke-width="1" points="488.456,76.157 479.202,74.324 482.754,83.672" />
+	<polygon stroke="black" stroke-width="1" points="263.009,77.469 338.991,110.531" />
+	<polygon fill="black" stroke-width="1" points="338.991,110.531 333.65,102.754 329.661,111.923" />
+	<polygon stroke="black" stroke-width="1" points="545.091,74.587 616.909,97.413" />
+	<polygon fill="black" stroke-width="1" points="616.909,97.413 610.8,90.225 607.771,99.755" />
+</svg>
+<p>We want to prove that <script type="math/tex">d[u]=d(s,u)</script>. Suppose toward a contradiction that our claim is not true and that <script type="math/tex">u</script> has the wrong estimate. Also suppose that node <script type="math/tex">z</script> is the last node with a correct estimate before node <script type="math/tex">u</script> and that vertex <script type="math/tex">z'</script> is the vertex after <script type="math/tex">z</script> in the shortest path above. We can see that <br /></p>
+<div center="">
+$$ d[z] = d(s,z) \leq d(s,u) \leq d[u] $$ <br />
+</div>
+<p>This is because we assumed <script type="math/tex">z</script> has a correct estimate and we also know that <script type="math/tex">d(s,z) \leq d(s,u)</script> because first, sub-paths of shortest paths are shortest paths (can be proved by contradiction). Second, the distance from <script type="math/tex">z</script> to <script type="math/tex">u</script> is non-negative because all edges have non-negative weights and therefore <script type="math/tex">d(s,z) \leq d(s,u)</script>. The last part <script type="math/tex">d(s,u) \leq d[u]</script> follows from claim 1!
+<br />
+<br />
+So now, we have <script type="math/tex">d[z] \leq d[u]</script>. There are two cases: <br />
+Case 1: If <script type="math/tex">d[z] = d[u]</script>. In this case, since we assumed <script type="math/tex">z</script> has a correct estimate then <script type="math/tex">u</script> must have a correct estimate and we’re done! <br />
+Case 2: If <script type="math/tex">% <![CDATA[
+d[z] < d[u] %]]></script>. In this case, since <script type="math/tex">u</script> was the smallest not-sure node, then <script type="math/tex">z</script> must be sure. Otherwise we would have picked <script type="math/tex">z</script> as the smallest not-sure node. Since <script type="math/tex">z</script> is sure then we must have updated <script type="math/tex">z</script>’s neighbors. In particular, we know that <script type="math/tex">z'</script> comes after <script type="math/tex">z</script> so,</p>
+<div center="">
+$$
+\begin{align*}
+d[z'] &amp;\leq d[z] + w(z,z') \\
+&amp;= d(s,z) + w(z,z') \ \ \text{This is because } z \text{ is a sure node so by IH } d[z] = d(s,z) \\ 
+&amp;= d(s,z') \ \ \text{ Subpaths of shortest paths are shortest paths} \\
+&amp;\leq d[z'] \ \ \text{ By claim 1}
+\end{align*}
+$$
+</div>
+<p>This means that <script type="math/tex">z'</script> has a correct estimate. This is a contradiction because we assumed that <script type="math/tex">z</script> is the last node with a good estimate and therefore, <script type="math/tex">u</script> must have the correct estimate, as required.</p>
+
+<p><b>Conclusion:</b> 
+After the last node is marked sure, we have <script type="math/tex">d[v] = d(s,v)</script> for all $v$ in $V$, as we wanted to show. <script type="math/tex">\blacksquare</script>
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.5 Running Time:</b> 
+What are we doing in this algorithm algorithm? For each vertex in the not-sure list, we <br />
+(1) find the minimum vertex. <br />
+(2) remove that vertex. <br />
+(3) update all neighbors with lower estimates if possible.<br />
+<br />
+Therefore we see that if we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges:</p>
+<div center="">
+$$
+\begin{align*}
+TotalTime &amp;= \sum_{u \in V} \big\{ T(findMin) + \big(\sum_{v \in u.neighbors} T(updateKey)\big) + T(removeMin) \big\} \\
+&amp;= n(T(findMin) + T(removeMin)) + m(T(updateKey))
+
+\end{align*}
+$$
+</div>
+<p>Now it is clear that it really depends on how we implement the list that holds the not-sure nodes. Let’s consider different data structures</p>
+<ul>
+  <li>Arrays
+    <ul>
+      <li>findMin will run in <script type="math/tex">O(n)</script></li>
+      <li>RemoveMin will run in <script type="math/tex">O(n)</script></li>
+      <li>UpdateKey will run in <script type="math/tex">O(1)</script><br />
+Therefore, the total time will be <script type="math/tex">O(n(2n) + m) = O(n^2 + m) = O(n^2)</script></li>
+    </ul>
+  </li>
+  <li>Red Black Tree
+    <ul>
+      <li>findMin will run in <script type="math/tex">O(\log(n))</script></li>
+      <li>RemoveMin will run in <script type="math/tex">O(\log(n))</script></li>
+      <li>UpdateKey will run in <script type="math/tex">O(\log(n))</script><br />
+Therefore, the total time will be <script type="math/tex">O(n\log(n) + m\log(n)) = O((n+m)\log(n))</script>. <br />
+Notice here, if the graph is dense, meaning that <script type="math/tex">m=O(n^2)</script>, then this is worse than arrays! if it’s sparse, then it’s better.</li>
+    </ul>
+  </li>
+  <li>Fibonacci Heaps
+    <ul>
+      <li>findMin will run in <script type="math/tex">O(1)</script>, amortized time.</li>
+      <li>RemoveMin will run in <script type="math/tex">O(\log(n))</script>, amortized time.</li>
+      <li>UpdateKey will run in <script type="math/tex">O(1)</script>, amortized time.<br />
+Therefore, the total time will be $$O(n\log(n) + m), amortized time. <br /></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.6 Negative weight edges:</b></p>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html</p>
+
+
+  </div><a class="u-url" href="/jekyll/update/2019/03/31/dijkstra.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strcat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strcat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hello.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+  </body>
+
+</html>

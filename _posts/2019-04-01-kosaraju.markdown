@@ -1,0 +1,179 @@
+---
+layout: post
+title:  "Kosaraju's SCC Algorithm"
+date:   2019-04-01 12:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+
+<b>1.1 Introduction</b><br>
+Let $$G=(V,E)$$ be a graph with $$V$$ vertices and $$E$$ edges. $$G$$ is strongly connected if for all $$u,v$$ in $$V$$:<br>
+(1) There is a path from $$u$$ to $$v$$.<br>
+(2) There is a path from $$v$$ to $$u$$.<br>
+We can decompose a graph into strongly connected components. To find these strongly connected components, we describe in this page Kosaraju's algorithm.
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+<b>1.2 Algorithm</b><br>
+It is a magical algorithm!
+{% highlight c++ %}
+- Run DFS to create a DFS forest and keep tracking of finishing times.
+- Reverse all the edges in G.
+- Run DFS again in the reverse graph from the node with the largest finishing time.
+- The SCCs are the different trees in the second DFS forest.
+{% endhighlight %}
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+<b>1.3 Example</b><br>
+<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="441.5" cy="51.5" rx="30" ry="30"/>
+	<text x="417.5" y="57.5" font-family="Times New Roman" font-size="20">a(0,9)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="360.5" cy="179.5" rx="30" ry="30"/>
+	<text x="327.5" y="185.5" font-family="Times New Roman" font-size="20">c(10,11)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="82.5" cy="139.5" rx="30" ry="30"/>
+	<text x="58.5" y="145.5" font-family="Times New Roman" font-size="20">d(3,4)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="209.5" cy="139.5" rx="30" ry="30"/>
+	<text x="185.5" y="145.5" font-family="Times New Roman" font-size="20">e(2,5)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="236.5" cy="51.5" rx="30" ry="30"/>
+	<text x="214.5" y="57.5" font-family="Times New Roman" font-size="20">f(1,6)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="501.5" cy="145.5" rx="30" ry="30"/>
+	<text x="477.5" y="151.5" font-family="Times New Roman" font-size="20">b(7,8)</text>
+	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5"/>
+	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5"/>
+	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5"/>
+	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5"/>
+	<polygon stroke="black" stroke-width="1" points="411.5,51.5 266.5,51.5"/>
+	<polygon fill="black" stroke-width="1" points="266.5,51.5 274.5,56.5 274.5,46.5"/>
+	<polygon stroke="black" stroke-width="1" points="485.359,120.212 457.641,76.788"/>
+	<polygon fill="black" stroke-width="1" points="457.641,76.788 457.731,86.221 466.16,80.841"/>
+	<polygon stroke="black" stroke-width="1" points="227.7,80.18 218.3,110.82"/>
+	<polygon fill="black" stroke-width="1" points="218.3,110.82 225.426,104.638 215.866,101.705"/>
+	<polygon stroke="black" stroke-width="1" points="413.45,62.14 237.55,128.86"/>
+	<polygon fill="black" stroke-width="1" points="237.55,128.86 246.803,130.698 243.257,121.348"/>
+	<polygon stroke="black" stroke-width="1" points="179.5,139.5 112.5,139.5"/>
+	<polygon fill="black" stroke-width="1" points="112.5,139.5 120.5,144.5 120.5,134.5"/>
+	<polygon stroke="black" stroke-width="1" points="112.5,139.5 179.5,139.5"/>
+	<polygon fill="black" stroke-width="1" points="179.5,139.5 171.5,134.5 171.5,144.5"/>
+	<polygon stroke="black" stroke-width="1" points="376.542,154.149 425.458,76.851"/>
+	<polygon fill="black" stroke-width="1" points="425.458,76.851 416.955,80.937 425.405,86.284"/>
+	<polygon stroke="black" stroke-width="1" points="331.5,171.818 238.5,147.182"/>
+	<polygon fill="black" stroke-width="1" points="238.5,147.182 244.953,154.064 247.513,144.397"/>
+	<polygon stroke="black" stroke-width="1" points="264.774,61.529 473.226,135.471"/>
+	<polygon fill="black" stroke-width="1" points="473.226,135.471 467.358,128.084 464.015,137.509"/>
+</svg>
+In the above graph, we run a first pass of DFS while keeping tracking of the finishing times of vertices. Here, we see that $$a$$ has the largest finishing time. We next reverse the edges in the graph and perform another DFS from the node with the largest finishing time.
+<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="441.5" cy="51.5" rx="30" ry="30"/>
+	<text x="417.5" y="57.5" font-family="Times New Roman" font-size="20">a(0,8)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="360.5" cy="179.5" rx="30" ry="30"/>
+	<text x="327.5" y="185.5" font-family="Times New Roman" font-size="20">c(11,12)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="82.5" cy="139.5" rx="30" ry="30"/>
+	<text x="58.5" y="145.5" font-family="Times New Roman" font-size="20">d(3,4)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="209.5" cy="139.5" rx="30" ry="30"/>
+	<text x="185.5" y="145.5" font-family="Times New Roman" font-size="20">e(2,5)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="236.5" cy="51.5" rx="30" ry="30"/>
+	<text x="214.5" y="57.5" font-family="Times New Roman" font-size="20">f(1,7)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="501.5" cy="145.5" rx="30" ry="30"/>
+	<text x="477.5" y="151.5" font-family="Times New Roman" font-size="20">b(2,6)</text>
+	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5"/>
+	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5"/>
+	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5"/>
+	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5"/>
+	<polygon stroke="black" stroke-width="1" points="411.5,51.5 266.5,51.5"/>
+	<polygon fill="black" stroke-width="1" points="266.5,51.5 274.5,56.5 274.5,46.5"/>
+	<polygon stroke="black" stroke-width="1" points="485.359,120.212 457.641,76.788"/>
+	<polygon fill="black" stroke-width="1" points="457.641,76.788 457.731,86.221 466.16,80.841"/>
+	<polygon stroke="black" stroke-width="1" points="227.7,80.18 218.3,110.82"/>
+	<polygon fill="black" stroke-width="1" points="218.3,110.82 225.426,104.638 215.866,101.705"/>
+	<polygon stroke="black" stroke-width="1" points="413.45,62.14 237.55,128.86"/>
+	<polygon fill="black" stroke-width="1" points="237.55,128.86 246.803,130.698 243.257,121.348"/>
+	<polygon stroke="black" stroke-width="1" points="179.5,139.5 112.5,139.5"/>
+	<polygon fill="black" stroke-width="1" points="112.5,139.5 120.5,144.5 120.5,134.5"/>
+	<polygon stroke="black" stroke-width="1" points="112.5,139.5 179.5,139.5"/>
+	<polygon fill="black" stroke-width="1" points="179.5,139.5 171.5,134.5 171.5,144.5"/>
+	<polygon stroke="black" stroke-width="1" points="376.542,154.149 425.458,76.851"/>
+	<polygon fill="black" stroke-width="1" points="425.458,76.851 416.955,80.937 425.405,86.284"/>
+	<polygon stroke="black" stroke-width="1" points="331.5,171.818 238.5,147.182"/>
+	<polygon fill="black" stroke-width="1" points="238.5,147.182 244.953,154.064 247.513,144.397"/>
+	<polygon stroke="black" stroke-width="1" points="264.774,61.529 473.226,135.471"/>
+	<polygon fill="black" stroke-width="1" points="473.226,135.471 467.358,128.084 464.015,137.509"/>
+</svg>
+Notice in the second DFS, we visit $$c$$ first and there are no nodes reachable from $$c$$, so $$c$$ is a strongly connected component. We next visit $$\{a,b,c\}$$ and that's our second strongly connected component. We finally visit $$\{d,e\}$$ and that's our third and final strongly connected component as expected.
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+<b>1.4 Proof of Correctness</b><br>
+Why does this algorithm find the SCCs? To show how, we'll first prove two important lemmas that we'll use in proving that the algorithm is correct.
+<br>
+<br>
+
+| Lemma 1: The SCC graph is a DAG |
+
+<i>Proof:</i> Suppose that the SCC graph is not a DAG and let $$A$$ and $$B$$ be two components where there is an edge from $$A$$ to $$B$$ and an edge from $$B$$ to $$A$$. Let $$u$$ be a vertex in $$A$$ and let $$v$$ be a vertex in $$B$$. By the connected component definition, we know there is a path between $$v$$ and every vertex in $$A$$. Similarly, there is a path between $$u$$ and any vertex in $$B$$. Since there is an edge from $$A$$ to $$B$$ then there is a path from $$v$$ to any vertex in $$B$$ and Similarly, there is a path between $$u$$ and any vertex in $$A$$. Therefore, the vertices in $$A$$ and $$B$$ must be in the same strongly connected component. This is a contradiction, since we assumed $$A$$ and $$B$$ two strongly connected components. Therefore, the SCC graph must be a DAG. $$\blacksquare$$
+<br>
+<br>
+
+| Lemma 2: In the SCC DAG, if there is an edge from component $$A$$ to component $$B$$ then $$A.finish > B.finish$$ |
+
+
+<i>Proof:</i> There are two cases: <br>
+Case 1: We reached $$A$$ before $$B$$ in our first DFS: <br>
+Let $$x$$ have the largest finish time in $$A$$ and $$y$$ have the largest finish time in $$B$$. Let $$z$$ be the first node discovered in $$A$$ then we will reach $$A$$ and discover $$z$$ then at some point we will reach $$B$$ and discover $$y$$. This means that $$y$$ is a descendant of $$z$$. By the parentheses theorem, this means that $$z$$ has a larger finish time. Since $$x$$ has the largest finish time in $$A$$, then $$x.finish > z.finish$$ and since $$.z.finish > y.finish$$ then we have $$A.finish > B.finish$$, as required.
+
+
+<br>
+Case 2: We reached $$B$$ before $$A$$ in our first DFS: <br>
+Since we assumed that there is an edge from $$A$$ to $$B$$ then by Lemma 1, we don't have an edge from $$B$$ to $$A$$.Therefore, we will explore $$B$$ completely first and then $$A$$ will be explored later after we restart the DFS, this means that $$A.finish > B.finish$$, as we wanted to show. $$\blacksquare$$
+<br>
+<br>
+
+| Corollary 1: In the SCC DAG, if there is an edge from component $$B$$ to component $$A$$ in the reversed graph, then $$A.finish > B.finish$$ |
+
+We can now combine the previous results to prove the following theorem:
+
+| Theorem: The algorithm we saw before will correctly identify strongly connected components |
+
+<i>Proof:</i> <br>
+<b>Inductive Hypothesis: </b> The first $$t$$ trees found in the second (reversed) DFS
+forest are the $$t$$ SCCs with the largest finish times. Moreover, what’s left unvisited after these $$t$$ trees have been explored is a DAG on the un-found SCCs.
+<br>
+
+<b>Base Case:</b> It is vacuously true that the first 0 trees found in the reversed DFS forest are the 0 SCCs with the largest finish times. Moreover, what’s left unvisited after 0 trees have been explored is a DAG on all the SCCs by Lemma 1.
+<br>
+
+<b>Inductive Step:</b> Assume by induction that the first $$t$$ trees are the last-finishing SCCs, and the remaining SCCs form a DAG. 
+<br>
+Now, consider the $$t+1$$st tree produced and let $$x$$ be the root of the tree. Let $$x$$ be in SCC $$A$$. We know that $$A.finish > B.finish$$ for the remaining SCCs $$B$$. This is because we chose $$x$$ in the second DFS to have the largest finish time. 
+<br>
+Also since $$A.finish > B.finish$$, then there are no edges going from $$A$$ to $$B$$ because suppose there was an edge to some component $$C$$ then $$C.finish > A.finish$$ by Corollary 1 which is a contradiction since $$A$$ has the largest finish time. 
+<br>
+Therefore, we will only discover vertices in $$A$$ in the second DFS started from $$x$$. So the $$t+1$$st tree is the SCC with the (t+1)st biggest finish time. Also the remaining SCCs still form a DAG, since removing a vertex won't create a cycle.
+
+<b>Conclusion:</b> The second (reversed) DFS forest contains all the SCCs as its trees. $$\blacksquare$$
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+<b>1.5 Running Time:</b> 
+What are we doing in this algorithm algorithm? Two passes of DFS that we know run in $$O(n+m)$$. Therefore the running time is astonishingly $$O(n+m)$$. 
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+<b>1.6 Detailed Implementation:</b> 
+https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/connected-components/strongly-connected-components-directed-kosaraju
+
+
+
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html
+
+
+

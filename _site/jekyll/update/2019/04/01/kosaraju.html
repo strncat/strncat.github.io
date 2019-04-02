@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Kosaraju’s SCC Algorithm | strcat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Kosaraju’s SCC Algorithm" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="1.1 Introduction Let be a graph with vertices and edges. is strongly connected if for all in : (1) There is a path from to . (2) There is a path from to . We can decompose a graph into strongly connected components. To find these strongly connected components, we describe in this page Kosaraju’s algorithm. 1.2 Algorithm It is a magical algorithm! - Run DFS to create a DFS forest and keep tracking of finishing times. - Reverse all the edges in G. - Run DFS again in the reverse graph from the node with the largest finishing time. - The SCCs are the different trees in the second DFS forest. 1.3 Example a(0,9) c(10,11) d(3,4) e(2,5) f(1,6) b(7,8) In the above graph, we run a first pass of DFS while keeping tracking of the finishing times of vertices. Here, we see that has the largest finishing time. We next reverse the edges in the graph and perform another DFS from the node with the largest finishing time. a(0,8) c(11,12) d(3,4) e(2,5) f(1,7) b(2,6) Notice in the second DFS, we visit first and there are no nodes reachable from , so is a strongly connected component. We next visit and that’s our second strongly connected component. We finally visit and that’s our third and final strongly connected component as expected. 1.4 Proof of Correctness Why does this algorithm find the SCCs? To show how, we’ll first prove two important lemmas that we’ll use in proving that the algorithm is correct." />
+<meta property="og:description" content="1.1 Introduction Let be a graph with vertices and edges. is strongly connected if for all in : (1) There is a path from to . (2) There is a path from to . We can decompose a graph into strongly connected components. To find these strongly connected components, we describe in this page Kosaraju’s algorithm. 1.2 Algorithm It is a magical algorithm! - Run DFS to create a DFS forest and keep tracking of finishing times. - Reverse all the edges in G. - Run DFS again in the reverse graph from the node with the largest finishing time. - The SCCs are the different trees in the second DFS forest. 1.3 Example a(0,9) c(10,11) d(3,4) e(2,5) f(1,6) b(7,8) In the above graph, we run a first pass of DFS while keeping tracking of the finishing times of vertices. Here, we see that has the largest finishing time. We next reverse the edges in the graph and perform another DFS from the node with the largest finishing time. a(0,8) c(11,12) d(3,4) e(2,5) f(1,7) b(2,6) Notice in the second DFS, we visit first and there are no nodes reachable from , so is a strongly connected component. We next visit and that’s our second strongly connected component. We finally visit and that’s our third and final strongly connected component as expected. 1.4 Proof of Correctness Why does this algorithm find the SCCs? To show how, we’ll first prove two important lemmas that we’ll use in proving that the algorithm is correct." />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/04/01/kosaraju.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/04/01/kosaraju.html" />
+<meta property="og:site_name" content="strcat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-04-01T12:01:36-07:00" />
+<script type="application/ld+json">
+{"description":"1.1 Introduction Let be a graph with vertices and edges. is strongly connected if for all in : (1) There is a path from to . (2) There is a path from to . We can decompose a graph into strongly connected components. To find these strongly connected components, we describe in this page Kosaraju’s algorithm. 1.2 Algorithm It is a magical algorithm! - Run DFS to create a DFS forest and keep tracking of finishing times. - Reverse all the edges in G. - Run DFS again in the reverse graph from the node with the largest finishing time. - The SCCs are the different trees in the second DFS forest. 1.3 Example a(0,9) c(10,11) d(3,4) e(2,5) f(1,6) b(7,8) In the above graph, we run a first pass of DFS while keeping tracking of the finishing times of vertices. Here, we see that has the largest finishing time. We next reverse the edges in the graph and perform another DFS from the node with the largest finishing time. a(0,8) c(11,12) d(3,4) e(2,5) f(1,7) b(2,6) Notice in the second DFS, we visit first and there are no nodes reachable from , so is a strongly connected component. We next visit and that’s our second strongly connected component. We finally visit and that’s our third and final strongly connected component as expected. 1.4 Proof of Correctness Why does this algorithm find the SCCs? To show how, we’ll first prove two important lemmas that we’ll use in proving that the algorithm is correct.","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/04/01/kosaraju.html","headline":"Kosaraju’s SCC Algorithm","dateModified":"2019-04-01T12:01:36-07:00","datePublished":"2019-04-01T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/04/01/kosaraju.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strcat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strcat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Kosaraju&#39;s SCC Algorithm</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-04-01T12:01:36-07:00" itemprop="datePublished">Apr 1, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><b>1.1 Introduction</b><br />
+Let <script type="math/tex">G=(V,E)</script> be a graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. <script type="math/tex">G</script> is strongly connected if for all <script type="math/tex">u,v</script> in <script type="math/tex">V</script>:<br />
+(1) There is a path from <script type="math/tex">u</script> to <script type="math/tex">v</script>.<br />
+(2) There is a path from <script type="math/tex">v</script> to <script type="math/tex">u</script>.<br />
+We can decompose a graph into strongly connected components. To find these strongly connected components, we describe in this page Kosaraju’s algorithm.
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.2 Algorithm</b><br />
+It is a magical algorithm!</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="o">-</span> <span class="n">Run</span> <span class="n">DFS</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">DFS</span> <span class="n">forest</span> <span class="n">and</span> <span class="n">keep</span> <span class="n">tracking</span> <span class="n">of</span> <span class="n">finishing</span> <span class="n">times</span><span class="p">.</span>
+<span class="o">-</span> <span class="n">Reverse</span> <span class="n">all</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">in</span> <span class="n">G</span><span class="p">.</span>
+<span class="o">-</span> <span class="n">Run</span> <span class="n">DFS</span> <span class="n">again</span> <span class="n">in</span> <span class="n">the</span> <span class="n">reverse</span> <span class="n">graph</span> <span class="n">from</span> <span class="n">the</span> <span class="n">node</span> <span class="n">with</span> <span class="n">the</span> <span class="n">largest</span> <span class="n">finishing</span> <span class="n">time</span><span class="p">.</span>
+<span class="o">-</span> <span class="n">The</span> <span class="n">SCCs</span> <span class="n">are</span> <span class="n">the</span> <span class="n">different</span> <span class="n">trees</span> <span class="n">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">DFS</span> <span class="n">forest</span><span class="p">.</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.3 Example</b><br /></p>
+<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="441.5" cy="51.5" rx="30" ry="30" />
+	<text x="417.5" y="57.5" font-family="Times New Roman" font-size="20">a(0,9)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="360.5" cy="179.5" rx="30" ry="30" />
+	<text x="327.5" y="185.5" font-family="Times New Roman" font-size="20">c(10,11)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="82.5" cy="139.5" rx="30" ry="30" />
+	<text x="58.5" y="145.5" font-family="Times New Roman" font-size="20">d(3,4)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="209.5" cy="139.5" rx="30" ry="30" />
+	<text x="185.5" y="145.5" font-family="Times New Roman" font-size="20">e(2,5)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="236.5" cy="51.5" rx="30" ry="30" />
+	<text x="214.5" y="57.5" font-family="Times New Roman" font-size="20">f(1,6)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="501.5" cy="145.5" rx="30" ry="30" />
+	<text x="477.5" y="151.5" font-family="Times New Roman" font-size="20">b(7,8)</text>
+	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5" />
+	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5" />
+	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5" />
+	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5" />
+	<polygon stroke="black" stroke-width="1" points="411.5,51.5 266.5,51.5" />
+	<polygon fill="black" stroke-width="1" points="266.5,51.5 274.5,56.5 274.5,46.5" />
+	<polygon stroke="black" stroke-width="1" points="485.359,120.212 457.641,76.788" />
+	<polygon fill="black" stroke-width="1" points="457.641,76.788 457.731,86.221 466.16,80.841" />
+	<polygon stroke="black" stroke-width="1" points="227.7,80.18 218.3,110.82" />
+	<polygon fill="black" stroke-width="1" points="218.3,110.82 225.426,104.638 215.866,101.705" />
+	<polygon stroke="black" stroke-width="1" points="413.45,62.14 237.55,128.86" />
+	<polygon fill="black" stroke-width="1" points="237.55,128.86 246.803,130.698 243.257,121.348" />
+	<polygon stroke="black" stroke-width="1" points="179.5,139.5 112.5,139.5" />
+	<polygon fill="black" stroke-width="1" points="112.5,139.5 120.5,144.5 120.5,134.5" />
+	<polygon stroke="black" stroke-width="1" points="112.5,139.5 179.5,139.5" />
+	<polygon fill="black" stroke-width="1" points="179.5,139.5 171.5,134.5 171.5,144.5" />
+	<polygon stroke="black" stroke-width="1" points="376.542,154.149 425.458,76.851" />
+	<polygon fill="black" stroke-width="1" points="425.458,76.851 416.955,80.937 425.405,86.284" />
+	<polygon stroke="black" stroke-width="1" points="331.5,171.818 238.5,147.182" />
+	<polygon fill="black" stroke-width="1" points="238.5,147.182 244.953,154.064 247.513,144.397" />
+	<polygon stroke="black" stroke-width="1" points="264.774,61.529 473.226,135.471" />
+	<polygon fill="black" stroke-width="1" points="473.226,135.471 467.358,128.084 464.015,137.509" />
+</svg>
+<p>In the above graph, we run a first pass of DFS while keeping tracking of the finishing times of vertices. Here, we see that <script type="math/tex">a</script> has the largest finishing time. We next reverse the edges in the graph and perform another DFS from the node with the largest finishing time.</p>
+<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="441.5" cy="51.5" rx="30" ry="30" />
+	<text x="417.5" y="57.5" font-family="Times New Roman" font-size="20">a(0,8)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="360.5" cy="179.5" rx="30" ry="30" />
+	<text x="327.5" y="185.5" font-family="Times New Roman" font-size="20">c(11,12)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="82.5" cy="139.5" rx="30" ry="30" />
+	<text x="58.5" y="145.5" font-family="Times New Roman" font-size="20">d(3,4)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="209.5" cy="139.5" rx="30" ry="30" />
+	<text x="185.5" y="145.5" font-family="Times New Roman" font-size="20">e(2,5)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="236.5" cy="51.5" rx="30" ry="30" />
+	<text x="214.5" y="57.5" font-family="Times New Roman" font-size="20">f(1,7)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="501.5" cy="145.5" rx="30" ry="30" />
+	<text x="477.5" y="151.5" font-family="Times New Roman" font-size="20">b(2,6)</text>
+	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5" />
+	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5" />
+	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5" />
+	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5" />
+	<polygon stroke="black" stroke-width="1" points="411.5,51.5 266.5,51.5" />
+	<polygon fill="black" stroke-width="1" points="266.5,51.5 274.5,56.5 274.5,46.5" />
+	<polygon stroke="black" stroke-width="1" points="485.359,120.212 457.641,76.788" />
+	<polygon fill="black" stroke-width="1" points="457.641,76.788 457.731,86.221 466.16,80.841" />
+	<polygon stroke="black" stroke-width="1" points="227.7,80.18 218.3,110.82" />
+	<polygon fill="black" stroke-width="1" points="218.3,110.82 225.426,104.638 215.866,101.705" />
+	<polygon stroke="black" stroke-width="1" points="413.45,62.14 237.55,128.86" />
+	<polygon fill="black" stroke-width="1" points="237.55,128.86 246.803,130.698 243.257,121.348" />
+	<polygon stroke="black" stroke-width="1" points="179.5,139.5 112.5,139.5" />
+	<polygon fill="black" stroke-width="1" points="112.5,139.5 120.5,144.5 120.5,134.5" />
+	<polygon stroke="black" stroke-width="1" points="112.5,139.5 179.5,139.5" />
+	<polygon fill="black" stroke-width="1" points="179.5,139.5 171.5,134.5 171.5,144.5" />
+	<polygon stroke="black" stroke-width="1" points="376.542,154.149 425.458,76.851" />
+	<polygon fill="black" stroke-width="1" points="425.458,76.851 416.955,80.937 425.405,86.284" />
+	<polygon stroke="black" stroke-width="1" points="331.5,171.818 238.5,147.182" />
+	<polygon fill="black" stroke-width="1" points="238.5,147.182 244.953,154.064 247.513,144.397" />
+	<polygon stroke="black" stroke-width="1" points="264.774,61.529 473.226,135.471" />
+	<polygon fill="black" stroke-width="1" points="473.226,135.471 467.358,128.084 464.015,137.509" />
+</svg>
+<p>Notice in the second DFS, we visit <script type="math/tex">c</script> first and there are no nodes reachable from <script type="math/tex">c</script>, so <script type="math/tex">c</script> is a strongly connected component. We next visit <script type="math/tex">\{a,b,c\}</script> and that’s our second strongly connected component. We finally visit <script type="math/tex">\{d,e\}</script> and that’s our third and final strongly connected component as expected.
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.4 Proof of Correctness</b><br />
+Why does this algorithm find the SCCs? To show how, we’ll first prove two important lemmas that we’ll use in proving that the algorithm is correct.
+<br />
+<br /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Lemma 1: The SCC graph is a DAG</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i> Suppose that the SCC graph is not a DAG and let <script type="math/tex">A</script> and <script type="math/tex">B</script> be two components where there is an edge from <script type="math/tex">A</script> to <script type="math/tex">B</script> and an edge from <script type="math/tex">B</script> to <script type="math/tex">A</script>. Let <script type="math/tex">u</script> be a vertex in <script type="math/tex">A</script> and let <script type="math/tex">v</script> be a vertex in <script type="math/tex">B</script>. By the connected component definition, we know there is a path between <script type="math/tex">v</script> and every vertex in <script type="math/tex">A</script>. Similarly, there is a path between <script type="math/tex">u</script> and any vertex in <script type="math/tex">B</script>. Since there is an edge from <script type="math/tex">A</script> to <script type="math/tex">B</script> then there is a path from <script type="math/tex">v</script> to any vertex in <script type="math/tex">B</script> and Similarly, there is a path between <script type="math/tex">u</script> and any vertex in <script type="math/tex">A</script>. Therefore, the vertices in <script type="math/tex">A</script> and <script type="math/tex">B</script> must be in the same strongly connected component. This is a contradiction, since we assumed <script type="math/tex">A</script> and <script type="math/tex">B</script> two strongly connected components. Therefore, the SCC graph must be a DAG. <script type="math/tex">\blacksquare</script>
+<br />
+<br /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Lemma 2: In the SCC DAG, if there is an edge from component <script type="math/tex">A</script> to component <script type="math/tex">B</script> then <script type="math/tex">A.finish > B.finish</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i> There are two cases: <br />
+Case 1: We reached <script type="math/tex">A</script> before <script type="math/tex">B</script> in our first DFS: <br />
+Let <script type="math/tex">x</script> have the largest finish time in <script type="math/tex">A</script> and <script type="math/tex">y</script> have the largest finish time in <script type="math/tex">B</script>. Let <script type="math/tex">z</script> be the first node discovered in <script type="math/tex">A</script> then we will reach <script type="math/tex">A</script> and discover <script type="math/tex">z</script> then at some point we will reach <script type="math/tex">B</script> and discover <script type="math/tex">y</script>. This means that <script type="math/tex">y</script> is a descendant of <script type="math/tex">z</script>. By the parentheses theorem, this means that <script type="math/tex">z</script> has a larger finish time. Since <script type="math/tex">x</script> has the largest finish time in <script type="math/tex">A</script>, then <script type="math/tex">x.finish > z.finish</script> and since <script type="math/tex">.z.finish > y.finish</script> then we have <script type="math/tex">A.finish > B.finish</script>, as required.</p>
+
+<p><br />
+Case 2: We reached <script type="math/tex">B</script> before <script type="math/tex">A</script> in our first DFS: <br />
+Since we assumed that there is an edge from <script type="math/tex">A</script> to <script type="math/tex">B</script> then by Lemma 1, we don’t have an edge from <script type="math/tex">B</script> to <script type="math/tex">A</script>.Therefore, we will explore <script type="math/tex">B</script> completely first and then <script type="math/tex">A</script> will be explored later after we restart the DFS, this means that <script type="math/tex">A.finish > B.finish</script>, as we wanted to show. <script type="math/tex">\blacksquare</script>
+<br />
+<br /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Corollary 1: In the SCC DAG, if there is an edge from component <script type="math/tex">B</script> to component <script type="math/tex">A</script> in the reversed graph, then <script type="math/tex">A.finish > B.finish</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We can now combine the previous results to prove the following theorem:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Theorem: The algorithm we saw before will correctly identify strongly connected components</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i> <br />
+<b>Inductive Hypothesis: </b> The first <script type="math/tex">t</script> trees found in the second (reversed) DFS
+forest are the <script type="math/tex">t</script> SCCs with the largest finish times. Moreover, what’s left unvisited after these <script type="math/tex">t</script> trees have been explored is a DAG on the un-found SCCs.
+<br /></p>
+
+<p><b>Base Case:</b> It is vacuously true that the first 0 trees found in the reversed DFS forest are the 0 SCCs with the largest finish times. Moreover, what’s left unvisited after 0 trees have been explored is a DAG on all the SCCs by Lemma 1.
+<br /></p>
+
+<p><b>Inductive Step:</b> Assume by induction that the first <script type="math/tex">t</script> trees are the last-finishing SCCs, and the remaining SCCs form a DAG. 
+<br />
+Now, consider the <script type="math/tex">t+1</script>st tree produced and let <script type="math/tex">x</script> be the root of the tree. Let <script type="math/tex">x</script> be in SCC <script type="math/tex">A</script>. We know that <script type="math/tex">A.finish > B.finish</script> for the remaining SCCs <script type="math/tex">B</script>. This is because we chose <script type="math/tex">x</script> in the second DFS to have the largest finish time. 
+<br />
+Also since <script type="math/tex">A.finish > B.finish</script>, then there are no edges going from <script type="math/tex">A</script> to <script type="math/tex">B</script> because suppose there was an edge to some component <script type="math/tex">C</script> then <script type="math/tex">C.finish > A.finish</script> by Corollary 1 which is a contradiction since <script type="math/tex">A</script> has the largest finish time. 
+<br />
+Therefore, we will only discover vertices in <script type="math/tex">A</script> in the second DFS started from <script type="math/tex">x</script>. So the <script type="math/tex">t+1</script>st tree is the SCC with the (t+1)st biggest finish time. Also the remaining SCCs still form a DAG, since removing a vertex won’t create a cycle.</p>
+
+<p><b>Conclusion:</b> The second (reversed) DFS forest contains all the SCCs as its trees. <script type="math/tex">\blacksquare</script>
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.5 Running Time:</b> 
+What are we doing in this algorithm algorithm? Two passes of DFS that we know run in <script type="math/tex">O(n+m)</script>. Therefore the running time is astonishingly <script type="math/tex">O(n+m)</script>. 
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>1.6 Detailed Implementation:</b> 
+https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/connected-components/strongly-connected-components-directed-kosaraju</p>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html</p>
+
+
+  </div><a class="u-url" href="/jekyll/update/2019/04/01/kosaraju.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strcat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strcat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hello.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+  </body>
+
+</html>

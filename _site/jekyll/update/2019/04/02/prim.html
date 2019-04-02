@@ -7,15 +7,15 @@
 <meta name="generator" content="Jekyll v3.7.4" />
 <meta property="og:title" content="Prim’s Minimum Spanning Tree" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="1 Introduction Let be a graph with vertices and edges." />
-<meta property="og:description" content="1 Introduction Let be a graph with vertices and edges." />
+<meta name="description" content="b c d e f a 4 7 2 6 5 1 2 3 1 1 Introduction Let be undirected, weighted graph with vertices and edges. A minimum spanning tree is a tree that connects all the vertices in of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. what start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don’t create a cycle until we cover all the vertices in . Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive." />
+<meta property="og:description" content="b c d e f a 4 7 2 6 5 1 2 3 1 1 Introduction Let be undirected, weighted graph with vertices and edges. A minimum spanning tree is a tree that connects all the vertices in of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. what start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don’t create a cycle until we cover all the vertices in . Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive." />
 <link rel="canonical" href="http://localhost:4000/jekyll/update/2019/04/02/prim.html" />
 <meta property="og:url" content="http://localhost:4000/jekyll/update/2019/04/02/prim.html" />
 <meta property="og:site_name" content="strcat’s notebook" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-04-02T12:01:36-07:00" />
 <script type="application/ld+json">
-{"description":"1 Introduction Let be a graph with vertices and edges.","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/04/02/prim.html","headline":"Prim’s Minimum Spanning Tree","dateModified":"2019-04-02T12:01:36-07:00","datePublished":"2019-04-02T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/04/02/prim.html"},"@context":"https://schema.org"}</script>
+{"description":"b c d e f a 4 7 2 6 5 1 2 3 1 1 Introduction Let be undirected, weighted graph with vertices and edges. A minimum spanning tree is a tree that connects all the vertices in of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. what start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don’t create a cycle until we cover all the vertices in . Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive.","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/04/02/prim.html","headline":"Prim’s Minimum Spanning Tree","dateModified":"2019-04-02T12:01:36-07:00","datePublished":"2019-04-02T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/04/02/prim.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strcat's notebook" />
 <script type="text/x-mathjax-config">
@@ -68,22 +68,117 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>1 Introduction</b><br />
-Let <script type="math/tex">G=(V,E)</script> be a graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges.</p>
+    <svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="68.5" rx="30" ry="30" />
+	<text x="289.5" y="74.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="68.5" rx="30" ry="30" />
+	<text x="494.5" y="74.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="664.5" cy="147.5" rx="30" ry="30" />
+	<text x="659.5" y="153.5" font-family="Times New Roman" font-size="20">d</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="218.5" rx="30" ry="30" />
+	<text x="494.5" y="224.5" font-family="Times New Roman" font-size="20">e</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="218.5" rx="30" ry="30" />
+	<text x="291.5" y="224.5" font-family="Times New Roman" font-size="20">f</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="137.5" cy="159.5" rx="30" ry="30" />
+	<text x="133.5" y="165.5" font-family="Times New Roman" font-size="20">a</text>
+	<polygon stroke="black" stroke-width="1" points="324.5,68.5 468.5,68.5" />
+	<text x="391.5" y="89.5" font-family="Times New Roman" font-size="20">4</text>
+	<polygon stroke="black" stroke-width="1" points="525.589,81.392 637.411,134.608" />
+	<text x="586.5" y="98.5" font-family="Times New Roman" font-size="20">7</text>
+	<polygon stroke="black" stroke-width="1" points="636.917,159.298 526.083,206.702" />
+	<text x="566.5" y="173.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="468.5,218.5 324.5,218.5" />
+	<text x="391.5" y="209.5" font-family="Times New Roman" font-size="20">6</text>
+	<polygon stroke="black" stroke-width="1" points="318.67,200.728 474.33,86.272" />
+	<text x="401.5" y="164.5" font-family="Times New Roman" font-size="20">5</text>
+	<polygon stroke="black" stroke-width="1" points="163.455,144.456 268.545,83.544" />
+	<text x="220.5" y="135.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="165.583,170.053 266.417,207.947" />
+	<text x="201.5" y="210.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="498.5,188.5 498.5,98.5" />
+	<text x="503.5" y="149.5" font-family="Times New Roman" font-size="20">3</text>
+	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5" />
+	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
+</svg>
+<p><b>1 Introduction</b><br />
+Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A minimum spanning tree is a tree that connects all the vertices in <script type="math/tex">V</script> of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. what start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don’t create a cycle until we cover all the vertices in <script type="math/tex">V</script>. Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive.</p>
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <hr />
 
 <p><br />
-<b>2 Algorithm</b><br /></p>
+<b>2.1 Algorithm (slow naive version)</b>
+<br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">We</span> <span class="n">can</span> <span class="n">start</span> <span class="n">from</span> <span class="n">any</span> <span class="n">node</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">pick</span> <span class="n">the</span> <span class="n">lightest</span> <span class="n">node</span> <span class="n">coming</span> <span class="n">out</span> <span class="n">of</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">MST</span> <span class="o">=</span> 
+<span class="n">visited</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">,</span><span class="n">u</span><span class="p">}</span>
+<span class="k">while</span> <span class="o">|</span><span class="n">visited</span><span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span><span class="n">V</span><span class="o">|</span> <span class="p">{</span>
+	<span class="n">pick</span> <span class="n">the</span> <span class="n">cheapest</span> <span class="n">edge</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">}</span> <span class="n">in</span> <span class="n">E</span> <span class="n">so</span> <span class="n">that</span><span class="o">:</span>
+		<span class="n">x</span> <span class="n">is</span> <span class="n">in</span> <span class="n">visited</span>
+		<span class="n">y</span> <span class="n">is</span> <span class="n">not</span> <span class="n">in</span> <span class="n">visited</span>
+	<span class="n">add</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">}</span> <span class="n">to</span> <span class="n">MST</span>
+	<span class="n">add</span> <span class="n">y</span> <span class="n">to</span> <span class="n">visited</span> 
+<span class="p">}</span></code></pre></figure>
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <hr />
 
 <p><br />
-<b>3 Example</b><br /></p>
+<b>2.2 Algorithm (fast, used for the remaining of these notes)</b>
+<br />
+This smart implementation is basically Dijkstra! The only difference is the update condition. In Dijkstra, we take into account the whole path cost while in Prim we only care about the edge weight itself!</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Set</span> <span class="n">all</span> <span class="n">vertices</span> <span class="n">to</span> <span class="n">unreached</span>
+<span class="n">k</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span> <span class="k">for</span> <span class="n">all</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span>
+<span class="n">k</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">there</span> <span class="n">are</span> <span class="n">unreached</span> <span class="n">nodes</span> <span class="p">{</span>
+	<span class="n">pick</span> <span class="n">the</span> <span class="n">unreached</span> <span class="n">node</span> <span class="n">u</span> <span class="n">with</span> <span class="n">the</span> <span class="n">smallest</span> <span class="n">key</span> <span class="n">k</span><span class="p">[</span><span class="n">u</span><span class="p">].</span>
+	<span class="k">for</span> <span class="n">each</span> <span class="n">neighbor</span> <span class="n">v</span> <span class="n">of</span> <span class="n">u</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">weight</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
+			<span class="c1">// The is the only difference between Prim and Dijkstra</span>
+			<span class="n">k</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+			<span class="n">p</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">Mark</span> <span class="n">u</span> <span class="n">as</span> <span class="n">reached</span> <span class="n">and</span> <span class="n">add</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span class="n">u</span><span class="p">)</span> <span class="n">to</span> <span class="n">MST</span>
+	<span class="c1">// This edge is safe to add and won't rule out success, proof below!</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>3 Example</b><br />
+In the above example, the minimum spanning tree is the following tree:</p>
+<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="68.5" rx="30" ry="30" />
+	<text x="289.5" y="74.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="68.5" rx="30" ry="30" />
+	<text x="494.5" y="74.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="664.5" cy="147.5" rx="30" ry="30" />
+	<text x="659.5" y="153.5" font-family="Times New Roman" font-size="20">d</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="218.5" rx="30" ry="30" />
+	<text x="494.5" y="224.5" font-family="Times New Roman" font-size="20">e</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="218.5" rx="30" ry="30" />
+	<text x="291.5" y="224.5" font-family="Times New Roman" font-size="20">f</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="137.5" cy="159.5" rx="30" ry="30" />
+	<text x="133.5" y="165.5" font-family="Times New Roman" font-size="20">a</text>
+	<polygon stroke="black" stroke-width="1" points="324.5,68.5 468.5,68.5" />
+	<text x="391.5" y="89.5" font-family="Times New Roman" font-size="20">4</text>
+	<polygon stroke="black" stroke-width="1" points="636.917,159.298 526.083,206.702" />
+	<text x="566.5" y="173.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="163.455,144.456 268.545,83.544" />
+	<text x="220.5" y="135.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="498.5,188.5 498.5,98.5" />
+	<text x="503.5" y="149.5" font-family="Times New Roman" font-size="20">3</text>
+	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5" />
+	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
+</svg>
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
@@ -91,55 +186,103 @@ Let <script type="math/tex">G=(V,E)</script> be a graph with <script type="math/
 
 <p><br />
 <b>4 Proof of Correctness</b><br />
-Why does this algorithm find a minimum spanning tree? 
-<br />
-<br /></p>
+Why does this algorithm find a minimum spanning tree? Before we can answer that, let’s define some terms and prove some lemma that will be useful in the main proof. Let <script type="math/tex">G=(V,E)</script> be the graph below and let <script type="math/tex">S</script> be the set of yellow edges in <script type="math/tex">G</script>.</p>
+
+<p><img src="http://localhost:4000/assets/cut.png" alt="my photo" /></p>
+
+<ul>
+  <li>A <b>cut</b> is a partition of the vertices into two non-empty parts. the red line (cut) partitions <script type="math/tex">G</script> into <script type="math/tex">\{a,b,f,e\}</script> and <script type="math/tex">\{c,d\}</script>.</li>
+  <li>A cut <b>respects</b> <script type="math/tex">S</script> if no edges in <script type="math/tex">S</script> cross the cut. None of the yellow edges cross the red cut.</li>
+  <li>An edge crossing the cut is called <b>light</b> if it has the smallest weight of any edge crossing the cut. In this case, <script type="math/tex">\{e,d\}</script> is a light edge.</li>
+</ul>
 
 <table>
   <tbody>
     <tr>
-      <td>Lemma 1: The SCC graph is a DAG</td>
+      <td>Lemma: Let <script type="math/tex">S</script> be a set of edges and consider a cut that respects <script type="math/tex">S</script>. Suppose there is an MST containing <script type="math/tex">S</script>. Let <script type="math/tex">\{u,v\}</script> be a light edge. Then there is an MST containing <script type="math/tex">S \cup \{u,v\}</script></td>
     </tr>
   </tbody>
 </table>
 
-<p><i>Proof:</i> Suppose that the SCC graph is not a DAG and let <script type="math/tex">A</script> and <script type="math/tex">B</script> be two components where there is an edge from <script type="math/tex">A</script> to <script type="math/tex">B</script> and an edge from <script type="math/tex">B</script> to <script type="math/tex">A</script>. Let <script type="math/tex">u</script> be a vertex in <script type="math/tex">A</script> and let <script type="math/tex">v</script> be a vertex in <script type="math/tex">B</script>. By the connected component definition, we know there is a path between <script type="math/tex">v</script> and every vertex in <script type="math/tex">A</script>. Similarly, there is a path between <script type="math/tex">u</script> and any vertex in <script type="math/tex">B</script>. Since there is an edge from <script type="math/tex">A</script> to <script type="math/tex">B</script> then there is a path from <script type="math/tex">v</script> to any vertex in <script type="math/tex">B</script> and Similarly, there is a path between <script type="math/tex">u</script> and any vertex in <script type="math/tex">A</script>. Therefore, the vertices in <script type="math/tex">A</script> and <script type="math/tex">B</script> must be in the same strongly connected component. This is a contradiction, since we assumed <script type="math/tex">A</script> and <script type="math/tex">B</script> two strongly connected components. Therefore, the SCC graph must be a DAG. <script type="math/tex">\blacksquare</script>
-<br />
+<p><i>Proof:</i> Let <script type="math/tex">S</script> be a set of edges and and consider a cut that respects <script type="math/tex">S</script>. Let <script type="math/tex">T</script> be an MST containing <script type="math/tex">S</script>. Let <script type="math/tex">\{u,v\}</script> be a light edge. There are two cases. <br />
+Case 1: <script type="math/tex">\{u,v\}</script> is in <script type="math/tex">T</script>, then we’re done. <br />
+Case 2: <script type="math/tex">\{u,v\}</script> is not in <script type="math/tex">T</script>. By the definition of MST, adding <script type="math/tex">\{u,v\}</script> will create a cycle in <script type="math/tex">T</script>. Since the sets resulting from the cut must be non-empty. This means that we must have an edge that crosses the cut in <script type="math/tex">T</script>. Let that edge be <script type="math/tex">\{x,y\}</script>. Consider replacing <script type="math/tex">\{u,v\}</script> with <script type="math/tex">\{x,y\}</script> to produce the new tree <script type="math/tex">T'</script>. <script type="math/tex">T</script> is still an MST since we deleted <script type="math/tex">\{x,y\}</script>. <script type="math/tex">T'</script> has also a cost of at most the cost of <script type="math/tex">T</script> since {u,v} is a light edge. Therefore, <script type="math/tex">T'</script> is an MST which includes both <script type="math/tex">\{u,v\}</script> and <script type="math/tex">S</script> which is what we wanted to show. <script type="math/tex">\blacksquare</script>
 <br /></p>
 
 <table>
   <tbody>
     <tr>
-      <td>Theorem: The algorithm we saw before will correctly identify strongly connected components</td>
+      <td>Theorem: Prim will correctly find a minimum spanning tree</td>
     </tr>
   </tbody>
 </table>
 
 <p><i>Proof:</i> <br />
-<b>Inductive Hypothesis: </b>
+<b>Inductive Hypothesis: </b>After adding the <script type="math/tex">t</script>‘th edge, there exists an MST with the edges added so far.
 <br /></p>
 
-<p><b>Base Case:</b> 
-<br /></p>
-
-<p><b>Inductive Step:</b> 
+<p><b>Base Case: </b> After adding the 0’th edge, there exists an MST with the edges added so far.
 <br />
-<br /></p>
-
-<p><b>Conclusion:</b> 
+<br />
+<b>Inductive Step:</b> Suppose the inductive hypothesis holds for <script type="math/tex">t</script>. Let <script type="math/tex">S</script> be the set containing the edges added so far and so there is an MST extending them by the inductive hypothesis. Consider the cut <script type="math/tex">S</script> and <script type="math/tex">V-S</script>. This cut respects <script type="math/tex">S</script>. Prim adds the lightest edge crossing this cut. By the Lemma above that edge is safe to add. Therefore, there is still an MST extending the new set of edges.
+<br />
+<br />
+<b>Conclusion:</b> After adding the <script type="math/tex">n-1</script>‘st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the <script type="math/tex">n-1</script> edges we have is an MST.<script type="math/tex">\blacksquare</script>
 <br />
 <!------------------------------------------------------------------------------------></p>
 <hr />
 
 <p><br />
-<b>5 Running Time:</b></p>
+<b>5 Running Time:</b> <br />
+The analysis is exactly like Dijkstra!. What are we doing in this algorithm? For each vertex in the unreached list, we <br />
+(1) find the minimum vertex. <br />
+(2) remove that vertex. <br />
+(3) update all neighbors with lower key values if possible.<br />
+<br />
+Therefore we see that if we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges:</p>
+<div center="">
+$$
+\begin{align*}
+TotalTime &amp;= \sum_{u \in V} \big\{ T(findMin) + \big(\sum_{v \in u.neighbors} T(updateKey)\big) + T(removeMin) \big\} \\
+&amp;= n(T(findMin) + T(removeMin)) + m(T(updateKey))
 
-<p><br />
-<!------------------------------------------------------------------------------------></p>
+\end{align*}
+$$
+</div>
+<p>Now it is clear that it really depends on how we implement the list that holds the not-sure nodes. Let’s consider different data structures</p>
+<ul>
+  <li>Arrays
+    <ul>
+      <li>findMin will run in <script type="math/tex">O(n)</script></li>
+      <li>RemoveMin will run in <script type="math/tex">O(n)</script></li>
+      <li>UpdateKey will run in <script type="math/tex">O(1)</script><br />
+Therefore, the total time will be <script type="math/tex">O(n(2n) + m) = O(n^2 + m) = O(n^2)</script></li>
+    </ul>
+  </li>
+  <li>Red Black Tree
+    <ul>
+      <li>findMin will run in <script type="math/tex">O(\log(n))</script></li>
+      <li>RemoveMin will run in <script type="math/tex">O(\log(n))</script></li>
+      <li>UpdateKey will run in <script type="math/tex">O(\log(n))</script><br />
+Therefore, the total time will be <script type="math/tex">O(n\log(n) + m\log(n)) = O((n+m)\log(n))</script>. <br />
+Notice here, if the graph is dense, meaning that <script type="math/tex">m=O(n^2)</script>, then this is worse than arrays! if it’s sparse, then it’s better.</li>
+    </ul>
+  </li>
+  <li>Fibonacci Heaps
+    <ul>
+      <li>findMin will run in <script type="math/tex">O(1)</script>, amortized time.</li>
+      <li>RemoveMin will run in <script type="math/tex">O(\log(n))</script>, amortized time.</li>
+      <li>UpdateKey will run in <script type="math/tex">O(1)</script>, amortized time.<br />
+Therefore, the total time will be <script type="math/tex">O(n\log(n) + m)</script>, amortized time. <br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+    </ul>
+  </li>
+</ul>
 <hr />
 
 <p><br />
-<b>6 Detailed Implementation:</b> 
+<b>6 Detailed Implementation:</b> <br />
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/prim</p>
 
 <p><br />

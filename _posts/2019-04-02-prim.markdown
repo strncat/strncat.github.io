@@ -5,68 +5,192 @@ date:   2019-04-02 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-
+<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="68.5" rx="30" ry="30"/>
+	<text x="289.5" y="74.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="68.5" rx="30" ry="30"/>
+	<text x="494.5" y="74.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="664.5" cy="147.5" rx="30" ry="30"/>
+	<text x="659.5" y="153.5" font-family="Times New Roman" font-size="20">d</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="218.5" rx="30" ry="30"/>
+	<text x="494.5" y="224.5" font-family="Times New Roman" font-size="20">e</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="218.5" rx="30" ry="30"/>
+	<text x="291.5" y="224.5" font-family="Times New Roman" font-size="20">f</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="137.5" cy="159.5" rx="30" ry="30"/>
+	<text x="133.5" y="165.5" font-family="Times New Roman" font-size="20">a</text>
+	<polygon stroke="black" stroke-width="1" points="324.5,68.5 468.5,68.5"/>
+	<text x="391.5" y="89.5" font-family="Times New Roman" font-size="20">4</text>
+	<polygon stroke="black" stroke-width="1" points="525.589,81.392 637.411,134.608"/>
+	<text x="586.5" y="98.5" font-family="Times New Roman" font-size="20">7</text>
+	<polygon stroke="black" stroke-width="1" points="636.917,159.298 526.083,206.702"/>
+	<text x="566.5" y="173.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="468.5,218.5 324.5,218.5"/>
+	<text x="391.5" y="209.5" font-family="Times New Roman" font-size="20">6</text>
+	<polygon stroke="black" stroke-width="1" points="318.67,200.728 474.33,86.272"/>
+	<text x="401.5" y="164.5" font-family="Times New Roman" font-size="20">5</text>
+	<polygon stroke="black" stroke-width="1" points="163.455,144.456 268.545,83.544"/>
+	<text x="220.5" y="135.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="165.583,170.053 266.417,207.947"/>
+	<text x="201.5" y="210.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="498.5,188.5 498.5,98.5"/>
+	<text x="503.5" y="149.5" font-family="Times New Roman" font-size="20">3</text>
+	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5"/>
+	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
+</svg>
 <b>1 Introduction</b><br>
-Let $$G=(V,E)$$ be a graph with $$V$$ vertices and $$E$$ edges. 
+Let $$G=(V,E)$$ be undirected, weighted graph with $$V$$ vertices and $$E$$ edges. A minimum spanning tree is a tree that connects all the vertices in $$V$$ of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. what start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don't create a cycle until we cover all the vertices in $$V$$. Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive.
 
 <br>
 <!------------------------------------------------------------------------------------>
 <hr>
 <br>
-<b>2 Algorithm</b><br>
+<b>2.1 Algorithm (slow naive version)</b>
+<br>
 {% highlight c++ %}
-
+We can start from any node s.
+pick the lightest node coming out of s.
+MST = {{s,u}}
+visited = {s,u}
+while |visited| < |V| {
+	pick the cheapest edge {x,y} in E so that:
+		x is in visited
+		y is not in visited
+	add {x,y} to MST
+	add y to visited 
+}
+{% endhighlight %}
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+<b>2.2 Algorithm (fast, used for the remaining of these notes)</b>
+<br>
+This smart implementation is basically Dijkstra! The only difference is the update condition. In Dijkstra, we take into account the whole path cost while in Prim we only care about the edge weight itself!
+{% highlight c++ %}
+Set all vertices to unreached
+k[v] = infinity for all v in V
+k[s] = 0
+while there are unreached nodes {
+	pick the unreached node u with the smallest key k[u].
+	for each neighbor v of u {
+		if (k[v] < weight(u,v)) {
+			// The is the only difference between Prim and Dijkstra
+			k[v] = weight(u,v)
+			p[v] = u
+		}
+	}
+	Mark u as reached and add (p[u],u) to MST
+	// This edge is safe to add and won't rule out success, proof below!
+}
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
 <hr>
 <br>
 <b>3 Example</b><br>
-
+In the above example, the minimum spanning tree is the following tree:
+<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="68.5" rx="30" ry="30"/>
+	<text x="289.5" y="74.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="68.5" rx="30" ry="30"/>
+	<text x="494.5" y="74.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="664.5" cy="147.5" rx="30" ry="30"/>
+	<text x="659.5" y="153.5" font-family="Times New Roman" font-size="20">d</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="218.5" rx="30" ry="30"/>
+	<text x="494.5" y="224.5" font-family="Times New Roman" font-size="20">e</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="218.5" rx="30" ry="30"/>
+	<text x="291.5" y="224.5" font-family="Times New Roman" font-size="20">f</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="137.5" cy="159.5" rx="30" ry="30"/>
+	<text x="133.5" y="165.5" font-family="Times New Roman" font-size="20">a</text>
+	<polygon stroke="black" stroke-width="1" points="324.5,68.5 468.5,68.5"/>
+	<text x="391.5" y="89.5" font-family="Times New Roman" font-size="20">4</text>
+	<polygon stroke="black" stroke-width="1" points="636.917,159.298 526.083,206.702"/>
+	<text x="566.5" y="173.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="163.455,144.456 268.545,83.544"/>
+	<text x="220.5" y="135.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="498.5,188.5 498.5,98.5"/>
+	<text x="503.5" y="149.5" font-family="Times New Roman" font-size="20">3</text>
+	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5"/>
+	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
+</svg>
 
 <br>
 <!------------------------------------------------------------------------------------>
 <hr>
 <br>
 <b>4 Proof of Correctness</b><br>
-Why does this algorithm find a minimum spanning tree? 
+Why does this algorithm find a minimum spanning tree? Before we can answer that, let's define some terms and prove some lemma that will be useful in the main proof. Let $$G=(V,E)$$ be the graph below and let $$S$$ be the set of yellow edges in $$G$$.  
+
+![my photo]({{ site.url }}/assets/cut.png)
+
+- A <b>cut</b> is a partition of the vertices into two non-empty parts. the red line (cut) partitions $$G$$ into $$\{a,b,f,e\}$$ and $$\{c,d\}$$.
+- A cut <b>respects</b> $$S$$ if no edges in $$S$$ cross the cut. None of the yellow edges cross the red cut.
+- An edge crossing the cut is called <b>light</b> if it has the smallest weight of any edge crossing the cut. In this case, $$\{e,d\}$$ is a light edge.
+
+| Lemma: Let $$S$$ be a set of edges and consider a cut that respects $$S$$. Suppose there is an MST containing $$S$$. Let $$\{u,v\}$$ be a light edge. Then there is an MST containing $$S \cup \{u,v\}$$ |
+
+<i>Proof:</i> Let $$S$$ be a set of edges and and consider a cut that respects $$S$$. Let $$T$$ be an MST containing $$S$$. Let $$\{u,v\}$$ be a light edge. There are two cases. <br>
+Case 1: $$\{u,v\}$$ is in $$T$$, then we're done. <br>
+Case 2: $$\{u,v\}$$ is not in $$T$$. By the definition of MST, adding $$\{u,v\}$$ will create a cycle in $$T$$. Since the sets resulting from the cut must be non-empty. This means that we must have an edge that crosses the cut in $$T$$. Let that edge be $$\{x,y\}$$. Consider replacing $$\{u,v\}$$ with $$\{x,y\}$$ to produce the new tree $$T'$$. $$T$$ is still an MST since we deleted $$\{x,y\}$$. $$T'$$ has also a cost of at most the cost of $$T$$ since \{u,v\} is a light edge. Therefore, $$T'$$ is an MST which includes both $$\{u,v\}$$ and $$S$$ which is what we wanted to show. $$\blacksquare$$
 <br>
-<br>
 
-| Lemma 1: The SCC graph is a DAG |
-
-<i>Proof:</i> Suppose that the SCC graph is not a DAG and let $$A$$ and $$B$$ be two components where there is an edge from $$A$$ to $$B$$ and an edge from $$B$$ to $$A$$. Let $$u$$ be a vertex in $$A$$ and let $$v$$ be a vertex in $$B$$. By the connected component definition, we know there is a path between $$v$$ and every vertex in $$A$$. Similarly, there is a path between $$u$$ and any vertex in $$B$$. Since there is an edge from $$A$$ to $$B$$ then there is a path from $$v$$ to any vertex in $$B$$ and Similarly, there is a path between $$u$$ and any vertex in $$A$$. Therefore, the vertices in $$A$$ and $$B$$ must be in the same strongly connected component. This is a contradiction, since we assumed $$A$$ and $$B$$ two strongly connected components. Therefore, the SCC graph must be a DAG. $$\blacksquare$$
-<br>
-<br>
-
-
-
-| Theorem: The algorithm we saw before will correctly identify strongly connected components |
+| Theorem: Prim will correctly find a minimum spanning tree |
 
 <i>Proof:</i> <br>
-<b>Inductive Hypothesis: </b>
+<b>Inductive Hypothesis: </b>After adding the $$t$$'th edge, there exists an MST with the edges added so far.
 <br>
 
-<b>Base Case:</b> 
-<br>
-
-<b>Inductive Step:</b> 
+<b>Base Case: </b> After adding the 0'th edge, there exists an MST with the edges added so far.
 <br>
 <br>
-
-
-<b>Conclusion:</b> 
+<b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$t$$. Let $$S$$ be the set containing the edges added so far and so there is an MST extending them by the inductive hypothesis. Consider the cut $$S$$ and $$V-S$$. This cut respects $$S$$. Prim adds the lightest edge crossing this cut. By the Lemma above that edge is safe to add. Therefore, there is still an MST extending the new set of edges.
+<br>
+<br>
+<b>Conclusion:</b> After adding the $$n-1$$'st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the $$n-1$$ edges we have is an MST.$$\blacksquare$$
 <br>
 <!------------------------------------------------------------------------------------>
 <hr>
 <br>
-<b>5 Running Time:</b> 
+<b>5 Running Time:</b> <br>
+The analysis is exactly like Dijkstra!. What are we doing in this algorithm? For each vertex in the unreached list, we <br>
+(1) find the minimum vertex. <br>
+(2) remove that vertex. <br>
+(3) update all neighbors with lower key values if possible.<br>
+<br>
+Therefore we see that if we have $$n$$ vertices and $$m$$ edges:
+<div center>
+$$
+\begin{align*}
+TotalTime &= \sum_{u \in V} \big\{ T(findMin) + \big(\sum_{v \in u.neighbors} T(updateKey)\big) + T(removeMin) \big\} \\
+&= n(T(findMin) + T(removeMin)) + m(T(updateKey))
 
+\end{align*}
+$$
+</div>
+Now it is clear that it really depends on how we implement the list that holds the not-sure nodes. Let's consider different data structures
+- Arrays
+	- findMin will run in $$O(n)$$
+	- RemoveMin will run in $$O(n)$$
+	- UpdateKey will run in $$O(1)$$<br>
+Therefore, the total time will be $$O(n(2n) + m) = O(n^2 + m) = O(n^2)$$
+
+- Red Black Tree
+	- findMin will run in $$O(\log(n))$$
+	- RemoveMin will run in $$O(\log(n))$$
+	- UpdateKey will run in $$O(\log(n))$$<br>
+Therefore, the total time will be $$O(n\log(n) + m\log(n)) = O((n+m)\log(n))$$. <br>
+Notice here, if the graph is dense, meaning that $$m=O(n^2)$$, then this is worse than arrays! if it's sparse, then it's better.
+
+- Fibonacci Heaps
+	- findMin will run in $$O(1)$$, amortized time.
+	- RemoveMin will run in $$O(\log(n))$$, amortized time. 
+	- UpdateKey will run in $$O(1)$$, amortized time.<br>
+Therefore, the total time will be $$O(n\log(n) + m)$$, amortized time. <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <hr>
 <br>
-<b>6 Detailed Implementation:</b> 
+<b>6 Detailed Implementation:</b> <br>
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/prim
 
 

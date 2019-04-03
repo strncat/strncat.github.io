@@ -113,7 +113,7 @@ Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with 
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">We</span> <span class="n">can</span> <span class="n">start</span> <span class="n">from</span> <span class="n">any</span> <span class="n">node</span> <span class="n">s</span><span class="p">.</span>
 <span class="n">pick</span> <span class="n">the</span> <span class="n">lightest</span> <span class="n">node</span> <span class="n">coming</span> <span class="n">out</span> <span class="n">of</span> <span class="n">s</span><span class="p">.</span>
-<span class="n">MST</span> <span class="o">=</span> 
+<span class="n">MST</span> <span class="o">=</span> <span class="p">[{</span><span class="n">s</span><span class="p">,</span><span class="n">u</span><span class="p">}]</span>
 <span class="n">visited</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">,</span><span class="n">u</span><span class="p">}</span>
 <span class="k">while</span> <span class="o">|</span><span class="n">visited</span><span class="o">|</span> <span class="o">&lt;</span> <span class="o">|</span><span class="n">V</span><span class="o">|</span> <span class="p">{</span>
 	<span class="n">pick</span> <span class="n">the</span> <span class="n">cheapest</span> <span class="n">edge</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">}</span> <span class="n">in</span> <span class="n">E</span> <span class="n">so</span> <span class="n">that</span><span class="o">:</span>
@@ -121,7 +121,8 @@ Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with 
 		<span class="n">y</span> <span class="n">is</span> <span class="n">not</span> <span class="n">in</span> <span class="n">visited</span>
 	<span class="n">add</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">}</span> <span class="n">to</span> <span class="n">MST</span>
 	<span class="n">add</span> <span class="n">y</span> <span class="n">to</span> <span class="n">visited</span> 
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span>
+<span class="k">return</span> <span class="n">MST</span></code></pre></figure>
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
@@ -134,6 +135,7 @@ This smart implementation is basically Dijkstra! The only difference is the upda
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Set</span> <span class="n">all</span> <span class="n">vertices</span> <span class="n">to</span> <span class="n">unreached</span>
 <span class="n">k</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span> <span class="k">for</span> <span class="n">all</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span>
+<span class="n">p</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">all</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span>
 <span class="n">k</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">while</span> <span class="n">there</span> <span class="n">are</span> <span class="n">unreached</span> <span class="n">nodes</span> <span class="p">{</span>
 	<span class="n">pick</span> <span class="n">the</span> <span class="n">unreached</span> <span class="n">node</span> <span class="n">u</span> <span class="n">with</span> <span class="n">the</span> <span class="n">smallest</span> <span class="n">key</span> <span class="n">k</span><span class="p">[</span><span class="n">u</span><span class="p">].</span>
@@ -146,6 +148,7 @@ This smart implementation is basically Dijkstra! The only difference is the upda
 	<span class="p">}</span>
 	<span class="n">Mark</span> <span class="n">u</span> <span class="n">as</span> <span class="n">reached</span> <span class="n">and</span> <span class="n">add</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span class="n">u</span><span class="p">)</span> <span class="n">to</span> <span class="n">MST</span>
 	<span class="c1">// This edge is safe to add and won't rule out success, proof below!</span>
+	<span class="c1">// in the actual implementation, we don't add the source vertex since p[u] is -1!</span>
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
@@ -153,8 +156,149 @@ This smart implementation is basically Dijkstra! The only difference is the upda
 <hr />
 
 <p><br />
-<b>3 Example</b><br />
-In the above example, the minimum spanning tree is the following tree:</p>
+<b>3 Example</b><br /></p>
+
+<p>very similar to Dijkstra, we maintain a set of unreached nodes <script type="math/tex">\{a, b, c, d, e, f\}</script>. We then assign <script type="math/tex">k[v] = \infty</script> for all nodes. For the start node, we update its key to zero. <script type="math/tex">k[a] = 0</script>.
+<br /><br />
+<i>Iteration 0</i><br />
+We extract the minimum unreached node <script type="math/tex">a</script>. We we now update each neighbor according to the algorithm. After updating each neightbor we get the following the values. Also, after updating all neighbors, we mark <script type="math/tex">a</script> as reached.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Iteration</th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0 (extract <script type="math/tex">a</script>)</td>
+      <td>0</td>
+      <td>1</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td><script type="math/tex">\infty</script></td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Iteration 1</i><br />
+We extract the minimum again from the unreached nodes. This time we extract <script type="math/tex">b</script>. We update all the neighbors and at the end of this iteration, we mark <script type="math/tex">b</script> as sure and <script type="math/tex">\{b,a\}</script></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Iteration</th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0 (extract <script type="math/tex">a</script>)</td>
+      <td>0</td>
+      <td>1</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td><script type="math/tex">\infty</script></td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1 (extract <script type="math/tex">b</script>) add <script type="math/tex">\{b,a\}</script></td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Final iterations</i><br />
+We continue with the same process. We extract the node <script type="math/tex">f</script> and update its neighbors. We then mark it as reached and add <script type="math/tex">\{f,b\}</script> to our MST. We next extract <script type="math/tex">c</script> and update the neighbors again. We then mark <script type="math/tex">c</script> as reached add <script type="math/tex">\{a,b\}</script> to our MST. The rest of iterations are in the following table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Iteration</th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0 (extract <script type="math/tex">a</script>)</td>
+      <td>0</td>
+      <td>1</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td><script type="math/tex">\infty</script></td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1 (extract <script type="math/tex">b</script>) add <script type="math/tex">\{b,a\}</script></td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>2 (extract <script type="math/tex">f</script>) add <script type="math/tex">\{f,b\}</script></td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td><script type="math/tex">\infty</script></td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>3 (extract <script type="math/tex">c</script>) add <script type="math/tex">\{c,b\}</script></td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>7</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>3 (extract <script type="math/tex">e</script>) add <script type="math/tex">\{e,c\}</script></td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>3 (extract <script type="math/tex">d</script>) add <script type="math/tex">\{d,e\}</script></td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The final minimum spanning tree is the following tree:</p>
 <svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="68.5" rx="30" ry="30" />
 	<text x="289.5" y="74.5" font-family="Times New Roman" font-size="20">b</text>

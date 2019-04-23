@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Cartesian Trees | strncat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Cartesian Trees" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="7 13 23 11 19 29 17 31 37" />
+<meta property="og:description" content="7 13 23 11 19 29 17 31 37" />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/04/07/cartesian.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/04/07/cartesian.html" />
+<meta property="og:site_name" content="strncat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-04-07T07:01:36-07:00" />
+<script type="application/ld+json">
+{"description":"7 13 23 11 19 29 17 31 37","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/04/07/cartesian.html","headline":"Cartesian Trees","dateModified":"2019-04-07T07:01:36-07:00","datePublished":"2019-04-07T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/04/07/cartesian.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Cartesian Trees</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-04-07T07:01:36-07:00" itemprop="datePublished">Apr 7, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <svg width="800" height="360" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="368.5" cy="39.5" rx="30" ry="30" />
+	<text x="363.5" y="45.5" font-family="Times New Roman" font-size="20">7</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="278.5" cy="110.5" rx="30" ry="30" />
+	<text x="268.5" y="116.5" font-family="Times New Roman" font-size="20">13</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="295.5" cy="268.5" rx="30" ry="30" />
+	<text x="285.5" y="274.5" font-family="Times New Roman" font-size="20">23</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="457.5" cy="104.5" rx="30" ry="30" />
+	<text x="447.5" y="110.5" font-family="Times New Roman" font-size="20">11</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="331.5" cy="188.5" rx="30" ry="30" />
+	<text x="321.5" y="194.5" font-family="Times New Roman" font-size="20">19</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="405.5" cy="188.5" rx="30" ry="30" />
+	<text x="395.5" y="194.5" font-family="Times New Roman" font-size="20">29</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="529.5" cy="176.5" rx="30" ry="30" />
+	<text x="519.5" y="182.5" font-family="Times New Roman" font-size="20">17</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="466.5" cy="250.5" rx="30" ry="30" />
+	<text x="456.5" y="256.5" font-family="Times New Roman" font-size="20">31</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="529.5" cy="322.5" rx="30" ry="30" />
+	<text x="519.5" y="328.5" font-family="Times New Roman" font-size="20">37</text>
+	<polygon stroke="black" stroke-width="1" points="344.947,58.081 302.053,91.919" />
+	<polygon fill="black" stroke-width="1" points="302.053,91.919 311.431,90.89 305.237,83.039" />
+	<polygon stroke="black" stroke-width="1" points="295.361,135.314 314.639,163.686" />
+	<polygon fill="black" stroke-width="1" points="314.639,163.686 314.279,154.259 306.008,159.879" />
+	<polygon stroke="black" stroke-width="1" points="319.189,215.858 307.811,241.142" />
+	<polygon fill="black" stroke-width="1" points="307.811,241.142 315.653,235.899 306.534,231.795" />
+	<polygon stroke="black" stroke-width="1" points="392.727,57.194 433.273,86.806" />
+	<polygon fill="black" stroke-width="1" points="433.273,86.806 429.762,78.05 423.864,86.126" />
+	<polygon stroke="black" stroke-width="1" points="441.709,130.008 421.291,162.992" />
+	<polygon fill="black" stroke-width="1" points="421.291,162.992 429.753,158.822 421.25,153.558" />
+	<polygon stroke="black" stroke-width="1" points="478.713,125.713 508.287,155.287" />
+	<polygon fill="black" stroke-width="1" points="508.287,155.287 506.165,146.094 499.094,153.165" />
+	<polygon stroke="black" stroke-width="1" points="510.053,199.343 485.947,227.657" />
+	<polygon fill="black" stroke-width="1" points="485.947,227.657 494.94,224.807 487.326,218.324" />
+	<polygon stroke="black" stroke-width="1" points="486.255,273.077 509.745,299.923" />
+	<polygon fill="black" stroke-width="1" points="509.745,299.923 508.24,290.61 500.714,297.195" />
+</svg>
+
+<p><img src="http://localhost:4000/assets/cartesian.png" alt="my photo" /></p>
+
+<p><b>0 References</b><br /></p>
+<ol>
+  <li>
+    <p>Jean Vuillemin. 1980. A unifying look at data structures. Commun. ACM 23, 4 (April 1980), 229-239. DOI=http://dx.doi.org.stanford.idm.oclc.org/10.1145/358841.358852</p>
+  </li>
+  <li>
+    <p>CS166 Lecture Notes http://web.stanford.edu/class/cs166/lectures/01/Slides01.pdf
+<br />
+<!------------------------------------------------------------------------------------></p>
+  </li>
+</ol>
+<hr />
+
+<p><br />
+<b>1 Definition</b><br />
+Given an array <script type="math/tex">A</script>, the Cartersian tree, <script type="math/tex">C(A)</script>, can defined as follows: <br /></p>
+<ol>
+  <li>If <script type="math/tex">A = \emptyset</script>, then <script type="math/tex">C(A) = \emptyset</script>, the empty tree. <br /></li>
+  <li>If <script type="math/tex">A \neq \emptyset</script>, then let <script type="math/tex">min</script> be the minimum element in <script type="math/tex">A</script> and let <script type="math/tex">i</script> be the index of <script type="math/tex">min</script>. Fix the root of the Cartesian tree to be <script type="math/tex">min</script> and let <script type="math/tex">% <![CDATA[
+\text{left}(A) = \{x_j \in A \ \ | \ \ j < i\} %]]></script> be the points on the left of <script type="math/tex">i</script> and <script type="math/tex">\text{right}(A) = \{x_j \in A \ \ | \ \ j > i\}</script> be the points on the right of <script type="math/tex">i</script>. Let the root’s left child be the cartesian tree of the left points, <script type="math/tex">C(\text{left}(A))</script>. and the root’s right child be the cartesian tree of the right points,  <script type="math/tex">C(\text{right}(A))</script>.
+<br />
+<br />
+Notice that the Cartersian trees obey the <b>min-heap property</b> and also an in-order traversal of the Cartersian tree, results in the original array. <br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ol>
+<hr />
+
+<p><br />
+<b>2 Naive Algorithm</b>
+<br />
+The following basic algorithm is very similar to QuickSort. The runtime depends on how the minimum evenly splits the array <script type="math/tex">A</script>. The expected-case runtime would be <script type="math/tex">O(n\log(n))</script> and the worst-case runtime would be <script type="math/tex">O(n^2)</script>.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">cartesian_tree</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="n">is</span> <span class="n">empty</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">null</span> <span class="p">}</span>
+	<span class="n">left</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">split</span> <span class="n">A</span> <span class="n">around</span> <span class="n">the</span> <span class="n">minimum</span> <span class="n">element</span> <span class="n">in</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">time</span><span class="p">.</span>
+	<span class="n">create</span> <span class="n">a</span> <span class="k">new</span> <span class="n">node</span> <span class="k">for</span> <span class="n">min</span>
+	<span class="n">new_node</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">cartersian_tree</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+	<span class="n">new_node</span><span class="p">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">cartesian_tree</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">new_node</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>2 Example</b>
+<br />
+Given the above array, we construct the following cartersian tree:</p>
+<ol>
+  <li>7 is the minimum element and so everything before 7 is the left child of 7 and everything after 7 is the right child of 7.</li>
+  <li>Next, we recursively create the left and right cartersian trees. We pick 13 as the minimum on the left subarray [13, 23, 19]. and we pick 11 as the minimum in the right subarray [29, 11, 31, 37, 17]. We repeat the process until we run out of elements.</li>
+</ol>
+<svg width="800" height="360" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="368.5" cy="39.5" rx="30" ry="30" />
+	<text x="363.5" y="45.5" font-family="Times New Roman" font-size="20">7</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="278.5" cy="110.5" rx="30" ry="30" />
+	<text x="268.5" y="116.5" font-family="Times New Roman" font-size="20">13</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="295.5" cy="268.5" rx="30" ry="30" />
+	<text x="285.5" y="274.5" font-family="Times New Roman" font-size="20">23</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="457.5" cy="104.5" rx="30" ry="30" />
+	<text x="447.5" y="110.5" font-family="Times New Roman" font-size="20">11</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="331.5" cy="188.5" rx="30" ry="30" />
+	<text x="321.5" y="194.5" font-family="Times New Roman" font-size="20">19</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="405.5" cy="188.5" rx="30" ry="30" />
+	<text x="395.5" y="194.5" font-family="Times New Roman" font-size="20">29</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="529.5" cy="176.5" rx="30" ry="30" />
+	<text x="519.5" y="182.5" font-family="Times New Roman" font-size="20">17</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="466.5" cy="250.5" rx="30" ry="30" />
+	<text x="456.5" y="256.5" font-family="Times New Roman" font-size="20">31</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="529.5" cy="322.5" rx="30" ry="30" />
+	<text x="519.5" y="328.5" font-family="Times New Roman" font-size="20">37</text>
+	<polygon stroke="black" stroke-width="1" points="344.947,58.081 302.053,91.919" />
+	<polygon fill="black" stroke-width="1" points="302.053,91.919 311.431,90.89 305.237,83.039" />
+	<polygon stroke="black" stroke-width="1" points="295.361,135.314 314.639,163.686" />
+	<polygon fill="black" stroke-width="1" points="314.639,163.686 314.279,154.259 306.008,159.879" />
+	<polygon stroke="black" stroke-width="1" points="319.189,215.858 307.811,241.142" />
+	<polygon fill="black" stroke-width="1" points="307.811,241.142 315.653,235.899 306.534,231.795" />
+	<polygon stroke="black" stroke-width="1" points="392.727,57.194 433.273,86.806" />
+	<polygon fill="black" stroke-width="1" points="433.273,86.806 429.762,78.05 423.864,86.126" />
+	<polygon stroke="black" stroke-width="1" points="441.709,130.008 421.291,162.992" />
+	<polygon fill="black" stroke-width="1" points="421.291,162.992 429.753,158.822 421.25,153.558" />
+	<polygon stroke="black" stroke-width="1" points="478.713,125.713 508.287,155.287" />
+	<polygon fill="black" stroke-width="1" points="508.287,155.287 506.165,146.094 499.094,153.165" />
+	<polygon stroke="black" stroke-width="1" points="510.053,199.343 485.947,227.657" />
+	<polygon fill="black" stroke-width="1" points="485.947,227.657 494.94,224.807 487.326,218.324" />
+	<polygon stroke="black" stroke-width="1" points="486.255,273.077 509.745,299.923" />
+	<polygon fill="black" stroke-width="1" points="509.745,299.923 508.24,290.61 500.714,297.195" />
+</svg>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>3 O(n) Algorithm </b>
+<br />
+The previous algorithm is not fast enough. Given an array <script type="math/tex">A</script> of length <script type="math/tex">n</script>. A key insight is that given the cartesian tree for <script type="math/tex">A[1...i]</script>, the cartesian tree for <script type="math/tex">A[1...i+1]</script> can be constructed by observing that the element <script type="math/tex">A[i+1]</script> must be right most node in right most path in the tree because we know that an inorder traversal of the tree must give back the original array <script type="math/tex">A</script>. Basically <script type="math/tex">A[i+1]</script> should be the last visited node in the in-order traversal of <script type="math/tex">A[1...i+1]</script>.
+<br /><br />
+Therefore, maintain a stack of the right most path in the tree. While the stack is not empty, we repeatedly check if the top element is greater than our current element <script type="math/tex">A[i]</script>. If <script type="math/tex">A[i]</script> has a higher value, we stop. Now we do two things: <br />
+<br />
+(1) Let the top element in the stack is <script type="math/tex">t</script>. Since <script type="math/tex">% <![CDATA[
+t < A[i] %]]></script>, then it must be closer to the root to maintain the min-heap property and in an-order traversal, <script type="math/tex">A[i]</script> must come after <script type="math/tex">t</script>. Therefore, <script type="math/tex">A[i]</script> should be the right tree of <script type="math/tex">t</script>. 
+<br /><br />
+(2) Let the the last element popped be <script type="math/tex">q</script>. Since <script type="math/tex">q > A[i]</script>, then <script type="math/tex">q</script> must be lower than <script type="math/tex">A[i]</script> in the tree. It must also come before  <script type="math/tex">A[i]</script> in an in-order traversal and therefore, it should be the left tree of <script type="math/tex">A[i]</script>. 
+<br /><br />
+(3) The last thin</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">A</span> <span class="o">=</span> <span class="p">[...]</span>
+<span class="c1">// maintain a stack s</span>
+<span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">..</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">new_node</span> <span class="o">=</span> <span class="n">create</span> <span class="n">a</span> <span class="k">new</span> <span class="n">node</span> <span class="k">for</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">last_popped</span> <span class="o">=</span> <span class="n">null</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="n">and</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">last_popped</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="c1">// (1) the last popped node is the left tree of the new node</span>
+    <span class="n">new_node</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">last_popped</span>
+
+    <span class="c1">// (2) the top value in the stack will set its right child to the new node</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">right</span> <span class="o">=</span> <span class="n">new_node</span>
+    <span class="p">}</span>
+	<span class="c1">// (3) push the node on the stack</span>
+	<span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">new_node</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>4 Example</b><br />
+Assume that we are creating a cartesian tree for the array above. 
+<br />
+(1) We first look at <script type="math/tex">A[0]=13</script>.
+<br />
+<img src="http://localhost:4000/assets/cartesian-0.png" alt="my photo" /></p>
+
+<p>Since the stack is empty and last_popped is also null, then all we do is create a node for <script type="math/tex">13</script> and push it on the stack.
+<br />
+<img src="http://localhost:4000/assets/cartesian-0t.png" alt="my photo" />
+<br />
+(2) Next we insert <script type="math/tex">A[1]=23</script>. Here, we don’t pop anything form the stack. we assign the node <script type="math/tex">A[i]</script> to be the right tree of the top element in the stack. 
+<br />
+<img src="http://localhost:4000/assets/cartesian-01.png" alt="my photo" />
+<br />
+This results in the following tree
+<br />
+<img src="http://localhost:4000/assets/cartesian-01t.png" alt="my photo" />
+<br />
+(3) Next we insert <script type="math/tex">A[1]=19</script>. Here, we pop 23. 19’s left tree is 23. We also assign 19 to be the right tree of the top element in the stack, 13. We then push 19 on the stack
+<br />
+<img src="http://localhost:4000/assets/cartesian-02.png" alt="my photo" />
+<br />
+This results in the following tree
+<br />
+<img src="http://localhost:4000/assets/cartesian-02t.png" alt="my photo" />
+<br />
+(4) Next we insert <script type="math/tex">A[1]=7</script>. We pop 19 and then 13. The last popped node is 13. 7’s left tree is 13. The stack is empty so we do nothing else and push 7 on the stack. 
+<br />
+<img src="http://localhost:4000/assets/cartesian-03.png" alt="my photo" />
+<br />
+This results in the following tree
+<br />
+<img src="http://localhost:4000/assets/cartesian-03t.png" alt="my photo" />
+<br />
+(4) Next we insert <script type="math/tex">A[1]=29</script>. We don’t pop anything. 29 will be the right tree of 7 and we push 29 on the stack. 
+<br />
+<img src="http://localhost:4000/assets/cartesian-04.png" alt="my photo" />
+<br />
+This results in the following tree
+<br />
+<img src="http://localhost:4000/assets/cartesian-04t.png" alt="my photo" />
+<br />
+(5) Next we insert <script type="math/tex">A[1]=11</script>. We pop 29. 11’s left tree will be 29. 11 will be the right tree of 7 and we push 11 on the stack. 
+<br />
+<img src="http://localhost:4000/assets/cartesian-05.png" alt="my photo" />
+<br />
+This results in the following tree
+<br />
+<img src="http://localhost:4000/assets/cartesian-05t.png" alt="my photo" />
+<br />
+(6) Next we insert <script type="math/tex">A[1]=31</script>. We don’t pop anything. 31 will be the right tree of 11 and we push 31 on the stack. 
+<br />
+<img src="http://localhost:4000/assets/cartesian-06.png" alt="my photo" />
+<br />
+This results in the following tree
+<br />
+<img src="http://localhost:4000/assets/cartesian-06t.png" alt="my photo" />
+<br />
+(7) Next we insert <script type="math/tex">A[1]=37</script>. We don’t pop anything. 37 will be the right tree of 31 and we push 37 on the stack. 
+<br />
+<img src="http://localhost:4000/assets/cartesian-07.png" alt="my photo" />
+<br />
+This results in the following tree
+<br />
+<img src="http://localhost:4000/assets/cartesian-07t.png" alt="my photo" />
+<br />
+(8) Next we insert <script type="math/tex">A[1]=17</script>. We pop 37 and 31. 31 will be the right tree of 17. 11’s left tree will be 17. We push 17 on the stack. 
+<br />
+<img src="http://localhost:4000/assets/cartesian-08.png" alt="my photo" />
+<br />
+This results in the following tree
+<br />
+<img src="http://localhost:4000/assets/cartesian-08t.png" alt="my photo" />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>5 Proof of Correctness:</b> <br />
+?</p>
+
+<!------------------------------------------------------------------------------------>
+<hr />
+
+<p><br />
+<b>6 Detailed Implementation:</b> <br />
+https://github.com/strncat/algorithms-and-data-structures/blob/master/rmq/catersian-trees.cpp</p>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html</p>
+
+
+  </div><a class="u-url" href="/jekyll/update/2019/04/07/cartesian.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hello.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+  </body>
+
+</html>

@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <b>1 You want to hash 2D grid positions</b><br>
-Maybe you want to stick with positions as std pairs (x, y). Now you want to hash them but map requires your own custom hash functions. Whatever, we can make one. Here is an example.
+Maybe you want to model positions as std pairs (x, y). Now you want to hash them but map requires your own custom hash function. Whatever, we can make one. Here is an example.
 {% highlight c++ %}
 // figuring out the total cells in the path
 typedef std::pair<int, int> position;
@@ -15,8 +15,8 @@ struct hash : public std::unary_function<key_t, std::size_t> {
         return std::get<0>(k) * 10 + std::get<1>(k) * 1; // silly hash function but it works for grids!
     }
 };
-std::unordered_map<const position, bool, hash,std::equal_to<position>> visited;
-// so now I can run bfs and do something like visited[pos] = true
+std::unordered_map<const position, position, hash,std::equal_to<position>> parents;
+// so now I can run bfs and do something like parents[next] = current
 {% endhighlight %}
 
 <br>

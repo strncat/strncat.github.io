@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Binary Search Tree | strncat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Binary Search Tree" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="1 Introduction A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following: Let be a node in the tree. Let be a node. If was in the left subtree then we must have . Similarly, if is a node in the right subtree then . 2 Example Below is a binary search tree. Every node in the tree maintains the binary search tree property." />
+<meta property="og:description" content="1 Introduction A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following: Let be a node in the tree. Let be a node. If was in the left subtree then we must have . Similarly, if is a node in the right subtree then . 2 Example Below is a binary search tree. Every node in the tree maintains the binary search tree property." />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees.html" />
+<meta property="og:site_name" content="strncat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-03T12:01:36-07:00" />
+<script type="application/ld+json">
+{"description":"1 Introduction A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following: Let be a node in the tree. Let be a node. If was in the left subtree then we must have . Similarly, if is a node in the right subtree then . 2 Example Below is a binary search tree. Every node in the tree maintains the binary search tree property.","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees.html","headline":"Binary Search Tree","dateModified":"2019-05-03T12:01:36-07:00","datePublished":"2019-05-03T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Binary Search Tree</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-05-03T12:01:36-07:00" itemprop="datePublished">May 3, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><b>1 Introduction</b><br />
+A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following:
+<br />
+Let <script type="math/tex">x</script> be a node in the tree. Let <script type="math/tex">y</script> be a node. If <script type="math/tex">y</script> was in the left subtree then we must have <script type="math/tex">y.key \leq x.key</script>. Similarly, if <script type="math/tex">y</script> is a node in the right subtree then <script type="math/tex">y.key \geq x.key</script>.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>2 Example</b><br />
+Below is a binary search tree. Every node in the tree maintains the binary search tree property.</p>
+
+<svg width="800" height="260" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="571.5" cy="55.5" rx="30" ry="30" />
+	<text x="566.5" y="61.5" font-family="Times New Roman" font-size="20">x</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="524.5" cy="137.5" rx="30" ry="30" />
+	<text x="520.5" y="143.5" font-family="Times New Roman" font-size="20">a</text>
+	<ellipse stroke="black" stroke-width="1" fill="yellow" fill-opacity="0.25" cx="627.5" cy="137.5" rx="30" ry="30" />
+	<text x="622.5" y="143.5" font-family="Times New Roman" font-size="20">y</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="681.5" cy="222.5" rx="30" ry="30" />
+	<text x="677.5" y="228.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="blue" fill-opacity="0.25" cx="588.5" cy="222.5" rx="30" ry="30" />
+	<text x="583.5" y="228.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="yellow" fill-opacity="0.25" cx="187.5" cy="55.5" rx="30" ry="30" />
+	<text x="182.5" y="61.5" font-family="Times New Roman" font-size="20">y</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="142.5" cy="137.5" rx="30" ry="30" />
+	<text x="137.5" y="143.5" font-family="Times New Roman" font-size="20">x</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="230.5" cy="137.5" rx="30" ry="30" />
+	<text x="226.5" y="143.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="94.5" cy="222.5" rx="30" ry="30" />
+	<text x="90.5" y="228.5" font-family="Times New Roman" font-size="20">a</text>
+	<ellipse stroke="black" stroke-width="1" fill="blue" fill-opacity="0.25" cx="181.5" cy="222.5" rx="30" ry="30" />
+	<text x="176.5" y="228.5" font-family="Times New Roman" font-size="20">b</text>
+	<text x="317.5" y="132.5" font-family="Times New Roman" font-size="20">&lt;&lt; left rotation</text>
+	<polygon stroke="black" stroke-width="1" points="588.419,80.274 610.581,112.726" />
+	<polygon fill="black" stroke-width="1" points="610.581,112.726 610.198,103.3 601.94,108.939" />
+	<polygon stroke="black" stroke-width="1" points="556.582,81.528 539.418,111.472" />
+	<polygon fill="black" stroke-width="1" points="539.418,111.472 547.735,107.018 539.059,102.045" />
+	<polygon stroke="black" stroke-width="1" points="643.587,162.822 665.413,197.178" />
+	<polygon fill="black" stroke-width="1" points="665.413,197.178 665.344,187.744 656.903,193.106" />
+	<polygon stroke="black" stroke-width="1" points="614.989,164.767 601.011,195.233" />
+	<polygon fill="black" stroke-width="1" points="601.011,195.233 608.891,190.047 599.802,185.877" />
+	<polygon stroke="black" stroke-width="1" points="201.432,82.069 216.568,110.931" />
+	<polygon fill="black" stroke-width="1" points="216.568,110.931 217.281,101.524 208.424,106.168" />
+	<polygon stroke="black" stroke-width="1" points="155.011,164.767 168.989,195.233" />
+	<polygon fill="black" stroke-width="1" points="168.989,195.233 170.198,185.877 161.109,190.047" />
+	<polygon stroke="black" stroke-width="1" points="127.748,163.623 109.252,196.377" />
+	<polygon fill="black" stroke-width="1" points="109.252,196.377 117.539,191.87 108.832,186.953" />
+	<polygon stroke="black" stroke-width="1" points="173.067,81.8 156.933,111.2" />
+	<polygon fill="black" stroke-width="1" points="156.933,111.2 165.165,106.592 156.398,101.781" />
+</svg>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>3 Proof of Correctness</b><br />
+We want to prove the following:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>a left rotation maintains the binary search property</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i><br />
+Let <script type="math/tex">T</script> be a binary search tree and let the right subtree above be in <script type="math/tex">T</script>. Let <script type="math/tex">T'</script> be the tree resulted after <script type="math/tex">T</script> has been left rotated at <script type="math/tex">x</script>. We want to prove <script type="math/tex">T'</script> is a binary search tree. To do so, we need to prove that each node is maintaining the BST property. First, since <script type="math/tex">y</script> is a right child of <script type="math/tex">x</script> then we know that <script type="math/tex">x.key \leq y.key</script>. After the rotation is done, <script type="math/tex">x</script> is a left child of <script type="math/tex">y</script> maintaining the BST property. Similarly, in T, <script type="math/tex">b</script> is a left child of <script type="math/tex">y</script>, so this means that <script type="math/tex">b.key \leq y.key</script> and since the <script type="math/tex">b</script> in the right subtree of <script type="math/tex">x</script>, we also know that <script type="math/tex">b.key \geq x.key</script>. After the rotation is done, we see that in <script type="math/tex">T'</script>, <script type="math/tex">b</script> is a right child of <script type="math/tex">x</script> maintaining the BST property since <script type="math/tex">b.key \geq x.key</script> and <script type="math/tex">b.key \leq y.key</script>. Finally we see that <script type="math/tex">a.key \leq x.key</script> and <script type="math/tex">x.key \leq y.key</script> in <script type="math/tex">T</script> and so so <script type="math/tex">a</script> is still maintaining the BST property in <script type="math/tex">T'</script>. Similarly, <script type="math/tex">c.key \geq y.key</script> and <script type="math/tex">y.key \geq x.key</script> in <script type="math/tex">T</script> and so <script type="math/tex">c</script> is still maintaining the BST property in <script type="math/tex">T'</script>.</p>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>4 Left Rotation Implementation</b><br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">left_rotate</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="n">Node</span> <span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Node</span> <span class="o">*</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span> <span class="c1">// we are assuming x has a right child</span>
+
+    <span class="c1">// as in the example above, y's left child b becomes x's new right child</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">!=</span> <span class="n">nil</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// if there is a left child, fix up the parent pointer</span>
+        <span class="n">y</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// b's parent is x now</span>
+    <span class="p">}</span>
+
+    <span class="c1">// since y is the new root then we fix up y's parent pointer</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">;</span>
+	
+	<span class="c1">// we should now fix the parent link to point to y unless x was the root itself, then y is the new root</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">==</span> <span class="n">nil</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// this means x is the root (no parent pointer)</span>
+        <span class="n">T</span><span class="o">-&gt;</span><span class="n">root</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// x is a left child, make y the left child of x's parent</span>
+        <span class="n">x</span><span class="o">-&gt;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// x is a right child, make y the right child of x's parent</span>
+        <span class="n">x</span><span class="o">-&gt;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// finally, x is now the left child of y and y is its parent</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>5 Right Rotation</b><br />
+Similarly, a rotation rotation takes a node <script type="math/tex">y</script> with its left child <script type="math/tex">x</script> and rotate them so that <script type="math/tex">x</script> is the parent of <script type="math/tex">y</script> and <script type="math/tex">y</script> is now a right child of <script type="math/tex">x</script>.</p>
+
+<svg width="800" height="260" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="571.5" cy="55.5" rx="30" ry="30" />
+	<text x="566.5" y="61.5" font-family="Times New Roman" font-size="20">x</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="524.5" cy="137.5" rx="30" ry="30" />
+	<text x="520.5" y="143.5" font-family="Times New Roman" font-size="20">a</text>
+	<ellipse stroke="black" stroke-width="1" fill="yellow" fill-opacity="0.25" cx="627.5" cy="137.5" rx="30" ry="30" />
+	<text x="622.5" y="143.5" font-family="Times New Roman" font-size="20">y</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="681.5" cy="222.5" rx="30" ry="30" />
+	<text x="677.5" y="228.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="blue" fill-opacity="0.25" cx="588.5" cy="222.5" rx="30" ry="30" />
+	<text x="583.5" y="228.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="yellow" fill-opacity="0.25" cx="187.5" cy="55.5" rx="30" ry="30" />
+	<text x="182.5" y="61.5" font-family="Times New Roman" font-size="20">y</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="142.5" cy="137.5" rx="30" ry="30" />
+	<text x="137.5" y="143.5" font-family="Times New Roman" font-size="20">x</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="230.5" cy="137.5" rx="30" ry="30" />
+	<text x="226.5" y="143.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="94.5" cy="222.5" rx="30" ry="30" />
+	<text x="90.5" y="228.5" font-family="Times New Roman" font-size="20">a</text>
+	<ellipse stroke="black" stroke-width="1" fill="blue" fill-opacity="0.25" cx="181.5" cy="222.5" rx="30" ry="30" />
+	<text x="176.5" y="228.5" font-family="Times New Roman" font-size="20">b</text>
+	<text x="317.5" y="132.5" font-family="Times New Roman" font-size="20">right rotation &gt;&gt;</text>
+	<polygon stroke="black" stroke-width="1" points="588.419,80.274 610.581,112.726" />
+	<polygon fill="black" stroke-width="1" points="610.581,112.726 610.198,103.3 601.94,108.939" />
+	<polygon stroke="black" stroke-width="1" points="556.582,81.528 539.418,111.472" />
+	<polygon fill="black" stroke-width="1" points="539.418,111.472 547.735,107.018 539.059,102.045" />
+	<polygon stroke="black" stroke-width="1" points="643.587,162.822 665.413,197.178" />
+	<polygon fill="black" stroke-width="1" points="665.413,197.178 665.344,187.744 656.903,193.106" />
+	<polygon stroke="black" stroke-width="1" points="614.989,164.767 601.011,195.233" />
+	<polygon fill="black" stroke-width="1" points="601.011,195.233 608.891,190.047 599.802,185.877" />
+	<polygon stroke="black" stroke-width="1" points="201.432,82.069 216.568,110.931" />
+	<polygon fill="black" stroke-width="1" points="216.568,110.931 217.281,101.524 208.424,106.168" />
+	<polygon stroke="black" stroke-width="1" points="155.011,164.767 168.989,195.233" />
+	<polygon fill="black" stroke-width="1" points="168.989,195.233 170.198,185.877 161.109,190.047" />
+	<polygon stroke="black" stroke-width="1" points="127.748,163.623 109.252,196.377" />
+	<polygon fill="black" stroke-width="1" points="109.252,196.377 117.539,191.87 108.832,186.953" />
+	<polygon stroke="black" stroke-width="1" points="173.067,81.8 156.933,111.2" />
+	<polygon fill="black" stroke-width="1" points="156.933,111.2 165.165,106.592 156.398,101.781" />
+</svg>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>6 Right Rotation Implementation</b><br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">right_rotate</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="n">Node</span> <span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Node</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span> <span class="c1">// we are assuming y has a left child x</span>
+
+    <span class="c1">// as in the example above,x's right child becomes y's left child</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">!=</span> <span class="n">nil</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// fix up the parent pointer</span>
+        <span class="n">x</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// since x is the new root then we fix up x's parent pointer</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">=</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">;</span>
+	
+	<span class="c1">// we should now fix the parent link to point to x unless y was the root itself, then y is the new root</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">==</span> <span class="n">nil</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// this means y is the root (no parent pointer)</span>
+        <span class="n">T</span><span class="o">-&gt;</span><span class="n">root</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// y is a left child, make x the left child of y's parent</span>
+        <span class="n">y</span><span class="o">-&gt;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// y is a right child, make x the right child of y's parent</span>
+        <span class="n">y</span><span class="o">-&gt;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// finally, y is now the right child of x and x is its parent</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>7 Running Time:</b> 
+Since we’re performing a constant number of link changes then the runtime is <script type="math/tex">O(1)</script>.</p>
+
+<!------------------------------------------------------------------------------------>
+<hr />
+
+<p><br />
+<b>8 Detailed Implementation:</b> 
+https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp</p>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>9 References:</b> 
+CLRS, 13.2 Rotations</p>
+
+  </div><a class="u-url" href="/jekyll/update/2019/05/03/binary-search-trees.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hello.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+  </body>
+
+</html>

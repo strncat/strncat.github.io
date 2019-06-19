@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>AVL Trees | strncat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="AVL Trees" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="1 Introduction Let’s define some important terms: Height of a node: longest path from the node to a leaf. To compute the height, we simply take the maximum height of the left and right children and add 1. Height of a binary search tree: is the length of the longest path from the root to a leaf. A tree is balanced if if its height is ." />
+<meta property="og:description" content="1 Introduction Let’s define some important terms: Height of a node: longest path from the node to a leaf. To compute the height, we simply take the maximum height of the left and right children and add 1. Height of a binary search tree: is the length of the longest path from the root to a leaf. A tree is balanced if if its height is ." />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/05/01/avl-trees.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/05/01/avl-trees.html" />
+<meta property="og:site_name" content="strncat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-01T12:01:36-07:00" />
+<script type="application/ld+json">
+{"description":"1 Introduction Let’s define some important terms: Height of a node: longest path from the node to a leaf. To compute the height, we simply take the maximum height of the left and right children and add 1. Height of a binary search tree: is the length of the longest path from the root to a leaf. A tree is balanced if if its height is .","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/05/01/avl-trees.html","headline":"AVL Trees","dateModified":"2019-05-01T12:01:36-07:00","datePublished":"2019-05-01T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/05/01/avl-trees.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AVL Trees</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-05-01T12:01:36-07:00" itemprop="datePublished">May 1, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><b>1 Introduction</b><br />
+Let’s define some important terms:
+<br />
+<br />
+<i>Height of a node</i>: <br />
+longest path from the node to a leaf. To compute the height, we simply take the maximum height of the left and right children and add 1.
+<br />
+<br />
+<i>Height of a binary search tree</i>: <br />
+is the length of the longest path from the root to a leaf.
+<br />
+<br />
+A tree is <i>balanced</i> if if its height is <script type="math/tex">\theta(\log(n))</script>. 
+<br />
+<br /></p>
+
+<!------------------------------------------------------------------------------------>
+<hr />
+
+<p><br />
+<b>2 AVL Trees</b><br />
+AVL trees are binary trees and where the heights of left and right children of every node differ by at most +/-1. Based on this, we claim that</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>AVL trees are blanaced.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i><br />
+We should consider all possible trees. In the best case all nodes have the difference in height between the left and right children is 0. In this case the height of the tree is <script type="math/tex">\theta(\log(n))</script>
+<br /><br />
+In the worst case, every node’s children heights differ by exactly 1. Without the loss of generality assume that the right sub-tree has height 1 more than the left subtree for every node.
+<br /><br />
+Define <script type="math/tex">N_h</script> to be the mininum number of nodes in an AVL tree of height <script type="math/tex">h</script>. Since we know that the height of the left subtree and the right differ by 1, then we can define <script type="math/tex">N_h</script> recursively as follows:
+<br /></p>
+<center>
+$$N_h = 1 + N_{h-1} + N_{h-2}$$ 
+</center>
+<p>This is very similar to Fibonacci, in fact:</p>
+<center>
+$$
+  \begin{align*}
+  	N_h &amp;= 1 + N_{h-1} + N_{h-2} \\
+  	&amp;&gt; N_{h-1} + N_{h-2} \\
+	&amp;&gt; F_h \\
+	&amp;= \frac{\phi^h}{\sqrt{5}} 
+  \end{align*}
+$$
+</center>
+<p>Solving for <script type="math/tex">h</script> which is what we want to bound:</p>
+<center>
+$$
+  \begin{align*}
+  	\log_{\phi}(N_h) &amp;&gt; \log_{\phi}(\frac{\phi^h}{\sqrt{5}}) \\
+	h &amp;&lt; 1.440\log(N_h)
+  \end{align*}
+$$
+</center>
+<p>Therefore, AVL trees are balanced as we wanted to show.
+<br />
+Note: There is also another way to solve the recurrence besides using Fibonacci. Note that:</p>
+<center>
+$$
+  \begin{align*}
+  $N_h &amp;= 1 + N_{h-1} + N_{h-2} \\
+  	&amp;&gt; 1 + 2N_{h-2} \\
+  	&amp;&gt; 2N_{h-2} \\
+	&amp;= \theta(2^{h/2}) \\
+	h &amp;&lt; 2\log(N_h)
+  \end{align*}
+$$
+</center>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>3 Mainting the AVL tree property</b><br />
+To insert in an AVL tree, we just insert like we do in a binary search tree. After that we need to fix up the tree to maintain its AVL property. To do so, we use <a href="https://strncat.github.io/jekyll/update/2019/05/02/binary-tree-rotation.html">rotations</a> but there are multiple cases to handle.
+<br />
+<br />
+Assume we have the following tree on the left. We define the height of a nil node to be -1. We want to insert the node 13. We insert the way we do in a binary search tree to get the tree on the right:</p>
+
+<svg width="800" height="450" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="621.5" cy="55.5" rx="30" ry="30" />
+	<text x="597.5" y="61.5" font-family="Times New Roman" font-size="20">11 (3)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="553.5" cy="137.5" rx="30" ry="30" />
+	<text x="534.5" y="143.5" font-family="Times New Roman" font-size="20">5 (1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="red" fill-opacity="0.25" cx="688.5" cy="137.5" rx="30" ry="30" />
+	<text x="664.5" y="143.5" font-family="Times New Roman" font-size="20">23 (2)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="613.5" cy="316.5" rx="30" ry="30" />
+	<text x="589.5" y="322.5" font-family="Times New Roman" font-size="20">13 (0)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="658.5" cy="228.5" rx="30" ry="30" />
+	<text x="634.5" y="234.5" font-family="Times New Roman" font-size="20">17 (1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="173.5" cy="55.5" rx="30" ry="30" />
+	<text x="149.5" y="61.5" font-family="Times New Roman" font-size="20">11 (2)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="100.5" cy="137.5" rx="30" ry="30" />
+	<text x="81.5" y="143.5" font-family="Times New Roman" font-size="20">5 (1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="237.5" cy="137.5" rx="30" ry="30" />
+	<text x="213.5" y="143.5" font-family="Times New Roman" font-size="20">23 (1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="64.5" cy="228.5" rx="30" ry="30" />
+	<text x="45.5" y="234.5" font-family="Times New Roman" font-size="20">3 (0)</text>
+	<text x="349.5" y="132.5" font-family="Times New Roman" font-size="20">---(13)---&gt;</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="213.5" cy="228.5" rx="30" ry="30" />
+	<text x="189.5" y="234.5" font-family="Times New Roman" font-size="20">17 (0)</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="506.5" cy="228.5" rx="30" ry="30" />
+	<text x="487.5" y="234.5" font-family="Times New Roman" font-size="20">3 (0)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="582.5" cy="228.5" rx="30" ry="30" />
+	<text x="554.5" y="234.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="34.5" cy="316.5" rx="30" ry="30" />
+	<text x="6.5" y="322.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="100.5" cy="316.5" rx="30" ry="30" />
+	<text x="72.5" y="322.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="141.5" cy="228.5" rx="30" ry="30" />
+	<text x="113.5" y="234.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="680.5" cy="316.5" rx="30" ry="30" />
+	<text x="652.5" y="322.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="727.5" cy="228.5" rx="30" ry="30" />
+	<text x="699.5" y="234.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="543.5" cy="316.5" rx="30" ry="30" />
+	<text x="515.5" y="322.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="471.5" cy="316.5" rx="30" ry="30" />
+	<text x="443.5" y="322.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="284.5" cy="228.5" rx="30" ry="30" />
+	<text x="256.5" y="234.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="173.5" cy="316.5" rx="30" ry="30" />
+	<text x="145.5" y="322.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="247.5" cy="316.5" rx="30" ry="30" />
+	<text x="219.5" y="322.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="582.5" cy="401.5" rx="30" ry="30" />
+	<text x="554.5" y="407.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="648.5" cy="403.5" rx="30" ry="30" />
+	<text x="620.5" y="409.5" font-family="Times New Roman" font-size="20">Nil(-1)</text>
+	<polygon stroke="black" stroke-width="1" points="640.482,78.731 669.518,114.269" />
+	<polygon fill="black" stroke-width="1" points="669.518,114.269 668.328,104.91 660.585,111.237" />
+	<polygon stroke="black" stroke-width="1" points="602.35,78.593 572.65,114.407" />
+	<polygon fill="black" stroke-width="1" points="572.65,114.407 581.606,111.441 573.908,105.058" />
+	<polygon stroke="black" stroke-width="1" points="679.107,165.992 667.893,200.008" />
+	<polygon fill="black" stroke-width="1" points="667.893,200.008 675.146,193.976 665.649,190.845" />
+	<polygon stroke="black" stroke-width="1" points="191.958,79.149 219.042,113.851" />
+	<polygon fill="black" stroke-width="1" points="219.042,113.851 218.061,104.468 210.178,110.62" />
+	<polygon stroke="black" stroke-width="1" points="89.464,165.396 75.536,200.604" />
+	<polygon fill="black" stroke-width="1" points="75.536,200.604 83.128,195.004 73.829,191.325" />
+	<polygon stroke="black" stroke-width="1" points="153.552,77.907 120.448,115.093" />
+	<polygon fill="black" stroke-width="1" points="120.448,115.093 129.502,112.442 122.033,105.793" />
+	<polygon stroke="black" stroke-width="1" points="229.85,166.508 221.15,199.492" />
+	<polygon fill="black" stroke-width="1" points="221.15,199.492 228.025,193.031 218.356,190.481" />
+	<polygon stroke="black" stroke-width="1" points="562.609,166.084 573.391,199.916" />
+	<polygon fill="black" stroke-width="1" points="573.391,199.916 575.726,190.776 566.198,193.812" />
+	<polygon stroke="black" stroke-width="1" points="644.841,255.21 627.159,289.79" />
+	<polygon fill="black" stroke-width="1" points="627.159,289.79 635.253,284.943 626.349,280.39" />
+	<polygon stroke="black" stroke-width="1" points="539.733,164.155 520.267,201.845" />
+	<polygon fill="black" stroke-width="1" points="520.267,201.845 528.38,197.032 519.495,192.443" />
+	<polygon stroke="black" stroke-width="1" points="54.82,256.895 44.18,288.105" />
+	<polygon fill="black" stroke-width="1" points="44.18,288.105 51.494,282.146 42.029,278.919" />
+	<polygon stroke="black" stroke-width="1" points="54.82,256.895 44.18,288.105" />
+	<polygon fill="black" stroke-width="1" points="44.18,288.105 51.494,282.146 42.029,278.919" />
+	<polygon stroke="black" stroke-width="1" points="75.859,256.266 89.141,288.734" />
+	<polygon fill="black" stroke-width="1" points="89.141,288.734 90.74,279.436 81.484,283.222" />
+	<polygon stroke="black" stroke-width="1" points="112.823,164.852 129.177,201.148" />
+	<polygon fill="black" stroke-width="1" points="129.177,201.148 130.449,191.8 121.332,195.908" />
+	<polygon stroke="black" stroke-width="1" points="700.318,165.074 715.682,200.926" />
+	<polygon fill="black" stroke-width="1" points="715.682,200.926 717.127,191.603 707.935,195.542" />
+	<polygon stroke="black" stroke-width="1" points="665.776,257.604 673.224,287.396" />
+	<polygon fill="black" stroke-width="1" points="673.224,287.396 676.134,278.422 666.433,280.847" />
+	<polygon stroke="black" stroke-width="1" points="495.413,256.376 482.587,288.624" />
+	<polygon fill="black" stroke-width="1" points="482.587,288.624 490.19,283.038 480.898,279.342" />
+	<polygon stroke="black" stroke-width="1" points="518.128,256.155 531.872,288.845" />
+	<polygon fill="black" stroke-width="1" points="531.872,288.845 533.381,279.532 524.162,283.408" />
+	<polygon stroke="black" stroke-width="1" points="251.267,164.155 270.733,201.845" />
+	<polygon fill="black" stroke-width="1" points="270.733,201.845 271.505,192.443 262.62,197.032" />
+	<polygon stroke="black" stroke-width="1" points="224.312,256.484 236.688,288.516" />
+	<polygon fill="black" stroke-width="1" points="236.688,288.516 238.469,279.252 229.141,282.856" />
+	<polygon stroke="black" stroke-width="1" points="201.086,255.811 185.914,289.189" />
+	<polygon fill="black" stroke-width="1" points="185.914,289.189 193.776,283.975 184.673,279.837" />
+	<polygon stroke="black" stroke-width="1" points="624.697,344.332 637.303,375.668" />
+	<polygon fill="black" stroke-width="1" points="637.303,375.668 638.956,366.38 629.679,370.112" />
+	<polygon stroke="black" stroke-width="1" points="603.221,344.684 592.779,373.316" />
+	<polygon fill="black" stroke-width="1" points="592.779,373.316 600.217,367.513 590.823,364.087" />
+</svg>
+
+<p>We go up the tree to find the first node where it violates the AVL property meanning that the height of the left and right children differ by more than 1. The first node is 23.</p>
+
+<!------------------------------------------------------------------------------------>
+<hr />
+
+<p><br />
+<b>5 Running Time:</b></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">fix_up</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// assume the current node inserted was x</span>
+	<span class="c1">// the idea is to go up the tree, searching for the first violating node</span>
+    
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>6 Detailed Implementation:</b> 
+-</p>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<hr />
+
+<p><br />
+<b>7 References:</b> 
+https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/lecture-6-avl-trees-avl-sort/</p>
+
+  </div><a class="u-url" href="/jekyll/update/2019/05/01/avl-trees.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hello.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+  </body>
+
+</html>

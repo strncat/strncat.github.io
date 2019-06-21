@@ -1,18 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-19T14:30:57-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello.</subtitle><entry><title type="html">A Manual of Input Handling Strategies</title><link href="http://localhost:4000/jekyll/update/2019/06/18/input-handling.html" rel="alternate" type="text/html" title="A Manual of Input Handling Strategies" /><published>2019-06-18T12:01:36-07:00</published><updated>2019-06-18T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/18/input-handling</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/18/input-handling.html">&lt;p&gt;&lt;b&gt;1 Unbounded tests of lines of strings&lt;/b&gt;&lt;br /&gt;
-So we have a bunch of tests but we don’t know the number of tests. This is an example:&lt;br /&gt;
-1 &lt;br /&gt;
-F 0.81 * &lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-21T08:29:33-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello.</subtitle><entry><title type="html">Input Handling Examples</title><link href="http://localhost:4000/jekyll/update/2019/06/18/input-handling.html" rel="alternate" type="text/html" title="Input Handling Examples" /><published>2019-06-18T12:01:36-07:00</published><updated>2019-06-18T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/18/input-handling</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/18/input-handling.html">&lt;p&gt;&lt;b&gt;1 Unbounded Tests&lt;/b&gt;&lt;br /&gt;
+We have a bunch of tests but we don’t know the number of tests. This is an example:&lt;br /&gt;&lt;/p&gt;
+&lt;table&gt;
+	&lt;td&gt;
 5 &lt;br /&gt;
-E 0.01 &lt;em&gt;A &lt;br /&gt;
-… &lt;br /&gt;
+E 0.01 *A &lt;br /&gt;
+... &lt;br /&gt;
 10 &lt;br /&gt;
-S 2.23 Q&lt;/em&gt; &lt;br /&gt;
-A 9.76 C &lt;br /&gt;
-…&lt;/p&gt;
+S 2.23 Q* &lt;br /&gt;
+A 9.76 CKM &lt;br /&gt;
+...
+&lt;/td&gt;
+&lt;/table&gt;
 
-&lt;p&gt;I don’t have a pretty solution but this works:&lt;/p&gt;
+&lt;p&gt;Each test case starts with the number of lines in the test case. Each line contains three values and so we use std::istringstream to extract the values. The following works although not pretty.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// for each test case, we read the number of lines in the test case&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;neighbors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -23,16 +26,9 @@ A 9.76 C &lt;br /&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 	
 	&lt;span class=&quot;c1&quot;&gt;// take this line now and process it the way you want&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// in this specific case, we know we have three strings&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// in this specific case, we know we have three values&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;istringstream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;planet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;neighbors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;....&lt;/span&gt;
-
-	&lt;span class=&quot;c1&quot;&gt;// the third string is of variable length, handled here&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;neighbors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;add_edge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;planet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;neighbors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;add_edge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;neighbors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;planet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;
@@ -41,10 +37,12 @@ A 9.76 C &lt;br /&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Process matrix data with new lines&lt;/b&gt;&lt;br /&gt;
-This is from problem “532 - Dungeon Master”. Here we know the number of tests or when to terminate. We are told that we’re given the number of dimensions, the number of rows and columns and there is a new line after each dimension/level of the maze:&lt;/p&gt;
+&lt;b&gt;2 Reading 3D Grid Data&lt;/b&gt;&lt;br /&gt;
+This is from problem “532 - Dungeon Master”. Here we know when to terminate. We also know the number of rows, colums and the height (number of levels). There is also an extra new line between each board.&lt;/p&gt;
 
-&lt;p&gt;3 4 5 &lt;br /&gt;
+&lt;table&gt;
+&lt;td&gt;
+2 4 5 &lt;br /&gt;
 SXXXX &lt;br /&gt;
 X@@@X &lt;br /&gt;
 X@@XX &lt;br /&gt;
@@ -55,20 +53,16 @@ X@@XX &lt;br /&gt;
 @@X@@ &lt;br /&gt;
 @@XXX &lt;br /&gt;
 &lt;br /&gt;
-@@@@@ &lt;br /&gt;
-@@@@@&lt;br /&gt;
-@X@@@ &lt;br /&gt;
-@@@@E &lt;br /&gt;
-&lt;br /&gt;
 1 3 3 &lt;br /&gt;
 S@@&lt;br /&gt;
 @E@ &lt;br /&gt;
 @@@ &lt;br /&gt;
 &lt;br /&gt;
-0 0 0&lt;/p&gt;
+0 0 0
+&lt;/td&gt;
+&lt;/table&gt;
 
-&lt;p&gt;&lt;br /&gt;
-And this is the code I’ve used. Handling these extra new lines sucks.&lt;/p&gt;
+&lt;p&gt;And this is the code I’ve used.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -100,20 +94,19 @@ And this is the code I’ve used. Handling these extra new lines sucks.&lt;/p&gt
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 lines containing variable number ints&lt;/b&gt;&lt;br /&gt;
-Consider a number of lines where each line consists of a variable number of ints. We can use an istringstream and use a while loop to read as many ints as possible from that line. Code below shows this:&lt;/p&gt;
+&lt;b&gt;3 Strings with variable number of ints&lt;/b&gt;&lt;br /&gt;
+Consider a number of lines where each line consists of a variable number of ints. We can use std::istringstream and use a while loop to read as many ints as possible from that line. Code below shows this:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bombs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;istringstream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// do something with num&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -124,9 +117,9 @@ Consider a number of lines where each line consists of a variable number of ints
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;9 References:&lt;/b&gt; 
--&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Unbounded tests of lines of strings So we have a bunch of tests but we don’t know the number of tests. This is an example: 1 F 0.81 * 5 E 0.01 A … 10 S 2.23 Q A 9.76 C …</summary></entry><entry><title type="html">A Manual of Data Structures for Competitive Programming</title><link href="http://localhost:4000/jekyll/update/2019/06/17/data-structures.html" rel="alternate" type="text/html" title="A Manual of Data Structures for Competitive Programming" /><published>2019-06-17T12:01:36-07:00</published><updated>2019-06-17T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/17/data-structures</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/17/data-structures.html">&lt;p&gt;&lt;b&gt;1 You want to hash 2D grid positions&lt;/b&gt;&lt;br /&gt;
-Maybe you want to stick with positions as std pairs (x, y). Now you want to hash them but map requires your own custom hash functions. Whatever, we can make one. Here is an example.&lt;/p&gt;
+&lt;b&gt;Other examples:&lt;/b&gt; 
+https://github.com/strncat/competitive-programming&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Unbounded Tests We have a bunch of tests but we don’t know the number of tests. This is an example: 5 E 0.01 *A ... 10 S 2.23 Q* A 9.76 CKM ...</summary></entry><entry><title type="html">A Manual of Data Structures for Competitive Programming</title><link href="http://localhost:4000/jekyll/update/2019/06/17/data-structures.html" rel="alternate" type="text/html" title="A Manual of Data Structures for Competitive Programming" /><published>2019-06-17T12:01:36-07:00</published><updated>2019-06-17T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/17/data-structures</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/17/data-structures.html">&lt;p&gt;&lt;b&gt;1 You want to hash 2D grid positions&lt;/b&gt;&lt;br /&gt;
+Maybe you want to model positions as std pairs (x, y). Now you want to hash them but map requires your own custom hash function. Whatever, we can make one. Here is an example.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// figuring out the total cells in the path&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -135,8 +128,8 @@ Maybe you want to stick with positions as std pairs (x, y). Now you want to hash
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// silly hash function but it works for grids!&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;equal_to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// so now I can run bfs and do something like visited[pos] = true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;equal_to&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// so now I can run bfs and do something like parents[next] = current&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;
@@ -169,7 +162,7 @@ This is the same as above but for a 3D grid! we use std tuples this time:&lt;/p&
 
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;9 References:&lt;/b&gt; 
--&lt;/p&gt;</content><author><name></name></author><summary type="html">1 You want to hash 2D grid positions Maybe you want to stick with positions as std pairs (x, y). Now you want to hash them but map requires your own custom hash functions. Whatever, we can make one. Here is an example. // figuring out the total cells in the path typedef std::pair&amp;lt;int, int&amp;gt; position; struct hash : public std::unary_function&amp;lt;key_t, std::size_t&amp;gt; { std::size_t operator()(const position&amp;amp; k) const { return std::get&amp;lt;0&amp;gt;(k) * 10 + std::get&amp;lt;1&amp;gt;(k) * 1; // silly hash function but it works for grids! } }; std::unordered_map&amp;lt;const position, bool, hash,std::equal_to&amp;lt;position&amp;gt;&amp;gt; visited; // so now I can run bfs and do something like visited[pos] = true</summary></entry><entry><title type="html">Binary Search Tree</title><link href="http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees.html" rel="alternate" type="text/html" title="Binary Search Tree" /><published>2019-05-03T12:01:36-07:00</published><updated>2019-05-03T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
+-&lt;/p&gt;</content><author><name></name></author><summary type="html">1 You want to hash 2D grid positions Maybe you want to model positions as std pairs (x, y). Now you want to hash them but map requires your own custom hash function. Whatever, we can make one. Here is an example. // figuring out the total cells in the path typedef std::pair&amp;lt;int, int&amp;gt; position; struct hash : public std::unary_function&amp;lt;key_t, std::size_t&amp;gt; { std::size_t operator()(const position&amp;amp; k) const { return std::get&amp;lt;0&amp;gt;(k) * 10 + std::get&amp;lt;1&amp;gt;(k) * 1; // silly hash function but it works for grids! } }; std::unordered_map&amp;lt;const position, position, hash,std::equal_to&amp;lt;position&amp;gt;&amp;gt; parents; // so now I can run bfs and do something like parents[next] = current</summary></entry><entry><title type="html">Binary Search Trees</title><link href="http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees.html" rel="alternate" type="text/html" title="Binary Search Trees" /><published>2019-05-03T12:01:36-07:00</published><updated>2019-05-03T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/05/03/binary-search-trees.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
 A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following:
 &lt;br /&gt;
 Let &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; be a node in the tree. Let &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; be a node. If &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; was in the left subtree then we must have &lt;script type=&quot;math/tex&quot;&gt;y.key \leq x.key&lt;/script&gt;. Similarly, if &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; is a node in the right subtree then &lt;script type=&quot;math/tex&quot;&gt;y.key \geq x.key&lt;/script&gt;.
@@ -182,45 +175,13 @@ Let &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; be a node in the tr
 &lt;b&gt;2 Example&lt;/b&gt;&lt;br /&gt;
 Below is a binary search tree. Every node in the tree maintains the binary search tree property.&lt;/p&gt;
 
-&lt;svg width=&quot;800&quot; height=&quot;260&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;571.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;566.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;x&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;524.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;520.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;yellow&quot; fill-opacity=&quot;0.25&quot; cx=&quot;627.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;622.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;y&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;681.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;677.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;blue&quot; fill-opacity=&quot;0.25&quot; cx=&quot;588.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;583.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;yellow&quot; fill-opacity=&quot;0.25&quot; cx=&quot;187.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;182.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;y&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;142.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;137.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;x&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;230.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;226.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;94.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;90.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;blue&quot; fill-opacity=&quot;0.25&quot; cx=&quot;181.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;176.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;text x=&quot;317.5&quot; y=&quot;132.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;&amp;lt;&amp;lt; left rotation&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;588.419,80.274 610.581,112.726&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;610.581,112.726 610.198,103.3 601.94,108.939&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;556.582,81.528 539.418,111.472&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;539.418,111.472 547.735,107.018 539.059,102.045&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;643.587,162.822 665.413,197.178&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;665.413,197.178 665.344,187.744 656.903,193.106&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;614.989,164.767 601.011,195.233&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;601.011,195.233 608.891,190.047 599.802,185.877&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;201.432,82.069 216.568,110.931&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;216.568,110.931 217.281,101.524 208.424,106.168&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;155.011,164.767 168.989,195.233&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;168.989,195.233 170.198,185.877 161.109,190.047&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;127.748,163.623 109.252,196.377&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;109.252,196.377 117.539,191.87 108.832,186.953&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;173.067,81.8 156.933,111.2&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;156.933,111.2 165.165,106.592 156.398,101.781&quot; /&gt;
-&lt;/svg&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 &lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;
@@ -228,149 +189,11 @@ Below is a binary search tree. Every node in the tree maintains the binary searc
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Proof of Correctness&lt;/b&gt;&lt;br /&gt;
-We want to prove the following:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;a left rotation maintains the binary search property&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;i&gt;Proof:&lt;/i&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; be a binary search tree and let the right subtree above be in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt; be the tree resulted after &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; has been left rotated at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. We want to prove &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt; is a binary search tree. To do so, we need to prove that each node is maintaining the BST property. First, since &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; is a right child of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; then we know that &lt;script type=&quot;math/tex&quot;&gt;x.key \leq y.key&lt;/script&gt;. After the rotation is done, &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is a left child of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; maintaining the BST property. Similarly, in T, &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is a left child of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt;, so this means that &lt;script type=&quot;math/tex&quot;&gt;b.key \leq y.key&lt;/script&gt; and since the &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in the right subtree of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, we also know that &lt;script type=&quot;math/tex&quot;&gt;b.key \geq x.key&lt;/script&gt;. After the rotation is done, we see that in &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is a right child of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; maintaining the BST property since &lt;script type=&quot;math/tex&quot;&gt;b.key \geq x.key&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b.key \leq y.key&lt;/script&gt;. Finally we see that &lt;script type=&quot;math/tex&quot;&gt;a.key \leq x.key&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x.key \leq y.key&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; and so so &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is still maintaining the BST property in &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt;. Similarly, &lt;script type=&quot;math/tex&quot;&gt;c.key \geq y.key&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y.key \geq x.key&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; is still maintaining the BST property in &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Left Rotation Implementation&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;left_rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// we are assuming x has a right child&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// as in the example above, y's left child b becomes x's new right child&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// if there is a left child, fix up the parent pointer&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// b's parent is x now&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// since y is the new root then we fix up y's parent pointer&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	
-	&lt;span class=&quot;c1&quot;&gt;// we should now fix the parent link to point to y unless x was the root itself, then y is the new root&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this means x is the root (no parent pointer)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// x is a left child, make y the left child of x's parent&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// x is a right child, make y the right child of x's parent&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// finally, x is now the left child of y and y is its parent&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;b&gt;4 &lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Right Rotation&lt;/b&gt;&lt;br /&gt;
-Similarly, a rotation rotation takes a node &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; with its left child &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and rotate them so that &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is the parent of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; is now a right child of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;.&lt;/p&gt;
-
-&lt;svg width=&quot;800&quot; height=&quot;260&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;571.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;566.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;x&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;524.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;520.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;yellow&quot; fill-opacity=&quot;0.25&quot; cx=&quot;627.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;622.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;y&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;681.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;677.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;blue&quot; fill-opacity=&quot;0.25&quot; cx=&quot;588.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;583.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;yellow&quot; fill-opacity=&quot;0.25&quot; cx=&quot;187.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;182.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;y&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;142.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;137.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;x&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;230.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;226.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;94.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;90.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;blue&quot; fill-opacity=&quot;0.25&quot; cx=&quot;181.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;176.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;text x=&quot;317.5&quot; y=&quot;132.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;right rotation &amp;gt;&amp;gt;&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;588.419,80.274 610.581,112.726&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;610.581,112.726 610.198,103.3 601.94,108.939&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;556.582,81.528 539.418,111.472&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;539.418,111.472 547.735,107.018 539.059,102.045&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;643.587,162.822 665.413,197.178&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;665.413,197.178 665.344,187.744 656.903,193.106&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;614.989,164.767 601.011,195.233&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;601.011,195.233 608.891,190.047 599.802,185.877&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;201.432,82.069 216.568,110.931&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;216.568,110.931 217.281,101.524 208.424,106.168&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;155.011,164.767 168.989,195.233&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;168.989,195.233 170.198,185.877 161.109,190.047&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;127.748,163.623 109.252,196.377&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;109.252,196.377 117.539,191.87 108.832,186.953&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;173.067,81.8 156.933,111.2&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;156.933,111.2 165.165,106.592 156.398,101.781&quot; /&gt;
-&lt;/svg&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Right Rotation Implementation&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;right_rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// we are assuming y has a left child x&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// as in the example above,x's right child becomes y's left child&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// fix up the parent pointer&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// since x is the new root then we fix up x's parent pointer&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	
-	&lt;span class=&quot;c1&quot;&gt;// we should now fix the parent link to point to x unless y was the root itself, then y is the new root&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this means y is the root (no parent pointer)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// y is a left child, make x the left child of y's parent&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// y is a right child, make x the right child of y's parent&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// finally, y is now the right child of x and x is its parent&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Running Time:&lt;/b&gt; 
-Since we’re performing a constant number of link changes then the runtime is &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt;.&lt;/p&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;8 Detailed Implementation:&lt;/b&gt; 
-https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
@@ -378,7 +201,7 @@ https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-
 
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;9 References:&lt;/b&gt; 
-CLRS, 13.2 Rotations&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following: Let be a node in the tree. Let be a node. If was in the left subtree then we must have . Similarly, if is a node in the right subtree then . 2 Example Below is a binary search tree. Every node in the tree maintains the binary search tree property.</summary></entry><entry><title type="html">Binary Tree Rotations</title><link href="http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation.html" rel="alternate" type="text/html" title="Binary Tree Rotations" /><published>2019-05-02T12:01:36-07:00</published><updated>2019-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
+CLRS, 13.0&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following: Let be a node in the tree. Let be a node. If was in the left subtree then we must have . Similarly, if is a node in the right subtree then . 2 Example Below is a binary search tree. Every node in the tree maintains the binary search tree property.</summary></entry><entry><title type="html">Binary Tree Rotations</title><link href="http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation.html" rel="alternate" type="text/html" title="Binary Tree Rotations" /><published>2019-05-02T12:01:36-07:00</published><updated>2019-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
 Rotating a tree is one of the fundamental operations that we perform on binary trees. It is used in balancing trees like Red-Black trees and AVL trees. Rotations maintain the binary search tree property. We have two kinds of rotation, a left rotation and a right rotation described below.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;

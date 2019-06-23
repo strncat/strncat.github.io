@@ -1,0 +1,68 @@
+---
+layout: post
+title:  "Breadth First Search"
+date:   2019-06-20 12:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+
+<b>1 Introduction</b>
+<br>
+Dijkstra solves the single source shortest weighted path problem in a weighted graph with non-negative edge weights. But what if we have multiple sources and we want to find the shortest distance to ANY of the sources? We can also use Dijkstra!
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<b>2 Example</b>
+<br>
+Say we have the following grid and want to find the distance from any cell to a cell that has "1". 
+<table>
+	<tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+    <tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+    <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+</table>
+We can just run Dijkstra with the modification that we have many sources initially in the queue with distance 0.
+After running the modified Dijkstra, we'll get the following array of distances!
+<table>
+	<tr><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+    <tr><td>2</td><td>1</td><td>0</td><td>1</td></tr>
+    <tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+</table>
+<!------------------------------------------------------------------------------------>
+<b>3 Algorithm</b>
+<br>
+{% highlight c++ %}
+void multibfs() {
+    Initialize a priorty queue q and all the sources
+    Initialize a distance array with INF for all nodes
+    while (q is not empty) {
+        node u = q.top()
+        // pop a node from the queue
+        // for each neighbor, in the above example (4 directions top, bottom, right, left)
+        for every neighbor v of u {
+            if (distance[v] > distance[u] + 1) {
+                distance[v] = distance[u] + 1;
+                // in c++ we don't have a decrease key but there is a workaround! check the full implementation
+                q.decrease_key(distance[v], v); 
+            }
+        }
+    }
+	// distances now have the short distances
+}
+{% endhighlight %}
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+<b>4 Full Implementation:</b> 
+https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/multiple-source-bfs.cpp
+
+
+<br>
+<!------------------------------------------------------------------------------------>
+<hr>
+<br>
+References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html
+
+
+

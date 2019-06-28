@@ -204,8 +204,7 @@ int longest_increasing_subsequence_fast(int *a, int n) { // O(nlogn)
 <hr>
 <br>
 <b>Full Implementation: </b><br>
-
-
+https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp
 
 <!------------------------------------------------------------------------------------>
 <br>

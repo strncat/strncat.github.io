@@ -55,7 +55,7 @@ mathjax: true
 <hr>
 <br>
 <b>1 Definition</b><br>
-Given an array $$A$$, the Cartersian tree, $$C(A)$$, can defined as follows: <br>
+Given an array $$A$$, the Cartersian tree, $$C(A)$$, is defined as follows: <br>
 1. If $$A = \emptyset$$, then $$C(A) = \emptyset$$, the empty tree. <br>
 2. If $$A \neq \emptyset$$, then let $$min$$ be the minimum element in $$A$$ and let $$i$$ be the index of $$min$$. Fix the root of the Cartesian tree to be $$min$$ and let $$\text{left}(A) = \{x_j \in A \ \ | \ \ j < i\}$$ be the points on the left of $$i$$ and $$\text{right}(A) = \{x_j \in A \ \ | \ \ j > i\}$$ be the points on the right of $$i$$. Let the root's left child be the cartesian tree of the left points, $$C(\text{left}(A))$$. and the root's right child be the cartesian tree of the right points,  $$C(\text{right}(A))$$.
 <br>
@@ -131,13 +131,13 @@ Given the above array, we construct the following cartersian tree:
 <br>
 <b>3 O(n) Algorithm </b>
 <br>
-The previous algorithm is not fast enough. Given an array $$A$$ of length $$n$$. A key insight is that given the cartesian tree for $$A[1...i]$$, the cartesian tree for $$A[1...i+1]$$ can be constructed by observing that the element $$A[i+1]$$ must be right most node in right most path in the tree because we know that an inorder traversal of the tree must give back the original array $$A$$. Basically $$A[i+1]$$ should be the last visited node in the in-order traversal of $$A[1...i+1]$$.
+The previous algorithm is not fast enough. Given an array $$A$$ of length $$n$$. A key insight is that given the cartesian tree for $$A[1...i]$$, the cartesian tree for $$A[1...i+1]$$ can be constructed by observing that the element $$A[i+1]$$ must be right most node in the right most path in the tree because we know that an inorder traversal of the tree must give back the original array $$A$$. Basically $$A[i+1]$$ should be the last visited node in the in-order traversal of $$A[1...i+1]$$.
 <br><br>
 Therefore, maintain a stack of the right most path in the tree. While the stack is not empty, we repeatedly check if the top element is greater than our current element $$A[i]$$. If $$A[i]$$ has a higher value, we stop. Now we do two things: <br>
 <br>
-(1) Let the top element in the stack is $$t$$. Since $$ t < A[i]$$, then it must be closer to the root to maintain the min-heap property and in an-order traversal, $$A[i]$$ must come after $$t$$. Therefore, $$A[i]$$ should be the right tree of $$t$$. 
+(1) Let the top element in the stack be $$t$$. Since $$ t < A[i]$$, then $$t$$ must be closer to the root than $$A[i]$$ to maintain the min-heap property. Also in an in-order traversal, $$A[i]$$ must come after $$t$$. Therefore, $$A[i]$$ should be the right tree of $$t$$.
 <br><br>
-(2) Let the the last element popped be $$q$$. Since $$q > A[i]$$, then $$q$$ must be lower than $$A[i]$$ in the tree. It must also come before  $$A[i]$$ in an in-order traversal and therefore, it should be the left tree of $$A[i]$$. 
+(2) Let the the last element popped be $$q$$. Since $$q > A[i]$$, then $$q$$ must be lower than $$A[i]$$ in the tree. It must also come before $$A[i]$$ in an in-order traversal and therefore, it should be the left tree of $$A[i]$$.
 <br><br>
 (3) The last thin
 {% highlight c++ %}

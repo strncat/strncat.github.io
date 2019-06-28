@@ -63,26 +63,28 @@ We claim that $$D[i+1]$$ is the length of longest increasing subsequence ending 
 <!------------------------------------------------------------------------------------>
 <b>3 The $$O(n^2)$$ Implementation</b>
 {% highlight c++ %}
-int D[n], p[n], max = 0;
-// maximum subsequence ending at a[i] is initially 1
-for (int i = 0; i < n; i++) {
-	D[i] = 1;
-	p[i] = -1; // parent array
+int longest_increasing_subsequence(int *a, int n) {
+	int D[n], p[n], max = 0;
+	// maximum subsequence ending at a[i] is initially 1
+	for (int i = 0; i < n; i++) {
+		D[i] = 1;
+		p[i] = -1; // parent array
+	}
+	// for element a[i], check all the previous subsequences where i < j
+	// and see if a[i] can extend any of them
+	for (int i = 1; i < n; i++) {
+	    for (int j = 0; j < i; j++) {
+	        if (A[i] > A[j] && D[i] < D[j] + 1) { // I can extend the subsequence
+	            D[i] = D[j] + 1;
+	            p[i] = j; // used for reconstructing the subsequence
+	        }
+	    }
+	    if (D[i] > max) { // maximum subsequence so far
+	        max = D[i];
+	    }
+	}
+	return max;
 }
-// for element a[i], check all the previous subsequences where i < j
-// and see if a[i] can extend any of them
-for (int i = 1; i < n; i++) {
-    for (int j = 0; j < i; j++) {
-        if (A[i] > A[j] && D[i] < D[j] + 1) { // I can extend the subsequence
-            D[i] = D[j] + 1;
-            p[i] = j; // used for reconstructing the subsequence
-        }
-    }
-    if (D[i] > max) { // maximum subsequence so far
-        max = D[i];
-    }
-}
-return max;
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
@@ -164,26 +166,37 @@ Could we replace the end of any other subsequence? No. Even though $$A[i] < M[j]
 <!------------------------------------------------------------------------------------>
 <b>3 The $$O(n\log(n))$$ Implementation</b>
 {% highlight c++ %}
-int D[n], p[n], max = 0;
-// maximum subsequence ending at a[i] is initially 1
-for (int i = 0; i < n; i++) {
-	D[i] = 1;
-	p[i] = -1; // parent array
-}
-// for element a[i], check all the previous subsequences where i < j
-// and see if a[i] can extend any of them
-for (int i = 1; i < n; i++) {
-    for (int j = 0; j < i; j++) {
-        if (A[i] > A[j] && D[i] < D[j] + 1) { // I can extend the subsequence
-            D[i] = D[j] + 1;
-            p[i] = j; // used for reconstructing the subsequence
+int longest_increasing_subsequence_fast(int *a, int n) { // O(nlogn)
+    int m[MAX];
+    m[0] = -INF;
+    for (int i = 0; i < n; i++) {
+        m[i + 1] = INF;
+    }
+
+    int k = 0; // keeps track of the length of the longest 
+	// increasing subsequence found so far
+    for (int i = 0; i < n; i++) {
+        // in each iteration either a[i] > a[k] meaning we can 
+		// extend the subsequence
+        if (a[i] > m[k]) {
+            m[++k] = a[i];
+        } else { // or a[i] < a[k] meaning we can update one of the previous 
+			// subsequences to a better subsequence ending 
+            // just a binary search
+            int first = 0, last = k;
+            while (last > first + 1) {
+                int mid = (first + last) / 2;
+                if (m[mid] < a[i]) {
+                    first = mid;
+                } else {
+                    last = mid;
+                }
+            }
+            m[last] = a[i];
         }
     }
-    if (D[i] > max) { // maximum subsequence so far
-        max = D[i];
-    }
+    return k;
 }
-return max;
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>

@@ -1,4 +1,223 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-22T21:00:39-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello.</subtitle><entry><title type="html">Breadth First Search</title><link href="http://localhost:4000/jekyll/update/2019/06/20/bfs.html" rel="alternate" type="text/html" title="Breadth First Search" /><published>2019-06-20T12:01:36-07:00</published><updated>2019-06-20T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/20/bfs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/20/bfs.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-27T21:06:43-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello.</subtitle><entry><title type="html">Longest Increasing Subsequence</title><link href="http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence.html" rel="alternate" type="text/html" title="Longest Increasing Subsequence" /><published>2019-06-25T12:01:36-07:00</published><updated>2019-06-25T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;A = [a_0, a_1, a_2,...,a_n]&lt;/script&gt; be an array containing &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; real numbers. A longest increasing subsequence of A is a sequence &lt;script type=&quot;math/tex&quot;&gt;0 \leq i_0 \leq i_1 \leq ... \leq i_k \leq n&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;A[i_i] \leq A[i_2] \leq ... \leq A[i_k]&lt;/script&gt; so that &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is of maximum value.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;b&gt;2 Example&lt;/b&gt;
+&lt;br /&gt;
+Suppose &lt;script type=&quot;math/tex&quot;&gt;A = [3, 8, 1, 2, 7, 9, 6, 4, 5]&lt;/script&gt; then a longest increasing subsequence could be &lt;script type=&quot;math/tex&quot;&gt;[1, 2, 4, 5]&lt;/script&gt;. Note that it is not unique.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;b&gt;3 The Brute Force Solution&lt;/b&gt;
+&lt;br /&gt;
+We can check every possible subsequence. For each element of &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt;, we either select that element or not. Therefore, the total number of possible subsequences is &lt;script type=&quot;math/tex&quot;&gt;2^n&lt;/script&gt;. As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is &lt;script type=&quot;math/tex&quot;&gt;O(2^n)&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;b&gt;4 Dynamic Programming and the Optimal Substructure&lt;/b&gt;
+&lt;br /&gt;
+To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS).&lt;br /&gt;
+&lt;br /&gt;
+It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let &lt;script type=&quot;math/tex&quot;&gt;D[i]&lt;/script&gt; be the length of the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;, then we will find that&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+D[i] = 1 + \max({D[k] : k &amp;lt; i \text{ and } A[k] &amp;lt; A[i]})
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;In other words, the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; can be found by looking at all &lt;script type=&quot;math/tex&quot;&gt;D[k]&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+k &lt; i %]]&gt;&lt;/script&gt; (meaning that &lt;script type=&quot;math/tex&quot;&gt;A[k]&lt;/script&gt; comes before &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;) and &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; A[k]&lt;/script&gt; (meaning that &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; can extend the subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[k]&lt;/script&gt;). We then taking the maximum value of &lt;script type=&quot;math/tex&quot;&gt;D[k]&lt;/script&gt;, 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Proof:&lt;/b&gt;&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; be a natural number and let &lt;script type=&quot;math/tex&quot;&gt;D[i]&lt;/script&gt; be the length of the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Consider the subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i + 1]&lt;/script&gt;. We have two cases:
+&lt;br /&gt;
+&lt;br /&gt;
+Case 1: &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; is the smallest element in &lt;script type=&quot;math/tex&quot;&gt;A[0...i+1]&lt;/script&gt;. Therefore, the length of the subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; is 1.
+&lt;br /&gt;
+&lt;br /&gt;
+Case 2: &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; is not the smallest element in &lt;script type=&quot;math/tex&quot;&gt;A[0...i+1]&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; be a natural number where &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+k &lt; i+1 %]]&gt;&lt;/script&gt;. This means that we can use &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; to extend the subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[k]&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+A[k] &lt; A[i + 1] %]]&gt;&lt;/script&gt;. Since we are searching for the longest increasing subsequence then we take the maximum value for all possible &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+k &lt; i + 1 %]]&gt;&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;D[i+1]&lt;/script&gt; is the maximum value plus 1 as defined above.
+&lt;br /&gt;
+&lt;br /&gt;
+We claim that &lt;script type=&quot;math/tex&quot;&gt;D[i+1]&lt;/script&gt; is the length of longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt;. Suppose it wasn’t and that the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;m &gt; D[i+1]&lt;/script&gt;. By our definition, we know that &lt;script type=&quot;math/tex&quot;&gt;D[i+1] = D[k] + 1&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;D[k]&lt;/script&gt; is the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+k &lt; i+1 %]]&gt;&lt;/script&gt;. This means that &lt;script type=&quot;math/tex&quot;&gt;m &gt; D[k]+1&lt;/script&gt; but this is not possible since we’re only adding &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; to the subsequence. Therefore, &lt;script type=&quot;math/tex&quot;&gt;D[i+1]&lt;/script&gt; is optimal.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;b&gt;3 The &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; Implementation&lt;/b&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// maximum subsequence ending at a[i] is initially 1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// parent array&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// for element a[i], check all the previous subsequences where i &amp;lt; j&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// and see if a[i] can extend any of them&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// I can extend the subsequence&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// used for reconstructing the subsequence&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// maximum subsequence so far&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;5 Running Time:&lt;/b&gt; 
+&lt;br /&gt;
+We’re doing two simple loops to fill arrays &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. Therefore, our runtime is just &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 Example:&lt;/b&gt; 
+&lt;br /&gt;
+Initially we start with arrays &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt;:
+Consider again &lt;script type=&quot;math/tex&quot;&gt;A = [3, 8, 1, 2, 7, 9, 6, 4, 5]&lt;/script&gt;. We initialize &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; to be &lt;script type=&quot;math/tex&quot;&gt;D = [1, 1, 1, 1, 1, 1, 1, 1, 1]&lt;/script&gt; representing the initial length of the subsequence ending at each possible &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;.
+&lt;br /&gt;&lt;br /&gt;
+Iteration &lt;script type=&quot;math/tex&quot;&gt;i = 1&lt;/script&gt;. We look at &lt;script type=&quot;math/tex&quot;&gt;A[1] = 8&lt;/script&gt;. We have &lt;script type=&quot;math/tex&quot;&gt;D[1]=1&lt;/script&gt; and so the subsequence is just &lt;script type=&quot;math/tex&quot;&gt;\{8\}&lt;/script&gt;. Can 8 extend any previous subsequences? We look at &lt;script type=&quot;math/tex&quot;&gt;j = 0&lt;/script&gt; and in that case, we see that &lt;script type=&quot;math/tex&quot;&gt;A[1] &gt; A[0]&lt;/script&gt;, meaning that that the subsequence can now include 3 and become &lt;script type=&quot;math/tex&quot;&gt;\{3, 8\}&lt;/script&gt;. And so now we have:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
+$$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+Iteration &lt;script type=&quot;math/tex&quot;&gt;i = 2&lt;/script&gt;. We look at &lt;script type=&quot;math/tex&quot;&gt;A[2] = 1&lt;/script&gt;. We have &lt;script type=&quot;math/tex&quot;&gt;D[2]=1&lt;/script&gt; and so the subsequence is just &lt;script type=&quot;math/tex&quot;&gt;\{1\}&lt;/script&gt;. Can 4 extend any previous subsequences? We need to look at &lt;script type=&quot;math/tex&quot;&gt;j = 0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j = 1&lt;/script&gt;. It turns out that 1 will not be able to extend either subsequence.&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
+$$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+We continue doing so until we reach the end and we have:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
+$$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$
+&lt;/div&gt;
+&lt;p&gt;This means that the longest subsequence ends at element 9 or 5. We can then &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; to construct the subsequence. One possible construction will generate: &lt;script type=&quot;math/tex&quot;&gt;[1, 2, 7, 9]&lt;/script&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;5 The O(nlg(n)) Solution with Binary Search:&lt;/b&gt; 
+&lt;br /&gt;
+The O(n^2) dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes!
+&lt;br /&gt;&lt;br /&gt;
+Previously, we said that &lt;script type=&quot;math/tex&quot;&gt;D[i]&lt;/script&gt; is the length of the longest subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Now we will consider a completely different substructure. Let &lt;script type=&quot;math/tex&quot;&gt;M[i]&lt;/script&gt; to be the smallest element that ends a subsequence of length &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;. For simplicity we will initially let &lt;script type=&quot;math/tex&quot;&gt;M[0]&lt;/script&gt; to be &lt;script type=&quot;math/tex&quot;&gt;-\infty&lt;/script&gt; and everything else to be &lt;script type=&quot;math/tex&quot;&gt;\infty&lt;/script&gt;. 
+&lt;br /&gt;&lt;br /&gt;
+Let’s take the same example where &lt;script type=&quot;math/tex&quot;&gt;A = [3, 8, 1, 2, 7, 9, 6, 4, 5]&lt;/script&gt;. In this case, the smallest number that ends a subsequence of length 1 is 1. Also the smallest number that ends a subsequence of length 3 is 4 and so on. We will eventually have &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;[-\infty, 1, 2, 4, 5, \infty, \infty, \infty, \infty]&lt;/script&gt;.
+&lt;br /&gt;&lt;br /&gt;
+Before proceeding with the algorithm and why it works. Let’s prove that based on our construction of &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;, that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; must be sorted because this will help us later on. To prove that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted, we will prove that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is a strictly increasing array and that for any &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+M[k] &lt; M[k+1] %]]&gt;&lt;/script&gt;. (We will ignore the placeholder &lt;script type=&quot;math/tex&quot;&gt;\infty&lt;/script&gt;’s otherwise the proof would not work)
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Claim: M is a strictly increasing array&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;b&gt;Proof:&lt;/b&gt;&lt;br /&gt;
+Suppose it is not and that there exists some &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; where either &lt;script type=&quot;math/tex&quot;&gt;M[j] = M[j+1]&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;M[j] &gt; M[j+1]&lt;/script&gt;. We will prove neither case is possible.
+&lt;br /&gt;&lt;br /&gt;
+First, suppose that &lt;script type=&quot;math/tex&quot;&gt;M[j] = M[j+1]&lt;/script&gt; then this means that we have two strictly increasing subsequences that end in &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt;. Let the first subsequence be &lt;script type=&quot;math/tex&quot;&gt;\{a_1, a_2,...a_n,M[j]\}&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; and let the second subsequence be &lt;script type=&quot;math/tex&quot;&gt;\{b_1,b_2,..,b_m,M[j]\}&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;j+1&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;m = n + 1&lt;/script&gt;. Since this is a strictly increasing subsequence, we must have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+b_m &lt; M[j] %]]&gt;&lt;/script&gt;. This is a contradiction because by assumption we know that &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; is the smallest element that ends a subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; but we just showed that there exists a subsequence, namely, &lt;script type=&quot;math/tex&quot;&gt;\{b_1,b_2,..,b_m\}&lt;/script&gt;, of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that ends with a smaller element, &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+b_m &lt; M[j] %]]&gt;&lt;/script&gt;.
+&lt;br /&gt;&lt;br /&gt;
+Next, suppose that &lt;script type=&quot;math/tex&quot;&gt;M[j] &gt; M[j+1]&lt;/script&gt;. This is a contradiction for the same reasons above. Let &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; be the subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that ends with &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; and if we let &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; the subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j+1&lt;/script&gt; that ends with M[j+1]. Since subsequences are strictly increasing then we can extract all the elements from &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; except for &lt;script type=&quot;math/tex&quot;&gt;M[j+1]&lt;/script&gt;. This new sequence ends with an element strictly less than &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; and therefore, we arrive at the same contradiction and conclude that it is not possible.
+&lt;br /&gt;&lt;br /&gt;
+Therefore, we can conclude that we must have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+M[k] &lt; M[k+1] %]]&gt;&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; as we wanted to show.
+&lt;!-- --&gt;
+&lt;br /&gt;&lt;br /&gt;
+&lt;b&gt;Algorithm:&lt;/b&gt;&lt;br /&gt;
+Let’s traverse &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; from left to right. For the base case, we consider &lt;script type=&quot;math/tex&quot;&gt;i = 0&lt;/script&gt; and at this point we know that &lt;script type=&quot;math/tex&quot;&gt;A[0] &gt; -\infty&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;M[1] = A[0]&lt;/script&gt;.
+&lt;br /&gt;&lt;br /&gt;
+Now let’s consider iteration &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Also, let &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; be the length of the longest subsequence reached so far, meaning that &lt;script type=&quot;math/tex&quot;&gt;M[k] \neq \infty&lt;/script&gt; and for any &lt;script type=&quot;math/tex&quot;&gt;j &gt; k&lt;/script&gt; we have &lt;script type=&quot;math/tex&quot;&gt;M[j] = \infty&lt;/script&gt;. Let’s consider two cases:
+&lt;br /&gt;&lt;br /&gt;
+Case 1: &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[k]&lt;/script&gt;. In this case, we see that it is possible to extend the subsequence ending with element &lt;script type=&quot;math/tex&quot;&gt;M[k]&lt;/script&gt; because &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; is greater, yay! Now we can set &lt;script type=&quot;math/tex&quot;&gt;M[k+1] = A[i]&lt;/script&gt; and we are done. (But why? don’t we need to check previous subsequences in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;? No. Proof: We established previously that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted and so if &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[k]&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[j]&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;j \leq k&lt;/script&gt;. This means that &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; is not a possible candidate for replacing any of the previous elements because &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; holds ONLY the minimum possible elements that end each subsequence.)
+&lt;br /&gt;&lt;br /&gt;
+Case 2: &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+A[i] &lt; M[k] %]]&gt;&lt;/script&gt;. This one is tricky. In this case &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; can’t extend the current subsequence of length &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; but it can potentially be a better candidate for ending some subsequence of length &lt;script type=&quot;math/tex&quot;&gt;1,...,k&lt;/script&gt;. Recall that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted and is a strictly increasing array. Let &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; be natural number where &lt;script type=&quot;math/tex&quot;&gt;j \leq k&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; is the smallest element such that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+A[i] &lt; M[j] %]]&gt;&lt;/script&gt;. (Note that it might be that &lt;script type=&quot;math/tex&quot;&gt;j = k&lt;/script&gt;). By our construction, this means that &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[j-1]&lt;/script&gt;. (Note that it might be that j-1 = 0). This means that we can take the subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j-1&lt;/script&gt; ending with &lt;script type=&quot;math/tex&quot;&gt;M[j-1]&lt;/script&gt; and end it instead with &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;, making a new subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that has a smaller ending value! So it safe to replace &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;A[j]&lt;/script&gt;. This is where binary search comes in! since &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted, we find this position in just &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;.
+&lt;br /&gt;&lt;br /&gt;
+Could we replace the end of any other subsequence? No. Even though &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+A[i] &lt; M[j] %]]&gt;&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;j..k&lt;/script&gt;, only &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; can be replaced because &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[j-1]&lt;/script&gt;. Any subsequence of length greater than &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; already has more elements than just &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; so &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; could not end these subsequences. (more formal?)
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;b&gt;3 The &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; Implementation&lt;/b&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// maximum subsequence ending at a[i] is initially 1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// parent array&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// for element a[i], check all the previous subsequences where i &amp;lt; j&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// and see if a[i] can extend any of them&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// I can extend the subsequence&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// used for reconstructing the subsequence&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// maximum subsequence so far&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Full Implementation: &lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;References: &lt;/b&gt;&lt;br /&gt;
+These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html and CLRS.&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction Let be an array containing real numbers. A longest increasing subsequence of A is a sequence such that so that is of maximum value. 2 Example Suppose then a longest increasing subsequence could be . Note that it is not unique. 3 The Brute Force Solution We can check every possible subsequence. For each element of , we either select that element or not. Therefore, the total number of possible subsequences is . As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is . 4 Dynamic Programming and the Optimal Substructure To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS). It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let be the length of the longest increasing subsequence ending at , then we will find that $$ \begin{align*} D[i] = 1 + \max({D[k] : k &amp;lt; i \text{ and } A[k] &amp;lt; A[i]}) \end{align*} $$ In other words, the longest increasing subsequence ending at can be found by looking at all where (meaning that comes before ) and (meaning that can extend the subsequence ending at ). We then taking the maximum value of , Proof: Let be a natural number and let be the length of the longest increasing subsequence ending at . Consider the subsequence ending at . We have two cases: Case 1: is the smallest element in . Therefore, the length of the subsequence ending at is 1. Case 2: is not the smallest element in . Let be a natural number where . This means that we can use to extend the subsequence ending at if . Since we are searching for the longest increasing subsequence then we take the maximum value for all possible and so is the maximum value plus 1 as defined above. We claim that is the length of longest increasing subsequence ending at . Suppose it wasn’t and that the longest increasing subsequence ending at is and so . By our definition, we know that where is the longest increasing subsequence ending at . This means that but this is not possible since we’re only adding to the subsequence. Therefore, is optimal. 3 The Implementation int D[n], p[n], max = 0; // maximum subsequence ending at a[i] is initially 1 for (int i = 0; i &amp;lt; n; i++) { D[i] = 1; p[i] = -1; // parent array } // for element a[i], check all the previous subsequences where i &amp;lt; j // and see if a[i] can extend any of them for (int i = 1; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; i; j++) { if (A[i] &amp;gt; A[j] &amp;amp;&amp;amp; D[i] &amp;lt; D[j] + 1) { // I can extend the subsequence D[i] = D[j] + 1; p[i] = j; // used for reconstructing the subsequence } } if (D[i] &amp;gt; max) { // maximum subsequence so far max = D[i]; } } return max; 5 Running Time: We’re doing two simple loops to fill arrays and . Therefore, our runtime is just 6 Example: Initially we start with arrays and : Consider again . We initialize to be representing the initial length of the subsequence ending at each possible . Iteration . We look at . We have and so the subsequence is just . Can 8 extend any previous subsequences? We look at and in that case, we see that , meaning that that the subsequence can now include 3 and become . And so now we have: $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$ Iteration . We look at . We have and so the subsequence is just . Can 4 extend any previous subsequences? We need to look at and . It turns out that 1 will not be able to extend either subsequence. $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$ We continue doing so until we reach the end and we have: $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$ This means that the longest subsequence ends at element 9 or 5. We can then to construct the subsequence. One possible construction will generate: 5 The O(nlg(n)) Solution with Binary Search: The O(n^2) dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes! Previously, we said that is the length of the longest subsequence ending at . Now we will consider a completely different substructure. Let to be the smallest element that ends a subsequence of length . For simplicity we will initially let to be and everything else to be . Let’s take the same example where . In this case, the smallest number that ends a subsequence of length 1 is 1. Also the smallest number that ends a subsequence of length 3 is 4 and so on. We will eventually have is . Before proceeding with the algorithm and why it works. Let’s prove that based on our construction of , that must be sorted because this will help us later on. To prove that is sorted, we will prove that is a strictly increasing array and that for any , we have . (We will ignore the placeholder ’s otherwise the proof would not work)</summary></entry><entry><title type="html">Breadth First Search</title><link href="http://localhost:4000/jekyll/update/2019/06/20/bfs.html" rel="alternate" type="text/html" title="Breadth First Search" /><published>2019-06-20T12:01:36-07:00</published><updated>2019-06-20T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/20/bfs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/20/bfs.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;
 &lt;br /&gt;
 Dijkstra solves the single source shortest weighted path problem in a weighted graph with non-negative edge weights. But what if we have multiple sources and we want to find the shortest distance to ANY of the sources? We can also use Dijkstra!
 &lt;br /&gt;
@@ -1165,201 +1384,4 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/min
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;br /&gt;
-References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html&lt;/p&gt;</content><author><name></name></author><summary type="html">b c d e f a 4 7 2 6 5 1 2 3 1 1 References These are study notes from taking the awesome class CS161. http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a weighted graph with vertices and edges. Bellman-Ford’s algorithm finds the shortest paths from a source vertex to all other vertices in . Bellman-Ford is a dynamic programming algorithm. The idea is that we can find the shortest path from to using at most edges by using the shortest path from to using at most edges.</summary></entry><entry><title type="html">Bellman-Ford’s Shortest Paths</title><link href="http://localhost:4000/jekyll/update/2019/04/04/bellman-ford.html" rel="alternate" type="text/html" title="Bellman-Ford's Shortest Paths" /><published>2019-04-04T07:01:36-07:00</published><updated>2019-04-04T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/04/04/bellman-ford</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/04/04/bellman-ford.html">&lt;svg width=&quot;800&quot; height=&quot;250&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;294.5&quot; cy=&quot;68.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;289.5&quot; y=&quot;74.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;498.5&quot; cy=&quot;68.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;494.5&quot; y=&quot;74.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;664.5&quot; cy=&quot;147.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;659.5&quot; y=&quot;153.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;d&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;498.5&quot; cy=&quot;218.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;494.5&quot; y=&quot;224.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;e&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;294.5&quot; cy=&quot;218.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;291.5&quot; y=&quot;224.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;f&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;137.5&quot; cy=&quot;159.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;133.5&quot; y=&quot;165.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;324.5,68.5 468.5,68.5&quot; /&gt;
-	&lt;text x=&quot;391.5&quot; y=&quot;89.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;4&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;525.589,81.392 637.411,134.608&quot; /&gt;
-	&lt;text x=&quot;586.5&quot; y=&quot;98.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;7&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;636.917,159.298 526.083,206.702&quot; /&gt;
-	&lt;text x=&quot;566.5&quot; y=&quot;173.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;2&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;468.5,218.5 324.5,218.5&quot; /&gt;
-	&lt;text x=&quot;391.5&quot; y=&quot;209.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;6&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;318.67,200.728 474.33,86.272&quot; /&gt;
-	&lt;text x=&quot;401.5&quot; y=&quot;164.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;5&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;163.455,144.456 268.545,83.544&quot; /&gt;
-	&lt;text x=&quot;220.5&quot; y=&quot;135.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;1&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;165.583,170.053 266.417,207.947&quot; /&gt;
-	&lt;text x=&quot;201.5&quot; y=&quot;210.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;2&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;498.5,188.5 498.5,98.5&quot; /&gt;
-	&lt;text x=&quot;503.5&quot; y=&quot;149.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;3&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;294.5,188.5 294.5,98.5&quot; /&gt;
-	&lt;text x=&quot;299.5&quot; y=&quot;149.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;1&lt;/text&gt;
-&lt;/svg&gt;
-&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be undirected, weighted graph with &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges. A minimum spanning tree is a tree that connects all the vertices in &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2.1 Algorithm (slow naive version)&lt;/b&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sort&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;non&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decreasing&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;MST&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sorted&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;we&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;can&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MST&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;without&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;creating&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cycle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MST&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MST&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2.2 Algorithm (fast, used for the remaining of these notes)&lt;/b&gt;
-&lt;br /&gt;
-The reason why this implementation is the standard kruskal implemenation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;makeSet(u): creates a set &lt;script type=&quot;math/tex&quot;&gt;\{u\}&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;find(u): returns the set that &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; is in.&lt;/li&gt;
-  &lt;li&gt;union(u,v): merge the set that &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; is in with the set that &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is in.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sort&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;non&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decreasing&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;MST&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;makeSet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MST&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;union&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MST&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Example&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;We initialize the following forests &lt;script type=&quot;math/tex&quot;&gt;\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}&lt;/script&gt;. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: &lt;script type=&quot;math/tex&quot;&gt;\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}&lt;/script&gt;
-&lt;br /&gt;&lt;br /&gt;
-&lt;i&gt;Iteration 0&lt;/i&gt;&lt;br /&gt;
-The first edge to consider is either &lt;script type=&quot;math/tex&quot;&gt;\{a,b\}&lt;/script&gt;. Since &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; are not in the same set, we add the edge to the MST and combine both &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;i&gt;Iteration 1&lt;/i&gt;&lt;br /&gt;
-We next consider  &lt;script type=&quot;math/tex&quot;&gt;\{b,f\}&lt;/script&gt;. Since &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; are not in the same set, we add the edge to the MST and combine both &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt;. So now we have the following forests: &lt;script type=&quot;math/tex&quot;&gt;\{a, b, f\}, \{c\}, \{d\}, \{e\}&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;i&gt;Iteration 2&lt;/i&gt;&lt;br /&gt;
-We next consider  &lt;script type=&quot;math/tex&quot;&gt;\{a,f\}&lt;/script&gt;. Since &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; are in the same set, we don’t combine the nodes and don’t add the edge to the MST.&lt;/p&gt;
-
-&lt;p&gt;At the end of the algorithm, the minimum spanning tree is the following tree:&lt;/p&gt;
-&lt;svg width=&quot;800&quot; height=&quot;250&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;294.5&quot; cy=&quot;68.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;289.5&quot; y=&quot;74.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;498.5&quot; cy=&quot;68.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;494.5&quot; y=&quot;74.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;664.5&quot; cy=&quot;147.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;659.5&quot; y=&quot;153.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;d&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;498.5&quot; cy=&quot;218.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;494.5&quot; y=&quot;224.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;e&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;294.5&quot; cy=&quot;218.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;291.5&quot; y=&quot;224.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;f&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;137.5&quot; cy=&quot;159.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;133.5&quot; y=&quot;165.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;324.5,68.5 468.5,68.5&quot; /&gt;
-	&lt;text x=&quot;391.5&quot; y=&quot;89.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;4&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;636.917,159.298 526.083,206.702&quot; /&gt;
-	&lt;text x=&quot;566.5&quot; y=&quot;173.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;2&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;163.455,144.456 268.545,83.544&quot; /&gt;
-	&lt;text x=&quot;220.5&quot; y=&quot;135.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;1&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;498.5,188.5 498.5,98.5&quot; /&gt;
-	&lt;text x=&quot;503.5&quot; y=&quot;149.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;3&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;294.5,188.5 294.5,98.5&quot; /&gt;
-	&lt;text x=&quot;299.5&quot; y=&quot;149.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;1&lt;/text&gt;
-&lt;/svg&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Proof of Correctness&lt;/b&gt;&lt;br /&gt;
-This first section is exaclty copied from Prim’s so I should probably just link it, instead of copy/pasting. agh
-&lt;br /&gt;&lt;br /&gt;
-Why does this algorithm find a minimum spanning tree? Before we can answer that, let’s define some terms and prove some lemma that will be useful in the main proof. Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be the graph below and let &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; be the set of yellow edges in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/cut.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A &lt;b&gt;cut&lt;/b&gt; is a partition of the vertices into two non-empty parts. the red line (cut) partitions &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; into &lt;script type=&quot;math/tex&quot;&gt;\{a,b,f,e\}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\{c,d\}&lt;/script&gt;.&lt;/li&gt;
-  &lt;li&gt;A cut &lt;b&gt;respects&lt;/b&gt; &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; if no edges in &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; cross the cut. None of the yellow edges cross the red cut.&lt;/li&gt;
-  &lt;li&gt;An edge crossing the cut is called &lt;b&gt;light&lt;/b&gt; if it has the smallest weight of any edge crossing the cut. In this case, &lt;script type=&quot;math/tex&quot;&gt;\{e,d\}&lt;/script&gt; is a light edge.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Lemma: Let &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; be a set of edges and consider a cut that respects &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Suppose there is an MST containing &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\{u,v\}&lt;/script&gt; be a light edge. Then there is an MST containing &lt;script type=&quot;math/tex&quot;&gt;S \cup \{u,v\}&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;i&gt;Proof:&lt;/i&gt; Let &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; be a set of edges and and consider a cut that respects &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; be an MST containing &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\{u,v\}&lt;/script&gt; be a light edge. There are two cases. &lt;br /&gt;
-Case 1: &lt;script type=&quot;math/tex&quot;&gt;\{u,v\}&lt;/script&gt; is in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt;, then we’re done. &lt;br /&gt;
-Case 2: &lt;script type=&quot;math/tex&quot;&gt;\{u,v\}&lt;/script&gt; is not in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt;. By the definition of MST, adding &lt;script type=&quot;math/tex&quot;&gt;\{u,v\}&lt;/script&gt; will create a cycle in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt;. Since the sets resulting from the cut must be non-empty. This means that we must have an edge that crosses the cut in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt;. Let that edge be &lt;script type=&quot;math/tex&quot;&gt;\{x,y\}&lt;/script&gt;. Consider replacing &lt;script type=&quot;math/tex&quot;&gt;\{u,v\}&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;\{x,y\}&lt;/script&gt; to produce the new tree &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is still an MST since we deleted &lt;script type=&quot;math/tex&quot;&gt;\{x,y\}&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt; has also a cost of at most the cost of &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; since {u,v} is a light edge. Therefore, &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt; is an MST which includes both &lt;script type=&quot;math/tex&quot;&gt;\{u,v\}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; which is what we wanted to show. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Theorem: Kruskal will correctly find a minimum spanning tree&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;i&gt;Proof:&lt;/i&gt; &lt;br /&gt;
-&lt;b&gt;Inductive Hypothesis: &lt;/b&gt;After adding the &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;‘th edge, there exists an MST with the edges added so far.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Base Case: &lt;/b&gt; After adding the 0’th edge, there exists an MST with the edges added so far.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Inductive Step:&lt;/b&gt; Suppose the inductive hypothesis holds for &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; be the set containing the edges added so far and so there is an MST extending them by the inductive hypothesis. Kruskal adds the next edge that combines two trees &lt;script type=&quot;math/tex&quot;&gt;T_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;T_2&lt;/script&gt; Consider the cut &lt;script type=&quot;math/tex&quot;&gt;T_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;V-T_1&lt;/script&gt;. This cut respects &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. By the Lemma above, that edge is safe to add. Therefore, there is still an MST extending the new set of edges.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Conclusion:&lt;/b&gt; After adding the &lt;script type=&quot;math/tex&quot;&gt;n-1&lt;/script&gt;‘st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the &lt;script type=&quot;math/tex&quot;&gt;n-1&lt;/script&gt; edges we have is an MST.&lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Running Time:&lt;/b&gt; &lt;br /&gt;
-Assume we have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; edges. First of all, sorting the edges will take time &lt;script type=&quot;math/tex&quot;&gt;O(m\log(m)) = m\log(n^2) = O(m\log(n))&lt;/script&gt;. If radixSort can be utilized then we can do this step in time &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt;. 
-&lt;br /&gt;&lt;br /&gt;
-We then have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; calls to makeSet, &lt;script type=&quot;math/tex&quot;&gt;2m&lt;/script&gt; calls to find and &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; calls to union. These operations run in amortized time &lt;script type=&quot;math/tex&quot;&gt;O(\alpha(n))&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;\alpha(n)&lt;/script&gt; is the inverse Ackerman function and &lt;script type=&quot;math/tex&quot;&gt;\alpha(n) \leq 4&lt;/script&gt; provided that &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is smaller than the number of atoms in the universe.
-&lt;br /&gt;&lt;br /&gt;
-Therefore, the total time is just &lt;script type=&quot;math/tex&quot;&gt;O(m\log(n))&lt;/script&gt; which is similar to Prim if we use a Red Black Tree and closer to &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt; if we use radixSort.&lt;/p&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Detailed Implementation:&lt;/b&gt; &lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/kruskal&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html&lt;/p&gt;</content><author><name></name></author><summary type="html">b c d e f a 4 7 2 6 5 1 2 3 1 1 Introduction Let be undirected, weighted graph with vertices and edges. A minimum spanning tree is a tree that connects all the vertices in of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices.</summary></entry></feed>
+References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html&lt;/p&gt;</content><author><name></name></author><summary type="html">b c d e f a 4 7 2 6 5 1 2 3 1 1 References These are study notes from taking the awesome class CS161. http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a weighted graph with vertices and edges. Bellman-Ford’s algorithm finds the shortest paths from a source vertex to all other vertices in . Bellman-Ford is a dynamic programming algorithm. The idea is that we can find the shortest path from to using at most edges by using the shortest path from to using at most edges.</summary></entry></feed>

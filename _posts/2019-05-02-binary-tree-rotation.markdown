@@ -9,9 +9,8 @@ mathjax: true
 Rotating a tree is one of the fundamental operations that we perform on binary trees. It is used in balancing trees like Red-Black trees and AVL trees. Rotations maintain the binary search tree property. We have two kinds of rotation, a left rotation and a right rotation described below.
 <br>
 <br>
-
-<!------------------------------------------------------------------------------------>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>2 Left Rotation</b><br>
 Given a node $$x$$ in a binary search tree $$t$$ with a right child $$y$$. A left rotation makes $$y$$ the new root of the subtree and $$x$$ its left child. $$y$$'s left child $$b$$ will be $$x$$'s right child. $$a$$ and $$c$$ stay the same. The colored nodes are affected with the rotation, everything else stays the same.
@@ -55,11 +54,10 @@ Given a node $$x$$ in a binary search tree $$t$$ with a right child $$y$$. A lef
 	<polygon stroke="black" stroke-width="1" points="173.067,81.8 156.933,111.2"/>
 	<polygon fill="black" stroke-width="1" points="156.933,111.2 165.165,106.592 156.398,101.781"/>
 </svg>
-
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>3 Proof of Correctness</b><br>
 We want to prove the following:
@@ -68,11 +66,10 @@ We want to prove the following:
 
 <i>Proof:</i><br>
 Let $$T$$ be a binary search tree and let the right subtree above be in $$T$$. Let $$T'$$ be the tree resulted after $$T$$ has been left rotated at $$x$$. We want to prove $$T'$$ is a binary search tree. To do so, we need to prove that each node is maintaining the BST property. First, since $$y$$ is a right child of $$x$$ then we know that $$x.key \leq y.key$$. After the rotation is done, $$x$$ is a left child of $$y$$ maintaining the BST property. Similarly, in T, $$b$$ is a left child of $$y$$, so this means that $$b.key \leq y.key$$ and since the $$b$$ in the right subtree of $$x$$, we also know that $$b.key \geq x.key$$. After the rotation is done, we see that in $$T'$$, $$b$$ is a right child of $$x$$ maintaining the BST property since $$b.key \geq x.key$$ and $$b.key \leq y.key$$. Finally we see that $$a.key \leq x.key$$ and $$x.key \leq y.key$$ in $$T$$ and so so $$a$$ is still maintaining the BST property in $$T'$$. Similarly, $$c.key \geq y.key$$ and $$y.key \geq x.key$$ in $$T$$ and so $$c$$ is still maintaining the BST property in $$T'$$.
-
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>4 Left Rotation Implementation</b><br>
 {% highlight c++ %}
@@ -103,8 +100,9 @@ void left_rotate(Node *root, Node *x) {
 }
 {% endhighlight %}
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>5 Right Rotation</b><br>
 Similarly, a rotation rotation takes a node $$y$$ with its left child $$x$$ and rotate them so that $$x$$ is the parent of $$y$$ and $$y$$ is now a right child of $$x$$.
@@ -149,8 +147,9 @@ Similarly, a rotation rotation takes a node $$y$$ with its left child $$x$$ and 
 	<polygon fill="black" stroke-width="1" points="156.933,111.2 165.165,106.592 156.398,101.781"/>
 </svg>
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>6 Right Rotation Implementation</b><br>
 {% highlight c++ %}
@@ -182,23 +181,22 @@ void right_rotate(Node *root, Node *x) {
 {% endhighlight %}
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>7 Running Time:</b> 
 Since we're performing a constant number of link changes then the runtime is $$O(1)$$.
-
-<!------------------------------------------------------------------------------------>
+<br>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>8 Detailed Implementation:</b> 
 https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp
-
-
-
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>9 References:</b> 
 CLRS, 13.2 Rotations

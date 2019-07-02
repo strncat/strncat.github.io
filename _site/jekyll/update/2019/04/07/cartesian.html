@@ -122,7 +122,7 @@
 
 <p><br />
 <b>1 Definition</b><br />
-Given an array <script type="math/tex">A</script>, the Cartersian tree, <script type="math/tex">C(A)</script>, can defined as follows: <br /></p>
+Given an array <script type="math/tex">A</script>, the Cartersian tree, <script type="math/tex">C(A)</script>, is defined as follows: <br /></p>
 <ol>
   <li>If <script type="math/tex">A = \emptyset</script>, then <script type="math/tex">C(A) = \emptyset</script>, the empty tree. <br /></li>
   <li>If <script type="math/tex">A \neq \emptyset</script>, then let <script type="math/tex">min</script> be the minimum element in <script type="math/tex">A</script> and let <script type="math/tex">i</script> be the index of <script type="math/tex">min</script>. Fix the root of the Cartesian tree to be <script type="math/tex">min</script> and let <script type="math/tex">% <![CDATA[
@@ -205,14 +205,14 @@ Given the above array, we construct the following cartersian tree:</p>
 <p><br />
 <b>3 O(n) Algorithm </b>
 <br />
-The previous algorithm is not fast enough. Given an array <script type="math/tex">A</script> of length <script type="math/tex">n</script>. A key insight is that given the cartesian tree for <script type="math/tex">A[1...i]</script>, the cartesian tree for <script type="math/tex">A[1...i+1]</script> can be constructed by observing that the element <script type="math/tex">A[i+1]</script> must be right most node in right most path in the tree because we know that an inorder traversal of the tree must give back the original array <script type="math/tex">A</script>. Basically <script type="math/tex">A[i+1]</script> should be the last visited node in the in-order traversal of <script type="math/tex">A[1...i+1]</script>.
+The previous algorithm is not fast enough. Given an array <script type="math/tex">A</script> of length <script type="math/tex">n</script>. A key insight is that given the cartesian tree for <script type="math/tex">A[1...i]</script>, the cartesian tree for <script type="math/tex">A[1...i+1]</script> can be constructed by observing that the element <script type="math/tex">A[i+1]</script> must be right most node in the right most path in the tree because we know that an inorder traversal of the tree must give back the original array <script type="math/tex">A</script>. Basically <script type="math/tex">A[i+1]</script> should be the last visited node in the in-order traversal of <script type="math/tex">A[1...i+1]</script>.
 <br /><br />
 Therefore, maintain a stack of the right most path in the tree. While the stack is not empty, we repeatedly check if the top element is greater than our current element <script type="math/tex">A[i]</script>. If <script type="math/tex">A[i]</script> has a higher value, we stop. Now we do two things: <br />
 <br />
-(1) Let the top element in the stack is <script type="math/tex">t</script>. Since <script type="math/tex">% <![CDATA[
-t < A[i] %]]></script>, then it must be closer to the root to maintain the min-heap property and in an-order traversal, <script type="math/tex">A[i]</script> must come after <script type="math/tex">t</script>. Therefore, <script type="math/tex">A[i]</script> should be the right tree of <script type="math/tex">t</script>. 
+(1) Let the top element in the stack be <script type="math/tex">t</script>. Since <script type="math/tex">% <![CDATA[
+t < A[i] %]]></script>, then <script type="math/tex">t</script> must be closer to the root than <script type="math/tex">A[i]</script> to maintain the min-heap property. Also in an in-order traversal, <script type="math/tex">A[i]</script> must come after <script type="math/tex">t</script>. Therefore, <script type="math/tex">A[i]</script> should be the right tree of <script type="math/tex">t</script>.
 <br /><br />
-(2) Let the the last element popped be <script type="math/tex">q</script>. Since <script type="math/tex">q > A[i]</script>, then <script type="math/tex">q</script> must be lower than <script type="math/tex">A[i]</script> in the tree. It must also come before  <script type="math/tex">A[i]</script> in an in-order traversal and therefore, it should be the left tree of <script type="math/tex">A[i]</script>. 
+(2) Let the the last element popped be <script type="math/tex">q</script>. Since <script type="math/tex">q > A[i]</script>, then <script type="math/tex">q</script> must be lower than <script type="math/tex">A[i]</script> in the tree. It must also come before <script type="math/tex">A[i]</script> in an in-order traversal and therefore, it should be the left tree of <script type="math/tex">A[i]</script>.
 <br /><br />
 (3) The last thin</p>
 

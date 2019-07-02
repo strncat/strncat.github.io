@@ -5,15 +5,22 @@ date:   2019-04-01 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-
+<b>0 References</b><br>
+These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
 <b>1 Introduction</b><br>
 Let $$G=(V,E)$$ be a graph with $$V$$ vertices and $$E$$ edges. $$G$$ is strongly connected if for all $$u,v$$ in $$V$$:<br>
 (1) There is a path from $$u$$ to $$v$$.<br>
 (2) There is a path from $$v$$ to $$u$$.<br>
 We can decompose a graph into strongly connected components. To find these strongly connected components, we describe in this page Kosaraju's algorithm.
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>2 Algorithm</b><br>
 It is a magical algorithm!
@@ -24,8 +31,9 @@ It is a magical algorithm!
 - The SCCs are the different trees in the second DFS forest.
 {% endhighlight %}
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>3 Example</b><br>
 <svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -103,8 +111,9 @@ In the above graph, we run a first pass of DFS while keeping tracking of the fin
 </svg>
 Notice in the second DFS, we visit $$c$$ first and there are no nodes reachable from $$c$$, so $$c$$ is a strongly connected component. We next visit $$\{a,b,c\}$$ and that's our second strongly connected component. We finally visit $$\{d,e\}$$ and that's our third and final strongly connected component as expected.
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>4 Proof of Correctness</b><br>
 Why does this algorithm find the SCCs? To show how, we'll first prove two important lemmas that we'll use in proving that the algorithm is correct.
@@ -155,25 +164,19 @@ Therefore, we will only discover vertices in $$A$$ in the second DFS started fro
 
 <b>Conclusion:</b> The second (reversed) DFS forest contains all the SCCs as its trees. $$\blacksquare$$
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>5 Running Time:</b> 
 What are we doing in this algorithm algorithm? Two passes of DFS that we know run in $$O(n+m)$$. Therefore the running time is astonishingly $$O(n+m)$$. 
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>6 Detailed Implementation:</b> 
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/connected-components/strongly-connected-components-directed-kosaraju
-
-
-
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
-<br>
-References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html
-
 
 

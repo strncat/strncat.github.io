@@ -13,7 +13,7 @@ These are just my class notes from following http://web.stanford.edu/class/cs161
 <!------------------------------------------------------------------------------------>
 <br>
 <b>1 Introduction</b><br>
-The Knapsack problem is a classic dynamic programming problem. In this problem, we are given a knapsack of size $$W$$ for some integer $$W$$ and a list of items. Each item $$x_i$$ has an integer weight $$w_i$$ and an integer value, $$v_i$$. The goal is to maximum the value of the knapsack under the constraint $$W$$. There are many variations of the Knapsack problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack in the knapsack. So we either select an item $$x_i$$ or we don't. There is also the unbounded knaspack where you have multiple/unbounded copies of each item.
+The Knapsack problem is a classic dynamic programming problem. In this problem, we are given a knapsack of size $$W$$ for some integer $$W$$ and a list of items. Each item $$x_i$$ has an integer weight $$w_i$$ and an integer value, $$v_i$$. The goal is to maximize the value of the knapsack under the constraint $$W$$. There are many variations of the Knapsack problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack in the knapsack. So we either select an item $$x_i$$ or we don't. There is also the unbounded knaspack where you have multiple/unbounded copies of each item.
 <br>
 <br>
 <hr>
@@ -35,7 +35,7 @@ The first thought that comes to mind is to try a greedy approach. Perhaps there 
 <br>
 <b>2.2 Complete Search</b>
 <br>
-We can also try a complete search of every possible combinations of items. I'm not sure about thought process here but I was thinking the following should give us an upper bound. For each item $$x_i$$ with weight $$w_i$$ and value $$v_i$$, we insert $$\lceil W/x_i \rceil$$ copies of $$x_i$$ to a new list of items. If we original had $$n$$ items, we could potentially insert $$O(n^2)$$ items. Therefore, the running time will be $$O(2^{n^2})$$.
+We can also try a complete search of every possible combinations of items. I'm not sure about the thought process here but I was thinking the following should give us an upper bound. For each item $$x_i$$ with weight $$w_i$$ and value $$v_i$$, we insert $$\lceil W/x_i \rceil$$ copies of $$x_i$$ to a new list of items. If we original had $$n$$ items, we could potentially insert $$O(n^2)$$ items. Give this this list. For each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be $$O(2^{n^2})$$.
 <br>
 <br>
 <hr>
@@ -43,7 +43,7 @@ We can also try a complete search of every possible combinations of items. I'm n
 <br>
 <b>2.3 Dynamic Programming</b>
 <br>
-As we saw above, greedy doesn't work and complete or exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
+As we saw above, greedy doesn't work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
 <br>
 <br>
 Let $$K[x]$$ be the optimal value for capacity $$x$$. We will have the following recursive substructure:

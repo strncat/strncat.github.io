@@ -7,15 +7,15 @@
 <meta name="generator" content="Jekyll v3.7.4" />
 <meta property="og:title" content="Input Handling Examples" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="1 Unbounded Tests We have a bunch of tests but we don’t know the number of tests. This is an example: 5 E 0.01 *A ... 10 S 2.23 Q* A 9.76 CKM ..." />
-<meta property="og:description" content="1 Unbounded Tests We have a bunch of tests but we don’t know the number of tests. This is an example: 5 E 0.01 *A ... 10 S 2.23 Q* A 9.76 CKM ..." />
+<meta name="description" content="Introduction These are some samples for reading inputs while doing UVa problems. I find myself often looking at past solutions and wasting time finding the right template. This is a reference for myself to lookup what I want really fast. 0 Read a 2D grid with no spaces between cells (std::getline) Simple 2D grid, though we don’t know when the tests terminate. Also no space between cells 3 111 222 333 2 444 333 char m[MAX][MAX]; std::vector&lt;std::pair&lt;int,int&gt;&gt; start; bool read_input() { int n; scanf(&quot;%d\n&quot;, &amp;n); std::string line; for (int i = 0; i &lt; n; i++) { std::getline(std::cin, line); // a line here is 123 // no input, return false (we didn&#39;t read anything) if (line.size() == 0) { return false; } for (int j = 0; j &lt; n; j++) { m[i][j] = line[j]; if (m[i][j] == &#39;1&#39;) { // starting cells, can have multiple start.push_back({i,j}); } } } return true; } 1 Unbounded tests and variable length strings (use sstream) We have a bunch of tests but we don’t know the number of tests. This is an example: 5 E 0.01 *A ... 10 S 2.23 Q* A 9.76 CKM ..." />
+<meta property="og:description" content="Introduction These are some samples for reading inputs while doing UVa problems. I find myself often looking at past solutions and wasting time finding the right template. This is a reference for myself to lookup what I want really fast. 0 Read a 2D grid with no spaces between cells (std::getline) Simple 2D grid, though we don’t know when the tests terminate. Also no space between cells 3 111 222 333 2 444 333 char m[MAX][MAX]; std::vector&lt;std::pair&lt;int,int&gt;&gt; start; bool read_input() { int n; scanf(&quot;%d\n&quot;, &amp;n); std::string line; for (int i = 0; i &lt; n; i++) { std::getline(std::cin, line); // a line here is 123 // no input, return false (we didn&#39;t read anything) if (line.size() == 0) { return false; } for (int j = 0; j &lt; n; j++) { m[i][j] = line[j]; if (m[i][j] == &#39;1&#39;) { // starting cells, can have multiple start.push_back({i,j}); } } } return true; } 1 Unbounded tests and variable length strings (use sstream) We have a bunch of tests but we don’t know the number of tests. This is an example: 5 E 0.01 *A ... 10 S 2.23 Q* A 9.76 CKM ..." />
 <link rel="canonical" href="http://localhost:4000/jekyll/update/2019/06/18/input-handling.html" />
 <meta property="og:url" content="http://localhost:4000/jekyll/update/2019/06/18/input-handling.html" />
 <meta property="og:site_name" content="strncat’s notebook" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-06-18T12:01:36-07:00" />
 <script type="application/ld+json">
-{"description":"1 Unbounded Tests We have a bunch of tests but we don’t know the number of tests. This is an example: 5 E 0.01 *A ... 10 S 2.23 Q* A 9.76 CKM ...","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/06/18/input-handling.html","headline":"Input Handling Examples","dateModified":"2019-06-18T12:01:36-07:00","datePublished":"2019-06-18T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/06/18/input-handling.html"},"@context":"https://schema.org"}</script>
+{"description":"Introduction These are some samples for reading inputs while doing UVa problems. I find myself often looking at past solutions and wasting time finding the right template. This is a reference for myself to lookup what I want really fast. 0 Read a 2D grid with no spaces between cells (std::getline) Simple 2D grid, though we don’t know when the tests terminate. Also no space between cells 3 111 222 333 2 444 333 char m[MAX][MAX]; std::vector&lt;std::pair&lt;int,int&gt;&gt; start; bool read_input() { int n; scanf(&quot;%d\\n&quot;, &amp;n); std::string line; for (int i = 0; i &lt; n; i++) { std::getline(std::cin, line); // a line here is 123 // no input, return false (we didn&#39;t read anything) if (line.size() == 0) { return false; } for (int j = 0; j &lt; n; j++) { m[i][j] = line[j]; if (m[i][j] == &#39;1&#39;) { // starting cells, can have multiple start.push_back({i,j}); } } } return true; } 1 Unbounded tests and variable length strings (use sstream) We have a bunch of tests but we don’t know the number of tests. This is an example: 5 E 0.01 *A ... 10 S 2.23 Q* A 9.76 CKM ...","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/06/18/input-handling.html","headline":"Input Handling Examples","dateModified":"2019-06-18T12:01:36-07:00","datePublished":"2019-06-18T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/06/18/input-handling.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
@@ -68,7 +68,56 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>1 Unbounded Tests</b><br />
+    <p><br />
+<b>Introduction</b><br />
+These are some samples for reading inputs while doing UVa problems. I find myself often looking at past solutions and wasting time finding the right template. This is a reference for myself to lookup what I want really fast.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------->
+<p><br />
+<b>0 Read a 2D grid with no spaces between cells (std::getline)</b><br />
+Simple 2D grid, though we don’t know when the tests terminate. Also no space between cells<br /></p>
+<table>
+<td>
+3 <br />
+111 <br />
+222 <br />
+333 <br />
+2 <br />
+444 <br />
+333 <br />
+</td>
+</table>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">char</span> <span class="n">m</span><span class="p">[</span><span class="n">MAX</span><span class="p">][</span><span class="n">MAX</span><span class="p">];</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">start</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="nf">read_input</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span> <span class="c1">// a line here is 123</span>
+        <span class="c1">// no input, return false (we didn't read anything)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'1'</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// starting cells, can have multiple</span>
+                <span class="n">start</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------->
+<p><br />
+<b>1 Unbounded tests and variable length strings (use sstream)</b><br />
 We have a bunch of tests but we don’t know the number of tests. This is an example:<br /></p>
 <table>
 	<td>
@@ -84,7 +133,8 @@ A 9.76 CKM <br />
 
 <p>Each test case starts with the number of lines in the test case. Each line contains three values and so we use std::istringstream to extract the values. The following works although not pretty.</p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// for each test case, we read the number of lines in the test case</span>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include&lt;sstream&gt;
+</span><span class="c1">// for each test case, we read the number of lines in the test case</span>
 <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
 <span class="n">scanf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
 
@@ -102,12 +152,12 @@ A 9.76 CKM <br />
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
+<br /></p>
 <hr />
 
+<!------------------------------------------------------------------------->
 <p><br />
-<b>2 Reading 3D Grid Data</b><br />
+<b>2 Reading a 3D grid with no space between cells plus a terminating character (can use fgets)</b><br />
 This is from problem “532 - Dungeon Master”. Here we know when to terminate. We also know the number of rows, colums and the height (number of levels). There is also an extra new line between each board.</p>
 
 <table>
@@ -159,33 +209,33 @@ S@@<br />
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
+<br /></p>
 <hr />
 
+<!------------------------------------------------------------------------->
 <p><br />
 <b>3 Strings with variable number of ints</b><br />
 Consider a number of lines where each line consists of a variable number of ints. We can use std::istringstream and use a while loop to read as many ints as possible from that line. Code below shows this:</p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include&lt;sstream&gt;
+</span><span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
 <span class="n">scanf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
 
 <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
 <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
     <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">iss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">num</span>
-    <span class="nf">while</span> <span class="p">(</span><span class="n">iss</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">iss</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// do something with num</span>
     <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
 <br /></p>
-
-<!------------------------------------------------------------------------------------>
 <hr />
 
+<!------------------------------------------------------------------------->
 <p><br />
 <b>Other examples:</b> 
 https://github.com/strncat/competitive-programming</p>

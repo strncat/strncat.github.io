@@ -13,14 +13,14 @@ These are just my class notes from following http://web.stanford.edu/class/cs161
 <!------------------------------------------------------------------------------------>
 <br>
 <b>1 Introduction</b><br>
-Problems with greedy solutions might have the simplest solutions however they are really hard to reason about and therefore, greedy algorithms are generally taught toward the end of an algorithms class. One the of classic problems with greedy solutions is the activity selection problem. In this problem we are given a list of activities, each with a start time $$t_i$$ and a finish time $$f_i$$ and we would like to pick activities such that the total number of activities is maximized with the constraint that no two activities can overlap.
+Problems with greedy solutions might have really simple and straight forward solutions however they are really hard to reason about and therefore, greedy algorithms are generally taught toward the end of an algorithms class. One the of classic problems with greedy solutions is the activity selection problem. In this problem we are given a list of activities, each with a start time $$t_i$$ and a finish time $$f_i$$ and we would like to pick activities such that the total number of activities is maximized with the constraint that no two activities can overlap.
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
 <b>2 Greedy Solution</b><br>
-As we said earlier, typically greedy solutions are super straight forward and easy. For the activities selection problem, one approach that works is to simply select the activities with the earliest finish time.
+As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activiy with the earliest finish time at each step until we run out of activities.
 <br>
 <br>
 <hr>
@@ -56,7 +56,7 @@ std::vector<activity> select_maximum_activities(std::vector<activity> a) {
 <!------------------------------------------------------------------------------------>
 <br>
 <b>5 Proof of Correctness</b><br>
-This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So each decision we make, doesn't affect the our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
+This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So each decision we make doesn't affect the our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
 <br>
 
 Now, this should sound very familiar, we have a base case where we start with an empty set of activities and then we want to prove that each selection we make doesn't rule out an optimal solution. What proof method should we use? of course, Induction.

@@ -1,162 +1,219 @@
 ---
 layout: post
 title:  "Knapsack"
-date:   2019-07-01 07:01:36 -0700
+date:   2019-07-02 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
+<b>0 References</b><br>
+These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
 <b>1 Introduction</b><br>
-The Knapsack problem is a classic example of problems that have greedy solutions. Greedy solutions are hard because it is really hard to prove that they actually work. In Knapsack, we're given a knapsack of size $$W$$ and a list of items $$x_i$$ that each have a weight $$w_i$$ and a value $$v_i$$. There are many variations of the Knapsack Problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack. There is also the unbounded knaspack where you have multiple/unbounded copies of each item.
-<br>
-<br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<b>2 Example</b><br>
-Suppose we have an ubounded number of tacos, each of weight 3 and value 10. We also have burritos each of weight 6 and value 14. Suppose now that we have $$W=18$$. One simple greedy strategy is to pack as many items as possible of the best value/weight ratio. Based on this, we'll pick 3 burritos of value $$3*14=42$$. But this strategy doesn't work because if you instead pack 2 burritos and 2 tacos, you'll get the maximum value of $$2*14+2*10=48$$. 
+The Knapsack problem is a classic dynamic programming problem. In this problem, we are given a knapsack of size $$W$$ for some integer $$W$$ and a list of items. Each item $$x_i$$ has an integer weight $$w_i$$ and an integer value, $$v_i$$. The goal is to maximum the value of the knapsack under the constraint $$W$$. There are many variations of the Knapsack problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack in the knapsack. So we either select an item $$x_i$$ or we don't. There is also the unbounded knaspack where you have multiple/unbounded copies of each item.
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>2.1 Algorithm (slow naive version)</b>
+<b>2 Unbounded Knapsack</b><br>
+Let's focus now on the unbounded knapsack problem and let's start with an example. Suppose we have an unbounded number of tacos, each of weight 2 and value 4. We also have burritos each of weight 6 and value 17. Suppose now that we have a knapsack of size, $$W=14$$. The optimal solution is to pack 2 burritos and 1 taco which will give an optimal value of $$2*17+1*4=38$$. 
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>2.1 How to solve the Knapsack problem?</b><br>
+The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One might try a simple greedy algorithm of say always picking the item with the best value/weight ratio. In the example, we'll pick 2 burritos of value $$2*17=34$$ which is not an optimal value!
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>2.2 Complete Search</b>
+<br>
+We can also try a complete search of every possible combinations of items. I'm not sure about thought process here but I was thinking the following should give us an upper bound. For each item $$x_i$$ with weight $$w_i$$ and value $$v_i$$, we insert $$\lceil W/x_i \rceil$$ copies of $$x_i$$ to a new list of items. If we original had $$n$$ items, we could potentially insert $$O(n^2)$$ items. Therefore, the running time will be $$O(2^{n^2})$$.
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>2.3 Dynamic Programming</b>
+<br>
+As we saw above, greedy doesn't work and complete or exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
+<br>
+<br>
+Let $$K[x]$$ be the optimal value for capacity $$x$$. We will have the following recursive substructure:
+<div center>
+$$
+\begin{align*}
+K[x] = \max_i\{K[x - w_i] + v_i\}
+\end{align*}
+$$
+</div>
+In other words, suppose we have unlimited copies of the following $$n$$ items, $$\{\{w_0,v_0\},\{w_1,v_0\},...,\{w_n,v_n\}\}$$. Assume now that the optimal solution contains some item $$x_i$$. Then we will see that $$K[x-w_i] = k[x] - v_i$$, meaning that the optimal solution for $$K[x]$$ contains within it optimal solutions to smaller subproblems.
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>2.4 Implementation</b>
 <br>
 {% highlight c++ %}
-E = Sort the edges by non-decreasing weight.
-MST = {}
-for e in sorted E {
-	if we can add e to MST without creating a cycle {
-		add e to MST
-	}
+typedef struct item {
+    int w;
+    int v;
+    item(int weight, int value) {
+        w = weight;
+        v = value;
+    }
+} item;
+int unbounded_knapsack(std::vector<item> &bag, int W) {
+    std::vector<std::vector<int>> items;
+    std::vector<int> K;
+    for (int i = 0; i <= W; i++) {
+        K.push_back(0);
+        items.push_back(std::vector<int>());
+    }
+    // base case, k[0] = 0
+    for (int w = 1; w <= W; w++) { // for each weight w
+        for (int i = 0; i < bag.size(); i++) { // for each item i
+            if (bag[i].w <= w && bag[i].v + K[w - bag[i].w] > K[w]) {
+                // maybe there is a more effient way?
+                items[w].clear();
+                items[w].push_back(i);
+                items[w].insert(items[w].end(), items[w-bag[i].w].begin(), items[w-bag[i].w].end());
+                K[w] = bag[i].v + K[w - bag[i].w];
+            }
+        }
+    }
+    // print items
+    for (int i = 0; i < items[W].size(); i++) {
+        printf("(%d %d) ", bag[items[W][i]].w, bag[items[W][i]].v);
+    }
+    printf("\n");
+    printf("Optimal value = %d\n", K[W]);
+    return K[W];
 }
-return MST
 {% endhighlight %}
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
-<br>
-<b>2.2 Algorithm (fast, used for the remaining of these notes)</b>
-<br>
-The reason why this implementation is the standard kruskal implemenation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations
-- makeSet(u): creates a set $$\{u\}$$
-- find(u): returns the set that $$u$$ is in.
-- union(u,v): merge the set that $$u$$ is in with the set that $$v$$ is in.
-
-{% highlight c++ %}
-E = Sort the edges by non-decreasing weight.
-MST = {}
-for v in V {
-	makeSet(v)
-}
-for (u,v) in E {
-	if find(u) != find(v) {
-		add {u,v} to MST
-		union(u,v)
-	}
-}
-return MST
-{% endhighlight %}
-<br>
 <!------------------------------------------------------------------------------------>
-<hr>
 <br>
-<b>3 Example</b><br>
-
-We initialize the following forests $$\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}$$. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: $$\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}$$
-<br><br>
-<i>Iteration 0</i><br>
-The first edge to consider is either $$\{a,b\}$$. Since $$a$$ and $$b$$ are not in the same set, we add the edge to the MST and combine both $$a$$ and $$b$$.
-
-<i>Iteration 1</i><br>
-We next consider  $$\{b,f\}$$. Since $$b$$ and $$f$$ are not in the same set, we add the edge to the MST and combine both $$b$$ and $$f$$. So now we have the following forests: $$\{a, b, f\}, \{c\}, \{d\}, \{e\}$$
-
-<i>Iteration 2</i><br>
-We next consider  $$\{a,f\}$$. Since $$a$$ and $$f$$ are in the same set, we don't combine the nodes and don't add the edge to the MST.
-
-
-At the end of the algorithm, the minimum spanning tree is the following tree:
-<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="68.5" rx="30" ry="30"/>
-	<text x="289.5" y="74.5" font-family="Times New Roman" font-size="20">b</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="68.5" rx="30" ry="30"/>
-	<text x="494.5" y="74.5" font-family="Times New Roman" font-size="20">c</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="664.5" cy="147.5" rx="30" ry="30"/>
-	<text x="659.5" y="153.5" font-family="Times New Roman" font-size="20">d</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="218.5" rx="30" ry="30"/>
-	<text x="494.5" y="224.5" font-family="Times New Roman" font-size="20">e</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="218.5" rx="30" ry="30"/>
-	<text x="291.5" y="224.5" font-family="Times New Roman" font-size="20">f</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="137.5" cy="159.5" rx="30" ry="30"/>
-	<text x="133.5" y="165.5" font-family="Times New Roman" font-size="20">a</text>
-	<polygon stroke="black" stroke-width="1" points="324.5,68.5 468.5,68.5"/>
-	<text x="391.5" y="89.5" font-family="Times New Roman" font-size="20">4</text>
-	<polygon stroke="black" stroke-width="1" points="636.917,159.298 526.083,206.702"/>
-	<text x="566.5" y="173.5" font-family="Times New Roman" font-size="20">2</text>
-	<polygon stroke="black" stroke-width="1" points="163.455,144.456 268.545,83.544"/>
-	<text x="220.5" y="135.5" font-family="Times New Roman" font-size="20">1</text>
-	<polygon stroke="black" stroke-width="1" points="498.5,188.5 498.5,98.5"/>
-	<text x="503.5" y="149.5" font-family="Times New Roman" font-size="20">3</text>
-	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5"/>
-	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
-</svg>
-
+<b>2.5 Proof of Correctness</b><br>
+We claim that our recursive substructure we've shown earlier is optimal. 
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
-<br>
-<b>4 Proof of Correctness</b><br>
-This first section is exaclty copied from Prim's so I should probably just link it, instead of copy/pasting. agh
-<br><br>
-Why does this algorithm find a minimum spanning tree? Before we can answer that, let's define some terms and prove some lemma that will be useful in the main proof. Let $$G=(V,E)$$ be the graph below and let $$S$$ be the set of yellow edges in $$G$$.  
-
-![my photo]({{ site.url }}/assets/cut.png)
-
-- A <b>cut</b> is a partition of the vertices into two non-empty parts. the red line (cut) partitions $$G$$ into $$\{a,b,f,e\}$$ and $$\{c,d\}$$.
-- A cut <b>respects</b> $$S$$ if no edges in $$S$$ cross the cut. None of the yellow edges cross the red cut.
-- An edge crossing the cut is called <b>light</b> if it has the smallest weight of any edge crossing the cut. In this case, $$\{e,d\}$$ is a light edge.
-
-| Lemma: Let $$S$$ be a set of edges and consider a cut that respects $$S$$. Suppose there is an MST containing $$S$$. Let $$\{u,v\}$$ be a light edge. Then there is an MST containing $$S \cup \{u,v\}$$ |
-
-<i>Proof:</i> Let $$S$$ be a set of edges and and consider a cut that respects $$S$$. Let $$T$$ be an MST containing $$S$$. Let $$\{u,v\}$$ be a light edge. There are two cases. <br>
-Case 1: $$\{u,v\}$$ is in $$T$$, then we're done. <br>
-Case 2: $$\{u,v\}$$ is not in $$T$$. By the definition of MST, adding $$\{u,v\}$$ will create a cycle in $$T$$. Since the sets resulting from the cut must be non-empty. This means that we must have an edge that crosses the cut in $$T$$. Let that edge be $$\{x,y\}$$. Consider replacing $$\{u,v\}$$ with $$\{x,y\}$$ to produce the new tree $$T'$$. $$T$$ is still an MST since we deleted $$\{x,y\}$$. $$T'$$ has also a cost of at most the cost of $$T$$ since \{u,v\} is a light edge. Therefore, $$T'$$ is an MST which includes both $$\{u,v\}$$ and $$S$$ which is what we wanted to show. $$\blacksquare$$
-<br>
-
-| Theorem: Kruskal will correctly find a minimum spanning tree |
-
 <i>Proof:</i> <br>
-<b>Inductive Hypothesis: </b>After adding the $$t$$'th edge, there exists an MST with the edges added so far.
-<br>
-
-<b>Base Case: </b> After adding the 0'th edge, there exists an MST with the edges added so far.
-<br>
-<br>
-<b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$t$$. Let $$S$$ be the set containing the edges added so far and so there is an MST extending them by the inductive hypothesis. Kruskal adds the next edge that combines some trees $$T_1$$ and $$T_2$$ from $$S$$. Consider the cut $$T_1$$ and $$V-T_1$$. This cut respects $$S$$. By the Lemma above, that edge is safe to add. Therefore, there is still an MST extending the new set of edges.
-<br>
-<br>
-<b>Conclusion:</b> After adding the $$n-1$$'st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the $$n-1$$ edges we have is an MST.$$\blacksquare$$
-<br>
-<!------------------------------------------------------------------------------------>
-<hr>
-<br>
-<b>5 Running Time:</b> <br>
-Assume we have $$n$$ vertices and $$m$$ edges. First of all, sorting the edges will take time $$O(m\log(m)) = m\log(n^2) = O(m\log(n))$$. If radixSort can be utilized then we can do this step in time $$O(m)$$. 
+Suppose that we have a knapsack of size $$W$$ and suppose that we have unbounded copies of $$n$$ items available to us. Now suppose that we know the optimal value to the knapsack is $$K[W]$$ and that the optimal solution contains one copy of item $$x_k$$ for some natural number $$k$$. We claim that $$K[W] - v_k$$ is an optimal value for a knapsack of size $$W - x_k$$. That is, $$K[W - x_k] = K[W] - v_k$$.
 <br><br>
-We then have $$n$$ calls to makeSet, $$2m$$ calls to find and $$n$$ calls to union. These operations run in amortized time $$O(\alpha(n))$$ where $$\alpha(n)$$ is the inverse Ackerman function and $$\alpha(n) \leq 4$$ provided that $$n$$ is smaller than the number of atoms in the universe.
-<br><br>
-Therefore, the total time is just $$O(m\log(n))$$ which is similar to Prim if we use a Red Black Tree and closer to $$O(m)$$ if we use radixSort.
-
-<!------------------------------------------------------------------------------------>
+We will prove our claim by contradiction. Suppose that $$K[W] - v_k$$ is not an optimal value and that the optimal value is $$T^{\prime}$$. Since we know that the optimal solution to the knapsack of size $$W$$ contains a copy of item $$x_k$$, we can therefore add $$x_k$$ to $$K[W - x_k]$$ to obtain an optimal value $$T^{\prime} + v_k$$. But $$T^{\prime} + v_k >  K[W] - v_k + v_k = K[W]$$. This is a contradiction since we assumed that $$K[W]$$ is an optimal value. Therefore, $$K[W] - v_k$$ must be an optimal value for a knapsack of size $$W - x_k$$. $$\blacksquare$$
+<br>
+<br>
 <hr>
-<br>
-<b>6 Detailed Implementation:</b> <br>
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/kruskal
-
-
-<br>
 <!------------------------------------------------------------------------------------>
-<hr>
 <br>
-References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html
-
-
+<b>2.6 Running Time:</b> <br>
+Assume we have $$n$$ items and the knapsack is of size $$W$$. The runtime is $$O(nW)$$.
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>3 0/1 Knapsack</b><br>
+Let's focus now on the 0/1 knapsack problem and let's start with an example. Suppose we have a taco of weight 3 and value 10. We also a burrito of weight 6 and value 14 and a enchilada of weight 5 and value 11. Suppose now that we have a knapsack of size, $$W=9$$. The optimal solution is to pack a taco and an enchilada for a total value of 27.
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>3.1 Solutions? Complete Search</b><br>
+A greedy approach won't work similar to the unbounded knapsack. We can instead do an exhaustive search. We can check every possible combination of the items we have. We will have 2 choices for each item. We either select the item or we don't. Therefore, we have $$2^n$$ possible subsets to check and the running time is $$O(2^n)$$. 
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>3.2 Dynamic Programming</b>
+<br>
+Unfortunately we can't use the same recursive substructure in the unbounded knapsack above. In this problem, we need to also keep track of which items are available at each step since some might have been taken. So if the smaller subproblem is using an item $$x$$, the larger problem must know not to re-take it which is a violation to the constraint of having one copy only per item.
+<br>
+<br>
+Therefore, our subproblems must track both the size of the knapsack and the items allowed so far and therefore, we need a two dimensional table! we'll let $$x$$ to indicate the knapsack size and $$y$$ to indicate that we're using the first $$y$$ items.
+<br>
+<br>
+Suppose we know the optimal solution to $$K[x,y]$$ for a knapsack of size $$x$$ using items $$0,..y$$.
+<br>
+There are two cases:
+<br>
+Case 1: $$K[x,y]$$ does not use item $$y$$. In this case, $$K[x,y] = K[x,y-1]$$.
+<br>
+Case 2: We do use item $$y$$. In this case, we claim that $$K[x,y] = K[x-w_y,y-1] + y_k$$.
+<br>
+We can therefore, summarize it in:
+<div center>
+$$
+\begin{align*}
+K[x,y] = \max\{K[x, y-1], K[x - w_y, y-1] + v_y\}
+\end{align*}
+$$
+</div>
+With the base case of $$K[x,0]=0$$ and $$K[0,y]=0$$.
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>3.3 Proof of Correctness</b><br>
+The proof is very similar to the structure of our earlier proof to the unbounded knapsack problem. If we can have a better solution to the subproblem then we can have even a better solution to the optimal solution to the larger problem which is a contradiction. I might write it later?.
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>3.3 Implementation</b>
+<br>
+{% highlight c++ %}
+int knapsack_01(std::vector<item> &bag, int W) {
+    int K[100][100] = {0};
+    // base case k[0][j] = 0, K[i][0] = 0
+    for (int w = 1; w <= W; w++) { // for each weight w
+        for (int i = 1; i <= bag.size(); i++) { // for each item i:
+            // case 1: item i is not in the optimal solution
+            K[w][i] = K[w][i-1];
+            // case 2: item i is in the optimal solution
+            if (bag[i-1].w <= w && bag[i-1].v + K[w - bag[i-1].w][i-1] > K[w][i]) {
+                K[w][i] = bag[i-1].v + K[w - bag[i-1].w][i-1];
+            }
+        }
+    }
+    // print items
+    int res = K[W][bag.size()];
+    printf("%d\n", res);
+    int cur_w = W;
+    int cur_v = K[W][bag.size()];
+    for (int i = (int)bag.size(); i > 0 && res > 0; i--) {
+        if (cur_v != K[cur_w][i-1]) {
+            printf("%d %d\n", bag[i-1].w, bag[i-1].v);
+            cur_v -= bag[i-1].v;
+            cur_w -= bag[i-1].w;
+        }
+    }
+    printf("\n");
+    printf("Optimal value = %d\n", K[W][bag.size()]);
+    return K[W][bag.size()];
+}
+{% endhighlight %}
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>6 Full Implementation:</b> <br>
+https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp
+<br>
+<br>
 

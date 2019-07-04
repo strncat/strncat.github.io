@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Kosaraju's SCC Algorithm"
+title:  "Kosaraju's Strongly Connected Components Algorithm"
 date:   2019-04-01 12:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -13,10 +13,13 @@ These are just my class notes from following http://web.stanford.edu/class/cs161
 <!------------------------------------------------------------------------------------>
 <br>
 <b>1 Introduction</b><br>
-Let $$G=(V,E)$$ be a graph with $$V$$ vertices and $$E$$ edges. $$G$$ is strongly connected if for all $$u,v$$ in $$V$$:<br>
+Let $$G=(V,E)$$ be a graph with $$V$$ vertices and $$E$$ edges. 
+
+$$G$$ is strongly connected if for all $$u,v$$ in $$V$$:<br>
 (1) There is a path from $$u$$ to $$v$$.<br>
 (2) There is a path from $$v$$ to $$u$$.<br>
-We can decompose a graph into strongly connected components. To find these strongly connected components, we describe in this page Kosaraju's algorithm.
+
+Based on this definition, we can decompose a graph into strongly connected components. To find these strongly connected components, we describe Kosaraju's amazing algorithm.
 <br>
 <br>
 <hr>
@@ -25,7 +28,7 @@ We can decompose a graph into strongly connected components. To find these stron
 <b>2 Algorithm</b><br>
 It is a magical algorithm!
 {% highlight c++ %}
-- Run DFS to create a DFS forest and keep tracking of finishing times.
+- Run DFS to create a DFS forest and keep track of finishing times.
 - Reverse all the edges in G.
 - Run DFS again in the reverse graph from the node with the largest finishing time.
 - The SCCs are the different trees in the second DFS forest.

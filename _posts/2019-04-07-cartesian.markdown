@@ -5,7 +5,7 @@ date:   2019-04-07 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-
+<!--
 <svg width="800" height="360" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="1" fill="none" cx="368.5" cy="39.5" rx="30" ry="30"/>
 	<text x="363.5" y="45.5" font-family="Times New Roman" font-size="20">7</text>
@@ -42,9 +42,10 @@ mathjax: true
 	<polygon stroke="black" stroke-width="1" points="486.255,273.077 509.745,299.923"/>
 	<polygon fill="black" stroke-width="1" points="509.745,299.923 508.24,290.61 500.714,297.195"/>
 </svg>
+-->
+![my photo]({{ site.url }}/assets/cartesian/1.png)
 
-
-![my photo]({{ site.url }}/assets/cartesian.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian.png)
 
 <b>0 References</b><br>
 1. Jean Vuillemin. 1980. A unifying look at data structures. Commun. ACM 23, 4 (April 1980), 229-239. DOI=http://dx.doi.org.stanford.idm.oclc.org/10.1145/358841.358852
@@ -87,6 +88,11 @@ cartesian_tree(A) {
 Given the above array, we construct the following cartersian tree:
 1. 7 is the minimum element and so everything before 7 is the left child of 7 and everything after 7 is the right child of 7.
 2. Next, we recursively create the left and right cartersian trees. We pick 13 as the minimum on the left subarray [13, 23, 19]. and we pick 11 as the minimum in the right subarray [29, 11, 31, 37, 17]. We repeat the process until we run out of elements.
+
+![my photo]({{ site.url }}/assets/cartesian/2.png)
+
+
+<!--
 <svg width="800" height="360" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="1" fill="none" cx="368.5" cy="39.5" rx="30" ry="30"/>
 	<text x="363.5" y="45.5" font-family="Times New Roman" font-size="20">7</text>
@@ -123,7 +129,7 @@ Given the above array, we construct the following cartersian tree:
 	<polygon stroke="black" stroke-width="1" points="486.255,273.077 509.745,299.923"/>
 	<polygon fill="black" stroke-width="1" points="509.745,299.923 508.24,290.61 500.714,297.195"/>
 </svg>
-
+-->
 
 <br>
 <!------------------------------------------------------------------------------------>
@@ -173,75 +179,75 @@ Assume that we are creating a cartesian tree for the array above.
 <br>
 (1) We first look at $$A[0]=13$$.
 <br>
-![my photo]({{ site.url }}/assets/cartesian-0.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-0.png)
 
 Since the stack is empty and last_popped is also null, then all we do is create a node for $$13$$ and push it on the stack.
 <br>
-![my photo]({{ site.url }}/assets/cartesian-0t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-0t.png)
 <br>
 (2) Next we insert $$A[1]=23$$. Here, we don't pop anything form the stack. we assign the node $$A[i]$$ to be the right tree of the top element in the stack. 
 <br>
-![my photo]({{ site.url }}/assets/cartesian-01.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-01.png)
 <br>
 This results in the following tree
 <br>
-![my photo]({{ site.url }}/assets/cartesian-01t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-01t.png)
 <br>
 (3) Next we insert $$A[1]=19$$. Here, we pop 23. 19's left tree is 23. We also assign 19 to be the right tree of the top element in the stack, 13. We then push 19 on the stack
 <br>
-![my photo]({{ site.url }}/assets/cartesian-02.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-02.png)
 <br>
 This results in the following tree
 <br>
-![my photo]({{ site.url }}/assets/cartesian-02t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-02t.png)
 <br>
 (4) Next we insert $$A[1]=7$$. We pop 19 and then 13. The last popped node is 13. 7's left tree is 13. The stack is empty so we do nothing else and push 7 on the stack. 
 <br>
-![my photo]({{ site.url }}/assets/cartesian-03.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-03.png)
 <br>
 This results in the following tree
 <br>
-![my photo]({{ site.url }}/assets/cartesian-03t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-03t.png)
 <br>
 (4) Next we insert $$A[1]=29$$. We don't pop anything. 29 will be the right tree of 7 and we push 29 on the stack. 
 <br>
-![my photo]({{ site.url }}/assets/cartesian-04.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-04.png)
 <br>
 This results in the following tree
 <br>
-![my photo]({{ site.url }}/assets/cartesian-04t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-04t.png)
 <br>
 (5) Next we insert $$A[1]=11$$. We pop 29. 11's left tree will be 29. 11 will be the right tree of 7 and we push 11 on the stack. 
 <br>
-![my photo]({{ site.url }}/assets/cartesian-05.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-05.png)
 <br>
 This results in the following tree
 <br>
-![my photo]({{ site.url }}/assets/cartesian-05t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-05t.png)
 <br>
 (6) Next we insert $$A[1]=31$$. We don't pop anything. 31 will be the right tree of 11 and we push 31 on the stack. 
 <br>
-![my photo]({{ site.url }}/assets/cartesian-06.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-06.png)
 <br>
 This results in the following tree
 <br>
-![my photo]({{ site.url }}/assets/cartesian-06t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-06t.png)
 <br>
 (7) Next we insert $$A[1]=37$$. We don't pop anything. 37 will be the right tree of 31 and we push 37 on the stack. 
 <br>
-![my photo]({{ site.url }}/assets/cartesian-07.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-07.png)
 <br>
 This results in the following tree
 <br>
-![my photo]({{ site.url }}/assets/cartesian-07t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-07t.png)
 <br>
 (8) Next we insert $$A[1]=17$$. We pop 37 and 31. 31 will be the right tree of 17. 11's left tree will be 17. We push 17 on the stack. 
 <br>
-![my photo]({{ site.url }}/assets/cartesian-08.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-08.png)
 <br>
 This results in the following tree
 <br>
-![my photo]({{ site.url }}/assets/cartesian-08t.png)
+![my photo]({{ site.url }}/assets/cartesian/cartesian-08t.png)
 <!------------------------------------------------------------------------------------>
 <hr>
 <br>

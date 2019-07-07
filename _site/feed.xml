@@ -1,4 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-05T11:44:13-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello.</subtitle><entry><title type="html">Permuations and Combinations Code Examples</title><link href="http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations.html" rel="alternate" type="text/html" title="Permuations and Combinations Code Examples" /><published>2019-07-03T07:01:36-07:00</published><updated>2019-07-03T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations.html">&lt;p&gt;&lt;b&gt;0 Permutations&lt;/b&gt;&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-06T19:59:36-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello.</subtitle><entry><title type="html">Depth First Search</title><link href="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" rel="alternate" type="text/html" title="Depth First Search" /><published>2019-07-05T12:01:36-07:00</published><updated>2019-07-05T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/05/dfs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/05/dfs.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/dfs/0.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Depth first search like breadth first search, is an algorithm used to explore a graph. Let &lt;script type=&quot;math/tex&quot;&gt;G = (V, E)&lt;/script&gt; be a graph consisting of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges and let &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then we resume the search again from a different branch.
+&lt;br /&gt;&lt;br /&gt;
+It is very useful in depth first search to keep track of the time we first discover the vertex and also to keep track of the time we finished we are processing a vertex (after we look at all its neighbors). This information will help later in topologically sort a graph!
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 Data Structures&lt;/b&gt;
+&lt;br /&gt;
+To perform a depth first search, we will maintain the following data structures:
+&lt;br /&gt;
+(2) A set or an array that keeps track of the visited nodes. Remember that &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; might contain cycles and so we want to make sure that we explore each node once
+&lt;br /&gt;&lt;br /&gt;
+(1) A stack. We want to explore the nodes closest to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; first. Since we’re insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack and can instead use recursion (implicit stack) as we’ll doing in the implementation below.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 Example&lt;/b&gt;
+&lt;br /&gt;
+Let’s explore the graph above. We will start from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and add as soon as we see &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; we’ll recursively call &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; again. The start time for &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is 0 and the start time for &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next we will recursively visit &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt;. They will have start times 2, 3 and 4 respectively.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/2.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point, there will be no more vertices to traverse and so node 
+&lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; is now finished with time 5, followed by &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/3.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, we will traverse node &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; with start time 9 and finish time 10. Node &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; will now be done with finish time &lt;script type=&quot;math/tex&quot;&gt;11&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/4.png&quot; alt=&quot;my photo&quot; /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 Implementation&lt;/b&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// seeing v for the first time&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// v is done bye forever&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 Running Time&lt;/b&gt;
+&lt;br /&gt;
+Similar to the analysis of breadth first search. We visit each vertex once only. That’s &lt;script type=&quot;math/tex&quot;&gt;O(V)&lt;/script&gt; time. Therefore, we also visit the adjacency list of each vertex at most once and that’s &lt;script type=&quot;math/tex&quot;&gt;O(E)&lt;/script&gt;. Therefore, the total time is &lt;script type=&quot;math/tex&quot;&gt;O(V+E)&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
+https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/depth-first-search
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction</summary></entry><entry><title type="html">Permuations and Combinations Code Examples</title><link href="http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations.html" rel="alternate" type="text/html" title="Permuations and Combinations Code Examples" /><published>2019-07-03T07:01:36-07:00</published><updated>2019-07-03T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations.html">&lt;p&gt;&lt;b&gt;0 Permutations&lt;/b&gt;&lt;br /&gt;
 Say we have an array = [1,2,3] and we would like to permute its elements to generate all possible permutations. In this case we want to print [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1].
 &lt;br /&gt;&lt;br /&gt;
 The first thing we want to do is select a single number from the three numbers available to us. We can model this with an index that we pass to the permutation function indicating which position we’re working on. In a for loop, we now loop over the numbers/selections/choices available to us (In this case, all three) and place each number in that specific cell. This is what it is going to look like:&lt;/p&gt;
@@ -751,7 +848,7 @@ For all vertices &lt;script type=&quot;math/tex&quot;&gt;w \in V&lt;/script&gt;,
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;6 Running Time&lt;/b&gt;
 &lt;br /&gt;
-We enqueue each vertex once only. That’s &lt;script type=&quot;math/tex&quot;&gt;O(V)&lt;/script&gt; time. We also visit each vertex at most once only because of the visited array we’re maintaining. Therefore, we also visit the adjacency list of each vertex at most once and that’s &lt;script type=&quot;math/tex&quot;&gt;O(E)&lt;/script&gt;. Therefore, the total time is &lt;script type=&quot;math/tex&quot;&gt;O(V+E)&lt;/script&gt;.
+We visit each vertex at most once only because of the visited array we’re maintaining. That’s &lt;script type=&quot;math/tex&quot;&gt;O(V)&lt;/script&gt; time. As a result, we also visit the adjacency list of each vertex at most once and that’s &lt;script type=&quot;math/tex&quot;&gt;O(E)&lt;/script&gt;. Therefore, the total time is &lt;script type=&quot;math/tex&quot;&gt;O(V+E)&lt;/script&gt;.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -1261,216 +1358,4 @@ https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;9 References:&lt;/b&gt; 
-CLRS, 13.2 Rotations&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction Rotating a tree is one of the fundamental operations that we perform on binary trees. It is used in balancing trees like Red-Black trees and AVL trees. Rotations maintain the binary search tree property. We have two kinds of rotation, a left rotation and a right rotation described below. 2 Left Rotation Given a node in a binary search tree with a right child . A left rotation makes the new root of the subtree and its left child. ’s left child will be ’s right child. and stay the same. The colored nodes are affected with the rotation, everything else stays the same.</summary></entry><entry><title type="html">AVL Trees</title><link href="http://localhost:4000/jekyll/update/2019/05/01/avl-trees.html" rel="alternate" type="text/html" title="AVL Trees" /><published>2019-05-01T12:01:36-07:00</published><updated>2019-05-01T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/05/01/avl-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/05/01/avl-trees.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
-Let’s define some important terms:
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;i&gt;Height of a node&lt;/i&gt;: &lt;br /&gt;
-longest path from the node to a leaf. To compute the height, we simply take the maximum height of the left and right children and add 1.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;i&gt;Height of a binary search tree&lt;/i&gt;: &lt;br /&gt;
-is the length of the longest path from the root to a leaf.
-&lt;br /&gt;
-&lt;br /&gt;
-A tree is &lt;i&gt;balanced&lt;/i&gt; if if its height is &lt;script type=&quot;math/tex&quot;&gt;\theta(\log(n))&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 AVL Trees&lt;/b&gt;&lt;br /&gt;
-AVL trees are binary trees and where the heights of left and right children of every node differ by at most +/-1. Based on this, we claim that&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;AVL trees are blanaced.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;i&gt;Proof:&lt;/i&gt;&lt;br /&gt;
-We should consider all possible trees. In the best case all nodes have the difference in height between the left and right children is 0. In this case the height of the tree is &lt;script type=&quot;math/tex&quot;&gt;\theta(\log(n))&lt;/script&gt;
-&lt;br /&gt;&lt;br /&gt;
-In the worst case, every node’s children heights differ by exactly 1. Without the loss of generality assume that the right sub-tree has height 1 more than the left subtree for every node.
-&lt;br /&gt;&lt;br /&gt;
-Define &lt;script type=&quot;math/tex&quot;&gt;N_h&lt;/script&gt; to be the mininum number of nodes in an AVL tree of height &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt;. Since we know that the height of the left subtree and the right differ by 1, then we can define &lt;script type=&quot;math/tex&quot;&gt;N_h&lt;/script&gt; recursively as follows:
-&lt;br /&gt;&lt;/p&gt;
-&lt;center&gt;
-$$N_h = 1 + N_{h-1} + N_{h-2}$$ 
-&lt;/center&gt;
-&lt;p&gt;This is very similar to Fibonacci, in fact:&lt;/p&gt;
-&lt;center&gt;
-$$
-  \begin{align*}
-  	N_h &amp;amp;= 1 + N_{h-1} + N_{h-2} \\
-  	&amp;amp;&amp;gt; N_{h-1} + N_{h-2} \\
-	&amp;amp;&amp;gt; F_h \\
-	&amp;amp;= \frac{\phi^h}{\sqrt{5}} 
-  \end{align*}
-$$
-&lt;/center&gt;
-&lt;p&gt;Solving for &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; which is what we want to bound:&lt;/p&gt;
-&lt;center&gt;
-$$
-  \begin{align*}
-  	\log_{\phi}(N_h) &amp;amp;&amp;gt; \log_{\phi}(\frac{\phi^h}{\sqrt{5}}) \\
-	h &amp;amp;&amp;lt; 1.440\log(N_h)
-  \end{align*}
-$$
-&lt;/center&gt;
-&lt;p&gt;Therefore, AVL trees are balanced as we wanted to show.
-&lt;br /&gt;
-Note: There is also another way to solve the recurrence besides using Fibonacci. Note that:&lt;/p&gt;
-&lt;center&gt;
-$$
-  \begin{align*}
-  $N_h &amp;amp;= 1 + N_{h-1} + N_{h-2} \\
-  	&amp;amp;&amp;gt; 1 + 2N_{h-2} \\
-  	&amp;amp;&amp;gt; 2N_{h-2} \\
-	&amp;amp;= \theta(2^{h/2}) \\
-	h &amp;amp;&amp;lt; 2\log(N_h)
-  \end{align*}
-$$
-&lt;/center&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Mainting the AVL tree property&lt;/b&gt;&lt;br /&gt;
-To insert in an AVL tree, we just insert like we do in a binary search tree. After that we need to fix up the tree to maintain its AVL property. To do so, we use &lt;a href=&quot;https://strncat.github.io/jekyll/update/2019/05/02/binary-tree-rotation.html&quot;&gt;rotations&lt;/a&gt; but there are multiple cases to handle.
-&lt;br /&gt;
-&lt;br /&gt;
-Assume we have the following tree on the left. We define the height of a nil node to be -1. We want to insert the node 13. We insert the way we do in a binary search tree to get the tree on the right:&lt;/p&gt;
-
-&lt;svg width=&quot;800&quot; height=&quot;450&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;621.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;597.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;11 (3)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;553.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;534.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;5 (1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;red&quot; fill-opacity=&quot;0.25&quot; cx=&quot;688.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;664.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;23 (2)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;613.5&quot; cy=&quot;316.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;589.5&quot; y=&quot;322.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;13 (0)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;658.5&quot; cy=&quot;228.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;634.5&quot; y=&quot;234.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;17 (1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;173.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;149.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;11 (2)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;100.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;81.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;5 (1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;237.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;213.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;23 (1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;64.5&quot; cy=&quot;228.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;45.5&quot; y=&quot;234.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;3 (0)&lt;/text&gt;
-	&lt;text x=&quot;349.5&quot; y=&quot;132.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;---(13)---&amp;gt;&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;213.5&quot; cy=&quot;228.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;189.5&quot; y=&quot;234.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;17 (0)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;506.5&quot; cy=&quot;228.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;487.5&quot; y=&quot;234.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;3 (0)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;582.5&quot; cy=&quot;228.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;554.5&quot; y=&quot;234.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;34.5&quot; cy=&quot;316.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;6.5&quot; y=&quot;322.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;100.5&quot; cy=&quot;316.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;72.5&quot; y=&quot;322.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;141.5&quot; cy=&quot;228.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;113.5&quot; y=&quot;234.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;680.5&quot; cy=&quot;316.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;652.5&quot; y=&quot;322.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;727.5&quot; cy=&quot;228.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;699.5&quot; y=&quot;234.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;543.5&quot; cy=&quot;316.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;515.5&quot; y=&quot;322.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;471.5&quot; cy=&quot;316.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;443.5&quot; y=&quot;322.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;284.5&quot; cy=&quot;228.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;256.5&quot; y=&quot;234.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;173.5&quot; cy=&quot;316.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;145.5&quot; y=&quot;322.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;247.5&quot; cy=&quot;316.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;219.5&quot; y=&quot;322.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;582.5&quot; cy=&quot;401.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;554.5&quot; y=&quot;407.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;648.5&quot; cy=&quot;403.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;620.5&quot; y=&quot;409.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;Nil(-1)&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;640.482,78.731 669.518,114.269&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;669.518,114.269 668.328,104.91 660.585,111.237&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;602.35,78.593 572.65,114.407&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;572.65,114.407 581.606,111.441 573.908,105.058&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;679.107,165.992 667.893,200.008&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;667.893,200.008 675.146,193.976 665.649,190.845&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;191.958,79.149 219.042,113.851&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;219.042,113.851 218.061,104.468 210.178,110.62&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;89.464,165.396 75.536,200.604&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;75.536,200.604 83.128,195.004 73.829,191.325&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;153.552,77.907 120.448,115.093&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;120.448,115.093 129.502,112.442 122.033,105.793&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;229.85,166.508 221.15,199.492&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;221.15,199.492 228.025,193.031 218.356,190.481&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;562.609,166.084 573.391,199.916&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;573.391,199.916 575.726,190.776 566.198,193.812&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;644.841,255.21 627.159,289.79&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;627.159,289.79 635.253,284.943 626.349,280.39&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;539.733,164.155 520.267,201.845&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;520.267,201.845 528.38,197.032 519.495,192.443&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;54.82,256.895 44.18,288.105&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;44.18,288.105 51.494,282.146 42.029,278.919&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;54.82,256.895 44.18,288.105&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;44.18,288.105 51.494,282.146 42.029,278.919&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;75.859,256.266 89.141,288.734&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;89.141,288.734 90.74,279.436 81.484,283.222&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;112.823,164.852 129.177,201.148&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;129.177,201.148 130.449,191.8 121.332,195.908&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;700.318,165.074 715.682,200.926&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;715.682,200.926 717.127,191.603 707.935,195.542&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;665.776,257.604 673.224,287.396&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;673.224,287.396 676.134,278.422 666.433,280.847&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;495.413,256.376 482.587,288.624&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;482.587,288.624 490.19,283.038 480.898,279.342&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;518.128,256.155 531.872,288.845&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;531.872,288.845 533.381,279.532 524.162,283.408&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;251.267,164.155 270.733,201.845&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;270.733,201.845 271.505,192.443 262.62,197.032&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;224.312,256.484 236.688,288.516&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;236.688,288.516 238.469,279.252 229.141,282.856&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;201.086,255.811 185.914,289.189&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;185.914,289.189 193.776,283.975 184.673,279.837&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;624.697,344.332 637.303,375.668&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;637.303,375.668 638.956,366.38 629.679,370.112&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;603.221,344.684 592.779,373.316&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;592.779,373.316 600.217,367.513 590.823,364.087&quot; /&gt;
-&lt;/svg&gt;
-
-&lt;p&gt;We go up the tree to find the first node where it violates the AVL property meanning that the height of the left and right children differ by more than 1. The first node is 23.&lt;/p&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Running Time:&lt;/b&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fix_up&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// assume the current node inserted was x&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// the idea is to go up the tree, searching for the first violating node&lt;/span&gt;
-    
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Detailed Implementation:&lt;/b&gt; 
--&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 References:&lt;/b&gt; 
-https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/lecture-6-avl-trees-avl-sort/&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction Let’s define some important terms: Height of a node: longest path from the node to a leaf. To compute the height, we simply take the maximum height of the left and right children and add 1. Height of a binary search tree: is the length of the longest path from the root to a leaf. A tree is balanced if if its height is .</summary></entry></feed>
+CLRS, 13.2 Rotations&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction Rotating a tree is one of the fundamental operations that we perform on binary trees. It is used in balancing trees like Red-Black trees and AVL trees. Rotations maintain the binary search tree property. We have two kinds of rotation, a left rotation and a right rotation described below. 2 Left Rotation Given a node in a binary search tree with a right child . A left rotation makes the new root of the subtree and its left child. ’s left child will be ’s right child. and stay the same. The colored nodes are affected with the rotation, everything else stays the same.</summary></entry></feed>

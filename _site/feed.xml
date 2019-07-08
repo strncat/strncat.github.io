@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-06T20:03:14-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello.</subtitle><entry><title type="html">Depth First Search</title><link href="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" rel="alternate" type="text/html" title="Depth First Search" /><published>2019-07-05T12:01:36-07:00</published><updated>2019-07-05T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/05/dfs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/05/dfs.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-07T21:41:07-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello.</subtitle><entry><title type="html">Tries</title><link href="http://localhost:4000/jekyll/update/2019/07/06/tries.html" rel="alternate" type="text/html" title="Tries" /><published>2019-07-06T12:01:36-07:00</published><updated>2019-07-06T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/06/tries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/06/tries.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Algorithms by Robert Sedgwick and Kevin Wayne
+&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;http://web.stanford.edu/class/cs166/
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+Given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; strings of total length &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and a string pattern &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We want to find all the strings that start with &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take &lt;script type=&quot;math/tex&quot;&gt;O(nm)&lt;/script&gt;. However, suppose that we now we have many more patterns, then this approach this will be really slow. So how can we make it faster?
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 The Tries Data Structure&lt;/b&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/trie/1.png&quot; width=&quot;80%&quot; /&gt;
+&lt;br /&gt;
+The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes.
+&lt;br /&gt;&lt;br /&gt;
+Each node in a trie represents one character. Each node also has only one parent. However it has &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; pointers or children where &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; is the alphabet size. So for the example above each node (circle) has 26 pointers even though many of these pointers might be just null pointers. For example the &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; node has 26 pointers of which only 2 are used to point at letters &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;.
+&lt;br /&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 Example&lt;/b&gt;
+&lt;br /&gt;
+Let’s explore the graph above. We will start from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and add as soon as we see &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; we’ll recursively call &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; again. The start time for &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is 0 and the start time for &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next we will recursively visit &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt;. They will have start times 2, 3 and 4 respectively.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/2.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point, there will be no more vertices to traverse and so node 
+&lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; is now finished with time 5, followed by &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/3.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, we will traverse node &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; with start time 9 and finish time 10. Node &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; will now be done with finish time &lt;script type=&quot;math/tex&quot;&gt;11&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/4.png&quot; alt=&quot;my photo&quot; /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 Implementation&lt;/b&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// seeing v for the first time&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// v is done bye forever&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 Running Time&lt;/b&gt;
+&lt;br /&gt;
+Similar to the analysis of breadth first search. We visit each vertex once only. That’s &lt;script type=&quot;math/tex&quot;&gt;O(V)&lt;/script&gt; time. Therefore, we also visit the adjacency list of each vertex at most once and that’s &lt;script type=&quot;math/tex&quot;&gt;O(E)&lt;/script&gt;. Therefore, the total time is &lt;script type=&quot;math/tex&quot;&gt;O(V+E)&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
+https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/depth-first-search
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Given strings of total length and a string pattern of length . We want to find all the strings that start with . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take . However, suppose that we now we have many more patterns, then this approach this will be really slow. So how can we make it faster? 2 The Tries Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes. Each node in a trie represents one character. Each node also has only one parent. However it has pointers or children where is the alphabet size. So for the example above each node (circle) has 26 pointers even though many of these pointers might be just null pointers. For example the node has 26 pointers of which only 2 are used to point at letters and . 3 Example Let’s explore the graph above. We will start from and add as soon as we see we’ll recursively call again. The start time for is 0 and the start time for is 1.</summary></entry><entry><title type="html">Depth First Search</title><link href="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" rel="alternate" type="text/html" title="Depth First Search" /><published>2019-07-05T12:01:36-07:00</published><updated>2019-07-05T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/05/dfs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/05/dfs.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -10,9 +108,9 @@ These are just my class notes from following http://web.stanford.edu/class/cs161
 &lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/assets/dfs/0.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Depth first search like breadth first search, is an algorithm used to explore a graph. Let &lt;script type=&quot;math/tex&quot;&gt;G = (V, E)&lt;/script&gt; be a graph consisting of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges and let &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then we resume the search again from a different branch.
+&lt;p&gt;Depth first search like breadth first search is an algorithm used to explore a graph. Let &lt;script type=&quot;math/tex&quot;&gt;G = (V, E)&lt;/script&gt; be a graph consisting of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges and let &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then resumes the search again from a different branch.
 &lt;br /&gt;&lt;br /&gt;
-It is very useful in depth first search to keep track of the time we first discover the vertex and also to keep track of the time we finished we are processing a vertex (after we look at all its neighbors). This information will help later in topologically sort a graph!
+In a depth first search, we typically keep track of the time we first discovered a vertex and also the time we finished processing a vertex (after we look at all its neighbors). This information will help later in topologically sorting a graph. 
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -23,9 +121,9 @@ It is very useful in depth first search to keep track of the time we first disco
 &lt;br /&gt;
 To perform a depth first search, we will maintain the following data structures:
 &lt;br /&gt;
-(2) A set or an array that keeps track of the visited nodes. Remember that &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; might contain cycles and so we want to make sure that we explore each node once
+(2) A set or an array that keeps track of the visited nodes. Remember that &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; might contain cycles and so we want to make sure that we explore each node once.
 &lt;br /&gt;&lt;br /&gt;
-(1) A stack. We want to explore the nodes closest to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; first. Since we’re insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack and can instead use recursion (implicit stack) as we’ll doing in the implementation below.
+(1) A stack. We want to explore the nodes closest to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; first. Since we’re insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we’ll be doing in the implementation below.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -34,7 +132,7 @@ To perform a depth first search, we will maintain the following data structures:
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;3 Example&lt;/b&gt;
 &lt;br /&gt;
-Let’s explore the graph above. We will start from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and add as soon as we see &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; we’ll recursively call &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; again. The start time for &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is 0 and the start time for &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is 1.&lt;/p&gt;
+Let’s explore the graph above. We will start from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and add as soon as we see &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; we’ll recursively call dfs again. The start time for &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is 0 and the start time for &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is 1.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dfs/1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
 
@@ -1150,212 +1248,4 @@ Below is a binary search tree. Every node in the tree maintains the binary searc
 
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;9 References:&lt;/b&gt; 
-CLRS, 13.0&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following: Let be a node in the tree. Let be a node. If was in the left subtree then we must have . Similarly, if is a node in the right subtree then . 2 Example Below is a binary search tree. Every node in the tree maintains the binary search tree property.</summary></entry><entry><title type="html">Binary Tree Rotations</title><link href="http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation.html" rel="alternate" type="text/html" title="Binary Tree Rotations" /><published>2019-05-02T12:01:36-07:00</published><updated>2019-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/05/02/binary-tree-rotation.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
-Rotating a tree is one of the fundamental operations that we perform on binary trees. It is used in balancing trees like Red-Black trees and AVL trees. Rotations maintain the binary search tree property. We have two kinds of rotation, a left rotation and a right rotation described below.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Left Rotation&lt;/b&gt;&lt;br /&gt;
-Given a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in a binary search tree &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; with a right child &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt;. A left rotation makes &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; the new root of the subtree and &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; its left child. &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt;’s left child &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; will be &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;’s right child. &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; stay the same. The colored nodes are affected with the rotation, everything else stays the same.&lt;/p&gt;
-
-&lt;svg width=&quot;800&quot; height=&quot;260&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;571.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;566.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;x&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;524.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;520.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;yellow&quot; fill-opacity=&quot;0.25&quot; cx=&quot;627.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;622.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;y&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;681.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;677.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;blue&quot; fill-opacity=&quot;0.25&quot; cx=&quot;588.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;583.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;yellow&quot; fill-opacity=&quot;0.25&quot; cx=&quot;187.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;182.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;y&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;142.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;137.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;x&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;230.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;226.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;94.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;90.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;blue&quot; fill-opacity=&quot;0.25&quot; cx=&quot;181.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;176.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;text x=&quot;317.5&quot; y=&quot;132.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;&amp;lt;&amp;lt; left rotation&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;588.419,80.274 610.581,112.726&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;610.581,112.726 610.198,103.3 601.94,108.939&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;556.582,81.528 539.418,111.472&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;539.418,111.472 547.735,107.018 539.059,102.045&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;643.587,162.822 665.413,197.178&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;665.413,197.178 665.344,187.744 656.903,193.106&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;614.989,164.767 601.011,195.233&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;601.011,195.233 608.891,190.047 599.802,185.877&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;201.432,82.069 216.568,110.931&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;216.568,110.931 217.281,101.524 208.424,106.168&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;155.011,164.767 168.989,195.233&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;168.989,195.233 170.198,185.877 161.109,190.047&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;127.748,163.623 109.252,196.377&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;109.252,196.377 117.539,191.87 108.832,186.953&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;173.067,81.8 156.933,111.2&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;156.933,111.2 165.165,106.592 156.398,101.781&quot; /&gt;
-&lt;/svg&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Proof of Correctness&lt;/b&gt;&lt;br /&gt;
-We want to prove the following:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;a left rotation maintains the binary search property&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;i&gt;Proof:&lt;/i&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; be a binary search tree and let the right subtree above be in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt; be the tree resulted after &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; has been left rotated at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. We want to prove &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt; is a binary search tree. To do so, we need to prove that each node is maintaining the BST property. First, since &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; is a right child of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; then we know that &lt;script type=&quot;math/tex&quot;&gt;x.key \leq y.key&lt;/script&gt;. After the rotation is done, &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is a left child of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; maintaining the BST property. Similarly, in T, &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is a left child of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt;, so this means that &lt;script type=&quot;math/tex&quot;&gt;b.key \leq y.key&lt;/script&gt; and since the &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in the right subtree of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, we also know that &lt;script type=&quot;math/tex&quot;&gt;b.key \geq x.key&lt;/script&gt;. After the rotation is done, we see that in &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is a right child of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; maintaining the BST property since &lt;script type=&quot;math/tex&quot;&gt;b.key \geq x.key&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b.key \leq y.key&lt;/script&gt;. Finally we see that &lt;script type=&quot;math/tex&quot;&gt;a.key \leq x.key&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x.key \leq y.key&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; and so so &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is still maintaining the BST property in &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt;. Similarly, &lt;script type=&quot;math/tex&quot;&gt;c.key \geq y.key&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y.key \geq x.key&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; is still maintaining the BST property in &lt;script type=&quot;math/tex&quot;&gt;T'&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Left Rotation Implementation&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;left_rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// we are assuming x has a right child&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// as in the example above, y's left child b becomes x's new right child&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// if there is a left child, fix up the parent pointer&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// b's parent is x now&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// since y is the new root then we fix up y's parent pointer&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	
-	&lt;span class=&quot;c1&quot;&gt;// we should now fix the parent link to point to y unless x was the root itself, then y is the new root&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this means x is the root (no parent pointer)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// x is a left child, make y the left child of x's parent&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// x is a right child, make y the right child of x's parent&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// finally, x is now the left child of y and y is its parent&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Right Rotation&lt;/b&gt;&lt;br /&gt;
-Similarly, a rotation rotation takes a node &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; with its left child &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and rotate them so that &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is the parent of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; is now a right child of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;.&lt;/p&gt;
-
-&lt;svg width=&quot;800&quot; height=&quot;260&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;571.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;566.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;x&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;524.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;520.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;yellow&quot; fill-opacity=&quot;0.25&quot; cx=&quot;627.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;622.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;y&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;681.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;677.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;blue&quot; fill-opacity=&quot;0.25&quot; cx=&quot;588.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;583.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;yellow&quot; fill-opacity=&quot;0.25&quot; cx=&quot;187.5&quot; cy=&quot;55.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;182.5&quot; y=&quot;61.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;y&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;gray&quot; fill-opacity=&quot;0.25&quot; cx=&quot;142.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;137.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;x&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;230.5&quot; cy=&quot;137.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;226.5&quot; y=&quot;143.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;c&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; cx=&quot;94.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;90.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;a&lt;/text&gt;
-	&lt;ellipse stroke=&quot;black&quot; stroke-width=&quot;1&quot; fill=&quot;blue&quot; fill-opacity=&quot;0.25&quot; cx=&quot;181.5&quot; cy=&quot;222.5&quot; rx=&quot;30&quot; ry=&quot;30&quot; /&gt;
-	&lt;text x=&quot;176.5&quot; y=&quot;228.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;b&lt;/text&gt;
-	&lt;text x=&quot;317.5&quot; y=&quot;132.5&quot; font-family=&quot;Times New Roman&quot; font-size=&quot;20&quot;&gt;right rotation &amp;gt;&amp;gt;&lt;/text&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;588.419,80.274 610.581,112.726&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;610.581,112.726 610.198,103.3 601.94,108.939&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;556.582,81.528 539.418,111.472&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;539.418,111.472 547.735,107.018 539.059,102.045&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;643.587,162.822 665.413,197.178&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;665.413,197.178 665.344,187.744 656.903,193.106&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;614.989,164.767 601.011,195.233&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;601.011,195.233 608.891,190.047 599.802,185.877&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;201.432,82.069 216.568,110.931&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;216.568,110.931 217.281,101.524 208.424,106.168&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;155.011,164.767 168.989,195.233&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;168.989,195.233 170.198,185.877 161.109,190.047&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;127.748,163.623 109.252,196.377&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;109.252,196.377 117.539,191.87 108.832,186.953&quot; /&gt;
-	&lt;polygon stroke=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;173.067,81.8 156.933,111.2&quot; /&gt;
-	&lt;polygon fill=&quot;black&quot; stroke-width=&quot;1&quot; points=&quot;156.933,111.2 165.165,106.592 156.398,101.781&quot; /&gt;
-&lt;/svg&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Right Rotation Implementation&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;right_rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// we are assuming y has a left child x&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// as in the example above,x's right child becomes y's left child&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// fix up the parent pointer&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// since x is the new root then we fix up x's parent pointer&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	
-	&lt;span class=&quot;c1&quot;&gt;// we should now fix the parent link to point to x unless y was the root itself, then y is the new root&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this means y is the root (no parent pointer)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// y is a left child, make x the left child of y's parent&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// y is a right child, make x the right child of y's parent&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// finally, y is now the right child of x and x is its parent&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Running Time:&lt;/b&gt; 
-Since we’re performing a constant number of link changes then the runtime is &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;8 Detailed Implementation:&lt;/b&gt; 
-https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;9 References:&lt;/b&gt; 
-CLRS, 13.2 Rotations&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction Rotating a tree is one of the fundamental operations that we perform on binary trees. It is used in balancing trees like Red-Black trees and AVL trees. Rotations maintain the binary search tree property. We have two kinds of rotation, a left rotation and a right rotation described below. 2 Left Rotation Given a node in a binary search tree with a right child . A left rotation makes the new root of the subtree and its left child. ’s left child will be ’s right child. and stay the same. The colored nodes are affected with the rotation, everything else stays the same.</summary></entry></feed>
+CLRS, 13.0&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property is the following: Let be a node in the tree. Let be a node. If was in the left subtree then we must have . Similarly, if is a node in the right subtree then . 2 Example Below is a binary search tree. Every node in the tree maintains the binary search tree property.</summary></entry></feed>

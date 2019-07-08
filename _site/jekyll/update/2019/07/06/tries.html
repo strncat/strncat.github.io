@@ -3,19 +3,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
-<title>Depth First Search | strncat’s notebook</title>
+<title>Tries | strncat’s notebook</title>
 <meta name="generator" content="Jekyll v3.7.4" />
-<meta property="og:title" content="Depth First Search" />
+<meta property="og:title" content="Tries" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction" />
-<meta property="og:description" content="0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction" />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" />
+<meta name="description" content="0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Given strings of total length and a string pattern of length . We want to find all the strings that start with . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take . However, suppose that we now we have many more patterns, then this approach this will be really slow. So how can we make it faster? 2 The Tries Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes. Each node in a trie represents one character. Each node also has only one parent. However it has pointers or children where is the alphabet size. So for the example above each node (circle) has 26 pointers even though many of these pointers might be just null pointers. For example the node has 26 pointers of which only 2 are used to point at letters and . 3 Example Let’s explore the graph above. We will start from and add as soon as we see we’ll recursively call again. The start time for is 0 and the start time for is 1." />
+<meta property="og:description" content="0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Given strings of total length and a string pattern of length . We want to find all the strings that start with . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take . However, suppose that we now we have many more patterns, then this approach this will be really slow. So how can we make it faster? 2 The Tries Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes. Each node in a trie represents one character. Each node also has only one parent. However it has pointers or children where is the alphabet size. So for the example above each node (circle) has 26 pointers even though many of these pointers might be just null pointers. For example the node has 26 pointers of which only 2 are used to point at letters and . 3 Example Let’s explore the graph above. We will start from and add as soon as we see we’ll recursively call again. The start time for is 0 and the start time for is 1." />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/06/tries.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/06/tries.html" />
 <meta property="og:site_name" content="strncat’s notebook" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-07-05T12:01:36-07:00" />
+<meta property="article:published_time" content="2019-07-06T12:01:36-07:00" />
 <script type="application/ld+json">
-{"description":"0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/07/05/dfs.html","headline":"Depth First Search","dateModified":"2019-07-05T12:01:36-07:00","datePublished":"2019-07-05T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/05/dfs.html"},"@context":"https://schema.org"}</script>
+{"description":"0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Given strings of total length and a string pattern of length . We want to find all the strings that start with . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take . However, suppose that we now we have many more patterns, then this approach this will be really slow. So how can we make it faster? 2 The Tries Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes. Each node in a trie represents one character. Each node also has only one parent. However it has pointers or children where is the alphabet size. So for the example above each node (circle) has 26 pointers even though many of these pointers might be just null pointers. For example the node has 26 pointers of which only 2 are used to point at letters and . 3 Example Let’s explore the graph above. We will start from and add as soon as we see we’ll recursively call again. The start time for is 0 and the start time for is 1.","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/07/06/tries.html","headline":"Tries","dateModified":"2019-07-06T12:01:36-07:00","datePublished":"2019-07-06T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/06/tries.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
@@ -61,41 +61,42 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Depth First Search</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Tries</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2019-07-05T12:01:36-07:00" itemprop="datePublished">Jul 5, 2019
+      <time class="dt-published" datetime="2019-07-06T12:01:36-07:00" itemprop="datePublished">Jul 6, 2019
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>0 References</b><br />
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+    <p><b>0 References</b><br /></p>
+<ul>
+  <li>Algorithms by Robert Sedgwick and Kevin Wayne
+<br /></li>
+  <li>http://web.stanford.edu/class/cs166/
 <br />
-<br /></p>
+<br /></li>
+</ul>
 <hr />
 
 <!------------------------------------------------------------------------------------>
 <p><br />
 <b>1 Introduction</b>
 <br />
-<img src="http://localhost:4000/assets/dfs/0.png" alt="my photo" /></p>
-
-<p>Depth first search like breadth first search is an algorithm used to explore a graph. Let <script type="math/tex">G = (V, E)</script> be a graph consisting of <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges and let <script type="math/tex">s</script> be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then resumes the search again from a different branch.
-<br /><br />
-In a depth first search, we typically keep track of the time we first discovered a vertex and also the time we finished processing a vertex (after we look at all its neighbors). This information will help later in topologically sorting a graph. 
+Given <script type="math/tex">k</script> strings of total length <script type="math/tex">m</script> and a string pattern <script type="math/tex">p</script> of length <script type="math/tex">n</script>. We want to find all the strings that start with <script type="math/tex">p</script>. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take <script type="math/tex">O(nm)</script>. However, suppose that we now we have many more patterns, then this approach this will be really slow. So how can we make it faster?
 <br />
 <br /></p>
 <hr />
 
 <!------------------------------------------------------------------------------------>
 <p><br />
-<b>2 Data Structures</b>
+<b>2 The Tries Data Structure</b>
 <br />
-To perform a depth first search, we will maintain the following data structures:
+<img src="http://localhost:4000/assets/trie/1.png" width="80%" />
 <br />
-(2) A set or an array that keeps track of the visited nodes. Remember that <script type="math/tex">G</script> might contain cycles and so we want to make sure that we explore each node once.
+The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes.
 <br /><br />
-(1) A stack. We want to explore the nodes closest to <script type="math/tex">s</script> first. Since we’re insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we’ll be doing in the implementation below.
+Each node in a trie represents one character. Each node also has only one parent. However it has <script type="math/tex">R</script> pointers or children where <script type="math/tex">R</script> is the alphabet size. So for the example above each node (circle) has 26 pointers even though many of these pointers might be just null pointers. For example the <script type="math/tex">a</script> node has 26 pointers of which only 2 are used to point at letters <script type="math/tex">k</script> and <script type="math/tex">t</script>.
+<br /><br />
 <br />
 <br /></p>
 <hr />
@@ -104,7 +105,7 @@ To perform a depth first search, we will maintain the following data structures:
 <p><br />
 <b>3 Example</b>
 <br />
-Let’s explore the graph above. We will start from <script type="math/tex">s</script> and add as soon as we see <script type="math/tex">a</script> we’ll recursively call dfs again. The start time for <script type="math/tex">s</script> is 0 and the start time for <script type="math/tex">a</script> is 1.</p>
+Let’s explore the graph above. We will start from <script type="math/tex">s</script> and add as soon as we see <script type="math/tex">a</script> we’ll recursively call <script type="math/tex">a</script> again. The start time for <script type="math/tex">s</script> is 0 and the start time for <script type="math/tex">a</script> is 1.</p>
 
 <p><img src="http://localhost:4000/assets/dfs/1.png" alt="my photo" /></p>
 
@@ -168,7 +169,7 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/dep
 <br /></p>
 
 
-  </div><a class="u-url" href="/jekyll/update/2019/07/05/dfs.html" hidden></a>
+  </div><a class="u-url" href="/jekyll/update/2019/07/06/tries.html" hidden></a>
 </article>
 
       </div>

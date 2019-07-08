@@ -1,12 +1,14 @@
 ---
 layout: post
-title:  "Depth First Search"
-date:   2019-07-05 12:01:36 -0700
+title:  "Tries"
+date:   2019-07-06 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <b>0 References</b><br>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+- Algorithms by Robert Sedgwick and Kevin Wayne
+<br>
+- http://web.stanford.edu/class/cs166/
 <br>
 <br>
 <hr>
@@ -14,23 +16,20 @@ These are just my class notes from following http://web.stanford.edu/class/cs161
 <br>
 <b>1 Introduction</b>
 <br>
-![my photo]({{ site.url }}/assets/dfs/0.png)
-
-Depth first search like breadth first search is an algorithm used to explore a graph. Let $$G = (V, E)$$ be a graph consisting of $$V$$ vertices and $$E$$ edges and let $$s$$ be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then resumes the search again from a different branch.
-<br><br>
-In a depth first search, we typically keep track of the time we first discovered a vertex and also the time we finished processing a vertex (after we look at all its neighbors). This information will help later in topologically sorting a graph. 
+Given $$k$$ strings of total length $$m$$ and a string pattern $$p$$ of length $$n$$. We want to find all the strings that start with $$p$$. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take $$O(nm)$$. However, suppose that we now we have many more patterns, then this approach this will be really slow. So how can we make it faster?
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>2 Data Structures</b>
+<b>2 The Tries Data Structure</b>
 <br>
-To perform a depth first search, we will maintain the following data structures:
+<img src="{{ site.url }}/assets/trie/1.png" width="80%">
 <br>
-(2) A set or an array that keeps track of the visited nodes. Remember that $$G$$ might contain cycles and so we want to make sure that we explore each node once.
+The trie (pronounced "try") data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes.
 <br><br>
-(1) A stack. We want to explore the nodes closest to $$s$$ first. Since we're insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we'll be doing in the implementation below.
+Each node in a trie represents one character. Each node also has only one parent. However it has $$R$$ pointers or children where $$R$$ is the alphabet size. So for the example above each node (circle) has 26 pointers even though many of these pointers might be just null pointers. For example the $$a$$ node has 26 pointers of which only 2 are used to point at letters $$k$$ and $$t$$.
+<br><br>
 <br>
 <br>
 <hr>
@@ -38,7 +37,7 @@ To perform a depth first search, we will maintain the following data structures:
 <br>
 <b>3 Example</b>
 <br>
-Let's explore the graph above. We will start from $$s$$ and add as soon as we see $$a$$ we'll recursively call dfs again. The start time for $$s$$ is 0 and the start time for $$a$$ is 1.
+Let's explore the graph above. We will start from $$s$$ and add as soon as we see $$a$$ we'll recursively call $$a$$ again. The start time for $$s$$ is 0 and the start time for $$a$$ is 1.
 
 ![my photo]({{ site.url }}/assets/dfs/1.png)
 

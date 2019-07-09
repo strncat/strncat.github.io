@@ -26,11 +26,11 @@ Looks awesome right? This trie is called a Patricia trie! we basically merge int
 <br>
 <b>2 Properties of Patricia Tries</b>
 <br>
-How many nodes do we have to patricia tries? Can we bound the number of nodes?
+Can we upper bound the number of nodes in a Patricia trie? Yes!
 
-| Claim: the number of nodes in a patricia trie with $$k$$ words is $$O(k)$$ nodes |
+| Claim: the number of nodes in a Patricia trie with $$k$$ words is $$O(k)$$ nodes |
 
-Proof:<br><br>
+Proof:<br>
 We know that we have at most $$k$$ nodes that mark the end of a valid word in a patricia trie. Let's remove all internal nodes so now we have $$k$$ clusters and let's add the internal nodes one at a time. Each internal node added will combine two clusters together. This will mean there are $$O(k)$$ internal nodes total. (If not then an internal node will end up having only one child which is a contradiction). Therefore, the total number of nodes is $$O(k)$$.
 <br>
 <br>

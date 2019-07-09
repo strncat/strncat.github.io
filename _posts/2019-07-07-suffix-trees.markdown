@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Tries"
-date:   2019-07-06 12:01:36 -0700
+title:  "Suffix Trees"
+date:   2019-07-08 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
@@ -16,7 +16,7 @@ mathjax: true
 <br>
 <b>1 Introduction</b>
 <br>
-Consider the following problem: Given $$k$$ strings of total length $$m$$ and a string pattern $$p$$ of length $$n$$. We want to find all the strings that match  $$p$$. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take $$O(m)$$ time. However, suppose that we now we have $$r$$ patterns, then this approach will take $$O(mr)$$ time which is really slow. In the RMQ notation $$<$$preprocessing time,  query_time$$>$$, this will be $$<O(1), O(mr)>$$. So how can we make it faster?
+Given $$k$$ strings of total length $$m$$ and a string pattern $$p$$ of length $$n$$. We want to find all the strings that match  $$p$$. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take $$O(m)$$ time. However, suppose that we now we have $$r$$ patterns, then this approach will take $$O(mr)$$ time is really slow. In the RMQ notation $$<$$preprocessing time,  query_time$$>$$, this will be $$<O(1), O(mr)>$$. So how can we make it faster?
 <br>
 <br>
 <hr>
@@ -102,7 +102,7 @@ So insert takes $$O(n)$$ time as well!
 <br>
 <b>6 Running Time</b>
 <br>
-We mentioned above that insert and search both take $$O(n)$$ time where $$n$$ is the length of the pattern. How long does it take to build a trie to represent all words of total length $$m$$? We need to make $$k$$ insertions each of which will take $$O($$size of each word$$)$$. Since the total length of all words is $$m$$, then the total time is $$O(m)$$ which happens only once initially. Therefore, in the RMQ notation we will have $$<O(m), O(n)>$$ which is a lot better than the naive solution. 
+We mentioned above that insert and search both take $$O(n)$$ time where $$n$$ is the length of the pattern. How long does it take to build a trie to represent all words of total length $$m$$? We need to make $$k$$ insertions each of which will take $$O($$size of each word$$)$$. Since the total length of all words is $$m$$, then the total time is $$O(m)$$ which happens only once intially. Therefore, in the RMQ notation we will have $$<O(m), O(n)>$$ which is a lot better than the naive solution. 
 <br>
 <br>
 <hr>

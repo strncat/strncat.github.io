@@ -7,15 +7,15 @@
 <meta name="generator" content="Jekyll v3.7.4" />
 <meta property="og:title" content="Patricia Tries" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, we cans see how space inefficient it is. For example in the trie below, we can see how we’re wasting so many pointers to just store a single character in each branch. So now what if we do the following: any node (with the exception of the root) that has only one child can be merged with its parent. Let’s look at the result. Looks awesome right? This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 2 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!" />
-<meta property="og:description" content="0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, we cans see how space inefficient it is. For example in the trie below, we can see how we’re wasting so many pointers to just store a single character in each branch. So now what if we do the following: any node (with the exception of the root) that has only one child can be merged with its parent. Let’s look at the result. Looks awesome right? This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 2 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!" />
+<meta name="description" content="0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!" />
+<meta property="og:description" content="0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!" />
 <link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html" />
 <meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html" />
 <meta property="og:site_name" content="strncat’s notebook" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-07-08T12:01:36-07:00" />
 <script type="application/ld+json">
-{"description":"0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, we cans see how space inefficient it is. For example in the trie below, we can see how we’re wasting so many pointers to just store a single character in each branch. So now what if we do the following: any node (with the exception of the root) that has only one child can be merged with its parent. Let’s look at the result. Looks awesome right? This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 2 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html","headline":"Patricia Tries","dateModified":"2019-07-08T12:01:36-07:00","datePublished":"2019-07-08T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html"},"@context":"https://schema.org"}</script>
+{"description":"0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html","headline":"Patricia Tries","dateModified":"2019-07-08T12:01:36-07:00","datePublished":"2019-07-08T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
@@ -80,18 +80,27 @@
 <p><br />
 <b>1 Introduction</b>
 <br />
-Now that we have seen the <a href="/jekyll/update/2019/07/06/tries.html">trie</a> data structure, we cans see how space inefficient it is. For example in the trie below, we can see how we’re wasting so many pointers to just store a single character in each branch.
-<img src="http://localhost:4000/assets/trie/3.png" width="100%" />
-So now what if we do the following: any node (with the exception of the root) that has only one child can be merged with its parent. Let’s look at the result.
-<img src="http://localhost:4000/assets/trie/4.png" width="100%" />
-Looks awesome right? This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys.
+Now that we have seen the <a href="/jekyll/update/2019/07/06/tries.html">trie</a> data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given <script type="math/tex">k</script> strings of total length <script type="math/tex">m</script> and a string pattern <script type="math/tex">p</script> of length <script type="math/tex">n</script>. We want to find all the strings that match  <script type="math/tex">p</script>. With a regular trie we solved it with <script type="math/tex">\langle O(m),O(n) \rangle</script> time where <script type="math/tex">O(m)</script> is the preprocessing step of building the trie out of all the strings we’re given. The <script type="math/tex">O(n)</script> time is the look up time for each pattern of length <script type="math/tex">n</script>. Can we make it faster?
 <br />
 <br /></p>
 <hr />
 
 <!------------------------------------------------------------------------------------>
 <p><br />
-<b>2 Properties of Patricia Tries</b>
+<b>2 The Patricia Trie Data Structure</b>
+<br />
+Give the trie below:
+<img src="http://localhost:4000/assets/trie/3.png" width="100%" />
+In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result.
+<img src="http://localhost:4000/assets/trie/4.png" width="100%" />
+That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>3 Properties of Patricia Tries</b>
 <br />
 Can we upper bound the number of nodes in a Patricia trie? Yes!</p>
 
@@ -157,8 +166,20 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/tr
   </div><a class="u-url" href="/jekyll/update/2019/07/08/patricia-trie.html" hidden></a>
 </article>
 
+		
+	 
+    	 
+		 
+		 
       </div>
+	  
+	  
+	  
+	 
     </main>
+	
+	
+	 
 
     <!--<footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
@@ -177,7 +198,7 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/tr
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Hello.</p>
+        <p>Hello</p>
       </div>
     </div>
 

@@ -16,9 +16,9 @@ These are just my class notes from following http://web.stanford.edu/class/cs161
 <br>
 ![my photo]({{ site.url }}/assets/bfs/bfs1.png)
 
-Traversing a graph is just essential. Breadth first search is one way to traverse a given graph. Let $$G = (V, E)$$ be a graph consisting of $$V$$ vertices and $$E$$ edges and let $$s$$ be the source vertex where we will start the traversal from. The key thing about breadth first search is that it explores the vertices closest (in terms of number of edges) to the source first. We start by looking at $$s$$'s neighbors. These vertices are the closest vertices to $$s$$ and have distance 1 from $$s$$. We then explore each adjacent vertex. Any vertex adjacent to these vertices will have distance 2.
+Breadth first search is a useful and widely used algorithm in graph traversal problems. Let $$G = (V, E)$$ be a graph consisting of $$V$$ vertices and $$E$$ edges and let $$s$$ be the source vertex where we will start the traversal from. The key thing about breadth first search is that it explores the vertices closest (in terms of the number of edges) to the source vertex first. We start by looking at $$s$$'s neighbors. These vertices are the closest vertices to $$s$$ and have distance 1 from $$s$$. We then explore each adjacent vertex to all the neighbors. Any vertex adjacent to these vertices will have distance 2 and so on.
 <br><br>
-You can see how breadth first search explores the graph in layers, one layer at a time and finds all the vertices reachable from $$s$$. Because we explore the closest vertices first, BFS also finds the the shortest paths from the $$s$$ to every other vertex in the graph in terms of the number of edges between $$s$$ and each vertex. We'll prove this later.
+In other words, breadth first search explores the graph in layers. The immediate neighbors are in layer 1 and have distance 1 to the source vertex. The vertices in layer 2 have distance 2 to the source vertex and so on. Given a layer, all the vertices in that layer have the same distance to the source vertex. It turns out that breadth first search also finds the the shortest paths from the $$s$$ to every other vertex in the graph in terms of the number of edges between $$s$$ and each vertex. We'll prove this more formally later!
 <br>
 <br>
 <hr>
@@ -28,9 +28,11 @@ You can see how breadth first search explores the graph in layers, one layer at 
 <br>
 To perform a breadth first search, we will maintain the following data structures:
 <br>
-(1) A queue. We want to explore the nodes closest to $$s$$ first. We know that a queue maintains the property that a node inserted first will be popped/explored first. We will also use the queue to insert the vertex's distance from $$s$$. We can do this because we first insert $$s$$ with distance 0 in the queue. As we explore adjacent vertices in the queue, we will just increment whatever distance was stored with the parent node that was just popped from the queue.
+(1) A queue. We want to explore the nodes closest to $$s$$ first. We know that a queue maintains the property that a node inserted first will be popped/explored first. We will also use the queue to keep track of the distance of each vertex to $$s$$. Initially we will enqueue $$s$$ with distance 0. When we enqueue new nodes, we will also enqueue their distance to $$s$$ which is just their parent's distance plus 1.
 <br><br>
 (2) A set or an array that keeps track of the visited nodes. Remember that $$G$$ might contain cycles and so we want to make sure that we explore each node once only.
+<br><br>
+(3) A set or an array that keeps track of the parent nodes. This is optional and only needed if we want to recover the path from $$s$$ to every other node in $$G$$.
 <br>
 <br>
 <hr>
@@ -38,11 +40,11 @@ To perform a breadth first search, we will maintain the following data structure
 <br>
 <b>3 Example</b>
 <br>
-Let's explore the graph above. We will start from $$s$$ and add both $$a$$ and $$b$$ to our queue with distance 1 and mark them visited. $$a$$ and $$b$$ are now in the closest layer to $$s$$.
+Let's explore the graph above. We will start by popping $$s$$ from the queue with its distance 0. We will then enqueue the neighbors of $$s$$ along with distance 1 and also mark them visited. We could also use the parent array to indicate that $$s$$ is the parent of $$a$$ and $$b$$. At this point, we have $$a$$ and $$b$$ in layer 1 with distance 1. We also marked their parent $$s$$ correctly. This information will not change in any future iteration. 
 
 ![my photo]({{ site.url }}/assets/bfs/bfs2.png)
 
-Next we will we will pop $$a$$ from the queue. We will traverse $$a$$'s neighbors $$s$$ and $$c$$ but $$s$$ will be ignored since it was visited before. When we add $$c$$ to the queue, we will also push the current distance plus 1 which is 2 on the queue to indicate that $$c$$ is two steps away from $$s$$. Next we will we will pop $$b$$ from the queue and repeat the same process and push $$d$$ on the queue with distance 2. $$c$$ and $$d$$ are colored in green below to indicate a new layer.
+Next we will we will pop $$a$$ from the queue. We will traverse $$a$$'s neighbors $$s$$ and $$c$$ but $$s$$ will be ignored since it was visited before. When we add $$c$$ to the queue, we will also push distance 2 which indicates that $$c$$ is in layer 2 or is two steps away from $$s$$. We also mark $$c$$'s parent as $$a$$. Next we will we will pop $$b$$ from the queue and repeat the same process and push $$d$$ on the queue with distance 2. $$c$$ and $$d$$ are colored in green below to indicate that they are in a new layer (distance = 2).
 
 ![my photo]({{ site.url }}/assets/bfs/bfs3.png)
 

@@ -10,6 +10,7 @@ mathjax: true
 <br>
 To come up with a dynamic programming solution, we ask the question, given that we know the optimal count to the string "ba" in "babgbag". How can we use this solution to find the optimal count for "bag". We simply iterate through the string and whenever we see the letter "g", then the number of "bag"s seen so far would be the number of "ba"s seen so far before the current "g". The total number of ocurrences of "bag" is then the sum of all the "ba"s seen before each "g".
 <br>
+<!-- try \Big\{  only -->
 <div center>
 $$
  c[p] = \sum_i\left\{\begin{array}{@{}lr@{}}

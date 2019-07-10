@@ -80,9 +80,9 @@ These are just my class notes from following http://web.stanford.edu/class/cs161
 <br />
 <img src="http://localhost:4000/assets/bfs/bfs1.png" alt="my photo" /></p>
 
-<p>Traversing a graph is just essential. Breadth first search is one way to traverse a given graph. Let <script type="math/tex">G = (V, E)</script> be a graph consisting of <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges and let <script type="math/tex">s</script> be the source vertex where we will start the traversal from. The key thing about breadth first search is that it explores the vertices closest (in terms of number of edges) to the source first. We start by looking at <script type="math/tex">s</script>’s neighbors. These vertices are the closest vertices to <script type="math/tex">s</script> and have distance 1 from <script type="math/tex">s</script>. We then explore each adjacent vertex. Any vertex adjacent to these vertices will have distance 2.
+<p>Breadth first search is a useful and widely used algorithm in graph traversal problems. Let <script type="math/tex">G = (V, E)</script> be a graph consisting of <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges and let <script type="math/tex">s</script> be the source vertex where we will start the traversal from. The key thing about breadth first search is that it explores the vertices closest (in terms of the number of edges) to the source vertex first. We start by looking at <script type="math/tex">s</script>’s neighbors. These vertices are the closest vertices to <script type="math/tex">s</script> and have distance 1 from <script type="math/tex">s</script>. We then explore each adjacent vertex to all the neighbors. Any vertex adjacent to these vertices will have distance 2 and so on.
 <br /><br />
-You can see how breadth first search explores the graph in layers, one layer at a time and finds all the vertices reachable from <script type="math/tex">s</script>. Because we explore the closest vertices first, BFS also finds the the shortest paths from the <script type="math/tex">s</script> to every other vertex in the graph in terms of the number of edges between <script type="math/tex">s</script> and each vertex. We’ll prove this later.
+In other words, breadth first search explores the graph in layers. The immediate neighbors are in layer 1 and have distance 1 to the source vertex. The vertices in layer 2 have distance 2 to the source vertex and so on. Given a layer, all the vertices in that layer have the same distance to the source vertex. It turns out that breadth first search also finds the the shortest paths from the <script type="math/tex">s</script> to every other vertex in the graph in terms of the number of edges between <script type="math/tex">s</script> and each vertex. We’ll prove this more formally later!
 <br />
 <br /></p>
 <hr />
@@ -93,9 +93,11 @@ You can see how breadth first search explores the graph in layers, one layer at 
 <br />
 To perform a breadth first search, we will maintain the following data structures:
 <br />
-(1) A queue. We want to explore the nodes closest to <script type="math/tex">s</script> first. We know that a queue maintains the property that a node inserted first will be popped/explored first. We will also use the queue to insert the vertex’s distance from <script type="math/tex">s</script>. We can do this because we first insert <script type="math/tex">s</script> with distance 0 in the queue. As we explore adjacent vertices in the queue, we will just increment whatever distance was stored with the parent node that was just popped from the queue.
+(1) A queue. We want to explore the nodes closest to <script type="math/tex">s</script> first. We know that a queue maintains the property that a node inserted first will be popped/explored first. We will also use the queue to keep track of the distance of each vertex to <script type="math/tex">s</script>. Initially we will enqueue <script type="math/tex">s</script> with distance 0. When we enqueue new nodes, we will also enqueue their distance to <script type="math/tex">s</script> which is just their parent’s distance plus 1.
 <br /><br />
 (2) A set or an array that keeps track of the visited nodes. Remember that <script type="math/tex">G</script> might contain cycles and so we want to make sure that we explore each node once only.
+<br /><br />
+(3) A set or an array that keeps track of the parent nodes. This is optional and only needed if we want to recover the path from <script type="math/tex">s</script> to every other node in <script type="math/tex">G</script>.
 <br />
 <br /></p>
 <hr />
@@ -104,11 +106,11 @@ To perform a breadth first search, we will maintain the following data structure
 <p><br />
 <b>3 Example</b>
 <br />
-Let’s explore the graph above. We will start from <script type="math/tex">s</script> and add both <script type="math/tex">a</script> and <script type="math/tex">b</script> to our queue with distance 1 and mark them visited. <script type="math/tex">a</script> and <script type="math/tex">b</script> are now in the closest layer to <script type="math/tex">s</script>.</p>
+Let’s explore the graph above. We will start by popping <script type="math/tex">s</script> from the queue with its distance 0. We will then enqueue the neighbors of <script type="math/tex">s</script> along with distance 1 and also mark them visited. We could also use the parent array to indicate that <script type="math/tex">s</script> is the parent of <script type="math/tex">a</script> and <script type="math/tex">b</script>. At this point, we have <script type="math/tex">a</script> and <script type="math/tex">b</script> in layer 1 with distance 1. We also marked their parent <script type="math/tex">s</script> correctly. This information will not change in any future iteration.</p>
 
 <p><img src="http://localhost:4000/assets/bfs/bfs2.png" alt="my photo" /></p>
 
-<p>Next we will we will pop <script type="math/tex">a</script> from the queue. We will traverse <script type="math/tex">a</script>’s neighbors <script type="math/tex">s</script> and <script type="math/tex">c</script> but <script type="math/tex">s</script> will be ignored since it was visited before. When we add <script type="math/tex">c</script> to the queue, we will also push the current distance plus 1 which is 2 on the queue to indicate that <script type="math/tex">c</script> is two steps away from <script type="math/tex">s</script>. Next we will we will pop <script type="math/tex">b</script> from the queue and repeat the same process and push <script type="math/tex">d</script> on the queue with distance 2. <script type="math/tex">c</script> and <script type="math/tex">d</script> are colored in green below to indicate a new layer.</p>
+<p>Next we will we will pop <script type="math/tex">a</script> from the queue. We will traverse <script type="math/tex">a</script>’s neighbors <script type="math/tex">s</script> and <script type="math/tex">c</script> but <script type="math/tex">s</script> will be ignored since it was visited before. When we add <script type="math/tex">c</script> to the queue, we will also push distance 2 which indicates that <script type="math/tex">c</script> is in layer 2 or is two steps away from <script type="math/tex">s</script>. We also mark <script type="math/tex">c</script>’s parent as <script type="math/tex">a</script>. Next we will we will pop <script type="math/tex">b</script> from the queue and repeat the same process and push <script type="math/tex">d</script> on the queue with distance 2. <script type="math/tex">c</script> and <script type="math/tex">d</script> are colored in green below to indicate that they are in a new layer (distance = 2).</p>
 
 <p><img src="http://localhost:4000/assets/bfs/bfs3.png" alt="my photo" /></p>
 
@@ -234,8 +236,20 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/bre
   </div><a class="u-url" href="/jekyll/update/2019/06/20/bfs.html" hidden></a>
 </article>
 
+		
+	 
+    	 
+		 
+		 
       </div>
+	  
+	  
+	  
+	 
     </main>
+	
+	
+	 
 
     <!--<footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
@@ -254,7 +268,7 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/bre
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Hello.</p>
+        <p>Hello</p>
       </div>
     </div>
 

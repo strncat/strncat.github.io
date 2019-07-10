@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Tries"
+title:  "Tries (Prefix Trees)"
 date:   2019-07-06 12:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -16,7 +16,7 @@ mathjax: true
 <br>
 <b>1 Introduction</b>
 <br>
-Consider the following problem: Given $$k$$ strings of total length $$m$$ and a string pattern $$p$$ of length $$n$$. We want to find all the strings that match  $$p$$. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take $$O(m)$$ time. However, suppose that we now we have $$r$$ patterns, then this approach will take $$O(mr)$$ time which is really slow. In the RMQ notation $$<$$preprocessing time,  query_time$$>$$, this will be $$<O(1), O(mr)>$$. So how can we make it faster?
+Consider the following problem: Given $$k$$ strings of total length $$m$$ and a string pattern $$p$$ of length $$n$$. We want to find all the strings that match  $$p$$. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take $$O(m)$$ time. However, suppose that we now we have $$r$$ patterns, then this approach will take $$O(mr)$$ time which is really slow, especially if we're displaying auto-complete live results to the user as they type their query. In the RMQ notation, we will write $$\langle O(1), O(mr)\rangle$$ where $$O(1)$$ is the preprocessing time and $$O(mr)$$ is the query_time. So how can we make it faster?
 <br>
 <br>
 <hr>
@@ -44,9 +44,9 @@ You can see above, the root has only $$c$$ edge/link. From $$c$$, we can travers
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>3 Searching for a Prefix</b>
+<b>3 Prefix Search</b>
 <br>
-How do we search for a word? We just traverse down the root and keep matching until we reach the last character of the prefix we're searching. If we want an exact match then we check if the node has a marker to indicate that it ends a valid word and return true if it does. But if we want to print all possible matches then we can take this node we're currently on and then just do a simple depth first search down every branch to collect every possible word.
+How do we search for prefixes now? given a pattern $$p$$ we want to output all possible matches. We just traverse down the root and keep matching until we reach the last character of the prefix we're searching. If we want an exact match then we check if the node has a marker to indicate that it ends a valid word and return true if it does. But if we want to print all possible matches then we can take this node we're currently on and then just do a simple depth first search down every branch to collect every possible word.
 <br>
 Let's look at search first:
 {% highlight c++ %}
@@ -134,18 +134,34 @@ void insert(std::string word) {
 {% endhighlight %}
 So insert takes $$O(n)$$ time as well!
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>5 Running Time</b>
-<br>
-We mentioned above that insert and search both take $$O(n)$$ time where $$n$$ is the length of the pattern. How long does it take to build a trie to represent all words of total length $$m$$? We need to make $$k$$ insertions each of which will take $$O($$size of each word$$)$$. Since the total length of all words is $$m$$, then the total time is $$O(m)$$ which happens only once initially. Therefore, in the RMQ notation we will have $$<O(m), O(n)>$$ which is a lot better than the naive solution. 
-<br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>6 Full Implementation:</b> 
+<b>5 Delete</b>
+<br>
+To be added.
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>6 Longest Prefix</b>
+<br>
+To be added
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<b>7 Running Time</b>
+<br>
+We mentioned above that insert and search both take $$O(n)$$ time where $$n$$ is the length of the pattern. How long does it take to build a trie to represent all words of total length $$m$$? We need to make $$k$$ insertions each of which will take $$O($$size of each word$$)$$. Since the total length of all words is $$m$$, then the total time is $$O(m)$$ which happens only once initially. Therefore, in the RMQ notation we will have $$\langle O(m), O(n) \rangle$$ which is a lot better than the naive solution. 
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>8 Full Implementation:</b> 
 <br>
 https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
 <br>

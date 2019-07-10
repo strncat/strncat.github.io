@@ -14,17 +14,25 @@ mathjax: true
 <br>
 <b>1 Introduction</b>
 <br>
-Now that we have seen the <a href="/jekyll/update/2019/07/06/tries.html">trie</a> data structure, we cans see how space inefficient it is. For example in the trie below, we can see how we're wasting so many pointers to just store a single character in each branch.
-<img src="{{ site.url }}/assets/trie/3.png" width="100%">
-So now what if we do the following: any node (with the exception of the root) that has only one child can be merged with its parent. Let's look at the result.
-<img src="{{ site.url }}/assets/trie/4.png" width="100%">
-Looks awesome right? This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys.
+Now that we have seen the <a href="/jekyll/update/2019/07/06/tries.html">trie</a> data structure, let's look at a more efficient solution to the problem we discussed before. As a reminder, we are given $$k$$ strings of total length $$m$$ and a string pattern $$p$$ of length $$n$$. We want to find all the strings that match  $$p$$. With a regular trie we solved it with $$\langle O(m),O(n) \rangle$$ time where $$O(m)$$ is the preprocessing step of building the trie out of all the strings we're given. The $$O(n)$$ time is the look up time for each pattern of length $$n$$. Can we make it faster?
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>2 Properties of Patricia Tries</b>
+<b>2 The Patricia Trie Data Structure</b>
+<br>
+Give the trie below:
+<img src="{{ site.url }}/assets/trie/3.png" width="100%">
+In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let's look at the result.
+<img src="{{ site.url }}/assets/trie/4.png" width="100%">
+That's it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys.
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>3 Properties of Patricia Tries</b>
 <br>
 Can we upper bound the number of nodes in a Patricia trie? Yes!
 

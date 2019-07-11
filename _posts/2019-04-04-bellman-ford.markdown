@@ -89,6 +89,27 @@ So what is the relationship between Bellman-Ford and Dijkstra? are they connecte
 <b>4 Implementation</b>
 <br>
 {% highlight c++ %}
+void BellmanFord(graph& g) {
+	int distance[g.size()], parent[g.size()];
+	for (int i = 0; i < g.size(); i++) {
+	    distance[i] = INT_MAX;
+	    parent[i] = -1; // if we need to recover the path
+	}
+	distance[0] = 0; // source is node 1
+	for (int s = 1; s <= g.size() - 1; s++) { // for every possible path size
+	    // for every edge in the graph // double loop
+	    for (int i = 0; i < g.size(); i++) {
+	        for (auto e = g[i].begin(); e != g[i].end(); e++) {
+	            int y = e->first;
+	            int weight = e->second;
+	            // Update if we can get from s to i faster
+	            if (distance[i] != INT_MAX && distance[i] + weight < distance[y]) {
+	                distance[y] = distance[i] + weight;
+	            }
+	        }
+	    }
+	}
+}
 {% endhighlight %}
 <br>
 <br>
@@ -96,58 +117,94 @@ So what is the relationship between Bellman-Ford and Dijkstra? are they connecte
 <!------------------------------------------------------------------------------------>
 <br>
 <b>5 Example</b><br>
-
-We initialize the following forests $$\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}$$. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: $$\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}$$
+We update according the base case all the shortest paths that use 0 edges to $$\infty$$ except for the source vertex where the shortest path is of length 0.
+<img src="{{ site.url }}/assets/bellman/initial.png" width="100%">
 <br><br>
-<i>Iteration 0</i><br>
-The first edge to consider is either $$\{a,b\}$$. Since $$a$$ and $$b$$ are not in the same set, we add the edge to the MST and combine both $$a$$ and $$b$$.
-
 <i>Iteration 1</i><br>
-We next consider  $$\{b,f\}$$. Since $$b$$ and $$f$$ are not in the same set, we add the edge to the MST and combine both $$b$$ and $$f$$. So now we have the following forests: $$\{a, b, f\}, \{c\}, \{d\}, \{e\}$$
+Here we consider the shortest paths using at most 1 edge. We go through every possible $$v \in V$$ and every possible neighbor $$u \in v.neighbors$$ and ask: Can $$D[v, 1]$$ be lowered via the shortest path $$D[u, 0]$$ plus the edge $$\{u,v\}$$? The answer is yes! picture below:
+<img src="{{ site.url }}/assets/bellman/i1.png" width="100%">
+
 
 <i>Iteration 2</i><br>
-We next consider  $$\{a,f\}$$. Since $$a$$ and $$f$$ are in the same set, we don't combine the nodes and don't add the edge to the MST.
+We repeat the same process, this time we see if we can update all shortest paths that use at most $$2$$ edges to better estimates. Notice that we update both $$b$$ and $$d$$ in this iteration.
+<img src="{{ site.url }}/assets/bellman/i2.png" width="100%">
 
 
-At the end of the algorithm, the minimum spanning tree is the following tree:
+<i>Iteration 3</i><br>
+We again repeat the same process, updating this time $$t$$.
+<img src="{{ site.url }}/assets/bellman/i3.png" width="100%">
 
+
+<i>Iteration 4</i><br>
+In iteration 4, we update $$d$$ again because we realize that we can get a better estimate coming through $$t$$ instead of $$c$$. 
+<img src="{{ site.url }}/assets/bellman/i4.png" width="100%">
+
+
+<i>Iteration 5</i><br>
+Finally, we update $$c$$ because it has a better update now coming through $$d$$ instead of directly through $$s$$.
+<img src="{{ site.url }}/assets/bellman/i5.png" width="100%">
+As this point, the algorithm terminates and we have the final shortest paths from $$s$$ to every vertex $$v \in V$$.
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>6 Proof of Correctness</b><br>
+<b>6 Can we have negative cycles?</b> <br>
+If $$G$$ has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by doing traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if weights are continuing to decrease. If they are then we know we have a cycle. Sample code below can be added to the above implementation before returing from the function:
+{% highlight c++ %}
+We can add one additional iteration to discover negative cycles:
+for (int i = 0; i < g.size(); i++) { // for every edge in the graph
+    for (auto e = g[i].begin(); e != g[i].end(); e++) {
+        int y = e->first;
+        int weight = e->second;
+        if (distance[i] != INT_MAX && distance[i] + weight < distance[y]) {
+            printf("negative weight cycle\n");
+        }
+    }
+}
+{% endhighlight %}
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>6 Why only $$n-1$$ iterations?</b> <br>
+To answer this question, we ask: can shortest paths have positive cycles? The answer is again no. Suppose that we are given a shortest path with a positive weight cycle. Then we can remove the cycle from the path and arrive at a shorter path. This is a contradiction and therefore, we can not have positive weight cycles. On the otherhand if the cycle has weight zero then removing the cycle from the shortest path will produce a path the same weight. Therefore, we can restrict finding the shortest path problem to finding simple shortest paths. We also know that simple paths in a graph with $$n$$ vertices can have at most $$n-1$$ edges! (CLRS page 645)
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>7 Proof of Correctness</b><br>
 
-| Theorem: Kruskal will correctly find a minimum spanning tree |
+| Theorem: Given a graph $$G=(V,E)$$ and a source vertex $$s$$, Bellman-Ford correctly finds the shortest simple paths from $$s$$ to every other node in $$G$$ |
 
 <i>Proof:</i> <br>
-<b>Inductive Hypothesis: </b>After adding the $$t$$'th edge, there exists an MST with the edges added so far.
+<b>Inductive Hypothesis: </b>After ith iteration, for every $$v \in V$$, $$D[v, i]$$ is length of the shortest simple path from $$s$$ to $$v$$ with at most $$i$$ edges.
 <br>
 
-<b>Base Case: </b> After adding the 0'th edge, there exists an MST with the edges added so far.
+<b>Base Case: </b> After 0th iteration, we have $$D[s, 0] = 0$$ and $$D[v, 0]=\infty$$ for any $$v \in V - \{s\}$$ as required.
 <br>
 <br>
-<b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$t$$. Let $$S$$ be the set containing the edges added so far and so there is an MST extending them by the inductive hypothesis. Kruskal adds the next edge that combines two trees $$T_1$$ and $$T_2$$ Consider the cut $$T_1$$ and $$V-T_1$$. This cut respects $$S$$. By the Lemma above, that edge is safe to add. Therefore, there is still an MST extending the new set of edges.
+<b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$i$$. We want to prove it for $$i+1$$. Let $$v$$ be a vertex in $$V$$. Assume there exists a shortest path between $$s$$ and $$v$$. Let $$u$$ be the vertex right before $$v$$ on this path. By the inductive hypothesis, we know that $$D[u, i]$$ is the length of the shortest simple path between $$s$$ and $$u$$. In the $$i+1$$'st iteration we know two things. First we ensure $$D[v, i+1] \leq D[u, i]+w(u,v)$$ by the relaxation step. Second $$D[v, i+1]$$ initially is an overestimate . Therefore, $$D[v, i+1]$$ is the length of the shortest path between $$s$$ and $$v$$ of at most $$i+1$$ edges.
 <br>
 <br>
-<b>Conclusion:</b> After adding the $$n-1$$'st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the $$n-1$$ edges we have is an MST.$$\blacksquare$$
-<br>
-<br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>6 Running Time:</b> <br>
-Assume we have $$n$$ vertices and $$m$$ edges. First of all, sorting the edges will take time $$O(m\log(m)) = m\log(n^2) = O(m\log(n))$$. If radixSort can be utilized then we can do this step in time $$O(m)$$. 
-<br><br>
-We then have $$n$$ calls to makeSet, $$2m$$ calls to find and $$n$$ calls to union. These operations run in amortized time $$O(\alpha(n))$$ where $$\alpha(n)$$ is the inverse Ackerman function and $$\alpha(n) \leq 4$$ provided that $$n$$ is smaller than the number of atoms in the universe.
-<br><br>
-Therefore, the total time is just $$O(m\log(n))$$ which is similar to Prim if we use a Red Black Tree and closer to $$O(m)$$ if we use radixSort.
+<b>Conclusion:</b> After $$n-1$$ iterations, for every $$v \in V$$, $$D[v, n-1]$$ is length of the shortest simple path from $$s$$ to $$v$$ with at most $$n-1$$ edges.
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>7 Full Implementation:</b>
+<b>8 Running Time:</b> <br>
+Assume we have $$n$$ vertices and $$m$$ edges. We have $$n-1$$ iterations. In each iteration we check every single edge in the graph. Therefore, the running time is $$O(nm)$$. 
+<br><br>
+
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>9 Full Implementation:</b>
 <br>
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
 <br>

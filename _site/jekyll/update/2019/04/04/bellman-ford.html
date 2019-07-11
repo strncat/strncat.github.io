@@ -154,26 +154,77 @@ So what is the relationship between Bellman-Ford and Dijkstra? are they connecte
 <b>4 Implementation</b>
 <br /></p>
 
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">BellmanFord</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">distance</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">()],</span> <span class="n">parent</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	    <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+	    <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// if we need to recover the path</span>
+	<span class="p">}</span>
+	<span class="n">distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// source is node 1</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">s</span> <span class="o">&lt;=</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">s</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for every possible path size</span>
+	    <span class="c1">// for every edge in the graph // double loop</span>
+	    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">e</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">();</span> <span class="n">e</span> <span class="o">!=</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">();</span> <span class="n">e</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+	            <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+	            <span class="c1">// Update if we can get from s to i faster</span>
+	            <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">INT_MAX</span> <span class="o">&amp;&amp;</span> <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="p">{</span>
+	                <span class="n">distance</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span><span class="p">;</span>
+	            <span class="p">}</span>
+	        <span class="p">}</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
 <p><br />
 <br /></p>
 <hr />
 
 <!------------------------------------------------------------------------------------>
 <p><br />
-<b>5 Example</b><br /></p>
-
-<p>We initialize the following forests <script type="math/tex">\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}</script>. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: <script type="math/tex">\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}</script>
+<b>5 Example</b><br />
+We update according the base case all the shortest paths that use 0 edges to <script type="math/tex">\infty</script> except for the source vertex where the shortest path is of length 0.
+<img src="http://localhost:4000/assets/bellman/initial.png" width="100%" />
 <br /><br />
-<i>Iteration 0</i><br />
-The first edge to consider is either <script type="math/tex">\{a,b\}</script>. Since <script type="math/tex">a</script> and <script type="math/tex">b</script> are not in the same set, we add the edge to the MST and combine both <script type="math/tex">a</script> and <script type="math/tex">b</script>.</p>
-
-<p><i>Iteration 1</i><br />
-We next consider  <script type="math/tex">\{b,f\}</script>. Since <script type="math/tex">b</script> and <script type="math/tex">f</script> are not in the same set, we add the edge to the MST and combine both <script type="math/tex">b</script> and <script type="math/tex">f</script>. So now we have the following forests: <script type="math/tex">\{a, b, f\}, \{c\}, \{d\}, \{e\}</script></p>
+<i>Iteration 1</i><br />
+Here we consider the shortest paths using at most 1 edge. We go through every possible <script type="math/tex">v \in V</script> and every possible neighbor <script type="math/tex">u \in v.neighbors</script> and ask: Can <script type="math/tex">D[v, 1]</script> be lowered via the shortest path <script type="math/tex">D[u, 0]</script> plus the edge <script type="math/tex">\{u,v\}</script>? The answer is yes! picture below:
+<img src="http://localhost:4000/assets/bellman/i1.png" width="100%" /></p>
 
 <p><i>Iteration 2</i><br />
-We next consider  <script type="math/tex">\{a,f\}</script>. Since <script type="math/tex">a</script> and <script type="math/tex">f</script> are in the same set, we don’t combine the nodes and don’t add the edge to the MST.</p>
+We repeat the same process, this time we see if we can update all shortest paths that use at most <script type="math/tex">2</script> edges to better estimates. Notice that we update both <script type="math/tex">b</script> and <script type="math/tex">d</script> in this iteration.
+<img src="http://localhost:4000/assets/bellman/i2.png" width="100%" /></p>
 
-<p>At the end of the algorithm, the minimum spanning tree is the following tree:</p>
+<p><i>Iteration 3</i><br />
+We again repeat the same process, updating this time <script type="math/tex">t</script>.
+<img src="http://localhost:4000/assets/bellman/i3.png" width="100%" /></p>
+
+<p><i>Iteration 4</i><br />
+In iteration 4, we update <script type="math/tex">d</script> again because we realize that we can get a better estimate coming through <script type="math/tex">t</script> instead of <script type="math/tex">c</script>. 
+<img src="http://localhost:4000/assets/bellman/i4.png" width="100%" /></p>
+
+<p><i>Iteration 5</i><br />
+Finally, we update <script type="math/tex">c</script> because it has a better update now coming through <script type="math/tex">d</script> instead of directly through <script type="math/tex">s</script>.
+<img src="http://localhost:4000/assets/bellman/i5.png" width="100%" />
+As this point, the algorithm terminates and we have the final shortest paths from <script type="math/tex">s</script> to every vertex <script type="math/tex">v \in V</script>.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>6 Can we have negative cycles?</b> <br />
+If <script type="math/tex">G</script> has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by doing traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if weights are continuing to decrease. If they are then we know we have a cycle. Sample code below can be added to the above implementation before returing from the function:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">We</span> <span class="n">can</span> <span class="n">add</span> <span class="n">one</span> <span class="n">additional</span> <span class="n">iteration</span> <span class="n">to</span> <span class="n">discover</span> <span class="n">negative</span> <span class="n">cycles</span><span class="o">:</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for every edge in the graph</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">e</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">();</span> <span class="n">e</span> <span class="o">!=</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">();</span> <span class="n">e</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">INT_MAX</span> <span class="o">&amp;&amp;</span> <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"negative weight cycle</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <p><br />
 <br /></p>
@@ -181,46 +232,52 @@ We next consider  <script type="math/tex">\{a,f\}</script>. Since <script type="
 
 <!------------------------------------------------------------------------------------>
 <p><br />
-<b>6 Proof of Correctness</b><br /></p>
+<b>6 Why only <script type="math/tex">n-1</script> iterations?</b> <br />
+To answer this question, we ask: can shortest paths have positive cycles? The answer is again no. Suppose that we are given a shortest path with a positive weight cycle. Then we can remove the cycle from the path and arrive at a shorter path. This is a contradiction and therefore, we can not have positive weight cycles. On the otherhand if the cycle has weight zero then removing the cycle from the shortest path will produce a path the same weight. Therefore, we can restrict finding the shortest path problem to finding simple shortest paths. We also know that simple paths in a graph with <script type="math/tex">n</script> vertices can have at most <script type="math/tex">n-1</script> edges! (CLRS page 645)
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>7 Proof of Correctness</b><br /></p>
 
 <table>
   <tbody>
     <tr>
-      <td>Theorem: Kruskal will correctly find a minimum spanning tree</td>
+      <td>Theorem: Given a graph <script type="math/tex">G=(V,E)</script> and a source vertex <script type="math/tex">s</script>, Bellman-Ford correctly finds the shortest simple paths from <script type="math/tex">s</script> to every other node in <script type="math/tex">G</script></td>
     </tr>
   </tbody>
 </table>
 
 <p><i>Proof:</i> <br />
-<b>Inductive Hypothesis: </b>After adding the <script type="math/tex">t</script>‘th edge, there exists an MST with the edges added so far.
+<b>Inductive Hypothesis: </b>After ith iteration, for every <script type="math/tex">v \in V</script>, <script type="math/tex">D[v, i]</script> is length of the shortest simple path from <script type="math/tex">s</script> to <script type="math/tex">v</script> with at most <script type="math/tex">i</script> edges.
 <br /></p>
 
-<p><b>Base Case: </b> After adding the 0’th edge, there exists an MST with the edges added so far.
+<p><b>Base Case: </b> After 0th iteration, we have <script type="math/tex">D[s, 0] = 0</script> and <script type="math/tex">D[v, 0]=\infty</script> for any <script type="math/tex">v \in V - \{s\}</script> as required.
 <br />
 <br />
-<b>Inductive Step:</b> Suppose the inductive hypothesis holds for <script type="math/tex">t</script>. Let <script type="math/tex">S</script> be the set containing the edges added so far and so there is an MST extending them by the inductive hypothesis. Kruskal adds the next edge that combines two trees <script type="math/tex">T_1</script> and <script type="math/tex">T_2</script> Consider the cut <script type="math/tex">T_1</script> and <script type="math/tex">V-T_1</script>. This cut respects <script type="math/tex">S</script>. By the Lemma above, that edge is safe to add. Therefore, there is still an MST extending the new set of edges.
+<b>Inductive Step:</b> Suppose the inductive hypothesis holds for <script type="math/tex">i</script>. We want to prove it for <script type="math/tex">i+1</script>. Let <script type="math/tex">v</script> be a vertex in <script type="math/tex">V</script>. Assume there exists a shortest path between <script type="math/tex">s</script> and <script type="math/tex">v</script>. Let <script type="math/tex">u</script> be the vertex right before <script type="math/tex">v</script> on this path. By the inductive hypothesis, we know that <script type="math/tex">D[u, i]</script> is the length of the shortest simple path between <script type="math/tex">s</script> and <script type="math/tex">u</script>. In the <script type="math/tex">i+1</script>‘st iteration we know two things. First we ensure <script type="math/tex">D[v, i+1] \leq D[u, i]+w(u,v)</script> by the relaxation step. Second <script type="math/tex">D[v, i+1]</script> initially is an overestimate . Therefore, <script type="math/tex">D[v, i+1]</script> is the length of the shortest path between <script type="math/tex">s</script> and <script type="math/tex">v</script> of at most <script type="math/tex">i+1</script> edges.
 <br />
 <br />
-<b>Conclusion:</b> After adding the <script type="math/tex">n-1</script>‘st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the <script type="math/tex">n-1</script> edges we have is an MST.<script type="math/tex">\blacksquare</script>
-<br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>6 Running Time:</b> <br />
-Assume we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges. First of all, sorting the edges will take time <script type="math/tex">O(m\log(m)) = m\log(n^2) = O(m\log(n))</script>. If radixSort can be utilized then we can do this step in time <script type="math/tex">O(m)</script>. 
-<br /><br />
-We then have <script type="math/tex">n</script> calls to makeSet, <script type="math/tex">2m</script> calls to find and <script type="math/tex">n</script> calls to union. These operations run in amortized time <script type="math/tex">O(\alpha(n))</script> where <script type="math/tex">\alpha(n)</script> is the inverse Ackerman function and <script type="math/tex">\alpha(n) \leq 4</script> provided that <script type="math/tex">n</script> is smaller than the number of atoms in the universe.
-<br /><br />
-Therefore, the total time is just <script type="math/tex">O(m\log(n))</script> which is similar to Prim if we use a Red Black Tree and closer to <script type="math/tex">O(m)</script> if we use radixSort.
+<b>Conclusion:</b> After <script type="math/tex">n-1</script> iterations, for every <script type="math/tex">v \in V</script>, <script type="math/tex">D[v, n-1]</script> is length of the shortest simple path from <script type="math/tex">s</script> to <script type="math/tex">v</script> with at most <script type="math/tex">n-1</script> edges.
 <br />
 <br /></p>
 <hr />
 
 <!------------------------------------------------------------------------------------>
 <p><br />
-<b>7 Full Implementation:</b>
+<b>8 Running Time:</b> <br />
+Assume we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges. We have <script type="math/tex">n-1</script> iterations. In each iteration we check every single edge in the graph. Therefore, the running time is <script type="math/tex">O(nm)</script>. 
+<br /><br /></p>
+
+<p><br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>9 Full Implementation:</b>
 <br />
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
 <br />

@@ -197,18 +197,27 @@ To answer this question, we ask: can we have positive cycles in a shortest path?
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>8 Running Time:</b> <br>
-Assume we have $$n$$ vertices and $$m$$ edges. We have $$n-1$$ iterations. In each iteration we check every single edge in the graph. Therefore, the running time is $$O(nm)$$. 
-<br><br>
-
+<b>8 Running Time</b> <br>
+Assume we have $$n$$ vertices and $$m$$ edges. We have $$n-1$$ iterations. In each iteration we check every single edge in the graph. Therefore, the running time is $$O(nm)$$.
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>9 Full Implementation:</b>
+<b>9 Full Implementation</b>
 <br>
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
+<br>
+<br>
+<hr>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>10 Practice Problems</b>
+<br>
+<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=0&problem=499&mosmsg=Submission+received+with+ID+23578534">558 - Wormholes</a>
+<br>
+<a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1390">10449 Traffic</a>
+
 <br>
 <br>
 

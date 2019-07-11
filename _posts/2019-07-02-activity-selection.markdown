@@ -56,7 +56,7 @@ std::vector<activity> select_maximum_activities(std::vector<activity> a) {
 <!------------------------------------------------------------------------------------>
 <br>
 <b>5 Proof of Correctness</b><br>
-This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So each decision we make doesn't affect the our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
+This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So each decision we make doesn't affect our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
 <br>
 
 Now, this should sound very familiar, we have a base case where we start with an empty set of activities and then we want to prove that each selection we make doesn't rule out an optimal solution. What proof method should we use? of course, Induction.

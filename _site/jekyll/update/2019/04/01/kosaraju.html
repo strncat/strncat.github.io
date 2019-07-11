@@ -93,10 +93,10 @@ Let <script type="math/tex">G=(V,E)</script> be a graph with <script type="math/
 <b>2 Algorithm</b><br />
 It is a magical algorithm!</p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="o">-</span> <span class="n">Run</span> <span class="n">DFS</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">DFS</span> <span class="n">forest</span> <span class="n">and</span> <span class="n">keep</span> <span class="n">track</span> <span class="n">of</span> <span class="n">finishing</span> <span class="n">times</span><span class="p">.</span>
-<span class="o">-</span> <span class="n">Reverse</span> <span class="n">all</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">in</span> <span class="n">G</span><span class="p">.</span>
-<span class="o">-</span> <span class="n">Run</span> <span class="n">DFS</span> <span class="n">again</span> <span class="n">in</span> <span class="n">the</span> <span class="n">reverse</span> <span class="n">graph</span> <span class="n">from</span> <span class="n">the</span> <span class="n">node</span> <span class="n">with</span> <span class="n">the</span> <span class="n">largest</span> <span class="n">finishing</span> <span class="n">time</span><span class="p">.</span>
-<span class="o">-</span> <span class="n">The</span> <span class="n">SCCs</span> <span class="n">are</span> <span class="n">the</span> <span class="n">different</span> <span class="n">trees</span> <span class="n">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">DFS</span> <span class="n">forest</span><span class="p">.</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Run</span> <span class="n">DFS</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">DFS</span> <span class="n">forest</span> <span class="n">and</span> <span class="n">keep</span> <span class="n">track</span> <span class="n">of</span> <span class="n">finishing</span> <span class="n">times</span><span class="p">.</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">Reverse</span> <span class="n">all</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">in</span> <span class="n">G</span><span class="p">.</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">Run</span> <span class="n">DFS</span> <span class="n">again</span> <span class="n">in</span> <span class="n">the</span> <span class="n">reverse</span> <span class="n">graph</span> <span class="n">from</span> <span class="n">the</span> <span class="n">node</span> <span class="n">with</span> <span class="n">the</span> <span class="n">largest</span> <span class="n">finishing</span> <span class="n">time</span><span class="p">.</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="n">The</span> <span class="n">SCCs</span> <span class="n">are</span> <span class="n">the</span> <span class="n">different</span> <span class="n">trees</span> <span class="n">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">DFS</span> <span class="n">forest</span><span class="p">.</span></code></pre></figure>
 
 <p><br />
 <br /></p>
@@ -104,81 +104,24 @@ It is a magical algorithm!</p>
 
 <!------------------------------------------------------------------------------------>
 <p><br />
-<b>3 Example</b><br /></p>
-<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="441.5" cy="51.5" rx="30" ry="30" />
-	<text x="417.5" y="57.5" font-family="Times New Roman" font-size="20">a(0,9)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="360.5" cy="179.5" rx="30" ry="30" />
-	<text x="327.5" y="185.5" font-family="Times New Roman" font-size="20">c(10,11)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="82.5" cy="139.5" rx="30" ry="30" />
-	<text x="58.5" y="145.5" font-family="Times New Roman" font-size="20">d(3,4)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="209.5" cy="139.5" rx="30" ry="30" />
-	<text x="185.5" y="145.5" font-family="Times New Roman" font-size="20">e(2,5)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="236.5" cy="51.5" rx="30" ry="30" />
-	<text x="214.5" y="57.5" font-family="Times New Roman" font-size="20">f(1,6)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="501.5" cy="145.5" rx="30" ry="30" />
-	<text x="477.5" y="151.5" font-family="Times New Roman" font-size="20">b(7,8)</text>
-	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5" />
-	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5" />
-	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5" />
-	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5" />
-	<polygon stroke="black" stroke-width="1" points="411.5,51.5 266.5,51.5" />
-	<polygon fill="black" stroke-width="1" points="266.5,51.5 274.5,56.5 274.5,46.5" />
-	<polygon stroke="black" stroke-width="1" points="485.359,120.212 457.641,76.788" />
-	<polygon fill="black" stroke-width="1" points="457.641,76.788 457.731,86.221 466.16,80.841" />
-	<polygon stroke="black" stroke-width="1" points="227.7,80.18 218.3,110.82" />
-	<polygon fill="black" stroke-width="1" points="218.3,110.82 225.426,104.638 215.866,101.705" />
-	<polygon stroke="black" stroke-width="1" points="413.45,62.14 237.55,128.86" />
-	<polygon fill="black" stroke-width="1" points="237.55,128.86 246.803,130.698 243.257,121.348" />
-	<polygon stroke="black" stroke-width="1" points="179.5,139.5 112.5,139.5" />
-	<polygon fill="black" stroke-width="1" points="112.5,139.5 120.5,144.5 120.5,134.5" />
-	<polygon stroke="black" stroke-width="1" points="112.5,139.5 179.5,139.5" />
-	<polygon fill="black" stroke-width="1" points="179.5,139.5 171.5,134.5 171.5,144.5" />
-	<polygon stroke="black" stroke-width="1" points="376.542,154.149 425.458,76.851" />
-	<polygon fill="black" stroke-width="1" points="425.458,76.851 416.955,80.937 425.405,86.284" />
-	<polygon stroke="black" stroke-width="1" points="331.5,171.818 238.5,147.182" />
-	<polygon fill="black" stroke-width="1" points="238.5,147.182 244.953,154.064 247.513,144.397" />
-	<polygon stroke="black" stroke-width="1" points="264.774,61.529 473.226,135.471" />
-	<polygon fill="black" stroke-width="1" points="473.226,135.471 467.358,128.084 464.015,137.509" />
-</svg>
-<p>In the above graph, we run a first pass of DFS while keeping tracking of the finishing times of vertices. Here, we see that <script type="math/tex">a</script> has the largest finishing time. We next reverse the edges in the graph and perform another DFS from the node with the largest finishing time.</p>
-<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="441.5" cy="51.5" rx="30" ry="30" />
-	<text x="417.5" y="57.5" font-family="Times New Roman" font-size="20">a(0,8)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="360.5" cy="179.5" rx="30" ry="30" />
-	<text x="327.5" y="185.5" font-family="Times New Roman" font-size="20">c(11,12)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="82.5" cy="139.5" rx="30" ry="30" />
-	<text x="58.5" y="145.5" font-family="Times New Roman" font-size="20">d(3,4)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="209.5" cy="139.5" rx="30" ry="30" />
-	<text x="185.5" y="145.5" font-family="Times New Roman" font-size="20">e(2,5)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="236.5" cy="51.5" rx="30" ry="30" />
-	<text x="214.5" y="57.5" font-family="Times New Roman" font-size="20">f(1,7)</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="501.5" cy="145.5" rx="30" ry="30" />
-	<text x="477.5" y="151.5" font-family="Times New Roman" font-size="20">b(2,6)</text>
-	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5" />
-	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5" />
-	<polygon stroke="black" stroke-width="1" points="266.5,51.5 411.5,51.5" />
-	<polygon fill="black" stroke-width="1" points="411.5,51.5 403.5,46.5 403.5,56.5" />
-	<polygon stroke="black" stroke-width="1" points="411.5,51.5 266.5,51.5" />
-	<polygon fill="black" stroke-width="1" points="266.5,51.5 274.5,56.5 274.5,46.5" />
-	<polygon stroke="black" stroke-width="1" points="485.359,120.212 457.641,76.788" />
-	<polygon fill="black" stroke-width="1" points="457.641,76.788 457.731,86.221 466.16,80.841" />
-	<polygon stroke="black" stroke-width="1" points="227.7,80.18 218.3,110.82" />
-	<polygon fill="black" stroke-width="1" points="218.3,110.82 225.426,104.638 215.866,101.705" />
-	<polygon stroke="black" stroke-width="1" points="413.45,62.14 237.55,128.86" />
-	<polygon fill="black" stroke-width="1" points="237.55,128.86 246.803,130.698 243.257,121.348" />
-	<polygon stroke="black" stroke-width="1" points="179.5,139.5 112.5,139.5" />
-	<polygon fill="black" stroke-width="1" points="112.5,139.5 120.5,144.5 120.5,134.5" />
-	<polygon stroke="black" stroke-width="1" points="112.5,139.5 179.5,139.5" />
-	<polygon fill="black" stroke-width="1" points="179.5,139.5 171.5,134.5 171.5,144.5" />
-	<polygon stroke="black" stroke-width="1" points="376.542,154.149 425.458,76.851" />
-	<polygon fill="black" stroke-width="1" points="425.458,76.851 416.955,80.937 425.405,86.284" />
-	<polygon stroke="black" stroke-width="1" points="331.5,171.818 238.5,147.182" />
-	<polygon fill="black" stroke-width="1" points="238.5,147.182 244.953,154.064 247.513,144.397" />
-	<polygon stroke="black" stroke-width="1" points="264.774,61.529 473.226,135.471" />
-	<polygon fill="black" stroke-width="1" points="473.226,135.471 467.358,128.084 464.015,137.509" />
-</svg>
-<p>Notice in the second DFS, we visit <script type="math/tex">c</script> first and there are no nodes reachable from <script type="math/tex">c</script>, so <script type="math/tex">c</script> is a strongly connected component. We next visit <script type="math/tex">\{a,b,c\}</script> and that’s our second strongly connected component. We finally visit <script type="math/tex">\{d,e\}</script> and that’s our third and final strongly connected component as expected.
+<b>3 Example</b><br />
+<img src="http://localhost:4000/assets/scc/1.png" width="100%" />
+Let’s apply Kosaraju’s algorithm on the above graph. First we need to run DFS while keeping tracking of the finishing times of vertices. We start by visiting <script type="math/tex">a</script> and mark the start time as 0. We will continue to visit <script type="math/tex">f</script> and then <script type="math/tex">b</script> marking their start times below.
+<img src="http://localhost:4000/assets/scc/2.png" width="100%" />
+Now <script type="math/tex">b</script> doesn’t have any more neighbors to visit and so we mark it as finished with finish time = 3. We then visit <script type="math/tex">e</script> and <script type="math/tex">f</script> and mark them as finished when there are no more neighbors to visit. Below is the result so far.
+<img src="http://localhost:4000/assets/scc/3.png" width="100%" />
+Next we see that <script type="math/tex">f</script> is finished and we return to <script type="math/tex">a</script> but <script type="math/tex">a</script> doesn’t have more neighbors and so we mark it finished as well.
+<img src="http://localhost:4000/assets/scc/4.png" width="100%" />
+We finally visit <script type="math/tex">c</script> and mark it as finished as well.
+<img src="http://localhost:4000/assets/scc/5.png" width="100%" />
+Great! Now we run the second step of Kosaraju’s algorithm and reverse all the edges in <script type="math/tex">G</script>.
+<img src="http://localhost:4000/assets/scc/6.png" width="100%" />
+Now to the last step of running a second pass of dfs in the reversed graph starting with the node with the largest finishing time. We therefore start with <script type="math/tex">c</script>. We notice that <script type="math/tex">c</script> can’t reach any vertices and so <script type="math/tex">c</script> is the first strongly connected component!
+<img src="http://localhost:4000/assets/scc/7.png" width="100%" />
+We next visit <script type="math/tex">a</script>, <script type="math/tex">f</script> and <script type="math/tex">b</script> and that’s our second strongly connected component. 
+<img src="http://localhost:4000/assets/scc/8.png" width="100%" />
+We finally visit <script type="math/tex">d</script> and <script type="math/tex">e</script> and that’s our third and final strongly connected component as expected.
+<img src="http://localhost:4000/assets/scc/9.png" width="100%" />
 <br />
 <br /></p>
 <hr />
@@ -270,7 +213,7 @@ What are we doing in this algorithm algorithm? Two passes of DFS that we know ru
 <!------------------------------------------------------------------------------------>
 <p><br />
 <b>6 Detailed Implementation:</b> 
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/connected-components/strongly-connected-components-directed-kosaraju
+https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/connected-components/strongly-connected-components-directed-kosaraju.cpp
 <br /></p>
 
 

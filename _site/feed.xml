@@ -1,96 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-11T08:22:45-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello</subtitle><entry><title type="html">Patricia Tries</title><link href="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html" rel="alternate" type="text/html" title="Patricia Tries" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/patricia-trie</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;http://web.stanford.edu/class/cs166/
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-11T12:11:43-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello</subtitle><entry><title type="html">Fenwick Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html" rel="alternate" type="text/html" title="Fenwick Trees" /><published>2019-07-11T07:01:36-07:00</published><updated>2019-07-11T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bellman/1.png&quot; width=&quot;100%&quot; /&gt;
+&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+(1) 
 &lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;1 Introduction&lt;/b&gt;
 &lt;br /&gt;
-Now that we have seen the &lt;a href=&quot;/jekyll/update/2019/07/06/tries.html&quot;&gt;trie&lt;/a&gt; data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; strings of total length &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and a string pattern &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We want to find all the strings that match  &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. With a regular trie we solved it with &lt;script type=&quot;math/tex&quot;&gt;\langle O(m),O(n) \rangle&lt;/script&gt; time where &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt; is the preprocessing step of building the trie out of all the strings we’re given. The &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time is the look up time for each pattern of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. Can we make it faster?
+K
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 The Patricia Trie Data Structure&lt;/b&gt;
+&lt;b&gt;2 Bellman-Ford&lt;/b&gt;
 &lt;br /&gt;
-Give the trie below:
-&lt;img src=&quot;http://localhost:4000/assets/trie/3.png&quot; width=&quot;100%&quot; /&gt;
-In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result.
-&lt;img src=&quot;http://localhost:4000/assets/trie/4.png&quot; width=&quot;100%&quot; /&gt;
-That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Properties of Patricia Tries&lt;/b&gt;
-&lt;br /&gt;
-Can we upper bound the number of nodes in a Patricia trie? Yes!&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Claim: the number of nodes in a Patricia trie with &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; words is &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt; nodes&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Proof:&lt;br /&gt;
-We know that we have at most &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; nodes that mark the end of a valid word in a patricia trie. Let’s remove all internal nodes so now we have &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; clusters and let’s add the internal nodes one at a time. Each internal node added will combine two clusters together. This will mean there are &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt; internal nodes total. (If not then an internal node will end up having only one child which is a contradiction). Therefore, the total number of nodes is &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Search&lt;/b&gt;
-&lt;br /&gt;
-S
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+K&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
-How long does search takes? oh only the length of the key or pattern!! so &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;!
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Insert&lt;/b&gt;
-&lt;br /&gt;
-S
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;So insert takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time as well!
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Running Time&lt;/b&gt;
-&lt;br /&gt;
-W
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
-&lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!</summary></entry><entry><title type="html">Suffix Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html" rel="alternate" type="text/html" title="Suffix Trees" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/suffix-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References (1) 1 Introduction K 2 Bellman-Ford K</summary></entry><entry><title type="html">Suffix Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html" rel="alternate" type="text/html" title="Suffix Trees" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/suffix-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Algorithms by Robert Sedgwick and Kevin Wayne
 &lt;br /&gt;&lt;/li&gt;
@@ -208,7 +139,99 @@ We mentioned above that insert and search both take &lt;script type=&quot;math/t
 &lt;br /&gt;
 https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Given strings of total length and a string pattern of length . We want to find all the strings that match . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take time. However, suppose that we now we have patterns, then this approach will take time is really slow. In the RMQ notation preprocessing time, query_time, this will be . So how can we make it faster? 2 The Trie Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for keys. In the picture above, we can form the words (words end with colored nodes): cake, cakes, cat, civil and cider. Let’s start with studying some properties of tries: &amp;lt;&amp;gt; Each node indicates whether it is the end of a valid word or not. In the above example, colored nodes represent valid words. &amp;lt;&amp;gt; Each node will have pointers or children where is the alphabet size. &amp;lt;&amp;gt; Edges represent letters. For example, the root node has one edge () to the node below. &amp;lt;&amp;gt; Each node also has only one parent. Let’s look at what a trie really looks like: You can see above, the root has only edge/link. From , we can traverse to either or . From we can add or only and from we can add or and so on. 3 Search How do we search for a word? We just traverse down the root and keep matching until we reach the last character of the string we’re searching. If the node we’re on has a marker to indicate it ends a word, then we return true. If it’s not or if we reach a null node, then we return false. int search(std::string word) { long m = word.length(); node *current = root; for (int i = 0; i &amp;lt; m; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // null pointer return 0; // not found } // move to the child current = current-&amp;gt;children[index]; } return (current != NULL &amp;amp;&amp;amp; current-&amp;gt;value); } How long does search takes? oh only the length of the key or pattern!! so ! 4 Insert To insert a key we follow a similar process. We start at the root and we also start at the beginning of the key to be inserted. If the letter we’re on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter. void insert(std::string word) { if (search(word)) { // word exists return; } int length = (int) word.length(); node *current = root; this-&amp;gt;count++; // increment word count for (int i = 0; i &amp;lt; length; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // this letter doesn't exist, create it current-&amp;gt;children[index] = new node(); } // this letter has a link already, follow it along current = current-&amp;gt;children[index]; } // mark the last node, this is the end of our word // this is a marker of an end to a valid word current-&amp;gt;value = this-&amp;gt;count; } So insert takes time as well! 6 Running Time We mentioned above that insert and search both take time where is the length of the pattern. How long does it take to build a trie to represent all words of total length ? We need to make insertions each of which will take size of each word. Since the total length of all words is , then the total time is which happens only once intially. Therefore, in the RMQ notation we will have which is a lot better than the naive solution. 7 Full Implementation: https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp</summary></entry><entry><title type="html">Tries (Prefix Trees)</title><link href="http://localhost:4000/jekyll/update/2019/07/06/tries.html" rel="alternate" type="text/html" title="Tries (Prefix Trees)" /><published>2019-07-06T12:01:36-07:00</published><updated>2019-07-06T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/06/tries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/06/tries.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Given strings of total length and a string pattern of length . We want to find all the strings that match . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take time. However, suppose that we now we have patterns, then this approach will take time is really slow. In the RMQ notation preprocessing time, query_time, this will be . So how can we make it faster? 2 The Trie Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for keys. In the picture above, we can form the words (words end with colored nodes): cake, cakes, cat, civil and cider. Let’s start with studying some properties of tries: &amp;lt;&amp;gt; Each node indicates whether it is the end of a valid word or not. In the above example, colored nodes represent valid words. &amp;lt;&amp;gt; Each node will have pointers or children where is the alphabet size. &amp;lt;&amp;gt; Edges represent letters. For example, the root node has one edge () to the node below. &amp;lt;&amp;gt; Each node also has only one parent. Let’s look at what a trie really looks like: You can see above, the root has only edge/link. From , we can traverse to either or . From we can add or only and from we can add or and so on. 3 Search How do we search for a word? We just traverse down the root and keep matching until we reach the last character of the string we’re searching. If the node we’re on has a marker to indicate it ends a word, then we return true. If it’s not or if we reach a null node, then we return false. int search(std::string word) { long m = word.length(); node *current = root; for (int i = 0; i &amp;lt; m; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // null pointer return 0; // not found } // move to the child current = current-&amp;gt;children[index]; } return (current != NULL &amp;amp;&amp;amp; current-&amp;gt;value); } How long does search takes? oh only the length of the key or pattern!! so ! 4 Insert To insert a key we follow a similar process. We start at the root and we also start at the beginning of the key to be inserted. If the letter we’re on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter. void insert(std::string word) { if (search(word)) { // word exists return; } int length = (int) word.length(); node *current = root; this-&amp;gt;count++; // increment word count for (int i = 0; i &amp;lt; length; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // this letter doesn't exist, create it current-&amp;gt;children[index] = new node(); } // this letter has a link already, follow it along current = current-&amp;gt;children[index]; } // mark the last node, this is the end of our word // this is a marker of an end to a valid word current-&amp;gt;value = this-&amp;gt;count; } So insert takes time as well! 6 Running Time We mentioned above that insert and search both take time where is the length of the pattern. How long does it take to build a trie to represent all words of total length ? We need to make insertions each of which will take size of each word. Since the total length of all words is , then the total time is which happens only once intially. Therefore, in the RMQ notation we will have which is a lot better than the naive solution. 7 Full Implementation: https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp</summary></entry><entry><title type="html">Patricia Tries</title><link href="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html" rel="alternate" type="text/html" title="Patricia Tries" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/patricia-trie</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;http://web.stanford.edu/class/cs166/
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+Now that we have seen the &lt;a href=&quot;/jekyll/update/2019/07/06/tries.html&quot;&gt;trie&lt;/a&gt; data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; strings of total length &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and a string pattern &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We want to find all the strings that match  &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. With a regular trie we solved it with &lt;script type=&quot;math/tex&quot;&gt;\langle O(m),O(n) \rangle&lt;/script&gt; time where &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt; is the preprocessing step of building the trie out of all the strings we’re given. The &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time is the look up time for each pattern of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. Can we make it faster?
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 The Patricia Trie Data Structure&lt;/b&gt;
+&lt;br /&gt;
+Give the trie below:
+&lt;img src=&quot;http://localhost:4000/assets/trie/3.png&quot; width=&quot;100%&quot; /&gt;
+In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result.
+&lt;img src=&quot;http://localhost:4000/assets/trie/4.png&quot; width=&quot;100%&quot; /&gt;
+That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 Properties of Patricia Tries&lt;/b&gt;
+&lt;br /&gt;
+Can we upper bound the number of nodes in a Patricia trie? Yes!&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Claim: the number of nodes in a Patricia trie with &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; words is &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt; nodes&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Proof:&lt;br /&gt;
+We know that we have at most &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; nodes that mark the end of a valid word in a patricia trie. Let’s remove all internal nodes so now we have &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; clusters and let’s add the internal nodes one at a time. Each internal node added will combine two clusters together. This will mean there are &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt; internal nodes total. (If not then an internal node will end up having only one child which is a contradiction). Therefore, the total number of nodes is &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 Search&lt;/b&gt;
+&lt;br /&gt;
+S
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+How long does search takes? oh only the length of the key or pattern!! so &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;!
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 Insert&lt;/b&gt;
+&lt;br /&gt;
+S
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;So insert takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time as well!
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 Running Time&lt;/b&gt;
+&lt;br /&gt;
+W
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
+&lt;br /&gt;
+https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!</summary></entry><entry><title type="html">Tries (Prefix Trees)</title><link href="http://localhost:4000/jekyll/update/2019/07/06/tries.html" rel="alternate" type="text/html" title="Tries (Prefix Trees)" /><published>2019-07-06T12:01:36-07:00</published><updated>2019-07-06T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/06/tries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/06/tries.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Algorithms by Robert Sedgwick and Kevin Wayne
 &lt;br /&gt;&lt;/li&gt;
@@ -804,7 +827,7 @@ Based on our solution, we will pick &lt;script type=&quot;math/tex&quot;&gt;A1&l
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;5 Proof of Correctness&lt;/b&gt;&lt;br /&gt;
-This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are &lt;b&gt; not ruling out &lt;/b&gt; the optimal solution. So each decision we make doesn’t affect the our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
+This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are &lt;b&gt; not ruling out &lt;/b&gt; the optimal solution. So each decision we make doesn’t affect our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, this should sound very familiar, we have a base case where we start with an empty set of activities and then we want to prove that each selection we make doesn’t rule out an optimal solution. What proof method should we use? of course, Induction.
@@ -845,7 +868,7 @@ If we need to sorted then it will be &lt;script type=&quot;math/tex&quot;&gt;O(n
 &lt;b&gt;7 Detailed Implementation:&lt;/b&gt; &lt;br /&gt;
 -
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Problems with greedy solutions might have really simple and straight forward solutions however they are really hard to reason about and therefore, greedy algorithms are generally taught toward the end of an algorithms class. One the of classic problems with greedy solutions is the activity selection problem. In this problem we are given a list of activities, each with a start time and a finish time and we would like to pick activities such that the total number of activities is maximized with the constraint that no two activities can overlap. 2 Greedy Solution As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activiy with the earliest finish time at each step until we run out of activities. 3 Example Suppose we have the following activities: Based on our solution, we will pick first. We will skip since it violates the condition of not having overlapped activities. We will then go on to pick , and . 4 Algorithm // re-do it again std::vector&amp;lt;activity&amp;gt; select_maximum_activities(std::vector&amp;lt;activity&amp;gt; a) { std::sort(a.begin(), a.end(), custom_sort_by_finish_time); std::vector&amp;lt;activity&amp;gt; picked; for act in a { if act.start_time &amp;gt;= last picked activity.finish_time { picked.push_back(act); } } return picked } 5 Proof of Correctness This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are not ruling out the optimal solution. So each decision we make doesn’t affect the our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.</summary></entry><entry><title type="html">Longest Increasing Subsequence</title><link href="http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence.html" rel="alternate" type="text/html" title="Longest Increasing Subsequence" /><published>2019-06-25T12:01:36-07:00</published><updated>2019-06-25T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Problems with greedy solutions might have really simple and straight forward solutions however they are really hard to reason about and therefore, greedy algorithms are generally taught toward the end of an algorithms class. One the of classic problems with greedy solutions is the activity selection problem. In this problem we are given a list of activities, each with a start time and a finish time and we would like to pick activities such that the total number of activities is maximized with the constraint that no two activities can overlap. 2 Greedy Solution As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activiy with the earliest finish time at each step until we run out of activities. 3 Example Suppose we have the following activities: Based on our solution, we will pick first. We will skip since it violates the condition of not having overlapped activities. We will then go on to pick , and . 4 Algorithm // re-do it again std::vector&amp;lt;activity&amp;gt; select_maximum_activities(std::vector&amp;lt;activity&amp;gt; a) { std::sort(a.begin(), a.end(), custom_sort_by_finish_time); std::vector&amp;lt;activity&amp;gt; picked; for act in a { if act.start_time &amp;gt;= last picked activity.finish_time { picked.push_back(act); } } return picked } 5 Proof of Correctness This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are not ruling out the optimal solution. So each decision we make doesn’t affect our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.</summary></entry><entry><title type="html">Longest Increasing Subsequence</title><link href="http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence.html" rel="alternate" type="text/html" title="Longest Increasing Subsequence" /><published>2019-06-25T12:01:36-07:00</published><updated>2019-06-25T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;
 &lt;br /&gt;
 Let &lt;script type=&quot;math/tex&quot;&gt;A = [a_0, a_1, a_2,...,a_n]&lt;/script&gt; be an array containing &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; real numbers. A longest increasing subsequence of A is a sequence &lt;script type=&quot;math/tex&quot;&gt;0 \leq i_0 \leq i_1 \leq ... \leq i_k \leq n&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;A[i_i] \leq A[i_2] \leq ... \leq A[i_k]&lt;/script&gt; so that &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is of maximum value.
 &lt;br /&gt;
@@ -1241,174 +1264,4 @@ We visit each vertex at most once only because of the visited array we’re main
 &lt;b&gt;7 Full Implementation:&lt;/b&gt; 
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/breadth-first-search
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction</summary></entry><entry><title type="html">Input Handling Examples</title><link href="http://localhost:4000/jekyll/update/2019/06/18/input-handling.html" rel="alternate" type="text/html" title="Input Handling Examples" /><published>2019-06-18T12:01:36-07:00</published><updated>2019-06-18T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/18/input-handling</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/18/input-handling.html">&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;Introduction&lt;/b&gt;&lt;br /&gt;
-These are some samples for reading inputs while doing UVa problems. I find myself often looking at past solutions and wasting time finding the right template. This is a reference for myself to lookup what I want really fast.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!-------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;0 Read a 2D grid with no spaces between cells (std::getline)&lt;/b&gt;&lt;br /&gt;
-Simple 2D grid, though we don’t know when the tests terminate. Also no space between cells&lt;br /&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;td&gt;
-3 &lt;br /&gt;
-111 &lt;br /&gt;
-222 &lt;br /&gt;
-333 &lt;br /&gt;
-2 &lt;br /&gt;
-444 &lt;br /&gt;
-333 &lt;br /&gt;
-&lt;/td&gt;
-&lt;/table&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// a line here is 123&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// no input, return false (we didn't read anything)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// starting cells, can have multiple&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!-------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Unbounded tests and variable length strings (use sstream)&lt;/b&gt;&lt;br /&gt;
-We have a bunch of tests but we don’t know the number of tests. This is an example:&lt;br /&gt;&lt;/p&gt;
-&lt;table&gt;
-	&lt;td&gt;
-5 &lt;br /&gt;
-E 0.01 *A &lt;br /&gt;
-... &lt;br /&gt;
-10 &lt;br /&gt;
-S 2.23 Q* &lt;br /&gt;
-A 9.76 CKM &lt;br /&gt;
-...
-&lt;/td&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Each test case starts with the number of lines in the test case. Each line contains three values and so we use std::istringstream to extract the values. The following works although not pretty.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include&amp;lt;sstream&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// for each test case, we read the number of lines in the test case&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;neighbors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;planet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// this is my hack to know we're done and there are no more lines&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	
-	&lt;span class=&quot;c1&quot;&gt;// take this line now and process it the way you want&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// in this specific case, we know we have three values&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;istringstream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;planet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;neighbors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!-------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Reading a 3D grid with no space between cells plus a terminating character (can use fgets)&lt;/b&gt;&lt;br /&gt;
-This is from problem “532 - Dungeon Master”. Here we know when to terminate. We also know the number of rows, colums and the height (number of levels). There is also an extra new line between each board.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;td&gt;
-2 4 5 &lt;br /&gt;
-SXXXX &lt;br /&gt;
-X@@@X &lt;br /&gt;
-X@@XX &lt;br /&gt;
-@@@X@&lt;br /&gt;
-&lt;br /&gt;
-@@@@@ &lt;br /&gt;
-@@@@@ &lt;br /&gt;
-@@X@@ &lt;br /&gt;
-@@XXX &lt;br /&gt;
-&lt;br /&gt;
-1 3 3 &lt;br /&gt;
-S@@&lt;br /&gt;
-@E@ &lt;br /&gt;
-@@@ &lt;br /&gt;
-&lt;br /&gt;
-0 0 0
-&lt;/td&gt;
-&lt;/table&gt;
-
-&lt;p&gt;And this is the code I’ve used.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;L&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// each level&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// each board&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;fgets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// a line here is @@XX@&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// put each char in its cell&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'S'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// record the start position&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;start_k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;start_i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;start_j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;fgets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// get the nasty extra line between levels&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!-------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Strings with variable number of ints&lt;/b&gt;&lt;br /&gt;
-Consider a number of lines where each line consists of a variable number of ints. We can use std::istringstream and use a while loop to read as many ints as possible from that line. Code below shows this:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include&amp;lt;sstream&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;istringstream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// do something with num&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!-------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;Other examples:&lt;/b&gt; 
-https://github.com/strncat/competitive-programming&lt;/p&gt;</content><author><name></name></author><summary type="html">Introduction These are some samples for reading inputs while doing UVa problems. I find myself often looking at past solutions and wasting time finding the right template. This is a reference for myself to lookup what I want really fast. 0 Read a 2D grid with no spaces between cells (std::getline) Simple 2D grid, though we don’t know when the tests terminate. Also no space between cells 3 111 222 333 2 444 333 char m[MAX][MAX]; std::vector&amp;lt;std::pair&amp;lt;int,int&amp;gt;&amp;gt; start; bool read_input() { int n; scanf(&quot;%d\n&quot;, &amp;amp;n); std::string line; for (int i = 0; i &amp;lt; n; i++) { std::getline(std::cin, line); // a line here is 123 // no input, return false (we didn't read anything) if (line.size() == 0) { return false; } for (int j = 0; j &amp;lt; n; j++) { m[i][j] = line[j]; if (m[i][j] == '1') { // starting cells, can have multiple start.push_back({i,j}); } } } return true; } 1 Unbounded tests and variable length strings (use sstream) We have a bunch of tests but we don’t know the number of tests. This is an example: 5 E 0.01 *A ... 10 S 2.23 Q* A 9.76 CKM ...</summary></entry></feed>
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction</summary></entry></feed>

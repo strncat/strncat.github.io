@@ -149,8 +149,9 @@ As this point, the algorithm terminates and we have the final shortest paths fro
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>6 Can we have negative cycles?</b> <br>
-If $$G$$ has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by doing traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if weights are continuing to decrease. If they are then we know we have a cycle. Sample code below can be added to the above implementation before returing from the function:
+<b>6 Can we have negative cycles?</b>
+<br>
+If $$G$$ has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if the lengths are continuing to decrease. If they decrease, then we know we have a cycle and we can exit and report that. The sample code below can be added to the above implementation before returing from the function:
 {% highlight c++ %}
 We can add one additional iteration to discover negative cycles:
 for (int i = 0; i < g.size(); i++) { // for every edge in the graph
@@ -168,8 +169,9 @@ for (int i = 0; i < g.size(); i++) { // for every edge in the graph
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>6 Why only $$n-1$$ iterations?</b> <br>
-To answer this question, we ask: can shortest paths have positive cycles? The answer is again no. Suppose that we are given a shortest path with a positive weight cycle. Then we can remove the cycle from the path and arrive at a shorter path. This is a contradiction and therefore, we can not have positive weight cycles. On the otherhand if the cycle has weight zero then removing the cycle from the shortest path will produce a path the same weight. Therefore, we can restrict finding the shortest path problem to finding simple shortest paths. We also know that simple paths in a graph with $$n$$ vertices can have at most $$n-1$$ edges! (CLRS page 645)
+<b>6 Why only $$n-1$$ iterations?</b>
+<br>
+To answer this question, we ask: can we have positive cycles in a shortest path? The answer is again no. Suppose that we are given a shortest path with a positive weight cycle. Then we can remove the cycle from the path and arrive at a shorter path. This is a contradiction and therefore, we can not have positive weight cycles. Additionally if the cycle is of zero weight or length, then removing the cycle from the shortest path will produce a path with the same weight/length. Therefore, we can restrict finding the shortest path problem to finding a simple shortest path. Simple paths in a graph with $$n$$ vertices can have at most $$n-1$$ edges and therefore, all we need to do is run Bellman-Ford for $$n-1$$ iterations. (CLRS page 645)
 <br>
 <br>
 <hr>
@@ -186,7 +188,7 @@ To answer this question, we ask: can shortest paths have positive cycles? The an
 <b>Base Case: </b> After 0th iteration, we have $$D[s, 0] = 0$$ and $$D[v, 0]=\infty$$ for any $$v \in V - \{s\}$$ as required.
 <br>
 <br>
-<b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$i$$. We want to prove it for $$i+1$$. Let $$v$$ be a vertex in $$V$$. Assume there exists a shortest path between $$s$$ and $$v$$. Let $$u$$ be the vertex right before $$v$$ on this path. By the inductive hypothesis, we know that $$D[u, i]$$ is the length of the shortest simple path between $$s$$ and $$u$$. In the $$i+1$$'st iteration we know two things. First we ensure $$D[v, i+1] \leq D[u, i]+w(u,v)$$ by the relaxation step. Second $$D[v, i+1]$$ initially is an overestimate . Therefore, $$D[v, i+1]$$ is the length of the shortest path between $$s$$ and $$v$$ of at most $$i+1$$ edges.
+<b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$i$$. We want to prove it for $$i+1$$. Let $$v$$ be a vertex in $$V$$. Assume there exists a shortest path between $$s$$ and $$v$$. Let $$u$$ be the vertex right before $$v$$ on this path. By the inductive hypothesis, we know that $$D[u, i]$$ is the length of the shortest simple path between $$s$$ and $$u$$. In the $$i+1$$'st iteratio, we ensure that we have $$D[v, i+1] \leq D[u, i]+w(u,v)$$ by the relaxation step and we also know that $$D[v, i+1]$$ is greater or equal than the length of the shortest path from $$s$$ to $$v$$ with at most $$i+1$$ (Are we saying $$D[v,i+1]$$ is an overestimate? don't we have to prove it like Dijkstra?). Therefore, $$D[v, i+1]$$ is the length of the shortest path between $$s$$ and $$v$$ of at most $$i+1$$ edges.
 <br>
 <br>
 <b>Conclusion:</b> After $$n-1$$ iterations, for every $$v \in V$$, $$D[v, n-1]$$ is length of the shortest simple path from $$s$$ to $$v$$ with at most $$n-1$$ edges.

@@ -56,12 +56,12 @@ Let $$G=(V,E)$$ be a weighted graph with $$V$$ vertices and $$E$$ edges. We alre
 <br>
 Bellman-Ford is a dynamic programming algorithm to find the shortest paths in a graph $$G$$ from a given source vertex $$s$$. Since it's a dynamic programming algorithm then this means that we must have some recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
 <br><br>
-Let $$D[v,i]$$ be the length of the shortest path from $$s$$ to some vertex $$v$$ whose number of edges is at most $$i$$. Given that we know $$D[v,i]$$ for all $$v \in V$$, what can we say about $$D[v,i+1]$$? In other words, given that we know the shortest path from $$s$$ to any vertex in $$v$$ with at most $$i$$ edges, what can we say about the length of the shortest path from $$s$$ to some vertex $$v$$ with at most $$i+1$$ edges? Let's think about this before looking at the answer. Bellman-Ford definitely wasn't easy for me to think about.
+Let $$D[v,i]$$ be the length of the shortest path from $$s$$ to some vertex $$v$$ whose number of edges is at most $$i$$. Given that we know $$D[v,i]$$ for all $$v \in V$$, what can we say about $$D[v,i+1]$$? In other words, given that we know the shortest path from $$s$$ to any vertex in $$G$$ with at most $$i$$ edges, what can we say about the length of the shortest path from $$s$$ to some vertex $$v$$ with at most $$i+1$$ edges? Let's think about this before looking at the answer. Bellman-Ford definitely wasn't easy for me to think about.
 <br><br>
 <img src="{{ site.url }}/assets/bellman/2.png" width="100%">
 Consider the graph above and let's assume that we already know all the shortest paths of at most 2 edges from $$s$$ to any vertex in $$G$$. So for example we know that $$D[a,2]=6$$, $$D[b,2]=8$$, $$D[c,2]=4$$ and $$D[t,2]=7$$. So now we know the shortest distance from $$s$$ to $$t$$ of at most two edges is 7. Can we get a shorter path by considering any path that uses 3 edges? Yes!!! we can use the shortest path from $$s$$ to $$b$$ instead of length 8 and then take in $$(b,t)=-4$$ to get a shorter path of length 4. In other words, forget about the path $$s->c->t$$ and go through $$s->a->b->t$$. How can we put this together formally? 
 <br><br>
-Give a vertex $$v \in V$$. To find $$D[v,i+1]$$, we need to see if for any vertex $$u \in V$$, the length of the shortest path from $$s$$ to $$u$$ of at most $$i$$ edges (in other words $$D[u, i]$$) plus $$w(u,v)$$ has a lower value than we currently have in $$D[v,i]$$. More formally,
+Given a vertex $$v \in V$$. To find $$D[v,i+1]$$, we need to see if for any vertex $$u \in V$$, the length of the shortest path from $$s$$ to $$u$$ of at most $$i$$ edges (in other words $$D[u, i]$$) plus $$w(u,v)$$ has a lower value than we currently have in $$D[v,i]$$. More formally,
 <div center>
 $$
 \begin{align*}

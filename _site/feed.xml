@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-11T12:11:43-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello</subtitle><entry><title type="html">Fenwick Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html" rel="alternate" type="text/html" title="Fenwick Trees" /><published>2019-07-11T07:01:36-07:00</published><updated>2019-07-11T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bellman/1.png&quot; width=&quot;100%&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-12T10:14:19-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello</subtitle><entry><title type="html">Fenwick Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html" rel="alternate" type="text/html" title="Fenwick Trees" /><published>2019-07-11T07:01:36-07:00</published><updated>2019-07-11T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bellman/1.png&quot; width=&quot;100%&quot; /&gt;
 &lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 (1) 
 &lt;br /&gt;
@@ -21,7 +21,185 @@ K
 K&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References (1) 1 Introduction K 2 Bellman-Ford K</summary></entry><entry><title type="html">Suffix Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html" rel="alternate" type="text/html" title="Suffix Trees" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/suffix-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References (1) 1 Introduction K 2 Bellman-Ford K</summary></entry><entry><title type="html">Topological Sort</title><link href="http://localhost:4000/jekyll/update/2019/07/10/topological-sort.html" rel="alternate" type="text/html" title="Topological Sort" /><published>2019-07-10T12:01:36-07:00</published><updated>2019-07-10T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/10/topological-sort</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/10/topological-sort.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;G = (V, E)&lt;/script&gt; be a directed acyclic graph consisting of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices &lt;script type=&quot;math/tex&quot;&gt;u \in V&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v \in V&lt;/script&gt;, if &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; must come before &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; in the ordering.
+&lt;br /&gt;&lt;br /&gt;
+In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is a prerequisite to class &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; comes before &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in the sorted list.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 Revisiting Depth First Search&lt;/b&gt;
+&lt;br /&gt;
+Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required!&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// mark the start time for v&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// mark the finish time for v&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// we can push the nodes here onto a stack!!! yay&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 Example&lt;/b&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/topo/1.png&quot; alt=&quot;my photo&quot; /&gt;
+Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; (arbitrarily chosen), mark its start time as zero and visit &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;. We will mark &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;’s start time and then recursively call DFS on &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt;. We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; won’t have more neighbors and so we will mark its finish time. We do the same thing with &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; and we’ll end up with the graph below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/topo/2.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next we will start from &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and visit &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; and mark both their start and finish times. Finally we will visit &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and mark its times as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/topo/3.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice how if we ordered the nodes by their finishing times (&lt;script type=&quot;math/tex&quot;&gt;a, c, b, f, e, d&lt;/script&gt;) descendingly then we’ll have a valid ordering of the nodes. 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 Proof of Correctness&lt;/b&gt;
+&lt;br /&gt;
+The first time I saw Topological Sort I didn’t believe. It seemed strange to just be able to sort the vertices by just doing a DFS. What do we need to show to prove that topological sort works? what is the intuition here? Let’s think about this. We need to prove that for any two vertices &lt;script type=&quot;math/tex&quot;&gt;a \in V&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b \in V&lt;/script&gt;, if there is an edge from &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; to be &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; will come before &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in the sorted output. 
+&lt;br /&gt;&lt;br /&gt;
+How do we prove this? Well we know that topological sort relies on the finishing times of vertices and we know that &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;’s finishing time gets marked after its children and so this means that we want to prove that &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;’s finishing time is greater than &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;’s finishing time. So to summarize, we really want to prove the following claim: For any two vertices &lt;script type=&quot;math/tex&quot;&gt;a \in V&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b \in V&lt;/script&gt;, if there is an edge from &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;’s finishing time is greater than &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;’s finishing time.&lt;/p&gt;
+
+&lt;p&gt;In order to prove the above claim we will use a theorem calling the Parenthesis Theorem from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph &lt;script type=&quot;math/tex&quot;&gt;G = (V,E)&lt;/script&gt; and for any vertices &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;, exactly one of the following conditions holds:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;the intervals [u.start_time, u.finish_time] and [v.start_time, v.finish_time] are disjoint and neither &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is a descendant of the other in the depth-first forest.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;the interval [u.start_time, u.finish_time] is contained within the interval [v.start_time, v.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; in the depth-first tree.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;the interval [v.start_time, v.finish_time] is contained within the interval [u.start_time, u.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; in the depth-first tree.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Proof: TODO!&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Now we are ready to prove our earlier claim.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Let &lt;script type=&quot;math/tex&quot;&gt;G = (V,E)&lt;/script&gt; be a directed acyclic graph. For any two vertices &lt;script type=&quot;math/tex&quot;&gt;a, b \in V&lt;/script&gt;, if &lt;script type=&quot;math/tex&quot;&gt;(a,b) \in E&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;.finish_time &amp;gt; &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;.finish_time.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Proof:&lt;br /&gt;
+Let’s consider the DFS tree generated after running DFS and let’s apply the Parenthesis Theorem. According to the theorem one of three conditions must hold:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;the interval [a.start_time, a.finish_time] is contained within the interval [b.start_time, b.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in the depth-first tree. We claim that this case is impossible because by assumption, we know that &lt;script type=&quot;math/tex&quot;&gt;(a,b) \in E&lt;/script&gt; and so if &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is descendant of &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; must have a cycle. This is a contradiction since &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is acyclic.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;the interval [b.start_time, b.finish_time] is contained within the interval [a.start_time, a.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; in the depth-first tree. This immediately shows that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+b.finish_time &lt; a.finish_time %]]&gt;&lt;/script&gt; as we wanted to show.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;the intervals [a.start_time, a.finish_time] and [b.start_time, b.finish_time] are disjoint and neither &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is a descendant of the other in the depth-first forest. In this case, we claim that we must have explored &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; first before &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. Because if we have explored &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; first then we would have explored &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; since &lt;script type=&quot;math/tex&quot;&gt;(a,b) \in E&lt;/script&gt; and so we must have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+b.finish_time &lt; a.finish_time %]]&gt;&lt;/script&gt; as required. Beautiful isn’t it?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We conclude from all three cases that we must have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+b.finish_time &lt; a.finish_time %]]&gt;&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;5 Simple Implementation&lt;/b&gt;
+&lt;br /&gt;
+Let’s rewrite DFS to push the nodes onto a stack and let’s forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let’s call this version topological sort! Here is a simple implementation:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// node is done, we can push it on the ordered stack&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;topological_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// perform dfs until there are no more unvisited nodes&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 Running Time&lt;/b&gt;
+&lt;br /&gt;
+It is just DFS! so the total time is &lt;script type=&quot;math/tex&quot;&gt;O(V+E)&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;7 Full Implementation:&lt;/b&gt;
+&lt;br /&gt;
+https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&amp;lt;std::vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; graph, std::vector&amp;lt;std::pair&amp;lt;int,int&amp;gt;&amp;gt; &amp;amp;times, std::vector&amp;lt;int&amp;gt; &amp;amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &amp;lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below.</summary></entry><entry><title type="html">Suffix Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html" rel="alternate" type="text/html" title="Suffix Trees" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/suffix-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Algorithms by Robert Sedgwick and Kevin Wayne
 &lt;br /&gt;&lt;/li&gt;
@@ -245,7 +423,7 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/tr
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;1 Introduction&lt;/b&gt;
 &lt;br /&gt;
-Consider the following problem: Given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; strings of total length &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and a string pattern &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We want to find all the strings that match  &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt; time. However, suppose that we now we have &lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt; patterns, then this approach will take &lt;script type=&quot;math/tex&quot;&gt;O(mr)&lt;/script&gt; time which is really slow, especially if we’re displaying auto-complete live results to the user as they type their query. In the RMQ notation, we will write &lt;script type=&quot;math/tex&quot;&gt;\langle O(1), O(mr)\rangle&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt; is the preprocessing time and &lt;script type=&quot;math/tex&quot;&gt;O(mr)&lt;/script&gt; is the query_time. So how can we make it faster?
+Consider the following problem: Given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; strings of total length &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and a string pattern &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We want to find all the strings that match  &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt; time. However, suppose that we now we have &lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt; patterns, then this approach will take &lt;script type=&quot;math/tex&quot;&gt;O(mr)&lt;/script&gt; time which is really slow, especially if we’re displaying auto-complete live results to the user as they type their queries. In the RMQ notation, we will write &lt;script type=&quot;math/tex&quot;&gt;\langle O(1), O(mr)\rangle&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt; is the preprocessing time and &lt;script type=&quot;math/tex&quot;&gt;O(mr)&lt;/script&gt; is the query time. So how can we make it faster?
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -401,7 +579,7 @@ We mentioned above that insert and search both take &lt;script type=&quot;math/t
 &lt;br /&gt;
 https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Consider the following problem: Given strings of total length and a string pattern of length . We want to find all the strings that match . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take time. However, suppose that we now we have patterns, then this approach will take time which is really slow, especially if we’re displaying auto-complete live results to the user as they type their query. In the RMQ notation, we will write where is the preprocessing time and is the query_time. So how can we make it faster? 2 The Trie Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for keys. In the picture above, we can form the words (words end with colored nodes): cake, cakes, cat, civil and cider. Let’s start with studying some properties of tries: &amp;lt;&amp;gt; Each node indicates whether it is the end of a valid word or not. In the above example, colored nodes represent valid words. &amp;lt;&amp;gt; Each node will have pointers or children where is the alphabet size. &amp;lt;&amp;gt; Edges represent letters. For example, the root node has one edge () to the node below. &amp;lt;&amp;gt; Each node also has only one parent. Let’s look at what a trie really looks like: You can see above, the root has only edge/link. From , we can traverse to either or . From we can add or only and from we can add or and so on. 3 Prefix Search How do we search for prefixes now? given a pattern we want to output all possible matches. We just traverse down the root and keep matching until we reach the last character of the prefix we’re searching. If we want an exact match then we check if the node has a marker to indicate that it ends a valid word and return true if it does. But if we want to print all possible matches then we can take this node we’re currently on and then just do a simple depth first search down every branch to collect every possible word. Let’s look at search first: node* search(std::string word) { long m = word.length(); node *current = root; for (int i = 0; i &amp;lt; m; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // null pointer return NULL; // not found } // move to the child current = current-&amp;gt;children[index]; } return current; } Search is simple. We just traverse down the root and stop when we’re done matching every character in the prefix. Next, we’ll look at word_with_prefix: // prefix match: print all possible matches int words_with_prefix(std::string prefix) { node *current = search(prefix); if (current == NULL) { return 0; } // no matches std::queue&amp;lt;std::string&amp;gt; q; collect(current, prefix, q); while (!q.empty()) { printf(&quot;%s\n&quot;, q.front().c_str()); q.pop(); } return current-&amp;gt;value; // total matches } Here, we utilize search and then pass a queue to collect which will fill the queue with all matches. Next we’ll look at collect: // collect matches recursively from all branches // save them in q void collect(node *current, std::string prefix, std::queue&amp;lt;std::string&amp;gt; &amp;amp;q) { if (current == NULL) { return; } if (current-&amp;gt;marker) { q.push(prefix); } for (int i = 0; i &amp;lt; SIZE; i++) { if (current-&amp;gt;children[i] != NULL) { char c = i + 'a'; collect(current-&amp;gt;children[i], prefix + c, q); } } } Here we will perform a depth first search on the tree rooted at current. As we go down each path, we will collect the characters in the string prefix. Once we’re at a leaf node and its value (marker) is not 0, meaning it’s a valid word, then we will push it on the queue. How long does search takes? oh only the length of the key or pattern!! so ! 4 Insert To insert a key we follow a similar process. We start at the root and we also start at the beginning of the key to be inserted. If the letter we’re on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter. void insert(std::string word) { if (search(word)) { // word exists return; } int length = (int) word.length(); node *current = root; current-&amp;gt;value++; // increment word count for (int i = 0; i &amp;lt; length; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // this letter doesn't exist, create it current-&amp;gt;children[index] = new node(); } // this letter has a link already, follow it along current = current-&amp;gt;children[index]; current-&amp;gt;value++; } // mark the last node, this is the end of our word // this is a marker of an end to a valid word current-&amp;gt;marker = true; } So insert takes time as well! 5 Delete To be added. 6 Longest Prefix To be added 7 Running Time We mentioned above that insert and search both take time where is the length of the pattern. How long does it take to build a trie to represent all words of total length ? We need to make insertions each of which will take size of each word. Since the total length of all words is , then the total time is which happens only once initially. Therefore, in the RMQ notation we will have which is a lot better than the naive solution. 8 Full Implementation: https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp</summary></entry><entry><title type="html">Depth First Search</title><link href="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" rel="alternate" type="text/html" title="Depth First Search" /><published>2019-07-05T12:01:36-07:00</published><updated>2019-07-05T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/05/dfs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/05/dfs.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Consider the following problem: Given strings of total length and a string pattern of length . We want to find all the strings that match . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take time. However, suppose that we now we have patterns, then this approach will take time which is really slow, especially if we’re displaying auto-complete live results to the user as they type their queries. In the RMQ notation, we will write where is the preprocessing time and is the query time. So how can we make it faster? 2 The Trie Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for keys. In the picture above, we can form the words (words end with colored nodes): cake, cakes, cat, civil and cider. Let’s start with studying some properties of tries: &amp;lt;&amp;gt; Each node indicates whether it is the end of a valid word or not. In the above example, colored nodes represent valid words. &amp;lt;&amp;gt; Each node will have pointers or children where is the alphabet size. &amp;lt;&amp;gt; Edges represent letters. For example, the root node has one edge () to the node below. &amp;lt;&amp;gt; Each node also has only one parent. Let’s look at what a trie really looks like: You can see above, the root has only edge/link. From , we can traverse to either or . From we can add or only and from we can add or and so on. 3 Prefix Search How do we search for prefixes now? given a pattern we want to output all possible matches. We just traverse down the root and keep matching until we reach the last character of the prefix we’re searching. If we want an exact match then we check if the node has a marker to indicate that it ends a valid word and return true if it does. But if we want to print all possible matches then we can take this node we’re currently on and then just do a simple depth first search down every branch to collect every possible word. Let’s look at search first: node* search(std::string word) { long m = word.length(); node *current = root; for (int i = 0; i &amp;lt; m; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // null pointer return NULL; // not found } // move to the child current = current-&amp;gt;children[index]; } return current; } Search is simple. We just traverse down the root and stop when we’re done matching every character in the prefix. Next, we’ll look at word_with_prefix: // prefix match: print all possible matches int words_with_prefix(std::string prefix) { node *current = search(prefix); if (current == NULL) { return 0; } // no matches std::queue&amp;lt;std::string&amp;gt; q; collect(current, prefix, q); while (!q.empty()) { printf(&quot;%s\n&quot;, q.front().c_str()); q.pop(); } return current-&amp;gt;value; // total matches } Here, we utilize search and then pass a queue to collect which will fill the queue with all matches. Next we’ll look at collect: // collect matches recursively from all branches // save them in q void collect(node *current, std::string prefix, std::queue&amp;lt;std::string&amp;gt; &amp;amp;q) { if (current == NULL) { return; } if (current-&amp;gt;marker) { q.push(prefix); } for (int i = 0; i &amp;lt; SIZE; i++) { if (current-&amp;gt;children[i] != NULL) { char c = i + 'a'; collect(current-&amp;gt;children[i], prefix + c, q); } } } Here we will perform a depth first search on the tree rooted at current. As we go down each path, we will collect the characters in the string prefix. Once we’re at a leaf node and its value (marker) is not 0, meaning it’s a valid word, then we will push it on the queue. How long does search takes? oh only the length of the key or pattern!! so ! 4 Insert To insert a key we follow a similar process. We start at the root and we also start at the beginning of the key to be inserted. If the letter we’re on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter. void insert(std::string word) { if (search(word)) { // word exists return; } int length = (int) word.length(); node *current = root; current-&amp;gt;value++; // increment word count for (int i = 0; i &amp;lt; length; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // this letter doesn't exist, create it current-&amp;gt;children[index] = new node(); } // this letter has a link already, follow it along current = current-&amp;gt;children[index]; current-&amp;gt;value++; } // mark the last node, this is the end of our word // this is a marker of an end to a valid word current-&amp;gt;marker = true; } So insert takes time as well! 5 Delete To be added. 6 Longest Prefix To be added 7 Running Time We mentioned above that insert and search both take time where is the length of the pattern. How long does it take to build a trie to represent all words of total length ? We need to make insertions each of which will take size of each word. Since the total length of all words is , then the total time is which happens only once initially. Therefore, in the RMQ notation we will have which is a lot better than the naive solution. 8 Full Implementation: https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp</summary></entry><entry><title type="html">Depth First Search</title><link href="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" rel="alternate" type="text/html" title="Depth First Search" /><published>2019-07-05T12:01:36-07:00</published><updated>2019-07-05T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/05/dfs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/05/dfs.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -875,8 +1053,8 @@ Let &lt;script type=&quot;math/tex&quot;&gt;A = [a_0, a_1, a_2,...,a_n]&lt;/scri
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;b&gt;2 Example&lt;/b&gt;
 &lt;br /&gt;
 Suppose &lt;script type=&quot;math/tex&quot;&gt;A = [3, 8, 1, 2, 7, 9, 6, 4, 5]&lt;/script&gt; then a longest increasing subsequence could be &lt;script type=&quot;math/tex&quot;&gt;[1, 2, 4, 5]&lt;/script&gt;. Note that it is not unique.
@@ -884,8 +1062,8 @@ Suppose &lt;script type=&quot;math/tex&quot;&gt;A = [3, 8, 1, 2, 7, 9, 6, 4, 5]&
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;b&gt;3 The Brute Force Solution&lt;/b&gt;
 &lt;br /&gt;
 We can check every possible subsequence. For each element of &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt;, we either select that element or not. Therefore, the total number of possible subsequences is &lt;script type=&quot;math/tex&quot;&gt;2^n&lt;/script&gt;. As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is &lt;script type=&quot;math/tex&quot;&gt;O(2^n)&lt;/script&gt;.
@@ -893,8 +1071,8 @@ We can check every possible subsequence. For each element of &lt;script type=&qu
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;b&gt;4 Dynamic Programming and the Optimal Substructure&lt;/b&gt;
 &lt;br /&gt;
 To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS).&lt;br /&gt;
@@ -930,8 +1108,8 @@ k &lt; i+1 %]]&gt;&lt;/script&gt;. This means that &lt;script type=&quot;math/te
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;b&gt;3 The &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; Implementation&lt;/b&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;longest_increasing_subsequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -958,18 +1136,19 @@ k &lt; i+1 %]]&gt;&lt;/script&gt;. This means that &lt;script type=&quot;math/te
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
+&lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;5 Running Time:&lt;/b&gt; 
 &lt;br /&gt;
 We’re doing two simple loops to fill arrays &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. Therefore, our runtime is just &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;
 &lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
+&lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;6 Example:&lt;/b&gt; 
 &lt;br /&gt;
@@ -995,10 +1174,10 @@ $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$
 &lt;/div&gt;
 &lt;p&gt;This means that the longest subsequence ends at element 9 or 5. We can then &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; to construct the subsequence. One possible construction will generate: &lt;script type=&quot;math/tex&quot;&gt;[1, 2, 7, 9]&lt;/script&gt;
 &lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
+&lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;5 The O(nlg(n)) Solution with Binary Search:&lt;/b&gt; 
 &lt;br /&gt;
@@ -1051,8 +1230,8 @@ A[i] &lt; M[j] %]]&gt;&lt;/script&gt; for all &lt;script type=&quot;math/tex&quo
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;b&gt;3 The &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; Implementation&lt;/b&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;longest_increasing_subsequence_fast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// O(nlogn)&lt;/span&gt;
@@ -1088,180 +1267,18 @@ A[i] &lt; M[j] %]]&gt;&lt;/script&gt; for all &lt;script type=&quot;math/tex&quo
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;Full Implementation: &lt;/b&gt;&lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp&lt;/p&gt;
-
 &lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Full Implementation &lt;/b&gt;&lt;br /&gt;
+https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
+&lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;References: &lt;/b&gt;&lt;br /&gt;
-These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html and CLRS.&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction Let be an array containing real numbers. A longest increasing subsequence of A is a sequence such that so that is of maximum value. 2 Example Suppose then a longest increasing subsequence could be . Note that it is not unique. 3 The Brute Force Solution We can check every possible subsequence. For each element of , we either select that element or not. Therefore, the total number of possible subsequences is . As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is . 4 Dynamic Programming and the Optimal Substructure To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS). It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let be the length of the longest increasing subsequence ending at , then we will find that $$ \begin{align*} D[i] = 1 + \max({D[k] : k &amp;lt; i \text{ and } A[k] &amp;lt; A[i]}) \end{align*} $$ In other words, the longest increasing subsequence ending at can be found by looking at all where (meaning that comes before ) and (meaning that can extend the subsequence ending at ). We then take the maximum value of , Proof: Let be a natural number and let be the length of the longest increasing subsequence ending at . Consider the subsequence ending at . We have two cases: Case 1: is the smallest element in . Therefore, the length of the subsequence ending at is 1. Case 2: is not the smallest element in . Let be a natural number where . This means that we can use to extend the subsequence ending at if . Since we are searching for the longest increasing subsequence then we take the maximum value for all possible and so is the maximum value plus 1 as defined above. We claim that is the length of longest increasing subsequence ending at . Suppose it wasn’t and that the longest increasing subsequence ending at is and so . By our definition, we know that where is the longest increasing subsequence ending at . This means that but this is not possible since we’re only adding to the subsequence. Therefore, is optimal. 3 The Implementation int longest_increasing_subsequence(int *a, int n) { int D[n], p[n], max = 0; // maximum subsequence ending at a[i] is initially 1 for (int i = 0; i &amp;lt; n; i++) { D[i] = 1; p[i] = -1; // parent array } // for element a[i], check all the previous subsequences where i &amp;lt; j // and see if a[i] can extend any of them for (int i = 1; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; i; j++) { if (A[i] &amp;gt; A[j] &amp;amp;&amp;amp; D[i] &amp;lt; D[j] + 1) { // I can extend the subsequence D[i] = D[j] + 1; p[i] = j; // used for reconstructing the subsequence } } if (D[i] &amp;gt; max) { // maximum subsequence so far max = D[i]; } } return max; } 5 Running Time: We’re doing two simple loops to fill arrays and . Therefore, our runtime is just 6 Example: Initially we start with arrays and : Consider again . We initialize to be representing the initial length of the subsequence ending at each possible . Iteration . We look at . We have and so the subsequence is just . Can 8 extend any previous subsequences? We look at and in that case, we see that , meaning that that the subsequence can now include 3 and become . And so now we have: $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$ Iteration . We look at . We have and so the subsequence is just . Can 4 extend any previous subsequences? We need to look at and . It turns out that 1 will not be able to extend either subsequence. $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$ We continue doing so until we reach the end and we have: $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$ This means that the longest subsequence ends at element 9 or 5. We can then to construct the subsequence. One possible construction will generate: 5 The O(nlg(n)) Solution with Binary Search: The O(n^2) dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes! Previously, we said that is the length of the longest subsequence ending at . Now we will consider a completely different substructure. Let to be the smallest element that ends a subsequence of length . For simplicity we will initially let to be and everything else to be . Let’s take the same example where . In this case, the smallest number that ends a subsequence of length 1 is 1. Also the smallest number that ends a subsequence of length 3 is 4 and so on. We will eventually have is . Before proceeding with the algorithm and why it works. Let’s prove that based on our construction of , that must be sorted because this will help us later on. To prove that is sorted, we will prove that is a strictly increasing array and that for any , we have . (We will ignore the placeholder ’s otherwise the proof would not work)</summary></entry><entry><title type="html">Breadth First Search</title><link href="http://localhost:4000/jekyll/update/2019/06/20/bfs.html" rel="alternate" type="text/html" title="Breadth First Search" /><published>2019-06-20T12:01:36-07:00</published><updated>2019-06-20T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/20/bfs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/20/bfs.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/bfs/bfs1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Breadth first search is a useful and widely used algorithm in graph traversal problems. Let &lt;script type=&quot;math/tex&quot;&gt;G = (V, E)&lt;/script&gt; be a graph consisting of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges and let &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; be the source vertex where we will start the traversal from. The key thing about breadth first search is that it explores the vertices closest (in terms of the number of edges) to the source vertex first. We start by looking at &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;’s neighbors. These vertices are the closest vertices to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and have distance 1 from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;. We then explore each adjacent vertex to all the neighbors. Any vertex adjacent to these vertices will have distance 2 and so on.
-&lt;br /&gt;&lt;br /&gt;
-In other words, breadth first search explores the graph in layers. The immediate neighbors are in layer 1 and have distance 1 to the source vertex. The vertices in layer 2 have distance 2 to the source vertex and so on. Given a layer, all the vertices in that layer have the same distance to the source vertex. It turns out that breadth first search also finds the the shortest paths from the &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to every other vertex in the graph in terms of the number of edges between &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and each vertex. We’ll prove this more formally later!
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Data Structures&lt;/b&gt;
-&lt;br /&gt;
-To perform a breadth first search, we will maintain the following data structures:
-&lt;br /&gt;
-(1) A queue. We want to explore the nodes closest to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; first. We know that a queue maintains the property that a node inserted first will be popped/explored first. We will also use the queue to keep track of the distance of each vertex to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;. Initially we will enqueue &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; with distance 0. When we enqueue new nodes, we will also enqueue their distance to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; which is just their parent’s distance plus 1.
-&lt;br /&gt;&lt;br /&gt;
-(2) A set or an array that keeps track of the visited nodes. Remember that &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; might contain cycles and so we want to make sure that we explore each node once only.
-&lt;br /&gt;&lt;br /&gt;
-(3) A set or an array that keeps track of the parent nodes. This is optional and only needed if we want to recover the path from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to every other node in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Example&lt;/b&gt;
-&lt;br /&gt;
-Let’s explore the graph above. We will start by popping &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; from the queue with its distance 0. We will then enqueue the neighbors of &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; along with distance 1 and also mark them visited. We could also use the parent array to indicate that &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is the parent of &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;. At this point, we have &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in layer 1 with distance 1. We also marked their parent &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; correctly. This information will not change in any future iteration.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bfs/bfs2.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next we will we will pop &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; from the queue. We will traverse &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;’s neighbors &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; but &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; will be ignored since it was visited before. When we add &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; to the queue, we will also push distance 2 which indicates that &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; is in layer 2 or is two steps away from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;. We also mark &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;’s parent as &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. Next we will we will pop &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; from the queue and repeat the same process and push &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; on the queue with distance 2. &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; are colored in green below to indicate that they are in a new layer (distance = 2).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bfs/bfs3.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We will repeat the same process until the queue is empty and we have reached every node reachable from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bfs/bfs4.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Notice now how the nodes are organized in layers in terms of the distance from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; (number of edges).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bfs/bfs5.png&quot; alt=&quot;my photo&quot; /&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Implementation&lt;/b&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// another queue to push the distances down (bfs works in layers)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;qd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// visited array so we don't revisit nodes&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// parent array to print the path&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;qd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;qd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// print path (reversed)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Proof&lt;/b&gt;
-&lt;br /&gt;
-Why does BFS find the shortest paths from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to every other vertex in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;? Intuitively, we know that we explore the vertices in layers starting at &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;. So if we have a vertex &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in layer &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; then we know the distance to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is just &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; and that &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; can’t have a shorter path to &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; simply because we would have found &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in an earlier layer, right? Let’s make this formal.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Inductive Hypothesis:&lt;/b&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;G = (V,E)&lt;/script&gt; be a graph and &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; be the source vertex. Let &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; be natural numbers. For all &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-i &lt; j %]]&gt;&lt;/script&gt;, the vertices in layer &lt;script type=&quot;math/tex&quot;&gt;L_i&lt;/script&gt; have distance &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Base Case:&lt;/b&gt;&lt;br /&gt;
-For &lt;script type=&quot;math/tex&quot;&gt;j=0&lt;/script&gt;, we know that &lt;script type=&quot;math/tex&quot;&gt;L_0=\{s\}&lt;/script&gt; and we know that &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; has distance 0 from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; so we’re done.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Inductive Step:&lt;/b&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; be natural numbers and suppose that for all &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-i &lt; k %]]&gt;&lt;/script&gt;, the vertices in layer &lt;script type=&quot;math/tex&quot;&gt;L_i&lt;/script&gt; have distance &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;. We want to prove that all vertices in layer &lt;script type=&quot;math/tex&quot;&gt;L_{k}&lt;/script&gt; have distance &lt;script type=&quot;math/tex&quot;&gt;i+1=k&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; be a vertex in &lt;script type=&quot;math/tex&quot;&gt;L_k&lt;/script&gt;. We must have &lt;script type=&quot;math/tex&quot;&gt;dist(s,w) \leq k&lt;/script&gt;. This is because by the inductive hypothesis, we know that &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt;’s parent is in &lt;script type=&quot;math/tex&quot;&gt;L_{k-1}&lt;/script&gt; and therefore has distance &lt;script type=&quot;math/tex&quot;&gt;k-1&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;. Therefore, we know there is a path from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-Next we need to prove that &lt;script type=&quot;math/tex&quot;&gt;dist(s,w) \geq k&lt;/script&gt;. Suppose not and that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-dist(s,w) &lt; k %]]&gt;&lt;/script&gt;. This means that &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; must have show up in an earlier layer but we know that it’s impossible and &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; was only discovered after its parent was discovered in layer &lt;script type=&quot;math/tex&quot;&gt;k-1&lt;/script&gt;. 
-&lt;br /&gt;&lt;br /&gt;
-Since &lt;script type=&quot;math/tex&quot;&gt;dist(s,w) \leq k&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;dist(s,w) \geq k&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;dist(s,w)=k&lt;/script&gt; as we wanted to show.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Conclusion:&lt;/b&gt;&lt;br /&gt;
-For all vertices &lt;script type=&quot;math/tex&quot;&gt;w \in V&lt;/script&gt;, if &lt;script type=&quot;math/tex&quot;&gt;w \in L_j&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;dist(s,w) = j&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Proof (Take 2) (The CLRS Way)&lt;/b&gt;
-&lt;br /&gt;
- I really really really want to go through the CLRS way of doing this proof formally. This is a TODO! (starts in page 598)
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Running Time&lt;/b&gt;
-&lt;br /&gt;
-We visit each vertex at most once only because of the visited array we’re maintaining. That’s &lt;script type=&quot;math/tex&quot;&gt;O(V)&lt;/script&gt; time. As a result, we also visit the adjacency list of each vertex at most once and that’s &lt;script type=&quot;math/tex&quot;&gt;O(E)&lt;/script&gt;. Therefore, the total time is &lt;script type=&quot;math/tex&quot;&gt;O(V+E)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/breadth-first-search
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction</summary></entry></feed>
+These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html and CLRS.&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction Let be an array containing real numbers. A longest increasing subsequence of A is a sequence such that so that is of maximum value. 2 Example Suppose then a longest increasing subsequence could be . Note that it is not unique. 3 The Brute Force Solution We can check every possible subsequence. For each element of , we either select that element or not. Therefore, the total number of possible subsequences is . As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is . 4 Dynamic Programming and the Optimal Substructure To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS). It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let be the length of the longest increasing subsequence ending at , then we will find that $$ \begin{align*} D[i] = 1 + \max({D[k] : k &amp;lt; i \text{ and } A[k] &amp;lt; A[i]}) \end{align*} $$ In other words, the longest increasing subsequence ending at can be found by looking at all where (meaning that comes before ) and (meaning that can extend the subsequence ending at ). We then take the maximum value of , Proof: Let be a natural number and let be the length of the longest increasing subsequence ending at . Consider the subsequence ending at . We have two cases: Case 1: is the smallest element in . Therefore, the length of the subsequence ending at is 1. Case 2: is not the smallest element in . Let be a natural number where . This means that we can use to extend the subsequence ending at if . Since we are searching for the longest increasing subsequence then we take the maximum value for all possible and so is the maximum value plus 1 as defined above. We claim that is the length of longest increasing subsequence ending at . Suppose it wasn’t and that the longest increasing subsequence ending at is and so . By our definition, we know that where is the longest increasing subsequence ending at . This means that but this is not possible since we’re only adding to the subsequence. Therefore, is optimal. 3 The Implementation int longest_increasing_subsequence(int *a, int n) { int D[n], p[n], max = 0; // maximum subsequence ending at a[i] is initially 1 for (int i = 0; i &amp;lt; n; i++) { D[i] = 1; p[i] = -1; // parent array } // for element a[i], check all the previous subsequences where i &amp;lt; j // and see if a[i] can extend any of them for (int i = 1; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; i; j++) { if (A[i] &amp;gt; A[j] &amp;amp;&amp;amp; D[i] &amp;lt; D[j] + 1) { // I can extend the subsequence D[i] = D[j] + 1; p[i] = j; // used for reconstructing the subsequence } } if (D[i] &amp;gt; max) { // maximum subsequence so far max = D[i]; } } return max; } 5 Running Time: We’re doing two simple loops to fill arrays and . Therefore, our runtime is just 6 Example: Initially we start with arrays and : Consider again . We initialize to be representing the initial length of the subsequence ending at each possible . Iteration . We look at . We have and so the subsequence is just . Can 8 extend any previous subsequences? We look at and in that case, we see that , meaning that that the subsequence can now include 3 and become . And so now we have: $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$ Iteration . We look at . We have and so the subsequence is just . Can 4 extend any previous subsequences? We need to look at and . It turns out that 1 will not be able to extend either subsequence. $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$ We continue doing so until we reach the end and we have: $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$ This means that the longest subsequence ends at element 9 or 5. We can then to construct the subsequence. One possible construction will generate: 5 The O(nlg(n)) Solution with Binary Search: The O(n^2) dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes! Previously, we said that is the length of the longest subsequence ending at . Now we will consider a completely different substructure. Let to be the smallest element that ends a subsequence of length . For simplicity we will initially let to be and everything else to be . Let’s take the same example where . In this case, the smallest number that ends a subsequence of length 1 is 1. Also the smallest number that ends a subsequence of length 3 is 4 and so on. We will eventually have is . Before proceeding with the algorithm and why it works. Let’s prove that based on our construction of , that must be sorted because this will help us later on. To prove that is sorted, we will prove that is a strictly increasing array and that for any , we have . (We will ignore the placeholder ’s otherwise the proof would not work)</summary></entry></feed>

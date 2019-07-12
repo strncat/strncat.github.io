@@ -214,7 +214,7 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/sho
 <br>
 <b>10 Practice Problems</b>
 <br>
-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=0&problem=499&mosmsg=Submission+received+with+ID+23578534">558 - Wormholes</a>
+<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=0&problem=499">558 - Wormholes</a>
 <br>
 <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1390">10449 Traffic</a>
 

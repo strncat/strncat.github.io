@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Topological Sort | strncat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Topological Sort" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph, std::vector&lt;std::pair&lt;int,int&gt;&gt; &amp;times, std::vector&lt;int&gt; &amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below." />
+<meta property="og:description" content="0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph, std::vector&lt;std::pair&lt;int,int&gt;&gt; &amp;times, std::vector&lt;int&gt; &amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below." />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/10/topological-sort.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/10/topological-sort.html" />
+<meta property="og:site_name" content="strncat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-10T12:01:36-07:00" />
+<script type="application/ld+json">
+{"description":"0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph, std::vector&lt;std::pair&lt;int,int&gt;&gt; &amp;times, std::vector&lt;int&gt; &amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below.","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/07/10/topological-sort.html","headline":"Topological Sort","dateModified":"2019-07-10T12:01:36-07:00","datePublished":"2019-07-10T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/10/topological-sort.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Topological Sort</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-07-10T12:01:36-07:00" itemprop="datePublished">Jul 10, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><b>0 References</b><br />
+These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>1 Introduction</b>
+<br />
+Let <script type="math/tex">G = (V, E)</script> be a directed acyclic graph consisting of <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices <script type="math/tex">u \in V</script> and <script type="math/tex">v \in V</script>, if <script type="math/tex">(u,v) \in E</script>, then <script type="math/tex">u</script> must come before <script type="math/tex">v</script> in the ordering.
+<br /><br />
+In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class <script type="math/tex">a</script> is a prerequisite to class <script type="math/tex">b</script>, then <script type="math/tex">a</script> comes before <script type="math/tex">b</script> in the sorted list.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>2 Revisiting Depth First Search</b>
+<br />
+Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required!</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">current_time</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">graph</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">times</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">visited</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">times</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">first</span> <span class="o">=</span> <span class="n">current_time</span><span class="o">++</span><span class="p">;</span> <span class="c1">// mark the start time for v</span>
+    <span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">current_time</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">current_time</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">visited</span><span class="p">);</span>
+            <span class="n">current_time</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">times</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">second</span> <span class="o">=</span> <span class="n">current_time</span><span class="p">;</span> <span class="c1">// mark the finish time for v</span>
+    <span class="c1">// we can push the nodes here onto a stack!!! yay</span>
+    <span class="k">return</span> <span class="n">current_time</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>3 Example</b>
+<br />
+<img src="http://localhost:4000/assets/topo/1.png" alt="my photo" />
+Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from <script type="math/tex">f</script> (arbitrarily chosen), mark its start time as zero and visit <script type="math/tex">e</script>. We will mark <script type="math/tex">e</script>’s start time and then recursively call DFS on <script type="math/tex">d</script>. We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, <script type="math/tex">e</script> won’t have more neighbors and so we will mark its finish time. We do the same thing with <script type="math/tex">f</script> and we’ll end up with the graph below.</p>
+
+<p><img src="http://localhost:4000/assets/topo/2.png" alt="my photo" /></p>
+
+<p>Next we will start from <script type="math/tex">c</script> and visit <script type="math/tex">b</script> and mark both their start and finish times. Finally we will visit <script type="math/tex">a</script> and mark its times as well.</p>
+
+<p><img src="http://localhost:4000/assets/topo/3.png" alt="my photo" /></p>
+
+<p>Notice how if we ordered the nodes by their finishing times (<script type="math/tex">a, c, b, f, e, d</script>) descendingly then we’ll have a valid ordering of the nodes. 
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>4 Proof of Correctness</b>
+<br />
+The first time I saw Topological Sort I didn’t believe. It seemed strange to just be able to sort the vertices by just doing a DFS. What do we need to show to prove that topological sort works? what is the intuition here? Let’s think about this. We need to prove that for any two vertices <script type="math/tex">a \in V</script> and <script type="math/tex">b \in V</script>, if there is an edge from <script type="math/tex">a</script> to be <script type="math/tex">b</script>, then <script type="math/tex">a</script> will come before <script type="math/tex">b</script> in the sorted output. 
+<br /><br />
+How do we prove this? Well we know that topological sort relies on the finishing times of vertices and we know that <script type="math/tex">a</script>’s finishing time gets marked after its children and so this means that we want to prove that <script type="math/tex">a</script>’s finishing time is greater than <script type="math/tex">b</script>’s finishing time. So to summarize, we really want to prove the following claim: For any two vertices <script type="math/tex">a \in V</script> and <script type="math/tex">b \in V</script>, if there is an edge from <script type="math/tex">a</script> to <script type="math/tex">b</script>, then <script type="math/tex">a</script>’s finishing time is greater than <script type="math/tex">b</script>’s finishing time.</p>
+
+<p>In order to prove the above claim we will use a theorem calling the Parenthesis Theorem from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph <script type="math/tex">G = (V,E)</script> and for any vertices <script type="math/tex">u</script> and <script type="math/tex">v</script>, exactly one of the following conditions holds:</p>
+
+<ul>
+  <li>
+    <p>the intervals [u.start_time, u.finish_time] and [v.start_time, v.finish_time] are disjoint and neither <script type="math/tex">u</script> or <script type="math/tex">v</script> is a descendant of the other in the depth-first forest.</p>
+  </li>
+  <li>
+    <p>the interval [u.start_time, u.finish_time] is contained within the interval [v.start_time, v.finish_time] and <script type="math/tex">u</script> is a descendant of <script type="math/tex">v</script> in the depth-first tree.</p>
+  </li>
+  <li>
+    <p>the interval [v.start_time, v.finish_time] is contained within the interval [u.start_time, u.finish_time] and <script type="math/tex">v</script> is a descendant of <script type="math/tex">u</script> in the depth-first tree.</p>
+  </li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Proof: TODO!</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now we are ready to prove our earlier claim.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Let <script type="math/tex">G = (V,E)</script> be a directed acyclic graph. For any two vertices <script type="math/tex">a, b \in V</script>, if <script type="math/tex">(a,b) \in E</script>, then <script type="math/tex">a</script>.finish_time &gt; <script type="math/tex">b</script>.finish_time.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Proof:<br />
+Let’s consider the DFS tree generated after running DFS and let’s apply the Parenthesis Theorem. According to the theorem one of three conditions must hold:</p>
+
+<ul>
+  <li>
+    <p>the interval [a.start_time, a.finish_time] is contained within the interval [b.start_time, b.finish_time] and <script type="math/tex">a</script> is a descendant of <script type="math/tex">b</script> in the depth-first tree. We claim that this case is impossible because by assumption, we know that <script type="math/tex">(a,b) \in E</script> and so if <script type="math/tex">a</script> is descendant of <script type="math/tex">b</script> then <script type="math/tex">G</script> must have a cycle. This is a contradiction since <script type="math/tex">G</script> is acyclic.</p>
+  </li>
+  <li>
+    <p>the interval [b.start_time, b.finish_time] is contained within the interval [a.start_time, a.finish_time] and <script type="math/tex">b</script> is a descendant of <script type="math/tex">a</script> in the depth-first tree. This immediately shows that <script type="math/tex">% <![CDATA[
+b.finish_time < a.finish_time %]]></script> as we wanted to show.</p>
+  </li>
+  <li>
+    <p>the intervals [a.start_time, a.finish_time] and [b.start_time, b.finish_time] are disjoint and neither <script type="math/tex">a</script> or <script type="math/tex">b</script> is a descendant of the other in the depth-first forest. In this case, we claim that we must have explored <script type="math/tex">b</script> first before <script type="math/tex">a</script>. Because if we have explored <script type="math/tex">a</script> first then we would have explored <script type="math/tex">b</script> since <script type="math/tex">(a,b) \in E</script> and so we must have <script type="math/tex">% <![CDATA[
+b.finish_time < a.finish_time %]]></script> as required. Beautiful isn’t it?</p>
+  </li>
+</ul>
+
+<p>We conclude from all three cases that we must have <script type="math/tex">% <![CDATA[
+b.finish_time < a.finish_time %]]></script>. <script type="math/tex">\blacksquare</script> 
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>5 Simple Implementation</b>
+<br />
+Let’s rewrite DFS to push the nodes onto a stack and let’s forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let’s call this version topological sort! Here is a simple implementation:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">graph</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">bool</span> <span class="o">*</span><span class="n">visited</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">ordered</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">ordered</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">ordered</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span> <span class="c1">// node is done, we can push it on the ordered stack</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">topological_sort</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ordered</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">visited</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nb">false</span><span class="p">};</span>
+    <span class="c1">// perform dfs until there are no more unvisited nodes</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">ordered</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">ordered</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">ordered</span><span class="p">.</span><span class="n">top</span><span class="p">());</span>
+        <span class="n">ordered</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>6 Running Time</b>
+<br />
+It is just DFS! so the total time is <script type="math/tex">O(V+E)</script>.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>7 Full Implementation:</b>
+<br />
+https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search
+<br />
+<br /></p>
+
+
+  </div><a class="u-url" href="/jekyll/update/2019/07/10/topological-sort.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hello</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+  </body>
+
+</html>

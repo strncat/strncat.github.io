@@ -12,24 +12,24 @@ Let $$A = [a_0, a_1, a_2,...,a_n]$$ be an array containing $$n$$ real numbers. A
 <br>
 <br>
 <hr>
-<br>
 <!------------------------------------------------------------------------------------>
+<br>
 <b>2 Example</b>
 <br>
 Suppose $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ then a longest increasing subsequence could be $$[1, 2, 4, 5]$$. Note that it is not unique.
 <br>
 <br>
 <hr>
-<br>
 <!------------------------------------------------------------------------------------>
+<br>
 <b>3 The Brute Force Solution</b>
 <br>
 We can check every possible subsequence. For each element of $$A$$, we either select that element or not. Therefore, the total number of possible subsequences is $$2^n$$. As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is $$O(2^n)$$.
 <br>
 <br>
 <hr>
-<br>
 <!------------------------------------------------------------------------------------>
+<br>
 <b>4 Dynamic Programming and the Optimal Substructure</b>
 <br>
 To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS).<br>
@@ -59,8 +59,8 @@ We claim that $$D[i+1]$$ is the length of longest increasing subsequence ending 
 <br>
 <br>
 <hr>
-<br>
 <!------------------------------------------------------------------------------------>
+<br>
 <b>3 The $$O(n^2)$$ Implementation</b>
 {% highlight c++ %}
 int longest_increasing_subsequence(int *a, int n) {
@@ -87,16 +87,17 @@ int longest_increasing_subsequence(int *a, int n) {
 }
 {% endhighlight %}
 <br>
-<!------------------------------------------------------------------------------------>
+<br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>5 Running Time:</b> 
 <br>
 We're doing two simple loops to fill arrays $$c$$ and $$p$$. Therefore, our runtime is just $$O(n^2)$$
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>6 Example:</b> 
 <br>
@@ -123,8 +124,8 @@ $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$
 This means that the longest subsequence ends at element 9 or 5. We can then $$p$$ to construct the subsequence. One possible construction will generate: $$[1, 2, 7, 9]$$
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>5 The O(nlg(n)) Solution with Binary Search:</b> 
 <br>
@@ -162,8 +163,8 @@ Could we replace the end of any other subsequence? No. Even though $$A[i] < M[j]
 <br>
 <br>
 <hr>
-<br>
 <!------------------------------------------------------------------------------------>
+<br>
 <b>3 The $$O(n\log(n))$$ Implementation</b>
 {% highlight c++ %}
 int longest_increasing_subsequence_fast(int *a, int n) { // O(nlogn)
@@ -199,16 +200,16 @@ int longest_increasing_subsequence_fast(int *a, int n) { // O(nlogn)
 }
 {% endhighlight %}
 <br>
-<!------------------------------------------------------------------------------------>
 <br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
-<b>Full Implementation: </b><br>
+<b>Full Implementation </b><br>
 https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp
-
-<!------------------------------------------------------------------------------------>
+<br>
 <br>
 <hr>
+<!------------------------------------------------------------------------------------>
 <br>
 <b>References: </b><br>
 These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html and CLRS.

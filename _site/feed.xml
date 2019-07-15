@@ -1,4 +1,252 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-12T12:05:21-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello</subtitle><entry><title type="html">Fenwick Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html" rel="alternate" type="text/html" title="Fenwick Trees" /><published>2019-07-11T07:01:36-07:00</published><updated>2019-07-11T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bellman/1.png&quot; width=&quot;100%&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-15T16:57:45-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>Hello</subtitle><entry><title type="html">Priority Queues</title><link href="http://localhost:4000/jekyll/update/2019/07/15/priority-queues.html" rel="alternate" type="text/html" title="Priority Queues" /><published>2019-07-15T07:01:36-07:00</published><updated>2019-07-15T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/15/priority-queues</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/15/priority-queues.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are notes on chapter 6 in CLRS.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Suppose you list of jobs with priorities and you want to execute the jobs in the order of their priorities. This list however keeps changing. For example new jobs get inserted frequently. One idea is to just sort the list in &lt;script type=&quot;math/tex&quot;&gt;O(nlog(n))&lt;/script&gt; which is the lower bound for any comparison based algorithm. However, when a new job gets added we will have to spend &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time to insert it in its correct place. This works but can we do better? are there other ideas that we can use that are better than &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time.
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Aren’t heaps and priority queues the same?? Let’s look at CLRS’s definition. “A priority queue is a data structure for maintaining a set &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; of elements each with an associated value called a key”. So we have a set of objects and each object has a key. The keys  rather than the object are stored in the heap. So a priority queue is just a data structure that utilizes the heap data structure. A priority queue must support the following operations:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Extracting the maximum element&lt;/li&gt;
+  &lt;li&gt;Increase Key&lt;/li&gt;
+  &lt;li&gt;Insert Key&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">0 References These are notes on chapter 6 in CLRS. 1 Introduction Suppose you list of jobs with priorities and you want to execute the jobs in the order of their priorities. This list however keeps changing. For example new jobs get inserted frequently. One idea is to just sort the list in which is the lower bound for any comparison based algorithm. However, when a new job gets added we will have to spend time to insert it in its correct place. This works but can we do better? are there other ideas that we can use that are better than time.</summary></entry><entry><title type="html">Ford-Fulkerson’s Maximum Flow</title><link href="http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson.html" rel="alternate" type="text/html" title="Ford-Fulkerson's Maximum Flow" /><published>2019-07-14T07:01:36-07:00</published><updated>2019-07-14T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are notes on chapter 26 in CLRS.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Suppose we want to ship iPhones from San Francisco to New York City because we have a current shortage of iPhones in NYC. We want to ship as many units as possible. Everything needs to be shipped by Ground. We have different routes of different capacities. We want to find the maximum number of iPhones we can ship to NYC. How can we model and solve can this problem? We’ll discuss the Ford-Fulkerson’s method but in order to describe it we have to set the stage and define a number of definitions.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 Flow Networks&lt;/b&gt;
+&lt;img src=&quot;http://localhost:4000/assets/flow/1.png&quot; width=&quot;100%&quot; /&gt;
+A flow network &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; is a directed graph where &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We have two distinguished vertices, the source vertex &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and the sink vertex &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;Each edge &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; has a non-negative capacity &lt;script type=&quot;math/tex&quot;&gt;c(u,v) \geq 0&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;If we have edge &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;(u,v) \not\in E&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;For any vertex &lt;script type=&quot;math/tex&quot;&gt;v \in V&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;(v,v) \not\in E&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;(u,v) \not\in E&lt;/script&gt;, then we can assume that &lt;script type=&quot;math/tex&quot;&gt;c(u,v)=0&lt;/script&gt;.&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected and so &lt;script type=&quot;math/tex&quot;&gt;|E| \geq |V| - 1&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 What is Flow?&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;f(u,v)&lt;/script&gt; be the flow from vertex &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; to vertex &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;. A &lt;b&gt;flow&lt;/b&gt; is a real valued function &lt;script type=&quot;math/tex&quot;&gt;f : V \times V \rightarrow \mathbb{R}&lt;/script&gt; that satisfies:&lt;br /&gt;
+(1) &lt;b&gt;Capacity constraint:&lt;/b&gt; For all &lt;script type=&quot;math/tex&quot;&gt;u, v \in V&lt;/script&gt;, we require&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+0 \leq f(u,v) \leq c(u,v)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;In other words, the flow on every edge must not exceed its capacity.
+&lt;br /&gt;&lt;br /&gt;
+(2) &lt;b&gt;Flow Conservation:&lt;/b&gt; For all &lt;script type=&quot;math/tex&quot;&gt;u \in V - \{s,t\}&lt;/script&gt;, we require&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+\sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;In other words, the total flow coming into &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; is equal to the total flow leaving &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 The Maximum Flow Problem&lt;/b&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;!--
+Let $$|f|$$ be the flow value defined as
+&lt;div center&gt;
+$$
+\begin{align*}
+|f| = \sum_{v \in V}f(s,v) = \sum_{v \in V} f(v,s)
+\end{align*}
+$$
+&lt;/div&gt;
+In other words, the flow value is the total flow coming out of the source minus the total flow coming into the source. 
+--&gt;
+
+&lt;p&gt;In the maximum-flow problem we are given a flow network &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; with a source vertex &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and a sink vertex &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; and we are asked to find the maximum flow in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;5 The Residual Graph&lt;/b&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 The Ford-Fulkerson’s Method&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;
+Now that we defined everything needed, we can talk about how Fold-Fulkerson solves this problem! yay! Intuitively, Ford-Fulkerson starts with &lt;script type=&quot;math/tex&quot;&gt;f(u,v)=0&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; and incrementally increases the flow value. It does so by finding an augmenting path in the residual network &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship iPhones from San Francisco to New York City because we have a current shortage of iPhones in NYC. We want to ship as many units as possible. Everything needs to be shipped by Ground. We have different routes of different capacities. We want to find the maximum number of iPhones we can ship to NYC. How can we model and solve can this problem? We’ll discuss the Ford-Fulkerson’s method but in order to describe it we have to set the stage and define a number of definitions. 2 Flow Networks A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex . A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \begin{align*} 0 \leq f(u,v) \leq c(u,v) \end{align*} $$ In other words, the flow on every edge must not exceed its capacity. (2) Flow Conservation: For all , we require $$ \begin{align*} \sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v) \end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . 4 The Maximum Flow Problem</summary></entry><entry><title type="html">Binary Heaps</title><link href="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html" rel="alternate" type="text/html" title="Binary Heaps" /><published>2019-07-12T07:01:36-07:00</published><updated>2019-07-12T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/12/binary-heaps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are notes on chapter 6 in CLRS.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 The Heap Data Structure&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/heaps/1.png&quot; width=&quot;100%&quot; /&gt;
+The heap data structure is an array &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; that can be viewed an almost complete binary tree. Each node in the tree is represented by an element in the array. &lt;script type=&quot;math/tex&quot;&gt;A[1]&lt;/script&gt; is the root of the tree which is 7 in the above graph.
+&lt;br /&gt;&lt;br /&gt;
+Because the heap is based on a complete binary tree, the height of a heap of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; elements is therefore &lt;script type=&quot;math/tex&quot;&gt;\Theta(n)&lt;/script&gt; (we know that the height of a complete binary tree is &lt;script type=&quot;math/tex&quot;&gt;\Theta(n)&lt;/script&gt;). As a reminder, the height of a node is the longest path down from the node  to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt; time! yay
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 Finding the Parent, Left and Right Children &lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Let’s see how we can find the parent, left and right children of a node.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// we know that i/2 is rounded down so we don't need to floor&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2*i;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2*i+1&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Given an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Its parent is located at &lt;script type=&quot;math/tex&quot;&gt;A[\lfloor i/2 \rfloor]&lt;/script&gt;. For example the parent of 2 (index 7) is &lt;script type=&quot;math/tex&quot;&gt;A[\lfloor 7/2 \rfloor]=A[3]=11&lt;/script&gt;. The left child is &lt;script type=&quot;math/tex&quot;&gt;A[2i]&lt;/script&gt; and the right child is &lt;script type=&quot;math/tex&quot;&gt;A[2i+1]&lt;/script&gt;. For example the right child of 13 (index 2) is &lt;script type=&quot;math/tex&quot;&gt;A[2*2 + 1] = A[5] = 3&lt;/script&gt;.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 The Heap Property &lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a &lt;b&gt;heap property&lt;/b&gt; which is for any given element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; we have:&lt;/p&gt;
+
+&lt;p&gt;If this is a max-heap:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;A[parent(i)] \geq A[i]&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If this is a min-heap:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;A[parent(i)] \leq A[i]&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The heap property is crucial. Because of it, we know that the root of the heap must be the smallest or the largest element in the heap and therefore, extracting the minimum or the maximum depending on the heap type can be done in constant time!
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 Maintaining the Heap Property&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Let’s assume that we’re given an index &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; might be smaller than its children. We will assume that both children of &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; maintain the heap property. How do fix the heap to maintain the heap property?
+&lt;br /&gt;&lt;br /&gt;
+In the max-heap case, we start with checking that &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; is greater than both its children. If this is not the case, then we swap &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; with the larger of the two children. We then recursively call the function on the largest element that we just swapped. Let’s look at a simple implementation:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;max_heapify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// (1) check if the left child is greater&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;largest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;largest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;largest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// (2) check if the right child is greater&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;largest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;largest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// if one of the children is greater, swap it&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// with i and then call heapify again on the child&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// we swapped with&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;largest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;largest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;max_heapify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;largest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The crucial question now is how long does max_heapify take? Well, in the worst case, we will down all the way to a leaf and so the runtime is &lt;script type=&quot;math/tex&quot;&gt;O(h)&lt;/script&gt; which is &lt;script type=&quot;math/tex&quot;&gt;O(log(n))&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;5 Building a Heap&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Hello&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 Heapsort&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Hello&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are notes on chapter 6 in CLRS. 1 The Heap Data Structure The heap data structure is an array that can be viewed an almost complete binary tree. Each node in the tree is represented by an element in the array. is the root of the tree which is 7 in the above graph. Because the heap is based on a complete binary tree, the height of a heap of elements is therefore (we know that the height of a complete binary tree is ). As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in time! yay 2 Finding the Parent, Left and Right Children Let’s see how we can find the parent, left and right children of a node.</summary></entry><entry><title type="html">Fenwick Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html" rel="alternate" type="text/html" title="Fenwick Trees" /><published>2019-07-11T07:01:36-07:00</published><updated>2019-07-11T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bellman/1.png&quot; width=&quot;100%&quot; /&gt;
 &lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 (1) 
 &lt;br /&gt;
@@ -199,125 +447,75 @@ It is just DFS! so the total time is &lt;script type=&quot;math/tex&quot;&gt;O(V
 &lt;br /&gt;
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&amp;lt;std::vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; graph, std::vector&amp;lt;std::pair&amp;lt;int,int&amp;gt;&amp;gt; &amp;amp;times, std::vector&amp;lt;int&amp;gt; &amp;amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &amp;lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below.</summary></entry><entry><title type="html">Suffix Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html" rel="alternate" type="text/html" title="Suffix Trees" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/suffix-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/suffix-trees.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Algorithms by Robert Sedgwick and Kevin Wayne
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;http://web.stanford.edu/class/cs166/
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&amp;lt;std::vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; graph, std::vector&amp;lt;std::pair&amp;lt;int,int&amp;gt;&amp;gt; &amp;amp;times, std::vector&amp;lt;int&amp;gt; &amp;amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &amp;lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below.</summary></entry><entry><title type="html">Cycles in Graphs</title><link href="http://localhost:4000/jekyll/update/2019/07/09/cycles.html" rel="alternate" type="text/html" title="Cycles in Graphs" /><published>2019-07-09T12:01:36-07:00</published><updated>2019-07-09T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/09/cycles</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/09/cycles.html">&lt;!--
+&lt;b&gt;0 References&lt;/b&gt;&lt;br&gt;
+?
+&lt;br&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;br&gt;
+--&gt;
+
+&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;
 &lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;img src=&quot;http://localhost:4000/assets/cycle/1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We are given a graph &lt;script type=&quot;math/tex&quot;&gt;G = (V,E)&lt;/script&gt; and we want to know if there exists a cycle in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;b&gt;2 Undirected Graphs&lt;/b&gt;
 &lt;br /&gt;
-Given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; strings of total length &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and a string pattern &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We want to find all the strings that match  &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt; time. However, suppose that we now we have &lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt; patterns, then this approach will take &lt;script type=&quot;math/tex&quot;&gt;O(mr)&lt;/script&gt; time is really slow. In the RMQ notation &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-&lt; %]]&gt;&lt;/script&gt;preprocessing time,  query_time&lt;script type=&quot;math/tex&quot;&gt;&gt;&lt;/script&gt;, this will be &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-&lt;O(1), O(mr)&gt; %]]&gt;&lt;/script&gt;. So how can we make it faster?
+&lt;br /&gt;
+This is extremely simple. We already keep track of nodes visited so far. If it happens during our search that we come across a visited node then we’re done! there must exists a cycle otherwise, we won’t ever re-visit any vertex in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;. 
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 The Trie Data Structure&lt;/b&gt;
+&lt;b&gt;3 Directed Graph&lt;/b&gt;
 &lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/trie/1.png&quot; width=&quot;100%&quot; /&gt;
-&lt;br /&gt;
-The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for keys. In the picture above, we can form the words (words end with colored nodes): cake, cakes, cat, civil and cider.
-&lt;br /&gt;
-Let’s start with studying some properties of tries:
-&lt;br /&gt;&lt;br /&gt;
-&amp;lt;&amp;gt; Each node indicates whether it is the end of a valid word or not. In the above example, colored nodes represent valid words. &lt;br /&gt;
-&amp;lt;&amp;gt; Each node will have &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; pointers or children where &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; is the alphabet size. &lt;br /&gt;
-&amp;lt;&amp;gt; Edges represent letters. For example, the root node has one edge (&lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;) to the node below.&lt;br /&gt;
-&amp;lt;&amp;gt; Each node also has only one parent.&lt;br /&gt;
-&lt;br /&gt;
-Let’s look at what a trie really looks like:
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/trie/2.png&quot; width=&quot;100%&quot; /&gt;
-You can see above, the root has only &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; edge/link. From &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;, we can traverse to either &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;. From &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; we can add &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; only and from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; we can add &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; and so on.
-&lt;br /&gt;
+If we think about this case carefully, we’ll see that it’s simple. Let’s think of this in terms of the tree generated by DFS.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Search&lt;/b&gt;
-&lt;br /&gt;
-How do we search for a word? We just traverse down the root and keep matching until we reach the last character of the string we’re searching. If the node we’re on has a marker to indicate it ends a word, then we return true. If it’s not or if we reach a null node, then we return false.
+&lt;b&gt;4 Implementation&lt;/b&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// null pointer&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not found&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;black&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// CYCLE&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// move to the child&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;white&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// node is done, we can push it on the ordered stack&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;
-How long does search takes? oh only the length of the key or pattern!! so &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;!
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Insert&lt;/b&gt;
+&lt;b&gt;7 Full Implementation&lt;/b&gt;
 &lt;br /&gt;
-To insert a key we follow a similar process. We start at the root and we also start at the beginning of the key to be inserted. If the letter we’re on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// word exists&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// increment word count&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-             &lt;span class=&quot;c1&quot;&gt;// this letter doesn't exist, create it&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// this letter has a link already, follow it along&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// mark the last node, this is the end of our word&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// this is a marker of an end to a valid word&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;So insert takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time as well!
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Running Time&lt;/b&gt;
+https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/cycles
 &lt;br /&gt;
-We mentioned above that insert and search both take &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time where &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is the length of the pattern. How long does it take to build a trie to represent all words of total length &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt;? We need to make &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; insertions each of which will take &lt;script type=&quot;math/tex&quot;&gt;O(&lt;/script&gt;size of each word&lt;script type=&quot;math/tex&quot;&gt;)&lt;/script&gt;. Since the total length of all words is &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt;, then the total time is &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt; which happens only once intially. Therefore, in the RMQ notation we will have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-&lt;O(m), O(n)&gt; %]]&gt;&lt;/script&gt; which is a lot better than the naive solution. 
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
-&lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References Algorithms by Robert Sedgwick and Kevin Wayne http://web.stanford.edu/class/cs166/ 1 Introduction Given strings of total length and a string pattern of length . We want to find all the strings that match . The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take time. However, suppose that we now we have patterns, then this approach will take time is really slow. In the RMQ notation preprocessing time, query_time, this will be . So how can we make it faster? 2 The Trie Data Structure The trie (pronounced “try”) data structure is an efficient data structure that can help us achieve a faster running time when searching for keys. In the picture above, we can form the words (words end with colored nodes): cake, cakes, cat, civil and cider. Let’s start with studying some properties of tries: &amp;lt;&amp;gt; Each node indicates whether it is the end of a valid word or not. In the above example, colored nodes represent valid words. &amp;lt;&amp;gt; Each node will have pointers or children where is the alphabet size. &amp;lt;&amp;gt; Edges represent letters. For example, the root node has one edge () to the node below. &amp;lt;&amp;gt; Each node also has only one parent. Let’s look at what a trie really looks like: You can see above, the root has only edge/link. From , we can traverse to either or . From we can add or only and from we can add or and so on. 3 Search How do we search for a word? We just traverse down the root and keep matching until we reach the last character of the string we’re searching. If the node we’re on has a marker to indicate it ends a word, then we return true. If it’s not or if we reach a null node, then we return false. int search(std::string word) { long m = word.length(); node *current = root; for (int i = 0; i &amp;lt; m; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // null pointer return 0; // not found } // move to the child current = current-&amp;gt;children[index]; } return (current != NULL &amp;amp;&amp;amp; current-&amp;gt;value); } How long does search takes? oh only the length of the key or pattern!! so ! 4 Insert To insert a key we follow a similar process. We start at the root and we also start at the beginning of the key to be inserted. If the letter we’re on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter. void insert(std::string word) { if (search(word)) { // word exists return; } int length = (int) word.length(); node *current = root; this-&amp;gt;count++; // increment word count for (int i = 0; i &amp;lt; length; i++) { int index = word[i] - 'a'; if (!current-&amp;gt;children[index]) { // this letter doesn't exist, create it current-&amp;gt;children[index] = new node(); } // this letter has a link already, follow it along current = current-&amp;gt;children[index]; } // mark the last node, this is the end of our word // this is a marker of an end to a valid word current-&amp;gt;value = this-&amp;gt;count; } So insert takes time as well! 6 Running Time We mentioned above that insert and search both take time where is the length of the pattern. How long does it take to build a trie to represent all words of total length ? We need to make insertions each of which will take size of each word. Since the total length of all words is , then the total time is which happens only once intially. Therefore, in the RMQ notation we will have which is a lot better than the naive solution. 7 Full Implementation: https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp</summary></entry><entry><title type="html">Patricia Tries</title><link href="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html" rel="alternate" type="text/html" title="Patricia Tries" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/patricia-trie</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Patricia Tries</title><link href="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html" rel="alternate" type="text/html" title="Patricia Tries" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/patricia-trie</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;http://web.stanford.edu/class/cs166/
 &lt;br /&gt;
@@ -409,7 +607,80 @@ W
 &lt;br /&gt;
 https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!</summary></entry><entry><title type="html">Tries (Prefix Trees)</title><link href="http://localhost:4000/jekyll/update/2019/07/06/tries.html" rel="alternate" type="text/html" title="Tries (Prefix Trees)" /><published>2019-07-06T12:01:36-07:00</published><updated>2019-07-06T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/06/tries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/06/tries.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!</summary></entry><entry><title type="html">Suffix Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/07/suffix-trees.html" rel="alternate" type="text/html" title="Suffix Trees" /><published>2019-07-07T12:01:36-07:00</published><updated>2019-07-07T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/07/suffix-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/07/suffix-trees.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Algorithms on Strings, Trees, and Sequences by Dan Gusfeild
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 The Trie Data Structure&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/trie/1.png&quot; width=&quot;100%&quot; /&gt;
+Hello
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 Search&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Hello&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 Insert&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 Running Time&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Hello
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
+&lt;br /&gt;
+&lt;br /&gt;
+Hello
+https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References Algorithms on Strings, Trees, and Sequences by Dan Gusfeild 1 Introduction</summary></entry><entry><title type="html">Tries (Prefix Trees)</title><link href="http://localhost:4000/jekyll/update/2019/07/06/tries.html" rel="alternate" type="text/html" title="Tries (Prefix Trees)" /><published>2019-07-06T12:01:36-07:00</published><updated>2019-07-06T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/06/tries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/06/tries.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Algorithms by Robert Sedgwick and Kevin Wayne
 &lt;br /&gt;&lt;/li&gt;
@@ -677,608 +948,4 @@ Similar to the analysis of breadth first search. We visit each vertex once only.
 &lt;br /&gt;
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/depth-first-search
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction</summary></entry><entry><title type="html">Permuations and Combinations Code Examples</title><link href="http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations.html" rel="alternate" type="text/html" title="Permuations and Combinations Code Examples" /><published>2019-07-03T07:01:36-07:00</published><updated>2019-07-03T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/03/permutations-combinations.html">&lt;p&gt;&lt;b&gt;0 Permutations&lt;/b&gt;&lt;br /&gt;
-Say we have an array = [1,2,3] and we would like to permute its elements to generate all possible permutations. In this case we want to print [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1].
-&lt;br /&gt;&lt;br /&gt;
-The first thing we want to do is select a single number from the three numbers available to us. We can model this with an index that we pass to the permutation function indicating which position we’re working on. In a for loop, we now loop over the numbers/selections/choices available to us (In this case, all three) and place each number in that specific cell. This is what it is going to look like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/perm1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The next thing thing we want to do is from each iteration after selecting a number/choice, we want to go ahead and select the next number for the next position. In our example above, Suppose we selected 1 to be placed in position 0 (left most branch). Now we can call the function again for position 1 but before doing so, we need to mark our current selection (1) as not availble for the next call since we don’t want to select 1 again for any position that comes after this one.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/perm2.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As we can see above for the next call with position 1 and choices (2,3), we loop again over the choices and place each choice in position 1. From here, we again call the function again to select the next number for the next position 2. If we focus again on the left most branch, we see that the only choice left for position 2 is 3 only.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/perm3.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The code below implements this idea:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// suppose a = [1,2,3] and sel = [0,0,0,0] (a simple map)&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generate_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// we could print a permutation or do anything with it&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not selected yet&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;generate_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// make it available for the next iteration&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Of course, there is a library in the standard library which you can use to generate permutions and avoid doing things manually.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// just fill an array with numbers&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// generate permutations, yay!&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// do something&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next_permutation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()));&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!-------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Combinations&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 Permutations Say we have an array = [1,2,3] and we would like to permute its elements to generate all possible permutations. In this case we want to print [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]. The first thing we want to do is select a single number from the three numbers available to us. We can model this with an index that we pass to the permutation function indicating which position we’re working on. In a for loop, we now loop over the numbers/selections/choices available to us (In this case, all three) and place each number in that specific cell. This is what it is going to look like:</summary></entry><entry><title type="html">Knapsack</title><link href="http://localhost:4000/jekyll/update/2019/07/02/knapsack.html" rel="alternate" type="text/html" title="Knapsack" /><published>2019-07-02T07:01:36-07:00</published><updated>2019-07-02T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/02/knapsack</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/02/knapsack.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
-The Knapsack problem is a classic dynamic programming problem. In this problem, we are given a knapsack of size &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt; for some integer &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt; and a list of items. Each item &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt; has an integer weight &lt;script type=&quot;math/tex&quot;&gt;w_i&lt;/script&gt; and an integer value, &lt;script type=&quot;math/tex&quot;&gt;v_i&lt;/script&gt;. The goal is to maximize the value of the knapsack under the constraint &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt;. There are many variations of the Knapsack problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack in the knapsack. So we either select an item &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt; or we don’t. There is also the unbounded knaspack where you have multiple/unbounded copies of each item.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Unbounded Knapsack&lt;/b&gt;&lt;br /&gt;
-Let’s focus now on the unbounded knapsack problem and let’s start with an example. Suppose we have an unbounded number of tacos, each of weight 2 and value 4. We also have burritos each of weight 6 and value 17. Suppose now that we have a knapsack of size, &lt;script type=&quot;math/tex&quot;&gt;W=14&lt;/script&gt;. The optimal solution is to pack 2 burritos and 1 taco which will give an optimal value of &lt;script type=&quot;math/tex&quot;&gt;2*17+1*4=38&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2.1 How to solve the Knapsack problem?&lt;/b&gt;&lt;br /&gt;
-The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One might try a simple greedy algorithm of say always picking the item with the best value/weight ratio. In the example, we’ll pick 2 burritos of value &lt;script type=&quot;math/tex&quot;&gt;2*17=34&lt;/script&gt; which is not an optimal value!
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2.2 Complete Search&lt;/b&gt;
-&lt;br /&gt;
-We can also try a complete search of every possible combinations of items. I’m not sure about the thought process here but I was thinking the following should give us an upper bound. For each item &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt; with weight &lt;script type=&quot;math/tex&quot;&gt;w_i&lt;/script&gt; and value &lt;script type=&quot;math/tex&quot;&gt;v_i&lt;/script&gt;, we insert &lt;script type=&quot;math/tex&quot;&gt;\lceil W/x_i \rceil&lt;/script&gt; copies of &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt; to a new list of items. If we original had &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; items, we could potentially insert &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; items. Give this this list. For each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be &lt;script type=&quot;math/tex&quot;&gt;O(2^{n^2})&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2.3 Dynamic Programming&lt;/b&gt;
-&lt;br /&gt;
-As we saw above, greedy doesn’t work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
-&lt;br /&gt;
-&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;K[x]&lt;/script&gt; be the optimal value for capacity &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. We will have the following recursive substructure:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-K[x] = \max_i\{K[x - w_i] + v_i\}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;In other words, suppose we have unlimited copies of the following &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; items, &lt;script type=&quot;math/tex&quot;&gt;\{\{w_0,v_0\},\{w_1,v_0\},...,\{w_n,v_n\}\}&lt;/script&gt;. Assume now that the optimal solution contains some item &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt;. Then we will see that &lt;script type=&quot;math/tex&quot;&gt;K[x-w_i] = k[x] - v_i&lt;/script&gt;, meaning that the optimal solution for &lt;script type=&quot;math/tex&quot;&gt;K[x]&lt;/script&gt; contains within it optimal solutions to smaller subproblems.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2.4 Implementation&lt;/b&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;unbounded_knapsack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// base case, k[0] = 0&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for each weight w&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for each item i&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;c1&quot;&gt;// maybe there is a more effient way?&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// print items&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(%d %d) &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Optimal value = %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2.5 Proof of Correctness&lt;/b&gt;&lt;br /&gt;
-We claim that our recursive substructure we’ve shown earlier is optimal. 
-&lt;br /&gt;
-&lt;i&gt;Proof:&lt;/i&gt; &lt;br /&gt;
-Suppose that we have a knapsack of size &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt; and suppose that we have unbounded copies of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; items available to us. Now suppose that we know the optimal value to the knapsack is &lt;script type=&quot;math/tex&quot;&gt;K[W]&lt;/script&gt; and that the optimal solution contains one copy of item &lt;script type=&quot;math/tex&quot;&gt;x_k&lt;/script&gt; for some natural number &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. We claim that &lt;script type=&quot;math/tex&quot;&gt;K[W] - v_k&lt;/script&gt; is an optimal value for a knapsack of size &lt;script type=&quot;math/tex&quot;&gt;W - x_k&lt;/script&gt;. That is, &lt;script type=&quot;math/tex&quot;&gt;K[W - x_k] = K[W] - v_k&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-We will prove our claim by contradiction. Suppose that &lt;script type=&quot;math/tex&quot;&gt;K[W] - v_k&lt;/script&gt; is not an optimal value and that the optimal value is &lt;script type=&quot;math/tex&quot;&gt;T^{\prime}&lt;/script&gt;. Since we know that the optimal solution to the knapsack of size &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt; contains a copy of item &lt;script type=&quot;math/tex&quot;&gt;x_k&lt;/script&gt;, we can therefore add &lt;script type=&quot;math/tex&quot;&gt;x_k&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;K[W - x_k]&lt;/script&gt; to obtain an optimal value &lt;script type=&quot;math/tex&quot;&gt;T^{\prime} + v_k&lt;/script&gt;. But &lt;script type=&quot;math/tex&quot;&gt;T^{\prime} + v_k &gt;  K[W] - v_k + v_k = K[W]&lt;/script&gt;. This is a contradiction since we assumed that &lt;script type=&quot;math/tex&quot;&gt;K[W]&lt;/script&gt; is an optimal value. Therefore, &lt;script type=&quot;math/tex&quot;&gt;K[W] - v_k&lt;/script&gt; must be an optimal value for a knapsack of size &lt;script type=&quot;math/tex&quot;&gt;W - x_k&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2.6 Running Time:&lt;/b&gt; &lt;br /&gt;
-Assume we have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; items and the knapsack is of size &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt;. The runtime is &lt;script type=&quot;math/tex&quot;&gt;O(nW)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 0/1 Knapsack&lt;/b&gt;&lt;br /&gt;
-Let’s focus now on the 0/1 knapsack problem and let’s start with an example. Suppose we have a taco of weight 3 and value 10. We also a burrito of weight 6 and value 14 and a enchilada of weight 5 and value 11. Suppose now that we have a knapsack of size, &lt;script type=&quot;math/tex&quot;&gt;W=9&lt;/script&gt;. The optimal solution is to pack a taco and an enchilada for a total value of 27.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3.1 Solutions? Complete Search&lt;/b&gt;&lt;br /&gt;
-A greedy approach won’t work similar to the unbounded knapsack. We can instead do an exhaustive search. We can check every possible combination of the items we have. We will have 2 choices for each item. We either select the item or we don’t. Therefore, we have &lt;script type=&quot;math/tex&quot;&gt;2^n&lt;/script&gt; possible subsets to check and the running time is &lt;script type=&quot;math/tex&quot;&gt;O(2^n)&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3.2 Dynamic Programming&lt;/b&gt;
-&lt;br /&gt;
-Unfortunately we can’t use the same recursive substructure in the unbounded knapsack above. In this problem, we need to also keep track of which items are available at each step since some might have been taken. So if the smaller subproblem is using an item &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, the larger problem must know not to re-take it which is a violation to the constraint of having one copy only per item.
-&lt;br /&gt;
-&lt;br /&gt;
-Therefore, our subproblems must track both the size of the knapsack and the items allowed so far and therefore, we need a two dimensional table! we’ll let &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; to indicate the knapsack size and &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; to indicate that we’re using the first &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; items.
-&lt;br /&gt;
-&lt;br /&gt;
-Suppose we know the optimal solution to &lt;script type=&quot;math/tex&quot;&gt;K[x,y]&lt;/script&gt; for a knapsack of size &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; using items &lt;script type=&quot;math/tex&quot;&gt;0,..y&lt;/script&gt;.
-&lt;br /&gt;
-There are two cases:
-&lt;br /&gt;
-Case 1: &lt;script type=&quot;math/tex&quot;&gt;K[x,y]&lt;/script&gt; does not use item &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt;. In this case, &lt;script type=&quot;math/tex&quot;&gt;K[x,y] = K[x,y-1]&lt;/script&gt;.
-&lt;br /&gt;
-Case 2: We do use item &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt;. In this case, we claim that &lt;script type=&quot;math/tex&quot;&gt;K[x,y] = K[x-w_y,y-1] + y_k&lt;/script&gt;.
-&lt;br /&gt;
-We can therefore, summarize it in:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-K[x,y] = \max\{K[x, y-1], K[x - w_y, y-1] + v_y\}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;With the base case of &lt;script type=&quot;math/tex&quot;&gt;K[x,0]=0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;K[0,y]=0&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3.3 Proof of Correctness&lt;/b&gt;&lt;br /&gt;
-The proof is very similar to the structure of our earlier proof to the unbounded knapsack problem. If we can have a better solution to the subproblem then we can have even a better solution to the optimal solution to the larger problem which is a contradiction. I might write it later?.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3.3 Implementation&lt;/b&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;knapsack_01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// base case k[0][j] = 0, K[i][0] = 0&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for each weight w&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for each item i:&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// case 1: item i is not in the optimal solution&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// case 2: item i is in the optimal solution&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// print items&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()];&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur_w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()];&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cur_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cur_w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;cur_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;cur_w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Optimal value = %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;W&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Full Implementation:&lt;/b&gt; &lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction The Knapsack problem is a classic dynamic programming problem. In this problem, we are given a knapsack of size for some integer and a list of items. Each item has an integer weight and an integer value, . The goal is to maximize the value of the knapsack under the constraint . There are many variations of the Knapsack problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack in the knapsack. So we either select an item or we don’t. There is also the unbounded knaspack where you have multiple/unbounded copies of each item. 2 Unbounded Knapsack Let’s focus now on the unbounded knapsack problem and let’s start with an example. Suppose we have an unbounded number of tacos, each of weight 2 and value 4. We also have burritos each of weight 6 and value 17. Suppose now that we have a knapsack of size, . The optimal solution is to pack 2 burritos and 1 taco which will give an optimal value of . 2.1 How to solve the Knapsack problem? The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One might try a simple greedy algorithm of say always picking the item with the best value/weight ratio. In the example, we’ll pick 2 burritos of value which is not an optimal value! 2.2 Complete Search We can also try a complete search of every possible combinations of items. I’m not sure about the thought process here but I was thinking the following should give us an upper bound. For each item with weight and value , we insert copies of to a new list of items. If we original had items, we could potentially insert items. Give this this list. For each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be . 2.3 Dynamic Programming As we saw above, greedy doesn’t work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem. Let be the optimal value for capacity . We will have the following recursive substructure: $$ \begin{align*} K[x] = \max_i\{K[x - w_i] + v_i\} \end{align*} $$ In other words, suppose we have unlimited copies of the following items, . Assume now that the optimal solution contains some item . Then we will see that , meaning that the optimal solution for contains within it optimal solutions to smaller subproblems. 2.4 Implementation typedef struct item { int w; int v; item(int weight, int value) { w = weight; v = value; } } item; int unbounded_knapsack(std::vector&amp;lt;item&amp;gt; &amp;amp;bag, int W) { std::vector&amp;lt;std::vector&amp;lt;int&amp;gt;&amp;gt; items; std::vector&amp;lt;int&amp;gt; K; for (int i = 0; i &amp;lt;= W; i++) { K.push_back(0); items.push_back(std::vector&amp;lt;int&amp;gt;()); } // base case, k[0] = 0 for (int w = 1; w &amp;lt;= W; w++) { // for each weight w for (int i = 0; i &amp;lt; bag.size(); i++) { // for each item i if (bag[i].w &amp;lt;= w &amp;amp;&amp;amp; bag[i].v + K[w - bag[i].w] &amp;gt; K[w]) { // maybe there is a more effient way? items[w].clear(); items[w].push_back(i); items[w].insert(items[w].end(), items[w-bag[i].w].begin(), items[w-bag[i].w].end()); K[w] = bag[i].v + K[w - bag[i].w]; } } } // print items for (int i = 0; i &amp;lt; items[W].size(); i++) { printf(&quot;(%d %d) &quot;, bag[items[W][i]].w, bag[items[W][i]].v); } printf(&quot;\n&quot;); printf(&quot;Optimal value = %d\n&quot;, K[W]); return K[W]; } 2.5 Proof of Correctness We claim that our recursive substructure we’ve shown earlier is optimal. Proof: Suppose that we have a knapsack of size and suppose that we have unbounded copies of items available to us. Now suppose that we know the optimal value to the knapsack is and that the optimal solution contains one copy of item for some natural number . We claim that is an optimal value for a knapsack of size . That is, . We will prove our claim by contradiction. Suppose that is not an optimal value and that the optimal value is . Since we know that the optimal solution to the knapsack of size contains a copy of item , we can therefore add to to obtain an optimal value . But . This is a contradiction since we assumed that is an optimal value. Therefore, must be an optimal value for a knapsack of size . 2.6 Running Time: Assume we have items and the knapsack is of size . The runtime is . 3 0/1 Knapsack Let’s focus now on the 0/1 knapsack problem and let’s start with an example. Suppose we have a taco of weight 3 and value 10. We also a burrito of weight 6 and value 14 and a enchilada of weight 5 and value 11. Suppose now that we have a knapsack of size, . The optimal solution is to pack a taco and an enchilada for a total value of 27. 3.1 Solutions? Complete Search A greedy approach won’t work similar to the unbounded knapsack. We can instead do an exhaustive search. We can check every possible combination of the items we have. We will have 2 choices for each item. We either select the item or we don’t. Therefore, we have possible subsets to check and the running time is . 3.2 Dynamic Programming Unfortunately we can’t use the same recursive substructure in the unbounded knapsack above. In this problem, we need to also keep track of which items are available at each step since some might have been taken. So if the smaller subproblem is using an item , the larger problem must know not to re-take it which is a violation to the constraint of having one copy only per item. Therefore, our subproblems must track both the size of the knapsack and the items allowed so far and therefore, we need a two dimensional table! we’ll let to indicate the knapsack size and to indicate that we’re using the first items. Suppose we know the optimal solution to for a knapsack of size using items . There are two cases: Case 1: does not use item . In this case, . Case 2: We do use item . In this case, we claim that . We can therefore, summarize it in: $$ \begin{align*} K[x,y] = \max\{K[x, y-1], K[x - w_y, y-1] + v_y\} \end{align*} $$ With the base case of and . 3.3 Proof of Correctness The proof is very similar to the structure of our earlier proof to the unbounded knapsack problem. If we can have a better solution to the subproblem then we can have even a better solution to the optimal solution to the larger problem which is a contradiction. I might write it later?. 3.3 Implementation int knapsack_01(std::vector&amp;lt;item&amp;gt; &amp;amp;bag, int W) { int K[100][100] = {0}; // base case k[0][j] = 0, K[i][0] = 0 for (int w = 1; w &amp;lt;= W; w++) { // for each weight w for (int i = 1; i &amp;lt;= bag.size(); i++) { // for each item i: // case 1: item i is not in the optimal solution K[w][i] = K[w][i-1]; // case 2: item i is in the optimal solution if (bag[i-1].w &amp;lt;= w &amp;amp;&amp;amp; bag[i-1].v + K[w - bag[i-1].w][i-1] &amp;gt; K[w][i]) { K[w][i] = bag[i-1].v + K[w - bag[i-1].w][i-1]; } } } // print items int res = K[W][bag.size()]; printf(&quot;%d\n&quot;, res); int cur_w = W; int cur_v = K[W][bag.size()]; for (int i = (int)bag.size(); i &amp;gt; 0 &amp;amp;&amp;amp; res &amp;gt; 0; i--) { if (cur_v != K[cur_w][i-1]) { printf(&quot;%d %d\n&quot;, bag[i-1].w, bag[i-1].v); cur_v -= bag[i-1].v; cur_w -= bag[i-1].w; } } printf(&quot;\n&quot;); printf(&quot;Optimal value = %d\n&quot;, K[W][bag.size()]); return K[W][bag.size()]; } 6 Full Implementation: https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp</summary></entry><entry><title type="html">Greedy: Maximum Activity Selection</title><link href="http://localhost:4000/jekyll/update/2019/07/01/activity-selection.html" rel="alternate" type="text/html" title="Greedy: Maximum Activity Selection" /><published>2019-07-01T07:01:36-07:00</published><updated>2019-07-01T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/01/activity-selection</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/01/activity-selection.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;&lt;br /&gt;
-Problems with greedy solutions might have really simple and straight forward solutions however they are really hard to reason about and therefore, greedy algorithms are generally taught toward the end of an algorithms class. One the of classic problems with greedy solutions is the activity selection problem. In this problem we are given a list of activities, each with a start time &lt;script type=&quot;math/tex&quot;&gt;t_i&lt;/script&gt; and a finish time &lt;script type=&quot;math/tex&quot;&gt;f_i&lt;/script&gt; and we would like to pick activities such that the total number of activities is maximized with the constraint that no two activities can overlap.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Greedy Solution&lt;/b&gt;&lt;br /&gt;
-As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activiy with the earliest finish time at each step until we run out of activities.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Example&lt;/b&gt;&lt;br /&gt;
-Suppose we have the following activities:
-&lt;img src=&quot;http://localhost:4000/assets/activities.png&quot; alt=&quot;my photo&quot; /&gt;
-Based on our solution, we will pick &lt;script type=&quot;math/tex&quot;&gt;A1&lt;/script&gt; first. We will skip &lt;script type=&quot;math/tex&quot;&gt;A2&lt;/script&gt; since it violates the condition of not having overlapped activities. We will then go on to pick &lt;script type=&quot;math/tex&quot;&gt;A3&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;A5&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;A6&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Algorithm&lt;/b&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// re-do it again&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;select_maximum_activities&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;custom_sort_by_finish_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;picked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;act&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;act&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;picked&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;finish_time&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;picked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;act&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;picked&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Proof of Correctness&lt;/b&gt;&lt;br /&gt;
-This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are &lt;b&gt; not ruling out &lt;/b&gt; the optimal solution. So each decision we make doesn’t affect our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now, this should sound very familiar, we have a base case where we start with an empty set of activities and then we want to prove that each selection we make doesn’t rule out an optimal solution. What proof method should we use? of course, Induction.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Proof By Induction:&lt;/b&gt;&lt;br /&gt;
-&lt;b&gt;Inductive Hypothesis: &lt;/b&gt; After adding the &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;‘th activity, there is an optimal solution that extends our current solution.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Base Case:&lt;/b&gt; When we add the zero’th activity, there exists an optimal solution that extends the current solution which contains no activities yet.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Inductive Step:&lt;/b&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; be a natural number and suppose we’re about to add the &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;‘th activity and that our inductive hypothesis holds for &lt;script type=&quot;math/tex&quot;&gt;k-1&lt;/script&gt;, meaning that we didn’t rule out an optimal solution yet and that there is some optimal solution &lt;script type=&quot;math/tex&quot;&gt;T^*&lt;/script&gt; that extends the &lt;script type=&quot;math/tex&quot;&gt;k-1&lt;/script&gt; choices we’ve made so far. We’re about to select our &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;‘th activity. 
-&lt;br /&gt;&lt;br /&gt;
-Our greedy algorithm picks the next activity with the earliest finish time such that it doesn’t overlap with any of the &lt;script type=&quot;math/tex&quot;&gt;k-1&lt;/script&gt; activities we’ve selected so far. Let our selection be &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt; for some natural number &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt;. There are two cases &lt;br /&gt;&lt;br /&gt;
-Case 1: &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt; is in the optimal solution so &lt;script type=&quot;math/tex&quot;&gt;a_j \in T^*&lt;/script&gt;. yay, we didn’t rule out the optimal solution and we’re done! &lt;br /&gt;
-Case 2: &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt; is not in the optimal solution so &lt;script type=&quot;math/tex&quot;&gt;a_j \not\in T^*&lt;/script&gt;. In this case, some other activity was selected instead of &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt;. Let that activity be &lt;script type=&quot;math/tex&quot;&gt;a_k&lt;/script&gt;. Let’s consider swapping &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;a_k&lt;/script&gt; to create a new set of activities, &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-We claim that &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is allowed and optimal. First, we know that &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt; has a smaller finish than &lt;script type=&quot;math/tex&quot;&gt;a_k&lt;/script&gt; because our greedy algorithm selects the activity with the earliest finish time. Therefore, &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt; doesn’t conflict with anything chosen after &lt;script type=&quot;math/tex&quot;&gt;a_k&lt;/script&gt;. From this we see that &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; also has the same number of activities as &lt;script type=&quot;math/tex&quot;&gt;T^*&lt;/script&gt; and therefore, we can conclude that &lt;script type=&quot;math/tex&quot;&gt;T^*&lt;/script&gt; is optimal.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Conclusion:&lt;/b&gt;
-After adding the last activity, we will have an optimal solution that extends our current choices. Our current choices or solution is the only solution that extends the current solution and therefore, our current solution is optimal. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Running Time:&lt;/b&gt; &lt;br /&gt;
-If we need to sorted then it will be &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;. If it’s sorted then we’re only doing a linear scan of activities and therefore, the running time is &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Detailed Implementation:&lt;/b&gt; &lt;br /&gt;
--
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Problems with greedy solutions might have really simple and straight forward solutions however they are really hard to reason about and therefore, greedy algorithms are generally taught toward the end of an algorithms class. One the of classic problems with greedy solutions is the activity selection problem. In this problem we are given a list of activities, each with a start time and a finish time and we would like to pick activities such that the total number of activities is maximized with the constraint that no two activities can overlap. 2 Greedy Solution As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activiy with the earliest finish time at each step until we run out of activities. 3 Example Suppose we have the following activities: Based on our solution, we will pick first. We will skip since it violates the condition of not having overlapped activities. We will then go on to pick , and . 4 Algorithm // re-do it again std::vector&amp;lt;activity&amp;gt; select_maximum_activities(std::vector&amp;lt;activity&amp;gt; a) { std::sort(a.begin(), a.end(), custom_sort_by_finish_time); std::vector&amp;lt;activity&amp;gt; picked; for act in a { if act.start_time &amp;gt;= last picked activity.finish_time { picked.push_back(act); } } return picked } 5 Proof of Correctness This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are not ruling out the optimal solution. So each decision we make doesn’t affect our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.</summary></entry><entry><title type="html">Longest Increasing Subsequence</title><link href="http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence.html" rel="alternate" type="text/html" title="Longest Increasing Subsequence" /><published>2019-06-25T12:01:36-07:00</published><updated>2019-06-25T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/06/25/longest-increasing-subsequence.html">&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;A = [a_0, a_1, a_2,...,a_n]&lt;/script&gt; be an array containing &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; real numbers. A longest increasing subsequence of A is a sequence &lt;script type=&quot;math/tex&quot;&gt;0 \leq i_0 \leq i_1 \leq ... \leq i_k \leq n&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;A[i_i] \leq A[i_2] \leq ... \leq A[i_k]&lt;/script&gt; so that &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is of maximum value.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Example&lt;/b&gt;
-&lt;br /&gt;
-Suppose &lt;script type=&quot;math/tex&quot;&gt;A = [3, 8, 1, 2, 7, 9, 6, 4, 5]&lt;/script&gt; then a longest increasing subsequence could be &lt;script type=&quot;math/tex&quot;&gt;[1, 2, 4, 5]&lt;/script&gt;. Note that it is not unique.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 The Brute Force Solution&lt;/b&gt;
-&lt;br /&gt;
-We can check every possible subsequence. For each element of &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt;, we either select that element or not. Therefore, the total number of possible subsequences is &lt;script type=&quot;math/tex&quot;&gt;2^n&lt;/script&gt;. As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is &lt;script type=&quot;math/tex&quot;&gt;O(2^n)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Dynamic Programming and the Optimal Substructure&lt;/b&gt;
-&lt;br /&gt;
-To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS).&lt;br /&gt;
-&lt;br /&gt;
-It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let &lt;script type=&quot;math/tex&quot;&gt;D[i]&lt;/script&gt; be the length of the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;, then we will find that&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-D[i] = 1 + \max({D[k] : k &amp;lt; i \text{ and } A[k] &amp;lt; A[i]})
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;In other words, the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; can be found by looking at all &lt;script type=&quot;math/tex&quot;&gt;D[k]&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-k &lt; i %]]&gt;&lt;/script&gt; (meaning that &lt;script type=&quot;math/tex&quot;&gt;A[k]&lt;/script&gt; comes before &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;) and &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; A[k]&lt;/script&gt; (meaning that &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; can extend the subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[k]&lt;/script&gt;). We then take the maximum value of &lt;script type=&quot;math/tex&quot;&gt;D[k]&lt;/script&gt;, 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Proof:&lt;/b&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; be a natural number and let &lt;script type=&quot;math/tex&quot;&gt;D[i]&lt;/script&gt; be the length of the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Consider the subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i + 1]&lt;/script&gt;. We have two cases:
-&lt;br /&gt;
-&lt;br /&gt;
-Case 1: &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; is the smallest element in &lt;script type=&quot;math/tex&quot;&gt;A[0...i+1]&lt;/script&gt;. Therefore, the length of the subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; is 1.
-&lt;br /&gt;
-&lt;br /&gt;
-Case 2: &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; is not the smallest element in &lt;script type=&quot;math/tex&quot;&gt;A[0...i+1]&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; be a natural number where &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-k &lt; i+1 %]]&gt;&lt;/script&gt;. This means that we can use &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; to extend the subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[k]&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-A[k] &lt; A[i + 1] %]]&gt;&lt;/script&gt;. Since we are searching for the longest increasing subsequence then we take the maximum value for all possible &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-k &lt; i + 1 %]]&gt;&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;D[i+1]&lt;/script&gt; is the maximum value plus 1 as defined above.
-&lt;br /&gt;
-&lt;br /&gt;
-We claim that &lt;script type=&quot;math/tex&quot;&gt;D[i+1]&lt;/script&gt; is the length of longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt;. Suppose it wasn’t and that the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;m &gt; D[i+1]&lt;/script&gt;. By our definition, we know that &lt;script type=&quot;math/tex&quot;&gt;D[i+1] = D[k] + 1&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;D[k]&lt;/script&gt; is the longest increasing subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-k &lt; i+1 %]]&gt;&lt;/script&gt;. This means that &lt;script type=&quot;math/tex&quot;&gt;m &gt; D[k]+1&lt;/script&gt; but this is not possible since we’re only adding &lt;script type=&quot;math/tex&quot;&gt;A[i+1]&lt;/script&gt; to the subsequence. Therefore, &lt;script type=&quot;math/tex&quot;&gt;D[i+1]&lt;/script&gt; is optimal.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 The &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; Implementation&lt;/b&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;longest_increasing_subsequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// maximum subsequence ending at a[i] is initially 1&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// parent array&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// for element a[i], check all the previous subsequences where i &amp;lt; j&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// and see if a[i] can extend any of them&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// I can extend the subsequence&lt;/span&gt;
-	            &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	            &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// used for reconstructing the subsequence&lt;/span&gt;
-	        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// maximum subsequence so far&lt;/span&gt;
-	        &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-	    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Running Time:&lt;/b&gt; 
-&lt;br /&gt;
-We’re doing two simple loops to fill arrays &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. Therefore, our runtime is just &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Example:&lt;/b&gt; 
-&lt;br /&gt;
-Initially we start with arrays &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt;:
-Consider again &lt;script type=&quot;math/tex&quot;&gt;A = [3, 8, 1, 2, 7, 9, 6, 4, 5]&lt;/script&gt;. We initialize &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; to be &lt;script type=&quot;math/tex&quot;&gt;D = [1, 1, 1, 1, 1, 1, 1, 1, 1]&lt;/script&gt; representing the initial length of the subsequence ending at each possible &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-Iteration &lt;script type=&quot;math/tex&quot;&gt;i = 1&lt;/script&gt;. We look at &lt;script type=&quot;math/tex&quot;&gt;A[1] = 8&lt;/script&gt;. We have &lt;script type=&quot;math/tex&quot;&gt;D[1]=1&lt;/script&gt; and so the subsequence is just &lt;script type=&quot;math/tex&quot;&gt;\{8\}&lt;/script&gt;. Can 8 extend any previous subsequences? We look at &lt;script type=&quot;math/tex&quot;&gt;j = 0&lt;/script&gt; and in that case, we see that &lt;script type=&quot;math/tex&quot;&gt;A[1] &gt; A[0]&lt;/script&gt;, meaning that that the subsequence can now include 3 and become &lt;script type=&quot;math/tex&quot;&gt;\{3, 8\}&lt;/script&gt;. And so now we have:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
-$$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-Iteration &lt;script type=&quot;math/tex&quot;&gt;i = 2&lt;/script&gt;. We look at &lt;script type=&quot;math/tex&quot;&gt;A[2] = 1&lt;/script&gt;. We have &lt;script type=&quot;math/tex&quot;&gt;D[2]=1&lt;/script&gt; and so the subsequence is just &lt;script type=&quot;math/tex&quot;&gt;\{1\}&lt;/script&gt;. Can 4 extend any previous subsequences? We need to look at &lt;script type=&quot;math/tex&quot;&gt;j = 0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j = 1&lt;/script&gt;. It turns out that 1 will not be able to extend either subsequence.&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
-$$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-We continue doing so until we reach the end and we have:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
-$$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$
-&lt;/div&gt;
-&lt;p&gt;This means that the longest subsequence ends at element 9 or 5. We can then &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; to construct the subsequence. One possible construction will generate: &lt;script type=&quot;math/tex&quot;&gt;[1, 2, 7, 9]&lt;/script&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 The O(nlg(n)) Solution with Binary Search:&lt;/b&gt; 
-&lt;br /&gt;
-The O(n^2) dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes!
-&lt;br /&gt;&lt;br /&gt;
-Previously, we said that &lt;script type=&quot;math/tex&quot;&gt;D[i]&lt;/script&gt; is the length of the longest subsequence ending at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Now we will consider a completely different substructure. Let &lt;script type=&quot;math/tex&quot;&gt;M[i]&lt;/script&gt; to be the smallest element that ends a subsequence of length &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;. For simplicity we will initially let &lt;script type=&quot;math/tex&quot;&gt;M[0]&lt;/script&gt; to be &lt;script type=&quot;math/tex&quot;&gt;-\infty&lt;/script&gt; and everything else to be &lt;script type=&quot;math/tex&quot;&gt;\infty&lt;/script&gt;. 
-&lt;br /&gt;&lt;br /&gt;
-Let’s take the same example where &lt;script type=&quot;math/tex&quot;&gt;A = [3, 8, 1, 2, 7, 9, 6, 4, 5]&lt;/script&gt;. In this case, the smallest number that ends a subsequence of length 1 is 1. Also the smallest number that ends a subsequence of length 3 is 4 and so on. We will eventually have &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;[-\infty, 1, 2, 4, 5, \infty, \infty, \infty, \infty]&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-Before proceeding with the algorithm and why it works. Let’s prove that based on our construction of &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;, that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; must be sorted because this will help us later on. To prove that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted, we will prove that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is a strictly increasing array and that for any &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-M[k] &lt; M[k+1] %]]&gt;&lt;/script&gt;. (We will ignore the placeholder &lt;script type=&quot;math/tex&quot;&gt;\infty&lt;/script&gt;’s otherwise the proof would not work)
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Claim: M is a strictly increasing array&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;b&gt;Proof:&lt;/b&gt;&lt;br /&gt;
-Suppose it is not and that there exists some &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; where either &lt;script type=&quot;math/tex&quot;&gt;M[j] = M[j+1]&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;M[j] &gt; M[j+1]&lt;/script&gt;. We will prove neither case is possible.
-&lt;br /&gt;&lt;br /&gt;
-First, suppose that &lt;script type=&quot;math/tex&quot;&gt;M[j] = M[j+1]&lt;/script&gt; then this means that we have two strictly increasing subsequences that end in &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt;. Let the first subsequence be &lt;script type=&quot;math/tex&quot;&gt;\{a_1, a_2,...a_n,M[j]\}&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; and let the second subsequence be &lt;script type=&quot;math/tex&quot;&gt;\{b_1,b_2,..,b_m,M[j]\}&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;j+1&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;m = n + 1&lt;/script&gt;. Since this is a strictly increasing subsequence, we must have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-b_m &lt; M[j] %]]&gt;&lt;/script&gt;. This is a contradiction because by assumption we know that &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; is the smallest element that ends a subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; but we just showed that there exists a subsequence, namely, &lt;script type=&quot;math/tex&quot;&gt;\{b_1,b_2,..,b_m\}&lt;/script&gt;, of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that ends with a smaller element, &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-b_m &lt; M[j] %]]&gt;&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-Next, suppose that &lt;script type=&quot;math/tex&quot;&gt;M[j] &gt; M[j+1]&lt;/script&gt;. This is a contradiction for the same reasons above. Let &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; be the subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that ends with &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; and if we let &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; the subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j+1&lt;/script&gt; that ends with M[j+1]. Since subsequences are strictly increasing then we can extract all the elements from &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; except for &lt;script type=&quot;math/tex&quot;&gt;M[j+1]&lt;/script&gt;. This new sequence ends with an element strictly less than &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; and therefore, we arrive at the same contradiction and conclude that it is not possible.
-&lt;br /&gt;&lt;br /&gt;
-Therefore, we can conclude that we must have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-M[k] &lt; M[k+1] %]]&gt;&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; as we wanted to show.
-&lt;!-- --&gt;
-&lt;br /&gt;&lt;br /&gt;
-&lt;b&gt;Algorithm:&lt;/b&gt;&lt;br /&gt;
-Let’s traverse &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; from left to right. For the base case, we consider &lt;script type=&quot;math/tex&quot;&gt;i = 0&lt;/script&gt; and at this point we know that &lt;script type=&quot;math/tex&quot;&gt;A[0] &gt; -\infty&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;M[1] = A[0]&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-Now let’s consider iteration &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Also, let &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; be the length of the longest subsequence reached so far, meaning that &lt;script type=&quot;math/tex&quot;&gt;M[k] \neq \infty&lt;/script&gt; and for any &lt;script type=&quot;math/tex&quot;&gt;j &gt; k&lt;/script&gt; we have &lt;script type=&quot;math/tex&quot;&gt;M[j] = \infty&lt;/script&gt;. Let’s consider two cases:
-&lt;br /&gt;&lt;br /&gt;
-Case 1: &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[k]&lt;/script&gt;. In this case, we see that it is possible to extend the subsequence ending with element &lt;script type=&quot;math/tex&quot;&gt;M[k]&lt;/script&gt; because &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; is greater, yay! Now we can set &lt;script type=&quot;math/tex&quot;&gt;M[k+1] = A[i]&lt;/script&gt; and we are done. (But why? don’t we need to check previous subsequences in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;? No. Proof: We established previously that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted and so if &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[k]&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[j]&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;j \leq k&lt;/script&gt;. This means that &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; is not a possible candidate for replacing any of the previous elements because &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; holds ONLY the minimum possible elements that end each subsequence.)
-&lt;br /&gt;&lt;br /&gt;
-Case 2: &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-A[i] &lt; M[k] %]]&gt;&lt;/script&gt;. This one is tricky. In this case &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; can’t extend the current subsequence of length &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; but it can potentially be a better candidate for ending some subsequence of length &lt;script type=&quot;math/tex&quot;&gt;1,...,k&lt;/script&gt;. Recall that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted and is a strictly increasing array. Let &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; be natural number where &lt;script type=&quot;math/tex&quot;&gt;j \leq k&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; is the smallest element such that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-A[i] &lt; M[j] %]]&gt;&lt;/script&gt;. (Note that it might be that &lt;script type=&quot;math/tex&quot;&gt;j = k&lt;/script&gt;). By our construction, this means that &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[j-1]&lt;/script&gt;. (Note that it might be that j-1 = 0). This means that we can take the subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j-1&lt;/script&gt; ending with &lt;script type=&quot;math/tex&quot;&gt;M[j-1]&lt;/script&gt; and extend it with &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;, making a new subsequence of length &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that has a smaller ending value than the one ending with &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt;! (we’re basically replacing the subsequence ending with M[j] with the new subsequence consisting of what we have already in &lt;script type=&quot;math/tex&quot;&gt;M[j-1]&lt;/script&gt; plus &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;). How do we find such an index &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-M[j-1] &lt; A[i] &lt; M[j] %]]&gt;&lt;/script&gt;? This is where binary search comes in! since &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted, we can find this position in just &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;.
-&lt;br /&gt;&lt;br /&gt;
-Could we replace the end of any other subsequence? No. Even though &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-A[i] &lt; M[j] %]]&gt;&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;j..k&lt;/script&gt;, only &lt;script type=&quot;math/tex&quot;&gt;M[j]&lt;/script&gt; can be replaced because &lt;script type=&quot;math/tex&quot;&gt;A[i] &gt; M[j-1]&lt;/script&gt;. Any subsequence of length greater than &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; already has more elements than just &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; so &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; could not end these subsequences. (more formal?)
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 The &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; Implementation&lt;/b&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;longest_increasing_subsequence_fast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// O(nlogn)&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// keeps track of the length of the longest &lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// increasing subsequence found so far&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// in each iteration either a[i] &amp;gt; a[k] meaning we can &lt;/span&gt;
-		&lt;span class=&quot;c1&quot;&gt;// extend the subsequence&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// or a[i] &amp;lt; a[k] meaning we can update one of the previous &lt;/span&gt;
-			&lt;span class=&quot;c1&quot;&gt;// subsequences to a better subsequence ending &lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// just a binary search&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;Full Implementation &lt;/b&gt;&lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;References: &lt;/b&gt;&lt;br /&gt;
-These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html and CLRS.&lt;/p&gt;</content><author><name></name></author><summary type="html">1 Introduction Let be an array containing real numbers. A longest increasing subsequence of A is a sequence such that so that is of maximum value. 2 Example Suppose then a longest increasing subsequence could be . Note that it is not unique. 3 The Brute Force Solution We can check every possible subsequence. For each element of , we either select that element or not. Therefore, the total number of possible subsequences is . As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is . 4 Dynamic Programming and the Optimal Substructure To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS). It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let be the length of the longest increasing subsequence ending at , then we will find that $$ \begin{align*} D[i] = 1 + \max({D[k] : k &amp;lt; i \text{ and } A[k] &amp;lt; A[i]}) \end{align*} $$ In other words, the longest increasing subsequence ending at can be found by looking at all where (meaning that comes before ) and (meaning that can extend the subsequence ending at ). We then take the maximum value of , Proof: Let be a natural number and let be the length of the longest increasing subsequence ending at . Consider the subsequence ending at . We have two cases: Case 1: is the smallest element in . Therefore, the length of the subsequence ending at is 1. Case 2: is not the smallest element in . Let be a natural number where . This means that we can use to extend the subsequence ending at if . Since we are searching for the longest increasing subsequence then we take the maximum value for all possible and so is the maximum value plus 1 as defined above. We claim that is the length of longest increasing subsequence ending at . Suppose it wasn’t and that the longest increasing subsequence ending at is and so . By our definition, we know that where is the longest increasing subsequence ending at . This means that but this is not possible since we’re only adding to the subsequence. Therefore, is optimal. 3 The Implementation int longest_increasing_subsequence(int *a, int n) { int D[n], p[n], max = 0; // maximum subsequence ending at a[i] is initially 1 for (int i = 0; i &amp;lt; n; i++) { D[i] = 1; p[i] = -1; // parent array } // for element a[i], check all the previous subsequences where i &amp;lt; j // and see if a[i] can extend any of them for (int i = 1; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; i; j++) { if (A[i] &amp;gt; A[j] &amp;amp;&amp;amp; D[i] &amp;lt; D[j] + 1) { // I can extend the subsequence D[i] = D[j] + 1; p[i] = j; // used for reconstructing the subsequence } } if (D[i] &amp;gt; max) { // maximum subsequence so far max = D[i]; } } return max; } 5 Running Time: We’re doing two simple loops to fill arrays and . Therefore, our runtime is just 6 Example: Initially we start with arrays and : Consider again . We initialize to be representing the initial length of the subsequence ending at each possible . Iteration . We look at . We have and so the subsequence is just . Can 8 extend any previous subsequences? We look at and in that case, we see that , meaning that that the subsequence can now include 3 and become . And so now we have: $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$ Iteration . We look at . We have and so the subsequence is just . Can 4 extend any previous subsequences? We need to look at and . It turns out that 1 will not be able to extend either subsequence. $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$ We continue doing so until we reach the end and we have: $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$ $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$ This means that the longest subsequence ends at element 9 or 5. We can then to construct the subsequence. One possible construction will generate: 5 The O(nlg(n)) Solution with Binary Search: The O(n^2) dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes! Previously, we said that is the length of the longest subsequence ending at . Now we will consider a completely different substructure. Let to be the smallest element that ends a subsequence of length . For simplicity we will initially let to be and everything else to be . Let’s take the same example where . In this case, the smallest number that ends a subsequence of length 1 is 1. Also the smallest number that ends a subsequence of length 3 is 4 and so on. We will eventually have is . Before proceeding with the algorithm and why it works. Let’s prove that based on our construction of , that must be sorted because this will help us later on. To prove that is sorted, we will prove that is a strictly increasing array and that for any , we have . (We will ignore the placeholder ’s otherwise the proof would not work)</summary></entry></feed>
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction</summary></entry></feed>

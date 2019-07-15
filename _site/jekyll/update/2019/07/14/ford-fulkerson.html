@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Ford-Fulkerson’s Maximum Flow | strncat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Ford-Fulkerson’s Maximum Flow" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="0 References These are notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship iPhones from San Francisco to New York City because we have a current shortage of iPhones in NYC. We want to ship as many units as possible. Everything needs to be shipped by Ground. We have different routes of different capacities. We want to find the maximum number of iPhones we can ship to NYC. How can we model and solve can this problem? We’ll discuss the Ford-Fulkerson’s method but in order to describe it we have to set the stage and define a number of definitions. 2 Flow Networks A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex . A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \begin{align*} 0 \leq f(u,v) \leq c(u,v) \end{align*} $$ In other words, the flow on every edge must not exceed its capacity. (2) Flow Conservation: For all , we require $$ \begin{align*} \sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v) \end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . 4 The Maximum Flow Problem" />
+<meta property="og:description" content="0 References These are notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship iPhones from San Francisco to New York City because we have a current shortage of iPhones in NYC. We want to ship as many units as possible. Everything needs to be shipped by Ground. We have different routes of different capacities. We want to find the maximum number of iPhones we can ship to NYC. How can we model and solve can this problem? We’ll discuss the Ford-Fulkerson’s method but in order to describe it we have to set the stage and define a number of definitions. 2 Flow Networks A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex . A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \begin{align*} 0 \leq f(u,v) \leq c(u,v) \end{align*} $$ In other words, the flow on every edge must not exceed its capacity. (2) Flow Conservation: For all , we require $$ \begin{align*} \sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v) \end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . 4 The Maximum Flow Problem" />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson.html" />
+<meta property="og:site_name" content="strncat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-14T07:01:36-07:00" />
+<script type="application/ld+json">
+{"description":"0 References These are notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship iPhones from San Francisco to New York City because we have a current shortage of iPhones in NYC. We want to ship as many units as possible. Everything needs to be shipped by Ground. We have different routes of different capacities. We want to find the maximum number of iPhones we can ship to NYC. How can we model and solve can this problem? We’ll discuss the Ford-Fulkerson’s method but in order to describe it we have to set the stage and define a number of definitions. 2 Flow Networks A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex . A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \\begin{align*} 0 \\leq f(u,v) \\leq c(u,v) \\end{align*} $$ In other words, the flow on every edge must not exceed its capacity. (2) Flow Conservation: For all , we require $$ \\begin{align*} \\sum_{v \\in V}f(v,u) = \\sum_{v \\in V} f(u,v) \\end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . 4 The Maximum Flow Problem","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson.html","headline":"Ford-Fulkerson’s Maximum Flow","dateModified":"2019-07-14T07:01:36-07:00","datePublished":"2019-07-14T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Ford-Fulkerson&#39;s Maximum Flow</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-07-14T07:01:36-07:00" itemprop="datePublished">Jul 14, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><b>0 References</b><br />
+These are notes on chapter 26 in CLRS.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>1 Introduction</b>
+<br />
+<br />
+Suppose we want to ship iPhones from San Francisco to New York City because we have a current shortage of iPhones in NYC. We want to ship as many units as possible. Everything needs to be shipped by Ground. We have different routes of different capacities. We want to find the maximum number of iPhones we can ship to NYC. How can we model and solve can this problem? We’ll discuss the Ford-Fulkerson’s method but in order to describe it we have to set the stage and define a number of definitions.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>2 Flow Networks</b>
+<img src="http://localhost:4000/assets/flow/1.png" width="100%" />
+A flow network <script type="math/tex">G=(V,E)</script> is a directed graph where <br /></p>
+<ul>
+  <li>We have two distinguished vertices, the source vertex <script type="math/tex">s</script> and the sink vertex <script type="math/tex">t</script>.</li>
+  <li>Each edge <script type="math/tex">(u,v) \in E</script> has a non-negative capacity <script type="math/tex">c(u,v) \geq 0</script>. <br /></li>
+  <li>If we have edge <script type="math/tex">(u,v) \in E</script> then we must have <script type="math/tex">(u,v) \not\in E</script>. <br /></li>
+  <li>For any vertex <script type="math/tex">v \in V</script>, <script type="math/tex">(v,v) \not\in E</script>. <br /></li>
+  <li>If <script type="math/tex">(u,v) \not\in E</script>, then we can assume that <script type="math/tex">c(u,v)=0</script>.<br /></li>
+  <li><script type="math/tex">G</script> is connected and so <script type="math/tex">|E| \geq |V| - 1</script>.
+<br />
+<br /></li>
+</ul>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>3 What is Flow?</b>
+<br /><br />
+Let <script type="math/tex">f(u,v)</script> be the flow from vertex <script type="math/tex">u</script> to vertex <script type="math/tex">v</script>. A <b>flow</b> is a real valued function <script type="math/tex">f : V \times V \rightarrow \mathbb{R}</script> that satisfies:<br />
+(1) <b>Capacity constraint:</b> For all <script type="math/tex">u, v \in V</script>, we require</p>
+<div center="">
+$$
+\begin{align*}
+0 \leq f(u,v) \leq c(u,v)
+\end{align*}
+$$
+</div>
+<p>In other words, the flow on every edge must not exceed its capacity.
+<br /><br />
+(2) <b>Flow Conservation:</b> For all <script type="math/tex">u \in V - \{s,t\}</script>, we require</p>
+<div center="">
+$$
+\begin{align*}
+\sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v)
+\end{align*}
+$$
+</div>
+<p>In other words, the total flow coming into <script type="math/tex">u</script> is equal to the total flow leaving <script type="math/tex">u</script>.
+<br />
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>4 The Maximum Flow Problem</b>
+<br /></p>
+
+<!--
+Let $$|f|$$ be the flow value defined as
+<div center>
+$$
+\begin{align*}
+|f| = \sum_{v \in V}f(s,v) = \sum_{v \in V} f(v,s)
+\end{align*}
+$$
+</div>
+In other words, the flow value is the total flow coming out of the source minus the total flow coming into the source. 
+-->
+
+<p>In the maximum-flow problem we are given a flow network <script type="math/tex">G</script> with a source vertex <script type="math/tex">s</script> and a sink vertex <script type="math/tex">t</script> and we are asked to find the maximum flow in <script type="math/tex">G</script> from <script type="math/tex">s</script> to <script type="math/tex">t</script>.</p>
+
+<p><br />
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>5 The Residual Graph</b>
+<br /></p>
+
+<p><br />
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>6 The Ford-Fulkerson’s Method</b>
+<br /><br />
+Now that we defined everything needed, we can talk about how Fold-Fulkerson solves this problem! yay! Intuitively, Ford-Fulkerson starts with <script type="math/tex">f(u,v)=0</script> for all <script type="math/tex">(u,v) \in E</script> and incrementally increases the flow value. It does so by finding an augmenting path in the residual network <script type="math/tex">G_f</script>.</p>
+
+
+  </div><!--
+  
+--><a class="u-url" href="/jekyll/update/2019/07/14/ford-fulkerson.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hello</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+  </body>
+
+</html>

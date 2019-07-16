@@ -9,15 +9,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="b c d e f a 4 7 2 6 5 1 2 3 1 0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be undirected, weighted graph with vertices and edges. A minimum spanning tree is a tree that connects all the vertices in of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 2.1 Algorithm (slow naive version) E = Sort the edges by non-decreasing weight. MST = {} for e in sorted E { if we can add e to MST without creating a cycle { add e to MST } } return MST 2.2 Algorithm (fast, used for the remaining of these notes) The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations makeSet(u): creates a set find(u): returns the set that is in. union(u,v): merge the set that is in with the set that is in." />
 <meta property="og:description" content="b c d e f a 4 7 2 6 5 1 2 3 1 0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be undirected, weighted graph with vertices and edges. A minimum spanning tree is a tree that connects all the vertices in of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 2.1 Algorithm (slow naive version) E = Sort the edges by non-decreasing weight. MST = {} for e in sorted E { if we can add e to MST without creating a cycle { add e to MST } } return MST 2.2 Algorithm (fast, used for the remaining of these notes) The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations makeSet(u): creates a set find(u): returns the set that is in. union(u,v): merge the set that is in with the set that is in." />
-<link rel="canonical" href="https://strncat.github.io/jekyll/update/2019/04/03/kruskal.html" />
-<meta property="og:url" content="https://strncat.github.io/jekyll/update/2019/04/03/kruskal.html" />
+<link rel="canonical" href="/jekyll/update/2019/04/03/kruskal.html" />
+<meta property="og:url" content="/jekyll/update/2019/04/03/kruskal.html" />
 <meta property="og:site_name" content="strncat’s notebook" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-04-03T07:01:36-07:00" />
 <script type="application/ld+json">
-{"description":"b c d e f a 4 7 2 6 5 1 2 3 1 0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be undirected, weighted graph with vertices and edges. A minimum spanning tree is a tree that connects all the vertices in of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 2.1 Algorithm (slow naive version) E = Sort the edges by non-decreasing weight. MST = {} for e in sorted E { if we can add e to MST without creating a cycle { add e to MST } } return MST 2.2 Algorithm (fast, used for the remaining of these notes) The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations makeSet(u): creates a set find(u): returns the set that is in. union(u,v): merge the set that is in with the set that is in.","@type":"BlogPosting","url":"https://strncat.github.io/jekyll/update/2019/04/03/kruskal.html","headline":"Kruskal’s Minimum Spanning Tree","dateModified":"2019-04-03T07:01:36-07:00","datePublished":"2019-04-03T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://strncat.github.io/jekyll/update/2019/04/03/kruskal.html"},"@context":"https://schema.org"}</script>
+{"description":"b c d e f a 4 7 2 6 5 1 2 3 1 0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be undirected, weighted graph with vertices and edges. A minimum spanning tree is a tree that connects all the vertices in of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 2.1 Algorithm (slow naive version) E = Sort the edges by non-decreasing weight. MST = {} for e in sorted E { if we can add e to MST without creating a cycle { add e to MST } } return MST 2.2 Algorithm (fast, used for the remaining of these notes) The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations makeSet(u): creates a set find(u): returns the set that is in. union(u,v): merge the set that is in with the set that is in.","@type":"BlogPosting","url":"/jekyll/update/2019/04/03/kruskal.html","headline":"Kruskal’s Minimum Spanning Tree","dateModified":"2019-04-03T07:01:36-07:00","datePublished":"2019-04-03T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/update/2019/04/03/kruskal.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://strncat.github.io/feed.xml" title="strncat's notebook" />
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -212,7 +212,7 @@ This first section is exactly copied from Prim’s so I should probably just lin
 <br /><br />
 Why does this algorithm find a minimum spanning tree? Before we can answer that, let’s define some terms and prove some lemma that will be useful in the main proof. Let <script type="math/tex">G=(V,E)</script> be the graph below and let <script type="math/tex">S</script> be the set of yellow edges in <script type="math/tex">G</script>.</p>
 
-<p><img src="https://strncat.github.io/assets/cut.png" alt="my photo" /></p>
+<p><img src="/assets/cut.png" alt="my photo" /></p>
 
 <ul>
   <li>A <b>cut</b> is a partition of the vertices into two non-empty parts. the red line (cut) partitions <script type="math/tex">G</script> into <script type="math/tex">\{a,b,f,e\}</script> and <script type="math/tex">\{c,d\}</script>.</li>
@@ -282,8 +282,8 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/min
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = https://strncat.github.io/jekyll/update/2019/04/03/kruskal.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  https://strncat.github.io/jekyll/update/2019/04/03/kruskal.html; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2019/04/03/kruskal.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2019/04/03/kruskal; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -317,7 +317,7 @@ s.setAttribute('data-timestamp', +new Date());
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Hello</p>
+        <p>hello</p>
       </div>
     </div>
 

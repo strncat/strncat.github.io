@@ -9,15 +9,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Hello" />
 <meta property="og:description" content="Hello" />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/04/04/bellman-ford.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/04/04/bellman-ford.html" />
+<link rel="canonical" href="/jekyll/update/2019/04/04/bellman-ford.html" />
+<meta property="og:url" content="/jekyll/update/2019/04/04/bellman-ford.html" />
 <meta property="og:site_name" content="strncat’s notebook" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-04-04T07:01:36-07:00" />
 <script type="application/ld+json">
-{"description":"Hello","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/04/04/bellman-ford.html","headline":"Bellman-Ford’s Shortest Paths","dateModified":"2019-04-04T07:01:36-07:00","datePublished":"2019-04-04T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/04/04/bellman-ford.html"},"@context":"https://schema.org"}</script>
+{"description":"Hello","@type":"BlogPosting","url":"/jekyll/update/2019/04/04/bellman-ford.html","headline":"Bellman-Ford’s Shortest Paths","dateModified":"2019-04-04T07:01:36-07:00","datePublished":"2019-04-04T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/update/2019/04/04/bellman-ford.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -97,7 +97,7 @@
 </svg>
 -->
 
-<p><img src="http://localhost:4000/assets/bellman/1.png" width="100%" />
+<p><img src="/assets/bellman/1.png" width="100%" />
 <b>0 References</b><br />
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br />
@@ -121,7 +121,7 @@ Bellman-Ford is a dynamic programming algorithm to find the shortest paths in a 
 <br /><br />
 Let <script type="math/tex">D[v,i]</script> be the length of the shortest path from <script type="math/tex">s</script> to some vertex <script type="math/tex">v</script> whose number of edges is at most <script type="math/tex">i</script>. Given that we know <script type="math/tex">D[v,i]</script> for all <script type="math/tex">v \in V</script>, what can we say about <script type="math/tex">D[v,i+1]</script>? In other words, given that we know the shortest path from <script type="math/tex">s</script> to any vertex in <script type="math/tex">G</script> with at most <script type="math/tex">i</script> edges, what can we say about the length of the shortest path from <script type="math/tex">s</script> to some vertex <script type="math/tex">v</script> with at most <script type="math/tex">i+1</script> edges? Let’s think about this before looking at the answer. Bellman-Ford definitely wasn’t easy for me to think about.
 <br /><br />
-<img src="http://localhost:4000/assets/bellman/2.png" width="100%" />
+<img src="/assets/bellman/2.png" width="100%" />
 Consider the graph above and let’s assume that we already know all the shortest paths of at most 2 edges from <script type="math/tex">s</script> to any vertex in <script type="math/tex">G</script>. So for example we know that <script type="math/tex">D[a,2]=6</script>, <script type="math/tex">D[b,2]=8</script>, <script type="math/tex">D[c,2]=4</script> and <script type="math/tex">D[t,2]=7</script>. So now we know the shortest distance from <script type="math/tex">s</script> to <script type="math/tex">t</script> of at most two edges is 7. Can we get a shorter path by considering any path that uses 3 edges? Yes!!! we can use the shortest path from <script type="math/tex">s</script> to <script type="math/tex">b</script> instead of length 8 and then take in <script type="math/tex">(b,t)=-4</script> to get a shorter path of length 4. In other words, forget about the path <script type="math/tex">s->c->t</script> and go through <script type="math/tex">s->a->b->t</script>. How can we put this together formally? 
 <br /><br />
 Given a vertex <script type="math/tex">v \in V</script>. To find <script type="math/tex">D[v,i+1]</script>, we need to see if for any vertex <script type="math/tex">u \in V</script>, the length of the shortest path from <script type="math/tex">s</script> to <script type="math/tex">u</script> of at most <script type="math/tex">i</script> edges (in other words <script type="math/tex">D[u, i]</script>) plus <script type="math/tex">w(u,v)</script> has a lower value than we currently have in <script type="math/tex">D[v,i]</script>. More formally,</p>
@@ -184,27 +184,27 @@ So what is the relationship between Bellman-Ford and Dijkstra? are they connecte
 <p><br />
 <b>5 Example</b><br />
 We update according the base case all the shortest paths that use 0 edges to <script type="math/tex">\infty</script> except for the source vertex where the shortest path is of length 0.
-<img src="http://localhost:4000/assets/bellman/initial.png" width="100%" />
+<img src="/assets/bellman/initial.png" width="100%" />
 <br /><br />
 <i>Iteration 1</i><br />
 Here we consider the shortest paths using at most 1 edge. We go through every possible <script type="math/tex">v \in V</script> and every possible neighbor <script type="math/tex">u \in v.neighbors</script> and ask: Can <script type="math/tex">D[v, 1]</script> be lowered via the shortest path <script type="math/tex">D[u, 0]</script> plus the edge <script type="math/tex">\{u,v\}</script>? The answer is yes! picture below:
-<img src="http://localhost:4000/assets/bellman/i1.png" width="100%" /></p>
+<img src="/assets/bellman/i1.png" width="100%" /></p>
 
 <p><i>Iteration 2</i><br />
 We repeat the same process, this time we see if we can update all shortest paths that use at most <script type="math/tex">2</script> edges to better estimates. Notice that we update both <script type="math/tex">b</script> and <script type="math/tex">d</script> in this iteration.
-<img src="http://localhost:4000/assets/bellman/i2.png" width="100%" /></p>
+<img src="/assets/bellman/i2.png" width="100%" /></p>
 
 <p><i>Iteration 3</i><br />
 We again repeat the same process, updating this time <script type="math/tex">t</script>.
-<img src="http://localhost:4000/assets/bellman/i3.png" width="100%" /></p>
+<img src="/assets/bellman/i3.png" width="100%" /></p>
 
 <p><i>Iteration 4</i><br />
 In iteration 4, we update <script type="math/tex">d</script> again because we realize that we can get a better estimate coming through <script type="math/tex">t</script> instead of <script type="math/tex">c</script>. 
-<img src="http://localhost:4000/assets/bellman/i4.png" width="100%" /></p>
+<img src="/assets/bellman/i4.png" width="100%" /></p>
 
 <p><i>Iteration 5</i><br />
 Finally, we update <script type="math/tex">c</script> because it has a better update now coming through <script type="math/tex">d</script> instead of directly through <script type="math/tex">s</script>.
-<img src="http://localhost:4000/assets/bellman/i5.png" width="100%" />
+<img src="/assets/bellman/i5.png" width="100%" />
 As this point, the algorithm terminates and we have the final shortest paths from <script type="math/tex">s</script> to every vertex <script type="math/tex">v \in V</script>.
 <br />
 <br /></p>

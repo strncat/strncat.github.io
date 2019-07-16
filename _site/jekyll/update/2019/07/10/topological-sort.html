@@ -9,15 +9,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph, std::vector&lt;std::pair&lt;int,int&gt;&gt; &amp;times, std::vector&lt;int&gt; &amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below." />
 <meta property="og:description" content="0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph, std::vector&lt;std::pair&lt;int,int&gt;&gt; &amp;times, std::vector&lt;int&gt; &amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below." />
-<link rel="canonical" href="/jekyll/update/2019/07/10/topological-sort.html" />
-<meta property="og:url" content="/jekyll/update/2019/07/10/topological-sort.html" />
+<link rel="canonical" href="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html" />
+<meta property="og:url" content="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html" />
 <meta property="og:site_name" content="strncat’s notebook" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-07-10T12:01:36-07:00" />
 <script type="application/ld+json">
-{"description":"0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph, std::vector&lt;std::pair&lt;int,int&gt;&gt; &amp;times, std::vector&lt;int&gt; &amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below.","@type":"BlogPosting","url":"/jekyll/update/2019/07/10/topological-sort.html","headline":"Topological Sort","dateModified":"2019-07-10T12:01:36-07:00","datePublished":"2019-07-10T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/update/2019/07/10/topological-sort.html"},"@context":"https://schema.org"}</script>
+{"description":"0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph, std::vector&lt;std::pair&lt;int,int&gt;&gt; &amp;times, std::vector&lt;int&gt; &amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below.","@type":"BlogPosting","url":"https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html","headline":"Topological Sort","dateModified":"2019-07-10T12:01:36-07:00","datePublished":"2019-07-10T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="strncat's notebook" />
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://strncat.github.io/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -55,6 +55,7 @@
 
         <div class="trigger"><a class="page-link" href="/about/">about</a></div>
       </nav></div>
+  
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -117,14 +118,14 @@ Let’s take a look at the depth first search code again. When we see a node for
 <p><br />
 <b>3 Example</b>
 <br />
-<img src="/assets/topo/1.png" alt="my photo" />
+<img src="https://strncat.github.io/assets/topo/1.png" alt="my photo" />
 Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from <script type="math/tex">f</script> (arbitrarily chosen), mark its start time as zero and visit <script type="math/tex">e</script>. We will mark <script type="math/tex">e</script>’s start time and then recursively call DFS on <script type="math/tex">d</script>. We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, <script type="math/tex">e</script> won’t have more neighbors and so we will mark its finish time. We do the same thing with <script type="math/tex">f</script> and we’ll end up with the graph below.</p>
 
-<p><img src="/assets/topo/2.png" alt="my photo" /></p>
+<p><img src="https://strncat.github.io/assets/topo/2.png" alt="my photo" /></p>
 
 <p>Next we will start from <script type="math/tex">c</script> and visit <script type="math/tex">b</script> and mark both their start and finish times. Finally we will visit <script type="math/tex">a</script> and mark its times as well.</p>
 
-<p><img src="/assets/topo/3.png" alt="my photo" /></p>
+<p><img src="https://strncat.github.io/assets/topo/3.png" alt="my photo" /></p>
 
 <p>Notice how if we ordered the nodes by their finishing times (<script type="math/tex">a, c, b, f, e, d</script>) descendingly then we’ll have a valid ordering of the nodes. 
 <br />
@@ -249,9 +250,27 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/top
 <br /></p>
 
 
-  </div><!--
-  
---><a class="u-url" href="/jekyll/update/2019/07/10/topological-sort.html" hidden></a>
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2019/07/10/topological-sort.html" hidden></a>
 </article>
 		 
       </div>
@@ -283,6 +302,19 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/top
 </footer>
 -->
 
+	
+	    <!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-143936776-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+	    
   </body>
 
 </html>

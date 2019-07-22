@@ -80,7 +80,7 @@ With the base case that for $$i = 0$$, $$D[s,0]=0$$ and $$D[v,0]=\infty$$ for al
 <br>
 <b>3 Bellman-Ford and Dijkstra</b>
 <br>
-So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let's think about this. We know that  in every iteration of Dijkstra's algorithm, we pick the node with the smallest estimate and then check all immediate neighbors to see whether there is a shorter path that goes through any of the neighbors. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration! so it's slower but now we can find the shortest paths in graphs with negative edges.
+So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let's think about this. We know that in every iteration of Dijkstra's algorithm, we pick the node with the smallest estimate and then check all the immediate neighbors to see whether any of the neighbors distances can be updated. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration. So it's slower but now we can find the shortest paths in graphs with negative edges.
 <br>
 <br>
 <hr>

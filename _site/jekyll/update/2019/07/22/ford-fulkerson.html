@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Ford-Fulkerson’s Maximum Flow | strncat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Ford-Fulkerson’s Maximum Flow" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="0 References These are my study notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city , must be equal to the number of the oranges leaving city . In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem. 2 Anatomy of a Flow Network A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . (edge capacities are in black above) If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex (marked in purple above). A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \begin{align*} 0 \leq f(u,v) \leq c(u,v) \end{align*} $$ In other words, the flow on every edge must not exceed its capacity. Also in other words, if the route from city to city has a capacity of 5 oranges then we can’t ship more than 5 oranges on this route. (2) Flow Conservation: For all , we require $$ \begin{align*} \sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v) \end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . Also in other words, citities can’t withhold oranges. If the number of oranges coming in city is 15 then the number of oranges leaving must equal to 15 (5 to , 8 to and 2 to ). 4 The Maximum Flow Problem" />
+<meta property="og:description" content="0 References These are my study notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city , must be equal to the number of the oranges leaving city . In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem. 2 Anatomy of a Flow Network A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . (edge capacities are in black above) If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex (marked in purple above). A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \begin{align*} 0 \leq f(u,v) \leq c(u,v) \end{align*} $$ In other words, the flow on every edge must not exceed its capacity. Also in other words, if the route from city to city has a capacity of 5 oranges then we can’t ship more than 5 oranges on this route. (2) Flow Conservation: For all , we require $$ \begin{align*} \sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v) \end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . Also in other words, citities can’t withhold oranges. If the number of oranges coming in city is 15 then the number of oranges leaving must equal to 15 (5 to , 8 to and 2 to ). 4 The Maximum Flow Problem" />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html" />
+<meta property="og:site_name" content="strncat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-22T07:01:36-07:00" />
+<script type="application/ld+json">
+{"description":"0 References These are my study notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city , must be equal to the number of the oranges leaving city . In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem. 2 Anatomy of a Flow Network A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . (edge capacities are in black above) If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex (marked in purple above). A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \\begin{align*} 0 \\leq f(u,v) \\leq c(u,v) \\end{align*} $$ In other words, the flow on every edge must not exceed its capacity. Also in other words, if the route from city to city has a capacity of 5 oranges then we can’t ship more than 5 oranges on this route. (2) Flow Conservation: For all , we require $$ \\begin{align*} \\sum_{v \\in V}f(v,u) = \\sum_{v \\in V} f(u,v) \\end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . Also in other words, citities can’t withhold oranges. If the number of oranges coming in city is 15 then the number of oranges leaving must equal to 15 (5 to , 8 to and 2 to ). 4 The Maximum Flow Problem","@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html","headline":"Ford-Fulkerson’s Maximum Flow","dateModified":"2019-07-22T07:01:36-07:00","datePublished":"2019-07-22T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Ford-Fulkerson&#39;s Maximum Flow</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-07-22T07:01:36-07:00" itemprop="datePublished">Jul 22, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><b>0 References</b><br />
+These are my study notes on chapter 26 in CLRS.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>1 Introduction</b>
+<br />
+<br />
+Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city <script type="math/tex">a</script>, must be equal to the number of the oranges leaving city <script type="math/tex">a</script>. In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>2 Anatomy of a Flow Network</b>
+<img src="http://localhost:4000/assets/flow/1.png" width="100%" />
+A flow network <script type="math/tex">G=(V,E)</script> is a directed graph where <br /></p>
+<ul>
+  <li>We have two distinguished vertices, the source vertex <script type="math/tex">s</script> and the sink vertex <script type="math/tex">t</script>.</li>
+  <li>Each edge <script type="math/tex">(u,v) \in E</script> has a non-negative capacity <script type="math/tex">c(u,v) \geq 0</script>. (edge capacities are in black above) <br /></li>
+  <li>If we have edge <script type="math/tex">(u,v) \in E</script> then we must have <script type="math/tex">(u,v) \not\in E</script>. <br /></li>
+  <li>For any vertex <script type="math/tex">v \in V</script>, <script type="math/tex">(v,v) \not\in E</script>. <br /></li>
+  <li>If <script type="math/tex">(u,v) \not\in E</script>, then we can assume that <script type="math/tex">c(u,v)=0</script>.<br /></li>
+  <li><script type="math/tex">G</script> is connected and so <script type="math/tex">|E| \geq |V| - 1</script>.
+<br />
+<br /></li>
+</ul>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>3 What is Flow?</b>
+<br />
+<img src="http://localhost:4000/assets/flow/2.png" width="100%" />
+Let <script type="math/tex">f(u,v)</script> be the flow from vertex <script type="math/tex">u</script> to vertex <script type="math/tex">v</script> (marked in purple above). <br />
+A <b>flow</b> is a real valued function <script type="math/tex">f : V \times V \rightarrow \mathbb{R}</script> that satisfies:<br />
+(1) <b>Capacity constraint:</b> For all <script type="math/tex">u, v \in V</script>, we require</p>
+<div center="">
+$$
+\begin{align*}
+0 \leq f(u,v) \leq c(u,v)
+\end{align*}
+$$
+</div>
+<p>In other words, the flow on every edge must not exceed its capacity. Also in other words, if the route from city <script type="math/tex">s</script> to city <script type="math/tex">b</script> has a capacity of 5 oranges then we can’t ship more than 5 oranges on this route. 
+<br /><br />
+(2) <b>Flow Conservation:</b> For all <script type="math/tex">u \in V - \{s,t\}</script>, we require</p>
+<div center="">
+$$
+\begin{align*}
+\sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v)
+\end{align*}
+$$
+</div>
+<p>In other words, the total flow coming into <script type="math/tex">u</script> is equal to the total flow leaving <script type="math/tex">u</script>. Also in other words, citities can’t withhold oranges. If the number of oranges coming in city <script type="math/tex">a</script> is 15 then the number of oranges leaving <script type="math/tex">a</script> must equal to 15 (5 to <script type="math/tex">b</script>, 8 to <script type="math/tex">c</script> and 2 to <script type="math/tex">t</script>).
+<br />
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>4 The Maximum Flow Problem</b>
+<br /></p>
+
+<!--
+Let $$|f|$$ be the flow value defined as
+<div center>
+$$
+\begin{align*}
+|f| = \sum_{v \in V}f(s,v) = \sum_{v \in V} f(v,s)
+\end{align*}
+$$
+</div>
+In other words, the flow value is the total flow coming out of the source minus the total flow coming into the source. 
+-->
+
+<p>In the maximum-flow problem we are given a flow network <script type="math/tex">G</script> with a source vertex <script type="math/tex">s</script> and a sink vertex <script type="math/tex">t</script> and we are asked to find the maximum flow in <script type="math/tex">G</script> from <script type="math/tex">s</script> to <script type="math/tex">t</script>. In the above graph the current flow is 15 oranges from <script type="math/tex">s</script> to <script type="math/tex">t</script>, can we do better?
+<br />
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>5 Greedy Approach</b>
+<br />
+<br />
+One greedy approach we might try is to push as much flow as possible starting from the source node. This approach will not work. Suppose we have the below graph <script type="math/tex">G</script>.
+<img src="http://localhost:4000/assets/flow/fix1.png" width="100%" /></p>
+
+<p>Now suppose we apply the greedy strategy. We generate the flow below.
+<img src="http://localhost:4000/assets/flow/fix2.png" width="100%" /></p>
+
+<p>This flow is not optimal. In order to find the optimal flow we need to have a way to reduce the amount we’re pushing on <script type="math/tex">(a,b)</script> and then push more instead on <script type="math/tex">(s,b)</script> and <script type="math/tex">(a,t)</script>.
+<img src="http://localhost:4000/assets/flow/fix3.png" width="100%" /></p>
+
+<p>How do implement this or keep track of the original edges and edges where want to reverse the flow? That’s where Ford-Fulkerson comes (at least that’s where I knew about it first). We instead create a <i>residual graph</i> which we’ll define formally next. Residual graphs provide a way for us to augment paths in the original graph with more flow or reverse the flow we pushed to create more flow in other paths.
+<br />
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>6 Residual Graphs</b>
+<br />
+<br />
+Let <script type="math/tex">G=(V,E)</script> be a flow network with source <script type="math/tex">s</script> and sink <script type="math/tex">t</script>. Let <script type="math/tex">f</script> be a flow in <script type="math/tex">G</script>. For any vertices <script type="math/tex">u,v \in V</script>. The <b>residual capacity</b> <script type="math/tex">c_f(u,v)</script> by
+<br /></p>
+<div center="">
+$$
+\begin{align*}
+ c_f(u,v) = \Bigg \{ \begin{array}{@{}lr@{}}
+                     c(u,v) - f(u,v)   \text{ if} (u,v) \in E,\\
+                     f(v,u) \text{ if} (v,u) \in E, \\
+					 0  \text{ otherwise.}
+        \end{array}
+\end{align*}
+$$
+</div>
+<p>The <b>residual network</b> of <script type="math/tex">G</script> induced by <script type="math/tex">f</script> is <script type="math/tex">G_f=(V,E_f)</script> where <script type="math/tex">E_f = \{(u,v) \in V \times V : c_f(u,v) > 0\}</script>.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>7 Creating a Residual Graph</b>
+<br />
+<br />
+Based on the formal definition above, we want to consider all possible pairs of vertices (<script type="math/tex">V*(V-1)</script> different pairs) and evaluate the formal definition. For example, in the following graph <script type="math/tex">G</script>, let’s consider what happens to vertices <script type="math/tex">a</script> and <script type="math/tex">t</script> in <script type="math/tex">G_f</script>. 
+<img src="http://localhost:4000/assets/flow/fix2.png" width="100%" />
+We first consider the pair <script type="math/tex">(a,t)</script>. We know that <script type="math/tex">(a,t) \in E</script>. Therefore, we create a new edge in <script type="math/tex">G_f</script> with capacity <script type="math/tex">c_f(a,t) = c(a,t) - f(a,t) = 7 - 2 = 5</script>. This just means that we can still possibly push 5 oranges on this path.
+<img src="http://localhost:4000/assets/flow/at1.png" width="100%" /></p>
+
+<p>We next consider the pair <script type="math/tex">(t,a)</script>. We know that <script type="math/tex">(t,a) \not\in E</script>. Therefore, we create a new edge in <script type="math/tex">G_f</script> with capacity <script type="math/tex">c_f(t,a) = f(a,t) = 2</script>. This means that if we decide to push two oranges on this path then this really means that we decreased the flow in the original graph by 2 oranges.
+<img src="http://localhost:4000/assets/flow/at2.png" width="100%" /></p>
+
+<p>We repeat the process for all pairs to generate the following graph. (Remember that we omit edges with capacities 0 (they are implied)).
+<img src="http://localhost:4000/assets/flow/gf.png" width="100%" /></p>
+
+<p><br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>7 Augmenting Paths</b>
+<br />
+<br />
+So now that we have a graph <script type="math/tex">G</script> with some flow <script type="math/tex">f</script> and it’s residual graph <script type="math/tex">G_f</script>, we can talk about flow in <script type="math/tex">G_f</script>. The gist or  intuition is that whatever flow we can send from <script type="math/tex">s</script> to <script type="math/tex">t</script> in <script type="math/tex">G_f</script> will result in additional flow in <script type="math/tex">G</script>. How and why this works?
+<br /><br />
+First, define <script type="math/tex">f \uparrow f'</script> as the augmentation of flow <script type="math/tex">f</script> by <script type="math/tex">f'</script> to be a function from <script type="math/tex">V \times V</script> to <script type="math/tex">R</script> where</p>
+
+<div center="">
+$$
+\begin{align*}
+ (f \uparrow f')(u,v) = \Bigg \{ \begin{array}{@{}lr@{}}
+                     f(u,v) + f'(u,v) - f'(v,u)   \text{ if} (u,v) \in E,\\
+					 0  \text{ otherwise.}
+        \end{array}
+\end{align*}
+$$
+</div>
+
+<p>Based on this, we claim the following:<br /><br />
+Lemma: <script type="math/tex">|f \uparrow f'| = |f| + |f'|</script></p>
+
+<p>Proof in CLRS but basically we need to verify that <script type="math/tex">f \uparrow f'</script> obeys the capacity constraint and flow conversation in <script type="math/tex">G</script> and then prove that both are equal.</p>
+
+<p><br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>6 The Ford-Fulkerson’s Method</b>
+<br /><br />
+Ford-Fulkerson starts with <script type="math/tex">f(u,v)=0</script> for all <script type="math/tex">(u,v) \in E</script> and incrementally increases the flow value. It does so by finding an augmenting path in the residual network <script type="math/tex">G_f</script>?</p>
+
+<p>This what Ford-Fulerkson is essentially doing. We will augment flow
+<br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">Ford</span><span class="o">-</span><span class="n">Fulkerson</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">Initialize</span> <span class="n">the</span> <span class="n">residual</span> <span class="n">graph</span> <span class="n">Gf</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">we</span> <span class="n">have</span> <span class="n">an</span> <span class="n">augmenting</span> <span class="n">path</span> <span class="n">in</span> <span class="n">Gf</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">augment</span> <span class="n">the</span> <span class="n">flow</span> <span class="n">with</span> <span class="n">the</span> <span class="n">flow</span> <span class="n">on</span> <span class="n">p</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">f</span>
+<span class="p">}</span></code></pre></figure>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2019/07/22/ford-fulkerson.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2019/07/22/ford-fulkerson; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2019/07/22/ford-fulkerson.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>hello</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

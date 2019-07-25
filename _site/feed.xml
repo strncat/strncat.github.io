@@ -1,7 +1,239 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-22T13:34:57-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>hello</subtitle><entry><title type="html">Worst Case vs Expected Case vs Average Case run time</title><link href="http://localhost:4000/jekyll/update/2019/07/19/worst-average-expected-case.html" rel="alternate" type="text/html" title="Worst Case vs Expected Case vs Average Case run time" /><published>2019-07-19T07:01:36-07:00</published><updated>2019-07-19T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/19/worst-average-expected-case</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/19/worst-average-expected-case.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-25T09:56:22-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>hello</subtitle><entry><title type="html">Closest Pair of Points</title><link href="http://localhost:4000/jekyll/update/2019/07/24/closest-pair.html" rel="alternate" type="text/html" title="Closest Pair of Points" /><published>2019-07-24T07:01:36-07:00</published><updated>2019-07-24T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/24/closest-pair</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/24/closest-pair.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are my study notes on chapter 26 in CLRS.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;, must be equal to the number of the oranges leaving city &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 Anatomy of a Flow Network&lt;/b&gt;
+&lt;img src=&quot;http://localhost:4000/assets/flow/1.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Ford&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Fulkerson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;Initialize&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;residual&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gf&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;we&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;an&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;augmenting&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;augment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flow&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flow&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;!--
+&lt;div center&gt;
+$$
+\begin{align*}
+0 \leq f(u,v) \leq c(u,v)
+\end{align*}
+$$
+&lt;/div&gt;
+--&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city , must be equal to the number of the oranges leaving city . In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem. 2 Anatomy of a Flow Network void Ford-Fulkerson(graph&amp;amp; g) { Initialize the residual graph Gf while (we have an augmenting path in Gf) { augment the flow with the flow on p } return f }</summary></entry><entry><title type="html">Ford-Fulkerson’s Maximum Flow</title><link href="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html" rel="alternate" type="text/html" title="Ford-Fulkerson's Maximum Flow" /><published>2019-07-22T07:01:36-07:00</published><updated>2019-07-22T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are my study notes on chapter 26 in CLRS.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;, must be equal to the number of the oranges leaving city &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 Anatomy of a Flow Network&lt;/b&gt;
+&lt;img src=&quot;http://localhost:4000/assets/flow/1.png&quot; width=&quot;100%&quot; /&gt;
+A flow network &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; is a directed graph where &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We have two distinguished vertices, the source vertex &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and the sink vertex &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;Each edge &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; has a non-negative capacity &lt;script type=&quot;math/tex&quot;&gt;c(u,v) \geq 0&lt;/script&gt;. (edge capacities are in black above) &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;If we have edge &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;(u,v) \not\in E&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;For any vertex &lt;script type=&quot;math/tex&quot;&gt;v \in V&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;(v,v) \not\in E&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;(u,v) \not\in E&lt;/script&gt;, then we can assume that &lt;script type=&quot;math/tex&quot;&gt;c(u,v)=0&lt;/script&gt;.&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected and so &lt;script type=&quot;math/tex&quot;&gt;|E| \geq |V| - 1&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 What is Flow?&lt;/b&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/flow/2.png&quot; width=&quot;100%&quot; /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;f(u,v)&lt;/script&gt; be the flow from vertex &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; to vertex &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; (marked in purple above). &lt;br /&gt;
+A &lt;b&gt;flow&lt;/b&gt; is a real valued function &lt;script type=&quot;math/tex&quot;&gt;f : V \times V \rightarrow \mathbb{R}&lt;/script&gt; that satisfies:&lt;br /&gt;
+(1) &lt;b&gt;Capacity constraint:&lt;/b&gt; For all &lt;script type=&quot;math/tex&quot;&gt;u, v \in V&lt;/script&gt;, we require&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+0 \leq f(u,v) \leq c(u,v)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;In other words, the flow on every edge must not exceed its capacity. Also in other words, if the route from city &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to city &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; has a capacity of 5 oranges then we can’t ship more than 5 oranges on this route. 
+&lt;br /&gt;&lt;br /&gt;
+(2) &lt;b&gt;Flow Conservation:&lt;/b&gt; For all &lt;script type=&quot;math/tex&quot;&gt;u \in V - \{s,t\}&lt;/script&gt;, we require&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+\sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;In other words, the total flow coming into &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; is equal to the total flow leaving &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt;. Also in other words, citities can’t withhold oranges. If the number of oranges coming in city &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is 15 then the number of oranges leaving &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; must equal to 15 (5 to &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;, 8 to &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and 2 to &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;).
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 The Maximum Flow Problem&lt;/b&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;!--
+Let $$|f|$$ be the flow value defined as
+&lt;div center&gt;
+$$
+\begin{align*}
+|f| = \sum_{v \in V}f(s,v) = \sum_{v \in V} f(v,s)
+\end{align*}
+$$
+&lt;/div&gt;
+In other words, the flow value is the total flow coming out of the source minus the total flow coming into the source. 
+--&gt;
+
+&lt;p&gt;In the maximum-flow problem we are given a flow network &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; with a source vertex &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and a sink vertex &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; and we are asked to find the maximum flow in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;. In the above graph the current flow is 15 oranges from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, can we do better?
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;5 Greedy Approach&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+One greedy approach we might try is to push as much flow as possible starting from the source node. This approach will not work. Suppose we have the below graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;.
+&lt;img src=&quot;http://localhost:4000/assets/flow/fix1.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now suppose we apply the greedy strategy. We generate the flow below.
+&lt;img src=&quot;http://localhost:4000/assets/flow/fix2.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This flow is not optimal. In order to find the optimal flow we need to have a way to reduce the amount we’re pushing on &lt;script type=&quot;math/tex&quot;&gt;(a,b)&lt;/script&gt; and then push more instead on &lt;script type=&quot;math/tex&quot;&gt;(s,b)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(a,t)&lt;/script&gt;.
+&lt;img src=&quot;http://localhost:4000/assets/flow/fix3.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;How do implement this or keep track of the original edges and edges where want to reverse the flow? That’s where Ford-Fulkerson comes (at least that’s where I knew about it first). We instead create a &lt;i&gt;residual graph&lt;/i&gt; which we’ll define formally next. Residual graphs provide a way for us to augment paths in the original graph with more flow or reverse the flow we pushed to create more flow in other paths.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 Residual Graphs&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a flow network with source &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and sink &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; be a flow in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;. For any vertices &lt;script type=&quot;math/tex&quot;&gt;u,v \in V&lt;/script&gt;. The &lt;b&gt;residual capacity&lt;/b&gt; &lt;script type=&quot;math/tex&quot;&gt;c_f(u,v)&lt;/script&gt; by
+&lt;br /&gt;&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ c_f(u,v) = \Bigg \{ \begin{array}{@{}lr@{}}
+                     c(u,v) - f(u,v)   \text{ if} (u,v) \in E,\\
+                     f(v,u) \text{ if} (v,u) \in E, \\
+					 0  \text{ otherwise.}
+        \end{array}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;The &lt;b&gt;residual network&lt;/b&gt; of &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; induced by &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;G_f=(V,E_f)&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;E_f = \{(u,v) \in V \times V : c_f(u,v) &gt; 0\}&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;7 Creating a Residual Graph&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Based on the formal definition above, we want to consider all possible pairs of vertices (&lt;script type=&quot;math/tex&quot;&gt;V*(V-1)&lt;/script&gt; different pairs) and evaluate the formal definition. For example, in the following graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;, let’s consider what happens to vertices &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt;. 
+&lt;img src=&quot;http://localhost:4000/assets/flow/fix2.png&quot; width=&quot;100%&quot; /&gt;
+We first consider the pair &lt;script type=&quot;math/tex&quot;&gt;(a,t)&lt;/script&gt;. We know that &lt;script type=&quot;math/tex&quot;&gt;(a,t) \in E&lt;/script&gt;. Therefore, we create a new edge in &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt; with capacity &lt;script type=&quot;math/tex&quot;&gt;c_f(a,t) = c(a,t) - f(a,t) = 7 - 2 = 5&lt;/script&gt;. This just means that we can still possibly push 5 oranges on this path.
+&lt;img src=&quot;http://localhost:4000/assets/flow/at1.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We next consider the pair &lt;script type=&quot;math/tex&quot;&gt;(t,a)&lt;/script&gt;. We know that &lt;script type=&quot;math/tex&quot;&gt;(t,a) \not\in E&lt;/script&gt;. Therefore, we create a new edge in &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt; with capacity &lt;script type=&quot;math/tex&quot;&gt;c_f(t,a) = f(a,t) = 2&lt;/script&gt;. This means that if we decide to push two oranges on this path then this really means that we decreased the flow in the original graph by 2 oranges.
+&lt;img src=&quot;http://localhost:4000/assets/flow/at2.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We repeat the process for all pairs to generate the following graph. (Remember that we omit edges with capacities 0 (they are implied)).
+&lt;img src=&quot;http://localhost:4000/assets/flow/gf.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;7 Augmenting Paths&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+So now that we have a graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; with some flow &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; and it’s residual graph &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt;, we can talk about flow in &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt;. The gist or  intuition is that whatever flow we can send from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt; will result in additional flow in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;. How and why this works?
+&lt;br /&gt;&lt;br /&gt;
+First, define &lt;script type=&quot;math/tex&quot;&gt;f \uparrow f'&lt;/script&gt; as the augmentation of flow &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; by &lt;script type=&quot;math/tex&quot;&gt;f'&lt;/script&gt; to be a function from &lt;script type=&quot;math/tex&quot;&gt;V \times V&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; where&lt;/p&gt;
+
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ (f \uparrow f')(u,v) = \Bigg \{ \begin{array}{@{}lr@{}}
+                     f(u,v) + f'(u,v) - f'(v,u)   \text{ if} (u,v) \in E,\\
+					 0  \text{ otherwise.}
+        \end{array}
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Based on this, we claim the following:&lt;br /&gt;&lt;br /&gt;
+Lemma: &lt;script type=&quot;math/tex&quot;&gt;|f \uparrow f'| = |f| + |f'|&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Proof in CLRS but basically we need to verify that &lt;script type=&quot;math/tex&quot;&gt;f \uparrow f'&lt;/script&gt; obeys the capacity constraint and flow conversation in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; and then prove that both are equal.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;6 The Ford-Fulkerson’s Method&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;
+Ford-Fulkerson starts with &lt;script type=&quot;math/tex&quot;&gt;f(u,v)=0&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; and incrementally increases the flow value. It does so by finding an augmenting path in the residual network &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt;?&lt;/p&gt;
+
+&lt;p&gt;This what Ford-Fulerkson is essentially doing. We will augment flow
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Ford&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Fulkerson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;Initialize&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;residual&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gf&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;we&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;an&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;augmenting&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;augment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flow&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flow&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city , must be equal to the number of the oranges leaving city . In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem. 2 Anatomy of a Flow Network A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . (edge capacities are in black above) If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex (marked in purple above). A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \begin{align*} 0 \leq f(u,v) \leq c(u,v) \end{align*} $$ In other words, the flow on every edge must not exceed its capacity. Also in other words, if the route from city to city has a capacity of 5 oranges then we can’t ship more than 5 oranges on this route. (2) Flow Conservation: For all , we require $$ \begin{align*} \sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v) \end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . Also in other words, citities can’t withhold oranges. If the number of oranges coming in city is 15 then the number of oranges leaving must equal to 15 (5 to , 8 to and 2 to ). 4 The Maximum Flow Problem</summary></entry><entry><title type="html">Worst Case vs Expected Case vs Average Case</title><link href="http://localhost:4000/jekyll/update/2019/07/19/worst-average-expected-case.html" rel="alternate" type="text/html" title="Worst Case vs Expected Case vs Average Case" /><published>2019-07-19T07:01:36-07:00</published><updated>2019-07-19T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/19/worst-average-expected-case</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/19/worst-average-expected-case.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
 (1) Class study notes from http://web.stanford.edu/class/cs161/schedule.html
+&lt;br /&gt;
 (2) CLRS (Chapter 5)
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -12,7 +244,7 @@
 &lt;b&gt;Introduction&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-So the first time I read chapter 5 in CLRS I was utterly confused. What is going one with the average case and the expected case runtimes, what is the difference? Why is CLRS switching between the two?
+These are my notes on Chapter 5. I got really confused the first time I read chapter 5 and definitely had to re-read several parts multiple times.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -22,8 +254,37 @@ So the first time I read chapter 5 in CLRS I was utterly confused. What is going
 &lt;b&gt;Average Case Running Time&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-In this case, we assume some knowledge of the distribution of the input given to us. For
- we must use knowledge of, or make assumptions about, the distribution of the inputs. Then we analyze our algorithm, computing an average-case running time, where we take the average over the distribution of the possible inputs. Thus we are, in effect, averaging the running time over all possible inputs. When reporting such a running time, we will refer to it as the average-case running time.
+In this case, we must have some assumption about the distribution of the input given to us. If we do then we can take the average over the distribution of the possible inputs. In, CLRS 5.2, we perform an expected-runtime over the average input is performed 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Worst Case Running Time&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+In this case, we take the worst possible input and then analyze the running time of our algorithm against this input However the adversary here also chooses the randomness of the algorithm so even though QuickSort . For example, to build a binary search tree, the worst possible input is a sorted array. Insert an element in a binary search tree takes &lt;script type=&quot;math/tex&quot;&gt;O(h)&lt;/script&gt; and when the array is sorted. The height of the tree is &lt;script type=&quot;math/tex&quot;&gt;(n)&lt;/script&gt;. Therefore, building a binary search tree will require &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Average Case Running Time&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+In this case, we must have some assumption about the distribution of the input given to us. If we do then we can take the average over the distribution of the possible inputs and therefore it is called an average case analysis.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Worst Case Running Time&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+In this case, we take the worst possible input and then analyze the running time of our algorithm against this input. For example, to build a binary search tree, the worst possible input is a sorted array. We know the running time in
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -36,7 +297,7 @@ In this case, we assume some knowledge of the distribution of the input given to
  we must use knowledge of, or make assumptions about, the distribution of the inputs. Then we analyze our algorithm, computing an average-case running time, where we take the average over the distribution of the possible inputs. Thus we are, in effect, averaging the running time over all possible inputs. When reporting such a running time, we will refer to it as the average-case running time.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;</content><author><name></name></author><summary type="html">0 References (1) Class study notes from http://web.stanford.edu/class/cs161/schedule.html (2) CLRS (Chapter 5) Introduction So the first time I read chapter 5 in CLRS I was utterly confused. What is going one with the average case and the expected case runtimes, what is the difference? Why is CLRS switching between the two? Average Case Running Time In this case, we assume some knowledge of the distribution of the input given to us. For we must use knowledge of, or make assumptions about, the distribution of the inputs. Then we analyze our algorithm, computing an average-case running time, where we take the average over the distribution of the possible inputs. Thus we are, in effect, averaging the running time over all possible inputs. When reporting such a running time, we will refer to it as the average-case running time. Expected Case Running Time we must use knowledge of, or make assumptions about, the distribution of the inputs. Then we analyze our algorithm, computing an average-case running time, where we take the average over the distribution of the possible inputs. Thus we are, in effect, averaging the running time over all possible inputs. When reporting such a running time, we will refer to it as the average-case running time.</summary></entry><entry><title type="html">Merge Sort Analysis</title><link href="http://localhost:4000/jekyll/update/2019/07/18/merge-sort-analysis.html" rel="alternate" type="text/html" title="Merge Sort Analysis" /><published>2019-07-18T07:01:36-07:00</published><updated>2019-07-18T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/18/merge-sort-analysis</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/18/merge-sort-analysis.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;
+&lt;hr /&gt;</content><author><name></name></author><summary type="html">0 References (1) Class study notes from http://web.stanford.edu/class/cs161/schedule.html (2) CLRS (Chapter 5) Introduction These are my notes on Chapter 5. I got really confused the first time I read chapter 5 and definitely had to re-read several parts multiple times. Average Case Running Time In this case, we must have some assumption about the distribution of the input given to us. If we do then we can take the average over the distribution of the possible inputs. In, CLRS 5.2, we perform an expected-runtime over the average input is performed Worst Case Running Time In this case, we take the worst possible input and then analyze the running time of our algorithm against this input However the adversary here also chooses the randomness of the algorithm so even though QuickSort . For example, to build a binary search tree, the worst possible input is a sorted array. Insert an element in a binary search tree takes and when the array is sorted. The height of the tree is . Therefore, building a binary search tree will require . Average Case Running Time In this case, we must have some assumption about the distribution of the input given to us. If we do then we can take the average over the distribution of the possible inputs and therefore it is called an average case analysis. Worst Case Running Time In this case, we take the worst possible input and then analyze the running time of our algorithm against this input. For example, to build a binary search tree, the worst possible input is a sorted array. We know the running time in Expected Case Running Time we must use knowledge of, or make assumptions about, the distribution of the inputs. Then we analyze our algorithm, computing an average-case running time, where we take the average over the distribution of the possible inputs. Thus we are, in effect, averaging the running time over all possible inputs. When reporting such a running time, we will refer to it as the average-case running time.</summary></entry><entry><title type="html">Merge Sort Analysis</title><link href="http://localhost:4000/jekyll/update/2019/07/18/merge-sort-analysis.html" rel="alternate" type="text/html" title="Merge Sort Analysis" /><published>2019-07-18T07:01:36-07:00</published><updated>2019-07-18T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/18/merge-sort-analysis</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/18/merge-sort-analysis.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS
@@ -191,126 +452,7 @@ $$
 &lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS Introduction In this note, we would like to analyze the running time of MergeSort. Recall that MergeSort is a divide and conquer algorithm where we repeatedly split the input into two halfs and then call MergeSort again on each half. Once we’re done, we can combine the halfs in Merge. The follow pesudo-code shows this (Based on CLRS) MergeSort(A, first, last) { if (first &amp;lt; last) { mid = floor((first+last)/2) MergeSort(A,first,mid) MergeSort(A,mid+1,last) Merge(A,first,mid,last) } } (1) The Recursion Tree Method How long does MergeSort take? How many operations are we doing? Let’s study in details. Let’s begin by looking at what MergeSort is doing in each level of recursion. We will do this in two passes, one pass to go all way down to the base case in the above pesudo-code and another to climb all the way up and to finally return from MergeSort. Level 0: At the top level, level 0, we have the whole input, array of size . We will then recursively called MergeSort again on each half of the input. Level 1: In this level, we will have two arrays to sort, each of size . Notice here that the total number of elements from all arrays is still . Level 2: In level 2, we will have 4 arrays each of size . We also notice here that the total number of elements is also . Level : At the ‘th level, we will have arrays. Each of these arrays is of size . Again, the total number of elements is also . Level ?: When do we stop dividing? Our base case happens when . This means that the input now has only one element. We have two questions now. How many arrays do we have total? and what is the number of this level (how many levels are there)? First, since each array is of size 1 then we must have arrays because the total number of elements is . Second, we ask, how many times do we divide by 2 to reach 1? This is because the algorithm keeps dividing by 2 at each step. The answer to that . This is precisely what logs give us. answers the question: how many times do we divide by to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!) In Summary, at the level, we have arrays, each of size 1. Now let’s climb up the recursion tree. We will assume that Merge performs operations where is the size of the array and is a positive constant. Level We were at the last level (base case) and we know that each array is of size 1 and so it’s already sorted. So the only thing we did was to check if to determine that the size is 1. So the total number of operations is since we’re doing this for each array of length 1. Level : We’re now back one step. Each array here is of size . Merge costs operations for each call/sub problem. Now let’s sum everything per level. We have problems/arrays and each will cost operations. So the total is . Level : At the ‘th level, whave arrays. Each of these arrays is of size and so will cost . Now let’s sum everything in this level. We have . So at each level we’re doing at most operations. Putting it all together Let’s now summarize everything in a nice table: So now that we know how much work we’re doing per level, what is total number of operations for all levels? basically how many operations does MergeSort perform for an array of size ? Well, we have levels and in each level we’re doing operations, therefore MergeSort performs operations. Now, let and . To see that , recall that we need to find such that for all , we have</summary></entry><entry><title type="html">Priority Queues</title><link href="http://localhost:4000/jekyll/update/2019/07/15/priority-queues.html" rel="alternate" type="text/html" title="Priority Queues" /><published>2019-07-15T07:01:36-07:00</published><updated>2019-07-15T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/15/priority-queues</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/15/priority-queues.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-These are notes on chapter 6 in CLRS.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-Suppose you list of jobs with priorities and you want to execute the jobs in the order of their priorities. This list however keeps changing. For example new jobs get inserted frequently. One idea is to just sort the list in &lt;script type=&quot;math/tex&quot;&gt;O(nlog(n))&lt;/script&gt; which is the lower bound for any comparison based algorithm. However, when a new job gets added we will have to spend &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time to insert it in its correct place. This works but can we do better? are there other ideas that we can use that are better than &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Aren’t heaps and priority queues the same?? Let’s look at CLRS’s definition. “A priority queue is a data structure for maintaining a set &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; of elements each with an associated value called a key”. So we have a set of objects and each object has a key. The keys  rather than the object are stored in the heap. So a priority queue is just a data structure that utilizes the heap data structure. A priority queue must support the following operations:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Extracting the maximum element&lt;/li&gt;
-  &lt;li&gt;Increase Key&lt;/li&gt;
-  &lt;li&gt;Insert Key&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">0 References These are notes on chapter 6 in CLRS. 1 Introduction Suppose you list of jobs with priorities and you want to execute the jobs in the order of their priorities. This list however keeps changing. For example new jobs get inserted frequently. One idea is to just sort the list in which is the lower bound for any comparison based algorithm. However, when a new job gets added we will have to spend time to insert it in its correct place. This works but can we do better? are there other ideas that we can use that are better than time.</summary></entry><entry><title type="html">Ford-Fulkerson’s Maximum Flow</title><link href="http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson.html" rel="alternate" type="text/html" title="Ford-Fulkerson's Maximum Flow" /><published>2019-07-14T07:01:36-07:00</published><updated>2019-07-14T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/14/ford-fulkerson.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-These are notes on chapter 26 in CLRS.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-Suppose we want to ship iPhones from San Francisco to New York City because we have a current shortage of iPhones in NYC. We want to ship as many units as possible. Everything needs to be shipped by Ground. We have different routes of different capacities. We want to find the maximum number of iPhones we can ship to NYC. How can we model and solve can this problem? We’ll discuss the Ford-Fulkerson’s method but in order to describe it we have to set the stage and define a number of definitions.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Flow Networks&lt;/b&gt;
-&lt;img src=&quot;http://localhost:4000/assets/flow/1.png&quot; width=&quot;100%&quot; /&gt;
-A flow network &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; is a directed graph where &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;We have two distinguished vertices, the source vertex &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and the sink vertex &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;.&lt;/li&gt;
-  &lt;li&gt;Each edge &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; has a non-negative capacity &lt;script type=&quot;math/tex&quot;&gt;c(u,v) \geq 0&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;If we have edge &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;(u,v) \not\in E&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;For any vertex &lt;script type=&quot;math/tex&quot;&gt;v \in V&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;(v,v) \not\in E&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;(u,v) \not\in E&lt;/script&gt;, then we can assume that &lt;script type=&quot;math/tex&quot;&gt;c(u,v)=0&lt;/script&gt;.&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected and so &lt;script type=&quot;math/tex&quot;&gt;|E| \geq |V| - 1&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 What is Flow?&lt;/b&gt;
-&lt;br /&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;f(u,v)&lt;/script&gt; be the flow from vertex &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; to vertex &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;. A &lt;b&gt;flow&lt;/b&gt; is a real valued function &lt;script type=&quot;math/tex&quot;&gt;f : V \times V \rightarrow \mathbb{R}&lt;/script&gt; that satisfies:&lt;br /&gt;
-(1) &lt;b&gt;Capacity constraint:&lt;/b&gt; For all &lt;script type=&quot;math/tex&quot;&gt;u, v \in V&lt;/script&gt;, we require&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-0 \leq f(u,v) \leq c(u,v)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;In other words, the flow on every edge must not exceed its capacity.
-&lt;br /&gt;&lt;br /&gt;
-(2) &lt;b&gt;Flow Conservation:&lt;/b&gt; For all &lt;script type=&quot;math/tex&quot;&gt;u \in V - \{s,t\}&lt;/script&gt;, we require&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-\sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;In other words, the total flow coming into &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; is equal to the total flow leaving &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 The Maximum Flow Problem&lt;/b&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;!--
-Let $$|f|$$ be the flow value defined as
-&lt;div center&gt;
-$$
-\begin{align*}
-|f| = \sum_{v \in V}f(s,v) = \sum_{v \in V} f(v,s)
-\end{align*}
-$$
-&lt;/div&gt;
-In other words, the flow value is the total flow coming out of the source minus the total flow coming into the source. 
---&gt;
-
-&lt;p&gt;In the maximum-flow problem we are given a flow network &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; with a source vertex &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; and a sink vertex &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; and we are asked to find the maximum flow in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 The Residual Graph&lt;/b&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 The Ford-Fulkerson’s Method&lt;/b&gt;
-&lt;br /&gt;&lt;br /&gt;
-Now that we defined everything needed, we can talk about how Fold-Fulkerson solves this problem! yay! Intuitively, Ford-Fulkerson starts with &lt;script type=&quot;math/tex&quot;&gt;f(u,v)=0&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt; and incrementally increases the flow value. It does so by finding an augmenting path in the residual network &lt;script type=&quot;math/tex&quot;&gt;G_f&lt;/script&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship iPhones from San Francisco to New York City because we have a current shortage of iPhones in NYC. We want to ship as many units as possible. Everything needs to be shipped by Ground. We have different routes of different capacities. We want to find the maximum number of iPhones we can ship to NYC. How can we model and solve can this problem? We’ll discuss the Ford-Fulkerson’s method but in order to describe it we have to set the stage and define a number of definitions. 2 Flow Networks A flow network is a directed graph where We have two distinguished vertices, the source vertex and the sink vertex . Each edge has a non-negative capacity . If we have edge then we must have . For any vertex , . If , then we can assume that . is connected and so . 3 What is Flow? Let be the flow from vertex to vertex . A flow is a real valued function that satisfies: (1) Capacity constraint: For all , we require $$ \begin{align*} 0 \leq f(u,v) \leq c(u,v) \end{align*} $$ In other words, the flow on every edge must not exceed its capacity. (2) Flow Conservation: For all , we require $$ \begin{align*} \sum_{v \in V}f(v,u) = \sum_{v \in V} f(u,v) \end{align*} $$ In other words, the total flow coming into is equal to the total flow leaving . 4 The Maximum Flow Problem</summary></entry><entry><title type="html">Binary Heaps</title><link href="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html" rel="alternate" type="text/html" title="Binary Heaps" /><published>2019-07-12T07:01:36-07:00</published><updated>2019-07-12T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/12/binary-heaps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS Introduction In this note, we would like to analyze the running time of MergeSort. Recall that MergeSort is a divide and conquer algorithm where we repeatedly split the input into two halfs and then call MergeSort again on each half. Once we’re done, we can combine the halfs in Merge. The follow pesudo-code shows this (Based on CLRS) MergeSort(A, first, last) { if (first &amp;lt; last) { mid = floor((first+last)/2) MergeSort(A,first,mid) MergeSort(A,mid+1,last) Merge(A,first,mid,last) } } (1) The Recursion Tree Method How long does MergeSort take? How many operations are we doing? Let’s study in details. Let’s begin by looking at what MergeSort is doing in each level of recursion. We will do this in two passes, one pass to go all way down to the base case in the above pesudo-code and another to climb all the way up and to finally return from MergeSort. Level 0: At the top level, level 0, we have the whole input, array of size . We will then recursively called MergeSort again on each half of the input. Level 1: In this level, we will have two arrays to sort, each of size . Notice here that the total number of elements from all arrays is still . Level 2: In level 2, we will have 4 arrays each of size . We also notice here that the total number of elements is also . Level : At the ‘th level, we will have arrays. Each of these arrays is of size . Again, the total number of elements is also . Level ?: When do we stop dividing? Our base case happens when . This means that the input now has only one element. We have two questions now. How many arrays do we have total? and what is the number of this level (how many levels are there)? First, since each array is of size 1 then we must have arrays because the total number of elements is . Second, we ask, how many times do we divide by 2 to reach 1? This is because the algorithm keeps dividing by 2 at each step. The answer to that . This is precisely what logs give us. answers the question: how many times do we divide by to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!) In Summary, at the level, we have arrays, each of size 1. Now let’s climb up the recursion tree. We will assume that Merge performs operations where is the size of the array and is a positive constant. Level We were at the last level (base case) and we know that each array is of size 1 and so it’s already sorted. So the only thing we did was to check if to determine that the size is 1. So the total number of operations is since we’re doing this for each array of length 1. Level : We’re now back one step. Each array here is of size . Merge costs operations for each call/sub problem. Now let’s sum everything per level. We have problems/arrays and each will cost operations. So the total is . Level : At the ‘th level, whave arrays. Each of these arrays is of size and so will cost . Now let’s sum everything in this level. We have . So at each level we’re doing at most operations. Putting it all together Let’s now summarize everything in a nice table: So now that we know how much work we’re doing per level, what is total number of operations for all levels? basically how many operations does MergeSort perform for an array of size ? Well, we have levels and in each level we’re doing operations, therefore MergeSort performs operations. Now, let and . To see that , recall that we need to find such that for all , we have</summary></entry><entry><title type="html">Binary Heaps</title><link href="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html" rel="alternate" type="text/html" title="Binary Heaps" /><published>2019-07-12T07:01:36-07:00</published><updated>2019-07-12T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/12/binary-heaps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 These are my study notes / summary on chapter 6 in CLRS.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -426,7 +568,7 @@ Suppose we have an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/scri
 &lt;br /&gt;
 Based on how we store the heap elements in the array, the leaves of the tree are located stating at &lt;script type=&quot;math/tex&quot;&gt;A[n/2+1], A[n/2+2],...,n&lt;/script&gt;. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; maintains the heap property. And so we can write the following to build a max-heap:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;nuild_max_heap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;build_max_heap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;max_heapify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -466,6 +608,10 @@ We will then recusively call max_heapify on node 1, in its new location, index 2
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e8.png&quot; width=&quot;100%&quot; /&gt;
 And finally we will swap 1 with the larger of its children, node 7.
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e9.png&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;
+Finally, you can see now that the tree/array is a max-heap:
+&lt;img src=&quot;http://localhost:4000/assets/heaps/e10.png&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
@@ -473,9 +619,32 @@ And finally we will swap 1 with the larger of its children, node 7.
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;6 Building a Max-Heap (Proof of Correctness)&lt;/b&gt;
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;
+Why should we believe that build_max_heap works? This is going to be exactly what it’s in CLRS (my notes for myself to quickly remember). We’ll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;At the start of each iteration of the for loop in build_max_heap, each node &lt;script type=&quot;math/tex&quot;&gt;i+1, i+2, ..., n&lt;/script&gt; is the root of a max_heap.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;b&gt;Initialization&lt;/b&gt;:
+Before the first iteration that starts at &lt;script type=&quot;math/tex&quot;&gt;A[\lfloor n/2 \rfloor]&lt;/script&gt;, the nodes &lt;script type=&quot;math/tex&quot;&gt;A[\lfloor n/2 \rfloor + 1], A[\lfloor n/2 \rfloor + 2],...A[n]&lt;/script&gt; are leaf nodes and therefore each node is a root of a max-heap.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Maintenance&lt;/b&gt;: (so the gist here is that max_heapify will maintain that node &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; follows the heap property because indices &lt;script type=&quot;math/tex&quot;&gt;2*i, 2*i+1&lt;/script&gt; are higher than &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and therefore already maintain the heap property).
+&lt;br /&gt;
+At each iteration, we call max-heapify on the node &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. The children of node &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; are at &lt;script type=&quot;math/tex&quot;&gt;A[2*i]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;A[2*i+1]&lt;/script&gt;. Since both have a higher index than &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow &lt;script type=&quot;math/tex&quot;&gt;i+1, i+2, ..., n&lt;/script&gt;. Therefore, when we decrement &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;, the loop invariant will be established before the next iteration.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Termination&lt;/b&gt;:
+At termination when &lt;script type=&quot;math/tex&quot;&gt;i=0&lt;/script&gt;, we know by the loop invariant that the nodes &lt;script type=&quot;math/tex&quot;&gt;1, 2,...,n&lt;/script&gt; are all roots of max-heaps. So we are done.
+&lt;br /&gt;
+&lt;br /&gt;
+I would obviously recommend looking at CLRS’s way unless I’m in a rush and this is easily accessible on my phone. 
+&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
@@ -483,7 +652,28 @@ And finally we will swap 1 with the larger of its children, node 7.
 &lt;p&gt;&lt;br /&gt;
 &lt;b&gt;7 Building a Max-Heap (Running Time)&lt;/b&gt;
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
+&lt;br /&gt;
+The most exciting question is how long will building a max heap takes. We know that max_heapify takes &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt; time for each node. How many iterations do we have have in build_max_heap? To answer this, we need a little refresher (I do) on some properties of complete binary trees.
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/heaps/2.png&quot; width=&quot;100%&quot; /&gt;
+A complete binary tree is a tree in which all the leaves have the same depth and all internal nodes have degree 2. Notice that at level 1 we have 2 children. At level 2 we have 4 children and at level &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; we have &lt;script type=&quot;math/tex&quot;&gt;2^t&lt;/script&gt; children. Therefore, the number of leaves is just &lt;script type=&quot;math/tex&quot;&gt;2^h&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; is the height/depth of the tree. If we have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; leaves then the height of a complete binary tree is &lt;script type=&quot;math/tex&quot;&gt;\log_2(n)&lt;/script&gt;. 
+&lt;br /&gt;&lt;br /&gt;
+What about the number of internal nodes? Given that the height is &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt;, we know that the number of leaves is &lt;script type=&quot;math/tex&quot;&gt;2^h&lt;/script&gt;. Therefore, the number of internal nodes is&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+1 + 2 + 4 + ... + 2^{h-1} &amp;amp;= \sum_{i=0}^{h-1}2^i = \frac{2^h-1}{2-1} = 2^h-1
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;Back to build_max_heap. The for loop runs for only the internal nodes and so&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+1 + 2 + 4 + ... + 2^{h-1} &amp;amp;= \sum_{i=0}^{h-1}2^i = \frac{2^h-1}{2-1} = 2^h-1
+\end{align*}
+$$
+&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;

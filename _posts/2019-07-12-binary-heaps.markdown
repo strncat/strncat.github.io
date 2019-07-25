@@ -108,7 +108,7 @@ How long does max_heapify take? Well, in the worst case, we will go down all the
 <br>
 Based on how we store the heap elements in the array, the leaves of the tree are located stating at $$A[n/2+1], A[n/2+2],...,n$$. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of $$A$$ maintains the heap property. And so we can write the following to build a max-heap:
 {% highlight c++ %}
-void nuild_max_heap(A) {
+void build_max_heap(A) {
     for (int i = A.length/2; i >=1; i--) {
         max_heapify(A, i);
     }
@@ -148,13 +148,34 @@ We will then recusively call max_heapify on node 1, in its new location, index 2
 And finally we will swap 1 with the larger of its children, node 7.
 <img src="{{ site.url }}/assets/heaps/e9.png" width="100%">
 <br>
+Finally, you can see now that the tree/array is a max-heap:
+<img src="{{ site.url }}/assets/heaps/e10.png" width="100%">
+<br>
+<br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
 <b>6 Building a Max-Heap (Proof of Correctness)</b>
 <br>
 <br>
+Why should we believe that build_max_heap works? This is going to be exactly what it's in CLRS (my notes for myself to quickly remember). We'll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.
 
+| At the start of each iteration of the for loop in build_max_heap, each node $$i+1, i+2, ..., n$$ is the root of a max_heap. |
+
+<b>Initialization</b>:
+Before the first iteration that starts at $$A[\lfloor n/2 \rfloor]$$, the nodes $$A[\lfloor n/2 \rfloor + 1], A[\lfloor n/2 \rfloor + 2],...A[n]$$ are leaf nodes and therefore each node is a root of a max-heap.
+<br>
+<br>
+<b>Maintenance</b>: (so the gist here is that max_heapify will maintain that node $$i$$ follows the heap property because indices $$2*i, 2*i+1$$ are higher than $$i$$ and therefore already maintain the heap property).
+<br>
+At each iteration, we call max-heapify on the node $$A[i]$$. The children of node $$A[i]$$ are at $$A[2*i]$$ and $$A[2*i+1]$$. Since both have a higher index than $$i$$ then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow $$i+1, i+2, ..., n$$. Therefore, when we decrement $$i$$, the loop invariant will be established before the next iteration.
+<br>
+<br>
+<b>Termination</b>:
+At termination when $$i=0$$, we know by the loop invariant that the nodes $$1, 2,...,n$$ are all roots of max-heaps. So we are done.
+<br>
+<br>
+I would obviously recommend looking at CLRS's way unless I'm in a rush and this is easily accessible on my phone. 
 <br>
 <br>
 <hr>
@@ -163,7 +184,31 @@ And finally we will swap 1 with the larger of its children, node 7.
 <b>7 Building a Max-Heap (Running Time)</b>
 <br>
 <br>
+The most exciting question is how long will building a max heap takes. We know that max_heapify takes $$O(\log(n))$$ time for each node. How many iterations do we have have in build_max_heap? To answer this, we need a little refresher (I do) on some properties of complete binary trees.
+<br>
+<img src="{{ site.url }}/assets/heaps/2.png" width="100%">
+A complete binary tree is a tree in which all the leaves have the same depth and all internal nodes have degree 2. Notice that at level 1 we have 2 children. At level 2 we have 4 children and at level $$t$$ we have $$2^t$$ children. Therefore, the number of leaves is just $$2^h$$ where $$h$$ is the height/depth of the tree. If we have $$n$$ leaves then the height of a complete binary tree is $$\log_2(n)$$. 
+<br><br>
+What about the number of internal nodes? Given that the height is $$h$$, we know that the number of leaves is $$2^h$$. Therefore, the number of internal nodes is 
+<div center>
+$$
+\begin{align*}
+1 + 2 + 4 + ... + 2^{h-1} &= \sum_{i=0}^{h-1}2^i = \frac{2^h-1}{2-1} = 2^h-1
+\end{align*}
+$$
+</div>
+Back to build_max_heap. The for loop runs for only the internal nodes and so
+<div center>
+$$
+\begin{align*}
+1 + 2 + 4 + ... + 2^{h-1} &= \sum_{i=0}^{h-1}2^i = \frac{2^h-1}{2-1} = 2^h-1
+\end{align*}
+$$
+</div>
 
+
+
+ 
 <br>
 <br>
 <hr>

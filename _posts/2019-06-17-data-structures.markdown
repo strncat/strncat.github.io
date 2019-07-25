@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A Manual of Data Structures for Competitive Programming"
+title:  "Data Structures / Algorithms Snippets? for Competitive Programming"
 date:   2019-06-17 12:01:36 -0700
 categories: jekyll update
 mathjax: true

@@ -37,32 +37,30 @@ MergeSort(A, first, last) {
 <b>(1) The Recursion Tree Method</b>
 <br>
 <br>
-How long does MergeSort take? How many operations are we doing? Let's study in details. Let's begin by looking at what MergeSort is doing in each level of recursion. We will do this in two passes, one pass to go all way down to the base case in the above pesudo-code and another to climb all the way up and to finally return from MergeSort.
+How long does MergeSort take? How many operations are we performing? Let's look at what MergeSort is doing at each level of of the recursion tree. We will first go all way down splitting the array and calling <i>MergeSort</i> on each half until we reach the base case. And then we will go all way up calling <i>Merge</i> in every level until the final <i>Merge</i> call to combine the two halfs of the array and finally exiting MergeSort.
 <br>
 <br>
 <i>Level 0:</i>
 <br>
-At the top level, level 0, we have the whole input, array $$A$$ of size $$n$$. We will then recursively called MergeSort again on each half of the input.
+At the top level, we have the whole input, array $$A$$ of size $$n$$. We will recursively call MergeSort on each half of the $$A$$.
 <img src="{{ site.url }}/assets/merge/1.png" width="100%">
 <i>Level 1:</i>
 <br>
-In this level, we will have two arrays to sort, each of size $$n/2$$. Notice here that the total number of elements from all arrays is still $$n$$.
+In this level, we have two calls to MergeSort. Each call is on one half of the array. The total number of elements from all calls though is still $$n$$.
 <img src="{{ site.url }}/assets/merge/2.png" width="100%">
 <i>Level 2:</i>
 <br>
-In level 2, we will have 4 arrays each of size $$n/4$$. We also notice here that the total number of elements is also $$n/4+n/4+n/4+n/4=n$$.
+In level 2, we will have 4 calls. Each call is on an array of size $$n/4$$. We also notice here that the total number of elements is also $$n/4+n/4+n/4+n/4=n$$.
 <img src="{{ site.url }}/assets/merge/3.png" width="100%">
 <i>Level $$t$$:</i>
 <br>
-At the $$t$$'th level, we will have $$2^t$$ arrays. Each of these arrays is of size $$n/2^t$$. Again, the total number of elements is also $$n$$.
+At the $$t$$'th level, we will have $$2^t$$ calls to MergeSort. Each of the arrays passed to MergeSort is of size $$n/2^t$$. Again, the total number of elements is also $$n$$.
 <img src="{{ site.url }}/assets/merge/4.png" width="100%">
 <i>Level ?:</i>
 <br>
-When do we stop dividing? Our base case happens when $$first == last$$. This means that the input now has only one element. We have two questions now. How many arrays do we have total? and what is the number of this level (how many levels are there)?
+When do we stop dividing/recursively calling MergeSort? Our base case happens when $$first == last$$. This means that we stop the recursion when each call has an array of size 1. How many times do we divide $$n$$ by 2 (we're dividing the array into two halfs at each step) to reach 1? This is precisely what logs give us. $$log_d(n)$$ is the number of times that we divide $$n$$ by $$d$$ to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!)
 <br><br>
-First, since each array is of size 1 then we must have $$n$$ arrays because the total number of elements is $$n$$. Second, we ask, how many times do we divide $$n$$ by 2 to reach 1? This is because the algorithm keeps dividing by 2 at each step. The answer to that $$\log_2(n)$$. This is precisely what logs give us. $$log_d(n)$$ answers the question: how many times do we divide $$n$$ by $$d$$ to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!)
-<br><br>
-In Summary, at the $$log_2(n)$$ level, we have $$n$$ arrays, each of size 1.
+Therefore, the answer is: at the $$log_2(n)$$ level, each array is of size 1 and this is we stop calling MergeSort again. After this we will start calling Merge now to combine everything together!
 <img src="{{ site.url }}/assets/merge/5.png" width="100%">
 <br>
 <br>
@@ -74,17 +72,13 @@ Now let's climb up the recursion tree. We will assume that Merge performs $$cn$$
 <br>
 <i>Level $$log(n):$$</i>
 <img src="{{ site.url }}/assets/merge/5.png" width="100%">
-We were at the last level (base case) and we know that each array is of size 1 and so it's already sorted. So the only thing we did was to check if $$first < last$$ to determine that the size is 1. So the total number of operations is $$n$$ since we're doing this for each array of length 1.
+We know that each array is of size 1 and so it's already sorted. The only thing we do at this level is to check if $$first < last$$ to determine that the size is 1. After that we just return from MergeSort. So the total number of operations is $$n$$ for all calls. 
 <br>
-<br>
-<i>Level $$log(n)-1$$:</i>
-<img src="{{ site.url }}/assets/merge/6.png" width="100%">
-We're now back one step. Each array here is of size $$2$$. Merge costs $$2c$$ operations for each call/sub problem. Now let's sum everything per level. We have $$2^{\log_2(n)-1}$$ problems/arrays and each will cost $$2c$$ operations. So the total is $$2^{\log_2(n)-1} * 2 * c = 2^{\log_2(n)} * c = cn$$. 
 <br>
 <br>
 <i>Level $$t$$:</i>
 <img src="{{ site.url }}/assets/merge/4.png" width="100%">
-At the $$t$$'th level, whave $$2^t$$ arrays. Each of these arrays is of size $$n/2^t$$ and so will cost $$n/2^t * c$$. Now let's sum everything in this level. We have $$2^t * n/2^t * c = cn$$. 
+At the $$t$$'th level, we have $$2^t$$ arrays. Each of these arrays is of size $$n/2^t$$. We will perform $$n/2^t * c$$ operations per call. Summing everything, we have $$2^t * n/2^t * c = cn$$ operations. 
 <br>
 <br>
 So at each level we're doing at most $$cn$$ operations.
@@ -102,7 +96,7 @@ Let's now summarize everything in a nice table:
 <br>
 So now that we know how much work we're doing per level, what is total number of operations for all levels? basically how many operations does MergeSort perform for an array of size $$n$$? Well, we have $$log(n)+1$$ levels and in each level we're doing $$cn$$ operations, therefore MergeSort performs $$cn(\log(n)+1)$$ operations.
 <br><br>
-Now, let $$f(n) = cn(\log(n)+1)$$ and $$g(n) = n\log(n)$$. To see that $$f(n) = O(g(n))$$, recall that we need to find $$c', n_0 > 0$$ such that for all $$n \geq n_0$$, we have $$0 \leq f(n) \leq c'g(n)$$
+Let $$f(n) = cn(\log(n)+1)$$ and $$g(n) = n\log(n)$$. To see that $$f(n) = O(g(n))$$, recall that we need to find $$c', n_0 > 0$$ such that for all $$n \geq n_0$$, we have $$0 \leq f(n) \leq c'g(n)$$
 
 
 Choose $$c'=2c$$ and $$n_0=2$$ and so for all $$n \geq n_0$$ and $$c' = 2c$$ we need to prove: 
@@ -131,6 +125,10 @@ This is certainly true for all $$n \geq 2$$ and so we are done.
 <b>(2) The Substitution Method</b>
 <br>
 <br>
+TODO
+
+
+<!--
 Now let's take a step back and forget about the recursion tree. Also assume that we don't know the master theorem. We know that MergeSort divides the input into halfs and performs $$cn$$ operations in Merge. Therefore, we have the following recurrence:
 <div center>
 $$
@@ -154,6 +152,8 @@ T(n) &= 2T(\frac{n}{2}) + cn \\
 \end{align*}
 $$
 </div>
+-->
+
 <br>
 <br>
 <br>

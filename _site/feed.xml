@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-25T09:56:22-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>hello</subtitle><entry><title type="html">Closest Pair of Points</title><link href="http://localhost:4000/jekyll/update/2019/07/24/closest-pair.html" rel="alternate" type="text/html" title="Closest Pair of Points" /><published>2019-07-24T07:01:36-07:00</published><updated>2019-07-24T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/24/closest-pair</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/24/closest-pair.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-26T09:30:10-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>hello</subtitle><entry><title type="html">Closest Pair of Points</title><link href="http://localhost:4000/jekyll/update/2019/07/24/closest-pair.html" rel="alternate" type="text/html" title="Closest Pair of Points" /><published>2019-07-24T07:01:36-07:00</published><updated>2019-07-24T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/24/closest-pair</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/24/closest-pair.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 These are my study notes on chapter 26 in CLRS.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -330,32 +330,30 @@ In this note, we would like to analyze the running time of MergeSort. Recall tha
 &lt;b&gt;(1) The Recursion Tree Method&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-How long does MergeSort take? How many operations are we doing? Let’s study in details. Let’s begin by looking at what MergeSort is doing in each level of recursion. We will do this in two passes, one pass to go all way down to the base case in the above pesudo-code and another to climb all the way up and to finally return from MergeSort.
+How long does MergeSort take? How many operations are we performing? Let’s look at what MergeSort is doing at each level of of the recursion tree. We will first go all way down splitting the array and calling &lt;i&gt;MergeSort&lt;/i&gt; on each half until we reach the base case. And then we will go all way up calling &lt;i&gt;Merge&lt;/i&gt; in every level until the final &lt;i&gt;Merge&lt;/i&gt; call to combine the two halfs of the array and finally exiting MergeSort.
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;i&gt;Level 0:&lt;/i&gt;
 &lt;br /&gt;
-At the top level, level 0, we have the whole input, array &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; of size &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We will then recursively called MergeSort again on each half of the input.
+At the top level, we have the whole input, array &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; of size &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We will recursively call MergeSort on each half of the &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt;.
 &lt;img src=&quot;http://localhost:4000/assets/merge/1.png&quot; width=&quot;100%&quot; /&gt;
 &lt;i&gt;Level 1:&lt;/i&gt;
 &lt;br /&gt;
-In this level, we will have two arrays to sort, each of size &lt;script type=&quot;math/tex&quot;&gt;n/2&lt;/script&gt;. Notice here that the total number of elements from all arrays is still &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;.
+In this level, we have two calls to MergeSort. Each call is on one half of the array. The total number of elements from all calls though is still &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;.
 &lt;img src=&quot;http://localhost:4000/assets/merge/2.png&quot; width=&quot;100%&quot; /&gt;
 &lt;i&gt;Level 2:&lt;/i&gt;
 &lt;br /&gt;
-In level 2, we will have 4 arrays each of size &lt;script type=&quot;math/tex&quot;&gt;n/4&lt;/script&gt;. We also notice here that the total number of elements is also &lt;script type=&quot;math/tex&quot;&gt;n/4+n/4+n/4+n/4=n&lt;/script&gt;.
+In level 2, we will have 4 calls. Each call is on an array of size &lt;script type=&quot;math/tex&quot;&gt;n/4&lt;/script&gt;. We also notice here that the total number of elements is also &lt;script type=&quot;math/tex&quot;&gt;n/4+n/4+n/4+n/4=n&lt;/script&gt;.
 &lt;img src=&quot;http://localhost:4000/assets/merge/3.png&quot; width=&quot;100%&quot; /&gt;
 &lt;i&gt;Level &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;:&lt;/i&gt;
 &lt;br /&gt;
-At the &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;‘th level, we will have &lt;script type=&quot;math/tex&quot;&gt;2^t&lt;/script&gt; arrays. Each of these arrays is of size &lt;script type=&quot;math/tex&quot;&gt;n/2^t&lt;/script&gt;. Again, the total number of elements is also &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;.
+At the &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;‘th level, we will have &lt;script type=&quot;math/tex&quot;&gt;2^t&lt;/script&gt; calls to MergeSort. Each of the arrays passed to MergeSort is of size &lt;script type=&quot;math/tex&quot;&gt;n/2^t&lt;/script&gt;. Again, the total number of elements is also &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;.
 &lt;img src=&quot;http://localhost:4000/assets/merge/4.png&quot; width=&quot;100%&quot; /&gt;
 &lt;i&gt;Level ?:&lt;/i&gt;
 &lt;br /&gt;
-When do we stop dividing? Our base case happens when &lt;script type=&quot;math/tex&quot;&gt;first == last&lt;/script&gt;. This means that the input now has only one element. We have two questions now. How many arrays do we have total? and what is the number of this level (how many levels are there)?
+When do we stop dividing/recursively calling MergeSort? Our base case happens when &lt;script type=&quot;math/tex&quot;&gt;first == last&lt;/script&gt;. This means that we stop the recursion when each call has an array of size 1. How many times do we divide &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; by 2 (we’re dividing the array into two halfs at each step) to reach 1? This is precisely what logs give us. &lt;script type=&quot;math/tex&quot;&gt;log_d(n)&lt;/script&gt; is the number of times that we divide &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; by &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!)
 &lt;br /&gt;&lt;br /&gt;
-First, since each array is of size 1 then we must have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; arrays because the total number of elements is &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. Second, we ask, how many times do we divide &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; by 2 to reach 1? This is because the algorithm keeps dividing by 2 at each step. The answer to that &lt;script type=&quot;math/tex&quot;&gt;\log_2(n)&lt;/script&gt;. This is precisely what logs give us. &lt;script type=&quot;math/tex&quot;&gt;log_d(n)&lt;/script&gt; answers the question: how many times do we divide &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; by &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!)
-&lt;br /&gt;&lt;br /&gt;
-In Summary, at the &lt;script type=&quot;math/tex&quot;&gt;log_2(n)&lt;/script&gt; level, we have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; arrays, each of size 1.
+Therefore, the answer is: at the &lt;script type=&quot;math/tex&quot;&gt;log_2(n)&lt;/script&gt; level, each array is of size 1 and this is we stop calling MergeSort again. After this we will start calling Merge now to combine everything together!
 &lt;img src=&quot;http://localhost:4000/assets/merge/5.png&quot; width=&quot;100%&quot; /&gt;
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -368,18 +366,14 @@ Now let’s climb up the recursion tree. We will assume that Merge performs &lt;
 &lt;br /&gt;
 &lt;i&gt;Level &lt;script type=&quot;math/tex&quot;&gt;log(n):&lt;/script&gt;&lt;/i&gt;
 &lt;img src=&quot;http://localhost:4000/assets/merge/5.png&quot; width=&quot;100%&quot; /&gt;
-We were at the last level (base case) and we know that each array is of size 1 and so it’s already sorted. So the only thing we did was to check if &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-first &lt; last %]]&gt;&lt;/script&gt; to determine that the size is 1. So the total number of operations is &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; since we’re doing this for each array of length 1.
+We know that each array is of size 1 and so it’s already sorted. The only thing we do at this level is to check if &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+first &lt; last %]]&gt;&lt;/script&gt; to determine that the size is 1. After that we just return from MergeSort. So the total number of operations is &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; for all calls. 
 &lt;br /&gt;
-&lt;br /&gt;
-&lt;i&gt;Level &lt;script type=&quot;math/tex&quot;&gt;log(n)-1&lt;/script&gt;:&lt;/i&gt;
-&lt;img src=&quot;http://localhost:4000/assets/merge/6.png&quot; width=&quot;100%&quot; /&gt;
-We’re now back one step. Each array here is of size &lt;script type=&quot;math/tex&quot;&gt;2&lt;/script&gt;. Merge costs &lt;script type=&quot;math/tex&quot;&gt;2c&lt;/script&gt; operations for each call/sub problem. Now let’s sum everything per level. We have &lt;script type=&quot;math/tex&quot;&gt;2^{\log_2(n)-1}&lt;/script&gt; problems/arrays and each will cost &lt;script type=&quot;math/tex&quot;&gt;2c&lt;/script&gt; operations. So the total is &lt;script type=&quot;math/tex&quot;&gt;2^{\log_2(n)-1} * 2 * c = 2^{\log_2(n)} * c = cn&lt;/script&gt;. 
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;i&gt;Level &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;:&lt;/i&gt;
 &lt;img src=&quot;http://localhost:4000/assets/merge/4.png&quot; width=&quot;100%&quot; /&gt;
-At the &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;‘th level, whave &lt;script type=&quot;math/tex&quot;&gt;2^t&lt;/script&gt; arrays. Each of these arrays is of size &lt;script type=&quot;math/tex&quot;&gt;n/2^t&lt;/script&gt; and so will cost &lt;script type=&quot;math/tex&quot;&gt;n/2^t * c&lt;/script&gt;. Now let’s sum everything in this level. We have &lt;script type=&quot;math/tex&quot;&gt;2^t * n/2^t * c = cn&lt;/script&gt;. 
+At the &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;‘th level, we have &lt;script type=&quot;math/tex&quot;&gt;2^t&lt;/script&gt; arrays. Each of these arrays is of size &lt;script type=&quot;math/tex&quot;&gt;n/2^t&lt;/script&gt;. We will perform &lt;script type=&quot;math/tex&quot;&gt;n/2^t * c&lt;/script&gt; operations per call. Summing everything, we have &lt;script type=&quot;math/tex&quot;&gt;2^t * n/2^t * c = cn&lt;/script&gt; operations. 
 &lt;br /&gt;
 &lt;br /&gt;
 So at each level we’re doing at most &lt;script type=&quot;math/tex&quot;&gt;cn&lt;/script&gt; operations.
@@ -398,7 +392,7 @@ Let’s now summarize everything in a nice table:
 &lt;br /&gt;
 So now that we know how much work we’re doing per level, what is total number of operations for all levels? basically how many operations does MergeSort perform for an array of size &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;? Well, we have &lt;script type=&quot;math/tex&quot;&gt;log(n)+1&lt;/script&gt; levels and in each level we’re doing &lt;script type=&quot;math/tex&quot;&gt;cn&lt;/script&gt; operations, therefore MergeSort performs &lt;script type=&quot;math/tex&quot;&gt;cn(\log(n)+1)&lt;/script&gt; operations.
 &lt;br /&gt;&lt;br /&gt;
-Now, let &lt;script type=&quot;math/tex&quot;&gt;f(n) = cn(\log(n)+1)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;g(n) = n\log(n)&lt;/script&gt;. To see that &lt;script type=&quot;math/tex&quot;&gt;f(n) = O(g(n))&lt;/script&gt;, recall that we need to find &lt;script type=&quot;math/tex&quot;&gt;c', n_0 &gt; 0&lt;/script&gt; such that for all &lt;script type=&quot;math/tex&quot;&gt;n \geq n_0&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;0 \leq f(n) \leq c'g(n)&lt;/script&gt;&lt;/p&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;f(n) = cn(\log(n)+1)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;g(n) = n\log(n)&lt;/script&gt;. To see that &lt;script type=&quot;math/tex&quot;&gt;f(n) = O(g(n))&lt;/script&gt;, recall that we need to find &lt;script type=&quot;math/tex&quot;&gt;c', n_0 &gt; 0&lt;/script&gt; such that for all &lt;script type=&quot;math/tex&quot;&gt;n \geq n_0&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;0 \leq f(n) \leq c'g(n)&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;Choose &lt;script type=&quot;math/tex&quot;&gt;c'=2c&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;n_0=2&lt;/script&gt; and so for all &lt;script type=&quot;math/tex&quot;&gt;n \geq n_0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;c' = 2c&lt;/script&gt; we need to prove:&lt;/p&gt;
 &lt;div center=&quot;&quot;&gt;
@@ -427,32 +421,37 @@ $$
 &lt;b&gt;(2) The Substitution Method&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-Now let’s take a step back and forget about the recursion tree. Also assume that we don’t know the master theorem. We know that MergeSort divides the input into halfs and performs &lt;script type=&quot;math/tex&quot;&gt;cn&lt;/script&gt; operations in Merge. Therefore, we have the following recurrence:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
+TODO&lt;/p&gt;
+
+&lt;!--
+Now let's take a step back and forget about the recursion tree. Also assume that we don't know the master theorem. We know that MergeSort divides the input into halfs and performs $$cn$$ operations in Merge. Therefore, we have the following recurrence:
+&lt;div center&gt;
 $$
 \begin{align*}
 T(n) = 2T(\frac{n}{2}) + cn
 \end{align*}
 $$
 &lt;/div&gt;
-&lt;p&gt;How do we go about solving this? The substituition method says generate a guess and prove it formally by induction! How do we guess the solution? One way is expand the recurrence multiple times to help us find a pattern.
-&lt;br /&gt;&lt;br /&gt;
-Let’s guess that &lt;script type=&quot;math/tex&quot;&gt;T(n) = O(n\log(n))&lt;/script&gt;. In order to prove it formally though, we need to find &lt;script type=&quot;math/tex&quot;&gt;c' &gt; 0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;n_0 &gt; 0&lt;/script&gt; such that for all &lt;script type=&quot;math/tex&quot;&gt;n \geq n_0&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;T(n) \leq c'n\log(n)&lt;/script&gt;. In order to find &lt;script type=&quot;math/tex&quot;&gt;c'&lt;/script&gt;, we can &lt;b&gt;substitute&lt;/b&gt; our guess and solve for &lt;script type=&quot;math/tex&quot;&gt;c'&lt;/script&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
+How do we go about solving this? The substituition method says generate a guess and prove it formally by induction! How do we guess the solution? One way is expand the recurrence multiple times to help us find a pattern.
+&lt;br&gt;&lt;br&gt;
+Let's guess that $$T(n) = O(n\log(n))$$. In order to prove it formally though, we need to find $$c' &gt; 0$$ and $$n_0 &gt; 0$$ such that for all $$n \geq n_0$$, we have $$T(n) \leq c'n\log(n)$$. In order to find $$c'$$, we can &lt;b&gt;substitute&lt;/b&gt; our guess and solve for $$c'$$
+&lt;div center&gt;
 $$
 \begin{align*}
-T(n) &amp;amp;= 2T(\frac{n}{2}) + cn \\
-&amp;amp;\leq 2c'\frac{n}{2}\log(\frac{n}{2}) + cn \\
-&amp;amp;= c'n\log(\frac{n}{2}) + cn \\
-&amp;amp;= c'n\log(n)-c'n\log(2) + cn \\
-&amp;amp;= c'n\log(n)-c'n + cn \\
-&amp;amp;\leq c'n\log(n) + cn \\
+T(n) &amp;= 2T(\frac{n}{2}) + cn \\
+&amp;\leq 2c'\frac{n}{2}\log(\frac{n}{2}) + cn \\
+&amp;= c'n\log(\frac{n}{2}) + cn \\
+&amp;= c'n\log(n)-c'n\log(2) + cn \\
+&amp;= c'n\log(n)-c'n + cn \\
+&amp;\leq c'n\log(n) + cn \\
 \end{align*}
 $$
 &lt;/div&gt;
+--&gt;
+
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS Introduction In this note, we would like to analyze the running time of MergeSort. Recall that MergeSort is a divide and conquer algorithm where we repeatedly split the input into two halfs and then call MergeSort again on each half. Once we’re done, we can combine the halfs in Merge. The follow pesudo-code shows this (Based on CLRS) MergeSort(A, first, last) { if (first &amp;lt; last) { mid = floor((first+last)/2) MergeSort(A,first,mid) MergeSort(A,mid+1,last) Merge(A,first,mid,last) } } (1) The Recursion Tree Method How long does MergeSort take? How many operations are we doing? Let’s study in details. Let’s begin by looking at what MergeSort is doing in each level of recursion. We will do this in two passes, one pass to go all way down to the base case in the above pesudo-code and another to climb all the way up and to finally return from MergeSort. Level 0: At the top level, level 0, we have the whole input, array of size . We will then recursively called MergeSort again on each half of the input. Level 1: In this level, we will have two arrays to sort, each of size . Notice here that the total number of elements from all arrays is still . Level 2: In level 2, we will have 4 arrays each of size . We also notice here that the total number of elements is also . Level : At the ‘th level, we will have arrays. Each of these arrays is of size . Again, the total number of elements is also . Level ?: When do we stop dividing? Our base case happens when . This means that the input now has only one element. We have two questions now. How many arrays do we have total? and what is the number of this level (how many levels are there)? First, since each array is of size 1 then we must have arrays because the total number of elements is . Second, we ask, how many times do we divide by 2 to reach 1? This is because the algorithm keeps dividing by 2 at each step. The answer to that . This is precisely what logs give us. answers the question: how many times do we divide by to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!) In Summary, at the level, we have arrays, each of size 1. Now let’s climb up the recursion tree. We will assume that Merge performs operations where is the size of the array and is a positive constant. Level We were at the last level (base case) and we know that each array is of size 1 and so it’s already sorted. So the only thing we did was to check if to determine that the size is 1. So the total number of operations is since we’re doing this for each array of length 1. Level : We’re now back one step. Each array here is of size . Merge costs operations for each call/sub problem. Now let’s sum everything per level. We have problems/arrays and each will cost operations. So the total is . Level : At the ‘th level, whave arrays. Each of these arrays is of size and so will cost . Now let’s sum everything in this level. We have . So at each level we’re doing at most operations. Putting it all together Let’s now summarize everything in a nice table: So now that we know how much work we’re doing per level, what is total number of operations for all levels? basically how many operations does MergeSort perform for an array of size ? Well, we have levels and in each level we’re doing operations, therefore MergeSort performs operations. Now, let and . To see that , recall that we need to find such that for all , we have</summary></entry><entry><title type="html">Binary Heaps</title><link href="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html" rel="alternate" type="text/html" title="Binary Heaps" /><published>2019-07-12T07:01:36-07:00</published><updated>2019-07-12T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/12/binary-heaps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS Introduction In this note, we would like to analyze the running time of MergeSort. Recall that MergeSort is a divide and conquer algorithm where we repeatedly split the input into two halfs and then call MergeSort again on each half. Once we’re done, we can combine the halfs in Merge. The follow pesudo-code shows this (Based on CLRS) MergeSort(A, first, last) { if (first &amp;lt; last) { mid = floor((first+last)/2) MergeSort(A,first,mid) MergeSort(A,mid+1,last) Merge(A,first,mid,last) } } (1) The Recursion Tree Method How long does MergeSort take? How many operations are we performing? Let’s look at what MergeSort is doing at each level of of the recursion tree. We will first go all way down splitting the array and calling MergeSort on each half until we reach the base case. And then we will go all way up calling Merge in every level until the final Merge call to combine the two halfs of the array and finally exiting MergeSort. Level 0: At the top level, we have the whole input, array of size . We will recursively call MergeSort on each half of the . Level 1: In this level, we have two calls to MergeSort. Each call is on one half of the array. The total number of elements from all calls though is still . Level 2: In level 2, we will have 4 calls. Each call is on an array of size . We also notice here that the total number of elements is also . Level : At the ‘th level, we will have calls to MergeSort. Each of the arrays passed to MergeSort is of size . Again, the total number of elements is also . Level ?: When do we stop dividing/recursively calling MergeSort? Our base case happens when . This means that we stop the recursion when each call has an array of size 1. How many times do we divide by 2 (we’re dividing the array into two halfs at each step) to reach 1? This is precisely what logs give us. is the number of times that we divide by to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!) Therefore, the answer is: at the level, each array is of size 1 and this is we stop calling MergeSort again. After this we will start calling Merge now to combine everything together! Now let’s climb up the recursion tree. We will assume that Merge performs operations where is the size of the array and is a positive constant. Level We know that each array is of size 1 and so it’s already sorted. The only thing we do at this level is to check if to determine that the size is 1. After that we just return from MergeSort. So the total number of operations is for all calls. Level : At the ‘th level, we have arrays. Each of these arrays is of size . We will perform operations per call. Summing everything, we have operations. So at each level we’re doing at most operations. Putting it all together Let’s now summarize everything in a nice table: So now that we know how much work we’re doing per level, what is total number of operations for all levels? basically how many operations does MergeSort perform for an array of size ? Well, we have levels and in each level we’re doing operations, therefore MergeSort performs operations. Let and . To see that , recall that we need to find such that for all , we have</summary></entry><entry><title type="html">Binary Heaps</title><link href="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html" rel="alternate" type="text/html" title="Binary Heaps" /><published>2019-07-12T07:01:36-07:00</published><updated>2019-07-12T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/12/binary-heaps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 These are my study notes / summary on chapter 6 in CLRS.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;

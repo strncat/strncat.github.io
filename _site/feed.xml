@@ -1,16 +1,188 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-26T09:30:10-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>hello</subtitle><entry><title type="html">Closest Pair of Points</title><link href="http://localhost:4000/jekyll/update/2019/07/24/closest-pair.html" rel="alternate" type="text/html" title="Closest Pair of Points" /><published>2019-07-24T07:01:36-07:00</published><updated>2019-07-24T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/24/closest-pair</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/24/closest-pair.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-These are my study notes on chapter 26 in CLRS.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-03T22:14:50-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>hello</subtitle><entry><title type="html">Closest Pair of Points</title><link href="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html" rel="alternate" type="text/html" title="Closest Pair of Points" /><published>2019-07-29T07:01:36-07:00</published><updated>2019-07-29T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/29/closest-pair</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;b&gt;1 Problem&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;, must be equal to the number of the oranges leaving city &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem.
+Suppose we are given a list of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; two dimensional points &lt;script type=&quot;math/tex&quot;&gt;\{\{x_1,y_1\},\{x_2,y_2\},...\{x_n,y_n\}\}&lt;/script&gt; and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; since we have &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; possible pairs. What else can we do?
 &lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;2 Divide and Conquer&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. We will also sort the points by their y-coordinate and let that array be &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt;. We will be using &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; later in the algorithm.
+&lt;img src=&quot;http://localhost:4000/assets/closest/1.png&quot; width=&quot;100%&quot; /&gt;
+Given &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. We can start applying the the following divide and conquer idea. Repeatedly divide &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/closest/2.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;How do we combine the results to find the single true closest pair? we need to consider that the closest pair might have a point in the left half and a point in the right half. We call this pair a &lt;b&gt;split pair&lt;/b&gt;. So in the combine step we need to do two things, we find the split pair with the minimum distance. And then we need to find the minimum pair of the three pairs we have, the left pair, the right pair and the split pair. The following pseudo-code implements this idea.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;closest_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Py&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Px sorted by x-coordinate, Py by y-coordinate&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;less&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;than&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;three&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+       &lt;span class=&quot;c1&quot;&gt;// just use the naive algorithm &lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// we will divide Px into two arrays left and right&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// median = Px[n/2-1]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;left_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;split_px_around_the_median&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;median&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// We want to sort each of left_x and right_x by the y-coordinate.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// discussed next&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;right_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort_left_and_right_by_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Py&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+	
+    &lt;span class=&quot;c1&quot;&gt;// we find the closest pair in each half&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;left_pair&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;closest_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;right_pair&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;closest_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	
+    &lt;span class=&quot;c1&quot;&gt;// delta_left and delta_right are the minimum distances in the left and right halfs&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delta_left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delta_right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	
+    &lt;span class=&quot;c1&quot;&gt;// we'll discuss this soon!&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta_left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta_right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;split_pair&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_split_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Py&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;split_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;3 Running Time&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+We sorted the array upfront twice in &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; time. We divide the input repeatedly in half until we reached the base case. We then combined the results by finding the split pair and returning the pair with the minimum distance. So we have a recurrence that looks like this:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ T(n) = aT(n/b) + n^c \\
+ T(n) = 2T(n/2) + n^c
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;The &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; constant depends on the work we’re doing in each level. We first create the four arrays &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;left_y&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;right_y&lt;/script&gt;. This takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;. We then find the split pair. If we find the split pair in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;c = 2&lt;/script&gt; and by the master theorem, the total runtime is &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. This defeats the purpose since the naive solution runs in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. We also know that we initially sorted the array in &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; so the final runtime is at least &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;. So roughly we know that we need to find the split pair really fast in &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; to have &lt;script type=&quot;math/tex&quot;&gt;c = 1&lt;/script&gt; and therefore, keeping our runtime at &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;4 How to repeatedly sort &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; by the x-coordinate and the y-coordinate &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time? &lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+So we’re claiming that we’re sorting once only and then somehow we’re are repeatedly passing the two halfs of the &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; sorted by the x-coordinate and by the y-coordinate. How?! For sorting by the x-coordinate, we simply split &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; in half by calculating the median in &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt; time and then iterating over &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; to split the array into &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt;. That takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time where &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is the current size of &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. 
+&lt;br /&gt;
+&lt;br /&gt;
+Now that we have both &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt;. We want to create two arrays &lt;script type=&quot;math/tex&quot;&gt;left_y&lt;/script&gt; which is &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt; but sorted by the y-coordinate. We also want &lt;script type=&quot;math/tex&quot;&gt;right_y&lt;/script&gt; which is &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt; sorted by the y-coordinate. How do we do this in just &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time? This is when we will use &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt;! We will iterate over &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; and if we see an element with an x-coordinate below or equal to the median then this element belongs to &lt;script type=&quot;math/tex&quot;&gt;left_y&lt;/script&gt; otherwise it belongs to &lt;script type=&quot;math/tex&quot;&gt;right_y&lt;/script&gt;. Remember that &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; is just &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; but sorted by the y-coordinate. We are also assuming for the sake of simplicity that the points are distinct. 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;5 Finding the split pair in &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time &lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/closest/3.png&quot; width=&quot;100%&quot; /&gt;
+Let’s assume that the minimum pair not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; (shown above) and let the right minimum distance be &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; be the minimum of &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt;. Also let the right most point in the left array be &lt;script type=&quot;math/tex&quot;&gt;\bar{x}&lt;/script&gt;. Now construct &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; to be an array with all the points that have x-coordinate between &lt;script type=&quot;math/tex&quot;&gt;\bar{x} - \delta&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\bar{x} + \delta&lt;/script&gt; sorted by their y-coordinate (we can use &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time which is fine by us!
+&lt;br /&gt;&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;p=(x_1,y_1)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q=(x_2,y_2)&lt;/script&gt; be the split pair points we’re trying to find where &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; is in the left half and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; is in the right half. We claim the following:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Both &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;At most 6 points are between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; in M.
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+So, assuming the above is correct (we’ll prove it formally), we now have a constant number of pairs to look at. Basically, for each point, we will look at 7 points and therefore, we only have &lt;script type=&quot;math/tex&quot;&gt;7n&lt;/script&gt; pairs and so we can find the split pair in only &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time!
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+But why why why the above is the correct? let’s look at the first claim.
+&lt;br /&gt;&lt;br /&gt;
+Proof:&lt;br /&gt;
+We want to show that if the closest pair of points is a split pair then our algorithm will find it. Since our algorithm only searches &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;, then we want to show that both &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;. So assuming that &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are the closest pair, we then know that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+d(p,q) &lt; \delta %]]&gt;&lt;/script&gt;. From here we can expand the euclidean distance definition:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ \delta &amp;amp;&amp;gt; d(p,q) \\
+  &amp;amp;= \sqrt{(y_2-y_1)^2 + (x_2-x_1)^2} \\
+  &amp;amp;\geq \sqrt{\max\{(y_2-y_1)^2, (x_2-x_1)^2}\} \\
+  &amp;amp;= \max\{(y_2-y_1), (x_2-x_1)\}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;This says that &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; must differ by less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; in both their &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; coordinates!! So &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+|x_2-x_1| &lt; \delta %]]&gt;&lt;/script&gt;. We also know that &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are a split pair and so by definition we have &lt;script type=&quot;math/tex&quot;&gt;x_1 \leq \bar{x}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2 &gt; \bar{x}&lt;/script&gt;. Therefore, we must have &lt;script type=&quot;math/tex&quot;&gt;x_1 \geq \bar{x} - \delta&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2 \leq \bar{x} + \delta&lt;/script&gt;. Finally, since &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is defined to include all points such that the x-coordinate satisfies &lt;script type=&quot;math/tex&quot;&gt;\bar{x} - \delta \leq x \leq \bar{x} + \delta&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; and thererfore, we will find them. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+Let’s move to the second claim. why must we have 6 points only between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;?
+&lt;br /&gt;
+&lt;br /&gt;
+Proof:
+&lt;br /&gt;
+Without the loss of generality, assume that &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; has the lower y-coordinate. We do know that both &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;’s x and y coordinates differ by less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;’s x and y coordinates respectively. What do we know about the points between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Since &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted by the y-coordinate, we do know that any point that comes between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; must have a y-coordinate between &lt;script type=&quot;math/tex&quot;&gt;y_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y_2&lt;/script&gt;. Since &lt;script type=&quot;math/tex&quot;&gt;y_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y_2&lt;/script&gt; differ by less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt;, this makes the y-coordinate of any of these points be in between &lt;script type=&quot;math/tex&quot;&gt;y_2&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y_1 \leq y_2 + \delta&lt;/script&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We know that any point between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; must have an x-coordinate between &lt;script type=&quot;math/tex&quot;&gt;\bar{x}-\delta&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\bar{x}+\delta&lt;/script&gt; by our construction of &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Using the above restrictions, any point between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; must be in one of the following boxes. (again, if you look at the x-axis, &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; only allow points within &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; of &lt;script type=&quot;math/tex&quot;&gt;\bar{x}&lt;/script&gt;. If you look vertically, the fact that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted makes the points between &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; have a y-coordinate between &lt;script type=&quot;math/tex&quot;&gt;y_2&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y_1&lt;/script&gt; and that gap is also less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt;!!).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/closest/4.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The next question is how many points do we have in each box?
+&lt;br /&gt;&lt;br /&gt;
+We claim that each box has only 1 point. Proof: Suppose it doesn’t and some box in the diagram above has 2 points. Let these points be &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;. This means than &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; are both a left pair or a right pair. Moreover, the distance between &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is at most &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\sqrt{(\delta/2)^2 + (\delta/2)^2} = \delta/\sqrt{2} &lt; \delta %]]&gt;&lt;/script&gt;. This is a contradiction, since by assumption we said both &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt; are greater than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt;. Therefore, we must have 1 point in each box and so there are only 6 points between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; Wonderful!!&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!! 1 Problem Suppose we are given a list of two dimensional points and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of since we have possible pairs. What else can we do? 2 Divide and Conquer The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be . We will also sort the points by their y-coordinate and let that array be . We will be using later in the algorithm. Given . We can start applying the the following divide and conquer idea. Repeatedly divide into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.</summary></entry><entry><title type="html">Random Variables</title><link href="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html" rel="alternate" type="text/html" title="Random Variables" /><published>2019-07-26T07:01:36-07:00</published><updated>2019-07-26T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/26/random-variables</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are my study notes from CS109 at Stanford.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;What is a Random Variable?&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+A random variable is a real-valued function defined on a sample space. Sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some &lt;b&gt;function of the outcome&lt;/b&gt;. For example we could be interested in &lt;i&gt;counting&lt;/i&gt; the number of heads in &lt;script type=&quot;math/tex&quot;&gt;5&lt;/script&gt; trials of flipping a coin. We can define a random variable &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; to represent the number of heads in 5 trials. Using &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt;, we can now refer to the probability of seeing two heads in 5 trials as &lt;script type=&quot;math/tex&quot;&gt;P(Y=2)&lt;/script&gt; and the probability of seeing at least 3 heads as &lt;script type=&quot;math/tex&quot;&gt;P(Y\geq3)&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;
+We also should note the difference between an event and a random variable. An &lt;b&gt;event&lt;/b&gt; is just a particular assignment of a random variable while a random variable takes on numeric values that can be assigned to &lt;i&gt;groups&lt;/i&gt; of outcomes in our sample space. Another example is grouping all the outcomes in rolling two dice that sum to 7. We define a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 sd &lt;script type=&quot;math/tex&quot;&gt;P(X=7)&lt;/script&gt; which is really the probability of seening any of these outcomes: &lt;script type=&quot;math/tex&quot;&gt;(3,4),(4,3),(2,5),(5,2),(1,6),(6,1)&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;
+Example:\&lt;/p&gt;
+
+&lt;p&gt;The union of all possible assignments cover the sample space?
+mutually exclusive?
+[ P(\bigcup_{i}(Y=i)) = \sum_i P(Y=i) = 1 ] 
+\end{mdframed}&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
@@ -35,7 +207,7 @@ $$
 \end{align*}
 $$
 &lt;/div&gt;
---&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes on chapter 26 in CLRS. 1 Introduction Suppose we want to ship oranges from NYC to SF because we have a current shortage of oranges in SF. We want to ship as many oranges as possible. Everything needs to be shipped by ground. We have different routes of different capacities. The total number of oranges that enter a city , must be equal to the number of the oranges leaving city . In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. How can we solve can this problem? Let’s start by modeling this problem. 2 Anatomy of a Flow Network void Ford-Fulkerson(graph&amp;amp; g) { Initialize the residual graph Gf while (we have an augmenting path in Gf) { augment the flow with the flow on p } return f }</summary></entry><entry><title type="html">Ford-Fulkerson’s Maximum Flow</title><link href="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html" rel="alternate" type="text/html" title="Ford-Fulkerson's Maximum Flow" /><published>2019-07-22T07:01:36-07:00</published><updated>2019-07-22T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+--&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes from CS109 at Stanford. What is a Random Variable? A random variable is a real-valued function defined on a sample space. Sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some function of the outcome. For example we could be interested in counting the number of heads in trials of flipping a coin. We can define a random variable to represent the number of heads in 5 trials. Using , we can now refer to the probability of seeing two heads in 5 trials as and the probability of seeing at least 3 heads as . We also should note the difference between an event and a random variable. An event is just a particular assignment of a random variable while a random variable takes on numeric values that can be assigned to groups of outcomes in our sample space. Another example is grouping all the outcomes in rolling two dice that sum to 7. We define a random variable to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 sd which is really the probability of seening any of these outcomes: . Example:\</summary></entry><entry><title type="html">Ford-Fulkerson’s Maximum Flow</title><link href="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html" rel="alternate" type="text/html" title="Ford-Fulkerson's Maximum Flow" /><published>2019-07-22T07:01:36-07:00</published><updated>2019-07-22T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 These are my study notes on chapter 26 in CLRS.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -1044,77 +1216,4 @@ W
 &lt;br /&gt;
 https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!</summary></entry><entry><title type="html">Suffix Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/07/suffix-trees.html" rel="alternate" type="text/html" title="Suffix Trees" /><published>2019-07-07T12:01:36-07:00</published><updated>2019-07-07T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/07/suffix-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/07/suffix-trees.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Algorithms on Strings, Trees, and Sequences by Dan Gusfeild
-&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 The Trie Data Structure&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/trie/1.png&quot; width=&quot;100%&quot; /&gt;
-Hello
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Search&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-Hello&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Insert&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Running Time&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-Hello
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
-&lt;br /&gt;
-&lt;br /&gt;
-Hello
-https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References Algorithms on Strings, Trees, and Sequences by Dan Gusfeild 1 Introduction</summary></entry></feed>
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!</summary></entry></feed>

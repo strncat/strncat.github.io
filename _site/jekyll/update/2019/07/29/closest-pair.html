@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Closest Pair of Points | strncat’s notebook</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Closest Pair of Points" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="0 References These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!! 1 Problem Suppose we are given a list of two dimensional points and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of since we have possible pairs. What else can we do? 2 Divide and Conquer The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be . We will also sort the points by their y-coordinate and let that array be . We will be using later in the algorithm. Given . We can start applying the the following divide and conquer idea. Repeatedly divide into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair." />
+<meta property="og:description" content="0 References These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!! 1 Problem Suppose we are given a list of two dimensional points and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of since we have possible pairs. What else can we do? 2 Divide and Conquer The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be . We will also sort the points by their y-coordinate and let that array be . We will be using later in the algorithm. Given . We can start applying the the following divide and conquer idea. Repeatedly divide into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair." />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html" />
+<meta property="og:site_name" content="strncat’s notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-29T07:01:36-07:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html","headline":"Closest Pair of Points","dateModified":"2019-07-29T07:01:36-07:00","datePublished":"2019-07-29T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html"},"description":"0 References These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!! 1 Problem Suppose we are given a list of two dimensional points and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of since we have possible pairs. What else can we do? 2 Divide and Conquer The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be . We will also sort the points by their y-coordinate and let that array be . We will be using later in the algorithm. Given . We can start applying the the following divide and conquer idea. Repeatedly divide into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Closest Pair of Points</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-07-29T07:01:36-07:00" itemprop="datePublished">Jul 29, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><b>0 References</b><br />
+These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>1 Problem</b>
+<br />
+<br />
+Suppose we are given a list of <script type="math/tex">n</script> two dimensional points <script type="math/tex">\{\{x_1,y_1\},\{x_2,y_2\},...\{x_n,y_n\}\}</script> and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of <script type="math/tex">O(n^2)</script> since we have <script type="math/tex">O(n^2)</script> possible pairs. What else can we do?
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>2 Divide and Conquer</b>
+<br />
+<br />
+The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be <script type="math/tex">P_x</script>. We will also sort the points by their y-coordinate and let that array be <script type="math/tex">P_y</script>. We will be using <script type="math/tex">P_y</script> later in the algorithm.
+<img src="http://localhost:4000/assets/closest/1.png" width="100%" />
+Given <script type="math/tex">P_x</script>. We can start applying the the following divide and conquer idea. Repeatedly divide <script type="math/tex">P_x</script> into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
+<br />
+<br />
+<img src="http://localhost:4000/assets/closest/2.png" width="100%" /></p>
+
+<p>How do we combine the results to find the single true closest pair? we need to consider that the closest pair might have a point in the left half and a point in the right half. We call this pair a <b>split pair</b>. So in the combine step we need to do two things, we find the split pair with the minimum distance. And then we need to find the minimum pair of the three pairs we have, the left pair, the right pair and the split pair. The following pseudo-code implements this idea.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">closest_pair</span><span class="p">(</span><span class="n">Px</span><span class="p">,</span> <span class="n">Py</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Px sorted by x-coordinate, Py by y-coordinate</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">Px</span> <span class="n">has</span> <span class="n">less</span> <span class="n">than</span> <span class="n">three</span> <span class="n">points</span><span class="p">)</span> <span class="p">{</span> 
+       <span class="c1">// just use the naive algorithm </span>
+    <span class="p">}</span>
+    <span class="c1">// we will divide Px into two arrays left and right</span>
+    <span class="c1">// median = Px[n/2-1]</span>
+    <span class="n">left_x</span><span class="p">,</span> <span class="n">right_x</span> <span class="o">=</span> <span class="n">split_px_around_the_median</span><span class="p">(</span><span class="n">Px</span><span class="p">,</span> <span class="n">median</span><span class="p">);</span>
+
+    <span class="c1">// We want to sort each of left_x and right_x by the y-coordinate.</span>
+    <span class="c1">// discussed next</span>
+    <span class="n">right_x</span><span class="p">,</span> <span class="n">right_y</span> <span class="o">=</span> <span class="n">sort_left_and_right_by_y</span><span class="p">(</span><span class="n">Py</span><span class="p">,</span> <span class="n">Px</span><span class="p">[</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+	
+    <span class="c1">// we find the closest pair in each half</span>
+    <span class="n">left_pair</span> <span class="o">=</span> <span class="n">closest_pair</span><span class="p">(</span><span class="n">left_x</span><span class="p">,</span> <span class="n">left_y</span><span class="p">);</span>
+    <span class="n">right_pair</span> <span class="o">=</span> <span class="n">closest_pair</span><span class="p">(</span><span class="n">right_x</span><span class="p">,</span> <span class="n">right_y</span><span class="p">);</span>
+	
+    <span class="c1">// delta_left and delta_right are the minimum distances in the left and right halfs</span>
+    <span class="n">delta_left</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">left_pair</span><span class="p">);</span>
+    <span class="n">delta_right</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">right_pair</span><span class="p">);</span>
+	
+    <span class="c1">// we'll discuss this soon!</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">delta_left</span><span class="p">,</span> <span class="n">delta_right</span><span class="p">);</span>
+    <span class="n">split_pair</span> <span class="o">=</span> <span class="n">find_split_pair</span><span class="p">(</span><span class="n">Px</span><span class="p">,</span> <span class="n">Py</span><span class="p">,</span> <span class="n">delta</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">min</span><span class="p">(</span><span class="n">left_pair</span><span class="p">,</span> <span class="n">right_pair</span><span class="p">,</span> <span class="n">split_pair</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>3 Running Time</b>
+<br />
+<br />
+We sorted the array upfront twice in <script type="math/tex">O(n\log(n))</script> time. We divide the input repeatedly in half until we reached the base case. We then combined the results by finding the split pair and returning the pair with the minimum distance. So we have a recurrence that looks like this:</p>
+<div center="">
+$$
+\begin{align*}
+ T(n) = aT(n/b) + n^c \\
+ T(n) = 2T(n/2) + n^c
+\end{align*}
+$$
+</div>
+<p>The <script type="math/tex">c</script> constant depends on the work we’re doing in each level. We first create the four arrays <script type="math/tex">left_x</script>, <script type="math/tex">left_y</script>, <script type="math/tex">right_x</script> and <script type="math/tex">right_y</script>. This takes <script type="math/tex">O(n)</script>. We then find the split pair. If we find the split pair in <script type="math/tex">O(n^2)</script> then <script type="math/tex">c = 2</script> and by the master theorem, the total runtime is <script type="math/tex">O(n^2)</script>. This defeats the purpose since the naive solution runs in <script type="math/tex">O(n^2)</script>. We also know that we initially sorted the array in <script type="math/tex">O(n\log(n))</script> so the final runtime is at least <script type="math/tex">O(n\log(n))</script>. So roughly we know that we need to find the split pair really fast in <script type="math/tex">O(n)</script> to have <script type="math/tex">c = 1</script> and therefore, keeping our runtime at <script type="math/tex">O(n\log(n))</script>.
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>4 How to repeatedly sort <script type="math/tex">P_x</script> by the x-coordinate and the y-coordinate <script type="math/tex">O(n)</script> time? </b>
+<br />
+<br />
+So we’re claiming that we’re sorting once only and then somehow we’re are repeatedly passing the two halfs of the <script type="math/tex">P_x</script> sorted by the x-coordinate and by the y-coordinate. How?! For sorting by the x-coordinate, we simply split <script type="math/tex">P_x</script> in half by calculating the median in <script type="math/tex">O(1)</script> time and then iterating over <script type="math/tex">P_x</script> to split the array into <script type="math/tex">left_x</script> and <script type="math/tex">right_x</script>. That takes <script type="math/tex">O(n)</script> time where <script type="math/tex">n</script> is the current size of <script type="math/tex">P_x</script>. 
+<br />
+<br />
+Now that we have both <script type="math/tex">left_x</script> and <script type="math/tex">right_x</script>. We want to create two arrays <script type="math/tex">left_y</script> which is <script type="math/tex">left_x</script> but sorted by the y-coordinate. We also want <script type="math/tex">right_y</script> which is <script type="math/tex">right_x</script> sorted by the y-coordinate. How do we do this in just <script type="math/tex">O(n)</script> time? This is when we will use <script type="math/tex">P_y</script>! We will iterate over <script type="math/tex">P_y</script> and if we see an element with an x-coordinate below or equal to the median then this element belongs to <script type="math/tex">left_y</script> otherwise it belongs to <script type="math/tex">right_y</script>. Remember that <script type="math/tex">P_y</script> is just <script type="math/tex">P_x</script> but sorted by the y-coordinate. We are also assuming for the sake of simplicity that the points are distinct. 
+<br />
+<br /></p>
+<hr />
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<b>5 Finding the split pair in <script type="math/tex">O(n)</script> time </b>
+<br />
+<br />
+<img src="http://localhost:4000/assets/closest/3.png" width="100%" />
+Let’s assume that the minimum pair not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be <script type="math/tex">\delta_l</script> (shown above) and let the right minimum distance be <script type="math/tex">\delta_r</script>. Let <script type="math/tex">\delta</script> be the minimum of <script type="math/tex">\delta_l</script> and <script type="math/tex">\delta_r</script>. Also let the right most point in the left array be <script type="math/tex">\bar{x}</script>. Now construct <script type="math/tex">M</script> to be an array with all the points that have x-coordinate between <script type="math/tex">\bar{x} - \delta</script> and <script type="math/tex">\bar{x} + \delta</script> sorted by their y-coordinate (we can use <script type="math/tex">P_y</script> with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs <script type="math/tex">O(n)</script> time which is fine by us!
+<br /><br />
+Let <script type="math/tex">p=(x_1,y_1)</script> and <script type="math/tex">q=(x_2,y_2)</script> be the split pair points we’re trying to find where <script type="math/tex">p</script> is in the left half and <script type="math/tex">q</script> is in the right half. We claim the following:</p>
+<ul>
+  <li>Both <script type="math/tex">p</script> and <script type="math/tex">q</script> are in <script type="math/tex">M</script>.</li>
+  <li>At most 6 points are between <script type="math/tex">p</script> and <script type="math/tex">q</script> in M.
+<br /></li>
+</ul>
+
+<p><br />
+So, assuming the above is correct (we’ll prove it formally), we now have a constant number of pairs to look at. Basically, for each point, we will look at 7 points and therefore, we only have <script type="math/tex">7n</script> pairs and so we can find the split pair in only <script type="math/tex">O(n)</script> time!
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+But why why why the above is the correct? let’s look at the first claim.
+<br /><br />
+Proof:<br />
+We want to show that if the closest pair of points is a split pair then our algorithm will find it. Since our algorithm only searches <script type="math/tex">M</script>, then we want to show that both <script type="math/tex">p</script> and <script type="math/tex">q</script> are in <script type="math/tex">M</script>. So assuming that <script type="math/tex">p</script> and <script type="math/tex">q</script> are the closest pair, we then know that <script type="math/tex">% <![CDATA[
+d(p,q) < \delta %]]></script>. From here we can expand the euclidean distance definition:</p>
+<div center="">
+$$
+\begin{align*}
+ \delta &amp;&gt; d(p,q) \\
+  &amp;= \sqrt{(y_2-y_1)^2 + (x_2-x_1)^2} \\
+  &amp;\geq \sqrt{\max\{(y_2-y_1)^2, (x_2-x_1)^2}\} \\
+  &amp;= \max\{(y_2-y_1), (x_2-x_1)\}
+\end{align*}
+$$
+</div>
+<p>This says that <script type="math/tex">p</script> and <script type="math/tex">q</script> must differ by less than <script type="math/tex">\delta</script> in both their <script type="math/tex">x</script> and <script type="math/tex">y</script> coordinates!! So <script type="math/tex">% <![CDATA[
+|x_2-x_1| < \delta %]]></script>. We also know that <script type="math/tex">p</script> and <script type="math/tex">q</script> are a split pair and so by definition we have <script type="math/tex">x_1 \leq \bar{x}</script> and <script type="math/tex">x_2 > \bar{x}</script>. Therefore, we must have <script type="math/tex">x_1 \geq \bar{x} - \delta</script> and <script type="math/tex">x_2 \leq \bar{x} + \delta</script>. Finally, since <script type="math/tex">M</script> is defined to include all points such that the x-coordinate satisfies <script type="math/tex">\bar{x} - \delta \leq x \leq \bar{x} + \delta</script> then <script type="math/tex">p</script> and <script type="math/tex">q</script> are in <script type="math/tex">M</script> and thererfore, we will find them. <script type="math/tex">\blacksquare</script>
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+Let’s move to the second claim. why must we have 6 points only between <script type="math/tex">p</script> and <script type="math/tex">q</script>?
+<br />
+<br />
+Proof:
+<br />
+Without the loss of generality, assume that <script type="math/tex">q</script> has the lower y-coordinate. We do know that both <script type="math/tex">p</script>’s x and y coordinates differ by less than <script type="math/tex">\delta</script> from <script type="math/tex">q</script>’s x and y coordinates respectively. What do we know about the points between <script type="math/tex">p</script> and <script type="math/tex">q</script> in <script type="math/tex">M</script>?</p>
+
+<ul>
+  <li>
+    <p>Since <script type="math/tex">M</script> is sorted by the y-coordinate, we do know that any point that comes between <script type="math/tex">p</script> and <script type="math/tex">q</script> must have a y-coordinate between <script type="math/tex">y_1</script> and <script type="math/tex">y_2</script>. Since <script type="math/tex">y_1</script> and <script type="math/tex">y_2</script> differ by less than <script type="math/tex">\delta</script>, this makes the y-coordinate of any of these points be in between <script type="math/tex">y_2</script> and <script type="math/tex">y_1 \leq y_2 + \delta</script></p>
+  </li>
+  <li>
+    <p>We know that any point between <script type="math/tex">p</script> and <script type="math/tex">q</script> must have an x-coordinate between <script type="math/tex">\bar{x}-\delta</script> and <script type="math/tex">\bar{x}+\delta</script> by our construction of <script type="math/tex">M</script>.</p>
+  </li>
+</ul>
+
+<p>Using the above restrictions, any point between <script type="math/tex">p</script> and <script type="math/tex">q</script> must be in one of the following boxes. (again, if you look at the x-axis, <script type="math/tex">M</script> only allow points within <script type="math/tex">\delta</script> of <script type="math/tex">\bar{x}</script>. If you look vertically, the fact that <script type="math/tex">M</script> is sorted makes the points between <script type="math/tex">q</script> and <script type="math/tex">p</script> have a y-coordinate between <script type="math/tex">y_2</script> and <script type="math/tex">y_1</script> and that gap is also less than <script type="math/tex">\delta</script>!!).</p>
+
+<p><img src="http://localhost:4000/assets/closest/4.png" width="100%" /></p>
+
+<p>The next question is how many points do we have in each box?
+<br /><br />
+We claim that each box has only 1 point. Proof: Suppose it doesn’t and some box in the diagram above has 2 points. Let these points be <script type="math/tex">a</script> and <script type="math/tex">b</script>. This means than <script type="math/tex">a</script> and <script type="math/tex">b</script> are both a left pair or a right pair. Moreover, the distance between <script type="math/tex">a</script> and <script type="math/tex">b</script> is at most <script type="math/tex">% <![CDATA[
+\sqrt{(\delta/2)^2 + (\delta/2)^2} = \delta/\sqrt{2} < \delta %]]></script>. This is a contradiction, since by assumption we said both <script type="math/tex">\delta_l</script> and <script type="math/tex">\delta_r</script> are greater than <script type="math/tex">\delta</script>. Therefore, we must have 1 point in each box and so there are only 6 points between <script type="math/tex">p</script> and <script type="math/tex">q</script>. <script type="math/tex">\blacksquare</script> Wonderful!!</p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2019/07/29/closest-pair.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2019/07/29/closest-pair; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2019/07/29/closest-pair.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>hello</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

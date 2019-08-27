@@ -69,7 +69,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><img src="http://localhost:4000/assets/rmq-array.png" alt="my photo" /></p>
+    <p><img src="http://localhost:4000/assets/rmq/rmq-array.png" alt="my photo" /></p>
 
 <p><b> 0 References </b><br /></p>
 <ol>
@@ -143,7 +143,7 @@ We can use dynamic programming to compute all the ranges. Given that we know the
 <p><br />
 <b>3.4 Algorithm 4: Block Decomposition, <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(n), O(\sqrt{n})\rangle</script></b><br /></p>
 
-<p><img src="http://localhost:4000/assets/rmq-block.png" alt="my photo" /></p>
+<p><img src="http://localhost:4000/assets/rmq/rmq-block.png" alt="my photo" /></p>
 
 <p><i>Approach:</i><br />
 We can split the input into <script type="math/tex">O(n/b)</script> blocks of block size <script type="math/tex">b</script> and compute the minumum in each block.<br /></p>
@@ -212,7 +212,7 @@ $$
 <p>So for the array above we will have the following minimums: 
 <br /></p>
 
-<p><img src="http://localhost:4000/assets/rmq-sparse.png" alt="my photo" /></p>
+<p><img src="http://localhost:4000/assets/rmq/rmq-sparse.png" alt="my photo" /></p>
 
 <p>Each Entry, <script type="math/tex">M[i,j]</script> represents the minimum for the range <script type="math/tex">\{i,i+2^j\}</script>. Since we’re computing <script type="math/tex">n\log(n)</script> ranges, therefore, this table has size <script type="math/tex">O(nlogn)</script>. We can further use dynamic programmnig to fill this table out. 
 <br />
@@ -221,7 +221,7 @@ $$
 <br />
 Notice that any region can be divided into two regions. The intuition is that since we’re computing the minimum for ranges that are powers of 2, then any region of size <script type="math/tex">2^k</script> can be divided into two regions of size <script type="math/tex">2^{k-1}</script> which we compute first. In the example below, we want to find the minimum for the gray range that starts at <script type="math/tex">i</script> and of size <script type="math/tex">2^j</script>. To do so, we divide the range into the blue and yellow regions, each of size <script type="math/tex">2^{j-1}</script>. The blue region is just <script type="math/tex">M[i,j-1]</script> and the yellow region is just <script type="math/tex">M[i+2^{j-1},j-1]</script>
 <br />
-<img src="http://localhost:4000/assets/rmq-sparse-range.png" alt="my photo" />
+<img src="http://localhost:4000/assets/rmq/rmq-sparse-range.png" alt="my photo" />
 <br />
 Therefore, the recursive formula to compute <script type="math/tex">M[i,j]</script> is:</p>
 <div center="">
@@ -259,7 +259,7 @@ Notice that for each index, we’re computing <script type="math/tex">\log{n}</s
 
 <p><i>Query Time:</i><br /></p>
 
-<p><img src="http://localhost:4000/assets/rmq-sparse-query.png" alt="my photo" />
+<p><img src="http://localhost:4000/assets/rmq/rmq-sparse-query.png" alt="my photo" />
 <br />
 Given indices <script type="math/tex">i</script> and <script type="math/tex">j</script>:<br />
 (1) We know the number of elements in the range <script type="math/tex">\{i,j\}</script> is <script type="math/tex">j-i+1</script>. We can then find the largest block of size <script type="math/tex">2^k</script> that fits in that range. We can simply take the log of <script type="math/tex">j - i + 1</script> to get <script type="math/tex">k</script>. This is done in <script type="math/tex">O(1)</script> time. <br />

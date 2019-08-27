@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 
-![my photo]({{ site.url }}/assets/rmq-array.png)
+![my photo]({{ site.url }}/assets/rmq/rmq-array.png)
 
 <b> 0 References </b><br>
 1. CS166 Lecture Slides http://web.stanford.edu/class/cs166/lectures/00/Small00.pdf
@@ -73,7 +73,7 @@ Therefore, $$p(n) = O(n^2)$$.
 <br>
 <b>3.4 Algorithm 4: Block Decomposition, $$\langle p(n), q(n)\rangle = \langle O(n), O(\sqrt{n})\rangle$$</b><br>
 
-![my photo]({{ site.url }}/assets/rmq-block.png)
+![my photo]({{ site.url }}/assets/rmq/rmq-block.png)
 
 <i>Approach:</i><br>
 We can split the input into $$O(n/b)$$ blocks of block size $$b$$ and compute the minumum in each block.<br>
@@ -142,7 +142,7 @@ $$
 So for the array above we will have the following minimums: 
 <br>
 
-![my photo]({{ site.url }}/assets/rmq-sparse.png)
+![my photo]({{ site.url }}/assets/rmq/rmq-sparse.png)
 
 Each Entry, $$M[i,j]$$ represents the minimum for the range $$\{i,i+2^j\}$$. Since we're computing $$n\log(n)$$ ranges, therefore, this table has size $$O(nlogn)$$. We can further use dynamic programmnig to fill this table out. 
 <br>
@@ -151,7 +151,7 @@ Each Entry, $$M[i,j]$$ represents the minimum for the range $$\{i,i+2^j\}$$. Sin
 <br>
 Notice that any region can be divided into two regions. The intuition is that since we're computing the minimum for ranges that are powers of 2, then any region of size $$2^k$$ can be divided into two regions of size $$2^{k-1}$$ which we compute first. In the example below, we want to find the minimum for the gray range that starts at $$i$$ and of size $$2^j$$. To do so, we divide the range into the blue and yellow regions, each of size $$2^{j-1}$$. The blue region is just $$M[i,j-1]$$ and the yellow region is just $$M[i+2^{j-1},j-1]$$
 <br>
-![my photo]({{ site.url }}/assets/rmq-sparse-range.png)
+![my photo]({{ site.url }}/assets/rmq/rmq-sparse-range.png)
 <br>
 Therefore, the recursive formula to compute $$M[i,j]$$ is:
 <div center>
@@ -191,7 +191,7 @@ Notice that for each index, we're computing $$\log{n}$$ ranges. Therefore, the t
 
 <i>Query Time:</i><br>
 
-![my photo]({{ site.url }}/assets/rmq-sparse-query.png)
+![my photo]({{ site.url }}/assets/rmq/rmq-sparse-query.png)
 <br>
 Given indices $$i$$ and $$j$$:<br>
 (1) We know the number of elements in the range $$\{i,j\}$$ is $$j-i+1$$. We can then find the largest block of size $$2^k$$ that fits in that range. We can simply take the log of $$j - i + 1$$ to get $$k$$. This is done in $$O(1)$$ time. <br>

@@ -1,4 +1,327 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-06T14:08:49-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>hello</subtitle><entry><title type="html">Closest Pair of Points</title><link href="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html" rel="alternate" type="text/html" title="Closest Pair of Points" /><published>2019-07-29T07:01:36-07:00</published><updated>2019-07-29T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/29/closest-pair</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-27T08:54:47-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>hello</subtitle><entry><title type="html">Discrete Random Variables</title><link href="http://localhost:4000/jekyll/update/2019/08/25/discrete-random-variables.html" rel="alternate" type="text/html" title="Discrete Random Variables" /><published>2019-08-25T07:01:36-07:00</published><updated>2019-08-25T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/25/discrete-random-variables</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/25/discrete-random-variables.html">&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;0 References&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Indicator/Bernoulli Random Variable&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;If we have an experiment that results in a boolean answer (yes/no) or (success/failure) with probability &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; for success and &lt;script type=&quot;math/tex&quot;&gt;1-p&lt;/script&gt; for failure then we can use an indicator or a boolean random variable to represent its outcomes. We define the following:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+X = \Big\{ \begin{array}{@{}lr@{}}
+        1 \quad \text{If even A occurs } \\
+        0 \quad \text{otherwise} \\
+        \end{array}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;Therefore, &lt;script type=&quot;math/tex&quot;&gt;R_X = \{0,1\}&lt;/script&gt;. Let’s look at the PMF of &lt;script type=&quot;math/tex&quot;&gt;I&lt;/script&gt;. Remember that the PMF of a random variable is just the probability that this random variable takes on a value &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;R_x&lt;/script&gt;. Therefore,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+p(x) = P(I = x) = \Big\{ \begin{array}{@{}lr@{}}
+        p(1) = P(A) \quad \ \ \quad \text{If } x = 1 \\
+        p(0) = 1 - P(A) \quad \text{if } x = 0 \\
+        \end{array}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;What the expected value of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;? Recall that the expected value of a discrete random variable is defined as&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;Therefore,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[X] = p(1)*1 + p(0)*0 = p(1) = P(A)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Binomial Random Variable&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;If we on the other hand have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; independent trials of Bernoulli random variables with a probability of success &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, then we can use a binomial random variable to represent the number of successes in &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; trials. For example, if we are flipping a coin with probability of getting heads (success) equals to &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, then we can define a binomial random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to represent the number of heads in &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; trials. 
+&lt;br /&gt;
+&lt;br /&gt;
+Therefore, &lt;script type=&quot;math/tex&quot;&gt;R_X = \{0,1,...,n\}&lt;/script&gt; and the PMF of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+p(k) = P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;The expected value, variance and second moment of a binomial random variable:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[X] &amp;amp;= np \\
+Var(X) &amp;amp;= np(1-p) \\
+E[X^2] &amp;amp;= n^2p^2 - np^2 + np
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Poisson Random Variable&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Consider a duration of time where events occur at an average rate of &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt; (number of occurrences per unit time). Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be the number of occurrences in a unit of time. We have &lt;script type=&quot;math/tex&quot;&gt;R_X = \{0,1,...,n\}&lt;/script&gt; and the PMF of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+p(k) = P(X = k) = \frac{\lambda^k}{k!}e^{-\lambda}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;The expected value, variance and second moment of a binomial random variable:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[X] = np \\
+Var(X) = np(1-p) \\
+E[X^2] = n^2p^2 - np^2 + np
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt; Example 1: &lt;/b&gt;&lt;br /&gt;
+Given a web server, suppose that the server load averages 2 hits per second. Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be the number of hits received in a second. What is &lt;script type=&quot;math/tex&quot;&gt;P(X=5)?&lt;/script&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+P(X = 5) = \frac{\lambda^5}{5!}e^{-2} \approx 0.0361
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Binomial and Poisson Random Variables&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; be very large and &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; very small. Let &lt;script type=&quot;math/tex&quot;&gt;\lambda = np&lt;/script&gt; which is the average number of successes you see in &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; trials. Then we will have&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+P(X = k) &amp;amp;= \binom{n}{k}p^k(1-p)^{n-k} \\
+&amp;amp;= \frac{n!}{k!(n-k)!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\
+&amp;amp;= \frac{n(n-1)...(n-k+1)}{k!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\
+&amp;amp;= \frac{n(n-1)...(n-k+1)}{n^k}\frac{\lambda^k}{k!} (1-\frac{\lambda}{n})^{n-k} \\
+\end{align*}
+$$
+&lt;/div&gt;</content><author><name></name></author><summary type="html">0 References My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/ Indicator/Bernoulli Random Variable If we have an experiment that results in a boolean answer (yes/no) or (success/failure) with probability for success and for failure then we can use an indicator or a boolean random variable to represent its outcomes. We define the following: $$ \begin{align*} X = \Big\{ \begin{array}{@{}lr@{}} 1 \quad \text{If even A occurs } \\ 0 \quad \text{otherwise} \\ \end{array} \end{align*} $$ Therefore, . Let’s look at the PMF of . Remember that the PMF of a random variable is just the probability that this random variable takes on a value in . Therefore, $$ \begin{align*} p(x) = P(I = x) = \Big\{ \begin{array}{@{}lr@{}} p(1) = P(A) \quad \ \ \quad \text{If } x = 1 \\ p(0) = 1 - P(A) \quad \text{if } x = 0 \\ \end{array} \end{align*} $$ What the expected value of ? Recall that the expected value of a discrete random variable is defined as $$ \begin{align*} E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k \end{align*} $$ Therefore, $$ \begin{align*} E[X] = p(1)*1 + p(0)*0 = p(1) = P(A) \end{align*} $$ Binomial Random Variable If we on the other hand have independent trials of Bernoulli random variables with a probability of success , then we can use a binomial random variable to represent the number of successes in trials. For example, if we are flipping a coin with probability of getting heads (success) equals to , then we can define a binomial random variable to represent the number of heads in trials. Therefore, and the PMF of is: $$ \begin{align*} p(k) = P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} \end{align*} $$ The expected value, variance and second moment of a binomial random variable: $$ \begin{align*} E[X] &amp;amp;= np \\ Var(X) &amp;amp;= np(1-p) \\ E[X^2] &amp;amp;= n^2p^2 - np^2 + np \end{align*} $$ Poisson Random Variable Consider a duration of time where events occur at an average rate of (number of occurrences per unit time). Let be the number of occurrences in a unit of time. We have and the PMF of is: $$ \begin{align*} p(k) = P(X = k) = \frac{\lambda^k}{k!}e^{-\lambda} \end{align*} $$ The expected value, variance and second moment of a binomial random variable: $$ \begin{align*} E[X] = np \\ Var(X) = np(1-p) \\ E[X^2] = n^2p^2 - np^2 + np \end{align*} $$ Example 1: Given a web server, suppose that the server load averages 2 hits per second. Let be the number of hits received in a second. What is $$ \begin{align*} P(X = 5) = \frac{\lambda^5}{5!}e^{-2} \approx 0.0361 \end{align*} $$ Binomial and Poisson Random Variables Let be very large and very small. Let which is the average number of successes you see in trials. Then we will have $$ \begin{align*} P(X = k) &amp;amp;= \binom{n}{k}p^k(1-p)^{n-k} \\ &amp;amp;= \frac{n!}{k!(n-k)!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\ &amp;amp;= \frac{n(n-1)...(n-k+1)}{k!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\ &amp;amp;= \frac{n(n-1)...(n-k+1)}{n^k}\frac{\lambda^k}{k!} (1-\frac{\lambda}{n})^{n-k} \\ \end{align*} $$</summary></entry><entry><title type="html">Prime Numbers</title><link href="http://localhost:4000/jekyll/update/2019/08/23/prime-numbers.html" rel="alternate" type="text/html" title="Prime Numbers" /><published>2019-08-23T07:01:36-07:00</published><updated>2019-08-23T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/23/prime-numbers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/23/prime-numbers.html">&lt;p&gt;&lt;b&gt;References&lt;/b&gt;&lt;br /&gt;
+These study notes are from the following sources: &lt;br /&gt;
+(1) http://mathworld.wolfram.com/ &lt;br /&gt;
+(2)
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Divisibility&lt;/b&gt;&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;a,b \in Z&lt;/script&gt;. We say that &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; divides &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;a \ | \ b&lt;/script&gt; if for some &lt;script type=&quot;math/tex&quot;&gt;c \in Z&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;b = ac&lt;/script&gt;. In this case, &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is a divisor of &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;. If there is no such &lt;script type=&quot;math/tex&quot;&gt;c \in Z&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;b = ac&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; does not divide &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;a \nmid b&lt;/script&gt;.
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Prime&lt;/b&gt;&lt;br /&gt;
+An Integer &lt;script type=&quot;math/tex&quot;&gt;n &gt; 1&lt;/script&gt; is prime if the only positive divisors of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; are &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. If &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is not prime then &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is composite.
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Fundamental Theorem of Arithmetic:&lt;/b&gt;&lt;br /&gt; 
+Every integer greater than 1 can be represented in exactly one way apart from rearrangement as a product of one or more primes.
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Greatest Common Divisor&lt;/b&gt;&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;a, b \in Z&lt;/script&gt;. Let&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+gcd(a,b) = \max \{ d \in Z : d \ |\  a \ \text{ and } \ d \ | \ b \}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; is the greatest common divisor of both &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;.
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Properties of the Greatest Common Divisor&lt;/b&gt;&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;a, b \in Z&lt;/script&gt;, we have&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+gcd(a,b) = gcd(a,b-a) = gcd(a,b+a)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;Proof: Let &lt;script type=&quot;math/tex&quot;&gt;gcd(a,b) = d \in Z&lt;/script&gt;. By the defintion of &lt;script type=&quot;math/tex&quot;&gt;gcd&lt;/script&gt; we know that &lt;script type=&quot;math/tex&quot;&gt;d \ | \ a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;d \ | \ b&lt;/script&gt;. Therefore, for some &lt;script type=&quot;math/tex&quot;&gt;x, y \in Z&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;a = xd&lt;/script&gt; and, &lt;script type=&quot;math/tex&quot;&gt;b = yd&lt;/script&gt;. From this we have, &lt;script type=&quot;math/tex&quot;&gt;a - b = d(x - y)&lt;/script&gt;. Therefore, we know that &lt;script type=&quot;math/tex&quot;&gt;d = gcd(a,b) \ | \ a - b&lt;/script&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">References These study notes are from the following sources: (1) http://mathworld.wolfram.com/ (2) Divisibility Let . We say that divides or if for some , . In this case, is a divisor of . If there is no such such that then does not divide or . Prime An Integer is prime if the only positive divisors of are and . If is not prime then is composite. Fundamental Theorem of Arithmetic: Every integer greater than 1 can be represented in exactly one way apart from rearrangement as a product of one or more primes. Greatest Common Divisor Let . Let $$ \begin{align*} gcd(a,b) = \max \{ d \in Z : d \ |\ a \ \text{ and } \ d \ | \ b \} \end{align*} $$ is the greatest common divisor of both and . Properties of the Greatest Common Divisor Let , we have $$ \begin{align*} gcd(a,b) = gcd(a,b-a) = gcd(a,b+a) \end{align*} $$ Proof: Let . By the defintion of we know that and . Therefore, for some , we have and, . From this we have, . Therefore, we know that .</summary></entry><entry><title type="html">Congruences</title><link href="http://localhost:4000/jekyll/update/2019/08/22/congruences.html" rel="alternate" type="text/html" title="Congruences" /><published>2019-08-22T07:01:36-07:00</published><updated>2019-08-22T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/22/congruences</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/22/congruences.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+These are my study notes from ?
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;What is a Random Variable?&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p center=&quot;&quot; style=&quot;background-color:#FFFDD0; border:1px; border-style:solid; border-color:#FXFXFX; padding: 1em;&quot;&gt;
+The numbers $$a$$ and $$b$$ are congruent module $$m$$ if and only if $$m  \ | \ (a-b)$$ and also if and only if $$m \ | \ (b-a)$$.
+$$
+\begin{align*}
+p_X(k) = P(X = k)
+\end{align*}
+$$
+
+&lt;br /&gt;
+&lt;br /&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes from ? What is a Random Variable? The numbers $$a$$ and $$b$$ are congruent module $$m$$ if and only if $$m \ | \ (a-b)$$ and also if and only if $$m \ | \ (b-a)$$. $$ \begin{align*} p_X(k) = P(X = k) \end{align*} $$</summary></entry><entry><title type="html">Binary Search Correctness Proof</title><link href="http://localhost:4000/jekyll/update/2019/08/19/binary-search-proof.html" rel="alternate" type="text/html" title="Binary Search Correctness Proof" /><published>2019-08-19T07:01:36-07:00</published><updated>2019-08-19T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/19/binary-search-proof</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/19/binary-search-proof.html">&lt;p&gt;&lt;b&gt;References&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+These are my study notes from CLRS and ?
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Binary Search&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Given a sorted array &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; integers and a key, we want to return the index of the key in the array or -1 if the key doesn’t exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt; iterations, we will either correctly return that index or return -1 if the key doesn’t exist.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;binary_search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not found&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Preconditions, Postconditions and Loop Invariants&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+This is my attempt to prove that binary search algorithm implemented above is correct.
+&lt;br /&gt;&lt;br /&gt;
+As a reminder from CLRS, we use loop invariants to help understand why an algorithm is correct. In order to prove an algorithm is correct, we must show that:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The invariant is true before the first iteration of the loop. (Initialization)&lt;/li&gt;
+  &lt;li&gt;If the invariant is true before iteration &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;, then it is true before iteration &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt;. (Maintenance)&lt;/li&gt;
+  &lt;li&gt;When the loop terminates, the invariant gives us a property to help show that the algorithm is correct. (Termination)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+The first two properties are similar to mathematical induction since we need to prove a base case and then prove the inductive step.
+&lt;br /&gt;
+&lt;br /&gt;
+In addition to loop invariants, we also need to describe the preconditions of binary search. Preconditions are just assertions that must be true at the beginning of our function. In our case, &lt;b&gt;our precondition is that the array is sorted in an ascending order&lt;/b&gt;. If the array is not sorted, then we don’t guarantee anything about the outcome.
+&lt;br /&gt;
+&lt;br /&gt;
+In addition to preconditions, we also need to describe our postconditions. Given that we met the preconditions, our loop invariant is correct and our algorithm terminates, our &lt;b&gt;post condition is that we return -1 if the key is not in the array or return the index of the key in the array&lt;/b&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Binary Search’s Loop Invariant&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Let’s define the following loop invariant: At the start of each iteration of the while loop above the following is true: &lt;br /&gt;
+(1) &lt;script type=&quot;math/tex&quot;&gt;1 \leq first \leq last \leq n&lt;/script&gt;&lt;br /&gt;
+(2) If the key is in the array and so there is some &lt;script type=&quot;math/tex&quot;&gt;index&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;a[index] = key&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;1 \leq index \leq n&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;first \leq index \leq last&lt;/script&gt;. This just means that we are correctly picking the right range to search at every iteration.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Initialization:&lt;/b&gt;
+&lt;br /&gt;
+Before the first iteration we know that &lt;script type=&quot;math/tex&quot;&gt;first = 1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;last = n-1&lt;/script&gt; and so (1) is trivially true. Also, if the key is in &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; then it must be that &lt;script type=&quot;math/tex&quot;&gt;1 \leq index \leq n-1&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;a[index] = key&lt;/script&gt;. Therefore, we are searching the correct range.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Maintenance:&lt;/b&gt;
+&lt;br /&gt;
+Suppose the invariant holds before iteration &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and that if our key is in &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; then for some index where &lt;script type=&quot;math/tex&quot;&gt;a[index] = key&lt;/script&gt; we have &lt;script type=&quot;math/tex&quot;&gt;first \leq index \leq last&lt;/script&gt;. Let’s look at iteration &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt;. We first calculate the mid point in the range &lt;script type=&quot;math/tex&quot;&gt;[first, last]&lt;/script&gt;. Based on this, we have three cases: 
+&lt;br /&gt;
+&lt;br /&gt;
+(1) &lt;script type=&quot;math/tex&quot;&gt;a[m] == key&lt;/script&gt;. We therefore, return &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and we are done. 
+&lt;br /&gt;
+&lt;br /&gt;
+(2) &lt;script type=&quot;math/tex&quot;&gt;a[m] &gt; key&lt;/script&gt;. Our algorithm in this case searches the new range &lt;script type=&quot;math/tex&quot;&gt;[first, m-1]&lt;/script&gt;. We know that &lt;script type=&quot;math/tex&quot;&gt;first \leq index&lt;/script&gt; and we so we only need to prove that &lt;script type=&quot;math/tex&quot;&gt;index \leq m-1&lt;/script&gt;. Note that we know that &lt;script type=&quot;math/tex&quot;&gt;a[m] &gt; key&lt;/script&gt; and since the array is sorted then it must be that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+index &lt; m %]]&gt;&lt;/script&gt; is true otherwise &lt;script type=&quot;math/tex&quot;&gt;a[index]&lt;/script&gt; comes after &lt;script type=&quot;math/tex&quot;&gt;a[m]&lt;/script&gt; which indicates that &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is not sorted.
+&lt;br /&gt;
+&lt;br /&gt;
+(2) &lt;script type=&quot;math/tex&quot;&gt;a[m] &gt; key&lt;/script&gt;. Our algorithm will then search the new range &lt;script type=&quot;math/tex&quot;&gt;[m+1, last]&lt;/script&gt;. We can use a similar argument to (2) to prove that &lt;script type=&quot;math/tex&quot;&gt;index \in [m+1, last]&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;
+From (1), (2), (3) we conclude that the invariant holds before iteration &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt;. 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Termination:&lt;/b&gt;
+&lt;br /&gt;
+Will we terminate? we need to prove that if the search range is &lt;script type=&quot;math/tex&quot;&gt;[first_i, last_i]&lt;/script&gt; in iteration &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and the search range in iteration &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;[first_{i+1}, last_{i+1}]&lt;/script&gt; then it must be that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+last_{i+1} - first_{i+1} &lt; last_{i} - first_{i} %]]&gt;&lt;/script&gt;. To do so we can use a similar approach to the one we used to prove our maintenance step. We know there are three cases, in each case we can prove that the new range is shrinking. (TODO).
+&lt;br /&gt;
+&lt;br /&gt;
+Since our algorithm terminates then by the loop invariant&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">References These are my study notes from CLRS and ? Binary Search Given a sorted array of integers and a key, we want to return the index of the key in the array or -1 if the key doesn’t exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After iterations, we will either correctly return that index or return -1 if the key doesn’t exist. int binary_search(int *a, int key, int n) { int m, first = 0, last = n - 1; while (first &amp;lt;= last) { m = (first + (last - first / 2); if (key &amp;gt; a[m]) { first = m + 1; } else if (key &amp;lt; a[m]) { last = m - 1; } else if (key == a[m]) { return m; } } return -1; // not found } Preconditions, Postconditions and Loop Invariants This is my attempt to prove that binary search algorithm implemented above is correct. As a reminder from CLRS, we use loop invariants to help understand why an algorithm is correct. In order to prove an algorithm is correct, we must show that: The invariant is true before the first iteration of the loop. (Initialization) If the invariant is true before iteration , then it is true before iteration . (Maintenance) When the loop terminates, the invariant gives us a property to help show that the algorithm is correct. (Termination)</summary></entry><entry><title type="html">Closest Pair of Points</title><link href="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html" rel="alternate" type="text/html" title="Closest Pair of Points" /><published>2019-07-29T07:01:36-07:00</published><updated>2019-07-29T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/29/closest-pair</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -19,14 +342,14 @@ Suppose we are given a list of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/scr
 &lt;b&gt;2 Divide and Conquer&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. We will also sort the points by their y-coordinate and let that array be &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt;. We will be using &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; later in the algorithm.
+The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. We will also sort the points by their y-coordinate and let that array be &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt;. We will be using &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; later in the algorithm.
 &lt;img src=&quot;http://localhost:4000/assets/closest/1.png&quot; width=&quot;100%&quot; /&gt;
-Given &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. We can start applying the the following divide and conquer idea. Repeatedly divide &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
+Given &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. We can start by applying the following divide and conquer idea. Repeatedly divide &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/assets/closest/2.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;How do we combine the results to find the single true closest pair? we need to consider that the closest pair might have a point in the left half and a point in the right half. We call this pair a &lt;b&gt;split pair&lt;/b&gt;. So in the combine step we need to do two things, we find the split pair with the minimum distance. And then we need to find the minimum pair of the three pairs we have, the left pair, the right pair and the split pair. The following pseudo-code implements this idea.&lt;/p&gt;
+&lt;p&gt;How do we combine the results to find the single true closest pair? we need to consider that the closest pair might have a point in the left half and a point in the right half. We call this pair a &lt;b&gt;split pair&lt;/b&gt;. So in the combine step we need to do two things, we find the split pair with the minimum distance. We then return the minimum pair of the three pairs we have, the left pair, the right pair and the split pair. The following pseudo-code implements this idea.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;closest_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Py&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Px sorted by x-coordinate, Py by y-coordinate&lt;/span&gt;
    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;less&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;than&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;three&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
@@ -73,7 +396,7 @@ $$
 \end{align*}
 $$
 &lt;/div&gt;
-&lt;p&gt;The &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; constant depends on the work we’re doing in each level. We first create the four arrays &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;left_y&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;right_y&lt;/script&gt;. This takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;. We then find the split pair. If we find the split pair in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;c = 2&lt;/script&gt; and by the master theorem, the total runtime is &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. This defeats the purpose since the naive solution runs in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. We also know that we initially sorted the array in &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; so the final runtime is at least &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;. So roughly we know that we need to find the split pair really fast in &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; to have &lt;script type=&quot;math/tex&quot;&gt;c = 1&lt;/script&gt; and therefore, keeping our runtime at &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;.
+&lt;p&gt;The &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; constant depends on the work we’re doing in each level. We first create the four arrays &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;left_y&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;right_y&lt;/script&gt;. This takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time. We then find the split pair. If we find the split pair in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;c = 2&lt;/script&gt; and by the master theorem, the total runtime is &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. This defeats the purpose since the naive solution runs in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. We also know that we initially sorted the array in &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; so the final runtime is at least &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;. So roughly we know that we need to find the split pair really fast in &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; to have &lt;script type=&quot;math/tex&quot;&gt;c = 1&lt;/script&gt; and therefore, keeping our runtime at &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -97,7 +420,7 @@ Now that we have both &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/assets/closest/3.png&quot; width=&quot;100%&quot; /&gt;
-Let’s assume that the minimum pair not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; (shown above) and let the right minimum distance be &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; be the minimum of &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt;. Also let the right most point in the left array be &lt;script type=&quot;math/tex&quot;&gt;\bar{x}&lt;/script&gt;. Now construct &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; to be an array with all the points that have x-coordinate between &lt;script type=&quot;math/tex&quot;&gt;\bar{x} - \delta&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\bar{x} + \delta&lt;/script&gt; sorted by their y-coordinate (we can use &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time which is fine by us!
+Let’s assume that the minimum pair is not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; (shown above) and let the right minimum distance be &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; be the minimum of &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt;. Also let the right most point in the left array be &lt;script type=&quot;math/tex&quot;&gt;\bar{x}&lt;/script&gt;. Now construct &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; to be an array with all the points that have x-coordinate between &lt;script type=&quot;math/tex&quot;&gt;\bar{x} - \delta&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\bar{x} + \delta&lt;/script&gt; sorted by their y-coordinate (we can use &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time which is fine by us!
 &lt;br /&gt;&lt;br /&gt;
 Let &lt;script type=&quot;math/tex&quot;&gt;p=(x_1,y_1)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q=(x_2,y_2)&lt;/script&gt; be the split pair points we’re trying to find where &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; is in the left half and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; is in the right half. We claim the following:&lt;/p&gt;
 &lt;ul&gt;
@@ -158,56 +481,258 @@ Without the loss of generality, assume that &lt;script type=&quot;math/tex&quot;
 &lt;p&gt;The next question is how many points do we have in each box?
 &lt;br /&gt;&lt;br /&gt;
 We claim that each box has only 1 point. Proof: Suppose it doesn’t and some box in the diagram above has 2 points. Let these points be &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;. This means than &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; are both a left pair or a right pair. Moreover, the distance between &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is at most &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-\sqrt{(\delta/2)^2 + (\delta/2)^2} = \delta/\sqrt{2} &lt; \delta %]]&gt;&lt;/script&gt;. This is a contradiction, since by assumption we said both &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt; are greater than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt;. Therefore, we must have 1 point in each box and so there are only 6 points between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; Wonderful!!&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!! 1 Problem Suppose we are given a list of two dimensional points and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of since we have possible pairs. What else can we do? 2 Divide and Conquer The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be . We will also sort the points by their y-coordinate and let that array be . We will be using later in the algorithm. Given . We can start applying the the following divide and conquer idea. Repeatedly divide into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.</summary></entry><entry><title type="html">Random Variables</title><link href="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html" rel="alternate" type="text/html" title="Random Variables" /><published>2019-07-26T07:01:36-07:00</published><updated>2019-07-26T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/26/random-variables</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-These are my study notes from CS109 at Stanford.
+\sqrt{(\delta/2)^2 + (\delta/2)^2} = \delta/\sqrt{2} &lt; \delta %]]&gt;&lt;/script&gt;. This is a contradiction, since by assumption we said both &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt; are greater than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt;. Therefore, we must have 1 point in each box and so there are only 6 points between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; Wonderful!!&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!! 1 Problem Suppose we are given a list of two dimensional points and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of since we have possible pairs. What else can we do? 2 Divide and Conquer The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be . We will also sort the points by their y-coordinate and let that array be . We will be using later in the algorithm. Given . We can start by applying the following divide and conquer idea. Repeatedly divide into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.</summary></entry><entry><title type="html">Random Variables</title><link href="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html" rel="alternate" type="text/html" title="Random Variables" /><published>2019-07-26T07:01:36-07:00</published><updated>2019-07-26T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/26/random-variables</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html">&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;0 References&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// &lt;br /&gt;
+Specifically: http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/lectures/06_random_variables.pdf
 &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
 &lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
 &lt;b&gt;What is a Random Variable?&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some &lt;b&gt;function of the outcome&lt;/b&gt;. 
 &lt;br /&gt;
 &lt;br /&gt;
-A random variable is a real-valued function defined on a sample space. Sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some &lt;b&gt;function of the outcome&lt;/b&gt;. For example we could be interested in &lt;i&gt;counting&lt;/i&gt; the number of heads in &lt;script type=&quot;math/tex&quot;&gt;5&lt;/script&gt; trials of flipping a coin. We can define a random variable &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; to represent the number of heads in 5 trials. Using &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt;, we can now refer to the probability of seeing two heads in 5 trials as &lt;script type=&quot;math/tex&quot;&gt;P(Y=2)&lt;/script&gt; and the probability of seeing at least 3 heads as &lt;script type=&quot;math/tex&quot;&gt;P(Y\geq3)&lt;/script&gt;.
+&lt;b&gt;Example 1:&lt;/b&gt;
+&lt;br /&gt; 
+Suppose we’re interested in &lt;i&gt;counting&lt;/i&gt; the number of heads in &lt;script type=&quot;math/tex&quot;&gt;5&lt;/script&gt; trials of flipping a coin. We can define a random variable &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; to represent the number of heads in 5 trials. Using &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt;, we can now refer to the probability of seeing two heads in 5 trials as &lt;script type=&quot;math/tex&quot;&gt;P(Y=2)&lt;/script&gt;. This is much simpler that listing the exact outcomes we’re interested in which are getting heads in trial 1 and 2 or getting heads in 1 or 3 or getting heads in trials 1 and 4 only and so on. 
 &lt;br /&gt;
 &lt;br /&gt;
-We also should note the difference between an event and a random variable. An &lt;b&gt;event&lt;/b&gt; is just a particular assignment of a random variable while a random variable takes on numeric values that can be assigned to &lt;i&gt;groups&lt;/i&gt; of outcomes in our sample space. Another example is grouping all the outcomes in rolling two dice that sum to 7. We define a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 sd &lt;script type=&quot;math/tex&quot;&gt;P(X=7)&lt;/script&gt; which is really the probability of seening any of these outcomes: &lt;script type=&quot;math/tex&quot;&gt;(3,4),(4,3),(2,5),(5,2),(1,6),(6,1)&lt;/script&gt;.
+&lt;b&gt;Example 2:&lt;/b&gt;
+&lt;br /&gt; 
+Suppose we roll two dice and we’re interested in the sum of the two dice. We define a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 as &lt;script type=&quot;math/tex&quot;&gt;P(X=7)&lt;/script&gt;. This is much simpler that saying that we want the probability of seeing any of these outcomes: &lt;script type=&quot;math/tex&quot;&gt;(3,4),(4,3),(2,5),(5,2),(1,6),(6,1)&lt;/script&gt;.
 &lt;br /&gt;
 &lt;br /&gt;
-Example:\&lt;/p&gt;
-
-&lt;p&gt;The union of all possible assignments cover the sample space?
-mutually exclusive?
-[ P(\bigcup_{i}(Y=i)) = \sum_i P(Y=i) = 1 ] 
-\end{mdframed}&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Anatomy of a Flow Network&lt;/b&gt;
-&lt;img src=&quot;http://localhost:4000/assets/flow/1.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Ford&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Fulkerson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;Initialize&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;residual&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gf&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;we&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;an&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;augmenting&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;augment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flow&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flow&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;!--
-&lt;div center&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Discrete Random Variables&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;If our random variable takes on countable values &lt;script type=&quot;math/tex&quot;&gt;x_1, x_2, x_3,...,x_n&lt;/script&gt;, we call it a discrete random variable. 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Probability Mass Function&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Suppose we have a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; that takes on a discrete values in &lt;script type=&quot;math/tex&quot;&gt;R_X = \{k_1, k_2,...,k_n\}&lt;/script&gt;. Define the probability mass function &lt;script type=&quot;math/tex&quot;&gt;p_X(k)&lt;/script&gt; to be the probability that &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; takes on a particular value &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. In other words, the PMF is defined as&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
 $$
 \begin{align*}
-0 \leq f(u,v) \leq c(u,v)
+p_X(k) = P(X = k)
 \end{align*}
 $$
 &lt;/div&gt;
---&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes from CS109 at Stanford. What is a Random Variable? A random variable is a real-valued function defined on a sample space. Sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some function of the outcome. For example we could be interested in counting the number of heads in trials of flipping a coin. We can define a random variable to represent the number of heads in 5 trials. Using , we can now refer to the probability of seeing two heads in 5 trials as and the probability of seeing at least 3 heads as . We also should note the difference between an event and a random variable. An event is just a particular assignment of a random variable while a random variable takes on numeric values that can be assigned to groups of outcomes in our sample space. Another example is grouping all the outcomes in rolling two dice that sum to 7. We define a random variable to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 sd which is really the probability of seening any of these outcomes: . Example:\</summary></entry><entry><title type="html">Ford-Fulkerson’s Maximum Flow</title><link href="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html" rel="alternate" type="text/html" title="Ford-Fulkerson's Maximum Flow" /><published>2019-07-22T07:01:36-07:00</published><updated>2019-07-22T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
+&lt;p&gt;Furthermore, the PMF of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; satisfies:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+\sum_{i=1}^{\infty} p_X(k_i) = 1
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;This also means that for any value &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; that is not in &lt;script type=&quot;math/tex&quot;&gt;R_X&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;p_X(k) = 0&lt;/script&gt;, in other words,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ P(X=k) = \Big\{ \begin{array}{@{}lr@{}}
+        p_X(k) \quad \text{ for } k \in R_X \\
+        0 \quad \quad \quad \text{ otherwise} \\
+        \end{array}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;We can also refer to &lt;script type=&quot;math/tex&quot;&gt;p_X(k)&lt;/script&gt; as just &lt;script type=&quot;math/tex&quot;&gt;p(k)&lt;/script&gt; if the random variable is clear from the context. 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Example 2:&lt;/b&gt;
+&lt;br /&gt; 
+Suppose we roll the two dice again from example 2. Define a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be to the sum of the two dice. We know &lt;script type=&quot;math/tex&quot;&gt;R_X = \{2,3,4,5,6,7,8,9,10,11,12\}&lt;/script&gt;. Below is a graph of the &lt;script type=&quot;math/tex&quot;&gt;PMF&lt;/script&gt; of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;p_X(k)&lt;/script&gt; for all values in &lt;script type=&quot;math/tex&quot;&gt;R_X&lt;/script&gt;.
+&lt;img src=&quot;http://localhost:4000/assets/random/pmf.png&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Cumulative Distribution Function&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Now instead of defining the probability that a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; takes on a particular value, we define a new function, the cumulative distribution function (CDF) that gives the probability that &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is less than or equal to a particular value.&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+F_X(k) = F(k) = P(X \leq k), \quad \text{ where } -\infty &amp;lt; k &amp;lt; \infty
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;For a discrete random variable, this will be just the sum of all variables&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+F_X(k) = F(k) = \sum_{\text{ all } i \leq k} p(i)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Expectation&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;The expectation or expected value of a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is defined as:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;In other words, the expected value is a weighted average of the value of the random variable (values weighted by their probabilities).
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Example 4:&lt;/b&gt;
+&lt;br /&gt; 
+Suppose we roll two dice again from example 2 and 3. Define a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be to the sum of the two dice. We can use our PMF from the previous section to compute the expected value as&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[X] &amp;amp;= 2*P(X=2) + 3*P(X=3) + 4*P(X=4) + 5 * P(X=5) * 6*P(X=6) + 7*P(X=7) \\
+\\ &amp;amp;+ 8*P(X=8) + 9*P(X=9) + 10*P(X=10) + 11*P(X=11) * 12*P(X=12) \\
+E[X] &amp;amp;= 2*\frac{1}{36} + 3*\frac{2}{36} + 4*\frac{3}{36} + 5*\frac{4}{36} + 6*\frac{5}{36} + 7*\frac{6}{36} + 8*\frac{5}{36} + 9*\frac{4}{36} + 10*\frac{3}{36} \\
+&amp;amp;+ 11*\frac{2}{36} + 12*\frac{1}{36} = 7
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Expectation of a function of a random variable&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Suppose we have a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; and we have a function &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; is real-valued function. Suppose we want to calculate the expected value of &lt;script type=&quot;math/tex&quot;&gt;g(X)&lt;/script&gt;. Define&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[g(X)] = E[Y] &amp;amp;= \sum_j y_jp(y_j) \\
+&amp;amp;= \sum_i g(x_i) p(x_i) \\
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;PROOF?
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Example 5:&lt;/b&gt;
+&lt;br /&gt; 
+Suppose we roll a die and define &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be the value on the die. Define a new random variable &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; to be &lt;script type=&quot;math/tex&quot;&gt;X^2&lt;/script&gt;. What is &lt;script type=&quot;math/tex&quot;&gt;E[Y]&lt;/script&gt;?&lt;br /&gt;
+&lt;br /&gt;
+Using the above, &lt;script type=&quot;math/tex&quot;&gt;E[Y] = E[X^2] = \sum_i (k_i^2)p(k_i) = 1/6*(1+4+9+16+25+36) \approx 15.167&lt;/script&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Properties of Expectation&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Two important properties of expectation are the following: &lt;br /&gt;
+(1) Linearity of expectation:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ E[aX + b] &amp;amp;= aE[X] + b 
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;(2) Expectation of the sum of two random variables is the sum of expectation of the two random variables:&lt;/p&gt;
+
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ E[X + Y] &amp;amp;= E[X] + E[Y]
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;&lt;b&gt;Example 6:&lt;/b&gt;
+&lt;br /&gt; 
+Suppose we roll a die and let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be a random variable representing the outcome of the roll. Suppose also that you will a number of dollars equals to &lt;script type=&quot;math/tex&quot;&gt;3X+5&lt;/script&gt;. What is the expected value of your winnings? We can let &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; be a random variable representing our winnings. Now we have&lt;/p&gt;
+
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[Y] = E[6X^2+5] &amp;amp;= \sum_i (3x_i + 5)p(x_i) \\
+&amp;amp;= \frac{1}{6} \sum_{i=1}^6 3x_i+5 \\
+&amp;amp;= \frac{1}{6} (8+11+14+17+20+23) = 15.5
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;However using the linearity of expectation, we know that &lt;script type=&quot;math/tex&quot;&gt;E[X]=3.5&lt;/script&gt;. Therefore we could do the following:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[Y] = E[3X+5] &amp;amp;= 3E[X]+5  \\
+&amp;amp;= 3(3.5) + 5 = 15.5
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;&lt;b&gt;Example 7:&lt;/b&gt;
+&lt;br /&gt; 
+Suppose we roll two dice again and we’re interested in the expectation of the sum of two dice. We calculated this value previously in example 4 using the PMF. Let’s use the second property of expectation. Let &lt;script type=&quot;math/tex&quot;&gt;X_1&lt;/script&gt; be a random variable representing the value of the first die and &lt;script type=&quot;math/tex&quot;&gt;X_2&lt;/script&gt; be a random variable representing the sum value of the second die. Let the sum of the two dice be &lt;script type=&quot;math/tex&quot;&gt;X_1 + X_2&lt;/script&gt;.&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[X_1 + X_2] = E[X_1] + E[X_2] = 7
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Example 8: St. Petersburg Paradox&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;A fair coin comes up heads with &lt;script type=&quot;math/tex&quot;&gt;p = 0.5&lt;/script&gt;. We flip the coin until we see the first tails. We will then win &lt;script type=&quot;math/tex&quot;&gt;2^n&lt;/script&gt; dollars where &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is the number of heads seen before the first tail. How much would you pay to play?
+&lt;br /&gt;
+&lt;br /&gt;
+Let’s define the following random variables: &lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; be the number of “heads” before the the first “tails”.&lt;br /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt; be a random variable representing our winnings. &lt;script type=&quot;math/tex&quot;&gt;W = 2^Y&lt;/script&gt;. 
+&lt;br /&gt;
+&lt;br /&gt;
+What is the probability of seeing &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; heads before seeing the first tail on the &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt;th trial? &lt;script type=&quot;math/tex&quot;&gt;P(Y = i) = (1/2) * (1/2) * ... = (1/2)^{i+1}&lt;/script&gt;. This is because  we stop at the &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt; flip which is a tail. Each outcome has a probability equals to &lt;script type=&quot;math/tex&quot;&gt;1/2&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;
+What is the expected value of our winnings?&lt;br /&gt;&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[W] = E[2^Y] &amp;amp;= \sum_i 2^i P(Y=i) =  \sum_i 2^i p(i) \\
+&amp;amp;= (\frac{1}{2})^1 2^0 + (\frac{1}{2})^2 2^1 +  (\frac{1}{2})^3 2^2 + ... \\
+&amp;amp;= \sum_i^{\infty} (\frac{1}{2})^{i+1} 2^i = \infty
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFDD0&quot;&gt;
+&lt;b&gt;Example 9: Roulette&lt;/b&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;Consider an even money bet (betting “Red” in Roulette). &lt;script type=&quot;math/tex&quot;&gt;p=18/38&lt;/script&gt; you win &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; dollars, otherwise &lt;script type=&quot;math/tex&quot;&gt;1-p&lt;/script&gt; you lose &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; dollars. Consider the following strategy:
+(1) Let &lt;script type=&quot;math/tex&quot;&gt;Y=1&lt;/script&gt;. &lt;br /&gt;
+(2) Bet &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt;.&lt;br /&gt;
+(3) If win then stop.&lt;br /&gt;
+(4) else let &lt;script type=&quot;math/tex&quot;&gt;Y=2Y&lt;/script&gt; go to step 2.&lt;br /&gt;
+&lt;br /&gt;
+What is the expected value of our winning? &lt;br /&gt;
+Define &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt; to be the winnings until we stop.&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+E[Z] &amp;amp;= p*1 + (1-p)p*(2-1) + (1-p)^2p*(4-2-1) + ... \\
+&amp;amp;= \sum_{i=0}^{\infty} p(1-p)^i(2^i - \sum_{j=0}^{i-1}2^j) \\
+&amp;amp;= p\sum_{i=0}^{\infty} (1-p)^i = p\frac{1}{1-(1-p)} = 1
+\end{align*}
+$$
+&lt;/div&gt;</content><author><name></name></author><summary type="html">0 References My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// Specifically: http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/lectures/06_random_variables.pdf What is a Random Variable? A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some function of the outcome. Example 1: Suppose we’re interested in counting the number of heads in trials of flipping a coin. We can define a random variable to represent the number of heads in 5 trials. Using , we can now refer to the probability of seeing two heads in 5 trials as . This is much simpler that listing the exact outcomes we’re interested in which are getting heads in trial 1 and 2 or getting heads in 1 or 3 or getting heads in trials 1 and 4 only and so on. Example 2: Suppose we roll two dice and we’re interested in the sum of the two dice. We define a random variable to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 as . This is much simpler that saying that we want the probability of seeing any of these outcomes: . Discrete Random Variables If our random variable takes on countable values , we call it a discrete random variable. Probability Mass Function Suppose we have a random variable that takes on a discrete values in . Define the probability mass function to be the probability that takes on a particular value . In other words, the PMF is defined as $$ \begin{align*} p_X(k) = P(X = k) \end{align*} $$ Furthermore, the PMF of satisfies: $$ \begin{align*} \sum_{i=1}^{\infty} p_X(k_i) = 1 \end{align*} $$ This also means that for any value that is not in , we have , in other words, $$ \begin{align*} P(X=k) = \Big\{ \begin{array}{@{}lr@{}} p_X(k) \quad \text{ for } k \in R_X \\ 0 \quad \quad \quad \text{ otherwise} \\ \end{array} \end{align*} $$ We can also refer to as just if the random variable is clear from the context. Example 2: Suppose we roll the two dice again from example 2. Define a random variable to be to the sum of the two dice. We know . Below is a graph of the of , for all values in . Cumulative Distribution Function Now instead of defining the probability that a random variable takes on a particular value, we define a new function, the cumulative distribution function (CDF) that gives the probability that is less than or equal to a particular value. $$ \begin{align*} F_X(k) = F(k) = P(X \leq k), \quad \text{ where } -\infty &amp;lt; k &amp;lt; \infty \end{align*} $$ For a discrete random variable, this will be just the sum of all variables $$ \begin{align*} F_X(k) = F(k) = \sum_{\text{ all } i \leq k} p(i) \end{align*} $$ Expectation The expectation or expected value of a random variable is defined as: $$ \begin{align*} E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k \end{align*} $$ In other words, the expected value is a weighted average of the value of the random variable (values weighted by their probabilities). Example 4: Suppose we roll two dice again from example 2 and 3. Define a random variable to be to the sum of the two dice. We can use our PMF from the previous section to compute the expected value as $$ \begin{align*} E[X] &amp;amp;= 2*P(X=2) + 3*P(X=3) + 4*P(X=4) + 5 * P(X=5) * 6*P(X=6) + 7*P(X=7) \\ \\ &amp;amp;+ 8*P(X=8) + 9*P(X=9) + 10*P(X=10) + 11*P(X=11) * 12*P(X=12) \\ E[X] &amp;amp;= 2*\frac{1}{36} + 3*\frac{2}{36} + 4*\frac{3}{36} + 5*\frac{4}{36} + 6*\frac{5}{36} + 7*\frac{6}{36} + 8*\frac{5}{36} + 9*\frac{4}{36} + 10*\frac{3}{36} \\ &amp;amp;+ 11*\frac{2}{36} + 12*\frac{1}{36} = 7 \end{align*} $$ Expectation of a function of a random variable Suppose we have a random variable and we have a function where is real-valued function. Suppose we want to calculate the expected value of . Define $$ \begin{align*} E[g(X)] = E[Y] &amp;amp;= \sum_j y_jp(y_j) \\ &amp;amp;= \sum_i g(x_i) p(x_i) \\ \end{align*} $$ PROOF? Example 5: Suppose we roll a die and define to be the value on the die. Define a new random variable to be . What is ? Using the above, Properties of Expectation Two important properties of expectation are the following: (1) Linearity of expectation: $$ \begin{align*} E[aX + b] &amp;amp;= aE[X] + b \end{align*} $$</summary></entry><entry><title type="html">Ford-Fulkerson’s Maximum Flow</title><link href="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html" rel="alternate" type="text/html" title="Ford-Fulkerson's Maximum Flow" /><published>2019-07-22T07:01:36-07:00</published><updated>2019-07-22T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/22/ford-fulkerson.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
 These are my study notes on chapter 26 in CLRS.
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -631,13 +1156,13 @@ These are my study notes / summary on chapter 6 in CLRS.
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
+&lt;b&gt;Introduction&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/assets/heaps/1.png&quot; width=&quot;100%&quot; /&gt;
-The heap data structure is an array &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. &lt;script type=&quot;math/tex&quot;&gt;A[1]&lt;/script&gt; is the root of the tree which is 17 in the above graph.
+The heap data structure is an array &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. &lt;script type=&quot;math/tex&quot;&gt;A[1]&lt;/script&gt; is the root of the tree. In the above tree, &lt;script type=&quot;math/tex&quot;&gt;A[1]=17&lt;/script&gt; is the root of the tree.
 &lt;br /&gt;&lt;br /&gt;
-Because the heap is based on a complete binary tree, the height of a heap of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; elements is &lt;script type=&quot;math/tex&quot;&gt;\Theta(n)&lt;/script&gt;. As a reminder, the height of a node is the longest path down from the node  to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt; time.
+Because the heap is based on a complete binary tree, the height of a heap of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; elements is &lt;script type=&quot;math/tex&quot;&gt;\Theta(\log(n))&lt;/script&gt;. As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt; time.
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -645,7 +1170,7 @@ Because the heap is based on a complete binary tree, the height of a heap of &lt
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Finding the Parent, Left and Right Children &lt;/b&gt;
+&lt;b&gt;Finding the Parent, Left and Right Children &lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
 Given an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Its parent is located at &lt;script type=&quot;math/tex&quot;&gt;A[\lfloor i/2 \rfloor]&lt;/script&gt;. For example the parent of 2 (index 7) is &lt;script type=&quot;math/tex&quot;&gt;A[\lfloor 7/2 \rfloor]=A[3]=11&lt;/script&gt;. The left child is &lt;script type=&quot;math/tex&quot;&gt;A[2*i]&lt;/script&gt; and the right child is &lt;script type=&quot;math/tex&quot;&gt;A[2*i+1]&lt;/script&gt;. For example the right child of 13 (index 2) is &lt;script type=&quot;math/tex&quot;&gt;A[2*2 + 1] = A[5] = 3&lt;/script&gt;.&lt;/p&gt;
@@ -666,13 +1191,13 @@ Given an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. It
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 The Heap Property &lt;/b&gt;
+&lt;b&gt;The Heap Property &lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a &lt;b&gt;heap property&lt;/b&gt; which is, for any given element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; we must have:&lt;/p&gt;
+&lt;p&gt;There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a &lt;b&gt;heap property&lt;/b&gt;. The heap property depends on the type of the heap. For any given element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; we must have:&lt;/p&gt;
 
-&lt;p&gt;If this is a max-heap:&lt;/p&gt;
+&lt;p&gt;If this is a max-heap then,&lt;/p&gt;
 
 &lt;table&gt;
   &lt;tbody&gt;
@@ -682,7 +1207,7 @@ Given an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. It
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;If this is a min-heap:&lt;/p&gt;
+&lt;p&gt;If this is a min-heap then,&lt;/p&gt;
 
 &lt;table&gt;
   &lt;tbody&gt;
@@ -699,10 +1224,10 @@ Given an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. It
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Maintaining the Max-Heap Property&lt;/b&gt;
+&lt;b&gt;Maintaining the Max-Heap Property&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-Suppose we have an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; maintain the heap property. We know in constant time that the children are &lt;script type=&quot;math/tex&quot;&gt;A[2*i]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;A[2*i+1]&lt;/script&gt;. We can then swap &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Let’s look at a simple implementation:&lt;/p&gt;
+Suppose we have an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; maintain the heap property. We know in constant time that the children are &lt;script type=&quot;math/tex&quot;&gt;A[2*i]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;A[2*i+1]&lt;/script&gt;. We can then swap &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. Let’s look at a simple implementation:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;max_heapify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -734,10 +1259,10 @@ Suppose we have an element &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/scri
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Building a Max-Heap&lt;/b&gt;
+&lt;b&gt;Building a Max-Heap&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-Based on how we store the heap elements in the array, the leaves of the tree are located stating at &lt;script type=&quot;math/tex&quot;&gt;A[n/2+1], A[n/2+2],...,n&lt;/script&gt;. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; maintains the heap property. And so we can write the following to build a max-heap:&lt;/p&gt;
+Based on how we store the heap elements in the array, the leaves of the tree are located stating at &lt;script type=&quot;math/tex&quot;&gt;A[n/2+1], A[n/2+2],...,n&lt;/script&gt;. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; maintains the heap property. Therefore, we can use the following to build a max-heap:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;build_max_heap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -751,31 +1276,31 @@ Based on how we store the heap elements in the array, the leaves of the tree are
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5.1 Example&lt;/b&gt;
+&lt;b&gt;Building a Max-Heap (Example)&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-Let’s run through this to see how this might work. We’re given the following array and we want to build a max-heap out of it.
+Let’s look at an example of building a max-heap using the above idea. We’re given the following array and we want to build a max-heap out of it.
 &lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e1.png&quot; width=&quot;100%&quot; /&gt;
 &lt;br /&gt;
 To build a max-heap we’ll only consider the non-leaf nodes, highlighted below.
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e2.png&quot; width=&quot;100%&quot; /&gt;
 &lt;br /&gt;
-We’ll start with index 3 (node 5) and call max_heapify. In max_heapify, we’ll swap both node 5 and node 11 and then recusively call max_heapify again on the index 6 (where 5 moved).
+We’ll start with node 5 and call max_heapify on it. In max_heapify, we’ll swap both nodes 5 and 11. We will then recusively call max_heapify node 5.
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e3.png&quot; width=&quot;100%&quot; /&gt;
 &lt;br /&gt;
-5 is now a leaf node so we can’t push it further down the tree and so we’ll move to the next index 2 (node 3). 
+Notice that node 5 is now a leaf node so we can’t push it further down the tree and so we’ll move to the next node, node 3. 
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e4.png&quot; width=&quot;100%&quot; /&gt;
 &lt;br /&gt;
 Node 3 above will be swapped with the larger of its children, node 13.
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e5.png&quot; width=&quot;100%&quot; /&gt;
 &lt;br /&gt;
-Next we will recursively call max_heapify on index 4 but index 4 is already a leaf node. The final node in the build_max_heap for loop is node 1 (index 1).
+Notice how nodes 3 and 13 are now swapped. Next we will recursively call max_heapify on node 3 but node 3 is a just a leaf node and we will stop. The final node in the build_max_heap for loop is node 1.
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e6.png&quot; width=&quot;100%&quot; /&gt;
 &lt;br /&gt;
 We will swap node 1 with the larger of its children, node 13.
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e7.png&quot; width=&quot;100%&quot; /&gt;
-We will then recusively call max_heapify on node 1, in its new location, index 2.
+We will then recusively call max_heapify on node 1.
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e8.png&quot; width=&quot;100%&quot; /&gt;
 And finally we will swap 1 with the larger of its children, node 7.
 &lt;img src=&quot;http://localhost:4000/assets/heaps/e9.png&quot; width=&quot;100%&quot; /&gt;
@@ -788,10 +1313,10 @@ Finally, you can see now that the tree/array is a max-heap:
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Building a Max-Heap (Proof of Correctness)&lt;/b&gt;
+&lt;b&gt;Building a Max-Heap (Proof of Correctness)&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-Why should we believe that build_max_heap works? This is going to be exactly what it’s in CLRS (my notes for myself to quickly remember). We’ll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.&lt;/p&gt;
+Why should we believe that build_max_heap works? This is going to be exactly what’s in CLRS (my notes for myself to quickly remember). We’ll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;tbody&gt;
@@ -807,11 +1332,11 @@ Before the first iteration that starts at &lt;script type=&quot;math/tex&quot;&g
 &lt;br /&gt;
 &lt;b&gt;Maintenance&lt;/b&gt;: (so the gist here is that max_heapify will maintain that node &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; follows the heap property because indices &lt;script type=&quot;math/tex&quot;&gt;2*i, 2*i+1&lt;/script&gt; are higher than &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and therefore already maintain the heap property).
 &lt;br /&gt;
-At each iteration, we call max-heapify on the node &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. The children of node &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; are at &lt;script type=&quot;math/tex&quot;&gt;A[2*i]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;A[2*i+1]&lt;/script&gt;. Since both have a higher index than &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow &lt;script type=&quot;math/tex&quot;&gt;i+1, i+2, ..., n&lt;/script&gt;. Therefore, when we decrement &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;, the loop invariant will be established before the next iteration.
+At each iteration, we call max-heapify on the node &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt;. The children of node &lt;script type=&quot;math/tex&quot;&gt;A[i]&lt;/script&gt; are &lt;script type=&quot;math/tex&quot;&gt;A[2*i]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;A[2*i+1]&lt;/script&gt;. Since they both have a higher index than &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow &lt;script type=&quot;math/tex&quot;&gt;i+1, i+2, ..., n&lt;/script&gt;. Therefore, when we decrement &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;, the loop invariant will be established before the next iteration.
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;b&gt;Termination&lt;/b&gt;:
-At termination when &lt;script type=&quot;math/tex&quot;&gt;i=0&lt;/script&gt;, we know by the loop invariant that the nodes &lt;script type=&quot;math/tex&quot;&gt;1, 2,...,n&lt;/script&gt; are all roots of max-heaps. So we are done.
+At termination when &lt;script type=&quot;math/tex&quot;&gt;i=0&lt;/script&gt;, we know by the loop invariant that the nodes &lt;script type=&quot;math/tex&quot;&gt;1, 2,...,n&lt;/script&gt; are all roots of max-heaps, specifically node &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; which is the root of the final max heap we have. So we are done.
 &lt;br /&gt;
 &lt;br /&gt;
 I would obviously recommend looking at CLRS’s way unless I’m in a rush and this is easily accessible on my phone. 
@@ -821,447 +1346,68 @@ I would obviously recommend looking at CLRS’s way unless I’m in a rush and t
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Building a Max-Heap (Running Time)&lt;/b&gt;
+&lt;b&gt;Building a Max-Heap (Running Time)&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-The most exciting question is how long will building a max heap takes. We know that max_heapify takes &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt; time for each node. How many iterations do we have have in build_max_heap? To answer this, we need a little refresher (I do) on some properties of complete binary trees.
-&lt;br /&gt;
+The most exciting question is how long does it take to build a max heap? We know that max_heapify takes &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt; time for each node. We also know that we at most have &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; iterations. This means that building a max heap will run in &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;. But we derive a much tighter bound than this by observing that:
+&lt;br /&gt;&lt;br /&gt;
+(1) Binary heaps with &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; nodes have height &lt;script type=&quot;math/tex&quot;&gt;\lfloor \log(n) \rfloor&lt;/script&gt;. &lt;br /&gt;
+(2) At any height &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;, we have at most &lt;script type=&quot;math/tex&quot;&gt;\lceil \frac{n}{2^{i+1}} \rceil&lt;/script&gt; nodes. &lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+Aside: What does (2) mean? Suppose we have a binary heap with &lt;script type=&quot;math/tex&quot;&gt;n=7&lt;/script&gt; just like the tree below:
 &lt;img src=&quot;http://localhost:4000/assets/heaps/2.png&quot; width=&quot;100%&quot; /&gt;
-A complete binary tree is a tree in which all the leaves have the same depth and all internal nodes have degree 2. Notice that at level 1 we have 2 children. At level 2 we have 4 children and at level &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; we have &lt;script type=&quot;math/tex&quot;&gt;2^t&lt;/script&gt; children. Therefore, the number of leaves is just &lt;script type=&quot;math/tex&quot;&gt;2^h&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; is the height/depth of the tree. If we have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; leaves then the height of a complete binary tree is &lt;script type=&quot;math/tex&quot;&gt;\log_2(n)&lt;/script&gt;. 
-&lt;br /&gt;&lt;br /&gt;
-What about the number of internal nodes? Given that the height is &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt;, we know that the number of leaves is &lt;script type=&quot;math/tex&quot;&gt;2^h&lt;/script&gt;. Therefore, the number of internal nodes is&lt;/p&gt;
+The number of nodes at height 0 (leaves) is &lt;script type=&quot;math/tex&quot;&gt;\lceil \frac{n}{2^{i+1}} \rceil = \lceil \frac{7}{2^{0+1}} \rceil = \lceil 3.5 \rceil = 4&lt;/script&gt; &lt;br /&gt;
+The number of nodes at height 1 is &lt;script type=&quot;math/tex&quot;&gt;\lceil \frac{7}{2^{2}} \rceil= 2&lt;/script&gt; &lt;br /&gt;
+The number of nodes at height 2 (root) is &lt;script type=&quot;math/tex&quot;&gt;\lceil \frac{7}{2^{3}} \rceil= 1&lt;/script&gt; &lt;br /&gt;
+&lt;b&gt;Formal Proof:&lt;/b&gt;&lt;br /&gt;
+TODO
+&lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;
+We can now sum the work we’re doing at each level which is just the height of the level multipled by the number of nodes in that level. We do that for each level in the tree, from the 0th level to the &lt;script type=&quot;math/tex&quot;&gt;\lfloor \log(n) \rfloor&lt;/script&gt;’s level:&lt;/p&gt;
+
 &lt;div center=&quot;&quot;&gt;
 $$
 \begin{align*}
-1 + 2 + 4 + ... + 2^{h-1} &amp;amp;= \sum_{i=0}^{h-1}2^i = \frac{2^h-1}{2-1} = 2^h-1
+\sum_{i=0}^{\lfloor \log(n) \rfloor} \lceil \frac{n}{2^{i+1}} \rceil O(i) = O(n\sum_{i=0}^{\lfloor \log(n) \rfloor} \frac{i}{2^{i}} )
 \end{align*}
 $$
 &lt;/div&gt;
-&lt;p&gt;Back to build_max_heap. The for loop runs for only the internal nodes and so&lt;/p&gt;
+&lt;p&gt;We can use the following summation:&lt;/p&gt;
 &lt;div center=&quot;&quot;&gt;
 $$
 \begin{align*}
-1 + 2 + 4 + ... + 2^{h-1} &amp;amp;= \sum_{i=0}^{h-1}2^i = \frac{2^h-1}{2-1} = 2^h-1
+\sum_{k=0}^{\infty} kx^k = \frac{x}{(1-x)^2}
 \end{align*}
 $$
 &lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Heapsort&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-Hello&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes / summary on chapter 6 in CLRS. 1 Introduction The heap data structure is an array that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. is the root of the tree which is 17 in the above graph. Because the heap is based on a complete binary tree, the height of a heap of elements is . As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in time. 2 Finding the Parent, Left and Right Children Given an element . Its parent is located at . For example the parent of 2 (index 7) is . The left child is and the right child is . For example the right child of 13 (index 2) is .</summary></entry><entry><title type="html">Fenwick Trees</title><link href="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html" rel="alternate" type="text/html" title="Fenwick Trees" /><published>2019-07-11T07:01:36-07:00</published><updated>2019-07-11T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/11/fenwick-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/bellman/1.png&quot; width=&quot;100%&quot; /&gt;
-&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-(1) 
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-K
+&lt;p&gt;By substituting &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;1/2&lt;/script&gt; to get:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+\sum_{k=0}^{\infty} \frac{k}{2^k} = \frac{1/2}{(1-1/2)^2} = \frac{1}{2(1/4)} = 2
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;And therefore, we can bound the earlier summation to just:&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+O(n\sum_{i=0}^{\lfloor \log(n) \rfloor} \frac{i}{2^{i}} ) = O(n)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;and we’re done!
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
 &lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Bellman-Ford&lt;/b&gt;
-&lt;br /&gt;
-K&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References (1) 1 Introduction K 2 Bellman-Ford K</summary></entry><entry><title type="html">Topological Sort</title><link href="http://localhost:4000/jekyll/update/2019/07/10/topological-sort.html" rel="alternate" type="text/html" title="Topological Sort" /><published>2019-07-10T12:01:36-07:00</published><updated>2019-07-10T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/10/topological-sort</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/10/topological-sort.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;G = (V, E)&lt;/script&gt; be a directed acyclic graph consisting of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices &lt;script type=&quot;math/tex&quot;&gt;u \in V&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v \in V&lt;/script&gt;, if &lt;script type=&quot;math/tex&quot;&gt;(u,v) \in E&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; must come before &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; in the ordering.
-&lt;br /&gt;&lt;br /&gt;
-In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is a prerequisite to class &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; comes before &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in the sorted list.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Revisiting Depth First Search&lt;/b&gt;
-&lt;br /&gt;
-Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required!&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// mark the start time for v&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// mark the finish time for v&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// we can push the nodes here onto a stack!!! yay&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Example&lt;/b&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/topo/1.png&quot; alt=&quot;my photo&quot; /&gt;
-Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; (arbitrarily chosen), mark its start time as zero and visit &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;. We will mark &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;’s start time and then recursively call DFS on &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt;. We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; won’t have more neighbors and so we will mark its finish time. We do the same thing with &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; and we’ll end up with the graph below.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/topo/2.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next we will start from &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and visit &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; and mark both their start and finish times. Finally we will visit &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and mark its times as well.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/topo/3.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Notice how if we ordered the nodes by their finishing times (&lt;script type=&quot;math/tex&quot;&gt;a, c, b, f, e, d&lt;/script&gt;) descendingly then we’ll have a valid ordering of the nodes. 
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Proof of Correctness&lt;/b&gt;
-&lt;br /&gt;
-The first time I saw Topological Sort I didn’t believe. It seemed strange to just be able to sort the vertices by just doing a DFS. What do we need to show to prove that topological sort works? what is the intuition here? Let’s think about this. We need to prove that for any two vertices &lt;script type=&quot;math/tex&quot;&gt;a \in V&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b \in V&lt;/script&gt;, if there is an edge from &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; to be &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; will come before &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in the sorted output. 
-&lt;br /&gt;&lt;br /&gt;
-How do we prove this? Well we know that topological sort relies on the finishing times of vertices and we know that &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;’s finishing time gets marked after its children and so this means that we want to prove that &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;’s finishing time is greater than &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;’s finishing time. So to summarize, we really want to prove the following claim: For any two vertices &lt;script type=&quot;math/tex&quot;&gt;a \in V&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b \in V&lt;/script&gt;, if there is an edge from &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;’s finishing time is greater than &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;’s finishing time.&lt;/p&gt;
-
-&lt;p&gt;In order to prove the above claim we will use a theorem calling the Parenthesis Theorem from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph &lt;script type=&quot;math/tex&quot;&gt;G = (V,E)&lt;/script&gt; and for any vertices &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;, exactly one of the following conditions holds:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;the intervals [u.start_time, u.finish_time] and [v.start_time, v.finish_time] are disjoint and neither &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is a descendant of the other in the depth-first forest.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;the interval [u.start_time, u.finish_time] is contained within the interval [v.start_time, v.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; in the depth-first tree.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;the interval [v.start_time, v.finish_time] is contained within the interval [u.start_time, u.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; in the depth-first tree.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Proof: TODO!&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Now we are ready to prove our earlier claim.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Let &lt;script type=&quot;math/tex&quot;&gt;G = (V,E)&lt;/script&gt; be a directed acyclic graph. For any two vertices &lt;script type=&quot;math/tex&quot;&gt;a, b \in V&lt;/script&gt;, if &lt;script type=&quot;math/tex&quot;&gt;(a,b) \in E&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;.finish_time &amp;gt; &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;.finish_time.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Proof:&lt;br /&gt;
-Let’s consider the DFS tree generated after running DFS and let’s apply the Parenthesis Theorem. According to the theorem one of three conditions must hold:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;the interval [a.start_time, a.finish_time] is contained within the interval [b.start_time, b.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; in the depth-first tree. We claim that this case is impossible because by assumption, we know that &lt;script type=&quot;math/tex&quot;&gt;(a,b) \in E&lt;/script&gt; and so if &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; is descendant of &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; must have a cycle. This is a contradiction since &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is acyclic.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;the interval [b.start_time, b.finish_time] is contained within the interval [a.start_time, a.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; in the depth-first tree. This immediately shows that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-b.finish_time &lt; a.finish_time %]]&gt;&lt;/script&gt; as we wanted to show.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;the intervals [a.start_time, a.finish_time] and [b.start_time, b.finish_time] are disjoint and neither &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is a descendant of the other in the depth-first forest. In this case, we claim that we must have explored &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; first before &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. Because if we have explored &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; first then we would have explored &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; since &lt;script type=&quot;math/tex&quot;&gt;(a,b) \in E&lt;/script&gt; and so we must have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-b.finish_time &lt; a.finish_time %]]&gt;&lt;/script&gt; as required. Beautiful isn’t it?&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We conclude from all three cases that we must have &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-b.finish_time &lt; a.finish_time %]]&gt;&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; 
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Simple Implementation&lt;/b&gt;
-&lt;br /&gt;
-Let’s rewrite DFS to push the nodes onto a stack and let’s forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let’s call this version topological sort! Here is a simple implementation:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// node is done, we can push it on the ordered stack&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;topological_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// perform dfs until there are no more unvisited nodes&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;ordered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Running Time&lt;/b&gt;
-&lt;br /&gt;
-It is just DFS! so the total time is &lt;script type=&quot;math/tex&quot;&gt;O(V+E)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Full Implementation:&lt;/b&gt;
-&lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction Let be a directed acyclic graph consisting of vertices and edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices and , if , then must come before in the ordering. In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class is a prerequisite to class , then comes before in the sorted list. 2 Revisiting Depth First Search Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required! int dfs(int v, int current_time, std::vector&amp;lt;std::vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; graph, std::vector&amp;lt;std::pair&amp;lt;int,int&amp;gt;&amp;gt; &amp;amp;times, std::vector&amp;lt;int&amp;gt; &amp;amp;visited) { times[v].first = current_time++; // mark the start time for v visited[0] = true; for (int i = 0; i &amp;lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { current_time = dfs(u, current_time, graph, times, visited); current_time++; } } times[v].second = current_time; // mark the finish time for v // we can push the nodes here onto a stack!!! yay return current_time; } 3 Example Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from (arbitrarily chosen), mark its start time as zero and visit . We will mark ’s start time and then recursively call DFS on . We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, won’t have more neighbors and so we will mark its finish time. We do the same thing with and we’ll end up with the graph below.</summary></entry><entry><title type="html">Cycles in Graphs</title><link href="http://localhost:4000/jekyll/update/2019/07/09/cycles.html" rel="alternate" type="text/html" title="Cycles in Graphs" /><published>2019-07-09T12:01:36-07:00</published><updated>2019-07-09T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/09/cycles</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/09/cycles.html">&lt;!--
-&lt;b&gt;0 References&lt;/b&gt;&lt;br&gt;
-?
-&lt;br&gt;
-&lt;br&gt;
-&lt;hr&gt;
-&lt;br&gt;
---&gt;
-
-&lt;p&gt;&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/cycle/1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We are given a graph &lt;script type=&quot;math/tex&quot;&gt;G = (V,E)&lt;/script&gt; and we want to know if there exists a cycle in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 Undirected Graphs&lt;/b&gt;
+&lt;b&gt;Heapsort&lt;/b&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-This is extremely simple. We already keep track of nodes visited so far. If it happens during our search that we come across a visited node then we’re done! there must exists a cycle otherwise, we won’t ever re-visit any vertex in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;c1&quot;&gt;// CYCLE&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Directed Graph&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-In a typical DFS, we assign a start time to a node and then traverse all the nodes that it can reach and then at the very end when we have visited all the nodes possible, we mark it’s end time. Let’s traverse the above graph starting at node &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;. We will mark its start time. Say we visit &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; next. We will also mark its start time and then visit &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; and mark its start time. from &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; we will visit &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; and again mark its start time. From &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; we will visit &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;. At this point, we know we’ve already seen &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and marked c’s start time (it’s not null). In a typical DFS, we would see that &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; doesn’t have any other unvisited neighbors and mark &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;’s finish time. We will end up with the below graph:
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/cycle/3.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let’s go back to the moment when we marked &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;’s start time and we saw &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;. What does this mean for &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;? Let’s recall that the paranthesis theorem (CLRS) says that for any pair of nodes, in this case &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;, one of three cases can happen:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;the intervals [c.start_time, c.finish_time] and [e.start_time, e.finish_time] are disjoint and neither &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; is a descendant of the other in the depth-first forest. This doesn’t apply as the intervals are not disjoint.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;the interval [c.start_time, c.finish_time] is contained within the interval [e.start_time, e.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;
-is a descendant of &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; in the depth-first tree. This doesn’t apply either (above graph).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;the interval [e.start_time, e.finish_time] is contained within the interval [c.start_time, c.finish_time] and &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; is a descendant of &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; in the depth-first tree. Aha! this one applies!&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Only the third case applies and we can conclude that &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; must be a descendant of node &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;let’s use colors. All nodes will be colored black initially. When we visit a node for the first time, we will color it gray. When we’re done visiting all the reachable nodes, we will mark it done by coloring it white.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/cycle/2.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;white&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// CYCLE&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// we are done with the node for good&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;black&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Proof&lt;/b&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;5 Implementations&lt;/b&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/cycles
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Patricia Tries</title><link href="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html" rel="alternate" type="text/html" title="Patricia Tries" /><published>2019-07-08T12:01:36-07:00</published><updated>2019-07-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/08/patricia-trie</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/08/patricia-trie.html">&lt;p&gt;&lt;b&gt;0 References&lt;/b&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;http://web.stanford.edu/class/cs166/
-&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;1 Introduction&lt;/b&gt;
-&lt;br /&gt;
-Now that we have seen the &lt;a href=&quot;/jekyll/update/2019/07/06/tries.html&quot;&gt;trie&lt;/a&gt; data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; strings of total length &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; and a string pattern &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. We want to find all the strings that match  &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. With a regular trie we solved it with &lt;script type=&quot;math/tex&quot;&gt;\langle O(m),O(n) \rangle&lt;/script&gt; time where &lt;script type=&quot;math/tex&quot;&gt;O(m)&lt;/script&gt; is the preprocessing step of building the trie out of all the strings we’re given. The &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time is the look up time for each pattern of length &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. Can we make it faster?
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;2 The Patricia Trie Data Structure&lt;/b&gt;
-&lt;br /&gt;
-Give the trie below:
-&lt;img src=&quot;http://localhost:4000/assets/trie/3.png&quot; width=&quot;100%&quot; /&gt;
-In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result.
-&lt;img src=&quot;http://localhost:4000/assets/trie/4.png&quot; width=&quot;100%&quot; /&gt;
-That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Properties of Patricia Tries&lt;/b&gt;
-&lt;br /&gt;
-Can we upper bound the number of nodes in a Patricia trie? Yes!&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Claim: the number of nodes in a Patricia trie with &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; words is &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt; nodes&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Proof:&lt;br /&gt;
-We know that we have at most &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; nodes that mark the end of a valid word in a patricia trie. Let’s remove all internal nodes so now we have &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; clusters and let’s add the internal nodes one at a time. Each internal node added will combine two clusters together. This will mean there are &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt; internal nodes total. (If not then an internal node will end up having only one child which is a contradiction). Therefore, the total number of nodes is &lt;script type=&quot;math/tex&quot;&gt;O(k)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;3 Search&lt;/b&gt;
-&lt;br /&gt;
-S
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-How long does search takes? oh only the length of the key or pattern!! so &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;!
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;4 Insert&lt;/b&gt;
-&lt;br /&gt;
-S
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;So insert takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time as well!
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;6 Running Time&lt;/b&gt;
-&lt;br /&gt;
-W
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;7 Full Implementation:&lt;/b&gt; 
-&lt;br /&gt;
-https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References http://web.stanford.edu/class/cs166/ 1 Introduction Now that we have seen the trie data structure, let’s look at a more efficient solution to the problem we discussed before. As a reminder, we are given strings of total length and a string pattern of length . We want to find all the strings that match . With a regular trie we solved it with time where is the preprocessing step of building the trie out of all the strings we’re given. The time is the look up time for each pattern of length . Can we make it faster? 2 The Patricia Trie Data Structure Give the trie below: In a Patricia trie we instead merge any node (with the exception of the root) that has only one child with its parent. Let’s look at the result. That’s it! This trie is called a Patricia trie! we basically merge internal nodes that have one child only into their parents to optimize the space needed to store all keys. 3 Properties of Patricia Tries Can we upper bound the number of nodes in a Patricia trie? Yes!</summary></entry></feed>
+TODO&lt;/p&gt;</content><author><name></name></author><summary type="html">0 References These are my study notes / summary on chapter 6 in CLRS. Introduction The heap data structure is an array that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. is the root of the tree. In the above tree, is the root of the tree. Because the heap is based on a complete binary tree, the height of a heap of elements is . As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in time. Finding the Parent, Left and Right Children Given an element . Its parent is located at . For example the parent of 2 (index 7) is . The left child is and the right child is . For example the right child of 13 (index 2) is .</summary></entry></feed>

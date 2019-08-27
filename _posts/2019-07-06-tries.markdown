@@ -17,9 +17,9 @@ mathjax: true
 <b>1 Introduction</b>
 <br>
 <img src="{{ site.url }}/assets/trie/intro.png" width="100%">
-Consider the following problem: a user is typing a string (called it $$p$$) of length $$n$$ in a search engine. As the user types, we want to display the strings that the user might have intended to type. For example, If the user types "cas", we want to display all the words "cast" and "castro" to the user.
+Consider the following problem: a user is typing a string (call it $$p$$) of length $$n$$ in a search engine. As the user types, we want to display the strings that the user might have intended to type. For example, if the user types "cas", we might want to display  the words "cast" and "castro" to the user.
 <br><br>
-Formally, given $$k$$ strings of total length $$m$$ and a string (pattern) $$p$$ of length $$n$$. We want to find all the strings that start with $$p$$. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take $$O(m)$$ time. However, suppose that we now we have $$r$$ patterns, then this approach will take $$O(mr)$$ time which is really slow, especially if we're displaying auto-complete live results to the user as they type their queries. Similar to the RMQ notation, we will write $$\langle O(1), O(mr)\rangle$$ where $$O(1)$$ is the preprocessing time and $$O(mr)$$ is the query time. So how can we make it faster?
+Formally, given $$k$$ strings of total length $$m$$ and a string (pattern) $$p$$ of length $$n$$. We want to find all the strings that start with $$p$$. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take $$O(m)$$ time. However, suppose that we now we have $$r$$ patterns, then this approach will take $$O(mr)$$ time which is really slow. Similar to the RMQ notation, for the previous approach, we will write $$\langle O(1), O(mr)\rangle$$ where $$O(1)$$ is the preprocessing time and $$O(mr)$$ is the query time. So how can we make it faster?
 <br>
 <br>
 <hr>
@@ -50,7 +50,7 @@ You can see above, the root has only one edge of value $$c$$. From $$c$$, we can
 <b>2 Node and Edges Representation</b>
 <br>
 <br>
-This can be done in a variety of ways. The following is just one way that uses a struct to represent a node. This struct will include a bool value to indicate whether we have arrived at a valid word or not. Each node/struct will also have an array to store all possible edges. Each array position holds a pointer to a node struct, intially all set to NULL. Here, we will consider the English alphabet which consists of 26 letters. We will use position 0 to represent 'a', 1 to represent 'b' and so. We will take advantage of the fact that the ascii value for the letter a is 97 and z is 122 and so to store 'c', we simply find the right position in the array by subtracting 'a' (97) from 'c' (99) to get 2 which is the correct position for 'c'. 
+This can be done in many ways. The following is just one way that uses a struct to represent a node. This struct will include a bool value to indicate whether we have arrived at a valid word or not. Each node/struct will also have an array to store all possible edges. Each array position holds a pointer to a node struct, intially all set to NULL. Here, we will consider the English alphabet which consists of 26 letters. We will use position 0 to represent 'a', 1 to represent 'b' and so. We will take advantage of the fact that the ascii value for the letter a is 97 and z is 122 and so to store 'c', we simply find the right position in the array by subtracting 'a' (97) from 'c' (99) to get 2 which is the correct position for 'c'. 
 {% highlight c++ %}
 #define SIZE 26
 typedef struct node {

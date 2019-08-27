@@ -25,14 +25,14 @@ Suppose we are given a list of $$n$$ two dimensional points $$\{\{x_1,y_1\},\{x_
 <b>2 Divide and Conquer</b>
 <br>
 <br>
-The brilliant algorithm we're about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we have the final result. As a starting point we will sort the points by their x-coordinate and let that array be $$P_x$$. We will also sort the points by their y-coordinate and let that array be $$P_y$$. We will be using $$P_y$$ later in the algorithm.
+The brilliant algorithm we're about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be $$P_x$$. We will also sort the points by their y-coordinate and let that array be $$P_y$$. We will be using $$P_y$$ later in the algorithm.
 <img src="{{ site.url }}/assets/closest/1.png" width="100%">
-Given $$P_x$$. We can start applying the the following divide and conquer idea. Repeatedly divide $$P_x$$ into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
+Given $$P_x$$. We can start by applying the following divide and conquer idea. Repeatedly divide $$P_x$$ into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
 <br>
 <br>
 <img src="{{ site.url }}/assets/closest/2.png" width="100%">
 
-How do we combine the results to find the single true closest pair? we need to consider that the closest pair might have a point in the left half and a point in the right half. We call this pair a <b>split pair</b>. So in the combine step we need to do two things, we find the split pair with the minimum distance. And then we need to find the minimum pair of the three pairs we have, the left pair, the right pair and the split pair. The following pseudo-code implements this idea. 
+How do we combine the results to find the single true closest pair? we need to consider that the closest pair might have a point in the left half and a point in the right half. We call this pair a <b>split pair</b>. So in the combine step we need to do two things, we find the split pair with the minimum distance. We then return the minimum pair of the three pairs we have, the left pair, the right pair and the split pair. The following pseudo-code implements this idea. 
 
 {% highlight c++ %}
 int closest_pair(Px, Py) { // Px sorted by x-coordinate, Py by y-coordinate
@@ -79,7 +79,7 @@ $$
 \end{align*}
 $$
 </div>
-The $$c$$ constant depends on the work we're doing in each level. We first create the four arrays $$left_x$$, $$left_y$$, $$right_x$$ and $$right_y$$. This takes $$O(n)$$. We then find the split pair. If we find the split pair in $$O(n^2)$$ then $$c = 2$$ and by the master theorem, the total runtime is $$O(n^2)$$. This defeats the purpose since the naive solution runs in $$O(n^2)$$. We also know that we initially sorted the array in $$O(n\log(n))$$ so the final runtime is at least $$O(n\log(n))$$. So roughly we know that we need to find the split pair really fast in $$O(n)$$ to have $$c = 1$$ and therefore, keeping our runtime at $$O(n\log(n))$$.
+The $$c$$ constant depends on the work we're doing in each level. We first create the four arrays $$left_x$$, $$left_y$$, $$right_x$$ and $$right_y$$. This takes $$O(n)$$ time. We then find the split pair. If we find the split pair in $$O(n^2)$$ then $$c = 2$$ and by the master theorem, the total runtime is $$O(n^2)$$. This defeats the purpose since the naive solution runs in $$O(n^2)$$. We also know that we initially sorted the array in $$O(n\log(n))$$ so the final runtime is at least $$O(n\log(n))$$. So roughly we know that we need to find the split pair really fast in $$O(n)$$ to have $$c = 1$$ and therefore, keeping our runtime at $$O(n\log(n))$$.
 <br>
 <br>
 <hr>
@@ -101,7 +101,7 @@ Now that we have both $$left_x$$ and $$right_x$$. We want to create two arrays $
 <br>
 <br>
 <img src="{{ site.url }}/assets/closest/3.png" width="100%">
-Let's assume that the minimum pair not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be $$\delta_l$$ (shown above) and let the right minimum distance be $$\delta_r$$. Let $$\delta$$ be the minimum of $$\delta_l$$ and $$\delta_r$$. Also let the right most point in the left array be $$\bar{x}$$. Now construct $$M$$ to be an array with all the points that have x-coordinate between $$\bar{x} - \delta$$ and $$\bar{x} + \delta$$ sorted by their y-coordinate (we can use $$P_y$$ with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs $$O(n)$$ time which is fine by us!
+Let's assume that the minimum pair is not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be $$\delta_l$$ (shown above) and let the right minimum distance be $$\delta_r$$. Let $$\delta$$ be the minimum of $$\delta_l$$ and $$\delta_r$$. Also let the right most point in the left array be $$\bar{x}$$. Now construct $$M$$ to be an array with all the points that have x-coordinate between $$\bar{x} - \delta$$ and $$\bar{x} + \delta$$ sorted by their y-coordinate (we can use $$P_y$$ with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs $$O(n)$$ time which is fine by us!
 <br><br>
 Let $$p=(x_1,y_1)$$ and $$q=(x_2,y_2)$$ be the split pair points we're trying to find where $$p$$ is in the left half and $$q$$ is in the right half. We claim the following:
 + Both $$p$$ and $$q$$ are in $$M$$.

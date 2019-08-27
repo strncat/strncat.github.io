@@ -13,20 +13,20 @@ These are my study notes / summary on chapter 6 in CLRS.
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>1 Introduction</b>
+<b>Introduction</b>
 <br>
 <br>
 <img src="{{ site.url }}/assets/heaps/1.png" width="100%">
-The heap data structure is an array $$A$$ that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. $$A[1]$$ is the root of the tree which is 17 in the above graph.
+The heap data structure is an array $$A$$ that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. $$A[1]$$ is the root of the tree. In the above tree, $$A[1]=17$$ is the root of the tree.
 <br><br>
-Because the heap is based on a complete binary tree, the height of a heap of $$n$$ elements is $$\Theta(n)$$. As a reminder, the height of a node is the longest path down from the node  to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in $$O(\log(n))$$ time.
+Because the heap is based on a complete binary tree, the height of a heap of $$n$$ elements is $$\Theta(\log(n))$$. As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in $$O(\log(n))$$ time.
 <br>
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>2 Finding the Parent, Left and Right Children </b>
+<b>Finding the Parent, Left and Right Children </b>
 <br>
 <br>
 Given an element $$A[i]$$. Its parent is located at $$A[\lfloor i/2 \rfloor]$$. For example the parent of 2 (index 7) is $$A[\lfloor 7/2 \rfloor]=A[3]=11$$. The left child is $$A[2*i]$$ and the right child is $$A[2*i+1]$$. For example the right child of 13 (index 2) is $$A[2*2 + 1] = A[5] = 3$$.
@@ -48,18 +48,18 @@ int right(i) {
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>3 The Heap Property </b>
+<b>The Heap Property </b>
 <br>
 <br>
 
-There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b> which is, for any given element $$A[i]$$ we must have:
+There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b>. The heap property depends on the type of the heap. For any given element $$A[i]$$ we must have:
 
-If this is a max-heap:
+If this is a max-heap then,
 
 | $$A[parent(i)] \geq A[i]$$ |
 
 
-If this is a min-heap: 
+If this is a min-heap then,
 
 | $$A[parent(i)] \leq A[i]$$ |
 
@@ -69,10 +69,10 @@ The heap property is crucial. Because of it, we know that the root of the heap m
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>4 Maintaining the Max-Heap Property</b>
+<b>Maintaining the Max-Heap Property</b>
 <br>
 <br>
-Suppose we have an element $$A[i]$$ that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of $$A[i]$$ maintain the heap property. We know in constant time that the children are $$A[2*i]$$ and $$A[2*i+1]$$. We can then swap $$A[i]$$ with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped $$A[i]$$. Let's look at a simple implementation:
+Suppose we have an element $$A[i]$$ that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of $$A[i]$$ maintain the heap property. We know in constant time that the children are $$A[2*i]$$ and $$A[2*i+1]$$. We can then swap $$A[i]$$ with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at $$A[i]$$. Let's look at a simple implementation:
 {% highlight c++ %}
 void max_heapify(int i) {
     int l = left(i);
@@ -103,10 +103,10 @@ How long does max_heapify take? Well, in the worst case, we will go down all the
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>5 Building a Max-Heap</b>
+<b>Building a Max-Heap</b>
 <br>
 <br>
-Based on how we store the heap elements in the array, the leaves of the tree are located stating at $$A[n/2+1], A[n/2+2],...,n$$. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of $$A$$ maintains the heap property. And so we can write the following to build a max-heap:
+Based on how we store the heap elements in the array, the leaves of the tree are located stating at $$A[n/2+1], A[n/2+2],...,n$$. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of $$A$$ maintains the heap property. Therefore, we can use the following to build a max-heap:
 {% highlight c++ %}
 void build_max_heap(A) {
     for (int i = A.length/2; i >=1; i--) {
@@ -119,31 +119,31 @@ void build_max_heap(A) {
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>5.1 Example</b>
+<b>Building a Max-Heap (Example)</b>
 <br>
 <br>
-Let's run through this to see how this might work. We're given the following array and we want to build a max-heap out of it.
+Let's look at an example of building a max-heap using the above idea. We're given the following array and we want to build a max-heap out of it.
 <br>
 <img src="{{ site.url }}/assets/heaps/e1.png" width="100%">
 <br>
 To build a max-heap we'll only consider the non-leaf nodes, highlighted below.
 <img src="{{ site.url }}/assets/heaps/e2.png" width="100%">
 <br>
-We'll start with index 3 (node 5) and call max_heapify. In max_heapify, we'll swap both node 5 and node 11 and then recusively call max_heapify again on the index 6 (where 5 moved).
+We'll start with node 5 and call max_heapify on it. In max_heapify, we'll swap both nodes 5 and 11. We will then recusively call max_heapify node 5.
 <img src="{{ site.url }}/assets/heaps/e3.png" width="100%">
 <br>
-5 is now a leaf node so we can't push it further down the tree and so we'll move to the next index 2 (node 3). 
+Notice that node 5 is now a leaf node so we can't push it further down the tree and so we'll move to the next node, node 3. 
 <img src="{{ site.url }}/assets/heaps/e4.png" width="100%">
 <br>
 Node 3 above will be swapped with the larger of its children, node 13.
 <img src="{{ site.url }}/assets/heaps/e5.png" width="100%">
 <br>
-Next we will recursively call max_heapify on index 4 but index 4 is already a leaf node. The final node in the build_max_heap for loop is node 1 (index 1).
+Notice how nodes 3 and 13 are now swapped. Next we will recursively call max_heapify on node 3 but node 3 is a just a leaf node and we will stop. The final node in the build_max_heap for loop is node 1.
 <img src="{{ site.url }}/assets/heaps/e6.png" width="100%">
 <br>
 We will swap node 1 with the larger of its children, node 13.
 <img src="{{ site.url }}/assets/heaps/e7.png" width="100%">
-We will then recusively call max_heapify on node 1, in its new location, index 2.
+We will then recusively call max_heapify on node 1.
 <img src="{{ site.url }}/assets/heaps/e8.png" width="100%">
 And finally we will swap 1 with the larger of its children, node 7.
 <img src="{{ site.url }}/assets/heaps/e9.png" width="100%">
@@ -155,10 +155,10 @@ Finally, you can see now that the tree/array is a max-heap:
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>6 Building a Max-Heap (Proof of Correctness)</b>
+<b>Building a Max-Heap (Proof of Correctness)</b>
 <br>
 <br>
-Why should we believe that build_max_heap works? This is going to be exactly what it's in CLRS (my notes for myself to quickly remember). We'll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.
+Why should we believe that build_max_heap works? This is going to be exactly what's in CLRS (my notes for myself to quickly remember). We'll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.
 
 | At the start of each iteration of the for loop in build_max_heap, each node $$i+1, i+2, ..., n$$ is the root of a max_heap. |
 
@@ -168,11 +168,11 @@ Before the first iteration that starts at $$A[\lfloor n/2 \rfloor]$$, the nodes 
 <br>
 <b>Maintenance</b>: (so the gist here is that max_heapify will maintain that node $$i$$ follows the heap property because indices $$2*i, 2*i+1$$ are higher than $$i$$ and therefore already maintain the heap property).
 <br>
-At each iteration, we call max-heapify on the node $$A[i]$$. The children of node $$A[i]$$ are at $$A[2*i]$$ and $$A[2*i+1]$$. Since both have a higher index than $$i$$ then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow $$i+1, i+2, ..., n$$. Therefore, when we decrement $$i$$, the loop invariant will be established before the next iteration.
+At each iteration, we call max-heapify on the node $$A[i]$$. The children of node $$A[i]$$ are $$A[2*i]$$ and $$A[2*i+1]$$. Since they both have a higher index than $$i$$ then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow $$i+1, i+2, ..., n$$. Therefore, when we decrement $$i$$, the loop invariant will be established before the next iteration.
 <br>
 <br>
 <b>Termination</b>:
-At termination when $$i=0$$, we know by the loop invariant that the nodes $$1, 2,...,n$$ are all roots of max-heaps. So we are done.
+At termination when $$i=0$$, we know by the loop invariant that the nodes $$1, 2,...,n$$ are all roots of max-heaps, specifically node $$1$$ which is the root of the final max heap we have. So we are done.
 <br>
 <br>
 I would obviously recommend looking at CLRS's way unless I'm in a rush and this is easily accessible on my phone. 
@@ -181,43 +181,68 @@ I would obviously recommend looking at CLRS's way unless I'm in a rush and this 
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>7 Building a Max-Heap (Running Time)</b>
+<b>Building a Max-Heap (Running Time)</b>
 <br>
 <br>
-The most exciting question is how long will building a max heap takes. We know that max_heapify takes $$O(\log(n))$$ time for each node. How many iterations do we have have in build_max_heap? To answer this, we need a little refresher (I do) on some properties of complete binary trees.
-<br>
-<img src="{{ site.url }}/assets/heaps/2.png" width="100%">
-A complete binary tree is a tree in which all the leaves have the same depth and all internal nodes have degree 2. Notice that at level 1 we have 2 children. At level 2 we have 4 children and at level $$t$$ we have $$2^t$$ children. Therefore, the number of leaves is just $$2^h$$ where $$h$$ is the height/depth of the tree. If we have $$n$$ leaves then the height of a complete binary tree is $$\log_2(n)$$. 
+The most exciting question is how long does it take to build a max heap? We know that max_heapify takes $$O(\log(n))$$ time for each node. We also know that we at most have $$O(n)$$ iterations. This means that building a max heap will run in $$O(n\log(n))$$. But we derive a much tighter bound than this by observing that:
 <br><br>
-What about the number of internal nodes? Given that the height is $$h$$, we know that the number of leaves is $$2^h$$. Therefore, the number of internal nodes is 
+(1) Binary heaps with $$n$$ nodes have height $$\lfloor \log(n) \rfloor$$. <br>
+(2) At any height $$i$$, we have at most $$\lceil \frac{n}{2^{i+1}} \rceil$$ nodes. <br>
+<hr>
+<br>
+Aside: What does (2) mean? Suppose we have a binary heap with $$n=7$$ just like the tree below:
+<img src="{{ site.url }}/assets/heaps/2.png" width="100%">
+The number of nodes at height 0 (leaves) is $$\lceil \frac{n}{2^{i+1}} \rceil = \lceil \frac{7}{2^{0+1}} \rceil = \lceil 3.5 \rceil = 4$$ <br>
+The number of nodes at height 1 is $$\lceil \frac{7}{2^{2}} \rceil= 2$$ <br>
+The number of nodes at height 2 (root) is $$\lceil \frac{7}{2^{3}} \rceil= 1$$ <br>
+<b>Formal Proof:</b><br>
+TODO
+<br>
+<hr>
+<br>
+We can now sum the work we're doing at each level which is just the height of the level multipled by the number of nodes in that level. We do that for each level in the tree, from the 0th level to the $$\lfloor \log(n) \rfloor$$'s level:
+
 <div center>
 $$
 \begin{align*}
-1 + 2 + 4 + ... + 2^{h-1} &= \sum_{i=0}^{h-1}2^i = \frac{2^h-1}{2-1} = 2^h-1
+\sum_{i=0}^{\lfloor \log(n) \rfloor} \lceil \frac{n}{2^{i+1}} \rceil O(i) = O(n\sum_{i=0}^{\lfloor \log(n) \rfloor} \frac{i}{2^{i}} )
 \end{align*}
 $$
 </div>
-Back to build_max_heap. The for loop runs for only the internal nodes and so
+We can use the following summation:
 <div center>
 $$
 \begin{align*}
-1 + 2 + 4 + ... + 2^{h-1} &= \sum_{i=0}^{h-1}2^i = \frac{2^h-1}{2-1} = 2^h-1
+\sum_{k=0}^{\infty} kx^k = \frac{x}{(1-x)^2}
 \end{align*}
 $$
 </div>
-
-
-
- 
+By substituting $$x$$ with $$1/2$$ to get:
+<div center>
+$$
+\begin{align*}
+\sum_{k=0}^{\infty} \frac{k}{2^k} = \frac{1/2}{(1-1/2)^2} = \frac{1}{2(1/4)} = 2
+\end{align*}
+$$
+</div>
+And therefore, we can bound the earlier summation to just:
+<div center>
+$$
+\begin{align*}
+O(n\sum_{i=0}^{\lfloor \log(n) \rfloor} \frac{i}{2^{i}} ) = O(n)
+\end{align*}
+$$
+</div>
+and we're done!
 <br>
 <br>
 <hr>
 <!------------------------------------------------------------------------------------>
 <br>
-<b>6 Heapsort</b>
+<b>Heapsort</b>
 <br>
 <br>
-Hello
+TODO
 
 
 

@@ -5,14 +5,19 @@ date:   2019-04-01 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<b>0 References</b><br>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>References</b><br>
+</div>
+<br>
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Introduction</b>
+</div>
 <br>
-<b>1 Introduction</b><br>
 Let $$G=(V,E)$$ be a graph with $$V$$ vertices and $$E$$ edges. 
 
 $$G$$ is strongly connected if for all $$u,v$$ in $$V$$:<br>
@@ -22,23 +27,24 @@ $$G$$ is strongly connected if for all $$u,v$$ in $$V$$:<br>
 Based on this definition, we can decompose a graph into strongly connected components. To find these strongly connected components, we describe Kosaraju's amazing algorithm.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Algorithm</b>
+</div>
 <br>
-<b>2 Algorithm</b><br>
-It is a magical algorithm!
 {% highlight c++ %}
 (1) Run DFS to create a DFS forest and keep track of finishing times.
 (2) Reverse all the edges in G.
-(3) Run DFS again in the reverse graph from the node with the largest finishing time.
-(4) The SCCs are the different trees in the second DFS forest.
+(3) Run DFS again in the reversed graph from the node with the largest finishing time.
+Return the connected components from (3) (these are the SCCS)
 {% endhighlight %}
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Example</b>
+</div>
 <br>
-<b>3 Example</b><br>
 <img src="{{ site.url }}/assets/scc/1.png" width="100%">
 Let's apply Kosaraju's algorithm on the above graph. First we need to run DFS while keeping tracking of the finishing times of vertices. We start by visiting $$a$$ and mark the start time as 0. We will continue to visit $$f$$ and then $$b$$ marking their start times below.
 <img src="{{ site.url }}/assets/scc/2.png" width="100%">
@@ -58,10 +64,11 @@ We finally visit $$d$$ and $$e$$ and that's our third and final strongly connect
 <img src="{{ site.url }}/assets/scc/9.png" width="100%">
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Correctness Proof</b><br>
+</div>
 <br>
-<b>4 Proof of Correctness</b><br>
 Why does this algorithm find the SCCs? To show how, we'll first prove two important lemmas that we'll use in proving that the algorithm is correct.
 <br>
 <br>
@@ -111,28 +118,28 @@ Therefore, we will only discover vertices in $$A$$ in the second DFS started fro
 <b>Conclusion:</b> The second (reversed) DFS forest contains all the SCCs as its trees. $$\blacksquare$$
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Running Time</b> 
+</div>
 <br>
-<b>5 Running Time:</b> 
-What are we doing in this algorithm algorithm? Two passes of DFS that we know run in $$O(n+m)$$. Therefore the running time is astonishingly $$O(n+m)$$. 
+What are we doing in this algorithm algorithm? Two passes of DFS that we know run in $$O(n+m)$$. Therefore, the running time is astonishingly $$O(n+m)$$. 
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Implementation</b> 
+</div>
 <br>
-<b>6 Detailed Implementation:</b> 
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/connected-components/strongly-connected-components-directed-kosaraju.cpp
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>10 Practice Problems</b>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Practice Problems</b>
+</div>
 <br>
 <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2499">11504 - Dominos (Almost Kosaraju but not quite)</a>
-<br>
-<a href="-">1</a>
 <br>
 <br>
 

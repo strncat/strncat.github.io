@@ -5,14 +5,18 @@ date:   2019-06-20 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<b>0 References</b><br>
+<!----------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>References</b><br>
+</div>
+<br>
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>1 Introduction</b>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Introduction</b><br>
+</div>
 <br>
 ![my photo]({{ site.url }}/assets/bfs/bfs1.png)
 
@@ -21,10 +25,10 @@ Breadth first search is a useful and widely used algorithm in graph traversal pr
 In other words, breadth first search explores the graph in layers. The immediate neighbors are in layer 1 and have distance 1 to the source vertex. The vertices in layer 2 have distance 2 to the source vertex and so on. Given a layer, all the vertices in that layer have the same distance to the source vertex. It turns out that breadth first search also finds the the shortest paths from the $$s$$ to every other vertex in the graph in terms of the number of edges between $$s$$ and each vertex. We'll prove this more formally later!
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>2 Data Structures</b>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Data Structures</b><br>
+</div>
 <br>
 To perform a breadth first search, we will maintain the following data structures:
 <br>
@@ -35,10 +39,10 @@ To perform a breadth first search, we will maintain the following data structure
 (3) A set or an array that keeps track of the parent nodes. This is optional and only needed if we want to recover the path from $$s$$ to every other node in $$G$$.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>3 Example</b>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Example</b><br>
+</div>
 <br>
 Let's explore the graph above. We will start by popping $$s$$ from the queue with its distance 0. We will then enqueue the neighbors of $$s$$ along with distance 1 and also mark them visited. We could also use the parent array to indicate that $$s$$ is the parent of $$a$$ and $$b$$. At this point, we have $$a$$ and $$b$$ in layer 1 with distance 1. We also marked their parent $$s$$ correctly. This information will not change in any future iteration. 
 
@@ -58,10 +62,10 @@ Notice now how the nodes are organized in layers in terms of the distance from $
 ![my photo]({{ site.url }}/assets/bfs/bfs5.png)
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>4 Implementation</b>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Implementation</b><br>
+</div>
 <br>
 {% highlight c++ %}
 int bfs(int start, int end, std::vector<std::vector<int>>& graph) {
@@ -105,10 +109,10 @@ int bfs(int start, int end, std::vector<std::vector<int>>& graph) {
 {% endhighlight %}
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>5 Proof</b>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Proof</b><br>
+</div>
 <br>
 Why does BFS find the shortest paths from $$s$$ to every other vertex in $$G$$? Intuitively, we know that we explore the vertices in layers starting at $$s$$. So if we have a vertex $$x$$ in layer $$j$$ then we know the distance to $$s$$ is just $$j$$ and that $$x$$ can't have a shorter path to $$s$$ simply because we would have found $$x$$ in an earlier layer, right? Let's make this formal.
 <br>
@@ -135,26 +139,27 @@ Since $$dist(s,w) \leq k$$ and $$dist(s,w) \geq k$$ then we must have $$dist(s,w
 For all vertices $$w \in V$$, if $$w \in L_j$$, then $$dist(s,w) = j$$.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>6 Proof (Take 2) (The CLRS Way)</b>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Proof (CLRS Way)</b><br>
+</div>
 <br>
  I really really really want to go through the CLRS way of doing this proof formally. This is a TODO! (starts in page 598)
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>6 Running Time</b>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Running Time</b><br>
+</div>
 <br>
 We visit each vertex at most once only because of the visited array we're maintaining. That's $$O(V)$$ time. As a result, we also visit the adjacency list of each vertex at most once and that's $$O(E)$$. Therefore, the total time is $$O(V+E)$$.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Implementation</b><br>
+</div>
 <br>
-<b>7 Full Implementation:</b> 
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/breadth-first-search
 <br>
 <br>

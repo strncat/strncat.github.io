@@ -1,0 +1,286 @@
+---
+layout: post
+title:  "Krager's Minimum Cut"
+date:   2019-08-28 03:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+<img src="{{ site.url }}/assets/mincut/1.png" width="100%">
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>References</b>
+</div>
+<br>
+class notes from following:
+1. http://web.stanford.edu/class/cs161/schedule.html 
+2. https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/11/Small11.pdf
+3. Algorithm Design (BEST BOOK)
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Introduction</b>
+</div>
+<br>
+Let $$G=(V,E)$$ be an undirected graph with $$V$$ vertices and $$E$$ edges. A cut in $$G$$ is a partition of $$V$$ into two non-empty sets of vertices $$A$$ and $$B$$. The <b>size</b> of the cut is the number of edges with one end point in $$A$$ and another in $$B$$. A <b>global minimum cut</b> is a cut of minimum size.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Krager's Algorithm</b>
+</div>
+<br>
+Krager's algorithm starts with picking an edge $$(u,v)$$ in $$G$$ uniformly at random. It then <b>contracts</b> this edge by creating a new node $$w$$ that combines both $$u$$ and $$v$$. All the edges in $$G$$ with an end point equal to either $$u$$ and $$v$$ now point to $$w$$ instead. Also, any edge between $$u$$ and $$v$$ is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in $$G$$. 
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Krager's Algorithm Pseudocode</b>
+</div>
+<br>
+{% highlight c++ %}
+void krager(graph& g) {
+	Initially create a set for each node v, S(v) = {v}
+    while (G has more than two nodes) {
+        choose an edge e=(u,v) uniformly at random.
+        create a new node w with S(w) = S(u) union S(v)
+    }
+    return the sets of the last two nodes.
+}
+{% endhighlight %}
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Example</b>
+</div>
+<br>
+Suppose we apply the contraction algorithm on the above graph. We start by picking an edge uniformly at random. Suppose we picked the edge $$(d,e)$$ below:
+<img src="{{ site.url }}/assets/mincut/2.png" width="100%">
+We then delete $$(d,e)$$. We create a new node $$z$$. We then point any edge that previously had an end point equal to $$d$$ or $$e$$ to point at $$z$$.
+<img src="{{ site.url }}/assets/mincut/3.png" width="100%">
+Suppose we pick $$(a,b)$$ next.
+<img src="{{ site.url }}/assets/mincut/4.png" width="100%">
+We delete $$(a,b)$$ and create node $$y$$ and fix all the old edges pointing at $$a$$ or $$b$$ to point at $$y$$.
+<img src="{{ site.url }}/assets/mincut/5.png" width="100%">
+Suppose we pick $$(f,g)$$ next.
+<img src="{{ site.url }}/assets/mincut/6.png" width="100%">
+We'll repeat the same process by creating $$x$$ and fixing the edges below:
+<img src="{{ site.url }}/assets/mincut/7.png" width="100%">
+Suppose we pick $$(z,x)$$ next.
+<img src="{{ site.url }}/assets/mincut/8.png" width="100%">
+We'll again delete the edge, create a new node $$w$$ and fix all the edges below:
+<img src="{{ site.url }}/assets/mincut/9.png" width="100%">
+Finally, suppose we pick $$(y,c)$$ and repeat the same steps. 
+<img src="{{ site.url }}/assets/mincut/10.png" width="100%">
+Since we only have 2 vertices then we're done. We will return the number of edges between the two vertices which is 1 in this case. So the global minimum cut is of size 1 which is correct for this graph.
+<img src="{{ site.url }}/assets/mincut/11.png" width="100%">
+Suppose however that instead of picking $$(y,c)$$ to contract, we picked $$(y,w)$$
+<img src="{{ site.url }}/assets/mincut/10a.png" width="100%">
+We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager's algorithm is a Monte Carlo algorithm.
+<img src="{{ site.url }}/assets/mincut/11a.png" width="100%">
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>What is the probability of getting a correct answer?</b>
+</div>
+<br>
+Suppose we have a graph $$G=(E,V)$$ with $$n$$ nodes and $$m$$ edges. Suppose the cut $$(A,B)$$ is a global minimum cut is of size $$k$$. Also let $$F$$ to be the set of $$k$$ edges in the cut $$(A,B)$$. So $$F$$ has the edges that have one end point in $$A$$ and the other end point in $$B$$.
+<br>
+<br>
+The probability that the contraction algorithm succeeds is the probability that we don't make any mistake in the $$n-2$$ iterations of the algorithm. Suppose we let $$S_i$$ to be the event that we don't make a mistake in step $$i$$ or generally succeed in step $$i$$. We want to calculate the following probability:
+<div center>
+$$
+\begin{align*}
+Pr(success) = Pr(S_1 \cap S_2 \cap S_3 \cap ... \cap S_{n-2})
+\end{align*}
+$$
+</div>
+These events are not independent! We can further expand this using the chain rule and instead calculate:
+<div center>
+$$
+\begin{align*}
+Pr(success) = Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3})
+\end{align*}
+$$
+</div>
+<hr>
+<br>
+<b> Success in the iteration 1:</b><br>
+Let's look at how we can calculate each of these. What does it mean to not make a mistake in step 1? It means that we don't pick an edge that connects a vertex from the set $$A$$ to a vertex from the set $$B$$. Because if we did, then $$A$$ and $$B$$ will be merged together and we will not be able to return the global minimum cut $$(A,B)$$. So we basically want to avoid picking edges from $$F$$. Therefore, the probability that we don't make a mistake in step 1 is
+<br>
+<div center>
+$$
+\begin{align*}
+Pr(S_1) = 1 - \frac{|F|}{|E|} = 1 - \frac{k}{|E|}.
+\end{align*}
+$$
+</div>
+What is $$|E|$$? <br>
+We will use $$k$$ to find an upper bound on $$|E|$$. We know that the global minimum cut is of size $$k$$, therefore, we must have:
+
+| For any node $$v$$ in $$V$$, $$degree(v) \geq k$$ |
+
+Proof: Suppose not, then there exists some node $$u$$ such that $$degree(u) < k$$. Pick the minimum cut such that $$A = \{u\}$$ and $$B = V - \{u\}$$. The cut $$(A,B)$$ is a global minimum cut of size less than $$k$$ which is a contradiction. $$\blacksquare$$
+<br>
+<br>
+Based on this, we can conclude that $$|E| \geq \frac{1}{2}kn$$. ($$\frac{1}{2}$$ because $$G$$ is undirected).
+<br>
+<br>
+So now we have:
+<div center>
+$$
+\begin{align*}
+Pr(S_1) = 1 - \frac{|F|}{|E|} \geq 1 - \frac{2k}{kn} = 1 - \frac{2}{n}.
+\end{align*}
+$$
+</div>
+<hr>
+<br>
+<b> Success in iteration $$i+1$$:</b><br>
+What about the other iterations? What is the probability that we don't make a mistake in iteration $$i+1$$ given that we haven't made any mistake in all the previous interations? At iteration $$i+1$$, we have $$n-i$$ nodes in the graph. Since we haven't made any mistake yet, we still have $$k$$ edges in $$F$$ and each node is of degree at least $$k$$ (same proof as before). Therefore, 
+<div center>
+$$
+\begin{align*}
+Pr(S_{i+1} | S_1 \cap S_2 \cap ... \cap S_i) \geq 1 - \frac{k}{1/2k(n-j)} = 1 - \frac{2}{n-j}.
+\end{align*}
+$$
+</div>
+<hr>
+<br>
+Now we can combine everything together:
+<div center>
+$$
+\begin{align*}
+Pr(success) &= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3}) \\
+&\geq (1 - \frac{2}{n})(1 - \frac{2}{n-1})...(1-\frac{2}{n-j})...(1-\frac{2}{3}) \\
+&= (\frac{n-2}{n})(\frac{n-3}{n-1})...(\frac{2}{4})(1-\frac{1}{3}) \\
+&= \frac{2}{n(n-1)}.
+\end{align*}
+$$
+</div>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Can we do better?</b>
+</div>
+<br>
+The probability of success we found so far is 
+<div center>
+$$
+\begin{align*}
+Pr(success) &\geq \frac{2}{n(n-1)} = \frac{1}{\binom{n}{2}}.
+\end{align*}
+$$
+</div>
+Suppose we run $$k$$ iterations of Krager's algorithm. We then take the minimum cut of all cuts found. These iterations are independent. What is the probability of NOT getting the global minimum cut? It is the probability of failing in every run of the $$k$$ runs. Let $$F_i$$ be the event that we failed to find the global minimum cut in iteration $$i$$. Therefore,
+<div center>
+$$
+\begin{align*}
+Pr(\text{Failure after } k \text{ runs}) &= Pr(F_1 \cap F_2 \cap ... \cap F_k) \\
+&\leq Pr(F_1)Pr(F_2)...Pr(F_k) \text{  (by independence)}\\
+&= \big(1-\frac{2}{n(n-1)} \big)^{k} \\
+&= \big(1-\frac{1}{\binom{n}{2}} \big)^{k}.
+\end{align*}
+$$
+</div>
+We also know that for any $$x \geq 1$$, we have
+<div center>
+$$
+\begin{align*}
+\frac{1}{4} \leq \big (1-\frac{1}{x} \big)^x \leq \frac{1}{e}
+\end{align*}
+$$
+</div>
+Using the above bound, we can let $$k = \binom{n}{2}$$ and see that
+<div>
+$$
+\begin{align*}
+Pr(\text{Failure}) &\leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\binom{n}{2}} \leq \frac{1}{e}
+\end{align*}
+$$
+</div>
+Furthermore, we can let $$k = \ln(n)\binom{n}{2}$$ to get
+<div>
+$$
+\begin{align*}
+Pr(\text{Failure}) &\leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\ln(n)\binom{n}{2}} \leq \frac{1}{e}^{\ln(n)} = \frac{1}{n}
+\end{align*}
+$$
+</div>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Running Time</b>
+</div>
+<br>
+Suppose we have $$n$$ nodes and $$m$$ edges. In the naive implementation, we contract $$n-2$$ edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take $$O(n)$$ time. Therefore, the total running time is $$O(n^2)$$. There are other faster implementations with union-find data structure that reduce the running time to $$O(m * \alpha(n))$$. (TODO: More on this?)
+<br>
+<br>
+Given that we can get a high success probability if we run Krager's algorithm for $$O(\log(n)n^2)$$. The total running time is therefore $$O(n^4\log(n))$$!
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Karger - Stein</b>
+</div>
+<br>
+Can we do better than $$(n^4\log(n)$$ and still maintain the same probability of success? Krager and Stein published an improved result that's much faster! 
+<br>
+<br>
+Observe when running Krager's algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set $$F$$) gets higher with every iteration. Therefore, we should really just run krager once in the first few iterations and then repeat Karger for the remaining nodes. This is what Krager and Stein are doing:
+
+{% highlight c++ %}
+void krager_stein(graph& g) {
+	if (n < 4) {
+        find a minimum cut by brute force
+    }
+    Run krager (contraction algorithm) from above until there are only n/sqrt(2) nodes left
+    Let g1 = g and g2 = g (two copies)
+	cut1 = krager_stein(g1)
+	cut2 = krager_stein(g2)
+	Return the minmum cut of cut1 and cut2
+}
+{% endhighlight %}
+Visually, we are contracting until we get $$n/\sqrt{2}$$ vertices, making copies and then independently again contracting below:
+<img src="{{ site.url }}/assets/mincut/stein.png" width="100%">
+Since we're repeatdly dividing by $$\sqrt{2}$$, then we know that the depth of the tree is 
+<div>
+$$
+\begin{align*}
+\log_{\sqrt{2}}(n) = \frac{\log(n)}{\log(\sqrt{2})} = 2\log(n)
+\end{align*}
+$$
+</div>
+And the number of leaves is
+<div>
+$$
+\begin{align*}
+2^{2\log(n)} = O(n^2)
+\end{align*}
+$$
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

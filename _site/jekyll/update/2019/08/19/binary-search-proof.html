@@ -2,22 +2,13 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
-<title>Binary Search Correctness Proof | strncat’s notebook</title>
-<meta name="generator" content="Jekyll v3.7.4" />
-<meta property="og:title" content="Binary Search Correctness Proof" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="References These are my study notes from CLRS and ? Binary Search Given a sorted array of integers and a key, we want to return the index of the key in the array or -1 if the key doesn’t exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After iterations, we will either correctly return that index or return -1 if the key doesn’t exist. int binary_search(int *a, int key, int n) { int m, first = 0, last = n - 1; while (first &lt;= last) { m = (first + (last - first / 2); if (key &gt; a[m]) { first = m + 1; } else if (key &lt; a[m]) { last = m - 1; } else if (key == a[m]) { return m; } } return -1; // not found } Preconditions, Postconditions and Loop Invariants This is my attempt to prove that binary search algorithm implemented above is correct. As a reminder from CLRS, we use loop invariants to help understand why an algorithm is correct. In order to prove an algorithm is correct, we must show that: The invariant is true before the first iteration of the loop. (Initialization) If the invariant is true before iteration , then it is true before iteration . (Maintenance) When the loop terminates, the invariant gives us a property to help show that the algorithm is correct. (Termination)" />
-<meta property="og:description" content="References These are my study notes from CLRS and ? Binary Search Given a sorted array of integers and a key, we want to return the index of the key in the array or -1 if the key doesn’t exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After iterations, we will either correctly return that index or return -1 if the key doesn’t exist. int binary_search(int *a, int key, int n) { int m, first = 0, last = n - 1; while (first &lt;= last) { m = (first + (last - first / 2); if (key &gt; a[m]) { first = m + 1; } else if (key &lt; a[m]) { last = m - 1; } else if (key == a[m]) { return m; } } return -1; // not found } Preconditions, Postconditions and Loop Invariants This is my attempt to prove that binary search algorithm implemented above is correct. As a reminder from CLRS, we use loop invariants to help understand why an algorithm is correct. In order to prove an algorithm is correct, we must show that: The invariant is true before the first iteration of the loop. (Initialization) If the invariant is true before iteration , then it is true before iteration . (Maintenance) When the loop terminates, the invariant gives us a property to help show that the algorithm is correct. (Termination)" />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/08/19/binary-search-proof.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/08/19/binary-search-proof.html" />
-<meta property="og:site_name" content="strncat’s notebook" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-08-19T07:01:36-07:00" />
-<script type="application/ld+json">
-{"url":"http://localhost:4000/jekyll/update/2019/08/19/binary-search-proof.html","headline":"Binary Search Correctness Proof","dateModified":"2019-08-19T07:01:36-07:00","datePublished":"2019-08-19T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/08/19/binary-search-proof.html"},"description":"References These are my study notes from CLRS and ? Binary Search Given a sorted array of integers and a key, we want to return the index of the key in the array or -1 if the key doesn’t exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After iterations, we will either correctly return that index or return -1 if the key doesn’t exist. int binary_search(int *a, int key, int n) { int m, first = 0, last = n - 1; while (first &lt;= last) { m = (first + (last - first / 2); if (key &gt; a[m]) { first = m + 1; } else if (key &lt; a[m]) { last = m - 1; } else if (key == a[m]) { return m; } } return -1; // not found } Preconditions, Postconditions and Loop Invariants This is my attempt to prove that binary search algorithm implemented above is correct. As a reminder from CLRS, we use loop invariants to help understand why an algorithm is correct. In order to prove an algorithm is correct, we must show that: The invariant is true before the first iteration of the loop. (Initialization) If the invariant is true before iteration , then it is true before iteration . (Maintenance) When the loop terminates, the invariant gives us a property to help show that the algorithm is correct. (Termination)","@type":"BlogPosting","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -69,19 +60,18 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>References</b>
-<br />
-<br />
+    <div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
+<b>References</b>
+</div>
+<p><br />
 These are my study notes from CLRS and ?
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
 <b>Binary Search</b>
-<br />
-<br />
+</div>
+<p><br />
 Given a sorted array <script type="math/tex">a</script> of <script type="math/tex">n</script> integers and a key, we want to return the index of the key in the array or -1 if the key doesn’t exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After <script type="math/tex">O(\log(n))</script> iterations, we will either correctly return that index or return -1 if the key doesn’t exist.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">binary_search</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
@@ -100,46 +90,53 @@ Given a sorted array <script type="math/tex">a</script> of <script type="math/te
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
+<b>Correctness Proof</b>
+</div>
 <p><br />
-<b>Preconditions, Postconditions and Loop Invariants</b>
-<br />
-<br />
-This is my attempt to prove that binary search algorithm implemented above is correct.
-<br /><br />
-As a reminder from CLRS, we use loop invariants to help understand why an algorithm is correct. In order to prove an algorithm is correct, we must show that:</p>
+This is just my attempt to prove that binary search algorithm implemented above is correct. To prove binary search is correct, we want to prove the following:</p>
 <ul>
-  <li>The invariant is true before the first iteration of the loop. (Initialization)</li>
-  <li>If the invariant is true before iteration <script type="math/tex">i</script>, then it is true before iteration <script type="math/tex">i+1</script>. (Maintenance)</li>
-  <li>When the loop terminates, the invariant gives us a property to help show that the algorithm is correct. (Termination)</li>
+  <li>At every iteration binary search is still searching the correct range in the array. This can be achieved with a loop invariant.</li>
+  <li>Binary search terminates.</li>
 </ul>
 
+<p>If we are able to prove these two then we can conclude that binary search is correct.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
+<b>Preconditions and Postconditions</b>
+</div>
 <p><br />
-The first two properties are similar to mathematical induction since we need to prove a base case and then prove the inductive step.
-<br />
-<br />
 In addition to loop invariants, we also need to describe the preconditions of binary search. Preconditions are just assertions that must be true at the beginning of our function. In our case, <b>our precondition is that the array is sorted in an ascending order</b>. If the array is not sorted, then we don’t guarantee anything about the outcome.
 <br />
 <br />
 In addition to preconditions, we also need to describe our postconditions. Given that we met the preconditions, our loop invariant is correct and our algorithm terminates, our <b>post condition is that we return -1 if the key is not in the array or return the index of the key in the array</b>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
+<b>Binary Search's Loop Invariant</b>
+</div>
 <p><br />
-<b>Binary Search’s Loop Invariant</b>
-<br />
-<br />
-Let’s define the following loop invariant: At the start of each iteration of the while loop above the following is true: <br />
-(1) <script type="math/tex">1 \leq first \leq last \leq n</script><br />
-(2) If the key is in the array and so there is some <script type="math/tex">index</script> such that <script type="math/tex">a[index] = key</script> and <script type="math/tex">1 \leq index \leq n</script> then <script type="math/tex">first \leq index \leq last</script>. This just means that we are correctly picking the right range to search at every iteration.
-<br />
-<br />
-<b>Initialization:</b>
+As a reminder from CLRS, loop invariants have three parts that we need to prove:</p>
+<ul>
+  <li>The invariant is true before the first iteration of the loop. (Initialization)</li>
+  <li>If the invariant is true before iteration <script type="math/tex">i</script>, then it is true before iteration <script type="math/tex">i+1</script>. (Maintenance)</li>
+  <li>When the loop terminates, the invariant gives us a property to help show that the algorithm is correct. (Termination)
+<br /></li>
+</ul>
+
+<p>Let’s define the following loop invariant: <br />
+At the start of each iteration of the while loop above the following is true: <br /></p>
+<ol>
+  <li><script type="math/tex">1 \leq first \leq last \leq n</script><br /></li>
+  <li>If the key is in the array and so there is some <script type="math/tex">index</script> such that <script type="math/tex">a[index] = key</script> and <script type="math/tex">1 \leq index \leq n</script> then <script type="math/tex">first \leq index \leq last</script>. This just means that we are correctly picking the right range to search at every iteration.
+<br /></li>
+</ol>
+
+<p><b>Initialization:</b>
 <br />
 Before the first iteration we know that <script type="math/tex">first = 1</script> and <script type="math/tex">last = n-1</script> and so (1) is trivially true. Also, if the key is in <script type="math/tex">a</script> then it must be that <script type="math/tex">1 \leq index \leq n-1</script> where <script type="math/tex">a[index] = key</script>. Therefore, we are searching the correct range.
 <br />
@@ -152,11 +149,11 @@ Suppose the invariant holds before iteration <script type="math/tex">i</script> 
 (1) <script type="math/tex">a[m] == key</script>. We therefore, return <script type="math/tex">m</script> and we are done. 
 <br />
 <br />
-(2) <script type="math/tex">a[m] > key</script>. Our algorithm in this case searches the new range <script type="math/tex">[first, m-1]</script>. We know that <script type="math/tex">first \leq index</script> and we so we only need to prove that <script type="math/tex">index \leq m-1</script>. Note that we know that <script type="math/tex">a[m] > key</script> and since the array is sorted then it must be that <script type="math/tex">% <![CDATA[
+(2) <script type="math/tex">a[m] > key</script>. Our algorithm in this case searches the new range <script type="math/tex">[first, m-1]</script>. We know that <script type="math/tex">first \leq index</script> by the inductive hypothesis and so we only need to prove that <script type="math/tex">index \leq m-1</script>. Since <script type="math/tex">a[m] > key</script> and since the array is sorted then it must be that <script type="math/tex">% <![CDATA[
 index < m %]]></script> is true otherwise <script type="math/tex">a[index]</script> comes after <script type="math/tex">a[m]</script> which indicates that <script type="math/tex">a</script> is not sorted.
 <br />
 <br />
-(2) <script type="math/tex">a[m] > key</script>. Our algorithm will then search the new range <script type="math/tex">[m+1, last]</script>. We can use a similar argument to (2) to prove that <script type="math/tex">index \in [m+1, last]</script>.
+(3) <script type="math/tex">a[m] > key</script>. Our algorithm will then search the new range <script type="math/tex">[m+1, last]</script>. We can use a similar argument to (2) to prove that <script type="math/tex">index \in [m+1, last]</script>.
 <br />
 <br />
 From (1), (2), (3) we conclude that the invariant holds before iteration <script type="math/tex">i+1</script>. 
@@ -164,19 +161,30 @@ From (1), (2), (3) we conclude that the invariant holds before iteration <script
 <br />
 <b>Termination:</b>
 <br />
+Suppose we know we terminate (proof next), then by the loop invariant we know</p>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
+<b>Does Binary Search Terminate?</b>
+</div>
+<p><br />
 Will we terminate? we need to prove that if the search range is <script type="math/tex">[first_i, last_i]</script> in iteration <script type="math/tex">i</script> and the search range in iteration <script type="math/tex">i+1</script> is <script type="math/tex">[first_{i+1}, last_{i+1}]</script> then it must be that <script type="math/tex">% <![CDATA[
-last_{i+1} - first_{i+1} < last_{i} - first_{i} %]]></script>. To do so we can use a similar approach to the one we used to prove our maintenance step. We know there are three cases, in each case we can prove that the new range is shrinking. (TODO).
+last_{i+1} - first_{i+1} < last_{i} - first_{i} %]]></script>. To do so we can use a similar approach to the one we used to prove our maintenance step. We know there are three cases, in each case we can prove that the new range is shrinking.
 <br />
 <br />
-Since our algorithm terminates then by the loop invariant</p>
+Suppose <script type="math/tex">m</script> is the midpoint in <script type="math/tex">[first_i, last_i]</script>. There are three cases:</p>
 
-<p><br />
-<br /></p>
-<hr />
+<ul>
+  <li><script type="math/tex">a[m] == key</script>. We therefore, return <script type="math/tex">m</script> and we are done (binary search terminates).</li>
+  <li><script type="math/tex">a[m] > key</script>. Our algorithm in this case searches the new range <script type="math/tex">[first_i, m-1]</script>. We see here that <script type="math/tex">% <![CDATA[
+m-1-first_i < last_i-first_i %]]></script>.</li>
+  <li><script type="math/tex">a[m] > key</script>. Our algorithm will then search the new range <script type="math/tex">[m+1, last]</script>. Similarly, we see here that <script type="math/tex">% <![CDATA[
+last - m + 1 < last_i - first_i %]]></script>.</li>
+</ul>
 
-<!------------------------------------------------------------------------------------>
-<p><br />
-<br /></p>
+<p>From the three cases we conclude that binary search must terminate.</p>
 
 
   </div><div id="disqus_thread"></div>
@@ -222,7 +230,7 @@ s.setAttribute('data-timestamp', +new Date());
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>hello</p>
+        <p>personal study notes</p>
       </div>
     </div>
 

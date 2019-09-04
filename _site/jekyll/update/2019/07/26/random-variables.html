@@ -2,22 +2,13 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
-<title>Random Variables | strncat’s notebook</title>
-<meta name="generator" content="Jekyll v3.7.4" />
-<meta property="og:title" content="Random Variables" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="0 References My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// Specifically: http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/lectures/06_random_variables.pdf What is a Random Variable? A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some function of the outcome. Example 1: Suppose we’re interested in counting the number of heads in trials of flipping a coin. We can define a random variable to represent the number of heads in 5 trials. Using , we can now refer to the probability of seeing two heads in 5 trials as . This is much simpler that listing the exact outcomes we’re interested in which are getting heads in trial 1 and 2 or getting heads in 1 or 3 or getting heads in trials 1 and 4 only and so on. Example 2: Suppose we roll two dice and we’re interested in the sum of the two dice. We define a random variable to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 as . This is much simpler that saying that we want the probability of seeing any of these outcomes: . Discrete Random Variables If our random variable takes on countable values , we call it a discrete random variable. Probability Mass Function Suppose we have a random variable that takes on a discrete values in . Define the probability mass function to be the probability that takes on a particular value . In other words, the PMF is defined as $$ \begin{align*} p_X(k) = P(X = k) \end{align*} $$ Furthermore, the PMF of satisfies: $$ \begin{align*} \sum_{i=1}^{\infty} p_X(k_i) = 1 \end{align*} $$ This also means that for any value that is not in , we have , in other words, $$ \begin{align*} P(X=k) = \Big\{ \begin{array}{@{}lr@{}} p_X(k) \quad \text{ for } k \in R_X \\ 0 \quad \quad \quad \text{ otherwise} \\ \end{array} \end{align*} $$ We can also refer to as just if the random variable is clear from the context. Example 2: Suppose we roll the two dice again from example 2. Define a random variable to be to the sum of the two dice. We know . Below is a graph of the of , for all values in . Cumulative Distribution Function Now instead of defining the probability that a random variable takes on a particular value, we define a new function, the cumulative distribution function (CDF) that gives the probability that is less than or equal to a particular value. $$ \begin{align*} F_X(k) = F(k) = P(X \leq k), \quad \text{ where } -\infty &lt; k &lt; \infty \end{align*} $$ For a discrete random variable, this will be just the sum of all variables $$ \begin{align*} F_X(k) = F(k) = \sum_{\text{ all } i \leq k} p(i) \end{align*} $$ Expectation The expectation or expected value of a random variable is defined as: $$ \begin{align*} E[X] = \sum_{k:p(k)&gt;0} p(k)*k \end{align*} $$ In other words, the expected value is a weighted average of the value of the random variable (values weighted by their probabilities). Example 4: Suppose we roll two dice again from example 2 and 3. Define a random variable to be to the sum of the two dice. We can use our PMF from the previous section to compute the expected value as $$ \begin{align*} E[X] &amp;= 2*P(X=2) + 3*P(X=3) + 4*P(X=4) + 5 * P(X=5) * 6*P(X=6) + 7*P(X=7) \\ \\ &amp;+ 8*P(X=8) + 9*P(X=9) + 10*P(X=10) + 11*P(X=11) * 12*P(X=12) \\ E[X] &amp;= 2*\frac{1}{36} + 3*\frac{2}{36} + 4*\frac{3}{36} + 5*\frac{4}{36} + 6*\frac{5}{36} + 7*\frac{6}{36} + 8*\frac{5}{36} + 9*\frac{4}{36} + 10*\frac{3}{36} \\ &amp;+ 11*\frac{2}{36} + 12*\frac{1}{36} = 7 \end{align*} $$ Expectation of a function of a random variable Suppose we have a random variable and we have a function where is real-valued function. Suppose we want to calculate the expected value of . Define $$ \begin{align*} E[g(X)] = E[Y] &amp;= \sum_j y_jp(y_j) \\ &amp;= \sum_i g(x_i) p(x_i) \\ \end{align*} $$ PROOF? Example 5: Suppose we roll a die and define to be the value on the die. Define a new random variable to be . What is ? Using the above, Properties of Expectation Two important properties of expectation are the following: (1) Linearity of expectation: $$ \begin{align*} E[aX + b] &amp;= aE[X] + b \end{align*} $$" />
-<meta property="og:description" content="0 References My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// Specifically: http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/lectures/06_random_variables.pdf What is a Random Variable? A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some function of the outcome. Example 1: Suppose we’re interested in counting the number of heads in trials of flipping a coin. We can define a random variable to represent the number of heads in 5 trials. Using , we can now refer to the probability of seeing two heads in 5 trials as . This is much simpler that listing the exact outcomes we’re interested in which are getting heads in trial 1 and 2 or getting heads in 1 or 3 or getting heads in trials 1 and 4 only and so on. Example 2: Suppose we roll two dice and we’re interested in the sum of the two dice. We define a random variable to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 as . This is much simpler that saying that we want the probability of seeing any of these outcomes: . Discrete Random Variables If our random variable takes on countable values , we call it a discrete random variable. Probability Mass Function Suppose we have a random variable that takes on a discrete values in . Define the probability mass function to be the probability that takes on a particular value . In other words, the PMF is defined as $$ \begin{align*} p_X(k) = P(X = k) \end{align*} $$ Furthermore, the PMF of satisfies: $$ \begin{align*} \sum_{i=1}^{\infty} p_X(k_i) = 1 \end{align*} $$ This also means that for any value that is not in , we have , in other words, $$ \begin{align*} P(X=k) = \Big\{ \begin{array}{@{}lr@{}} p_X(k) \quad \text{ for } k \in R_X \\ 0 \quad \quad \quad \text{ otherwise} \\ \end{array} \end{align*} $$ We can also refer to as just if the random variable is clear from the context. Example 2: Suppose we roll the two dice again from example 2. Define a random variable to be to the sum of the two dice. We know . Below is a graph of the of , for all values in . Cumulative Distribution Function Now instead of defining the probability that a random variable takes on a particular value, we define a new function, the cumulative distribution function (CDF) that gives the probability that is less than or equal to a particular value. $$ \begin{align*} F_X(k) = F(k) = P(X \leq k), \quad \text{ where } -\infty &lt; k &lt; \infty \end{align*} $$ For a discrete random variable, this will be just the sum of all variables $$ \begin{align*} F_X(k) = F(k) = \sum_{\text{ all } i \leq k} p(i) \end{align*} $$ Expectation The expectation or expected value of a random variable is defined as: $$ \begin{align*} E[X] = \sum_{k:p(k)&gt;0} p(k)*k \end{align*} $$ In other words, the expected value is a weighted average of the value of the random variable (values weighted by their probabilities). Example 4: Suppose we roll two dice again from example 2 and 3. Define a random variable to be to the sum of the two dice. We can use our PMF from the previous section to compute the expected value as $$ \begin{align*} E[X] &amp;= 2*P(X=2) + 3*P(X=3) + 4*P(X=4) + 5 * P(X=5) * 6*P(X=6) + 7*P(X=7) \\ \\ &amp;+ 8*P(X=8) + 9*P(X=9) + 10*P(X=10) + 11*P(X=11) * 12*P(X=12) \\ E[X] &amp;= 2*\frac{1}{36} + 3*\frac{2}{36} + 4*\frac{3}{36} + 5*\frac{4}{36} + 6*\frac{5}{36} + 7*\frac{6}{36} + 8*\frac{5}{36} + 9*\frac{4}{36} + 10*\frac{3}{36} \\ &amp;+ 11*\frac{2}{36} + 12*\frac{1}{36} = 7 \end{align*} $$ Expectation of a function of a random variable Suppose we have a random variable and we have a function where is real-valued function. Suppose we want to calculate the expected value of . Define $$ \begin{align*} E[g(X)] = E[Y] &amp;= \sum_j y_jp(y_j) \\ &amp;= \sum_i g(x_i) p(x_i) \\ \end{align*} $$ PROOF? Example 5: Suppose we roll a die and define to be the value on the die. Define a new random variable to be . What is ? Using the above, Properties of Expectation Two important properties of expectation are the following: (1) Linearity of expectation: $$ \begin{align*} E[aX + b] &amp;= aE[X] + b \end{align*} $$" />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html" />
-<meta property="og:site_name" content="strncat’s notebook" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-07-26T07:01:36-07:00" />
-<script type="application/ld+json">
-{"url":"http://localhost:4000/jekyll/update/2019/07/26/random-variables.html","headline":"Random Variables","dateModified":"2019-07-26T07:01:36-07:00","datePublished":"2019-07-26T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/26/random-variables.html"},"description":"0 References My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// Specifically: http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/lectures/06_random_variables.pdf What is a Random Variable? A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some function of the outcome. Example 1: Suppose we’re interested in counting the number of heads in trials of flipping a coin. We can define a random variable to represent the number of heads in 5 trials. Using , we can now refer to the probability of seeing two heads in 5 trials as . This is much simpler that listing the exact outcomes we’re interested in which are getting heads in trial 1 and 2 or getting heads in 1 or 3 or getting heads in trials 1 and 4 only and so on. Example 2: Suppose we roll two dice and we’re interested in the sum of the two dice. We define a random variable to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 as . This is much simpler that saying that we want the probability of seeing any of these outcomes: . Discrete Random Variables If our random variable takes on countable values , we call it a discrete random variable. Probability Mass Function Suppose we have a random variable that takes on a discrete values in . Define the probability mass function to be the probability that takes on a particular value . In other words, the PMF is defined as $$ \\begin{align*} p_X(k) = P(X = k) \\end{align*} $$ Furthermore, the PMF of satisfies: $$ \\begin{align*} \\sum_{i=1}^{\\infty} p_X(k_i) = 1 \\end{align*} $$ This also means that for any value that is not in , we have , in other words, $$ \\begin{align*} P(X=k) = \\Big\\{ \\begin{array}{@{}lr@{}} p_X(k) \\quad \\text{ for } k \\in R_X \\\\ 0 \\quad \\quad \\quad \\text{ otherwise} \\\\ \\end{array} \\end{align*} $$ We can also refer to as just if the random variable is clear from the context. Example 2: Suppose we roll the two dice again from example 2. Define a random variable to be to the sum of the two dice. We know . Below is a graph of the of , for all values in . Cumulative Distribution Function Now instead of defining the probability that a random variable takes on a particular value, we define a new function, the cumulative distribution function (CDF) that gives the probability that is less than or equal to a particular value. $$ \\begin{align*} F_X(k) = F(k) = P(X \\leq k), \\quad \\text{ where } -\\infty &lt; k &lt; \\infty \\end{align*} $$ For a discrete random variable, this will be just the sum of all variables $$ \\begin{align*} F_X(k) = F(k) = \\sum_{\\text{ all } i \\leq k} p(i) \\end{align*} $$ Expectation The expectation or expected value of a random variable is defined as: $$ \\begin{align*} E[X] = \\sum_{k:p(k)&gt;0} p(k)*k \\end{align*} $$ In other words, the expected value is a weighted average of the value of the random variable (values weighted by their probabilities). Example 4: Suppose we roll two dice again from example 2 and 3. Define a random variable to be to the sum of the two dice. We can use our PMF from the previous section to compute the expected value as $$ \\begin{align*} E[X] &amp;= 2*P(X=2) + 3*P(X=3) + 4*P(X=4) + 5 * P(X=5) * 6*P(X=6) + 7*P(X=7) \\\\ \\\\ &amp;+ 8*P(X=8) + 9*P(X=9) + 10*P(X=10) + 11*P(X=11) * 12*P(X=12) \\\\ E[X] &amp;= 2*\\frac{1}{36} + 3*\\frac{2}{36} + 4*\\frac{3}{36} + 5*\\frac{4}{36} + 6*\\frac{5}{36} + 7*\\frac{6}{36} + 8*\\frac{5}{36} + 9*\\frac{4}{36} + 10*\\frac{3}{36} \\\\ &amp;+ 11*\\frac{2}{36} + 12*\\frac{1}{36} = 7 \\end{align*} $$ Expectation of a function of a random variable Suppose we have a random variable and we have a function where is real-valued function. Suppose we want to calculate the expected value of . Define $$ \\begin{align*} E[g(X)] = E[Y] &amp;= \\sum_j y_jp(y_j) \\\\ &amp;= \\sum_i g(x_i) p(x_i) \\\\ \\end{align*} $$ PROOF? Example 5: Suppose we roll a die and define to be the value on the die. Define a new random variable to be . What is ? Using the above, Properties of Expectation Two important properties of expectation are the following: (1) Linearity of expectation: $$ \\begin{align*} E[aX + b] &amp;= aE[X] + b \\end{align*} $$","@type":"BlogPosting","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -69,18 +60,20 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <table border="0"><tr><td bgcolor="#FFFDD0">
-<b>0 References</b>
-</td></tr></table>
-<p>My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// <br />
+    <div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
+<b>References</b>
+</div>
+<p><br />
+My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// <br />
 Specifically: http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/lectures/06_random_variables.pdf
 <br />
 <!------------------------------------------------------------------------------------>
 <br /></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>What is a Random Variable?</b>
-</td></tr></table>
-<p>A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some <b>function of the outcome</b>. 
+</div>
+<p><br />
+A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some <b>function of the outcome</b>. 
 <br />
 <br />
 <b>Example 1:</b>
@@ -94,17 +87,19 @@ Suppose we roll two dice and we’re interested in the sum of the two dice. We d
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Discrete Random Variables</b>
-</td></tr></table>
-<p>If our random variable takes on countable values <script type="math/tex">x_1, x_2, x_3,...,x_n</script>, we call it a discrete random variable. 
+</div>
+<p><br />
+If our random variable takes on countable values <script type="math/tex">x_1, x_2, x_3,...,x_n</script>, we call it a discrete random variable. 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Probability Mass Function</b>
-</td></tr></table>
-<p>Suppose we have a random variable <script type="math/tex">X</script> that takes on a discrete values in <script type="math/tex">R_X = \{k_1, k_2,...,k_n\}</script>. Define the probability mass function <script type="math/tex">p_X(k)</script> to be the probability that <script type="math/tex">X</script> takes on a particular value <script type="math/tex">k</script>. In other words, the PMF is defined as</p>
+</div>
+<p><br />
+Suppose we have a random variable <script type="math/tex">X</script> that takes on a discrete values in <script type="math/tex">R_X = \{k_1, k_2,...,k_n\}</script>. Define the probability mass function <script type="math/tex">p_X(k)</script> to be the probability that <script type="math/tex">X</script> takes on a particular value <script type="math/tex">k</script>. In other words, the PMF is defined as</p>
 <div center="">
 $$
 \begin{align*}
@@ -140,10 +135,11 @@ Suppose we roll the two dice again from example 2. Define a random variable <scr
 <img src="http://localhost:4000/assets/random/pmf.png" width="100%" />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Cumulative Distribution Function</b>
-</td></tr></table>
-<p>Now instead of defining the probability that a random variable <script type="math/tex">X</script> takes on a particular value, we define a new function, the cumulative distribution function (CDF) that gives the probability that <script type="math/tex">X</script> is less than or equal to a particular value.</p>
+</div>
+<p><br />
+Now instead of defining the probability that a random variable <script type="math/tex">X</script> takes on a particular value, we define a new function, the cumulative distribution function (CDF) that gives the probability that <script type="math/tex">X</script> is less than or equal to a particular value.</p>
 <div center="">
 $$
 \begin{align*}
@@ -161,10 +157,11 @@ $$
 </div>
 <p><br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Expectation</b>
-</td></tr></table>
-<p>The expectation or expected value of a random variable <script type="math/tex">X</script> is defined as:</p>
+</div>
+<p><br />
+The expectation or expected value of a random variable <script type="math/tex">X</script> is defined as:</p>
 <div center="">
 $$
 \begin{align*}
@@ -191,10 +188,11 @@ $$
 <p><br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Expectation of a function of a random variable</b>
-</td></tr></table>
-<p>Suppose we have a random variable <script type="math/tex">X</script> and we have a function <script type="math/tex">g</script> where <script type="math/tex">g</script> is real-valued function. Suppose we want to calculate the expected value of <script type="math/tex">g(X)</script>. Define</p>
+</div>
+<p><br />
+Suppose we have a random variable <script type="math/tex">X</script> and we have a function <script type="math/tex">g</script> where <script type="math/tex">g</script> is real-valued function. Suppose we want to calculate the expected value of <script type="math/tex">g(X)</script>. Define</p>
 <div center="">
 $$
 \begin{align*}
@@ -214,10 +212,11 @@ Using the above, <script type="math/tex">E[Y] = E[X^2] = \sum_i (k_i^2)p(k_i) = 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Properties of Expectation</b>
-</td></tr></table>
-<p>Two important properties of expectation are the following: <br />
+</div>
+<p><br />
+Two important properties of expectation are the following: <br />
 (1) Linearity of expectation:</p>
 <div center="">
 $$
@@ -274,10 +273,11 @@ $$
 <p><br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Example 8: St. Petersburg Paradox</b>
-</td></tr></table>
-<p>A fair coin comes up heads with <script type="math/tex">p = 0.5</script>. We flip the coin until we see the first tails. We will then win <script type="math/tex">2^n</script> dollars where <script type="math/tex">n</script> is the number of heads seen before the first tail. How much would you pay to play?
+</div>
+<p><br />
+A fair coin comes up heads with <script type="math/tex">p = 0.5</script>. We flip the coin until we see the first tails. We will then win <script type="math/tex">2^n</script> dollars where <script type="math/tex">n</script> is the number of heads seen before the first tail. How much would you pay to play?
 <br />
 <br />
 Let’s define the following random variables: <br />
@@ -298,13 +298,14 @@ E[W] = E[2^Y] &amp;= \sum_i 2^i P(Y=i) =  \sum_i 2^i p(i) \\
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
 <p><br />
-<br /></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Example 9: Roulette</b>
-</td></tr></table>
-<p>Consider an even money bet (betting “Red” in Roulette). <script type="math/tex">p=18/38</script> you win <script type="math/tex">Y</script> dollars, otherwise <script type="math/tex">1-p</script> you lose <script type="math/tex">Y</script> dollars. Consider the following strategy:
+</div>
+<p><br />
+Consider an even money bet (betting “Red” in Roulette). <script type="math/tex">p=18/38</script> you win <script type="math/tex">Y</script> dollars, otherwise <script type="math/tex">1-p</script> you lose <script type="math/tex">Y</script> dollars. Consider the following strategy:
 (1) Let <script type="math/tex">Y=1</script>. <br />
 (2) Bet <script type="math/tex">Y</script>.<br />
 (3) If win then stop.<br />
@@ -366,7 +367,7 @@ s.setAttribute('data-timestamp', +new Date());
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>hello</p>
+        <p>personal study notes</p>
       </div>
     </div>
 

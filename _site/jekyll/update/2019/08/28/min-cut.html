@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Krager&#39;s Minimum Cut</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-08-28T03:01:36-07:00" itemprop="datePublished">Aug 28, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="http://localhost:4000/assets/mincut/1.png" width="100%" />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>References</b>
+</div>
+<p><br />
+class notes from following:</p>
+<ol>
+  <li>http://web.stanford.edu/class/cs161/schedule.html</li>
+  <li>https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/11/Small11.pdf</li>
+  <li>Algorithm Design (BEST BOOK)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ol>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Introduction</b>
+</div>
+<p><br />
+Let <script type="math/tex">G=(V,E)</script> be an undirected graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A cut in <script type="math/tex">G</script> is a partition of <script type="math/tex">V</script> into two non-empty sets of vertices <script type="math/tex">A</script> and <script type="math/tex">B</script>. The <b>size</b> of the cut is the number of edges with one end point in <script type="math/tex">A</script> and another in <script type="math/tex">B</script>. A <b>global minimum cut</b> is a cut of minimum size.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Krager's Algorithm</b>
+</div>
+<p><br />
+Krager’s algorithm starts with picking an edge <script type="math/tex">(u,v)</script> in <script type="math/tex">G</script> uniformly at random. It then <b>contracts</b> this edge by creating a new node <script type="math/tex">w</script> that combines both <script type="math/tex">u</script> and <script type="math/tex">v</script>. All the edges in <script type="math/tex">G</script> with an end point equal to either <script type="math/tex">u</script> and <script type="math/tex">v</script> now point to <script type="math/tex">w</script> instead. Also, any edge between <script type="math/tex">u</script> and <script type="math/tex">v</script> is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in <script type="math/tex">G</script>. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Krager's Algorithm Pseudocode</b>
+</div>
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">krager</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">Initially</span> <span class="n">create</span> <span class="n">a</span> <span class="n">set</span> <span class="k">for</span> <span class="n">each</span> <span class="n">node</span> <span class="n">v</span><span class="p">,</span> <span class="n">S</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">G</span> <span class="n">has</span> <span class="n">more</span> <span class="n">than</span> <span class="n">two</span> <span class="n">nodes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">choose</span> <span class="n">an</span> <span class="n">edge</span> <span class="n">e</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="n">uniformly</span> <span class="n">at</span> <span class="n">random</span><span class="p">.</span>
+        <span class="n">create</span> <span class="n">a</span> <span class="k">new</span> <span class="n">node</span> <span class="n">w</span> <span class="n">with</span> <span class="n">S</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">union</span> <span class="n">S</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">the</span> <span class="n">sets</span> <span class="n">of</span> <span class="n">the</span> <span class="n">last</span> <span class="n">two</span> <span class="n">nodes</span><span class="p">.</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Example</b>
+</div>
+<p><br />
+Suppose we apply the contraction algorithm on the above graph. We start by picking an edge uniformly at random. Suppose we picked the edge <script type="math/tex">(d,e)</script> below:
+<img src="http://localhost:4000/assets/mincut/2.png" width="100%" />
+We then delete <script type="math/tex">(d,e)</script>. We create a new node <script type="math/tex">z</script>. We then point any edge that previously had an end point equal to <script type="math/tex">d</script> or <script type="math/tex">e</script> to point at <script type="math/tex">z</script>.
+<img src="http://localhost:4000/assets/mincut/3.png" width="100%" />
+Suppose we pick <script type="math/tex">(a,b)</script> next.
+<img src="http://localhost:4000/assets/mincut/4.png" width="100%" />
+We delete <script type="math/tex">(a,b)</script> and create node <script type="math/tex">y</script> and fix all the old edges pointing at <script type="math/tex">a</script> or <script type="math/tex">b</script> to point at <script type="math/tex">y</script>.
+<img src="http://localhost:4000/assets/mincut/5.png" width="100%" />
+Suppose we pick <script type="math/tex">(f,g)</script> next.
+<img src="http://localhost:4000/assets/mincut/6.png" width="100%" />
+We’ll repeat the same process by creating <script type="math/tex">x</script> and fixing the edges below:
+<img src="http://localhost:4000/assets/mincut/7.png" width="100%" />
+Suppose we pick <script type="math/tex">(z,x)</script> next.
+<img src="http://localhost:4000/assets/mincut/8.png" width="100%" />
+We’ll again delete the edge, create a new node <script type="math/tex">w</script> and fix all the edges below:
+<img src="http://localhost:4000/assets/mincut/9.png" width="100%" />
+Finally, suppose we pick <script type="math/tex">(y,c)</script> and repeat the same steps. 
+<img src="http://localhost:4000/assets/mincut/10.png" width="100%" />
+Since we only have 2 vertices then we’re done. We will return the number of edges between the two vertices which is 1 in this case. So the global minimum cut is of size 1 which is correct for this graph.
+<img src="http://localhost:4000/assets/mincut/11.png" width="100%" />
+Suppose however that instead of picking <script type="math/tex">(y,c)</script> to contract, we picked <script type="math/tex">(y,w)</script>
+<img src="http://localhost:4000/assets/mincut/10a.png" width="100%" />
+We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager’s algorithm is a Monte Carlo algorithm.
+<img src="http://localhost:4000/assets/mincut/11a.png" width="100%" />
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>What is the probability of getting a correct answer?</b>
+</div>
+<p><br />
+Suppose we have a graph <script type="math/tex">G=(E,V)</script> with <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. Suppose the cut <script type="math/tex">(A,B)</script> is a global minimum cut is of size <script type="math/tex">k</script>. Also let <script type="math/tex">F</script> to be the set of <script type="math/tex">k</script> edges in the cut <script type="math/tex">(A,B)</script>. So <script type="math/tex">F</script> has the edges that have one end point in <script type="math/tex">A</script> and the other end point in <script type="math/tex">B</script>.
+<br />
+<br />
+The probability that the contraction algorithm succeeds is the probability that we don’t make any mistake in the <script type="math/tex">n-2</script> iterations of the algorithm. Suppose we let <script type="math/tex">S_i</script> to be the event that we don’t make a mistake in step <script type="math/tex">i</script> or generally succeed in step <script type="math/tex">i</script>. We want to calculate the following probability:</p>
+<div center="">
+$$
+\begin{align*}
+Pr(success) = Pr(S_1 \cap S_2 \cap S_3 \cap ... \cap S_{n-2})
+\end{align*}
+$$
+</div>
+<p>These events are not independent! We can further expand this using the chain rule and instead calculate:</p>
+<div center="">
+$$
+\begin{align*}
+Pr(success) = Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3})
+\end{align*}
+$$
+</div>
+<hr />
+
+<p><br />
+<b> Success in the iteration 1:</b><br />
+Let’s look at how we can calculate each of these. What does it mean to not make a mistake in step 1? It means that we don’t pick an edge that connects a vertex from the set <script type="math/tex">A</script> to a vertex from the set <script type="math/tex">B</script>. Because if we did, then <script type="math/tex">A</script> and <script type="math/tex">B</script> will be merged together and we will not be able to return the global minimum cut <script type="math/tex">(A,B)</script>. So we basically want to avoid picking edges from <script type="math/tex">F</script>. Therefore, the probability that we don’t make a mistake in step 1 is
+<br /></p>
+<div center="">
+$$
+\begin{align*}
+Pr(S_1) = 1 - \frac{|F|}{|E|} = 1 - \frac{k}{|E|}.
+\end{align*}
+$$
+</div>
+<p>What is <script type="math/tex">|E|</script>? <br />
+We will use <script type="math/tex">k</script> to find an upper bound on <script type="math/tex">|E|</script>. We know that the global minimum cut is of size <script type="math/tex">k</script>, therefore, we must have:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>For any node <script type="math/tex">v</script> in <script type="math/tex">V</script>, <script type="math/tex">degree(v) \geq k</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Proof: Suppose not, then there exists some node <script type="math/tex">u</script> such that <script type="math/tex">% <![CDATA[
+degree(u) < k %]]></script>. Pick the minimum cut such that <script type="math/tex">A = \{u\}</script> and <script type="math/tex">B = V - \{u\}</script>. The cut <script type="math/tex">(A,B)</script> is a global minimum cut of size less than <script type="math/tex">k</script> which is a contradiction. <script type="math/tex">\blacksquare</script>
+<br />
+<br />
+Based on this, we can conclude that <script type="math/tex">|E| \geq \frac{1}{2}kn</script>. (<script type="math/tex">\frac{1}{2}</script> because <script type="math/tex">G</script> is undirected).
+<br />
+<br />
+So now we have:</p>
+<div center="">
+$$
+\begin{align*}
+Pr(S_1) = 1 - \frac{|F|}{|E|} \geq 1 - \frac{2k}{kn} = 1 - \frac{2}{n}.
+\end{align*}
+$$
+</div>
+<hr />
+
+<p><br />
+<b> Success in iteration <script type="math/tex">i+1</script>:</b><br />
+What about the other iterations? What is the probability that we don’t make a mistake in iteration <script type="math/tex">i+1</script> given that we haven’t made any mistake in all the previous interations? At iteration <script type="math/tex">i+1</script>, we have <script type="math/tex">n-i</script> nodes in the graph. Since we haven’t made any mistake yet, we still have <script type="math/tex">k</script> edges in <script type="math/tex">F</script> and each node is of degree at least <script type="math/tex">k</script> (same proof as before). Therefore,</p>
+<div center="">
+$$
+\begin{align*}
+Pr(S_{i+1} | S_1 \cap S_2 \cap ... \cap S_i) \geq 1 - \frac{k}{1/2k(n-j)} = 1 - \frac{2}{n-j}.
+\end{align*}
+$$
+</div>
+<hr />
+
+<p><br />
+Now we can combine everything together:</p>
+<div center="">
+$$
+\begin{align*}
+Pr(success) &amp;= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3}) \\
+&amp;\geq (1 - \frac{2}{n})(1 - \frac{2}{n-1})...(1-\frac{2}{n-j})...(1-\frac{2}{3}) \\
+&amp;= (\frac{n-2}{n})(\frac{n-3}{n-1})...(\frac{2}{4})(1-\frac{1}{3}) \\
+&amp;= \frac{2}{n(n-1)}.
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Can we do better?</b>
+</div>
+<p><br />
+The probability of success we found so far is</p>
+<div center="">
+$$
+\begin{align*}
+Pr(success) &amp;\geq \frac{2}{n(n-1)} = \frac{1}{\binom{n}{2}}.
+\end{align*}
+$$
+</div>
+<p>Suppose we run <script type="math/tex">k</script> iterations of Krager’s algorithm. We then take the minimum cut of all cuts found. These iterations are independent. What is the probability of NOT getting the global minimum cut? It is the probability of failing in every run of the <script type="math/tex">k</script> runs. Let <script type="math/tex">F_i</script> be the event that we failed to find the global minimum cut in iteration <script type="math/tex">i</script>. Therefore,</p>
+<div center="">
+$$
+\begin{align*}
+Pr(\text{Failure after } k \text{ runs}) &amp;= Pr(F_1 \cap F_2 \cap ... \cap F_k) \\
+&amp;\leq Pr(F_1)Pr(F_2)...Pr(F_k) \text{  (by independence)}\\
+&amp;= \big(1-\frac{2}{n(n-1)} \big)^{k} \\
+&amp;= \big(1-\frac{1}{\binom{n}{2}} \big)^{k}.
+\end{align*}
+$$
+</div>
+<p>We also know that for any <script type="math/tex">x \geq 1</script>, we have</p>
+<div center="">
+$$
+\begin{align*}
+\frac{1}{4} \leq \big (1-\frac{1}{x} \big)^x \leq \frac{1}{e}
+\end{align*}
+$$
+</div>
+<p>Using the above bound, we can let <script type="math/tex">k = \binom{n}{2}</script> and see that</p>
+<div>
+$$
+\begin{align*}
+Pr(\text{Failure}) &amp;\leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\binom{n}{2}} \leq \frac{1}{e}
+\end{align*}
+$$
+</div>
+<p>Furthermore, we can let <script type="math/tex">k = \ln(n)\binom{n}{2}</script> to get</p>
+<div>
+$$
+\begin{align*}
+Pr(\text{Failure}) &amp;\leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\ln(n)\binom{n}{2}} \leq \frac{1}{e}^{\ln(n)} = \frac{1}{n}
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Running Time</b>
+</div>
+<p><br />
+Suppose we have <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. In the naive implementation, we contract <script type="math/tex">n-2</script> edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take <script type="math/tex">O(n)</script> time. Therefore, the total running time is <script type="math/tex">O(n^2)</script>. There are other faster implementations with union-find data structure that reduce the running time to <script type="math/tex">O(m * \alpha(n))</script>. (TODO: More on this?)
+<br />
+<br />
+Given that we can get a high success probability if we run Krager’s algorithm for <script type="math/tex">O(\log(n)n^2)</script>. The total running time is therefore <script type="math/tex">O(n^4\log(n))</script>!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Karger - Stein</b>
+</div>
+<p><br />
+Can we do better than <script type="math/tex">(n^4\log(n)</script> and still maintain the same probability of success? Krager and Stein published an improved result that’s much faster! 
+<br />
+<br />
+Observe when running Krager’s algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set <script type="math/tex">F</script>) gets higher with every iteration. Therefore, we should really just run krager once in the first few iterations and then repeat Karger for the remaining nodes. This is what Krager and Stein are doing:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">krager_stein</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">find</span> <span class="n">a</span> <span class="n">minimum</span> <span class="n">cut</span> <span class="n">by</span> <span class="n">brute</span> <span class="n">force</span>
+    <span class="p">}</span>
+    <span class="n">Run</span> <span class="n">krager</span> <span class="p">(</span><span class="n">contraction</span> <span class="n">algorithm</span><span class="p">)</span> <span class="n">from</span> <span class="n">above</span> <span class="n">until</span> <span class="n">there</span> <span class="n">are</span> <span class="n">only</span> <span class="n">n</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">nodes</span> <span class="n">left</span>
+    <span class="n">Let</span> <span class="n">g1</span> <span class="o">=</span> <span class="n">g</span> <span class="n">and</span> <span class="n">g2</span> <span class="o">=</span> <span class="n">g</span> <span class="p">(</span><span class="n">two</span> <span class="n">copies</span><span class="p">)</span>
+	<span class="n">cut1</span> <span class="o">=</span> <span class="n">krager_stein</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+	<span class="n">cut2</span> <span class="o">=</span> <span class="n">krager_stein</span><span class="p">(</span><span class="n">g2</span><span class="p">)</span>
+	<span class="n">Return</span> <span class="n">the</span> <span class="n">minmum</span> <span class="n">cut</span> <span class="n">of</span> <span class="n">cut1</span> <span class="n">and</span> <span class="n">cut2</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Visually, we are contracting until we get <script type="math/tex">n/\sqrt{2}</script> vertices, making copies and then independently again contracting below:
+<img src="http://localhost:4000/assets/mincut/stein.png" width="100%" />
+Since we’re repeatdly dividing by <script type="math/tex">\sqrt{2}</script>, then we know that the depth of the tree is</p>
+<div>
+$$
+\begin{align*}
+\log_{\sqrt{2}}(n) = \frac{\log(n)}{\log(\sqrt{2})} = 2\log(n)
+\end{align*}
+$$
+</div>
+<p>And the number of leaves is</p>
+<div>
+$$
+\begin{align*}
+2^{2\log(n)} = O(n^2)
+\end{align*}
+$$
+</div>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2019/08/28/min-cut.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2019/08/28/min-cut; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2019/08/28/min-cut.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

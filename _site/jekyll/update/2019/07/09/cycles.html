@@ -2,22 +2,13 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
-<title>Cycles in Graphs | strncat’s notebook</title>
-<meta name="generator" content="Jekyll v3.7.4" />
-<meta property="og:title" content="Cycles in Graphs" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="References CLRS Introduction We are given a graph and we want to know if there exists a cycle in . Undirected Graphs This is extremely simple. We already keep track of nodes visited so far. If it happens during our search that we come across a visited node then we’re done! there must exists a cycle otherwise, we won’t ever re-visit any vertex in . bool bfs(int start, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph) { std::queue&lt;int&gt; q; q.push(start); std::vector&lt;int&gt; visited(graph.size(), false); visited[start] = true; while (!q.empty()) { int v = q.front(); q.pop(); for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { q.push(u); visited[u] = true; } else { // CYCLE return true; } } } return false; } Directed Graph Suppose we apply the earlier idea used in undirected graphs. We traverse the nodes and if we see a node we’ve seen before, we conclude that we found a cycle. So let’s take the graph above and start a DFS pass from node below:" />
-<meta property="og:description" content="References CLRS Introduction We are given a graph and we want to know if there exists a cycle in . Undirected Graphs This is extremely simple. We already keep track of nodes visited so far. If it happens during our search that we come across a visited node then we’re done! there must exists a cycle otherwise, we won’t ever re-visit any vertex in . bool bfs(int start, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph) { std::queue&lt;int&gt; q; q.push(start); std::vector&lt;int&gt; visited(graph.size(), false); visited[start] = true; while (!q.empty()) { int v = q.front(); q.pop(); for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { q.push(u); visited[u] = true; } else { // CYCLE return true; } } } return false; } Directed Graph Suppose we apply the earlier idea used in undirected graphs. We traverse the nodes and if we see a node we’ve seen before, we conclude that we found a cycle. So let’s take the graph above and start a DFS pass from node below:" />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/09/cycles.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/09/cycles.html" />
-<meta property="og:site_name" content="strncat’s notebook" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-07-09T12:01:36-07:00" />
-<script type="application/ld+json">
-{"url":"http://localhost:4000/jekyll/update/2019/07/09/cycles.html","headline":"Cycles in Graphs","dateModified":"2019-07-09T12:01:36-07:00","datePublished":"2019-07-09T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/09/cycles.html"},"description":"References CLRS Introduction We are given a graph and we want to know if there exists a cycle in . Undirected Graphs This is extremely simple. We already keep track of nodes visited so far. If it happens during our search that we come across a visited node then we’re done! there must exists a cycle otherwise, we won’t ever re-visit any vertex in . bool bfs(int start, std::vector&lt;std::vector&lt;int&gt;&gt;&amp; graph) { std::queue&lt;int&gt; q; q.push(start); std::vector&lt;int&gt; visited(graph.size(), false); visited[start] = true; while (!q.empty()) { int v = q.front(); q.pop(); for (int i = 0; i &lt; graph[v].size(); i++) { int u = graph[v][i]; if (visited[u] == false) { q.push(u); visited[u] = true; } else { // CYCLE return true; } } } return false; } Directed Graph Suppose we apply the earlier idea used in undirected graphs. We traverse the nodes and if we see a node we’ve seen before, we conclude that we found a cycle. So let’s take the graph above and start a DFS pass from node below:","@type":"BlogPosting","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -69,25 +60,27 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>References</b><br />
-CLRS
-<br /></p>
-<hr />
-
+    <div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>References</b><br />
+</div>
 <p><br />
-<!------------------------------------------------------------------------------------>
-<b>Introduction</b>
+CLRS
 <br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Introduction</b><br />
+</div>
+<p><br />
 <img src="http://localhost:4000/assets/cycle/1.png" alt="my photo" />
 We are given a graph <script type="math/tex">G = (V,E)</script> and we want to know if there exists a cycle in <script type="math/tex">G</script>. 
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Undirected Graphs</b><br />
+</div>
 <p><br />
-<b>Undirected Graphs</b>
-<br />
-<br />
 This is extremely simple. We already keep track of nodes visited so far. If it happens during our search that we come across a visited node then we’re done! there must exists a cycle otherwise, we won’t ever re-visit any vertex in <script type="math/tex">G</script>.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
@@ -112,14 +105,12 @@ This is extremely simple. We already keep track of nodes visited so far. If it h
     <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
 <span class="p">}</span></code></pre></figure>
 
-<p><br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
 <p><br />
-<b>Directed Graph</b>
-<br />
-<br />
+<!----------------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Directed Graphs</b><br />
+</div>
+<p><br />
 Suppose we apply the earlier idea used in undirected graphs. We traverse the nodes and if we see a node we’ve seen before, we conclude that we found a cycle. So let’s take the graph above and start a DFS pass from node <script type="math/tex">a</script> below:</p>
 
 <p><img src="http://localhost:4000/assets/cycle/2.png" alt="my photo" /></p>
@@ -165,22 +156,19 @@ is a descendant of $$e$$ in the depth-first tree. This doesn't apply either (abo
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<!----------------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Proof</b><br />
+</div>
 <p><br />
-<b>Proof</b>
-<br />
 TODO
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>Implementations</b>
 <br />
+<!----------------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Implementation</b><br />
+</div>
+<p><br />
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/cycles
 <br />
 <br /></p>
@@ -229,7 +217,7 @@ s.setAttribute('data-timestamp', +new Date());
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>hello</p>
+        <p>personal study notes</p>
       </div>
     </div>
 

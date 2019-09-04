@@ -5,16 +5,17 @@ date:   2019-07-12 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-
-<b>0 References</b><br>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
+<b>References</b>
+</div>
+<br>
 These are my study notes / summary on chapter 6 in CLRS.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Introduction</b>
-<br>
+</div>
 <br>
 <img src="{{ site.url }}/assets/heaps/1.png" width="100%">
 The heap data structure is an array $$A$$ that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. $$A[1]$$ is the root of the tree. In the above tree, $$A[1]=17$$ is the root of the tree.
@@ -22,12 +23,10 @@ The heap data structure is an array $$A$$ that can be viewed as an almost comple
 Because the heap is based on a complete binary tree, the height of a heap of $$n$$ elements is $$\Theta(\log(n))$$. As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in $$O(\log(n))$$ time.
 <br>
 <br>
-<br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>Finding the Parent, Left and Right Children </b>
-<br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
+<b>Finding the Parent, Left and Right Children</b>
+</div>
 <br>
 Given an element $$A[i]$$. Its parent is located at $$A[\lfloor i/2 \rfloor]$$. For example the parent of 2 (index 7) is $$A[\lfloor 7/2 \rfloor]=A[3]=11$$. The left child is $$A[2*i]$$ and the right child is $$A[2*i+1]$$. For example the right child of 13 (index 2) is $$A[2*2 + 1] = A[5] = 3$$.
 
@@ -42,16 +41,12 @@ int right(i) {
     return (i << 1) + 1; // 2*i+1
 }
 {% endhighlight %}
-
 <br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
+<b>The Heap Property</b>
+</div>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>The Heap Property </b>
-<br>
-<br>
-
 There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b>. The heap property depends on the type of the heap. For any given element $$A[i]$$ we must have:
 
 If this is a max-heap then,
@@ -66,11 +61,10 @@ If this is a min-heap then,
 The heap property is crucial. Because of it, we know that the root of the heap must be the smallest or the largest element in the heap and therefore, extracting the minimum or the maximum depending on the heap type can be done in constant time!
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Maintaining the Max-Heap Property</b>
-<br>
+</div>
 <br>
 Suppose we have an element $$A[i]$$ that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of $$A[i]$$ maintain the heap property. We know in constant time that the children are $$A[2*i]$$ and $$A[2*i+1]$$. We can then swap $$A[i]$$ with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at $$A[i]$$. Let's look at a simple implementation:
 {% highlight c++ %}
@@ -100,11 +94,10 @@ void max_heapify(int i) {
 How long does max_heapify take? Well, in the worst case, we will go down all the way to a leaf and so the runtime is $$O(h)$$ which is $$O(log(n))$$.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Building a Max-Heap</b>
-<br>
+</div>
 <br>
 Based on how we store the heap elements in the array, the leaves of the tree are located stating at $$A[n/2+1], A[n/2+2],...,n$$. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of $$A$$ maintains the heap property. Therefore, we can use the following to build a max-heap:
 {% highlight c++ %}
@@ -115,12 +108,10 @@ void build_max_heap(A) {
 }
 {% endhighlight %}
 <br>
-<br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Building a Max-Heap (Example)</b>
-<br>
+</div>
 <br>
 Let's look at an example of building a max-heap using the above idea. We're given the following array and we want to build a max-heap out of it.
 <br>
@@ -152,11 +143,10 @@ Finally, you can see now that the tree/array is a max-heap:
 <img src="{{ site.url }}/assets/heaps/e10.png" width="100%">
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Building a Max-Heap (Proof of Correctness)</b>
-<br>
+</div>
 <br>
 Why should we believe that build_max_heap works? This is going to be exactly what's in CLRS (my notes for myself to quickly remember). We'll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.
 
@@ -178,11 +168,10 @@ At termination when $$i=0$$, we know by the loop invariant that the nodes $$1, 2
 I would obviously recommend looking at CLRS's way unless I'm in a rush and this is easily accessible on my phone. 
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Building a Max-Heap (Running Time)</b>
-<br>
+</div>
 <br>
 The most exciting question is how long does it take to build a max heap? We know that max_heapify takes $$O(\log(n))$$ time for each node. We also know that we at most have $$O(n)$$ iterations. This means that building a max heap will run in $$O(n\log(n))$$. But we derive a much tighter bound than this by observing that:
 <br><br>
@@ -236,11 +225,10 @@ $$
 and we're done!
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
+<!---------------------------------------------------------------------------->
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Heapsort</b>
-<br>
+</div>
 <br>
 TODO
 

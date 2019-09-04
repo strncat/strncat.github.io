@@ -1,80 +1,83 @@
 ---
 layout: post
-title:  "The RMQ Problem"
+title:  "The Range Minimum Query (RMQ) Problem"
 date:   2019-03-22 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 
 ![my photo]({{ site.url }}/assets/rmq/rmq-array.png)
-
-<b> 0 References </b><br>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>References</b>
+</div>
+<br>
 1. CS166 Lecture Slides http://web.stanford.edu/class/cs166/lectures/00/Small00.pdf
 2. Fischer, Johannes and Heun, Volker. Theoretical and Practical Improvements on the RMQ-Problem, with Applications to LCA and LCE
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>Introduction</b>
+</div>
 <br>
-<b>1 Introduction</b><br>
 Given an array $$A$$ and two indices $$i \leq j$$ that are not known in advance. The RMQ problem solves the problem of finding the minimum element in the range $$A[i],A[i+1],...,A[j-1],A[j]$$.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>Definitions</b>
+</div>
 <br>
-<b>2 Definitions</b><br>
 Let $$\langle p(n), q(n)\rangle$$ be the complexity of an algorithm with preprocessing time $$p(n)$$ and query time $$q(n)$$.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>Algorithm 1: no preprocessing</b>
+</div>
 <br>
-<b>3.1 Algorithm 1: Do nothing! $$\langle p(n), q(n)\rangle = \langle O(1), O(n)\rangle$$</b>
-<br>
-The simplest approach is to not do any kind of preprocessing on the input and just compute the minimum for each query. 
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<hr>
-<br>
-<b>3.2 Algorithm 2: Compute all ranges $$\langle p(n), q(n)\rangle = \langle O(n^3), O(1)\rangle$$</b>
-<br>
-We compute the minimum element for all possible ranges. There are $$O(n^2)$$ possible ranges. We need $O(n)$ time to compute the minimum in each range so the total time preprocessing time is $$p(n) = O(n^3)$$.
+The simplest approach is to not do any kind of preprocessing on the input and just compute the minimum for each query. Therefore, we will have $$\langle p(n), q(n)\rangle = \langle O(1), O(n)\rangle$$.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>Algorithm 2: precompute all ranges</b>
+</div>
 <br>
-<b>3.3 Algorithm 3: Compute all ranges with DP $$\langle p(n), q(n)\rangle = \langle O(n^2), O(1)\rangle$$</b>
+We compute the minimum element for all possible ranges. There are $$O(n^2)$$ possible ranges. We need $O(n)$ time to compute the minimum in each range so the total time preprocessing time is $$p(n) = O(n^3)$$ and therefore, we have $$\langle p(n), q(n)\rangle = \langle O(n^3), O(1)\rangle$$.
+<br>
+<br>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>Algorithm 3: precompute all ranges with dynamic programming</b>
+</div>
 <br>
 We can use dynamic programming to compute all the ranges. Given that we know the minimum $$m$$ to a range $$A[i,...j]$$, the solution to the range $$A[i,...j+1]$$ is just $$min(m, A[j+1])$$. 
 
 {% highlight c++ %}
-    int dp[n][n], a[n]={...}
-    // given the minimum to range dp[i,j-1], 
-	// the minimum to range [i,j+1] = min(dp[i,j-1],a[j])
-    for (int i = 0; i < n; i++) {
-        dp[i][i] = a[i];
-    }
-    for (int i = 1; i < n; i++) {
-        for (int j = i+1; j < n; j++) {
-            // for range i..j
-            dp[i][j] = std::min(dp[i][j-1],a[j]);
-        }
+int dp[n][n], a[n]={...}
+// given the minimum to range dp[i,j-1], 
+// the minimum to range [i,j+1] = min(dp[i,j-1],a[j])
+for (int i = 0; i < n; i++) {
+    dp[i][i] = a[i];
+}
+for (int i = 1; i < n; i++) {
+    for (int j = i+1; j < n; j++) {
+        // for range i..j
+        dp[i][j] = std::min(dp[i][j-1],a[j]);
     }
 }
 {% endhighlight %}
-Therefore, $$p(n) = O(n^2)$$.
+Therefore, $$p(n) = O(n^2)$$ and we have $$\langle p(n), q(n)\rangle = \langle O(n^2), O(1)\rangle$$.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>Algorithm 4: block decomposition</b>
+</div>
 <br>
-<b>3.4 Algorithm 4: Block Decomposition, $$\langle p(n), q(n)\rangle = \langle O(n), O(\sqrt{n})\rangle$$</b><br>
-
 ![my photo]({{ site.url }}/assets/rmq/rmq-block.png)
-
 <i>Approach:</i><br>
 We can split the input into $$O(n/b)$$ blocks of block size $$b$$ and compute the minumum in each block.<br>
 
@@ -89,46 +92,49 @@ Given indices $$i$$ and $$j$$.<br>
 Therefore, $$q(n) = O(b + (n/b))$$: 
 
 <i>What is the optimal block size?</i><br>
-We can take the derivative of $$b + n/b$$ to find the value that minimizes $$b$$. This value is $$b = \sqrt{n}$$. Therefore, the query time is $$q(n) = O(b + (n/b)) = O(\sqrt{n} + (n/\sqrt{n})) = O(\sqrt{n})$$
+We can take the derivative of $$b + n/b$$ to find the value that minimizes $$b$$. This value is $$b = \sqrt{n}$$. Therefore, the query time is $$q(n) = O(b + (n/b)) = O(\sqrt{n} + (n/\sqrt{n})) = O(\sqrt{n})$$.
+<br>
+<br>
+Finally we will have $$\langle p(n), q(n)\rangle = \langle O(n), O(\sqrt{n})\rangle$$.
 
 {% highlight c++ %}
-    // given that we computed each block's minimum
-    // given indices i and j, we can do something like this
-    int block_i = i/b;
-    int block_j = j/b;
-    int min = INT_MAX;
+// given that we computed each block's minimum
+// given indices i and j, we can do something like this
+int block_i = i/b;
+int block_j = j/b;
+int min = INT_MAX;
 
-    // search internal blocks
-    for (int k = block_i + 1; k < block_j; k++) {
-        if (min > block[k]) {
-            min = block[k];
-        }
+// search internal blocks
+for (int k = block_i + 1; k < block_j; k++) {
+    if (min > block[k]) {
+        min = block[k];
     }
-    // search elements in the outer blocks
-    int k = std::max(i, block_i*b);
-    int m = std::min(block_i*b+b, j);
-    for (; k <= m; k++) {
-        if (min > a[k]) {
-            min = a[k];
-        }
+}
+// search elements in the outer blocks
+int k = std::max(i, block_i*b);
+int m = std::min(block_i*b+b, j);
+for (; k <= m; k++) {
+    if (min > a[k]) {
+        min = a[k];
     }
-    k = std::max(i, block_j*b);
-    m = std::min(block_j*b+b, j);
-    for (; k <= m; k++) {
-        if (min > a[k]) {
-            min = a[k];
-        }
+}
+k = std::max(i, block_j*b);
+m = std::min(block_j*b+b, j);
+for (; k <= m; k++) {
+    if (min > a[k]) {
+        min = a[k];
     }
-    printf("%d  ", min);
+}
+printf("%d  ", min);
 {% endhighlight %}
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>Algorithm 5: sparse tables</b>
+</div>
 <br>
-<b>3.5 Algorithm 5: Sparse Tables, $$\langle p(n), q(n)\rangle = \langle O(n\log(n)), O(1)\rangle$$</b><br>
-
-![my photo]({{ site.url }}/assets/rmq-sparse-main.png)
+![my photo]({{ site.url }}/assets/rmq/rmq-sparse-main.png)
 
 Going back to the dynamic programmnig solution. Instead of computing all ranges, we can instead compute a specific set of ranges. How? For each index, we compute the minimum for the ranges
 <br>
@@ -186,11 +192,9 @@ void preprocess_sparse(int *a, int n, int M[MAX][LOGMAX]) { // O(nlog(n))
 
 <i>Preprocessing Time:</i><br>
 Notice that for each index, we're computing $$\log{n}$$ ranges. Therefore, the total preprocessing time $$p(n) = O(n\log(n))$$.
-
-
-
+<br>
+<br>
 <i>Query Time:</i><br>
-
 ![my photo]({{ site.url }}/assets/rmq/rmq-sparse-query.png)
 <br>
 Given indices $$i$$ and $$j$$:<br>
@@ -219,17 +223,16 @@ void test_sparse(int *a, int n) {
 }
 {% endhighlight %}
 <br>
-
-<!------------------------------------------------------------------------------------>
-<hr>
+Finally we will have $$\langle p(n), q(n)\rangle = \langle O(n\log(n)), O(1)\rangle$$.
 <br>
-<b>6 Detailed Implementation:</b> <br>
+<br>
+<!---------------------------------------------------------------------------------------->
+<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
+<b>Implementation</b>
+</div>
+<br>
 https://github.com/strncat/algorithms-and-data-structures/blob/master/rmq/rmq.cpp
-
-
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
 <br>
 
 

@@ -2,22 +2,13 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
-<title>Depth First Search | strncat’s notebook</title>
-<meta name="generator" content="Jekyll v3.7.4" />
-<meta property="og:title" content="Depth First Search" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction" />
-<meta property="og:description" content="0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction" />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/05/dfs.html" />
-<meta property="og:site_name" content="strncat’s notebook" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-07-05T12:01:36-07:00" />
-<script type="application/ld+json">
-{"url":"http://localhost:4000/jekyll/update/2019/07/05/dfs.html","headline":"Depth First Search","dateModified":"2019-07-05T12:01:36-07:00","datePublished":"2019-07-05T12:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/05/dfs.html"},"description":"0 References These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html 1 Introduction","@type":"BlogPosting","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -69,13 +60,18 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>0 References</b><br />
+    <!----------------------------------------------------------------------------------->
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>References</b><br />
+</div>
+<p><br />
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>References</b><br />
+</div>
 <p><br />
 <b>1 Introduction</b>
 <br />
@@ -85,26 +81,24 @@ These are just my class notes from following http://web.stanford.edu/class/cs161
 <br /><br />
 In a depth first search, we typically keep track of the time we first discovered a vertex and also the time we finished processing a vertex (after we look at all its neighbors). This information will help later in topologically sorting a graph. 
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2 Data Structures</b>
 <br />
+<!-----------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Data Structures</b><br />
+</div>
+<p><br />
 To perform a depth first search, we will maintain the following data structures:
 <br />
 (2) A set or an array that keeps track of the visited nodes. Remember that <script type="math/tex">G</script> might contain cycles and so we want to make sure that we explore each node once.
 <br /><br />
 (1) A stack. We want to explore the nodes closest to <script type="math/tex">s</script> first. Since we’re insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we’ll be doing in the implementation below.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3 Example</b>
 <br />
+<!-----------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Example</b><br />
+</div>
+<p><br />
 Let’s explore the graph above. We will start from <script type="math/tex">s</script> and as soon as we see <script type="math/tex">a</script> we’ll recursively call dfs again. The start time for <script type="math/tex">s</script> is 0 and the start time for <script type="math/tex">a</script> is 1.</p>
 
 <p><img src="http://localhost:4000/assets/dfs/1.png" alt="my photo" /></p>
@@ -122,13 +116,12 @@ Let’s explore the graph above. We will start from <script type="math/tex">s</s
 
 <p><img src="http://localhost:4000/assets/dfs/4.png" alt="my photo" />
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>4 Implementation</b>
-<br /></p>
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Implementation</b><br />
+</div>
+<p><br /></p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">current_time</span><span class="p">,</span>
         <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">graph</span><span class="p">,</span>
@@ -149,22 +142,18 @@ Let’s explore the graph above. We will start from <script type="math/tex">s</s
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<!-----------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Running Time</b><br />
+</div>
 <p><br />
-<b>6 Running Time</b>
-<br />
 Similar to the analysis of breadth first search. We visit each vertex once only. That’s <script type="math/tex">O(V)</script> time. Therefore, we also visit the adjacency list of each vertex at most once and that’s <script type="math/tex">O(E)</script> time. Therefore, the total time is <script type="math/tex">O(V+E)</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<!-----------------------------------------------------------------------------------></p>
+<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
+<b>Implementation</b><br />
+</div>
 <p><br />
-<b>7 Full Implementation:</b>
-<br />
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/depth-first-search
 <br />
 <br /></p>
@@ -213,7 +202,7 @@ s.setAttribute('data-timestamp', +new Date());
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>hello</p>
+        <p>personal study notes</p>
       </div>
     </div>
 

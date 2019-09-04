@@ -2,22 +2,13 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.0 -->
-<title>Binary Heaps | strncat’s notebook</title>
-<meta name="generator" content="Jekyll v3.7.4" />
-<meta property="og:title" content="Binary Heaps" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="0 References These are my study notes / summary on chapter 6 in CLRS. Introduction The heap data structure is an array that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. is the root of the tree. In the above tree, is the root of the tree. Because the heap is based on a complete binary tree, the height of a heap of elements is . As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in time. Finding the Parent, Left and Right Children Given an element . Its parent is located at . For example the parent of 2 (index 7) is . The left child is and the right child is . For example the right child of 13 (index 2) is ." />
-<meta property="og:description" content="0 References These are my study notes / summary on chapter 6 in CLRS. Introduction The heap data structure is an array that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. is the root of the tree. In the above tree, is the root of the tree. Because the heap is based on a complete binary tree, the height of a heap of elements is . As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in time. Finding the Parent, Left and Right Children Given an element . Its parent is located at . For example the parent of 2 (index 7) is . The left child is and the right child is . For example the right child of 13 (index 2) is ." />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html" />
-<meta property="og:site_name" content="strncat’s notebook" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-07-12T07:01:36-07:00" />
-<script type="application/ld+json">
-{"url":"http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html","headline":"Binary Heaps","dateModified":"2019-07-12T07:01:36-07:00","datePublished":"2019-07-12T07:01:36-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/07/12/binary-heaps.html"},"description":"0 References These are my study notes / summary on chapter 6 in CLRS. Introduction The heap data structure is an array that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. is the root of the tree. In the above tree, is the root of the tree. Because the heap is based on a complete binary tree, the height of a heap of elements is . As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in time. Finding the Parent, Left and Right Children Given an element . Its parent is located at . For example the parent of 2 (index 7) is . The left child is and the right child is . For example the right child of 13 (index 2) is .","@type":"BlogPosting","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -69,31 +60,29 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>0 References</b><br />
+    <div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
+<b>References</b>
+</div>
+<p><br />
 These are my study notes / summary on chapter 6 in CLRS.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
+<br />
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Introduction</b>
-<br />
-<br />
+</div>
+<p><br />
 <img src="http://localhost:4000/assets/heaps/1.png" width="100%" />
 The heap data structure is an array <script type="math/tex">A</script> that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. <script type="math/tex">A[1]</script> is the root of the tree. In the above tree, <script type="math/tex">A[1]=17</script> is the root of the tree.
 <br /><br />
 Because the heap is based on a complete binary tree, the height of a heap of <script type="math/tex">n</script> elements is <script type="math/tex">\Theta(\log(n))</script>. As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in <script type="math/tex">O(\log(n))</script> time.
 <br />
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
+<b>Finding the Parent, Left and Right Children</b>
+</div>
 <p><br />
-<b>Finding the Parent, Left and Right Children </b>
-<br />
-<br />
 Given an element <script type="math/tex">A[i]</script>. Its parent is located at <script type="math/tex">A[\lfloor i/2 \rfloor]</script>. For example the parent of 2 (index 7) is <script type="math/tex">A[\lfloor 7/2 \rfloor]=A[3]=11</script>. The left child is <script type="math/tex">A[2*i]</script> and the right child is <script type="math/tex">A[2*i+1]</script>. For example the right child of 13 (index 2) is <script type="math/tex">A[2*2 + 1] = A[5] = 3</script>.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
@@ -107,16 +96,12 @@ Given an element <script type="math/tex">A[i]</script>. Its parent is located at
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
+<b>The Heap Property</b>
+</div>
 <p><br />
-<b>The Heap Property </b>
-<br />
-<br /></p>
-
-<p>There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b>. The heap property depends on the type of the heap. For any given element <script type="math/tex">A[i]</script> we must have:</p>
+There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b>. The heap property depends on the type of the heap. For any given element <script type="math/tex">A[i]</script> we must have:</p>
 
 <p>If this is a max-heap then,</p>
 
@@ -140,14 +125,12 @@ Given an element <script type="math/tex">A[i]</script>. Its parent is located at
 
 <p>The heap property is crucial. Because of it, we know that the root of the heap must be the smallest or the largest element in the heap and therefore, extracting the minimum or the maximum depending on the heap type can be done in constant time!
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
+<br />
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Maintaining the Max-Heap Property</b>
-<br />
-<br />
+</div>
+<p><br />
 Suppose we have an element <script type="math/tex">A[i]</script> that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of <script type="math/tex">A[i]</script> maintain the heap property. We know in constant time that the children are <script type="math/tex">A[2*i]</script> and <script type="math/tex">A[2*i+1]</script>. We can then swap <script type="math/tex">A[i]</script> with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at <script type="math/tex">A[i]</script>. Let’s look at a simple implementation:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">max_heapify</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
@@ -175,14 +158,12 @@ Suppose we have an element <script type="math/tex">A[i]</script> that is smaller
 
 <p>How long does max_heapify take? Well, in the worst case, we will go down all the way to a leaf and so the runtime is <script type="math/tex">O(h)</script> which is <script type="math/tex">O(log(n))</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
+<br />
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Building a Max-Heap</b>
-<br />
-<br />
+</div>
+<p><br />
 Based on how we store the heap elements in the array, the leaves of the tree are located stating at <script type="math/tex">A[n/2+1], A[n/2+2],...,n</script>. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of <script type="math/tex">A</script> maintains the heap property. Therefore, we can use the following to build a max-heap:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">build_max_heap</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="p">{</span>
@@ -192,14 +173,11 @@ Based on how we store the heap elements in the array, the leaves of the tree are
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Building a Max-Heap (Example)</b>
-<br />
-<br />
+</div>
+<p><br />
 Let’s look at an example of building a max-heap using the above idea. We’re given the following array and we want to build a max-heap out of it.
 <br />
 <img src="http://localhost:4000/assets/heaps/e1.png" width="100%" />
@@ -229,14 +207,12 @@ And finally we will swap 1 with the larger of its children, node 7.
 Finally, you can see now that the tree/array is a max-heap:
 <img src="http://localhost:4000/assets/heaps/e10.png" width="100%" />
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
+<br />
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Building a Max-Heap (Proof of Correctness)</b>
-<br />
-<br />
+</div>
+<p><br />
 Why should we believe that build_max_heap works? This is going to be exactly what’s in CLRS (my notes for myself to quickly remember). We’ll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.</p>
 
 <table>
@@ -262,14 +238,12 @@ At termination when <script type="math/tex">i=0</script>, we know by the loop in
 <br />
 I would obviously recommend looking at CLRS’s way unless I’m in a rush and this is easily accessible on my phone. 
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
+<br />
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Building a Max-Heap (Running Time)</b>
-<br />
-<br />
+</div>
+<p><br />
 The most exciting question is how long does it take to build a max heap? We know that max_heapify takes <script type="math/tex">O(\log(n))</script> time for each node. We also know that we at most have <script type="math/tex">O(n)</script> iterations. This means that building a max heap will run in <script type="math/tex">O(n\log(n))</script>. But we derive a much tighter bound than this by observing that:
 <br /><br />
 (1) Binary heaps with <script type="math/tex">n</script> nodes have height <script type="math/tex">\lfloor \log(n) \rfloor</script>. <br />
@@ -323,14 +297,12 @@ $$
 </div>
 <p>and we’re done!
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
+<br />
+<!----------------------------------------------------------------------------></p>
+<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
 <b>Heapsort</b>
-<br />
-<br />
+</div>
+<p><br />
 TODO</p>
 
 
@@ -377,7 +349,7 @@ s.setAttribute('data-timestamp', +new Date());
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>hello</p>
+        <p>personal study notes</p>
       </div>
     </div>
 

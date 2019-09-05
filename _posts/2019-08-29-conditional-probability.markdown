@@ -19,11 +19,16 @@ mathjax: true
 </div>
 <img src="{{ site.url }}/assets/condprob/1.png" width="100%">
 <br>
-Conditional probability is the probability that event $$E$$ occurs given that event $$F$$ has already occured written as $$P(E|F)$$. The <b>sample space</b> is all possible outcomes consistent with $$F$$ ($$S \cap F$$). The <b>event space</b> are all possible outcomes in $$E$$ that are consistent with $$F$$ ($$E \cap F$$). Therefore, we have in general
+Conditional probability is the probability that event $$E$$ occurs given that event $$F$$ has already occured written as $$P(E|F)$$. In this case:
+- The <b>sample space</b> consists of all possible outcomes consistent with $$F$$ (events in $$S \cap F$$). 
+- The <b>event space</b> consists of all possible outcomes in $$E$$ that are consistent with $$F$$ (events in $$E \cap F$$). 
+
+
+Therefore, we have in general
 <div center>
 $$
 \begin{align*}
-P(E|F) = \frac{p(EF)}{p(F)}
+P(E|F) = \frac{p(E \cap F)}{p(F)} = \frac{p(EF)}{p(F)}
 \end{align*}
 $$
 </div>
@@ -94,12 +99,12 @@ P(E) &= \sum_i^n P(F_i)P(E|F_i)
 \end{align*}
 $$
 </div>
-The law of total probability says that the probability of event $$E$$ is now a weighted average of the conditional probability of $$E$$ given event $$F_1$$ plus the conditional probability of $$E$$ given event $$F_2$$ and so on. Note though that these events $$F_i$$ must be mutually exclusive. Moreover $$\sum_iP(F_i) = 1$$. 
+The law of total probability says that the probability of event $$E$$ is now a weighted average of the conditional probability of $$E$$ given event $$F_1$$ plus the conditional probability of $$E$$ given event $$F_2$$ and so on. Note that these events $$F_i$$ must be mutually exclusive. Moreover, $$\sum_iP(F_i) = 1$$. 
 <br>
 <br>
 <b>Example:</b>
 <br>
-Suppose 25% of students are juniors. Suppose now that if a student is a junior then the probability of being a CS major is 30% while if a student is not a junior then the probability of being a CS major is 20%. What is the probability of being a CS major? (Class Example)
+Suppose 25% of students are juniors. Suppose now that if a student is a junior then the probability of being a CS major is 30%, while if a student is not a junior then the probability of being a CS major is 20%. What is the probability of being a CS major? (Class Example)
 <br>
 <br>
 Let $$CS$$ to be the event that a student is a CS major. <br>

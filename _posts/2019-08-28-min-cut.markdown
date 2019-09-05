@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Krager's Minimum Cut"
+title:  "Karger's Minimum Cut"
 date:   2019-08-28 03:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -14,7 +14,8 @@ mathjax: true
 class notes from following:
 1. http://web.stanford.edu/class/cs161/schedule.html 
 2. https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/11/Small11.pdf
-3. Algorithm Design (BEST BOOK)
+3. http://web.stanford.edu/class/archive/cs/cs161/cs161.1172/CS161Lecture16.pdf
+4. Algorithm Design (BEST BOOK)
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -35,11 +36,11 @@ Krager's algorithm starts with picking an edge $$(u,v)$$ in $$G$$ uniformly at r
 <br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Krager's Algorithm Pseudocode</b>
+<b>Karger's Algorithm Pseudocode</b>
 </div>
 <br>
 {% highlight c++ %}
-void krager(graph& g) {
+void karger(graph& g) {
 	Initially create a set for each node v, S(v) = {v}
     while (G has more than two nodes) {
         choose an edge e=(u,v) uniformly at random.
@@ -48,7 +49,6 @@ void krager(graph& g) {
     return the sets of the last two nodes.
 }
 {% endhighlight %}
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
@@ -152,37 +152,38 @@ $$
 Now we can combine everything together:
 <div center>
 $$
+\require{cancel}
 \begin{align*}
 Pr(success) &= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3}) \\
-&\geq (1 - \frac{2}{n})(1 - \frac{2}{n-1})...(1-\frac{2}{n-j})...(1-\frac{2}{3}) \\
-&= (\frac{n-2}{n})(\frac{n-3}{n-1})...(\frac{2}{4})(1-\frac{1}{3}) \\
+&\geq \big(1 - \frac{2}{n}\big)\big(1 - \frac{2}{n-1}\big)...\big(1-\frac{2}{n-j}\big)...\big(1-\frac{2}{3}\big) \\
+&= \big(\frac{n-2}{n}\big)\big(\frac{n-3}{n-1}\big)\big(\frac{n-4}{n-2}\big)...\big(\frac{3}{5}\big)\big(\frac{2}{4}\big)\big(\frac{1}{3}\big) \\
+&= \big(\frac{\bcancel{n-2}}{n}\big)\big(\frac{\bcancel{n-3}}{n-1}\big)\big(\frac{\bcancel{n-4}}{\bcancel{n-2}}\big)...\big(\frac{\bcancel{3}}{\bcancel{5}}\big)\big(\frac{2}{\bcancel{4}}\big)\big(\frac{1}{\bcancel{3}}\big) \\
 &= \frac{2}{n(n-1)}.
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
 <b>Can we do better?</b>
 </div>
 <br>
-The probability of success we found so far is 
+The probability of success, $$p$$, we found so far is 
 <div center>
 $$
 \begin{align*}
-Pr(success) &\geq \frac{2}{n(n-1)} = \frac{1}{\binom{n}{2}}.
+p &\geq \frac{2}{n(n-1)} = \frac{1}{\binom{n}{2}}.
 \end{align*}
 $$
 </div>
-Suppose we run $$k$$ iterations of Krager's algorithm. We then take the minimum cut of all cuts found. These iterations are independent. What is the probability of NOT getting the global minimum cut? It is the probability of failing in every run of the $$k$$ runs. Let $$F_i$$ be the event that we failed to find the global minimum cut in iteration $$i$$. Therefore,
+Suppose we run $$T$$ trials of Krager's algorithm. We then take the minimum cut of all cuts found. These trials are independent. What is the probability of NOT getting the global minimum cut? It is the probability of failing in every trial. Let $$F_i$$ be the event that we failed to find the global minimum cut in iteration $$i$$. Therefore,
 <div center>
 $$
 \begin{align*}
-Pr(\text{Failure after } k \text{ runs}) &= Pr(F_1 \cap F_2 \cap ... \cap F_k) \\
-&\leq Pr(F_1)Pr(F_2)...Pr(F_k) \text{  (by independence)}\\
-&= \big(1-\frac{2}{n(n-1)} \big)^{k} \\
-&= \big(1-\frac{1}{\binom{n}{2}} \big)^{k}.
+Pr(\text{Failure after } T \text{ trials}) &= Pr(F_1 \cap F_2 \cap ... \cap F_T) \\
+&= Pr(F_1)Pr(F_2)...Pr(F_T) \text{  (by independence)}\\
+&\leq \big(1-\frac{2}{n(n-1)} \big)^{T} \\
+&= \big(1-\frac{1}{\binom{n}{2}} \big)^{T}.
 \end{align*}
 $$
 </div>
@@ -190,27 +191,42 @@ We also know that for any $$x \geq 1$$, we have
 <div center>
 $$
 \begin{align*}
-\frac{1}{4} \leq \big (1-\frac{1}{x} \big)^x \leq \frac{1}{e}
+\big (1-\frac{1}{x} \big)^x \leq \frac{1}{e}
 \end{align*}
 $$
 </div>
-Using the above bound, we can let $$k = \binom{n}{2}$$ and see that
+Suppose we let $$x = \frac{1}{p}$$, we see that
 <div>
 $$
 \begin{align*}
-Pr(\text{Failure}) &\leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\binom{n}{2}} \leq \frac{1}{e}
+\big(1-\frac{1}{\binom{n}{2}} \big)^{\binom{n}{2}} \leq \frac{1}{e}
 \end{align*}
 $$
 </div>
-Furthermore, we can let $$k = \ln(n)\binom{n}{2}$$ to get
+This is exactly our expression above with $$T = \binom{n}{2}$$. Furthermore, we can let $$T = \ln(n)\binom{n}{2}$$ to get
 <div>
 $$
 \begin{align*}
-Pr(\text{Failure}) &\leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\ln(n)\binom{n}{2}} \leq \frac{1}{e}^{\ln(n)} = \frac{1}{n}
+P(\text{Failure}) \leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\ln(n)\binom{n}{2}} \leq \frac{1}{e}^{\ln(n)} = \frac{1}{n}
 \end{align*}
 $$
 </div>
-<br>
+In general, if we want the probability of failure to be at most $$\delta$$ then we need to set $$T$$ to $$\ln(1/\delta)\frac{1}{p}$$ in
+<div>
+$$
+\begin{align*}
+Pr(\text{Failure}) &\leq \big(1-p\big)^{T} \leq \delta
+\end{align*}
+$$
+</div>
+This is because 
+<div>
+$$
+\begin{align*}
+Pr(\text{Failure}) &\leq \big(1-p\big)^{\ln(1/\delta)\frac{1}{p}} \leq \frac{1}{e}^{\ln(1/\delta)} = \delta
+\end{align*}
+$$
+</div>
 <br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
@@ -228,26 +244,64 @@ Given that we can get a high success probability if we run Krager's algorithm fo
 <b>Karger - Stein</b>
 </div>
 <br>
-Can we do better than $$(n^4\log(n)$$ and still maintain the same probability of success? Krager and Stein published an improved result that's much faster! 
+Can we do better than $$O(n^4\log(n))$$ and still maintain a high success probability? Krager and Stein published an improved result that's much faster! 
 <br>
 <br>
-Observe when running Krager's algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set $$F$$) gets higher with every iteration. Therefore, we should really just run krager once in the first few iterations and then repeat Karger for the remaining nodes. This is what Krager and Stein are doing:
-
+Observe when running Krager's algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set $$F$$) gets higher with every iteration. Therefore, we should really just run karger once in the first few iterations and then repeat Karger for the remaining nodes. 
+<br>
+<br>
+This is what Karger-Stein's algorithm is doing. We contract edges until we get $$n/\sqrt{2}$$ vertices. We then make copies of the graph and independently contract the edges again for each graph until we get to $$n/\sqrt{2}/\sqrt{2}$$. We then return the minimum of both cuts. We repeat this process again until we reach 4 vertices and simply find the minimum cut by brute force. This is illustrated in the below graph:
+<img src="{{ site.url }}/assets/mincut/stein.png" width="100%">
+We also summarize it in the following pseudo-code:
 {% highlight c++ %}
-void krager_stein(graph& g) {
-	if (n < 4) {
+void karger_stein(graph& g) {
+    if (n < 4) {
         find a minimum cut by brute force
     }
-    Run krager (contraction algorithm) from above until there are only n/sqrt(2) nodes left
+    Karger(g); Contract edges until there are only n/sqrt(2) nodes left
     Let g1 = g and g2 = g (two copies)
-	cut1 = krager_stein(g1)
-	cut2 = krager_stein(g2)
-	Return the minmum cut of cut1 and cut2
+    cut1 = karger_stein(g1)
+    cut2 = karger_stein(g2)
+    Return the minmum cut of cut1 and cut2
 }
 {% endhighlight %}
-Visually, we are contracting until we get $$n/\sqrt{2}$$ vertices, making copies and then independently again contracting below:
-<img src="{{ site.url }}/assets/mincut/stein.png" width="100%">
-Since we're repeatdly dividing by $$\sqrt{2}$$, then we know that the depth of the tree is 
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Karger - Stein Running Time</b>
+</div>
+<br>
+Karger-Stein is a recursive algorithm. At each level of the recursion, we perform Karger on $$G$$ until we reach $$n/\sqrt{2}$$ vertices. Karger runs in $$O(n^2)$$. Therefore, we have the following recurrence for the running time:
+<div>
+$$
+\begin{align*}
+T(n) = 2T(n/\sqrt{2}) + O(n^2)
+\end{align*}
+$$
+</div>
+And therefore, the running time is $$O(n^2\log(n))$$ by the master theorem.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Karger - Stein Probability of Success</b>
+</div>
+<br>
+Karger-Stein first contracts the graph from $$n$$ vertices down to $$n/\sqrt{2}$$ vertices. Similar to the analysis we did earlier. The probability of success is the probability of not picking the wrong edges in any of the first $$n-n/\sqrt{2}$$ iterations. Therefore, combining all probabilities:
+<div center>
+$$
+\require{cancel}
+\begin{align*}
+Pr(\text{success until } n/\sqrt{2}) &= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-n\sqrt{2}} | S_1 \cap S_2 \cap ... \cap S_{n-n/\sqrt{2}}) \\
+&\geq \big(1 - \frac{2}{n}\big)\big(1 - \frac{2}{n-1}\big)...\big(1-\frac{2}{n-j}\big)...\big(1-\frac{2}{n/\sqrt{2}+1}\big) \\
+&= \big(\frac{n-2}{n}\big)\big(\frac{n-3}{n-1}\big)\big(\frac{n-4}{n-2}\big)...\big(\frac{n/\sqrt{2}}{n/\sqrt{2}+2}\big)\big(\frac{n/\sqrt{2}-1}{n/\sqrt{2}+1}\big) \\
+&= \big(\frac{\bcancel{n-2}}{n}\big)\big(\frac{\bcancel{n-3}}{n-1}\big)\big(\frac{\bcancel{n-4}}{\bcancel{n-2}}\big)...\big(\frac{n/\sqrt{2}}{\bcancel{n/\sqrt{2}+2}}\big)\big(\frac{n/\sqrt{2}-1}{\bcancel{n/\sqrt{2}+1}}\big) \\
+&= \frac{n/\sqrt{2}(n/\sqrt{2}-1)}{n(n-1)} \\
+&= \frac{n(n-\sqrt{2})}{2n(n-1)} = \frac{n-\sqrt{2}}{2(n-1)} \approx \frac{1}{2}. \text{ (when n is large)}
+\end{align*}
+$$
+</div>
+If represent these probabilities with a binary tree then we know at each step we have a probability of $$1/2$$ of picking the right path down to a leaf. Since we're dividing by $$\sqrt{2}$$, then we know that the depth of the tree is 
 <div>
 $$
 \begin{align*}
@@ -263,6 +317,55 @@ $$
 \end{align*}
 $$
 </div>
+To find the overall probability of success, we need to find the probability of picking the right path from the root down to a leaf. Picking the right path means that at every step we pick the right edge. Suppose $$x$$ is a vertex in this tree and let $$d$$ be the height of $$x$$. Let $$p_d$$ be the probability that there exists a path of surviving edges from $$x$$ down to a leaf. Let $$L$$ be the event that there exists a path of surviving edges in the left subtree of $$x$$. Let $$R$$ be the event that there exists a path of surviving edges in the right subtree of $$x$$. We see that
+<div>
+$$
+\begin{align*}
+p_d &= \frac{1}{2} * Pr(\text{there is at least one subtree with surviving edges}) \\
+&= \frac{1}{2} * Pr(L \cup R) \\
+&= \frac{1}{2} * (Pr(R) + Pr(L) - Pr(R \cap L)) \\
+&= \frac{1}{2} * (Pr(R) + Pr(L) - Pr(R \cap L)) \\
+&= \frac{1}{2} * (p_{d-1} + p_{d-1} - p_{d-1}^2) \\
+&= p_{d-1} - \frac{1}{2}p_{d-1}^2 \\
+\end{align*}
+$$
+</div>
+The claim is that $$p_d \geq \frac{1}{d+1}$$. To see this, we need to prove this by induction by $$d$$ for $$d > 0$$. 
+<br>
+For the base case, the probability of finding a path of surviving edges when the height is 0 is 1. We also see that $$p_0 \geq \frac{1}{0+1} = 1$$ as we wanted to show.
+<br>
+<br>
+For the inductive hypothesis, suppose it holds for $$d-1$$ and so $$p_{d-1} \geq \frac{1}{d}$$. We will prove that it holds for $$d$$. 
+<div>
+$$
+\begin{align*}
+p_d &= p_{d-1} - \frac{1}{2}p_{d-1}^2 \\
+&\geq \frac{1}{d} - \frac{1}{2}\frac{1}{d^2} \\
+&\geq \frac{1}{d} - \frac{1}{d(d+1)} \quad \text{(} 1/d(d+1) \text{ is strictly greater than } 1/2d^2 \text { for } d \geq 1 \text{)} \\
+&= \frac{1}{d+1}.
+\end{align*}
+$$
+</div>
+Side Note: I don't know how I would come up with replacing $$1/d^2$$ with $$1/d(d+1)$$.
+<br>
+<br>
+Finally since the root of the tree has depth $$2\log(n)$$, then we know that the probability of success is at least $$\frac{1}{2\log(n)+1}$$.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
+<b>Karger - Stein Improved Success Rate</b>
+</div>
+<br>
+But how many trials do we need in order to achieve the same success rate as Karger's original algorithm (with repetition)? We know the probability of success is at least $$p = \frac{1}{2\log(n)+1}$$. The probability of failing in $$T$$ trials (trials are independent) is the following if we set $$T$$ to $$\ln(1/\delta)\frac{1}{p}$$
+<div>
+$$
+\begin{align*}
+Pr(\text{failure in }T \text{ trials}) &= (1 - p)^T \leq \delta
+\end{align*}
+$$
+</div>
+We arrived at this in the previous analysis of Karger's algorithm. Therefore, we set $$T = (2\log(n)+1)\ln(1/n)$$ to get a probablity of failure to be at most $$\frac{1}{n}$$.
 
 
 

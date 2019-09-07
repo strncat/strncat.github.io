@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Counting Distinguishable and Indistinguishable Objects</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-09-05T07:01:36-07:00" itemprop="datePublished">Sep 5, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3>References</h3>
+<ul>
+  <li>Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h3><b>(1) k distinguishable strings and n distinguishable buckets</b></h3>
+<p><br />
+Label the strings <script type="math/tex">s_1, s_2,...,s_k</script> and label the buckets <script type="math/tex">b_1, b_2,...,b_n</script>. <script type="math/tex">s_1</script> has <script type="math/tex">n</script> choices of buckets to choose from. <script type="math/tex">s_2</script> has <script type="math/tex">n</script> choices of buckets to choose from and so. Therefore, the total number of choices is</p>
+<div center="">
+$$
+\begin{align*}
+n^k
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<h3><b>(2) k distinguishable strings and n distinguishable buckets with at most 1 string in each bucket</b></h3>
+<p><br />
+Assuming <script type="math/tex">k \leq n</script> (otherwise it is impossible). Label the strings <script type="math/tex">s_1, s_2,...,s_k</script> and label the buckets <script type="math/tex">b_1, b_2,...,b_n</script>. <script type="math/tex">s_1</script> has <script type="math/tex">n</script> choices of buckets to choose from. <script type="math/tex">s_2</script> has <script type="math/tex">n-1</script> choices of buckets to choose from because it can’t go to the bucket that <script type="math/tex">s_1</script> chose. Similarly, <script type="math/tex">s_3</script> has <script type="math/tex">n-2</script> and so on. Therefore, the total number of choices is</p>
+<div center="">
+$$
+\begin{align*}
+n(n-1) ... (n-k+1) = \binom{n}{k} * k!
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<h3><b>(3) k indistinguishable strings and n distinguishable buckets</b></h3>
+<p><br />
+Label the buckets <script type="math/tex">b_1, b_2,...,b_n</script> and line them up below:
+<img src="http://localhost:4000/assets/counting/0a.png" alt="my photo" />
+The strings are indistinguishable. We want to distribute them among the buckets so for example we could have the following:
+<img src="http://localhost:4000/assets/counting/0b.png" alt="my photo" />
+To simplify the problem, let’s pretend that they are distinguishable and instead of buckets we’ll use dividers to separate the strings into different buckets. This way the first set of strings are in bucket 1, the second set after the first divider are in bucket 2 and so on. We’ll use colors to distinguish them. We will only need <script type="math/tex">n-1</script> dividers to create <script type="math/tex">n</script> groups.
+<br />
+<br />
+To visualize this, suppose <script type="math/tex">n=4</script> and <script type="math/tex">k=5</script>. In the below figure, we have <script type="math/tex">\{s_1,s_2\}</script> in the first bucket. <script type="math/tex">\{s_3\}</script> in the second bucket. <script type="math/tex">\{s_4,s_5\}</script> in the third bucket. The forth bucket is empty.
+<img src="http://localhost:4000/assets/counting/1.png" alt="my photo" />
+How many possible permutions are there? We have <script type="math/tex">n-1</script> dividers and <script type="math/tex">k</script> strings so</p>
+<div center="">
+$$
+\begin{align*}
+(n+k-1)!
+\end{align*}
+$$
+</div>
+<p>Now, since strings are really indistinguishable, let’s remove the labels. We also don’t need the colors because we’re assuming the first set of strings goes to the first bucket, the second set goes to the second bucket and so on. So we’ll have something like this:
+<img src="http://localhost:4000/assets/counting/2.png" alt="my photo" />
+To remove the unnecessary ordering, we divide by <script type="math/tex">k!</script> and also divide by <script type="math/tex">(n-1)!</script>. Therefore, the final answer is</p>
+<div center="">
+$$
+\begin{align*}
+\frac{(n+k-1)!}{k!(n-1)!} = \binom{n+k-1}{n-1}
+\end{align*}
+$$
+</div>
+<p>Note that solution can be applied to other interesting examples like finding the number of integer solutions to <script type="math/tex">x_1+x_2+...+x_k=n</script>.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3><b>(4) k indistinguishable strings and n distinguishable buckets with at most 1 string in each bucket</b></h3>
+<p><br />
+In case (2), we saw that the number of ways to put <script type="math/tex">k</script> distinguishable strings into <script type="math/tex">n</script> distinguishable buckets with at most 1 string in each bucket is <script type="math/tex">\binom{n}{k} * k!</script>. In this case, the strings are indistinguishable so we don’t care about the order of strings and so we divide by <script type="math/tex">k!</script>. The final answer therefore is simply</p>
+<div center="">
+$$
+\begin{align*}
+\binom{n}{k}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2019/09/05/counting-dist.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2019/09/05/counting-dist; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2019/09/05/counting-dist.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

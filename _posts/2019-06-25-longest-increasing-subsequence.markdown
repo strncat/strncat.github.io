@@ -135,15 +135,15 @@ Previously, we said that $$D[i]$$ is the length of the longest subsequence endin
 <br><br>
 Let's take the same example where $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$. In this case, the smallest number that ends a subsequence of length 1 is 1. Also the smallest number that ends a subsequence of length 3 is 4 and so on. We will eventually have $$M$$ is $$[-\infty, 1, 2, 4, 5, \infty, \infty, \infty, \infty]$$.
 <br><br>
-Before proceeding with the algorithm and why it works. Let's prove that based on our construction of $$M$$, that $$M$$ must be sorted because this will help us later on. To prove that $$M$$ is sorted, we will prove that $$M$$ is a strictly increasing array and that for any $$k$$, we have $$M[k] < M[k+1]$$. (We will ignore the placeholder $$\infty$$'s otherwise the proof would not work)
+Before proceeding with the algorithm and why it works, let's prove that based on our construction of $$M$$, that $$M$$ must be sorted because this will help us later on to prove that $$M$$ is sorted. We will prove that $$M$$ is a strictly increasing array and that for any $$k$$, we have $$M[k] < M[k+1]$$. (We will ignore the placeholder $$\infty$$'s otherwise the proof would not work)
 <br><br>
 
 | Claim: M is a strictly increasing array |
 
 <b>Proof:</b><br>
-Suppose it is not and that there exists some $$j$$ where either $$M[j] = M[j+1]$$ or $$M[j] > M[j+1]$$. We will prove neither case is possible.
+Suppose it is not and that there exists some $$j$$ where either $$M[j] = M[j+1]$$ or $$M[j] > M[j+1]$$. We will prove neither that case is possible.
 <br><br>
-First, suppose that $$M[j] = M[j+1]$$ then this means that we have two strictly increasing subsequences that end in $$M[j]$$. Let the first subsequence be $$\{a_1, a_2,...a_n,M[j]\}$$ of length $$j$$ and let the second subsequence be $$\{b_1,b_2,..,b_m,M[j]\}$$ of length $$j+1$$ and so $$m = n + 1$$. Since this is a strictly increasing subsequence, we must have $$b_m < M[j]$$. This is a contradiction because by assumption we know that $$M[j]$$ is the smallest element that ends a subsequence of length $$j$$ but we just showed that there exists a subsequence, namely, $$\{b_1,b_2,..,b_m\}$$, of length $$j$$ that ends with a smaller element, $$b_m < M[j]$$.
+First, suppose that $$M[j] = M[j+1]$$ then this means that we have two strictly increasing subsequences that end in $$M[j]$$. Let the first subsequence be $$\{a_1, a_2,...a_n,M[j]\}$$ of length $$j$$ and let the second subsequence be $$\{b_1,b_2,..,b_m,M[j]\}$$ of length $$j+1$$ and so $$m = n + 1$$. Since this is a strictly increasing subsequence, we must have $$b_m < M[j]$$. This is a contradiction because by assumption we know that $$M[j]$$ is the smallest element that ends a subsequence of length $$j$$ but we just showed that there exists a subsequence, namely, $$\{b_1,b_2,..,b_m\}$$, of length $$j$$ that ends with a smaller element, namely $$b_m < M[j]$$.
 <br><br>
 Next, suppose that $$M[j] > M[j+1]$$. This is a contradiction for the same reasons above. Let $$a$$ be the subsequence of length $$j$$ that ends with $$M[j]$$ and if we let $$b$$ the subsequence of length $$j+1$$ that ends with M[j+1]. Since subsequences are strictly increasing then we can extract all the elements from $$b$$ except for $$M[j+1]$$. This new sequence ends with an element strictly less than $$M[j]$$ and therefore, we arrive at the same contradiction and conclude that it is not possible.
 <br><br>

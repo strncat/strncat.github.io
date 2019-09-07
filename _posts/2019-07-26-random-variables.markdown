@@ -5,7 +5,6 @@ date:   2019-07-26 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-
 <div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>References</b>
 </div>
@@ -24,7 +23,7 @@ A random variable is a real-valued function defined on a sample space. Why defin
 <br>
 <b>Example 1:</b>
 <br> 
-Suppose we're interested in <i>counting</i> the number of heads in $$5$$ trials of flipping a coin. We can define a random variable $$Y$$ to represent the number of heads in 5 trials. Using $$Y$$, we can now refer to the probability of seeing two heads in 5 trials as $$P(Y=2)$$. This is much simpler that listing the exact outcomes we're interested in which are getting heads in trial 1 and 2 or getting heads in 1 or 3 or getting heads in trials 1 and 4 only and so on. 
+Suppose we're interested in <i>counting</i> the number of heads in $$5$$ trials of flipping a coin. We can define a random variable $$Y$$ to represent the number of heads in 5 trials. Using $$Y$$, we can now refer to the probability of seeing two heads in 5 trials as $$P(Y=2)$$. This is much simpler that listing the exact outcomes that we're interested in. ($$\{H,H,T,T,T\},\{H,T,H,T,T\},...\}$$).
 <br>
 <br>
 <b>Example 2:</b>
@@ -53,7 +52,7 @@ p_X(k) = P(X = k)
 \end{align*}
 $$
 </div>
-Furthermore, the PMF of $$X$$ satisfies:
+Furthermore, the PMF of $$X$$ satisfies
 <div center>
 $$
 \begin{align*}
@@ -61,7 +60,7 @@ $$
 \end{align*}
 $$
 </div>
-This also means that for any value $$k$$ that is not in $$R_X$$, we have $$p_X(k) = 0$$, in other words,
+This also means that for any value $$k$$ that is not in $$R_X$$, we have $$p_X(k) = 0$$,
 <div center>
 $$
 \begin{align*}
@@ -85,7 +84,7 @@ Suppose we roll the two dice again from example 2. Define a random variable $$X$
 <b>Cumulative Distribution Function</b>
 </div>
 <br>
-Now instead of defining the probability that a random variable $$X$$ takes on a particular value, we define a new function, the cumulative distribution function (CDF) that gives the probability that $$X$$ is less than or equal to a particular value.
+Suppose we're interested in the probability that a random variables, $$X$$, is less than or equal to a particular value, $$C$$. One way to do this is to sum all the probabilities for all the values that $$X$$ can take up to $$C$$. An easier way to do this is to use the cumulative distribution function (CDF) that gives the probability that $$X$$ is less than or equal to a particular value, specifically
 <div center>
 $$
 \begin{align*}
@@ -159,32 +158,20 @@ Using the above, $$E[Y] = E[X^2] = \sum_i (k_i^2)p(k_i) = 1/6*(1+4+9+16+25+36) \
 <br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
-<b>Properties of Expectation</b>
+<b>Linearity of expectation</b>
 </div>
 <br>
-Two important properties of expectation are the following: <br>
-(1) Linearity of expectation:
+Expectation of the sum of two random variables is the sum of expectation of the two random variables.
 <div center>
 $$
 \begin{align*}
- E[aX + b] &= aE[X] + b 
+ E[aX + bY + c] &= aE[X] + bE[Y] + c
 \end{align*}
 $$
 </div>
-
-(2) Expectation of the sum of two random variables is the sum of expectation of the two random variables:
-
-<div center>
-$$
-\begin{align*}
- E[X + Y] &= E[X] + E[Y]
-\end{align*}
-$$
-</div>
-
 <b>Example 6:</b>
 <br> 
-Suppose we roll a die and let $$X$$ be a random variable representing the outcome of the roll. Suppose also that you will a number of dollars equals to $$3X+5$$. What is the expected value of your winnings? We can let $$Y$$ be a random variable representing our winnings. Now we have
+Suppose we roll a die and let $$X$$ be a random variable representing the outcome of the roll. Suppose also that you will win a number of dollars equals to $$3X+5$$. What is the expected value of your winnings? We can let $$Y$$ be a random variable representing our winnings. Now we have
 
 <div center>
 $$
@@ -217,7 +204,6 @@ E[X_1 + X_2] = E[X_1] + E[X_2] = 7
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Example 8: St. Petersburg Paradox</b>
@@ -245,20 +231,20 @@ E[W] = E[2^Y] &= \sum_i 2^i P(Y=i) =  \sum_i 2^i p(i) \\
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color:#FFFDD0; padding: 7px 7px 7px 20px;">
 <b>Example 9: Roulette</b>
 </div>
 <br>
 Consider an even money bet (betting "Red" in Roulette). $$p=18/38$$ you win $$Y$$ dollars, otherwise $$1-p$$ you lose $$Y$$ dollars. Consider the following strategy:
-(1) Let $$Y=1$$. <br>
-(2) Bet $$Y$$.<br>
-(3) If win then stop.<br>
-(4) else let $$Y=2Y$$ go to step 2.<br>
-<br>
+1. Let $$Y=1$$. <br>
+2. Bet $$Y$$.<br>
+3. If win then stop.<br>
+4. Else let $$Y=2Y$$ go to step 2.<br>
+
 What is the expected value of our winning? <br>
-Define $$Z$$ to be the winnings until we stop. 
+Define $$Z$$ to be our winnings until we stop. <br>
+<br>
 <div center>
 $$
 \begin{align*}
@@ -268,9 +254,6 @@ E[Z] &= p*1 + (1-p)p*(2-1) + (1-p)^2p*(4-2-1) + ... \\
 \end{align*}
 $$
 </div>
-
-
-
 
 
 

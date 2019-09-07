@@ -165,7 +165,7 @@ $$
 <br>
 <!---------------------------------------------------------------------------------------->
 <div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>The Monty Hall Problem x1000</b>
+<b>The Monty Hall Problem</b>
 </div>
 <br>
 Suppose we have 3 doors. Behind one of the three doors a prize. We choose a door. The host then opens one of the remaining doors that reveals nothing. We are now given the chance to switch our door with the remaining door. Do we switch?

@@ -60,17 +60,20 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <table border="0"><tr><td bgcolor="#FFFDD0">
-<b>0 References</b>
-</td></tr></table>
-<p>My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
+    <div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
+<h3>References</h3>
+</div>
+<p><br />
+My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/<br />
+First Course in Probability by Sheldon Ross.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
-<b>Indicator/Bernoulli Random Variable</b>
-</td></tr></table>
-<p>If we have an experiment that results in a boolean answer (yes/no) or (success/failure) with probability <script type="math/tex">p</script> for success and <script type="math/tex">1-p</script> for failure then we can use an indicator or a boolean random variable to represent its outcomes. We define the following:</p>
+<div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
+<h3>Indicator/Bernoulli Random Variable</h3>
+</div>
+<p><br />
+If we have an experiment that results in a boolean answer (yes/no) or (success/failure) with probability <script type="math/tex">p</script> for success and <script type="math/tex">1-p</script> for failure then we can use an indicator or a boolean random variable to represent its outcomes. We define the following:</p>
 <div center="">
 $$
 \begin{align*}
@@ -108,13 +111,21 @@ E[X] = p(1)*1 + p(0)*0 = p(1) = P(A)
 \end{align*}
 $$
 </div>
+<p>We also know the variance</p>
+<div center="">
+$$
+\begin{align*}
+Var(X) = E[X^2] - (E[X])^2 = 1^2(p) + 0^2(1-p) - p^2 = p - p^2 = p(1-p)
+\end{align*}
+$$
+</div>
 <p><br />
-<br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
-<b>Binomial Random Variable</b>
-</td></tr></table>
-<p>If we on the other hand have <script type="math/tex">n</script> independent trials of Bernoulli random variables with a probability of success <script type="math/tex">p</script>, then we can use a binomial random variable to represent the number of successes in <script type="math/tex">n</script> trials. For example, if we are flipping a coin with probability of getting heads (success) equals to <script type="math/tex">p</script>, then we can define a binomial random variable <script type="math/tex">X</script> to represent the number of heads in <script type="math/tex">n</script> trials. 
+<div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
+<h3>Binomial Random Variable</h3>
+</div>
+<p><br />
+If we on the other hand have <script type="math/tex">n</script> independent trials of Bernoulli random variables with a probability of success <script type="math/tex">p</script>, then we can use a binomial random variable to represent the number of successes in <script type="math/tex">n</script> trials. For example, if we are flipping a coin with probability of getting heads (success) equals to <script type="math/tex">p</script>, then we can define a binomial random variable <script type="math/tex">X</script> to represent the number of heads in <script type="math/tex">n</script> trials. 
 <br />
 <br />
 Therefore, <script type="math/tex">R_X = \{0,1,...,n\}</script> and the PMF of <script type="math/tex">X</script> is:</p>
@@ -135,13 +146,50 @@ E[X^2] &amp;= n^2p^2 - np^2 + np
 \end{align*}
 $$
 </div>
-<p><br />
+<p><b>Example 1</b><br />
+Suppose we flip a fair coin <script type="math/tex">4</script> times. What is the probability of seeing exactly two heads.
+<br /><br />
+Let <script type="math/tex">X</script> be the number of heads. <script type="math/tex">X</script> is a binomial random variable with <script type="math/tex">n=4</script> and <script type="math/tex">p=0.5</script>. Therefore,</p>
+<div center="">
+$$
+\begin{align*}
+p(X=2) = \binom{4}{2}(0.5)^2(0.5)^2 = 0.375
+\end{align*}
+$$
+</div>
+<p><b>Example 2</b><br />
+(Book Example). Suppose we have 12 jurors and in order to convict a defendant you need 8 jurors to vote guilty. Suppose the probability of making the right decision by a juror is <script type="math/tex">p</script>. What is the probability of making a right decision?
 <br />
-<!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
-<b>Poisson Random Variable</b>
-</td></tr></table>
-<p>Consider a duration of time where events occur at an average rate of <script type="math/tex">\lambda</script> (number of occurrences per unit time). Let <script type="math/tex">X</script> be the number of occurrences in a unit of time. We have <script type="math/tex">R_X = \{0,1,...,n\}</script> and the PMF of <script type="math/tex">X</script> is:</p>
+Suppose the defendant is guilty. This means that we need at least 8 jurors making the right the decision. Therefore, the probability is</p>
+<div center="">
+$$
+\begin{align*}
+\sum_{i=8}^{12}\binom{12}{i}p^i(1-p)^{12-i}
+\end{align*}
+$$
+</div>
+<p>However if the defendant is innocent then we need at least 5 jurors making the right decision</p>
+<div center="">
+$$
+\begin{align*}
+\sum_{i=5}^{12}\binom{12}{i}p^i(1-p)^{12-i}
+\end{align*}
+$$
+</div>
+<p>If the defendant is guilty with probability <script type="math/tex">\alpha</script> then the probability becomes</p>
+<div center="">
+$$
+\begin{align*}
+\alpha\sum_{i=8}^{12}\binom{12}{i}p^i(1-p)^{12-i} + (1-\alpha)\sum_{i=5}^{12}\binom{12}{i}p^i(1-p)^{12-i}
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
+<h3>Poisson Random Variable</h3>
+</div>
+<p><br />
+Consider a duration of time where events occur at an average rate of <script type="math/tex">\lambda</script>. Let <script type="math/tex">X</script> be the number of occurrences in a unit of time. We have <script type="math/tex">R_X = \{0,1,...,n\}</script>. The PMF of <script type="math/tex">X</script> is:</p>
 <div center="">
 $$
 \begin{align*}
@@ -149,18 +197,7 @@ p(k) = P(X = k) = \frac{\lambda^k}{k!}e^{-\lambda}
 \end{align*}
 $$
 </div>
-<p>The expected value, variance and second moment of a binomial random variable:</p>
-<div center="">
-$$
-\begin{align*}
-E[X] = np \\
-Var(X) = np(1-p) \\
-E[X^2] = n^2p^2 - np^2 + np
-\end{align*}
-$$
-</div>
 <p><br />
-<br />
 <b> Example 1: </b><br />
 Given a web server, suppose that the server load averages 2 hits per second. Let <script type="math/tex">X</script> be the number of hits received in a second. What is <script type="math/tex">P(X=5)?</script>
 <br /></p>
@@ -172,19 +209,101 @@ P(X = 5) = \frac{\lambda^5}{5!}e^{-2} \approx 0.0361
 $$
 </div>
 <p><br />
-<br />
 <!------------------------------------------------------------------------------------></p>
-<table border="0"><tr><td bgcolor="#FFFDD0">
-<b>Binomial and Poisson Random Variables</b>
-</td></tr></table>
-<p>Let <script type="math/tex">n</script> be very large and <script type="math/tex">p</script> very small. Let <script type="math/tex">\lambda = np</script> which is the average number of successes you see in <script type="math/tex">n</script> trials. Then we will have</p>
+<div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
+<h3>Binomial and Poisson Random Variables</h3>
+</div>
+<p><br />
+A Poisson random variable can also be used to approximate a binomial random variable if <script type="math/tex">n</script> is very large and <script type="math/tex">p</script> is small so that <script type="math/tex">np</script> is moderate. Let <script type="math/tex">\lambda = E[X] = np</script> which is the average number of successes you see in <script type="math/tex">n</script> trials. Then we will have</p>
 <div center="">
 $$
 \begin{align*}
 P(X = k) &amp;= \binom{n}{k}p^k(1-p)^{n-k} \\
 &amp;= \frac{n!}{k!(n-k)!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\
 &amp;= \frac{n(n-1)...(n-k+1)}{k!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\
-&amp;= \frac{n(n-1)...(n-k+1)}{n^k}\frac{\lambda^k}{k!} (1-\frac{\lambda}{n})^{n-k} \\
+&amp;= \frac{n(n-1)...(n-k+1)}{n^k}\frac{\lambda^k}{k!} \frac{(1-\lambda/n)^{n}}{(1-\lambda/n)^{k}} \\
+\end{align*}
+$$
+</div>
+<p>When <script type="math/tex">n</script> is very large, the term <script type="math/tex">n(n-1)...(n-k+1)/n^k</script> is approximately 1. The term <script type="math/tex">(1-\lambda/n)^k</script> is also approximately <script type="math/tex">1^k = 1</script>. On the other hand we have <script type="math/tex">(1-\lambda/n)^{n} \approx e^{-\lambda}</script>. So</p>
+<div center="">
+$$
+\begin{align*}
+P(X = k) &amp;\approx \frac{\lambda^k}{k!}e^{-\lambda}
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
+<h3>Expected Value and Variance of a Poisson Random Variable</h3>
+</div>
+<p><br />
+Both the expected value and variance of a Poisson random variable is <script type="math/tex">\lambda</script>. Intuitively, we know Poisson approximates a binomial random variable when <script type="math/tex">n</script> is large and <script type="math/tex">p</script> is small with <script type="math/tex">\lambda = np</script>. We also know that the expected value of a binomial random variable is <script type="math/tex">E[X] = np</script>.  Therefore, the expected value of a Poisson random variable should be <script type="math/tex">\lambda</script>. Similarly, to compute the variance, we know the binomial random variable variance is <script type="math/tex">np(1-p)</script> and so <script type="math/tex">\lambda(1-p)</script> when <script type="math/tex">p</script> is very small is also <script type="math/tex">\lambda</script>.</p>
+
+<p>(Proof?)
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
+<h3>Geometric Random Variable</h3>
+</div>
+<p><br />
+Let <script type="math/tex">X</script> be a random variable for the number of trials until we see the first success. <script type="math/tex">X</script> is a geometric random variable with <script type="math/tex">PMF</script></p>
+<div center="">
+$$
+\begin{align*}
+p(k) = P(X = k) = (1-p)^{k-1}p
+\end{align*}
+$$
+</div>
+<p><script type="math/tex">X</script> has the following expected value and variance</p>
+<div center="">
+$$
+\begin{align*}
+E[X] &amp;= 1/p \\
+Var(X) &amp;= (1-p)/p^2
+\end{align*}
+$$
+</div>
+<p>The CDF of <script type="math/tex">X</script> is</p>
+<div center="">
+$$
+\begin{align*}
+F_X(k) = P(X \leq k) &amp;= \sum_{m=1}^k (1-p)^{m-1}p \\
+&amp;= p \sum_{m=0}^{k-1} (1-p)^{m} \\
+&amp;= p \frac{1-(1-p)^k}{1-(1-p)} \text{ (Recall }\sum_{i=0}^n x^i = \frac{1-x^{n+1}}{1-x}\text{)} \\
+&amp;= 1-(1-p)^k \\
+\end{align*}
+$$
+</div>
+<p>Another way to derive this is to let <script type="math/tex">C_i</script> be the event where we succeed on the ith trial. We see that</p>
+<div center="">
+$$
+\begin{align*}
+F_X(k) = P(X \leq k) &amp;= 1 - P(X &gt; k) \quad \text{ (first success happens after kth trial)}\\
+&amp;= 1 - P(C_1^c C_2^c ... C_k^c) \quad \text{ (none of 1..kth trial succeed)} \\
+&amp;= 1 - P(C_1^c)P(C_2^c) ... P(C_k^c) \quad \text{ (Independance)} \\
+&amp;= 1 - (1-p)^k 
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
+<h3>Negative Binomial Random Variable</h3>
+</div>
+<p><br />
+<script type="math/tex">X</script> is the number of independent trials until the <script type="math/tex">r</script>th success.</p>
+<div center="">
+$$
+\begin{align*}
+p(k) = P(X = k) = \binom{k-1}{r-1}p^r(1-p)^{k-r}
+\end{align*}
+$$
+</div>
+<p><script type="math/tex">X</script> has the following expected value and variance</p>
+<div center="">
+$$
+\begin{align*}
+E[X] &amp;= rp/(1-p) \\
+Var(X) &amp;= r(1-p)/p^2
 \end{align*}
 $$
 </div>

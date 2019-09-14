@@ -61,12 +61,9 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/mincut/1.png" width="100%" />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>References</b>
-</div>
-<p><br />
-class notes from following:</p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p>class notes from following:</p>
 <ol>
   <li>http://web.stanford.edu/class/cs161/schedule.html</li>
   <li>https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/11/Small11.pdf</li>
@@ -74,28 +71,19 @@ class notes from following:</p>
   <li>Algorithm Design (BEST BOOK)
 <br />
 <br />
-<!------------------------------------------------------------------------------------></li>
+<!-----------------------------------------------------------------------------------></li>
 </ol>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Introduction</b>
-</div>
-<p><br />
-Let <script type="math/tex">G=(V,E)</script> be an undirected graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A cut in <script type="math/tex">G</script> is a partition of <script type="math/tex">V</script> into two non-empty sets of vertices <script type="math/tex">A</script> and <script type="math/tex">B</script>. The <b>size</b> of the cut is the number of edges with one end point in <script type="math/tex">A</script> and another in <script type="math/tex">B</script>. A <b>global minimum cut</b> is a cut of minimum size.
+<h4><b>Introduction</b></h4>
+<p>Let <script type="math/tex">G=(V,E)</script> be an undirected graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A cut in <script type="math/tex">G</script> is a partition of <script type="math/tex">V</script> into two non-empty sets of vertices <script type="math/tex">A</script> and <script type="math/tex">B</script>. The <b>size</b> of the cut is the number of edges with one end point in <script type="math/tex">A</script> and another in <script type="math/tex">B</script>. A <b>global minimum cut</b> is a cut of minimum size.
 <br />
 <br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Krager's Algorithm</b>
-</div>
-<p><br />
-Krager’s algorithm starts with picking an edge <script type="math/tex">(u,v)</script> in <script type="math/tex">G</script> uniformly at random. It then <b>contracts</b> this edge by creating a new node <script type="math/tex">w</script> that combines both <script type="math/tex">u</script> and <script type="math/tex">v</script>. All the edges in <script type="math/tex">G</script> with an end point equal to either <script type="math/tex">u</script> and <script type="math/tex">v</script> now point to <script type="math/tex">w</script> instead. Also, any edge between <script type="math/tex">u</script> and <script type="math/tex">v</script> is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in <script type="math/tex">G</script>. 
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Karger's Algorithm</b></h4>
+<p>Karger’s algorithm starts with picking an edge <script type="math/tex">(u,v)</script> in <script type="math/tex">G</script> uniformly at random. It then <b>contracts</b> this edge by creating a new node <script type="math/tex">w</script> that combines both <script type="math/tex">u</script> and <script type="math/tex">v</script>. All the edges in <script type="math/tex">G</script> with an end point equal to either <script type="math/tex">u</script> and <script type="math/tex">v</script> now point to <script type="math/tex">w</script> instead. Also, any edge between <script type="math/tex">u</script> and <script type="math/tex">v</script> is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in <script type="math/tex">G</script>. 
 <br />
 <br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger's Algorithm Pseudocode</b>
-</div>
-<p><br /></p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Karger's Algorithm Pseudocode</b></h4>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">karger</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
 	<span class="n">Initially</span> <span class="n">create</span> <span class="n">a</span> <span class="n">set</span> <span class="k">for</span> <span class="n">each</span> <span class="n">node</span> <span class="n">v</span><span class="p">,</span> <span class="n">S</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">}</span>
@@ -107,12 +95,9 @@ Krager’s algorithm starts with picking an edge <script type="math/tex">(u,v)</
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Example</b>
-</div>
-<p><br />
-Suppose we apply the contraction algorithm on the above graph. We start by picking an edge uniformly at random. Suppose we picked the edge <script type="math/tex">(d,e)</script> below:
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Suppose we apply the contraction algorithm on the above graph. We start by picking an edge uniformly at random. Suppose we picked the edge <script type="math/tex">(d,e)</script> below:
 <img src="http://localhost:4000/assets/mincut/2.png" width="100%" />
 We then delete <script type="math/tex">(d,e)</script>. We create a new node <script type="math/tex">z</script>. We then point any edge that previously had an end point equal to <script type="math/tex">d</script> or <script type="math/tex">e</script> to point at <script type="math/tex">z</script>.
 <img src="http://localhost:4000/assets/mincut/3.png" width="100%" />
@@ -137,13 +122,9 @@ Suppose however that instead of picking <script type="math/tex">(y,c)</script> t
 We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager’s algorithm is a Monte Carlo algorithm.
 <img src="http://localhost:4000/assets/mincut/11a.png" width="100%" />
 <br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>What is the probability of getting a correct answer?</b>
-</div>
-<p><br />
-Suppose we have a graph <script type="math/tex">G=(E,V)</script> with <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. Suppose the cut <script type="math/tex">(A,B)</script> is a global minimum cut is of size <script type="math/tex">k</script>. Also let <script type="math/tex">F</script> to be the set of <script type="math/tex">k</script> edges in the cut <script type="math/tex">(A,B)</script>. So <script type="math/tex">F</script> has the edges that have one end point in <script type="math/tex">A</script> and the other end point in <script type="math/tex">B</script>.
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Probability of Success</b></h4>
+<p>Suppose we have a graph <script type="math/tex">G=(E,V)</script> with <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. Suppose the cut <script type="math/tex">(A,B)</script> is a global minimum cut is of size <script type="math/tex">k</script>. Also let <script type="math/tex">F</script> to be the set of <script type="math/tex">k</script> edges in the cut <script type="math/tex">(A,B)</script>. So <script type="math/tex">F</script> has the edges that have one end point in <script type="math/tex">A</script> and the other end point in <script type="math/tex">B</script>.
 <br />
 <br />
 The probability that the contraction algorithm succeeds is the probability that we don’t make any mistake in the <script type="math/tex">n-2</script> iterations of the algorithm. Suppose we let <script type="math/tex">S_i</script> to be the event that we don’t make a mistake in step <script type="math/tex">i</script> or generally succeed in step <script type="math/tex">i</script>. We want to calculate the following probability:</p>
@@ -230,12 +211,9 @@ Pr(success) &amp;= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S
 $$
 </div>
 <p><br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Can we do better?</b>
-</div>
-<p><br />
-The probability of success, <script type="math/tex">p</script>, we found so far is</p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Can we do better?</b></h4>
+<p>The probability of success, <script type="math/tex">p</script>, we found so far is</p>
 <div center="">
 $$
 \begin{align*}
@@ -295,23 +273,17 @@ Pr(\text{Failure}) &amp;\leq \big(1-p\big)^{\ln(1/\delta)\frac{1}{p}} \leq \frac
 $$
 </div>
 <p><br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Running Time</b>
-</div>
-<p><br />
-Suppose we have <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. In the naive implementation, we contract <script type="math/tex">n-2</script> edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take <script type="math/tex">O(n)</script> time. Therefore, the total running time is <script type="math/tex">O(n^2)</script>. There are other faster implementations with union-find data structure that reduce the running time to <script type="math/tex">O(m * \alpha(n))</script>. (TODO: More on this?)
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>Suppose we have <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. In the naive implementation, we contract <script type="math/tex">n-2</script> edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take <script type="math/tex">O(n)</script> time. Therefore, the total running time is <script type="math/tex">O(n^2)</script>. There are other faster implementations with union-find data structure that reduce the running time to <script type="math/tex">O(m * \alpha(n))</script>. (TODO: More on this?)
 <br />
 <br />
 Given that we can get a high success probability if we run Krager’s algorithm for <script type="math/tex">O(\log(n)n^2)</script>. The total running time is therefore <script type="math/tex">O(n^4\log(n))</script>!
 <br />
 <br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger - Stein</b>
-</div>
-<p><br />
-Can we do better than <script type="math/tex">O(n^4\log(n))</script> and still maintain a high success probability? Krager and Stein published an improved result that’s much faster! 
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Karger - Stein</b></h4>
+<p>Can we do better than <script type="math/tex">O(n^4\log(n))</script> and still maintain a high success probability? Krager and Stein published an improved result that’s much faster! 
 <br />
 <br />
 Observe when running Krager’s algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set <script type="math/tex">F</script>) gets higher with every iteration. Therefore, we should really just run karger once in the first few iterations and then repeat Karger for the remaining nodes. 
@@ -333,12 +305,9 @@ We also summarize it in the following pseudo-code:</p>
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger - Stein Running Time</b>
-</div>
-<p><br />
-Karger-Stein is a recursive algorithm. At each level of the recursion, we perform Karger on <script type="math/tex">G</script> until we reach <script type="math/tex">n/\sqrt{2}</script> vertices. Karger runs in <script type="math/tex">O(n^2)</script>. Therefore, we have the following recurrence for the running time:</p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Karger - Stein Running Time</b></h4>
+<p>Karger-Stein is a recursive algorithm. At each level of the recursion, we perform Karger on <script type="math/tex">G</script> until we reach <script type="math/tex">n/\sqrt{2}</script> vertices. Karger runs in <script type="math/tex">O(n^2)</script>. Therefore, we have the following recurrence for the running time:</p>
 <div>
 $$
 \begin{align*}
@@ -349,12 +318,9 @@ $$
 <p>And therefore, the running time is <script type="math/tex">O(n^2\log(n))</script> by the master theorem.
 <br />
 <br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger - Stein Probability of Success</b>
-</div>
-<p><br />
-Karger-Stein first contracts the graph from <script type="math/tex">n</script> vertices down to <script type="math/tex">n/\sqrt{2}</script> vertices. Similar to the analysis we did earlier. The probability of success is the probability of not picking the wrong edges in any of the first <script type="math/tex">n-n/\sqrt{2}</script> iterations. Therefore, combining all probabilities:</p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Karger - Stein Probability of Success</b></h4>
+<p>Karger-Stein first contracts the graph from <script type="math/tex">n</script> vertices down to <script type="math/tex">n/\sqrt{2}</script> vertices. Similar to the analysis we did earlier. The probability of success is the probability of not picking the wrong edges in any of the first <script type="math/tex">n-n/\sqrt{2}</script> iterations. Therefore, combining all probabilities:</p>
 <div center="">
 $$
 \require{cancel}
@@ -419,12 +385,10 @@ $$
 Finally since the root of the tree has depth <script type="math/tex">2\log(n)</script>, then we know that the probability of success is at least <script type="math/tex">\frac{1}{2\log(n)+1}</script>.
 <br />
 <br />
-<!------------------------------------------------------------------------------------></p>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger - Stein Improved Success Rate</b>
-</div>
-<p><br />
-But how many trials do we need in order to achieve the same success rate as Karger’s original algorithm (with repetition)? We know the probability of success is at least <script type="math/tex">p = \frac{1}{2\log(n)+1}</script>. The probability of failing in <script type="math/tex">T</script> trials (trials are independent) is the following if we set <script type="math/tex">T</script> to <script type="math/tex">\ln(1/\delta)\frac{1}{p}</script></p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Karger - Stein Improved Success Rate</b></h4>
+
+<p>But how many trials do we need in order to achieve the same success rate as Karger’s original algorithm (with repetition)? We know the probability of success is at least <script type="math/tex">p = \frac{1}{2\log(n)+1}</script>. The probability of failing in <script type="math/tex">T</script> trials (trials are independent) is the following if we set <script type="math/tex">T</script> to <script type="math/tex">\ln(1/\delta)\frac{1}{p}</script></p>
 <div>
 $$
 \begin{align*}

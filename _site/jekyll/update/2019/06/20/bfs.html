@@ -61,31 +61,22 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <!----------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>References</b><br />
-</div>
-<p><br />
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<h4><b>References</b></h4>
+<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br />
 <br />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Introduction</b><br />
-</div>
-<p><br />
-<img src="http://localhost:4000/assets/bfs/bfs1.png" alt="my photo" /></p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p><img src="http://localhost:4000/assets/bfs/bfs1.png" alt="my photo" /></p>
 
 <p>Breadth first search is a useful and widely used algorithm in graph traversal problems. Let <script type="math/tex">G = (V, E)</script> be a graph consisting of <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges and let <script type="math/tex">s</script> be the source vertex where we will start the traversal from. The key thing about breadth first search is that it explores the vertices closest (in terms of the number of edges) to the source vertex first. We start by looking at <script type="math/tex">s</script>’s neighbors. These vertices are the closest vertices to <script type="math/tex">s</script> and have distance 1 from <script type="math/tex">s</script>. We then explore each adjacent vertex to all the neighbors. Any vertex adjacent to these vertices will have distance 2 and so on.
 <br /><br />
 In other words, breadth first search explores the graph in layers. The immediate neighbors are in layer 1 and have distance 1 to the source vertex. The vertices in layer 2 have distance 2 to the source vertex and so on. Given a layer, all the vertices in that layer have the same distance to the source vertex. It turns out that breadth first search also finds the the shortest paths from the <script type="math/tex">s</script> to every other vertex in the graph in terms of the number of edges between <script type="math/tex">s</script> and each vertex. We’ll prove this more formally later!
 <br />
 <br />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Data Structures</b><br />
-</div>
-<p><br />
-To perform a breadth first search, we will maintain the following data structures:
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Data Structures</b></h4>
+<p>To perform a breadth first search, we will maintain the following data structures:
 <br />
 (1) A queue. We want to explore the nodes closest to <script type="math/tex">s</script> first. We know that a queue maintains the property that a node inserted first will be popped/explored first. We will also use the queue to keep track of the distance of each vertex to <script type="math/tex">s</script>. Initially we will enqueue <script type="math/tex">s</script> with distance 0. When we enqueue new nodes, we will also enqueue their distance to <script type="math/tex">s</script> which is just their parent’s distance plus 1.
 <br /><br />
@@ -94,12 +85,9 @@ To perform a breadth first search, we will maintain the following data structure
 (3) A set or an array that keeps track of the parent nodes. This is optional and only needed if we want to recover the path from <script type="math/tex">s</script> to every other node in <script type="math/tex">G</script>.
 <br />
 <br />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Example</b><br />
-</div>
-<p><br />
-Let’s explore the graph above. We will start by popping <script type="math/tex">s</script> from the queue with its distance 0. We will then enqueue the neighbors of <script type="math/tex">s</script> along with distance 1 and also mark them visited. We could also use the parent array to indicate that <script type="math/tex">s</script> is the parent of <script type="math/tex">a</script> and <script type="math/tex">b</script>. At this point, we have <script type="math/tex">a</script> and <script type="math/tex">b</script> in layer 1 with distance 1. We also marked their parent <script type="math/tex">s</script> correctly. This information will not change in any future iteration.</p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Let’s explore the graph above. We will start by popping <script type="math/tex">s</script> from the queue with its distance 0. We will then enqueue the neighbors of <script type="math/tex">s</script> along with distance 1 and also mark them visited. We could also use the parent array to indicate that <script type="math/tex">s</script> is the parent of <script type="math/tex">a</script> and <script type="math/tex">b</script>. At this point, we have <script type="math/tex">a</script> and <script type="math/tex">b</script> in layer 1 with distance 1. We also marked their parent <script type="math/tex">s</script> correctly. This information will not change in any future iteration.</p>
 
 <p><img src="http://localhost:4000/assets/bfs/bfs2.png" alt="my photo" /></p>
 
@@ -116,11 +104,8 @@ Let’s explore the graph above. We will start by popping <script type="math/tex
 <p><img src="http://localhost:4000/assets/bfs/bfs5.png" alt="my photo" />
 <br />
 <br />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Implementation</b><br />
-</div>
-<p><br /></p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
@@ -162,13 +147,9 @@ Let’s explore the graph above. We will start by popping <script type="math/tex
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Proof</b><br />
-</div>
-<p><br />
-Why does BFS find the shortest paths from <script type="math/tex">s</script> to every other vertex in <script type="math/tex">G</script>? Intuitively, we know that we explore the vertices in layers starting at <script type="math/tex">s</script>. So if we have a vertex <script type="math/tex">x</script> in layer <script type="math/tex">j</script> then we know the distance to <script type="math/tex">s</script> is just <script type="math/tex">j</script> and that <script type="math/tex">x</script> can’t have a shorter path to <script type="math/tex">s</script> simply because we would have found <script type="math/tex">x</script> in an earlier layer, right? Let’s make this formal.
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Correctness Proof</b></h4>
+<p>Why does BFS find the shortest paths from <script type="math/tex">s</script> to every other vertex in <script type="math/tex">G</script>? Intuitively, we know that we explore the vertices in layers starting at <script type="math/tex">s</script>. So if we have a vertex <script type="math/tex">x</script> in layer <script type="math/tex">j</script> then we know the distance to <script type="math/tex">s</script> is just <script type="math/tex">j</script> and that <script type="math/tex">x</script> can’t have a shorter path to <script type="math/tex">s</script> simply because we would have found <script type="math/tex">x</script> in an earlier layer, right? Let’s make this formal.
 <br />
 <br />
 <b>Inductive Hypothesis:</b><br />
@@ -196,28 +177,19 @@ Since <script type="math/tex">dist(s,w) \leq k</script> and <script type="math/t
 For all vertices <script type="math/tex">w \in V</script>, if <script type="math/tex">w \in L_j</script>, then <script type="math/tex">dist(s,w) = j</script>.
 <br />
 <br />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Proof (CLRS Way)</b><br />
-</div>
-<p><br />
- I really really really want to go through the CLRS way of doing this proof formally. This is a TODO! (starts in page 598)
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Proof (CLRS Way)</b></h4>
+<p>I really really really want to go through the CLRS way of doing this proof formally. This is a TODO! (starts in page 598)
 <br />
 <br />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Running Time</b><br />
-</div>
-<p><br />
-We visit each vertex at most once only because of the visited array we’re maintaining. That’s <script type="math/tex">O(V)</script> time. As a result, we also visit the adjacency list of each vertex at most once and that’s <script type="math/tex">O(E)</script>. Therefore, the total time is <script type="math/tex">O(V+E)</script>.
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>We visit each vertex at most once only because of the visited array we’re maintaining. That’s <script type="math/tex">O(V)</script> time. As a result, we also visit the adjacency list of each vertex at most once and that’s <script type="math/tex">O(E)</script>. Therefore, the total time is <script type="math/tex">O(V+E)</script>.
 <br />
 <br />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Implementation</b><br />
-</div>
-<p><br />
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/breadth-first-search
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+<p>https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/breadth-first-search
 <br />
 <br /></p>
 

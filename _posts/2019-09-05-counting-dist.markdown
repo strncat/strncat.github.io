@@ -10,8 +10,7 @@ mathjax: true
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h3><b>(1) k distinguishable strings and n distinguishable buckets</b></h3>
-<br>
+<h4><b>(1) k distinguishable strings and n distinguishable buckets</b></h4>
 Label the strings $$s_1, s_2,...,s_k$$ and label the buckets $$b_1, b_2,...,b_n$$. $$s_1$$ has $$n$$ choices of buckets to choose from. $$s_2$$ has $$n$$ choices of buckets to choose from and so. Therefore, the total number of choices is
 <div center>
 $$
@@ -21,8 +20,7 @@ n^k
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h3><b>(2) k distinguishable strings and n distinguishable buckets with at most 1 string in each bucket</b></h3>
-<br>
+<h4><b>(2) k distinguishable strings and n distinguishable buckets with at most 1 string in each bucket</b></h4>
 Assuming $$k \leq n$$ (otherwise it is impossible). Label the strings $$s_1, s_2,...,s_k$$ and label the buckets $$b_1, b_2,...,b_n$$. $$s_1$$ has $$n$$ choices of buckets to choose from. $$s_2$$ has $$n-1$$ choices of buckets to choose from because it can't go to the bucket that $$s_1$$ chose. Similarly, $$s_3$$ has $$n-2$$ and so on. Therefore, the total number of choices is
 <div center>
 $$
@@ -32,8 +30,7 @@ n(n-1) ... (n-k+1) = \binom{n}{k} * k!
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h3><b>(3) k indistinguishable strings and n distinguishable buckets</b></h3>
-<br>
+<h4><b>(3) k indistinguishable strings and n distinguishable buckets</b></h4>
 Label the buckets $$b_1, b_2,...,b_n$$ and line them up below:
 ![my photo]({{ site.url }}/assets/counting/0a.png)
 The strings are indistinguishable. We want to distribute them among the buckets so for example we could have the following:
@@ -65,8 +62,7 @@ Note that solution can be applied to other interesting examples like finding the
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h3><b>(4) k indistinguishable strings and n distinguishable buckets with at most 1 string in each bucket</b></h3>
-<br>
+<h4><b>(4) k indistinguishable strings and n distinguishable buckets with at most 1 string in each bucket</b></h4>
 In case (2), we saw that the number of ways to put $$k$$ distinguishable strings into $$n$$ distinguishable buckets with at most 1 string in each bucket is $$\binom{n}{k} * k!$$. In this case, the strings are indistinguishable so we don't care about the order of strings and so we divide by $$k!$$. The final answer therefore is simply
 <div center>
 $$

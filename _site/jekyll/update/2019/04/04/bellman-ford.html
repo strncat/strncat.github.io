@@ -60,56 +60,19 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
-<svg width="800" height="600" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="140.5" cy="193.5" rx="30" ry="30"/>
-	<text x="136.5" y="199.5" font-family="Times New Roman" font-size="20">s</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="291.5" cy="104.5" rx="30" ry="30"/>
-	<text x="287.5" y="110.5" font-family="Times New Roman" font-size="20">a</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="489.5" cy="104.5" rx="30" ry="30"/>
-	<text x="484.5" y="110.5" font-family="Times New Roman" font-size="20">b</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="634.5" cy="200.5" rx="30" ry="30"/>
-	<text x="631.5" y="206.5" font-family="Times New Roman" font-size="20">t</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="291.5" cy="279.5" rx="30" ry="30"/>
-	<text x="287.5" y="285.5" font-family="Times New Roman" font-size="20">c</text>
-	<ellipse stroke="black" stroke-width="1" fill="none" cx="489.5" cy="279.5" rx="30" ry="30"/>
-	<text x="484.5" y="285.5" font-family="Times New Roman" font-size="20">d</text>
-	<polygon stroke="black" stroke-width="1" points="166.345,178.267 265.655,119.733"/>
-	<text x="220.5" y="170.5" font-family="Times New Roman" font-size="20">6</text>
-	<polygon stroke="black" stroke-width="1" points="166.569,208.347 265.431,264.653"/>
-	<text x="201.5" y="257.5" font-family="Times New Roman" font-size="20">4</text>
-	<polygon stroke="black" stroke-width="1" points="321.5,104.5 459.5,104.5"/>
-	<text x="382.5" y="125.5" font-family="Times New Roman" font-size="20">-3</text>
-	<polygon stroke="black" stroke-width="1" points="609.486,183.939 514.514,121.061"/>
-	<text x="567.5" y="143.5" font-family="Times New Roman" font-size="20">-4</text>
-	<polygon stroke="black" stroke-width="1" points="321.5,279.5 459.5,279.5"/>
-	<text x="385.5" y="300.5" font-family="Times New Roman" font-size="20">2</text>
-	<polygon stroke="black" stroke-width="1" points="515.844,265.147 608.156,214.853"/>
-	<text x="547.5" y="230.5" font-family="Times New Roman" font-size="20">2</text>
-</svg>
--->
-
-<p><img src="http://localhost:4000/assets/bellman/1.png" width="100%" />
-<b>0 References</b><br />
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+    <p><img src="http://localhost:4000/assets/bellman/1.png" width="100%" /></p>
+<h4><b>References</b></h4>
+<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>1 Introduction</b>
 <br />
-Let <script type="math/tex">G=(V,E)</script> be a weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. We already discussed Dijkstra’s algorithm to find the shortest paths in <script type="math/tex">O(n\log(n)+m)</script> time. Dijkstra is fast and works great but unfortunately it doesn’t handle negative edge weights. Therefore, we now turn to discuss Bellman Ford’s algorithm.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p>Let <script type="math/tex">G=(V,E)</script> be a weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. We already discussed Dijkstra’s algorithm to find the shortest paths in <script type="math/tex">O(n\log(n)+m)</script> time. Dijkstra is fast and works great but unfortunately it doesn’t handle negative edge weights. Therefore, we now turn to discuss Bellman Ford’s algorithm.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2 Bellman-Ford</b>
 <br />
-Bellman-Ford is a dynamic programming algorithm to find the shortest paths in a graph <script type="math/tex">G</script> from a given source vertex <script type="math/tex">s</script>. Since it’s a dynamic programming algorithm then this means that we must have some recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Bellman-Ford</b></h4>
+<p>Bellman-Ford is a dynamic programming algorithm to find the shortest paths in a graph <script type="math/tex">G</script> from a given source vertex <script type="math/tex">s</script>. Since it’s a dynamic programming algorithm then this means that we must have some recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
 <br /><br />
 Let <script type="math/tex">D[v,i]</script> be the length of the shortest path from <script type="math/tex">s</script> to some vertex <script type="math/tex">v</script> whose number of edges is at most <script type="math/tex">i</script>. Given that we know <script type="math/tex">D[v,i]</script> for all <script type="math/tex">v \in V</script>, what can we say about <script type="math/tex">D[v,i+1]</script>? In other words, given that we know the shortest path from <script type="math/tex">s</script> to any vertex in <script type="math/tex">G</script> with at most <script type="math/tex">i</script> edges, what can we say about the length of the shortest path from <script type="math/tex">s</script> to some vertex <script type="math/tex">v</script> with at most <script type="math/tex">i+1</script> edges? Let’s think about this before looking at the answer. Bellman-Ford definitely wasn’t easy for me to think about.
 <br /><br />
@@ -129,22 +92,14 @@ $$
 </div>
 <p>With the base case that for <script type="math/tex">i = 0</script>, <script type="math/tex">D[s,0]=0</script> and <script type="math/tex">D[v,0]=\infty</script> for all <script type="math/tex">v \in V-\{s\}</script>. 
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3 Bellman-Ford and Dijkstra</b>
 <br />
-So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let’s think about this. We know that in every iteration of Dijkstra’s algorithm, we pick the node with the smallest estimate and then check all the immediate neighbors to see whether any of the neighbors distances can be updated. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration. So it’s slower but now we can find the shortest paths in graphs with negative edges.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Bellman-Ford and Dijkstra</b></h4>
+<p>So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let’s think about this. We know that in every iteration of Dijkstra’s algorithm, we pick the node with the smallest estimate and then check all the immediate neighbors to see whether any of the neighbors distances can be updated. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration. So it’s slower but now we can find the shortest paths in graphs with negative edges.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>4 Implementation</b>
-<br /></p>
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">BellmanFord</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">distance</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">()],</span> <span class="n">parent</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span>
@@ -169,13 +124,9 @@ So what is the relationship between Bellman-Ford and Dijkstra? are they connecte
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>5 Example</b><br />
-We update according the base case all the shortest paths that use 0 edges to <script type="math/tex">\infty</script> except for the source vertex where the shortest path is of length 0.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>We update according the base case all the shortest paths that use 0 edges to <script type="math/tex">\infty</script> except for the source vertex where the shortest path is of length 0.
 <img src="http://localhost:4000/assets/bellman/initial.png" width="100%" />
 <br /><br />
 <i>Iteration 1</i><br />
@@ -199,14 +150,10 @@ Finally, we update <script type="math/tex">c</script> because it has a better up
 <img src="http://localhost:4000/assets/bellman/i5.png" width="100%" />
 As this point, the algorithm terminates and we have the final shortest paths from <script type="math/tex">s</script> to every vertex <script type="math/tex">v \in V</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>6 Can we have negative cycles?</b>
 <br />
-If <script type="math/tex">G</script> has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if the lengths are continuing to decrease. If they decrease, then we know we have a cycle and we can exit and report that. The sample code below can be added to the above implementation before returing from the function:</p>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Can we have negative cycles?</b></h4>
+<p>If <script type="math/tex">G</script> has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if the lengths are continuing to decrease. If they decrease, then we know we have a cycle and we can exit and report that. The sample code below can be added to the above implementation before returing from the function:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">We</span> <span class="n">can</span> <span class="n">add</span> <span class="n">one</span> <span class="n">additional</span> <span class="n">iteration</span> <span class="n">to</span> <span class="n">discover</span> <span class="n">negative</span> <span class="n">cycles</span><span class="o">:</span>
 <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for every edge in the graph</span>
@@ -220,29 +167,14 @@ If <script type="math/tex">G</script> has negative cycles then the shortest path
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>6 Why only <script type="math/tex">n-1</script> iterations?</b>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Why only $n-1$ iterations?</b></h4>
+<p>To answer this question, we ask: can we have positive cycles in a shortest path? The answer is again no. Suppose that we are given a shortest path with a positive weight cycle. Then we can remove the cycle from the path and arrive at a shorter path. This is a contradiction and therefore, we can not have positive weight cycles. Additionally if the cycle is of zero weight or length, then removing the cycle from the shortest path will produce a path with the same weight/length. Therefore, we can restrict finding the shortest path problem to finding a simple shortest path. Simple paths in a graph with <script type="math/tex">n</script> vertices can have at most <script type="math/tex">n-1</script> edges and therefore, all we need to do is run Bellman-Ford for <script type="math/tex">n-1</script> iterations. (CLRS page 645)
 <br />
-To answer this question, we ask: can we have positive cycles in a shortest path? The answer is again no. Suppose that we are given a shortest path with a positive weight cycle. Then we can remove the cycle from the path and arrive at a shorter path. This is a contradiction and therefore, we can not have positive weight cycles. Additionally if the cycle is of zero weight or length, then removing the cycle from the shortest path will produce a path with the same weight/length. Therefore, we can restrict finding the shortest path problem to finding a simple shortest path. Simple paths in a graph with <script type="math/tex">n</script> vertices can have at most <script type="math/tex">n-1</script> edges and therefore, all we need to do is run Bellman-Ford for <script type="math/tex">n-1</script> iterations. (CLRS page 645)
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>7 Proof of Correctness</b><br /></p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Theorem: Given a graph <script type="math/tex">G=(V,E)</script> and a source vertex <script type="math/tex">s</script>, Bellman-Ford correctly finds the shortest simple paths from <script type="math/tex">s</script> to every other node in <script type="math/tex">G</script></td>
-    </tr>
-  </tbody>
-</table>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Correctness Proof</b></h4>
+<p>| Theorem: Given a graph <script type="math/tex">G=(V,E)</script> and a source vertex <script type="math/tex">s</script>, Bellman-Ford correctly finds the shortest simple paths from <script type="math/tex">s</script> to every other node in <script type="math/tex">G</script> |</p>
 
 <p><i>Proof:</i> <br />
 <b>Inductive Hypothesis: </b>After ith iteration, for every <script type="math/tex">v \in V</script>, <script type="math/tex">D[v, i]</script> is length of the shortest simple path from <script type="math/tex">s</script> to <script type="math/tex">v</script> with at most <script type="math/tex">i</script> edges.
@@ -256,31 +188,20 @@ To answer this question, we ask: can we have positive cycles in a shortest path?
 <br />
 <b>Conclusion:</b> After <script type="math/tex">n-1</script> iterations, for every <script type="math/tex">v \in V</script>, <script type="math/tex">D[v, n-1]</script> is length of the shortest simple path from <script type="math/tex">s</script> to <script type="math/tex">v</script> with at most <script type="math/tex">n-1</script> edges.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>8 Running Time</b> <br />
-Assume we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges. We have <script type="math/tex">n-1</script> iterations. In each iteration we check every single edge in the graph. Therefore, the running time is <script type="math/tex">O(nm)</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>9 Full Implementation</b>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>Assume we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges. We have <script type="math/tex">n-1</script> iterations. In each iteration we check every single edge in the graph. Therefore, the running time is <script type="math/tex">O(nm)</script>.
 <br />
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>10 Practice Problems</b>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+<p>https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
 <br />
-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;category=0&amp;problem=499">558 - Wormholes</a>
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Practice Problems</b></h4>
+<p><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;category=0&amp;problem=499">558 - Wormholes</a>
 <br />
 <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=1390">10449 Traffic</a></p>
 

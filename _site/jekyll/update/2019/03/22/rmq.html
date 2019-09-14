@@ -60,12 +60,8 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><img src="http://localhost:4000/assets/rmq/rmq-array.png" alt="my photo" />
-<!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>References</b>
-</div>
-<p><br /></p>
+    <p><img src="http://localhost:4000/assets/rmq/rmq-array.png" alt="my photo" /></p>
+<h4><b>References</b></h4>
 <ol>
   <li>CS166 Lecture Slides http://web.stanford.edu/class/cs166/lectures/00/Small00.pdf</li>
   <li>Fischer, Johannes and Heun, Volker. Theoretical and Practical Improvements on the RMQ-Problem, with Applications to LCA and LCE
@@ -73,43 +69,28 @@
 <br />
 <!----------------------------------------------------------------------------------------></li>
 </ol>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>Introduction</b>
-</div>
-<p><br />
-Given an array <script type="math/tex">A</script> and two indices <script type="math/tex">i \leq j</script> that are not known in advance. The RMQ problem solves the problem of finding the minimum element in the range <script type="math/tex">A[i],A[i+1],...,A[j-1],A[j]</script>.
+<h4><b>Introduction</b></h4>
+<p>Given an array <script type="math/tex">A</script> and two indices <script type="math/tex">i \leq j</script> that are not known in advance. The RMQ problem solves the problem of finding the minimum element in the range <script type="math/tex">A[i],A[i+1],...,A[j-1],A[j]</script>.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>Definitions</b>
-</div>
-<p><br />
-Let <script type="math/tex">\langle p(n), q(n)\rangle</script> be the complexity of an algorithm with preprocessing time <script type="math/tex">p(n)</script> and query time <script type="math/tex">q(n)</script>.
+<h4><b>Definitions</b></h4>
+<p>Let <script type="math/tex">\langle p(n), q(n)\rangle</script> be the complexity of an algorithm with preprocessing time <script type="math/tex">p(n)</script> and query time <script type="math/tex">q(n)</script>.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>Algorithm 1: no preprocessing</b>
-</div>
-<p><br />
-The simplest approach is to not do any kind of preprocessing on the input and just compute the minimum for each query. Therefore, we will have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(1), O(n)\rangle</script>.
+<h4><b>Algorithm 1: no preprocessing</b></h4>
+<p>The simplest approach is to not do any kind of preprocessing on the input and just compute the minimum for each query. Therefore, we will have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(1), O(n)\rangle</script>.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>Algorithm 2: precompute all ranges</b>
-</div>
-<p><br />
-We compute the minimum element for all possible ranges. There are <script type="math/tex">O(n^2)</script> possible ranges. We need $O(n)$ time to compute the minimum in each range so the total time preprocessing time is <script type="math/tex">p(n) = O(n^3)</script> and therefore, we have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(n^3), O(1)\rangle</script>.
+<h4><b>Algorithm 2: precompute all ranges</b></h4>
+<p>We compute the minimum element for all possible ranges. There are <script type="math/tex">O(n^2)</script> possible ranges. We need $O(n)$ time to compute the minimum in each range so the total time preprocessing time is <script type="math/tex">p(n) = O(n^3)</script> and therefore, we have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(n^3), O(1)\rangle</script>.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>Algorithm 3: precompute all ranges with dynamic programming</b>
-</div>
-<p><br />
-We can use dynamic programming to compute all the ranges. Given that we know the minimum <script type="math/tex">m</script> to a range <script type="math/tex">A[i,...j]</script>, the solution to the range <script type="math/tex">A[i,...j+1]</script> is just <script type="math/tex">min(m, A[j+1])</script>.</p>
+<h4><b>Algorithm 3: precompute all ranges with dynamic programming</b></h4>
+<p>We can use dynamic programming to compute all the ranges. Given that we know the minimum <script type="math/tex">m</script> to a range <script type="math/tex">A[i,...j]</script>, the solution to the range <script type="math/tex">A[i,...j+1]</script> is just <script type="math/tex">min(m, A[j+1])</script>.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">n</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="p">{...}</span>
 <span class="c1">// given the minimum to range dp[i,j-1], </span>
@@ -128,11 +109,8 @@ We can use dynamic programming to compute all the ranges. Given that we know the
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>Algorithm 4: block decomposition</b>
-</div>
-<p><br />
-<img src="http://localhost:4000/assets/rmq/rmq-block.png" alt="my photo" />
+<h4><b>Algorithm 4: block decomposition</b></h4>
+<p><img src="http://localhost:4000/assets/rmq/rmq-block.png" alt="my photo" />
 <i>Approach:</i><br />
 We can split the input into <script type="math/tex">O(n/b)</script> blocks of block size <script type="math/tex">b</script> and compute the minumum in each block.<br /></p>
 
@@ -182,13 +160,9 @@ Finally we will have <script type="math/tex">\langle p(n), q(n)\rangle = \langle
 <span class="n">printf</span><span class="p">(</span><span class="s">"%d  "</span><span class="p">,</span> <span class="n">min</span><span class="p">);</span></code></pre></figure>
 
 <p><br />
-<br />
 <!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>Algorithm 5: sparse tables</b>
-</div>
-<p><br />
-<img src="http://localhost:4000/assets/rmq/rmq-sparse-main.png" alt="my photo" /></p>
+<h4><b>Algorithm 5: sparse tables</b></h4>
+<p><img src="http://localhost:4000/assets/rmq/rmq-sparse-main.png" alt="my photo" /></p>
 
 <p>Going back to the dynamic programmnig solution. Instead of computing all ranges, we can instead compute a specific set of ranges. How? For each index, we compute the minimum for the ranges
 <br /></p>
@@ -281,11 +255,8 @@ Finally we will have <script type="math/tex">\langle p(n), q(n)\rangle = \langle
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
-<div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
-<b>Implementation</b>
-</div>
-<p><br />
-https://github.com/strncat/algorithms-and-data-structures/blob/master/rmq/rmq.cpp
+<h4><b>Implementation</b></h4>
+<p>https://github.com/strncat/algorithms-and-data-structures/blob/master/rmq/rmq.cpp
 <br />
 <br /></p>
 

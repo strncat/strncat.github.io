@@ -60,28 +60,18 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>0 References</b><br />
-These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
-<br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>1 Problem</b>
+    <h4><b>References</b></h4>
+<p>These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
 <br />
 <br />
-Suppose we are given a list of <script type="math/tex">n</script> two dimensional points <script type="math/tex">\{\{x_1,y_1\},\{x_2,y_2\},...\{x_n,y_n\}\}</script> and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of <script type="math/tex">O(n^2)</script> since we have <script type="math/tex">O(n^2)</script> possible pairs. What else can we do?
-<br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2 Divide and Conquer</b>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Problem</b></h4>
+<p>Suppose we are given a list of <script type="math/tex">n</script> two dimensional points <script type="math/tex">\{\{x_1,y_1\},\{x_2,y_2\},...\{x_n,y_n\}\}</script> and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of <script type="math/tex">O(n^2)</script> since we have <script type="math/tex">O(n^2)</script> possible pairs. What else can we do?
 <br />
 <br />
-The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be <script type="math/tex">P_x</script>. We will also sort the points by their y-coordinate and let that array be <script type="math/tex">P_y</script>. We will be using <script type="math/tex">P_y</script> later in the algorithm.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Divide and Conquer</b></h4>
+<p>The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be <script type="math/tex">P_x</script>. We will also sort the points by their y-coordinate and let that array be <script type="math/tex">P_y</script>. We will be using <script type="math/tex">P_y</script> later in the algorithm.
 <img src="http://localhost:4000/assets/closest/1.png" width="100%" />
 Given <script type="math/tex">P_x</script>. We can start by applying the following divide and conquer idea. Repeatedly divide <script type="math/tex">P_x</script> into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
 <br />
@@ -118,15 +108,10 @@ Given <script type="math/tex">P_x</script>. We can start by applying the followi
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3 Running Time</b>
 <br />
-<br />
-We sorted the array upfront twice in <script type="math/tex">O(n\log(n))</script> time. We divide the input repeatedly in half until we reached the base case. We then combined the results by finding the split pair and returning the pair with the minimum distance. So we have a recurrence that looks like this:</p>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>We sorted the array upfront twice in <script type="math/tex">O(n\log(n))</script> time. We divide the input repeatedly in half until we reached the base case. We then combined the results by finding the split pair and returning the pair with the minimum distance. So we have a recurrence that looks like this:</p>
 <div center="">
 $$
 \begin{align*}
@@ -137,28 +122,18 @@ $$
 </div>
 <p>The <script type="math/tex">c</script> constant depends on the work we’re doing in each level. We first create the four arrays <script type="math/tex">left_x</script>, <script type="math/tex">left_y</script>, <script type="math/tex">right_x</script> and <script type="math/tex">right_y</script>. This takes <script type="math/tex">O(n)</script> time. We then find the split pair. If we find the split pair in <script type="math/tex">O(n^2)</script> then <script type="math/tex">c = 2</script> and by the master theorem, the total runtime is <script type="math/tex">O(n^2)</script>. This defeats the purpose since the naive solution runs in <script type="math/tex">O(n^2)</script>. We also know that we initially sorted the array in <script type="math/tex">O(n\log(n))</script> so the final runtime is at least <script type="math/tex">O(n\log(n))</script>. So roughly we know that we need to find the split pair really fast in <script type="math/tex">O(n)</script> to have <script type="math/tex">c = 1</script> and therefore, keeping our runtime at <script type="math/tex">O(n\log(n))</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>4 How to repeatedly sort <script type="math/tex">P_x</script> by the x-coordinate and the y-coordinate <script type="math/tex">O(n)</script> time? </b>
 <br />
-<br />
-So we’re claiming that we’re sorting once only and then somehow we’re are repeatedly passing the two halfs of the <script type="math/tex">P_x</script> sorted by the x-coordinate and by the y-coordinate. How?! For sorting by the x-coordinate, we simply split <script type="math/tex">P_x</script> in half by calculating the median in <script type="math/tex">O(1)</script> time and then iterating over <script type="math/tex">P_x</script> to split the array into <script type="math/tex">left_x</script> and <script type="math/tex">right_x</script>. That takes <script type="math/tex">O(n)</script> time where <script type="math/tex">n</script> is the current size of <script type="math/tex">P_x</script>. 
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Sorting $P_x$ by the x-coordinate and the y-coordinate $O(n)$ time</b></h4>
+<p>So we’re claiming that we’re sorting once only and then somehow we’re are repeatedly passing the two halfs of the <script type="math/tex">P_x</script> sorted by the x-coordinate and by the y-coordinate. How?! For sorting by the x-coordinate, we simply split <script type="math/tex">P_x</script> in half by calculating the median in <script type="math/tex">O(1)</script> time and then iterating over <script type="math/tex">P_x</script> to split the array into <script type="math/tex">left_x</script> and <script type="math/tex">right_x</script>. That takes <script type="math/tex">O(n)</script> time where <script type="math/tex">n</script> is the current size of <script type="math/tex">P_x</script>. 
 <br />
 <br />
 Now that we have both <script type="math/tex">left_x</script> and <script type="math/tex">right_x</script>. We want to create two arrays <script type="math/tex">left_y</script> which is <script type="math/tex">left_x</script> but sorted by the y-coordinate. We also want <script type="math/tex">right_y</script> which is <script type="math/tex">right_x</script> sorted by the y-coordinate. How do we do this in just <script type="math/tex">O(n)</script> time? This is when we will use <script type="math/tex">P_y</script>! We will iterate over <script type="math/tex">P_y</script> and if we see an element with an x-coordinate below or equal to the median then this element belongs to <script type="math/tex">left_y</script> otherwise it belongs to <script type="math/tex">right_y</script>. Remember that <script type="math/tex">P_y</script> is just <script type="math/tex">P_x</script> but sorted by the y-coordinate. We are also assuming for the sake of simplicity that the points are distinct. 
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>5 Finding the split pair in <script type="math/tex">O(n)</script> time </b>
 <br />
-<br />
-<img src="http://localhost:4000/assets/closest/3.png" width="100%" />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Finding the split pair in $$O(n)$$ time </b></h4>
+<p><img src="http://localhost:4000/assets/closest/3.png" width="100%" />
 Let’s assume that the minimum pair is not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be <script type="math/tex">\delta_l</script> (shown above) and let the right minimum distance be <script type="math/tex">\delta_r</script>. Let <script type="math/tex">\delta</script> be the minimum of <script type="math/tex">\delta_l</script> and <script type="math/tex">\delta_r</script>. Also let the right most point in the left array be <script type="math/tex">\bar{x}</script>. Now construct <script type="math/tex">M</script> to be an array with all the points that have x-coordinate between <script type="math/tex">\bar{x} - \delta</script> and <script type="math/tex">\bar{x} + \delta</script> sorted by their y-coordinate (we can use <script type="math/tex">P_y</script> with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs <script type="math/tex">O(n)</script> time which is fine by us!
 <br /><br />
 Let <script type="math/tex">p=(x_1,y_1)</script> and <script type="math/tex">q=(x_2,y_2)</script> be the split pair points we’re trying to find where <script type="math/tex">p</script> is in the left half and <script type="math/tex">q</script> is in the right half. We claim the following:</p>

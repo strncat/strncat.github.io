@@ -5,19 +5,13 @@ date:   2019-08-19 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-
-<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
-<b>References</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
 These are my study notes from CLRS and ?
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
-<b>Binary Search</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Binary Search</b></h4>
 Given a sorted array $$a$$ of $$n$$ integers and a key, we want to return the index of the key in the array or -1 if the key doesn't exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After $$O(\log(n))$$ iterations, we will either correctly return that index or return -1 if the key doesn't exist.
 {% highlight c++ %}
 int binary_search(int *a, int key, int n) {
@@ -36,11 +30,8 @@ int binary_search(int *a, int key, int n) {
 }
 {% endhighlight %}
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
-<b>Correctness Proof</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Correctness Proof</b></h4>
 This is just my attempt to prove that binary search algorithm implemented above is correct. To prove binary search is correct, we want to prove the following:
 - At every iteration binary search is still searching the correct range in the array. This can be achieved with a loop invariant.
 - Binary search terminates.
@@ -48,22 +39,16 @@ This is just my attempt to prove that binary search algorithm implemented above 
 If we are able to prove these two then we can conclude that binary search is correct.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
-<b>Preconditions and Postconditions</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Preconditions and Postconditions</b></h4>
 In addition to loop invariants, we also need to describe the preconditions of binary search. Preconditions are just assertions that must be true at the beginning of our function. In our case, <b>our precondition is that the array is sorted in an ascending order</b>. If the array is not sorted, then we don't guarantee anything about the outcome.
 <br>
 <br>
 In addition to preconditions, we also need to describe our postconditions. Given that we met the preconditions, our loop invariant is correct and our algorithm terminates, our <b>post condition is that we return -1 if the key is not in the array or return the index of the key in the array</b>.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
-<b>Binary Search's Loop Invariant</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Binary Search's Loop Invariant</b></h4>
 As a reminder from CLRS, loop invariants have three parts that we need to prove:
 - The invariant is true before the first iteration of the loop. (Initialization)
 - If the invariant is true before iteration $$i$$, then it is true before iteration $$i+1$$. (Maintenance)
@@ -101,14 +86,10 @@ From (1), (2), (3) we conclude that the invariant holds before iteration $$i+1$$
 <b>Termination:</b>
 <br>
 Suppose we know we terminate (proof next), then by the loop invariant we know 
-
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#E3E4FA; padding: 7px 7px 7px 20px;">
-<b>Does Binary Search Terminate?</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Does Binary Search Terminate?</b></h4>
 Will we terminate? we need to prove that if the search range is $$[first_i, last_i]$$ in iteration $$i$$ and the search range in iteration $$i+1$$ is $$[first_{i+1}, last_{i+1}]$$ then it must be that $$last_{i+1} - first_{i+1} < last_{i} - first_{i}$$. To do so we can use a similar approach to the one we used to prove our maintenance step. We know there are three cases, in each case we can prove that the new range is shrinking.
 <br>
 <br>

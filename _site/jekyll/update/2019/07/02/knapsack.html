@@ -60,50 +60,34 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><b>0 References</b><br />
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+    <!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>1 Introduction</b><br />
-The Knapsack problem is a classic dynamic programming problem. In this problem, we are given a knapsack of size <script type="math/tex">W</script> for some integer <script type="math/tex">W</script> and a list of items. Each item <script type="math/tex">x_i</script> has an integer weight <script type="math/tex">w_i</script> and an integer value, <script type="math/tex">v_i</script>. The goal is to maximize the value of the knapsack under the constraint <script type="math/tex">W</script>. There are many variations of the Knapsack problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack in the knapsack. So we either select an item <script type="math/tex">x_i</script> or we don’t. There is also the unbounded knaspack where you have multiple/unbounded copies of each item.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2 Unbounded Knapsack</b><br />
-Let’s focus now on the unbounded knapsack problem and let’s start with an example. Suppose we have an unbounded number of tacos, each of weight 2 and value 4. We also have burritos each of weight 6 and value 17. Suppose now that we have a knapsack of size, <script type="math/tex">W=14</script>. The optimal solution is to pack 2 burritos and 1 taco which will give an optimal value of <script type="math/tex">2*17+1*4=38</script>. 
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p>The Knapsack problem is a classic dynamic programming problem. In this problem, we are given a knapsack of size <script type="math/tex">W</script> for some integer <script type="math/tex">W</script> and a list of items. Each item <script type="math/tex">x_i</script> has an integer weight <script type="math/tex">w_i</script> and an integer value, <script type="math/tex">v_i</script>. The goal is to maximize the value of the knapsack under the constraint <script type="math/tex">W</script>. There are many variations of the Knapsack problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack in the knapsack. So we either select an item <script type="math/tex">x_i</script> or we don’t. There is also the unbounded knaspack where you have multiple/unbounded copies of each item.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2.1 How to solve the Knapsack problem?</b><br />
-The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One might try a simple greedy algorithm of say always picking the item with the best value/weight ratio. In the example, we’ll pick 2 burritos of value <script type="math/tex">2*17=34</script> which is not an optimal value!
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2.2 Complete Search</b>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Unbounded Knapsack</b></h4>
+<p>Let’s focus now on the unbounded knapsack problem and let’s start with an example. Suppose we have an unbounded number of tacos, each of weight 2 and value 4. We also have burritos each of weight 6 and value 17. Suppose now that we have a knapsack of size, <script type="math/tex">W=14</script>. The optimal solution is to pack 2 burritos and 1 taco which will give an optimal value of <script type="math/tex">2*17+1*4=38</script>. 
 <br />
-We can also try a complete search of every possible combinations of items. I’m not sure about the thought process here but I was thinking the following should give us an upper bound. For each item <script type="math/tex">x_i</script> with weight <script type="math/tex">w_i</script> and value <script type="math/tex">v_i</script>, we insert <script type="math/tex">\lceil W/x_i \rceil</script> copies of <script type="math/tex">x_i</script> to a new list of items. If we original had <script type="math/tex">n</script> items, we could potentially insert <script type="math/tex">O(n^2)</script> items. Give this this list. For each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be <script type="math/tex">O(2^{n^2})</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2.3 Dynamic Programming</b>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>A Greedy Approach</b></h4>
+<p>The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One might try a simple greedy algorithm of say always picking the item with the best value/weight ratio. In the example, we’ll pick 2 burritos of value <script type="math/tex">2*17=34</script> which is not an optimal value!
 <br />
-As we saw above, greedy doesn’t work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Complete Search</b></h4>
+<p>We can also try a complete search of every possible combinations of items. I’m not sure about the thought process here but I was thinking the following should give us an upper bound. For each item <script type="math/tex">x_i</script> with weight <script type="math/tex">w_i</script> and value <script type="math/tex">v_i</script>, we insert <script type="math/tex">\lceil W/x_i \rceil</script> copies of <script type="math/tex">x_i</script> to a new list of items. If we original had <script type="math/tex">n</script> items, we could potentially insert <script type="math/tex">O(n^2)</script> items. Give this this list. For each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be <script type="math/tex">O(2^{n^2})</script>.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Dynamic Programming</b></h4>
+<p>As we saw above, greedy doesn’t work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
 <br />
 <br />
 Let <script type="math/tex">K[x]</script> be the optimal value for capacity <script type="math/tex">x</script>. We will have the following recursive substructure:</p>
@@ -116,13 +100,9 @@ $$
 </div>
 <p>In other words, suppose we have unlimited copies of the following <script type="math/tex">n</script> items, <script type="math/tex">\{\{w_0,v_0\},\{w_1,v_0\},...,\{w_n,v_n\}\}</script>. Assume now that the optimal solution contains some item <script type="math/tex">x_i</script>. Then we will see that <script type="math/tex">K[x-w_i] = k[x] - v_i</script>, meaning that the optimal solution for <script type="math/tex">K[x]</script> contains within it optimal solutions to smaller subproblems.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2.4 Implementation</b>
-<br /></p>
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">item</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">w</span><span class="p">;</span>
@@ -161,51 +141,32 @@ $$
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2.5 Proof of Correctness</b><br />
-We claim that our recursive substructure we’ve shown earlier is optimal. 
-<br />
-<i>Proof:</i> <br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Proof of Correctness</b></h4>
+<p><i>Proof:</i> <br />
 Suppose that we have a knapsack of size <script type="math/tex">W</script> and suppose that we have unbounded copies of <script type="math/tex">n</script> items available to us. Now suppose that we know the optimal value to the knapsack is <script type="math/tex">K[W]</script> and that the optimal solution contains one copy of item <script type="math/tex">x_k</script> for some natural number <script type="math/tex">k</script>. We claim that <script type="math/tex">K[W] - v_k</script> is an optimal value for a knapsack of size <script type="math/tex">W - x_k</script>. That is, <script type="math/tex">K[W - x_k] = K[W] - v_k</script>.
 <br /><br />
 We will prove our claim by contradiction. Suppose that <script type="math/tex">K[W] - v_k</script> is not an optimal value and that the optimal value is <script type="math/tex">T^{\prime}</script>. Since we know that the optimal solution to the knapsack of size <script type="math/tex">W</script> contains a copy of item <script type="math/tex">x_k</script>, we can therefore add <script type="math/tex">x_k</script> to <script type="math/tex">K[W - x_k]</script> to obtain an optimal value <script type="math/tex">T^{\prime} + v_k</script>. But <script type="math/tex">T^{\prime} + v_k >  K[W] - v_k + v_k = K[W]</script>. This is a contradiction since we assumed that <script type="math/tex">K[W]</script> is an optimal value. Therefore, <script type="math/tex">K[W] - v_k</script> must be an optimal value for a knapsack of size <script type="math/tex">W - x_k</script>. <script type="math/tex">\blacksquare</script>
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2.6 Running Time:</b> <br />
-Assume we have <script type="math/tex">n</script> items and the knapsack is of size <script type="math/tex">W</script>. The runtime is <script type="math/tex">O(nW)</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3 0/1 Knapsack</b><br />
-Let’s focus now on the 0/1 knapsack problem and let’s start with an example. Suppose we have a taco of weight 3 and value 10. We also a burrito of weight 6 and value 14 and a enchilada of weight 5 and value 11. Suppose now that we have a knapsack of size, <script type="math/tex">W=9</script>. The optimal solution is to pack a taco and an enchilada for a total value of 27.
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>Assume we have <script type="math/tex">n</script> items and the knapsack is of size <script type="math/tex">W</script>. The runtime is <script type="math/tex">O(nW)</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3.1 Solutions? Complete Search</b><br />
-A greedy approach won’t work similar to the unbounded knapsack. We can instead do an exhaustive search. We can check every possible combination of the items we have. We will have 2 choices for each item. We either select the item or we don’t. Therefore, we have <script type="math/tex">2^n</script> possible subsets to check and the running time is <script type="math/tex">O(2^n)</script>. 
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3.2 Dynamic Programming</b>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>0/1 Knapsack</b></h4>
+<p>Let’s focus now on the 0/1 knapsack problem and let’s start with an example. Suppose we have a taco of weight 3 and value 10. We also a burrito of weight 6 and value 14 and a enchilada of weight 5 and value 11. Suppose now that we have a knapsack of size, <script type="math/tex">W=9</script>. The optimal solution is to pack a taco and an enchilada for a total value of 27.
 <br />
-Unfortunately we can’t use the same recursive substructure in the unbounded knapsack above. In this problem, we need to also keep track of which items are available at each step since some might have been taken. So if the smaller subproblem is using an item <script type="math/tex">x</script>, the larger problem must know not to re-take it which is a violation to the constraint of having one copy only per item.
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Complete Search</b></h4>
+<p>A greedy approach won’t work similar to the unbounded knapsack. We can instead do an exhaustive search. We can check every possible combination of the items we have. We will have 2 choices for each item. We either select the item or we don’t. Therefore, we have <script type="math/tex">2^n</script> possible subsets to check and the running time is <script type="math/tex">O(2^n)</script>. 
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Dynamic Programming</b></h4>
+<p>Unfortunately we can’t use the same recursive substructure in the unbounded knapsack above. In this problem, we need to also keep track of which items are available at each step since some might have been taken. So if the smaller subproblem is using an item <script type="math/tex">x</script>, the larger problem must know not to re-take it which is a violation to the constraint of having one copy only per item.
 <br />
 <br />
 Therefore, our subproblems must track both the size of the knapsack and the items allowed so far and therefore, we need a two dimensional table! we’ll let <script type="math/tex">x</script> to indicate the knapsack size and <script type="math/tex">y</script> to indicate that we’re using the first <script type="math/tex">y</script> items.
@@ -229,21 +190,14 @@ $$
 </div>
 <p>With the base case of <script type="math/tex">K[x,0]=0</script> and <script type="math/tex">K[0,y]=0</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3.3 Proof of Correctness</b><br />
-The proof is very similar to the structure of our earlier proof to the unbounded knapsack problem. If we can have a better solution to the subproblem then we can have even a better solution to the optimal solution to the larger problem which is a contradiction. I might write it later?.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3.3 Implementation</b>
-<br /></p>
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Proof of Correctness</b></h4>
+<p>The proof is very similar to the structure of our earlier proof to the unbounded knapsack problem. If we can have a better solution to the subproblem then we can have even a better solution to the optimal solution to the larger problem which is a contradiction. I might write it later?.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Implmentation</b></h4>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">knapsack_01</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">bag</span><span class="p">,</span> <span class="kt">int</span> <span class="n">W</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">K</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
@@ -276,13 +230,9 @@ The proof is very similar to the structure of our earlier proof to the unbounded
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>6 Full Implementation:</b> <br />
-https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Implementation (github)</b></h4>
+<p>https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp
 <br />
 <br /></p>
 

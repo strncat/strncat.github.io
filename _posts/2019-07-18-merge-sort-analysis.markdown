@@ -5,19 +5,13 @@ date:   2019-07-18 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-
-<b>0 References</b>
-<br>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>Introduction</b>
-<br>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Introduction</b></h4>
 In this note, we would like to analyze the running time of MergeSort. Recall that MergeSort is a divide and conquer algorithm where we repeatedly split the input into two halfs and then call <i>MergeSort</i> again on each half. Once we're done, we can combine the halfs in <i>Merge</i>. The follow pesudo-code shows this (Based on CLRS)
 {% highlight c++ %}
 MergeSort(A, first, last) {
@@ -30,13 +24,8 @@ MergeSort(A, first, last) {
 }
 {% endhighlight %}
 <br>
-<br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>(1) The Recursion Tree Method</b>
-<br>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Recursion Tree Method</b></h4>
 How long does MergeSort take? How many operations are we performing? Let's look at what MergeSort is doing at each level of of the recursion tree. We will first go all way down splitting the array and calling <i>MergeSort</i> on each half until we reach the base case. And then we will go all way up calling <i>Merge</i> in every level until the final <i>Merge</i> call to combine the two halfs of the array and finally exiting MergeSort.
 <br>
 <br>
@@ -84,12 +73,8 @@ At the $$t$$'th level, we have $$2^t$$ arrays. Each of these arrays is of size $
 So at each level we're doing at most $$cn$$ operations.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>Putting it all together</b>
-<br>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Summary</b></h4>
 Let's now summarize everything in a nice table:
 <img src="{{ site.url }}/assets/merge/final.png" width="100%">
 <br>
@@ -119,15 +104,9 @@ $$
 This is certainly true for all $$n \geq 2$$ and so we are done.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>(2) The Substitution Method</b>
-<br>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>The Substitution Method</b></h4>
 TODO
-
-
 <!--
 Now let's take a step back and forget about the recursion tree. Also assume that we don't know the master theorem. We know that MergeSort divides the input into halfs and performs $$cn$$ operations in Merge. Therefore, we have the following recurrence:
 <div center>
@@ -153,13 +132,8 @@ T(n) &= 2T(\frac{n}{2}) + cn \\
 $$
 </div>
 -->
-
 <br>
 <br>
-<br>
-
-
-
 
 
 

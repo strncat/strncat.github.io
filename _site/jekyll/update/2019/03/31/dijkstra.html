@@ -93,25 +93,17 @@
 	<polygon fill="black" stroke-width="1" points="486.343,116.587 477.386,119.55 485.082,125.936" />
 	<text x="452.5" y="184.5" font-family="Times New Roman" font-size="20">4</text>
 </svg>
-<p><b>0 References</b><br />
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<h4><b>References</b></h4>
+<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>1 Introduction</b>
 <br />
-Dijkstra solves the shortest weighted path problem in a weighted graph with non-negative edge weights. If we want to find the shortest path between nodes <script type="math/tex">s</script> and <script type="math/tex">t</script> in the above graph then the shortest path is <script type="math/tex">s \rightarrow a \rightarrow b \rightarrow t</script>.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p>Dijkstra solves the shortest weighted path problem in a weighted graph with non-negative edge weights. If we want to find the shortest path between nodes <script type="math/tex">s</script> and <script type="math/tex">t</script> in the above graph then the shortest path is <script type="math/tex">s \rightarrow a \rightarrow b \rightarrow t</script>.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2 Algorithm</b>
-<br /></p>
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Algorithm</b></h4>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Set</span> <span class="n">all</span> <span class="n">vertices</span> <span class="n">to</span> <span class="n">not</span><span class="o">-</span><span class="n">sure</span>
 <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span> <span class="k">for</span> <span class="n">all</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span>
@@ -129,14 +121,9 @@ Dijkstra solves the shortest weighted path problem in a weighted graph with non-
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3 Example</b>
-<br />
-In the above graph, we maintain a set of not-sure nodes <script type="math/tex">\{s, a, b, c, t\}</script>. We then assign <script type="math/tex">d[v] = \infty</script> for all nodes. For the source node, we update its estimate to zero. <script type="math/tex">d[s] = 0</script>.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>In the above graph, we maintain a set of not-sure nodes <script type="math/tex">\{s, a, b, c, t\}</script>. We then assign <script type="math/tex">d[v] = \infty</script> for all nodes. For the source node, we update its estimate to zero. <script type="math/tex">d[s] = 0</script>.
 <br /><br />
 <i>Iteration 0</i><br />
 We extract the minimum not-sure node <script type="math/tex">s</script>. We we now update each neighbor according to the algorithm. After updating each neightbor we get the following the values. Also, after updating all neighbors, we mark <script type="math/tex">s</script> as sure.</p>
@@ -257,13 +244,9 @@ We continue with the same process. We extract the node <script type="math/tex">a
 </table>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>4 Extracting the path</b><br />
-To reconstruct the actuall path take, we just maintain a pointer to the parent node. We simply keep an additional array <script type="math/tex">p</script> and modify the update step as follows:
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Extracting the path</b></h4>
+<p>To reconstruct the actuall path take, we just maintain a pointer to the parent node. We simply keep an additional array <script type="math/tex">p</script> and modify the update step as follows:
 <br /></p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">p</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">all</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span>
@@ -275,13 +258,9 @@ To reconstruct the actuall path take, we just maintain a pointer to the parent n
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>5 Proof of Correctness</b><br />
-Why does Dijkstra work? We need to prove two important claims in order to prove that Dijkstra is correct.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof of Correctness</b></h4>
+<p>Why does Dijkstra work? We need to prove two important claims in order to prove that Dijkstra is correct.
 <br /></p>
 
 <table>
@@ -366,13 +345,10 @@ $$
 <p><b>Conclusion:</b> 
 After the last node is marked sure, we have <script type="math/tex">d[v] = d(s,v)</script> for all $v$ in $V$, as we wanted to show. <script type="math/tex">\blacksquare</script>
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>6 Running Time:</b> 
-What are we doing in this algorithm? For each vertex in the not-sure list, we <br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>What are we doing in this algorithm? For each vertex in the not-sure list, we <br />
 (1) find the minimum vertex. <br />
 (2) remove that vertex. <br />
 (3) update all neighbors with lower estimates if possible.<br />
@@ -413,41 +389,20 @@ Notice here, if the graph is dense, meaning that <script type="math/tex">m=O(n^2
       <li>UpdateKey will run in <script type="math/tex">O(1)</script>, amortized time.<br />
 Therefore, the total time will be <script type="math/tex">O(n\log(n) + m)</script>, amortized time.
 <br />
-<br /></li>
+<br />
+<!------------------------------------------------------------------------------------></li>
     </ul>
   </li>
 </ul>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>7 What can’t we handle negative weights?</b> 
+<h4><b>Handling Negative Weights</b></h4>
+<p>TODO!!
 <br />
-TODO!!
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>8 What can’t we add the minimum positive weight needed to every edge in a graph with negative weights?</b> 
-<br />
-TODO!!
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+<p>https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/dijkstra/dijkstra.cpp
 <br />
 <br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>8 Full Implementation:</b> 
-https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/dijkstra/dijkstra.cpp
-<br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-References: These notes are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html</p>
 
 
   </div><div id="disqus_thread"></div>

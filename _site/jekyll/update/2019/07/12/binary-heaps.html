@@ -60,30 +60,22 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>References</b>
-</div>
-<p><br />
-These are my study notes / summary on chapter 6 in CLRS.
+    <!---------------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+<p>These are my study notes / summary on chapter 6 in CLRS.
 <br />
 <br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>Introduction</b>
-</div>
-<p><br />
-<img src="http://localhost:4000/assets/heaps/1.png" width="100%" />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p><img src="http://localhost:4000/assets/heaps/1.png" width="100%" />
 The heap data structure is an array <script type="math/tex">A</script> that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. <script type="math/tex">A[1]</script> is the root of the tree. In the above tree, <script type="math/tex">A[1]=17</script> is the root of the tree.
 <br /><br />
 Because the heap is based on a complete binary tree, the height of a heap of <script type="math/tex">n</script> elements is <script type="math/tex">\Theta(\log(n))</script>. As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in <script type="math/tex">O(\log(n))</script> time.
 <br />
 <br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>Finding the Parent, Left and Right Children</b>
-</div>
-<p><br />
-Given an element <script type="math/tex">A[i]</script>. Its parent is located at <script type="math/tex">A[\lfloor i/2 \rfloor]</script>. For example the parent of 2 (index 7) is <script type="math/tex">A[\lfloor 7/2 \rfloor]=A[3]=11</script>. The left child is <script type="math/tex">A[2*i]</script> and the right child is <script type="math/tex">A[2*i+1]</script>. For example the right child of 13 (index 2) is <script type="math/tex">A[2*2 + 1] = A[5] = 3</script>.</p>
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Finding the Parent, Left and Right Children</b></h4>
+<p>Given an element <script type="math/tex">A[i]</script>. Its parent is located at <script type="math/tex">A[\lfloor i/2 \rfloor]</script>. For example the parent of 2 (index 7) is <script type="math/tex">A[\lfloor 7/2 \rfloor]=A[3]=11</script>. The left child is <script type="math/tex">A[2*i]</script> and the right child is <script type="math/tex">A[2*i+1]</script>. For example the right child of 13 (index 2) is <script type="math/tex">A[2*2 + 1] = A[5] = 3</script>.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// we know that i/2 is rounded down so we don't need to floor</span>
@@ -96,12 +88,9 @@ Given an element <script type="math/tex">A[i]</script>. Its parent is located at
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>The Heap Property</b>
-</div>
-<p><br />
-There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b>. The heap property depends on the type of the heap. For any given element <script type="math/tex">A[i]</script> we must have:</p>
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>The Heap Property</b></h4>
+<p>There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b>. The heap property depends on the type of the heap. For any given element <script type="math/tex">A[i]</script> we must have:</p>
 
 <p>If this is a max-heap then,</p>
 
@@ -126,12 +115,9 @@ There are two kinds of binary heaps, min heaps and max heaps. Depending on the h
 <p>The heap property is crucial. Because of it, we know that the root of the heap must be the smallest or the largest element in the heap and therefore, extracting the minimum or the maximum depending on the heap type can be done in constant time!
 <br />
 <br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>Maintaining the Max-Heap Property</b>
-</div>
-<p><br />
-Suppose we have an element <script type="math/tex">A[i]</script> that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of <script type="math/tex">A[i]</script> maintain the heap property. We know in constant time that the children are <script type="math/tex">A[2*i]</script> and <script type="math/tex">A[2*i+1]</script>. We can then swap <script type="math/tex">A[i]</script> with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at <script type="math/tex">A[i]</script>. Let’s look at a simple implementation:</p>
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Maintaining the Max-Heap Property</b></h4>
+<p>Suppose we have an element <script type="math/tex">A[i]</script> that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of <script type="math/tex">A[i]</script> maintain the heap property. We know in constant time that the children are <script type="math/tex">A[2*i]</script> and <script type="math/tex">A[2*i+1]</script>. We can then swap <script type="math/tex">A[i]</script> with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at <script type="math/tex">A[i]</script>. Let’s look at a simple implementation:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">max_heapify</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
@@ -159,12 +145,9 @@ Suppose we have an element <script type="math/tex">A[i]</script> that is smaller
 <p>How long does max_heapify take? Well, in the worst case, we will go down all the way to a leaf and so the runtime is <script type="math/tex">O(h)</script> which is <script type="math/tex">O(log(n))</script>.
 <br />
 <br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>Building a Max-Heap</b>
-</div>
-<p><br />
-Based on how we store the heap elements in the array, the leaves of the tree are located stating at <script type="math/tex">A[n/2+1], A[n/2+2],...,n</script>. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of <script type="math/tex">A</script> maintains the heap property. Therefore, we can use the following to build a max-heap:</p>
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Building a Max Heap</b></h4>
+<p>Based on how we store the heap elements in the array, the leaves of the tree are located stating at <script type="math/tex">A[n/2+1], A[n/2+2],...,n</script>. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of <script type="math/tex">A</script> maintains the heap property. Therefore, we can use the following to build a max-heap:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">build_max_heap</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
@@ -173,12 +156,9 @@ Based on how we store the heap elements in the array, the leaves of the tree are
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>Building a Max-Heap (Example)</b>
-</div>
-<p><br />
-Let’s look at an example of building a max-heap using the above idea. We’re given the following array and we want to build a max-heap out of it.
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Let’s look at an example of building a max-heap using the above idea. We’re given the following array and we want to build a max-heap out of it.
 <br />
 <img src="http://localhost:4000/assets/heaps/e1.png" width="100%" />
 <br />
@@ -207,13 +187,9 @@ And finally we will swap 1 with the larger of its children, node 7.
 Finally, you can see now that the tree/array is a max-heap:
 <img src="http://localhost:4000/assets/heaps/e10.png" width="100%" />
 <br />
-<br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>Building a Max-Heap (Proof of Correctness)</b>
-</div>
-<p><br />
-Why should we believe that build_max_heap works? This is going to be exactly what’s in CLRS (my notes for myself to quickly remember). We’ll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.</p>
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Correctness Proof</b></h4>
+<p>Why should we believe that build_max_heap works? This is going to be exactly what’s in CLRS (my notes for myself to quickly remember). We’ll show that it works by proving that the following loop invariant is maintained prior to the first iteration, before each iteration and when the loop terminates.</p>
 
 <table>
   <tbody>
@@ -239,12 +215,9 @@ At termination when <script type="math/tex">i=0</script>, we know by the loop in
 I would obviously recommend looking at CLRS’s way unless I’m in a rush and this is easily accessible on my phone. 
 <br />
 <br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>Building a Max-Heap (Running Time)</b>
-</div>
-<p><br />
-The most exciting question is how long does it take to build a max heap? We know that max_heapify takes <script type="math/tex">O(\log(n))</script> time for each node. We also know that we at most have <script type="math/tex">O(n)</script> iterations. This means that building a max heap will run in <script type="math/tex">O(n\log(n))</script>. But we derive a much tighter bound than this by observing that:
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>The most exciting question is how long does it take to build a max heap? We know that max_heapify takes <script type="math/tex">O(\log(n))</script> time for each node. We also know that we at most have <script type="math/tex">O(n)</script> iterations. This means that building a max heap will run in <script type="math/tex">O(n\log(n))</script>. But we derive a much tighter bound than this by observing that:
 <br /><br />
 (1) Binary heaps with <script type="math/tex">n</script> nodes have height <script type="math/tex">\lfloor \log(n) \rfloor</script>. <br />
 (2) At any height <script type="math/tex">i</script>, we have at most <script type="math/tex">\lceil \frac{n}{2^{i+1}} \rceil</script> nodes. <br /></p>
@@ -298,10 +271,8 @@ $$
 <p>and we’re done!
 <br />
 <br />
-<!----------------------------------------------------------------------------></p>
-<div style="background-color:#F6CEEC; padding: 7px 7px 7px 20px;">
-<b>Heapsort</b>
-</div>
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Heapsort</b></h4>
 <p><br />
 TODO</p>
 

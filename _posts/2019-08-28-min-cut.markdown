@@ -6,11 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 <img src="{{ site.url }}/assets/mincut/1.png" width="100%">
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>References</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
 class notes from following:
 1. http://web.stanford.edu/class/cs161/schedule.html 
 2. https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/11/Small11.pdf
@@ -18,27 +15,19 @@ class notes from following:
 4. Algorithm Design (BEST BOOK)
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Introduction</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Introduction</b></h4>
 Let $$G=(V,E)$$ be an undirected graph with $$V$$ vertices and $$E$$ edges. A cut in $$G$$ is a partition of $$V$$ into two non-empty sets of vertices $$A$$ and $$B$$. The <b>size</b> of the cut is the number of edges with one end point in $$A$$ and another in $$B$$. A <b>global minimum cut</b> is a cut of minimum size.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Krager's Algorithm</b>
-</div>
-<br>
-Krager's algorithm starts with picking an edge $$(u,v)$$ in $$G$$ uniformly at random. It then <b>contracts</b> this edge by creating a new node $$w$$ that combines both $$u$$ and $$v$$. All the edges in $$G$$ with an end point equal to either $$u$$ and $$v$$ now point to $$w$$ instead. Also, any edge between $$u$$ and $$v$$ is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in $$G$$. 
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger's Algorithm</b></h4>
+Karger's algorithm starts with picking an edge $$(u,v)$$ in $$G$$ uniformly at random. It then <b>contracts</b> this edge by creating a new node $$w$$ that combines both $$u$$ and $$v$$. All the edges in $$G$$ with an end point equal to either $$u$$ and $$v$$ now point to $$w$$ instead. Also, any edge between $$u$$ and $$v$$ is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in $$G$$. 
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger's Algorithm Pseudocode</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger's Algorithm Pseudocode</b></h4>
+
 {% highlight c++ %}
 void karger(graph& g) {
 	Initially create a set for each node v, S(v) = {v}
@@ -50,11 +39,8 @@ void karger(graph& g) {
 }
 {% endhighlight %}
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Example</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
 Suppose we apply the contraction algorithm on the above graph. We start by picking an edge uniformly at random. Suppose we picked the edge $$(d,e)$$ below:
 <img src="{{ site.url }}/assets/mincut/2.png" width="100%">
 We then delete $$(d,e)$$. We create a new node $$z$$. We then point any edge that previously had an end point equal to $$d$$ or $$e$$ to point at $$z$$.
@@ -80,12 +66,8 @@ Suppose however that instead of picking $$(y,c)$$ to contract, we picked $$(y,w)
 We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager's algorithm is a Monte Carlo algorithm.
 <img src="{{ site.url }}/assets/mincut/11a.png" width="100%">
 <br>
-<br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>What is the probability of getting a correct answer?</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Probability of Success</b></h4>
 Suppose we have a graph $$G=(E,V)$$ with $$n$$ nodes and $$m$$ edges. Suppose the cut $$(A,B)$$ is a global minimum cut is of size $$k$$. Also let $$F$$ to be the set of $$k$$ edges in the cut $$(A,B)$$. So $$F$$ has the edges that have one end point in $$A$$ and the other end point in $$B$$.
 <br>
 <br>
@@ -163,11 +145,8 @@ Pr(success) &= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-
 $$
 </div>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Can we do better?</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Can we do better?</b></h4>
 The probability of success, $$p$$, we found so far is 
 <div center>
 $$
@@ -228,22 +207,16 @@ Pr(\text{Failure}) &\leq \big(1-p\big)^{\ln(1/\delta)\frac{1}{p}} \leq \frac{1}{
 $$
 </div>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Running Time</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Running Time</b></h4>
 Suppose we have $$n$$ nodes and $$m$$ edges. In the naive implementation, we contract $$n-2$$ edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take $$O(n)$$ time. Therefore, the total running time is $$O(n^2)$$. There are other faster implementations with union-find data structure that reduce the running time to $$O(m * \alpha(n))$$. (TODO: More on this?)
 <br>
 <br>
 Given that we can get a high success probability if we run Krager's algorithm for $$O(\log(n)n^2)$$. The total running time is therefore $$O(n^4\log(n))$$!
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger - Stein</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger - Stein</b></h4>
 Can we do better than $$O(n^4\log(n))$$ and still maintain a high success probability? Krager and Stein published an improved result that's much faster! 
 <br>
 <br>
@@ -266,11 +239,8 @@ void karger_stein(graph& g) {
 }
 {% endhighlight %}
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger - Stein Running Time</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger - Stein Running Time</b></h4>
 Karger-Stein is a recursive algorithm. At each level of the recursion, we perform Karger on $$G$$ until we reach $$n/\sqrt{2}$$ vertices. Karger runs in $$O(n^2)$$. Therefore, we have the following recurrence for the running time:
 <div>
 $$
@@ -282,11 +252,8 @@ $$
 And therefore, the running time is $$O(n^2\log(n))$$ by the master theorem.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger - Stein Probability of Success</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger - Stein Probability of Success</b></h4>
 Karger-Stein first contracts the graph from $$n$$ vertices down to $$n/\sqrt{2}$$ vertices. Similar to the analysis we did earlier. The probability of success is the probability of not picking the wrong edges in any of the first $$n-n/\sqrt{2}$$ iterations. Therefore, combining all probabilities:
 <div center>
 $$
@@ -352,11 +319,9 @@ Side Note: I don't know how I would come up with replacing $$1/d^2$$ with $$1/d(
 Finally since the root of the tree has depth $$2\log(n)$$, then we know that the probability of success is at least $$\frac{1}{2\log(n)+1}$$.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div style="background-color:#EAFAF1; padding: 7px 7px 7px 20px;">
-<b>Karger - Stein Improved Success Rate</b>
-</div>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger - Stein Improved Success Rate</b></h4>
+
 But how many trials do we need in order to achieve the same success rate as Karger's original algorithm (with repetition)? We know the probability of success is at least $$p = \frac{1}{2\log(n)+1}$$. The probability of failing in $$T$$ trials (trials are independent) is the following if we set $$T$$ to $$\ln(1/\delta)\frac{1}{p}$$
 <div>
 $$

@@ -5,27 +5,17 @@ date:   2019-05-02 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>References</b><br>
-</div>
-<br>
+<h4><b>References</b></h4>
 CLRS
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>References</b><br>
-</div>
-<br>
+<h4><b>Introduction</b></h4>
 Rotating a tree is one of the fundamental operations that we perform on binary trees. It is used in balancing trees like Red-Black trees and AVL trees. Rotations maintain the binary search tree property. We have two kinds of rotation, a left rotation and a right rotation described below.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Left Rotations</b><br>
-</div>
-<br>
+<h4><b>Left Rotations</b></h4>
 Given a node $$x$$ in a binary search tree $$t$$ with a right child $$y$$. A left rotation makes $$y$$ the new root of the subtree and $$x$$ its left child. $$y$$'s left child $$b$$ will be $$x$$'s right child. $$a$$ and $$c$$ stay the same. The colored nodes are affected with the rotation, everything else stays the same.
 
 <svg width="800" height="260" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -69,11 +59,9 @@ Given a node $$x$$ in a binary search tree $$t$$ with a right child $$y$$. A lef
 </svg>
 <br>
 <br>
-<!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Correctness Proof</b><br>
-</div>
 <br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Correctness Proof</b></h4>
 We want to prove the following:
 
 | a left rotation maintains the binary search property |
@@ -83,10 +71,7 @@ Let $$T$$ be a binary search tree and let the right subtree above be in $$T$$. L
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Implementation</b><br>
-</div>
-<br>
+<h4><b>Implementation</b></h4>
 {% highlight c++ %}
 void left_rotate(Node *root, Node *x) {
     Node *y = x->right; // we are assuming x has a right child
@@ -115,12 +100,8 @@ void left_rotate(Node *root, Node *x) {
 }
 {% endhighlight %}
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Right Rotations</b><br>
-</div>
-<br>
+<h4><b>Right Rotations</b></h4>
 Similarly, a rotation rotation takes a node $$y$$ with its left child $$x$$ and rotate them so that $$x$$ is the parent of $$y$$ and $$y$$ is now a right child of $$x$$.
 
 <svg width="800" height="260" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -163,12 +144,8 @@ Similarly, a rotation rotation takes a node $$y$$ with its left child $$x$$ and 
 	<polygon fill="black" stroke-width="1" points="156.933,111.2 165.165,106.592 156.398,101.781"/>
 </svg>
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Implementation</b><br>
-</div>
-<br>
+<h4><b>Implementation</b></h4>
 {% highlight c++ %}
 void right_rotate(Node *root, Node *x) {
     Node *x = y->left; // we are assuming y has a left child x
@@ -197,20 +174,13 @@ void right_rotate(Node *root, Node *x) {
 }
 {% endhighlight %}
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Running Time</b><br>
-</div>
-<br> 
+<h4><b>Running Time</b></h4>
 Since we're performing a constant number of link changes then the runtime is $$O(1)$$.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Implementation</b><br>
-</div>
-<br>
+<h4><b>Implementation</b></h4>
 https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp
 <br>
 <br>

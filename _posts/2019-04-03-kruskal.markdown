@@ -37,23 +37,18 @@ mathjax: true
 	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5"/>
 	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
 </svg>
-<br>
-<b>0 References</b><br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>1 Introduction</b><br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Introduction</b></h4>
 Let $$G=(V,E)$$ be undirected, weighted graph with $$V$$ vertices and $$E$$ edges. A minimum spanning tree is a tree that connects all the vertices in $$V$$ of minimal cost. Kruskal's approach is to always take the cheapest edge from the graph that won't create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>2.1 Algorithm (slow naive version)</b>
-<br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Algorithm (slow version)</b></h4>
 {% highlight c++ %}
 E = Sort the edges by non-decreasing weight.
 MST = {}
@@ -65,11 +60,8 @@ for e in sorted E {
 return MST
 {% endhighlight %}
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>2.2 Algorithm (fast, used for the remaining of these notes)</b>
-<br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Algorithm (fast version)</b></h4>
 The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations
 - makeSet(u): creates a set $$\{u\}$$
 - find(u): returns the set that $$u$$ is in.
@@ -90,12 +82,8 @@ for (u,v) in E {
 return MST
 {% endhighlight %}
 <br>
-<br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>3 Example</b><br>
-
+<!---------------------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
 We initialize the following forests $$\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}$$. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: $$\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}$$
 <br><br>
 <i>Iteration 0</i><br>
@@ -134,11 +122,8 @@ At the end of the algorithm, the minimum spanning tree is the following tree:
 	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
 </svg>
 <br>
-<br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>4 Proof of Correctness</b><br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Proof of Correctness</b></h4>
 This first section is exactly copied from Prim's so I should probably just link it, instead of copy/pasting.
 <br><br>
 Why does this algorithm find a minimum spanning tree? Before we can answer that, let's define some terms and prove some lemma that will be useful in the main proof. Let $$G=(V,E)$$ be the graph below and let $$S$$ be the set of yellow edges in $$G$$.  
@@ -171,10 +156,8 @@ Case 2: $$\{u,v\}$$ is not in $$T$$. By the definition of MST, adding $$\{u,v\}$
 <b>Conclusion:</b> After adding the $$n-1$$'st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the $$n-1$$ edges we have is an MST.$$\blacksquare$$
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>5 Running Time:</b> <br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Running Time</b></h4>
 Assume we have $$n$$ vertices and $$m$$ edges. First of all, sorting the edges will take time $$O(m\log(m)) = m\log(n^2) = O(m\log(n))$$. If radixSort can be utilized then we can do this step in time $$O(m)$$. 
 <br><br>
 We then have $$n$$ calls to makeSet, $$2m$$ calls to find and $$n$$ calls to union. These operations run in amortized time $$O(\alpha(n))$$ where $$\alpha(n)$$ is the inverse Ackerman function and $$\alpha(n) \leq 4$$ provided that $$n$$ is smaller than the number of atoms in the universe.
@@ -182,10 +165,8 @@ We then have $$n$$ calls to makeSet, $$2m$$ calls to find and $$n$$ calls to uni
 Therefore, the total time is just $$O(m\log(n))$$ which is similar to Prim if we use a Red Black Tree and closer to $$O(m)$$ if we use radixSort.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>6 Detailed Implementation:</b> <br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Implementation</b></h4>
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/kruskal
 
 

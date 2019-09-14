@@ -5,38 +5,30 @@ date:   2019-07-01 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<b>0 References</b><br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
 These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>1 Introduction</b><br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Introduction</b></h4>
 Problems with greedy solutions might have really simple and straight forward solutions however they are really hard to reason about and therefore, greedy algorithms are generally taught toward the end of an algorithms class. One the of classic problems with greedy solutions is the activity selection problem. In this problem we are given a list of activities, each with a start time $$t_i$$ and a finish time $$f_i$$ and we would like to pick activities such that the total number of activities is maximized with the constraint that no two activities can overlap.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>2 Greedy Solution</b><br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Greedy Solution</b></h4>
 As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activiy with the earliest finish time at each step until we run out of activities.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>3 Example</b><br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
 Suppose we have the following activities:
 ![my photo]({{ site.url }}/assets/activities.png)
 Based on our solution, we will pick $$A1$$ first. We will skip $$A2$$ since it violates the condition of not having overlapped activities. We will then go on to pick $$A3$$, $$A5$$ and $$A6$$.
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>4 Algorithm</b>
-<br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Algorithm</b></h4>
 {% highlight c++ %}
 // re-do it again
 std::vector<activity> select_maximum_activities(std::vector<activity> a) {
@@ -51,11 +43,8 @@ std::vector<activity> select_maximum_activities(std::vector<activity> a) {
 }
 {% endhighlight %}
 <br>
-<br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>5 Proof of Correctness</b><br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Correctness Proof</b></h4>
 This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So each decision we make doesn't affect our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
 <br>
 
@@ -82,18 +71,14 @@ We claim that $$T$$ is allowed and optimal. First, we know that $$a_j$$ has a sm
 After adding the last activity, we will have an optimal solution that extends our current choices. Our current choices or solution is the only solution that extends the current solution and therefore, our current solution is optimal. $$\blacksquare$$
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------------------>
-<br>
-<b>6 Running Time:</b> <br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Running Time</b></h4>
 If we need to sorted then it will be $$O(n\log(n))$$. If it's sorted then we're only doing a linear scan of activities and therefore, the running time is $$O(n)$$. 
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<hr>
-<br>
-<b>7 Detailed Implementation:</b> <br>
--
+<!---------------------------------------------------------------------------------------->
+<h4><b>Implementation</b></h4>
+TODO
 <br>
 <br>
 

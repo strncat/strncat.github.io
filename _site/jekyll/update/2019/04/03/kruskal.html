@@ -92,25 +92,18 @@
 	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5" />
 	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
 </svg>
-<p><br />
-<b>0 References</b><br />
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<!---------------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>1 Introduction</b><br />
-Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A minimum spanning tree is a tree that connects all the vertices in <script type="math/tex">V</script> of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>2.1 Algorithm (slow naive version)</b>
-<br /></p>
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p>Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A minimum spanning tree is a tree that connects all the vertices in <script type="math/tex">V</script> of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Algorithm (slow version)</b></h4>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">E</span> <span class="o">=</span> <span class="n">Sort</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">by</span> <span class="n">non</span><span class="o">-</span><span class="n">decreasing</span> <span class="n">weight</span><span class="p">.</span>
 <span class="n">MST</span> <span class="o">=</span> <span class="p">{}</span>
@@ -121,14 +114,10 @@ Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with 
 <span class="p">}</span>
 <span class="k">return</span> <span class="n">MST</span></code></pre></figure>
 
-<p><br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
 <p><br />
-<b>2.2 Algorithm (fast, used for the remaining of these notes)</b>
-<br />
-The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations</p>
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Algorithm (fast version)</b></h4>
+<p>The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations</p>
 <ul>
   <li>makeSet(u): creates a set <script type="math/tex">\{u\}</script></li>
   <li>find(u): returns the set that <script type="math/tex">u</script> is in.</li>
@@ -149,13 +138,8 @@ The reason why this implementation is the standard Kruskal implementation is bec
 <span class="k">return</span> <span class="n">MST</span></code></pre></figure>
 
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>3 Example</b><br /></p>
-
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
 <p>We initialize the following forests <script type="math/tex">\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}</script>. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: <script type="math/tex">\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}</script>
 <br /><br />
 <i>Iteration 0</i><br />
@@ -193,13 +177,9 @@ We next consider  <script type="math/tex">\{a,f\}</script>. Since <script type="
 	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
 </svg>
 <p><br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>4 Proof of Correctness</b><br />
-This first section is exactly copied from Prim’s so I should probably just link it, instead of copy/pasting.
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Proof of Correctness</b></h4>
+<p>This first section is exactly copied from Prim’s so I should probably just link it, instead of copy/pasting.
 <br /><br />
 Why does this algorithm find a minimum spanning tree? Before we can answer that, let’s define some terms and prove some lemma that will be useful in the main proof. Let <script type="math/tex">G=(V,E)</script> be the graph below and let <script type="math/tex">S</script> be the set of yellow edges in <script type="math/tex">G</script>.</p>
 
@@ -244,25 +224,19 @@ Case 2: <script type="math/tex">\{u,v\}</script> is not in <script type="math/te
 <br />
 <b>Conclusion:</b> After adding the <script type="math/tex">n-1</script>‘st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the <script type="math/tex">n-1</script> edges we have is an MST.<script type="math/tex">\blacksquare</script>
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>5 Running Time:</b> <br />
-Assume we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges. First of all, sorting the edges will take time <script type="math/tex">O(m\log(m)) = m\log(n^2) = O(m\log(n))</script>. If radixSort can be utilized then we can do this step in time <script type="math/tex">O(m)</script>. 
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>Assume we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges. First of all, sorting the edges will take time <script type="math/tex">O(m\log(m)) = m\log(n^2) = O(m\log(n))</script>. If radixSort can be utilized then we can do this step in time <script type="math/tex">O(m)</script>. 
 <br /><br />
 We then have <script type="math/tex">n</script> calls to makeSet, <script type="math/tex">2m</script> calls to find and <script type="math/tex">n</script> calls to union. These operations run in amortized time <script type="math/tex">O(\alpha(n))</script> where <script type="math/tex">\alpha(n)</script> is the inverse Ackerman function and <script type="math/tex">\alpha(n) \leq 4</script> provided that <script type="math/tex">n</script> is smaller than the number of atoms in the universe.
 <br /><br />
 Therefore, the total time is just <script type="math/tex">O(m\log(n))</script> which is similar to Prim if we use a Red Black Tree and closer to <script type="math/tex">O(m)</script> if we use radixSort.
 <br />
-<br /></p>
-<hr />
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>6 Detailed Implementation:</b> <br />
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/kruskal</p>
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+<p>https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/kruskal</p>
 
 
   </div><div id="disqus_thread"></div>

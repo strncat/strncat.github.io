@@ -6,12 +6,6 @@ categories: jekyll update
 mathjax: true
 ---
 <img src="{{ site.url }}/assets/bellman/1.png" width="100%">
-<h4><b>References</b></h4>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Introduction</b></h4>
 Let $$G=(V,E)$$ be a weighted graph with $$V$$ vertices and $$E$$ edges. We already discussed Dijkstra's algorithm to find the shortest paths in $$O(n\log(n)+m)$$ time. Dijkstra is fast and works great but unfortunately it doesn't handle negative edge weights. Therefore, we now turn to discuss Bellman Ford's algorithm.
 <br>
 <br>
@@ -153,7 +147,11 @@ https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/sho
 <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=0&problem=499">558 - Wormholes</a>
 <br>
 <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1390">10449 Traffic</a>
-
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<br>
+<br>
 <br>
 <br>
 

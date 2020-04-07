@@ -5,36 +5,23 @@ date:   2019-07-06 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-- Algorithms by Robert Sedgwick and Kevin Wayne
-<br>
-- http://web.stanford.edu/class/cs166/
-<br>
-<br>
-<!----------------------------------------------------------------------------------->
-<h4><b>Introduction</b></h4>
 <img src="{{ site.url }}/assets/trie/intro.png" width="100%">
-Consider the following problem: a user is typing a string (call it $$p$$) of length $$n$$ in a search engine. As the user types, we want to display the strings that the user might have intended to type. For example, if the user types "cas", we might want to display  the words "cast" and "castro" to the user.
-<br><br>
-Formally, given $$k$$ strings of total length $$m$$ and a string (pattern) $$p$$ of length $$n$$. We want to find all the strings that start with $$p$$. The simplest solution would be to look at all strings and compare each string with the pattern we have. This will take $$O(m)$$ time. However, suppose that we now we have $$r$$ patterns, then this approach will take $$O(mr)$$ time which is really slow. Similar to the RMQ notation, for the previous approach, we will write $$\langle O(1), O(mr)\rangle$$ where $$O(1)$$ is the preprocessing time and $$O(mr)$$ is the query time. So how can we make it faster?
+Given a set of $$k$$ strings of total length $$m$$ and a prefix $$p$$ of length $$n$$, we want to find all the strings that start with $$p$$. The simplest solution would be to match each of the $$k$$ strings with the prefix. This will take $$O(m)$$ time. However, suppose that we now we have $$r$$ patterns, then this approach will take $$O(mr)$$ time which is really slow. Similar to the RMQ notation, we will write $$\langle O(1), O(mr)\rangle$$ where $$O(1)$$ is the preprocessing time and $$O(mr)$$ is the query time. How can we make it faster?
 <br>
 <br>
-<hr>
 <!------------------------------------------------------------------------------------>
-<br>
-<b>2 The Trie Data Structure</b>
-<br>
+<h4><b>The Trie Data Structure</b></h4>
 <img src="{{ site.url }}/assets/trie/1.png" width="100%">
 <br>
-The trie (pronounced "try") data structure is an efficient data structure that can help us achieve a faster running time when searching for keys. In the picture above, we can form the following words (words end with colored nodes): cake, cakes, cat, civil and cider.
+The trie (pronounced "try") data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes. In the picture above forexample, we can find the words that start with the prefix "ca" by starting at the root and traversing down to find the words (words end with colored nodes): cake, cakes and cat.
 <br>
-Let's start with studying some properties of tries:
-<br><br>
-<> Each node indicates whether it is the end of a valid word or not. In the above example, colored nodes represent the end of valid words. We can simply use a bool value (yes/no) in each node to do this.<br>
-<> Each node will have $$R$$ children/edges where $$R$$ is the alphabet size. <br>
-<> Edges represent letters. For example, the root node has one edge ($$c$$) to the nodes below.<br>
-<> Each node also has only one parent.<br>
+<br>
+Here are some important properties of tries
+<br>
+- Each node indicates whether it is the end of a valid word or not. In the above example, colored nodes represent the end of valid words. We can simply use a bool value (yes/no) in each node to do this.<br>
+- Each node will have $$R$$ children/edges where $$R$$ is the alphabet size. <br>
+- Edges represent letters. For example, the root node has one edge ($$c$$) to the nodes below.<br>
+- Each node also has only one parent.<br>
 <br>
 Let's look at what a trie really looks like:
 <br>
@@ -42,13 +29,9 @@ Let's look at what a trie really looks like:
 You can see above, the root has only one edge of value $$c$$. From $$c$$, we can traverse to either $$a$$ or $$i$$. From $$a$$ we can traverse to $$k$$ or $$t$$. From $$i$$ we can traverse to $$d$$ or $$v$$ and so on.
 <br>
 <br>
-<hr>
 <!------------------------------------------------------------------------------------>
-<br>
-<b>2 Node and Edges Representation</b>
-<br>
-<br>
-This can be done in many ways. The following is just one way that uses a struct to represent a node. This struct will include a bool value to indicate whether we have arrived at a valid word or not. Each node/struct will also have an array to store all possible edges. Each array position holds a pointer to a node struct, intially all set to NULL. Here, we will consider the English alphabet which consists of 26 letters. We will use position 0 to represent 'a', 1 to represent 'b' and so. We will take advantage of the fact that the ascii value for the letter a is 97 and z is 122 and so to store 'c', we simply find the right position in the array by subtracting 'a' (97) from 'c' (99) to get 2 which is the correct position for 'c'. 
+<h4><b>Node and Edges Representation</b></h4>
+This can be done in many ways. The following is just one way that uses a struct to represent a node. This struct will include a bool value to indicate whether we have arrived at a valid word or not. Each node/struct will also have an array to store all possible edges. Each array position holds a pointer to a node struct, intially all set to NULL. Here, we will consider the English alphabet which consists of 26 letters. We will use position 0 to represent 'a', 1 to represent 'b' and so. We will take advantage of the fact that the ASCII value for the letter a is 97 and z is 122 and so to store 'c', we simply find the right position in the array by subtracting 'a' (97) from 'c' (99) to get 2 which is the correct position for 'c'. 
 {% highlight c++ %}
 #define SIZE 26
 typedef struct node {
@@ -64,21 +47,14 @@ typedef struct trie {
     }
 {% endhighlight %}
 <br>
-<br>
-<hr>
 <!------------------------------------------------------------------------------------>
+<h4><b>Prefix Search</b></h4>
+Given a prefix $$p$$ of length $$n$$, we want to output all the possible words that start with $$p$$. To do, we start with the root of the trie and the first letter of $$p$$. We then check if the root contains a non-null node at the first letter of $$p$$. If there is, then we move to this new node and advance to the next letter of $$p$$. We repeat the same process until we either exit (return NULL) or reach the last letter of $$p$$ and return that node.
 <br>
-<b>3 Prefix Search</b>
-<br>
-<br>
-How do we search for prefixes now? given a pattern $$p$$ we want to output all possible matches. We just traverse down the root and keep matching until we reach the last character of the prefix we're searching. If we want an exact match then we check if the node has a marker to indicate that it ends a valid word and return true if it does. But if we want to print all possible matches then we can take this node we're currently on and then just do a simple depth first search down every branch to collect every possible word.
-<br>
-<br>
-Let's look at search first:
 {% highlight c++ %}
 // return NULL if the pattern doesn't exist, otherwise 
-// return the node we reached last (should have the pattern's last letter)
-node* search(std::string word) {
+// return the node we reached last (should be the pattern's last letter)
+node* find_prefix(std::string pattern) {
     long m = word.length();
     node *current = root;
     // search for word in the tree rooted at root
@@ -94,9 +70,26 @@ node* search(std::string word) {
     return current;
 }
 {% endhighlight %}
+Once we find the prefix (node returned above is not null), we know that all the words in the current subtree are words that start with prefix. To collect all these words, we pass a queue or any container of our choice to <i>collect</i> below. collect is just a depth first search that recursively traverses the subtree rooted at current.
 <br>
-Search is simple. We just traverse down the root and stop when we're done matching every character in the prefix. We will then return that last node. This takes $$O(n)$$ time only. Next, we'll look at word_with_prefix:
-<br>
+{% highlight c++ %}
+// collect matches recursively from all branches
+// save them in q
+void collect(node *current, std::string prefix,
+    std::queue<std::string> &q) {
+    if (current == NULL) { return; }
+    if (current->marker) {
+        q.push(prefix);
+    }
+    for (int i = 0; i < SIZE; i++) {
+        if (current->children[i] != NULL) {
+            char c = i + 'a';
+            collect(current->children[i], prefix + c, q);
+        }
+    }
+}
+{% endhighlight %}
+Finally, we utilize <i>find_prefix</i> to find the prefix and then, pass a queue to <i>collect</i> which will fill the queue with all matches.
 <br>
 {% highlight c++ %}
 // prefix match: print all possible matches
@@ -117,39 +110,9 @@ int words_with_prefix(std::string prefix) {
     return current->value; // total matches
 }
 {% endhighlight %}
-<br>
-Here, we utilize <b>search</b> to find the prefix (returns the last node in the prefix) and then pass a queue to <b>collect</b> which will fill the queue with all matches. Next we'll look at collect:
-<br>
-<br>
-{% highlight c++ %}
-// collect matches recursively from all branches
-// save them in q
-void collect(node *current, std::string prefix,
-    std::queue<std::string> &q) {
-    if (current == NULL) { return; }
-    if (current->marker) {
-        q.push(prefix);
-    }
-    for (int i = 0; i < SIZE; i++) {
-        if (current->children[i] != NULL) {
-            char c = i + 'a';
-            collect(current->children[i], prefix + c, q);
-        }
-    }
-}
-{% endhighlight %}
-<br>
-<b>Collect</b> perform a depth first search on the tree rooted at current. As we go down each path, we will collect the characters in the string prefix. Once we're at a leaf node and its value (marker) is not 0, meaning it's a valid word, then we will push it on the queue.
-<br>
-<br>
-<br>
-<hr>
 <!------------------------------------------------------------------------------------>
-<br>
-<b>4 Insert</b>
-<br>
-<br>
-To insert a key we follow a similar process. We start at the root and we also start at the beginning of the key to be inserted. If the letter we're on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter.
+<h4><b>Insert</b></h4>
+Suppose we want to insert a new word of length $n$. We follow a similar process. We start at the root and we also start at the beginning of the word to be inserted. If the letter we're on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter.
 <br>
 {% highlight c++ %}
 void insert(std::string word) {
@@ -174,41 +137,33 @@ void insert(std::string word) {
     current->marker = true;
 }
 {% endhighlight %}
-So insert takes $$O(n)$$ time as well!
+<i>insert</i> takes $$O(n)$$ which is the length of word.
 <br>
 <br>
-<hr>
 <!------------------------------------------------------------------------------------>
-<br>
-<b>5 Delete</b>
-<br>
+<h4><b>Delete</b></h4>
 To be added.
 <br>
 <br>
-<hr>
 <!------------------------------------------------------------------------------------>
-<br>
-<b>6 Longest Prefix</b>
-<br>
+<h4><b>Longest Prefix</b></h4>
 To be added
 <br>
 <br>
-<hr>
 <!------------------------------------------------------------------------------------>
-<br>
-<b>7 Running Time</b>
-<br>
-<br>
+<h4><b>Running Time</b></h4>
 We mentioned above that insert and search both take $$O(n)$$ time where $$n$$ is the length of the pattern. How long does it take to build a trie to represent all words of total length $$m$$? We need to make $$k$$ insertions each of which will take $$O($$size of each word$$)$$. Since the total length of all words is $$m$$, then the total time is $$O(m)$$ which happens only once initially. Therefore, in the RMQ notation we will have $$\langle O(m), O(n) \rangle$$ which is a lot better than the naive solution. 
 <br>
 <br>
-<hr>
 <!------------------------------------------------------------------------------------>
-<br>
-<b>8 Full Implementation:</b> 
-<br>
+<h4><b>Full Implementation</b></h4>
 https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
 <br>
 <br>
-
-
+<!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+- Algorithms by Robert Sedgwick and Kevin Wayne
+<br>
+- http://web.stanford.edu/class/cs166/
+<br>
+<br>

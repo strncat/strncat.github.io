@@ -5,11 +5,6 @@ date:   2019-09-05 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h3>References</h3>
-- Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
 <h4><b>(1) k distinguishable strings and n distinguishable buckets</b></h4>
 Label the strings $$s_1, s_2,...,s_k$$ and label the buckets $$b_1, b_2,...,b_n$$. $$s_1$$ has $$n$$ choices of buckets to choose from. $$s_2$$ has $$n$$ choices of buckets to choose from and so. Therefore, the total number of choices is
 <div center>
@@ -71,6 +66,11 @@ $$
 \end{align*}
 $$
 </div>
+<br>
+<!------------------------------------------------------------------------------------>
+<h3>References</h3>
+- Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
+<br>
 <br>
 
 

@@ -6,14 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 ![my photo]({{ site.url }}/assets/prim/prim1.png)
-<!---------------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br>
-<br>
-<!---------------------------------------------------------------------------------------->
-<h4><b>Introduction</b></h4>
-Let $$G=(V,E)$$ be undirected, weighted graph with $$V$$ vertices and $$E$$ edges. A minimum spanning tree is a tree that connects all the vertices in $$V$$ of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. what start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don't create a cycle until we cover all the vertices in $$V$$. Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive.
+Let $$G=(V,E)$$ be undirected, weighted graph with $$V$$ vertices and $$E$$ edges. A minimum spanning tree is a tree that connects all the vertices in $$V$$ of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. We start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don't create a cycle until we cover all the vertices in $$V$$. Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
@@ -102,8 +95,12 @@ Why does this algorithm find a minimum spanning tree? Before we can answer that,
 
 ![my photo]({{ site.url }}/assets/prim/cut.png)
 
-- A <b>cut</b> is a partition of the vertices into two non-empty parts. the red line (cut) partitions $$G$$ into $$\{a,b,f,e\}$$ and $$\{c,d\}$$.
-- A cut <b>respects</b> $$S$$ if no edges in $$S$$ cross the cut. None of the yellow edges cross the red cut.
+- A <b>cut</b> is a partition of the vertices into two non-empty disjoint sets. In the graph above, let the vertices on the left of the red line be in $$V_1 = \{a,b,f,e\}$$ and let $$V_2 = V - V_1 = \{c,d\}$$ be the vertices on the right of the red line.
+
+- Suppose we have the cut $$\{V_1, V_2 = V - V_1\}$$. Define the set of edges that <b>cross the cut</b> to be all edges $$\{u,v\}$$ such that $$u \in V_1$$ and $$v \in V_2$$. Therefore, we will have $$\{(b,c),(c,f),(c,e),(e,d)\}$$ in this set. 
+
+- Suppose we have a set of edges $$S$$ (highlighted in yellow above). A cut <b>respects</b> $$S$$ if no edges in $$S$$ cross the cut. None of the yellow edges cross the cut $$\{V_1, V_2\}$$. 
+
 - An edge crossing the cut is called <b>light</b> if it has the smallest weight of any edge crossing the cut. In this case, $$\{e,d\}$$ is a light edge.
 
 | Lemma: Let $$S$$ be a set of edges and consider a cut that respects $$S$$. Suppose there is an MST containing $$S$$. Let $$\{u,v\}$$ be a light edge. Then there is an MST containing $$S \cup \{u,v\}$$ |
@@ -171,6 +168,9 @@ Therefore, the total time will be $$O(n\log(n) + m)$$, amortized time.
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/prim
 <br>
 <br>
-
-
+<!---------------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+http://web.stanford.edu/class/cs161/schedule.html
+<br>
+<br>
 

@@ -5,13 +5,6 @@ date:   2019-06-25 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-The notes on the $$O(n^2)$$ solution are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html and CLRS.
-<br>
-<br>
-<!----------------------------------------------------------------------------------->
-<h4><b>Introduction</b></h4>
 Let $$A = [a_0, a_1, a_2,...,a_n]$$ be an array containing $$n$$ real numbers. A longest increasing subsequence of A is a sequence $$0 \leq i_0 \leq i_1 \leq ... \leq i_k \leq n$$ such that $$A[i_i] \leq A[i_2] \leq ... \leq A[i_k]$$ so that $$k$$ is of maximum value.
 <br>
 <br>
@@ -187,4 +180,8 @@ int longest_increasing_subsequence_fast(int *a, int n) { // O(nlogn)
 https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp
 <br>
 <br>
-
+<!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+The notes on the $$O(n^2)$$ solution are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html and CLRS.
+<br>
+<br>

@@ -5,13 +5,6 @@ date:   2019-07-22 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!---------------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-These are my study notes covering chapter 26 in CLRS and chapter 7 in Algorithm Design.
-<br>
-<br>
-<!---------------------------------------------------------------------------------------->
-<h4><b>Introduction</b></h4>
 Suppose we want to ship oranges from NYC to SF. We have different routes of different capacities. The total number of oranges entering some city $$a$$ must be equal to the number of the oranges leaving $$a$$. In other words, cities can't withhold oranges. We want to find the maximum number of oranges we can ship to SF. This is just one example where we would use a flow network to solve the problem.
 <br>
 <br>
@@ -401,7 +394,13 @@ One way to improve Ford-Fulkerson is by smartly choosing the augmenting path in 
 <br>
 <br>
 TODO
-
+<!---------------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+These are my study notes covering chapter 26 in CLRS and chapter 7 in Algorithm Design.
+<br>
+<br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Introduction</b></h4>
 
 
 

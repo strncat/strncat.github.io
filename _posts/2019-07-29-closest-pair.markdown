@@ -5,13 +5,6 @@ date:   2019-07-29 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-
-<h4><b>References</b></h4>
-These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Problem</b></h4>
 Suppose we are given a list of $$n$$ two dimensional points $$\{\{x_1,y_1\},\{x_2,y_2\},...\{x_n,y_n\}\}$$ and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of $$O(n^2)$$ since we have $$O(n^2)$$ possible pairs. What else can we do?
 <br>
 <br>
@@ -54,7 +47,6 @@ int closest_pair(Px, Py) { // Px sorted by x-coordinate, Py by y-coordinate
     return min(left_pair, right_pair, split_pair);
 }
 {% endhighlight %}
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Running Time</b></h4>
@@ -131,8 +123,11 @@ Using the above restrictions, any point between $$p$$ and $$q$$ must be in one o
 The next question is how many points do we have in each box?
 <br><br>
 We claim that each box has only 1 point. Proof: Suppose it doesn't and some box in the diagram above has 2 points. Let these points be $$a$$ and $$b$$. This means than $$a$$ and $$b$$ are both a left pair or a right pair. Moreover, the distance between $$a$$ and $$b$$ is at most $$\sqrt{(\delta/2)^2 + (\delta/2)^2} = \delta/\sqrt{2} < \delta$$. This is a contradiction, since by assumption we said both $$\delta_l$$ and $$\delta_r$$ are greater than $$\delta$$. Therefore, we must have 1 point in each box and so there are only 6 points between $$p$$ and $$q$$. $$\blacksquare$$ Wonderful!! 
-
-
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
+<br>
+<br>
 
 
 

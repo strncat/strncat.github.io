@@ -5,12 +5,6 @@ date:   2019-08-25 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4>References</h4>
-My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/<br>
-First Course in Probability by Sheldon Ross.
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
 <h4><b>Indicator/Bernoulli Random Variable</b></h4>
 If we have an experiment that results in a boolean answer (yes/no) or (success/failure) with probability $$p$$ for success and $$1-p$$ for failure then we can use an indicator or a boolean random variable to represent its outcomes. We define the following: 
 <div center>
@@ -232,7 +226,12 @@ Var(X) &= r(1-p)/p^2
 \end{align*}
 $$
 </div>
-
+<!------------------------------------------------------------------------------------>
+<h4>References</h4>
+My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/<br>
+First Course in Probability by Sheldon Ross.
+<br>
+<br>
 
 
 

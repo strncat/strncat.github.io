@@ -5,13 +5,6 @@ date:   2019-07-12 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!---------------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-These are my study notes / summary on chapter 6 in CLRS.
-<br>
-<br>
-<!---------------------------------------------------------------------------------------->
-<h4><b>Introduction</b></h4>
 <img src="{{ site.url }}/assets/heaps/1.png" width="100%">
 The heap data structure is an array $$A$$ that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. $$A[1]$$ is the root of the tree. In the above tree, $$A[1]=17$$ is the root of the tree.
 <br><br>
@@ -202,9 +195,11 @@ and we're done!
 <h4><b>Heapsort</b></h4>
 <br>
 TODO
-
-
-
+<!---------------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+These are my study notes / summary on chapter 6 in CLRS.
+<br>
+<br>
 
 
 

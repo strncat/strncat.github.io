@@ -38,40 +38,23 @@ mathjax: true
 	<polygon fill="black" stroke-width="1" points="486.343,116.587 477.386,119.55 485.082,125.936"/>
 	<text x="452.5" y="184.5" font-family="Times New Roman" font-size="20">4</text>
 </svg>
-<h4><b>References</b></h4>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+Given a graph $$G=(E,V)$$ and a source node $$s$$. Dijkstra finds the shortest weighted path from $$s$$ to every other node in the graph. The graph however needs to only have non-negative edge weights. In the above graph the shortest path between nodes $$s$$ and $$t$$ is $$s \rightarrow a \rightarrow b \rightarrow t$$. Dikstra is extremely fast. It can run in amortized time $$O(n\log(n) + m)$$ if we implement Dijkstra with a fiponacci heap. 
 <br>
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Introduction</b></h4>
-Dijkstra solves the shortest weighted path problem in a weighted graph with non-negative edge weights. If we want to find the shortest path between nodes $$s$$ and $$t$$ in the above graph then the shortest path is $$s \rightarrow a \rightarrow b \rightarrow t$$.
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Algorithm</b></h4>
-{% highlight c++ %}
-Set all vertices to not-sure
-d[v] = infinity for all v in V
-d[s] = 0
-while there are not-sure nodes {
-	pick the not-sure node u with the smallest estimate d[u].
-	for each neighbor v of u {
-		if (d[v] < d[u] + weight(u,v)) {
-			// It is cheaper to reach v from u than the current path
-			d[v] = d[u] + weight(u,v)
-		}
-	}
-	Mark u as sure
-	// at this point we know that d[u] = distance(s,v) (proof below)
-}
-{% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example</b></h4>
-In the above graph, we maintain a set of not-sure nodes $$\{s, a, b, c, t\}$$. We then assign $$d[v] = \infty$$ for all nodes. For the source node, we update its estimate to zero. $$d[s] = 0$$.
-<br><br>
-<i>Iteration 0</i><br>
-We extract the minimum not-sure node $$s$$. We we now update each neighbor according to the algorithm. After updating each neightbor we get the following the values. Also, after updating all neighbors, we mark $$s$$ as sure.
+How does Dijkstra work? Using the above example, we maintain a set of <i>not-sure</i> nodes $$\{a, b, c, t, s\}$$. We let $$d[v]$$ be the current distance from $$s$$ to $$v$$. Initially we let $$d[v] = \infty$$ for any node in <i>not-sure</i> and $$d[s] = 0$$ for the source node only.
+<br>
+<br>
+In the first iteration of Dijkstra, we extra the minimum distance node in the <i>not-sure</i> list. This node is $$s$$. We then update the distance of each neighbor based on the following,
+<div center>
+$$
+\begin{align*}
+d[u] &= min(d[u], d[u]+weight(s,u))
+\end{align*}
+$$
+</div>
+After updating each neightbor we get the following the values. Also, after updating all neighbors, we mark $$s$$ as sure.
 
 | Iteration | s | a | b | c | t |
 |-------|--------|---------|
@@ -98,6 +81,24 @@ We continue with the same process. We extract the node $$a$$ and update its neig
 | 3 (extract $$b$$) | 0 | 2 | 4 | 1 | 5 |
 | 4 (extract $$t$$) | 0 | 2 | 4 | 1 | 5 |
 
+<!------------------------------------------------------------------------------------>
+<h4><b>Pseudocode</b></h4>
+{% highlight c++ %}
+Set all vertices to not-sure
+d[v] = infinity for all v in V
+d[s] = 0
+while there are not-sure nodes {
+	pick the not-sure node u with the smallest estimate d[u].
+	for each neighbor v of u {
+		if (d[v] < d[u] + weight(u,v)) {
+			// It is cheaper to reach v from u than the current path
+			d[v] = d[u] + weight(u,v)
+		}
+	}
+	Mark u as sure
+	// at this point we know that d[u] = distance(s,v) (proof below)
+}
+{% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Extracting the path</b></h4>
@@ -237,5 +238,9 @@ TODO!!
 https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/dijkstra/dijkstra.cpp
 <br>
 <br>
-
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<br>
+<br>
 

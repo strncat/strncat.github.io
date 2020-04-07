@@ -7,14 +7,6 @@ mathjax: true
 ---
 ![my photo]({{ site.url }}/assets/cartesian/1.png)
 ![my photo]({{ site.url }}/assets/cartesian/cartesian.png)
-
-<h4><b>References</b></h4>
-1. Jean Vuillemin. 1980. A unifying look at data structures. Commun. ACM 23, 4 (April 1980), 229-239. DOI=http://dx.doi.org.stanford.idm.oclc.org/10.1145/358841.358852
-2. CS166 Lecture Notes http://web.stanford.edu/class/cs166/lectures/01/Slides01.pdf
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Definition</b></h4>
 Given an array $$A$$, the Cartersian tree, $$C(A)$$, is defined as follows: <br>
 1. If $$A = \emptyset$$, then $$C(A) = \emptyset$$, the empty tree. <br>
 2. If $$A \neq \emptyset$$, then let $$min$$ be the minimum element in $$A$$ and let $$i$$ be the index of $$min$$. Fix the root of the Cartesian tree to be $$min$$ and let $$\text{left}(A) = \{x_j \in A \ \ | \ \ j < i\}$$ be the points on the left of $$i$$ and $$\text{right}(A) = \{x_j \in A \ \ | \ \ j > i\}$$ be the points on the right of $$i$$. Let the root's left child be the cartesian tree of the left points, $$C(\text{left}(A))$$. and the root's right child be the cartesian tree of the right points,  $$C(\text{right}(A))$$.
@@ -166,5 +158,9 @@ This results in the following tree
 https://github.com/strncat/algorithms-and-data-structures/blob/master/rmq/catersian-trees.cpp
 <br>
 <br>
-
-
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+1. Jean Vuillemin. 1980. A unifying look at data structures. Commun. ACM 23, 4 (April 1980), 229-239. DOI=http://dx.doi.org.stanford.idm.oclc.org/10.1145/358841.358852
+2. CS166 Lecture Notes http://web.stanford.edu/class/cs166/lectures/01/Slides01.pdf
+<br>
+<br>

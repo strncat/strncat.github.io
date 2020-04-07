@@ -5,13 +5,6 @@ date:   2019-07-18 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS
-<br>
-<br>
-<!----------------------------------------------------------------------------------->
-<h4><b>Introduction</b></h4>
 In this note, we would like to analyze the running time of MergeSort. Recall that MergeSort is a divide and conquer algorithm where we repeatedly split the input into two halfs and then call <i>MergeSort</i> again on each half. Once we're done, we can combine the halfs in <i>Merge</i>. The follow pesudo-code shows this (Based on CLRS)
 {% highlight c++ %}
 MergeSort(A, first, last) {
@@ -132,9 +125,12 @@ T(n) &= 2T(\frac{n}{2}) + cn \\
 $$
 </div>
 -->
+<!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS
 <br>
 <br>
-
+<!----------------------------------------------------------------------------------->
 
 
 

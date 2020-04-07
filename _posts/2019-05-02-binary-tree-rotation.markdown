@@ -5,18 +5,12 @@ date:   2019-05-02 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>References</b></h4>
-CLRS
-<br>
-<br>
-<!---------------------------------------------------------------------------------------->
-<h4><b>Introduction</b></h4>
-Rotating a tree is one of the fundamental operations that we perform on binary trees. It is used in balancing trees like Red-Black trees and AVL trees. Rotations maintain the binary search tree property. We have two kinds of rotation, a left rotation and a right rotation described below.
+Rotating a tree is an essential step in the process of balancing binary search trees (Red-Black trees and AVL trees). An important property of rotations is that they maintain the binary search proprty! We describe what a rotation is below.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Left Rotations</b></h4>
-Given a node $$x$$ in a binary search tree $$t$$ with a right child $$y$$. A left rotation makes $$y$$ the new root of the subtree and $$x$$ its left child. $$y$$'s left child $$b$$ will be $$x$$'s right child. $$a$$ and $$c$$ stay the same. The colored nodes are affected with the rotation, everything else stays the same.
+Given a subtree with root $$x$$ that has a right subtree $$y$$. A left rotation makes $$y$$ the new root of the subtree and $$x$$ its left subtree. $$y$$'s left subtree $$b$$ will be $$x$$'s right subtree. The subtrees $a$ and $c$ remain the same.
 
 <svg width="800" height="260" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="571.5" cy="55.5" rx="30" ry="30"/>
@@ -184,4 +178,8 @@ Since we're performing a constant number of link changes then the runtime is $$O
 https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp
 <br>
 <br>
-
+<!---------------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+CLRS
+<br>
+<br>

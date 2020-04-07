@@ -54,21 +54,16 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Prim&#39;s Minimum Spanning Tree</h1>
+    <!--
     <p class="post-meta">
       <time class="dt-published" datetime="2019-04-02T12:01:36-07:00" itemprop="datePublished">Apr 2, 2019
       </time></p>
+     -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/prim/prim1.png" alt="my photo" />
-<!----------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br />
-<br />
-<!----------------------------------------------------------------------------------------></p>
-<h4><b>Introduction</b></h4>
-<p>Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A minimum spanning tree is a tree that connects all the vertices in <script type="math/tex">V</script> of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. what start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don’t create a cycle until we cover all the vertices in <script type="math/tex">V</script>. Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive.
+Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A minimum spanning tree is a tree that connects all the vertices in <script type="math/tex">V</script> of minimal cost. Prim greedily finds the minimum spanning tree by growing a tree. We start from a vertex and then we pick the cheapest edge out of that vertex. We keep adding cheap edges such that we don’t create a cycle until we cover all the vertices in <script type="math/tex">V</script>. Even though we will only analyze the efficient implementation of Prim, it is very useful to look at the naive implementation because it is more intuitive.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
@@ -265,9 +260,18 @@ We continue with the same process. We extract the node <script type="math/tex">f
 <p><img src="http://localhost:4000/assets/prim/cut.png" alt="my photo" /></p>
 
 <ul>
-  <li>A <b>cut</b> is a partition of the vertices into two non-empty parts. the red line (cut) partitions <script type="math/tex">G</script> into <script type="math/tex">\{a,b,f,e\}</script> and <script type="math/tex">\{c,d\}</script>.</li>
-  <li>A cut <b>respects</b> <script type="math/tex">S</script> if no edges in <script type="math/tex">S</script> cross the cut. None of the yellow edges cross the red cut.</li>
-  <li>An edge crossing the cut is called <b>light</b> if it has the smallest weight of any edge crossing the cut. In this case, <script type="math/tex">\{e,d\}</script> is a light edge.</li>
+  <li>
+    <p>A <b>cut</b> is a partition of the vertices into two non-empty disjoint sets. In the graph above, let the vertices on the left of the red line be in <script type="math/tex">V_1 = \{a,b,f,e\}</script> and let <script type="math/tex">V_2 = V - V_1 = \{c,d\}</script> be the vertices on the right of the red line.</p>
+  </li>
+  <li>
+    <p>Suppose we have the cut <script type="math/tex">\{V_1, V_2 = V - V_1\}</script>. Define the set of edges that <b>cross the cut</b> to be all edges <script type="math/tex">\{u,v\}</script> such that <script type="math/tex">u \in V_1</script> and <script type="math/tex">v \in V_2</script>. Therefore, we will have <script type="math/tex">\{(b,c),(c,f),(c,e),(e,d)\}</script> in this set.</p>
+  </li>
+  <li>
+    <p>Suppose we have a set of edges <script type="math/tex">S</script> (highlighted in yellow above). A cut <b>respects</b> <script type="math/tex">S</script> if no edges in <script type="math/tex">S</script> cross the cut. None of the yellow edges cross the cut <script type="math/tex">\{V_1, V_2\}</script>.</p>
+  </li>
+  <li>
+    <p>An edge crossing the cut is called <b>light</b> if it has the smallest weight of any edge crossing the cut. In this case, <script type="math/tex">\{e,d\}</script> is a light edge.</p>
+  </li>
 </ul>
 
 <table>
@@ -354,6 +358,11 @@ Therefore, the total time will be <script type="math/tex">O(n\log(n) + m)</scrip
 </ul>
 <h4><b>Implementation</b></h4>
 <p>https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/prim
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p>http://web.stanford.edu/class/cs161/schedule.html
 <br />
 <br /></p>
 

@@ -5,13 +5,6 @@ date:   2019-07-10 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br>
-<br>
-<!----------------------------------------------------------------------------------->
-<h4><b>Introduction</b></h4>
 Let $$G = (V, E)$$ be a directed acyclic graph consisting of $$V$$ vertices and $$E$$ edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices $$u \in V$$ and $$v \in V$$, if $$(u,v) \in E$$, then $$u$$ must come before $$v$$ in the ordering.
 <br><br>
 In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class $$a$$ is a prerequisite to class $$b$$, then $$a$$ comes before $$b$$ in the sorted list.
@@ -87,9 +80,7 @@ We conclude from all three cases that we must have $$b.finish_time < a.finish_ti
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<div style="background-color:#F8E0E0; padding: 7px 7px 7px 20px;">
-<b>Implementation</b><br>
-</div>
+<h4><b>Implementation</b></h4>
 <br>
 Let's rewrite DFS to push the nodes onto a stack and let's forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let's call this version topological sort! Here is a simple implementation:
 {% highlight c++ %}
@@ -131,5 +122,9 @@ It is just DFS! so the total time is $$O(V+E)$$.
 https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search
 <br>
 <br>
-
+<!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+http://web.stanford.edu/class/cs161/schedule.html
+<br>
+<br>
 

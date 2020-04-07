@@ -5,13 +5,6 @@ date:   2019-08-19 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-These are my study notes from CLRS and ?
-<br>
-<br>
-<!----------------------------------------------------------------------------------->
-<h4><b>Binary Search</b></h4>
 Given a sorted array $$a$$ of $$n$$ integers and a key, we want to return the index of the key in the array or -1 if the key doesn't exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After $$O(\log(n))$$ iterations, we will either correctly return that index or return -1 if the key doesn't exist.
 {% highlight c++ %}
 int binary_search(int *a, int key, int n) {
@@ -100,7 +93,12 @@ Suppose $$m$$ is the midpoint in $$[first_i, last_i]$$. There are three cases:
 - $$a[m] > key$$. Our algorithm will then search the new range $$[m+1, last]$$. Similarly, we see here that $$last - m + 1 < last_i - first_i$$.
 
 From the three cases we conclude that binary search must terminate. 
-
+<!----------------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+These are my study notes from CLRS and ?
+<br>
+<br>
+<!----------------------------------------------------------------------------------->
 
 
 

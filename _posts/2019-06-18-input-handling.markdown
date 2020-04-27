@@ -5,16 +5,8 @@ date:   2019-06-18 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<br>
-<b>Introduction</b><br>
-These are some samples for reading inputs while doing UVa problems. I find myself often looking at past solutions and wasting time finding the right template. This is a reference for myself to lookup what I want really fast.
-<br>
-<br>
-<hr>
-<!------------------------------------------------------------------------->
-<br>
-<b>0 Read a 2D grid with no spaces between cells (std::getline)</b><br>
-Simple 2D grid, though we don't know when the tests terminate. Also no space between cells<br>
+<h4><b>1 2D grid with no spaces between cells</b></h4>
+This is done using std::getline. Also, in this particular example, we don't know how many tests there are.<br>
 <table>
 <td>
 3 <br>
@@ -47,12 +39,8 @@ bool read_input() {
     return true;
 }
 {% endhighlight %}
-<br>
-<br>
-<hr>
 <!------------------------------------------------------------------------->
-<br>
-<b>1 Unbounded tests and variable length strings (use sstream)</b><br>
+<h4><b>2 Unbounded tests and variable length strings (use sstream)</b></h4>
 We have a bunch of tests but we don't know the number of tests. This is an example:<br>
 <table>
 	<td>
@@ -86,14 +74,33 @@ for (int i = 0; i < n; i++) {
     iss >> planet >> value >> neighbors;
 }
 {% endhighlight %}
-<br>
-<br>
-<hr>
 <!------------------------------------------------------------------------->
-<br>
-<b>2 Reading a 3D grid with no space between cells plus a terminating character (can use fgets)</b><br>
+<h4><b>3 2D grid with ints and characters</b></h4>
+This is a square grid with 5 rows and 5 columns. Also, we're only given the lower triangle only in the matrix since this is an unweighted graph. The main issue was that an 'x' was used to indicate that there is no edge between the vertices.
+<table>
+<td>
+5 <br>
+50 <br>
+10 x <br>
+x 20 40 <br>
+40 x 30 60<br>
+</td>
+</table>
+{% highlight c++ %}
+int d;
+for (int i = 2; i <= n; i++) {
+    for (int j = 1; j < i; j++) {
+        if (scanf("%d", &d) == 1) {
+            distance[i][j] = distance[j][i] = d;
+        } else {
+            scanf("%*c"); // read x
+        }
+    }
+}
+{% endhighlight %}
+<!------------------------------------------------------------------------->
+<h4><b>4 3D grid with no space between cells</b></h4>
 This is from problem "532 - Dungeon Master". Here we know when to terminate. We also know the number of rows, colums and the height (number of levels). There is also an extra new line between each board.
-
 <table>
 <td>
 2 4 5 <br>
@@ -115,8 +122,6 @@ S@@<br>
 0 0 0
 </td>
 </table>
-
-And this is the code I've used.
 {% highlight c++ %}
 char m[MAX][MAX][MAX];
 int L, R, C, start_k, start_i, start_j;
@@ -142,13 +147,9 @@ for (int k = 0; k < L; k++) {
     fgets(line, MAX, stdin); // get the nasty extra line between levels
 }
 {% endhighlight %}
-<br>
-<br>
-<hr>
 <!------------------------------------------------------------------------->
-<br>
-<b>3 Strings with variable number of ints</b><br>
-Consider a number of lines where each line consists of a variable number of ints. We can use std::istringstream and use a while loop to read as many ints as possible from that line. Code below shows this:
+<h4><b>5 Strings with variable number of ints</b></h4>
+Consider a number of lines where each line consists of a variable number of ints. We can use std::istringstream and use a while loop to read as many ints as possible from that line.
 
 {% highlight c++ %}
 #include<sstream>
@@ -165,10 +166,4 @@ for (int i = 0; i < n; i++) {
     }
 }
 {% endhighlight %}
-<br>
-<br>
-<hr>
-<!------------------------------------------------------------------------->
-<br>
-<b>Other examples:</b> 
-https://github.com/strncat/competitive-programming
+

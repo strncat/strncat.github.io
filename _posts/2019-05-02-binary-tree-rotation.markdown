@@ -5,13 +5,12 @@ date:   2019-05-02 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Rotating a tree is an essential step in the process of balancing binary search trees (Red-Black trees and AVL trees). An important property of rotations is that they maintain the binary search proprty! We describe what a rotation is below.
+Rotating a tree is an essential step in the process of balancing binary search trees (Red-Black trees and AVL trees). What makes rotations a special and important tool is that they maintain the binary search property.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Left Rotations</b></h4>
 Given a subtree with root $$x$$ that has a right subtree $$y$$. A left rotation makes $$y$$ the new root of the subtree and $$x$$ its left subtree. $$y$$'s left subtree $$b$$ will be $$x$$'s right subtree. The subtrees $a$ and $c$ remain the same.
-
 <svg width="800" height="260" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="571.5" cy="55.5" rx="30" ry="30"/>
 	<text x="566.5" y="61.5" font-family="Times New Roman" font-size="20">x</text>
@@ -51,7 +50,6 @@ Given a subtree with root $$x$$ that has a right subtree $$y$$. A left rotation 
 	<polygon stroke="black" stroke-width="1" points="173.067,81.8 156.933,111.2"/>
 	<polygon fill="black" stroke-width="1" points="156.933,111.2 165.165,106.592 156.398,101.781"/>
 </svg>
-<br>
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->

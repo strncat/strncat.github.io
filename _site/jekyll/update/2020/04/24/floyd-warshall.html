@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Floyd-Warshall&#39;s Shortest Paths</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-04-24T07:01:36-07:00" itemprop="datePublished">Apr 24, 2020
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Let <script type="math/tex">G=(V,E)</script> be a directed weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Optimal Substructure</b></h4>
+<p>Let <script type="math/tex">V = \{1,2,3,...,n\}</script> and consider a subset <script type="math/tex">S = \{1,2,3,...,k\}</script> such that <script type="math/tex">S \subseteq V</script> for some <script type="math/tex">k</script>. Let <script type="math/tex">i</script> and <script type="math/tex">j</script> be two vertices in <script type="math/tex">V</script>. Now, consider all the paths from <script type="math/tex">i</script> to <script type="math/tex">j</script> whose intermediate vertices are in <script type="math/tex">S</script>. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let <script type="math/tex">p</script> be a shortest path among the paths from <script type="math/tex">i</script> to <script type="math/tex">j</script> that are drawn from <script type="math/tex">S</script>. 
+<img src="http://localhost:4000/assets/floyd-warshall/path.png" width="100%" />
+This is where it gets interesting. There are two cases here. Either <script type="math/tex">k</script> is on <script type="math/tex">p</script> or it’s not.</p>
+<ul>
+  <li>If <script type="math/tex">k</script> is not on <script type="math/tex">p</script> then we claim that all the intermediate vertices of <script type="math/tex">p</script> are drawn from the set <script type="math/tex">\{1,2,...,k-1\}</script>.</li>
+  <li>If <script type="math/tex">k</script> is on <script type="math/tex">p</script>, then we can decompose <script type="math/tex">p</script> into two shortest paths. A shortest path <script type="math/tex">p_1</script> from <script type="math/tex">i</script> to <script type="math/tex">k</script> with intermediate vertices <script type="math/tex">\{1,2,...,k-1\}</script> and a shortest path <script type="math/tex">p_2</script> from <script type="math/tex">k</script> to <script type="math/tex">j</script> with intermediate vertices <script type="math/tex">\{1,2,...,k-1\}</script>.
+Therefore, we can derive the following:</li>
+</ul>
+<div center="">
+$$
+\begin{align*}
+ d_{ij}^{k} =\Big\{ \begin{array}{@{}lr@{}}
+        w_{ij} \text{ $\quad \quad \quad \quad \quad \quad \quad$ if $k = 0$}\\
+        \min (d_{ij}^{k-1}, d_{ik}^{k-1}+d_{jk}^{k-1}) \text{ if $k \geq 0$}\\
+        \end{array}
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<h4><b>Simple Implementation</b></h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">floyd_warshall</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// O(n^3)</span>
+    <span class="c1">// the shortest path between i and j contains some internal nodes (none repeated, simple path)</span>
+    <span class="c1">// let k be an internal node, either node k is on the optimal path or it's not</span>
+    <span class="c1">// if k is on the path =&gt; the shortest distance is d[i][k] + d[k][j]</span>
+    <span class="c1">// if k is not on the optimal path =&gt; the shortest distance is dij</span>
+    <span class="c1">// if k is zero, then the shortest distance is just wij (if it exist) otherwise infinity</span>
+    <span class="c1">// (1) initialize the distance matrix</span>
+    <span class="kt">int</span> <span class="n">distance</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// distance from node to itself is zero</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">w_ij</span> <span class="n">exists</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_ij</span><span class="p">;</span> <span class="c1">// current edge weight</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span> <span class="c1">// this edge doesn't exist, set it to infinity</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// (2) apply floyd-warshall</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// number of internal nodes on the path</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                 <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="n">INT_MAX</span> <span class="o">||</span> <span class="n">distance</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">INT_MAX</span><span class="p">)</span> <span class="p">{</span> <span class="k">continue</span><span class="p">;</span> <span class="p">}</span>
+                 <span class="c1">// current distance vs distance though k (from i to k then k to j)</span>
+                 <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">distance</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+<p>CLRS</p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2020/04/24/floyd-warshall.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2020/04/24/floyd-warshall; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2020/04/24/floyd-warshall.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

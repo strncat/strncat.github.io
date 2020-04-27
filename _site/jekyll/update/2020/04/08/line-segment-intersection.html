@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Line Segment Intersection</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-04-08T12:01:36-07:00" itemprop="datePublished">Apr 8, 2020
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="http://localhost:4000/assets/geometry/segment-intersection/segments.png" width="100%" />
+Suppose we have two line segments in two dimensions. Each line segment is determined by two given points. How can we determine if the two line segments intersect? Before answering this question, let’s review some concepts.
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>What is a line segment?</b></h4>
+<p>Given two points <script type="math/tex">p_1</script> and <script type="math/tex">p_2</script>. A line segment <script type="math/tex">\overline{p_1p_2}</script> is the set of convex combinations of <script type="math/tex">p_1</script> and <script type="math/tex">p_2</script>. That is for any point <script type="math/tex">p_3</script> on the line segment <script type="math/tex">\overline{p_1p_2}</script>, we have</p>
+<div center="">
+$$
+\begin{align*}
+x_{p_3} = \alpha x_{p_1} + (1-\alpha)x_{p_2} \\
+y_{p_3} = \alpha y_{p_1} + (1-\alpha)y_{p_2}
+\end{align*}
+$$
+</div>
+<p>where <script type="math/tex">0 \leq \alpha \leq 1</script>. <script type="math/tex">p_1</script> and <script type="math/tex">p_2</script> are the end points of the line segment.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Straddling</b></h4>
+<p>The algorithm CLRS presents is based on the idea of checking whether each line segment <b>straddles</b> the line containing the other line segment.
+<img src="http://localhost:4000/assets/geometry/segment-intersection/straddle.png" width="100%" />
+In the above figure, consider the line segment <script type="math/tex">\overline{p_1p_2}</script> and the line containing the segment <script type="math/tex">\overline{p_3p_4}</script>. We say that <script type="math/tex">\overline{p_1p_2}</script> straddles the line containing <script type="math/tex">\overline{p_3p_4}</script> if <script type="math/tex">p_1</script> and <script type="math/tex">p_2</script> are on opposite sides of the line. Should this check be enough to guarantee the intersection of both segments? No. Consider the following figure,
+<img src="http://localhost:4000/assets/geometry/segment-intersection/straddle-not-crossing-segment.png" width="100%" />
+In this case, segment <script type="math/tex">\overline{p_1p_2}</script> straddles the line but it does intersect the segment <script type="math/tex">\overline{p_4p_3}</script>. We could fix this by also checking whether <script type="math/tex">\overline{p_3p_4}</script> straddles the line containing <script type="math/tex">\overline{p_1p_2}</script>. Should this be enough now to handle everything? Unfortunately, we are still missing a case. Consider the following,
+<img src="http://localhost:4000/assets/geometry/segment-intersection/straddle-end-point.png" width="100%" />
+In this case, one of the end points is on the line and so we’re not exactly on opposite sides of the line. Therefore, we need to check whether <script type="math/tex">p_1</script> or <script type="math/tex">p_2</script> falls on the line segment <script type="math/tex">\overline{p_4p_3}</script>. 
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Pseudocode</b></h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// line 1 = p1,p2 and line 2 = p3,p4</span>
+<span class="n">segment_intersection</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">,</span><span class="n">p4</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// first check whether each segment straddles the line</span>
+    <span class="c1">// containing the other segment</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_segment_straddling_line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">,</span><span class="n">p4</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+        <span class="n">is_segment_straddling_line</span><span class="p">(</span><span class="n">p3</span><span class="p">,</span><span class="n">p4</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+     <span class="p">}</span>
+    <span class="c1">// otherwise check the boundary conditions</span>
+    <span class="c1">// on_line_segment(px, py, pz) determines if px is </span>
+    <span class="c1">// on the line segment pypz</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">on_line_segment</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">)</span> <span class="o">||</span> 
+        <span class="n">on_line_segment</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">)</span> <span class="o">||</span> 
+        <span class="n">on_line_segment</span><span class="p">(</span><span class="n">p3</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span> <span class="o">||</span> 
+        <span class="n">on_line_segment</span><span class="p">(</span><span class="n">p4</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The next questions would be how to check whether a line segment is straddling a line and how to check whether a point falls on a line segment. Both of these questions can be answered utilizing cross product.
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Cross Product</b></h4>
+<p><img src="http://localhost:4000/assets/geometry/segment-intersection/cross-product.png" width="100%" />
+Given two vectors <script type="math/tex">\vec{p_1}</script> and <script type="math/tex">\vec{p_2}</script>. If the cross product <script type="math/tex">\vec{p_1} \times \vec{p_2}</script> is positive, then we say that <script type="math/tex">\vec{p_1}</script> is clockwise from/relative to <script type="math/tex">\vec{p_2}</script> and we turn right at <script type="math/tex">p_2</script>. Similarly, if the cross product is negative then we say that <script type="math/tex">\vec{p_1}</script> is anti-clockwise from/relative to <script type="math/tex">\vec{p_2}</script> and we turn left at <script type="math/tex">p_2</script>.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof</b></h4>
+<p>(This is also exercise <script type="math/tex">33.1-1</script>)
+<br />
+If the cross product is positive then we know that <script type="math/tex">x_1y_2 - x_2y_1 > 0</script>.</p>
+<div center="">
+$$
+\begin{align*}
+x_1y_2 - x_2y_1 &gt; 0 \\
+x_1y_2 &gt; x_2y_1  \\
+\frac{y_2}{x_2} &gt; \frac{y_1}{x_1}
+\end{align*}
+$$
+</div>
+<p>Consider now the angle that both vectors make with the positive <script type="math/tex">x</script> axis. In the below figure,
+<img src="http://localhost:4000/assets/geometry/segment-intersection/cross-product-proof.png" width="100%" />
+we see that this angle is given by <script type="math/tex">\tan^{-1}{y/x}</script>. We also know that <script type="math/tex">\arctan</script> is monotone and so since <script type="math/tex">\frac{y_2}{x_2} > \frac{y_1}{x_1}</script> then we must have <script type="math/tex">\theta_2 > \theta_1</script>. Therefore, <script type="math/tex">p_1</script> must be clockwise relative to <script type="math/tex">p_2</script>. Similarly, when the cross product is negative, we will see that <script type="math/tex">\frac{y_1}{x_1} > \frac{y_2}{x_2}</script> and so <script type="math/tex">p_2</script> must be anti-clockwise relative to <script type="math/tex">p_1</script>. (Ref (2)).</p>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>Checking whether a segment is straddling a line</b></h4>
+<p><img src="http://localhost:4000/assets/geometry/segment-intersection/straddle-vectors.png" width="100%" />
+Using the above idea, it becomes straight forward to determine whether a segment is straddling a line. Suppose we’re determining if segment <script type="math/tex">\overline{p_1p_2}</script> is straddling the line containing <script type="math/tex">\overline{p_3p_4}</script>. We first find the result of the cross product <script type="math/tex">(p_1-p_3) \times (p_4-p_3)</script>. This will tell us whether <script type="math/tex">\vec{p_1-p_3}</script> is clockwise or anti-clockwise relative to  <script type="math/tex">\vec{p_4-p_3}</script> (left figure). Next, we find <script type="math/tex">(p_2-p_3) \times (p_4-p_3)</script> to determine if <script type="math/tex">\vec{p_2-p_3}</script> is clockwise or anti-clockwise relative to <script type="math/tex">\vec{p_4-p_3}</script> (right figure). Finally, we check if the products have different signs to rule out that <script type="math/tex">p_1</script> and <script type="math/tex">p_2</script> are on different sides of the line.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Checking whether a point falls on a line segment</b></h4>
+<p>Suppose we’re determining if point <script type="math/tex">p_1</script> falls on the segment <script type="math/tex">\overline{p_3p_4}</script>. We first need to determine if all three points <script type="math/tex">p_1, p_3</script> and <script type="math/tex">p_4</script> are colinear. To do so, we can check the cross product we’ve computed previously, namely, <script type="math/tex">(p_1-p_3) \times (p_4-p_3)</script>. If this product is 0, then we know that the three points are colinear. 
+<br /><br />
+Next, we need to determine if the point <script type="math/tex">p_1</script> falls between the segment <script type="math/tex">\overline{p_3p_4}</script> or on one of its end points. To do so, we need to check that the x-coordinate of <script type="math/tex">p_1</script> falls in the range of <script type="math/tex">min(x_3,x_4), max(x_3,x_4)</script> and the y-coordinate falls in the range <script type="math/tex">min(y_3,y_4),max(y_3,y_4)</script>.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/geometry/intersection-two-line-segments-clrs.cpp">Full Implementation</a>
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p>CLRS Chapter 33
+<br />
+<a href="https://sites.math.rutgers.edu/~ajl213/CLRS/Ch33.pdf">Cross Product Proof</a></p>
+
+<p><br />
+<br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2020/04/08/line-segment-intersection.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2020/04/08/line-segment-intersection; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2020/04/08/line-segment-intersection.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

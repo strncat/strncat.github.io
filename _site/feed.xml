@@ -1,4 +1,154 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-07T14:58:24-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Groups</title><link href="http://localhost:4000/jekyll/update/2019/09/07/groups.html" rel="alternate" type="text/html" title="Groups" /><published>2019-09-07T07:01:36-07:00</published><updated>2019-09-07T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/09/07/groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/09/07/groups.html">&lt;!-------------------------------------------------------------------&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-26T20:33:57-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Floyd-Warshall’s Shortest Paths</title><link href="http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall.html" rel="alternate" type="text/html" title="Floyd-Warshall's Shortest Paths" /><published>2020-04-24T07:01:36-07:00</published><updated>2020-04-24T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall.html">&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a directed weighted graph with &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$.
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Optimal Substructure&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;V = \{1,2,3,...,n\}&lt;/script&gt; and consider a subset &lt;script type=&quot;math/tex&quot;&gt;S = \{1,2,3,...,k\}&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;S \subseteq V&lt;/script&gt; for some &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; be two vertices in &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt;. Now, consider all the paths from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; whose intermediate vertices are in &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; be a shortest path among the paths from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that are drawn from &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. 
+&lt;img src=&quot;http://localhost:4000/assets/floyd-warshall/path.png&quot; width=&quot;100%&quot; /&gt;
+This is where it gets interesting. There are two cases here. Either &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is on &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; or it’s not.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is not on &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; then we claim that all the intermediate vertices of &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; are drawn from the set &lt;script type=&quot;math/tex&quot;&gt;\{1,2,...,k-1\}&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is on &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, then we can decompose &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; into two shortest paths. A shortest path &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; with intermediate vertices &lt;script type=&quot;math/tex&quot;&gt;\{1,2,...,k-1\}&lt;/script&gt; and a shortest path &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; with intermediate vertices &lt;script type=&quot;math/tex&quot;&gt;\{1,2,...,k-1\}&lt;/script&gt;.
+Therefore, we can derive the following:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ d_{ij}^{k} =\Big\{ \begin{array}{@{}lr@{}}
+        w_{ij} \text{ $\quad \quad \quad \quad \quad \quad \quad$ if $k = 0$}\\
+        \min (d_{ij}^{k-1}, d_{ik}^{k-1}+d_{jk}^{k-1}) \text{ if $k \geq 0$}\\
+        \end{array}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;h4&gt;&lt;b&gt;Simple Implementation&lt;/b&gt;&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;floyd_warshall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// O(n^3)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// the shortest path between i and j contains some internal nodes (none repeated, simple path)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// let k be an internal node, either node k is on the optimal path or it's not&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// if k is on the path =&amp;gt; the shortest distance is d[i][k] + d[k][j]&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// if k is not on the optimal path =&amp;gt; the shortest distance is dij&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// if k is zero, then the shortest distance is just wij (if it exist) otherwise infinity&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// (1) initialize the distance matrix&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// distance from node to itself is zero&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_ij&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w_ij&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// current edge weight&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INT_MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this edge doesn't exist, set it to infinity&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// (2) apply floyd-warshall&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// number of internal nodes on the path&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INT_MAX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INT_MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                 &lt;span class=&quot;c1&quot;&gt;// current distance vs distance though k (from i to k then k to j)&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">Let be a directed weighted graph with vertices and edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$. Optimal Substructure Let and consider a subset such that for some . Let and be two vertices in . Now, consider all the paths from to whose intermediate vertices are in . Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let be a shortest path among the paths from to that are drawn from . This is where it gets interesting. There are two cases here. Either is on or it’s not. If is not on then we claim that all the intermediate vertices of are drawn from the set . If is on , then we can decompose into two shortest paths. A shortest path from to with intermediate vertices and a shortest path from to with intermediate vertices . Therefore, we can derive the following: $$ \begin{align*} d_{ij}^{k} =\Big\{ \begin{array}{@{}lr@{}} w_{ij} \text{ $\quad \quad \quad \quad \quad \quad \quad$ if $k = 0$}\\ \min (d_{ij}^{k-1}, d_{ik}^{k-1}+d_{jk}^{k-1}) \text{ if $k \geq 0$}\\ \end{array} \end{align*} $$ Simple Implementation void floyd_warshall(int n) { // O(n^3) // the shortest path between i and j contains some internal nodes (none repeated, simple path) // let k be an internal node, either node k is on the optimal path or it's not // if k is on the path =&amp;gt; the shortest distance is d[i][k] + d[k][j] // if k is not on the optimal path =&amp;gt; the shortest distance is dij // if k is zero, then the shortest distance is just wij (if it exist) otherwise infinity // (1) initialize the distance matrix int distance[N][N]; for (int i = 1; i &amp;lt;= vertices; i++) { for (int j = 1; j &amp;lt;= vertices; j++) { if (i == j) { distance[i][j] = 0; // distance from node to itself is zero } else if (w_ij exists) { distance[i][j] = w_ij; // current edge weight } else { distance[i][j] = INT_MAX; // this edge doesn't exist, set it to infinity } } } // (2) apply floyd-warshall for (int k = 1; k &amp;lt;= n; k++) { // number of internal nodes on the path for (int i = 1; i &amp;lt;= n; i++) { for (int j = 1; j &amp;lt;= n; j++) { if (distance[i][k] == INT_MAX || distance[k][j] == INT_MAX) { continue; } // current distance vs distance though k (from i to k then k to j) distance[i][j] = std::min(distance[i][j], distance[i][k] + distance[k][j]); } } } } References CLRS</summary></entry><entry><title type="html">Line Segment Intersection</title><link href="http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection.html" rel="alternate" type="text/html" title="Line Segment Intersection" /><published>2020-04-08T12:01:36-07:00</published><updated>2020-04-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/segments.png&quot; width=&quot;100%&quot; /&gt;
+Suppose we have two line segments in two dimensions. Each line segment is determined by two given points. How can we determine if the two line segments intersect? Before answering this question, let’s review some concepts.
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;What is a line segment?&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Given two points &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt;. A line segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_1p_2}&lt;/script&gt; is the set of convex combinations of &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt;. That is for any point &lt;script type=&quot;math/tex&quot;&gt;p_3&lt;/script&gt; on the line segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_1p_2}&lt;/script&gt;, we have&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+x_{p_3} = \alpha x_{p_1} + (1-\alpha)x_{p_2} \\
+y_{p_3} = \alpha y_{p_1} + (1-\alpha)y_{p_2}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;0 \leq \alpha \leq 1&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt; are the end points of the line segment.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Straddling&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;The algorithm CLRS presents is based on the idea of checking whether each line segment &lt;b&gt;straddles&lt;/b&gt; the line containing the other line segment.
+&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/straddle.png&quot; width=&quot;100%&quot; /&gt;
+In the above figure, consider the line segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_1p_2}&lt;/script&gt; and the line containing the segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_3p_4}&lt;/script&gt;. We say that &lt;script type=&quot;math/tex&quot;&gt;\overline{p_1p_2}&lt;/script&gt; straddles the line containing &lt;script type=&quot;math/tex&quot;&gt;\overline{p_3p_4}&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt; are on opposite sides of the line. Should this check be enough to guarantee the intersection of both segments? No. Consider the following figure,
+&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/straddle-not-crossing-segment.png&quot; width=&quot;100%&quot; /&gt;
+In this case, segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_1p_2}&lt;/script&gt; straddles the line but it does intersect the segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_4p_3}&lt;/script&gt;. We could fix this by also checking whether &lt;script type=&quot;math/tex&quot;&gt;\overline{p_3p_4}&lt;/script&gt; straddles the line containing &lt;script type=&quot;math/tex&quot;&gt;\overline{p_1p_2}&lt;/script&gt;. Should this be enough now to handle everything? Unfortunately, we are still missing a case. Consider the following,
+&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/straddle-end-point.png&quot; width=&quot;100%&quot; /&gt;
+In this case, one of the end points is on the line and so we’re not exactly on opposite sides of the line. Therefore, we need to check whether &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt; falls on the line segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_4p_3}&lt;/script&gt;. 
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Pseudocode&lt;/b&gt;&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// line 1 = p1,p2 and line 2 = p3,p4&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;segment_intersection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// first check whether each segment straddles the line&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// containing the other segment&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_segment_straddling_line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;is_segment_straddling_line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// otherwise check the boundary conditions&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// on_line_segment(px, py, pz) determines if px is &lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// on the line segment pypz&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;on_line_segment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; 
+        &lt;span class=&quot;n&quot;&gt;on_line_segment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; 
+        &lt;span class=&quot;n&quot;&gt;on_line_segment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; 
+        &lt;span class=&quot;n&quot;&gt;on_line_segment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The next questions would be how to check whether a line segment is straddling a line and how to check whether a point falls on a line segment. Both of these questions can be answered utilizing cross product.
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Cross Product&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/cross-product.png&quot; width=&quot;100%&quot; /&gt;
+Given two vectors &lt;script type=&quot;math/tex&quot;&gt;\vec{p_1}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\vec{p_2}&lt;/script&gt;. If the cross product &lt;script type=&quot;math/tex&quot;&gt;\vec{p_1} \times \vec{p_2}&lt;/script&gt; is positive, then we say that &lt;script type=&quot;math/tex&quot;&gt;\vec{p_1}&lt;/script&gt; is clockwise from/relative to &lt;script type=&quot;math/tex&quot;&gt;\vec{p_2}&lt;/script&gt; and we turn right at &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt;. Similarly, if the cross product is negative then we say that &lt;script type=&quot;math/tex&quot;&gt;\vec{p_1}&lt;/script&gt; is anti-clockwise from/relative to &lt;script type=&quot;math/tex&quot;&gt;\vec{p_2}&lt;/script&gt; and we turn left at &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt;.
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Proof&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;(This is also exercise &lt;script type=&quot;math/tex&quot;&gt;33.1-1&lt;/script&gt;)
+&lt;br /&gt;
+If the cross product is positive then we know that &lt;script type=&quot;math/tex&quot;&gt;x_1y_2 - x_2y_1 &gt; 0&lt;/script&gt;.&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+x_1y_2 - x_2y_1 &amp;gt; 0 \\
+x_1y_2 &amp;gt; x_2y_1  \\
+\frac{y_2}{x_2} &amp;gt; \frac{y_1}{x_1}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;Consider now the angle that both vectors make with the positive &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; axis. In the below figure,
+&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/cross-product-proof.png&quot; width=&quot;100%&quot; /&gt;
+we see that this angle is given by &lt;script type=&quot;math/tex&quot;&gt;\tan^{-1}{y/x}&lt;/script&gt;. We also know that &lt;script type=&quot;math/tex&quot;&gt;\arctan&lt;/script&gt; is monotone and so since &lt;script type=&quot;math/tex&quot;&gt;\frac{y_2}{x_2} &gt; \frac{y_1}{x_1}&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;\theta_2 &gt; \theta_1&lt;/script&gt;. Therefore, &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; must be clockwise relative to &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt;. Similarly, when the cross product is negative, we will see that &lt;script type=&quot;math/tex&quot;&gt;\frac{y_1}{x_1} &gt; \frac{y_2}{x_2}&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt; must be anti-clockwise relative to &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt;. (Ref (2)).&lt;/p&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;h4&gt;&lt;b&gt;Checking whether a segment is straddling a line&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/straddle-vectors.png&quot; width=&quot;100%&quot; /&gt;
+Using the above idea, it becomes straight forward to determine whether a segment is straddling a line. Suppose we’re determining if segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_1p_2}&lt;/script&gt; is straddling the line containing &lt;script type=&quot;math/tex&quot;&gt;\overline{p_3p_4}&lt;/script&gt;. We first find the result of the cross product &lt;script type=&quot;math/tex&quot;&gt;(p_1-p_3) \times (p_4-p_3)&lt;/script&gt;. This will tell us whether &lt;script type=&quot;math/tex&quot;&gt;\vec{p_1-p_3}&lt;/script&gt; is clockwise or anti-clockwise relative to  &lt;script type=&quot;math/tex&quot;&gt;\vec{p_4-p_3}&lt;/script&gt; (left figure). Next, we find &lt;script type=&quot;math/tex&quot;&gt;(p_2-p_3) \times (p_4-p_3)&lt;/script&gt; to determine if &lt;script type=&quot;math/tex&quot;&gt;\vec{p_2-p_3}&lt;/script&gt; is clockwise or anti-clockwise relative to &lt;script type=&quot;math/tex&quot;&gt;\vec{p_4-p_3}&lt;/script&gt; (right figure). Finally, we check if the products have different signs to rule out that &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p_2&lt;/script&gt; are on different sides of the line.
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Checking whether a point falls on a line segment&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Suppose we’re determining if point &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; falls on the segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_3p_4}&lt;/script&gt;. We first need to determine if all three points &lt;script type=&quot;math/tex&quot;&gt;p_1, p_3&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p_4&lt;/script&gt; are colinear. To do so, we can check the cross product we’ve computed previously, namely, &lt;script type=&quot;math/tex&quot;&gt;(p_1-p_3) \times (p_4-p_3)&lt;/script&gt;. If this product is 0, then we know that the three points are colinear. 
+&lt;br /&gt;&lt;br /&gt;
+Next, we need to determine if the point &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; falls between the segment &lt;script type=&quot;math/tex&quot;&gt;\overline{p_3p_4}&lt;/script&gt; or on one of its end points. To do so, we need to check that the x-coordinate of &lt;script type=&quot;math/tex&quot;&gt;p_1&lt;/script&gt; falls in the range of &lt;script type=&quot;math/tex&quot;&gt;min(x_3,x_4), max(x_3,x_4)&lt;/script&gt; and the y-coordinate falls in the range &lt;script type=&quot;math/tex&quot;&gt;min(y_3,y_4),max(y_3,y_4)&lt;/script&gt;.
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Implementation&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master/geometry/intersection-two-line-segments-clrs.cpp&quot;&gt;Full Implementation&lt;/a&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;CLRS Chapter 33
+&lt;br /&gt;
+&lt;a href=&quot;https://sites.math.rutgers.edu/~ajl213/CLRS/Ch33.pdf&quot;&gt;Cross Product Proof&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Suppose we have two line segments in two dimensions. Each line segment is determined by two given points. How can we determine if the two line segments intersect? Before answering this question, let’s review some concepts. What is a line segment? Given two points and . A line segment is the set of convex combinations of and . That is for any point on the line segment , we have $$ \begin{align*} x_{p_3} = \alpha x_{p_1} + (1-\alpha)x_{p_2} \\ y_{p_3} = \alpha y_{p_1} + (1-\alpha)y_{p_2} \end{align*} $$ where . and are the end points of the line segment. Straddling The algorithm CLRS presents is based on the idea of checking whether each line segment straddles the line containing the other line segment. In the above figure, consider the line segment and the line containing the segment . We say that straddles the line containing if and are on opposite sides of the line. Should this check be enough to guarantee the intersection of both segments? No. Consider the following figure, In this case, segment straddles the line but it does intersect the segment . We could fix this by also checking whether straddles the line containing . Should this be enough now to handle everything? Unfortunately, we are still missing a case. Consider the following, In this case, one of the end points is on the line and so we’re not exactly on opposite sides of the line. Therefore, we need to check whether or falls on the line segment . Pseudocode // line 1 = p1,p2 and line 2 = p3,p4 segment_intersection(p1,p2,p3,p4) { // first check whether each segment straddles the line // containing the other segment if (is_segment_straddling_line(p1,p2,p3,p4) &amp;amp;&amp;amp; is_segment_straddling_line(p3,p4,p1,p2)) { return true; } // otherwise check the boundary conditions // on_line_segment(px, py, pz) determines if px is // on the line segment pypz if (on_line_segment(p1, p3, p4) || on_line_segment(p2, p3, p4) || on_line_segment(p3, p1, p2) || on_line_segment(p4, p1, p2)) { return true; } return false; } The next questions would be how to check whether a line segment is straddling a line and how to check whether a point falls on a line segment. Both of these questions can be answered utilizing cross product. Cross Product Given two vectors and . If the cross product is positive, then we say that is clockwise from/relative to and we turn right at . Similarly, if the cross product is negative then we say that is anti-clockwise from/relative to and we turn left at . Proof (This is also exercise ) If the cross product is positive then we know that . $$ \begin{align*} x_1y_2 - x_2y_1 &amp;gt; 0 \\ x_1y_2 &amp;gt; x_2y_1 \\ \frac{y_2}{x_2} &amp;gt; \frac{y_1}{x_1} \end{align*} $$ Consider now the angle that both vectors make with the positive axis. In the below figure, we see that this angle is given by . We also know that is monotone and so since then we must have . Therefore, must be clockwise relative to . Similarly, when the cross product is negative, we will see that and so must be anti-clockwise relative to . (Ref (2)).</summary></entry><entry><title type="html">Groups</title><link href="http://localhost:4000/jekyll/update/2019/09/07/groups.html" rel="alternate" type="text/html" title="Groups" /><published>2019-09-07T07:01:36-07:00</published><updated>2019-09-07T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/09/07/groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/09/07/groups.html">&lt;!-------------------------------------------------------------------&gt;
 &lt;div style=&quot;background-color:#DAF5F4; padding: 10px 10px 7px 10px;&quot;&gt;
 &lt;b&gt;References&lt;/b&gt;
 &lt;/div&gt;
@@ -1132,356 +1282,4 @@ last - m + 1 &lt; last_i - first_i %]]&gt;&lt;/script&gt;.&lt;/li&gt;
 &lt;p&gt;These are my study notes from CLRS and ?
 &lt;br /&gt;
 &lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Given a sorted array of integers and a key, we want to return the index of the key in the array or -1 if the key doesn’t exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After iterations, we will either correctly return that index or return -1 if the key doesn’t exist. int binary_search(int *a, int key, int n) { int m, first = 0, last = n - 1; while (first &amp;lt;= last) { m = (first + (last - first / 2); if (key &amp;gt; a[m]) { first = m + 1; } else if (key &amp;lt; a[m]) { last = m - 1; } else if (key == a[m]) { return m; } } return -1; // not found } Correctness Proof This is just my attempt to prove that binary search algorithm implemented above is correct. To prove binary search is correct, we want to prove the following: At every iteration binary search is still searching the correct range in the array. This can be achieved with a loop invariant. Binary search terminates.</summary></entry><entry><title type="html">Closest Pair of Points</title><link href="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html" rel="alternate" type="text/html" title="Closest Pair of Points" /><published>2019-07-29T07:01:36-07:00</published><updated>2019-07-29T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/29/closest-pair</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/29/closest-pair.html">&lt;p&gt;Suppose we are given a list of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; two dimensional points &lt;script type=&quot;math/tex&quot;&gt;\{\{x_1,y_1\},\{x_2,y_2\},...\{x_n,y_n\}\}&lt;/script&gt; and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; since we have &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; possible pairs. What else can we do?
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Divide and Conquer&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. We will also sort the points by their y-coordinate and let that array be &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt;. We will be using &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; later in the algorithm.
-&lt;img src=&quot;http://localhost:4000/assets/closest/1.png&quot; width=&quot;100%&quot; /&gt;
-Given &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. We can start by applying the following divide and conquer idea. Repeatedly divide &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/closest/2.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;How do we combine the results to find the single true closest pair? we need to consider that the closest pair might have a point in the left half and a point in the right half. We call this pair a &lt;b&gt;split pair&lt;/b&gt;. So in the combine step we need to do two things, we find the split pair with the minimum distance. We then return the minimum pair of the three pairs we have, the left pair, the right pair and the split pair. The following pseudo-code implements this idea.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;closest_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Py&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Px sorted by x-coordinate, Py by y-coordinate&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;less&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;than&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;three&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-       &lt;span class=&quot;c1&quot;&gt;// just use the naive algorithm &lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// we will divide Px into two arrays left and right&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// median = Px[n/2-1]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;left_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;split_px_around_the_median&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;median&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// We want to sort each of left_x and right_x by the y-coordinate.&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// discussed next&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;right_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort_left_and_right_by_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Py&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-	
-    &lt;span class=&quot;c1&quot;&gt;// we find the closest pair in each half&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;left_pair&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;closest_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;right_pair&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;closest_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	
-    &lt;span class=&quot;c1&quot;&gt;// delta_left and delta_right are the minimum distances in the left and right halfs&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;delta_left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;delta_right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	
-    &lt;span class=&quot;c1&quot;&gt;// we'll discuss this soon!&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta_left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta_right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;split_pair&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_split_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Py&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;split_pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Running Time&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;We sorted the array upfront twice in &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; time. We divide the input repeatedly in half until we reached the base case. We then combined the results by finding the split pair and returning the pair with the minimum distance. So we have a recurrence that looks like this:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
- T(n) = aT(n/b) + n^c \\
- T(n) = 2T(n/2) + n^c
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;The &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; constant depends on the work we’re doing in each level. We first create the four arrays &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;left_y&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;right_y&lt;/script&gt;. This takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time. We then find the split pair. If we find the split pair in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;c = 2&lt;/script&gt; and by the master theorem, the total runtime is &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. This defeats the purpose since the naive solution runs in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. We also know that we initially sorted the array in &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt; so the final runtime is at least &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;. So roughly we know that we need to find the split pair really fast in &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; to have &lt;script type=&quot;math/tex&quot;&gt;c = 1&lt;/script&gt; and therefore, keeping our runtime at &lt;script type=&quot;math/tex&quot;&gt;O(n\log(n))&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Sorting $P_x$ by the x-coordinate and the y-coordinate $O(n)$ time&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;So we’re claiming that we’re sorting once only and then somehow we’re are repeatedly passing the two halfs of the &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; sorted by the x-coordinate and by the y-coordinate. How?! For sorting by the x-coordinate, we simply split &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; in half by calculating the median in &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt; time and then iterating over &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; to split the array into &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt;. That takes &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time where &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is the current size of &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;
-Now that we have both &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt;. We want to create two arrays &lt;script type=&quot;math/tex&quot;&gt;left_y&lt;/script&gt; which is &lt;script type=&quot;math/tex&quot;&gt;left_x&lt;/script&gt; but sorted by the y-coordinate. We also want &lt;script type=&quot;math/tex&quot;&gt;right_y&lt;/script&gt; which is &lt;script type=&quot;math/tex&quot;&gt;right_x&lt;/script&gt; sorted by the y-coordinate. How do we do this in just &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time? This is when we will use &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt;! We will iterate over &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; and if we see an element with an x-coordinate below or equal to the median then this element belongs to &lt;script type=&quot;math/tex&quot;&gt;left_y&lt;/script&gt; otherwise it belongs to &lt;script type=&quot;math/tex&quot;&gt;right_y&lt;/script&gt;. Remember that &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; is just &lt;script type=&quot;math/tex&quot;&gt;P_x&lt;/script&gt; but sorted by the y-coordinate. We are also assuming for the sake of simplicity that the points are distinct. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Finding the split pair in $$O(n)$$ time &lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/closest/3.png&quot; width=&quot;100%&quot; /&gt;
-Let’s assume that the minimum pair is not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; (shown above) and let the right minimum distance be &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; be the minimum of &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt;. Also let the right most point in the left array be &lt;script type=&quot;math/tex&quot;&gt;\bar{x}&lt;/script&gt;. Now construct &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; to be an array with all the points that have x-coordinate between &lt;script type=&quot;math/tex&quot;&gt;\bar{x} - \delta&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\bar{x} + \delta&lt;/script&gt; sorted by their y-coordinate (we can use &lt;script type=&quot;math/tex&quot;&gt;P_y&lt;/script&gt; with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time which is fine by us!
-&lt;br /&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;p=(x_1,y_1)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q=(x_2,y_2)&lt;/script&gt; be the split pair points we’re trying to find where &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; is in the left half and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; is in the right half. We claim the following:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Both &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;.&lt;/li&gt;
-  &lt;li&gt;At most 6 points are between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; in M.
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-So, assuming the above is correct (we’ll prove it formally), we now have a constant number of pairs to look at. Basically, for each point, we will look at 7 points and therefore, we only have &lt;script type=&quot;math/tex&quot;&gt;7n&lt;/script&gt; pairs and so we can find the split pair in only &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time!
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-But why why why the above is the correct? let’s look at the first claim.
-&lt;br /&gt;&lt;br /&gt;
-Proof:&lt;br /&gt;
-We want to show that if the closest pair of points is a split pair then our algorithm will find it. Since our algorithm only searches &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;, then we want to show that both &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;. So assuming that &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are the closest pair, we then know that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-d(p,q) &lt; \delta %]]&gt;&lt;/script&gt;. From here we can expand the euclidean distance definition:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
- \delta &amp;amp;&amp;gt; d(p,q) \\
-  &amp;amp;= \sqrt{(y_2-y_1)^2 + (x_2-x_1)^2} \\
-  &amp;amp;\geq \sqrt{\max\{(y_2-y_1)^2, (x_2-x_1)^2}\} \\
-  &amp;amp;= \max\{(y_2-y_1), (x_2-x_1)\}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;This says that &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; must differ by less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; in both their &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; coordinates!! So &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-|x_2-x_1| &lt; \delta %]]&gt;&lt;/script&gt;. We also know that &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are a split pair and so by definition we have &lt;script type=&quot;math/tex&quot;&gt;x_1 \leq \bar{x}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2 &gt; \bar{x}&lt;/script&gt;. Therefore, we must have &lt;script type=&quot;math/tex&quot;&gt;x_1 \geq \bar{x} - \delta&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2 \leq \bar{x} + \delta&lt;/script&gt;. Finally, since &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is defined to include all points such that the x-coordinate satisfies &lt;script type=&quot;math/tex&quot;&gt;\bar{x} - \delta \leq x \leq \bar{x} + \delta&lt;/script&gt; then &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; are in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; and thererfore, we will find them. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-Let’s move to the second claim. why must we have 6 points only between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;?
-&lt;br /&gt;
-&lt;br /&gt;
-Proof:
-&lt;br /&gt;
-Without the loss of generality, assume that &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; has the lower y-coordinate. We do know that both &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;’s x and y coordinates differ by less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; from &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;’s x and y coordinates respectively. What do we know about the points between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;?&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Since &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted by the y-coordinate, we do know that any point that comes between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; must have a y-coordinate between &lt;script type=&quot;math/tex&quot;&gt;y_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y_2&lt;/script&gt;. Since &lt;script type=&quot;math/tex&quot;&gt;y_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y_2&lt;/script&gt; differ by less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt;, this makes the y-coordinate of any of these points be in between &lt;script type=&quot;math/tex&quot;&gt;y_2&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y_1 \leq y_2 + \delta&lt;/script&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;We know that any point between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; must have an x-coordinate between &lt;script type=&quot;math/tex&quot;&gt;\bar{x}-\delta&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\bar{x}+\delta&lt;/script&gt; by our construction of &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Using the above restrictions, any point between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; must be in one of the following boxes. (again, if you look at the x-axis, &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; only allow points within &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; of &lt;script type=&quot;math/tex&quot;&gt;\bar{x}&lt;/script&gt;. If you look vertically, the fact that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; is sorted makes the points between &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; have a y-coordinate between &lt;script type=&quot;math/tex&quot;&gt;y_2&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y_1&lt;/script&gt; and that gap is also less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt;!!).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/closest/4.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The next question is how many points do we have in each box?
-&lt;br /&gt;&lt;br /&gt;
-We claim that each box has only 1 point. Proof: Suppose it doesn’t and some box in the diagram above has 2 points. Let these points be &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;. This means than &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; are both a left pair or a right pair. Moreover, the distance between &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; is at most &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-\sqrt{(\delta/2)^2 + (\delta/2)^2} = \delta/\sqrt{2} &lt; \delta %]]&gt;&lt;/script&gt;. This is a contradiction, since by assumption we said both &lt;script type=&quot;math/tex&quot;&gt;\delta_l&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\delta_r&lt;/script&gt; are greater than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt;. Therefore, we must have 1 point in each box and so there are only 6 points between &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; Wonderful!! 
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Suppose we are given a list of two dimensional points and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of since we have possible pairs. What else can we do? Divide and Conquer The brilliant algorithm we’re about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be . We will also sort the points by their y-coordinate and let that array be . We will be using later in the algorithm. Given . We can start by applying the following divide and conquer idea. Repeatedly divide into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.</summary></entry><entry><title type="html">Random Variables</title><link href="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html" rel="alternate" type="text/html" title="Random Variables" /><published>2019-07-26T07:01:36-07:00</published><updated>2019-07-26T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/26/random-variables</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/26/random-variables.html">&lt;h4&gt;&lt;b&gt;What is a Random Variable?&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some &lt;b&gt;function of the outcome&lt;/b&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Example 1:&lt;/b&gt;
-&lt;br /&gt; 
-Suppose we’re interested in &lt;i&gt;counting&lt;/i&gt; the number of heads in &lt;script type=&quot;math/tex&quot;&gt;5&lt;/script&gt; trials of flipping a coin. We can define a random variable &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; to represent the number of heads in 5 trials. Using &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt;, we can now refer to the probability of seeing two heads in 5 trials as &lt;script type=&quot;math/tex&quot;&gt;P(Y=2)&lt;/script&gt;. This is much simpler that listing the exact outcomes that we’re interested in. (&lt;script type=&quot;math/tex&quot;&gt;\{H,H,T,T,T\},\{H,T,H,T,T\},...\}&lt;/script&gt;).
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Example 2:&lt;/b&gt;
-&lt;br /&gt; 
-Suppose we roll two dice and we’re interested in the sum of the two dice. We define a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 as &lt;script type=&quot;math/tex&quot;&gt;P(X=7)&lt;/script&gt;. This is much simpler that saying that we want the probability of seeing any of these outcomes: &lt;script type=&quot;math/tex&quot;&gt;(3,4),(4,3),(2,5),(5,2),(1,6),(6,1)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Discrete Random Variables&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;If our random variable takes on countable values &lt;script type=&quot;math/tex&quot;&gt;x_1, x_2, x_3,...,x_n&lt;/script&gt;, we call it a discrete random variable. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Probability Mass Function&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Suppose we have a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; that takes on a discrete values in &lt;script type=&quot;math/tex&quot;&gt;R_X = \{k_1, k_2,...,k_n\}&lt;/script&gt;. Define the probability mass function &lt;script type=&quot;math/tex&quot;&gt;p_X(k)&lt;/script&gt; to be the probability that &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; takes on a particular value &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. In other words, the PMF is defined as&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p_X(k) = P(X = k)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Furthermore, the PMF of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; satisfies&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-\sum_{i=1}^{\infty} p_X(k_i) = 1
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;This also means that for any value &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; that is not in &lt;script type=&quot;math/tex&quot;&gt;R_X&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;p_X(k) = 0&lt;/script&gt;,&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
- P(X=k) = \Big\{ \begin{array}{@{}lr@{}}
-        p_X(k) \quad \text{ for } k \in R_X \\
-        0 \quad \quad \quad \text{ otherwise} \\
-        \end{array}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;We can also refer to &lt;script type=&quot;math/tex&quot;&gt;p_X(k)&lt;/script&gt; as just &lt;script type=&quot;math/tex&quot;&gt;p(k)&lt;/script&gt; if the random variable is clear from the context. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Example 2:&lt;/b&gt;
-&lt;br /&gt; 
-Suppose we roll the two dice again from example 2. Define a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be to the sum of the two dice. We know &lt;script type=&quot;math/tex&quot;&gt;R_X = \{2,3,4,5,6,7,8,9,10,11,12\}&lt;/script&gt;. Below is a graph of the &lt;script type=&quot;math/tex&quot;&gt;PMF&lt;/script&gt; of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;p_X(k)&lt;/script&gt; for all values in &lt;script type=&quot;math/tex&quot;&gt;R_X&lt;/script&gt;.
-&lt;img src=&quot;http://localhost:4000/assets/random/pmf.png&quot; width=&quot;100%&quot; /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Cumulative Distribution Function&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Suppose we’re interested in the probability that a random variables, &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;, is less than or equal to a particular value, &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;. One way to do this is to sum all the probabilities for all the values that &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; can take up to &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;. An easier way to do this is to use the cumulative distribution function (CDF) that gives the probability that &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is less than or equal to a particular value, specifically&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-F_X(k) = F(k) = P(X \leq k), \quad \text{ where } -\infty &amp;lt; k &amp;lt; \infty
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;For a discrete random variable, this will be just the sum of all variables&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-F_X(k) = F(k) = \sum_{\text{ all } i \leq k} p(i)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Expectation&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;The expectation or expected value of a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is defined as:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;In other words, the expected value is a weighted average of the value of the random variable (values weighted by their probabilities).
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Example 4:&lt;/b&gt;
-&lt;br /&gt; 
-Suppose we roll two dice again from example 2 and 3. Define a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be to the sum of the two dice. We can use our PMF from the previous section to compute the expected value as&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X] &amp;amp;= 2*P(X=2) + 3*P(X=3) + 4*P(X=4) + 5 * P(X=5) * 6*P(X=6) + 7*P(X=7) \\
-\\ &amp;amp;+ 8*P(X=8) + 9*P(X=9) + 10*P(X=10) + 11*P(X=11) * 12*P(X=12) \\
-E[X] &amp;amp;= 2*\frac{1}{36} + 3*\frac{2}{36} + 4*\frac{3}{36} + 5*\frac{4}{36} + 6*\frac{5}{36} + 7*\frac{6}{36} + 8*\frac{5}{36} + 9*\frac{4}{36} + 10*\frac{3}{36} \\
-&amp;amp;+ 11*\frac{2}{36} + 12*\frac{1}{36} = 7
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Expectation of a function of a random variable&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Suppose we have a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; and we have a function &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt; is real-valued function. Suppose we want to calculate the expected value of &lt;script type=&quot;math/tex&quot;&gt;g(X)&lt;/script&gt;. Define&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[g(X)] = E[Y] &amp;amp;= \sum_j y_jp(y_j) \\
-&amp;amp;= \sum_i g(x_i) p(x_i) \\
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;PROOF?
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Example 5:&lt;/b&gt;
-&lt;br /&gt; 
-Suppose we roll a die and define &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be the value on the die. Define a new random variable &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; to be &lt;script type=&quot;math/tex&quot;&gt;X^2&lt;/script&gt;. What is &lt;script type=&quot;math/tex&quot;&gt;E[Y]&lt;/script&gt;?&lt;br /&gt;
-&lt;br /&gt;
-Using the above, &lt;script type=&quot;math/tex&quot;&gt;E[Y] = E[X^2] = \sum_i (k_i^2)p(k_i) = 1/6*(1+4+9+16+25+36) \approx 15.167&lt;/script&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Linearity of Expectation&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Expectation of the sum of two random variables is the sum of expectation of the two random variables.&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
- E[aX + bY + c] &amp;amp;= aE[X] + bE[Y] + c
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;b&gt;Example 6:&lt;/b&gt;
-&lt;br /&gt; 
-Suppose we roll a die and let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be a random variable representing the outcome of the roll. Suppose also that you will win a number of dollars equals to &lt;script type=&quot;math/tex&quot;&gt;3X+5&lt;/script&gt;. What is the expected value of your winnings? We can let &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; be a random variable representing our winnings. Now we have&lt;/p&gt;
-
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[Y] = E[6X^2+5] &amp;amp;= \sum_i (3x_i + 5)p(x_i) \\
-&amp;amp;= \frac{1}{6} \sum_{i=1}^6 3x_i+5 \\
-&amp;amp;= \frac{1}{6} (8+11+14+17+20+23) = 15.5
-\end{align*}
-$$
-&lt;/div&gt;
-
-&lt;p&gt;However using the linearity of expectation, we know that &lt;script type=&quot;math/tex&quot;&gt;E[X]=3.5&lt;/script&gt;. Therefore we could do the following:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[Y] = E[3X+5] &amp;amp;= 3E[X]+5  \\
-&amp;amp;= 3(3.5) + 5 = 15.5
-\end{align*}
-$$
-&lt;/div&gt;
-
-&lt;p&gt;&lt;b&gt;Example 7:&lt;/b&gt;
-&lt;br /&gt; 
-Suppose we roll two dice again and we’re interested in the expectation of the sum of two dice. We calculated this value previously in example 4 using the PMF. Let’s use the second property of expectation. Let &lt;script type=&quot;math/tex&quot;&gt;X_1&lt;/script&gt; be a random variable representing the value of the first die and &lt;script type=&quot;math/tex&quot;&gt;X_2&lt;/script&gt; be a random variable representing the sum value of the second die. Let the sum of the two dice be &lt;script type=&quot;math/tex&quot;&gt;X_1 + X_2&lt;/script&gt;.&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X_1 + X_2] = E[X_1] + E[X_2] = 7
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Example 8: St. Petersburg Paradox&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;A fair coin comes up heads with &lt;script type=&quot;math/tex&quot;&gt;p = 0.5&lt;/script&gt;. We flip the coin until we see the first tails. We will then win &lt;script type=&quot;math/tex&quot;&gt;2^n&lt;/script&gt; dollars where &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is the number of heads seen before the first tail. How much would you pay to play?
-&lt;br /&gt;
-&lt;br /&gt;
-Let’s define the following random variables: &lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; be the number of “heads” before the the first “tails”.&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt; be a random variable representing our winnings. &lt;script type=&quot;math/tex&quot;&gt;W = 2^Y&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;
-What is the probability of seeing &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; heads before seeing the first tail on the &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt;th trial? &lt;script type=&quot;math/tex&quot;&gt;P(Y = i) = (1/2) * (1/2) * ... = (1/2)^{i+1}&lt;/script&gt;. This is because  we stop at the &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt; flip which is a tail. Each outcome has a probability equals to &lt;script type=&quot;math/tex&quot;&gt;1/2&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-What is the expected value of our winnings?&lt;br /&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[W] = E[2^Y] &amp;amp;= \sum_i 2^i P(Y=i) =  \sum_i 2^i p(i) \\
-&amp;amp;= (\frac{1}{2})^1 2^0 + (\frac{1}{2})^2 2^1 +  (\frac{1}{2})^3 2^2 + ... \\
-&amp;amp;= \sum_i^{\infty} (\frac{1}{2})^{i+1} 2^i = \infty
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Example 9: Roulette&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Consider an even money bet (betting “Red” in Roulette). &lt;script type=&quot;math/tex&quot;&gt;p=18/38&lt;/script&gt; you win &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; dollars, otherwise &lt;script type=&quot;math/tex&quot;&gt;1-p&lt;/script&gt; you lose &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt; dollars. Consider the following strategy:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Let &lt;script type=&quot;math/tex&quot;&gt;Y=1&lt;/script&gt;. &lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;Bet &lt;script type=&quot;math/tex&quot;&gt;Y&lt;/script&gt;.&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;If win then stop.&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;Else let &lt;script type=&quot;math/tex&quot;&gt;Y=2Y&lt;/script&gt; go to step 2.&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;What is the expected value of our winning? &lt;br /&gt;
-Define &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt; to be our winnings until we stop. &lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[Z] &amp;amp;= p*1 + (1-p)p*(2-1) + (1-p)^2p*(4-2-1) + ... \\
-&amp;amp;= \sum_{i=0}^{\infty} p(1-p)^i(2^i - \sum_{j=0}^{i-1}2^j) \\
-&amp;amp;= p\sum_{i=0}^{\infty} (1-p)^i = p\frac{1}{1-(1-p)} = 1
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// &lt;br /&gt;
-Specifically: http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/lectures/06_random_variables.pdf
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">What is a Random Variable? A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some function of the outcome. Example 1: Suppose we’re interested in counting the number of heads in trials of flipping a coin. We can define a random variable to represent the number of heads in 5 trials. Using , we can now refer to the probability of seeing two heads in 5 trials as . This is much simpler that listing the exact outcomes that we’re interested in. (). Example 2: Suppose we roll two dice and we’re interested in the sum of the two dice. We define a random variable to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 as . This is much simpler that saying that we want the probability of seeing any of these outcomes: . Discrete Random Variables If our random variable takes on countable values , we call it a discrete random variable. Probability Mass Function Suppose we have a random variable that takes on a discrete values in . Define the probability mass function to be the probability that takes on a particular value . In other words, the PMF is defined as $$ \begin{align*} p_X(k) = P(X = k) \end{align*} $$ Furthermore, the PMF of satisfies $$ \begin{align*} \sum_{i=1}^{\infty} p_X(k_i) = 1 \end{align*} $$ This also means that for any value that is not in , we have , $$ \begin{align*} P(X=k) = \Big\{ \begin{array}{@{}lr@{}} p_X(k) \quad \text{ for } k \in R_X \\ 0 \quad \quad \quad \text{ otherwise} \\ \end{array} \end{align*} $$ We can also refer to as just if the random variable is clear from the context. Example 2: Suppose we roll the two dice again from example 2. Define a random variable to be to the sum of the two dice. We know . Below is a graph of the of , for all values in . Cumulative Distribution Function Suppose we’re interested in the probability that a random variables, , is less than or equal to a particular value, . One way to do this is to sum all the probabilities for all the values that can take up to . An easier way to do this is to use the cumulative distribution function (CDF) that gives the probability that is less than or equal to a particular value, specifically $$ \begin{align*} F_X(k) = F(k) = P(X \leq k), \quad \text{ where } -\infty &amp;lt; k &amp;lt; \infty \end{align*} $$ For a discrete random variable, this will be just the sum of all variables $$ \begin{align*} F_X(k) = F(k) = \sum_{\text{ all } i \leq k} p(i) \end{align*} $$ Expectation The expectation or expected value of a random variable is defined as: $$ \begin{align*} E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k \end{align*} $$ In other words, the expected value is a weighted average of the value of the random variable (values weighted by their probabilities). Example 4: Suppose we roll two dice again from example 2 and 3. Define a random variable to be to the sum of the two dice. We can use our PMF from the previous section to compute the expected value as $$ \begin{align*} E[X] &amp;amp;= 2*P(X=2) + 3*P(X=3) + 4*P(X=4) + 5 * P(X=5) * 6*P(X=6) + 7*P(X=7) \\ \\ &amp;amp;+ 8*P(X=8) + 9*P(X=9) + 10*P(X=10) + 11*P(X=11) * 12*P(X=12) \\ E[X] &amp;amp;= 2*\frac{1}{36} + 3*\frac{2}{36} + 4*\frac{3}{36} + 5*\frac{4}{36} + 6*\frac{5}{36} + 7*\frac{6}{36} + 8*\frac{5}{36} + 9*\frac{4}{36} + 10*\frac{3}{36} \\ &amp;amp;+ 11*\frac{2}{36} + 12*\frac{1}{36} = 7 \end{align*} $$ Expectation of a function of a random variable Suppose we have a random variable and we have a function where is real-valued function. Suppose we want to calculate the expected value of . Define $$ \begin{align*} E[g(X)] = E[Y] &amp;amp;= \sum_j y_jp(y_j) \\ &amp;amp;= \sum_i g(x_i) p(x_i) \\ \end{align*} $$ PROOF? Example 5: Suppose we roll a die and define to be the value on the die. Define a new random variable to be . What is ? Using the above, Linearity of Expectation Expectation of the sum of two random variables is the sum of expectation of the two random variables. $$ \begin{align*} E[aX + bY + c] &amp;amp;= aE[X] + bE[Y] + c \end{align*} $$ Example 6: Suppose we roll a die and let be a random variable representing the outcome of the roll. Suppose also that you will win a number of dollars equals to . What is the expected value of your winnings? We can let be a random variable representing our winnings. Now we have</summary></entry></feed>
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Given a sorted array of integers and a key, we want to return the index of the key in the array or -1 if the key doesn’t exist in the array. Binary search takes advantage of the property that the array is sorted and then iteratively finds which half of the list the key will be located in. After iterations, we will either correctly return that index or return -1 if the key doesn’t exist. int binary_search(int *a, int key, int n) { int m, first = 0, last = n - 1; while (first &amp;lt;= last) { m = (first + (last - first / 2); if (key &amp;gt; a[m]) { first = m + 1; } else if (key &amp;lt; a[m]) { last = m - 1; } else if (key == a[m]) { return m; } } return -1; // not found } Correctness Proof This is just my attempt to prove that binary search algorithm implemented above is correct. To prove binary search is correct, we want to prove the following: At every iteration binary search is still searching the correct range in the array. This can be achieved with a loop invariant. Binary search terminates.</summary></entry></feed>

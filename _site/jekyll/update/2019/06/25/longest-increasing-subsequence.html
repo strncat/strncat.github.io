@@ -44,7 +44,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
       </nav></div>
   
 </header>
@@ -62,24 +62,24 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let <script type="math/tex">A = [a_0, a_1, a_2,...,a_n]</script> be an array containing <script type="math/tex">n</script> real numbers. A longest increasing subsequence of A is a sequence <script type="math/tex">0 \leq i_0 \leq i_1 \leq ... \leq i_k \leq n</script> such that <script type="math/tex">A[i_i] \leq A[i_2] \leq ... \leq A[i_k]</script> so that <script type="math/tex">k</script> is of maximum value.
+    <p>Let <script type="math/tex">A = [a_0, a_1, a_2,...,a_n]</script> be an array containing <script type="math/tex">n</script> real numbers. A longest increasing subsequence of A is a sequence of indices <script type="math/tex">[0 \leq i_0 \leq i_1 \leq ... \leq i_k \leq n]</script> such that <script type="math/tex">A[i_i] \leq A[i_2] \leq ... \leq A[i_k]</script> so that <script type="math/tex">k</script> is of maximum value.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>Suppose <script type="math/tex">A = [3, 8, 1, 2, 7, 9, 6, 4, 5]</script> then a longest increasing subsequence could be <script type="math/tex">[1, 2, 4, 5]</script>. Note that it is not unique.
+<p>Suppose <script type="math/tex">A = [3, 8, 1, 2, 7, 9, 6, 4, 5]</script>, then a longest increasing subsequence could be <script type="math/tex">[1, 2, 4, 5]</script>. Note that it is not unique.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Brute-Force</b></h4>
-<p>We can check every possible subsequence. For each element of <script type="math/tex">A</script>, we either select that element or not. Therefore, the total number of possible subsequences is <script type="math/tex">2^n</script>. As we generate the subsequences, we can keep track of the longest subsequence encountered so far and therefore, our run time is <script type="math/tex">O(2^n)</script>.
+<p>To find the longest increasing subsequence, we can test every possible subsequence. How possible subsequences are there? To build a subsequence, we must select a subset of the elements in <script type="math/tex">A</script>. For each element of <script type="math/tex">A</script>, we either select that element to be in the subsequence or we do not. Therefore, the total number of possible subsequences is <script type="math/tex">2^n</script>. We can rule out whether a subsequence is an increasing subsequence in <script type="math/tex">O(n)</script> time. We can also keep track of the longest encountered increasing subsequence so far. Therefore, the running time is <script type="math/tex">O(2^n)</script>.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Dynamic Programming</b></h4>
 <p>To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS).<br />
 <br />
-It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let <script type="math/tex">D[i]</script> be the length of the longest increasing subsequence ending at <script type="math/tex">A[i]</script>, then we will find that</p>
+It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let <script type="math/tex">D[i]</script> be the length of the longest increasing subsequence ending at <script type="math/tex">A[i]</script>, then we will find that,</p>
 <div center="">
 $$
 \begin{align*}
@@ -137,7 +137,7 @@ k < i+1 %]]></script>. This means that <script type="math/tex">m > D[k]+1</scrip
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Running Time</b></h4>
-<p>We’re doing two simple loops to fill arrays <script type="math/tex">c</script> and <script type="math/tex">p</script>. Therefore, our runtime is just <script type="math/tex">O(n^2)</script>
+<p>We’re doing two simple loops to fill arrays <script type="math/tex">c</script> and <script type="math/tex">p</script>. Therefore, the running time is <script type="math/tex">O(n^2)</script>.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
@@ -167,8 +167,7 @@ $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>The $O(nlg(n))$ Solution with Binary Search</b></h4>
-<p><br />
-The O(n^2) dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes!
+<p>The <script type="math/tex">O(n^2)</script> dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes!
 <br /><br />
 Previously, we said that <script type="math/tex">D[i]</script> is the length of the longest subsequence ending at <script type="math/tex">A[i]</script>. Now we will consider a completely different substructure. Let <script type="math/tex">M[i]</script> to be the smallest element that ends a subsequence of length <script type="math/tex">i</script>. For simplicity we will initially let <script type="math/tex">M[0]</script> to be <script type="math/tex">-\infty</script> and everything else to be <script type="math/tex">\infty</script>. 
 <br /><br />
@@ -197,10 +196,9 @@ Next, suppose that <script type="math/tex">M[j] > M[j+1]</script>. This is a con
 <br /><br />
 Therefore, we can conclude that we must have <script type="math/tex">% <![CDATA[
 M[k] < M[k+1] %]]></script> for all <script type="math/tex">k</script> as we wanted to show.
-<!-- -->
-<br /><br />
-<b>Algorithm:</b><br />
-Let’s traverse <script type="math/tex">A</script> from left to right. For the base case, we consider <script type="math/tex">i = 0</script> and at this point we know that <script type="math/tex">A[0] > -\infty</script> and so <script type="math/tex">M[1] = A[0]</script>.
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Algorithm</b></h4>
+<p>Let’s traverse <script type="math/tex">A</script> from left to right. For the base case, we consider <script type="math/tex">i = 0</script> and at this point we know that <script type="math/tex">A[0] > -\infty</script> and so <script type="math/tex">M[1] = A[0]</script>.
 <br /><br />
 Now let’s consider iteration <script type="math/tex">i</script> and element <script type="math/tex">A[i]</script>. Also, let <script type="math/tex">k</script> be the length of the longest subsequence reached so far, meaning that <script type="math/tex">M[k] \neq \infty</script> and for any <script type="math/tex">j > k</script> we have <script type="math/tex">M[j] = \infty</script>. Let’s consider two cases:
 <br /><br />

@@ -53,22 +53,19 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Binary Search Trees</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Red Black Trees</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2020-04-28T12:01:36-07:00" itemprop="datePublished">Apr 28, 2020
+      <time class="dt-published" datetime="2020-04-27T12:01:36-07:00" itemprop="datePublished">Apr 27, 2020
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/trees/binary-search-trees/binary-search-tree.png" width="100%" />
-A binary search trees is a binary tree that maintains the binary-search-tree property for every node in the tree. The <b>binary-search-tree property</b> states that given a node <script type="math/tex">x</script> in the tree, every node in the left subtree has a key less than <script type="math/tex">x</script>’s key and every node in the right subtree has a key greater than <script type="math/tex">x</script>’s key.
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Motivation</b></h4>
-<p>But why invent another data structure? Let’s take a look at sorted arrays. We can search a sorted array for keys in just <script type="math/tex">O(\log(n))</script> time with binary search. However, inserting and deleting elements takes <script type="math/tex">O(n)</script> time. Similarly, while inserting elements in a linked list takes only <script type="math/tex">O(1)</script> time, searching a linked list takes <script type="math/tex">O(n)</script> time in the worst case. Can we do better with binary search trees? yes!
+A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property states that given a node <script type="math/tex">x</script> in the tree, every node in the left subtree has a key less than or equal to <script type="math/tex">x</script>’s key and every node in the right subtree has a key greater than or equal to <script type="math/tex">x</script> (CLRS).
 <br /><br />
-The binary search tree property is really great at allowing us to insert/search and delete in just <script type="math/tex">O(h)</script> time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be <script type="math/tex">O(\log(n))</script> where is <script type="math/tex">n</script> is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists!
+The binary search tree property is really great at allowing us to search the tree for a key in just <script type="math/tex">O(h)</script> time since we can eliminate a branch at every single step. In a regular binary tree, we would otherwise have to search all nodes in the tree. This is really great especially when the tree is balanced. If the tree is balanced, the height will only be <script type="math/tex">O(\log(n))</script> where is <script type="math/tex">n</script> is the number of nodes. This is a much better time than <script type="math/tex">O(n)</script>. 
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>In Order Walk</b></h4>
@@ -101,7 +98,9 @@ The binary search tree property is really great at allowing us to insert/search 
     <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
 <span class="p">}</span></code></pre></figure>
 
-<p><br />
+<!---------------------->
+<p>We can perform a tree search, finding the minimum, maximum, successor and predecessor in time <script type="math/tex">O(h)</script> because of the binary search tree property. 
+<br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Minimum, Maximum, Predecessor and Successor</b></h4>
 <p>Similarly we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node <script type="math/tex">x</script>, we have two cases:</p>
@@ -124,44 +123,8 @@ The binary search tree property is really great at allowing us to insert/search 
     <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
 <span class="p">}</span></code></pre></figure>
 
-<p><!------------------------------------------------------------------------------------></p>
-<h4><b>Insert</b></h4>
-<p>Inserting a node into a binary search tree is pretty simple. We need to follow the following steps:</p>
-<ul>
-  <li>Create a new node and assign both the left and right pointers to NULL.</li>
-  <li>Similar to search, descend in the tree with pointer <script type="math/tex">current</script> based on the key value, while keeping a trailing pointer <script type="math/tex">p</script> to its parent. Once we hit NULL, we know that the <script type="math/tex">p</script> will be the parent of our node.
-The figure below illustrates the process:
-<img src="http://localhost:4000/assets/trees/binary-search-trees/insert.png" width="100%" />
- <!----------------------></li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">tree</span> <span class="o">**</span><span class="n">t</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// O(n)</span>
-    <span class="c1">// create a new node x</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="o">*</span><span class="n">t</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">x</span><span class="p">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// x is now the root!</span>
-        <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">p</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">p</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-    <span class="p">}</span>
- <span class="p">}</span>
- </code></pre></figure>
-
+<!---------------------->
 <!------------------------------------------------------------------------------------>
-<h4><b>Delete</b></h4>
-<p>TODO
-<!------------------------------------------------------------------------------------></p>
 <h4><b>Implementation</b></h4>
 <p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/binary-search-tree.cpp">Source Code</a>
 <!------------------------------------------------------------------------------------></p>
@@ -177,8 +140,8 @@ The figure below illustrates the process:
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2020/04/28/binary-search-trees.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2020/04/28/binary-search-trees; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2020/04/27/red-black-trees.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2020/04/27/red-black-trees; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -189,7 +152,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2020/04/28/binary-search-trees.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2020/04/27/red-black-trees.html" hidden></a>
 </article>
 		 
       </div>

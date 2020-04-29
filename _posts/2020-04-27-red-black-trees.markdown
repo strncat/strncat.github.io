@@ -1,17 +1,14 @@
 ---
 layout: post
-title:  "Binary Search Trees"
-date:   2020-04-28 12:01:36 -0700
+title:  "Red Black Trees"
+date:   2020-04-27 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <img src="{{ site.url }}/assets/trees/binary-search-trees/binary-search-tree.png" width="100%">
-A binary search trees is a binary tree that maintains the binary-search-tree property for every node in the tree. The <b>binary-search-tree property</b> states that given a node $$x$$ in the tree, every node in the left subtree has a key less than $$x$$'s key and every node in the right subtree has a key greater than $$x$$'s key.
-<!------------------------------------------------------------------------------------>
-<h4><b>Motivation</b></h4>
-But why invent another data structure? Let's take a look at sorted arrays. We can search a sorted array for keys in just $$O(\log(n))$$ time with binary search. However, inserting and deleting elements takes $$O(n)$$ time. Similarly, while inserting elements in a linked list takes only $$O(1)$$ time, searching a linked list takes $$O(n)$$ time in the worst case. Can we do better with binary search trees? yes!
+A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property states that given a node $$x$$ in the tree, every node in the left subtree has a key less than or equal to $$x$$'s key and every node in the right subtree has a key greater than or equal to $$x$$ (CLRS).
 <br><br>
-The binary search tree property is really great at allowing us to insert/search and delete in just $$O(h)$$ time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be $$O(\log(n))$$ where is $$n$$ is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists!
+The binary search tree property is really great at allowing us to search the tree for a key in just $$O(h)$$ time since we can eliminate a branch at every single step. In a regular binary tree, we would otherwise have to search all nodes in the tree. This is really great especially when the tree is balanced. If the tree is balanced, the height will only be $$O(\log(n))$$ where is $$n$$ is the number of nodes. This is a much better time than $$O(n)$$. 
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>In Order Walk</b></h4>
@@ -44,6 +41,8 @@ void search(tree *t, key) { // O(n)
     return t;
 }
 {% endhighlight %}
+<!---------------------->
+We can perform a tree search, finding the minimum, maximum, successor and predecessor in time $$O(h)$$ because of the binary search tree property. 
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Minimum, Maximum, Predecessor and Successor</b></h4>
@@ -65,40 +64,7 @@ void successor(tree *t) { // O(n)
     return p;
 }
 {% endhighlight %}
- <!------------------------------------------------------------------------------------>
- <h4><b>Insert</b></h4>
-Inserting a node into a binary search tree is pretty simple. We need to follow the following steps:
-- Create a new node and assign both the left and right pointers to NULL.
-- Similar to search, descend in the tree with pointer $$current$$ based on the key value, while keeping a trailing pointer $$p$$ to its parent. Once we hit NULL, we know that the $$p$$ will be the parent of our node.
-The figure below illustrates the process:
-<img src="{{ site.url }}/assets/trees/binary-search-trees/insert.png" width="100%">
- <!---------------------->
- {% highlight c++ %}
- void insert(tree **t, key) { // O(n)
-    // create a new node x
-    p = NULL;
-    current = *t;
-    while (current != NULL) {
-        p = current;
-        if (x->key < current->key) {
-            current = current->left;
-        } else {
-            current = current->right;
-        }
-    }
-    x.parent = p;
-    if (p == NULL) { // x is now the root!
-        *t = x;
-    } else if (p->key > x->key) {
-        p->left = x;
-    } else {
-        p->right = x;
-    }
- }
- {% endhighlight %}
-<!------------------------------------------------------------------------------------>
-<h4><b>Delete</b></h4>
-TODO
+<!---------------------->
 <!------------------------------------------------------------------------------------>
 <h4><b>Implementation</b></h4>
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/binary-search-tree.cpp">Source Code</a>

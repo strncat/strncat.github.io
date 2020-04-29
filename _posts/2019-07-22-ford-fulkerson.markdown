@@ -255,13 +255,13 @@ But do we ever terminate? and how do we know we have the optimal flow when we te
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Cuts in Flow Networks</b></h4>
-Note in the above method that we stop when no longer have augmenting paths. So if Ford-Fulkerson is right, it must be that a flow is maximum when we don't any more augmenting paths. How do we prove this?
+In the Ford-Fulkerson's method above, we see that we exit the while loop only when there are no augmenting paths available. So if the Ford-Fulkerson's method does in fact generate a maximum flow, then it must be that a flow is maximum when we don't any more augmenting paths. How do we prove this?
 <br>
 <br>
 We need to explore yet another concept. A <b>cut</b> $$(S,T)$$ of a flow network $$G=(V,E)$$ is a partition of $$V$$ into $$S$$ and $$T = V - S$$ such that $$s \in S$$ and $$t \in T$$. Let $$f$$ be a flow in $$G$$.
 <br>
 <br>
-The <b>net flow</b> $$f(S,T)$$ across the cut $$(S,T)$$.
+The <b>net flow</b> $$f(S,T)$$ across the cut $$(S,T)$$ is
 <div center>
 $$
 \begin{align*}
@@ -284,7 +284,7 @@ Lastly, define a <b>minimum cut</b> of a network to be a cut whose capacity is m
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Cuts and Flow</b></h4>
-We first want to establish that the flow we generate is a flow of maximum value. In order to do so, we need to prove smaller results that we will use in the main proof in the next section. Let's prove the following
+We first want to establish that the flow we generate is a flow of maximum value. In order to do so, we need to prove smaller results that we will use in the main proof in the next section. Let's prove the following:
 <br>
 <br>
 Suppose $$f$$ is a flow in $$G$$ and let $$(S,T)$$ be any cut in $$G$$ then the net flow across $$(S,T)$$ is $$f(S,T)=|f|$$.

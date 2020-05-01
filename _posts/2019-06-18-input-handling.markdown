@@ -5,8 +5,41 @@ date:   2019-06-18 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>1 2D grid with no spaces between cells</b></h4>
-This is done using std::getline. Also, in this particular example, we don't know how many tests there are.<br>
+<h4><b>2D grid with no spaces between cells (marioyc)</b></h4>
+I used to read grids with the second method below but this one is much simpler! I had to save it here for future references, borrowed from marioyc. In this specific example (469Wetlands of Florida), we are not given the dimensions of grid (ugh).<br>
+<table>
+<td>
+1 <br>
+<br>
+LLLLLLLLL <br>
+LLWWLLWLL <br>
+LWWLLLLLL <br>
+</td>
+</table>
+{% highlight c++ %}
+int tests, n, m;
+scanf("%d\n", &tests);
+std::vector<std::string> grid;
+std::string line;
+while (tests--) {
+    grid.clear();
+    // found this pretty sweet way of reading the grid (much better than my original)
+    // in marioyc's github
+    while (1) {
+        std::getline(std::cin, line);
+        if (line[0] != 'W' && line[0] != 'L') {
+            break; // not grid data anymore
+        }
+        grid.push_back(line);
+    }
+    m = (int) grid.size(); // number of rows
+    n = (int) grid[0].size(); // number of columns
+}
+{% endhighlight %}
+<br>
+<!------------------------------------------------------------------------->
+<h4><b>2D grid with no spaces between cells</b></h4>
+This is done using std::getline like above, but here we save the grid as a 2D char array instead of multiple vectors of strings (above). In this particular, we know the dimensions but not the total number of tests.<br>
 <table>
 <td>
 3 <br>
@@ -20,27 +53,23 @@ This is done using std::getline. Also, in this particular example, we don't know
 </table>
 {% highlight c++ %}
 char m[MAX][MAX];
-std::vector<std::pair<int,int>> start;
 bool read_input() {
     int n;
     scanf("%d\n", &n);
     std::string line;
     for (int i = 0; i < n; i++) {
         std::getline(std::cin, line); // a line here is 123
-        // no input, return false (we didn't read anything)
-        if (line.size() == 0) { return false; }
+        if (line.size() == 0) { return false; } // done reading
         for (int j = 0; j < n; j++) {
             m[i][j] = line[j];
-            if (m[i][j] == '1') { // starting cells, can have multiple
-                start.push_back({i,j});
-            }
         }
     }
     return true;
 }
 {% endhighlight %}
+<br>
 <!------------------------------------------------------------------------->
-<h4><b>2 Unbounded tests and variable length strings (use sstream)</b></h4>
+<h4><b>Unbounded tests and variable length strings (use sstream)</b></h4>
 We have a bunch of tests but we don't know the number of tests. This is an example:<br>
 <table>
 	<td>
@@ -74,8 +103,9 @@ for (int i = 0; i < n; i++) {
     iss >> planet >> value >> neighbors;
 }
 {% endhighlight %}
+<br>
 <!------------------------------------------------------------------------->
-<h4><b>3 2D grid with ints and characters</b></h4>
+<h4><b>2D grid with ints and characters</b></h4>
 This is a square grid with 5 rows and 5 columns. Also, we're only given the lower triangle only in the matrix since this is an unweighted graph. The main issue was that an 'x' was used to indicate that there is no edge between the vertices.
 <table>
 <td>
@@ -98,8 +128,9 @@ for (int i = 2; i <= n; i++) {
     }
 }
 {% endhighlight %}
+<br>
 <!------------------------------------------------------------------------->
-<h4><b>4 3D grid with no space between cells</b></h4>
+<h4><b>3D grid with no space between cells</b></h4>
 This is from problem "532 - Dungeon Master". Here we know when to terminate. We also know the number of rows, colums and the height (number of levels). There is also an extra new line between each board.
 <table>
 <td>
@@ -147,8 +178,9 @@ for (int k = 0; k < L; k++) {
     fgets(line, MAX, stdin); // get the nasty extra line between levels
 }
 {% endhighlight %}
+<br>
 <!------------------------------------------------------------------------->
-<h4><b>5 Strings with variable number of ints</b></h4>
+<h4><b>Strings with variable number of ints</b></h4>
 Consider a number of lines where each line consists of a variable number of ints. We can use std::istringstream and use a while loop to read as many ints as possible from that line.
 
 {% highlight c++ %}

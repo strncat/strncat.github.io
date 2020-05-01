@@ -37,56 +37,62 @@ mathjax: true
 	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5"/>
 	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
 </svg>
-Let $$G=(V,E)$$ be undirected, weighted graph with $$V$$ vertices and $$E$$ edges. A minimum spanning tree is a tree that connects all the vertices in $$V$$ of minimal cost. Kruskal's approach is to always take the cheapest edge from the graph that won't create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
+Let $$G=(V,E)$$ be undirected, weighted graph with $$V$$ vertices and $$E$$ edges. A minimum spanning tree is a tree that connects all the vertices in $$V$$ of minimal cost. Kruskal's algorithm is a greedy algorithm. We always take the cheapest edge from the graph that won't create a cycle. In other words, Kruskal is maintaining a bunch of forests at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Algorithm (slow version)</b></h4>
+The simplest way to implement Kruskal is to sort the edges according to their weights in $$O(E\log(E))$$ time and then loop through the edges to pick the cheapest ones that don't create a cycle. We can check for cycles in $$O(E+V)$$. So this algorithm ends up being really slow. 
 {% highlight c++ %}
 E = Sort the edges by non-decreasing weight.
 MST = {}
 for e in sorted E {
-	if we can add e to MST without creating a cycle {
-		add e to MST
-	}
+    if we can add e to MST without creating a cycle { // O(E+V)
+        add e to MST
+    }
 }
 return MST
 {% endhighlight %}
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Algorithm (fast version)</b></h4>
-The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations
+There is a much better way to implement Kruskal and boost its run time than the above method. The key to the faster version is using a special data structure call union-find. Union-find supports the following operations,
 - makeSet(u): creates a set $$\{u\}$$
 - find(u): returns the set that $$u$$ is in.
 - union(u,v): merge the set that $$u$$ is in with the set that $$v$$ is in.
+
+How do we use union-find to boost the performance of Kruskal? We initialize $$V$$ sets for each of the vertices. We then loop through the sorted edges and <i>union</i> the two vertices only if they're not in the same set already. This way we don't need to check for cycles anymore. 
 
 {% highlight c++ %}
 E = Sort the edges by non-decreasing weight.
 MST = {}
 for v in V {
-	makeSet(v)
+    makeSet(v)
 }
 for (u,v) in E {
-	if find(u) != find(v) {
-		add {u,v} to MST
-		union(u,v)
-	}
+    if find(u) != find(v) {
+        add {u,v} to MST
+        union(u,v)
+    }
 }
 return MST
 {% endhighlight %}
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Example</b></h4>
-We initialize the following forests $$\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}$$. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: $$\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}$$
+In the above graph, we initialize the following forests $$\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}$$. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: $$\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}$$
 <br><br>
 <i>Iteration 0</i><br>
-The first edge to consider is either $$\{a,b\}$$. Since $$a$$ and $$b$$ are not in the same set, we add the edge to the MST and combine both $$a$$ and $$b$$.
+The first edge to consider is $$\{a,b\}$$. Since $$a$$ and $$b$$ are not in the same set, we add the edge to the MST and combine both $$a$$ and $$b$$.
 
 <i>Iteration 1</i><br>
 We next consider  $$\{b,f\}$$. Since $$b$$ and $$f$$ are not in the same set, we add the edge to the MST and combine both $$b$$ and $$f$$. So now we have the following forests: $$\{a, b, f\}, \{c\}, \{d\}, \{e\}$$
 
 <i>Iteration 2</i><br>
-We next consider  $$\{a,f\}$$. Since $$a$$ and $$f$$ are in the same set, we don't combine the nodes and don't add the edge to the MST.
+We next consider  $$\{a,f\}$$. Since $$a$$ and $$f$$ are in the same set, we skip this edge.
+
+<i>Iteration 3</i><br>
+We next consider $$\{e,d\}$$. Since $$e$$ and $$d$$ are not in the same set, we merge these two forests into one. We now have the following forests: $$\{a, b, f\}, \{c\}, \{d, e\}$$
 
 
 At the end of the algorithm, the minimum spanning tree is the following tree:
@@ -116,10 +122,8 @@ At the end of the algorithm, the minimum spanning tree is the following tree:
 </svg>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Proof of Correctness</b></h4>
-This first section is exactly copied from Prim's so I should probably just link it, instead of copy/pasting.
-<br><br>
-Why does this algorithm find a minimum spanning tree? Before we can answer that, let's define some terms and prove some lemma that will be useful in the main proof. Let $$G=(V,E)$$ be the graph below and let $$S$$ be the set of yellow edges in $$G$$.  
+<h4><b>Proof of Correctness (Preliminarily)</b></h4>
+Why does this algorithm find a minimum spanning tree? Before we can answer that, let's define some terms and prove a lemma that will be useful in the main proof. Let $$G=(V,E)$$ be the graph below and let $$S$$ be the set of yellow edges in $$G$$.  
 
 ![my photo]({{ site.url }}/assets/cut.png)
 
@@ -133,6 +137,9 @@ Why does this algorithm find a minimum spanning tree? Before we can answer that,
 Case 1: $$\{u,v\}$$ is in $$T$$, then we're done. <br>
 Case 2: $$\{u,v\}$$ is not in $$T$$. By the definition of MST, adding $$\{u,v\}$$ will create a cycle in $$T$$. Since the sets resulting from the cut must be non-empty. This means that we must have an edge that crosses the cut in $$T$$. Let that edge be $$\{x,y\}$$. Consider replacing $$\{u,v\}$$ with $$\{x,y\}$$ to produce the new tree $$T'$$. $$T$$ is still an MST since we deleted $$\{x,y\}$$. $$T'$$ has also a cost of at most the cost of $$T$$ since \{u,v\} is a light edge. Therefore, $$T'$$ is an MST which includes both $$\{u,v\}$$ and $$S$$ which is what we wanted to show. $$\blacksquare$$
 <br>
+<br>
+<!---------------------------------------------------------------------------------------->
+<h4><b>Kruska's Proof of Correctness</b></h4>
 
 | Theorem: Kruskal will correctly find a minimum spanning tree |
 
@@ -160,11 +167,13 @@ Therefore, the total time is just $$O(m\log(n))$$ which is similar to Prim if we
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Implementation</b></h4>
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/kruskal
+<a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/minimum-spanning-trees/kruskal.cpp">Source Code</a>
+<br>
+<br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>References</b></h4>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br>
+- CS161 @ Stanford (With Mary Wootters)
+- CLRS
 <br>
 
 

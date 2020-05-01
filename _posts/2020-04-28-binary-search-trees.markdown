@@ -193,7 +193,6 @@ void delete(tree **t, tree *x) {
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Implementation</b></h4>
-
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/binary-search-tree.cpp">Source Code</a>
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>

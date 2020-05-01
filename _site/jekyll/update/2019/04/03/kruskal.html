@@ -94,57 +94,63 @@
 	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5" />
 	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
 </svg>
-<p>Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A minimum spanning tree is a tree that connects all the vertices in <script type="math/tex">V</script> of minimal cost. Kruskal’s approach is to always take the cheapest edge from the graph that won’t create a cycle. In another way, Kruskal is maintaining a forest at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
+<p>Let <script type="math/tex">G=(V,E)</script> be undirected, weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A minimum spanning tree is a tree that connects all the vertices in <script type="math/tex">V</script> of minimal cost. Kruskal’s algorithm is a greedy algorithm. We always take the cheapest edge from the graph that won’t create a cycle. In other words, Kruskal is maintaining a bunch of forests at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Algorithm (slow version)</b></h4>
+<p>The simplest way to implement Kruskal is to sort the edges according to their weights in <script type="math/tex">O(E\log(E))</script> time and then loop through the edges to pick the cheapest ones that don’t create a cycle. We can check for cycles in <script type="math/tex">O(E+V)</script>. So this algorithm ends up being really slow.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">E</span> <span class="o">=</span> <span class="n">Sort</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">by</span> <span class="n">non</span><span class="o">-</span><span class="n">decreasing</span> <span class="n">weight</span><span class="p">.</span>
 <span class="n">MST</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">e</span> <span class="n">in</span> <span class="n">sorted</span> <span class="n">E</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="n">we</span> <span class="n">can</span> <span class="n">add</span> <span class="n">e</span> <span class="n">to</span> <span class="n">MST</span> <span class="n">without</span> <span class="n">creating</span> <span class="n">a</span> <span class="n">cycle</span> <span class="p">{</span>
-		<span class="n">add</span> <span class="n">e</span> <span class="n">to</span> <span class="n">MST</span>
-	<span class="p">}</span>
+    <span class="k">if</span> <span class="n">we</span> <span class="n">can</span> <span class="n">add</span> <span class="n">e</span> <span class="n">to</span> <span class="n">MST</span> <span class="n">without</span> <span class="n">creating</span> <span class="n">a</span> <span class="n">cycle</span> <span class="p">{</span> <span class="c1">// O(E+V)</span>
+        <span class="n">add</span> <span class="n">e</span> <span class="n">to</span> <span class="n">MST</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">return</span> <span class="n">MST</span></code></pre></figure>
 
 <p><br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Algorithm (fast version)</b></h4>
-<p>The reason why this implementation is the standard Kruskal implementation is because we use a special data structure to maintain the forests kruskal is maintaining in the algorithm. The data structure is union-find which supports the following operations</p>
+<p>There is a much better way to implement Kruskal and boost its run time than the above method. The key to the faster version is using a special data structure call union-find. Union-find supports the following operations,</p>
 <ul>
   <li>makeSet(u): creates a set <script type="math/tex">\{u\}</script></li>
   <li>find(u): returns the set that <script type="math/tex">u</script> is in.</li>
   <li>union(u,v): merge the set that <script type="math/tex">u</script> is in with the set that <script type="math/tex">v</script> is in.</li>
 </ul>
 
+<p>How do we use union-find to boost the performance of Kruskal? We initialize <script type="math/tex">V</script> sets for each of the vertices. We then loop through the sorted edges and <i>union</i> the two vertices only if they’re not in the same set already. This way we don’t need to check for cycles anymore.</p>
+
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">E</span> <span class="o">=</span> <span class="n">Sort</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">by</span> <span class="n">non</span><span class="o">-</span><span class="n">decreasing</span> <span class="n">weight</span><span class="p">.</span>
 <span class="n">MST</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span> <span class="p">{</span>
-	<span class="n">makeSet</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">makeSet</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="n">in</span> <span class="n">E</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">!=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">add</span> <span class="p">{</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">}</span> <span class="n">to</span> <span class="n">MST</span>
-		<span class="k">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
-	<span class="p">}</span>
+    <span class="k">if</span> <span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">!=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">add</span> <span class="p">{</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">}</span> <span class="n">to</span> <span class="n">MST</span>
+        <span class="k">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">return</span> <span class="n">MST</span></code></pre></figure>
 
 <p><br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>We initialize the following forests <script type="math/tex">\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}</script>. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: <script type="math/tex">\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}</script>
+<p>In the above graph, we initialize the following forests <script type="math/tex">\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}</script>. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: <script type="math/tex">\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}</script>
 <br /><br />
 <i>Iteration 0</i><br />
-The first edge to consider is either <script type="math/tex">\{a,b\}</script>. Since <script type="math/tex">a</script> and <script type="math/tex">b</script> are not in the same set, we add the edge to the MST and combine both <script type="math/tex">a</script> and <script type="math/tex">b</script>.</p>
+The first edge to consider is <script type="math/tex">\{a,b\}</script>. Since <script type="math/tex">a</script> and <script type="math/tex">b</script> are not in the same set, we add the edge to the MST and combine both <script type="math/tex">a</script> and <script type="math/tex">b</script>.</p>
 
 <p><i>Iteration 1</i><br />
 We next consider  <script type="math/tex">\{b,f\}</script>. Since <script type="math/tex">b</script> and <script type="math/tex">f</script> are not in the same set, we add the edge to the MST and combine both <script type="math/tex">b</script> and <script type="math/tex">f</script>. So now we have the following forests: <script type="math/tex">\{a, b, f\}, \{c\}, \{d\}, \{e\}</script></p>
 
 <p><i>Iteration 2</i><br />
-We next consider  <script type="math/tex">\{a,f\}</script>. Since <script type="math/tex">a</script> and <script type="math/tex">f</script> are in the same set, we don’t combine the nodes and don’t add the edge to the MST.</p>
+We next consider  <script type="math/tex">\{a,f\}</script>. Since <script type="math/tex">a</script> and <script type="math/tex">f</script> are in the same set, we skip this edge.</p>
+
+<p><i>Iteration 3</i><br />
+We next consider <script type="math/tex">\{e,d\}</script>. Since <script type="math/tex">e</script> and <script type="math/tex">d</script> are not in the same set, we merge these two forests into one. We now have the following forests: <script type="math/tex">\{a, b, f\}, \{c\}, \{d, e\}</script></p>
 
 <p>At the end of the algorithm, the minimum spanning tree is the following tree:</p>
 <svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -173,10 +179,8 @@ We next consider  <script type="math/tex">\{a,f\}</script>. Since <script type="
 </svg>
 <p><br />
 <!----------------------------------------------------------------------------------------></p>
-<h4><b>Proof of Correctness</b></h4>
-<p>This first section is exactly copied from Prim’s so I should probably just link it, instead of copy/pasting.
-<br /><br />
-Why does this algorithm find a minimum spanning tree? Before we can answer that, let’s define some terms and prove some lemma that will be useful in the main proof. Let <script type="math/tex">G=(V,E)</script> be the graph below and let <script type="math/tex">S</script> be the set of yellow edges in <script type="math/tex">G</script>.</p>
+<h4><b>Proof of Correctness (Preliminarily)</b></h4>
+<p>Why does this algorithm find a minimum spanning tree? Before we can answer that, let’s define some terms and prove a lemma that will be useful in the main proof. Let <script type="math/tex">G=(V,E)</script> be the graph below and let <script type="math/tex">S</script> be the set of yellow edges in <script type="math/tex">G</script>.</p>
 
 <p><img src="http://localhost:4000/assets/cut.png" alt="my photo" /></p>
 
@@ -197,7 +201,10 @@ Why does this algorithm find a minimum spanning tree? Before we can answer that,
 <p><i>Proof:</i> Let <script type="math/tex">S</script> be a set of edges and and consider a cut that respects <script type="math/tex">S</script>. Let <script type="math/tex">T</script> be an MST containing <script type="math/tex">S</script>. Let <script type="math/tex">\{u,v\}</script> be a light edge. There are two cases. <br />
 Case 1: <script type="math/tex">\{u,v\}</script> is in <script type="math/tex">T</script>, then we’re done. <br />
 Case 2: <script type="math/tex">\{u,v\}</script> is not in <script type="math/tex">T</script>. By the definition of MST, adding <script type="math/tex">\{u,v\}</script> will create a cycle in <script type="math/tex">T</script>. Since the sets resulting from the cut must be non-empty. This means that we must have an edge that crosses the cut in <script type="math/tex">T</script>. Let that edge be <script type="math/tex">\{x,y\}</script>. Consider replacing <script type="math/tex">\{u,v\}</script> with <script type="math/tex">\{x,y\}</script> to produce the new tree <script type="math/tex">T'</script>. <script type="math/tex">T</script> is still an MST since we deleted <script type="math/tex">\{x,y\}</script>. <script type="math/tex">T'</script> has also a cost of at most the cost of <script type="math/tex">T</script> since {u,v} is a light edge. Therefore, <script type="math/tex">T'</script> is an MST which includes both <script type="math/tex">\{u,v\}</script> and <script type="math/tex">S</script> which is what we wanted to show. <script type="math/tex">\blacksquare</script>
-<br /></p>
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Kruska's Proof of Correctness</b></h4>
 
 <table>
   <tbody>
@@ -231,12 +238,16 @@ Therefore, the total time is just <script type="math/tex">O(m\log(n))</script> w
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Implementation</b></h4>
-<p>https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/minimum-spanning-trees/kruskal
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/minimum-spanning-trees/kruskal.cpp">Source Code</a>
+<br />
+<br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br />
-<br /></p>
+<ul>
+  <li>CS161 @ Stanford (With Mary Wootters)</li>
+  <li>CLRS
+<br /></li>
+</ul>
 
 
   </div><div id="disqus_thread"></div>

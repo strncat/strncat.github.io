@@ -63,54 +63,34 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/trees/binary-search-trees/binary-search-tree.png" width="100%" />
-A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property states that given a node <script type="math/tex">x</script> in the tree, every node in the left subtree has a key less than or equal to <script type="math/tex">x</script>’s key and every node in the right subtree has a key greater than or equal to <script type="math/tex">x</script> (CLRS).
+We previously discussed how binary search trees are great and how the binary search tree property allows us to do tree operations such as insert and delete  in just <script type="math/tex">O(h)</script> time. However, if the tree height is of order <script type="math/tex">O(n)</script>, then we end up with a worse data structure than just a linked list or a sorted list. What we need is a guarantee that the height is <script type="math/tex">O(\log(n))</script>. How can we achieve this?
 <br /><br />
-The binary search tree property is really great at allowing us to search the tree for a key in just <script type="math/tex">O(h)</script> time since we can eliminate a branch at every single step. In a regular binary tree, we would otherwise have to search all nodes in the tree. This is really great especially when the tree is balanced. If the tree is balanced, the height will only be <script type="math/tex">O(\log(n))</script> where is <script type="math/tex">n</script> is the number of nodes. This is a much better time than <script type="math/tex">O(n)</script>. 
+A red-black tree is binary search tree that is balanced. By only adding one extra bit of storage to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be $$O(\log(n))$. 
 <br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>In Order Walk</b></h4>
-<p>Another great property of binary search trees is that an in order walk of the tree results in getting all the keys sorted. 
-<!----------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">in_order_walk</span><span class="p">(</span><span class="n">tree</span> <span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// O(n)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
-    <span class="n">in_order_walk</span><span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-    <span class="n">print</span> <span class="n">key</span>
-    <span class="n">in_order_walk</span><span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
-<span class="p">}</span></code></pre></figure>
-
-<!---------------------->
-<p>Proving that it takes <script type="math/tex">O(n)</script> time to perform the in order walk is such a great way to practice the substitution method. (TODO: add proof)
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Search</b></h4>
-<p>Similar to the in-order walk, we can simply perform a search by using the following
-<!----------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">search</span><span class="p">(</span><span class="n">tree</span> <span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// O(n)</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">!=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<!---------------------->
-<p>We can perform a tree search, finding the minimum, maximum, successor and predecessor in time <script type="math/tex">O(h)</script> because of the binary search tree property. 
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Minimum, Maximum, Predecessor and Successor</b></h4>
-<p>Similarly we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node <script type="math/tex">x</script>, we have two cases:</p>
+<h4><b>Red-black tree specifications</b></h4>
+<p>A red-black tree must satisfy the following properties:</p>
 <ul>
-  <li>If <script type="math/tex">x</script> has a right subtree, then the most left element (tree minimum) of the right subtree is the successor.</li>
-  <li>If <script type="math/tex">x</script> doesn’t have a right subtree, then the next element would be the first ancestor such that <script type="math/tex">x</script> is a left child of it. 
-<!----------------------></li>
+  <li>Every node is either red or black.</li>
+  <li>The root is black.</li>
+  <li>Every leaf node is black.</li>
+  <li>If a node is red, then its children are black.</li>
+  <li>The number of black nodes must be the same across all simple paths from a node to all its leaf nodes.
+Usually all leaf nodes are represented with the same special black node, like the figure below. This representation saves a lot of memory. 
+<!------------------------------------------------------------------------------------></li>
 </ul>
+<h4><b>Why O(\log(n))?</b></h4>
+<p>The most important question is why the above restrictions suddenly means that red-black tree are balanced? First, we know that the number of black nodes across all simple paths from the root to any leaf must be the same.</p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">successor</span><span class="p">(</span><span class="n">tree</span> <span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// O(n)</span>
+<p>The <b>black height</b> of a node, <script type="math/tex">bh(x)</script>. This notion exists since we know from the previous rules that the number of black nodes</p>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Rotations</b></h4>
+<p>Operations on red-black trees such as insert and delete modify the tree such that we might violate the red-black tree properties. To restore these properties we perform an essential operation called a rotation. A rotation could be a left or a right roation. 
+<!----------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">left_rotate</span><span class="p">(</span><span class="n">tree</span> <span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span>  <span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">tree_minimum</span><span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
     <span class="p">};</span>

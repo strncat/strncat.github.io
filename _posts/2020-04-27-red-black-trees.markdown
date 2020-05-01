@@ -6,52 +6,32 @@ categories: jekyll update
 mathjax: true
 ---
 <img src="{{ site.url }}/assets/trees/binary-search-trees/binary-search-tree.png" width="100%">
-A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property states that given a node $$x$$ in the tree, every node in the left subtree has a key less than or equal to $$x$$'s key and every node in the right subtree has a key greater than or equal to $$x$$ (CLRS).
+We previously discussed how binary search trees are great and how the binary search tree property allows us to do tree operations such as insert and delete  in just $$O(h)$$ time. However, if the tree height is of order $$O(n)$$, then we end up with a worse data structure than just a linked list or a sorted list. What we need is a guarantee that the height is $$O(\log(n))$$. How can we achieve this?
 <br><br>
-The binary search tree property is really great at allowing us to search the tree for a key in just $$O(h)$$ time since we can eliminate a branch at every single step. In a regular binary tree, we would otherwise have to search all nodes in the tree. This is really great especially when the tree is balanced. If the tree is balanced, the height will only be $$O(\log(n))$$ where is $$n$$ is the number of nodes. This is a much better time than $$O(n)$$. 
+A red-black tree is binary search tree that is balanced. By only adding one extra bit of storage to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be $$O(\log(n))$. 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>In Order Walk</b></h4>
-Another great property of binary search trees is that an in order walk of the tree results in getting all the keys sorted. 
-<!---------------------->
-{% highlight c++ %}
-void in_order_walk(tree *t) { // O(n)
-    if (t == NULL) { return; }
-    in_order_walk(t->left);
-    print key
-    in_order_walk(t->right);
-}
-{% endhighlight %}
-<!---------------------->
-Proving that it takes $$O(n)$$ time to perform the in order walk is such a great way to practice the substitution method. (TODO: add proof)
+<h4><b>Red-black tree specifications</b></h4>
+A red-black tree must satisfy the following properties:
+- Every node is either red or black.
+- The root is black.
+- Every leaf node is black.
+- If a node is red, then its children are black.
+- The number of black nodes must be the same across all simple paths from a node to all its leaf nodes.
+Usually all leaf nodes are represented with the same special black node, like the figure below. This representation saves a lot of memory. 
+<!------------------------------------------------------------------------------------>
+<h4><b>Why O(\log(n))?</b></h4>
+The most important question is why the above restrictions suddenly means that red-black tree are balanced? First, we know that the number of black nodes across all simple paths from the root to any leaf must be the same. 
+
+The <b>black height</b> of a node, $$bh(x)$$. This notion exists since we know from the previous rules that the number of black nodes 
+
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Search</b></h4>
-Similar to the in-order walk, we can simply perform a search by using the following
+<h4><b>Rotations</b></h4>
+Operations on red-black trees such as insert and delete modify the tree such that we might violate the red-black tree properties. To restore these properties we perform an essential operation called a rotation. A rotation could be a left or a right roation. 
 <!---------------------->
 {% highlight c++ %}
-void search(tree *t, key) { // O(n)
-    while (t != NULL && k != t->key) {
-        if (key < t->key) {
-            t = t->left;
-        } else {
-            t = t->right;
-        }
-    }
-    return t;
-}
-{% endhighlight %}
-<!---------------------->
-We can perform a tree search, finding the minimum, maximum, successor and predecessor in time $$O(h)$$ because of the binary search tree property. 
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Minimum, Maximum, Predecessor and Successor</b></h4>
-Similarly we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node $$x$$, we have two cases:
-- If $$x$$ has a right subtree, then the most left element (tree minimum) of the right subtree is the successor. 
-- If $$x$$ doesn't have a right subtree, then the next element would be the first ancestor such that $$x$$ is a left child of it. 
-<!---------------------->
-{% highlight c++ %}
-void successor(tree *t) { // O(n)
+void left_rotate(tree *t) {
     if  (t->right != NULL) {
         return tree_minimum(t->right);
     };

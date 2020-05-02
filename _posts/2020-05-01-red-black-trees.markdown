@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Red Black Trees"
-date:   2020-04-27 12:01:36 -0700
+date:   2020-05-01 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

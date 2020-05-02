@@ -1,4 +1,152 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-02T11:10:26-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Binary Search Trees</title><link href="http://localhost:4000/jekyll/update/2020/04/28/binary-search-trees.html" rel="alternate" type="text/html" title="Binary Search Trees" /><published>2020-04-28T12:01:36-07:00</published><updated>2020-04-28T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/28/binary-search-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/28/binary-search-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/binary-search-trees/binary-search-tree.png&quot; width=&quot;100%&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-02T15:07:44-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Eulerian Paths and Tours</title><link href="http://localhost:4000/jekyll/update/2020/05/02/eulerian-paths-tours.html" rel="alternate" type="text/html" title="Eulerian Paths and Tours" /><published>2020-05-02T12:01:36-07:00</published><updated>2020-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/02/eulerian-paths-tours</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/02/eulerian-paths-tours.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
+We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just &lt;script type=&quot;math/tex&quot;&gt;O(h)&lt;/script&gt; time. However, if the tree height is of order &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;, then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. How can we achieve this?
+&lt;br /&gt;&lt;br /&gt;
+A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Red-black tree specifications&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;A red-black tree must satisfy the following properties:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Every node is either red or black.&lt;/li&gt;
+  &lt;li&gt;The root is black.&lt;/li&gt;
+  &lt;li&gt;Every leaf node is black.&lt;/li&gt;
+  &lt;li&gt;If a node is red, then its children are black.&lt;/li&gt;
+  &lt;li&gt;The number of black nodes must be the same across all simple paths from any node to a leaf node.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;b&gt;Why are red-black trees balanced?&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra “red” nodes but not a lot in order to keep the height at &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
+&lt;br /&gt;&lt;br /&gt;
+To show a formal proof, we first need to define the black height of a node. Let &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; be the &lt;b&gt;black height&lt;/b&gt; of a node. &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; is number of black nodes from a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; to a leaf but &lt;i&gt;not including &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; itself&lt;/i&gt;. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, we want to prove somehow that we have “enough” internal nodes at every node such that the height can’t exceed &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. Formally, we’ll prove&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Given a red-black tree $t$ and a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, The subtree rooted at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;  contains at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)}-1&lt;/script&gt; internal nodes (including x itself)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Looking at the figure below, we see in the first figure we have &lt;script type=&quot;math/tex&quot;&gt;bh(root)=3&lt;/script&gt; and we have at least &lt;script type=&quot;math/tex&quot;&gt;2^{3}-1=7&lt;/script&gt; nodes. In the second figure, we have &lt;script type=&quot;math/tex&quot;&gt;bh(root)=2&lt;/script&gt; and at least &lt;script type=&quot;math/tex&quot;&gt;2^2-1=3&lt;/script&gt; internal nodes. Similarly, in the third figure, we have &lt;script type=&quot;math/tex&quot;&gt;2^2-1&lt;/script&gt; internal nodes.
+&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/internal-nodes.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Proof: By Induction on the height of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. For the base case, consider when the height is 0, then we know that &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is NIL. Therefore, &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)} - 1 = 1 - 1 = 0&lt;/script&gt;. For the inductive step, suppose &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has some positive height &amp;gt; 0 and has two internal children (why 2?). Each child must have either &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; black height depending on its color. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was red, then both children must be black and the black height of both children is  &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt;. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was black, then both its children must have black height &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt;. Since the height of both children is less than &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, then we can apply the inductive hypothesis and conclude that each child must have at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)-1}-1&lt;/script&gt; internal nodes. Therefore, &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has at least &lt;script type=&quot;math/tex&quot;&gt;1 + 2^{bh(x)-1} - 1 + 2^{bh(x)-1} - 1 = 2^{bh(x)} -1&lt;/script&gt; internal nodes which completes the proof. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; 
+&lt;br /&gt;
+&lt;br /&gt;
+To prove that the height of the tree is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, . The next thing we want to use is that we know that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;bh(root) \geq h/2&lt;/script&gt;. Using what we proved earlier, we see that&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+n &amp;amp;\geq 2^{bh(root))} - 1 \text{ (using the earlier lemma we proved) }\\
+n &amp;amp;\geq 2^{h/2} - 1  \text { (using the fact that red nodes must have black children) }\\ 
+\log(n-1) &amp;amp;\geq h/2 \\
+h/2 &amp;amp;\leq \log(n-1) \\
+h &amp;amp;\leq 2\log(n-1). \blacksquare
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;h4&gt;&lt;b&gt;Rotations&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Operations on red-black trees such as insert and delete modify the tree such that we might violate the red-black tree properties. To restore these properties we perform an essential operation called a rotation. Rotations maintain the binary search property. More on rotations are 
+&lt;a href=&quot;https://strncat.github.io/jekyll/update/2019/05/02/binary-tree-rotation.html&quot;&gt;here&lt;/a&gt;.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Insert&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;TODO
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Delete&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;TODO
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Implementation&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp&quot;&gt;Source Code&lt;/a&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just time. However, if the tree height is of order , then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is . How can we achieve this? A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be . Red-black tree specifications A red-black tree must satisfy the following properties: Every node is either red or black. The root is black. Every leaf node is black. If a node is red, then its children are black. The number of black nodes must be the same across all simple paths from any node to a leaf node. Why are red-black trees balanced? Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra “red” nodes but not a lot in order to keep the height at . To show a formal proof, we first need to define the black height of a node. Let be the black height of a node. is number of black nodes from a node to a leaf but not including itself. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most , we want to prove somehow that we have “enough” internal nodes at every node such that the height can’t exceed . Formally, we’ll prove</summary></entry><entry><title type="html">Red Black Trees</title><link href="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html" rel="alternate" type="text/html" title="Red Black Trees" /><published>2020-05-01T12:01:36-07:00</published><updated>2020-05-01T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/01/red-black-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
+We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just &lt;script type=&quot;math/tex&quot;&gt;O(h)&lt;/script&gt; time. However, if the tree height is of order &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;, then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. How can we achieve this?
+&lt;br /&gt;&lt;br /&gt;
+A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Red-black tree specifications&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;A red-black tree must satisfy the following properties:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Every node is either red or black.&lt;/li&gt;
+  &lt;li&gt;The root is black.&lt;/li&gt;
+  &lt;li&gt;Every leaf node is black.&lt;/li&gt;
+  &lt;li&gt;If a node is red, then its children are black.&lt;/li&gt;
+  &lt;li&gt;The number of black nodes must be the same across all simple paths from any node to a leaf node.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;b&gt;Why are red-black trees balanced?&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra “red” nodes but not a lot in order to keep the height at &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
+&lt;br /&gt;&lt;br /&gt;
+To show a formal proof, we first need to define the black height of a node. Let &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; be the &lt;b&gt;black height&lt;/b&gt; of a node. &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; is number of black nodes from a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; to a leaf but &lt;i&gt;not including &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; itself&lt;/i&gt;. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, we want to prove somehow that we have “enough” internal nodes at every node such that the height can’t exceed &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. Formally, we’ll prove&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Given a red-black tree $t$ and a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, The subtree rooted at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;  contains at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)}-1&lt;/script&gt; internal nodes (including x itself)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Looking at the figure below, we see in the first figure we have &lt;script type=&quot;math/tex&quot;&gt;bh(root)=3&lt;/script&gt; and we have at least &lt;script type=&quot;math/tex&quot;&gt;2^{3}-1=7&lt;/script&gt; nodes. In the second figure, we have &lt;script type=&quot;math/tex&quot;&gt;bh(root)=2&lt;/script&gt; and at least &lt;script type=&quot;math/tex&quot;&gt;2^2-1=3&lt;/script&gt; internal nodes. Similarly, in the third figure, we have &lt;script type=&quot;math/tex&quot;&gt;2^2-1&lt;/script&gt; internal nodes.
+&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/internal-nodes.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Proof: By Induction on the height of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. For the base case, consider when the height is 0, then we know that &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is NIL. Therefore, &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)} - 1 = 1 - 1 = 0&lt;/script&gt;. For the inductive step, suppose &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has some positive height &amp;gt; 0 and has two internal children (why 2?). Each child must have either &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; black height depending on its color. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was red, then both children must be black and the black height of both children is  &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt;. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was black, then both its children must have black height &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt;. Since the height of both children is less than &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, then we can apply the inductive hypothesis and conclude that each child must have at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)-1}-1&lt;/script&gt; internal nodes. Therefore, &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has at least &lt;script type=&quot;math/tex&quot;&gt;1 + 2^{bh(x)-1} - 1 + 2^{bh(x)-1} - 1 = 2^{bh(x)} -1&lt;/script&gt; internal nodes which completes the proof. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; 
+&lt;br /&gt;
+&lt;br /&gt;
+To prove that the height of the tree is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, . The next thing we want to use is that we know that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;bh(root) \geq h/2&lt;/script&gt;. Using what we proved earlier, we see that&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+n &amp;amp;\geq 2^{bh(root))} - 1 \text{ (using the earlier lemma we proved) }\\
+n &amp;amp;\geq 2^{h/2} - 1  \text { (using the fact that red nodes must have black children) }\\ 
+\log(n-1) &amp;amp;\geq h/2 \\
+h/2 &amp;amp;\leq \log(n-1) \\
+h &amp;amp;\leq 2\log(n-1). \blacksquare
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;h4&gt;&lt;b&gt;Rotations&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Operations on red-black trees such as insert and delete modify the tree such that we might violate the red-black tree properties. To restore these properties we perform an essential operation called a rotation. Rotations maintain the binary search property. More on rotations are 
+&lt;a href=&quot;https://strncat.github.io/jekyll/update/2019/05/02/binary-tree-rotation.html&quot;&gt;here&lt;/a&gt;.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Insert&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;TODO
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Delete&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;TODO
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Implementation&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp&quot;&gt;Source Code&lt;/a&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just time. However, if the tree height is of order , then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is . How can we achieve this? A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be . Red-black tree specifications A red-black tree must satisfy the following properties: Every node is either red or black. The root is black. Every leaf node is black. If a node is red, then its children are black. The number of black nodes must be the same across all simple paths from any node to a leaf node. Why are red-black trees balanced? Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra “red” nodes but not a lot in order to keep the height at . To show a formal proof, we first need to define the black height of a node. Let be the black height of a node. is number of black nodes from a node to a leaf but not including itself. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most , we want to prove somehow that we have “enough” internal nodes at every node such that the height can’t exceed . Formally, we’ll prove</summary></entry><entry><title type="html">Binary Search Trees</title><link href="http://localhost:4000/jekyll/update/2020/04/28/binary-search-trees.html" rel="alternate" type="text/html" title="Binary Search Trees" /><published>2020-04-28T12:01:36-07:00</published><updated>2020-04-28T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/28/binary-search-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/28/binary-search-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/binary-search-trees/binary-search-tree.png&quot; width=&quot;100%&quot; /&gt;
 A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The &lt;b&gt;binary-search-tree property&lt;/b&gt; states that given a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in the tree, every node in the left subtree has a key less than &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;’s key and every node in the right subtree has a key greater than &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;’s key.
 &lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
@@ -198,81 +346,7 @@ Finally putting everything together in one place:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/binary-search-tree.cpp&quot;&gt;Source Code&lt;/a&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property states that given a node in the tree, every node in the left subtree has a key less than ’s key and every node in the right subtree has a key greater than ’s key. Motivation But why invent another data structure? Let’s take a look at sorted arrays. We can search a sorted array for keys in just time with binary search. However, inserting and deleting elements takes time. Similarly, while inserting elements in a linked list takes only time, searching a linked list takes time in the worst case. Can we do better with binary search trees? yes! The binary search tree property is really great at allowing us to insert/search and delete in just time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be where is is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists! In Order Walk Another great property of binary search trees is that an in order walk of the tree results in getting all the keys sorted. void in_order_walk(tree *t) { if (t == NULL) { return; } in_order_walk(t-&amp;gt;left); print key in_order_walk(t-&amp;gt;right); } Proving that it takes time to perform the in order walk is such a great way to practice the substitution method. (TODO: add proof) Search Similar to the in-order walk, we can simply perform a search by using the following tree* search(tree *t, key) { while (t != NULL &amp;amp;&amp;amp; k != t-&amp;gt;key) { if (key &amp;lt; t-&amp;gt;key) { t = t-&amp;gt;left; } else { t = t-&amp;gt;right; } } return t; } Minimum, Maximum, Predecessor and Successor Similarly, we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node , we have two cases: If has a right subtree, then the most left element (tree minimum) of the right subtree is the successor. If doesn’t have a right subtree, then the next element would be the first ancestor such that is a left child of it. tree* successor(tree *t) { if (t-&amp;gt;right != NULL) { return tree_minimum(t-&amp;gt;right); }; // otherwise, find the closest parent where t is a left child tree *p = t-&amp;gt;parent; while (p != NULL &amp;amp;&amp;amp; p-&amp;gt;right == t) { t = p; p = t-&amp;gt;parent; } return p; } Insert Inserting a node into a binary search tree is pretty simple. We need to follow the following steps: Create a new node and assign both the left and right pointers to NULL. Similar to search, descend in the tree with pointer based on the key value, while keeping a trailing pointer to its parent. Once we hit NULL, we know that the will be the parent of our node. The figure below illustrates the process: void insert(tree **t, key) { // create a new node x p = NULL; current = *t; while (current != NULL) { p = current; if (x-&amp;gt;key &amp;lt; current-&amp;gt;key) { current = current-&amp;gt;left; } else { current = current-&amp;gt;right; } } x.parent = p; if (p == NULL) { // x is now the root! *t = x; } else if (p-&amp;gt;key &amp;gt; x-&amp;gt;key) { p-&amp;gt;left = x; } else { p-&amp;gt;right = x; } } Delete Before discussing delete, we’ll present a helper function that we will use in deleting a node in a binary search three. transplant replaces a subtree rooted at with another subtree rooted at , illustrated below, // replace subtree u with subtree v void transplant(tree **t, tree *u, tree *v) { if (u.parent == NULL) { // u is the root *t = v; } else if (u == u.parent.left) { // u is a left child u.parent.left = v; } else if (u == u.parent.right) { u.parent.right = v; } if (v != NULL) { // fix v's parent pointer v.parent = u.parent } }</summary></entry><entry><title type="html">Red Black Trees</title><link href="http://localhost:4000/jekyll/update/2020/04/27/red-black-trees.html" rel="alternate" type="text/html" title="Red Black Trees" /><published>2020-04-27T12:01:36-07:00</published><updated>2020-04-27T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/27/red-black-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/27/red-black-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
-We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just &lt;script type=&quot;math/tex&quot;&gt;O(h)&lt;/script&gt; time. However, if the tree height is of order &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;, then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. How can we achieve this?
-&lt;br /&gt;&lt;br /&gt;
-A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Red-black tree specifications&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;A red-black tree must satisfy the following properties:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Every node is either red or black.&lt;/li&gt;
-  &lt;li&gt;The root is black.&lt;/li&gt;
-  &lt;li&gt;Every leaf node is black.&lt;/li&gt;
-  &lt;li&gt;If a node is red, then its children are black.&lt;/li&gt;
-  &lt;li&gt;The number of black nodes must be the same across all simple paths from any node to a leaf node.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;&lt;b&gt;Why are red-black trees balanced?&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra “red” nodes but not a lot in order to keep the height at &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
-&lt;br /&gt;&lt;br /&gt;
-To show a formal proof, we first need to define the black height of a node. Let &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; be the &lt;b&gt;black height&lt;/b&gt; of a node. &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; is number of black nodes from a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; to a leaf but &lt;i&gt;not including &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; itself&lt;/i&gt;. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, we want to prove somehow that we have “enough” internal nodes at every node such that the height can’t exceed &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. Formally, we’ll prove&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Given a red-black tree $t$ and a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, The subtree rooted at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;  contains at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)}-1&lt;/script&gt; internal nodes (including x itself)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Looking at the figure below, we see in the first figure we have &lt;script type=&quot;math/tex&quot;&gt;bh(root)=3&lt;/script&gt; and we have at least &lt;script type=&quot;math/tex&quot;&gt;2^{3}-1=7&lt;/script&gt; nodes. In the second figure, we have &lt;script type=&quot;math/tex&quot;&gt;bh(root)=2&lt;/script&gt; and at least &lt;script type=&quot;math/tex&quot;&gt;2^2-1=3&lt;/script&gt; internal nodes. Similarly, in the third figure, we have &lt;script type=&quot;math/tex&quot;&gt;2^2-1&lt;/script&gt; internal nodes.
-&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/internal-nodes.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Proof: By Induction on the height of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. For the base case, consider when the height is 0, then we know that &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is NIL. Therefore, &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)} - 1 = 1 - 1 = 0&lt;/script&gt;. For the inductive step, suppose &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has some positive height &amp;gt; 0 and has two internal children (why 2?). Each child must have either &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; black height depending on its color. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was red, then both children must be black and the black height of both children is  &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt;. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was black, then both its children must have black height &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt;. Since the height of both children is less than &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, then we can apply the inductive hypothesis and conclude that each child must have at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)-1}-1&lt;/script&gt; internal nodes. Therefore, &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has at least &lt;script type=&quot;math/tex&quot;&gt;1 + 2^{bh(x)-1} - 1 + 2^{bh(x)-1} - 1 = 2^{bh(x)} -1&lt;/script&gt; internal nodes which completes the proof. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; 
-&lt;br /&gt;
-&lt;br /&gt;
-To prove that the height of the tree is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, . The next thing we want to use is that we know that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;bh(root) \geq h/2&lt;/script&gt;. Using what we proved earlier, we see that&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-n &amp;amp;\geq 2^{bh(root))} - 1 \text{ (using the earlier lemma we proved) }\\
-n &amp;amp;\geq 2^{h/2} - 1  \text { (using the fact that red nodes must have black children) }\\ 
-\log(n-1) &amp;amp;\geq h/2 \\
-h/2 &amp;amp;\leq \log(n-1) \\
-h &amp;amp;\leq 2\log(n-1). \blacksquare
-\end{align*}
-$$
-&lt;/div&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;h4&gt;&lt;b&gt;Rotations&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Operations on red-black trees such as insert and delete modify the tree such that we might violate the red-black tree properties. To restore these properties we perform an essential operation called a rotation. Rotations maintain the binary search property. More on rotations are 
-&lt;a href=&quot;https://strncat.github.io/jekyll/update/2019/05/02/binary-tree-rotation.html&quot;&gt;here&lt;/a&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Insert&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;TODO
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Delete&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;TODO
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Implementation&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp&quot;&gt;Source Code&lt;/a&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just time. However, if the tree height is of order , then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is . How can we achieve this? A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be . Red-black tree specifications A red-black tree must satisfy the following properties: Every node is either red or black. The root is black. Every leaf node is black. If a node is red, then its children are black. The number of black nodes must be the same across all simple paths from any node to a leaf node. Why are red-black trees balanced? Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra “red” nodes but not a lot in order to keep the height at . To show a formal proof, we first need to define the black height of a node. Let be the black height of a node. is number of black nodes from a node to a leaf but not including itself. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most , we want to prove somehow that we have “enough” internal nodes at every node such that the height can’t exceed . Formally, we’ll prove</summary></entry><entry><title type="html">Floyd-Warshall’s Shortest Paths</title><link href="http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall.html" rel="alternate" type="text/html" title="Floyd-Warshall's Shortest Paths" /><published>2020-04-24T07:01:36-07:00</published><updated>2020-04-24T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall.html">&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a directed weighted graph with &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$.
+&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property states that given a node in the tree, every node in the left subtree has a key less than ’s key and every node in the right subtree has a key greater than ’s key. Motivation But why invent another data structure? Let’s take a look at sorted arrays. We can search a sorted array for keys in just time with binary search. However, inserting and deleting elements takes time. Similarly, while inserting elements in a linked list takes only time, searching a linked list takes time in the worst case. Can we do better with binary search trees? yes! The binary search tree property is really great at allowing us to insert/search and delete in just time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be where is is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists! In Order Walk Another great property of binary search trees is that an in order walk of the tree results in getting all the keys sorted. void in_order_walk(tree *t) { if (t == NULL) { return; } in_order_walk(t-&amp;gt;left); print key in_order_walk(t-&amp;gt;right); } Proving that it takes time to perform the in order walk is such a great way to practice the substitution method. (TODO: add proof) Search Similar to the in-order walk, we can simply perform a search by using the following tree* search(tree *t, key) { while (t != NULL &amp;amp;&amp;amp; k != t-&amp;gt;key) { if (key &amp;lt; t-&amp;gt;key) { t = t-&amp;gt;left; } else { t = t-&amp;gt;right; } } return t; } Minimum, Maximum, Predecessor and Successor Similarly, we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node , we have two cases: If has a right subtree, then the most left element (tree minimum) of the right subtree is the successor. If doesn’t have a right subtree, then the next element would be the first ancestor such that is a left child of it. tree* successor(tree *t) { if (t-&amp;gt;right != NULL) { return tree_minimum(t-&amp;gt;right); }; // otherwise, find the closest parent where t is a left child tree *p = t-&amp;gt;parent; while (p != NULL &amp;amp;&amp;amp; p-&amp;gt;right == t) { t = p; p = t-&amp;gt;parent; } return p; } Insert Inserting a node into a binary search tree is pretty simple. We need to follow the following steps: Create a new node and assign both the left and right pointers to NULL. Similar to search, descend in the tree with pointer based on the key value, while keeping a trailing pointer to its parent. Once we hit NULL, we know that the will be the parent of our node. The figure below illustrates the process: void insert(tree **t, key) { // create a new node x p = NULL; current = *t; while (current != NULL) { p = current; if (x-&amp;gt;key &amp;lt; current-&amp;gt;key) { current = current-&amp;gt;left; } else { current = current-&amp;gt;right; } } x.parent = p; if (p == NULL) { // x is now the root! *t = x; } else if (p-&amp;gt;key &amp;gt; x-&amp;gt;key) { p-&amp;gt;left = x; } else { p-&amp;gt;right = x; } } Delete Before discussing delete, we’ll present a helper function that we will use in deleting a node in a binary search three. transplant replaces a subtree rooted at with another subtree rooted at , illustrated below, // replace subtree u with subtree v void transplant(tree **t, tree *u, tree *v) { if (u.parent == NULL) { // u is the root *t = v; } else if (u == u.parent.left) { // u is a left child u.parent.left = v; } else if (u == u.parent.right) { u.parent.right = v; } if (v != NULL) { // fix v's parent pointer v.parent = u.parent } }</summary></entry><entry><title type="html">Floyd-Warshall’s Shortest Paths</title><link href="http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall.html" rel="alternate" type="text/html" title="Floyd-Warshall's Shortest Paths" /><published>2020-04-24T07:01:36-07:00</published><updated>2020-04-24T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall.html">&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a directed weighted graph with &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$.
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;Optimal Substructure&lt;/b&gt;&lt;/h4&gt;
 &lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;V = \{1,2,3,...,n\}&lt;/script&gt; and consider a subset &lt;script type=&quot;math/tex&quot;&gt;S = \{1,2,3,...,k\}&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;S \subseteq V&lt;/script&gt; for some &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; be two vertices in &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt;. Now, consider all the paths from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; whose intermediate vertices are in &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; be a shortest path among the paths from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that are drawn from &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. 
@@ -1178,230 +1252,4 @@ $$
   &lt;li&gt;Algorithm Design (BEST BOOK)
 &lt;br /&gt;
 &lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><summary type="html">Let be an undirected graph with vertices and edges. A cut in is a partition of into two non-empty sets of vertices and . The size of the cut is the number of edges with one end point in and another in . A global minimum cut is a cut of minimum size. Karger's Algorithm Karger’s algorithm starts with picking an edge in uniformly at random. It then contracts this edge by creating a new node that combines both and . All the edges in with an end point equal to either and now point to instead. Also, any edge between and is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in . Karger's Algorithm Pseudocode</summary></entry><entry><title type="html">Discrete Random Variables</title><link href="http://localhost:4000/jekyll/update/2019/08/25/discrete-random-variables.html" rel="alternate" type="text/html" title="Discrete Random Variables" /><published>2019-08-25T07:01:36-07:00</published><updated>2019-08-25T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/25/discrete-random-variables</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/25/discrete-random-variables.html">&lt;h4&gt;&lt;b&gt;Indicator/Bernoulli Random Variable&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;If we have an experiment that results in a boolean answer (yes/no) or (success/failure) with probability &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; for success and &lt;script type=&quot;math/tex&quot;&gt;1-p&lt;/script&gt; for failure then we can use an indicator or a boolean random variable to represent its outcomes. We define the following:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-X = \Big\{ \begin{array}{@{}lr@{}}
-        1 \quad \text{If even A occurs } \\
-        0 \quad \text{otherwise} \\
-        \end{array}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Therefore, &lt;script type=&quot;math/tex&quot;&gt;R_X = \{0,1\}&lt;/script&gt;. Let’s look at the PMF of &lt;script type=&quot;math/tex&quot;&gt;I&lt;/script&gt;. Remember that the PMF of a random variable is just the probability that this random variable takes on a value &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;R_x&lt;/script&gt;. Therefore,&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p(x) = P(I = x) = \Big\{ \begin{array}{@{}lr@{}}
-        p(1) = P(A) \quad \ \ \quad \text{If } x = 1 \\
-        p(0) = 1 - P(A) \quad \text{if } x = 0 \\
-        \end{array}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;What the expected value of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;? Recall that the expected value of a discrete random variable is defined as&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Therefore,&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X] = p(1)*1 + p(0)*0 = p(1) = P(A)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;We also know the variance&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Var(X) = E[X^2] - (E[X])^2 = 1^2(p) + 0^2(1-p) - p^2 = p - p^2 = p(1-p)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Binomial Random Variable&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;If we on the other hand have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; independent trials of Bernoulli random variables with a probability of success &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, then we can use a binomial random variable to represent the number of successes in &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; trials. For example, if we are flipping a coin with probability of getting heads (success) equals to &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, then we can define a binomial random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to represent the number of heads in &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; trials. 
-&lt;br /&gt;
-&lt;br /&gt;
-Therefore, &lt;script type=&quot;math/tex&quot;&gt;R_X = \{0,1,...,n\}&lt;/script&gt; and the PMF of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p(k) = P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;The expected value, variance and second moment of a binomial random variable:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X] &amp;amp;= np \\
-Var(X) &amp;amp;= np(1-p) \\
-E[X^2] &amp;amp;= n^2p^2 - np^2 + np
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;b&gt;Example 1&lt;/b&gt;&lt;br /&gt;
-Suppose we flip a fair coin &lt;script type=&quot;math/tex&quot;&gt;4&lt;/script&gt; times. What is the probability of seeing exactly two heads.
-&lt;br /&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be the number of heads. &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is a binomial random variable with &lt;script type=&quot;math/tex&quot;&gt;n=4&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;p=0.5&lt;/script&gt;. Therefore,&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p(X=2) = \binom{4}{2}(0.5)^2(0.5)^2 = 0.375
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;b&gt;Example 2&lt;/b&gt;&lt;br /&gt;
-(Book Example). Suppose we have 12 jurors and in order to convict a defendant you need 8 jurors to vote guilty. Suppose the probability of making the right decision by a juror is &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. What is the probability of making a right decision?
-&lt;br /&gt;
-Suppose the defendant is guilty. This means that we need at least 8 jurors making the right the decision. Therefore, the probability is&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-\sum_{i=8}^{12}\binom{12}{i}p^i(1-p)^{12-i}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;However if the defendant is innocent then we need at least 5 jurors making the right decision&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-\sum_{i=5}^{12}\binom{12}{i}p^i(1-p)^{12-i}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;If the defendant is guilty with probability &lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt; then the probability becomes&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-\alpha\sum_{i=8}^{12}\binom{12}{i}p^i(1-p)^{12-i} + (1-\alpha)\sum_{i=5}^{12}\binom{12}{i}p^i(1-p)^{12-i}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Poisson Random Variable&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Consider a duration of time where events occur at an average rate of &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be the number of occurrences in a unit of time. We have &lt;script type=&quot;math/tex&quot;&gt;R_X = \{0,1,...,n\}&lt;/script&gt;. The PMF of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p(k) = P(X = k) = \frac{\lambda^k}{k!}e^{-\lambda}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt; Example 1: &lt;/b&gt;&lt;br /&gt;
-Given a web server, suppose that the server load averages 2 hits per second. Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be the number of hits received in a second. What is &lt;script type=&quot;math/tex&quot;&gt;P(X=5)?&lt;/script&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(X = 5) = \frac{\lambda^5}{5!}e^{-2} \approx 0.0361
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Binomial and Poisson Random Variables&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;A Poisson random variable can also be used to approximate a binomial random variable if &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is very large and &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; is small so that &lt;script type=&quot;math/tex&quot;&gt;np&lt;/script&gt; is moderate. Let &lt;script type=&quot;math/tex&quot;&gt;\lambda = E[X] = np&lt;/script&gt; which is the average number of successes you see in &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; trials. Then we will have&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(X = k) &amp;amp;= \binom{n}{k}p^k(1-p)^{n-k} \\
-&amp;amp;= \frac{n!}{k!(n-k)!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\
-&amp;amp;= \frac{n(n-1)...(n-k+1)}{k!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\
-&amp;amp;= \frac{n(n-1)...(n-k+1)}{n^k}\frac{\lambda^k}{k!} \frac{(1-\lambda/n)^{n}}{(1-\lambda/n)^{k}} \\
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;When &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is very large, the term &lt;script type=&quot;math/tex&quot;&gt;n(n-1)...(n-k+1)/n^k&lt;/script&gt; is approximately 1. The term &lt;script type=&quot;math/tex&quot;&gt;(1-\lambda/n)^k&lt;/script&gt; is also approximately &lt;script type=&quot;math/tex&quot;&gt;1^k = 1&lt;/script&gt;. On the other hand we have &lt;script type=&quot;math/tex&quot;&gt;(1-\lambda/n)^{n} \approx e^{-\lambda}&lt;/script&gt;. So&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(X = k) &amp;amp;\approx \frac{\lambda^k}{k!}e^{-\lambda}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Expected Value and Variance of a Poisson Random Variable&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Both the expected value and variance of a Poisson random variable is &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;. Intuitively, we know Poisson approximates a binomial random variable when &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is large and &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; is small with &lt;script type=&quot;math/tex&quot;&gt;\lambda = np&lt;/script&gt;. We also know that the expected value of a binomial random variable is &lt;script type=&quot;math/tex&quot;&gt;E[X] = np&lt;/script&gt;.  Therefore, the expected value of a Poisson random variable should be &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;. Similarly, to compute the variance, we know the binomial random variable variance is &lt;script type=&quot;math/tex&quot;&gt;np(1-p)&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;\lambda(1-p)&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; is very small is also &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;.&lt;/p&gt;
-
-&lt;p&gt;(Proof?)
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Geometric Random Variable&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be a random variable for the number of trials until we see the first success. &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is a geometric random variable with &lt;script type=&quot;math/tex&quot;&gt;PMF&lt;/script&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p(k) = P(X = k) = (1-p)^{k-1}p
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; has the following expected value and variance&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X] &amp;amp;= 1/p \\
-Var(X) &amp;amp;= (1-p)/p^2
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;The CDF of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-F_X(k) = P(X \leq k) &amp;amp;= \sum_{m=1}^k (1-p)^{m-1}p \\
-&amp;amp;= p \sum_{m=0}^{k-1} (1-p)^{m} \\
-&amp;amp;= p \frac{1-(1-p)^k}{1-(1-p)} \text{ (Recall }\sum_{i=0}^n x^i = \frac{1-x^{n+1}}{1-x}\text{)} \\
-&amp;amp;= 1-(1-p)^k \\
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Another way to derive this is to let &lt;script type=&quot;math/tex&quot;&gt;C_i&lt;/script&gt; be the event where we succeed on the ith trial. We see that&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-F_X(k) = P(X \leq k) &amp;amp;= 1 - P(X &amp;gt; k) \quad \text{ (first success happens after kth trial)}\\
-&amp;amp;= 1 - P(C_1^c C_2^c ... C_k^c) \quad \text{ (none of 1..kth trial succeed)} \\
-&amp;amp;= 1 - P(C_1^c)P(C_2^c) ... P(C_k^c) \quad \text{ (Independance)} \\
-&amp;amp;= 1 - (1-p)^k 
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Negative Binomial Random Variable&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is the number of independent trials until the &lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt;th success.&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p(k) = P(X = k) = \binom{k-1}{r-1}p^r(1-p)^{k-r}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; has the following expected value and variance&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X] &amp;amp;= rp/(1-p) \\
-Var(X) &amp;amp;= r(1-p)/p^2
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;h4&gt;References&lt;/h4&gt;
-&lt;p&gt;My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/&lt;br /&gt;
-First Course in Probability by Sheldon Ross.
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Indicator/Bernoulli Random Variable If we have an experiment that results in a boolean answer (yes/no) or (success/failure) with probability for success and for failure then we can use an indicator or a boolean random variable to represent its outcomes. We define the following: $$ \begin{align*} X = \Big\{ \begin{array}{@{}lr@{}} 1 \quad \text{If even A occurs } \\ 0 \quad \text{otherwise} \\ \end{array} \end{align*} $$ Therefore, . Let’s look at the PMF of . Remember that the PMF of a random variable is just the probability that this random variable takes on a value in . Therefore, $$ \begin{align*} p(x) = P(I = x) = \Big\{ \begin{array}{@{}lr@{}} p(1) = P(A) \quad \ \ \quad \text{If } x = 1 \\ p(0) = 1 - P(A) \quad \text{if } x = 0 \\ \end{array} \end{align*} $$ What the expected value of ? Recall that the expected value of a discrete random variable is defined as $$ \begin{align*} E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k \end{align*} $$ Therefore, $$ \begin{align*} E[X] = p(1)*1 + p(0)*0 = p(1) = P(A) \end{align*} $$ We also know the variance $$ \begin{align*} Var(X) = E[X^2] - (E[X])^2 = 1^2(p) + 0^2(1-p) - p^2 = p - p^2 = p(1-p) \end{align*} $$ Binomial Random Variable If we on the other hand have independent trials of Bernoulli random variables with a probability of success , then we can use a binomial random variable to represent the number of successes in trials. For example, if we are flipping a coin with probability of getting heads (success) equals to , then we can define a binomial random variable to represent the number of heads in trials. Therefore, and the PMF of is: $$ \begin{align*} p(k) = P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} \end{align*} $$ The expected value, variance and second moment of a binomial random variable: $$ \begin{align*} E[X] &amp;amp;= np \\ Var(X) &amp;amp;= np(1-p) \\ E[X^2] &amp;amp;= n^2p^2 - np^2 + np \end{align*} $$ Example 1 Suppose we flip a fair coin times. What is the probability of seeing exactly two heads. Let be the number of heads. is a binomial random variable with and . Therefore, $$ \begin{align*} p(X=2) = \binom{4}{2}(0.5)^2(0.5)^2 = 0.375 \end{align*} $$ Example 2 (Book Example). Suppose we have 12 jurors and in order to convict a defendant you need 8 jurors to vote guilty. Suppose the probability of making the right decision by a juror is . What is the probability of making a right decision? Suppose the defendant is guilty. This means that we need at least 8 jurors making the right the decision. Therefore, the probability is $$ \begin{align*} \sum_{i=8}^{12}\binom{12}{i}p^i(1-p)^{12-i} \end{align*} $$ However if the defendant is innocent then we need at least 5 jurors making the right decision $$ \begin{align*} \sum_{i=5}^{12}\binom{12}{i}p^i(1-p)^{12-i} \end{align*} $$ If the defendant is guilty with probability then the probability becomes $$ \begin{align*} \alpha\sum_{i=8}^{12}\binom{12}{i}p^i(1-p)^{12-i} + (1-\alpha)\sum_{i=5}^{12}\binom{12}{i}p^i(1-p)^{12-i} \end{align*} $$ Poisson Random Variable Consider a duration of time where events occur at an average rate of . Let be the number of occurrences in a unit of time. We have . The PMF of is: $$ \begin{align*} p(k) = P(X = k) = \frac{\lambda^k}{k!}e^{-\lambda} \end{align*} $$ Example 1: Given a web server, suppose that the server load averages 2 hits per second. Let be the number of hits received in a second. What is $$ \begin{align*} P(X = 5) = \frac{\lambda^5}{5!}e^{-2} \approx 0.0361 \end{align*} $$ Binomial and Poisson Random Variables A Poisson random variable can also be used to approximate a binomial random variable if is very large and is small so that is moderate. Let which is the average number of successes you see in trials. Then we will have $$ \begin{align*} P(X = k) &amp;amp;= \binom{n}{k}p^k(1-p)^{n-k} \\ &amp;amp;= \frac{n!}{k!(n-k)!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\ &amp;amp;= \frac{n(n-1)...(n-k+1)}{k!}\frac{\lambda}{n}^k (1-\frac{\lambda}{n})^{n-k} \\ &amp;amp;= \frac{n(n-1)...(n-k+1)}{n^k}\frac{\lambda^k}{k!} \frac{(1-\lambda/n)^{n}}{(1-\lambda/n)^{k}} \\ \end{align*} $$ When is very large, the term is approximately 1. The term is also approximately . On the other hand we have . So $$ \begin{align*} P(X = k) &amp;amp;\approx \frac{\lambda^k}{k!}e^{-\lambda} \end{align*} $$ Expected Value and Variance of a Poisson Random Variable Both the expected value and variance of a Poisson random variable is . Intuitively, we know Poisson approximates a binomial random variable when is large and is small with . We also know that the expected value of a binomial random variable is . Therefore, the expected value of a Poisson random variable should be . Similarly, to compute the variance, we know the binomial random variable variance is and so when is very small is also .</summary></entry></feed>
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">Let be an undirected graph with vertices and edges. A cut in is a partition of into two non-empty sets of vertices and . The size of the cut is the number of edges with one end point in and another in . A global minimum cut is a cut of minimum size. Karger's Algorithm Karger’s algorithm starts with picking an edge in uniformly at random. It then contracts this edge by creating a new node that combines both and . All the edges in with an end point equal to either and now point to instead. Also, any edge between and is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in . Karger's Algorithm Pseudocode</summary></entry></feed>

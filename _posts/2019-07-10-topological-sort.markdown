@@ -35,14 +35,14 @@ int dfs(int v, int current_time,
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Example</b></h4>
-![my photo]({{ site.url }}/assets/topo/1.png)
+![my photo]({{ site.url }}/assets/graphs/topological-sort/1.png)
 Let's explore the graph above with dfs again to see how the start and finish times are set again. We will start from $$f$$ (arbitrarily chosen), mark its start time as zero and visit $$e$$. We will mark $$e$$'s start time and then recursively call DFS on $$d$$. We will set its start time. At this point, we don't have more neighbors and so we mark its finish time as well. When we come back, $$e$$ won't have more neighbors and so we will mark its finish time. We do the same thing with $$f$$ and we'll end up with the graph below.
 
-![my photo]({{ site.url }}/assets/topo/2.png)
+![my photo]({{ site.url }}/assets/graphs/topological-sort/2.png)
 
 Next we will start from $$c$$ and visit $$b$$ and mark both their start and finish times. Finally we will visit $$a$$ and mark its times as well.
 
-![my photo]({{ site.url }}/assets/topo/3.png)
+![my photo]({{ site.url }}/assets/graphs/topological-sort/3.png)
 
 Notice how if we ordered the nodes by their finishing times ($$a, c, b, f, e, d$$) descendingly then we'll have a valid ordering of the nodes. 
 <br>

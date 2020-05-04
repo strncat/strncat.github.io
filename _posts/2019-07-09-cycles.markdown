@@ -5,7 +5,7 @@ date:   2019-07-09 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-![my photo]({{ site.url }}/assets/cycle/1.png)
+![my photo]({{ site.url }}/assets/graphs/cycle/1.png)
 We are given a graph $$G = (V,E)$$ and we want to know if there exists a cycle in $$G$$. 
 <br>
 <br>
@@ -40,7 +40,7 @@ bool bfs(int start, std::vector<std::vector<int>>& graph) {
 <h4><b>Directed Graphs</b></h4>
 Suppose we apply the earlier idea used in undirected graphs. We traverse the nodes and if we see a node we've seen before, we conclude that we found a cycle. Let's take the graph above and start a DFS pass from the node $$a$$ below:
 
-![my photo]({{ site.url }}/assets/cycle/2.png)
+![my photo]({{ site.url }}/assets/graphs/cycle/2.png)
 
 From $$a$$ we visit $$c$$. Node $$c$$ doesn't have neighbors so we mark its finish time and then we go back to $$a$$. We next visit $$b$$ and mark its start time. From $$b$$, we see $$c$$ again! is this a cycle? NO. The idea fails here.
 <br>
@@ -52,7 +52,7 @@ In directed graph we instead have three types of nodes.
 <br>
 <br>
 When will a directed cycle happen? when we re-discover a gray node! below is a continuation of the traversal that started from node $$a$$. We discover nodes $$b, e, f$$ and $$d$$. From $$d$$ we re-discover $$e$$ but $$e$$ has already been discovered because it's gray! This means we have a cycle. 
-![my photo]({{ site.url }}/assets/cycle/3.png)
+![my photo]({{ site.url }}/assets/graphs/cycle/3.png)
 
 <!--
 Let's go back to the moment when we marked $$e$$'s start time and we saw $$c$$. What does this mean for $$e$$ and $$c$$? Let's recall that the paranthesis theorem (CLRS) says that for any pair of nodes, in this case $$c$$ and $$e$$, one of three cases can happen:

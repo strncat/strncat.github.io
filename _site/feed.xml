@@ -1,78 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-02T15:07:44-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Eulerian Paths and Tours</title><link href="http://localhost:4000/jekyll/update/2020/05/02/eulerian-paths-tours.html" rel="alternate" type="text/html" title="Eulerian Paths and Tours" /><published>2020-05-02T12:01:36-07:00</published><updated>2020-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/02/eulerian-paths-tours</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/02/eulerian-paths-tours.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
-We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just &lt;script type=&quot;math/tex&quot;&gt;O(h)&lt;/script&gt; time. However, if the tree height is of order &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;, then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. How can we achieve this?
-&lt;br /&gt;&lt;br /&gt;
-A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-03T18:48:51-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Eulerian Paths and Tours</title><link href="http://localhost:4000/jekyll/update/2020/05/02/euler.html" rel="alternate" type="text/html" title="Eulerian Paths and Tours" /><published>2020-05-02T12:01:36-07:00</published><updated>2020-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/02/euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/02/euler.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/euler.png&quot; width=&quot;100%&quot; /&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a connected undirected a graph. An &lt;b&gt;Eulerian path&lt;/b&gt; is a path in a graph that traverses each edge exactly once and an &lt;b&gt;Eulerian tour, circuit or cycle&lt;/b&gt; is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to &lt;a href=&quot;https://en.wikipedia.org/wiki/Seven_Bridges_of_Königsberg&quot;&gt;this Wikipedia article&lt;/a&gt;.
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Red-black tree specifications&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;A red-black tree must satisfy the following properties:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Every node is either red or black.&lt;/li&gt;
-  &lt;li&gt;The root is black.&lt;/li&gt;
-  &lt;li&gt;Every leaf node is black.&lt;/li&gt;
-  &lt;li&gt;If a node is red, then its children are black.&lt;/li&gt;
-  &lt;li&gt;The number of black nodes must be the same across all simple paths from any node to a leaf node.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;&lt;b&gt;Why are red-black trees balanced?&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra “red” nodes but not a lot in order to keep the height at &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
-&lt;br /&gt;&lt;br /&gt;
-To show a formal proof, we first need to define the black height of a node. Let &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; be the &lt;b&gt;black height&lt;/b&gt; of a node. &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; is number of black nodes from a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; to a leaf but &lt;i&gt;not including &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; itself&lt;/i&gt;. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, we want to prove somehow that we have “enough” internal nodes at every node such that the height can’t exceed &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. Formally, we’ll prove&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;When do we have an Eulerian tour?&lt;/b&gt;&lt;/h4&gt;
 
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;Given a red-black tree $t$ and a node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, The subtree rooted at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;  contains at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)}-1&lt;/script&gt; internal nodes (including x itself)&lt;/td&gt;
+      &lt;td&gt;Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a connected undirected graph. &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; has an Eulerian tour if and only if every vertex in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; has an even degree.&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;Looking at the figure below, we see in the first figure we have &lt;script type=&quot;math/tex&quot;&gt;bh(root)=3&lt;/script&gt; and we have at least &lt;script type=&quot;math/tex&quot;&gt;2^{3}-1=7&lt;/script&gt; nodes. In the second figure, we have &lt;script type=&quot;math/tex&quot;&gt;bh(root)=2&lt;/script&gt; and at least &lt;script type=&quot;math/tex&quot;&gt;2^2-1=3&lt;/script&gt; internal nodes. Similarly, in the third figure, we have &lt;script type=&quot;math/tex&quot;&gt;2^2-1&lt;/script&gt; internal nodes.
-&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/internal-nodes.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Proof: By Induction on the height of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. For the base case, consider when the height is 0, then we know that &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is NIL. Therefore, &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)} - 1 = 1 - 1 = 0&lt;/script&gt;. For the inductive step, suppose &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has some positive height &amp;gt; 0 and has two internal children (why 2?). Each child must have either &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; black height depending on its color. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was red, then both children must be black and the black height of both children is  &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt;. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was black, then both its children must have black height &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt;. Since the height of both children is less than &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, then we can apply the inductive hypothesis and conclude that each child must have at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)-1}-1&lt;/script&gt; internal nodes. Therefore, &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has at least &lt;script type=&quot;math/tex&quot;&gt;1 + 2^{bh(x)-1} - 1 + 2^{bh(x)-1} - 1 = 2^{bh(x)} -1&lt;/script&gt; internal nodes which completes the proof. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; 
+&lt;p&gt;In the left figure above, it’s impossible to have an Eulerian tour since not every node has an even degree. However, the right figure has an Eulerian cycle and every node is of even degree.
 &lt;br /&gt;
 &lt;br /&gt;
-To prove that the height of the tree is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, . The next thing we want to use is that we know that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;bh(root) \geq h/2&lt;/script&gt;. Using what we proved earlier, we see that&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-n &amp;amp;\geq 2^{bh(root))} - 1 \text{ (using the earlier lemma we proved) }\\
-n &amp;amp;\geq 2^{h/2} - 1  \text { (using the fact that red nodes must have black children) }\\ 
-\log(n-1) &amp;amp;\geq h/2 \\
-h/2 &amp;amp;\leq \log(n-1) \\
-h &amp;amp;\leq 2\log(n-1). \blacksquare
-\end{align*}
-$$
-&lt;/div&gt;
+&lt;i&gt;Proof:&lt;/i&gt;
+Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be an undirected graph. We’ll prove both directions below,&lt;/p&gt;
 
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;h4&gt;&lt;b&gt;Rotations&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Operations on red-black trees such as insert and delete modify the tree such that we might violate the red-black tree properties. To restore these properties we perform an essential operation called a rotation. Rotations maintain the binary search property. More on rotations are 
-&lt;a href=&quot;https://strncat.github.io/jekyll/update/2019/05/02/binary-tree-rotation.html&quot;&gt;here&lt;/a&gt;.
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;(\Rightarrow)&lt;/script&gt;: Since &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; has an Eulerian cycle, we must traverse at least two edges every time we pass through a vertex except for the start and end vertex. This means that degree of these vertices must be even. Since the start and the end vertex are the same, then this vertex must also have an even degree.&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;(\Leftarrow)&lt;/script&gt;: Start traversing at an arbitrary vertex &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;. Since all vertices are of even degree and &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected, then we are guaranteed to return to &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; at some point. After we return, we would have constructed a cycle in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;, call it &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;. if every edge in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; was in &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, then we are done. Otherwise, we must have some vertices in &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; that still have edges which were not traversed because &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected. Choose a vertex and start traversing the remaining edges. We are again guaranteed to return to the same vertex because of the even degree property. 
+&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/proof.png&quot; width=&quot;100%&quot; /&gt;
+We can combine both cycles to form a bigger cycle. We can then repeat the same steps until no edges are left in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; and the cycle must be an Eulerian cycle as we wanted to show.&lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Insert&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;TODO
+&lt;h4&gt;&lt;b&gt;What about directed graphs?&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Similar to the undirected case. Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a strongly connected graph. An &lt;b&gt;Eulerian path&lt;/b&gt; is a path in a graph that traverses each edge exactly once and an &lt;b&gt;Eulerian tour&lt;/b&gt; is an Eulerian path that starts and ends at the same vertex. Moreover,&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; has an Eulerian tour if and only if for every vertex &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;, in-degree(&lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;) = out-degree(&lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;).&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Delete&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;TODO
-&lt;br /&gt;
-&lt;br /&gt;
+&lt;i&gt;Proof:&lt;/i&gt;
+TODO
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;Implementation&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp&quot;&gt;Source Code&lt;/a&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;h4&gt;&lt;b&gt;Source Code&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master&quot;&gt;Source Code&lt;/a&gt;
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just time. However, if the tree height is of order , then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is . How can we achieve this? A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be . Red-black tree specifications A red-black tree must satisfy the following properties: Every node is either red or black. The root is black. Every leaf node is black. If a node is red, then its children are black. The number of black nodes must be the same across all simple paths from any node to a leaf node. Why are red-black trees balanced? Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra “red” nodes but not a lot in order to keep the height at . To show a formal proof, we first need to define the black height of a node. Let be the black height of a node. is number of black nodes from a node to a leaf but not including itself. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most , we want to prove somehow that we have “enough” internal nodes at every node such that the height can’t exceed . Formally, we’ll prove</summary></entry><entry><title type="html">Red Black Trees</title><link href="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html" rel="alternate" type="text/html" title="Red Black Trees" /><published>2020-05-01T12:01:36-07:00</published><updated>2020-05-01T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/01/red-black-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.math.caltech.edu/~2014-15/1term/ma006a/class8.pdf&quot;&gt;Source Code&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Let be a connected undirected a graph. An Eulerian path is a path in a graph that traverses each edge exactly once and an Eulerian tour, circuit or cycle is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to this Wikipedia article. When do we have an Eulerian tour?</summary></entry><entry><title type="html">Red Black Trees</title><link href="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html" rel="alternate" type="text/html" title="Red Black Trees" /><published>2020-05-01T12:01:36-07:00</published><updated>2020-05-01T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/01/red-black-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
 We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just &lt;script type=&quot;math/tex&quot;&gt;O(h)&lt;/script&gt; time. However, if the tree height is of order &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;, then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. How can we achieve this?
 &lt;br /&gt;&lt;br /&gt;
 A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
@@ -350,7 +331,7 @@ Finally putting everything together in one place:&lt;/p&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;Optimal Substructure&lt;/b&gt;&lt;/h4&gt;
 &lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;V = \{1,2,3,...,n\}&lt;/script&gt; and consider a subset &lt;script type=&quot;math/tex&quot;&gt;S = \{1,2,3,...,k\}&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;S \subseteq V&lt;/script&gt; for some &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; be two vertices in &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt;. Now, consider all the paths from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; whose intermediate vertices are in &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; be a shortest path among the paths from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that are drawn from &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. 
-&lt;img src=&quot;http://localhost:4000/assets/floyd-warshall/path.png&quot; width=&quot;100%&quot; /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/graphs/floyd-warshall/path.png&quot; width=&quot;100%&quot; /&gt;
 This is where it gets interesting. There are two cases here. Either &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is on &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; or it’s not.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is not on &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; then we claim that all the intermediate vertices of &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; are drawn from the set &lt;script type=&quot;math/tex&quot;&gt;\{1,2,...,k-1\}&lt;/script&gt;.&lt;/li&gt;

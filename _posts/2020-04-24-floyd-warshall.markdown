@@ -9,7 +9,7 @@ Let $$G=(V,E)$$ be a directed weighted graph with $$V$$ vertices and $$E$$ edges
 <!------------------------------------------------------------------------------------>
 <h4><b>Optimal Substructure</b></h4>
 Let $$V = \{1,2,3,...,n\}$$ and consider a subset $$S = \{1,2,3,...,k\}$$ such that $$S \subseteq V$$ for some $$k$$. Let $$i$$ and $$j$$ be two vertices in $$V$$. Now, consider all the paths from $$i$$ to $$j$$ whose intermediate vertices are in $$S$$. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let $$p$$ be a shortest path among the paths from $$i$$ to $$j$$ that are drawn from $$S$$. 
-<img src="{{ site.url }}/assets/floyd-warshall/path.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/floyd-warshall/path.png" width="100%">
 This is where it gets interesting. There are two cases here. Either $$k$$ is on $$p$$ or it's not.
 - If $$k$$ is not on $$p$$ then we claim that all the intermediate vertices of $$p$$ are drawn from the set $$\{1,2,...,k-1\}$$.
 - If $$k$$ is on $$p$$, then we can decompose $$p$$ into two shortest paths. A shortest path $$p_1$$ from $$i$$ to $$k$$ with intermediate vertices $$\{1,2,...,k-1\}$$ and a shortest path $$p_2$$ from $$k$$ to $$j$$ with intermediate vertices $$\{1,2,...,k-1\}$$.

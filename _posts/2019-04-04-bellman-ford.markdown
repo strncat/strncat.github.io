@@ -5,7 +5,7 @@ date:   2019-04-04 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<img src="{{ site.url }}/assets/bellman/1.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/bellman-ford/1.png" width="100%">
 Let $$G=(V,E)$$ be a weighted graph with $$V$$ vertices and $$E$$ edges. We already discussed Dijkstra's algorithm to find the shortest paths in $$O(n\log(n)+m)$$ time. Dijkstra is fast and works great but unfortunately it doesn't handle negative edge weights. Therefore, we now turn to discuss Bellman Ford's algorithm.
 <br>
 <br>
@@ -15,7 +15,7 @@ Bellman-Ford is a dynamic programming algorithm to find the shortest paths in a 
 <br><br>
 Let $$D[v,i]$$ be the length of the shortest path from $$s$$ to some vertex $$v$$ whose number of edges is at most $$i$$. Given that we know $$D[v,i]$$ for all $$v \in V$$, what can we say about $$D[v,i+1]$$? In other words, given that we know the shortest path from $$s$$ to any vertex in $$G$$ with at most $$i$$ edges, what can we say about the length of the shortest path from $$s$$ to some vertex $$v$$ with at most $$i+1$$ edges? Let's think about this before looking at the answer. Bellman-Ford definitely wasn't easy for me to think about.
 <br><br>
-<img src="{{ site.url }}/assets/bellman/2.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/bellman-ford/2.png" width="100%">
 Consider the graph above and let's assume that we already know all the shortest paths of at most 2 edges from $$s$$ to any vertex in $$G$$. So for example we know that $$D[a,2]=6$$, $$D[b,2]=8$$, $$D[c,2]=4$$ and $$D[t,2]=7$$. So now we know the shortest distance from $$s$$ to $$t$$ of at most two edges is 7. Can we get a shorter path by considering any path that uses 3 edges? Yes!!! we can use the shortest path from $$s$$ to $$b$$ instead of length 8 and then take in $$(b,t)=-4$$ to get a shorter path of length 4. In other words, forget about the path $$s->c->t$$ and go through $$s->a->b->t$$. How can we put this together formally? 
 <br><br>
 Given a vertex $$v \in V$$. To find $$D[v,i+1]$$, we need to see if for any vertex $$u \in V$$, the length of the shortest path from $$s$$ to $$u$$ of at most $$i$$ edges (in other words $$D[u, i]$$) plus $$w(u,v)$$ has a lower value than we currently have in $$D[v,i]$$. More formally,
@@ -66,31 +66,31 @@ void BellmanFord(graph& g) {
 <!------------------------------------------------------------------------------------>
 <h4><b>Example</b></h4>
 We update according the base case all the shortest paths that use 0 edges to $$\infty$$ except for the source vertex where the shortest path is of length 0.
-<img src="{{ site.url }}/assets/bellman/initial.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/bellman-ford/initial.png" width="100%">
 <br><br>
 <i>Iteration 1</i><br>
 Here we consider the shortest paths using at most 1 edge. We go through every possible $$v \in V$$ and every possible neighbor $$u \in v.neighbors$$ and ask: Can $$D[v, 1]$$ be lowered via the shortest path $$D[u, 0]$$ plus the edge $$\{u,v\}$$? The answer is yes! picture below:
-<img src="{{ site.url }}/assets/bellman/i1.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/bellman-ford/i1.png" width="100%">
 
 
 <i>Iteration 2</i><br>
 We repeat the same process, this time we see if we can update all shortest paths that use at most $$2$$ edges to better estimates. Notice that we update both $$b$$ and $$d$$ in this iteration.
-<img src="{{ site.url }}/assets/bellman/i2.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/bellman-ford/i2.png" width="100%">
 
 
 <i>Iteration 3</i><br>
 We again repeat the same process, updating this time $$t$$.
-<img src="{{ site.url }}/assets/bellman/i3.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/bellman-ford/i3.png" width="100%">
 
 
 <i>Iteration 4</i><br>
 In iteration 4, we update $$d$$ again because we realize that we can get a better estimate coming through $$t$$ instead of $$c$$. 
-<img src="{{ site.url }}/assets/bellman/i4.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/bellman-ford/i4.png" width="100%">
 
 
 <i>Iteration 5</i><br>
 Finally, we update $$c$$ because it has a better update now coming through $$d$$ instead of directly through $$s$$.
-<img src="{{ site.url }}/assets/bellman/i5.png" width="100%">
+<img src="{{ site.url }}/assets/graphs/bellman-ford/i5.png" width="100%">
 As this point, the algorithm terminates and we have the final shortest paths from $$s$$ to every vertex $$v \in V$$.
 <br>
 <br>

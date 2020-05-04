@@ -1,0 +1,68 @@
+---
+layout: post
+title:  "Eulerian Paths and Tours"
+date:   2020-05-02 12:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+<img src="{{ site.url }}/assets/graphs/euler/euler.png" width="100%">
+Let $$G=(V,E)$$ be a connected undirected a graph. An <b>Eulerian path</b> is a path in a graph that traverses each edge exactly once and an <b>Eulerian tour, circuit or cycle</b> is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to <a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_Königsberg">this Wikipedia article</a>.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>When do we have an Eulerian tour?</b></h4>
+
+| Let $$G=(V,E)$$ be a connected undirected graph. $$G$$ has an Eulerian tour if and only if every vertex in $$G$$ has an even degree. |
+
+In the left figure above, it's impossible to have an Eulerian tour since not every node has an even degree. However, the right figure has an Eulerian cycle and every node is of even degree.
+<br>
+<br>
+<i>Proof:</i>
+Let $$G=(V,E)$$ be an undirected graph. We'll prove both directions below,
+
+$$(\Rightarrow)$$: Since $$G$$ has an Eulerian cycle, we must traverse at least two edges every time we pass through a vertex except for the start and end vertex. This means that degree of these vertices must be even. Since the start and the end vertex are the same, then this vertex must also have an even degree. 
+
+$$(\Leftarrow)$$: Start traversing at an arbitrary vertex $$v$$. Since all vertices are of even degree and $$G$$ is connected, then we are guaranteed to return to $$v$$ at some point. After we return, we would have constructed a cycle in $$G$$, call it $$C$$. if every edge in $$G$$ was in $$C$$, then we are done. Otherwise, we must have some vertices in $$C$$ that still have edges which were not traversed because $$G$$ is connected. Choose a vertex and start traversing the remaining edges. We are again guaranteed to return to the same vertex because of the even degree property. 
+<img src="{{ site.url }}/assets/graphs/euler/proof.png" width="100%">
+We can combine both cycles to form a bigger cycle. We can then repeat the same steps until no edges are left in $$G$$ and the cycle must be an Eulerian cycle as we wanted to show.  
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>What about directed graphs?</b></h4>
+Similar to the undirected case. Let $$G=(V,E)$$ be a strongly connected graph. An <b>Eulerian path</b> is a path in a graph that traverses each edge exactly once and an <b>Eulerian tour</b> is an Eulerian path that starts and ends at the same vertex. Moreover, 
+
+| $$G$$ has an Eulerian tour if and only if for every vertex $$v$$ in $$G$$, in-degree($$v$$) = out-degree($$v$$). |
+
+<br>
+<br>
+<i>Proof:</i>
+TODO
+<!------------------------------------------------------------------------------------>
+<h4><b>Implementation</b></h4>
+TODO
+
+
+<!------------------------------------------------------------------------------------>
+<h4><b>Source Code</b></h4>
+<a href="https://github.com/strncat/algorithms-and-data-structures/blob/master">Source Code</a>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+<a href="http://www.math.caltech.edu/~2014-15/1term/ma006a/class8.pdf">Source Code</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

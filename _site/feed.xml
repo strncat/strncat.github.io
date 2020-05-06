@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-03T18:48:51-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Eulerian Paths and Tours</title><link href="http://localhost:4000/jekyll/update/2020/05/02/euler.html" rel="alternate" type="text/html" title="Eulerian Paths and Tours" /><published>2020-05-02T12:01:36-07:00</published><updated>2020-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/02/euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/02/euler.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/euler.png&quot; width=&quot;100%&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-06T09:33:03-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">B-Trees</title><link href="http://localhost:4000/jekyll/update/2020/05/04/b-trees.html" rel="alternate" type="text/html" title="B-Trees" /><published>2020-05-04T01:01:36-07:00</published><updated>2020-05-04T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/04/b-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/04/b-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
+B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; keys have &lt;script type=&quot;math/tex&quot;&gt;n+1&lt;/script&gt; children. This way, each child handles a specific range of keys in its parent.&lt;/p&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;h4&gt;&lt;b&gt;Motivation&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;But why do we need a large branching factor? The motivation behind this idea has to do with minimizing disk I/O operations. Data off disk can be read in &lt;i&gt;pages&lt;/i&gt;, so to minimize the number of reads, 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;!------------------------------------------------------------------------------------&gt;
+&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;CLRS&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://web.stanford.edu/class/cs166/lectures/05/Small05.pdf&quot;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with keys have children. This way, each child handles a specific range of keys in its parent.</summary></entry><entry><title type="html">Eulerian Paths and Tours</title><link href="http://localhost:4000/jekyll/update/2020/05/02/euler.html" rel="alternate" type="text/html" title="Eulerian Paths and Tours" /><published>2020-05-02T12:01:36-07:00</published><updated>2020-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/02/euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/02/euler.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/euler.png&quot; width=&quot;100%&quot; /&gt;
 Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a connected undirected a graph. An &lt;b&gt;Eulerian path&lt;/b&gt; is a path in a graph that traverses each edge exactly once and an &lt;b&gt;Eulerian tour, circuit or cycle&lt;/b&gt; is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to &lt;a href=&quot;https://en.wikipedia.org/wiki/Seven_Bridges_of_Königsberg&quot;&gt;this Wikipedia article&lt;/a&gt;.
 &lt;br /&gt;
 &lt;br /&gt;
@@ -21,11 +35,65 @@ Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be an undirec
 
 &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;(\Rightarrow)&lt;/script&gt;: Since &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; has an Eulerian cycle, we must traverse at least two edges every time we pass through a vertex except for the start and end vertex. This means that degree of these vertices must be even. Since the start and the end vertex are the same, then this vertex must also have an even degree.&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;(\Leftarrow)&lt;/script&gt;: Start traversing at an arbitrary vertex &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;. Since all vertices are of even degree and &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected, then we are guaranteed to return to &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; at some point. After we return, we would have constructed a cycle in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;, call it &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;. if every edge in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; was in &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, then we are done. Otherwise, we must have some vertices in &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; that still have edges which were not traversed because &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected. Choose a vertex and start traversing the remaining edges. We are again guaranteed to return to the same vertex because of the even degree property. 
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;(\Leftarrow)&lt;/script&gt;: Start traversing at an arbitrary vertex &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;. Since all vertices are of even degree and &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected, then we are guaranteed to return to &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; and we cannot get stuck at any other vertex. Let &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; be any other vertex than &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;. Suppose we get stuck at &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt;. We claim that it is impossible, since &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; and the node we get stuck at will both be of odd degree and this is a contradiction to our assumption of all nodes having even degrees. After we return, we would have constructed a cycle in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;, call it &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;. if every edge in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; was in &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, then we are done. Otherwise, we must have some vertices in &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; that still have edges which were not traversed because &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected. Choose a vertex and start traversing the remaining edges. We are again guaranteed to return to the same vertex because of the even degree property. 
 &lt;img src=&quot;http://localhost:4000/assets/graphs/euler/proof.png&quot; width=&quot;100%&quot; /&gt;
-We can combine both cycles to form a bigger cycle. We can then repeat the same steps until no edges are left in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; and the cycle must be an Eulerian cycle as we wanted to show.&lt;br /&gt;
+We can combine both cycles to form a bigger cycle. We can then repeat the same steps until no edges are left in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;. We are able to find all cycles and merge them since &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is connected. Therefore, the cycle must be an Eulerian cycle as we wanted to show.&lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Implementation&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Assuming every node is of even degree, from the proof above, it is clear that the way to discover an Eulerian cycle is by discovering the cycles one at a time and then merging all cycles together. This sounds hard. Fortunately, there is really smart idea of using two stacks, one to traverse the current cycle and one that collects all the nodes in the final big cycle. This makes the algorithm run in only &lt;script type=&quot;math/tex&quot;&gt;O(E+V)&lt;/script&gt; time, which is fantastic! 
+&lt;!----------------------&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// pick some node&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// now traverse it's edges&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// (a) consider an edge between the current node and any of its neighbors&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Edge&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+
+        &lt;span class=&quot;c1&quot;&gt;// (b) if it's used then we'll check another. If it's not then mark it used&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;used&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;used&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// mark it used&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// (c) push current_node back on the stack so we can go back to it (backtrack to it)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// push current_node&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// (d) move to the other end of edge to process it&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;current_node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other_end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// this node is now part of the big final cycle&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cycle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The best way to proceed with this algorithm is with an example.
+&lt;br /&gt;
+&lt;br /&gt;
+We initially push any node of choice on “stack”, we pick &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. We then pop a node from the stack and set the current node to &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. We then proceed to traverse the cycle starting at &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;. We do so by selecting one of its unvisited edges. We pick the edge &lt;script type=&quot;math/tex&quot;&gt;a-b&lt;/script&gt; and mark it as used. We then push &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; on “stack”. We switch the current node to the other end of the edge which is &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;. We traverse an unvisited edge incident to &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt;. This time it’s &lt;script type=&quot;math/tex&quot;&gt;b-f&lt;/script&gt;.
+&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/1.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We repeat the above steps and set the current node to &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; and pick &lt;script type=&quot;math/tex&quot;&gt;f-d&lt;/script&gt;. We then move to &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; and pick &lt;script type=&quot;math/tex&quot;&gt;d-a&lt;/script&gt;, show in the figures below,
+&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/2.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When setting the current node to &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt;, this time we don’t have edges to traverse. At this point it means that we reached a cycle. This cycle is “a-b-d-f”. So now we want to push this cycle onto “cycle”. We push &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; and then pop &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; and push it as well. 
+&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/3.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We next pop &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; in order to push it as well. However, this is where the magic happens. &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; has unvisited edges. This means that there must be a new cycle that starts at &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt;. Instead of pushing &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; to complete the original cycle “a-d-b-f”, we explore this new cycle first, push it and then go back to complete pushing the original cycle! We set the current node to &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; and start traversing this new cycle by traversing &lt;script type=&quot;math/tex&quot;&gt;f-e&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/4.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We repeat the same steps by pushing &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; back on “stack” and setting the current node to &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt;. We then explore &lt;script type=&quot;math/tex&quot;&gt;e-c&lt;/script&gt; and push &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; on “stack”. We then explore &lt;script type=&quot;math/tex&quot;&gt;b-c&lt;/script&gt; and push $$c$ on “stack”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/5.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We set the current node to &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; below and explore &lt;script type=&quot;math/tex&quot;&gt;b-f&lt;/script&gt;. Finally we set the current node to &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; and this is where no longer have unvisited edges, meaning that we reach the end of the cycle we’re traversing. 
+&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/6.png&quot; width=&quot;100%&quot; /&gt;
+We start popping the nodes from “stack” and pushing them onto “cycle”. We stop this process if we arrive at any node with unvisited edges. However, this time we don’t see any more unvisited edges and we end up pushing the whole cycle plus the original cycle on “cycle”. And we’re done!
+&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/7.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master&quot;&gt;Source Code&lt;/a&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;What about directed graphs?&lt;/b&gt;&lt;/h4&gt;
 &lt;p&gt;Similar to the undirected case. Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a strongly connected graph. An &lt;b&gt;Eulerian path&lt;/b&gt; is a path in a graph that traverses each edge exactly once and an &lt;b&gt;Eulerian tour&lt;/b&gt; is an Eulerian path that starts and ends at the same vertex. Moreover,&lt;/p&gt;
@@ -38,22 +106,16 @@ We can combine both cycles to form a bigger cycle. We can then repeat the same s
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;i&gt;Proof:&lt;/i&gt;
-TODO
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Implementation&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Proof:&lt;/i&gt;
+TODO&lt;/p&gt;
 
 &lt;!------------------------------------------------------------------------------------&gt;
-&lt;h4&gt;&lt;b&gt;Source Code&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master&quot;&gt;Source Code&lt;/a&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.math.caltech.edu/~2014-15/1term/ma006a/class8.pdf&quot;&gt;Source Code&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Let be a connected undirected a graph. An Eulerian path is a path in a graph that traverses each edge exactly once and an Eulerian tour, circuit or cycle is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to this Wikipedia article. When do we have an Eulerian tour?</summary></entry><entry><title type="html">Red Black Trees</title><link href="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html" rel="alternate" type="text/html" title="Red Black Trees" /><published>2020-05-01T12:01:36-07:00</published><updated>2020-05-01T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/01/red-black-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.math.caltech.edu/~2014-15/1term/ma006a/class8.pdf&quot;&gt;Proof&lt;/a&gt;
+&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://algs4.cs.princeton.edu/41graph/EulerianCycle.java&quot;&gt;Implementation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Let be a connected undirected a graph. An Eulerian path is a path in a graph that traverses each edge exactly once and an Eulerian tour, circuit or cycle is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to this Wikipedia article. When do we have an Eulerian tour?</summary></entry><entry><title type="html">Red Black Trees</title><link href="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html" rel="alternate" type="text/html" title="Red Black Trees" /><published>2020-05-01T12:01:36-07:00</published><updated>2020-05-01T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/01/red-black-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/01/red-black-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
 We previously discussed binary search trees and how the binary search tree property allows us to do tree operations such as insert and delete in just &lt;script type=&quot;math/tex&quot;&gt;O(h)&lt;/script&gt; time. However, if the tree height is of order &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;, then we end up with a worse data structure than just a linked list or a sorted array. What we need is a guarantee that the height is &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. How can we achieve this?
 &lt;br /&gt;&lt;br /&gt;
 A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;. 
@@ -899,338 +961,4 @@ P(win|switch) &amp;amp;= p(win|\text{switch to A})*P(A) + P(win| \text{switch to
 &amp;amp;= 0(1/3) + 1(1/3) + 1(1/3) = 2/3
 \end{align*}
 $$
-&lt;/div&gt;</content><author><name></name></author><summary type="html">References (1) My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/ (2) First Course in Probability by Sheldon Ross. Conditional Probability Conditional probability is the probability that event occurs given that event has already occured written as . In this case: The sample space consists of all possible outcomes consistent with (events in ). The event space consists of all possible outcomes in that are consistent with (events in ).</summary></entry><entry><title type="html">Karger’s Minimum Cut</title><link href="http://localhost:4000/jekyll/update/2019/08/28/min-cut.html" rel="alternate" type="text/html" title="Karger's Minimum Cut" /><published>2019-08-28T03:01:36-07:00</published><updated>2019-08-28T03:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/28/min-cut</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/28/min-cut.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/mincut/1.png&quot; width=&quot;100%&quot; /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be an undirected graph with &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges. A cut in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is a partition of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; into two non-empty sets of vertices &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt;. The &lt;b&gt;size&lt;/b&gt; of the cut is the number of edges with one end point in &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; and another in &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt;. A &lt;b&gt;global minimum cut&lt;/b&gt; is a cut of minimum size.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Karger's Algorithm&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Karger’s algorithm starts with picking an edge &lt;script type=&quot;math/tex&quot;&gt;(u,v)&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; uniformly at random. It then &lt;b&gt;contracts&lt;/b&gt; this edge by creating a new node &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; that combines both &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt;. All the edges in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; with an end point equal to either &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; now point to &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; instead. Also, any edge between &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Karger's Algorithm Pseudocode&lt;/b&gt;&lt;/h4&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;karger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;Initially&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;G&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;more&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;than&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;two&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;choose&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;an&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uniformly&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;union&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sets&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;two&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Example&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Suppose we apply the contraction algorithm on the above graph. We start by picking an edge uniformly at random. Suppose we picked the edge &lt;script type=&quot;math/tex&quot;&gt;(d,e)&lt;/script&gt; below:
-&lt;img src=&quot;http://localhost:4000/assets/mincut/2.png&quot; width=&quot;100%&quot; /&gt;
-We then delete &lt;script type=&quot;math/tex&quot;&gt;(d,e)&lt;/script&gt;. We create a new node &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt;. We then point any edge that previously had an end point equal to &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; to point at &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt;.
-&lt;img src=&quot;http://localhost:4000/assets/mincut/3.png&quot; width=&quot;100%&quot; /&gt;
-Suppose we pick &lt;script type=&quot;math/tex&quot;&gt;(a,b)&lt;/script&gt; next.
-&lt;img src=&quot;http://localhost:4000/assets/mincut/4.png&quot; width=&quot;100%&quot; /&gt;
-We delete &lt;script type=&quot;math/tex&quot;&gt;(a,b)&lt;/script&gt; and create node &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; and fix all the old edges pointing at &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; to point at &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt;.
-&lt;img src=&quot;http://localhost:4000/assets/mincut/5.png&quot; width=&quot;100%&quot; /&gt;
-Suppose we pick &lt;script type=&quot;math/tex&quot;&gt;(f,g)&lt;/script&gt; next.
-&lt;img src=&quot;http://localhost:4000/assets/mincut/6.png&quot; width=&quot;100%&quot; /&gt;
-We’ll repeat the same process by creating &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and fixing the edges below:
-&lt;img src=&quot;http://localhost:4000/assets/mincut/7.png&quot; width=&quot;100%&quot; /&gt;
-Suppose we pick &lt;script type=&quot;math/tex&quot;&gt;(z,x)&lt;/script&gt; next.
-&lt;img src=&quot;http://localhost:4000/assets/mincut/8.png&quot; width=&quot;100%&quot; /&gt;
-We’ll again delete the edge, create a new node &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; and fix all the edges below:
-&lt;img src=&quot;http://localhost:4000/assets/mincut/9.png&quot; width=&quot;100%&quot; /&gt;
-Finally, suppose we pick &lt;script type=&quot;math/tex&quot;&gt;(y,c)&lt;/script&gt; and repeat the same steps. 
-&lt;img src=&quot;http://localhost:4000/assets/mincut/10.png&quot; width=&quot;100%&quot; /&gt;
-Since we only have 2 vertices then we’re done. We will return the number of edges between the two vertices which is 1 in this case. So the global minimum cut is of size 1 which is correct for this graph.
-&lt;img src=&quot;http://localhost:4000/assets/mincut/11.png&quot; width=&quot;100%&quot; /&gt;
-Suppose however that instead of picking &lt;script type=&quot;math/tex&quot;&gt;(y,c)&lt;/script&gt; to contract, we picked &lt;script type=&quot;math/tex&quot;&gt;(y,w)&lt;/script&gt;
-&lt;img src=&quot;http://localhost:4000/assets/mincut/10a.png&quot; width=&quot;100%&quot; /&gt;
-We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager’s algorithm is a Monte Carlo algorithm.
-&lt;img src=&quot;http://localhost:4000/assets/mincut/11a.png&quot; width=&quot;100%&quot; /&gt;
-&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Probability of Success&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Suppose we have a graph &lt;script type=&quot;math/tex&quot;&gt;G=(E,V)&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; nodes and &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; edges. Suppose the cut &lt;script type=&quot;math/tex&quot;&gt;(A,B)&lt;/script&gt; is a global minimum cut is of size &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. Also let &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; to be the set of &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; edges in the cut &lt;script type=&quot;math/tex&quot;&gt;(A,B)&lt;/script&gt;. So &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; has the edges that have one end point in &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; and the other end point in &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-The probability that the contraction algorithm succeeds is the probability that we don’t make any mistake in the &lt;script type=&quot;math/tex&quot;&gt;n-2&lt;/script&gt; iterations of the algorithm. Suppose we let &lt;script type=&quot;math/tex&quot;&gt;S_i&lt;/script&gt; to be the event that we don’t make a mistake in step &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; or generally succeed in step &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;. We want to calculate the following probability:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Pr(success) = Pr(S_1 \cap S_2 \cap S_3 \cap ... \cap S_{n-2})
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;These events are not independent! We can further expand this using the chain rule and instead calculate:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Pr(success) = Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3})
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt; Success in the iteration 1:&lt;/b&gt;&lt;br /&gt;
-Let’s look at how we can calculate each of these. What does it mean to not make a mistake in step 1? It means that we don’t pick an edge that connects a vertex from the set &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; to a vertex from the set &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt;. Because if we did, then &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt; will be merged together and we will not be able to return the global minimum cut &lt;script type=&quot;math/tex&quot;&gt;(A,B)&lt;/script&gt;. So we basically want to avoid picking edges from &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt;. Therefore, the probability that we don’t make a mistake in step 1 is
-&lt;br /&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Pr(S_1) = 1 - \frac{|F|}{|E|} = 1 - \frac{k}{|E|}.
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;What is &lt;script type=&quot;math/tex&quot;&gt;|E|&lt;/script&gt;? &lt;br /&gt;
-We will use &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; to find an upper bound on &lt;script type=&quot;math/tex&quot;&gt;|E|&lt;/script&gt;. We know that the global minimum cut is of size &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;, therefore, we must have:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;For any node &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;degree(v) \geq k&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Proof: Suppose not, then there exists some node &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-degree(u) &lt; k %]]&gt;&lt;/script&gt;. Pick the minimum cut such that &lt;script type=&quot;math/tex&quot;&gt;A = \{u\}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;B = V - \{u\}&lt;/script&gt;. The cut &lt;script type=&quot;math/tex&quot;&gt;(A,B)&lt;/script&gt; is a global minimum cut of size less than &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; which is a contradiction. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-Based on this, we can conclude that &lt;script type=&quot;math/tex&quot;&gt;|E| \geq \frac{1}{2}kn&lt;/script&gt;. (&lt;script type=&quot;math/tex&quot;&gt;\frac{1}{2}&lt;/script&gt; because &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; is undirected).
-&lt;br /&gt;
-&lt;br /&gt;
-So now we have:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Pr(S_1) = 1 - \frac{|F|}{|E|} \geq 1 - \frac{2k}{kn} = 1 - \frac{2}{n}.
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt; Success in iteration &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt;:&lt;/b&gt;&lt;br /&gt;
-What about the other iterations? What is the probability that we don’t make a mistake in iteration &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt; given that we haven’t made any mistake in all the previous interations? At iteration &lt;script type=&quot;math/tex&quot;&gt;i+1&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;n-i&lt;/script&gt; nodes in the graph. Since we haven’t made any mistake yet, we still have &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; edges in &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; and each node is of degree at least &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; (same proof as before). Therefore,&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Pr(S_{i+1} | S_1 \cap S_2 \cap ... \cap S_i) \geq 1 - \frac{k}{1/2k(n-j)} = 1 - \frac{2}{n-j}.
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-Now we can combine everything together:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\require{cancel}
-\begin{align*}
-Pr(success) &amp;amp;= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3}) \\
-&amp;amp;\geq \big(1 - \frac{2}{n}\big)\big(1 - \frac{2}{n-1}\big)...\big(1-\frac{2}{n-j}\big)...\big(1-\frac{2}{3}\big) \\
-&amp;amp;= \big(\frac{n-2}{n}\big)\big(\frac{n-3}{n-1}\big)\big(\frac{n-4}{n-2}\big)...\big(\frac{3}{5}\big)\big(\frac{2}{4}\big)\big(\frac{1}{3}\big) \\
-&amp;amp;= \big(\frac{\bcancel{n-2}}{n}\big)\big(\frac{\bcancel{n-3}}{n-1}\big)\big(\frac{\bcancel{n-4}}{\bcancel{n-2}}\big)...\big(\frac{\bcancel{3}}{\bcancel{5}}\big)\big(\frac{2}{\bcancel{4}}\big)\big(\frac{1}{\bcancel{3}}\big) \\
-&amp;amp;= \frac{2}{n(n-1)}.
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Can we do better?&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;The probability of success, &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;, we found so far is&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p &amp;amp;\geq \frac{2}{n(n-1)} = \frac{1}{\binom{n}{2}}.
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Suppose we run &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; trials of Krager’s algorithm. We then take the minimum cut of all cuts found. These trials are independent. What is the probability of NOT getting the global minimum cut? It is the probability of failing in every trial. Let &lt;script type=&quot;math/tex&quot;&gt;F_i&lt;/script&gt; be the event that we failed to find the global minimum cut in iteration &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;. Therefore,&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Pr(\text{Failure after } T \text{ trials}) &amp;amp;= Pr(F_1 \cap F_2 \cap ... \cap F_T) \\
-&amp;amp;= Pr(F_1)Pr(F_2)...Pr(F_T) \text{  (by independence)}\\
-&amp;amp;\leq \big(1-\frac{2}{n(n-1)} \big)^{T} \\
-&amp;amp;= \big(1-\frac{1}{\binom{n}{2}} \big)^{T}.
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;We also know that for any &lt;script type=&quot;math/tex&quot;&gt;x \geq 1&lt;/script&gt;, we have&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-\big (1-\frac{1}{x} \big)^x \leq \frac{1}{e}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Suppose we let &lt;script type=&quot;math/tex&quot;&gt;x = \frac{1}{p}&lt;/script&gt;, we see that&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-\big(1-\frac{1}{\binom{n}{2}} \big)^{\binom{n}{2}} \leq \frac{1}{e}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;This is exactly our expression above with &lt;script type=&quot;math/tex&quot;&gt;T = \binom{n}{2}&lt;/script&gt;. Furthermore, we can let &lt;script type=&quot;math/tex&quot;&gt;T = \ln(n)\binom{n}{2}&lt;/script&gt; to get&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-P(\text{Failure}) \leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\ln(n)\binom{n}{2}} \leq \frac{1}{e}^{\ln(n)} = \frac{1}{n}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;In general, if we want the probability of failure to be at most &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; then we need to set &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;\ln(1/\delta)\frac{1}{p}&lt;/script&gt; in&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-Pr(\text{Failure}) &amp;amp;\leq \big(1-p\big)^{T} \leq \delta
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;This is because&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-Pr(\text{Failure}) &amp;amp;\leq \big(1-p\big)^{\ln(1/\delta)\frac{1}{p}} \leq \frac{1}{e}^{\ln(1/\delta)} = \delta
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Running Time&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Suppose we have &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; nodes and &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; edges. In the naive implementation, we contract &lt;script type=&quot;math/tex&quot;&gt;n-2&lt;/script&gt; edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; time. Therefore, the total running time is &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. There are other faster implementations with union-find data structure that reduce the running time to &lt;script type=&quot;math/tex&quot;&gt;O(m * \alpha(n))&lt;/script&gt;. (TODO: More on this?)
-&lt;br /&gt;
-&lt;br /&gt;
-Given that we can get a high success probability if we run Krager’s algorithm for &lt;script type=&quot;math/tex&quot;&gt;O(\log(n)n^2)&lt;/script&gt;. The total running time is therefore &lt;script type=&quot;math/tex&quot;&gt;O(n^4\log(n))&lt;/script&gt;!
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Karger - Stein&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Can we do better than &lt;script type=&quot;math/tex&quot;&gt;O(n^4\log(n))&lt;/script&gt; and still maintain a high success probability? Krager and Stein published an improved result that’s much faster! 
-&lt;br /&gt;
-&lt;br /&gt;
-Observe when running Krager’s algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt;) gets higher with every iteration. Therefore, we should really just run karger once in the first few iterations and then repeat Karger for the remaining nodes. 
-&lt;br /&gt;
-&lt;br /&gt;
-This is what Karger-Stein’s algorithm is doing. We contract edges until we get &lt;script type=&quot;math/tex&quot;&gt;n/\sqrt{2}&lt;/script&gt; vertices. We then make copies of the graph and independently contract the edges again for each graph until we get to &lt;script type=&quot;math/tex&quot;&gt;n/\sqrt{2}/\sqrt{2}&lt;/script&gt;. We then return the minimum of both cuts. We repeat this process again until we reach 4 vertices and simply find the minimum cut by brute force. This is illustrated in the below graph:
-&lt;img src=&quot;http://localhost:4000/assets/mincut/stein.png&quot; width=&quot;100%&quot; /&gt;
-We also summarize it in the following pseudo-code:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;karger_stein&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;find&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minimum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;brute&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;force&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Karger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Contract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;until&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;there&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;are&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;only&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nodes&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;two&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cut1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;karger_stein&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cut2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;karger_stein&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minmum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cut1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cut2&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Karger - Stein Running Time&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Karger-Stein is a recursive algorithm. At each level of the recursion, we perform Karger on &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; until we reach &lt;script type=&quot;math/tex&quot;&gt;n/\sqrt{2}&lt;/script&gt; vertices. Karger runs in &lt;script type=&quot;math/tex&quot;&gt;O(n^2)&lt;/script&gt;. Therefore, we have the following recurrence for the running time:&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-T(n) = 2T(n/\sqrt{2}) + O(n^2)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;And therefore, the running time is &lt;script type=&quot;math/tex&quot;&gt;O(n^2\log(n))&lt;/script&gt; by the master theorem.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Karger - Stein Probability of Success&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Karger-Stein first contracts the graph from &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; vertices down to &lt;script type=&quot;math/tex&quot;&gt;n/\sqrt{2}&lt;/script&gt; vertices. Similar to the analysis we did earlier. The probability of success is the probability of not picking the wrong edges in any of the first &lt;script type=&quot;math/tex&quot;&gt;n-n/\sqrt{2}&lt;/script&gt; iterations. Therefore, combining all probabilities:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\require{cancel}
-\begin{align*}
-Pr(\text{success until } n/\sqrt{2}) &amp;amp;= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-n\sqrt{2}} | S_1 \cap S_2 \cap ... \cap S_{n-n/\sqrt{2}}) \\
-&amp;amp;\geq \big(1 - \frac{2}{n}\big)\big(1 - \frac{2}{n-1}\big)...\big(1-\frac{2}{n-j}\big)...\big(1-\frac{2}{n/\sqrt{2}+1}\big) \\
-&amp;amp;= \big(\frac{n-2}{n}\big)\big(\frac{n-3}{n-1}\big)\big(\frac{n-4}{n-2}\big)...\big(\frac{n/\sqrt{2}}{n/\sqrt{2}+2}\big)\big(\frac{n/\sqrt{2}-1}{n/\sqrt{2}+1}\big) \\
-&amp;amp;= \big(\frac{\bcancel{n-2}}{n}\big)\big(\frac{\bcancel{n-3}}{n-1}\big)\big(\frac{\bcancel{n-4}}{\bcancel{n-2}}\big)...\big(\frac{n/\sqrt{2}}{\bcancel{n/\sqrt{2}+2}}\big)\big(\frac{n/\sqrt{2}-1}{\bcancel{n/\sqrt{2}+1}}\big) \\
-&amp;amp;= \frac{n/\sqrt{2}(n/\sqrt{2}-1)}{n(n-1)} \\
-&amp;amp;= \frac{n(n-\sqrt{2})}{2n(n-1)} = \frac{n-\sqrt{2}}{2(n-1)} \approx \frac{1}{2}. \text{ (when n is large)}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;If represent these probabilities with a binary tree then we know at each step we have a probability of &lt;script type=&quot;math/tex&quot;&gt;1/2&lt;/script&gt; of picking the right path down to a leaf. Since we’re dividing by &lt;script type=&quot;math/tex&quot;&gt;\sqrt{2}&lt;/script&gt;, then we know that the depth of the tree is&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-\log_{\sqrt{2}}(n) = \frac{\log(n)}{\log(\sqrt{2})} = 2\log(n)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;And the number of leaves is&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-2^{2\log(n)} = O(n^2)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;To find the overall probability of success, we need to find the probability of picking the right path from the root down to a leaf. Picking the right path means that at every step we pick the right edge. Suppose &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is a vertex in this tree and let &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; be the height of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;p_d&lt;/script&gt; be the probability that there exists a path of surviving edges from &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; down to a leaf. Let &lt;script type=&quot;math/tex&quot;&gt;L&lt;/script&gt; be the event that there exists a path of surviving edges in the left subtree of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; be the event that there exists a path of surviving edges in the right subtree of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. We see that&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-p_d &amp;amp;= \frac{1}{2} * Pr(\text{there is at least one subtree with surviving edges}) \\
-&amp;amp;= \frac{1}{2} * Pr(L \cup R) \\
-&amp;amp;= \frac{1}{2} * (Pr(R) + Pr(L) - Pr(R \cap L)) \\
-&amp;amp;= \frac{1}{2} * (Pr(R) + Pr(L) - Pr(R \cap L)) \\
-&amp;amp;= \frac{1}{2} * (p_{d-1} + p_{d-1} - p_{d-1}^2) \\
-&amp;amp;= p_{d-1} - \frac{1}{2}p_{d-1}^2 \\
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;The claim is that &lt;script type=&quot;math/tex&quot;&gt;p_d \geq \frac{1}{d+1}&lt;/script&gt;. To see this, we need to prove this by induction by &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;d &gt; 0&lt;/script&gt;. 
-&lt;br /&gt;
-For the base case, the probability of finding a path of surviving edges when the height is 0 is 1. We also see that &lt;script type=&quot;math/tex&quot;&gt;p_0 \geq \frac{1}{0+1} = 1&lt;/script&gt; as we wanted to show.
-&lt;br /&gt;
-&lt;br /&gt;
-For the inductive hypothesis, suppose it holds for &lt;script type=&quot;math/tex&quot;&gt;d-1&lt;/script&gt; and so &lt;script type=&quot;math/tex&quot;&gt;p_{d-1} \geq \frac{1}{d}&lt;/script&gt;. We will prove that it holds for &lt;script type=&quot;math/tex&quot;&gt;d&lt;/script&gt;.&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-p_d &amp;amp;= p_{d-1} - \frac{1}{2}p_{d-1}^2 \\
-&amp;amp;\geq \frac{1}{d} - \frac{1}{2}\frac{1}{d^2} \\
-&amp;amp;\geq \frac{1}{d} - \frac{1}{d(d+1)} \quad \text{(} 1/d(d+1) \text{ is strictly greater than } 1/2d^2 \text { for } d \geq 1 \text{)} \\
-&amp;amp;= \frac{1}{d+1}.
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Side Note: I don’t know how I would come up with replacing &lt;script type=&quot;math/tex&quot;&gt;1/d^2&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;1/d(d+1)&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-Finally since the root of the tree has depth &lt;script type=&quot;math/tex&quot;&gt;2\log(n)&lt;/script&gt;, then we know that the probability of success is at least &lt;script type=&quot;math/tex&quot;&gt;\frac{1}{2\log(n)+1}&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Karger - Stein Improved Success Rate&lt;/b&gt;&lt;/h4&gt;
-
-&lt;p&gt;But how many trials do we need in order to achieve the same success rate as Karger’s original algorithm (with repetition)? We know the probability of success is at least &lt;script type=&quot;math/tex&quot;&gt;p = \frac{1}{2\log(n)+1}&lt;/script&gt;. The probability of failing in &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; trials (trials are independent) is the following if we set &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;\ln(1/\delta)\frac{1}{p}&lt;/script&gt;&lt;/p&gt;
-&lt;div&gt;
-$$
-\begin{align*}
-Pr(\text{failure in }T \text{ trials}) &amp;amp;= (1 - p)^T \leq \delta
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;We arrived at this in the previous analysis of Karger’s algorithm. Therefore, we set &lt;script type=&quot;math/tex&quot;&gt;T = (2\log(n)+1)\ln(1/n)&lt;/script&gt; to get a probablity of failure to be at most &lt;script type=&quot;math/tex&quot;&gt;\frac{1}{n}&lt;/script&gt;.
-&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;class notes from following:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;http://web.stanford.edu/class/cs161/schedule.html&lt;/li&gt;
-  &lt;li&gt;https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/11/Small11.pdf&lt;/li&gt;
-  &lt;li&gt;http://web.stanford.edu/class/archive/cs/cs161/cs161.1172/CS161Lecture16.pdf&lt;/li&gt;
-  &lt;li&gt;Algorithm Design (BEST BOOK)
-&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><summary type="html">Let be an undirected graph with vertices and edges. A cut in is a partition of into two non-empty sets of vertices and . The size of the cut is the number of edges with one end point in and another in . A global minimum cut is a cut of minimum size. Karger's Algorithm Karger’s algorithm starts with picking an edge in uniformly at random. It then contracts this edge by creating a new node that combines both and . All the edges in with an end point equal to either and now point to instead. Also, any edge between and is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in . Karger's Algorithm Pseudocode</summary></entry></feed>
+&lt;/div&gt;</content><author><name></name></author><summary type="html">References (1) My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/ (2) First Course in Probability by Sheldon Ross. Conditional Probability Conditional probability is the probability that event occurs given that event has already occured written as . In this case: The sample space consists of all possible outcomes consistent with (events in ). The event space consists of all possible outcomes in that are consistent with (events in ).</summary></entry></feed>

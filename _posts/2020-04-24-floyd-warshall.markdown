@@ -47,7 +47,8 @@ void floyd_warshall(int n) { // O(n^3)
         }
     }
     // (2) apply floyd-warshall
-    for (int k = 1; k <= n; k++) { // number of internal nodes on the path
+    for (int k = 1; k <= n; k++) { // k is the internal node on the path
+        // for each internal node k, see if it improves the distance[i][j]
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
                  if (distance[i][k] == INT_MAX || distance[k][j] == INT_MAX) { continue; }

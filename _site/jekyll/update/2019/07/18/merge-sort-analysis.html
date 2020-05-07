@@ -76,7 +76,7 @@
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Recursion Tree Method</b></h4>
-<p>How long does MergeSort take? How many operations are we performing? Let’s look at what MergeSort is doing at each level of of the recursion tree. We will first go all way down splitting the array and calling <i>MergeSort</i> on each half until we reach the base case. And then we will go all way up calling <i>Merge</i> in every level until the final <i>Merge</i> call to combine the two halfs of the array and finally exiting MergeSort.
+<p>How long does MergeSort take? How many operations are we performing? Let’s look at what MergeSort is doing at each level of of the recursion tree. We will first go all way down splitting the array and calling <i>MergeSort</i> on each half until we reach the base case. And then we will go all way up calling <i>Merge</i> in every level until the final <i>Merge</i> call which combines the two sorted halfs of the array.
 <br />
 <br />
 <i>Level 0:</i>
@@ -97,23 +97,34 @@ At the <script type="math/tex">t</script>‘th level, we will have <script type=
 <img src="http://localhost:4000/assets/merge/4.png" width="100%" />
 <i>Level ?:</i>
 <br />
-When do we stop dividing/recursively calling MergeSort? Our base case happens when <script type="math/tex">first == last</script>. This means that we stop the recursion when each call has an array of size 1. How many times do we divide <script type="math/tex">n</script> by 2 (we’re dividing the array into two halfs at each step) to reach 1? This is precisely what logs give us. <script type="math/tex">log_d(n)</script> is the number of times that we divide <script type="math/tex">n</script> by <script type="math/tex">d</script> to reach 1. The first time I heard this, something clicked in my brain. I felt like I was missing so much before thinking of logs this way! (Thanks Professor Mary!)
-<br /><br />
-Therefore, the answer is: at the <script type="math/tex">log_2(n)</script> level, each array is of size 1 and this is we stop calling MergeSort again. After this we will start calling Merge now to combine everything together!
+When do we stop dividing/recursively calling MergeSort? Our base case happens when <script type="math/tex">first == last</script>. This means that we stop the recursion when each call has an array of size 1. How many times do we divide <script type="math/tex">n</script> by 2 (we’re dividing the array into two halfs at each step) to reach 1? This is precisely what logs give us. <script type="math/tex">log_d(n)</script> is the number of times that we divide <script type="math/tex">n</script> by <script type="math/tex">d</script> to reach 1. Therefore, at the <script type="math/tex">log_2(n)</script> level, each array will be of size 1 1 and this is when stop calling MergeSort again. After this step, we will start calling Merge now to combine everything together!
 <img src="http://localhost:4000/assets/merge/5.png" width="100%" />
 <br />
-<br /></p>
-<hr />
+<br />
+Now let’s climb up the recursion tree. <i>Merge</i> merges two sorted arrays with <script type="math/tex">cn</script> operations where <script type="math/tex">n</script> is the size of the array and <script type="math/tex">c</script> is a positive constant. To see why it’s linear, below is what merge is exactly doing</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="kt">int</span> <span class="n">last</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mid</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="n">mid</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">last</span> <span class="o">-</span> <span class="n">mid</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+    <span class="c1">// fill both arrays with the two sorted halfs</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">mid</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">first</span><span class="p">];</span>  <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">last</span> <span class="o">-</span> <span class="n">mid</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
+    <span class="c1">// combine both arrays one element at a time</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">[</span><span class="n">m</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">m</span><span class="o">++</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">];</span> <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">m</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">m</span><span class="o">++</span><span class="p">];</span> <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <p><br />
-<br />
-Now let’s climb up the recursion tree. We will assume that Merge performs <script type="math/tex">cn</script> operations where <script type="math/tex">n</script> is the size of the array and <script type="math/tex">c</script> is a positive constant.
-<br />
-<br />
 <i>Level <script type="math/tex">log(n):</script></i>
 <img src="http://localhost:4000/assets/merge/5.png" width="100%" />
-We know that each array is of size 1 and so it’s already sorted. The only thing we do at this level is to check if <script type="math/tex">% <![CDATA[
-first < last %]]></script> to determine that the size is 1. After that we just return from MergeSort. So the total number of operations is <script type="math/tex">n</script> for all calls. 
+We know that each array is of size 1 and so there is nothing to do here besides just returning from <i>MergeSort</i>. (Refer to the pseudocode and note (if first &lt; last)). So at this level, we precisely doing <script type="math/tex">n</script> operations. 
 <br />
 <br />
 <br />
@@ -131,9 +142,9 @@ So at each level we’re doing at most <script type="math/tex">cn</script> opera
 <img src="http://localhost:4000/assets/merge/final.png" width="100%" />
 <br />
 <br />
-So now that we know how much work we’re doing per level, what is total number of operations for all levels? basically how many operations does MergeSort perform for an array of size <script type="math/tex">n</script>? Well, we have <script type="math/tex">log(n)+1</script> levels and in each level we’re doing <script type="math/tex">cn</script> operations, therefore MergeSort performs <script type="math/tex">cn(\log(n)+1)</script> operations.
+What about the total number of operations for all levels? In other words, what is the running time of merge sort? We have <script type="math/tex">log(n)+1</script> total levels and in each level we’re doing <script type="math/tex">cn</script> operations, therefore MergeSort performs <script type="math/tex">cn(\log(n)+1)</script> operations.
 <br /><br />
-Let <script type="math/tex">f(n) = cn(\log(n)+1)</script> and <script type="math/tex">g(n) = n\log(n)</script>. To see that <script type="math/tex">f(n) = O(g(n))</script>, recall that we need to find <script type="math/tex">c', n_0 > 0</script> such that for all <script type="math/tex">n \geq n_0</script>, we have <script type="math/tex">0 \leq f(n) \leq c'g(n)</script></p>
+Let <script type="math/tex">f(n) = cn(\log(n)+1)</script> and <script type="math/tex">g(n) = n\log(n)</script>. To see that <script type="math/tex">f(n) = O(g(n))</script>, recall that we need to find <script type="math/tex">c'</script> and <script type="math/tex">n_0 > 0</script> such that for all <script type="math/tex">n \geq n_0</script>, we have <script type="math/tex">0 \leq f(n) \leq c'g(n)</script></p>
 
 <p>Choose <script type="math/tex">c'=2c</script> and <script type="math/tex">n_0=2</script> and so for all <script type="math/tex">n \geq n_0</script> and <script type="math/tex">c' = 2c</script> we need to prove:</p>
 <div center="">
@@ -157,38 +168,39 @@ $$
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>The Substitution Method</b></h4>
-<p>TODO
-&lt;!–
-Now let’s take a step back and forget about the recursion tree. Also assume that we don’t know the master theorem. We know that MergeSort divides the input into halfs and performs <script type="math/tex">cn</script> operations in Merge. Therefore, we have the following recurrence:</p>
-<div center="">
+<p>TODO</p>
+
+<!--Now let's take a step back and forget about the recursion tree. Also assume that we don't know the master theorem. We know that MergeSort divides the input into halfs and performs $$cn$$ operations in Merge. Therefore, we have the following recurrence:
+<div center>
 $$
 \begin{align*}
 T(n) = 2T(\frac{n}{2}) + cn
 \end{align*}
 $$
 </div>
-<p>How do we go about solving this? The substituition method says generate a guess and prove it formally by induction! How do we guess the solution? One way is expand the recurrence multiple times to help us find a pattern.
-<br /><br />
-Let’s guess that <script type="math/tex">T(n) = O(n\log(n))</script>. In order to prove it formally though, we need to find <script type="math/tex">c' > 0</script> and <script type="math/tex">n_0 > 0</script> such that for all <script type="math/tex">n \geq n_0</script>, we have <script type="math/tex">T(n) \leq c'n\log(n)</script>. In order to find <script type="math/tex">c'</script>, we can <b>substitute</b> our guess and solve for <script type="math/tex">c'</script></p>
-<div center="">
+How do we go about solving this? The substituition method says generate a guess and prove it formally by induction! How do we guess the solution? One way is expand the recurrence multiple times to help us find a pattern.
+<br><br>
+Let's guess that $$T(n) = O(n\log(n))$$. In order to prove it formally though, we need to find $$c' > 0$$ and $$n_0 > 0$$ such that for all $$n \geq n_0$$, we have $$T(n) \leq c'n\log(n)$$. In order to find $$c'$$, we can <b>substitute</b> our guess and solve for $$c'$$
+<div center>
 $$
 \begin{align*}
-T(n) &amp;= 2T(\frac{n}{2}) + cn \\
-&amp;\leq 2c'\frac{n}{2}\log(\frac{n}{2}) + cn \\
-&amp;= c'n\log(\frac{n}{2}) + cn \\
-&amp;= c'n\log(n)-c'n\log(2) + cn \\
-&amp;= c'n\log(n)-c'n + cn \\
-&amp;\leq c'n\log(n) + cn \\
+T(n) &= 2T(\frac{n}{2}) + cn \\
+&\leq 2c'\frac{n}{2}\log(\frac{n}{2}) + cn \\
+&= c'n\log(\frac{n}{2}) + cn \\
+&= c'n\log(n)-c'n\log(2) + cn \\
+&= c'n\log(n)-c'n + cn \\
+&\leq c'n\log(n) + cn \\
 \end{align*}
 $$
 </div>
-<p>–&gt;
-<!-----------------------------------------------------------------------------------></p>
+
+-->
+<!----------------------------------------------------------------------------------->
 <h4><b>References</b></h4>
-<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html and CLRS
-<br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
+<ul>
+  <li><a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a></li>
+  <li>CLRS</li>
+</ul>
 
 
   </div><div id="disqus_thread"></div>

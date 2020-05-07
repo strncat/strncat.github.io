@@ -1,18 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-06T09:33:03-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">B-Trees</title><link href="http://localhost:4000/jekyll/update/2020/05/04/b-trees.html" rel="alternate" type="text/html" title="B-Trees" /><published>2020-05-04T01:01:36-07:00</published><updated>2020-05-04T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/04/b-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/04/b-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/red-black-trees/red-black-tree.png&quot; width=&quot;100%&quot; /&gt;
-B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; keys have &lt;script type=&quot;math/tex&quot;&gt;n+1&lt;/script&gt; children. This way, each child handles a specific range of keys in its parent.&lt;/p&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;h4&gt;&lt;b&gt;Motivation&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;But why do we need a large branching factor? The motivation behind this idea has to do with minimizing disk I/O operations. Data off disk can be read in &lt;i&gt;pages&lt;/i&gt;, so to minimize the number of reads, 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-07T15:25:02-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">10003 - Cutting Sticks</title><link href="http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks.html" rel="alternate" type="text/html" title="10003 - Cutting Sticks" /><published>2020-05-05T12:01:36-07:00</published><updated>2020-05-05T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks.html">&lt;p&gt;Given that we have an optimal value for a stick of length &lt;script type=&quot;math/tex&quot;&gt;j-i&lt;/script&gt;. Then we know that we must have the following:
+&lt;br /&gt;&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$ opt[i,j] = \min_i{opt[i,k]+opt[k,j]} + j-i $$
+&lt;/div&gt;
+&lt;p&gt;Why is this true?
+Imagine that we know the last cut we made in an optimal solution was a cut at position &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt; but &lt;script type=&quot;math/tex&quot;&gt;opt[i,m]&lt;/script&gt; wasn’t the optimal solution for a cut of length &lt;script type=&quot;math/tex&quot;&gt;m-i&lt;/script&gt;. Then we can use the new lower value for a stick of length &lt;script type=&quot;math/tex&quot;&gt;m-i&lt;/script&gt; and derive even a lower value for &lt;script type=&quot;math/tex&quot;&gt;opt[i,j]&lt;/script&gt; which is a contradiction since we already assumed that &lt;script type=&quot;math/tex&quot;&gt;opt[i,j]&lt;/script&gt; is an optimal vlue for a stick of length &lt;script type=&quot;math/tex&quot;&gt;j-i&lt;/script&gt;. 
+&lt;br /&gt;
+&lt;br /&gt;
+Suppose we have the cuts &lt;script type=&quot;math/tex&quot;&gt;c_0,c_1,c_2,...c_n&lt;/script&gt;. Then for any stick of length &lt;script type=&quot;math/tex&quot;&gt;c_i-c_{i-1}&lt;/script&gt;, there are no possible cuts possible and therefore, the optimal cut cost is simply 0.
+&lt;br /&gt;
+&lt;br /&gt;
+Note that we don’t need to compute any subproblem &lt;script type=&quot;math/tex&quot;&gt;opt[i,j]&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;i &gt; j&lt;/script&gt; since a stick has a positive length. Also note in order to compute subproblem &lt;script type=&quot;math/tex&quot;&gt;opt[i,j]&lt;/script&gt;, we need to compute &lt;script type=&quot;math/tex&quot;&gt;opt[i,k]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;opt[k,j]&lt;/script&gt;. 
 &lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;Inline-style: 
+&lt;img src=&quot;https://github.com/strncat/strncat.github.io/blob/master/_posts/img.jpeg&quot; alt=&quot;alt text&quot; title=&quot;Logo Title Text 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hello&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html">Given that we have an optimal value for a stick of length . Then we know that we must have the following: $$ opt[i,j] = \min_i{opt[i,k]+opt[k,j]} + j-i $$ Why is this true? Imagine that we know the last cut we made in an optimal solution was a cut at position but wasn’t the optimal solution for a cut of length . Then we can use the new lower value for a stick of length and derive even a lower value for which is a contradiction since we already assumed that is an optimal vlue for a stick of length . Suppose we have the cuts . Then for any stick of length , there are no possible cuts possible and therefore, the optimal cut cost is simply 0. Note that we don’t need to compute any subproblem where since a stick has a positive length. Also note in order to compute subproblem , we need to compute and .</summary></entry><entry><title type="html">B-Trees</title><link href="http://localhost:4000/jekyll/update/2020/05/04/b-trees.html" rel="alternate" type="text/html" title="B-Trees" /><published>2020-05-04T01:01:36-07:00</published><updated>2020-05-04T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/04/b-trees</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/04/b-trees.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/trees/b-trees/b-tree.png&quot; width=&quot;100%&quot; /&gt;
+B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; keys have &lt;script type=&quot;math/tex&quot;&gt;n+1&lt;/script&gt; children. This way, each child handles a specific range of keys in its parent. 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Motivation&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;But why do we need a large branching factor? The motivation behind this idea has to do with minimizing disk I/O operations. Data on disk can be read in &lt;i&gt;pages&lt;/i&gt; and so if each node’s size is a whole page in which we pack a lot of keys in, we can then minimize the number of read operations. 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Specifications&lt;/b&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; be an internal node and let &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; be the number of keys stored at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; must have &lt;script type=&quot;math/tex&quot;&gt;n+1&lt;/script&gt; children. Furthermore, the keys are stored in non-decreasing order. Leaf nodes on the other hand have no children. No restrictions on the number of children of the root.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The minimum degree of a b-tree is an integer, &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;t \geq 2&lt;/script&gt;. Every node besides the root must have between &lt;script type=&quot;math/tex&quot;&gt;t-1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;2t-1&lt;/script&gt; keys. This also implies that it must have at least &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; children and at most &lt;script type=&quot;math/tex&quot;&gt;2t&lt;/script&gt; children. If the tree is not empty, the root must be at least have 1 key.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The keys in each node are stored in non-decreasing order. The keys also define the range of keys stored in the children subtrees below. In the above figure, We see the range [0,23] defines the range for the child keys below [11,19]. Similarly [23,53] defines the range for the next child’s keys [29,43].
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;b&gt;Why are B-trees balanced?&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;To see why B-trees balanced, we will prove that the maximum height of a b-tree of degree &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; keys is &lt;script type=&quot;math/tex&quot;&gt;O(\log_t(n))&lt;/script&gt;. 
+&lt;br /&gt;
+&lt;br /&gt;
+Proof: We know the tree is not empty and so at level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least &lt;script type=&quot;math/tex&quot;&gt;t-1&lt;/script&gt; keys, so the total number of keys is &lt;script type=&quot;math/tex&quot;&gt;2(t-1)&lt;/script&gt;. Each of these children will have at least &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; children and so at level 2, we should have &lt;script type=&quot;math/tex&quot;&gt;2t(t-1)&lt;/script&gt; keys. Therefore, the total number of keys is at least&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+n &amp;amp;\geq 1 + 2(t-1) + 2t(t-1) + 2t^2(t-1) + ... + 2t^{h-1}(t-1) \\
+&amp;amp;= 1 + 2(t-1)(1 + t + t^2 + ... t^{h-1}) \\
+&amp;amp;= 1 + 2(t-1)\frac{t^h - 1}{t - 1} \text{ (using } \sum_{k=0}^{n}x^k = \frac{x^{n+1} - 1}{x - 1} ) \\
+&amp;amp;= 1 + 2(t^h - 1) \\
+&amp;amp;= 2t^h - 1 \\
+\log_t(\frac{n + 1}{2}) &amp;amp;\geq \log_t(h) \\
+h &amp;amp;\leq \log_t(\frac{n + 1}{2}). \blacksquare
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Search&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Similar searching in a binary tree, we descend down the tree and select the right branch based on the key value. If the current node has &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; keys then we will have &lt;script type=&quot;math/tex&quot;&gt;n+1&lt;/script&gt; branches that might be a possible match.
+&lt;img src=&quot;http://localhost:4000/assets/trees/b-trees/search.png&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;
+In the figure above, suppose we’re searching for &lt;script type=&quot;math/tex&quot;&gt;k = 84&lt;/script&gt;. Each node stores an array of its keys. We first find the smallest index such that &lt;script type=&quot;math/tex&quot;&gt;k \leq keys[i]&lt;/script&gt;. We then find &lt;script type=&quot;math/tex&quot;&gt;i = 3&lt;/script&gt;. We have several cases:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;k = keys[i]&lt;/script&gt;. This is great, we just return that node with the index.&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+k &lt; keys[i] %]]&gt;&lt;/script&gt;. This means the &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; falls somewhere between the key at index &lt;script type=&quot;math/tex&quot;&gt;i-1&lt;/script&gt; and index &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;. This range corresponds to the child at index &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;The node we’re searching is a leaf node. We just return NULL.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// search a b-tree of degree t &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// search for the smallest index such that k &amp;lt;= keys[i]&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// this means k will be in the range (keys[i-1], keys[i])&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// three possible cases&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// (1) we found the right key&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;leaf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// no more possible matches&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Insert&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;TODO
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Delete&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;TODO
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;CLRS&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://web.stanford.edu/class/cs166/lectures/05/Small05.pdf&quot;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with keys have children. This way, each child handles a specific range of keys in its parent.</summary></entry><entry><title type="html">Eulerian Paths and Tours</title><link href="http://localhost:4000/jekyll/update/2020/05/02/euler.html" rel="alternate" type="text/html" title="Eulerian Paths and Tours" /><published>2020-05-02T12:01:36-07:00</published><updated>2020-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/02/euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/02/euler.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/euler.png&quot; width=&quot;100%&quot; /&gt;
+  &lt;li&gt;&lt;a href=&quot;http://web.stanford.edu/class/cs166/lectures/05/Small05.pdf&quot;&gt;Stanford CS166&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with keys have children. This way, each child handles a specific range of keys in its parent. Motivation But why do we need a large branching factor? The motivation behind this idea has to do with minimizing disk I/O operations. Data on disk can be read in pages and so if each node’s size is a whole page in which we pack a lot of keys in, we can then minimize the number of read operations. Specifications Let be an internal node and let be the number of keys stored at . must have children. Furthermore, the keys are stored in non-decreasing order. Leaf nodes on the other hand have no children. No restrictions on the number of children of the root.</summary></entry><entry><title type="html">Eulerian Paths and Tours</title><link href="http://localhost:4000/jekyll/update/2020/05/02/euler.html" rel="alternate" type="text/html" title="Eulerian Paths and Tours" /><published>2020-05-02T12:01:36-07:00</published><updated>2020-05-02T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/02/euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/02/euler.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/graphs/euler/euler.png&quot; width=&quot;100%&quot; /&gt;
 Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a connected undirected a graph. An &lt;b&gt;Eulerian path&lt;/b&gt; is a path in a graph that traverses each edge exactly once and an &lt;b&gt;Eulerian tour, circuit or cycle&lt;/b&gt; is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to &lt;a href=&quot;https://en.wikipedia.org/wiki/Seven_Bridges_of_Königsberg&quot;&gt;this Wikipedia article&lt;/a&gt;.
 &lt;br /&gt;
 &lt;br /&gt;
@@ -767,198 +868,4 @@ $$
   &lt;li&gt;Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
 &lt;br /&gt;
 &lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">(1) k distinguishable strings and n distinguishable buckets Label the strings and label the buckets . has choices of buckets to choose from. has choices of buckets to choose from and so. Therefore, the total number of choices is $$ \begin{align*} n^k \end{align*} $$ (2) k distinguishable strings and n distinguishable buckets with at most 1 string in each bucket Assuming (otherwise it is impossible). Label the strings and label the buckets . has choices of buckets to choose from. has choices of buckets to choose from because it can’t go to the bucket that chose. Similarly, has and so on. Therefore, the total number of choices is $$ \begin{align*} n(n-1) ... (n-k+1) = \binom{n}{k} * k! \end{align*} $$ (3) k indistinguishable strings and n distinguishable buckets Label the buckets and line them up below: The strings are indistinguishable. We want to distribute them among the buckets so for example we could have the following: To simplify the problem, let’s pretend that they are distinguishable and instead of buckets we’ll use dividers to separate the strings into different buckets. This way the first set of strings are in bucket 1, the second set after the first divider are in bucket 2 and so on. We’ll use colors to distinguish them. We will only need dividers to create groups. To visualize this, suppose and . In the below figure, we have in the first bucket. in the second bucket. in the third bucket. The forth bucket is empty. How many possible permutions are there? We have dividers and strings so $$ \begin{align*} (n+k-1)! \end{align*} $$ Now, since strings are really indistinguishable, let’s remove the labels. We also don’t need the colors because we’re assuming the first set of strings goes to the first bucket, the second set goes to the second bucket and so on. So we’ll have something like this: To remove the unnecessary ordering, we divide by and also divide by . Therefore, the final answer is $$ \begin{align*} \frac{(n+k-1)!}{k!(n-1)!} = \binom{n+k-1}{n-1} \end{align*} $$ Note that solution can be applied to other interesting examples like finding the number of integer solutions to . (4) k indistinguishable strings and n distinguishable buckets with at most 1 string in each bucket In case (2), we saw that the number of ways to put distinguishable strings into distinguishable buckets with at most 1 string in each bucket is . In this case, the strings are indistinguishable so we don’t care about the order of strings and so we divide by . The final answer therefore is simply $$ \begin{align*} \binom{n}{k} \end{align*} $$ References Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/</summary></entry><entry><title type="html">Conditional Probability</title><link href="http://localhost:4000/jekyll/update/2019/08/29/conditional-probability.html" rel="alternate" type="text/html" title="Conditional Probability" /><published>2019-08-29T07:01:36-07:00</published><updated>2019-08-29T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/29/conditional-probability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/29/conditional-probability.html">&lt;div style=&quot;background-color:#E0E0F8; padding: 7px 7px 7px 20px;&quot;&gt;
-&lt;b&gt;References&lt;/b&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-(1) My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/&lt;br /&gt;
-(2) First Course in Probability by Sheldon Ross.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!----------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;div style=&quot;background-color:#E0E0F8; padding: 7px 7px 7px 20px;&quot;&gt;
-&lt;b&gt;Conditional Probability&lt;/b&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/condprob/1.png&quot; width=&quot;100%&quot; /&gt;
-&lt;br /&gt;
-Conditional probability is the probability that event &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; occurs given that event &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; has already occured written as &lt;script type=&quot;math/tex&quot;&gt;P(E|F)&lt;/script&gt;. In this case:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;The &lt;b&gt;sample space&lt;/b&gt; consists of all possible outcomes consistent with &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; (events in &lt;script type=&quot;math/tex&quot;&gt;S \cap F&lt;/script&gt;).&lt;/li&gt;
-  &lt;li&gt;The &lt;b&gt;event space&lt;/b&gt; consists of all possible outcomes in &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; that are consistent with &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; (events in &lt;script type=&quot;math/tex&quot;&gt;E \cap F&lt;/script&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Therefore, we have in general&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(E|F) = \frac{p(E \cap F)}{p(F)} = \frac{p(EF)}{p(F)}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;And for equally likely outcomes:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(E|F) = \frac{|EF|}{|F|} = \frac{|EF|/|S|}{|F|/|S|} = \frac{p(EF)}{p(F)}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!----------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;div style=&quot;background-color:#E0E0F8; padding: 7px 7px 7px 20px;&quot;&gt;
-&lt;b&gt;Chain Rule&lt;/b&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-From the conditional probability law, we can derive the chain rule!&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-p(EF) = P(E|F)P(F) = P(F|E)P(E)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;And in general if we have multiple events:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(E_1E_2...E_n) = P(E_1)P(E_2|E_1)...P(E_n|E_1E_2...E_{n-1})
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;b&gt;Example:&lt;/b&gt;
-&lt;br /&gt;
-Suppose we have an urn with 8 red balls and 4 white balls. What is the probability of choosing two balls that are both red (without replacement). (Source: A First Course in Probability)
-&lt;br /&gt;
-&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;E_1&lt;/script&gt; to be the event that the first ball is red. &lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;E_2&lt;/script&gt; to be the event that the second ball is red. &lt;br /&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(E_1E_2) = P(E_1)P(E_2|E_1) = \frac{8}{12}\frac{7}{11} = \frac{14}{33}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!----------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;div style=&quot;background-color:#E0E0F8; padding: 7px 7px 7px 20px;&quot;&gt;
-&lt;b&gt;Law of Total Probability&lt;/b&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(E) &amp;amp;= P(EF) + P(EF^c) \\
-P(E) &amp;amp;= P(F)P(E|F) + P(F^c)P(E|F^c) \\
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;In general:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(E) &amp;amp;= \sum_i^n P(F_i)P(E|F_i)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;The law of total probability says that the probability of event &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; is now a weighted average of the conditional probability of &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; given event &lt;script type=&quot;math/tex&quot;&gt;F_1&lt;/script&gt; plus the conditional probability of &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; given event &lt;script type=&quot;math/tex&quot;&gt;F_2&lt;/script&gt; and so on. Note that these events &lt;script type=&quot;math/tex&quot;&gt;F_i&lt;/script&gt; must be mutually exclusive. Moreover, &lt;script type=&quot;math/tex&quot;&gt;\sum_iP(F_i) = 1&lt;/script&gt;. 
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Example:&lt;/b&gt;
-&lt;br /&gt;
-Suppose 25% of students are juniors. Suppose now that if a student is a junior then the probability of being a CS major is 30%, while if a student is not a junior then the probability of being a CS major is 20%. What is the probability of being a CS major? (Class Example)
-&lt;br /&gt;
-&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;CS&lt;/script&gt; to be the event that a student is a CS major. &lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;J&lt;/script&gt; to be the event that a student is a junior. &lt;br /&gt;&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(CS) &amp;amp;= P(CS | J)P(J) + P(CS | J^c)P(J^c) \\
-&amp;amp;= 0.30*0.25 + 0.20*0.75 = 0.225
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!----------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;div style=&quot;background-color:#E0E0F8; padding: 7px 7px 7px 20px;&quot;&gt;
-&lt;b&gt;Bayes' Theorem&lt;/b&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-Common Form:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(F|E) &amp;amp;= \frac{P(E|F)P(F)}{P(E)}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Expanded Form:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(F|E) &amp;amp;= \frac{P(E|F)P(F)}{P(E|F)P(F) + P(E|F^c)P(F^c)}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Example:&lt;/b&gt;
-&lt;br /&gt;
-A test is 98% effective at detecting HIV. The test has a false positive rate of 1%. 0.5% of the US population has HIV. What is the probability that you have HIV given that you tested positive? (class example)
-&lt;br /&gt;
-&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; be that you test positive for HIV with the test&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; be that you actually have HIV. &lt;br /&gt;
-We want to find &lt;script type=&quot;math/tex&quot;&gt;P(F|E)&lt;/script&gt;?
-&lt;br /&gt;
-&lt;br /&gt;
-First, the probability that the test is positive given that you actually have HIV is 0.98 (true positive). In terms of &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt;, this is &lt;script type=&quot;math/tex&quot;&gt;P(E|F)=0.98&lt;/script&gt;. Similarly, the probability that we get a false positive is 0.01. In terms of &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt;, this probability is &lt;script type=&quot;math/tex&quot;&gt;P(E|F^c)&lt;/script&gt;,&lt;/p&gt;
-
-&lt;p&gt;We can now use Bayes’&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(F|E) &amp;amp;= \frac{P(E|F)P(F)}{P(E|F)P(F) + P(E|F^c)P(F^c)} \\
-&amp;amp;= \frac{(0.98)(0.005)}{(0.98)(0.005) + (0.01)(0.995)} = 0.330
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!----------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;div style=&quot;background-color:#E0E0F8; padding: 7px 7px 7px 20px;&quot;&gt;
-&lt;b&gt;The Monty Hall Problem&lt;/b&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-Suppose we have 3 doors. Behind one of the three doors a prize. We choose a door. The host then opens one of the remaining doors that reveals nothing. We are now given the chance to switch our door with the remaining door. Do we switch?
-&lt;br /&gt;
-&lt;br /&gt;
-We want to compare &lt;script type=&quot;math/tex&quot;&gt;P(win)&lt;/script&gt; vs &lt;script type=&quot;math/tex&quot;&gt;P(win|switch)&lt;/script&gt;. We know that if stick with our door, &lt;script type=&quot;math/tex&quot;&gt;P(win)=1/3&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-Suppose without the loss of generality that we picked door &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt;. What is the probability that we win given that we switched? Let’s consider what happens if we switch in each case. 
-&lt;br /&gt;&lt;br /&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;A, B&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; be the events that the prize is behind each door respectively. All three doors are equally likely and so each door has a probability of &lt;script type=&quot;math/tex&quot;&gt;1/3&lt;/script&gt;. Moreover, these events are mutually exlusive since the prize can be behind exactly one door. Also the probability of these events sum up to 1. 
-&lt;br /&gt;
-&lt;br /&gt;
-Prize behind door &lt;script type=&quot;math/tex&quot;&gt;A&lt;/script&gt;:&lt;br /&gt;
-In this case the host will open either door &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;. We will switch and lose. So, &lt;script type=&quot;math/tex&quot;&gt;P(win | \text {switch to B/C}) = 0&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-Prize behind door &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt;:&lt;br /&gt;
-In this case the host will open door &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;. We switch and we win! &lt;script type=&quot;math/tex&quot;&gt;P(win| \text {switch to C})=1&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-Prize behind door &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;:&lt;br /&gt;
-In this case the host will open door &lt;script type=&quot;math/tex&quot;&gt;B&lt;/script&gt;. We switch and we win! &lt;script type=&quot;math/tex&quot;&gt;P(win| \text {switch to B})=1&lt;/script&gt;.
-&lt;br /&gt;
-Using the law of total probability:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-P(win|switch) &amp;amp;= p(win|\text{switch to A})*P(A) + P(win| \text{switch to B}) + P(win | \text{switch to C})P(C) \\
-&amp;amp;= 0(1/3) + 1(1/3) + 1(1/3) = 2/3
-\end{align*}
-$$
-&lt;/div&gt;</content><author><name></name></author><summary type="html">References (1) My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/ (2) First Course in Probability by Sheldon Ross. Conditional Probability Conditional probability is the probability that event occurs given that event has already occured written as . In this case: The sample space consists of all possible outcomes consistent with (events in ). The event space consists of all possible outcomes in that are consistent with (events in ).</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">(1) k distinguishable strings and n distinguishable buckets Label the strings and label the buckets . has choices of buckets to choose from. has choices of buckets to choose from and so. Therefore, the total number of choices is $$ \begin{align*} n^k \end{align*} $$ (2) k distinguishable strings and n distinguishable buckets with at most 1 string in each bucket Assuming (otherwise it is impossible). Label the strings and label the buckets . has choices of buckets to choose from. has choices of buckets to choose from because it can’t go to the bucket that chose. Similarly, has and so on. Therefore, the total number of choices is $$ \begin{align*} n(n-1) ... (n-k+1) = \binom{n}{k} * k! \end{align*} $$ (3) k indistinguishable strings and n distinguishable buckets Label the buckets and line them up below: The strings are indistinguishable. We want to distribute them among the buckets so for example we could have the following: To simplify the problem, let’s pretend that they are distinguishable and instead of buckets we’ll use dividers to separate the strings into different buckets. This way the first set of strings are in bucket 1, the second set after the first divider are in bucket 2 and so on. We’ll use colors to distinguish them. We will only need dividers to create groups. To visualize this, suppose and . In the below figure, we have in the first bucket. in the second bucket. in the third bucket. The forth bucket is empty. How many possible permutions are there? We have dividers and strings so $$ \begin{align*} (n+k-1)! \end{align*} $$ Now, since strings are really indistinguishable, let’s remove the labels. We also don’t need the colors because we’re assuming the first set of strings goes to the first bucket, the second set goes to the second bucket and so on. So we’ll have something like this: To remove the unnecessary ordering, we divide by and also divide by . Therefore, the final answer is $$ \begin{align*} \frac{(n+k-1)!}{k!(n-1)!} = \binom{n+k-1}{n-1} \end{align*} $$ Note that solution can be applied to other interesting examples like finding the number of integer solutions to . (4) k indistinguishable strings and n distinguishable buckets with at most 1 string in each bucket In case (2), we saw that the number of ways to put distinguishable strings into distinguishable buckets with at most 1 string in each bucket is . In this case, the strings are indistinguishable so we don’t care about the order of strings and so we divide by . The final answer therefore is simply $$ \begin{align*} \binom{n}{k} \end{align*} $$ References Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/</summary></entry></feed>

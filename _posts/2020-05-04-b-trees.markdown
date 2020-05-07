@@ -5,22 +5,88 @@ date:   2020-05-04 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<img src="{{ site.url }}/assets/trees/red-black-trees/red-black-tree.png" width="100%">
+<img src="{{ site.url }}/assets/trees/b-trees/b-tree.png" width="100%">
 B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with $$n$$ keys have $$n+1$$ children. This way, each child handles a specific range of keys in its parent. 
-
-
-
+<br>
+<br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Motivation</b></h4>
-But why do we need a large branching factor? The motivation behind this idea has to do with minimizing disk I/O operations. Data off disk can be read in <i>pages</i>, so to minimize the number of reads, 
+But why do we need a large branching factor? The motivation behind this idea has to do with minimizing disk I/O operations. Data on disk can be read in <i>pages</i> and so if each node's size is a whole page in which we pack a lot of keys in, we can then minimize the number of read operations. 
 <br>
 <br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Specifications</b></h4>
+- Let $$x$$ be an internal node and let $$n$$ be the number of keys stored at $$x$$. $$x$$ must have $$n+1$$ children. Furthermore, the keys are stored in non-decreasing order. Leaf nodes on the other hand have no children. No restrictions on the number of children of the root. 
 
+- The minimum degree of a b-tree is an integer, $$t$$ such that $$t \geq 2$$. Every node besides the root must have between $$t-1$$ and $$2t-1$$ keys. This also implies that it must have at least $$t$$ children and at most $$2t$$ children. If the tree is not empty, the root must be at least have 1 key.
 
+- The keys in each node are stored in non-decreasing order. The keys also define the range of keys stored in the children subtrees below. In the above figure, We see the range [0,23] defines the range for the child keys below [11,19]. Similarly [23,53] defines the range for the next child's keys [29,43].
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Why are B-trees balanced?</b></h4>
+To see why B-trees balanced, we will prove that the maximum height of a b-tree of degree $$t$$ with $$n$$ keys is $$O(\log_t(n))$$. 
+<br>
+<br>
+Proof: We know the tree is not empty and so at level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least $$t-1$$ keys, so the total number of keys is $$2(t-1)$$. Each of these children will have at least $$t$$ children and so at level 2, we should have $$2t(t-1)$$ keys. Therefore, the total number of keys is at least
+<div center>
+$$
+\begin{align*}
+n &\geq 1 + 2(t-1) + 2t(t-1) + 2t^2(t-1) + ... + 2t^{h-1}(t-1) \\
+&= 1 + 2(t-1)(1 + t + t^2 + ... t^{h-1}) \\
+&= 1 + 2(t-1)\frac{t^h - 1}{t - 1} \text{ (using } \sum_{k=0}^{n}x^k = \frac{x^{n+1} - 1}{x - 1} ) \\
+&= 1 + 2(t^h - 1) \\
+&= 2t^h - 1 \\
+\log_t(\frac{n + 1}{2}) &\geq \log_t(h) \\
+h &\leq \log_t(\frac{n + 1}{2}). \blacksquare
+\end{align*}
+$$
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Search</b></h4>
+Similar searching in a binary tree, we descend down the tree and select the right branch based on the key value. If the current node has $$n$$ keys then we will have $$n+1$$ branches that might be a possible match.
+<img src="{{ site.url }}/assets/trees/b-trees/search.png" width="100%">
+<br>
+In the figure above, suppose we're searching for $$k = 84$$. Each node stores an array of its keys. We first find the smallest index such that $$k \leq keys[i]$$. We then find $$i = 3$$. We have several cases:
+- $$k = keys[i]$$. This is great, we just return that node with the index.
+- $$k < keys[i]$$. This means the $$k$$ falls somewhere between the key at index $$i-1$$ and index $$i$$. This range corresponds to the child at index $$i$$.
+- The node we're searching is a leaf node. We just return NULL. 
+{% highlight c++ %}
+// search a b-tree of degree t 
+search(x, k) {
+    int i = 0;
+    // search for the smallest index such that k <= keys[i]
+    // this means k will be in the range (keys[i-1], keys[i])
+    while (i < x.n && k > x.keys[i]) {
+        i++;
+    }
+    // three possible cases
+    // (1) we found the right key
+    if (index < x.n && x.keys[i] == k) {
+        return (x, i);
+    } else if (index < x.n && x.keys[i] > k) {
+        return search(x.child[i], k);
+    } else if (x.leaf) {
+         return NULL; // no more possible matches
+    }
+}
+{% endhighlight %}
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Insert</b></h4>
+TODO
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Delete</b></h4>
+TODO
+<br>
+<br>
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 - CLRS
-- <a href="http://web.stanford.edu/class/cs166/lectures/05/Small05.pdf">Source Code</a>
+- <a href="http://web.stanford.edu/class/cs166/lectures/05/Small05.pdf">Stanford CS166</a>
 
 
 

@@ -62,14 +62,12 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let <script type="math/tex">G = (V, E)</script> be a directed acyclic graph consisting of <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices <script type="math/tex">u \in V</script> and <script type="math/tex">v \in V</script>, if <script type="math/tex">(u,v) \in E</script>, then <script type="math/tex">u</script> must come before <script type="math/tex">v</script> in the ordering.
-<br /><br />
-In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class <script type="math/tex">a</script> is a prerequisite to class <script type="math/tex">b</script>, then <script type="math/tex">a</script> comes before <script type="math/tex">b</script> in the sorted list.
+    <p>Let <script type="math/tex">G = (V, E)</script> be a directed acyclic graph consisting of <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices <script type="math/tex">u \in V</script> and <script type="math/tex">v \in V</script>, if <script type="math/tex">(u,v) \in E</script>, then <script type="math/tex">u</script> must come before <script type="math/tex">v</script> in the ordering. For example, we might have some dependency graph of classes and their prerequisites and we want to find an ordering of the classes such that if class <script type="math/tex">a</script> is a prerequisite to class <script type="math/tex">b</script>, then <script type="math/tex">a</script> comes before <script type="math/tex">b</script> in the sorted list.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Revisiting Depth First Search</b></h4>
-<p>Let’s take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It’s very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them into the front of a linked list or a stack and end up with the sorted vertices as required!</p>
+<p>Believe or not, topological sort is just a depth first search with a minor tweak! In depth first search, we start by visiting some node and marking its start time. We then visit its children and run depth first search again on the children and their descendants. Only after we’re done processing all the neighbors, we mark the node’s finishing time. This means that once we mark a node finished, then it’s impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self! (we’ll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we’re done processing them onto a stack. When there are no longer unvisited nodes, we will end up with the sorted vertices as required.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">current_time</span><span class="p">,</span>
         <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">graph</span><span class="p">,</span>
@@ -93,7 +91,7 @@ In other words, we might have some dependency graph of classes and their prerequ
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
 <p><img src="http://localhost:4000/assets/graphs/topological-sort/1.png" alt="my photo" />
-Let’s explore the graph above with dfs again to see how the start and finish times are set again. We will start from <script type="math/tex">f</script> (arbitrarily chosen), mark its start time as zero and visit <script type="math/tex">e</script>. We will mark <script type="math/tex">e</script>’s start time and then recursively call DFS on <script type="math/tex">d</script>. We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, <script type="math/tex">e</script> won’t have more neighbors and so we will mark its finish time. We do the same thing with <script type="math/tex">f</script> and we’ll end up with the graph below.</p>
+Let’s explore the graph above with dfs to see how the start and finish times are set again. We will start from <script type="math/tex">f</script> (arbitrarily chosen), mark its start time as zero and visit <script type="math/tex">e</script>. We will mark <script type="math/tex">e</script>’s start time and then recursively call DFS on <script type="math/tex">d</script>. We will set its start time. At this point, we don’t have more neighbors and so we mark its finish time as well. When we come back, <script type="math/tex">e</script> won’t have more neighbors and so we will mark its finish time. We do the same thing with <script type="math/tex">f</script> and we’ll end up with the graph below.</p>
 
 <p><img src="http://localhost:4000/assets/graphs/topological-sort/2.png" alt="my photo" /></p>
 
@@ -106,11 +104,11 @@ Let’s explore the graph above with dfs again to see how the start and finish t
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Correctness Proof</b></h4>
-<p>The first time I saw Topological Sort I didn’t believe. It seemed strange to just be able to sort the vertices by just doing a DFS. What do we need to show to prove that topological sort works? what is the intuition here? Let’s think about this. We need to prove that for any two vertices <script type="math/tex">a \in V</script> and <script type="math/tex">b \in V</script>, if there is an edge from <script type="math/tex">a</script> to be <script type="math/tex">b</script>, then <script type="math/tex">a</script> will come before <script type="math/tex">b</script> in the sorted output. 
+<p>The first time I saw Topological Sort I didn’t believe it. It seemed strange to just be able to sort the vertices by just doing a depth first search. What do we need to show to prove that topological sort works? what is the intuition here? Let’s think about this. We need to prove that for any two vertices <script type="math/tex">a \in V</script> and <script type="math/tex">b \in V</script>, if there is an edge from <script type="math/tex">a</script> to be <script type="math/tex">b</script>, then <script type="math/tex">a</script> will come before <script type="math/tex">b</script> in the sorted output. 
 <br /><br />
-How do we prove this? Well we know that topological sort relies on the finishing times of vertices and we know that <script type="math/tex">a</script>’s finishing time gets marked after its children and so this means that we want to prove that <script type="math/tex">a</script>’s finishing time is greater than <script type="math/tex">b</script>’s finishing time. So to summarize, we really want to prove the following claim: For any two vertices <script type="math/tex">a \in V</script> and <script type="math/tex">b \in V</script>, if there is an edge from <script type="math/tex">a</script> to <script type="math/tex">b</script>, then <script type="math/tex">a</script>’s finishing time is greater than <script type="math/tex">b</script>’s finishing time.</p>
+How do we prove this? Well, we know that topological sort relies on the finishing times of vertices and we know that <script type="math/tex">a</script>’s finishing time gets marked after its children and so this means that we want to prove that <script type="math/tex">a</script>’s finishing time is greater than <script type="math/tex">b</script>’s finishing time. So to summarize, we really want to prove the following claim: For any two vertices <script type="math/tex">a \in V</script> and <script type="math/tex">b \in V</script>, if there is an edge from <script type="math/tex">a</script> to <script type="math/tex">b</script>, then <script type="math/tex">a</script>’s finishing time is greater than <script type="math/tex">b</script>’s finishing time.</p>
 
-<p>In order to prove the above claim we will use a theorem calling the Parenthesis Theorem from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph <script type="math/tex">G = (V,E)</script> and for any vertices <script type="math/tex">u</script> and <script type="math/tex">v</script>, exactly one of the following conditions holds:</p>
+<p>In order to prove the above claim we will use a theorem called the Parenthesis Theorem from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph <script type="math/tex">G = (V,E)</script> and for any vertices <script type="math/tex">u</script> and <script type="math/tex">v</script>, exactly one of the following conditions holds:</p>
 
 <ul>
   <li>
@@ -165,8 +163,7 @@ b.finish_time < a.finish_time %]]></script>. <script type="math/tex">\blacksquar
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Implementation</b></h4>
-<p><br />
-Let’s rewrite DFS to push the nodes onto a stack and let’s forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let’s call this version topological sort! Here is a simple implementation:</p>
+<p>Let’s tweak DFS to push the nodes onto a stack and let’s forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let’s call this version topological sort! Here is a simple implementation:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">graph</span><span class="p">;</span>
 <span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">bool</span> <span class="o">*</span><span class="n">visited</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">ordered</span><span class="p">)</span> <span class="p">{</span>
@@ -195,20 +192,16 @@ Let’s rewrite DFS to push the nodes onto a stack and let’s forget about the 
     <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
-<p><br />
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search">Source Code</a>
+<br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Running Time</b></h4>
 <p>It is just DFS! so the total time is <script type="math/tex">O(V+E)</script>.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
-<h4><b>Implementation</b></h4>
-<p>https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search
-<br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p>http://web.stanford.edu/class/cs161/schedule.html
+<p>Stanford CS161 <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br />
 <br /></p>
 

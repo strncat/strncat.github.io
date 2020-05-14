@@ -5,14 +5,12 @@ date:   2019-07-10 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Let $$G = (V, E)$$ be a directed acyclic graph consisting of $$V$$ vertices and $$E$$ edges. Topological Sort is an ordering of the vertices of the graph such that for any given vertices $$u \in V$$ and $$v \in V$$, if $$(u,v) \in E$$, then $$u$$ must come before $$v$$ in the ordering.
-<br><br>
-In other words, we might have some dependency graph of classes and their prerequisites and we would like to find an ordering of the classes such that if class $$a$$ is a prerequisite to class $$b$$, then $$a$$ comes before $$b$$ in the sorted list.
+Let $$G = (V, E)$$ be a directed acyclic graph consisting of $$V$$ vertices and $$E$$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $$u \in V$$ and $$v \in V$$, if $$(u,v) \in E$$, then $$u$$ must come before $$v$$ in the ordering. For example, we might have some dependency graph of classes and their prerequisites and we want to find an ordering of the classes such that if class $$a$$ is a prerequisite to class $$b$$, then $$a$$ comes before $$b$$ in the sorted list.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Revisiting Depth First Search</b></h4>
-Let's take a look at the depth first search code again. When we see a node for the first time, we mark its start time. When we are done processing the node, then mark its finish time. It's very important to notice here that we only mark a node as finished after we have called DFS on all of its children and their descendants. Intuitively, this means that once we mark a node finished, then it's impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self!! (we'll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we're done processing them into the front of a linked list or a stack and end up with the sorted vertices as required!
+Believe or not, topological sort is just a depth first search with a minor tweak! In depth first search, we start by visiting some node and marking its start time. We then visit its children and run depth first search again on the children and their descendants. Only after we're done processing all the neighbors, we mark the node's finishing time. This means that once we mark a node finished, then it's impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node it self! (we'll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we're done processing them onto a stack. When there are no longer unvisited nodes, we will end up with the sorted vertices as required.
 {% highlight c++ %}
 int dfs(int v, int current_time,
         std::vector<std::vector<int>>& graph,
@@ -36,7 +34,7 @@ int dfs(int v, int current_time,
 <!----------------------------------------------------------------------------------->
 <h4><b>Example</b></h4>
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/1.png)
-Let's explore the graph above with dfs again to see how the start and finish times are set again. We will start from $$f$$ (arbitrarily chosen), mark its start time as zero and visit $$e$$. We will mark $$e$$'s start time and then recursively call DFS on $$d$$. We will set its start time. At this point, we don't have more neighbors and so we mark its finish time as well. When we come back, $$e$$ won't have more neighbors and so we will mark its finish time. We do the same thing with $$f$$ and we'll end up with the graph below.
+Let's explore the graph above with dfs to see how the start and finish times are set again. We will start from $$f$$ (arbitrarily chosen), mark its start time as zero and visit $$e$$. We will mark $$e$$'s start time and then recursively call DFS on $$d$$. We will set its start time. At this point, we don't have more neighbors and so we mark its finish time as well. When we come back, $$e$$ won't have more neighbors and so we will mark its finish time. We do the same thing with $$f$$ and we'll end up with the graph below.
 
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/2.png)
 
@@ -49,11 +47,11 @@ Notice how if we ordered the nodes by their finishing times ($$a, c, b, f, e, d$
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Correctness Proof</b></h4>
-The first time I saw Topological Sort I didn't believe. It seemed strange to just be able to sort the vertices by just doing a DFS. What do we need to show to prove that topological sort works? what is the intuition here? Let's think about this. We need to prove that for any two vertices $$a \in V$$ and $$b \in V$$, if there is an edge from $$a$$ to be $$b$$, then $$a$$ will come before $$b$$ in the sorted output. 
+The first time I saw Topological Sort I didn't believe it. It seemed strange to just be able to sort the vertices by just doing a depth first search. What do we need to show to prove that topological sort works? what is the intuition here? Let's think about this. We need to prove that for any two vertices $$a \in V$$ and $$b \in V$$, if there is an edge from $$a$$ to be $$b$$, then $$a$$ will come before $$b$$ in the sorted output. 
 <br><br>
-How do we prove this? Well we know that topological sort relies on the finishing times of vertices and we know that $$a$$'s finishing time gets marked after its children and so this means that we want to prove that $$a$$'s finishing time is greater than $$b$$'s finishing time. So to summarize, we really want to prove the following claim: For any two vertices $$a \in V$$ and $$b \in V$$, if there is an edge from $$a$$ to $$b$$, then $$a$$'s finishing time is greater than $$b$$'s finishing time.
+How do we prove this? Well, we know that topological sort relies on the finishing times of vertices and we know that $$a$$'s finishing time gets marked after its children and so this means that we want to prove that $$a$$'s finishing time is greater than $$b$$'s finishing time. So to summarize, we really want to prove the following claim: For any two vertices $$a \in V$$ and $$b \in V$$, if there is an edge from $$a$$ to $$b$$, then $$a$$'s finishing time is greater than $$b$$'s finishing time.
   
-In order to prove the above claim we will use a theorem calling the Parenthesis Theorem from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph $$G = (V,E)$$ and for any vertices $$u$$ and $$v$$, exactly one of the following conditions holds:
+In order to prove the above claim we will use a theorem called the Parenthesis Theorem from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph $$G = (V,E)$$ and for any vertices $$u$$ and $$v$$, exactly one of the following conditions holds:
 
 + the intervals [u.start_time, u.finish_time] and [v.start_time, v.finish_time] are disjoint and neither $$u$$ or $$v$$ is a descendant of the other in the depth-first forest. 
 
@@ -81,8 +79,7 @@ We conclude from all three cases that we must have $$b.finish_time < a.finish_ti
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Implementation</b></h4>
-<br>
-Let's rewrite DFS to push the nodes onto a stack and let's forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let's call this version topological sort! Here is a simple implementation:
+Let's tweak DFS to push the nodes onto a stack and let's forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let's call this version topological sort! Here is a simple implementation:
 {% highlight c++ %}
 typedef std::vector<std::vector<int>> graph;
 void dfs(graph& g, int v, bool *visited, std::stack<int> &ordered) {
@@ -111,6 +108,7 @@ void topological_sort(graph& g) {
     }
 }
 {% endhighlight %}
+<a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search">Source Code</a>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Running Time</b></h4>
@@ -118,13 +116,8 @@ It is just DFS! so the total time is $$O(V+E)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search
-<br>
-<br>
-<!----------------------------------------------------------------------------------->
 <h4><b>References</b></h4>
-http://web.stanford.edu/class/cs161/schedule.html
+Stanford CS161 <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br>
 <br>
 

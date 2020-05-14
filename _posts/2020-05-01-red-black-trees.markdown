@@ -90,6 +90,8 @@ Also note that we color the node red by default. Red nodes allow for some room i
 <br>
 <br>
 In general, there are two main violations that could happen. This could be our very first node which the root and the root must be black. The parent of the node might be red and red nodes are not allowed to have red children.
+
+TODO: EACH CASE :)
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Combinations</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-05-08T08:01:36-07:00" itemprop="datePublished">May 8, 2020
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Many competitive programming problems require generating combinations. For example, in <a href="https://onlinejudge.org/index.php?option=onlinejudge&amp;page=show_problem&amp;problem=382">411 - Lotto</a>, we are given <script type="math/tex">k</script> integers (all distinct) and we want to print all possible ways of choosing 6 numbers from the set. There are different approaches to generate these combinations. The following approach is an extremely simple approach. 
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Approach 1</b></h4>
+<p>In this approach, we generate all possible subsets, stopping when we reach the combination size we’re after. Suppose we’re generating $k=3$ numbers from the following set:
+<img src="http://localhost:4000/assets/competitive-programming/combinations/set.png" width="100%" />
+We start generating the combinations by looking at each element starting at element “1”. We also keep track of what elements make our combination in a new array called <i>selected</i>. We have two choices for “1”. We either select it or we skip it. We record our selection and move down to the next level.
+<br />
+<br />
+<img src="http://localhost:4000/assets/competitive-programming/combinations/1.png" width="100%" />
+<br />
+<br />
+So now we’re maintaining two <i>selected</i> arrays, one for each choice. Next we look at “2”. We again have two choices. We either select “2” or we skip it.
+<br />
+<br />
+<img src="http://localhost:4000/assets/competitive-programming/combinations/2.png" width="100%" />
+<br />
+<br />
+We next look at “3”. For each <i>selected</i> array above, we have two more choices of whether we want to add “3” or just skip it.
+<br />
+<br />
+<img src="http://localhost:4000/assets/competitive-programming/combinations/3.png" width="100%" />
+<br />
+<br />
+We repeat this process until one of two things happen:</p>
+<ul>
+  <li>We reach <script type="math/tex">k=3</script> elements in <i>selected</i> and so we can print our choice and return.</li>
+  <li>We run out of possible elements to choose and we exit.</li>
+</ul>
+
+<p>The following code represents the process we just followed.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">combinations</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">a</span><span class="p">,</span> 
+                  <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> 
+                  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&amp;</span> <span class="n">sel</span><span class="p">,</span> 
+                  <span class="kt">int</span> <span class="n">selections</span><span class="p">,</span>
+                  <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">selections</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">print_combination</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">sel</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// no more elements</span>
+    <span class="c1">// two choices</span>
+    <span class="c1">// (1) select a[i]</span>
+    <span class="n">sel</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="n">combinations</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">selections</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+
+    <span class="c1">// (2) don't select a[i]</span>
+    <span class="n">sel</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">combinations</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">selections</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Worst case analysis</b></h4>
+<p>At the top level of the recursion tree (level = 0), we make one call. At level 1 we make <script type="math/tex">2^1</script> calls. At level 2, we make $2^2$ calls. The last level (level = $n-1$) would have $2^n$ subproblems. For each call, we make $O(1)$ work of selecting or not selecting the element. So the total time would be $1+2+2^2+2^3+…+2^n = 2^{n+1} - 1 = O(2^{n})$.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Approach 2</b></h4>
+<p>TODO
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Practice Problems</b></h4>
+<ul>
+  <li><a href="https://onlinejudge.org/index.php?option=onlinejudge&amp;page=show_problem&amp;problem=382">411 - Lotto</a>
+(<a href="https://github.com/strncat/competitive-programming/blob/master/uva/backtracking/441-lotto.cpp">Solution Using Approach 1</a>)
+<br />
+<br /></li>
+</ul>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2020/05/08/combinations.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2020/05/08/combinations; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2020/05/08/combinations.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

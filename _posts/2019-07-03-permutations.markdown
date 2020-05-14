@@ -5,8 +5,7 @@ date:   2019-07-03 7:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<b>0 Permutations</b><br>
-Say we have an array = [1,2,3] and we would like to permute its elements to generate all possible permutations. In this case we want to print [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1].
+Suppose we have an array = [1,2,3] and we would like to permute its elements to generate all possible permutations. In this case we want to print [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1].
 <br><br>
 The first thing we want to do is select a single number from the three numbers available to us. We can model this with an index that we pass to the permutation function indicating which position we're working on. In a for loop, we now loop over the numbers/selections/choices available to us (In this case, all three) and place each number in that specific cell. This is what it is going to look like:
 
@@ -52,8 +51,3 @@ std::vector<int> s;
 {% endhighlight %}
 <br>
 <br>
-<hr>
-<!------------------------------------------------------------------------->
-<br>
-<b>1 Combinations</b><br>
-

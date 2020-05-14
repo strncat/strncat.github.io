@@ -35,7 +35,7 @@ Looking at the figure below, we see in the first figure we have $$bh(root)=3$$ a
 Proof: By Induction on the height of $$x$$. For the base case, consider when the height is 0, then we know that $$x$$ is NIL. Therefore, $$2^{bh(x)} - 1 = 1 - 1 = 0$$. For the inductive step, suppose $$x$$ has some positive height > 0 and has two internal children (why 2?). Each child must have either $$bh(x)-1$$ or $$bh(x)$$ black height depending on its color. If $$x$$ was red, then both children must be black and the black height of both children is  $$bh(x)$$. If $$x$$ was black, then both its children must have black height $$bh(x)-1$$. Since the height of both children is less than $$x$$, then we can apply the inductive hypothesis and conclude that each child must have at least $$2^{bh(x)-1}-1$$ internal nodes. Therefore, $$x$$ has at least $$1 + 2^{bh(x)-1} - 1 + 2^{bh(x)-1} - 1 = 2^{bh(x)} -1 $$ internal nodes which completes the proof. $$\blacksquare$$ 
 <br>
 <br>
-To prove that the height of the tree is at most $$O(\log(n))$$, . The next thing we want to use is that we know that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is $$h$$ then we must have $$bh(root) \geq h/2$$. Using what we proved earlier, we see that
+To prove that the height of the tree is at most $$O(\log(n))$$, . The next thing we want to use is the fact that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is $$h$$ then we must have $$bh(root) \geq h/2$$. Using what we proved earlier, we see that
 <div center>
 $$
 \begin{align*}
@@ -57,7 +57,39 @@ Operations on red-black trees such as insert and delete modify the tree such tha
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Insert</b></h4>
-TODO
+Just like <a href="https://strncat.github.io/jekyll/update/2020/04/28/binary-search-trees.html">inserting a node into a binary search tree</a>, we just find an appropriate place to insert it such that we don't violate the binary search property. Since all leaf nodes must be black, we create a special dummy node and color it black. We call it SNIL, just to differentiate it from NIL (dumb?).  
+<!---------------------->
+{% highlight c++ %}
+void Tree::insert(int d) {
+    Node *z = new Node(d); // create a new node
+    Node *x = root;
+    Node *p = SNIL; // potenial parent
+    while (x != SNIL) {
+        p = x;
+        if (z->key < x->key) {
+            x = x->left;
+        } else {
+            x = x->right;
+        }
+    }
+    z->parent = p;
+    if (p == SNIL) { // tree was empty
+        root = z;
+    } else if (z->key < p->key) { // left child
+        p->left = z;
+    } else {
+        p->right = z;
+    }
+    z->left = SNIL; // new for red-black-trees
+    z->right = SNIL; // new for red-black-trees
+    z->color = RED; // new for red-black-trees
+    insertFixUp(z); // new for red-black-trees
+}
+{% endhighlight %}
+Also note that we color the node red by default. Red nodes allow for some room in the definition of a "balanced tree". We still be okay. If the parent of the node is black, then all is fine. However if we choose to color it black then we immediately violate the property that the number of black nodes must be the same across all simple paths. 
+<br>
+<br>
+In general, there are two main violations that could happen. This could be our very first node which the root and the root must be black. The parent of the node might be red and red nodes are not allowed to have red children.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

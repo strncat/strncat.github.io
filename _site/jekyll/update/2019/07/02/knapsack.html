@@ -44,7 +44,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
       </nav></div>
   
 </header>
@@ -72,17 +72,17 @@
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>A Greedy Approach</b></h4>
-<p>The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One might try a simple greedy algorithm of say always picking the item with the best value/weight ratio. In the example, we’ll pick 2 burritos of value <script type="math/tex">2*17=34</script> which is not an optimal value!
+<p>The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One simple greedy strategy is to always pick the item with the best value/weight ratio. In the above example, we’ll pick 2 burritos of value <script type="math/tex">2*17=34</script> which is not an optimal value.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Complete Search</b></h4>
-<p>We can also try a complete search of every possible combinations of items. I’m not sure about the thought process here but I was thinking the following should give us an upper bound. For each item <script type="math/tex">x_i</script> with weight <script type="math/tex">w_i</script> and value <script type="math/tex">v_i</script>, we insert <script type="math/tex">\lceil W/x_i \rceil</script> copies of <script type="math/tex">x_i</script> to a new list of items. If we original had <script type="math/tex">n</script> items, we could potentially insert <script type="math/tex">O(n^2)</script> items. Give this this list. For each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be <script type="math/tex">O(2^{n^2})</script>.
+<p>We can also try a complete search of every possible combination of items. We can simulate this by inserting <script type="math/tex">\lceil W/x_i \rceil</script> copies of item <script type="math/tex">x_i</script> to a new list of items. If we originally had <script type="math/tex">n</script> items, we could potentially insert <script type="math/tex">O(n^2)</script> items in the new list. We can now iterate through the list and for each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be <script type="math/tex">O(2^{n^2})</script>.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Dynamic Programming</b></h4>
-<p>As we saw above, greedy doesn’t work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
+<p>As we saw above, greedy doesn’t work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming. To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
 <br />
 <br />
 Let <script type="math/tex">K[x]</script> be the optimal value for capacity <script type="math/tex">x</script>. We will have the following recursive substructure:</p>
@@ -192,7 +192,7 @@ $$
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
-<h4><b>Implmentation</b></h4>
+<h4><b>Implementation</b></h4>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">knapsack_01</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">bag</span><span class="p">,</span> <span class="kt">int</span> <span class="n">W</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">K</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
@@ -224,17 +224,16 @@ $$
     <span class="k">return</span> <span class="n">K</span><span class="p">[</span><span class="n">W</span><span class="p">][</span><span class="n">bag</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span>
 <span class="p">}</span></code></pre></figure>
 
-<p><br />
-<!-----------------------------------------------------------------------------------></p>
-<h4><b>Implementation (github)</b></h4>
-<p>https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp
+<p>Source Code <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp">Stanford CS161</a>
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+<ul>
+  <li><a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br />
-<br /></p>
+<br /></li>
+</ul>
 
   </div><div id="disqus_thread"></div>
 <script>

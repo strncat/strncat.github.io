@@ -36,6 +36,21 @@ while (tests--) {
     n = (int) grid[0].size(); // number of columns
 }
 {% endhighlight %}
+Or if you know the dimensions,
+{% highlight c++ %}
+    int tests, n, m;
+    scanf("%d\n", &tests);
+    while (tests--) {
+        scanf("%d %d\n", &m, &n);
+        std::vector<std::string> grid;
+        std::string line;
+        for (int i = 0; i < m; i++) {
+            std::getline(std::cin, line);
+            grid.push_back(line);
+        }
+    }
+{% endhighlight %}
+
 <br>
 <!------------------------------------------------------------------------->
 <h4><b>2D grid with no spaces between cells</b></h4>

@@ -15,17 +15,17 @@ Let's focus now on the unbounded knapsack problem and let's start with an exampl
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>A Greedy Approach</b></h4>
-The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One might try a simple greedy algorithm of say always picking the item with the best value/weight ratio. In the example, we'll pick 2 burritos of value $$2*17=34$$ which is not an optimal value!
+The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One simple greedy strategy is to always pick the item with the best value/weight ratio. In the above example, we'll pick 2 burritos of value $$2*17=34$$ which is not an optimal value.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Complete Search</b></h4>
-We can also try a complete search of every possible combinations of items. I'm not sure about the thought process here but I was thinking the following should give us an upper bound. For each item $$x_i$$ with weight $$w_i$$ and value $$v_i$$, we insert $$\lceil W/x_i \rceil$$ copies of $$x_i$$ to a new list of items. If we original had $$n$$ items, we could potentially insert $$O(n^2)$$ items. Give this this list. For each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be $$O(2^{n^2})$$.
+We can also try a complete search of every possible combination of items. We can simulate this by inserting $$\lceil W/x_i \rceil$$ copies of item $$x_i$$ to a new list of items. If we originally had $$n$$ items, we could potentially insert $$O(n^2)$$ items in the new list. We can now iterate through the list and for each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be $$O(2^{n^2})$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Dynamic Programming</b></h4>
-As we saw above, greedy doesn't work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming! To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
+As we saw above, greedy doesn't work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming. To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
 <br>
 <br>
 Let $$K[x]$$ be the optimal value for capacity $$x$$. We will have the following recursive substructure:
@@ -135,7 +135,7 @@ The proof is very similar to the structure of our earlier proof to the unbounded
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Implmentation</b></h4>
+<h4><b>Implementation</b></h4>
 {% highlight c++ %}
 int knapsack_01(std::vector<item> &bag, int W) {
     int K[100][100] = {0};
@@ -167,14 +167,12 @@ int knapsack_01(std::vector<item> &bag, int W) {
     return K[W][bag.size()];
 }
 {% endhighlight %}
-<br>
-<!----------------------------------------------------------------------------------->
-<h4><b>Implementation (github)</b></h4>
-https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp
+
+Source Code <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp">Stanford CS161</a>
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>References</b></h4>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
+- <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br>
 <br>

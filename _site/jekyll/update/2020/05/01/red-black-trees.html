@@ -44,7 +44,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
       </nav></div>
   
 </header>
@@ -100,7 +100,7 @@ To show a formal proof, we first need to define the black height of a node. Let 
 <p>Proof: By Induction on the height of <script type="math/tex">x</script>. For the base case, consider when the height is 0, then we know that <script type="math/tex">x</script> is NIL. Therefore, <script type="math/tex">2^{bh(x)} - 1 = 1 - 1 = 0</script>. For the inductive step, suppose <script type="math/tex">x</script> has some positive height &gt; 0 and has two internal children (why 2?). Each child must have either <script type="math/tex">bh(x)-1</script> or <script type="math/tex">bh(x)</script> black height depending on its color. If <script type="math/tex">x</script> was red, then both children must be black and the black height of both children is  <script type="math/tex">bh(x)</script>. If <script type="math/tex">x</script> was black, then both its children must have black height <script type="math/tex">bh(x)-1</script>. Since the height of both children is less than <script type="math/tex">x</script>, then we can apply the inductive hypothesis and conclude that each child must have at least <script type="math/tex">2^{bh(x)-1}-1</script> internal nodes. Therefore, <script type="math/tex">x</script> has at least <script type="math/tex">1 + 2^{bh(x)-1} - 1 + 2^{bh(x)-1} - 1 = 2^{bh(x)} -1</script> internal nodes which completes the proof. <script type="math/tex">\blacksquare</script> 
 <br />
 <br />
-To prove that the height of the tree is at most <script type="math/tex">O(\log(n))</script>, . The next thing we want to use is that we know that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is <script type="math/tex">h</script> then we must have <script type="math/tex">bh(root) \geq h/2</script>. Using what we proved earlier, we see that</p>
+To prove that the height of the tree is at most <script type="math/tex">O(\log(n))</script>, . The next thing we want to use is the fact that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is <script type="math/tex">h</script> then we must have <script type="math/tex">bh(root) \geq h/2</script>. Using what we proved earlier, we see that</p>
 <div center="">
 $$
 \begin{align*}
@@ -121,7 +121,39 @@ $$
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Insert</b></h4>
-<p>TODO
+<p>Just like <a href="https://strncat.github.io/jekyll/update/2020/04/28/binary-search-trees.html">inserting a node into a binary search tree</a>, we just find an appropriate place to insert it such that we don’t violate the binary search property. Since all leaf nodes must be black, we create a special dummy node and color it black. We call it SNIL, just to differentiate it from NIL (dumb?).<br />
+<!----------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">Tree</span><span class="o">::</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Node</span> <span class="o">*</span><span class="n">z</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">d</span><span class="p">);</span> <span class="c1">// create a new node</span>
+    <span class="n">Node</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">root</span><span class="p">;</span>
+    <span class="n">Node</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">SNIL</span><span class="p">;</span> <span class="c1">// potenial parent</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">SNIL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">z</span><span class="o">-&gt;</span><span class="n">parent</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">SNIL</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// tree was empty</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// left child</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">z</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">SNIL</span><span class="p">;</span> <span class="c1">// new for red-black-trees</span>
+    <span class="n">z</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">SNIL</span><span class="p">;</span> <span class="c1">// new for red-black-trees</span>
+    <span class="n">z</span><span class="o">-&gt;</span><span class="n">color</span> <span class="o">=</span> <span class="n">RED</span><span class="p">;</span> <span class="c1">// new for red-black-trees</span>
+    <span class="n">insertFixUp</span><span class="p">(</span><span class="n">z</span><span class="p">);</span> <span class="c1">// new for red-black-trees</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Also note that we color the node red by default. Red nodes allow for some room in the definition of a “balanced tree”. We still be okay. If the parent of the node is black, then all is fine. However if we choose to color it black then we immediately violate the property that the number of black nodes must be the same across all simple paths. 
+<br />
+<br />
+In general, there are two main violations that could happen. This could be our very first node which the root and the root must be black. The parent of the node might be red and red nodes are not allowed to have red children.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>

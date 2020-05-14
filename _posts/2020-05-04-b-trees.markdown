@@ -25,10 +25,10 @@ But why do we need a large branching factor? The motivation behind this idea has
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Why are B-trees balanced?</b></h4>
-To see why B-trees balanced, we will prove that the maximum height of a b-tree of degree $$t$$ with $$n$$ keys is $$O(\log_t(n))$$. 
+To see why B-trees are balanced, we will prove that the maximum height of a b-tree of degree $$t$$ with $$n$$ keys is $$O(\log_t(n))$$. 
 <br>
 <br>
-Proof: We know the tree is not empty and so at level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least $$t-1$$ keys, so the total number of keys is $$2(t-1)$$. Each of these children will have at least $$t$$ children and so at level 2, we should have $$2t(t-1)$$ keys. Therefore, the total number of keys is at least
+Proof: At level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least $$t-1$$ keys, so the total number of keys is $$2(t-1)$$. Each of these children will have at least $$t$$ children and so at level 2, we should have $$2t(t-1)$$ keys. Therefore, the total number of keys is at least
 <div center>
 $$
 \begin{align*}
@@ -48,10 +48,11 @@ $$
 Similar searching in a binary tree, we descend down the tree and select the right branch based on the key value. If the current node has $$n$$ keys then we will have $$n+1$$ branches that might be a possible match.
 <img src="{{ site.url }}/assets/trees/b-trees/search.png" width="100%">
 <br>
-In the figure above, suppose we're searching for $$k = 84$$. Each node stores an array of its keys. We first find the smallest index such that $$k \leq keys[i]$$. We then find $$i = 3$$. We have several cases:
-- $$k = keys[i]$$. This is great, we just return that node with the index.
-- $$k < keys[i]$$. This means the $$k$$ falls somewhere between the key at index $$i-1$$ and index $$i$$. This range corresponds to the child at index $$i$$.
-- The node we're searching is a leaf node. We just return NULL. 
+In the figure above, suppose we're searching for $$k = 84$$. Each node stores an array of its keys. We first find the smallest index such that $$k \leq keys[i]$$. For $k=84$, the smallest index is $i = 3$. 101 is the smallest key that is larger than 84. We then have several cases:
+- $k = keys[i]$. This is great, we just return that node with the index.
+- $x$ is a leaf node so we return NULL.
+- $k \neq keys[i]$. $k$ falls somewhere between the key at index $$i-1$$ and the key at index $$i$$ (could be $x.n$, but it's okay because we have $x.n+1$ children). This range corresponds to the child at index $$i$$.
+
 {% highlight c++ %}
 // search a b-tree of degree t 
 search(x, k) {
@@ -62,14 +63,12 @@ search(x, k) {
         i++;
     }
     // three possible cases
-    // (1) we found the right key
-    if (index < x.n && x.keys[i] == k) {
+    if (index < x.n && x.keys[i] == k) { // key found
         return (x, i);
-    } else if (index < x.n && x.keys[i] > k) {
-        return search(x.child[i], k);
-    } else if (x.leaf) {
+    } else if (x.leaf) { // x is a leaf node
          return NULL; // no more possible matches
-    }
+    } else { // i is x.n. No key is larger than k, we search the very last child
+        return search(x.child[i], k);
 }
 {% endhighlight %}
 <br>

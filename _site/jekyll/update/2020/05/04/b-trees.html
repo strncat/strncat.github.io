@@ -44,7 +44,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
       </nav></div>
   
 </header>
@@ -88,10 +88,10 @@ B-trees are balanced search trees. While red-black trees are also balanced searc
   </li>
 </ul>
 <h4><b>Why are B-trees balanced?</b></h4>
-<p>To see why B-trees balanced, we will prove that the maximum height of a b-tree of degree <script type="math/tex">t</script> with <script type="math/tex">n</script> keys is <script type="math/tex">O(\log_t(n))</script>. 
+<p>To see why B-trees are balanced, we will prove that the maximum height of a b-tree of degree <script type="math/tex">t</script> with <script type="math/tex">n</script> keys is <script type="math/tex">O(\log_t(n))</script>. 
 <br />
 <br />
-Proof: We know the tree is not empty and so at level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least <script type="math/tex">t-1</script> keys, so the total number of keys is <script type="math/tex">2(t-1)</script>. Each of these children will have at least <script type="math/tex">t</script> children and so at level 2, we should have <script type="math/tex">2t(t-1)</script> keys. Therefore, the total number of keys is at least</p>
+Proof: At level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least <script type="math/tex">t-1</script> keys, so the total number of keys is <script type="math/tex">2(t-1)</script>. Each of these children will have at least <script type="math/tex">t</script> children and so at level 2, we should have <script type="math/tex">2t(t-1)</script> keys. Therefore, the total number of keys is at least</p>
 <div center="">
 $$
 \begin{align*}
@@ -111,12 +111,11 @@ $$
 <p>Similar searching in a binary tree, we descend down the tree and select the right branch based on the key value. If the current node has <script type="math/tex">n</script> keys then we will have <script type="math/tex">n+1</script> branches that might be a possible match.
 <img src="http://localhost:4000/assets/trees/b-trees/search.png" width="100%" />
 <br />
-In the figure above, suppose we’re searching for <script type="math/tex">k = 84</script>. Each node stores an array of its keys. We first find the smallest index such that <script type="math/tex">k \leq keys[i]</script>. We then find <script type="math/tex">i = 3</script>. We have several cases:</p>
+In the figure above, suppose we’re searching for <script type="math/tex">k = 84</script>. Each node stores an array of its keys. We first find the smallest index such that <script type="math/tex">k \leq keys[i]</script>. For $k=84$, the smallest index is $i = 3$. 101 is the smallest key that is larger than 84. We then have several cases:</p>
 <ul>
-  <li><script type="math/tex">k = keys[i]</script>. This is great, we just return that node with the index.</li>
-  <li><script type="math/tex">% <![CDATA[
-k < keys[i] %]]></script>. This means the <script type="math/tex">k</script> falls somewhere between the key at index <script type="math/tex">i-1</script> and index <script type="math/tex">i</script>. This range corresponds to the child at index <script type="math/tex">i</script>.</li>
-  <li>The node we’re searching is a leaf node. We just return NULL.</li>
+  <li>$k = keys[i]$. This is great, we just return that node with the index.</li>
+  <li>$x$ is a leaf node so we return NULL.</li>
+  <li>$k \neq keys[i]$. $k$ falls somewhere between the key at index <script type="math/tex">i-1</script> and the key at index <script type="math/tex">i</script> (could be $x.n$, but it’s okay because we have $x.n+1$ children). This range corresponds to the child at index <script type="math/tex">i</script>.</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// search a b-tree of degree t </span>
@@ -128,14 +127,12 @@ k < keys[i] %]]></script>. This means the <script type="math/tex">k</script> fal
         <span class="n">i</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="c1">// three possible cases</span>
-    <span class="c1">// (1) we found the right key</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="p">.</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="p">.</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// key found</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="p">.</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">child</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">k</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">leaf</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">leaf</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// x is a leaf node</span>
          <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// no more possible matches</span>
-    <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// i is x.n. No key is larger than k, we search the very last child</span>
+        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">child</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">k</span><span class="p">);</span>
 <span class="p">}</span></code></pre></figure>
 
 <p><br />

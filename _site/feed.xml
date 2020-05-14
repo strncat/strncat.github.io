@@ -1,4 +1,307 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-07T15:50:38-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">10003 - Cutting Sticks</title><link href="http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks.html" rel="alternate" type="text/html" title="10003 - Cutting Sticks" /><published>2020-05-05T12:01:36-07:00</published><updated>2020-05-05T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks.html">&lt;p&gt;Given that we have an optimal value for a stick of length &lt;script type=&quot;math/tex&quot;&gt;j-i&lt;/script&gt;. Then we know that we must have the following:
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-13T20:34:58-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Coin Change</title><link href="http://localhost:4000/jekyll/update/2020/05/10/coin-change.html" rel="alternate" type="text/html" title="Coin Change" /><published>2020-05-10T07:01:36-07:00</published><updated>2020-05-10T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/10/coin-change</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/10/coin-change.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dynamic-programming/coin-change/coin-change.png&quot; width=&quot;100%&quot; /&gt;
+Suppose we’re given a bill of value $n=5$. We’re also given unlimited amount of coins. The possible coin values are 1, 2 and 5. What is the total number of ways of changing the bill into coins? We can exchange it for 5 coins of value 1. We can also exchange it for 3 coins of value 1 and 1 coin of value 2. Here are total possible ways:
+&lt;img src=&quot;http://localhost:4000/assets/dynamic-programming/coin-change/change.png&quot; width=&quot;100%&quot; /&gt;
+How can we design an algorithm to solve this problem?
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Method 1&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;One way to count the number of ways to make change is to iterate through the coins and use each coin as a  starting point:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Start with a coin of value 5, then make change for $n-5$.&lt;/li&gt;
+  &lt;li&gt;Start with a coin of value 2, then make change for $n-2$.&lt;/li&gt;
+  &lt;li&gt;Start with a coin of value 1, then make change for $n-1$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When do we stop?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;When the amount is negative, meaning this is not a valid combination.&lt;/li&gt;
+  &lt;li&gt;When the amount is zero which means that we have arrived at a valid solution.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is illustrated below with amount = 4 and coins 1, 2 and 5:
+&lt;img src=&quot;http://localhost:4000/assets/dynamic-programming/coin-change/method1-before.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The solutions are highlighted in yellow. One thing we immediately notice is that we have duplicates! we’re finding (1,1,2), (1,2,1) and (2,1,1) as valid solutions. How can we fix this? The simplest way to fix this issue is to restrict the coins in the next iteration to coins  that are less than our current coin. For example if our current coin is 2, then we only try out coins 1 and 2 at the next level. So our steps will now be:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Start with a coin of value 5, then make change for $n-5$ with coins (1,2,5).&lt;/li&gt;
+  &lt;li&gt;Start with a coin of value 2, then make change for $n-2$ with coins (1,2).&lt;/li&gt;
+  &lt;li&gt;Start with a coin of value 1, then make change for $n-1$ with coins (1).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is illustrated below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dynamic-programming/coin-change/method1-after.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Implementation wise, we can pass an index to keep track of which coins we are allowed to use at the next level of recursion.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;make_change_recursive_alt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// used coins = exact amount&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not the right combination of coins&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// recurse again but with the largest coin = coins[i]&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// this way we don't count duplicates&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;make_change_recursive_alt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Method 2&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Another way to think about this problem is to divide the solutions into two sets. Fix a coin of choice, $c$, and then divide the set of solutions into solutions that use the coin $c$ and solutions that don’t use $c$. For amount 4 and coin “2”, we have 1 way that doesn’t use coin “2” and 2 different ways that does use it.
+&lt;img src=&quot;http://localhost:4000/assets/dynamic-programming/coin-change/method2-coin.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let $K[c,n]$ be the total number of ways to make change for amount $n$ and coins $c$. Fix a coin $c_i$ from the set $c$. We will have,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+K[c,n] = K[c-{c_i},n] + K[c, x-c_i].
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;The following implementation is based on the above recurrence. Just like previously, in order not to run into duplicate solutions, we make sure to have the sequence of coins in some pre set order and then use an index to keep track of which coins we’re allowed to use in the next iteration.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;make_change_recursive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// used coins = exact amount&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not the right combination of coins&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ran out of coins&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// either use the coin c[n-1] or don't&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;make_change_recursive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// don't use this coin&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;make_change_recursive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// use the coin&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;However, for $n$ coins, this solution still takes $O(2^n)$ time and is not efficient.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Method 3: Dynamic Programming&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dynamic-programming/coin-change/substructure.png&quot; width=&quot;100%&quot; /&gt;
+Suppose we know the solution to a problem we’re solving. An optimal substructure means that the solution will contain solutions to smaller subproblems. Does this apply to the coin change problem? Yes! we just came up with a beautiful recurrence in the recursive solution above. Let $K[c,n]$ be the total number of ways to make change for amount $n$ and coins $c$. Fix a coin $c_i$ from the set $c$. We will have,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+K[c,n] = K[c-{c_i},n] + K[c, n-c_i].
+\end{align*}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Both subproblems are independent of each other and both are smaller in size than the original problem.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The first subproblem, $K[c-{c_i},n]$, has one fewer coin.&lt;/li&gt;
+  &lt;li&gt;The second subproblem, $K[c,n-{c_i}]$, has a smaller amount.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is exactly what we need to implement a dynamic programming algorithm. The only thing left is to define the base case. For this particular problem:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$K[c,0] = 1$. The number of ways to make change for any zero amount is 1.&lt;/li&gt;
+  &lt;li&gt;$K[0,n] = 1$ where $n &amp;gt; 0$. The number of ways to make change for any amount greater than zero using zero coins is 0.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is also important just like in the recursive structure, to take care of the duplicates issue. We need to keep track of which coins we’re allowed to use.&lt;/p&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;amount/coins&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;3&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+		&lt;td&gt;5&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;	
+		&lt;td&gt;0&lt;/td&gt;			
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;{1}&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;{1,2}&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;3&lt;/td&gt;
+		&lt;td&gt;3&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;{1,2,5}&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;3&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;make_change_2d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// base case for amount = 0, there is 1 way to make change&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// otherwise the total number of ways to make change is zero for any amount &amp;gt; 0 with zero coins&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAX_AMOUNT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for each coin&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAX_AMOUNT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for each amount&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// dp[n][amount] = dp[n-1][amount] + dp[n][amount-c[n]]&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;For amount $n$ and $m$ coins, The runtime is &lt;script type=&quot;math/tex&quot;&gt;O(nm)&lt;/script&gt;.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Method 4: Optimized Dynamic Programming&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;The previous method is great and optimal. We could however reduce the storage requirement from 2D to only 1D. If you pay attention to the recursive structure, you’ll see that each row only depends on the previous row. So what we could do is just over write the current row onto the previous row until we reach the final answer in the last row.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// bottom up with less memory&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;make_change_1d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// base case&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for each coin&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAX_AMOUNT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for each amount, m needs to be &amp;gt;= c[i], start from c[i]&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Proof of Correctness&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;TODO?&lt;/p&gt;
+
+&lt;!-- 
+
+&lt;i&gt;Proof:&lt;/i&gt; &lt;br&gt;
+Suppose that we have a bill of size $$n$$ and suppose that we have unbounded copies of $$c$$ coins available to us. Now suppose that we know that the number of ways to make change is $K[c,n]$. Fix a coin $c_i$. If We claim that $K[c-{c_i},n]$ is the number of ways to make change and that one of the solutions contains one coin of value $c_i$ for some natural number $i$. We claim that $K[W] - v_k$ is an optimal value for a knapsack of size $$W - x_k$$. That is, $$K[W - x_k] = K[W] - v_k$$.
+&lt;br&gt;&lt;br&gt;
+We will prove our claim by contradiction. Suppose that $$K[W] - v_k$$ is not an optimal value and that the optimal value is $$T^{\prime}$$. Since we know that the optimal solution to the knapsack of size $$W$$ contains a copy of item $$x_k$$, we can therefore add $$x_k$$ to $$K[W - x_k]$$ to obtain an optimal value $$T^{\prime} + v_k$$. But $$T^{\prime} + v_k &gt;  K[W] - v_k + v_k = K[W]$$. This is a contradiction since we assumed that $$K[W]$$ is an optimal value. Therefore, $$K[W] - v_k$$ must be an optimal value for a knapsack of size $$W - x_k$$. $$\blacksquare$$
+
+--&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Practice Problems&lt;/b&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=2078&quot;&gt;11137 - Ingenuous Cubrency&lt;/a&gt; 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;(Method 2) &lt;a href=&quot;https://www.geeksforgeeks.org/coin-change-dp-7/&quot;&gt;GeeksforGeeks&lt;/a&gt; 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Suppose we’re given a bill of value $n=5$. We’re also given unlimited amount of coins. The possible coin values are 1, 2 and 5. What is the total number of ways of changing the bill into coins? We can exchange it for 5 coins of value 1. We can also exchange it for 3 coins of value 1 and 1 coin of value 2. Here are total possible ways: How can we design an algorithm to solve this problem? Method 1 One way to count the number of ways to make change is to iterate through the coins and use each coin as a starting point: Start with a coin of value 5, then make change for $n-5$. Start with a coin of value 2, then make change for $n-2$. Start with a coin of value 1, then make change for $n-1$.</summary></entry><entry><title type="html">Combinations</title><link href="http://localhost:4000/jekyll/update/2020/05/08/combinations.html" rel="alternate" type="text/html" title="Combinations" /><published>2020-05-08T08:01:36-07:00</published><updated>2020-05-08T08:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/08/combinations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/08/combinations.html">&lt;p&gt;Many competitive programming problems require generating combinations. For example, in &lt;a href=&quot;https://onlinejudge.org/index.php?option=onlinejudge&amp;amp;page=show_problem&amp;amp;problem=382&quot;&gt;411 - Lotto&lt;/a&gt;, we are given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; integers (all distinct) and we want to print all possible ways of choosing 6 numbers from the set. There are different approaches to generate these combinations. The following approach is an extremely simple approach. 
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Approach 1&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;In this approach, we generate all possible subsets, stopping when we reach the combination size we’re after. Suppose we’re generating $k=3$ numbers from the following set:
+&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/combinations/set.png&quot; width=&quot;100%&quot; /&gt;
+We start generating the combinations by looking at each element starting at element “1”. We also keep track of what elements make our combination in a new array called &lt;i&gt;selected&lt;/i&gt;. We have two choices for “1”. We either select it or we skip it. We record our selection and move down to the next level.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/combinations/1.png&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+So now we’re maintaining two &lt;i&gt;selected&lt;/i&gt; arrays, one for each choice. Next we look at “2”. We again have two choices. We either select “2” or we skip it.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/combinations/2.png&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+We next look at “3”. For each &lt;i&gt;selected&lt;/i&gt; array above, we have two more choices of whether we want to add “3” or just skip it.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/combinations/3.png&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+We repeat this process until one of two things happen:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We reach &lt;script type=&quot;math/tex&quot;&gt;k=3&lt;/script&gt; elements in &lt;i&gt;selected&lt;/i&gt; and so we can print our choice and return.&lt;/li&gt;
+  &lt;li&gt;We run out of possible elements to choose and we exit.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The following code represents the process we just followed.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;combinations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+                  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+                  &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+                  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;selections&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;print_combination&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// no more elements&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// two choices&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// (1) select a[i]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;combinations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// (2) don't select a[i]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;combinations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Worst case analysis&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;At the top level of the recursion tree (level = 0), we make one call. At level 1 we make &lt;script type=&quot;math/tex&quot;&gt;2^1&lt;/script&gt; calls. At level 2, we make $2^2$ calls. The last level (level = $n-1$) would have $2^n$ subproblems. For each call, we make $O(1)$ work of selecting or not selecting the element. So the total time would be $1+2+2^2+2^3+…+2^n = 2^{n+1} - 1 = O(2^{n})$.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Approach 2&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;TODO
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Practice Problems&lt;/b&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://onlinejudge.org/index.php?option=onlinejudge&amp;amp;page=show_problem&amp;amp;problem=382&quot;&gt;411 - Lotto&lt;/a&gt;
+(&lt;a href=&quot;https://github.com/strncat/competitive-programming/blob/master/uva/backtracking/441-lotto.cpp&quot;&gt;Solution Using Approach 1&lt;/a&gt;)
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Many competitive programming problems require generating combinations. For example, in 411 - Lotto, we are given integers (all distinct) and we want to print all possible ways of choosing 6 numbers from the set. There are different approaches to generate these combinations. The following approach is an extremely simple approach. Approach 1 In this approach, we generate all possible subsets, stopping when we reach the combination size we’re after. Suppose we’re generating $k=3$ numbers from the following set: We start generating the combinations by looking at each element starting at element “1”. We also keep track of what elements make our combination in a new array called selected. We have two choices for “1”. We either select it or we skip it. We record our selection and move down to the next level. So now we’re maintaining two selected arrays, one for each choice. Next we look at “2”. We again have two choices. We either select “2” or we skip it. We next look at “3”. For each selected array above, we have two more choices of whether we want to add “3” or just skip it. We repeat this process until one of two things happen: We reach elements in selected and so we can print our choice and return. We run out of possible elements to choose and we exit.</summary></entry><entry><title type="html">10003 - Cutting Sticks</title><link href="http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks.html" rel="alternate" type="text/html" title="10003 - Cutting Sticks" /><published>2020-05-05T12:01:36-07:00</published><updated>2020-05-05T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/05/10003-cutting-sticks.html">&lt;p&gt;Given that we have an optimal value for a stick of length &lt;script type=&quot;math/tex&quot;&gt;j-i&lt;/script&gt;. Then we know that we must have the following:
 &lt;br /&gt;&lt;/p&gt;
 &lt;div center=&quot;&quot;&gt;
 $$ opt[i,j] = \min_i{opt[i,k]+opt[k,j]} + j-i $$
@@ -47,10 +350,10 @@ B-trees are balanced search trees. While red-black trees are also balanced searc
   &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;&lt;b&gt;Why are B-trees balanced?&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;To see why B-trees balanced, we will prove that the maximum height of a b-tree of degree &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; keys is &lt;script type=&quot;math/tex&quot;&gt;O(\log_t(n))&lt;/script&gt;. 
+&lt;p&gt;To see why B-trees are balanced, we will prove that the maximum height of a b-tree of degree &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; keys is &lt;script type=&quot;math/tex&quot;&gt;O(\log_t(n))&lt;/script&gt;. 
 &lt;br /&gt;
 &lt;br /&gt;
-Proof: We know the tree is not empty and so at level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least &lt;script type=&quot;math/tex&quot;&gt;t-1&lt;/script&gt; keys, so the total number of keys is &lt;script type=&quot;math/tex&quot;&gt;2(t-1)&lt;/script&gt;. Each of these children will have at least &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; children and so at level 2, we should have &lt;script type=&quot;math/tex&quot;&gt;2t(t-1)&lt;/script&gt; keys. Therefore, the total number of keys is at least&lt;/p&gt;
+Proof: At level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least &lt;script type=&quot;math/tex&quot;&gt;t-1&lt;/script&gt; keys, so the total number of keys is &lt;script type=&quot;math/tex&quot;&gt;2(t-1)&lt;/script&gt;. Each of these children will have at least &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; children and so at level 2, we should have &lt;script type=&quot;math/tex&quot;&gt;2t(t-1)&lt;/script&gt; keys. Therefore, the total number of keys is at least&lt;/p&gt;
 &lt;div center=&quot;&quot;&gt;
 $$
 \begin{align*}
@@ -70,12 +373,11 @@ $$
 &lt;p&gt;Similar searching in a binary tree, we descend down the tree and select the right branch based on the key value. If the current node has &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; keys then we will have &lt;script type=&quot;math/tex&quot;&gt;n+1&lt;/script&gt; branches that might be a possible match.
 &lt;img src=&quot;http://localhost:4000/assets/trees/b-trees/search.png&quot; width=&quot;100%&quot; /&gt;
 &lt;br /&gt;
-In the figure above, suppose we’re searching for &lt;script type=&quot;math/tex&quot;&gt;k = 84&lt;/script&gt;. Each node stores an array of its keys. We first find the smallest index such that &lt;script type=&quot;math/tex&quot;&gt;k \leq keys[i]&lt;/script&gt;. We then find &lt;script type=&quot;math/tex&quot;&gt;i = 3&lt;/script&gt;. We have several cases:&lt;/p&gt;
+In the figure above, suppose we’re searching for &lt;script type=&quot;math/tex&quot;&gt;k = 84&lt;/script&gt;. Each node stores an array of its keys. We first find the smallest index such that &lt;script type=&quot;math/tex&quot;&gt;k \leq keys[i]&lt;/script&gt;. For $k=84$, the smallest index is $i = 3$. 101 is the smallest key that is larger than 84. We then have several cases:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;k = keys[i]&lt;/script&gt;. This is great, we just return that node with the index.&lt;/li&gt;
-  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-k &lt; keys[i] %]]&gt;&lt;/script&gt;. This means the &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; falls somewhere between the key at index &lt;script type=&quot;math/tex&quot;&gt;i-1&lt;/script&gt; and index &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;. This range corresponds to the child at index &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;.&lt;/li&gt;
-  &lt;li&gt;The node we’re searching is a leaf node. We just return NULL.&lt;/li&gt;
+  &lt;li&gt;$k = keys[i]$. This is great, we just return that node with the index.&lt;/li&gt;
+  &lt;li&gt;$x$ is a leaf node so we return NULL.&lt;/li&gt;
+  &lt;li&gt;$k \neq keys[i]$. $k$ falls somewhere between the key at index &lt;script type=&quot;math/tex&quot;&gt;i-1&lt;/script&gt; and the key at index &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; (could be $x.n$, but it’s okay because we have $x.n+1$ children). This range corresponds to the child at index &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// search a b-tree of degree t &lt;/span&gt;
@@ -87,14 +389,12 @@ k &lt; keys[i] %]]&gt;&lt;/script&gt;. This means the &lt;script type=&quot;math
         &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// three possible cases&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// (1) we found the right key&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// key found&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;leaf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;leaf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// x is a leaf node&lt;/span&gt;
          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// no more possible matches&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// i is x.n. No key is larger than k, we search the very last child&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;
@@ -216,9 +516,18 @@ We start popping the nodes from “stack” and pushing them onto “cycle”. W
 &lt;/table&gt;
 
 &lt;p&gt;&lt;i&gt;Proof:&lt;/i&gt;
-TODO&lt;/p&gt;
-
-&lt;!------------------------------------------------------------------------------------&gt;
+TODO
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Practice Problems&lt;/b&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;category=24&amp;amp;page=show_problem&amp;amp;problem=508&quot;&gt;10054 - The Necklace&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;category=24&amp;amp;page=show_problem&amp;amp;problem=53&quot;&gt;117 - The Postal Worker Rings Once&lt;/a&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.math.caltech.edu/~2014-15/1term/ma006a/class8.pdf&quot;&gt;Proof&lt;/a&gt;
@@ -262,7 +571,7 @@ To show a formal proof, we first need to define the black height of a node. Let 
 &lt;p&gt;Proof: By Induction on the height of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. For the base case, consider when the height is 0, then we know that &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is NIL. Therefore, &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)} - 1 = 1 - 1 = 0&lt;/script&gt;. For the inductive step, suppose &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has some positive height &amp;gt; 0 and has two internal children (why 2?). Each child must have either &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt; black height depending on its color. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was red, then both children must be black and the black height of both children is  &lt;script type=&quot;math/tex&quot;&gt;bh(x)&lt;/script&gt;. If &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; was black, then both its children must have black height &lt;script type=&quot;math/tex&quot;&gt;bh(x)-1&lt;/script&gt;. Since the height of both children is less than &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, then we can apply the inductive hypothesis and conclude that each child must have at least &lt;script type=&quot;math/tex&quot;&gt;2^{bh(x)-1}-1&lt;/script&gt; internal nodes. Therefore, &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; has at least &lt;script type=&quot;math/tex&quot;&gt;1 + 2^{bh(x)-1} - 1 + 2^{bh(x)-1} - 1 = 2^{bh(x)} -1&lt;/script&gt; internal nodes which completes the proof. &lt;script type=&quot;math/tex&quot;&gt;\blacksquare&lt;/script&gt; 
 &lt;br /&gt;
 &lt;br /&gt;
-To prove that the height of the tree is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, . The next thing we want to use is that we know that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;bh(root) \geq h/2&lt;/script&gt;. Using what we proved earlier, we see that&lt;/p&gt;
+To prove that the height of the tree is at most &lt;script type=&quot;math/tex&quot;&gt;O(\log(n))&lt;/script&gt;, . The next thing we want to use is the fact that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; then we must have &lt;script type=&quot;math/tex&quot;&gt;bh(root) \geq h/2&lt;/script&gt;. Using what we proved earlier, we see that&lt;/p&gt;
 &lt;div center=&quot;&quot;&gt;
 $$
 \begin{align*}
@@ -283,7 +592,39 @@ $$
 &lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;Insert&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;TODO
+&lt;p&gt;Just like &lt;a href=&quot;https://strncat.github.io/jekyll/update/2020/04/28/binary-search-trees.html&quot;&gt;inserting a node into a binary search tree&lt;/a&gt;, we just find an appropriate place to insert it such that we don’t violate the binary search property. Since all leaf nodes must be black, we create a special dummy node and color it black. We call it SNIL, just to differentiate it from NIL (dumb?).&lt;br /&gt;
+&lt;!----------------------&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Tree&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// create a new node&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SNIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// potenial parent&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SNIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SNIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// tree was empty&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// left child&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SNIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// new for red-black-trees&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SNIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// new for red-black-trees&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// new for red-black-trees&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;insertFixUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// new for red-black-trees&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Also note that we color the node red by default. Red nodes allow for some room in the definition of a “balanced tree”. We still be okay. If the parent of the node is black, then all is fine. However if we choose to color it black then we immediately violate the property that the number of black nodes must be the same across all simple paths. 
+&lt;br /&gt;
+&lt;br /&gt;
+In general, there are two main violations that could happen. This could be our very first node which the root and the root must be black. The parent of the node might be red and red nodes are not allowed to have red children.
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
@@ -499,6 +840,8 @@ Finally putting everything together in one place:&lt;/p&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
 &lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The binary-search-tree property states that given a node in the tree, every node in the left subtree has a key less than ’s key and every node in the right subtree has a key greater than ’s key. Motivation But why invent another data structure? Let’s take a look at sorted arrays. We can search a sorted array for keys in just time with binary search. However, inserting and deleting elements takes time. Similarly, while inserting elements in a linked list takes only time, searching a linked list takes time in the worst case. Can we do better with binary search trees? yes! The binary search tree property is really great at allowing us to insert/search and delete in just time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be where is is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists! In Order Walk Another great property of binary search trees is that an in order walk of the tree results in getting all the keys sorted. void in_order_walk(tree *t) { if (t == NULL) { return; } in_order_walk(t-&amp;gt;left); print key in_order_walk(t-&amp;gt;right); } Proving that it takes time to perform the in order walk is such a great way to practice the substitution method. (TODO: add proof) Search Similar to the in-order walk, we can simply perform a search by using the following tree* search(tree *t, key) { while (t != NULL &amp;amp;&amp;amp; k != t-&amp;gt;key) { if (key &amp;lt; t-&amp;gt;key) { t = t-&amp;gt;left; } else { t = t-&amp;gt;right; } } return t; } Minimum, Maximum, Predecessor and Successor Similarly, we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node , we have two cases: If has a right subtree, then the most left element (tree minimum) of the right subtree is the successor. If doesn’t have a right subtree, then the next element would be the first ancestor such that is a left child of it. tree* successor(tree *t) { if (t-&amp;gt;right != NULL) { return tree_minimum(t-&amp;gt;right); }; // otherwise, find the closest parent where t is a left child tree *p = t-&amp;gt;parent; while (p != NULL &amp;amp;&amp;amp; p-&amp;gt;right == t) { t = p; p = t-&amp;gt;parent; } return p; } Insert Inserting a node into a binary search tree is pretty simple. We need to follow the following steps: Create a new node and assign both the left and right pointers to NULL. Similar to search, descend in the tree with pointer based on the key value, while keeping a trailing pointer to its parent. Once we hit NULL, we know that the will be the parent of our node. The figure below illustrates the process: void insert(tree **t, key) { // create a new node x p = NULL; current = *t; while (current != NULL) { p = current; if (x-&amp;gt;key &amp;lt; current-&amp;gt;key) { current = current-&amp;gt;left; } else { current = current-&amp;gt;right; } } x.parent = p; if (p == NULL) { // x is now the root! *t = x; } else if (p-&amp;gt;key &amp;gt; x-&amp;gt;key) { p-&amp;gt;left = x; } else { p-&amp;gt;right = x; } } Delete Before discussing delete, we’ll present a helper function that we will use in deleting a node in a binary search three. transplant replaces a subtree rooted at with another subtree rooted at , illustrated below, // replace subtree u with subtree v void transplant(tree **t, tree *u, tree *v) { if (u.parent == NULL) { // u is the root *t = v; } else if (u == u.parent.left) { // u is a left child u.parent.left = v; } else if (u == u.parent.right) { u.parent.right = v; } if (v != NULL) { // fix v's parent pointer v.parent = u.parent } }</summary></entry><entry><title type="html">Floyd-Warshall’s Shortest Paths</title><link href="http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall.html" rel="alternate" type="text/html" title="Floyd-Warshall's Shortest Paths" /><published>2020-04-24T07:01:36-07:00</published><updated>2020-04-24T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/24/floyd-warshall.html">&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E)&lt;/script&gt; be a directed weighted graph with &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; vertices and &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$.
+&lt;br /&gt;
+&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;Optimal Substructure&lt;/b&gt;&lt;/h4&gt;
 &lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;V = \{1,2,3,...,n\}&lt;/script&gt; and consider a subset &lt;script type=&quot;math/tex&quot;&gt;S = \{1,2,3,...,k\}&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;S \subseteq V&lt;/script&gt; for some &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; be two vertices in &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt;. Now, consider all the paths from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; whose intermediate vertices are in &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; be a shortest path among the paths from &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; that are drawn from &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. 
@@ -519,7 +862,8 @@ $$
 \end{align*}
 $$
 &lt;/div&gt;
-&lt;!------------------------------------------------------------------------------------&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;b&gt;Simple Implementation&lt;/b&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;floyd_warshall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// O(n^3)&lt;/span&gt;
@@ -555,10 +899,20 @@ $$
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Also,
-&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/floyd-warshall.cpp&quot;&gt;Source Code&lt;/a&gt;
+&lt;a href=&quot;https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/floyd-warshall.cpp&quot;&gt;Full Code&lt;/a&gt;
+&lt;br /&gt;
+&lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Practice Problems&lt;/b&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;category=24&amp;amp;page=show_problem&amp;amp;problem=508&quot;&gt;567 - Risk&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;category=24&amp;amp;page=show_problem&amp;amp;problem=762&quot;&gt;821 - Page Hopping&lt;/a&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!------------------------------------------------------------------------------------&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">Let be a directed weighted graph with vertices and edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$. Optimal Substructure Let and consider a subset such that for some . Let and be two vertices in . Now, consider all the paths from to whose intermediate vertices are in . Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let be a shortest path among the paths from to that are drawn from . This is where it gets interesting. There are two cases here. Either is on or it’s not. If is not on then we claim that all the intermediate vertices of are drawn from the set . If is on , then we can decompose into two shortest paths. A shortest path from to with intermediate vertices and a shortest path from to with intermediate vertices . Therefore, we can derive the following: $$ \begin{align*} d_{ij}^{k} =\Big\{ \begin{array}{@{}lr@{}} w_{ij} \text{ $\quad \quad \quad \quad \quad \quad \quad$ if $k = 0$}\\ \min (d_{ij}^{k-1}, d_{ik}^{k-1}+d_{jk}^{k-1}) \text{ if $k \geq 0$}\\ \end{array} \end{align*} $$ Simple Implementation void floyd_warshall(int n) { // O(n^3) // the shortest path between i and j contains some internal nodes (none repeated, simple path) // let k be an internal node, either node k is on the optimal path or it's not // if k is on the path =&amp;gt; the shortest distance is d[i][k] + d[k][j] // if k is not on the optimal path =&amp;gt; the shortest distance is dij // if k is zero, then the shortest distance is just wij (if it exist) otherwise infinity // (1) initialize the distance matrix int distance[N][N]; for (int i = 1; i &amp;lt;= vertices; i++) { for (int j = 1; j &amp;lt;= vertices; j++) { if (i == j) { distance[i][j] = 0; // distance from node to itself is zero } else if (w_ij exists) { distance[i][j] = w_ij; // current edge weight } else { distance[i][j] = INT_MAX; // this edge doesn't exist, set it to infinity } } } // (2) apply floyd-warshall for (int k = 1; k &amp;lt;= n; k++) { // k is the internal node on the path // for each internal node k, see if it improves the distance[i][j] for (int i = 1; i &amp;lt;= n; i++) { for (int j = 1; j &amp;lt;= n; j++) { if (distance[i][k] == INT_MAX || distance[k][j] == INT_MAX) { continue; } // current distance vs distance though k (from i to k then k to j) distance[i][j] = std::min(distance[i][j], distance[i][k] + distance[k][j]); } } } } Also, Source Code References CLRS</summary></entry><entry><title type="html">Line Segment Intersection</title><link href="http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection.html" rel="alternate" type="text/html" title="Line Segment Intersection" /><published>2020-04-08T12:01:36-07:00</published><updated>2020-04-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/segments.png&quot; width=&quot;100%&quot; /&gt;
+&lt;p&gt;CLRS&lt;/p&gt;</content><author><name></name></author><summary type="html">Let be a directed weighted graph with vertices and edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$. Optimal Substructure Let and consider a subset such that for some . Let and be two vertices in . Now, consider all the paths from to whose intermediate vertices are in . Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let be a shortest path among the paths from to that are drawn from . This is where it gets interesting. There are two cases here. Either is on or it’s not. If is not on then we claim that all the intermediate vertices of are drawn from the set . If is on , then we can decompose into two shortest paths. A shortest path from to with intermediate vertices and a shortest path from to with intermediate vertices . Therefore, we can derive the following: $$ \begin{align*} d_{ij}^{k} =\Big\{ \begin{array}{@{}lr@{}} w_{ij} \text{ $\quad \quad \quad \quad \quad \quad \quad$ if $k = 0$}\\ \min (d_{ij}^{k-1}, d_{ik}^{k-1}+d_{jk}^{k-1}) \text{ if $k \geq 0$}\\ \end{array} \end{align*} $$ Simple Implementation void floyd_warshall(int n) { // O(n^3) // the shortest path between i and j contains some internal nodes (none repeated, simple path) // let k be an internal node, either node k is on the optimal path or it's not // if k is on the path =&amp;gt; the shortest distance is d[i][k] + d[k][j] // if k is not on the optimal path =&amp;gt; the shortest distance is dij // if k is zero, then the shortest distance is just wij (if it exist) otherwise infinity // (1) initialize the distance matrix int distance[N][N]; for (int i = 1; i &amp;lt;= vertices; i++) { for (int j = 1; j &amp;lt;= vertices; j++) { if (i == j) { distance[i][j] = 0; // distance from node to itself is zero } else if (w_ij exists) { distance[i][j] = w_ij; // current edge weight } else { distance[i][j] = INT_MAX; // this edge doesn't exist, set it to infinity } } } // (2) apply floyd-warshall for (int k = 1; k &amp;lt;= n; k++) { // k is the internal node on the path // for each internal node k, see if it improves the distance[i][j] for (int i = 1; i &amp;lt;= n; i++) { for (int j = 1; j &amp;lt;= n; j++) { if (distance[i][k] == INT_MAX || distance[k][j] == INT_MAX) { continue; } // current distance vs distance though k (from i to k then k to j) distance[i][j] = std::min(distance[i][j], distance[i][k] + distance[k][j]); } } } } Also, Full Code Practice Problems 567 - Risk 821 - Page Hopping References CLRS</summary></entry><entry><title type="html">Line Segment Intersection</title><link href="http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection.html" rel="alternate" type="text/html" title="Line Segment Intersection" /><published>2020-04-08T12:01:36-07:00</published><updated>2020-04-08T12:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/04/08/line-segment-intersection.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/geometry/segment-intersection/segments.png&quot; width=&quot;100%&quot; /&gt;
 Suppose we have two line segments in two dimensions. Each line segment is determined by two given points. How can we determine if the two line segments intersect? Before answering this question, let’s review some concepts.
 &lt;br /&gt;
 &lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
@@ -726,155 +1080,4 @@ The closure property is satisfied by (i). Since &lt;script type=&quot;math/tex&q
 &lt;div style=&quot;background-color:#DAF5F4; padding: 10px 10px 7px 10px;&quot;&gt;
 &lt;b&gt;Subgroups&lt;/b&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">References Abstract Algebra: An Introduction, 3rd Edition by Thomas W. Hungerford. Definition A group is a nonempty set of elements with a binary operation that satisfies four properties Closure: For all , we have . Associativity: For all , we have . Identity: There exists an identity element such that for any , we have . Inverse: For all , there exists an inverse element such that .</summary></entry><entry><title type="html">Expectation</title><link href="http://localhost:4000/jekyll/update/2019/09/06/expectation.html" rel="alternate" type="text/html" title="Expectation" /><published>2019-09-06T07:01:36-07:00</published><updated>2019-09-06T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/09/06/expectation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/09/06/expectation.html">&lt;div style=&quot;background-color:#DAF5F4; padding: 20px 20px 7px 20px;&quot;&gt;
-&lt;h3&gt;References&lt;/h3&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div style=&quot;background-color:#DAF5F4; padding: 20px 20px 7px 20px;&quot;&gt;
-&lt;h3&gt;Expectation&lt;/h3&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-Recall that the expectation or expected value of a random variable &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is defined as:&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;In other words, the expected value is a weighted average of the value of the random variable (weighted by their probabilities). We also studied important properties of expectation&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Linearity of expectation:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
- E[aX + bY + c] &amp;amp;= aE[X] + bE[Y] + c
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is a random variable, then for any real-valued function &lt;script type=&quot;math/tex&quot;&gt;g&lt;/script&gt;,&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
- E[g(X)] &amp;amp;= \sum_ig(x_i)p(x_i)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;div style=&quot;background-color:#DAF5F4; padding: 20px 20px 7px 20px;&quot;&gt;
-&lt;h3&gt;Nth Moment&lt;/h3&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-Define the &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;th moment of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
- E[X^n] &amp;amp;= \sum_{x:p(x)&amp;gt;0} x^np(x)
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;From this, we see that the expected value of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is the first moment of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;.
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;div style=&quot;background-color:#DAF5F4; padding: 20px 20px 7px 20px;&quot;&gt;
-&lt;h3&gt;Variance&lt;/h3&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-While the expected value is really useful, we also want to study the spread of the values of random variables. Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be a random variable with expected value &lt;script type=&quot;math/tex&quot;&gt;E[X]=\mu&lt;/script&gt; and define the variance of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; to be&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Var(X) = E[(X - \mu)^2]
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Expanding this&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-Var(X) &amp;amp;= E[(X - \mu)^2] \\
-&amp;amp;= \sum_i (x_i - \mu)^2p(x_i) \\
-&amp;amp;= \sum_i (x_i^2 - 2\mu x_i + \mu^2)p(x_i) \\
-&amp;amp;= \sum_i x_i^2p(x_i) - 2\mu x_ip(x_i) + \mu^2p(x_i) \\
-&amp;amp;= \sum_i x_i^2p(x_i) - 2\mu \sum_i x_ip(x_i) + \mu^2 \sum_ip(x_i) \\
-&amp;amp;= E[X^2] - 2\mu^2 + \mu^2 \\
-&amp;amp;= E[X^2] - (E[X])^2 \\
-\end{align*}
-$$
-&lt;/div&gt;</content><author><name></name></author><summary type="html">References Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/ Expectation Recall that the expectation or expected value of a random variable is defined as: $$ \begin{align*} E[X] = \sum_{k:p(k)&amp;gt;0} p(k)*k \end{align*} $$ In other words, the expected value is a weighted average of the value of the random variable (weighted by their probabilities). We also studied important properties of expectation Linearity of expectation: $$ \begin{align*} E[aX + bY + c] &amp;amp;= aE[X] + bE[Y] + c \end{align*} $$ If is a random variable, then for any real-valued function , $$ \begin{align*} E[g(X)] &amp;amp;= \sum_ig(x_i)p(x_i) \end{align*} $$ Nth Moment Define the th moment of to be $$ \begin{align*} E[X^n] &amp;amp;= \sum_{x:p(x)&amp;gt;0} x^np(x) \end{align*} $$ From this, we see that the expected value of is the first moment of . Variance While the expected value is really useful, we also want to study the spread of the values of random variables. Let be a random variable with expected value and define the variance of to be $$ \begin{align*} Var(X) = E[(X - \mu)^2] \end{align*} $$ Expanding this $$ \begin{align*} Var(X) &amp;amp;= E[(X - \mu)^2] \\ &amp;amp;= \sum_i (x_i - \mu)^2p(x_i) \\ &amp;amp;= \sum_i (x_i^2 - 2\mu x_i + \mu^2)p(x_i) \\ &amp;amp;= \sum_i x_i^2p(x_i) - 2\mu x_ip(x_i) + \mu^2p(x_i) \\ &amp;amp;= \sum_i x_i^2p(x_i) - 2\mu \sum_i x_ip(x_i) + \mu^2 \sum_ip(x_i) \\ &amp;amp;= E[X^2] - 2\mu^2 + \mu^2 \\ &amp;amp;= E[X^2] - (E[X])^2 \\ \end{align*} $$</summary></entry><entry><title type="html">Counting Distinguishable and Indistinguishable Objects</title><link href="http://localhost:4000/jekyll/update/2019/09/05/counting-dist.html" rel="alternate" type="text/html" title="Counting Distinguishable and Indistinguishable Objects" /><published>2019-09-05T07:01:36-07:00</published><updated>2019-09-05T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2019/09/05/counting-dist</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/09/05/counting-dist.html">&lt;h4&gt;&lt;b&gt;(1) k distinguishable strings and n distinguishable buckets&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Label the strings &lt;script type=&quot;math/tex&quot;&gt;s_1, s_2,...,s_k&lt;/script&gt; and label the buckets &lt;script type=&quot;math/tex&quot;&gt;b_1, b_2,...,b_n&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;s_1&lt;/script&gt; has &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; choices of buckets to choose from. &lt;script type=&quot;math/tex&quot;&gt;s_2&lt;/script&gt; has &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; choices of buckets to choose from and so. Therefore, the total number of choices is&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-n^k
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;h4&gt;&lt;b&gt;(2) k distinguishable strings and n distinguishable buckets with at most 1 string in each bucket&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Assuming &lt;script type=&quot;math/tex&quot;&gt;k \leq n&lt;/script&gt; (otherwise it is impossible). Label the strings &lt;script type=&quot;math/tex&quot;&gt;s_1, s_2,...,s_k&lt;/script&gt; and label the buckets &lt;script type=&quot;math/tex&quot;&gt;b_1, b_2,...,b_n&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;s_1&lt;/script&gt; has &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; choices of buckets to choose from. &lt;script type=&quot;math/tex&quot;&gt;s_2&lt;/script&gt; has &lt;script type=&quot;math/tex&quot;&gt;n-1&lt;/script&gt; choices of buckets to choose from because it can’t go to the bucket that &lt;script type=&quot;math/tex&quot;&gt;s_1&lt;/script&gt; chose. Similarly, &lt;script type=&quot;math/tex&quot;&gt;s_3&lt;/script&gt; has &lt;script type=&quot;math/tex&quot;&gt;n-2&lt;/script&gt; and so on. Therefore, the total number of choices is&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-n(n-1) ... (n-k+1) = \binom{n}{k} * k!
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;!------------------------------------------------------------------------------------&gt;
-&lt;h4&gt;&lt;b&gt;(3) k indistinguishable strings and n distinguishable buckets&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;Label the buckets &lt;script type=&quot;math/tex&quot;&gt;b_1, b_2,...,b_n&lt;/script&gt; and line them up below:
-&lt;img src=&quot;http://localhost:4000/assets/counting/0a.png&quot; alt=&quot;my photo&quot; /&gt;
-The strings are indistinguishable. We want to distribute them among the buckets so for example we could have the following:
-&lt;img src=&quot;http://localhost:4000/assets/counting/0b.png&quot; alt=&quot;my photo&quot; /&gt;
-To simplify the problem, let’s pretend that they are distinguishable and instead of buckets we’ll use dividers to separate the strings into different buckets. This way the first set of strings are in bucket 1, the second set after the first divider are in bucket 2 and so on. We’ll use colors to distinguish them. We will only need &lt;script type=&quot;math/tex&quot;&gt;n-1&lt;/script&gt; dividers to create &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; groups.
-&lt;br /&gt;
-&lt;br /&gt;
-To visualize this, suppose &lt;script type=&quot;math/tex&quot;&gt;n=4&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;k=5&lt;/script&gt;. In the below figure, we have &lt;script type=&quot;math/tex&quot;&gt;\{s_1,s_2\}&lt;/script&gt; in the first bucket. &lt;script type=&quot;math/tex&quot;&gt;\{s_3\}&lt;/script&gt; in the second bucket. &lt;script type=&quot;math/tex&quot;&gt;\{s_4,s_5\}&lt;/script&gt; in the third bucket. The forth bucket is empty.
-&lt;img src=&quot;http://localhost:4000/assets/counting/1.png&quot; alt=&quot;my photo&quot; /&gt;
-How many possible permutions are there? We have &lt;script type=&quot;math/tex&quot;&gt;n-1&lt;/script&gt; dividers and &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; strings so&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-(n+k-1)!
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Now, since strings are really indistinguishable, let’s remove the labels. We also don’t need the colors because we’re assuming the first set of strings goes to the first bucket, the second set goes to the second bucket and so on. So we’ll have something like this:
-&lt;img src=&quot;http://localhost:4000/assets/counting/2.png&quot; alt=&quot;my photo&quot; /&gt;
-To remove the unnecessary ordering, we divide by &lt;script type=&quot;math/tex&quot;&gt;k!&lt;/script&gt; and also divide by &lt;script type=&quot;math/tex&quot;&gt;(n-1)!&lt;/script&gt;. Therefore, the final answer is&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-\frac{(n+k-1)!}{k!(n-1)!} = \binom{n+k-1}{n-1}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;Note that solution can be applied to other interesting examples like finding the number of integer solutions to &lt;script type=&quot;math/tex&quot;&gt;x_1+x_2+...+x_k=n&lt;/script&gt;.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;(4) k indistinguishable strings and n distinguishable buckets with at most 1 string in each bucket&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;In case (2), we saw that the number of ways to put &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; distinguishable strings into &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; distinguishable buckets with at most 1 string in each bucket is &lt;script type=&quot;math/tex&quot;&gt;\binom{n}{k} * k!&lt;/script&gt;. In this case, the strings are indistinguishable so we don’t care about the order of strings and so we divide by &lt;script type=&quot;math/tex&quot;&gt;k!&lt;/script&gt;. The final answer therefore is simply&lt;/p&gt;
-&lt;div center=&quot;&quot;&gt;
-$$
-\begin{align*}
-\binom{n}{k}
-\end{align*}
-$$
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h3&gt;References&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
-&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">(1) k distinguishable strings and n distinguishable buckets Label the strings and label the buckets . has choices of buckets to choose from. has choices of buckets to choose from and so. Therefore, the total number of choices is $$ \begin{align*} n^k \end{align*} $$ (2) k distinguishable strings and n distinguishable buckets with at most 1 string in each bucket Assuming (otherwise it is impossible). Label the strings and label the buckets . has choices of buckets to choose from. has choices of buckets to choose from because it can’t go to the bucket that chose. Similarly, has and so on. Therefore, the total number of choices is $$ \begin{align*} n(n-1) ... (n-k+1) = \binom{n}{k} * k! \end{align*} $$ (3) k indistinguishable strings and n distinguishable buckets Label the buckets and line them up below: The strings are indistinguishable. We want to distribute them among the buckets so for example we could have the following: To simplify the problem, let’s pretend that they are distinguishable and instead of buckets we’ll use dividers to separate the strings into different buckets. This way the first set of strings are in bucket 1, the second set after the first divider are in bucket 2 and so on. We’ll use colors to distinguish them. We will only need dividers to create groups. To visualize this, suppose and . In the below figure, we have in the first bucket. in the second bucket. in the third bucket. The forth bucket is empty. How many possible permutions are there? We have dividers and strings so $$ \begin{align*} (n+k-1)! \end{align*} $$ Now, since strings are really indistinguishable, let’s remove the labels. We also don’t need the colors because we’re assuming the first set of strings goes to the first bucket, the second set goes to the second bucket and so on. So we’ll have something like this: To remove the unnecessary ordering, we divide by and also divide by . Therefore, the final answer is $$ \begin{align*} \frac{(n+k-1)!}{k!(n-1)!} = \binom{n+k-1}{n-1} \end{align*} $$ Note that solution can be applied to other interesting examples like finding the number of integer solutions to . (4) k indistinguishable strings and n distinguishable buckets with at most 1 string in each bucket In case (2), we saw that the number of ways to put distinguishable strings into distinguishable buckets with at most 1 string in each bucket is . In this case, the strings are indistinguishable so we don’t care about the order of strings and so we divide by . The final answer therefore is simply $$ \begin{align*} \binom{n}{k} \end{align*} $$ References Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/</summary></entry></feed>
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">References Abstract Algebra: An Introduction, 3rd Edition by Thomas W. Hungerford. Definition A group is a nonempty set of elements with a binary operation that satisfies four properties Closure: For all , we have . Associativity: For all , we have . Identity: There exists an identity element such that for any , we have . Inverse: For all , there exists an inverse element such that .</summary></entry></feed>

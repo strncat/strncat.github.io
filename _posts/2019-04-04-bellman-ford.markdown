@@ -6,19 +6,24 @@ categories: jekyll update
 mathjax: true
 ---
 <img src="{{ site.url }}/assets/graphs/bellman-ford/1.png" width="100%">
-Let $$G=(V,E)$$ be a weighted graph with $$V$$ vertices and $$E$$ edges. We already discussed Dijkstra's algorithm to find the shortest paths in $$O(n\log(n)+m)$$ time. Dijkstra is fast and works great but unfortunately it doesn't handle negative edge weights. Therefore, we now turn to discuss Bellman Ford's algorithm.
+Let $$G=(V,E)$$ be a weighted graph with $$V$$ vertices and $$E$$ edges. Bellman-Ford is a dynamic programming algorithm that for a given a vertex ,$v$, finds all the shortest paths from $$v$$ to all the other vertices in $G$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Bellman-Ford</b></h4>
-Bellman-Ford is a dynamic programming algorithm to find the shortest paths in a graph $$G$$ from a given source vertex $$s$$. Since it's a dynamic programming algorithm then this means that we must have some recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
+<h4><b>Motivation</b></h4>
+But why another shortest paths algorithms. W've already discussed Dijkstra's algorithm to find the shortest paths which is extremely fast and runs in just $$O(V\log(V)+E)$$ time. Unfortunately, Dijkstra doesn't handle negative edge weights and bellman-ford could! so it's important to learn what bellman-ford is about!
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Optimal Substructure</b></h4>
+Since it's a dynamic programming algorithm, then this means that we must have some optimal recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
 <br><br>
-Let $$D[v,i]$$ be the length of the shortest path from $$s$$ to some vertex $$v$$ whose number of edges is at most $$i$$. Given that we know $$D[v,i]$$ for all $$v \in V$$, what can we say about $$D[v,i+1]$$? In other words, given that we know the shortest path from $$s$$ to any vertex in $$G$$ with at most $$i$$ edges, what can we say about the length of the shortest path from $$s$$ to some vertex $$v$$ with at most $$i+1$$ edges? Let's think about this before looking at the answer. Bellman-Ford definitely wasn't easy for me to think about.
+Let $$D[v,i]$$ be the length of the shortest path from $$s$$ to some vertex $$v$$ whose number of edges is at most $$i$$. Given that we know $$D[v,i]$$ for all $$v \in V$$, what can we say about $$D[v,i+1]$$? In other words, given that we know the shortest path using at most $i$ edges from $s$ to any vertex in $G$, what can we say about the length of the shortest path from $$s$$ to some vertex $$v$$ with at most $$i+1$$ edges? Let's think about this before looking at the answer. Bellman-Ford definitely wasn't easy for me to think about.
 <br><br>
 <img src="{{ site.url }}/assets/graphs/bellman-ford/2.png" width="100%">
-Consider the graph above and let's assume that we already know all the shortest paths of at most 2 edges from $$s$$ to any vertex in $$G$$. So for example we know that $$D[a,2]=6$$, $$D[b,2]=8$$, $$D[c,2]=4$$ and $$D[t,2]=7$$. So now we know the shortest distance from $$s$$ to $$t$$ of at most two edges is 7. Can we get a shorter path by considering any path that uses 3 edges? Yes!!! we can use the shortest path from $$s$$ to $$b$$ instead of length 8 and then take in $$(b,t)=-4$$ to get a shorter path of length 4. In other words, forget about the path $$s->c->t$$ and go through $$s->a->b->t$$. How can we put this together formally? 
+Consider the graph above and let's assume that we already know all the shortest paths using at most 2 edges from $$s$$ to any vertex in $$G$$. So for example, we know that $$D[a,2]=6$$, $$D[b,2]=8$$, $$D[c,2]=4$$ and $$D[t,2]=7$$. So now we know the shortest distance from $$s$$ to $$t$$ using at most two edges is 7. Can we get a shorter path by considering any path that uses 3 edges? Yes!!! we can use the shortest path from $$s$$ to $$b$$ instead of length 8 and then take in $$(b,t)=-4$$ to get a shorter path of length 4. In other words, forget about the path $$s->c->t$$ and go through $$s->a->b->t$$. How can we put this together formally? 
 <br><br>
-Given a vertex $$v \in V$$. To find $$D[v,i+1]$$, we need to see if for any vertex $$u \in V$$, the length of the shortest path from $$s$$ to $$u$$ of at most $$i$$ edges (in other words $$D[u, i]$$) plus $$w(u,v)$$ has a lower value than we currently have in $$D[v,i]$$. More formally,
+Given a vertex $$v \in V$$. To find $$D[v,i+1]$$, we need to see if for any vertex $$u \in V$$, the length of the shortest path from $$s$$ to $$u$$ using at most $$i$$ edges (in other words $$D[u, i]$$) plus $$w(u,v)$$ has a lower value than we currently have in $$D[v,i]$$. More formally,
 <div center>
 $$
 \begin{align*}
@@ -34,7 +39,7 @@ With the base case that for $$i = 0$$, $$D[s,0]=0$$ and $$D[v,0]=\infty$$ for al
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Bellman-Ford and Dijkstra</b></h4>
-So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let's think about this. We know that in every iteration of Dijkstra's algorithm, we pick the node with the smallest estimate and then check all the immediate neighbors to see whether any of the neighbors distances can be updated. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration. So it's slower but now we can find the shortest paths in graphs with negative edges.
+So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let's think about this. We know that in every iteration of Dijkstra's algorithm, we pick the node with the smallest estimate and then check all the immediate neighbors to see whether any of the neighbors distances' can be updated. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration. So it's slower, but now we can find the shortest paths in graphs with negative edges.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -96,7 +101,7 @@ As this point, the algorithm terminates and we have the final shortest paths fro
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Can we have negative cycles?</b></h4>
-If $$G$$ has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if the lengths are continuing to decrease. If they decrease, then we know we have a cycle and we can exit and report that. The sample code below can be added to the above implementation before returing from the function:
+If $$G$$ has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if the lengths are continuing to decrease. If they decrease, then we know we have a cycle and we can exit and report that. The sample code below can be added to the above implementation before returning from the function:
 {% highlight c++ %}
 We can add one additional iteration to discover negative cycles:
 for (int i = 0; i < g.size(); i++) { // for every edge in the graph
@@ -117,6 +122,7 @@ To answer this question, we ask: can we have positive cycles in a shortest path?
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Correctness Proof</b></h4>
+
 | Theorem: Given a graph $$G=(V,E)$$ and a source vertex $$s$$, Bellman-Ford correctly finds the shortest simple paths from $$s$$ to every other node in $$G$$ |
 
 <i>Proof:</i> <br>
@@ -126,7 +132,7 @@ To answer this question, we ask: can we have positive cycles in a shortest path?
 <b>Base Case: </b> After 0th iteration, we have $$D[s, 0] = 0$$ and $$D[v, 0]=\infty$$ for any $$v \in V - \{s\}$$ as required.
 <br>
 <br>
-<b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$i$$. We want to prove it for $$i+1$$. Let $$v$$ be a vertex in $$V$$. Assume there exists a shortest path between $$s$$ and $$v$$. Let $$u$$ be the vertex right before $$v$$ on this path. By the inductive hypothesis, we know that $$D[u, i]$$ is the length of the shortest simple path between $$s$$ and $$u$$. In the $$i+1$$'st iteratio, we ensure that we have $$D[v, i+1] \leq D[u, i]+w(u,v)$$ by the relaxation step and we also know that $$D[v, i+1]$$ is greater or equal than the length of the shortest path from $$s$$ to $$v$$ with at most $$i+1$$ (Are we saying $$D[v,i+1]$$ is an overestimate? don't we have to prove it like Dijkstra?). Therefore, $$D[v, i+1]$$ is the length of the shortest path between $$s$$ and $$v$$ of at most $$i+1$$ edges.
+<b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$i$$. We want to prove it for $$i+1$$. Let $$v$$ be a vertex in $$V$$. Assume there exists a shortest path between $$s$$ and $$v$$. Let $$u$$ be the vertex right before $$v$$ on this path. By the inductive hypothesis, we know that $$D[u, i]$$ is the length of the shortest simple path between $$s$$ and $$u$$. In the $$i+1$$'st iteration, we ensure that we have $$D[v, i+1] \leq D[u, i]+w(u,v)$$ by the relaxation step and we also know that $$D[v, i+1]$$ is greater or equal than the length of the shortest path from $$s$$ to $$v$$ with at most $$i+1$$ (Are we saying $$D[v,i+1]$$ is an overestimate? don't we have to prove it like Dijkstra?). Therefore, $$D[v, i+1]$$ is the length of the shortest path between $$s$$ and $$v$$ of at most $$i+1$$ edges.
 <br>
 <br>
 <b>Conclusion:</b> After $$n-1$$ iterations, for every $$v \in V$$, $$D[v, n-1]$$ is length of the shortest simple path from $$s$$ to $$v$$ with at most $$n-1$$ edges.
@@ -139,19 +145,20 @@ Assume we have $$n$$ vertices and $$m$$ edges. We have $$n-1$$ iterations. In ea
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Implementation</b></h4>
-https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
+<a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
+">Here</a> 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Practice Problems</b></h4>
-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=0&problem=499">558 - Wormholes</a>
+- <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=0&problem=499">558 - Wormholes</a>
 <br>
-<a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1390">10449 Traffic</a>
+- <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1390">10449 Traffic</a>
+<br>
+<br>
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
-These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br>
-<br>
+<a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br>
 <br>
 

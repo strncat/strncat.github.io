@@ -63,19 +63,24 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/graphs/bellman-ford/1.png" width="100%" />
-Let <script type="math/tex">G=(V,E)</script> be a weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. We already discussed Dijkstra’s algorithm to find the shortest paths in <script type="math/tex">O(n\log(n)+m)</script> time. Dijkstra is fast and works great but unfortunately it doesn’t handle negative edge weights. Therefore, we now turn to discuss Bellman Ford’s algorithm.
+Let <script type="math/tex">G=(V,E)</script> be a weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. Bellman-Ford is a dynamic programming algorithm that for a given a vertex ,$v$, finds all the shortest paths from <script type="math/tex">v</script> to all the other vertices in $G$.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Bellman-Ford</b></h4>
-<p>Bellman-Ford is a dynamic programming algorithm to find the shortest paths in a graph <script type="math/tex">G</script> from a given source vertex <script type="math/tex">s</script>. Since it’s a dynamic programming algorithm then this means that we must have some recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
+<h4><b>Motivation</b></h4>
+<p>But why another shortest paths algorithms. W’ve already discussed Dijkstra’s algorithm to find the shortest paths which is extremely fast and runs in just <script type="math/tex">O(V\log(V)+E)</script> time. Unfortunately, Dijkstra doesn’t handle negative edge weights and bellman-ford could! so it’s important to learn what bellman-ford is about!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Optimal Substructure</b></h4>
+<p>Since it’s a dynamic programming algorithm, then this means that we must have some optimal recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
 <br /><br />
-Let <script type="math/tex">D[v,i]</script> be the length of the shortest path from <script type="math/tex">s</script> to some vertex <script type="math/tex">v</script> whose number of edges is at most <script type="math/tex">i</script>. Given that we know <script type="math/tex">D[v,i]</script> for all <script type="math/tex">v \in V</script>, what can we say about <script type="math/tex">D[v,i+1]</script>? In other words, given that we know the shortest path from <script type="math/tex">s</script> to any vertex in <script type="math/tex">G</script> with at most <script type="math/tex">i</script> edges, what can we say about the length of the shortest path from <script type="math/tex">s</script> to some vertex <script type="math/tex">v</script> with at most <script type="math/tex">i+1</script> edges? Let’s think about this before looking at the answer. Bellman-Ford definitely wasn’t easy for me to think about.
+Let <script type="math/tex">D[v,i]</script> be the length of the shortest path from <script type="math/tex">s</script> to some vertex <script type="math/tex">v</script> whose number of edges is at most <script type="math/tex">i</script>. Given that we know <script type="math/tex">D[v,i]</script> for all <script type="math/tex">v \in V</script>, what can we say about <script type="math/tex">D[v,i+1]</script>? In other words, given that we know the shortest path using at most $i$ edges from $s$ to any vertex in $G$, what can we say about the length of the shortest path from <script type="math/tex">s</script> to some vertex <script type="math/tex">v</script> with at most <script type="math/tex">i+1</script> edges? Let’s think about this before looking at the answer. Bellman-Ford definitely wasn’t easy for me to think about.
 <br /><br />
 <img src="http://localhost:4000/assets/graphs/bellman-ford/2.png" width="100%" />
-Consider the graph above and let’s assume that we already know all the shortest paths of at most 2 edges from <script type="math/tex">s</script> to any vertex in <script type="math/tex">G</script>. So for example we know that <script type="math/tex">D[a,2]=6</script>, <script type="math/tex">D[b,2]=8</script>, <script type="math/tex">D[c,2]=4</script> and <script type="math/tex">D[t,2]=7</script>. So now we know the shortest distance from <script type="math/tex">s</script> to <script type="math/tex">t</script> of at most two edges is 7. Can we get a shorter path by considering any path that uses 3 edges? Yes!!! we can use the shortest path from <script type="math/tex">s</script> to <script type="math/tex">b</script> instead of length 8 and then take in <script type="math/tex">(b,t)=-4</script> to get a shorter path of length 4. In other words, forget about the path <script type="math/tex">s->c->t</script> and go through <script type="math/tex">s->a->b->t</script>. How can we put this together formally? 
+Consider the graph above and let’s assume that we already know all the shortest paths using at most 2 edges from <script type="math/tex">s</script> to any vertex in <script type="math/tex">G</script>. So for example, we know that <script type="math/tex">D[a,2]=6</script>, <script type="math/tex">D[b,2]=8</script>, <script type="math/tex">D[c,2]=4</script> and <script type="math/tex">D[t,2]=7</script>. So now we know the shortest distance from <script type="math/tex">s</script> to <script type="math/tex">t</script> using at most two edges is 7. Can we get a shorter path by considering any path that uses 3 edges? Yes!!! we can use the shortest path from <script type="math/tex">s</script> to <script type="math/tex">b</script> instead of length 8 and then take in <script type="math/tex">(b,t)=-4</script> to get a shorter path of length 4. In other words, forget about the path <script type="math/tex">s->c->t</script> and go through <script type="math/tex">s->a->b->t</script>. How can we put this together formally? 
 <br /><br />
-Given a vertex <script type="math/tex">v \in V</script>. To find <script type="math/tex">D[v,i+1]</script>, we need to see if for any vertex <script type="math/tex">u \in V</script>, the length of the shortest path from <script type="math/tex">s</script> to <script type="math/tex">u</script> of at most <script type="math/tex">i</script> edges (in other words <script type="math/tex">D[u, i]</script>) plus <script type="math/tex">w(u,v)</script> has a lower value than we currently have in <script type="math/tex">D[v,i]</script>. More formally,</p>
+Given a vertex <script type="math/tex">v \in V</script>. To find <script type="math/tex">D[v,i+1]</script>, we need to see if for any vertex <script type="math/tex">u \in V</script>, the length of the shortest path from <script type="math/tex">s</script> to <script type="math/tex">u</script> using at most <script type="math/tex">i</script> edges (in other words <script type="math/tex">D[u, i]</script>) plus <script type="math/tex">w(u,v)</script> has a lower value than we currently have in <script type="math/tex">D[v,i]</script>. More formally,</p>
 <div center="">
 $$
 \begin{align*}
@@ -91,7 +96,7 @@ $$
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Bellman-Ford and Dijkstra</b></h4>
-<p>So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let’s think about this. We know that in every iteration of Dijkstra’s algorithm, we pick the node with the smallest estimate and then check all the immediate neighbors to see whether any of the neighbors distances can be updated. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration. So it’s slower but now we can find the shortest paths in graphs with negative edges.
+<p>So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let’s think about this. We know that in every iteration of Dijkstra’s algorithm, we pick the node with the smallest estimate and then check all the immediate neighbors to see whether any of the neighbors distances’ can be updated. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration. So it’s slower, but now we can find the shortest paths in graphs with negative edges.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -149,7 +154,7 @@ As this point, the algorithm terminates and we have the final shortest paths fro
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Can we have negative cycles?</b></h4>
-<p>If <script type="math/tex">G</script> has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if the lengths are continuing to decrease. If they decrease, then we know we have a cycle and we can exit and report that. The sample code below can be added to the above implementation before returing from the function:</p>
+<p>If <script type="math/tex">G</script> has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if the lengths are continuing to decrease. If they decrease, then we know we have a cycle and we can exit and report that. The sample code below can be added to the above implementation before returning from the function:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">We</span> <span class="n">can</span> <span class="n">add</span> <span class="n">one</span> <span class="n">additional</span> <span class="n">iteration</span> <span class="n">to</span> <span class="n">discover</span> <span class="n">negative</span> <span class="n">cycles</span><span class="o">:</span>
 <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for every edge in the graph</span>
@@ -170,7 +175,14 @@ As this point, the algorithm terminates and we have the final shortest paths fro
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Correctness Proof</b></h4>
-<p>| Theorem: Given a graph <script type="math/tex">G=(V,E)</script> and a source vertex <script type="math/tex">s</script>, Bellman-Ford correctly finds the shortest simple paths from <script type="math/tex">s</script> to every other node in <script type="math/tex">G</script> |</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Theorem: Given a graph <script type="math/tex">G=(V,E)</script> and a source vertex <script type="math/tex">s</script>, Bellman-Ford correctly finds the shortest simple paths from <script type="math/tex">s</script> to every other node in <script type="math/tex">G</script></td>
+    </tr>
+  </tbody>
+</table>
 
 <p><i>Proof:</i> <br />
 <b>Inductive Hypothesis: </b>After ith iteration, for every <script type="math/tex">v \in V</script>, <script type="math/tex">D[v, i]</script> is length of the shortest simple path from <script type="math/tex">s</script> to <script type="math/tex">v</script> with at most <script type="math/tex">i</script> edges.
@@ -179,7 +191,7 @@ As this point, the algorithm terminates and we have the final shortest paths fro
 <p><b>Base Case: </b> After 0th iteration, we have <script type="math/tex">D[s, 0] = 0</script> and <script type="math/tex">D[v, 0]=\infty</script> for any <script type="math/tex">v \in V - \{s\}</script> as required.
 <br />
 <br />
-<b>Inductive Step:</b> Suppose the inductive hypothesis holds for <script type="math/tex">i</script>. We want to prove it for <script type="math/tex">i+1</script>. Let <script type="math/tex">v</script> be a vertex in <script type="math/tex">V</script>. Assume there exists a shortest path between <script type="math/tex">s</script> and <script type="math/tex">v</script>. Let <script type="math/tex">u</script> be the vertex right before <script type="math/tex">v</script> on this path. By the inductive hypothesis, we know that <script type="math/tex">D[u, i]</script> is the length of the shortest simple path between <script type="math/tex">s</script> and <script type="math/tex">u</script>. In the <script type="math/tex">i+1</script>‘st iteratio, we ensure that we have <script type="math/tex">D[v, i+1] \leq D[u, i]+w(u,v)</script> by the relaxation step and we also know that <script type="math/tex">D[v, i+1]</script> is greater or equal than the length of the shortest path from <script type="math/tex">s</script> to <script type="math/tex">v</script> with at most <script type="math/tex">i+1</script> (Are we saying <script type="math/tex">D[v,i+1]</script> is an overestimate? don’t we have to prove it like Dijkstra?). Therefore, <script type="math/tex">D[v, i+1]</script> is the length of the shortest path between <script type="math/tex">s</script> and <script type="math/tex">v</script> of at most <script type="math/tex">i+1</script> edges.
+<b>Inductive Step:</b> Suppose the inductive hypothesis holds for <script type="math/tex">i</script>. We want to prove it for <script type="math/tex">i+1</script>. Let <script type="math/tex">v</script> be a vertex in <script type="math/tex">V</script>. Assume there exists a shortest path between <script type="math/tex">s</script> and <script type="math/tex">v</script>. Let <script type="math/tex">u</script> be the vertex right before <script type="math/tex">v</script> on this path. By the inductive hypothesis, we know that <script type="math/tex">D[u, i]</script> is the length of the shortest simple path between <script type="math/tex">s</script> and <script type="math/tex">u</script>. In the <script type="math/tex">i+1</script>‘st iteration, we ensure that we have <script type="math/tex">D[v, i+1] \leq D[u, i]+w(u,v)</script> by the relaxation step and we also know that <script type="math/tex">D[v, i+1]</script> is greater or equal than the length of the shortest path from <script type="math/tex">s</script> to <script type="math/tex">v</script> with at most <script type="math/tex">i+1</script> (Are we saying <script type="math/tex">D[v,i+1]</script> is an overestimate? don’t we have to prove it like Dijkstra?). Therefore, <script type="math/tex">D[v, i+1]</script> is the length of the shortest path between <script type="math/tex">s</script> and <script type="math/tex">v</script> of at most <script type="math/tex">i+1</script> edges.
 <br />
 <br />
 <b>Conclusion:</b> After <script type="math/tex">n-1</script> iterations, for every <script type="math/tex">v \in V</script>, <script type="math/tex">D[v, n-1]</script> is length of the shortest simple path from <script type="math/tex">s</script> to <script type="math/tex">v</script> with at most <script type="math/tex">n-1</script> edges.
@@ -192,19 +204,21 @@ As this point, the algorithm terminates and we have the final shortest paths fro
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Implementation</b></h4>
-<p>https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp ">Here</a> 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Practice Problems</b></h4>
-<p><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;category=0&amp;problem=499">558 - Wormholes</a>
+<ul>
+  <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;category=0&amp;problem=499">558 - Wormholes</a>
+<br /></li>
+  <li><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=1390">10449 Traffic</a>
 <br />
-<a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=1390">10449 Traffic</a>
-<!------------------------------------------------------------------------------------></p>
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
 <h4><b>References</b></h4>
-<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br />
-<br />
+<p><a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br />
 <br /></p>
 

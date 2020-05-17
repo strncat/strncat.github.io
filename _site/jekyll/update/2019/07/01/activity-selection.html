@@ -62,80 +62,80 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!---------------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-<p>These are just my class notes from following http://web.stanford.edu/class/cs161/schedule.html
-<br />
-<br />
-<!----------------------------------------------------------------------------------------></p>
-<h4><b>Introduction</b></h4>
-<p>Problems with greedy solutions might have really simple and straight forward solutions however they are really hard to reason about and therefore, greedy algorithms are generally taught toward the end of an algorithms class. One the of classic problems with greedy solutions is the activity selection problem. In this problem we are given a list of activities, each with a start time <script type="math/tex">t_i</script> and a finish time <script type="math/tex">f_i</script> and we would like to pick activities such that the total number of activities is maximized with the constraint that no two activities can overlap.
+    <p>Problems with greedy solutions might have really simple and straight forward solutions however, they are really hard to reason about. This is why greedy algorithms are generally taught toward the end of an algorithms class. One classic problem with a greedy solution is the activity selection problem. In this problem, we are given a list of activities, each with a start time, <script type="math/tex">t_i</script>, and a finish time, <script type="math/tex">f_i</script>, and we would like to pick a set of activities such that the total number of activities is maximized with the constraint that no two activities can overlap.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Greedy Solution</b></h4>
-<p>As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activiy with the earliest finish time at each step until we run out of activities.
+<p>As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activity with the earliest finish time at each step until we run out of activities.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
 <p>Suppose we have the following activities:
 <img src="http://localhost:4000/assets/activities.png" alt="my photo" />
-Based on our solution, we will pick <script type="math/tex">A1</script> first. We will skip <script type="math/tex">A2</script> since it violates the condition of not having overlapped activities. We will then go on to pick <script type="math/tex">A3</script>, <script type="math/tex">A5</script> and <script type="math/tex">A6</script>.
+Based on our strategy, we will pick $A1$ first. We will skip $A2$ since it violates the condition of not having overlapped activities. We will then go on to pick $A3$, $A5$ and $A6$.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
-<h4><b>Algorithm</b></h4>
+<h4><b>Implementation</b></h4>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// re-do it again</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">select_maximum_activities</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
-	<span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">custom_sort_by_finish_time</span><span class="p">);</span>
-	<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">picked</span><span class="p">;</span>
-	<span class="k">for</span> <span class="n">act</span> <span class="n">in</span> <span class="n">a</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="n">act</span><span class="p">.</span><span class="n">start_time</span> <span class="o">&gt;=</span> <span class="n">last</span> <span class="n">picked</span> <span class="n">activity</span><span class="p">.</span><span class="n">finish_time</span> <span class="p">{</span>
-			<span class="n">picked</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">act</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">picked</span>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">activity</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">start_time</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">finish_time</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">activity</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="nf">custom_sort_by_finish_time</span><span class="p">(</span><span class="k">const</span> <span class="n">activity</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">activity</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">finish_time</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">finish_time</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">select_maximum_activities</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">activities</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">activities</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">activities</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">custom_sort_by_finish_time</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">picked</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">activities</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">activities</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start_time</span> <span class="o">&gt;=</span> <span class="n">picked</span><span class="p">[</span><span class="n">picked</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">finish_time</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">picked</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">activities</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">picked</span><span class="p">;</span>
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Correctness Proof</b></h4>
-<p>This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So each decision we make doesn’t affect our ability of reaching out an optimal solution, which means that at the end we must have an optimal solution.
-<br /></p>
-
-<p>Now, this should sound very familiar, we have a base case where we start with an empty set of activities and then we want to prove that each selection we make doesn’t rule out an optimal solution. What proof method should we use? of course, Induction.
-<br /></p>
-
-<p><b>Proof By Induction:</b><br />
-<b>Inductive Hypothesis: </b> After adding the <script type="math/tex">t</script>‘th activity, there is an optimal solution that extends our current solution.
+<p>This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So, each decision we make doesn’t affect our ability of reaching out an optimal solution.
+<br />
+<br />
+This should sound very familiar. We have a base case where we start with an empty set of activities and then we want to prove that each selection we make doesn’t rule out an optimal solution. What proof method should we use? of course, Induction.
+<br />
+<br />
+<i>Proof By Induction:</i><br />
+<b>Inductive Hypothesis: </b> After adding the $t$’th activity, there is an optimal solution that extends our current solution.
 <br /></p>
 
 <p><b>Base Case:</b> When we add the zero’th activity, there exists an optimal solution that extends the current solution which contains no activities yet.
 <br /></p>
 
 <p><b>Inductive Step:</b>
-Let <script type="math/tex">k</script> be a natural number and suppose we’re about to add the <script type="math/tex">k</script>‘th activity and that our inductive hypothesis holds for <script type="math/tex">k-1</script>, meaning that we didn’t rule out an optimal solution yet and that there is some optimal solution <script type="math/tex">T^*</script> that extends the <script type="math/tex">k-1</script> choices we’ve made so far. We’re about to select our <script type="math/tex">k</script>‘th activity. 
+Let $k$ be a natural number and suppose we’re about to add the $k$’th activity and that our inductive hypothesis holds for $k-1$, meaning that we didn’t rule out an optimal solution yet and that there is some optimal solution <script type="math/tex">T^*</script> that extends the $k-1$ choices we’ve made so far. We’re about to select our $k$’th activity. 
 <br /><br />
-Our greedy algorithm picks the next activity with the earliest finish time such that it doesn’t overlap with any of the <script type="math/tex">k-1</script> activities we’ve selected so far. Let our selection be <script type="math/tex">a_j</script> for some natural number <script type="math/tex">j</script>. There are two cases <br /><br />
-Case 1: <script type="math/tex">a_j</script> is in the optimal solution so <script type="math/tex">a_j \in T^*</script>. yay, we didn’t rule out the optimal solution and we’re done! <br />
-Case 2: <script type="math/tex">a_j</script> is not in the optimal solution so <script type="math/tex">a_j \not\in T^*</script>. In this case, some other activity was selected instead of <script type="math/tex">a_j</script>. Let that activity be <script type="math/tex">a_k</script>. Let’s consider swapping <script type="math/tex">a_j</script> and <script type="math/tex">a_k</script> to create a new set of activities, <script type="math/tex">T</script>.
+Our greedy algorithm picks the next activity with the earliest finish time such that it doesn’t overlap with any of the $k-1$ activities we’ve selected so far. Let our selection be $a_j$ for some natural number $j$. There are two cases <br /><br />
+Case 1: $a_j$ is in the optimal solution so <script type="math/tex">a_j \in T^*</script>. yay, we didn’t rule out the optimal solution and we’re done! <br />
+Case 2: $a_j$ is not in the optimal solution so <script type="math/tex">a_j \not\in T^*</script>. In this case, some other activity was selected instead of $a_j$. Let that activity be $a_k$. Let’s consider swapping $a_j$ and $a_k$ to create a new set of activities, $T$.
 <br /><br />
-We claim that <script type="math/tex">T</script> is allowed and optimal. First, we know that <script type="math/tex">a_j</script> has a smaller finish than <script type="math/tex">a_k</script> because our greedy algorithm selects the activity with the earliest finish time. Therefore, <script type="math/tex">a_j</script> doesn’t conflict with anything chosen after <script type="math/tex">a_k</script>. From this we see that <script type="math/tex">T</script> also has the same number of activities as <script type="math/tex">T^*</script> and therefore, we can conclude that <script type="math/tex">T^*</script> is optimal.</p>
+We claim that $T$ is allowed and optimal. First, we know that $a_j$ has a smaller finish than $a_k$ because our greedy algorithm selects the activity with the earliest finish time. Therefore, $a_j$ doesn’t conflict with anything chosen after $a_k$. From this we see that <script type="math/tex">T</script> also has the same number of activities as <script type="math/tex">T^*</script> and therefore, we can conclude that <script type="math/tex">T^*</script> is optimal.</p>
 
 <p><b>Conclusion:</b>
-After adding the last activity, we will have an optimal solution that extends our current choices. Our current choices or solution is the only solution that extends the current solution and therefore, our current solution is optimal. <script type="math/tex">\blacksquare</script>
+After adding the last activity, we will have an optimal solution that extends our current choices. Our current choices or solution is the only solution that extends the current solution and therefore, our current solution is optimal. $\blacksquare$
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Running Time</b></h4>
-<p>If we need to sorted then it will be <script type="math/tex">O(n\log(n))</script>. If it’s sorted then we’re only doing a linear scan of activities and therefore, the running time is <script type="math/tex">O(n)</script>. 
+<p>If we need to sort the activities, then it will be $O(n\log(n))$. If it’s sorted, then we’re only doing a linear scan of activities and therefore, the running time is $O(n)$. 
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
-<h4><b>Implementation</b></h4>
-<p>TODO
+<h4><b>References</b></h4>
+<p><a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br />
 <br /></p>
 

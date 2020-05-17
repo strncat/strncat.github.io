@@ -86,34 +86,34 @@ Let <script type="math/tex">G=(V,E)</script> be an undirected graph with <script
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>Suppose we apply the contraction algorithm on the above graph. We start by picking an edge uniformly at random. Suppose we picked the edge <script type="math/tex">(d,e)</script> below:
+<p>In this example, we will apply the contraction algorithm above on the following graph. We start by picking an edge uniformly at random. Suppose we picked the edge <script type="math/tex">(d,e)</script> below:
 <img src="http://localhost:4000/assets/mincut/2.png" width="100%" />
-We then delete <script type="math/tex">(d,e)</script>. We create a new node <script type="math/tex">z</script>. We then point any edge that previously had an end point equal to <script type="math/tex">d</script> or <script type="math/tex">e</script> to point at <script type="math/tex">z</script>.
+We then delete <script type="math/tex">(d,e)</script>. We create a new node <script type="math/tex">z</script>. We then point any edge that previously had an end point equal to <script type="math/tex">d</script> or <script type="math/tex">e</script> to point at <script type="math/tex">z</script> instead.
 <img src="http://localhost:4000/assets/mincut/3.png" width="100%" />
 Suppose we pick <script type="math/tex">(a,b)</script> next.
 <img src="http://localhost:4000/assets/mincut/4.png" width="100%" />
-We delete <script type="math/tex">(a,b)</script> and create node <script type="math/tex">y</script> and fix all the old edges pointing at <script type="math/tex">a</script> or <script type="math/tex">b</script> to point at <script type="math/tex">y</script>.
+We delete <script type="math/tex">(a,b)</script> and create node, <script type="math/tex">y</script>, and fix all the old edges pointing at <script type="math/tex">a</script> or <script type="math/tex">b</script> to point at <script type="math/tex">y</script>.
 <img src="http://localhost:4000/assets/mincut/5.png" width="100%" />
 Suppose we pick <script type="math/tex">(f,g)</script> next.
 <img src="http://localhost:4000/assets/mincut/6.png" width="100%" />
-We’ll repeat the same process by creating <script type="math/tex">x</script> and fixing the edges below:
+We’ll repeat the same process by creating node, <script type="math/tex">x</script>, and fixing the edges below.
 <img src="http://localhost:4000/assets/mincut/7.png" width="100%" />
 Suppose we pick <script type="math/tex">(z,x)</script> next.
 <img src="http://localhost:4000/assets/mincut/8.png" width="100%" />
-We’ll again delete the edge, create a new node <script type="math/tex">w</script> and fix all the edges below:
+We’ll delete <script type="math/tex">(z,x)</script>, create a new node, <script type="math/tex">w</script>, and fix all the edges below.
 <img src="http://localhost:4000/assets/mincut/9.png" width="100%" />
-Finally, suppose we pick <script type="math/tex">(y,c)</script> and repeat the same steps. 
+Finally, we have two edges left. Each edge has a 0.5 probability of being picked up. Suppose we pick <script type="math/tex">(y,c)</script>. 
 <img src="http://localhost:4000/assets/mincut/10.png" width="100%" />
 Since we only have 2 vertices then we’re done. We will return the number of edges between the two vertices which is 1 in this case. So the global minimum cut is of size 1 which is correct for this graph.
 <img src="http://localhost:4000/assets/mincut/11.png" width="100%" />
-Suppose however that instead of picking <script type="math/tex">(y,c)</script> to contract, we picked <script type="math/tex">(y,w)</script>
+Suppose however that instead of picking <script type="math/tex">(y,c)</script> to contract, we picked <script type="math/tex">(y,w)</script>.
 <img src="http://localhost:4000/assets/mincut/10a.png" width="100%" />
 We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager’s algorithm is a Monte Carlo algorithm.
 <img src="http://localhost:4000/assets/mincut/11a.png" width="100%" />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Probability of Success</b></h4>
-<p>Suppose we have a graph <script type="math/tex">G=(E,V)</script> with <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. Suppose the cut <script type="math/tex">(A,B)</script> is a global minimum cut is of size <script type="math/tex">k</script>. Also let <script type="math/tex">F</script> to be the set of <script type="math/tex">k</script> edges in the cut <script type="math/tex">(A,B)</script>. So <script type="math/tex">F</script> has the edges that have one end point in <script type="math/tex">A</script> and the other end point in <script type="math/tex">B</script>.
+<p>Suppose we have a graph <script type="math/tex">G=(E,V)</script> with <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. Suppose the cut <script type="math/tex">(A,B)</script> is a global minimum cut is of size <script type="math/tex">k</script>. Also, let <script type="math/tex">F</script> to be the set of <script type="math/tex">k</script> edges in the cut <script type="math/tex">(A,B)</script>. So <script type="math/tex">F</script> has the edges that have one end point in <script type="math/tex">A</script> and the other end point in <script type="math/tex">B</script>.
 <br />
 <br />
 The probability that the contraction algorithm succeeds is the probability that we don’t make any mistake in the <script type="math/tex">n-2</script> iterations of the algorithm. Suppose we let <script type="math/tex">S_i</script> to be the event that we don’t make a mistake in step <script type="math/tex">i</script> or generally succeed in step <script type="math/tex">i</script>. We want to calculate the following probability:</p>

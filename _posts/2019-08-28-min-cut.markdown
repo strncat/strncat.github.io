@@ -30,34 +30,34 @@ void karger(graph& g) {
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Example</b></h4>
-Suppose we apply the contraction algorithm on the above graph. We start by picking an edge uniformly at random. Suppose we picked the edge $$(d,e)$$ below:
+In this example, we will apply the contraction algorithm above on the following graph. We start by picking an edge uniformly at random. Suppose we picked the edge $$(d,e)$$ below:
 <img src="{{ site.url }}/assets/mincut/2.png" width="100%">
-We then delete $$(d,e)$$. We create a new node $$z$$. We then point any edge that previously had an end point equal to $$d$$ or $$e$$ to point at $$z$$.
+We then delete $$(d,e)$$. We create a new node $$z$$. We then point any edge that previously had an end point equal to $$d$$ or $$e$$ to point at $$z$$ instead.
 <img src="{{ site.url }}/assets/mincut/3.png" width="100%">
 Suppose we pick $$(a,b)$$ next.
 <img src="{{ site.url }}/assets/mincut/4.png" width="100%">
-We delete $$(a,b)$$ and create node $$y$$ and fix all the old edges pointing at $$a$$ or $$b$$ to point at $$y$$.
+We delete $$(a,b)$$ and create node, $$y$$, and fix all the old edges pointing at $$a$$ or $$b$$ to point at $$y$$.
 <img src="{{ site.url }}/assets/mincut/5.png" width="100%">
 Suppose we pick $$(f,g)$$ next.
 <img src="{{ site.url }}/assets/mincut/6.png" width="100%">
-We'll repeat the same process by creating $$x$$ and fixing the edges below:
+We'll repeat the same process by creating node, $$x$$, and fixing the edges below.
 <img src="{{ site.url }}/assets/mincut/7.png" width="100%">
 Suppose we pick $$(z,x)$$ next.
 <img src="{{ site.url }}/assets/mincut/8.png" width="100%">
-We'll again delete the edge, create a new node $$w$$ and fix all the edges below:
+We'll delete $$(z,x)$$, create a new node, $$w$$, and fix all the edges below.
 <img src="{{ site.url }}/assets/mincut/9.png" width="100%">
-Finally, suppose we pick $$(y,c)$$ and repeat the same steps. 
+Finally, we have two edges left. Each edge has a 0.5 probability of being picked up. Suppose we pick $$(y,c)$$. 
 <img src="{{ site.url }}/assets/mincut/10.png" width="100%">
 Since we only have 2 vertices then we're done. We will return the number of edges between the two vertices which is 1 in this case. So the global minimum cut is of size 1 which is correct for this graph.
 <img src="{{ site.url }}/assets/mincut/11.png" width="100%">
-Suppose however that instead of picking $$(y,c)$$ to contract, we picked $$(y,w)$$
+Suppose however that instead of picking $$(y,c)$$ to contract, we picked $$(y,w)$$.
 <img src="{{ site.url }}/assets/mincut/10a.png" width="100%">
 We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager's algorithm is a Monte Carlo algorithm.
 <img src="{{ site.url }}/assets/mincut/11a.png" width="100%">
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Probability of Success</b></h4>
-Suppose we have a graph $$G=(E,V)$$ with $$n$$ nodes and $$m$$ edges. Suppose the cut $$(A,B)$$ is a global minimum cut is of size $$k$$. Also let $$F$$ to be the set of $$k$$ edges in the cut $$(A,B)$$. So $$F$$ has the edges that have one end point in $$A$$ and the other end point in $$B$$.
+Suppose we have a graph $$G=(E,V)$$ with $$n$$ nodes and $$m$$ edges. Suppose the cut $$(A,B)$$ is a global minimum cut is of size $$k$$. Also, let $$F$$ to be the set of $$k$$ edges in the cut $$(A,B)$$. So $$F$$ has the edges that have one end point in $$A$$ and the other end point in $$B$$.
 <br>
 <br>
 The probability that the contraction algorithm succeeds is the probability that we don't make any mistake in the $$n-2$$ iterations of the algorithm. Suppose we let $$S_i$$ to be the event that we don't make a mistake in step $$i$$ or generally succeed in step $$i$$. We want to calculate the following probability:

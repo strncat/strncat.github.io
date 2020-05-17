@@ -10,9 +10,9 @@ We've looked at how to check if <a href="https://strncat.github.io/jekyll/update
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Line Sweep</b></h4>
+<h4><b>Sweep Line</b></h4>
 <img src="{{ site.url }}/assets/geometry/any-segment-intersection/sweep-line.png" width="100%">
-Line Sweep is a common technique used often in computational geometry where we imagine a vertical line going through the set of objects we're interested in. The sweep line sweeps through one dimension that we chooses. This dimension is treated as a dimension of time. For example, in the figure above, the x-axis is our time line. The vertical line sweeps through the line segments to check whether any two segments intersect. 
+Sweep Line  is a common technique used often in computational geometry where we imagine a vertical line going through the set of objects we're interested in. The sweep line sweeps through one dimension that we chooses. This dimension is treated as a dimension of time. For example, in the figure above, the x-axis is our time line. The vertical line sweeps through the line segments to check whether any two segments intersect. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

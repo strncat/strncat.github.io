@@ -92,11 +92,16 @@ Next, we need to determine if the point $$p_1$$ falls between the segment $$\ove
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/geometry/intersection-two-line-segments-clrs.cpp">Full Implementation</a>
 <br>
 <!------------------------------------------------------------------------------------>
+<h4><b>Practice Problems</b></h4>
+- <a href="https://onlinejudge.org/external/113/11343.pdf">11343 Isolated Segments</a>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 CLRS Chapter 33
 <br>
 <a href="https://sites.math.rutgers.edu/~ajl213/CLRS/Ch33.pdf">Cross Product Proof</a>
+<br>
+<br>
 
-<br>
-<br>
 

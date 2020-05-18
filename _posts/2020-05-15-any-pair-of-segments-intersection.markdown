@@ -106,7 +106,7 @@ But why does any of the above work? Is this magic? kind of. To prove the correct
 <br>
 $$(\Rightarrow)$$: If <i>any_segments_intersect</i> returns true, then it is clear from the algorithm above that it can only return true if an intersection passes so we're good. 
 
-$$(\Leftarrow)$$: If there is an intersection, we'll prove that <i>any_segments_intersect</i> finds it. Suppose we have an intersection and let $p$ be the left most intersection with the lowest y-coordinate. Let $a$ and $b$ be the intersecting segments. We know from the previous proof that no three segments can intersect at $p$ and so $a$ and $b$ will be consecutive at some sweep line $z$. We also know that there is some segment start or end point $q$ that intersects $z$. We have three cases:
+$$(\Leftarrow)$$: If there is an intersection, we'll prove that <i>any_segments_intersect</i> finds it. Suppose we have an intersection and let $p$ be the left most intersection with the lowest y-coordinate. Let $a$ and $b$ be the intersecting segments. We know from the previous proof that no three segments can intersect at $p$ and so $a$ and $b$ will be consecutive at some sweep line $x$. We also know that there is some segment start or end point $q$ that intersects $x$. We have three cases:
 
 - Case 1: We already have either $a$ or $b$ in $T$ and then we hit the start of $a$ or $b$ and so the first if-statement catches this.
 

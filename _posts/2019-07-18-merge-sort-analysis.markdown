@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Merge Sort Analysis"
+title:  "Mergesort Running Time Analysis"
 date:   2019-07-18 07:01:36 -0700
 categories: jekyll update
 mathjax: true

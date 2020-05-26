@@ -5,7 +5,7 @@ date:   2020-05-08 8:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Many competitive programming problems require generating combinations. For example, in <a href="https://onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=382">411 - Lotto</a>, we are given $$k$$ integers (all distinct) and we want to print all possible ways of choosing 6 numbers from the set. There are different approaches to generate these combinations. The following approach is an extremely simple approach. 
+Many competitive programming problems require generating combinations. For example, in <a href="https://onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=382">411 - Lotto</a>, we are given $$k$$ integers (all distinct) and we want to print all possible ways of choosing 6 numbers from the set. There are many approaches to generating these combinations. The following approach is a simple one. 
 <!------------------------------------------------------------------------------------>
 <h4><b>Approach 1</b></h4>
 In this approach, we generate all possible subsets, stopping when we reach the combination size we're after. Suppose we're generating $k=3$ numbers from the following set:

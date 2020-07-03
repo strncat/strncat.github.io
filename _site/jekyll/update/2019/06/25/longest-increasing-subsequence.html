@@ -62,24 +62,24 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let <script type="math/tex">A = [a_0, a_1, a_2,...,a_n]</script> be an array containing <script type="math/tex">n</script> real numbers. A longest increasing subsequence of A is a sequence of indices <script type="math/tex">[0 \leq i_0 \leq i_1 \leq ... \leq i_k \leq n]</script> such that <script type="math/tex">A[i_i] \leq A[i_2] \leq ... \leq A[i_k]</script> so that <script type="math/tex">k</script> is of maximum value.
+    <p>Let $A = [a_0, a_1, a_2,…,a_n]$ be an array containing $n$ real numbers. A longest increasing subsequence of A is a sequence of indices $[0 \leq i_0 \leq i_1 \leq … \leq i_k \leq n]$ such that $A[i_i] \leq A[i_2] \leq … \leq A[i_k]$ so that $k$ is of maximum value.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>Suppose <script type="math/tex">A = [3, 8, 1, 2, 7, 9, 6, 4, 5]</script>, then a longest increasing subsequence could be <script type="math/tex">[1, 2, 4, 5]</script>. Note that it is not unique.
+<p>Suppose $A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$, then a longest increasing subsequence could be $[1, 2, 4, 5]$. Note that it is not unique.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Brute-Force</b></h4>
-<p>To find the longest increasing subsequence, we can test every possible subsequence. How possible subsequences are there? To build a subsequence, we must select a subset of the elements in <script type="math/tex">A</script>. For each element of <script type="math/tex">A</script>, we either select that element to be in the subsequence or we do not. Therefore, the total number of possible subsequences is <script type="math/tex">2^n</script>. We can rule out whether a subsequence is an increasing subsequence in <script type="math/tex">O(n)</script> time. We can also keep track of the longest encountered increasing subsequence so far. Therefore, the running time is <script type="math/tex">O(2^n)</script>.
+<p>To find the longest increasing subsequence, we can test every possible subsequence. How possible subsequences are there? To build a subsequence, we must select a subset of the elements in $A$. For each element of $A$, we either select the element to be in the subsequence or we do not. So for each element, we have two choices. Therefore, the total number of possible subsequences is $2^n$. We can rule out whether a subsequence is an increasing subsequence in $O(n)$ time and at the same time, we can also keep track of the longest encountered increasing subsequence so far. Therefore, the running time is $O(2^{n+1})$.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Dynamic Programming</b></h4>
 <p>To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS).<br />
 <br />
-It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let <script type="math/tex">D[i]</script> be the length of the longest increasing subsequence ending at <script type="math/tex">A[i]</script>, then we will find that,</p>
+It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let $D[i]$ be the length of the longest increasing subsequence ending at $A[i]$, then we will find that,</p>
 <div center="">
 $$
 \begin{align*}
@@ -87,29 +87,25 @@ D[i] = 1 + \max({D[k] : k &lt; i \text{ and } A[k] &lt; A[i]})
 \end{align*}
 $$
 </div>
-<p>In other words, the longest increasing subsequence ending at <script type="math/tex">A[i]</script> can be found by looking at all <script type="math/tex">D[k]</script> where <script type="math/tex">% <![CDATA[
-k < i %]]></script> (meaning that <script type="math/tex">A[k]</script> comes before <script type="math/tex">A[i]</script>) and <script type="math/tex">A[i] > A[k]</script> (meaning that <script type="math/tex">A[i]</script> can extend the subsequence ending at <script type="math/tex">A[k]</script>). We then take the maximum value of <script type="math/tex">D[k]</script>, 
+<p>In other words, the longest increasing subsequence ending at $A[i]$ can be found by looking at all $D[k]$ where $k &lt; i$ (meaning that $A[k]$ comes before $A[i]$) and $A[i] &gt; A[k]$ (meaning that $A[i]$ can extend the subsequence ending at $A[k]$). We then take the maximum value of $D[k]$, 
 <br />
 <br />
 <b>Proof:</b><br />
-Let <script type="math/tex">i</script> be a natural number and let <script type="math/tex">D[i]</script> be the length of the longest increasing subsequence ending at <script type="math/tex">A[i]</script>. Consider the subsequence ending at <script type="math/tex">A[i + 1]</script>. We have two cases:
+Let $i$ be a natural number and let $D[i]$ be the length of the longest increasing subsequence ending at $A[i]$. Consider the subsequence ending at $A[i + 1]$. We have two cases:
 <br />
 <br />
-Case 1: <script type="math/tex">A[i+1]</script> is the smallest element in <script type="math/tex">A[0...i+1]</script>. Therefore, the length of the subsequence ending at <script type="math/tex">A[i+1]</script> is 1.
+Case 1: $A[i+1]$ is the smallest element in $A[0…i+1]$. Therefore, the length of the subsequence ending at $A[i+1]$ is 1.
 <br />
 <br />
-Case 2: <script type="math/tex">A[i+1]</script> is not the smallest element in <script type="math/tex">A[0...i+1]</script>. Let <script type="math/tex">k</script> be a natural number where <script type="math/tex">% <![CDATA[
-k < i+1 %]]></script>. This means that we can use <script type="math/tex">A[i+1]</script> to extend the subsequence ending at <script type="math/tex">A[k]</script> if <script type="math/tex">% <![CDATA[
-A[k] < A[i + 1] %]]></script>. Since we are searching for the longest increasing subsequence then we take the maximum value for all possible <script type="math/tex">% <![CDATA[
-k < i + 1 %]]></script> and so <script type="math/tex">D[i+1]</script> is the maximum value plus 1 as defined above.
+Case 2: $A[i+1]$ is not the smallest element in $A[0…i+1]$. Let $k$ be a natural number where $k &lt; i+1$. This means that we can use $A[i+1]$ to extend the subsequence ending at $A[k]$ if $A[k] &lt; A[i + 1]$. Since we are searching for the longest increasing subsequence, then we should take the maximum value, $D[k]$, for all possible $k &lt; i + 1$. Therefore, $D[i+1] = max(D[k]) + 1$ where $k &lt; i+1$ and $A[k] &lt; A[i+1]$.
 <br />
 <br />
-We claim that <script type="math/tex">D[i+1]</script> is the length of longest increasing subsequence ending at <script type="math/tex">A[i+1]</script>. Suppose it wasn’t and that the longest increasing subsequence ending at <script type="math/tex">A[i+1]</script> is <script type="math/tex">m</script> and so <script type="math/tex">m > D[i+1]</script>. By our definition, we know that <script type="math/tex">D[i+1] = D[k] + 1</script> where <script type="math/tex">D[k]</script> is the longest increasing subsequence ending at <script type="math/tex">% <![CDATA[
-k < i+1 %]]></script>. This means that <script type="math/tex">m > D[k]+1</script> but this is not possible since we’re only adding <script type="math/tex">A[i+1]</script> to the subsequence. Therefore, <script type="math/tex">D[i+1]</script> is optimal.
+We claim that $D[i+1]$ is the length of longest increasing subsequence ending at $A[i+1]$. Suppose it wasn’t and that the longest increasing subsequence ending at $A[i+1]$ is $m$ and so $m &gt; D[i+1]$. By our definition, we know that $D[i+1] = D[k] + 1$ where $D[k]$ is the longest increasing subsequence ending at $k &lt; i+1$. This means that $m &gt; D[k]+1$ but this is not possible since we’re only adding $A[i+1]$ to the subsequence. Therefore, $D[i+1]$ is optimal.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>The $O(n^2)$ Implementation</b></h4>
+<p>The following implements the recurrence we defined above.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">longest_increasing_subsequence</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">D</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -137,21 +133,21 @@ k < i+1 %]]></script>. This means that <script type="math/tex">m > D[k]+1</scrip
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Running Time</b></h4>
-<p>We’re doing two simple loops to fill arrays <script type="math/tex">c</script> and <script type="math/tex">p</script>. Therefore, the running time is <script type="math/tex">O(n^2)</script>.
+<p>We’re doing two simple loops to fill arrays $c$ and $p$. Therefore, the running time is $O(n^2)$.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
 <p>Initially we start with arrays <script type="math/tex">A</script> and <script type="math/tex">D</script>:
-Consider again <script type="math/tex">A = [3, 8, 1, 2, 7, 9, 6, 4, 5]</script>. We initialize <script type="math/tex">D</script> to be <script type="math/tex">D = [1, 1, 1, 1, 1, 1, 1, 1, 1]</script> representing the initial length of the subsequence ending at each possible <script type="math/tex">A[i]</script>.
+Consider again <script type="math/tex">A = [3, 8, 1, 2, 7, 9, 6, 4, 5]</script>. We initialize <script type="math/tex">D</script> to be <script type="math/tex">D = [1, 1, 1, 1, 1, 1, 1, 1, 1]</script> representing the initial length of the subsequence ending at each possible element, $A[i]$.
 <br /><br />
-Iteration <script type="math/tex">i = 1</script>. We look at <script type="math/tex">A[1] = 8</script>. We have <script type="math/tex">D[1]=1</script> and so the subsequence is just <script type="math/tex">\{8\}</script>. Can 8 extend any previous subsequences? We look at <script type="math/tex">j = 0</script> and in that case, we see that <script type="math/tex">A[1] > A[0]</script>, meaning that that the subsequence can now include 3 and become <script type="math/tex">\{3, 8\}</script>. And so now we have:</p>
+Iteration <script type="math/tex">i = 1</script>. We look at $A[1] = 8$. We have <script type="math/tex">D[1]=1</script> and so the subsequence is just <script type="math/tex">\{8\}</script>. Can 8 extend any previous subsequences? We look at <script type="math/tex">j = 0</script> and in that case, we see that $A[1] &gt; A[0]$, meaning that that the subsequence can now include 3 and become <script type="math/tex">\{3, 8\}</script>. And so now we have:</p>
 <div center="">
 $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
 $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
 </div>
 <p><br />
-Iteration <script type="math/tex">i = 2</script>. We look at <script type="math/tex">A[2] = 1</script>. We have <script type="math/tex">D[2]=1</script> and so the subsequence is just <script type="math/tex">\{1\}</script>. Can 4 extend any previous subsequences? We need to look at <script type="math/tex">j = 0</script> and <script type="math/tex">j = 1</script>. It turns out that 1 will not be able to extend either subsequence.</p>
+Iteration <script type="math/tex">i = 2</script>. We look at <script type="math/tex">A[2] = 1</script>. We have <script type="math/tex">D[2]=1</script> and so the subsequence is just <script type="math/tex">\{1\}</script>. Can 1 extend any previous subsequences? We need to look at <script type="math/tex">j = 0</script> and <script type="math/tex">j = 1</script>. It turns out that 1 will not be able to extend either subsequence.</p>
 <div center="">
 $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
 $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
@@ -162,18 +158,18 @@ We continue doing so until we reach the end and we have:</p>
 $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
 $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$
 </div>
-<p>This means that the longest subsequence ends at element 9 or 5. We can then <script type="math/tex">p</script> to construct the subsequence. One possible construction will generate: <script type="math/tex">[1, 2, 7, 9]</script>
+<p>This means that the longest subsequence ends at either element 9 or 5. We can then use the array $p$ to construct the subsequence. One possible construction will be: $[1, 2, 7, 9]$. The full implementation contains the code to generate the longest subsequence.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>The $O(nlg(n))$ Solution with Binary Search</b></h4>
-<p>The <script type="math/tex">O(n^2)</script> dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes!
+<p>The $O(n^2)$ dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes!
 <br /><br />
-Previously, we said that <script type="math/tex">D[i]</script> is the length of the longest subsequence ending at <script type="math/tex">A[i]</script>. Now we will consider a completely different substructure. Let <script type="math/tex">M[i]</script> to be the smallest element that ends a subsequence of length <script type="math/tex">i</script>. For simplicity we will initially let <script type="math/tex">M[0]</script> to be <script type="math/tex">-\infty</script> and everything else to be <script type="math/tex">\infty</script>. 
+Previously, we said that $D[i]$ is the length of the longest subsequence ending at <script type="math/tex">A[i]</script>. Now we will consider a completely different substructure. Let $M[i]$ to be the smallest element that ends a subsequence of length $i$. For simplicity, we will initially let $M[0]$ to be $-\infty$ and everything else to be $\infty$. 
 <br /><br />
-Let’s take the same example where <script type="math/tex">A = [3, 8, 1, 2, 7, 9, 6, 4, 5]</script>. In this case, the smallest number that ends a subsequence of length 1 is 1. Also the smallest number that ends a subsequence of length 3 is 4 and so on. We will eventually have <script type="math/tex">M</script> is <script type="math/tex">[-\infty, 1, 2, 4, 5, \infty, \infty, \infty, \infty]</script>.
+Let’s take the same example where $A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$. In this case, the smallest number that ends a subsequence of length 1 is 1 and so $M[1]=1$. Also, the smallest number that ends a subsequence of length 3 is 4 with subsequence $[1,2,4]$. Note that $[3,7,9]$ is a subsequence of length 3 but 9 is not smaller than 4 and so $M[3]$ remains to be 4. We will eventually have $M$ be $[-\infty, 1, 2, 4, 5, \infty, \infty, \infty, \infty]$.
 <br /><br />
-Before proceeding with the algorithm and why it works, let’s prove that based on our construction of <script type="math/tex">M</script>, that <script type="math/tex">M</script> must be sorted because this will help us later on to prove that <script type="math/tex">M</script> is sorted. We will prove that <script type="math/tex">M</script> is a strictly increasing array and that for any <script type="math/tex">k</script>, we have <script type="math/tex">% <![CDATA[
+Before proceeding with the algorithm and why it works, let’s prove that based on our construction of <script type="math/tex">M</script>, that <script type="math/tex">M</script> must be sorted because this will help us later on to prove that the algorithm is correct. We will prove that <script type="math/tex">M</script> is a strictly increasing array and that for any <script type="math/tex">k</script>, we have <script type="math/tex">% <![CDATA[
 M[k] < M[k+1] %]]></script>. (We will ignore the placeholder <script type="math/tex">\infty</script>’s otherwise the proof would not work)
 <br /><br /></p>
 
@@ -198,19 +194,16 @@ Therefore, we can conclude that we must have <script type="math/tex">% <![CDATA[
 M[k] < M[k+1] %]]></script> for all <script type="math/tex">k</script> as we wanted to show.
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Algorithm</b></h4>
-<p>Let’s traverse <script type="math/tex">A</script> from left to right. For the base case, we consider <script type="math/tex">i = 0</script> and at this point we know that <script type="math/tex">A[0] > -\infty</script> and so <script type="math/tex">M[1] = A[0]</script>.
+<p>Let’s traverse $A$ from left to right. For the base case, we consider $i = 0$ and at this point we know that $A[0] &gt; -\infty$ and so $M[1] = A[0]$.
 <br /><br />
-Now let’s consider iteration <script type="math/tex">i</script> and element <script type="math/tex">A[i]</script>. Also, let <script type="math/tex">k</script> be the length of the longest subsequence reached so far, meaning that <script type="math/tex">M[k] \neq \infty</script> and for any <script type="math/tex">j > k</script> we have <script type="math/tex">M[j] = \infty</script>. Let’s consider two cases:
+Now let’s consider iteration $i$ and element $A[i]$. Also, let $k$ be the length of the longest subsequence reached so far, meaning that $M[k] \neq \infty$ and for any $j &gt; k$ we have $M[j] = \infty$. Let’s consider two cases:
 <br /><br />
-Case 1: <script type="math/tex">A[i] > M[k]</script>. In this case, we see that it is possible to extend the subsequence ending with element <script type="math/tex">M[k]</script> because <script type="math/tex">A[i]</script> is greater, yay! Now we can set <script type="math/tex">M[k+1] = A[i]</script> and we are done. (But why? don’t we need to check previous subsequences in <script type="math/tex">M</script>? No. Proof: We established previously that <script type="math/tex">M</script> is sorted and so if <script type="math/tex">A[i] > M[k]</script> then <script type="math/tex">A[i] > M[j]</script> for <script type="math/tex">j \leq k</script>. This means that <script type="math/tex">A[i]</script> is not a possible candidate for replacing any of the previous elements because <script type="math/tex">M</script> holds ONLY the minimum possible elements that end each subsequence.)
+Case 1: $A[i] &gt; M[k]$. In this case, we see that it is possible to extend the subsequence ending with element $M[k]$ because $A[i]$ is greater, yay! Now we can set $M[k+1] = A[i]$ and we are done. (But why? don’t we need to check previous subsequences in $M$? No. Proof: We established previously that $M$ is sorted and so if $A[i] &gt; M[k]$ then $A[i] &gt; M[j]$ for $j \leq k$. This means that $A[i]$ is not a possible candidate for replacing any of the previous elements because $M$ holds ONLY the minimum possible elements that end each subsequence.)
 <br /><br />
 Case 2: <script type="math/tex">% <![CDATA[
-A[i] < M[k] %]]></script>. This one is tricky. In this case <script type="math/tex">A[i]</script> can’t extend the current subsequence of length <script type="math/tex">k</script> but it can potentially be a better candidate for ending some subsequence of length <script type="math/tex">1,...,k</script>. Recall that <script type="math/tex">M</script> is sorted and is a strictly increasing array. Let <script type="math/tex">j</script> be natural number where <script type="math/tex">j \leq k</script> and <script type="math/tex">M[j]</script> is the smallest element such that <script type="math/tex">% <![CDATA[
-A[i] < M[j] %]]></script>. (Note that it might be that <script type="math/tex">j = k</script>). By our construction, this means that <script type="math/tex">A[i] > M[j-1]</script>. (Note that it might be that j-1 = 0). This means that we can take the subsequence of length <script type="math/tex">j-1</script> ending with <script type="math/tex">M[j-1]</script> and extend it with <script type="math/tex">A[i]</script>, making a new subsequence of length <script type="math/tex">j</script> that has a smaller ending value than the one ending with <script type="math/tex">M[j]</script>! (we’re basically replacing the subsequence ending with M[j] with the new subsequence consisting of what we have already in <script type="math/tex">M[j-1]</script> plus <script type="math/tex">A[i]</script>). How do we find such an index <script type="math/tex">j</script> where <script type="math/tex">% <![CDATA[
-M[j-1] < A[i] < M[j] %]]></script>? This is where binary search comes in! since <script type="math/tex">M</script> is sorted, we can find this position in just <script type="math/tex">O(\log(n))</script>.
+A[i] < M[k] %]]></script>. This one is tricky. In this case $A[i]$ can’t extend the current subsequence of length $k$, but it can potentially be a better candidate for ending some subsequence of length $1,…,k$. Recall that $M$ is sorted and is a strictly increasing array. Let $j$ be natural number where $j \leq k$ and $M[j]$ is the smallest element such that $A[i] &lt; M[j]$. (Note that it might be that $j = k$). By our construction, this means that $A[i] &gt; M[j-1]$. (Note that it might be that j-1 = 0). This means that we can take the subsequence of length $j-1$ ending with $M[j-1]$ and extend it with $A[i]$, making a new subsequence of length $j$ that has a smaller ending value than the one ending with $M[j]$! (we’re basically replacing the subsequence ending with $M[j]$ with the new subsequence consisting of what we have already in $M[j-1]$ plus <script type="math/tex">A[i]</script>). How do we find such an index $j$ where $M[j-1] &lt; A[i] &lt; M[j]$? This is where binary search comes in! since $M$ is sorted, we can find this position in just $O(\log(n))$.
 <br /><br />
-Could we replace the end of any other subsequence? No. Even though <script type="math/tex">% <![CDATA[
-A[i] < M[j] %]]></script> for all <script type="math/tex">j..k</script>, only <script type="math/tex">M[j]</script> can be replaced because <script type="math/tex">A[i] > M[j-1]</script>. Any subsequence of length greater than <script type="math/tex">j</script> already has more elements than just <script type="math/tex">j</script> so <script type="math/tex">A[i]</script> could not end these subsequences. (more formal?)
+Could we replace the end of any other subsequence? No. Even though $A[i] &lt; M[j]$ for all $j..k$, only $M[j]$ can be replaced because $A[i] &gt; M[j-1]$. Any subsequence of length greater than $j$ already has more elements than just $j$ so $A[i]$ could not end these subsequences. (more formal?)
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>

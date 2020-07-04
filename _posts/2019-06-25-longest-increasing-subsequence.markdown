@@ -176,11 +176,12 @@ int longest_increasing_subsequence_fast(int *a, int n) { // O(nlogn)
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Implementation</b></h4>
-https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp
+<a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp">Code on Github</a>
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>References</b></h4>
-The notes on the $$O(n^2)$$ solution are based on the awesome lecture notes from http://web.stanford.edu/class/cs161/schedule.html and CLRS.
+- The notes on the $$O(n^2)$$ solution are based on the awesome lecture notes from <a href="http://web.stanford.edu/class/cs161/schedule.html">CS161 Stanford</a>
+- The notes on the $(O(n\log(n)))$ solution are my own notes
 <br>
 <br>

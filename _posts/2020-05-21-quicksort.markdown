@@ -153,7 +153,7 @@ By the master theorem, the solution is $T(n) = O(n\log(n))$. Intuitively, if we 
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Expected running time analysis</b></h4>
-This analysis depends on the important idea that quicksort is dominated by the number of comparisons it makes in the while partitioning the array (proof in CLRS). Moreover, 
+This analysis depends on the important idea that quicksort is dominated by the number of comparisons it makes while partitioning the array (proof in CLRS). Moreover, 
 
 | for any given pair of elements, $x$ and $y$. We know that $x$ and $y$ are compared at most once during quicksort. |
 

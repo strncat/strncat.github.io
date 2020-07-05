@@ -106,20 +106,19 @@ We finally visit $d$ and $e$ and that’s our third and final strongly connected
 <p>Why does this algorithm find the SCCs? To show why it beautifully works, we’ll breakdown the proof into proving a small claim followed by two lemmas that will be used in the correctness proof. 
 <br />
 <br /></p>
-
 <h4><b>Claim: Let $G$ be a graph. Let $u$ and $v$ be vertices in $G$. If $u$ and $v$ are mutually reachable and $v$ and $w$ are mutually reachable then $u$ and $w$ are mutually reachable </b></h4>
-<p><i>Proof:</i>: We can construct a path from $u$ to $w$ by first going from $u$ to $v$ since they are mutually reachable and then going from $v$ to $w$ for the same reason. We can construct the reversed path from going from $w$ to $v$ since they are mutually reachable and then going from $v$ to $u$. Therefore, $u$ and $w$ are mutually reachable. $\blacksquare$ 
+<p><i>Proof:</i> We can construct a path from $u$ to $w$ by first going from $u$ to $v$ since they are mutually reachable and then going from $v$ to $w$ for the same reason. We can construct the reversed path from going from $w$ to $v$ since they are mutually reachable and then going from $v$ to $u$. Therefore, $u$ and $w$ are mutually reachable. $\blacksquare$ 
+<br />
 <br />
 <br /></p>
-
 <h4><b> Lemma 1: The SCC graph is a directed acyclic graph (DAG) </b></h4>
 <p><img src="http://localhost:4000/assets/graphs/scc/lemma1.png" width="100%" />
 <i>Proof:</i> Suppose that the SCC graph is not a DAG. Therefore, we must have some cycle in the SSC graph. Without the loss of generality, let $A$ and $B$ be two components in that cycle. We claim that $A$ and $B$ must be in the same connected component and therefore, it is a contradiction to the assumption that the SCC graph is not a DAG. 
 <br /> 
 Since $A$ and $B$ participate in some cycle, then there must be some vertices $x$ and $y$ in $A$ and $B$ respectively, such that $x$ and $y$ are mutually reachable. Since $A$ is a strongly connected component then $x$ is mutually reachable from every other vertex in $A$. Similarly, $y$ is mutually reachable from every other vertex in $B$. By the earlier claim, this means that every vertex in $A$ must be mutually reachable from every other vertex in $B$. Therefore, the vertices in $A$ and $B$ must be in the same strongly connected component and so the SCC graph must be a DAG. $\blacksquare$
 <br />
+<br />
 <br /></p>
-
 <h4><b> Lemma 2: In the SCC DAG, if there is an edge from component $A$ to component $B$ then $A.finish &gt; B.finish$ </b></h4>
 <p><i>Proof:</i> There are two cases:
 <img src="http://localhost:4000/assets/graphs/scc/case1.png" width="100%" />
@@ -128,18 +127,13 @@ Case 1: We reached $A$ before $B$ in our first depth first search pass: Let $x$ 
 <br />
 Case 2: We reached $B$ before $A$ in our first depth first search: Since we assumed that there is an edge from $A$ to $B$ then by Lemma 1, then we must not have an edge from $B$ to $A$ (otherwise we’re not a DAG!). Therefore, we will explore $B$ completely first and then $A$ will be explored at a later stage. This means that $A.finish &gt; B.finish$, as we wanted to show. $\blacksquare$
 <br />
+<br />
 <br /></p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Corollary 1: In the SCC DAG, if there is an edge from component $B$ to component $A$ in the reversed graph, then $A.finish &gt; B.finish$</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>We can now combine the previous results to prove the following theorem:</p>
-
+<h4><b> Corollary 1: In the SCC DAG, if there is an edge from component $B$ to component $A$ in the <i>reversed</i> graph, then $A.finish &gt; B.finish$ </b></h4>
+<p><br />
+We can now combine the previous results to prove the following theorem:
+<br />
+<br /></p>
 <h4><b>Theorem: Kosaraju's algorithm correctly finds the strongly connected components</b></h4>
 <p><i>Proof:</i> <br />
 <b>Inductive Hypothesis:</b> The first $t$ trees found in the second (reversed) DFS
@@ -151,11 +145,11 @@ forest are the $t$ SCCs with the largest finish times. Moreover, what’s left u
 
 <p><b>Inductive Step:</b> Assume by the inductive hypothesis that the first $t$ trees are the last-finishing SCCs, and the remaining SCCs form a DAG. 
 <br />
-Now, consider the $t+1$st tree produced and let $x$ be the root of the tree. Let $x$ be in SCC, $A$. We know that $A.finish &gt; B.finish$ for any remaining SCC, $B$. This is because we chose $x$ in the second pass of depth first search to have the largest finish time of any remaining vertices. 
 <br />
-Also since $A.finish &gt; B.finish$, then there must be no edges going from $A$ to $B$ (Proof: Suppose there was an edge to some component $C$, then $C.finish &gt; A.finish$ by Corollary 1 which is a contradiction since $A$ has the largest finish time.)
+Now, consider the $t+1$st tree produced and let $x$ be the root of the tree. Let $x$’s SCC be $A$. We know that $A.finish$ must be greater than the finish time of any remaining SSC. This is due to the fact that we chose $x$ because it was the vertex with the largest finishing time from the remaining vertices. Moreover, we are guaranteed to not have any edges from $A$ to any remaining SSCs and this is due to Corollary 1. (if there was an edge to some component $C$, then $C.finish &gt; A.finish$ which is a contradiction since $A$ has the largest finish time)
 <br />
-Therefore, we will only discover vertices in $A$ in the second depth first search started from $x$. So the $t+1$st tree is the SCC with the (t+1)st biggest finish time. Also the remaining SCCs still form a DAG, since removing a vertex won’t create a cycle.</p>
+<br />
+Therefore, we will only discover the vertices in $A$ from $x$. So the $t+1$st tree is the SCC with the (t+1)st biggest finish time. Also the remaining SCCs still form a DAG, since removing an SSC won’t create a cycle.</p>
 
 <p><b>Conclusion:</b> The second (reversed) DFS forest contains all the SCCs as its trees. $\blacksquare$
 <br />

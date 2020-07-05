@@ -91,7 +91,7 @@ T(n) &= T(n-1) + O(n).
 \end{align*}
 $$
 </div>
-This recurrence has the solution, $T(n) = O(n^2)$.
+Remember that the $O(n)$ part is due to partition. This recurrence has the solution, $T(n) = O(n^2)$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -109,8 +109,8 @@ This recurrence has the solution, $T(n) = O(n)$.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Expected case analysis</b></h4>
-The expected running time of quicksort turns out to be $O(n)$.<br>
-Proof: TODO:(basically section 9.2 in CLRS)
+The expected running time of quickselect turns out to be $O(n)$.<br>
+Proof: TODO: (basically section 9.2 in CLRS (not easy though))
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

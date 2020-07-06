@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css">
+  
+  <!-- <link rel="stylesheet" href="/assets/tufte.css"> -->
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not--><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat's notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Topological Sort (Kahn)</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-07-06T07:01:36-07:00" itemprop="datePublished">Jul 6, 2020
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Let $G = (V, E)$ be a directed acyclic graph consisting of $V$ vertices and $E$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $u, v \in V$, if $(u,v) \in E$, then $u$ must come before $v$ in the ordering. We have already developed an algorithm for topological sort using depth first search <a href="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html">here</a>. In this article, we will explore another topological sort algorithm, Kahn’s algorithm. 
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Kahn's Algorithm</b></h4>
+<p>Kahn’s algorithm is extremely intuitive. What are we trying to achieve with topological sort? If we have two vertices/tasks $u$ and $v$ where task $u$ is a perquisite or required to be done before task $v$, then we want to output $u$ before $v$. This dependency is represented with an edge $(u,v)$.</p>
+
+<p><img src="http://localhost:4000/assets/graphs/topological-sort/kahn1.png" alt="my photo" /></p>
+
+<p><b>The in-degree of a vertex</b><br />
+This edge contributes to the in-degree of vertex $v$ and out-degree of vertex $u$. The in-degree of a vertex is the number of incoming edges into the vertex. The out-degree of a vertex is the number of edges leaving the vertex. In Kahn’s algorithm, we’re interested in the in-degree of each vertex. In the above example, $v$ has an in-degree of 1.
+<br />
+<br />
+<b>How does Kahn utilizes the in-degree of a vertex?</b><br />
+Intuitively, if we have a vertex with in-degree $=0$, then we know that this vertex has no incoming edges. This means that this vertex (task) can be processed/started because it has no dependencies. Therefore, we can just output or add this vertex to the sorted output! This is the whole idea of Kahn’s algorithm. 
+<br />
+<br />
+<b>What if we don’t have a vertex with in-degree 0?</b><br />
+Since the graph is a DAG (no cycles), then it must have at least one node with in-degree $=0$.
+<br />
+<br />
+<b>What happens when we don’t have any more vertices with in-degree $=0$?</b><br />
+<img src="http://localhost:4000/assets/graphs/topological-sort/kahn2.png" alt="my photo" />
+When we add a vertex to the sorted output, we need to decrement the in-degree count of all its neighbors. In the example above, once we add $u$ to the sorted output, we need to decrement the in-degree of $v$. This will lead to $v$ having an in-degree 0. At this point, we need to also add $v$ to the sorted output and decrement its neighbors.
+<br />
+<br />
+<b>How do we do the above?</b><br />
+We maintain a queue to hold the nodes with in-degree 0 that haven’t been added to the sorted output yet. Every time we pop a vertex from this queue, we do two things:</p>
+<ul>
+  <li>Add this node to the sorted output.</li>
+  <li>Go through its neighbors, decrement their indegree and push any neighbor with in-degree 0 to the queue.
+<br />
+<br /></li>
+</ul>
+
+<p><b>What if the graph has a cycle?</b><br />
+<img src="http://localhost:4000/assets/graphs/topological-sort/kahn3.png" alt="my photo" />
+If the graph has a cycle, then we will have a situation where multiple vertices won’t reach an indegree of zero ever. That’s totally fine. We only need to check that the sorted output at the end has the same number of vertices in the graph. If that’s not the case, then we know the graph has a cycle and we just return an error.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Let’s go through a full example of running Kahn’s algorithm based on the description we gave above. (TODO)
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Correctness Proof</b></h4>
+<p>How do we prove that Kahn’s algorithm actually returns a correctly sorted vertices? (TODO)
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">kahn</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">in_degree</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+
+    <span class="c1">// compute the in-degree of each vertex in O(E+V)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">u</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">neighbor</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// push the vertices of in-degree 0</span>
+    <span class="c1">// if this is a DAG, then we must have some vertex with in-degree=0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">u</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">in_degree</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ordered_vertices</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="c1">// some vertex with in-degree = 0</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">ordered_vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+
+        <span class="c1">// decrease the in-degree of all neighbors</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">neighbor</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+            <span class="c1">// push a vertex with no more dependencies on the queue</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">neighbor</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// cycle check</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ordered_vertices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"cycle!!!!!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// print or return ordered_vertices</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/topological-sort/topological-sort-kahn.cpp">Source Code</a>
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>We compute the in-degree of all vertices in time $O(E+V)$. The while loop runs in time $O(E+V)$ since we push and pop a vertex with indegree-0 once. We also loop through the edges of that vertex only once. The total complexity remains at $O(E+V)$.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p>geeks-for-geeks
+<br />
+<br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2020/07/06/topological-sort-kahn.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2020/07/06/topological-sort-kahn; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2020/07/06/topological-sort-kahn.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

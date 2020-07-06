@@ -64,36 +64,36 @@
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/graphs/dfs/0.png" alt="my photo" /></p>
 
-<p>Depth first search like breadth first search is an algorithm used to explore a graph. Let <script type="math/tex">G = (V, E)</script> be a graph consisting of <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges and let <script type="math/tex">s</script> be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then resumes the search again from a different branch.
+<p>Depth first search like breadth first search is an algorithm used to explore a graph. Let $G = (V, E)$ be a graph consisting of $V$ vertices and $E$ edges and let $s$ be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then resumes the search again from a different branch.
 <br /><br />
-In a depth first search, we typically keep track of the time we first discovered a vertex and also the time we finished processing a vertex (after we look at all its neighbors). This information will help later in topologically sorting a graph. 
+In a depth first search, we typically keep track of the time we first discovered a vertex and also the time we finished processing a vertex (after we look at all of its neighbors). This information will help later in topologically sorting a graph. 
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
-<h4><b>Data Structures</b></h4>
-<p>To perform a depth first search, we will maintain the following data structures:
+<h4><b>Implementation Details</b></h4>
+<p>To perform a depth first search, we will maintain the following data structures:</p>
+<ul>
+  <li>A set or an array that keeps track of the visited nodes. Remember that $G$ might contain cycles and so we want to make sure that we explore each node once.</li>
+  <li>A stack. We want to explore the nodes closest to $s$ first. Since we’re insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we’ll be doing in the implementation below.
 <br />
-(2) A set or an array that keeps track of the visited nodes. Remember that <script type="math/tex">G</script> might contain cycles and so we want to make sure that we explore each node once.
-<br /><br />
-(1) A stack. We want to explore the nodes closest to <script type="math/tex">s</script> first. Since we’re insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we’ll be doing in the implementation below.
 <br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
+<!-----------------------------------------------------------------------------------></li>
+</ul>
 <h4><b>Example</b></h4>
-<p>Let’s explore the graph above. We will start from <script type="math/tex">s</script> and as soon as we see <script type="math/tex">a</script> we’ll recursively call dfs again. The start time for <script type="math/tex">s</script> is 0 and the start time for <script type="math/tex">a</script> is 1.</p>
+<p>Let’s explore the graph above. We will start from $s$ and as soon as we see $a$ we’ll recursively call dfs again. The start time for $s$ is 0 and the start time for $a$ is 1.</p>
 
 <p><img src="http://localhost:4000/assets/graphs/dfs/1.png" alt="my photo" /></p>
 
-<p>Next we will recursively visit <script type="math/tex">c</script>, <script type="math/tex">e</script> and <script type="math/tex">d</script>. They will have start times 2, 3 and 4 respectively.</p>
+<p>Next we will recursively visit $c$, $e$ and $d$. They will have start times 2, 3 and 4 respectively.</p>
 
 <p><img src="http://localhost:4000/assets/graphs/dfs/2.png" alt="my photo" /></p>
 
 <p>At this point, there will be no more vertices to traverse and so node 
-<script type="math/tex">d</script> is now finished with time 5, followed by <script type="math/tex">e</script>, <script type="math/tex">c</script> and then <script type="math/tex">a</script>.</p>
+$d$ is now finished with time 5, followed by $e$, $c$ and then $a$.</p>
 
 <p><img src="http://localhost:4000/assets/graphs/dfs/3.png" alt="my photo" /></p>
 
-<p>Finally, we will traverse node <script type="math/tex">b</script> with start time 9 and finish time 10. Node <script type="math/tex">s</script> will now be done with finish time <script type="math/tex">11</script>.</p>
+<p>Finally, we will traverse node $b$ with start time 9 and finish time 10. Node $s$ will now be done with finish time $11$.</p>
 
 <p><img src="http://localhost:4000/assets/graphs/dfs/4.png" alt="my photo" />
 <br />
@@ -118,20 +118,17 @@ In a depth first search, we typically keep track of the time we first discovered
     <span class="k">return</span> <span class="n">current_time</span><span class="p">;</span>
 <span class="p">}</span></code></pre></figure>
 
-<p><br />
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/depth-first-search">Source Code on Github</a>
+<br />
+<br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Running Time</b></h4>
-<p>Similar to the analysis of breadth first search. We visit each vertex once only. That’s <script type="math/tex">O(V)</script> time. Therefore, we also visit the adjacency list of each vertex at most once and that’s <script type="math/tex">O(E)</script> time. Therefore, the total time is <script type="math/tex">O(V+E)</script>.
-<br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
-<h4><b>Implementation (github)</b></h4>
-<p>https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/depth-first-search
+<p>Similar to the analysis of breadth first search. We visit each vertex once only. That’s $O(V)$ time. Therefore, we also visit the adjacency list of each vertex at most once and that’s $O(E)$ time. Therefore, the total time is $O(V+E)$.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p>http://web.stanford.edu/class/cs161/Lectures/Lecture9/Lecture9-compressed.pdf
+<p><a href="http://web.stanford.edu/class/cs161/index.html">Stanford - CS161</a>
 <br />
 <br /></p>
 

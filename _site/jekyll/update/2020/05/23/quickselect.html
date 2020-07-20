@@ -76,17 +76,17 @@ Given an array with $n$ elements. We can find the minimum element or maximum ele
 
 <p><img src="http://localhost:4000/assets/randomized/quickselect/2.png" width="100%" /></p>
 
-<p>We then repeat the same process of picking a pivot in each half and then partitioning around the pivots until the array is sorted. However, in quickselect, we’re only interested in finding the $k$th smallest element! The $k$th smallest element can only exist in either the left or the right half. Therefore, we can just search the appropriate half and simply throw away the other half. So, how do we pick which half? More specifically what can the pivot tell us about which half to search?</p>
+<p>We then repeat the same process of picking a pivot in each half and then partitioning around the pivots until the array is sorted. However, in quickselect, we’re only interested in finding the $k$th smallest element! The $k$th smallest element can only exist in either the left or the right half. Therefore, we can just search the appropriate half and simply throw away the other half. So, what can the pivot tell us about which half to search?</p>
 
 <p><img src="http://localhost:4000/assets/randomized/quickselect/3.png" width="100%" /></p>
 
-<p>Suppose we’re interested in finding the 2nd smallest element which is 2 in the example above. Naturally, the pivot divides the array into two halfs. The left half is less than the pivot and the right half is greater than the pivot. If we let the size of the left array be $L$, then we can say that the pivot is the $L+1$th smallest element. $L = 1$ and so the pivot is the 2nd smallest element in the array. Therefore, we can check if $k == L+1$ to determine if the pivot itself is the $k$th smallest element. 
+<p>Suppose we’re interested in finding the 2nd smallest element which is 2 in the example above. Naturally, the pivot divides the array into two halves. The left half is less than the pivot and the right half is greater than the pivot. If we let the size of the left array be $L$, then the pivot is the $L+1$th smallest element. Therefore, we can check if $k == L+1$ to determine if the pivot itself is the $k$th smallest element. In the above example, $k = 2$ and $L + 1 = 2$ and we conclude the search and return the pivot.
 <br />
 <br />
-Suppose instead we were searching for the smallest element in the array. This means that $k &lt; L+1$. This means that the $k$th smallest element is in the left half.
+Suppose instead we were searching for the smallest element in the array, $k = 1$. We know from earlier that the pivot is the $L+1$th smallest element. Since $k &lt; L+1$, this means that the $k$th smallest element is in the left half. So, we call quickselect again on the left half.
 <br />
 <br />
-Finally, suppose we’re looking for the 5th smallest element which is 5. This time $k &gt; L+1$. There aren’t enough elements on the left to cover $k$ and so we must search the right half. Do you search for the $k$th smallest element in the right half? No. Since we’re eliminating both the left array and the pivot, then our new search must look for the $k-(L+1) = (k-L-1)$th smallest element in the right half instead. 
+Finally, suppose we’re looking for the 5th smallest element, $k = 5$. This time $k &gt; L+1$ and so we must search the right half. Do you search for the $k$th smallest element in the right half? No. Since we’re eliminating both the left array and the pivot, then our new search must look for the $k-(L+1) = (k-L-1)$th smallest element in the right half instead. 
 <br />
 <br />
 To summarize, there are three cases:</p>

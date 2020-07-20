@@ -15,7 +15,7 @@ Suppose $A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$, then a longest increasing subsequence
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Brute-Force</b></h4>
-To find the longest increasing subsequence, we can test every possible subsequence. How possible subsequences are there? To build a subsequence, we must select a subset of the elements in $A$. For each element of $A$, we either select the element to be in the subsequence or we do not. So for each element, we have two choices. Therefore, the total number of possible subsequences is $2^n$. We can rule out whether a subsequence is an increasing subsequence in $O(n)$ time and at the same time, we can also keep track of the longest encountered increasing subsequence so far. Therefore, the running time is $O(2^{n+1})$.
+To find the longest increasing subsequence, we can test every possible subsequence. How possible subsequences are there? To build a subsequence, we must select a subset of the elements in $A$. For each element of $A$, we either select the element to be in the subsequence or we do not. So for each element, we have two choices. Therefore, the total number of possible subsequences is $2^n$. We can rule out whether a subsequence is an increasing subsequence in $O(n)$ time and at the same time, we can also keep track of the longest encountered increasing subsequence so far. Therefore, the running time is $O(2^{n})$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->

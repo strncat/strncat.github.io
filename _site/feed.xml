@@ -1,4 +1,224 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-07-06T11:15:59-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Topological Sort (Kahn)</title><link href="http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn.html" rel="alternate" type="text/html" title="Topological Sort (Kahn)" /><published>2020-07-06T07:01:36-07:00</published><updated>2020-07-06T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn.html">&lt;p&gt;Let $G = (V, E)$ be a directed acyclic graph consisting of $V$ vertices and $E$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $u, v \in V$, if $(u,v) \in E$, then $u$ must come before $v$ in the ordering. We have already developed an algorithm for topological sort using depth first search &lt;a href=&quot;https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html&quot;&gt;here&lt;/a&gt;. In this article, we will explore another topological sort algorithm, Kahn’s algorithm. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-07-19T17:39:47-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">The Master Theorem</title><link href="http://localhost:4000/jekyll/update/2020/07/18/master-theorem.html" rel="alternate" type="text/html" title="The Master Theorem" /><published>2020-07-18T07:01:36-07:00</published><updated>2020-07-18T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/07/18/master-theorem</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/07/18/master-theorem.html">&lt;p&gt;In this note, I want to revisit the master theorem along with its proof outline as I’ve learned it in CS161 at Stanford (Professor Mary Wootters).
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;The Master Theorem&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Let $T(n) = aT(\frac{n}{b})+O(n^d)$ be a recurrence where $a \geq 1$ and $b \geq 1$. Then,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ T(n) = \Bigg \{ \begin{array}{@{}lr@{}}
+                     O(n^d\log(n))  \ \text{ if } a = b^d,\\
+                     O(n^d) \ \ \quad \quad \text{ if } a &amp;lt; b^d, \\
+					 O(n^{\log_b(a)}) \quad \text{ if } a &amp;gt; b^d
+        \end{array}
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;If this recurrence represents the running time of an algorithm then,&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$a$ is the number of subproblems.&lt;/li&gt;
+  &lt;li&gt;$b$ is the factor by which the input is decreasing at each level of the recursion.&lt;/li&gt;
+  &lt;li&gt;$n^d$ is the total time needed to create the subproblems and combine their solutions. 
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;b&gt;Example&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;We can apply the master theorem on many recurrences. For example, if we’re given,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+ T(n) = 4T(\frac{n}{2}) + (n).
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;We can quickly see that we have $a = 4$, $b = 2$ and $d = 1$. Therefore, $a &amp;gt; b^d$ and so by using the master theorem, we can see that $T(n) = O(n^{\log_2(4)}) = O(n^2)$.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Intuition&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Why do we have 3 cases and what’s the intuition behind each case? To see this, we discuss three examples, one for each case, starting with case 2.
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Case 2:&lt;/b&gt;&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= T(\frac{n}{2}) + n. \quad T(1) = 1.
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;Clearly by the master theorem (case 2), the solution should be $O(n)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion and at the same time, the decrease in the number of subproblem is more than the increase in the number of subproblems. So, the work is dominated by the top level of the recursion tree.
+&lt;img src=&quot;http://localhost:4000/assets/analysis/master-theorem/1.png&quot; width=&quot;100%&quot; /&gt;
+To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$.&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= \sum_{t=0}^{\log(n)} \frac{n}{2^t} \\
+&amp;amp;= n\sum_{t=0}^{\log(n)} \big(\frac{1}{2}\big)^t \\
+&amp;amp;= n\big(\frac{1/2^{\log(n)+1} - 1}{1/2 - 1}\big) \\
+&amp;amp;= -2n\big(1/2^{\log(n)+1} - 1\big) \\
+&amp;amp;= -2n\big(\frac{1}{2 (2^{\log(n)})} - 1\big) \\
+&amp;amp;= -2n\big(\frac{1}{2n} - 1\big) \\
+&amp;amp;= 2n - 1 \\
+&amp;amp;= O(n).
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Case 3:&lt;/b&gt;&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= 4T(\frac{n}{2}) + n. \quad T(1) = 1.
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;Again by the master theorem (case 3), the solution should be $O(n^2)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion but at the same time, the number of subproblems is actually increasing by a lot more! So, the work is dominated by the bottom level of recursion tree. Drawing only the first three levels, you can see, the bottom level will carry most of the work
+&lt;img src=&quot;http://localhost:4000/assets/analysis/master-theorem/2.png&quot; width=&quot;100%&quot; /&gt;
+To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$.&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= \sum_{t=0}^{\log(n)} 4^t\frac{n}{2^t} \\
+T(n) &amp;amp;= n\sum_{t=0}^{\log(n)} 2^t \\
+&amp;amp;= n\big(\frac{2^{\log(n)+1} - 1}{2 - 1}\big) \\
+&amp;amp;= n\big(2^{\log(n)+1} - 1\big) \\
+&amp;amp;= n\big(2(2^{\log(n)}) - 1\big) \\
+&amp;amp;= n\big(2n - 1\big) \\
+&amp;amp;= O(n^2).
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Case 1:&lt;/b&gt;&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= 2T(\frac{n}{2}) + n. \quad T(1) = 1.
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;By the master theorem (case 1), the solution should be $O(\log(n))$. Intuitively, we’re reducing the size of the problem by half at each level of the recursion and at the same time, we’re doubling the number of subproblems (balanced case). So, at each level, we have the same amount of work. If we draw only the first three levels, you’ll notice that at each level, we’re doing precisely $n$ total amount of work.
+&lt;img src=&quot;http://localhost:4000/assets/analysis/master-theorem/3.png&quot; width=&quot;100%&quot; /&gt;
+To make this formal, we sum all the work done across all levels,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= \sum_{t=0}^{\log(n)} 2^t\frac{n}{2^t} = n\sum_{t=0}^{\log(n)} 1 = n\log(n).
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;Proof Outline&lt;/b&gt;&lt;/h4&gt;
+&lt;p&gt;Why is the master theorem correct? Let’s take a look at the recurrence again,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= aT(\frac{n}{b})+O(n^d) \\
+&amp;amp;= aT(\frac{n}{b}) + cn^d.
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;We will assume that $T(1) = 1$ for simplicity. To solve the recurrence, we will use the recursion tree method similar exactly to what we did for &lt;a href=&quot;https://strncat.github.io/jekyll/update/2019/07/18/merge-sort-analysis.html&quot;&gt;Mergesort&lt;/a&gt;. Let’s build the same table that we built for Mergesort to calculate the amount of work done per each level of recursion and get the following,
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/analysis/master-theorem/summary.png&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+All we need to do now is to sum the amount of work done for all the levels in the table. We see that,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= \sum_{t=0}^{\log_b(n)} a^t c(\frac{n}{b^t})^d \\
+&amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t.
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;So now we can handle each case. &lt;br /&gt;
+&lt;b&gt;Case 1:&lt;/b&gt; $a = b^d$&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{b^d}{b^d})^t \\
+&amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} 1 \\
+&amp;amp;= cn^d (\log_b(n) + 1) \\
+&amp;amp;= cn^d (\frac{\log(n)}{\log(b)} + 1) \\
+&amp;amp;= O(n^d\log(n)).
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Case 2:&lt;/b&gt; $a &amp;lt; b^d$&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;We note in the above sum that $\frac{a}{b^d} &amp;lt; 1$. We can then use the geometric series,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}.
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;When $|x| &amp;lt; 1$ and the summation is infinite, this sum approaches $\frac{1}{1-x}$. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $\frac{1}{1-a/b^d}$ which is some constant that doesn’t depend on $n$. Therefore,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\
+&amp;amp;= O(n^d)
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;b&gt;Case 3:&lt;/b&gt; $a &amp;gt; b^d$&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;We note in the above sum that $\frac{a}{b^d} &amp;gt; 1$. We can then use the geometric series again,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}.
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;When $|x| &amp;gt; 1$ and the summation is infinite, this sum approaches the last term in the series. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $(a/b^d)^{\log_b(b)}$. Therefore,&lt;/p&gt;
+&lt;div center=&quot;&quot;&gt;
+$$
+\begin{align*}
+T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\
+&amp;amp;= cn^d\big(\frac{a}{b^d}\big)^{\log_b(n)} \\
+&amp;amp;= cn^d\big(b^{\log_b(\frac{a}{b^d})}\big)^{\log_b(n)} \\
+&amp;amp;= cn^d\big(b^{\log_b(n)}\big)^{\log_b(\frac{a}{b^d})} \\
+&amp;amp;= cn^d\big(n\big)^{\log_b(\frac{a}{b^d})} \\
+&amp;amp;= cn^d(n)^{\log_b(a) - \log_b(b^d)} \\
+&amp;amp;= cn^d(n)^{\log_b(a) - d} \\
+&amp;amp;= c(n)^{d + \log_b(a) - d} \\
+&amp;amp;= cn^{\log_b(a)} \\
+&amp;amp; = O(n^{\log_b(a)})
+\end{align*}
+$$
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;b&gt;References&lt;/b&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://web.stanford.edu/class/cs161/schedule.html&quot;&gt;Stanford CS161&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;CLRS&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In this note, I want to revisit the master theorem along with its proof outline as I’ve learned it in CS161 at Stanford (Professor Mary Wootters). The Master Theorem Let $T(n) = aT(\frac{n}{b})+O(n^d)$ be a recurrence where $a \geq 1$ and $b \geq 1$. Then, $$ \begin{align*} T(n) = \Bigg \{ \begin{array}{@{}lr@{}} O(n^d\log(n)) \ \text{ if } a = b^d,\\ O(n^d) \ \ \quad \quad \text{ if } a &amp;lt; b^d, \\ O(n^{\log_b(a)}) \quad \text{ if } a &amp;gt; b^d \end{array} \end{align*} $$ If this recurrence represents the running time of an algorithm then, $a$ is the number of subproblems. $b$ is the factor by which the input is decreasing at each level of the recursion. $n^d$ is the total time needed to create the subproblems and combine their solutions. Example We can apply the master theorem on many recurrences. For example, if we’re given, $$ \begin{align*} T(n) = 4T(\frac{n}{2}) + (n). \end{align*} $$ We can quickly see that we have $a = 4$, $b = 2$ and $d = 1$. Therefore, $a &amp;gt; b^d$ and so by using the master theorem, we can see that $T(n) = O(n^{\log_2(4)}) = O(n^2)$. Intuition Why do we have 3 cases and what’s the intuition behind each case? To see this, we discuss three examples, one for each case, starting with case 2. Case 2: $$ \begin{align*} T(n) &amp;amp;= T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ Clearly by the master theorem (case 2), the solution should be $O(n)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion and at the same time, the decrease in the number of subproblem is more than the increase in the number of subproblems. So, the work is dominated by the top level of the recursion tree. To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$. $$ \begin{align*} T(n) &amp;amp;= \sum_{t=0}^{\log(n)} \frac{n}{2^t} \\ &amp;amp;= n\sum_{t=0}^{\log(n)} \big(\frac{1}{2}\big)^t \\ &amp;amp;= n\big(\frac{1/2^{\log(n)+1} - 1}{1/2 - 1}\big) \\ &amp;amp;= -2n\big(1/2^{\log(n)+1} - 1\big) \\ &amp;amp;= -2n\big(\frac{1}{2 (2^{\log(n)})} - 1\big) \\ &amp;amp;= -2n\big(\frac{1}{2n} - 1\big) \\ &amp;amp;= 2n - 1 \\ &amp;amp;= O(n). \end{align*} $$ Case 3: $$ \begin{align*} T(n) &amp;amp;= 4T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ Again by the master theorem (case 3), the solution should be $O(n^2)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion but at the same time, the number of subproblems is actually increasing by a lot more! So, the work is dominated by the bottom level of recursion tree. Drawing only the first three levels, you can see, the bottom level will carry most of the work To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$. $$ \begin{align*} T(n) &amp;amp;= \sum_{t=0}^{\log(n)} 4^t\frac{n}{2^t} \\ T(n) &amp;amp;= n\sum_{t=0}^{\log(n)} 2^t \\ &amp;amp;= n\big(\frac{2^{\log(n)+1} - 1}{2 - 1}\big) \\ &amp;amp;= n\big(2^{\log(n)+1} - 1\big) \\ &amp;amp;= n\big(2(2^{\log(n)}) - 1\big) \\ &amp;amp;= n\big(2n - 1\big) \\ &amp;amp;= O(n^2). \end{align*} $$ Case 1: $$ \begin{align*} T(n) &amp;amp;= 2T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ By the master theorem (case 1), the solution should be $O(\log(n))$. Intuitively, we’re reducing the size of the problem by half at each level of the recursion and at the same time, we’re doubling the number of subproblems (balanced case). So, at each level, we have the same amount of work. If we draw only the first three levels, you’ll notice that at each level, we’re doing precisely $n$ total amount of work. To make this formal, we sum all the work done across all levels, $$ \begin{align*} T(n) &amp;amp;= \sum_{t=0}^{\log(n)} 2^t\frac{n}{2^t} = n\sum_{t=0}^{\log(n)} 1 = n\log(n). \end{align*} $$ Proof Outline Why is the master theorem correct? Let’s take a look at the recurrence again, $$ \begin{align*} T(n) &amp;amp;= aT(\frac{n}{b})+O(n^d) \\ &amp;amp;= aT(\frac{n}{b}) + cn^d. \end{align*} $$ We will assume that $T(1) = 1$ for simplicity. To solve the recurrence, we will use the recursion tree method similar exactly to what we did for Mergesort. Let’s build the same table that we built for Mergesort to calculate the amount of work done per each level of recursion and get the following, All we need to do now is to sum the amount of work done for all the levels in the table. We see that, $$ \begin{align*} T(n) &amp;amp;= \sum_{t=0}^{\log_b(n)} a^t c(\frac{n}{b^t})^d \\ &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t. \end{align*} $$ So now we can handle each case. Case 1: $a = b^d$ $$ \begin{align*} T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{b^d}{b^d})^t \\ &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} 1 \\ &amp;amp;= cn^d (\log_b(n) + 1) \\ &amp;amp;= cn^d (\frac{\log(n)}{\log(b)} + 1) \\ &amp;amp;= O(n^d\log(n)). \end{align*} $$ Case 2: $a &amp;lt; b^d$ $$ \begin{align*} T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \end{align*} $$ We note in the above sum that $\frac{a}{b^d} &amp;lt; 1$. We can then use the geometric series, $$ \begin{align*} \sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}. \end{align*} $$ When $|x| &amp;lt; 1$ and the summation is infinite, this sum approaches $\frac{1}{1-x}$. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $\frac{1}{1-a/b^d}$ which is some constant that doesn’t depend on $n$. Therefore, $$ \begin{align*} T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\ &amp;amp;= O(n^d) \end{align*} $$ Case 3: $a &amp;gt; b^d$ $$ \begin{align*} T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \end{align*} $$ We note in the above sum that $\frac{a}{b^d} &amp;gt; 1$. We can then use the geometric series again, $$ \begin{align*} \sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}. \end{align*} $$ When $|x| &amp;gt; 1$ and the summation is infinite, this sum approaches the last term in the series. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $(a/b^d)^{\log_b(b)}$. Therefore, $$ \begin{align*} T(n) &amp;amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\ &amp;amp;= cn^d\big(\frac{a}{b^d}\big)^{\log_b(n)} \\ &amp;amp;= cn^d\big(b^{\log_b(\frac{a}{b^d})}\big)^{\log_b(n)} \\ &amp;amp;= cn^d\big(b^{\log_b(n)}\big)^{\log_b(\frac{a}{b^d})} \\ &amp;amp;= cn^d\big(n\big)^{\log_b(\frac{a}{b^d})} \\ &amp;amp;= cn^d(n)^{\log_b(a) - \log_b(b^d)} \\ &amp;amp;= cn^d(n)^{\log_b(a) - d} \\ &amp;amp;= c(n)^{d + \log_b(a) - d} \\ &amp;amp;= cn^{\log_b(a)} \\ &amp;amp; = O(n^{\log_b(a)}) \end{align*} $$ References Stanford CS161 CLRS</summary></entry><entry><title type="html">Topological Sort (Kahn)</title><link href="http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn.html" rel="alternate" type="text/html" title="Topological Sort (Kahn)" /><published>2020-07-06T07:01:36-07:00</published><updated>2020-07-06T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn.html">&lt;p&gt;Let $G = (V, E)$ be a directed acyclic graph consisting of $V$ vertices and $E$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $u, v \in V$, if $(u,v) \in E$, then $u$ must come before $v$ in the ordering. We have already developed an algorithm for topological sort using depth first search &lt;a href=&quot;https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html&quot;&gt;here&lt;/a&gt;. In this article, we will explore another topological sort algorithm, Kahn’s algorithm. 
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;!-----------------------------------------------------------------------------------&gt;&lt;/p&gt;
@@ -204,17 +424,17 @@ Given an array with $n$ elements. We can find the minimum element or maximum ele
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/randomized/quickselect/2.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We then repeat the same process of picking a pivot in each half and then partitioning around the pivots until the array is sorted. However, in quickselect, we’re only interested in finding the $k$th smallest element! The $k$th smallest element can only exist in either the left or the right half. Therefore, we can just search the appropriate half and simply throw away the other half. So, how do we pick which half? More specifically what can the pivot tell us about which half to search?&lt;/p&gt;
+&lt;p&gt;We then repeat the same process of picking a pivot in each half and then partitioning around the pivots until the array is sorted. However, in quickselect, we’re only interested in finding the $k$th smallest element! The $k$th smallest element can only exist in either the left or the right half. Therefore, we can just search the appropriate half and simply throw away the other half. So, what can the pivot tell us about which half to search?&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/randomized/quickselect/3.png&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Suppose we’re interested in finding the 2nd smallest element which is 2 in the example above. Naturally, the pivot divides the array into two halfs. The left half is less than the pivot and the right half is greater than the pivot. If we let the size of the left array be $L$, then we can say that the pivot is the $L+1$th smallest element. $L = 1$ and so the pivot is the 2nd smallest element in the array. Therefore, we can check if $k == L+1$ to determine if the pivot itself is the $k$th smallest element. 
+&lt;p&gt;Suppose we’re interested in finding the 2nd smallest element which is 2 in the example above. Naturally, the pivot divides the array into two halves. The left half is less than the pivot and the right half is greater than the pivot. If we let the size of the left array be $L$, then the pivot is the $L+1$th smallest element. Therefore, we can check if $k == L+1$ to determine if the pivot itself is the $k$th smallest element. In the above example, $k = 2$ and $L + 1 = 2$ and we conclude the search and return the pivot.
 &lt;br /&gt;
 &lt;br /&gt;
-Suppose instead we were searching for the smallest element in the array. This means that $k &amp;lt; L+1$. This means that the $k$th smallest element is in the left half.
+Suppose instead we were searching for the smallest element in the array, $k = 1$. We know from earlier that the pivot is the $L+1$th smallest element. Since $k &amp;lt; L+1$, this means that the $k$th smallest element is in the left half. So, we call quickselect again on the left half.
 &lt;br /&gt;
 &lt;br /&gt;
-Finally, suppose we’re looking for the 5th smallest element which is 5. This time $k &amp;gt; L+1$. There aren’t enough elements on the left to cover $k$ and so we must search the right half. Do you search for the $k$th smallest element in the right half? No. Since we’re eliminating both the left array and the pivot, then our new search must look for the $k-(L+1) = (k-L-1)$th smallest element in the right half instead. 
+Finally, suppose we’re looking for the 5th smallest element, $k = 5$. This time $k &amp;gt; L+1$ and so we must search the right half. Do you search for the $k$th smallest element in the right half? No. Since we’re eliminating both the left array and the pivot, then our new search must look for the $k-(L+1) = (k-L-1)$th smallest element in the right half instead. 
 &lt;br /&gt;
 &lt;br /&gt;
 To summarize, there are three cases:&lt;/p&gt;
@@ -1024,74 +1244,4 @@ We will prove our claim by contradiction. Suppose that $$K[W] - v_k$$ is not an 
   &lt;li&gt;(Method 2) &lt;a href=&quot;https://www.geeksforgeeks.org/coin-change-dp-7/&quot;&gt;GeeksforGeeks&lt;/a&gt; 
 &lt;br /&gt;
 &lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Suppose we’re given a bill of value $n=5$. We’re also given unlimited amount of coins. The possible coin values are 1, 2 and 5. What is the total number of ways of changing the bill into coins? We can exchange it for 5 coins of value 1. We can also exchange it for 3 coins of value 1 and 1 coin of value 2. Here are total possible ways: How can we design an algorithm to solve this problem? Method 1 One way to count the number of ways to make change is to iterate through the coins and use each coin as a starting point: Start with a coin of value 5, then make change for $n-5$. Start with a coin of value 2, then make change for $n-2$. Start with a coin of value 1, then make change for $n-1$.</summary></entry><entry><title type="html">Combinations</title><link href="http://localhost:4000/jekyll/update/2020/05/08/combinations.html" rel="alternate" type="text/html" title="Combinations" /><published>2020-05-08T08:01:36-07:00</published><updated>2020-05-08T08:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/08/combinations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/08/combinations.html">&lt;p&gt;Many competitive programming problems require generating combinations. For example, in &lt;a href=&quot;https://onlinejudge.org/index.php?option=onlinejudge&amp;amp;page=show_problem&amp;amp;problem=382&quot;&gt;411 - Lotto&lt;/a&gt;, we are given &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; integers (all distinct) and we want to print all possible ways of choosing 6 numbers from the set. There are many approaches to generating these combinations. The following approach is a simple one. 
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Approach 1&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;In this approach, we generate all possible subsets, stopping when we reach the combination size we’re after. Suppose we’re generating $k=3$ numbers from the following set:
-&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/combinations/set.png&quot; width=&quot;100%&quot; /&gt;
-We start generating the combinations by looking at each element starting at element “1”. We also keep track of what elements make our combination in a new array called &lt;i&gt;selected&lt;/i&gt;. We have two choices for “1”. We either select it or we skip it. We record our selection and move down to the next level.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/combinations/1.png&quot; width=&quot;100%&quot; /&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-So now we’re maintaining two &lt;i&gt;selected&lt;/i&gt; arrays, one for each choice. Next we look at “2”. We again have two choices. We either select “2” or we skip it.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/combinations/2.png&quot; width=&quot;100%&quot; /&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-We next look at “3”. For each &lt;i&gt;selected&lt;/i&gt; array above, we have two more choices of whether we want to add “3” or just skip it.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;img src=&quot;http://localhost:4000/assets/competitive-programming/combinations/3.png&quot; width=&quot;100%&quot; /&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-We repeat this process until one of two things happen:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;We reach &lt;script type=&quot;math/tex&quot;&gt;k=3&lt;/script&gt; elements in &lt;i&gt;selected&lt;/i&gt; and so we can print our choice and return.&lt;/li&gt;
-  &lt;li&gt;We run out of possible elements to choose and we exit.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The following code represents the process we just followed.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;combinations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-                  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-                  &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-                  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;selections&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;print_combination&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// no more elements&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// two choices&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// (1) select a[i]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;combinations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selections&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// (2) don't select a[i]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;combinations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selections&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Worst case analysis&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;At the top level of the recursion tree (level = 0), we make one call. At level 1 we make &lt;script type=&quot;math/tex&quot;&gt;2^1&lt;/script&gt; calls. At level 2, we make $2^2$ calls. The last level (level = $n-1$) would have $2^n$ subproblems. For each call, we make $O(1)$ work of selecting or not selecting the element. So the total time would be $1+2+2^2+2^3+…+2^n = 2^{n+1} - 1 = O(2^{n})$.
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Approach 2&lt;/b&gt;&lt;/h4&gt;
-&lt;p&gt;TODO
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;!------------------------------------------------------------------------------------&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;b&gt;Practice Problems&lt;/b&gt;&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://onlinejudge.org/index.php?option=onlinejudge&amp;amp;page=show_problem&amp;amp;problem=382&quot;&gt;411 - Lotto&lt;/a&gt;
-(&lt;a href=&quot;https://github.com/strncat/competitive-programming/blob/master/uva/backtracking/441-lotto.cpp&quot;&gt;Solution Using Approach 1&lt;/a&gt;)
-&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Many competitive programming problems require generating combinations. For example, in 411 - Lotto, we are given integers (all distinct) and we want to print all possible ways of choosing 6 numbers from the set. There are many approaches to generating these combinations. The following approach is a simple one. Approach 1 In this approach, we generate all possible subsets, stopping when we reach the combination size we’re after. Suppose we’re generating $k=3$ numbers from the following set: We start generating the combinations by looking at each element starting at element “1”. We also keep track of what elements make our combination in a new array called selected. We have two choices for “1”. We either select it or we skip it. We record our selection and move down to the next level. So now we’re maintaining two selected arrays, one for each choice. Next we look at “2”. We again have two choices. We either select “2” or we skip it. We next look at “3”. For each selected array above, we have two more choices of whether we want to add “3” or just skip it. We repeat this process until one of two things happen: We reach elements in selected and so we can print our choice and return. We run out of possible elements to choose and we exit.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Suppose we’re given a bill of value $n=5$. We’re also given unlimited amount of coins. The possible coin values are 1, 2 and 5. What is the total number of ways of changing the bill into coins? We can exchange it for 5 coins of value 1. We can also exchange it for 3 coins of value 1 and 1 coin of value 2. Here are total possible ways: How can we design an algorithm to solve this problem? Method 1 One way to count the number of ways to make change is to iterate through the coins and use each coin as a starting point: Start with a coin of value 5, then make change for $n-5$. Start with a coin of value 2, then make change for $n-2$. Start with a coin of value 1, then make change for $n-1$.</summary></entry></feed>

@@ -95,15 +95,15 @@
 	<polygon fill="black" stroke-width="1" points="486.343,116.587 477.386,119.55 485.082,125.936" />
 	<text x="452.5" y="184.5" font-family="Times New Roman" font-size="20">4</text>
 </svg>
-<p>Given a graph <script type="math/tex">G=(E,V)</script> and a source node <script type="math/tex">s</script>. Dijkstra finds the shortest weighted path from <script type="math/tex">s</script> to every other node in the graph. The graph however needs to only have non-negative edge weights. In the above graph the shortest path between nodes <script type="math/tex">s</script> and <script type="math/tex">t</script> is <script type="math/tex">s \rightarrow a \rightarrow b \rightarrow t</script>. Dikstra is extremely fast. It can run in amortized time <script type="math/tex">O(n\log(n) + m)</script> if we implement Dijkstra with a fiponacci heap. 
+<p>Given a graph \(G=(E,V)\) and a source node \(s\). Dijkstra finds the shortest weighted path from \(s\) to every other node in the graph. The graph however needs to only have non-negative edge weights. In the above graph the shortest path between nodes \(s\) and \(t\) is \(s \rightarrow a \rightarrow b \rightarrow t\). Dikstra is extremely fast. It can run in amortized time \(O(n\log(n) + m)\) if we implement Dijkstra with a fiponacci heap. 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>How does Dijkstra work? Using the above example, we maintain a set of <i>not-sure</i> nodes <script type="math/tex">\{a, b, c, t, s\}</script>. We let <script type="math/tex">d[v]</script> be the current distance from <script type="math/tex">s</script> to <script type="math/tex">v</script>. Initially we let <script type="math/tex">d[v] = \infty</script> for any node in <i>not-sure</i> and <script type="math/tex">d[s] = 0</script> for the source node only.
+<p>How does Dijkstra work? Using the above example, we maintain a set of <i>not-sure</i> nodes \(\{a, b, c, t, s\}\). We let \(d[v]\) be the current distance from \(s\) to \(v\). Initially we let \(d[v] = \infty\) for any node in <i>not-sure</i> and \(d[s] = 0\) for the source node only.
 <br />
 <br />
-In the first iteration of Dijkstra, we extra the minimum distance node in the <i>not-sure</i> list. This node is <script type="math/tex">s</script>. We then update the distance of each neighbor based on the following,</p>
+In the first iteration of Dijkstra, we extra the minimum distance node in the <i>not-sure</i> list. This node is \(s\). We then update the distance of each neighbor based on the following,</p>
 <div center="">
 $$
 \begin{align*}
@@ -111,7 +111,7 @@ d[u] &amp;= min(d[u], d[u]+weight(s,u))
 \end{align*}
 $$
 </div>
-<p>After updating each neightbor we get the following the values. Also, after updating all neighbors, we mark <script type="math/tex">s</script> as sure.</p>
+<p>After updating each neightbor we get the following the values. Also, after updating all neighbors, we mark \(s\) as sure.</p>
 
 <table>
   <thead>
@@ -126,18 +126,18 @@ $$
   </thead>
   <tbody>
     <tr>
-      <td>0 (extract <script type="math/tex">s</script>)</td>
+      <td>0 (extract \(s\))</td>
       <td>0</td>
       <td>2</td>
-      <td><script type="math/tex">\infty</script></td>
+      <td>\(\infty\)</td>
       <td>1</td>
-      <td><script type="math/tex">\infty</script></td>
+      <td>\(\infty\)</td>
     </tr>
   </tbody>
 </table>
 
 <p><i>Iteration 1</i><br />
-We extract the minimum again from the not-sure nodes. This time we extract <script type="math/tex">c</script>. We update all the neighbors and at the end of this iteration, we mark <script type="math/tex">c</script> as sure.</p>
+We extract the minimum again from the not-sure nodes. This time we extract \(c\). We update all the neighbors and at the end of this iteration, we mark \(c\) as sure.</p>
 
 <table>
   <thead>
@@ -152,15 +152,15 @@ We extract the minimum again from the not-sure nodes. This time we extract <scri
   </thead>
   <tbody>
     <tr>
-      <td>0 (extract <script type="math/tex">s</script>)</td>
+      <td>0 (extract \(s\))</td>
       <td>0</td>
       <td>2</td>
-      <td><script type="math/tex">\infty</script></td>
+      <td>\(\infty\)</td>
       <td>1</td>
-      <td><script type="math/tex">\infty</script></td>
+      <td>\(\infty\)</td>
     </tr>
     <tr>
-      <td>1 (extract <script type="math/tex">c</script>)</td>
+      <td>1 (extract \(c\))</td>
       <td>0</td>
       <td>2</td>
       <td>5</td>
@@ -171,7 +171,7 @@ We extract the minimum again from the not-sure nodes. This time we extract <scri
 </table>
 
 <p><i>Final iteration</i><br />
-We continue with the same process. We extract the node <script type="math/tex">a</script> and update its neighbors. We then mark it as sure, meaning that the distance from node <script type="math/tex">s</script> to node <script type="math/tex">a</script> is 2 and will not change again. We next extract <script type="math/tex">b</script> and update the neighbors again. We then mark <script type="math/tex">b</script> as sure. We finally extract <script type="math/tex">t</script> which has no out-going edges. At the end of the algorithm, we see that we generated all the shortest paths from <script type="math/tex">s</script> to all the other nodes in the graph.</p>
+We continue with the same process. We extract the node \(a\) and update its neighbors. We then mark it as sure, meaning that the distance from node \(s\) to node \(a\) is 2 and will not change again. We next extract \(b\) and update the neighbors again. We then mark \(b\) as sure. We finally extract \(t\) which has no out-going edges. At the end of the algorithm, we see that we generated all the shortest paths from \(s\) to all the other nodes in the graph.</p>
 
 <table>
   <thead>
@@ -186,15 +186,15 @@ We continue with the same process. We extract the node <script type="math/tex">a
   </thead>
   <tbody>
     <tr>
-      <td>0 (extract <script type="math/tex">s</script>)</td>
+      <td>0 (extract \(s\))</td>
       <td>0</td>
       <td>2</td>
-      <td><script type="math/tex">\infty</script></td>
+      <td>\(\infty\)</td>
       <td>1</td>
-      <td><script type="math/tex">\infty</script></td>
+      <td>\(\infty\)</td>
     </tr>
     <tr>
-      <td>1 (extract <script type="math/tex">c</script>)</td>
+      <td>1 (extract \(c\))</td>
       <td>0</td>
       <td>2</td>
       <td>5</td>
@@ -202,7 +202,7 @@ We continue with the same process. We extract the node <script type="math/tex">a
       <td>7</td>
     </tr>
     <tr>
-      <td>2 (extract <script type="math/tex">a</script>)</td>
+      <td>2 (extract \(a\))</td>
       <td>0</td>
       <td>2</td>
       <td>4</td>
@@ -210,7 +210,7 @@ We continue with the same process. We extract the node <script type="math/tex">a
       <td>7</td>
     </tr>
     <tr>
-      <td>3 (extract <script type="math/tex">b</script>)</td>
+      <td>3 (extract \(b\))</td>
       <td>0</td>
       <td>2</td>
       <td>4</td>
@@ -218,7 +218,7 @@ We continue with the same process. We extract the node <script type="math/tex">a
       <td>5</td>
     </tr>
     <tr>
-      <td>4 (extract <script type="math/tex">t</script>)</td>
+      <td>4 (extract \(t\))</td>
       <td>0</td>
       <td>2</td>
       <td>4</td>
@@ -249,7 +249,7 @@ We continue with the same process. We extract the node <script type="math/tex">a
 
 <!------------------------------------------------------------------------------------>
 <h4><b>Extracting the path</b></h4>
-<p>To reconstruct the actuall path take, we just maintain a pointer to the parent node. We simply keep an additional array <script type="math/tex">p</script> and modify the update step as follows:
+<p>To reconstruct the actuall path take, we just maintain a pointer to the parent node. We simply keep an additional array \(p\) and modify the update step as follows:
 <br /></p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">p</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">all</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span>
@@ -271,39 +271,39 @@ We continue with the same process. We extract the node <script type="math/tex">a
 <table>
   <tbody>
     <tr>
-      <td>Claim 1: For all <script type="math/tex">v</script>, <script type="math/tex">d[v] \geq d(s,v)</script>. That is, <script type="math/tex">d[v]</script> will never be an underestimate for any node <script type="math/tex">v</script>.</td>
+      <td>Claim 1: For all \(v\), \(d[v] \geq d(s,v)\). That is, \(d[v]\) will never be an underestimate for any node \(v\).</td>
     </tr>
   </tbody>
 </table>
 
 <p><i>Proof:</i> <br />
-<b>Inducive Hypothesis:</b> After <script type="math/tex">t</script> iterations, <script type="math/tex">d[v] \geq d(s,v)</script> for all <script type="math/tex">v</script>. <br /></p>
+<b>Inducive Hypothesis:</b> After \(t\) iterations, \(d[v] \geq d(s,v)\) for all \(v\). <br /></p>
 
-<p><b>Base Case:</b> After 0 iterations, the algorithms sets <script type="math/tex">d[s]= 0 = d(s,s)</script> and sets <script type="math/tex">d[v]</script> to <script type="math/tex">\infty</script> for all <script type="math/tex">v \neq s</script> and therefore we have <script type="math/tex">d[v] \geq d(s,v)</script>, as required.<br /></p>
+<p><b>Base Case:</b> After 0 iterations, the algorithms sets \(d[s]= 0 = d(s,s)\) and sets \(d[v]\) to \(\infty\) for all \(v \neq s\) and therefore we have \(d[v] \geq d(s,v)\), as required.<br /></p>
 
-<p><b>Inductive Step:</b> Assume that after <script type="math/tex">t</script> iterations, <script type="math/tex">d[v] \geq d(s,v)</script> for all <script type="math/tex">v</script>. We will prove the inequality holds after <script type="math/tex">t+1</script> iterations. At iteration <script type="math/tex">t+1</script>, we pick the minimum not-sure node <script type="math/tex">u</script> and then update all neighbors <script type="math/tex">v</script> such that:
-<script type="math/tex">d[v] = min(d[v], d[u]+w(u,v))</script>. To see that <script type="math/tex">d[v] \geq d(s,v)</script>, notice that: <br />
-(1) <script type="math/tex">d[v] \geq d(s,v)</script> by the inductive hypothesis. <br />
-(2) <script type="math/tex">d[u] + w(u,v) \geq d(s,v)</script>. This is because we know that <script type="math/tex">d(s,v) \leq d(s,u) + d(u,v)</script> and we also know that <script type="math/tex">d[u] \geq d(s,u)</script> by the inductive hypothesis. Therefore, <script type="math/tex">d(s,v) \leq d[u] + d(u,v)</script>.</p>
+<p><b>Inductive Step:</b> Assume that after \(t\) iterations, \(d[v] \geq d(s,v)\) for all \(v\). We will prove the inequality holds after \(t+1\) iterations. At iteration \(t+1\), we pick the minimum not-sure node \(u\) and then update all neighbors \(v\) such that:
+\(d[v] = min(d[v], d[u]+w(u,v))\). To see that \(d[v] \geq d(s,v)\), notice that: <br />
+(1) \(d[v] \geq d(s,v)\) by the inductive hypothesis. <br />
+(2) \(d[u] + w(u,v) \geq d(s,v)\). This is because we know that \(d(s,v) \leq d(s,u) + d(u,v)\) and we also know that \(d[u] \geq d(s,u)\) by the inductive hypothesis. Therefore, \(d(s,v) \leq d[u] + d(u,v)\).</p>
 
 <p><b>Conclusion:</b> 
-After the algorithm terminates, we have <script type="math/tex">d[v] \geq d(s,v)</script> for all $v$ in $V$, as required. <script type="math/tex">\blacksquare</script>
+After the algorithm terminates, we have \(d[v] \geq d(s,v)\) for all $v$ in $V$, as required. \(\blacksquare\)
 <br /></p>
 
 <table>
   <tbody>
     <tr>
-      <td>Claim 2: When a vertex <script type="math/tex">u</script> is marked sure, <script type="math/tex">d[u] = d(s,u)</script></td>
+      <td>Claim 2: When a vertex \(u\) is marked sure, \(d[u] = d(s,u)\)</td>
     </tr>
   </tbody>
 </table>
 
 <p><i>Proof:</i> <br />
-<b>Inducive Hypothesis:</b> When the t’th vertex <script type="math/tex">v</script> is marked as sure, <script type="math/tex">d[v] = d(s,v)</script>. <br /></p>
+<b>Inducive Hypothesis:</b> When the t’th vertex \(v\) is marked as sure, \(d[v] = d(s,v)\). <br /></p>
 
-<p><b>Base Case:</b> When the first vertex <script type="math/tex">s</script> is marked sure, we know that <script type="math/tex">d[s]=0=d(s,s)</script>, as required. <br /></p>
+<p><b>Base Case:</b> When the first vertex \(s\) is marked sure, we know that \(d[s]=0=d(s,s)\), as required. <br /></p>
 
-<p><b>Inductive Step:</b> Suppose we’re about to mark vertex <script type="math/tex">u</script> as sure, and assume every vertex already marked as sure has <script type="math/tex">d[v]=d(s,v)</script>. We will show that <script type="math/tex">d[u]=d(s,u)</script>. Consider a shortest path from <script type="math/tex">s</script> to <script type="math/tex">u</script>.</p>
+<p><b>Inductive Step:</b> Suppose we’re about to mark vertex \(u\) as sure, and assume every vertex already marked as sure has \(d[v]=d(s,v)\). We will show that \(d[u]=d(s,u)\). Consider a shortest path from \(s\) to \(u\).</p>
 
 <svg width="800" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="1" fill="none" cx="101.5" cy="106.5" rx="30" ry="30" />
@@ -324,17 +324,16 @@ After the algorithm terminates, we have <script type="math/tex">d[v] \geq d(s,v)
 	<polygon stroke="black" stroke-width="1" points="545.091,74.587 616.909,97.413" />
 	<polygon fill="black" stroke-width="1" points="616.909,97.413 610.8,90.225 607.771,99.755" />
 </svg>
-<p>We want to prove that <script type="math/tex">d[u]=d(s,u)</script>. Suppose toward a contradiction that our claim is not true and that <script type="math/tex">u</script> has the wrong estimate. Also suppose that node <script type="math/tex">z</script> is the last node with a correct estimate before node <script type="math/tex">u</script> and that vertex <script type="math/tex">z'</script> is the vertex after <script type="math/tex">z</script> in the shortest path above. We can see that <br /></p>
+<p>We want to prove that \(d[u]=d(s,u)\). Suppose toward a contradiction that our claim is not true and that \(u\) has the wrong estimate. Also suppose that node \(z\) is the last node with a correct estimate before node \(u\) and that vertex \(z'\) is the vertex after \(z\) in the shortest path above. We can see that <br /></p>
 <div center="">
 $$ d[z] = d(s,z) \leq d(s,u) \leq d[u] $$ <br />
 </div>
-<p>This is because we assumed <script type="math/tex">z</script> has a correct estimate and we also know that <script type="math/tex">d(s,z) \leq d(s,u)</script> because first, sub-paths of shortest paths are shortest paths (can be proved by contradiction). Second, the distance from <script type="math/tex">z</script> to <script type="math/tex">u</script> is non-negative because all edges have non-negative weights and therefore <script type="math/tex">d(s,z) \leq d(s,u)</script>. The last part <script type="math/tex">d(s,u) \leq d[u]</script> follows from claim 1!
+<p>This is because we assumed \(z\) has a correct estimate and we also know that \(d(s,z) \leq d(s,u)\) because first, sub-paths of shortest paths are shortest paths (can be proved by contradiction). Second, the distance from \(z\) to \(u\) is non-negative because all edges have non-negative weights and therefore \(d(s,z) \leq d(s,u)\). The last part \(d(s,u) \leq d[u]\) follows from claim 1!
 <br />
 <br />
-So now, we have <script type="math/tex">d[z] \leq d[u]</script>. There are two cases: <br />
-Case 1: If <script type="math/tex">d[z] = d[u]</script>. In this case, since we assumed <script type="math/tex">z</script> has a correct estimate then <script type="math/tex">u</script> must have a correct estimate and we’re done! <br />
-Case 2: If <script type="math/tex">% <![CDATA[
-d[z] < d[u] %]]></script>. In this case, since <script type="math/tex">u</script> was the smallest not-sure node, then <script type="math/tex">z</script> must be sure. Otherwise we would have picked <script type="math/tex">z</script> as the smallest not-sure node. Since <script type="math/tex">z</script> is sure then we must have updated <script type="math/tex">z</script>’s neighbors. In particular, we know that <script type="math/tex">z'</script> comes after <script type="math/tex">z</script> so,</p>
+So now, we have \(d[z] \leq d[u]\). There are two cases: <br />
+Case 1: If \(d[z] = d[u]\). In this case, since we assumed \(z\) has a correct estimate then \(u\) must have a correct estimate and we’re done! <br />
+Case 2: If \(d[z] &lt; d[u]\). In this case, since \(u\) was the smallest not-sure node, then \(z\) must be sure. Otherwise we would have picked \(z\) as the smallest not-sure node. Since \(z\) is sure then we must have updated \(z\)’s neighbors. In particular, we know that \(z'\) comes after \(z\) so,</p>
 <div center="">
 $$
 \begin{align*}
@@ -345,10 +344,10 @@ d[z'] &amp;\leq d[z] + w(z,z') \\
 \end{align*}
 $$
 </div>
-<p>This means that <script type="math/tex">z'</script> has a correct estimate. This is a contradiction because we assumed that <script type="math/tex">z</script> is the last node with a good estimate and therefore, <script type="math/tex">u</script> must have the correct estimate, as required.</p>
+<p>This means that \(z'\) has a correct estimate. This is a contradiction because we assumed that \(z\) is the last node with a good estimate and therefore, \(u\) must have the correct estimate, as required.</p>
 
 <p><b>Conclusion:</b> 
-After the last node is marked sure, we have <script type="math/tex">d[v] = d(s,v)</script> for all $v$ in $V$, as we wanted to show. <script type="math/tex">\blacksquare</script>
+After the last node is marked sure, we have \(d[v] = d(s,v)\) for all $v$ in $V$, as we wanted to show. \(\blacksquare\)
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -358,7 +357,7 @@ After the last node is marked sure, we have <script type="math/tex">d[v] = d(s,v
 (2) remove that vertex. <br />
 (3) update all neighbors with lower estimates if possible.<br />
 <br />
-Therefore we see that if we have <script type="math/tex">n</script> vertices and <script type="math/tex">m</script> edges:</p>
+Therefore we see that if we have \(n\) vertices and \(m\) edges:</p>
 <div center="">
 $$
 \begin{align*}
@@ -372,27 +371,27 @@ $$
 <ul>
   <li>Arrays
     <ul>
-      <li>findMin will run in <script type="math/tex">O(n)</script></li>
-      <li>RemoveMin will run in <script type="math/tex">O(n)</script></li>
-      <li>UpdateKey will run in <script type="math/tex">O(1)</script><br />
-Therefore, the total time will be <script type="math/tex">O(n(2n) + m) = O(n^2 + m) = O(n^2)</script></li>
+      <li>findMin will run in \(O(n)\)</li>
+      <li>RemoveMin will run in \(O(n)\)</li>
+      <li>UpdateKey will run in \(O(1)\)<br />
+Therefore, the total time will be \(O(n(2n) + m) = O(n^2 + m) = O(n^2)\)</li>
     </ul>
   </li>
   <li>Red Black Tree
     <ul>
-      <li>findMin will run in <script type="math/tex">O(\log(n))</script></li>
-      <li>RemoveMin will run in <script type="math/tex">O(\log(n))</script></li>
-      <li>UpdateKey will run in <script type="math/tex">O(\log(n))</script><br />
-Therefore, the total time will be <script type="math/tex">O(n\log(n) + m\log(n)) = O((n+m)\log(n))</script>. <br />
-Notice here, if the graph is dense, meaning that <script type="math/tex">m=O(n^2)</script>, then this is worse than arrays! if it’s sparse, then it’s better.</li>
+      <li>findMin will run in \(O(\log(n))\)</li>
+      <li>RemoveMin will run in \(O(\log(n))\)</li>
+      <li>UpdateKey will run in \(O(\log(n))\)<br />
+Therefore, the total time will be \(O(n\log(n) + m\log(n)) = O((n+m)\log(n))\). <br />
+Notice here, if the graph is dense, meaning that \(m=O(n^2)\), then this is worse than arrays! if it’s sparse, then it’s better.</li>
     </ul>
   </li>
   <li>Fibonacci Heaps
     <ul>
-      <li>findMin will run in <script type="math/tex">O(1)</script>, amortized time.</li>
-      <li>RemoveMin will run in <script type="math/tex">O(\log(n))</script>, amortized time.</li>
-      <li>UpdateKey will run in <script type="math/tex">O(1)</script>, amortized time.<br />
-Therefore, the total time will be <script type="math/tex">O(n\log(n) + m)</script>, amortized time.
+      <li>findMin will run in \(O(1)\), amortized time.</li>
+      <li>RemoveMin will run in \(O(\log(n))\), amortized time.</li>
+      <li>UpdateKey will run in \(O(1)\), amortized time.<br />
+Therefore, the total time will be \(O(n\log(n) + m)\), amortized time.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></li>

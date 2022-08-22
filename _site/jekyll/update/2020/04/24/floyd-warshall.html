@@ -62,17 +62,17 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let <script type="math/tex">G=(V,E)</script> be a directed weighted graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$.
+    <p>Let \(G=(V,E)\) be a directed weighted graph with \(V\) vertices and \(E\) edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Optimal Substructure</b></h4>
-<p>Let <script type="math/tex">V = \{1,2,3,...,n\}</script> and consider a subset <script type="math/tex">S = \{1,2,3,...,k\}</script> such that <script type="math/tex">S \subseteq V</script> for some <script type="math/tex">k</script>. Let <script type="math/tex">i</script> and <script type="math/tex">j</script> be two vertices in <script type="math/tex">V</script>. Now, consider all the paths from <script type="math/tex">i</script> to <script type="math/tex">j</script> whose intermediate vertices are in <script type="math/tex">S</script>. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let <script type="math/tex">p</script> be a shortest path among the paths from <script type="math/tex">i</script> to <script type="math/tex">j</script> that are drawn from <script type="math/tex">S</script>. 
+<p>Let \(V = \{1,2,3,...,n\}\) and consider a subset \(S = \{1,2,3,...,k\}\) such that \(S \subseteq V\) for some \(k\). Let \(i\) and \(j\) be two vertices in \(V\). Now, consider all the paths from \(i\) to \(j\) whose intermediate vertices are in \(S\). Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let \(p\) be a shortest path among the paths from \(i\) to \(j\) that are drawn from \(S\). 
 <img src="http://localhost:4000/assets/graphs/floyd-warshall/path.png" width="100%" />
-This is where it gets interesting. There are two cases here. Either <script type="math/tex">k</script> is on <script type="math/tex">p</script> or it’s not.</p>
+This is where it gets interesting. There are two cases here. Either \(k\) is on \(p\) or it’s not.</p>
 <ul>
-  <li>If <script type="math/tex">k</script> is not on <script type="math/tex">p</script> then we claim that all the intermediate vertices of <script type="math/tex">p</script> are drawn from the set <script type="math/tex">\{1,2,...,k-1\}</script>.</li>
-  <li>If <script type="math/tex">k</script> is on <script type="math/tex">p</script>, then we can decompose <script type="math/tex">p</script> into two shortest paths. A shortest path <script type="math/tex">p_1</script> from <script type="math/tex">i</script> to <script type="math/tex">k</script> with intermediate vertices <script type="math/tex">\{1,2,...,k-1\}</script> and a shortest path <script type="math/tex">p_2</script> from <script type="math/tex">k</script> to <script type="math/tex">j</script> with intermediate vertices <script type="math/tex">\{1,2,...,k-1\}</script>.
+  <li>If \(k\) is not on \(p\) then we claim that all the intermediate vertices of \(p\) are drawn from the set \(\{1,2,...,k-1\}\).</li>
+  <li>If \(k\) is on \(p\), then we can decompose \(p\) into two shortest paths. A shortest path \(p_1\) from \(i\) to \(k\) with intermediate vertices \(\{1,2,...,k-1\}\) and a shortest path \(p_2\) from \(k\) to \(j\) with intermediate vertices \(\{1,2,...,k-1\}\).
 Therefore, we can derive the following:</li>
 </ul>
 <div center="">

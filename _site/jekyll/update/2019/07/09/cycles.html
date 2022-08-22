@@ -63,12 +63,12 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/graphs/cycle/1.png" alt="my photo" />
-We are given a graph <script type="math/tex">G = (V,E)</script> and we want to know if there exists a cycle in <script type="math/tex">G</script>. 
+We are given a graph \(G = (V,E)\) and we want to know if there exists a cycle in \(G\). 
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Undirected Graphs</b></h4>
-<p>This is extremely simple. We already keep track of nodes visited so far. If it happens during our search that we come across a visited node then we’re done! there must exists a cycle otherwise, we won’t ever re-visit any vertex in <script type="math/tex">G</script>.</p>
+<p>This is extremely simple. We already keep track of nodes visited so far. If it happens during our search that we come across a visited node then we’re done! there must exists a cycle otherwise, we won’t ever re-visit any vertex in \(G\).</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
@@ -95,21 +95,21 @@ We are given a graph <script type="math/tex">G = (V,E)</script> and we want to k
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Directed Graphs</b></h4>
-<p>Suppose we apply the earlier idea used in undirected graphs. We traverse the nodes and if we see a node we’ve seen before, we conclude that we found a cycle. Let’s take the graph above and start a DFS pass from the node <script type="math/tex">a</script> below:</p>
+<p>Suppose we apply the earlier idea used in undirected graphs. We traverse the nodes and if we see a node we’ve seen before, we conclude that we found a cycle. Let’s take the graph above and start a DFS pass from the node \(a\) below:</p>
 
 <p><img src="http://localhost:4000/assets/graphs/cycle/2.png" alt="my photo" /></p>
 
-<p>From <script type="math/tex">a</script> we visit <script type="math/tex">c</script>. Node <script type="math/tex">c</script> doesn’t have neighbors so we mark its finish time and then we go back to <script type="math/tex">a</script>. We next visit <script type="math/tex">b</script> and mark its start time. From <script type="math/tex">b</script>, we see <script type="math/tex">c</script> again! is this a cycle? NO. The idea fails here.
+<p>From \(a\) we visit \(c\). Node \(c\) doesn’t have neighbors so we mark its finish time and then we go back to \(a\). We next visit \(b\) and mark its start time. From \(b\), we see \(c\) again! is this a cycle? NO. The idea fails here.
 <br />
 <br />
 In directed graph we instead have three types of nodes.</p>
 <ul>
-  <li>A node that hasn’t been discovered yet (we didn’t mark its start time yet). Node <script type="math/tex">e</script> is one example above. Let’s color this node black.</li>
+  <li>A node that hasn’t been discovered yet (we didn’t mark its start time yet). Node \(e\) is one example above. Let’s color this node black.</li>
   <li>A node that has been discovered (we marked its start time) but it hasn’t been processed yet (we didn’t mark its finish time). Let’s color this node gray.</li>
   <li>A node that has been processed. We marked its start time and its finish time. Let’s color this node white.
 <br />
 <br />
-When will a directed cycle happen? when we re-discover a gray node! below is a continuation of the traversal that started from node <script type="math/tex">a</script>. We discover nodes <script type="math/tex">b, e, f</script> and <script type="math/tex">d</script>. From <script type="math/tex">d</script> we re-discover <script type="math/tex">e</script> but <script type="math/tex">e</script> has already been discovered because it’s gray! This means we have a cycle. 
+When will a directed cycle happen? when we re-discover a gray node! below is a continuation of the traversal that started from node \(a\). We discover nodes \(b, e, f\) and \(d\). From \(d\) we re-discover \(e\) but \(e\) has already been discovered because it’s gray! This means we have a cycle. 
 <img src="http://localhost:4000/assets/graphs/cycle/3.png" alt="my photo" /></li>
 </ul>
 

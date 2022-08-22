@@ -63,36 +63,36 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/heaps/1.png" width="100%" />
-The heap data structure is an array <script type="math/tex">A</script> that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. <script type="math/tex">A[1]</script> is the root of the tree. In the above tree, <script type="math/tex">A[1]=17</script> is the root of the tree.
+The heap data structure is an array \(A\) that can be viewed as an almost complete binary tree. Each node in the tree is represented by an element in the array. \(A[1]\) is the root of the tree. In the above tree, \(A[1]=17\) is the root of the tree.
 <br /><br />
-Because the heap is based on a complete binary tree, the height of a heap of <script type="math/tex">n</script> elements is <script type="math/tex">\Theta(\log(n))</script>. As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in <script type="math/tex">O(\log(n))</script> time.
+Because the heap is based on a complete binary tree, the height of a heap of \(n\) elements is \(\Theta(\log(n))\). As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in \(O(\log(n))\) time.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Finding the Parent, Left and Right Children</b></h4>
-<p>Given an element <script type="math/tex">A[i]</script>. Its parent is located at <script type="math/tex">A[\lfloor i/2 \rfloor]</script>. For example the parent of 2 (index 7) is <script type="math/tex">A[\lfloor 7/2 \rfloor]=A[3]=11</script>. The left child is <script type="math/tex">A[2*i]</script> and the right child is <script type="math/tex">A[2*i+1]</script>. For example the right child of 13 (index 2) is <script type="math/tex">A[2*2 + 1] = A[5] = 3</script>.</p>
+<p>Given an element \(A[i]\). Its parent is located at \(A[\lfloor i/2 \rfloor]\). For example the parent of 2 (index 7) is \(A[\lfloor 7/2 \rfloor]=A[3]=11\). The left child is \(A[2*i]\) and the right child is \(A[2*i+1]\). For example the right child of 13 (index 2) is \(A[2*2 + 1] = A[5] = 3\).</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// we know that i/2 is rounded down so we don't need to floor</span>
 <span class="p">}</span>
-<span class="kt">int</span> <span class="nf">left</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 2*i;</span>
 <span class="p">}</span>
-<span class="kt">int</span> <span class="nf">right</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 2*i+1</span>
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>The Heap Property</b></h4>
-<p>There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b>. The heap property depends on the type of the heap. For any given element <script type="math/tex">A[i]</script> we must have:</p>
+<p>There are two kinds of binary heaps, min heaps and max heaps. Depending on the heap type the array must satisfy a <b>heap property</b>. The heap property depends on the type of the heap. For any given element \(A[i]\) we must have:</p>
 
 <p>If this is a max-heap then,</p>
 
 <table>
   <tbody>
     <tr>
-      <td><script type="math/tex">A[parent(i)] \geq A[i]</script></td>
+      <td>\(A[parent(i)] \geq A[i]\)</td>
     </tr>
   </tbody>
 </table>
@@ -102,7 +102,7 @@ Because the heap is based on a complete binary tree, the height of a heap of <sc
 <table>
   <tbody>
     <tr>
-      <td><script type="math/tex">A[parent(i)] \leq A[i]</script></td>
+      <td>\(A[parent(i)] \leq A[i]\)</td>
     </tr>
   </tbody>
 </table>
@@ -112,7 +112,7 @@ Because the heap is based on a complete binary tree, the height of a heap of <sc
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Maintaining the Max-Heap Property</b></h4>
-<p>Suppose we have an element <script type="math/tex">A[i]</script> that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of <script type="math/tex">A[i]</script> maintain the heap property. We know in constant time that the children are <script type="math/tex">A[2*i]</script> and <script type="math/tex">A[2*i+1]</script>. We can then swap <script type="math/tex">A[i]</script> with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at <script type="math/tex">A[i]</script>. Let’s look at a simple implementation:</p>
+<p>Suppose we have an element \(A[i]\) that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of \(A[i]\) maintain the heap property. We know in constant time that the children are \(A[2*i]\) and \(A[2*i+1]\). We can then swap \(A[i]\) with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at \(A[i]\). Let’s look at a simple implementation:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">max_heapify</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
@@ -137,12 +137,12 @@ Because the heap is based on a complete binary tree, the height of a heap of <sc
     <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
-<p>How long does max_heapify take? Well, in the worst case, we will go down all the way to a leaf and so the runtime is <script type="math/tex">O(h)</script> which is <script type="math/tex">O(log(n))</script>.
+<p>How long does max_heapify take? Well, in the worst case, we will go down all the way to a leaf and so the runtime is \(O(h)\) which is \(O(log(n))\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Building a Max Heap</b></h4>
-<p>Based on how we store the heap elements in the array, the leaves of the tree are located stating at <script type="math/tex">A[n/2+1], A[n/2+2],...,n</script>. (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of <script type="math/tex">A</script> maintains the heap property. Therefore, we can use the following to build a max-heap:</p>
+<p>Based on how we store the heap elements in the array, the leaves of the tree are located stating at \(A[n/2+1], A[n/2+2],...,n\). (proof?). Therefore, if we go over the remaining nodes in the tree and ran max-heapify, it will be enough to gaurantee that every element of \(A\) maintains the heap property. Therefore, we can use the following to build a max-heap:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">build_max_heap</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
@@ -189,22 +189,22 @@ Finally, you can see now that the tree/array is a max-heap:
 <table>
   <tbody>
     <tr>
-      <td>At the start of each iteration of the for loop in build_max_heap, each node <script type="math/tex">i+1, i+2, ..., n</script> is the root of a max_heap.</td>
+      <td>At the start of each iteration of the for loop in build_max_heap, each node \(i+1, i+2, ..., n\) is the root of a max_heap.</td>
     </tr>
   </tbody>
 </table>
 
 <p><b>Initialization</b>:
-Before the first iteration that starts at <script type="math/tex">A[\lfloor n/2 \rfloor]</script>, the nodes <script type="math/tex">A[\lfloor n/2 \rfloor + 1], A[\lfloor n/2 \rfloor + 2],...A[n]</script> are leaf nodes and therefore each node is a root of a max-heap.
+Before the first iteration that starts at \(A[\lfloor n/2 \rfloor]\), the nodes \(A[\lfloor n/2 \rfloor + 1], A[\lfloor n/2 \rfloor + 2],...A[n]\) are leaf nodes and therefore each node is a root of a max-heap.
 <br />
 <br />
-<b>Maintenance</b>: (so the gist here is that max_heapify will maintain that node <script type="math/tex">i</script> follows the heap property because indices <script type="math/tex">2*i, 2*i+1</script> are higher than <script type="math/tex">i</script> and therefore already maintain the heap property).
+<b>Maintenance</b>: (so the gist here is that max_heapify will maintain that node \(i\) follows the heap property because indices \(2*i, 2*i+1\) are higher than \(i\) and therefore already maintain the heap property).
 <br />
-At each iteration, we call max-heapify on the node <script type="math/tex">A[i]</script>. The children of node <script type="math/tex">A[i]</script> are <script type="math/tex">A[2*i]</script> and <script type="math/tex">A[2*i+1]</script>. Since they both have a higher index than <script type="math/tex">i</script> then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow <script type="math/tex">i+1, i+2, ..., n</script>. Therefore, when we decrement <script type="math/tex">i</script>, the loop invariant will be established before the next iteration.
+At each iteration, we call max-heapify on the node \(A[i]\). The children of node \(A[i]\) are \(A[2*i]\) and \(A[2*i+1]\). Since they both have a higher index than \(i\) then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow \(i+1, i+2, ..., n\). Therefore, when we decrement \(i\), the loop invariant will be established before the next iteration.
 <br />
 <br />
 <b>Termination</b>:
-At termination when <script type="math/tex">i=0</script>, we know by the loop invariant that the nodes <script type="math/tex">1, 2,...,n</script> are all roots of max-heaps, specifically node <script type="math/tex">1</script> which is the root of the final max heap we have. So we are done.
+At termination when \(i=0\), we know by the loop invariant that the nodes \(1, 2,...,n\) are all roots of max-heaps, specifically node \(1\) which is the root of the final max heap we have. So we are done.
 <br />
 <br />
 I would obviously recommend looking at CLRS’s way unless I’m in a rush and this is easily accessible on my phone. 
@@ -212,25 +212,25 @@ I would obviously recommend looking at CLRS’s way unless I’m in a rush and t
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Running Time</b></h4>
-<p>The most exciting question is how long does it take to build a max heap? We know that max_heapify takes <script type="math/tex">O(\log(n))</script> time for each node. We also know that we at most have <script type="math/tex">O(n)</script> iterations. This means that building a max heap will run in <script type="math/tex">O(n\log(n))</script>. But we derive a much tighter bound than this by observing that:
+<p>The most exciting question is how long does it take to build a max heap? We know that max_heapify takes \(O(\log(n))\) time for each node. We also know that we at most have \(O(n)\) iterations. This means that building a max heap will run in \(O(n\log(n))\). But we derive a much tighter bound than this by observing that:
 <br /><br />
-(1) Binary heaps with <script type="math/tex">n</script> nodes have height <script type="math/tex">\lfloor \log(n) \rfloor</script>. <br />
-(2) At any height <script type="math/tex">i</script>, we have at most <script type="math/tex">\lceil \frac{n}{2^{i+1}} \rceil</script> nodes. <br /></p>
+(1) Binary heaps with \(n\) nodes have height \(\lfloor \log(n) \rfloor\). <br />
+(2) At any height \(i\), we have at most \(\lceil \frac{n}{2^{i+1}} \rceil\) nodes. <br /></p>
 <hr />
 
 <p><br />
-Aside: What does (2) mean? Suppose we have a binary heap with <script type="math/tex">n=7</script> just like the tree below:
+Aside: What does (2) mean? Suppose we have a binary heap with \(n=7\) just like the tree below:
 <img src="http://localhost:4000/assets/heaps/2.png" width="100%" />
-The number of nodes at height 0 (leaves) is <script type="math/tex">\lceil \frac{n}{2^{i+1}} \rceil = \lceil \frac{7}{2^{0+1}} \rceil = \lceil 3.5 \rceil = 4</script> <br />
-The number of nodes at height 1 is <script type="math/tex">\lceil \frac{7}{2^{2}} \rceil= 2</script> <br />
-The number of nodes at height 2 (root) is <script type="math/tex">\lceil \frac{7}{2^{3}} \rceil= 1</script> <br />
+The number of nodes at height 0 (leaves) is \(\lceil \frac{n}{2^{i+1}} \rceil = \lceil \frac{7}{2^{0+1}} \rceil = \lceil 3.5 \rceil = 4\) <br />
+The number of nodes at height 1 is \(\lceil \frac{7}{2^{2}} \rceil= 2\) <br />
+The number of nodes at height 2 (root) is \(\lceil \frac{7}{2^{3}} \rceil= 1\) <br />
 <b>Formal Proof:</b><br />
 TODO
 <br /></p>
 <hr />
 
 <p><br />
-We can now sum the work we’re doing at each level which is just the height of the level multipled by the number of nodes in that level. We do that for each level in the tree, from the 0th level to the <script type="math/tex">\lfloor \log(n) \rfloor</script>’s level:</p>
+We can now sum the work we’re doing at each level which is just the height of the level multipled by the number of nodes in that level. We do that for each level in the tree, from the 0th level to the \(\lfloor \log(n) \rfloor\)’s level:</p>
 
 <div center="">
 $$
@@ -247,7 +247,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>By substituting <script type="math/tex">x</script> with <script type="math/tex">1/2</script> to get:</p>
+<p>By substituting \(x\) with \(1/2\) to get:</p>
 <div center="">
 $$
 \begin{align*}

@@ -1,0 +1,44 @@
+I"<p>Suppose we have an array = [1,2,3] and we would like to permute its elements to generate all possible permutations. In this case we want to print [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1].
+<br /><br />
+The first thing we want to do is select a single number from the three numbers available to us. We can model this with an index that we pass to the permutation function indicating which position we’re working on. In a for loop, we now loop over the numbers/selections/choices available to us (In this case, all three) and place each number in that specific cell. This is what it is going to look like:</p>
+
+<p><img src="http://localhost:4000/assets/competitive-programming/perm1.png" alt="my photo" /></p>
+
+<p>The next thing thing we want to do is from each iteration after selecting a number/choice, we want to go ahead and select the next number for the next position. In our example above, Suppose we selected 1 to be placed in position 0 (left most branch). Now we can call the function again for position 1 but before doing so, we need to mark our current selection (1) as not availble for the next call since we don’t want to select 1 again for any position that comes after this one.</p>
+
+<p><img src="http://localhost:4000/assets/competitive-programming/perm2.png" alt="my photo" /></p>
+
+<p>As we can see above for the next call with position 1 and choices (2,3), we loop again over the choices and place each choice in position 1. From here, we again call the function again to select the next number for the next position 2. If we focus again on the left most branch, we see that the only choice left for position 2 is 3 only.</p>
+
+<p><img src="http://localhost:4000/assets/competitive-programming/perm3.png" alt="my photo" /></p>
+
+<p>The code below implements this idea:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// suppose a = [1,2,3] and sel = [0,0,0,0] (a simple map)</span>
+<span class="kt">void</span> <span class="nf">generate_numbers</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">sel</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pos</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// we could print a permutation or do anything with it</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">sel</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// not selected yet</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+            <span class="n">sel</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">generate_numbers</span><span class="p">(</span><span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+            <span class="n">sel</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// make it available for the next iteration</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Of course, there is a library in the standard library which you can use to generate permutions and avoid doing things manually.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="c1">// just fill an array with numbers</span>
+    <span class="p">}</span>
+    <span class="k">do</span> <span class="p">{</span> <span class="c1">// generate permutations, yay!</span>
+        <span class="c1">// do something</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">s</span><span class="p">.</span><span class="n">end</span><span class="p">()));</span> </code></pre></figure>
+
+<p><br />
+<br /></p>
+:ET

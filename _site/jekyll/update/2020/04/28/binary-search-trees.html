@@ -63,13 +63,13 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/trees/binary-search-trees/binary-search-tree.png" width="100%" />
-A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The <b>binary-search-tree property</b> states that given a node <script type="math/tex">x</script> in the tree, every node in the left subtree has a key less than <script type="math/tex">x</script>’s key and every node in the right subtree has a key greater than <script type="math/tex">x</script>’s key.
+A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The <b>binary-search-tree property</b> states that given a node \(x\) in the tree, every node in the left subtree has a key less than \(x\)’s key and every node in the right subtree has a key greater than \(x\)’s key.
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Motivation</b></h4>
-<p>But why invent another data structure? Let’s take a look at sorted arrays. We can search a sorted array for keys in just <script type="math/tex">O(\log(n))</script> time with binary search. However, inserting and deleting elements takes <script type="math/tex">O(n)</script> time. Similarly, while inserting elements in a linked list takes only <script type="math/tex">O(1)</script> time, searching a linked list takes <script type="math/tex">O(n)</script> time in the worst case. Can we do better with binary search trees? yes!
+<p>But why invent another data structure? Let’s take a look at sorted arrays. We can search a sorted array for keys in just \(O(\log(n))\) time with binary search. However, inserting and deleting elements takes \(O(n)\) time. Similarly, while inserting elements in a linked list takes only \(O(1)\) time, searching a linked list takes \(O(n)\) time in the worst case. Can we do better with binary search trees? yes!
 <br /><br />
-The binary search tree property is really great at allowing us to insert/search and delete in just <script type="math/tex">O(h)</script> time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be <script type="math/tex">O(\log(n))</script> where is <script type="math/tex">n</script> is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists!
+The binary search tree property is really great at allowing us to insert/search and delete in just \(O(h)\) time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be \(O(\log(n))\) where is \(n\) is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists!
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -85,7 +85,7 @@ The binary search tree property is really great at allowing us to insert/search 
 <span class="p">}</span></code></pre></figure>
 
 <!---------------------->
-<p>Proving that it takes <script type="math/tex">O(n)</script> time to perform the in order walk is such a great way to practice the substitution method. (TODO: add proof)
+<p>Proving that it takes \(O(n)\) time to perform the in order walk is such a great way to practice the substitution method. (TODO: add proof)
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -107,10 +107,10 @@ The binary search tree property is really great at allowing us to insert/search 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Minimum, Maximum, Predecessor and Successor</b></h4>
-<p>Similarly, we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node <script type="math/tex">x</script>, we have two cases:</p>
+<p>Similarly, we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node \(x\), we have two cases:</p>
 <ul>
-  <li>If <script type="math/tex">x</script> has a right subtree, then the most left element (tree minimum) of the right subtree is the successor.</li>
-  <li>If <script type="math/tex">x</script> doesn’t have a right subtree, then the next element would be the first ancestor such that <script type="math/tex">x</script> is a left child of it. 
+  <li>If \(x\) has a right subtree, then the most left element (tree minimum) of the right subtree is the successor.</li>
+  <li>If \(x\) doesn’t have a right subtree, then the next element would be the first ancestor such that \(x\) is a left child of it. 
 <!----------------------></li>
 </ul>
 
@@ -133,7 +133,7 @@ The binary search tree property is really great at allowing us to insert/search 
 <p>Inserting a node into a binary search tree is pretty simple. We need to follow the following steps:</p>
 <ul>
   <li>Create a new node and assign both the left and right pointers to NULL.</li>
-  <li>Similar to search, descend in the tree with pointer <script type="math/tex">current</script> based on the key value, while keeping a trailing pointer <script type="math/tex">p</script> to its parent. Once we hit NULL, we know that the <script type="math/tex">p</script> will be the parent of our node.
+  <li>Similar to search, descend in the tree with pointer \(current\) based on the key value, while keeping a trailing pointer \(p\) to its parent. Once we hit NULL, we know that the \(p\) will be the parent of our node.
 The figure below illustrates the process:
 <img src="http://localhost:4000/assets/trees/binary-search-trees/insert.png" width="100%" />
 <!----------------------></li>
@@ -164,7 +164,7 @@ The figure below illustrates the process:
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Delete</b></h4>
-<p>Before discussing delete, we’ll present a helper function that we will use in deleting a node in a binary search three. <i>transplant</i> replaces a subtree rooted at <script type="math/tex">x</script> with another subtree rooted at <script type="math/tex">v</script>, illustrated below, 
+<p>Before discussing delete, we’ll present a helper function that we will use in deleting a node in a binary search three. <i>transplant</i> replaces a subtree rooted at \(x\) with another subtree rooted at \(v\), illustrated below, 
 <img src="http://localhost:4000/assets/trees/binary-search-trees/transplant.png" width="100%" /></p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// replace subtree u with subtree v</span>
@@ -181,15 +181,15 @@ The figure below illustrates the process:
     <span class="p">}</span>
  <span class="p">}</span></code></pre></figure>
 
-<p>Now, suppose we’re about to delete node <script type="math/tex">x</script> and that are given a pointer to it
+<p>Now, suppose we’re about to delete node \(x\) and that are given a pointer to it
 We have four different cases that we need to handle:</p>
 <ul>
   <li>
-    <p><script type="math/tex">x</script> has no children. We then can simply delete that node and return. This case could be handled implicitly in the next case. 
+    <p>\(x\) has no children. We then can simply delete that node and return. This case could be handled implicitly in the next case. 
 <img src="http://localhost:4000/assets/trees/binary-search-trees/delete-1.png" width="100%" /></p>
   </li>
   <li>
-    <p><script type="math/tex">x</script> has only one child. We then just transplant its child at <script type="math/tex">x</script>’s parent and remove <script type="math/tex">x</script>.
+    <p>\(x\) has only one child. We then just transplant its child at \(x\)’s parent and remove \(x\).
 <img src="http://localhost:4000/assets/trees/binary-search-trees/delete-2.png" width="100%" /></p>
   </li>
 </ul>
@@ -204,10 +204,10 @@ We have four different cases that we need to handle:</p>
 <span class="c1">// we're good to remove x's memory using "free" or "delete" or whatever we need</span></code></pre></figure>
 
 <ul>
-  <li><script type="math/tex">x</script> has two children. The idea here is that the successor of <script type="math/tex">x</script> will take <script type="math/tex">x</script>’s place to maintain the binary search tree property and then we can just delete <script type="math/tex">x</script>. We do know that the successor is the most left child (minimum node) in <script type="math/tex">x</script>’s right subtree. Let <script type="math/tex">s</script> be the successor of <script type="math/tex">x</script>. It is also important to note that <script type="math/tex">s</script> can’t have left children since it is the most left node by definition. We now break deleting <script type="math/tex">x</script> into two sub-cases:</li>
+  <li>\(x\) has two children. The idea here is that the successor of \(x\) will take \(x\)’s place to maintain the binary search tree property and then we can just delete \(x\). We do know that the successor is the most left child (minimum node) in \(x\)’s right subtree. Let \(s\) be the successor of \(x\). It is also important to note that \(s\) can’t have left children since it is the most left node by definition. We now break deleting \(x\) into two sub-cases:</li>
 </ul>
 
-<p>(1) <script type="math/tex">s</script> is the right child of <script type="math/tex">x</script>.  In this case, we transplant <script type="math/tex">s</script> at <script type="math/tex">x</script>’s parent. We also move <script type="math/tex">x</script>’s left subtree to be <script type="math/tex">s</script>’s left subtree. We then we remove <script type="math/tex">x</script>. 
+<p>(1) \(s\) is the right child of \(x\).  In this case, we transplant \(s\) at \(x\)’s parent. We also move \(x\)’s left subtree to be \(s\)’s left subtree. We then we remove \(x\). 
 <img src="http://localhost:4000/assets/trees/binary-search-trees/delete-3.png" width="100%" /></p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// two children first sub-case (s is a right child of x)</span>
@@ -219,7 +219,7 @@ We have four different cases that we need to handle:</p>
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-(2) <script type="math/tex">s</script> is in the left subtree of <script type="math/tex">x</script>’s right child. In this case, it’s a little more complicated. We first want to replace <script type="math/tex">s</script> (21 in the example) with its right subtree (25 in the example) (remember <script type="math/tex">s</script> can’t have a left subtree). We then assign <script type="math/tex">x</script>’s right subtree to be <script type="math/tex">s</script>’s right subtree. So now the subtree 29 is the right child of 21. Finally just like in the earlier case, simply replace <script type="math/tex">x</script> with its right subtree. In this example, it means to replace 19 with 21!
+(2) \(s\) is in the left subtree of \(x\)’s right child. In this case, it’s a little more complicated. We first want to replace \(s\) (21 in the example) with its right subtree (25 in the example) (remember \(s\) can’t have a left subtree). We then assign \(x\)’s right subtree to be \(s\)’s right subtree. So now the subtree 29 is the right child of 21. Finally just like in the earlier case, simply replace \(x\) with its right subtree. In this example, it means to replace 19 with 21!
 <img src="http://localhost:4000/assets/trees/binary-search-trees/delete-4.png" width="100%" /></p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// two children second sub-case (s is not right child of x)</span>

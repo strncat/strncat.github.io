@@ -81,27 +81,27 @@
 <br />
 <i>Level 0:</i>
 <br />
-At the top level, we have the whole input, array <script type="math/tex">A</script> of size <script type="math/tex">n</script>. We will recursively call MergeSort on each half of the <script type="math/tex">A</script>.
+At the top level, we have the whole input, array \(A\) of size \(n\). We will recursively call MergeSort on each half of the \(A\).
 <img src="http://localhost:4000/assets/merge/1.png" width="100%" />
 <i>Level 1:</i>
 <br />
-In this level, we have two calls to MergeSort. Each call is on one half of the array. The total number of elements from all calls though is still <script type="math/tex">n</script>.
+In this level, we have two calls to MergeSort. Each call is on one half of the array. The total number of elements from all calls though is still \(n\).
 <img src="http://localhost:4000/assets/merge/2.png" width="100%" />
 <i>Level 2:</i>
 <br />
-In level 2, we will have 4 calls. Each call is on an array of size <script type="math/tex">n/4</script>. We also notice here that the total number of elements is also <script type="math/tex">n/4+n/4+n/4+n/4=n</script>.
+In level 2, we will have 4 calls. Each call is on an array of size \(n/4\). We also notice here that the total number of elements is also \(n/4+n/4+n/4+n/4=n\).
 <img src="http://localhost:4000/assets/merge/3.png" width="100%" />
-<i>Level <script type="math/tex">t</script>:</i>
+<i>Level \(t\):</i>
 <br />
-At the <script type="math/tex">t</script>‘th level, we will have <script type="math/tex">2^t</script> calls to MergeSort. Each of the arrays passed to MergeSort is of size <script type="math/tex">n/2^t</script>. Again, the total number of elements is also <script type="math/tex">n</script>.
+At the \(t\)‘th level, we will have \(2^t\) calls to MergeSort. Each of the arrays passed to MergeSort is of size \(n/2^t\). Again, the total number of elements is also \(n\).
 <img src="http://localhost:4000/assets/merge/4.png" width="100%" />
 <i>Level ?:</i>
 <br />
-When do we stop dividing/recursively calling MergeSort? Our base case happens when <script type="math/tex">first == last</script>. This means that we stop the recursion when each call has an array of size 1. How many times do we divide <script type="math/tex">n</script> by 2 (we’re dividing the array into two halfs at each step) to reach 1? This is precisely what logs give us. <script type="math/tex">log_d(n)</script> is the number of times that we divide <script type="math/tex">n</script> by <script type="math/tex">d</script> to reach 1. Therefore, at the <script type="math/tex">log_2(n)</script> level, each array will be of size 1 1 and this is when stop calling MergeSort again. After this step, we will start calling Merge now to combine everything together!
+When do we stop dividing/recursively calling MergeSort? Our base case happens when \(first == last\). This means that we stop the recursion when each call has an array of size 1. How many times do we divide \(n\) by 2 (we’re dividing the array into two halfs at each step) to reach 1? This is precisely what logs give us. \(log_d(n)\) is the number of times that we divide \(n\) by \(d\) to reach 1. Therefore, at the \(log_2(n)\) level, each array will be of size 1 1 and this is when stop calling MergeSort again. After this step, we will start calling Merge now to combine everything together!
 <img src="http://localhost:4000/assets/merge/5.png" width="100%" />
 <br />
 <br />
-Now let’s climb up the recursion tree. <i>Merge</i> merges two sorted arrays with <script type="math/tex">cn</script> operations where <script type="math/tex">n</script> is the size of the array and <script type="math/tex">c</script> is a positive constant. To see why it’s linear, below is what merge is exactly doing</p>
+Now let’s climb up the recursion tree. <i>Merge</i> merges two sorted arrays with \(cn\) operations where \(n\) is the size of the array and \(c\) is a positive constant. To see why it’s linear, below is what merge is exactly doing</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="kt">int</span> <span class="n">last</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mid</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="n">mid</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">last</span> <span class="o">-</span> <span class="n">mid</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
@@ -122,18 +122,18 @@ Now let’s climb up the recursion tree. <i>Merge</i> merges two sorted arrays w
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-<i>Level <script type="math/tex">log(n):</script></i>
+<i>Level \(log(n):\)</i>
 <img src="http://localhost:4000/assets/merge/5.png" width="100%" />
-We know that each array is of size 1 and so there is nothing to do here besides just returning from <i>MergeSort</i>. (Refer to the pseudocode and note (if first &lt; last)). So at this level, we precisely doing <script type="math/tex">n</script> operations. 
+We know that each array is of size 1 and so there is nothing to do here besides just returning from <i>MergeSort</i>. (Refer to the pseudocode and note (if first &lt; last)). So at this level, we precisely doing \(n\) operations. 
 <br />
 <br />
 <br />
-<i>Level <script type="math/tex">t</script>:</i>
+<i>Level \(t\):</i>
 <img src="http://localhost:4000/assets/merge/4.png" width="100%" />
-At the <script type="math/tex">t</script>‘th level, we have <script type="math/tex">2^t</script> arrays. Each of these arrays is of size <script type="math/tex">n/2^t</script>. We will perform <script type="math/tex">n/2^t * c</script> operations per call. Summing everything, we have <script type="math/tex">2^t * n/2^t * c = cn</script> operations. 
+At the \(t\)‘th level, we have \(2^t\) arrays. Each of these arrays is of size \(n/2^t\). We will perform \(n/2^t * c\) operations per call. Summing everything, we have \(2^t * n/2^t * c = cn\) operations. 
 <br />
 <br />
-So at each level we’re doing at most <script type="math/tex">cn</script> operations.
+So at each level we’re doing at most \(cn\) operations.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
@@ -142,11 +142,11 @@ So at each level we’re doing at most <script type="math/tex">cn</script> opera
 <img src="http://localhost:4000/assets/merge/final.png" width="100%" />
 <br />
 <br />
-What about the total number of operations for all levels? In other words, what is the running time of merge sort? We have <script type="math/tex">log(n)+1</script> total levels and in each level we’re doing <script type="math/tex">cn</script> operations, therefore MergeSort performs <script type="math/tex">cn(\log(n)+1)</script> operations.
+What about the total number of operations for all levels? In other words, what is the running time of merge sort? We have \(log(n)+1\) total levels and in each level we’re doing \(cn\) operations, therefore MergeSort performs \(cn(\log(n)+1)\) operations.
 <br /><br />
-Let <script type="math/tex">f(n) = cn(\log(n)+1)</script> and <script type="math/tex">g(n) = n\log(n)</script>. To see that <script type="math/tex">f(n) = O(g(n))</script>, recall that we need to find <script type="math/tex">c'</script> and <script type="math/tex">n_0 > 0</script> such that for all <script type="math/tex">n \geq n_0</script>, we have <script type="math/tex">0 \leq f(n) \leq c'g(n)</script></p>
+Let \(f(n) = cn(\log(n)+1)\) and \(g(n) = n\log(n)\). To see that \(f(n) = O(g(n))\), recall that we need to find \(c'\) and \(n_0 &gt; 0\) such that for all \(n \geq n_0\), we have \(0 \leq f(n) \leq c'g(n)\)</p>
 
-<p>Choose <script type="math/tex">c'=2c</script> and <script type="math/tex">n_0=2</script> and so for all <script type="math/tex">n \geq n_0</script> and <script type="math/tex">c' = 2c</script> we need to prove:</p>
+<p>Choose \(c'=2c\) and \(n_0=2\) and so for all \(n \geq n_0\) and \(c' = 2c\) we need to prove:</p>
 <div center="">
 $$
 \begin{align*}
@@ -154,7 +154,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>Solving for <script type="math/tex">n</script> (<script type="math/tex">n</script> is positive)</p>
+<p>Solving for \(n\) (\(n\) is positive)</p>
 <div center="">
 $$
 \begin{align*}
@@ -163,7 +163,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>This is certainly true for all <script type="math/tex">n \geq 2</script> and so we are done.
+<p>This is certainly true for all \(n \geq 2\) and so we are done.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>

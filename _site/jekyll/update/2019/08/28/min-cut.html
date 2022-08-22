@@ -63,12 +63,12 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/mincut/1.png" width="100%" />
-Let <script type="math/tex">G=(V,E)</script> be an undirected graph with <script type="math/tex">V</script> vertices and <script type="math/tex">E</script> edges. A cut in <script type="math/tex">G</script> is a partition of <script type="math/tex">V</script> into two non-empty sets of vertices <script type="math/tex">A</script> and <script type="math/tex">B</script>. The <b>size</b> of the cut is the number of edges with one end point in <script type="math/tex">A</script> and another in <script type="math/tex">B</script>. A <b>global minimum cut</b> is a cut of minimum size.
+Let \(G=(V,E)\) be an undirected graph with \(V\) vertices and \(E\) edges. A cut in \(G\) is a partition of \(V\) into two non-empty sets of vertices \(A\) and \(B\). The <b>size</b> of the cut is the number of edges with one end point in \(A\) and another in \(B\). A <b>global minimum cut</b> is a cut of minimum size.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Karger's Algorithm</b></h4>
-<p>Karger’s algorithm starts with picking an edge <script type="math/tex">(u,v)</script> in <script type="math/tex">G</script> uniformly at random. It then <b>contracts</b> this edge by creating a new node <script type="math/tex">w</script> that combines both <script type="math/tex">u</script> and <script type="math/tex">v</script>. All the edges in <script type="math/tex">G</script> with an end point equal to either <script type="math/tex">u</script> and <script type="math/tex">v</script> now point to <script type="math/tex">w</script> instead. Also, any edge between <script type="math/tex">u</script> and <script type="math/tex">v</script> is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in <script type="math/tex">G</script>. 
+<p>Karger’s algorithm starts with picking an edge \((u,v)\) in \(G\) uniformly at random. It then <b>contracts</b> this edge by creating a new node \(w\) that combines both \(u\) and \(v\). All the edges in \(G\) with an end point equal to either \(u\) and \(v\) now point to \(w\) instead. Also, any edge between \(u\) and \(v\) is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in \(G\). 
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
@@ -86,37 +86,37 @@ Let <script type="math/tex">G=(V,E)</script> be an undirected graph with <script
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>In this example, we will apply the contraction algorithm above on the following graph. We start by picking an edge uniformly at random. Suppose we picked the edge <script type="math/tex">(d,e)</script> below:
+<p>In this example, we will apply the contraction algorithm above on the following graph. We start by picking an edge uniformly at random. Suppose we picked the edge \((d,e)\) below:
 <img src="http://localhost:4000/assets/mincut/2.png" width="100%" />
-We then delete <script type="math/tex">(d,e)</script>. We create a new node <script type="math/tex">z</script>. We then point any edge that previously had an end point equal to <script type="math/tex">d</script> or <script type="math/tex">e</script> to point at <script type="math/tex">z</script> instead.
+We then delete \((d,e)\). We create a new node \(z\). We then point any edge that previously had an end point equal to \(d\) or \(e\) to point at \(z\) instead.
 <img src="http://localhost:4000/assets/mincut/3.png" width="100%" />
-Suppose we pick <script type="math/tex">(a,b)</script> next.
+Suppose we pick \((a,b)\) next.
 <img src="http://localhost:4000/assets/mincut/4.png" width="100%" />
-We delete <script type="math/tex">(a,b)</script> and create node, <script type="math/tex">y</script>, and fix all the old edges pointing at <script type="math/tex">a</script> or <script type="math/tex">b</script> to point at <script type="math/tex">y</script>.
+We delete \((a,b)\) and create node, \(y\), and fix all the old edges pointing at \(a\) or \(b\) to point at \(y\).
 <img src="http://localhost:4000/assets/mincut/5.png" width="100%" />
-Suppose we pick <script type="math/tex">(f,g)</script> next.
+Suppose we pick \((f,g)\) next.
 <img src="http://localhost:4000/assets/mincut/6.png" width="100%" />
-We’ll repeat the same process by creating node, <script type="math/tex">x</script>, and fixing the edges below.
+We’ll repeat the same process by creating node, \(x\), and fixing the edges below.
 <img src="http://localhost:4000/assets/mincut/7.png" width="100%" />
-Suppose we pick <script type="math/tex">(z,x)</script> next.
+Suppose we pick \((z,x)\) next.
 <img src="http://localhost:4000/assets/mincut/8.png" width="100%" />
-We’ll delete <script type="math/tex">(z,x)</script>, create a new node, <script type="math/tex">w</script>, and fix all the edges below.
+We’ll delete \((z,x)\), create a new node, \(w\), and fix all the edges below.
 <img src="http://localhost:4000/assets/mincut/9.png" width="100%" />
-Finally, we have two edges left. Each edge has a 0.5 probability of being picked up. Suppose we pick <script type="math/tex">(y,c)</script>. 
+Finally, we have two edges left. Each edge has a 0.5 probability of being picked up. Suppose we pick \((y,c)\). 
 <img src="http://localhost:4000/assets/mincut/10.png" width="100%" />
 Since we only have 2 vertices then we’re done. We will return the number of edges between the two vertices which is 1 in this case. So the global minimum cut is of size 1 which is correct for this graph.
 <img src="http://localhost:4000/assets/mincut/11.png" width="100%" />
-Suppose however that instead of picking <script type="math/tex">(y,c)</script> to contract, we picked <script type="math/tex">(y,w)</script>.
+Suppose however that instead of picking \((y,c)\) to contract, we picked \((y,w)\).
 <img src="http://localhost:4000/assets/mincut/10a.png" width="100%" />
 We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager’s algorithm is a Monte Carlo algorithm.
 <img src="http://localhost:4000/assets/mincut/11a.png" width="100%" />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Probability of Success</b></h4>
-<p>Suppose we have a graph <script type="math/tex">G=(E,V)</script> with <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. Suppose the cut <script type="math/tex">(A,B)</script> is a global minimum cut is of size <script type="math/tex">k</script>. Also, let <script type="math/tex">F</script> to be the set of <script type="math/tex">k</script> edges in the cut <script type="math/tex">(A,B)</script>. So <script type="math/tex">F</script> has the edges that have one end point in <script type="math/tex">A</script> and the other end point in <script type="math/tex">B</script>.
+<p>Suppose we have a graph \(G=(E,V)\) with \(n\) nodes and \(m\) edges. Suppose the cut \((A,B)\) is a global minimum cut is of size \(k\). Also, let \(F\) to be the set of \(k\) edges in the cut \((A,B)\). So \(F\) has the edges that have one end point in \(A\) and the other end point in \(B\).
 <br />
 <br />
-The probability that the contraction algorithm succeeds is the probability that we don’t make any mistake in the <script type="math/tex">n-2</script> iterations of the algorithm. Suppose we let <script type="math/tex">S_i</script> to be the event that we don’t make a mistake in step <script type="math/tex">i</script> or generally succeed in step <script type="math/tex">i</script>. We want to calculate the following probability:</p>
+The probability that the contraction algorithm succeeds is the probability that we don’t make any mistake in the \(n-2\) iterations of the algorithm. Suppose we let \(S_i\) to be the event that we don’t make a mistake in step \(i\) or generally succeed in step \(i\). We want to calculate the following probability:</p>
 <div center="">
 $$
 \begin{align*}
@@ -136,7 +136,7 @@ $$
 
 <p><br />
 <b> Success in the iteration 1:</b><br />
-Let’s look at how we can calculate each of these. What does it mean to not make a mistake in step 1? It means that we don’t pick an edge that connects a vertex from the set <script type="math/tex">A</script> to a vertex from the set <script type="math/tex">B</script>. Because if we did, then <script type="math/tex">A</script> and <script type="math/tex">B</script> will be merged together and we will not be able to return the global minimum cut <script type="math/tex">(A,B)</script>. So we basically want to avoid picking edges from <script type="math/tex">F</script>. Therefore, the probability that we don’t make a mistake in step 1 is
+Let’s look at how we can calculate each of these. What does it mean to not make a mistake in step 1? It means that we don’t pick an edge that connects a vertex from the set \(A\) to a vertex from the set \(B\). Because if we did, then \(A\) and \(B\) will be merged together and we will not be able to return the global minimum cut \((A,B)\). So we basically want to avoid picking edges from \(F\). Therefore, the probability that we don’t make a mistake in step 1 is
 <br /></p>
 <div center="">
 $$
@@ -145,22 +145,21 @@ Pr(S_1) = 1 - \frac{|F|}{|E|} = 1 - \frac{k}{|E|}.
 \end{align*}
 $$
 </div>
-<p>What is <script type="math/tex">|E|</script>? <br />
-We will use <script type="math/tex">k</script> to find an upper bound on <script type="math/tex">|E|</script>. We know that the global minimum cut is of size <script type="math/tex">k</script>, therefore, we must have:</p>
+<p>What is \(|E|\)? <br />
+We will use \(k\) to find an upper bound on \(|E|\). We know that the global minimum cut is of size \(k\), therefore, we must have:</p>
 
 <table>
   <tbody>
     <tr>
-      <td>For any node <script type="math/tex">v</script> in <script type="math/tex">V</script>, <script type="math/tex">degree(v) \geq k</script></td>
+      <td>For any node \(v\) in \(V\), \(degree(v) \geq k\)</td>
     </tr>
   </tbody>
 </table>
 
-<p>Proof: Suppose not, then there exists some node <script type="math/tex">u</script> such that <script type="math/tex">% <![CDATA[
-degree(u) < k %]]></script>. Pick the minimum cut such that <script type="math/tex">A = \{u\}</script> and <script type="math/tex">B = V - \{u\}</script>. The cut <script type="math/tex">(A,B)</script> is a global minimum cut of size less than <script type="math/tex">k</script> which is a contradiction. <script type="math/tex">\blacksquare</script>
+<p>Proof: Suppose not, then there exists some node \(u\) such that \(degree(u) &lt; k\). Pick the minimum cut such that \(A = \{u\}\) and \(B = V - \{u\}\). The cut \((A,B)\) is a global minimum cut of size less than \(k\) which is a contradiction. \(\blacksquare\)
 <br />
 <br />
-Based on this, we can conclude that <script type="math/tex">|E| \geq \frac{1}{2}kn</script>. (<script type="math/tex">\frac{1}{2}</script> because <script type="math/tex">G</script> is undirected).
+Based on this, we can conclude that \(|E| \geq \frac{1}{2}kn\). (\(\frac{1}{2}\) because \(G\) is undirected).
 <br />
 <br />
 So now we have:</p>
@@ -174,8 +173,8 @@ $$
 <hr />
 
 <p><br />
-<b> Success in iteration <script type="math/tex">i+1</script>:</b><br />
-What about the other iterations? What is the probability that we don’t make a mistake in iteration <script type="math/tex">i+1</script> given that we haven’t made any mistake in all the previous interations? At iteration <script type="math/tex">i+1</script>, we have <script type="math/tex">n-i</script> nodes in the graph. Since we haven’t made any mistake yet, we still have <script type="math/tex">k</script> edges in <script type="math/tex">F</script> and each node is of degree at least <script type="math/tex">k</script> (same proof as before). Therefore,</p>
+<b> Success in iteration \(i+1\):</b><br />
+What about the other iterations? What is the probability that we don’t make a mistake in iteration \(i+1\) given that we haven’t made any mistake in all the previous interations? At iteration \(i+1\), we have \(n-i\) nodes in the graph. Since we haven’t made any mistake yet, we still have \(k\) edges in \(F\) and each node is of degree at least \(k\) (same proof as before). Therefore,</p>
 <div center="">
 $$
 \begin{align*}
@@ -202,7 +201,7 @@ $$
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Can we do better?</b></h4>
-<p>The probability of success, <script type="math/tex">p</script>, we found so far is</p>
+<p>The probability of success, \(p\), we found so far is</p>
 <div center="">
 $$
 \begin{align*}
@@ -210,7 +209,7 @@ p &amp;\geq \frac{2}{n(n-1)} = \frac{1}{\binom{n}{2}}.
 \end{align*}
 $$
 </div>
-<p>Suppose we run <script type="math/tex">T</script> trials of Krager’s algorithm. We then take the minimum cut of all cuts found. These trials are independent. What is the probability of NOT getting the global minimum cut? It is the probability of failing in every trial. Let <script type="math/tex">F_i</script> be the event that we failed to find the global minimum cut in iteration <script type="math/tex">i</script>. Therefore,</p>
+<p>Suppose we run \(T\) trials of Krager’s algorithm. We then take the minimum cut of all cuts found. These trials are independent. What is the probability of NOT getting the global minimum cut? It is the probability of failing in every trial. Let \(F_i\) be the event that we failed to find the global minimum cut in iteration \(i\). Therefore,</p>
 <div center="">
 $$
 \begin{align*}
@@ -221,7 +220,7 @@ Pr(\text{Failure after } T \text{ trials}) &amp;= Pr(F_1 \cap F_2 \cap ... \cap 
 \end{align*}
 $$
 </div>
-<p>We also know that for any <script type="math/tex">x \geq 1</script>, we have</p>
+<p>We also know that for any \(x \geq 1\), we have</p>
 <div center="">
 $$
 \begin{align*}
@@ -229,7 +228,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>Suppose we let <script type="math/tex">x = \frac{1}{p}</script>, we see that</p>
+<p>Suppose we let \(x = \frac{1}{p}\), we see that</p>
 <div>
 $$
 \begin{align*}
@@ -237,7 +236,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>This is exactly our expression above with <script type="math/tex">T = \binom{n}{2}</script>. Furthermore, we can let <script type="math/tex">T = \ln(n)\binom{n}{2}</script> to get</p>
+<p>This is exactly our expression above with \(T = \binom{n}{2}\). Furthermore, we can let \(T = \ln(n)\binom{n}{2}\) to get</p>
 <div>
 $$
 \begin{align*}
@@ -245,7 +244,7 @@ P(\text{Failure}) \leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\ln(n)\binom{n}{2}} 
 \end{align*}
 $$
 </div>
-<p>In general, if we want the probability of failure to be at most <script type="math/tex">\delta</script> then we need to set <script type="math/tex">T</script> to <script type="math/tex">\ln(1/\delta)\frac{1}{p}</script> in</p>
+<p>In general, if we want the probability of failure to be at most \(\delta\) then we need to set \(T\) to \(\ln(1/\delta)\frac{1}{p}\) in</p>
 <div>
 $$
 \begin{align*}
@@ -264,21 +263,21 @@ $$
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Running Time</b></h4>
-<p>Suppose we have <script type="math/tex">n</script> nodes and <script type="math/tex">m</script> edges. In the naive implementation, we contract <script type="math/tex">n-2</script> edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take <script type="math/tex">O(n)</script> time. Therefore, the total running time is <script type="math/tex">O(n^2)</script>. There are other faster implementations with union-find data structure that reduce the running time to <script type="math/tex">O(m * \alpha(n))</script>. (TODO: More on this?)
+<p>Suppose we have \(n\) nodes and \(m\) edges. In the naive implementation, we contract \(n-2\) edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take \(O(n)\) time. Therefore, the total running time is \(O(n^2)\). There are other faster implementations with union-find data structure that reduce the running time to \(O(m * \alpha(n))\). (TODO: More on this?)
 <br />
 <br />
-Given that we can get a high success probability if we run Krager’s algorithm for <script type="math/tex">O(\log(n)n^2)</script>. The total running time is therefore <script type="math/tex">O(n^4\log(n))</script>!
+Given that we can get a high success probability if we run Krager’s algorithm for \(O(\log(n)n^2)\). The total running time is therefore \(O(n^4\log(n))\)!
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Karger - Stein</b></h4>
-<p>Can we do better than <script type="math/tex">O(n^4\log(n))</script> and still maintain a high success probability? Krager and Stein published an improved result that’s much faster! 
+<p>Can we do better than \(O(n^4\log(n))\) and still maintain a high success probability? Krager and Stein published an improved result that’s much faster! 
 <br />
 <br />
-Observe when running Krager’s algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set <script type="math/tex">F</script>) gets higher with every iteration. Therefore, we should really just run karger once in the first few iterations and then repeat Karger for the remaining nodes. 
+Observe when running Krager’s algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set \(F\)) gets higher with every iteration. Therefore, we should really just run karger once in the first few iterations and then repeat Karger for the remaining nodes. 
 <br />
 <br />
-This is what Karger-Stein’s algorithm is doing. We contract edges until we get <script type="math/tex">n/\sqrt{2}</script> vertices. We then make copies of the graph and independently contract the edges again for each graph until we get to <script type="math/tex">n/\sqrt{2}/\sqrt{2}</script>. We then return the minimum of both cuts. We repeat this process again until we reach 4 vertices and simply find the minimum cut by brute force. This is illustrated in the below graph:
+This is what Karger-Stein’s algorithm is doing. We contract edges until we get \(n/\sqrt{2}\) vertices. We then make copies of the graph and independently contract the edges again for each graph until we get to \(n/\sqrt{2}/\sqrt{2}\). We then return the minimum of both cuts. We repeat this process again until we reach 4 vertices and simply find the minimum cut by brute force. This is illustrated in the below graph:
 <img src="http://localhost:4000/assets/mincut/stein.png" width="100%" />
 We also summarize it in the following pseudo-code:</p>
 
@@ -296,7 +295,7 @@ We also summarize it in the following pseudo-code:</p>
 <p><br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Karger - Stein Running Time</b></h4>
-<p>Karger-Stein is a recursive algorithm. At each level of the recursion, we perform Karger on <script type="math/tex">G</script> until we reach <script type="math/tex">n/\sqrt{2}</script> vertices. Karger runs in <script type="math/tex">O(n^2)</script>. Therefore, we have the following recurrence for the running time:</p>
+<p>Karger-Stein is a recursive algorithm. At each level of the recursion, we perform Karger on \(G\) until we reach \(n/\sqrt{2}\) vertices. Karger runs in \(O(n^2)\). Therefore, we have the following recurrence for the running time:</p>
 <div>
 $$
 \begin{align*}
@@ -304,12 +303,12 @@ T(n) = 2T(n/\sqrt{2}) + O(n^2)
 \end{align*}
 $$
 </div>
-<p>And therefore, the running time is <script type="math/tex">O(n^2\log(n))</script> by the master theorem.
+<p>And therefore, the running time is \(O(n^2\log(n))\) by the master theorem.
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Karger - Stein Probability of Success</b></h4>
-<p>Karger-Stein first contracts the graph from <script type="math/tex">n</script> vertices down to <script type="math/tex">n/\sqrt{2}</script> vertices. Similar to the analysis we did earlier. The probability of success is the probability of not picking the wrong edges in any of the first <script type="math/tex">n-n/\sqrt{2}</script> iterations. Therefore, combining all probabilities:</p>
+<p>Karger-Stein first contracts the graph from \(n\) vertices down to \(n/\sqrt{2}\) vertices. Similar to the analysis we did earlier. The probability of success is the probability of not picking the wrong edges in any of the first \(n-n/\sqrt{2}\) iterations. Therefore, combining all probabilities:</p>
 <div center="">
 $$
 \require{cancel}
@@ -323,7 +322,7 @@ Pr(\text{success until } n/\sqrt{2}) &amp;= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S
 \end{align*}
 $$
 </div>
-<p>If represent these probabilities with a binary tree then we know at each step we have a probability of <script type="math/tex">1/2</script> of picking the right path down to a leaf. Since we’re dividing by <script type="math/tex">\sqrt{2}</script>, then we know that the depth of the tree is</p>
+<p>If represent these probabilities with a binary tree then we know at each step we have a probability of \(1/2\) of picking the right path down to a leaf. Since we’re dividing by \(\sqrt{2}\), then we know that the depth of the tree is</p>
 <div>
 $$
 \begin{align*}
@@ -339,7 +338,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>To find the overall probability of success, we need to find the probability of picking the right path from the root down to a leaf. Picking the right path means that at every step we pick the right edge. Suppose <script type="math/tex">x</script> is a vertex in this tree and let <script type="math/tex">d</script> be the height of <script type="math/tex">x</script>. Let <script type="math/tex">p_d</script> be the probability that there exists a path of surviving edges from <script type="math/tex">x</script> down to a leaf. Let <script type="math/tex">L</script> be the event that there exists a path of surviving edges in the left subtree of <script type="math/tex">x</script>. Let <script type="math/tex">R</script> be the event that there exists a path of surviving edges in the right subtree of <script type="math/tex">x</script>. We see that</p>
+<p>To find the overall probability of success, we need to find the probability of picking the right path from the root down to a leaf. Picking the right path means that at every step we pick the right edge. Suppose \(x\) is a vertex in this tree and let \(d\) be the height of \(x\). Let \(p_d\) be the probability that there exists a path of surviving edges from \(x\) down to a leaf. Let \(L\) be the event that there exists a path of surviving edges in the left subtree of \(x\). Let \(R\) be the event that there exists a path of surviving edges in the right subtree of \(x\). We see that</p>
 <div>
 $$
 \begin{align*}
@@ -352,12 +351,12 @@ p_d &amp;= \frac{1}{2} * Pr(\text{there is at least one subtree with surviving e
 \end{align*}
 $$
 </div>
-<p>The claim is that <script type="math/tex">p_d \geq \frac{1}{d+1}</script>. To see this, we need to prove this by induction by <script type="math/tex">d</script> for <script type="math/tex">d > 0</script>. 
+<p>The claim is that \(p_d \geq \frac{1}{d+1}\). To see this, we need to prove this by induction by \(d\) for \(d &gt; 0\). 
 <br />
-For the base case, the probability of finding a path of surviving edges when the height is 0 is 1. We also see that <script type="math/tex">p_0 \geq \frac{1}{0+1} = 1</script> as we wanted to show.
+For the base case, the probability of finding a path of surviving edges when the height is 0 is 1. We also see that \(p_0 \geq \frac{1}{0+1} = 1\) as we wanted to show.
 <br />
 <br />
-For the inductive hypothesis, suppose it holds for <script type="math/tex">d-1</script> and so <script type="math/tex">p_{d-1} \geq \frac{1}{d}</script>. We will prove that it holds for <script type="math/tex">d</script>.</p>
+For the inductive hypothesis, suppose it holds for \(d-1\) and so \(p_{d-1} \geq \frac{1}{d}\). We will prove that it holds for \(d\).</p>
 <div>
 $$
 \begin{align*}
@@ -368,16 +367,16 @@ p_d &amp;= p_{d-1} - \frac{1}{2}p_{d-1}^2 \\
 \end{align*}
 $$
 </div>
-<p>Side Note: I don’t know how I would come up with replacing <script type="math/tex">1/d^2</script> with <script type="math/tex">1/d(d+1)</script>.
+<p>Side Note: I don’t know how I would come up with replacing \(1/d^2\) with \(1/d(d+1)\).
 <br />
 <br />
-Finally since the root of the tree has depth <script type="math/tex">2\log(n)</script>, then we know that the probability of success is at least <script type="math/tex">\frac{1}{2\log(n)+1}</script>.
+Finally since the root of the tree has depth \(2\log(n)\), then we know that the probability of success is at least \(\frac{1}{2\log(n)+1}\).
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Karger - Stein Improved Success Rate</b></h4>
 
-<p>But how many trials do we need in order to achieve the same success rate as Karger’s original algorithm (with repetition)? We know the probability of success is at least <script type="math/tex">p = \frac{1}{2\log(n)+1}</script>. The probability of failing in <script type="math/tex">T</script> trials (trials are independent) is the following if we set <script type="math/tex">T</script> to <script type="math/tex">\ln(1/\delta)\frac{1}{p}</script></p>
+<p>But how many trials do we need in order to achieve the same success rate as Karger’s original algorithm (with repetition)? We know the probability of success is at least \(p = \frac{1}{2\log(n)+1}\). The probability of failing in \(T\) trials (trials are independent) is the following if we set \(T\) to \(\ln(1/\delta)\frac{1}{p}\)</p>
 <div>
 $$
 \begin{align*}
@@ -385,7 +384,7 @@ Pr(\text{failure in }T \text{ trials}) &amp;= (1 - p)^T \leq \delta
 \end{align*}
 $$
 </div>
-<p>We arrived at this in the previous analysis of Karger’s algorithm. Therefore, we set <script type="math/tex">T = (2\log(n)+1)\ln(1/n)</script> to get a probablity of failure to be at most <script type="math/tex">\frac{1}{n}</script>.
+<p>We arrived at this in the previous analysis of Karger’s algorithm. Therefore, we set \(T = (2\log(n)+1)\ln(1/n)\) to get a probablity of failure to be at most \(\frac{1}{n}\).
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
 <p>class notes from following:</p>

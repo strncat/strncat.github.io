@@ -62,28 +62,28 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Suppose we want to ship oranges from NYC to SF. We have different routes of different capacities. The total number of oranges entering some city <script type="math/tex">a</script> must be equal to the number of the oranges leaving <script type="math/tex">a</script>. In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. This is just one example where we would use a flow network to solve the problem.
+    <p>Suppose we want to ship oranges from NYC to SF. We have different routes of different capacities. The total number of oranges entering some city \(a\) must be equal to the number of the oranges leaving \(a\). In other words, cities can’t withhold oranges. We want to find the maximum number of oranges we can ship to SF. This is just one example where we would use a flow network to solve the problem.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Flow Networks</b></h4>
 <p><img src="http://localhost:4000/assets/flow/1.png" width="100%" />
-A flow network <script type="math/tex">G=(V,E)</script> is a directed graph where <br /></p>
+A flow network \(G=(V,E)\) is a directed graph where <br /></p>
 <ul>
-  <li>We have two distinguished vertices, the source vertex <script type="math/tex">s</script> and the sink vertex <script type="math/tex">t</script>.</li>
-  <li>Each edge <script type="math/tex">(u,v) \in E</script> has a non-negative capacity <script type="math/tex">c(u,v) \geq 0</script>. (edge labels above) <br /></li>
-  <li>If we have edge <script type="math/tex">(u,v) \in E</script> then we must have <script type="math/tex">(u,v) \not\in E</script>. <br /></li>
-  <li>For any vertex <script type="math/tex">v \in V</script>, <script type="math/tex">(v,v) \not\in E</script>. <br /></li>
-  <li><script type="math/tex">G</script> is connected and so <script type="math/tex">|E| \geq |V| - 1</script>.
+  <li>We have two distinguished vertices, the source vertex \(s\) and the sink vertex \(t\).</li>
+  <li>Each edge \((u,v) \in E\) has a non-negative capacity \(c(u,v) \geq 0\). (edge labels above) <br /></li>
+  <li>If we have edge \((u,v) \in E\) then we must have \((u,v) \not\in E\). <br /></li>
+  <li>For any vertex \(v \in V\), \((v,v) \not\in E\). <br /></li>
+  <li>\(G\) is connected and so \(|E| \geq |V| - 1\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></li>
 </ul>
 <h4><b>What is Flow?</b></h4>
 <p><img src="http://localhost:4000/assets/flow/2.png" width="100%" />
-A <b>flow</b> is a real valued function <script type="math/tex">f : V \times V \rightarrow \mathbb{R}</script>. We say <script type="math/tex">f(u,v)</script> is a flow from vertex <script type="math/tex">u</script> to vertex <script type="math/tex">v</script> or the flow carried by the edge <script type="math/tex">(u,v)</script>. <script type="math/tex">f(u,v)</script> must satisfy: 
+A <b>flow</b> is a real valued function \(f : V \times V \rightarrow \mathbb{R}\). We say \(f(u,v)\) is a flow from vertex \(u\) to vertex \(v\) or the flow carried by the edge \((u,v)\). \(f(u,v)\) must satisfy: 
 <br /><br />
-(1) <b>Capacity constraint:</b> For all <script type="math/tex">u, v \in V</script>, we require</p>
+(1) <b>Capacity constraint:</b> For all \(u, v \in V\), we require</p>
 <div center="">
 $$
 \begin{align*}
@@ -93,7 +93,7 @@ $$
 </div>
 <p>In other words, the flow on every edge must not exceed its capacity.
 <br /><br />
-(2) <b>Flow Conservation:</b> For all <script type="math/tex">u \in V - \{s,t\}</script>, we require</p>
+(2) <b>Flow Conservation:</b> For all \(u \in V - \{s,t\}\), we require</p>
 <div center="">
 $$
 \begin{align*}
@@ -101,12 +101,12 @@ $$
 \end{align*}
 $$
 </div>
-<p>In other words, the total flow coming into <script type="math/tex">u</script> is equal to the total flow leaving <script type="math/tex">u</script>. Nodes don’t withhold flow.
+<p>In other words, the total flow coming into \(u\) is equal to the total flow leaving \(u\). Nodes don’t withhold flow.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Flow Value</b></h4>
-<p>Let <script type="math/tex">|f|</script> be the value of the flow defined as</p>
+<p>Let \(|f|\) be the value of the flow defined as</p>
 <div center="">
 $$
 \begin{align*}
@@ -114,28 +114,28 @@ $$
 \end{align*}
 $$
 </div>
-<p>In other words, the flow value is the total flow coming out of the source minus the total flow coming into the source. Notice how the flow value is a natural upper bound on the maximum flow we can push from <script type="math/tex">s</script> to <script type="math/tex">t</script>. Algorithm Design uses the notation <script type="math/tex">v(f)</script> instead of <script type="math/tex">|f|</script>.
+<p>In other words, the flow value is the total flow coming out of the source minus the total flow coming into the source. Notice how the flow value is a natural upper bound on the maximum flow we can push from \(s\) to \(t\). Algorithm Design uses the notation \(v(f)\) instead of \(|f|\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>The Maximum Flow Problem</b></h4>
-<p>In the maximum-flow problem we are given a flow network <script type="math/tex">G</script> with a source vertex <script type="math/tex">s</script> and a sink vertex <script type="math/tex">t</script> and we are asked to find a flow of maximum value. In the above graph, the current flow is 15. Is this a maximum flow and how can we find a maximum flow in <script type="math/tex">G</script>?
+<p>In the maximum-flow problem we are given a flow network \(G\) with a source vertex \(s\) and a sink vertex \(t\) and we are asked to find a flow of maximum value. In the above graph, the current flow is 15. Is this a maximum flow and how can we find a maximum flow in \(G\)?
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>A Greedy Idea</b></h4>
-<p>One greedy approach we might try is to push as much flow as possible starting from the source node. Suppose we have the below graph <script type="math/tex">G</script>.
+<p>One greedy approach we might try is to push as much flow as possible starting from the source node. Suppose we have the below graph \(G\).
 <img src="http://localhost:4000/assets/flow/fix1.png" width="100%" />
-We’ll apply the strategy above by pushing as much as we can starting from <script type="math/tex">s</script>.
+We’ll apply the strategy above by pushing as much as we can starting from \(s\).
 <img src="http://localhost:4000/assets/flow/fix2.png" width="100%" />
-This flow is not optimal. In order to find the optimal flow we need to have a way to reduce the amount we’re pushing on <script type="math/tex">(a,b)</script> and then push more instead on <script type="math/tex">(s,b)</script> and <script type="math/tex">(a,t)</script>.
+This flow is not optimal. In order to find the optimal flow we need to have a way to reduce the amount we’re pushing on \((a,b)\) and then push more instead on \((s,b)\) and \((a,t)\).
 <img src="http://localhost:4000/assets/flow/fix3.png" width="100%" />
 How do we implement the idea of removing flow from one part and adding it to another part in the graph? That’s what residual graphs are for! Residual graphs provide a way for us to increment or decrement flow in the original flow. Next, we’ll define formally what residual graphs are.
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Residual Graphs</b></h4>
-<p>Let <script type="math/tex">G=(V,E)</script> be a flow network with source <script type="math/tex">s</script> and sink <script type="math/tex">t</script>. Let <script type="math/tex">f</script> be a flow in <script type="math/tex">G</script>. For any vertices <script type="math/tex">u,v \in V</script>. The <b>residual capacity</b> <script type="math/tex">c_f(u,v)</script> by
+<p>Let \(G=(V,E)\) be a flow network with source \(s\) and sink \(t\). Let \(f\) be a flow in \(G\). For any vertices \(u,v \in V\). The <b>residual capacity</b> \(c_f(u,v)\) by
 <br /></p>
 <div center="">
 $$
@@ -148,13 +148,13 @@ $$
 \end{align*}
 $$
 </div>
-<p>This is the most confusing definition I’ve come across in CLRS. Algorithm Design however makes it super clear. The intution is that for every edge in <script type="math/tex">G</script>, we want to create two edges.</p>
+<p>This is the most confusing definition I’ve come across in CLRS. Algorithm Design however makes it super clear. The intution is that for every edge in \(G\), we want to create two edges.</p>
 <ul>
-  <li>A <b>forward edge</b> to signify that we can still push more flow on this edge. So the capacity on the forward edge is <script type="math/tex">c(u,v)-f(u,v)</script>.</li>
-  <li>A <b>backward edge</b> to signify that we can decrease the flow on this edge by pushing back flow. So the capacity on the backward edge is naturally <script type="math/tex">f(u,v)</script>.
+  <li>A <b>forward edge</b> to signify that we can still push more flow on this edge. So the capacity on the forward edge is \(c(u,v)-f(u,v)\).</li>
+  <li>A <b>backward edge</b> to signify that we can decrease the flow on this edge by pushing back flow. So the capacity on the backward edge is naturally \(f(u,v)\).
 <br />
 <br />
-In summary, the <b>residual network</b> of <script type="math/tex">G</script> induced by <script type="math/tex">f</script> is <script type="math/tex">G_f=(V,E_f)</script> where</li>
+In summary, the <b>residual network</b> of \(G\) induced by \(f\) is \(G_f=(V,E_f)\) where</li>
 </ul>
 <div center="">
 $$
@@ -168,9 +168,9 @@ $$
 <h4><b>Residual Graphs (Example)</b></h4>
 <p>Let’s create a residual graph for the flow below:
 <img src="http://localhost:4000/assets/flow/fix2.png" width="100%" />
-Let’s start with the edge <script type="math/tex">(a,t)</script>. We know that <script type="math/tex">f(a,t) = 2</script>. Therefore we need to create two edges in <script type="math/tex">G_f</script>. The first edge is a forward edge with capacity <script type="math/tex">c_f(a,t) = c(a,t) - f(a,t) = 7 - 2 = 5</script> which means that we can still possibly push 5 oranges on this path.
+Let’s start with the edge \((a,t)\). We know that \(f(a,t) = 2\). Therefore we need to create two edges in \(G_f\). The first edge is a forward edge with capacity \(c_f(a,t) = c(a,t) - f(a,t) = 7 - 2 = 5\) which means that we can still possibly push 5 oranges on this path.
 <img src="http://localhost:4000/assets/flow/at1.png" width="100%" />
-The other edge is a backward edge with a capacity <script type="math/tex">c_f(t,a) = f(a,t) = 2</script>. This will be very useful of we want to decrement the flow on the edge <script type="math/tex">(a,t)</script> in the original graph.
+The other edge is a backward edge with a capacity \(c_f(t,a) = f(a,t) = 2\). This will be very useful of we want to decrement the flow on the edge \((a,t)\) in the original graph.
 <img src="http://localhost:4000/assets/flow/at2.png" width="100%" /></p>
 
 <p>We repeat the process for all edges to generate the following graph. (Remember that we omit edges with capacity 0).
@@ -178,12 +178,12 @@ The other edge is a backward edge with a capacity <script type="math/tex">c_f(t,
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Flow in Residual Graphs</b></h4>
-<p>Suppose now we take <script type="math/tex">G</script> and <script type="math/tex">G_f</script> from the previous example and suppose we find a flow in <script type="math/tex">G_f</script> below
+<p>Suppose now we take \(G\) and \(G_f\) from the previous example and suppose we find a flow in \(G_f\) below
 <img src="http://localhost:4000/assets/flow/aug.png" width="100%" />
-The claim is that this new flow in <script type="math/tex">G_f</script>, call it <script type="math/tex">f^{\prime}</script> is actually a flow in <script type="math/tex">G</script>. Moreover this new flow will result in an increased flow value in <script type="math/tex">G</script>! How is this even possible? To prove this we need to formalize this idea of adding the flow in the residual graph to <script type="math/tex">G</script> itself.
+The claim is that this new flow in \(G_f\), call it \(f^{\prime}\) is actually a flow in \(G\). Moreover this new flow will result in an increased flow value in \(G\)! How is this even possible? To prove this we need to formalize this idea of adding the flow in the residual graph to \(G\) itself.
 <br />
 <br />
-Formally, CLRS defines a new function, <b> the augmentation of flow </b><script type="math/tex">f</script> by <script type="math/tex">f^{\prime}</script> to be a function from <script type="math/tex">V \times V</script> to <script type="math/tex">R</script> defined by</p>
+Formally, CLRS defines a new function, <b> the augmentation of flow </b>\(f\) by \(f^{\prime}\) to be a function from \(V \times V\) to \(R\) defined by</p>
 <div center="">
 $$
 \begin{align*}
@@ -194,7 +194,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>This looks absolutely scary but all it’s saying is that suppose we take the edge <script type="math/tex">(a,t)</script> in <script type="math/tex">G</script>. We are sending two units of flow on <script type="math/tex">(a,t)</script>. In the residual graph above, we’re sending 5 on the forward edge <script type="math/tex">(a,t)</script> and 0 units on the backward edge <script type="math/tex">(t,a)</script>. Therefore,</p>
+<p>This looks absolutely scary but all it’s saying is that suppose we take the edge \((a,t)\) in \(G\). We are sending two units of flow on \((a,t)\). In the residual graph above, we’re sending 5 on the forward edge \((a,t)\) and 0 units on the backward edge \((t,a)\). Therefore,</p>
 <div center="">
 $$
 \begin{align*}
@@ -202,14 +202,14 @@ $$
 \end{align*}
 $$
 </div>
-<p>And this is how we augment the flow on <script type="math/tex">(a,t)</script> (<script type="math/tex">f(a,t)</script>) by the flow in <script type="math/tex">G_f</script> (<script type="math/tex">f'(a,t) - f'(t,a)</script>).
+<p>And this is how we augment the flow on \((a,t)\) (\(f(a,t)\)) by the flow in \(G_f\) (\(f'(a,t) - f'(t,a)\)).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Augmenting Flow</b></h4>
-<p>Now we now that we have a formal definition of how we can augment the flow in <script type="math/tex">G</script> by the flow in <script type="math/tex">G_f</script>. We want to prove that it is a valid flow in <script type="math/tex">G</script> and also that it is a better flow than the original flow. 
+<p>Now we now that we have a formal definition of how we can augment the flow in \(G\) by the flow in \(G_f\). We want to prove that it is a valid flow in \(G\) and also that it is a better flow than the original flow. 
 <br /><br />
-Let’s first prove that it is a valid flow in <script type="math/tex">G</script>. Given <script type="math/tex">G</script> and <script type="math/tex">G_f</script>. Also given that <script type="math/tex">f</script> is a flow in <script type="math/tex">G</script> and that <script type="math/tex">f^{\prime}</script> is a flow in <script type="math/tex">G_f</script>, we claim that <script type="math/tex">|f \uparrow f'|</script> is a flow in <script type="math/tex">G</script> and that it has value:</p>
+Let’s first prove that it is a valid flow in \(G\). Given \(G\) and \(G_f\). Also given that \(f\) is a flow in \(G\) and that \(f^{\prime}\) is a flow in \(G_f\), we claim that \(|f \uparrow f'|\) is a flow in \(G\) and that it has value:</p>
 <div center="">
 $$
 \begin{align*}
@@ -218,8 +218,8 @@ $$
 $$
 </div>
 <p><b>Proof:</b><br />
-Proof in CLRS consists of first verifying that <script type="math/tex">f \uparrow f'</script> obeys the capacity constraint and flow conversation in <script type="math/tex">G</script>. After that, the proof computes the value of <script type="math/tex">f \uparrow f'</script>. The proof proceeds as follows: <br />
-Let <script type="math/tex">V_1</script> include any vertex <script type="math/tex">v</script> such that <script type="math/tex">(s,v) \in E</script> and let <script type="math/tex">V_2</script> include any vertex <script type="math/tex">v</script> such that <script type="math/tex">(v,s) \in E</script>. Since <script type="math/tex">G</script> doesn’t allow parallel edges by definition, then we know that <script type="math/tex">V_1 \cap V_2 = \emptyset</script>. Therefore,</p>
+Proof in CLRS consists of first verifying that \(f \uparrow f'\) obeys the capacity constraint and flow conversation in \(G\). After that, the proof computes the value of \(f \uparrow f'\). The proof proceeds as follows: <br />
+Let \(V_1\) include any vertex \(v\) such that \((s,v) \in E\) and let \(V_2\) include any vertex \(v\) such that \((v,s) \in E\). Since \(G\) doesn’t allow parallel edges by definition, then we know that \(V_1 \cap V_2 = \emptyset\). Therefore,</p>
 <div center="">
 $$
 \begin{align*}
@@ -237,12 +237,12 @@ $$
 \end{align*}
 $$
 </div>
-<p>This concludes that the new flow that resulted from combining both flows is a valid flow in <script type="math/tex">G</script>! But is this flow better that <script type="math/tex">|f|</script>? We want to prove that <script type="math/tex">|f^{\prime}|>0</script>. To do so, we’ll define augmenting paths next. 
+<p>This concludes that the new flow that resulted from combining both flows is a valid flow in \(G\)! But is this flow better that \(|f|\)? We want to prove that \(|f^{\prime}|&gt;0\). To do so, we’ll define augmenting paths next. 
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Augmenting Paths</b></h4>
-<p>An augmenting path is a simple path <script type="math/tex">p</script> from <script type="math/tex">s</script> to <script type="math/tex">t</script> in the residual graph <script type="math/tex">G_f</script>. Define its residual capacity or bottleneck (Algorithm Design) as follow:</p>
+<p>An augmenting path is a simple path \(p\) from \(s\) to \(t\) in the residual graph \(G_f\). Define its residual capacity or bottleneck (Algorithm Design) as follow:</p>
 <div center="">
 $$
 \begin{align*}
@@ -250,9 +250,9 @@ c_f(p) = min\{c_f(u,v): \{u,v\} \text{ is on }p\}
 \end{align*}
 $$
 </div>
-<p>So the bottleneck is just the minimum edge capacity on the path <script type="math/tex">p</script> in <script type="math/tex">G_f</script>. To see this with an example, suppose we take the above residual graph from the previous example and find a simple path <script type="math/tex">p</script> in <script type="math/tex">G_f</script>. Suppose we picked the following shaded path:
+<p>So the bottleneck is just the minimum edge capacity on the path \(p\) in \(G_f\). To see this with an example, suppose we take the above residual graph from the previous example and find a simple path \(p\) in \(G_f\). Suppose we picked the following shaded path:
 <img src="http://localhost:4000/assets/flow/aug.png" width="100%" />
-We can see that its bottleneck is 5 or <script type="math/tex">c_f(p) = 5</script>. Next let’s define a new function <script type="math/tex">f_p</script> by</p>
+We can see that its bottleneck is 5 or \(c_f(p) = 5\). Next let’s define a new function \(f_p\) by</p>
 <div center="">
 $$
 \begin{align*}
@@ -263,16 +263,16 @@ f_p(u,v) = \Bigg \{ \begin{array}{@{}lr@{}}
 \end{align*}
 $$
 </div>
-<p>Based on this definition, we see that <script type="math/tex">f_p</script> is a flow in <script type="math/tex">G_f</script> with value 
-<script type="math/tex">|f_p| = c_f(p)</script> and <script type="math/tex">c_f(p) > 0</script>. Therefore, <script type="math/tex">|f \uparrow f_p| =  |f| + |f_p| > |f|</script>. 
+<p>Based on this definition, we see that \(f_p\) is a flow in \(G_f\) with value 
+\(|f_p| = c_f(p)\) and \(c_f(p) &gt; 0\). Therefore, \(|f \uparrow f_p| =  |f| + |f_p| &gt; |f|\). 
 <br />
 <br />
-So far we formalized the idea of augmenting flow in <script type="math/tex">G</script> by flow in <script type="math/tex">G_f</script>. We proved that this flow is a valid flow. We also introduced the idea of augmenting paths used to create flow in the residual graph and therefore, additional flow in <script type="math/tex">G</script>. We also proved that this new flow is also a larger flow than the original flow in <script type="math/tex">G</script>. What’s left is to see how we can find augmenting paths and increase flow in action!
+So far we formalized the idea of augmenting flow in \(G\) by flow in \(G_f\). We proved that this flow is a valid flow. We also introduced the idea of augmenting paths used to create flow in the residual graph and therefore, additional flow in \(G\). We also proved that this new flow is also a larger flow than the original flow in \(G\). What’s left is to see how we can find augmenting paths and increase flow in action!
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Augmenting Flow with New Flow in The Residual Graph </b></h4>
-<p>We can find an augmenting path by doing a breadth first search in <script type="math/tex">G_f</script>. Once we have a path, how do we actually update <script type="math/tex">G</script> with the new updated flow? We illustrate below the process below:</p>
+<p>We can find an augmenting path by doing a breadth first search in \(G_f\). Once we have a path, how do we actually update \(G\) with the new updated flow? We illustrate below the process below:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">augment_flow</span><span class="p">(</span><span class="n">graph</span> <span class="n">g</span><span class="p">,</span> <span class="n">path</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// we first find the bottleneck or residual capacity of p in gf</span>
@@ -289,15 +289,15 @@ So far we formalized the idea of augmenting flow in <script type="math/tex">G</s
 
 <p>To see an example, consider again the same shaded path we found in the previous example.
 <img src="http://localhost:4000/assets/flow/aug.png" width="100%" />
-Let’s now add this flow back in <script type="math/tex">G</script>. In this example, we see that <script type="math/tex">(s,b)</script> is a forward edge (blue). Therefore, we increment <script type="math/tex">(s,b)</script> in <script type="math/tex">G</script> by 5. Next, we see that <script type="math/tex">(b,a)</script> is a backward edge and so we decrement <script type="math/tex">(a,b)</script> in <script type="math/tex">G</script> by 5. Similarly <script type="math/tex">(a,t)</script> is a forward edge and so we decrement it in <script type="math/tex">G</script> by 5. Let’s at <script type="math/tex">G</script> after augmenting <script type="math/tex">p</script>.
+Let’s now add this flow back in \(G\). In this example, we see that \((s,b)\) is a forward edge (blue). Therefore, we increment \((s,b)\) in \(G\) by 5. Next, we see that \((b,a)\) is a backward edge and so we decrement \((a,b)\) in \(G\) by 5. Similarly \((a,t)\) is a forward edge and so we decrement it in \(G\) by 5. Let’s at \(G\) after augmenting \(p\).
 <br />
 <br />
-Now, let’s see what the new flow looks like in <script type="math/tex">G</script> after calling the above method. This flow has a higher value of <script type="math/tex">20</script> than the orignal flow!
+Now, let’s see what the new flow looks like in \(G\) after calling the above method. This flow has a higher value of \(20\) than the orignal flow!
 <img src="http://localhost:4000/assets/flow/aug2.png" width="100%" />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>The Ford-Fulkerson's Method</b></h4>
-<p>Now that we know how to add flow back to <script type="math/tex">G</script>, we can describe the Ford-Fulkerson method. The Ford-Fulkerson method iteratively increases the value of the flow. We initially start with <script type="math/tex">f(u,v)=0</script> for all <script type="math/tex">(u,v) \in E</script> and incrementally increase the flow value.
+<p>Now that we know how to add flow back to \(G\), we can describe the Ford-Fulkerson method. The Ford-Fulkerson method iteratively increases the value of the flow. We initially start with \(f(u,v)=0\) for all \((u,v) \in E\) and incrementally increase the flow value.
 <br /></p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">Ford</span><span class="o">-</span><span class="n">Fulkerson</span><span class="p">(</span><span class="n">graph</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
@@ -319,10 +319,10 @@ Now, let’s see what the new flow looks like in <script type="math/tex">G</scri
 <p>In the Ford-Fulkerson’s method above, we see that we exit the while loop only when there are no augmenting paths available. So if the Ford-Fulkerson’s method does in fact generate a maximum flow, then it must be that a flow is maximum when we don’t any more augmenting paths. How do we prove this?
 <br />
 <br />
-We need to explore yet another concept. A <b>cut</b> <script type="math/tex">(S,T)</script> of a flow network <script type="math/tex">G=(V,E)</script> is a partition of <script type="math/tex">V</script> into <script type="math/tex">S</script> and <script type="math/tex">T = V - S</script> such that <script type="math/tex">s \in S</script> and <script type="math/tex">t \in T</script>. Let <script type="math/tex">f</script> be a flow in <script type="math/tex">G</script>.
+We need to explore yet another concept. A <b>cut</b> \((S,T)\) of a flow network \(G=(V,E)\) is a partition of \(V\) into \(S\) and \(T = V - S\) such that \(s \in S\) and \(t \in T\). Let \(f\) be a flow in \(G\).
 <br />
 <br />
-The <b>net flow</b> <script type="math/tex">f(S,T)</script> across the cut <script type="math/tex">(S,T)</script> is</p>
+The <b>net flow</b> \(f(S,T)\) across the cut \((S,T)\) is</p>
 <div center="">
 $$
 \begin{align*}
@@ -330,7 +330,7 @@ f(S,T) = \sum_{u \in S}\sum_{v \in T}f(u,v) - \sum_{u \in S}\sum_{v \in T}f(u,v)
 \end{align*}
 $$
 </div>
-<p>The <b>capacity</b> of the cut <script type="math/tex">(S,T)</script> is</p>
+<p>The <b>capacity</b> of the cut \((S,T)\) is</p>
 <div center="">
 $$
 \begin{align*}
@@ -338,7 +338,7 @@ c(S,T) = \sum_{u \in S}\sum_{v \in T}c(u,v)
 \end{align*}
 $$
 </div>
-<p>Suppose we have the following flow with the following cut where <script type="math/tex">S = \{s, b\}</script> and <script type="math/tex">T = \{a,c,t\}</script>. Wee see that the net flow is <script type="math/tex">15+5-5=15</script>. The capacity of the cut is <script type="math/tex">20</script>.
+<p>Suppose we have the following flow with the following cut where \(S = \{s, b\}\) and \(T = \{a,c,t\}\). Wee see that the net flow is \(15+5-5=15\). The capacity of the cut is \(20\).
 <img src="http://localhost:4000/assets/flow/cut.png" width="100%" />
 Lastly, define a <b>minimum cut</b> of a network to be a cut whose capacity is minimum over all cuts.
 <br />
@@ -348,14 +348,14 @@ Lastly, define a <b>minimum cut</b> of a network to be a cut whose capacity is m
 <p>We first want to establish that the flow we generate is a flow of maximum value. In order to do so, we need to prove smaller results that we will use in the main proof in the next section. Let’s prove the following:
 <br />
 <br />
-Suppose <script type="math/tex">f</script> is a flow in <script type="math/tex">G</script> and let <script type="math/tex">(S,T)</script> be any cut in <script type="math/tex">G</script> then the net flow across <script type="math/tex">(S,T)</script> is <script type="math/tex">f(S,T)=|f|</script>.
+Suppose \(f\) is a flow in \(G\) and let \((S,T)\) be any cut in \(G\) then the net flow across \((S,T)\) is \(f(S,T)=|f|\).
 <br />
 <br />
 <b>Proof</b><br />
-The proof isn’t too bad really. It starts with the definition of the value of the flow and adds the following: <script type="math/tex">\sum_{v \in V}f(u,v)-\sum_{v \in V}f(v,u) = 0</script> for all <script type="math/tex">v \in V-\{s,t\}</script> which is true because of the conservation law. It also uses the fact that <script type="math/tex">S \cap T = \emptyset</script> to further break the summations into smaller ones. Eventually we will arrive at <script type="math/tex">f(S,T)</script>. (TODO: it’s long but maybe add it later)
+The proof isn’t too bad really. It starts with the definition of the value of the flow and adds the following: \(\sum_{v \in V}f(u,v)-\sum_{v \in V}f(v,u) = 0\) for all \(v \in V-\{s,t\}\) which is true because of the conservation law. It also uses the fact that \(S \cap T = \emptyset\) to further break the summations into smaller ones. Eventually we will arrive at \(f(S,T)\). (TODO: it’s long but maybe add it later)
 <br />
 <br />
-The next thing CLRS proves is that the value of any flow <script type="math/tex">f</script> in a flow network <script type="math/tex">G</script> is bounded from above by the capacity of any cut of <script type="math/tex">G</script>.
+The next thing CLRS proves is that the value of any flow \(f\) in a flow network \(G\) is bounded from above by the capacity of any cut of \(G\).
 <br />
 <br />
 <b>Proof</b><br />
@@ -374,35 +374,35 @@ $$
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>The Max-Flow Min-Cut Theorem</b></h4>
 <p>FINALLY, we are ready to prove the <b>max-flow min-cut theorem</b> below: <br />
-If <script type="math/tex">f</script> is a flow in <script type="math/tex">G=(V,E)</script> with source <script type="math/tex">s</script> and sink <script type="math/tex">t</script> then the following conditions are equivalent:<br />
-(1) <script type="math/tex">f</script> is a maximum flow in <script type="math/tex">G</script>. <br />
-(2) The residual network <script type="math/tex">G_f</script> contains no augmenting paths. <br />
-(3) <script type="math/tex">|f|=c(S,T)</script> for some cut <script type="math/tex">(S,T)</script> of <script type="math/tex">G</script>.
+If \(f\) is a flow in \(G=(V,E)\) with source \(s\) and sink \(t\) then the following conditions are equivalent:<br />
+(1) \(f\) is a maximum flow in \(G\). <br />
+(2) The residual network \(G_f\) contains no augmenting paths. <br />
+(3) \(|f|=c(S,T)\) for some cut \((S,T)\) of \(G\).
 <br />
 <br />
 <b>Proof</b><br />
 We have several directions: <br />
-<script type="math/tex">1 \rightarrow 2</script>:<br />
-Let the maximum flow in <script type="math/tex">G</script> be <script type="math/tex">f</script> and for the sake of contradiction, suppose that there exists some augmenting path <script type="math/tex">p</script> in <script type="math/tex">G_f</script>. Let <script type="math/tex">f_p</script> be the flow in <script type="math/tex">G_f</script> as we defined previously. We proved earlier that <script type="math/tex">|f \uparrow f_p| =  |f| + |f_p| > |f|</script>. Therefore, the new flow founded by augmenting <script type="math/tex">f</script> by <script type="math/tex">f_p</script> is strictly greater than <script type="math/tex">|f|</script>. This is a contradiction since we assumed <script type="math/tex">|f|</script> is of maximum value.
+\(1 \rightarrow 2\):<br />
+Let the maximum flow in \(G\) be \(f\) and for the sake of contradiction, suppose that there exists some augmenting path \(p\) in \(G_f\). Let \(f_p\) be the flow in \(G_f\) as we defined previously. We proved earlier that \(|f \uparrow f_p| =  |f| + |f_p| &gt; |f|\). Therefore, the new flow founded by augmenting \(f\) by \(f_p\) is strictly greater than \(|f|\). This is a contradiction since we assumed \(|f|\) is of maximum value.
 <br />
 <br />
-<script type="math/tex">2 \rightarrow 3</script>:<br />
-This part is sneaky. Suppose we don’t have augmenting paths in <script type="math/tex">G_f</script>. This means that we don’t have a path from <script type="math/tex">s</script> to <script type="math/tex">t</script> in <script type="math/tex">G_f</script>. Based on this, define <script type="math/tex">S = \{u \in V:</script> there exists a path from <script type="math/tex">s</script> to <script type="math/tex">v</script> <script type="math/tex">\}</script> and let <script type="math/tex">T = V - S</script>. We know <script type="math/tex">s \in S</script> and <script type="math/tex">t \not\in S</script>. Therefore, the partition <script type="math/tex">(S,T)</script> is a cut. 
+\(2 \rightarrow 3\):<br />
+This part is sneaky. Suppose we don’t have augmenting paths in \(G_f\). This means that we don’t have a path from \(s\) to \(t\) in \(G_f\). Based on this, define \(S = \{u \in V:\) there exists a path from \(s\) to \(v\) \(\}\) and let \(T = V - S\). We know \(s \in S\) and \(t \not\in S\). Therefore, the partition \((S,T)\) is a cut. 
 <br />
 <br />
-Now for any vertices <script type="math/tex">u \in S</script> and <script type="math/tex">v \in T</script>. There are two cases:
+Now for any vertices \(u \in S\) and \(v \in T\). There are two cases:
 <br />
 <br />
-Case 1: If <script type="math/tex">(u,v) \in E</script>, then we must have <script type="math/tex">f(u,v) = c(u,v)</script>. This is because if <script type="math/tex">f(u,v) \leq c(u,v)</script> then this means that <script type="math/tex">(u,v) \in E_f</script> (Remember “capacity-flow &gt; 0” in <script type="math/tex">G</script> creates forward edges in <script type="math/tex">G_f</script>). Therefore, <script type="math/tex">v</script> must be in <script type="math/tex">S</script> and this can’t be by assumption.
+Case 1: If \((u,v) \in E\), then we must have \(f(u,v) = c(u,v)\). This is because if \(f(u,v) \leq c(u,v)\) then this means that \((u,v) \in E_f\) (Remember “capacity-flow &gt; 0” in \(G\) creates forward edges in \(G_f\)). Therefore, \(v\) must be in \(S\) and this can’t be by assumption.
 <br />
 <br />
-Case 2: If <script type="math/tex">(v,u) \in E</script>, then we must have <script type="math/tex">f(v,u) = 0</script>. This is because if <script type="math/tex">f(v,u) > 0</script> then we must have <script type="math/tex">(u,v) \in E_f</script> (Remember flow in <script type="math/tex">G</script> creates backward edges in <script type="math/tex">G_f</script>). Therefore, <script type="math/tex">v</script> must be in <script type="math/tex">S</script> and this can’t be by assumption.
+Case 2: If \((v,u) \in E\), then we must have \(f(v,u) = 0\). This is because if \(f(v,u) &gt; 0\) then we must have \((u,v) \in E_f\) (Remember flow in \(G\) creates backward edges in \(G_f\)). Therefore, \(v\) must be in \(S\) and this can’t be by assumption.
 <br />
 <br />
-Case 3: If <script type="math/tex">(v,u) \not\in E</script> and <script type="math/tex">(u,v) \not\in E</script> then <script type="math/tex">f(u,v) = f(v,u) = 0</script>.
+Case 3: If \((v,u) \not\in E\) and \((u,v) \not\in E\) then \(f(u,v) = f(v,u) = 0\).
 <br />
 <br />
-Therefore, combing everything and utilizing the fact that <script type="math/tex">|f| = f(S,T)</script>:</p>
+Therefore, combing everything and utilizing the fact that \(|f| = f(S,T)\):</p>
 <div center="">
 $$
 \begin{align*}
@@ -414,23 +414,23 @@ $$
 $$
 </div>
 <p><br />
-<script type="math/tex">3 \rightarrow 1</script>:<br />
-We established previously that <script type="math/tex">|f| \leq c(S,T)</script> for any cut <script type="math/tex">(S,T)</script> in <script type="math/tex">G</script>. Therefore, if <script type="math/tex">|f| = c(S,T)</script> for some cut <script type="math/tex">(S,T)</script> in <script type="math/tex">G</script> then it must be that <script type="math/tex">f</script> is a flow of maximum value. 
+\(3 \rightarrow 1\):<br />
+We established previously that \(|f| \leq c(S,T)\) for any cut \((S,T)\) in \(G\). Therefore, if \(|f| = c(S,T)\) for some cut \((S,T)\) in \(G\) then it must be that \(f\) is a flow of maximum value. 
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Does Ford-Fulkerson Terminate?</b></h4>
-<p>An essential component in the proof that Ford-Fulkerson terminates is the assumption that the capacities in <script type="math/tex">G</script> are integers otherwise we might not converge to the optimal flow in <script type="math/tex">G</script>. So given that we integer capacities, we need to prove three components:</p>
+<p>An essential component in the proof that Ford-Fulkerson terminates is the assumption that the capacities in \(G\) are integers otherwise we might not converge to the optimal flow in \(G\). So given that we integer capacities, we need to prove three components:</p>
 <ol>
-  <li>The flow values and the capacities in <script type="math/tex">G_f</script> remain integers in every iteration.</li>
+  <li>The flow values and the capacities in \(G_f\) remain integers in every iteration.</li>
   <li>In each iteration of Ford-Fulkerson, the flow value increases.</li>
   <li>There is an upper bound on the maximum flow value.</li>
 </ol>
 
-<p>Given a flow network <script type="math/tex">G</script> and its residual network <script type="math/tex">G_f</script>. For (1) given an augmenting path, we know that the bottleneck value or the residual capacity is just the minimum value of all the edge capacities on <script type="math/tex">p</script> in <script type="math/tex">G_f</script>. Therefore, the new flow must have an integer value.
+<p>Given a flow network \(G\) and its residual network \(G_f\). For (1) given an augmenting path, we know that the bottleneck value or the residual capacity is just the minimum value of all the edge capacities on \(p\) in \(G_f\). Therefore, the new flow must have an integer value.
 <br />
 <br />
-For (2), we defined formally the augmentation of <script type="math/tex">f</script> by <script type="math/tex">f^{\prime}</script> and we proved that for any augmenting path and flow <script type="math/tex">f_p</script>, we must have <script type="math/tex">|f| + |f_p| > |f|</script>.
+For (2), we defined formally the augmentation of \(f\) by \(f^{\prime}\) and we proved that for any augmenting path and flow \(f_p\), we must have \(|f| + |f_p| &gt; |f|\).
 <br />
 <br />
 For (3), we can simply use the upper bound from the definition of the value of flow itself. Recall that</p>
@@ -442,17 +442,17 @@ $$
 \end{align*}
 $$
 </div>
-<p>We can therefore, let <script type="math/tex">C = \sum_{v \in V}f(s,v)</script> and so <script type="math/tex">|f| \leq C</script>. Along with (1) and (2), we can conclude that Ford-Fulkerson must terminate in at most <script type="math/tex">C</script> iterations. 
+<p>We can therefore, let \(C = \sum_{v \in V}f(s,v)\) and so \(|f| \leq C\). Along with (1) and (2), we can conclude that Ford-Fulkerson must terminate in at most \(C\) iterations. 
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Running Time</b></h4>
-<p>We know that <script type="math/tex">G</script> is connected and so finding an augmenting path using a depth first search or a breadth first search will run in <script type="math/tex">O(E + V) = O(E)</script> time. Updating the augmenting path in each iteration costs <script type="math/tex">O(E)</script> time. How many times do we loop? Given that the capacities are integers and depending on the maximum value of flow, <script type="math/tex">|f^*|</script>, the total running time is <script type="math/tex">O(E \ |f^*|)</script>.
+<p>We know that \(G\) is connected and so finding an augmenting path using a depth first search or a breadth first search will run in \(O(E + V) = O(E)\) time. Updating the augmenting path in each iteration costs \(O(E)\) time. How many times do we loop? Given that the capacities are integers and depending on the maximum value of flow, \(|f^*|\), the total running time is \(O(E \ |f^*|)\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Edmonds-Karp</b></h4>
-<p>One way to improve Ford-Fulkerson is by smartly choosing the augmenting path in each iteration. Edmonds-Karp chooses the shortest path from <script type="math/tex">s</script> to <script type="math/tex">t</script> where each edge has unit weight. Edmonds-Karp runs in <script type="math/tex">O(VE^2)</script> time. Why?
+<p>One way to improve Ford-Fulkerson is by smartly choosing the augmenting path in each iteration. Edmonds-Karp chooses the shortest path from \(s\) to \(t\) where each edge has unit weight. Edmonds-Karp runs in \(O(VE^2)\) time. Why?
 <br />
 <br />
 TODO

@@ -63,7 +63,7 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/trees/b-trees/b-tree.png" width="100%" />
-B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with <script type="math/tex">n</script> keys have <script type="math/tex">n+1</script> children. This way, each child handles a specific range of keys in its parent. 
+B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with \(n\) keys have \(n+1\) children. This way, each child handles a specific range of keys in its parent. 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -75,10 +75,10 @@ B-trees are balanced search trees. While red-black trees are also balanced searc
 <h4><b>Specifications</b></h4>
 <ul>
   <li>
-    <p>Let <script type="math/tex">x</script> be an internal node and let <script type="math/tex">n</script> be the number of keys stored at <script type="math/tex">x</script>. <script type="math/tex">x</script> must have <script type="math/tex">n+1</script> children. Furthermore, the keys are stored in non-decreasing order. Leaf nodes on the other hand have no children. No restrictions on the number of children of the root.</p>
+    <p>Let \(x\) be an internal node and let \(n\) be the number of keys stored at \(x\). \(x\) must have \(n+1\) children. Furthermore, the keys are stored in non-decreasing order. Leaf nodes on the other hand have no children. No restrictions on the number of children of the root.</p>
   </li>
   <li>
-    <p>The minimum degree of a b-tree is an integer, <script type="math/tex">t</script> such that <script type="math/tex">t \geq 2</script>. Every node besides the root must have between <script type="math/tex">t-1</script> and <script type="math/tex">2t-1</script> keys. This also implies that it must have at least <script type="math/tex">t</script> children and at most <script type="math/tex">2t</script> children. If the tree is not empty, the root must be at least have 1 key.</p>
+    <p>The minimum degree of a b-tree is an integer, \(t\) such that \(t \geq 2\). Every node besides the root must have between \(t-1\) and \(2t-1\) keys. This also implies that it must have at least \(t\) children and at most \(2t\) children. If the tree is not empty, the root must be at least have 1 key.</p>
   </li>
   <li>
     <p>The keys in each node are stored in non-decreasing order. The keys also define the range of keys stored in the children subtrees below. In the above figure, We see the range [0,23] defines the range for the child keys below [11,19]. Similarly [23,53] defines the range for the next child’s keys [29,43].
@@ -88,10 +88,10 @@ B-trees are balanced search trees. While red-black trees are also balanced searc
   </li>
 </ul>
 <h4><b>Why are B-trees balanced?</b></h4>
-<p>To see why B-trees are balanced, we will prove that the maximum height of a b-tree of degree <script type="math/tex">t</script> with <script type="math/tex">n</script> keys is <script type="math/tex">O(\log_t(n))</script>. 
+<p>To see why B-trees are balanced, we will prove that the maximum height of a b-tree of degree \(t\) with \(n\) keys is \(O(\log_t(n))\). 
 <br />
 <br />
-Proof: At level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least <script type="math/tex">t-1</script> keys, so the total number of keys is <script type="math/tex">2(t-1)</script>. Each of these children will have at least <script type="math/tex">t</script> children and so at level 2, we should have <script type="math/tex">2t(t-1)</script> keys. Therefore, the total number of keys is at least</p>
+Proof: At level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least \(t-1\) keys, so the total number of keys is \(2(t-1)\). Each of these children will have at least \(t\) children and so at level 2, we should have \(2t(t-1)\) keys. Therefore, the total number of keys is at least</p>
 <div center="">
 $$
 \begin{align*}
@@ -115,7 +115,7 @@ Each node stores an array of its keys. In the figure above, suppose we’re curr
 <ul>
   <li>$k = keys[i]$. This is great, we just return $x$ with the index of the key $i$.</li>
   <li>$x$ is a leaf node so we return NULL.</li>
-  <li>$k \neq keys[i]$. $k$ falls somewhere between the key at index <script type="math/tex">i-1</script> and the key at index <script type="math/tex">i</script>. This range corresponds to the child at index <script type="math/tex">i</script>. We call search again on the $i$th child.</li>
+  <li>$k \neq keys[i]$. $k$ falls somewhere between the key at index \(i-1\) and the key at index \(i\). This range corresponds to the child at index \(i\). We call search again on the $i$th child.</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// search a b-tree of degree t </span>

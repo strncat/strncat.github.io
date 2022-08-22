@@ -1,0 +1,100 @@
+I"E <p><img src="http://localhost:4000/assets/trees/b-trees/b-tree.png" width="100%" />
+B-trees are balanced search trees. While red-black trees are also balanced search trees, their branching factor is only 2. B-trees differ in that their branching factor can be really large. The number of keys in a B-tree node determines the number of its children. A node with \(n\) keys have \(n+1\) children. This way, each child handles a specific range of keys in its parent. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Motivation</b></h4>
+<p>But why do we need a large branching factor? The motivation behind this idea has to do with minimizing disk I/O operations. Data on disk can be read in <i>pages</i> and so if each node’s size is a whole page in which we pack a lot of keys in, we can then minimize the number of read operations. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Specifications</b></h4>
+<ul>
+  <li>
+    <p>Let \(x\) be an internal node and let \(n\) be the number of keys stored at \(x\). \(x\) must have \(n+1\) children. Furthermore, the keys are stored in non-decreasing order. Leaf nodes on the other hand have no children. No restrictions on the number of children of the root.</p>
+  </li>
+  <li>
+    <p>The minimum degree of a b-tree is an integer, \(t\) such that \(t \geq 2\). Every node besides the root must have between \(t-1\) and \(2t-1\) keys. This also implies that it must have at least \(t\) children and at most \(2t\) children. If the tree is not empty, the root must be at least have 1 key.</p>
+  </li>
+  <li>
+    <p>The keys in each node are stored in non-decreasing order. The keys also define the range of keys stored in the children subtrees below. In the above figure, We see the range [0,23] defines the range for the child keys below [11,19]. Similarly [23,53] defines the range for the next child’s keys [29,43].
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+  </li>
+</ul>
+<h4><b>Why are B-trees balanced?</b></h4>
+<p>To see why B-trees are balanced, we will prove that the maximum height of a b-tree of degree \(t\) with \(n\) keys is \(O(\log_t(n))\). 
+<br />
+<br />
+Proof: At level 0, the root must at least have 1 key. At level 1 we must have two children, each of which must have at least \(t-1\) keys, so the total number of keys is \(2(t-1)\). Each of these children will have at least \(t\) children and so at level 2, we should have \(2t(t-1)\) keys. Therefore, the total number of keys is at least</p>
+<div center="">
+$$
+\begin{align*}
+n &amp;\geq 1 + 2(t-1) + 2t(t-1) + 2t^2(t-1) + ... + 2t^{h-1}(t-1) \\
+&amp;= 1 + 2(t-1)(1 + t + t^2 + ... t^{h-1}) \\
+&amp;= 1 + 2(t-1)\frac{t^h - 1}{t - 1} \text{ (using } \sum_{k=0}^{n}x^k = \frac{x^{n+1} - 1}{x - 1} ) \\
+&amp;= 1 + 2(t^h - 1) \\
+&amp;= 2t^h - 1 \\
+\log_t(\frac{n + 1}{2}) &amp;\geq \log_t(h) \\
+h &amp;\leq \log_t(\frac{n + 1}{2}). \blacksquare
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Search</b></h4>
+<p>Similar to searching in a binary tree, we descend down the tree and select the right branch based on the key value. In $B$-trees, each node has has $n$ keys and so this means that we have $n+1$ children or branches. We need to compare our key with these $n$ keys to find the right child/branch to descend into.
+<img src="http://localhost:4000/assets/trees/b-trees/search.png" width="100%" />
+<br />
+Each node stores an array of its keys. In the figure above, suppose we’re currently at node $x$ during the search and suppose we’re searching for $k = 84$. We first want to find the smallest index such that $k \leq keys[i]$. For $k=84$, the smallest index is $i = 3$. 101 is the smallest key that is larger than 84. We then have several cases:</p>
+<ul>
+  <li>$k = keys[i]$. This is great, we just return $x$ with the index of the key $i$.</li>
+  <li>$x$ is a leaf node so we return NULL.</li>
+  <li>$k \neq keys[i]$. $k$ falls somewhere between the key at index \(i-1\) and the key at index \(i\). This range corresponds to the child at index \(i\). We call search again on the $i$th child.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// search a b-tree of degree t </span>
+<span class="n">search</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// search for the smallest index such that k &lt;= keys[i]</span>
+    <span class="c1">// this means k will be in the range (keys[i-1], keys[i])</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// three possible cases</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="p">.</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// key found</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">leaf</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// x is a leaf node</span>
+         <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// no more possible matches</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">child</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">k</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>How long does Search take?</b></h4>
+<p>Note that in the above method, we were using a linear search to find the right key. For a tree of degree $t$, each node can have at most $2t-1$ keys. So this search takes $O(t)$ time. Since the tree height is $O(log_t(n))$ then the total cost is $O(t\log_t(n))$.
+<br />
+<br />
+Suppose we instead use <i>binary search</i> to find the key. This means that each search will now take $O(\log(t))$ time and so the total cost becomes $O(\log(t)\log_t(n))$. Re-writing $\log_t(n)$ as $\frac{\log(n)}{\log(t)}$, we see that the total time is $O(\log(n))$.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Insert</b></h4>
+<p>TODO
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Delete</b></h4>
+<p>TODO
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+  <li>CLRS</li>
+  <li><a href="http://web.stanford.edu/class/cs166/lectures/05/Small05.pdf">Stanford CS166</a></li>
+</ul>
+
+:ET

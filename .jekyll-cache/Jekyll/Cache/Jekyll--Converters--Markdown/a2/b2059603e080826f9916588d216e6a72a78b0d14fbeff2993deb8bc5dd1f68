@@ -1,0 +1,173 @@
+I"�`<p>The Knapsack problem is a classic dynamic programming problem. In this problem, we are given a knapsack of size \(W\) for some integer \(W\) and a list of items. Each item \(x_i\) has an integer weight \(w_i\) and an integer value, \(v_i\). The goal is to maximize the value of the knapsack under the constraint \(W\). There are many variations of the Knapsack problem. 0/1 Knapsack puts a limit of at most 1 copy of each item that you can pack in the knapsack. So we either select an item \(x_i\) or we don’t. There is also the unbounded knaspack where you have multiple/unbounded copies of each item.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Unbounded Knapsack</b></h4>
+<p>Let’s focus now on the unbounded knapsack problem and let’s start with an example. Suppose we have an unbounded number of tacos, each of weight 2 and value 4. We also have burritos each of weight 6 and value 17. Suppose now that we have a knapsack of size, \(W=14\). The optimal solution is to pack 2 burritos and 1 taco which will give an optimal value of \(2*17+1*4=38\). 
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>A Greedy Approach</b></h4>
+<p>The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One simple greedy strategy is to always pick the item with the best value/weight ratio. In the above example, we’ll pick 2 burritos of value \(2*17=34\) which is not an optimal value.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Complete Search</b></h4>
+<p>We can also try a complete search of every possible combination of items. We can simulate this by inserting \(\lceil W/x_i \rceil\) copies of item \(x_i\) to a new list of items. If we originally had \(n\) items, we could potentially insert \(O(n^2)\) items in the new list. We can now iterate through the list and for each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be \(O(2^{n^2})\).
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Dynamic Programming</b></h4>
+<p>As we saw above, greedy doesn’t work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming. To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
+<br />
+<br />
+Let \(K[x]\) be the optimal value for capacity \(x\). We will have the following recursive substructure:</p>
+<div center="">
+$$
+\begin{align*}
+K[x] = \max_i\{K[x - w_i] + v_i\}
+\end{align*}
+$$
+</div>
+<p>In other words, suppose we have unlimited copies of the following \(n\) items, \(\{\{w_0,v_0\},\{w_1,v_0\},...,\{w_n,v_n\}\}\). Assume now that the optimal solution contains some item \(x_i\). Then we will see that \(K[x-w_i] = k[x] - v_i\), meaning that the optimal solution for \(K[x]\) contains within it optimal solutions to smaller subproblems.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">item</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">w</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">item</span><span class="p">(</span><span class="kt">int</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">weight</span><span class="p">;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="n">item</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">unbounded_knapsack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">bag</span><span class="p">,</span> <span class="kt">int</span> <span class="n">W</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">items</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">K</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">W</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">K</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">items</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="c1">// base case, k[0] = 0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">w</span> <span class="o">&lt;=</span> <span class="n">W</span><span class="p">;</span> <span class="n">w</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each weight w</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bag</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each item i</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="n">w</span> <span class="o">&amp;&amp;</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span> <span class="o">+</span> <span class="n">K</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">K</span><span class="p">[</span><span class="n">w</span><span class="p">])</span> <span class="p">{</span>
+                <span class="c1">// maybe there is a more effient way?</span>
+                <span class="n">items</span><span class="p">[</span><span class="n">w</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
+                <span class="n">items</span><span class="p">[</span><span class="n">w</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+                <span class="n">items</span><span class="p">[</span><span class="n">w</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">w</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span> <span class="n">items</span><span class="p">[</span><span class="n">w</span><span class="o">-</span><span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span> <span class="n">items</span><span class="p">[</span><span class="n">w</span><span class="o">-</span><span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">].</span><span class="n">end</span><span class="p">());</span>
+                <span class="n">K</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span> <span class="o">+</span> <span class="n">K</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// print items</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">items</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"(%d %d) "</span><span class="p">,</span> <span class="n">bag</span><span class="p">[</span><span class="n">items</span><span class="p">[</span><span class="n">W</span><span class="p">][</span><span class="n">i</span><span class="p">]].</span><span class="n">w</span><span class="p">,</span> <span class="n">bag</span><span class="p">[</span><span class="n">items</span><span class="p">[</span><span class="n">W</span><span class="p">][</span><span class="n">i</span><span class="p">]].</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Optimal value = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">K</span><span class="p">[</span><span class="n">W</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="n">K</span><span class="p">[</span><span class="n">W</span><span class="p">];</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Proof of Correctness</b></h4>
+<p><i>Proof:</i> <br />
+Suppose that we have a knapsack of size \(W\) and suppose that we have unbounded copies of \(n\) items available to us. Now suppose that we know the optimal value to the knapsack is \(K[W]\) and that the optimal solution contains one copy of item \(x_k\) for some natural number \(k\). We claim that \(K[W] - v_k\) is an optimal value for a knapsack of size \(W - x_k\). That is, \(K[W - x_k] = K[W] - v_k\).
+<br /><br />
+We will prove our claim by contradiction. Suppose that \(K[W] - v_k\) is not an optimal value and that the optimal value is \(T^{\prime}\). Since we know that the optimal solution to the knapsack of size \(W\) contains a copy of item \(x_k\), we can therefore add \(x_k\) to \(K[W - x_k]\) to obtain an optimal value \(T^{\prime} + v_k\). But \(T^{\prime} + v_k &gt;  K[W] - v_k + v_k = K[W]\). This is a contradiction since we assumed that \(K[W]\) is an optimal value. Therefore, \(K[W] - v_k\) must be an optimal value for a knapsack of size \(W - x_k\). \(\blacksquare\)
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>Assume we have \(n\) items and the knapsack is of size \(W\). The runtime is \(O(nW)\).
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>0/1 Knapsack</b></h4>
+<p>Let’s focus now on the 0/1 knapsack problem and let’s start with an example. Suppose we have a taco of weight 3 and value 10. We also a burrito of weight 6 and value 14 and a enchilada of weight 5 and value 11. Suppose now that we have a knapsack of size, \(W=9\). The optimal solution is to pack a taco and an enchilada for a total value of 27.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Complete Search</b></h4>
+<p>A greedy approach won’t work similar to the unbounded knapsack. We can instead do an exhaustive search. We can check every possible combination of the items we have. We will have 2 choices for each item. We either select the item or we don’t. Therefore, we have \(2^n\) possible subsets to check and the running time is \(O(2^n)\). 
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Dynamic Programming</b></h4>
+<p>Unfortunately we can’t use the same recursive substructure in the unbounded knapsack above. In this problem, we need to also keep track of which items are available at each step since some might have been taken. So if the smaller subproblem is using an item \(x\), the larger problem must know not to re-take it which is a violation to the constraint of having one copy only per item.
+<br />
+<br />
+Therefore, our subproblems must track both the size of the knapsack and the items allowed so far and therefore, we need a two dimensional table! we’ll let \(x\) to indicate the knapsack size and \(y\) to indicate that we’re using the first \(y\) items.
+<br />
+<br />
+Suppose we know the optimal solution to \(K[x,y]\) for a knapsack of size \(x\) using items \(0,..y\).
+<br />
+There are two cases:
+<br />
+Case 1: \(K[x,y]\) does not use item \(y\). In this case, \(K[x,y] = K[x,y-1]\).
+<br />
+Case 2: We do use item \(y\). In this case, we claim that \(K[x,y] = K[x-w_y,y-1] + y_k\).
+<br />
+We can therefore, summarize it in:</p>
+<div center="">
+$$
+\begin{align*}
+K[x,y] = \max\{K[x, y-1], K[x - w_y, y-1] + v_y\}
+\end{align*}
+$$
+</div>
+<p>With the base case of \(K[x,0]=0\) and \(K[0,y]=0\).
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Proof of Correctness</b></h4>
+<p>The proof is very similar to the structure of our earlier proof to the unbounded knapsack problem. If we can have a better solution to the subproblem then we can have even a better solution to the optimal solution to the larger problem which is a contradiction. I might write it later?.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">knapsack_01</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">bag</span><span class="p">,</span> <span class="kt">int</span> <span class="n">W</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">K</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="c1">// base case k[0][j] = 0, K[i][0] = 0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">w</span> <span class="o">&lt;=</span> <span class="n">W</span><span class="p">;</span> <span class="n">w</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each weight w</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">bag</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each item i:</span>
+            <span class="c1">// case 1: item i is not in the optimal solution</span>
+            <span class="n">K</span><span class="p">[</span><span class="n">w</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">K</span><span class="p">[</span><span class="n">w</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+            <span class="c1">// case 2: item i is in the optimal solution</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="n">w</span> <span class="o">&amp;&amp;</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">v</span> <span class="o">+</span> <span class="n">K</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">w</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">K</span><span class="p">[</span><span class="n">w</span><span class="p">][</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="n">K</span><span class="p">[</span><span class="n">w</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">v</span> <span class="o">+</span> <span class="n">K</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">w</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// print items</span>
+    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">K</span><span class="p">[</span><span class="n">W</span><span class="p">][</span><span class="n">bag</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">cur_w</span> <span class="o">=</span> <span class="n">W</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">cur_v</span> <span class="o">=</span> <span class="n">K</span><span class="p">[</span><span class="n">W</span><span class="p">][</span><span class="n">bag</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">bag</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">res</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">cur_v</span> <span class="o">!=</span> <span class="n">K</span><span class="p">[</span><span class="n">cur_w</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">w</span><span class="p">,</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">v</span><span class="p">);</span>
+            <span class="n">cur_v</span> <span class="o">-=</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">v</span><span class="p">;</span>
+            <span class="n">cur_w</span> <span class="o">-=</span> <span class="n">bag</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">w</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Optimal value = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">K</span><span class="p">[</span><span class="n">W</span><span class="p">][</span><span class="n">bag</span><span class="p">.</span><span class="n">size</span><span class="p">()]);</span>
+    <span class="k">return</span> <span class="n">K</span><span class="p">[</span><span class="n">W</span><span class="p">][</span><span class="n">bag</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Source Code <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/knapsack.cpp">Stanford CS161</a>
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+  <li><a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
+<br />
+<br /></li>
+</ul>
+:ET

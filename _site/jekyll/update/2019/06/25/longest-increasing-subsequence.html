@@ -138,16 +138,16 @@ We claim that $D[i+1]$ is the length of longest increasing subsequence ending at
 <br />
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>Initially we start with arrays <script type="math/tex">A</script> and <script type="math/tex">D</script>:
-Consider again <script type="math/tex">A = [3, 8, 1, 2, 7, 9, 6, 4, 5]</script>. We initialize <script type="math/tex">D</script> to be <script type="math/tex">D = [1, 1, 1, 1, 1, 1, 1, 1, 1]</script> representing the initial length of the subsequence ending at each possible element, $A[i]$.
+<p>Initially we start with arrays \(A\) and \(D\):
+Consider again \(A = [3, 8, 1, 2, 7, 9, 6, 4, 5]\). We initialize \(D\) to be \(D = [1, 1, 1, 1, 1, 1, 1, 1, 1]\) representing the initial length of the subsequence ending at each possible element, $A[i]$.
 <br /><br />
-Iteration <script type="math/tex">i = 1</script>. We look at $A[1] = 8$. We have <script type="math/tex">D[1]=1</script> and so the subsequence is just <script type="math/tex">\{8\}</script>. Can 8 extend any previous subsequences? We look at <script type="math/tex">j = 0</script> and in that case, we see that $A[1] &gt; A[0]$, meaning that that the subsequence can now include 3 and become <script type="math/tex">\{3, 8\}</script>. And so now we have:</p>
+Iteration \(i = 1\). We look at $A[1] = 8$. We have \(D[1]=1\) and so the subsequence is just \(\{8\}\). Can 8 extend any previous subsequences? We look at \(j = 0\) and in that case, we see that $A[1] &gt; A[0]$, meaning that that the subsequence can now include 3 and become \(\{3, 8\}\). And so now we have:</p>
 <div center="">
 $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
 $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
 </div>
 <p><br />
-Iteration <script type="math/tex">i = 2</script>. We look at <script type="math/tex">A[2] = 1</script>. We have <script type="math/tex">D[2]=1</script> and so the subsequence is just <script type="math/tex">\{1\}</script>. Can 1 extend any previous subsequences? We need to look at <script type="math/tex">j = 0</script> and <script type="math/tex">j = 1</script>. It turns out that 1 will not be able to extend either subsequence.</p>
+Iteration \(i = 2\). We look at \(A[2] = 1\). We have \(D[2]=1\) and so the subsequence is just \(\{1\}\). Can 1 extend any previous subsequences? We need to look at \(j = 0\) and \(j = 1\). It turns out that 1 will not be able to extend either subsequence.</p>
 <div center="">
 $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
 $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
@@ -165,12 +165,11 @@ $$D = [1, 2, 1, 2, 3, 4, 3, 3, 4]$$
 <h4><b>The $O(nlg(n))$ Solution with Binary Search</b></h4>
 <p>The $O(n^2)$ dynamic programming solution we’ve developed is great but can we do better? The answer is fortunately yes!
 <br /><br />
-Previously, we said that $D[i]$ is the length of the longest subsequence ending at <script type="math/tex">A[i]</script>. Now we will consider a completely different substructure. Let $M[i]$ to be the smallest element that ends a subsequence of length $i$. For simplicity, we will initially let $M[0]$ to be $-\infty$ and everything else to be $\infty$. 
+Previously, we said that $D[i]$ is the length of the longest subsequence ending at \(A[i]\). Now we will consider a completely different substructure. Let $M[i]$ to be the smallest element that ends a subsequence of length $i$. For simplicity, we will initially let $M[0]$ to be $-\infty$ and everything else to be $\infty$. 
 <br /><br />
 Let’s take the same example where $A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$. In this case, the smallest number that ends a subsequence of length 1 is 1 and so $M[1]=1$. Also, the smallest number that ends a subsequence of length 3 is 4 with subsequence $[1,2,4]$. Note that $[3,7,9]$ is a subsequence of length 3 but 9 is not smaller than 4 and so $M[3]$ remains to be 4. We will eventually have $M$ be $[-\infty, 1, 2, 4, 5, \infty, \infty, \infty, \infty]$.
 <br /><br />
-Before proceeding with the algorithm and why it works, let’s prove that based on our construction of <script type="math/tex">M</script>, that <script type="math/tex">M</script> must be sorted because this will help us later on to prove that the algorithm is correct. We will prove that <script type="math/tex">M</script> is a strictly increasing array and that for any <script type="math/tex">k</script>, we have <script type="math/tex">% <![CDATA[
-M[k] < M[k+1] %]]></script>. (We will ignore the placeholder <script type="math/tex">\infty</script>’s otherwise the proof would not work)
+Before proceeding with the algorithm and why it works, let’s prove that based on our construction of \(M\), that \(M\) must be sorted because this will help us later on to prove that the algorithm is correct. We will prove that \(M\) is a strictly increasing array and that for any \(k\), we have \(M[k] &lt; M[k+1]\). (We will ignore the placeholder \(\infty\)’s otherwise the proof would not work)
 <br /><br /></p>
 
 <table>
@@ -182,16 +181,13 @@ M[k] < M[k+1] %]]></script>. (We will ignore the placeholder <script type="math/
 </table>
 
 <p><b>Proof:</b><br />
-Suppose it is not and that there exists some <script type="math/tex">j</script> where either <script type="math/tex">M[j] = M[j+1]</script> or <script type="math/tex">M[j] > M[j+1]</script>. We will prove neither that case is possible.
+Suppose it is not and that there exists some \(j\) where either \(M[j] = M[j+1]\) or \(M[j] &gt; M[j+1]\). We will prove neither that case is possible.
 <br /><br />
-First, suppose that <script type="math/tex">M[j] = M[j+1]</script> then this means that we have two strictly increasing subsequences that end in <script type="math/tex">M[j]</script>. Let the first subsequence be <script type="math/tex">\{a_1, a_2,...a_n,M[j]\}</script> of length <script type="math/tex">j</script> and let the second subsequence be <script type="math/tex">\{b_1,b_2,..,b_m,M[j]\}</script> of length <script type="math/tex">j+1</script> and so <script type="math/tex">m = n + 1</script>. Since this is a strictly increasing subsequence, we must have <script type="math/tex">% <![CDATA[
-b_m < M[j] %]]></script>. This is a contradiction because by assumption we know that <script type="math/tex">M[j]</script> is the smallest element that ends a subsequence of length <script type="math/tex">j</script> but we just showed that there exists a subsequence, namely, <script type="math/tex">\{b_1,b_2,..,b_m\}</script>, of length <script type="math/tex">j</script> that ends with a smaller element, namely <script type="math/tex">% <![CDATA[
-b_m < M[j] %]]></script>.
+First, suppose that \(M[j] = M[j+1]\) then this means that we have two strictly increasing subsequences that end in \(M[j]\). Let the first subsequence be \(\{a_1, a_2,...a_n,M[j]\}\) of length \(j\) and let the second subsequence be \(\{b_1,b_2,..,b_m,M[j]\}\) of length \(j+1\) and so \(m = n + 1\). Since this is a strictly increasing subsequence, we must have \(b_m &lt; M[j]\). This is a contradiction because by assumption we know that \(M[j]\) is the smallest element that ends a subsequence of length \(j\) but we just showed that there exists a subsequence, namely, \(\{b_1,b_2,..,b_m\}\), of length \(j\) that ends with a smaller element, namely \(b_m &lt; M[j]\).
 <br /><br />
-Next, suppose that <script type="math/tex">M[j] > M[j+1]</script>. This is a contradiction for the same reasons above. Let <script type="math/tex">a</script> be the subsequence of length <script type="math/tex">j</script> that ends with <script type="math/tex">M[j]</script> and if we let <script type="math/tex">b</script> the subsequence of length <script type="math/tex">j+1</script> that ends with M[j+1]. Since subsequences are strictly increasing then we can extract all the elements from <script type="math/tex">b</script> except for <script type="math/tex">M[j+1]</script>. This new sequence ends with an element strictly less than <script type="math/tex">M[j]</script> and therefore, we arrive at the same contradiction and conclude that it is not possible.
+Next, suppose that \(M[j] &gt; M[j+1]\). This is a contradiction for the same reasons above. Let \(a\) be the subsequence of length \(j\) that ends with \(M[j]\) and if we let \(b\) the subsequence of length \(j+1\) that ends with M[j+1]. Since subsequences are strictly increasing then we can extract all the elements from \(b\) except for \(M[j+1]\). This new sequence ends with an element strictly less than \(M[j]\) and therefore, we arrive at the same contradiction and conclude that it is not possible.
 <br /><br />
-Therefore, we can conclude that we must have <script type="math/tex">% <![CDATA[
-M[k] < M[k+1] %]]></script> for all <script type="math/tex">k</script> as we wanted to show.
+Therefore, we can conclude that we must have \(M[k] &lt; M[k+1]\) for all \(k\) as we wanted to show.
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>Algorithm</b></h4>
 <p>Let’s traverse $A$ from left to right. For the base case, we consider $i = 0$ and at this point we know that $A[0] &gt; -\infty$ and so $M[1] = A[0]$.
@@ -200,8 +196,7 @@ Now let’s consider iteration $i$ and element $A[i]$. Also, let $k$ be the leng
 <br /><br />
 Case 1: $A[i] &gt; M[k]$. In this case, we see that it is possible to extend the subsequence ending with element $M[k]$ because $A[i]$ is greater, yay! Now we can set $M[k+1] = A[i]$ and we are done. (But why? don’t we need to check previous subsequences in $M$? No. Proof: We established previously that $M$ is sorted and so if $A[i] &gt; M[k]$ then $A[i] &gt; M[j]$ for $j \leq k$. This means that $A[i]$ is not a possible candidate for replacing any of the previous elements because $M$ holds ONLY the minimum possible elements that end each subsequence.)
 <br /><br />
-Case 2: <script type="math/tex">% <![CDATA[
-A[i] < M[k] %]]></script>. This one is tricky. In this case $A[i]$ can’t extend the current subsequence of length $k$, but it can potentially be a better candidate for ending some subsequence of length $1,…,k$. Recall that $M$ is sorted and is a strictly increasing array. Let $j$ be natural number where $j \leq k$ and $M[j]$ is the smallest element such that $A[i] &lt; M[j]$. (Note that it might be that $j = k$). By our construction, this means that $A[i] &gt; M[j-1]$. (Note that it might be that j-1 = 0). This means that we can take the subsequence of length $j-1$ ending with $M[j-1]$ and extend it with $A[i]$, making a new subsequence of length $j$ that has a smaller ending value than the one ending with $M[j]$! (we’re basically replacing the subsequence ending with $M[j]$ with the new subsequence consisting of what we have already in $M[j-1]$ plus <script type="math/tex">A[i]</script>). How do we find such an index $j$ where $M[j-1] &lt; A[i] &lt; M[j]$? This is where binary search comes in! since $M$ is sorted, we can find this position in just $O(\log(n))$.
+Case 2: \(A[i] &lt; M[k]\). This one is tricky. In this case $A[i]$ can’t extend the current subsequence of length $k$, but it can potentially be a better candidate for ending some subsequence of length $1,…,k$. Recall that $M$ is sorted and is a strictly increasing array. Let $j$ be natural number where $j \leq k$ and $M[j]$ is the smallest element such that $A[i] &lt; M[j]$. (Note that it might be that $j = k$). By our construction, this means that $A[i] &gt; M[j-1]$. (Note that it might be that j-1 = 0). This means that we can take the subsequence of length $j-1$ ending with $M[j-1]$ and extend it with $A[i]$, making a new subsequence of length $j$ that has a smaller ending value than the one ending with $M[j]$! (we’re basically replacing the subsequence ending with $M[j]$ with the new subsequence consisting of what we have already in $M[j-1]$ plus \(A[i]\)). How do we find such an index $j$ where $M[j-1] &lt; A[i] &lt; M[j]$? This is where binary search comes in! since $M$ is sorted, we can find this position in just $O(\log(n))$.
 <br /><br />
 Could we replace the end of any other subsequence? No. Even though $A[i] &lt; M[j]$ for all $j..k$, only $M[j]$ can be replaced because $A[i] &gt; M[j-1]$. Any subsequence of length greater than $j$ already has more elements than just $j$ so $A[i]$ could not end these subsequences. (more formal?)
 <br />
@@ -250,7 +245,7 @@ Could we replace the end of any other subsequence? No. Even though $A[i] &lt; M[
 <!-----------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
 <ul>
-  <li>The notes on the <script type="math/tex">O(n^2)</script> solution are based on the awesome lecture notes from <a href="http://web.stanford.edu/class/cs161/schedule.html">CS161 Stanford</a></li>
+  <li>The notes on the \(O(n^2)\) solution are based on the awesome lecture notes from <a href="http://web.stanford.edu/class/cs161/schedule.html">CS161 Stanford</a></li>
   <li>The notes on the $(O(n\log(n)))$ solution are my own notes
 <br />
 <br /></li>

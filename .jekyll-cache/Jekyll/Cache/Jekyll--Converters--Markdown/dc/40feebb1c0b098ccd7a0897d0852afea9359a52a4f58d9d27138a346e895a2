@@ -1,0 +1,78 @@
+I"Z!<p>Problems with greedy solutions might have really simple and straight forward solutions however, they are really hard to reason about. This is why greedy algorithms are generally taught toward the end of an algorithms class. One classic problem with a greedy solution is the activity selection problem. In this problem, we are given a list of activities, each with a start time, \(t_i\), and a finish time, \(f_i\), and we would like to pick a set of activities such that the total number of activities is maximized with the constraint that no two activities can overlap.
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Greedy Solution</b></h4>
+<p>As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activity with the earliest finish time at each step until we run out of activities.
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Suppose we have the following activities:
+<img src="http://localhost:4000/assets/activities.png" alt="my photo" />
+Based on our strategy, we will pick $A1$ first. We will skip $A2$ since it violates the condition of not having overlapped activities. We will then go on to pick $A3$, $A5$ and $A6$.
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Implementation</b></h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">activity</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">start_time</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">finish_time</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">activity</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="n">custom_sort_by_finish_time</span><span class="p">(</span><span class="k">const</span> <span class="n">activity</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">activity</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">finish_time</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">finish_time</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">select_maximum_activities</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">activities</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">activities</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">activities</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">custom_sort_by_finish_time</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">activity</span><span class="o">&gt;</span> <span class="n">picked</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">activities</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">activities</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start_time</span> <span class="o">&gt;=</span> <span class="n">picked</span><span class="p">[</span><span class="n">picked</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">finish_time</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">picked</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">activities</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">picked</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Correctness Proof</b></h4>
+<p>This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So, each decision we make doesn’t affect our ability of reaching out an optimal solution.
+<br />
+<br />
+This should sound very familiar. We have a base case where we start with an empty set of activities and then we want to prove that each selection we make doesn’t rule out an optimal solution. What proof method should we use? of course, Induction.
+<br />
+<br />
+<i>Proof By Induction:</i><br />
+<b>Inductive Hypothesis: </b> After adding the $t$’th activity, there is an optimal solution that extends our current solution.
+<br /></p>
+
+<p><b>Base Case:</b> When we add the zero’th activity, there exists an optimal solution that extends the current solution which contains no activities yet.
+<br /></p>
+
+<p><b>Inductive Step:</b>
+Let $k$ be a natural number and suppose we’re about to add the $k$’th activity and that our inductive hypothesis holds for $k-1$, meaning that we didn’t rule out an optimal solution yet and that there is some optimal solution \(T^*\) that extends the $k-1$ choices we’ve made so far. We’re about to select our $k$’th activity. 
+<br /><br />
+Our greedy algorithm picks the next activity with the earliest finish time such that it doesn’t overlap with any of the $k-1$ activities we’ve selected so far. Let our selection be $a_j$ for some natural number $j$. There are two cases <br /><br />
+Case 1: $a_j$ is in the optimal solution so \(a_j \in T^*\). yay, we didn’t rule out the optimal solution and we’re done! <br />
+Case 2: $a_j$ is not in the optimal solution so \(a_j \not\in T^*\). In this case, some other activity was selected instead of $a_j$. Let that activity be $a_k$. Let’s consider swapping $a_j$ and $a_k$ to create a new set of activities, $T$.
+<br /><br />
+We claim that $T$ is allowed and optimal. First, we know that $a_j$ has a smaller finish than $a_k$ because our greedy algorithm selects the activity with the earliest finish time. Therefore, $a_j$ doesn’t conflict with anything chosen after $a_k$. From this we see that \(T\) also has the same number of activities as \(T^*\) and therefore, we can conclude that \(T^*\) is optimal.</p>
+
+<p><b>Conclusion:</b>
+After adding the last activity, we will have an optimal solution that extends our current choices. Our current choices or solution is the only solution that extends the current solution and therefore, our current solution is optimal. $\blacksquare$
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>Running Time</b></h4>
+<p>If we need to sort the activities, then it will be $O(n\log(n))$. If it’s sorted, then we’re only doing a linear scan of activities and therefore, the running time is $O(n)$. 
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
+<br />
+<br /></p>
+
+:ET

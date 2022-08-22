@@ -63,27 +63,27 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><img src="http://localhost:4000/assets/rmq/rmq-array.png" alt="my photo" />
-Given an array <script type="math/tex">A</script> and two indices <script type="math/tex">i \leq j</script> that are not known in advance. The RMQ problem solves the problem of finding the minimum element in the range <script type="math/tex">A[i],A[i+1],...,A[j-1],A[j]</script>.
+Given an array \(A\) and two indices \(i \leq j\) that are not known in advance. The RMQ problem solves the problem of finding the minimum element in the range \(A[i],A[i+1],...,A[j-1],A[j]\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Definitions</b></h4>
-<p>Let <script type="math/tex">\langle p(n), q(n)\rangle</script> be the complexity of an algorithm with preprocessing time <script type="math/tex">p(n)</script> and query time <script type="math/tex">q(n)</script>.
+<p>Let \(\langle p(n), q(n)\rangle\) be the complexity of an algorithm with preprocessing time \(p(n)\) and query time \(q(n)\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Algorithm 1: no preprocessing</b></h4>
-<p>The simplest approach is to not do any kind of preprocessing on the input and just compute the minimum for each query. Therefore, we will have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(1), O(n)\rangle</script>.
+<p>The simplest approach is to not do any kind of preprocessing on the input and just compute the minimum for each query. Therefore, we will have \(\langle p(n), q(n)\rangle = \langle O(1), O(n)\rangle\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Algorithm 2: precompute all ranges</b></h4>
-<p>We compute the minimum element for all possible ranges. There are <script type="math/tex">O(n^2)</script> possible ranges. We need $O(n)$ time to compute the minimum in each range so the total time preprocessing time is <script type="math/tex">p(n) = O(n^3)</script> and therefore, we have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(n^3), O(1)\rangle</script>.
+<p>We compute the minimum element for all possible ranges. There are \(O(n^2)\) possible ranges. We need $O(n)$ time to compute the minimum in each range so the total time preprocessing time is \(p(n) = O(n^3)\) and therefore, we have \(\langle p(n), q(n)\rangle = \langle O(n^3), O(1)\rangle\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Algorithm 3: precompute all ranges with dynamic programming</b></h4>
-<p>We can use dynamic programming to compute all the ranges. Given that we know the minimum <script type="math/tex">m</script> to a range <script type="math/tex">A[i,...j]</script>, the solution to the range <script type="math/tex">A[i,...j+1]</script> is just <script type="math/tex">min(m, A[j+1])</script>.</p>
+<p>We can use dynamic programming to compute all the ranges. Given that we know the minimum \(m\) to a range \(A[i,...j]\), the solution to the range \(A[i,...j+1]\) is just \(min(m, A[j+1])\).</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">n</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="p">{...}</span>
 <span class="c1">// given the minimum to range dp[i,j-1], </span>
@@ -98,30 +98,30 @@ Given an array <script type="math/tex">A</script> and two indices <script type="
     <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
-<p>Therefore, <script type="math/tex">p(n) = O(n^2)</script> and we have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(n^2), O(1)\rangle</script>.
+<p>Therefore, \(p(n) = O(n^2)\) and we have \(\langle p(n), q(n)\rangle = \langle O(n^2), O(1)\rangle\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>
 <h4><b>Algorithm 4: block decomposition</b></h4>
 <p><img src="http://localhost:4000/assets/rmq/rmq-block.png" alt="my photo" />
 <i>Approach:</i><br />
-We can split the input into <script type="math/tex">O(n/b)</script> blocks of block size <script type="math/tex">b</script> and compute the minumum in each block.<br /></p>
+We can split the input into \(O(n/b)\) blocks of block size \(b\) and compute the minumum in each block.<br /></p>
 
 <p><i>Preprocessing Time:</i><br />
-We need to find the minimum for each block. Time to find the minimum for all blocks is <script type="math/tex">p(n) = n/b*b = O(n)</script>. <br /></p>
+We need to find the minimum for each block. Time to find the minimum for all blocks is \(p(n) = n/b*b = O(n)\). <br /></p>
 
 <p><i>Query Time:</i><br />
-Given indices <script type="math/tex">i</script> and <script type="math/tex">j</script>.<br />
-(1) We find the minimum for the internal blocks between <script type="math/tex">i</script> and <script type="math/tex">j</script> in time <script type="math/tex">O(n/b)</script>.<br />
-(2) We need to look at possibly all the elements in the two outer blocks. This can be done in time <script type="math/tex">O(2b)=O(b)</script>.<br /></p>
+Given indices \(i\) and \(j\).<br />
+(1) We find the minimum for the internal blocks between \(i\) and \(j\) in time \(O(n/b)\).<br />
+(2) We need to look at possibly all the elements in the two outer blocks. This can be done in time \(O(2b)=O(b)\).<br /></p>
 
-<p>Therefore, <script type="math/tex">q(n) = O(b + (n/b))</script>:</p>
+<p>Therefore, \(q(n) = O(b + (n/b))\):</p>
 
 <p><i>What is the optimal block size?</i><br />
-We can take the derivative of <script type="math/tex">b + n/b</script> to find the value that minimizes <script type="math/tex">b</script>. This value is <script type="math/tex">b = \sqrt{n}</script>. Therefore, the query time is <script type="math/tex">q(n) = O(b + (n/b)) = O(\sqrt{n} + (n/\sqrt{n})) = O(\sqrt{n})</script>.
+We can take the derivative of \(b + n/b\) to find the value that minimizes \(b\). This value is \(b = \sqrt{n}\). Therefore, the query time is \(q(n) = O(b + (n/b)) = O(\sqrt{n} + (n/\sqrt{n})) = O(\sqrt{n})\).
 <br />
 <br />
-Finally we will have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(n), O(\sqrt{n})\rangle</script>.</p>
+Finally we will have \(\langle p(n), q(n)\rangle = \langle O(n), O(\sqrt{n})\rangle\).</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// given that we computed each block's minimum</span>
 <span class="c1">// given indices i and j, we can do something like this</span>
@@ -171,16 +171,16 @@ $$
 
 <p><img src="http://localhost:4000/assets/rmq/rmq-sparse.png" alt="my photo" /></p>
 
-<p>Each Entry, <script type="math/tex">M[i,j]</script> represents the minimum for the range <script type="math/tex">\{i,i+2^j\}</script>. Since we’re computing <script type="math/tex">n\log(n)</script> ranges, therefore, this table has size <script type="math/tex">O(nlogn)</script>. We can further use dynamic programmnig to fill this table out. 
+<p>Each Entry, \(M[i,j]\) represents the minimum for the range \(\{i,i+2^j\}\). Since we’re computing \(n\log(n)\) ranges, therefore, this table has size \(O(nlogn)\). We can further use dynamic programmnig to fill this table out. 
 <br />
 <br />
 <i>Dyanmic Programming</i>
 <br />
-Notice that any region can be divided into two regions. The intuition is that since we’re computing the minimum for ranges that are powers of 2, then any region of size <script type="math/tex">2^k</script> can be divided into two regions of size <script type="math/tex">2^{k-1}</script> which we compute first. In the example below, we want to find the minimum for the gray range that starts at <script type="math/tex">i</script> and of size <script type="math/tex">2^j</script>. To do so, we divide the range into the blue and yellow regions, each of size <script type="math/tex">2^{j-1}</script>. The blue region is just <script type="math/tex">M[i,j-1]</script> and the yellow region is just <script type="math/tex">M[i+2^{j-1},j-1]</script>
+Notice that any region can be divided into two regions. The intuition is that since we’re computing the minimum for ranges that are powers of 2, then any region of size \(2^k\) can be divided into two regions of size \(2^{k-1}\) which we compute first. In the example below, we want to find the minimum for the gray range that starts at \(i\) and of size \(2^j\). To do so, we divide the range into the blue and yellow regions, each of size \(2^{j-1}\). The blue region is just \(M[i,j-1]\) and the yellow region is just \(M[i+2^{j-1},j-1]\)
 <br />
 <img src="http://localhost:4000/assets/rmq/rmq-sparse-range.png" alt="my photo" />
 <br />
-Therefore, the recursive formula to compute <script type="math/tex">M[i,j]</script> is:</p>
+Therefore, the recursive formula to compute \(M[i,j]\) is:</p>
 <div center="">
 $$
  M[i,j] = \left\{\begin{array}{@{}lr@{}}
@@ -212,16 +212,16 @@ $$
 <p><br /></p>
 
 <p><i>Preprocessing Time:</i><br />
-Notice that for each index, we’re computing <script type="math/tex">\log{n}</script> ranges. Therefore, the total preprocessing time <script type="math/tex">p(n) = O(n\log(n))</script>.
+Notice that for each index, we’re computing \(\log{n}\) ranges. Therefore, the total preprocessing time \(p(n) = O(n\log(n))\).
 <br />
 <br />
 <i>Query Time:</i><br />
 <img src="http://localhost:4000/assets/rmq/rmq-sparse-query.png" alt="my photo" />
 <br />
-Given indices <script type="math/tex">i</script> and <script type="math/tex">j</script>:<br />
-(1) We know the number of elements in the range <script type="math/tex">\{i,j\}</script> is <script type="math/tex">j-i+1</script>. We can then find the largest block of size <script type="math/tex">2^k</script> that fits in that range. We can simply take the log of <script type="math/tex">j - i + 1</script> to get <script type="math/tex">k</script>. This is done in <script type="math/tex">O(1)</script> time. <br />
+Given indices \(i\) and \(j\):<br />
+(1) We know the number of elements in the range \(\{i,j\}\) is \(j-i+1\). We can then find the largest block of size \(2^k\) that fits in that range. We can simply take the log of \(j - i + 1\) to get \(k\). This is done in \(O(1)\) time. <br />
 <br />
-(2) We can now divide the range into two possibly overlapping regions, <script type="math/tex">\{i, i+2^k-1\}</script> which is <script type="math/tex">M[i][k]</script> and <script type="math/tex">\{j-2^k+1, j\}</script> which is <script type="math/tex">M[j-2^k+1][k]</script>. We can return the minimum of the two ranges. The total time is therefore <script type="math/tex">O(1)</script>.
+(2) We can now divide the range into two possibly overlapping regions, \(\{i, i+2^k-1\}\) which is \(M[i][k]\) and \(\{j-2^k+1, j\}\) which is \(M[j-2^k+1][k]\). We can return the minimum of the two ranges. The total time is therefore \(O(1)\).
 <br />
 This code just tests all possible ranges:</p>
 
@@ -244,7 +244,7 @@ This code just tests all possible ranges:</p>
 <span class="p">}</span></code></pre></figure>
 
 <p><br />
-Finally we will have <script type="math/tex">\langle p(n), q(n)\rangle = \langle O(n\log(n)), O(1)\rangle</script>.
+Finally we will have \(\langle p(n), q(n)\rangle = \langle O(n\log(n)), O(1)\rangle\).
 <br />
 <br />
 <!----------------------------------------------------------------------------------------></p>

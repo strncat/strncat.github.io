@@ -27,7 +27,6 @@ typedef struct activity {
     int start_time;
     int finish_time;
 } activity;
-
 bool custom_sort_by_finish_time(const activity &a, const activity &b) {
     return a.finish_time < b.finish_time;
 }

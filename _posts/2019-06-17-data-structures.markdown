@@ -11,13 +11,11 @@ Tuples might be an overkill? Another matrix could handle the distances instead o
 bool g[MAX][MAX];
 int dx[4] = {1 , 0 , -1 , 0};
 int dy[4] = {0 , 1 , 0 , -1};
-
 int bfs(int start_i, int start_j) {
     std::queue<std::tuple<int, int, int>> q;
     bool visited[MAX][MAX] = {false};
     visited[start_i][start_j] = true; // start node
     q.push(std::make_tuple(start_i, start_j, 0));
-
     while(!q.empty()) {
         std::tuple<int, int, int> cur = q.front();
         q.pop();
@@ -44,7 +42,6 @@ int bfs(int start_i, int start_j) {
 For problem "10336 - Rank the Languages", we had to find the total area per letter and then print out the results sorted by the frequency. For this problem I used an unordered_map to find the totals and then insert these pairs into a vector that was sorted before printing.
 {% highlight c++ %}
 std::unordered_map<char,int> map;
-
 for (int i = 0; i < m; i++) {
     for (int j = 0; j < n; j++) {
         if (!visited[i][j]) {
@@ -57,7 +54,6 @@ std::vector<std::pair<char,int>> letters;
 for (auto key = map.begin(); key != map.end(); key++) {
     letters.push_back(std::make_pair(key->first,key->second));
 }
-
 std::sort(letters.begin(), letters.end(), [](const std::pair<char,int> &l, const std::pair<char,int> &r) {
     if (l.second == r.second) {
         return l.first < r.first;

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The Art Gallery Problem</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-08-26T01:01:36-07:00" itemprop="datePublished">Aug 26, 2023
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-0.png" width="60%" class="center" /></p>
+<p>Suppose we have an art gallery represented by a simple polygon $P$ with $n$ vertices. What is the minimum number of fixed guards needed to guard the gallery where each guard has a full visibility range of $2\pi$. How do we know if a given point is in the range of visiblity of a given guard? We say that if we were given points $x$ and $y$, then $x$ is visible from $y$ if $xy \in P$ where $P$ is a given polygon and $x, y \in P$. So if you connect the guard to a point with a line segment and all of that line segment is in $P$, then the point is visible to the guard.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Simple Polygons</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-2.png" width="60%" class="center" /></p>
+<p>To start we first define a <b>line segment</b> as a closed subset of a line contained between points $a$ and $b$ called its end points. A <b>simple polygon</b> is a closed curve consisting of a finite collection of line segments that doesn’t intersect itself. This means that the intersection of each pair of adjacent segments is only the vertex shared between them and such that non-adjacent segments do not intersect. In the figure above, the intersection of $e_i$ and $e_{i+1}$ is only $v_i$ and none of non-adjacent segments intersect.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Diagonals in Polygons</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-6.png" width="90%" class="center" /></p>
+
+<p>A <b>Diagonal</b> is a line segment between two of the polygon’s vertices $a$ and $b$ such that the intersection of the line segment $ab$ with the boundary of $P$ ($\partial P$) is exactly the set ${a,b}$. In the first figure the segment connecting $v_1$ and $v_6$ is a diagonal since the intersection of the line segment with $\partial P$ is only ${v_1,v_6}$ while in the right figure none of the red line segments are diagonals. Note here that this definition applies to both internal and external diagonals!</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-7.png" width="90%" class="center" /></p>
+<p>Two diagonals are <b>non-crossing</b> if their intersection is a subset of their endpoints. aka they share no interior points. In the left figure above, the green diagonals intersect only at their end points (if any) so they’re non-crossing while in the right figure, the red diagonals are not non-crossing since they intersect at an interior point that is not an end point of either diagonal.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Triangulation</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-8.png" width="50%" class="center" /></p>
+<p>There is one more definition that we will need for the proof later. If we add as many non-crossing diagonals as possible to a polygon, then the interior is partitioned into triangles. Such a partition is called a <b>triangulation</b> of a polygon. Why? This is a whole other topic an another post will be dedicated on this.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Formalizing the Art Gallery Problem</b></h4>
+<p>We will define $g(P)$ to be the smallest number of guards needed to cover polygon $P$.</p>
+<div center="">
+$$
+\begin{align*}
+g(P) = min_S |\{ S: S \text{ covers } P\}|
+\end{align*}
+$$
+</div>
+<p>where $S$ is a set of points and $|S|$ is the cardinality of $S$. $S$ is the number of guards sufficient to cover the gallery and since many sets are possible (a triangle can be covered by a single guard or 10 guards), we’ll need to find the minimum of all these solutions. This definition works for a specific polygon given to us. For example, for the gallery below,</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-9.png" width="50%" class="center" /></p>
+<p>we’ll need 2 guards, but is this true for any polygon of $n=12$ vertices? Absolutely not! You could instead have the following polygon with 12 vertices instead,</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-10.png" width="40%" class="center" /></p>
+<p>Here, it is clear that 1 guard is sufficient. What we’re interested in is <b>number of guards sufficient for ANY type of polygon with $n$ vertices.</b> So let $P_n$ be a polygon of $n$ vertices and define</p>
+<div center="">
+$$
+\begin{align*}
+G(n) \text{ to be the maximum of } g(P_n) \text{ over all polygons of $n$ vertices. }
+\end{align*}
+$$
+</div>
+<p>And so finally we have:</p>
+<div center="">
+$$
+\begin{align*}
+G(n) = max_{P_n}g(P_n).
+\end{align*}
+$$
+</div>
+
+<p>Is $G(n)$ finite for all $n$? and can it be expressed with a simple formula?
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Small Values of $n$</b></h4>
+
+<p>We can start by plugging in small values of $n$ to see if we can find any pattern. For starters, for any polygon we will need at least 1 guard ($G(n) \geq 1$) and at most $n$ guards ($G(n)\leq n$) (proof?).</p>
+
+<p>For polygons of 3 vertices (triangles), it should be obvious that we will always need 1 guard and so $G(3)=1$. Polygons with 4 vertices (Quadrilaterals) can be divided into two groups:</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-11.png" width="60%" class="center" /></p>
+<ul>
+        <li> convex quadrilaterals (left figure). Here it is clear that $G(4)=1$. </li>
+        <li> quadrilaterals with a reflex vertex (right figure). Recall that a reflex vertex is a vertex where its internal angle is greater that $\pi$. A quadrilaterals can only have one reflex vertex and so one guard is still sufficient. </li>
+</ul>
+<p>For polygons of 5 vertices (pentagons) can be divided into:</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-12.png" width="100%" class="center" /></p>
+<ul>
+<li> convex Pentagons (left figure) and clearly we only need one guard. </li>
+<li> Pentagons with one reflex vertex (middle figure) need one guard. </li>
+<li> Pentagons with two reflex vertices (right figure) (pentagons can have at most two reflex vertices). These vertices can be adjacent or separated. In either case, we need one guard as well. </li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Fisk's Theorem</b></h4>
+<p>Fisk established that every Polygon with $n$ vertices will need at least $\lfloor n/3 \rfloor$ guards. In this section, we will outline the proof.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof Outline</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-3.png" width="90%" class="center" /></p>
+<p>Given an arbitrary polygon $P$ of $n$ vertices. The first step of the proof is to triangulate the polygon by adding as many <b>non-crossing</b> diagonals as possible to it until the polygon is partitioned into triangles. Let the resulting graph be $G$ such that the vertices of the polygon are the vertices of $G$. The edges of $G$ are the set of the original edges of the polygon plus the newly added non-crossing diagonals.
+<br /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-4.png" width="90%" class="center" /></p>
+<p>The second step is to prove that the resulting graph is 3-colored. Recall that A $k$-coloring of a graph is an assignment of $k$ colors to the nodes of the graph, such that no two nodes connected by an edge are assigned the same color.. The general idea of the proof is to pick a vertex and assign it an arbitrary color. Once we do that, we will see the the coloring is completely forced. Notice that we have to choose the remaining two colors for the remaining two vertices in that triangle. Also notice that this triangle shares two vertices with the adjacent triangle and so there will not be free choices since we must choose the third remaining color for the new vertex. Hence the coloring is completely forced.
+<br /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-5.png" width="60%" class="center" /></p>
+<p>The third step of the proof is the observation that placing the guards at all the vertices assigned one color guarantees visibility coverage of the polygon. Let pink, green and yellow be the colors used in the 3-coloring of the graph. Each triangle must have each of the three colors at its three corners. This means that every triangle has a yellow (arbitrary chosen color) node and so every triangle has one guard and thus covered. We know that the collection of triangles completely cover the polygon and so this means that the whole polygon is covered.
+<br />
+<br />
+The forth step is the application of the pigeonhole principle. Recall that the pigeonhole principle states that If $n$ objects are placed into $k$ polygons and $n &gt; k$, then at least one hole must contain no more than $n/k$ objects. We established that we only needed 3 colors to color the triangulated graph $G$. Now, let the $n$ vertices of the triangulation graph be the holes and the colors of the graph ($k=3$) be the pigeons. Since $n$ is an integer, then one of the color must be used no more than $n/3$ times.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
+<br />
+<br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2023/08/26/art-gallery.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2023/08/26/art-gallery; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2023/08/26/art-gallery.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

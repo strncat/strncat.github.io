@@ -1,4 +1,417 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-02-18T17:46:12-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Union Find</title><link href="http://localhost:4000/jekyll/update/2023/02/18/union-find.html" rel="alternate" type="text/html" title="Union Find" /><published>2023-02-18T11:01:36-08:00</published><updated>2023-02-18T11:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2023/02/18/union-find</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/02/18/union-find.html"><![CDATA[<!--<img src="http://localhost:4000/assets/randomized/quicksort/intro.png" width="100%">-->
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-01T10:05:26-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Finding the Convex Hull (Jarvis’s March / Gift Wrapping)</title><link href="http://localhost:4000/jekyll/update/2023/08/30/convex-hull.html" rel="alternate" type="text/html" title="Finding the Convex Hull (Jarvis’s March / Gift Wrapping)" /><published>2023-08-30T01:01:36-07:00</published><updated>2023-08-30T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/08/30/convex-hull</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/08/30/convex-hull.html"><![CDATA[<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-0.png" width="80%" class="center" /></p>
+<!------------------------------------------------------------------------------------>
+<h4><b>Convexity</b></h4>
+<p>A set of points $S$ is convex if for any two points $a \in S$ and $b \in S$, then the line segment connecting these two points is also in $S$ ($\overline{ab} subseteq \in S$). A convex polygon is a polygon that is the boundary of a convex set. The left figure is a convex polygon while the right figure is not per our definition.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Convex Hull</b></h4>
+<p>The convex hull of a set $S$ is the smallest convex set that contains all the points in $S$. We also define the convex hull of $S={p_1,p_2,…,p_n}$ as the set that contains all the combinations of the points in the $S$. Formally,</p>
+<div>
+$$
+\begin{align*}
+CH(S) = \{ \sum_{i=1}^{n} \lambda_i p_i | \sum_{i=1}^{n} \lambda_i = 1 \text{ and } \lambda_i \geq 0 \text{ for all $i$} \}
+\end{align*}
+$$
+</div>
+
+<p>Another definition that is also used is that the convex hull of $S$ is,</p>
+<div>
+$$
+\begin{align*}
+CH(S) = \text{ Intersection of all convex sets containing $S$ }
+\end{align*}
+$$
+</div>
+
+<p>Why does this definition matter? there are infinitely many convex sets that will contain all the points in $S$. It turns out that this definition also works for a special kind of convex sets, called half-planes.</p>
+<div>
+$$
+\begin{align*}
+CH(S) = \text{ Intersection of all "half planes" containing $P$ }
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Finding the Convex Hull</b></h4>
+<p>Finding the convex hull is a classic computatioal geometry problem and many algorithms have been developed to solve it. Next, we discuss one of the simplest algorithms that is used to find the convex hull of a set of points.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Jarvis's March (Gift Wrapping Algorithm)</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-2.png" width="60%" class="center" /></p>
+
+<ul>
+    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$</li>
+    <li>Equal to zero if they're collinear</li>
+    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$</li>
+</ul>
+<p>We can write a little helper to compute this</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// determines if r is on the left of the line pq</span>
+<span class="kt">int</span> <span class="nf">direction</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">r_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">r_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">q_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// anti-clockwise</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// clockwise</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// collinear</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Convexity A set of points $S$ is convex if for any two points $a \in S$ and $b \in S$, then the line segment connecting these two points is also in $S$ ($\overline{ab} subseteq \in S$). A convex polygon is a polygon that is the boundary of a convex set. The left figure is a convex polygon while the right figure is not per our definition. Convex Hull The convex hull of a set $S$ is the smallest convex set that contains all the points in $S$. We also define the convex hull of $S={p_1,p_2,…,p_n}$ as the set that contains all the combinations of the points in the $S$. Formally, $$ \begin{align*} CH(S) = \{ \sum_{i=1}^{n} \lambda_i p_i | \sum_{i=1}^{n} \lambda_i = 1 \text{ and } \lambda_i \geq 0 \text{ for all $i$} \} \end{align*} $$]]></summary></entry><entry><title type="html">Triangulation (Algorithm)</title><link href="http://localhost:4000/jekyll/update/2023/08/29/triangulation-algorithm.html" rel="alternate" type="text/html" title="Triangulation (Algorithm)" /><published>2023-08-29T01:01:36-07:00</published><updated>2023-08-29T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/08/29/triangulation-algorithm</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/08/29/triangulation-algorithm.html"><![CDATA[<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-0.png" width="80%" class="center" /></p>
+<p>So now that we know every polygon, $p$, has a triangulation, how are we going to triangulate $p$? The key to proving that triangulation exists was finding a diagonal. Similarly, the first step in triangulation is to find a diagonal. Recall that a line segment $ab$ is a diagonal iff</p>
+<ul>
+	<li> Its intersection with the boundary of $P$ is exactly its end points $a$ and $b$ and nothing else. </li>
+	<li> $ab$ is an internal diagonal. </li>
+</ul>
+<p>How many potentional cadidates for a diagonal do we have in given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal’s start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test in the worst case! later on, we will see algorithms that would not test all candidates!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Condition 1: Intersection of the diagonal $d$ with the boundary of $p$</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-1.png" width="60%" class="center" /></p>
+<p>So given a diagonal candidate $d$ with end points $a$ and $b$, how do we go about testing its intersection with the boundary of $p$. The boundary consists of the edges of the polygon. The diagonal is incident to at most 4 of these edges. If we keep this case seperately and focus on the rest of edges, then we simply want to know if this candidate doesn’t intersect ANY of these edges besides the special 4. In other words, for all other edges that are not incident to $a$ or $b$, their intersection with $d=ab$ is empty.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Segment Intersection</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-2.png" width="60%" class="center" /></p>
+<p>Since we only care about the existence of an intersection rathar than the intersection point itself, then we can go back to what we studided before about the orientation of three ordered points (see Orientation of Three Points post and also Segment Intersection (CLRS)). Suppose we’re given three ordered points $p, q, r$, then the expression $(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$ is</p>
+<ul>
+    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$</li>
+    <li>Equal to zero if they're collinear</li>
+    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$</li>
+</ul>
+<p>We can write a little helper to compute this</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// determines if r is on the left of the line pq</span>
+<span class="kt">int</span> <span class="nf">direction</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">r_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">r_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">q_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// anti-clockwise</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// clockwise</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// collinear</span>
+<span class="p">}</span></code></pre></figure>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-3.png" width="40%" class="center" /></p>
+<p>How can we use this test here? Naturally, all we want is to know is if the points $a$ and $b$ are on opposite sides of the line that goes through $cd$ above. But is this enough? No! Consider the following figure.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-4.png" width="40%" class="center" /></p>
+<p>$a$ and the $b$ are in fact on opposite sides of the line that goes through $c$ and $d$ but the segment from $a$ to $b$ doesn’t intersect the segment that goes throguh $c$ and $d$! To fix this, we also need to ask whether the points $c$ and $d$ are on opposite sides of the line that goes through $a$ and $b$ and the answer is clearly not! $c$ and $d$ are on the same side. So are we done now? Not yet, consider the following:</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-5.png" width="40%" class="center" /></p>
+<p>Here, the points $a$, $d$ and $b$ are collinear. So $c$ and $d$ are not exactly on opposite sides but they still intersect! So what do we do here? In Computational Geometry in C,</p>
+<ul>
+	<li> They call the original test of find whether $a$ and $b$ are on opposite sides and similary $c$ and $d$ are on opoosite sides, the proper intersection test meaning that the interior of the segments intersect.</li>
+	<li> They handle the case of having 3 points collinear seperately by writing a different function to compute if the segments improperly intersect, meaning that the intersection point falls on the segment. </li>
+</ul>
+<p>I personally prefer the CLRS way of computing the intersection all at once. Basically, compute $d_1 = direction(a, b, c)$ to find if $c$ is on the left or right or collinear with $a$ and $b$. Similary do this for all 4 points. And then, check if all points fall on different sides to determine if they “properly intersect”. Finally, handle the special case of “improper intersection” by checking if any 3 points of the 4 are collinear and in that specific case, make sure that the point is in fact on the segment meaninng it’s between its end points.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
+<span class="kt">bool</span> <span class="nf">interesect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span> <span class="c1">// which side is c on?</span>
+    <span class="kt">int</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span> <span class="c1">// same for d</span>
+    <span class="kt">int</span> <span class="n">d3</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">d4</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="c1">// proper interesection</span>
+    <span class="k">if</span>  <span class="p">((</span><span class="n">d1</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">d2</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> 
+         <span class="p">(</span><span class="n">d3</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d4</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">d4</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d3</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// improper intersection</span>
+    <span class="c1">// check if c sits between the end two points</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="c1">// check if d sits between the end two points</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="c1">// check if a sits between the end two points</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="c1">// check if b sits between the end two points</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Condition 2: Is $d$ internal or external?</b></h4>
+<p>Actually two things are left. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[So now that we know every polygon, $p$, has a triangulation, how are we going to triangulate $p$? The key to proving that triangulation exists was finding a diagonal. Similarly, the first step in triangulation is to find a diagonal. Recall that a line segment $ab$ is a diagonal iff Its intersection with the boundary of $P$ is exactly its end points $a$ and $b$ and nothing else. $ab$ is an internal diagonal. How many potentional cadidates for a diagonal do we have in given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal’s start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test in the worst case! later on, we will see algorithms that would not test all candidates! Condition 1: Intersection of the diagonal $d$ with the boundary of $p$ So given a diagonal candidate $d$ with end points $a$ and $b$, how do we go about testing its intersection with the boundary of $p$. The boundary consists of the edges of the polygon. The diagonal is incident to at most 4 of these edges. If we keep this case seperately and focus on the rest of edges, then we simply want to know if this candidate doesn’t intersect ANY of these edges besides the special 4. In other words, for all other edges that are not incident to $a$ or $b$, their intersection with $d=ab$ is empty. Segment Intersection Since we only care about the existence of an intersection rathar than the intersection point itself, then we can go back to what we studided before about the orientation of three ordered points (see Orientation of Three Points post and also Segment Intersection (CLRS)). Suppose we’re given three ordered points $p, q, r$, then the expression $(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$ is Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$ Equal to zero if they're collinear Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$ We can write a little helper to compute this // determines if r is on the left of the line pq int direction(p, q, r) { int product = (q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y); if (product &gt; 0) { return 1; // anti-clockwise } else if (product &lt; 0) { return -1; // clockwise } return 0; // collinear } How can we use this test here? Naturally, all we want is to know is if the points $a$ and $b$ are on opposite sides of the line that goes through $cd$ above. But is this enough? No! Consider the following figure. $a$ and the $b$ are in fact on opposite sides of the line that goes through $c$ and $d$ but the segment from $a$ to $b$ doesn’t intersect the segment that goes throguh $c$ and $d$! To fix this, we also need to ask whether the points $c$ and $d$ are on opposite sides of the line that goes through $a$ and $b$ and the answer is clearly not! $c$ and $d$ are on the same side. So are we done now? Not yet, consider the following: Here, the points $a$, $d$ and $b$ are collinear. So $c$ and $d$ are not exactly on opposite sides but they still intersect! So what do we do here? In Computational Geometry in C, They call the original test of find whether $a$ and $b$ are on opposite sides and similary $c$ and $d$ are on opoosite sides, the proper intersection test meaning that the interior of the segments intersect. They handle the case of having 3 points collinear seperately by writing a different function to compute if the segments improperly intersect, meaning that the intersection point falls on the segment. I personally prefer the CLRS way of computing the intersection all at once. Basically, compute $d_1 = direction(a, b, c)$ to find if $c$ is on the left or right or collinear with $a$ and $b$. Similary do this for all 4 points. And then, check if all points fall on different sides to determine if they “properly intersect”. Finally, handle the special case of “improper intersection” by checking if any 3 points of the 4 are collinear and in that specific case, make sure that the point is in fact on the segment meaninng it’s between its end points. bool interesect(a, b, c, d) { int d1 = direction(a, b, c); // which side is c on? int d2 = direction(a, b, d); // same for d int d3 = direction(c, d, a); int d4 = direction(c, d, b); // proper interesection if ((d1 &lt; 0 &amp;&amp; d2 &gt; 0) || (d2 &lt; 0 &amp;&amp; d1 &gt; 0) || (d3 &lt; 0 &amp;&amp; d4 &gt; 0) || (d4 &lt; 0 &amp;&amp; d3 &gt; 0)) { return true; } // improper intersection // check if c sits between the end two points if (d1 == 0 &amp;&amp; between_line_segment(a, b, c)) return true; // check if d sits between the end two points if (d2 == 0 &amp;&amp; between_line_segment(a, b, d)) return true; // check if a sits between the end two points if (d3 == 0 &amp;&amp; between_line_segment(c, d, a)) return true; // check if b sits between the end two points if (d4 == 0 &amp;&amp; between_line_segment(c, d, b)) return true; } Condition 2: Is $d$ internal or external? Actually two things are left. References Computational Geometry in C]]></summary></entry><entry><title type="html">Triangulation</title><link href="http://localhost:4000/jekyll/update/2023/08/27/triangulation.html" rel="alternate" type="text/html" title="Triangulation" /><published>2023-08-27T01:01:36-07:00</published><updated>2023-08-27T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/08/27/triangulation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/08/27/triangulation.html"><![CDATA[<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation/tri-0.png" width="80%" class="center" /></p>
+<p>Given a simple polygon of $n$ vertices, we define triangulation of $p$ as the process of partitioning $p$ into triangles whose vertices are the verties of $p$. The claim is that every polygon can be triangulated and the key to proving that triangulation exists is proving the existence of a diagonal.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Every polygon must have at least one strictly convex vertex</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation/tri-1.png" width="55%" class="center" /></p>
+<p>A strictly convex vertex has an internal angle that is less than $\pi$. The claim is that every polygon must have at least one strictly convex vertex.
+<br />
+<br />
+Proof:
+Let $p$ be a simple polygon and let $v$ be the the vertex with the lowest y-coordinate. if there are multiple, let $v$ be the right most one. Let $L$ be the line that goes through $v$ (parallel to the x-axis?). We also know that the interior of $P$ is above $v$. If we were to traverse the boundary of $p$ then when the walker is at $v$, the previous stated conditions imply that the walker must take a left turn at $v$ and so $v$ must be a strictly convex vertex.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Lemma (Existence of a Diagonal): Every polygon of $n \geq 4$ vertices has an internal diagonal</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation/tri-2.png" width="70%" class="center" /></p>
+<p>First recall from the Art Gallery post that a <b>Diagonal</b> is a line segment between two of the polygon’s vertices $a$ and $b$ such that the intersection of the line segment $ab$ with the boundary of the polygon ($\partial P$) is exactly the set ${a,b}$. We will prove that every polygon with more than 4 vertices must have an internal diagonal.
+<br />
+<br />
+Proof: Suppose $p$ is a simple polygon. We showed previously that $p$ must have a strictly convex vertex. Let that vertex $v$. Let $a$ and $b$ be the vertices adjacent to $v$. There are two cases. If $ab$ is a diagonal, then we’re done (left figure). If $ab$ was not a diagonal, then either $ab$ is exterior to $p$ or $ab$ intersects the boundary of $p$ (right figure).</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation/tri-3.png" width="40%" class="center" /></p>
+<p>In either case, since $n &gt; 3$, then the closed triangle $avb$ contains at least one vertex of $p$ other than $a$, $b$ or $v$. Draw a line parallet to $ab$ that goes through the vertex $v$ (It must be parallel, todo: add a picture for why it has to be). Then sweep upward from the line through $v$ until you meet the first vertex that is not $a$ or $b$. Let this vertex be $x$. Then $xv$ must be a diagnoal of $p$. (TODO: MORE?)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Theorem (Triangulation): Every polygon $P$ of $n$ vertices maybe partitioned into triangles by the addition of (zero or more) diagonals</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation/tri-5.png" width="100%" class="center" /></p>
+<p>Proof: <br /><br />
+Let $p$ be a simple polygon with $n$ vertices. We will prove that $p$ can be partitioned into triangles by the addition of zero or more diagonals by induction on the number of vertices of $p$. <br /><br />
+Base case: $n=3$, the polygon is a triangle and the theorem holds trivially ($p$ is a triangle!). <br /><br />
+Inductive Step: Let $n&gt;4$ and suppose the theorem is true for any polygon with fewer than $n$ vertices. By the previous lemma, we know that $p$ must have a diagnoal. Let that diagonal be $d$ and let its end points be $a$ and $b$. We know $d$ only intersects the bounary of $p$ and so $a$ and $b$ are vertices of $p$. This implies that $d$ partitions $p$ into two polygons $p_1$ and $p_2$ with $d$ as edge and $a$ and $b$ vertices in both. We know that both $p_1$ and $p_2$ must have fewer vertices than $p$ since we’re not adding any new vertices in this process. It is also clear that there is at least one vertex in each part in addition to $a$ and $b$ (by the defintion of diagonal). We can now apply the induction hypothesis to $p_1$ and $p_2$ to complete the proof. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Lemma (Number of Diagonals): Every triangulation of a polygon $p$ of $n$ vertices uses $n-3$ diagnoals and consists of $n-2$ triangles</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation/tri-6.png" width="80%" class="center" /></p>
+<p>Proof: Let $p$ be a simple polygon with $n$ vertices. We will prove that the triangulation of $p$ uses $n-3$ diagnoals and consists of $n-2$ triangles by induction. <br /><br />
+Base case: $n=3$, the polygon is a triangle and the theorem holds trivially. We have $3-3=0$ diagonals and $1$ triangle. <br /><br />
+Inductive Step: Let $n&gt;4$ and suppose the theorem is true for any polygon with fewer than $n$ vertices. Pick a diagonal aribitrary and let that diagonal be $d$ where its end vertices are $a$ and $b$. This diagonal partitions $p$ into two polygons. Let $p_1$ and $p_2$ be the two new polygons. Let $p_1$ have $n_1$ vertices and $p_2$ have $n_2$ vertices. We know that $n_1 + n_2 = n + 2$. This is because $a$ and $b$ are counted twice in each polygon. By induction, $p_1$’s triangulation uses $n_1-3$ diagonals and consists of $n_1-2$ triangles and similarly $p_2$’s triangulation uses $n_2-3$ diagonals and consists $n_2-2$ triangles. Therefore, $p$ will have $n_1 - 3 + n_2 - 3 + 1 = n + 2 - 6 + 1 = n - 3$ diagonals and $n_1 - 2 + n_2 - 2 = n + 2 - 4 = n - 2$ triangles. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Triangulation's Dual</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation/tri-7.png" width="65%" class="center" /></p>
+<p>The dual of a triangulation of a polygon is a tree such that each node is associated with each triangle and an edge exists between a pair of nodes if and only if they share a diagonal. The book then states the following lemma: “The dual $T$ of a triangulation is a tree with each node of degree at most three” (TODO: Proof).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Meisters's Two Ears Theorem: Every polygon of $n \geq 4$ vertices has at least two nonoverlapping ears</b></h4>
+<p>A leaf node in the triangulation dual corresponds to a an ear. A tree of two or more nodes has $n - 2$ nodes (each node corresponds to a triangle). We also know that a tree with two or more nodes must have two leaves.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Given a simple polygon of $n$ vertices, we define triangulation of $p$ as the process of partitioning $p$ into triangles whose vertices are the verties of $p$. The claim is that every polygon can be triangulated and the key to proving that triangulation exists is proving the existence of a diagonal. Every polygon must have at least one strictly convex vertex A strictly convex vertex has an internal angle that is less than $\pi$. The claim is that every polygon must have at least one strictly convex vertex. Proof: Let $p$ be a simple polygon and let $v$ be the the vertex with the lowest y-coordinate. if there are multiple, let $v$ be the right most one. Let $L$ be the line that goes through $v$ (parallel to the x-axis?). We also know that the interior of $P$ is above $v$. If we were to traverse the boundary of $p$ then when the walker is at $v$, the previous stated conditions imply that the walker must take a left turn at $v$ and so $v$ must be a strictly convex vertex. Lemma (Existence of a Diagonal): Every polygon of $n \geq 4$ vertices has an internal diagonal First recall from the Art Gallery post that a Diagonal is a line segment between two of the polygon’s vertices $a$ and $b$ such that the intersection of the line segment $ab$ with the boundary of the polygon ($\partial P$) is exactly the set ${a,b}$. We will prove that every polygon with more than 4 vertices must have an internal diagonal. Proof: Suppose $p$ is a simple polygon. We showed previously that $p$ must have a strictly convex vertex. Let that vertex $v$. Let $a$ and $b$ be the vertices adjacent to $v$. There are two cases. If $ab$ is a diagonal, then we’re done (left figure). If $ab$ was not a diagonal, then either $ab$ is exterior to $p$ or $ab$ intersects the boundary of $p$ (right figure).]]></summary></entry><entry><title type="html">The Art Gallery Problem</title><link href="http://localhost:4000/jekyll/update/2023/08/26/art-gallery.html" rel="alternate" type="text/html" title="The Art Gallery Problem" /><published>2023-08-26T01:01:36-07:00</published><updated>2023-08-26T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/08/26/art-gallery</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/08/26/art-gallery.html"><![CDATA[<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-0.png" width="60%" class="center" /></p>
+<p>Suppose we have an art gallery represented by a simple polygon $P$ with $n$ vertices. What is the minimum number of fixed guards needed to guard the gallery where each guard has a full visibility range of $2\pi$. How do we know if a given point is in the range of visiblity of a given guard? We say that if we were given points $x$ and $y$, then $x$ is visible from $y$ if $xy \in P$ where $P$ is a given polygon and $x, y \in P$. So if you connect the guard to a point with a line segment and all of that line segment is in $P$, then the point is visible to the guard.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Simple Polygons</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-2.png" width="60%" class="center" /></p>
+<p>To start we first define a <b>line segment</b> as a closed subset of a line contained between points $a$ and $b$ called its end points. A <b>simple polygon</b> is a closed curve consisting of a finite collection of line segments that doesn’t intersect itself. This means that the intersection of each pair of adjacent segments is only the vertex shared between them and such that non-adjacent segments do not intersect. In the figure above, the intersection of $e_i$ and $e_{i+1}$ is only $v_i$ and none of non-adjacent segments intersect.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Diagonals in Polygons</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-6.png" width="90%" class="center" /></p>
+
+<p>A <b>Diagonal</b> is a line segment between two of the polygon’s vertices $a$ and $b$ such that the intersection of the line segment $ab$ with the boundary of $P$ ($\partial P$) is exactly the set ${a,b}$. In the first figure the segment connecting $v_1$ and $v_6$ is a diagonal since the intersection of the line segment with $\partial P$ is only ${v_1,v_6}$ while in the right figure none of the red line segments are diagonals. Note here that this definition applies to both internal and external diagonals!</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-7.png" width="90%" class="center" /></p>
+<p>Two diagonals are <b>non-crossing</b> if their intersection is a subset of their endpoints. aka they share no interior points. In the left figure above, the green diagonals intersect only at their end points (if any) so they’re non-crossing while in the right figure, the red diagonals are not non-crossing since they intersect at an interior point that is not an end point of either diagonal.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Triangulation</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-8.png" width="50%" class="center" /></p>
+<p>There is one more definition that we will need for the proof later. If we add as many non-crossing diagonals as possible to a polygon, then the interior is partitioned into triangles. Such a partition is called a <b>triangulation</b> of a polygon. Why? This is a whole other topic an another post will be dedicated on this.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Formalizing the Art Gallery Problem</b></h4>
+<p>We will define $g(P)$ to be the smallest number of guards needed to cover polygon $P$.</p>
+<div center="">
+$$
+\begin{align*}
+g(P) = min_S |\{ S: S \text{ covers } P\}|
+\end{align*}
+$$
+</div>
+<p>where $S$ is a set of points and $|S|$ is the cardinality of $S$. $S$ is the number of guards sufficient to cover the gallery and since many sets are possible (a triangle can be covered by a single guard or 10 guards), we’ll need to find the minimum of all these solutions. This definition works for a specific polygon given to us. For example, for the gallery below,</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-9.png" width="50%" class="center" /></p>
+<p>we’ll need 2 guards, but is this true for any polygon of $n=12$ vertices? Absolutely not! You could instead have the following polygon with 12 vertices instead,</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-10.png" width="40%" class="center" /></p>
+<p>Here, it is clear that 1 guard is sufficient. What we’re interested in is <b>number of guards sufficient for ANY type of polygon with $n$ vertices.</b> So let $P_n$ be a polygon of $n$ vertices and define</p>
+<div center="">
+$$
+\begin{align*}
+G(n) \text{ to be the maximum of } g(P_n) \text{ over all polygons of $n$ vertices. }
+\end{align*}
+$$
+</div>
+<p>And so finally we have:</p>
+<div center="">
+$$
+\begin{align*}
+G(n) = max_{P_n}g(P_n).
+\end{align*}
+$$
+</div>
+
+<p>Is $G(n)$ finite for all $n$? and can it be expressed with a simple formula?
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Small Values of $n$</b></h4>
+
+<p>We can start by plugging in small values of $n$ to see if we can find any pattern. For starters, for any polygon we will need at least 1 guard ($G(n) \geq 1$) and at most $n$ guards ($G(n)\leq n$) (proof?).</p>
+
+<p>For polygons of 3 vertices (triangles), it should be obvious that we will always need 1 guard and so $G(3)=1$. Polygons with 4 vertices (Quadrilaterals) can be divided into two groups:</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-11.png" width="60%" class="center" /></p>
+<ul>
+        <li> convex quadrilaterals (left figure). Here it is clear that $G(4)=1$. </li>
+        <li> quadrilaterals with a reflex vertex (right figure). Recall that a reflex vertex is a vertex where its internal angle is greater that $\pi$. A quadrilaterals can only have one reflex vertex and so one guard is still sufficient. </li>
+</ul>
+<p>For polygons of 5 vertices (pentagons) can be divided into:</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-12.png" width="100%" class="center" /></p>
+<ul>
+<li> convex Pentagons (left figure) and clearly we only need one guard. </li>
+<li> Pentagons with one reflex vertex (middle figure) need one guard. </li>
+<li> Pentagons with two reflex vertices (right figure) (pentagons can have at most two reflex vertices). These vertices can be adjacent or separated. In either case, we need one guard as well. </li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Fisk's Theorem</b></h4>
+<p>Fisk established that every Polygon with $n$ vertices will need at least $\lfloor n/3 \rfloor$ guards. In this section, we will outline the proof.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof Outline</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-3.png" width="90%" class="center" /></p>
+<p>Given an arbitrary polygon $P$ of $n$ vertices. The first step of the proof is to triangulate the polygon by adding as many <b>non-crossing</b> diagonals as possible to it until the polygon is partitioned into triangles. Let the resulting graph be $G$ such that the vertices of the polygon are the vertices of $G$. The edges of $G$ are the set of the original edges of the polygon plus the newly added non-crossing diagonals.
+<br /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-4.png" width="90%" class="center" /></p>
+<p>The second step is to prove that the resulting graph is 3-colored. Recall that A $k$-coloring of a graph is an assignment of $k$ colors to the nodes of the graph, such that no two nodes connected by an edge are assigned the same color.. The general idea of the proof is to pick a vertex and assign it an arbitrary color. Once we do that, we will see the the coloring is completely forced. Notice that we have to choose the remaining two colors for the remaining two vertices in that triangle. Also notice that this triangle shares two vertices with the adjacent triangle and so there will not be free choices since we must choose the third remaining color for the new vertex. Hence the coloring is completely forced.
+<br /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/art-gallery/art-gallery-5.png" width="60%" class="center" /></p>
+<p>The third step of the proof is the observation that placing the guards at all the vertices assigned one color guarantees visibility coverage of the polygon. Let pink, green and yellow be the colors used in the 3-coloring of the graph. Each triangle must have each of the three colors at its three corners. This means that every triangle has a yellow (arbitrary chosen color) node and so every triangle has one guard and thus covered. We know that the collection of triangles completely cover the polygon and so this means that the whole polygon is covered.
+<br />
+<br />
+The forth step is the application of the pigeonhole principle. Recall that the pigeonhole principle states that If $n$ objects are placed into $k$ polygons and $n &gt; k$, then at least one hole must contain no more than $n/k$ objects. We established that we only needed 3 colors to color the triangulated graph $G$. Now, let the $n$ vertices of the triangulation graph be the holes and the colors of the graph ($k=3$) be the pigeons. Since $n$ is an integer, then one of the color must be used no more than $n/3$ times.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Suppose we have an art gallery represented by a simple polygon $P$ with $n$ vertices. What is the minimum number of fixed guards needed to guard the gallery where each guard has a full visibility range of $2\pi$. How do we know if a given point is in the range of visiblity of a given guard? We say that if we were given points $x$ and $y$, then $x$ is visible from $y$ if $xy \in P$ where $P$ is a given polygon and $x, y \in P$. So if you connect the guard to a point with a line segment and all of that line segment is in $P$, then the point is visible to the guard. Simple Polygons To start we first define a line segment as a closed subset of a line contained between points $a$ and $b$ called its end points. A simple polygon is a closed curve consisting of a finite collection of line segments that doesn’t intersect itself. This means that the intersection of each pair of adjacent segments is only the vertex shared between them and such that non-adjacent segments do not intersect. In the figure above, the intersection of $e_i$ and $e_{i+1}$ is only $v_i$ and none of non-adjacent segments intersect. Diagonals in Polygons A Diagonal is a line segment between two of the polygon’s vertices $a$ and $b$ such that the intersection of the line segment $ab$ with the boundary of $P$ ($\partial P$) is exactly the set ${a,b}$. In the first figure the segment connecting $v_1$ and $v_6$ is a diagonal since the intersection of the line segment with $\partial P$ is only ${v_1,v_6}$ while in the right figure none of the red line segments are diagonals. Note here that this definition applies to both internal and external diagonals!]]></summary></entry><entry><title type="html">Orientation of Three Points</title><link href="http://localhost:4000/jekyll/update/2023/08/25/orientation-of-three-points.html" rel="alternate" type="text/html" title="Orientation of Three Points" /><published>2023-08-25T01:01:36-07:00</published><updated>2023-08-25T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/08/25/orientation-of-three-points</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/08/25/orientation-of-three-points.html"><![CDATA[<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/three-points/three-points-0.png" width="60%" class="center" /></p>
+<p>Given 3 ordered points $p, q$ and $r$. How do we find out the orientation of the points? What does this mean? It means that we’re visiting these points in a given specific order $p$, $q$ and then $r$ and we want to know if this tranversal is clockwise, anti-clockwise or maybe these points are collinear.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Left or right of the line?</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/three-points/three-points-1.png" width="60%" class="center" /></p>
+<p>We can also ask the same question in a different way. Given three ordered points $p$, $q$ and $r$. How can we tell if $r$ is on the left or the right of the line that goes through $pq$? Notice in the right figure that $r$ is on the right of the line and the ordered points $p$, $q$ and $r$ have a clockwise orientation. In the right figure, $r$ is on the left of the line and the ordered points $p$, $q$ and $r$ have a anti-clockwise orientation.
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Slopes to the resuce!</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/three-points/three-points-2.png" width="70%" class="center" /></p>
+<p>To figure this out, let $p$ to be the left most point. Draw a line that goes through $pq$ and then another line that goes through $pr$. We will calculate the slope of each line to determine the line that has the biggest slope. Notice here that:</p>
+<ul>
+	<li>In the left figure, the slope of the line $pq$ is bigger than the slope of the line $pr$ and so you can see that we're going in a clockwise order from $p$ to $q$ and then $r$. You can also see that $r$ is on the right of the line $pq$.</li>
+	<li>In the right figure, the slope of the line $pq$ is smaller than the slope of the line $pr$ and so you can see that we're going in a clockwise order from $p$ to $q$ and then $r$. You can also see that $r$ is on the left of the line $pq$.</li>
+</ul>
+<!------------------------------------------------------------------------------------>
+<h4><b>But do we want to calculate slopes?</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/three-points/three-points-3.png" width="40%" class="center" /></p>
+<p>Slopes are messy because of divison. Let’s focus on the right figure from the previous section and write down the slope formula. Suppose $p=(p_x,p_y), q=(q_x,q_y)$ and $r=(r_x, r_y)$, then</p>
+<div center="">
+$$
+\begin{align*}
+\frac{q_y-p_y}{q_x-p_x} &amp;&lt; \frac{r_y-p_y}{r_x-p_x} \\
+(r_x-p_x)(q_y-p_y) &amp;&lt; (q_x-p_x)(r_y-p_y) \\
+(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y) &amp;&gt; 0
+\end{align*}
+$$
+</div>
+<p>This expression is</p>
+<ul>
+    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientatio and $r$ is on the left of the line $pq$n</li>
+    <li>Equal to zero if they're collinear</li>
+    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the right of the line $pq$</li>
+</ul>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>Determinats!</b></h4>
+
+<p>The equation we derived in the previous section ($(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y) &gt; 0$) can also be written in a nice determinat form</p>
+<div center="">
+$$
+\begin{align*}
+(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)
+&amp;= 
+\begin{vmatrix}
+q_x-p_x &amp; q_y-p_y \\ 
+r_x-p_x &amp; r_y-p_y
+\end{vmatrix}
+&gt; 0
+\end{align*}
+$$
+</div>
+<!--
+This also can be written in a different determinat form below,
+<div>
+$$
+\begin{align*}
+\begin{vmatrix}
+1 & p_x & p_y \\ 
+1 & q_x & q_y \\
+1 & r_x & r_y
+\end{vmatrix}
+&=
+1 * 
+\begin{vmatrix}
+q_x & q_y \\
+r_x & r_y
+\end{vmatrix}
+-
+1 *
+\begin{vmatrix}
+1 & q_y \\
+1 & r_y
+\end{vmatrix}
++
+1 *
+\begin{vmatrix}
+1 & q_x \\
+1 & r_x
+\end{vmatrix} \\
+&=
+q_xr_y - q_yr_x - (r_y - q_y) + (r_x - q_x) \\
+&=
+q_xr_y - q_yr_x - r_y + q_y + r_x - q_x \\
+&=
+q_xr_y - q_yr_x - r_y + q_y + r_x - q_x \\
+&=
+q_xr_y - q_yr_x + (r_x - r_y) - (q_x - q_y)
+\end{align*}
+$$
+</div>
+-->
+<!------------------------------------------------------------------------------------>
+<h4><b>Cross Product</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/three-points/three-points-4.png" width="50%" class="center" /></p>
+<p>Another way to think about this is imagine that $pq$ and $pr$ are vectors in 3 dimensions. From linear algebra, we know that the cross product of two vectors is the signed area of the parallelogram they determine. Moreover, if $\vec{pq} \times \vec{pr}$ is positive, then $pr$ is anti-clockwise relative/from $pq$ which means that $r$ is to the left of $pq$. The funny thing here is that to prove this statement, we just have to evaluate the cross product like we did the previous section and then work backward until we arrive at the slope form and see that $pr$ has the bigger slope and hence $r$ is on the left of $pq$!</p>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+<p><br />
+<a href="https://mediaspace.illinois.edu/media/t/1_ai5zh5fy/194088303">Jeff Erickson’s CS498</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Given 3 ordered points $p, q$ and $r$. How do we find out the orientation of the points? What does this mean? It means that we’re visiting these points in a given specific order $p$, $q$ and then $r$ and we want to know if this tranversal is clockwise, anti-clockwise or maybe these points are collinear. Left or right of the line? We can also ask the same question in a different way. Given three ordered points $p$, $q$ and $r$. How can we tell if $r$ is on the left or the right of the line that goes through $pq$? Notice in the right figure that $r$ is on the right of the line and the ordered points $p$, $q$ and $r$ have a clockwise orientation. In the right figure, $r$ is on the left of the line and the ordered points $p$, $q$ and $r$ have a anti-clockwise orientation. Slopes to the resuce! To figure this out, let $p$ to be the left most point. Draw a line that goes through $pq$ and then another line that goes through $pr$. We will calculate the slope of each line to determine the line that has the biggest slope. Notice here that: In the left figure, the slope of the line $pq$ is bigger than the slope of the line $pr$ and so you can see that we're going in a clockwise order from $p$ to $q$ and then $r$. You can also see that $r$ is on the right of the line $pq$. In the right figure, the slope of the line $pq$ is smaller than the slope of the line $pr$ and so you can see that we're going in a clockwise order from $p$ to $q$ and then $r$. You can also see that $r$ is on the left of the line $pq$. But do we want to calculate slopes? Slopes are messy because of divison. Let’s focus on the right figure from the previous section and write down the slope formula. Suppose $p=(p_x,p_y), q=(q_x,q_y)$ and $r=(r_x, r_y)$, then $$ \begin{align*} \frac{q_y-p_y}{q_x-p_x} &amp;&lt; \frac{r_y-p_y}{r_x-p_x} \\ (r_x-p_x)(q_y-p_y) &amp;&lt; (q_x-p_x)(r_y-p_y) \\ (q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y) &amp;&gt; 0 \end{align*} $$ This expression is Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientatio and $r$ is on the left of the line $pq$n Equal to zero if they're collinear Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the right of the line $pq$]]></summary></entry><entry><title type="html">Union Find</title><link href="http://localhost:4000/jekyll/update/2023/02/18/union-find.html" rel="alternate" type="text/html" title="Union Find" /><published>2023-02-18T11:01:36-08:00</published><updated>2023-02-18T11:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2023/02/18/union-find</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/02/18/union-find.html"><![CDATA[<!--<img src="http://localhost:4000/assets/randomized/quicksort/intro.png" width="100%">-->
 <p>Given an array with $n$ elements. Quicksort is a fabulous divide-and-conquer sorting algorithm with a worst-case running time of $O(n^2)$ and an expected running time of $O(n\log(n))$. The main technique or idea used in quicksort is choosing a pivot, and then partitioning the elements around this pivot.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">quicksort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="kt">int</span> <span class="n">last</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
@@ -561,568 +974,4 @@ $$
 <ul>
   <li><a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a></li>
   <li>CLRS</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this note, I want to revisit the master theorem along with its proof outline as I’ve learned it in CS161 at Stanford (Professor Mary Wootters). The Master Theorem Let $T(n) = aT(\frac{n}{b})+O(n^d)$ be a recurrence where $a \geq 1$ and $b \geq 1$. Then, $$ \begin{align*} T(n) = \Bigg \{ \begin{array}{@{}lr@{}} O(n^d\log(n)) \ \text{ if } a = b^d,\\ O(n^d) \ \ \quad \quad \text{ if } a &lt; b^d, \\ O(n^{\log_b(a)}) \quad \text{ if } a &gt; b^d \end{array} \end{align*} $$ If this recurrence represents the running time of an algorithm then, $a$ is the number of subproblems. $b$ is the factor by which the input is decreasing at each level of the recursion. $n^d$ is the total time needed to create the subproblems and combine their solutions. Example We can apply the master theorem on many recurrences. For example, if we’re given, $$ \begin{align*} T(n) = 4T(\frac{n}{2}) + (n). \end{align*} $$ We can quickly see that we have $a = 4$, $b = 2$ and $d = 1$. Therefore, $a &gt; b^d$ and so by using the master theorem, we can see that $T(n) = O(n^{\log_2(4)}) = O(n^2)$. Intuition Why do we have 3 cases and what’s the intuition behind each case? To see this, we discuss three examples, one for each case, starting with case 2. Case 2: $$ \begin{align*} T(n) &amp;= T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ Clearly by the master theorem (case 2), the solution should be $O(n)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion and at the same time, the decrease in the number of subproblem is more than the increase in the number of subproblems. So, the work is dominated by the top level of the recursion tree. To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$. $$ \begin{align*} T(n) &amp;= \sum_{t=0}^{\log(n)} \frac{n}{2^t} \\ &amp;= n\sum_{t=0}^{\log(n)} \big(\frac{1}{2}\big)^t \\ &amp;= n\big(\frac{1/2^{\log(n)+1} - 1}{1/2 - 1}\big) \\ &amp;= -2n\big(1/2^{\log(n)+1} - 1\big) \\ &amp;= -2n\big(\frac{1}{2 (2^{\log(n)})} - 1\big) \\ &amp;= -2n\big(\frac{1}{2n} - 1\big) \\ &amp;= 2n - 1 \\ &amp;= O(n). \end{align*} $$ Case 3: $$ \begin{align*} T(n) &amp;= 4T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ Again by the master theorem (case 3), the solution should be $O(n^2)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion but at the same time, the number of subproblems is actually increasing by a lot more! So, the work is dominated by the bottom level of recursion tree. Drawing only the first three levels, you can see, the bottom level will carry most of the work To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$. $$ \begin{align*} T(n) &amp;= \sum_{t=0}^{\log(n)} 4^t\frac{n}{2^t} \\ T(n) &amp;= n\sum_{t=0}^{\log(n)} 2^t \\ &amp;= n\big(\frac{2^{\log(n)+1} - 1}{2 - 1}\big) \\ &amp;= n\big(2^{\log(n)+1} - 1\big) \\ &amp;= n\big(2(2^{\log(n)}) - 1\big) \\ &amp;= n\big(2n - 1\big) \\ &amp;= O(n^2). \end{align*} $$ Case 1: $$ \begin{align*} T(n) &amp;= 2T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ By the master theorem (case 1), the solution should be $O(\log(n))$. Intuitively, we’re reducing the size of the problem by half at each level of the recursion and at the same time, we’re doubling the number of subproblems (balanced case). So, at each level, we have the same amount of work. If we draw only the first three levels, you’ll notice that at each level, we’re doing precisely $n$ total amount of work. To make this formal, we sum all the work done across all levels, $$ \begin{align*} T(n) &amp;= \sum_{t=0}^{\log(n)} 2^t\frac{n}{2^t} = n\sum_{t=0}^{\log(n)} 1 = n\log(n). \end{align*} $$ Proof Outline Why is the master theorem correct? Let’s take a look at the recurrence again, $$ \begin{align*} T(n) &amp;= aT(\frac{n}{b})+O(n^d) \\ &amp;= aT(\frac{n}{b}) + cn^d. \end{align*} $$ We will assume that $T(1) = 1$ for simplicity. To solve the recurrence, we will use the recursion tree method similar exactly to what we did for Mergesort. Let’s build the same table that we built for Mergesort to calculate the amount of work done per each level of recursion and get the following, All we need to do now is to sum the amount of work done for all the levels in the table. We see that, $$ \begin{align*} T(n) &amp;= \sum_{t=0}^{\log_b(n)} a^t c(\frac{n}{b^t})^d \\ &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t. \end{align*} $$ So now we can handle each case. Case 1: $a = b^d$ $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{b^d}{b^d})^t \\ &amp;= cn^d \sum_{t=0}^{\log_b(n)} 1 \\ &amp;= cn^d (\log_b(n) + 1) \\ &amp;= cn^d (\frac{\log(n)}{\log(b)} + 1) \\ &amp;= O(n^d\log(n)). \end{align*} $$ Case 2: $a &lt; b^d$ $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \end{align*} $$ We note in the above sum that $\frac{a}{b^d} &lt; 1$. We can then use the geometric series, $$ \begin{align*} \sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}. \end{align*} $$ When $|x| &lt; 1$ and the summation is infinite, this sum approaches $\frac{1}{1-x}$. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $\frac{1}{1-a/b^d}$ which is some constant that doesn’t depend on $n$. Therefore, $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\ &amp;= O(n^d) \end{align*} $$ Case 3: $a &gt; b^d$ $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \end{align*} $$ We note in the above sum that $\frac{a}{b^d} &gt; 1$. We can then use the geometric series again, $$ \begin{align*} \sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}. \end{align*} $$ When $|x| &gt; 1$ and the summation is infinite, this sum approaches the last term in the series. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $(a/b^d)^{\log_b(b)}$. Therefore, $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\ &amp;= cn^d\big(\frac{a}{b^d}\big)^{\log_b(n)} \\ &amp;= cn^d\big(b^{\log_b(\frac{a}{b^d})}\big)^{\log_b(n)} \\ &amp;= cn^d\big(b^{\log_b(n)}\big)^{\log_b(\frac{a}{b^d})} \\ &amp;= cn^d\big(n\big)^{\log_b(\frac{a}{b^d})} \\ &amp;= cn^d(n)^{\log_b(a) - \log_b(b^d)} \\ &amp;= cn^d(n)^{\log_b(a) - d} \\ &amp;= c(n)^{d + \log_b(a) - d} \\ &amp;= cn^{\log_b(a)} \\ &amp; = O(n^{\log_b(a)}) \end{align*} $$ References Stanford CS161 CLRS]]></summary></entry><entry><title type="html">Topological Sort (Kahn)</title><link href="http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn.html" rel="alternate" type="text/html" title="Topological Sort (Kahn)" /><published>2020-07-06T07:01:36-07:00</published><updated>2020-07-06T07:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/07/06/topological-sort-kahn.html"><![CDATA[<p>Let $G = (V, E)$ be a directed acyclic graph consisting of $V$ vertices and $E$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $u, v \in V$, if $(u,v) \in E$, then $u$ must come before $v$ in the ordering. We have already developed an algorithm for topological sort using depth first search <a href="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html">here</a>. In this article, we will explore another topological sort algorithm, Kahn’s algorithm. 
-<br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
-<h4><b>Kahn's Algorithm</b></h4>
-<p>Kahn’s algorithm is extremely intuitive. What are we trying to achieve with topological sort? If we have two vertices/tasks $u$ and $v$ where task $u$ is a perquisite or required to be done before task $v$, then we want to output $u$ before $v$. This dependency is represented with an edge $(u,v)$.</p>
-
-<p><img src="http://localhost:4000/assets/graphs/topological-sort/kahn1.png" alt="my photo" /></p>
-
-<p><b>The in-degree of a vertex</b><br />
-This edge contributes to the in-degree of vertex $v$ and out-degree of vertex $u$. The in-degree of a vertex is the number of incoming edges into the vertex. The out-degree of a vertex is the number of edges leaving the vertex. In Kahn’s algorithm, we’re interested in the in-degree of each vertex. In the above example, $v$ has an in-degree of 1.
-<br />
-<br />
-<b>How does Kahn utilizes the in-degree of a vertex?</b><br />
-Intuitively, if we have a vertex with in-degree $=0$, then we know that this vertex has no incoming edges. This means that this vertex (task) can be processed/started because it has no dependencies. Therefore, we can just output or add this vertex to the sorted output! This is the whole idea of Kahn’s algorithm. 
-<br />
-<br />
-<b>What if we don’t have a vertex with in-degree 0?</b><br />
-Since the graph is a DAG (no cycles), then it must have at least one node with in-degree $=0$.
-<br />
-<br />
-<b>What happens when we don’t have any more vertices with in-degree $=0$?</b><br />
-<img src="http://localhost:4000/assets/graphs/topological-sort/kahn2.png" alt="my photo" />
-When we add a vertex to the sorted output, we need to decrement the in-degree count of all its neighbors. In the example above, once we add $u$ to the sorted output, we need to decrement the in-degree of $v$. This will lead to $v$ having an in-degree 0. At this point, we need to also add $v$ to the sorted output and decrement its neighbors.
-<br />
-<br />
-<b>How do we do the above?</b><br />
-We maintain a queue to hold the nodes with in-degree 0 that haven’t been added to the sorted output yet. Every time we pop a vertex from this queue, we do two things:</p>
-<ul>
-  <li>Add this node to the sorted output.</li>
-  <li>Go through its neighbors, decrement their indegree and push any neighbor with in-degree 0 to the queue.
-<br />
-<br /></li>
-</ul>
-
-<p><b>What if the graph has a cycle?</b><br />
-<img src="http://localhost:4000/assets/graphs/topological-sort/kahn3.png" alt="my photo" />
-If the graph has a cycle, then we will have a situation where multiple vertices won’t reach an indegree of zero ever. That’s totally fine. We only need to check that the sorted output at the end has the same number of vertices in the graph. If that’s not the case, then we know the graph has a cycle and we just return an error.
-<br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let’s go through a full example of running Kahn’s algorithm based on the description we gave above. (TODO)
-<br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
-<h4><b>Correctness Proof</b></h4>
-<p>How do we prove that Kahn’s algorithm actually returns a correctly sorted vertices? (TODO)
-<br />
-<br />
-<!----------------------------------------------------------------------------------------></p>
-<h4><b>Implementation</b></h4>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">kahn</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">in_degree</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
-
-    <span class="c1">// compute the in-degree of each vertex in O(E+V)</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">u</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">neighbor</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
-            <span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="c1">// push the vertices of in-degree 0</span>
-    <span class="c1">// if this is a DAG, then we must have some vertex with in-degree=0</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">u</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">in_degree</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ordered_vertices</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="c1">// some vertex with in-degree = 0</span>
-        <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-        <span class="n">ordered_vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
-
-        <span class="c1">// decrease the in-degree of all neighbors</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">neighbor</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
-            <span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
-            <span class="c1">// push a vertex with no more dependencies on the queue</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">neighbor</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// cycle check</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">ordered_vertices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"cycle!!!!!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// print or return ordered_vertices</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/topological-sort/topological-sort-kahn.cpp">Source Code</a>
-<br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
-<h4><b>Running Time</b></h4>
-<p>We compute the in-degree of all vertices in time $O(E+V)$. The while loop runs in time $O(E+V)$ since we push and pop a vertex with indegree-0 once. We also loop through the edges of that vertex only once. The total complexity remains at $O(E+V)$.
-<br />
-<br />
-<!-----------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p>geeks-for-geeks
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Let $G = (V, E)$ be a directed acyclic graph consisting of $V$ vertices and $E$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $u, v \in V$, if $(u,v) \in E$, then $u$ must come before $v$ in the ordering. We have already developed an algorithm for topological sort using depth first search here. In this article, we will explore another topological sort algorithm, Kahn’s algorithm. Kahn's Algorithm Kahn’s algorithm is extremely intuitive. What are we trying to achieve with topological sort? If we have two vertices/tasks $u$ and $v$ where task $u$ is a perquisite or required to be done before task $v$, then we want to output $u$ before $v$. This dependency is represented with an edge $(u,v)$.]]></summary></entry><entry><title type="html">Strategy</title><link href="http://localhost:4000/jekyll/update/2020/05/24/strategy.html" rel="alternate" type="text/html" title="Strategy" /><published>2020-05-24T09:01:36-07:00</published><updated>2020-05-24T09:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/24/strategy</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/24/strategy.html"><![CDATA[<p>Strategy is a pattern that uses delegation. “In the Strategy pattern, an object delegates a specific request to an object that represents a strategy for carrying out the request. The purpose is “to change the behavior of an object by changing the objects to which it delegates requests.” 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Motivation</b></h4>
-<p>Suppose we want to output the shortest distance in a graph. We have several ways. Breadth First Search and Dijkstra are two ways. 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>This is an extremely simple example to see how delegation might work. Suppose we have a view with a simple button. When the button is pressed, we move to another view. In the first view controller we have the following:</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">class</span> <span class="nc">ViewController</span><span class="o">:</span> <span class="n">UIViewController</span><span class="p">,</span> <span class="n">SubViewControllerDelegate</span> <span class="p">{</span>
-    <span class="k">override</span> <span class="n">func</span> <span class="n">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
-        <span class="n">let</span> <span class="n">button</span> <span class="o">=</span> <span class="n">UIButton</span><span class="p">(</span><span class="n">frame</span><span class="o">:</span> <span class="n">CGRect</span><span class="p">(</span><span class="n">x</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">width</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="o">:</span> <span class="mi">50</span><span class="p">))</span>
-        <span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">.</span><span class="n">green</span>
-        <span class="n">button</span><span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s">"Press"</span><span class="p">,</span> <span class="k">for</span><span class="o">:</span> <span class="p">.</span><span class="n">normal</span><span class="p">)</span>
-        <span class="n">button</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">action</span><span class="o">:</span> <span class="err">#</span><span class="n">selector</span><span class="p">(</span><span class="n">pressed</span><span class="p">),</span> <span class="k">for</span><span class="o">:</span> <span class="p">.</span><span class="n">touchUpInside</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
-    <span class="p">}</span>
-	<span class="err">@</span><span class="n">objc</span> <span class="n">func</span> <span class="n">pressed</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// when the button is pressed, move to AnotherViewController</span>
-        <span class="n">let</span> <span class="n">another</span> <span class="o">=</span> <span class="n">AnotherViewController</span><span class="p">()</span>
-        <span class="n">another</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span> <span class="c1">// we are the delegate of another, another is the host object</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">present</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">animated</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span> <span class="n">completion</span><span class="o">:</span> <span class="n">nil</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>In the second view controller, we have another button. This time when we press the button, we want to let the first view controller know that it’s been pressed. To do so, we create a weak delegate that lives in this view controller. We then inform the delegate of whatever message we’d like the first view controller to know about. In this example, we want to let the first view controller that the user had pressed our button.</p>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-  <li><a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612">Design Patterns</a></li>
-  <li><a href="https://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns (Book)</a></li>
-  <li><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaDesignPatterns/CocoaDesignPatterns.html">Cocoa Design Patterns (Apple Docs)</a></li>
-  <li><a href="https://www.raywenderlich.com/1941154-fundamental-ios-design-patterns/lessons/18">Fundamental iOS Design Patterns</a>
-<br />
-<br /></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Strategy is a pattern that uses delegation. “In the Strategy pattern, an object delegates a specific request to an object that represents a strategy for carrying out the request. The purpose is “to change the behavior of an object by changing the objects to which it delegates requests.” Motivation Suppose we want to output the shortest distance in a graph. We have several ways. Breadth First Search and Dijkstra are two ways. Example This is an extremely simple example to see how delegation might work. Suppose we have a view with a simple button. When the button is pressed, we move to another view. In the first view controller we have the following: class ViewController: UIViewController, SubViewControllerDelegate { override func viewDidLoad() { super.viewDidLoad() let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50)) button.backgroundColor = .green button.setTitle("Press", for: .normal) button.addTarget(self, action: #selector(pressed), for: .touchUpInside) self.view.addSubview(button) } @objc func pressed() { // when the button is pressed, move to AnotherViewController let another = AnotherViewController() another.delegate = self // we are the delegate of another, another is the host object self.present(sub, animated: true, completion: nil) } } In the second view controller, we have another button. This time when we press the button, we want to let the first view controller know that it’s been pressed. To do so, we create a weak delegate that lives in this view controller. We then inform the delegate of whatever message we’d like the first view controller to know about. In this example, we want to let the first view controller that the user had pressed our button.]]></summary></entry><entry><title type="html">Ghram</title><link href="http://localhost:4000/jekyll/update/2020/05/23/convex-hull-graham.html" rel="alternate" type="text/html" title="Ghram" /><published>2020-05-23T09:01:36-07:00</published><updated>2020-05-23T09:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/23/convex-hull-graham</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/23/convex-hull-graham.html"><![CDATA[<p>A polygon is a piecewise-linear, closed curve in the plane. That is, it is a curve ending on itself that is formed by a sequence of straight-line segments, called the sides of the polygon. A point joining two consecutive sides is a vertex of the poly- gon. If the polygon is simple, as we shall generally assume, it does not cross itself. The set of points in the plane enclosed by a simple polygon forms the interior of the polygon, the set of points on the polygon itself forms its boundary, and the set of points surrounding the polygon forms its exterior. A simple polygon is convex if, given any two points on its boundary or in its interior, all points on the line segment drawn between them are contained in the polygon’s boundary or interior. A vertex of a convex polygon cannot be expressed as a convex combination of any two distinct points on the boundary or in the interior of the polygon.</p>
-
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Sweep Line</b></h4>
-<p><img src="http://localhost:4000/assets/geometry/any-segment-intersection/sweep-line.png" width="100%" />
-Sweep Line  is a common technique used often in computational geometry where we imagine a vertical line going through the set of objects we’re interested in. The sweep line sweeps through one dimension that we chooses. This dimension is treated as a dimension of time. For example, in the figure above, the x-axis is our time line. The vertical line sweeps through the line segments to check whether any two segments intersect. 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Algorithm</b></h4>
-<p>The algorithm will maintain two sets of data.</p>
-
-<ul>
-  <li>The first set, $S$, is the sorted list of start and end points, also called the <b>event points</b>.</li>
-  <li>The second set is $T$, the <b>sweep-line status</b>. $T$ will hold the ordered segments currently intersecting the current sweep line.
-<img src="http://localhost:4000/assets/geometry/any-segment-intersection/T.png" width="100%" /></li>
-</ul>
-
-<p>The algorithm then iterates through the event-points or $S$. There two cases only:</p>
-
-<ul>
-  <li>
-    <p>The point is a start point of some segment $t$. We will add the segment to the <b>sweep-line-status</b> and then check if $t$ intersects the segment below it or the segment above it. If the answer is yes, then we’re done. If not, we continue processing the next point.</p>
-  </li>
-  <li>
-    <p>The point is an end point of some segment “r”. We will check if the segments below $r$ and above $r$ intersect and, then we will remove $r$ from the sweep-line-status.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-  </li>
-</ul>
-<h4><b>Pseudocode</b></h4>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p>CLRS Chapter 33
-<br />
-<a href="https://cs.stackexchange.com/questions/124027/in-determining-whether-any-segments-intersect-why-there-must-be-some-sweep-wher">Proof</a></p>
-
-<p><br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A polygon is a piecewise-linear, closed curve in the plane. That is, it is a curve ending on itself that is formed by a sequence of straight-line segments, called the sides of the polygon. A point joining two consecutive sides is a vertex of the poly- gon. If the polygon is simple, as we shall generally assume, it does not cross itself. The set of points in the plane enclosed by a simple polygon forms the interior of the polygon, the set of points on the polygon itself forms its boundary, and the set of points surrounding the polygon forms its exterior. A simple polygon is convex if, given any two points on its boundary or in its interior, all points on the line segment drawn between them are contained in the polygon’s boundary or interior. A vertex of a convex polygon cannot be expressed as a convex combination of any two distinct points on the boundary or in the interior of the polygon.]]></summary></entry><entry><title type="html">Quickselect</title><link href="http://localhost:4000/jekyll/update/2020/05/23/quickselect.html" rel="alternate" type="text/html" title="Quickselect" /><published>2020-05-23T08:01:36-07:00</published><updated>2020-05-23T08:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/23/quickselect</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/23/quickselect.html"><![CDATA[<p><img src="http://localhost:4000/assets/randomized/quickselect/intro.png" width="100%" />
-Given an array with $n$ elements. We can find the minimum element or maximum element in $O(n)$ time by doing a linear scan and keeping track of the minimum and maximum elements seen so far. What if we want to find the median element or the $k$th smallest element in general? One approach could be to sort the array in $O(n\log(n))$ time and extracting the $k$th smallest element in $O(1)$ time. Is there a faster way? Fortunately, yes! Quickselect is a randomized algorithm that can find the $k$th smallest element in just $O(n)$ expected time. Moreover, with some smart modification to how we select the pivot, we can achieve a worst-case running time of only $O(n)$ time.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Algorithm</b></h4>
-<p>Quickselect turns out to be just a slight modification on quicksort which is described <a href="https://strncat.github.io/jekyll/update/2020/05/21/quicksort.html">here</a>! As a reminder, in quicksort, we start by picking a random pivot,</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quickselect/1.png" width="100%" /></p>
-
-<p>and then we partition the array around the pivot (in this case, 2).</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quickselect/2.png" width="100%" /></p>
-
-<p>We then repeat the same process of picking a pivot in each half and then partitioning around the pivots until the array is sorted. However, in quickselect, we’re only interested in finding the $k$th smallest element! The $k$th smallest element can only exist in either the left or the right half. Therefore, we can just search the appropriate half and simply throw away the other half. So, what can the pivot tell us about which half to search?</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quickselect/3.png" width="100%" /></p>
-
-<p>Suppose we’re interested in finding the 2nd smallest element which is 2 in the example above. Naturally, the pivot divides the array into two halves. The left half is less than the pivot and the right half is greater than the pivot. If we let the size of the left array be $L$, then the pivot is the $L+1$th smallest element. Therefore, we can check if $k == L+1$ to determine if the pivot itself is the $k$th smallest element. In the above example, $k = 2$ and $L + 1 = 2$ and we conclude the search and return the pivot.
-<br />
-<br />
-Suppose instead we were searching for the smallest element in the array, $k = 1$. We know from earlier that the pivot is the $L+1$th smallest element. Since $k &lt; L+1$, this means that the $k$th smallest element is in the left half. So, we call quickselect again on the left half.
-<br />
-<br />
-Finally, suppose we’re looking for the 5th smallest element, $k = 5$. This time $k &gt; L+1$ and so we must search the right half. Do you search for the $k$th smallest element in the right half? No. Since we’re eliminating both the left array and the pivot, then our new search must look for the $k-(L+1) = (k-L-1)$th smallest element in the right half instead. 
-<br />
-<br />
-To summarize, there are three cases:</p>
-<ul>
-  <li>If $k$ is equal to $L + 1$, then we’re done and we return the pivot.</li>
-  <li>If $k$ is less than $L + 1$, then we call quickselect on the left half, searching for the $k$th smallest element.</li>
-  <li>If $k$ was greater than $L+1$, then we call quickselect on the right half, but this time searching for the $(k - L - 1)$ smallest element.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></li>
-</ul>
-<h4><b>Implementation</b></h4>
-<p>The following is an in-place implementation of quickselect.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">quickselect</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="kt">int</span> <span class="n">last</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// if we only have 3 elements, just sort</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">partial_sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">first</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">last</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
-        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">first</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-    <span class="p">}</span>
-
-    <span class="c1">// else, partition the array around a random pivot</span>
-    <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">randomized_partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">);</span>
-
-
-    <span class="kt">int</span> <span class="n">left_length</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">first</span><span class="p">;</span>
-
-    <span class="c1">// we lucked out, we're exactly at the kth element</span>
-    <span class="c1">// remember that indexing start at 0 and so we want k-1</span>
-    <span class="c1">// also we return the kth element starting at position first and not 0</span>
-    <span class="c1">// so we have take that into account when we return the element</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">left_length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">first</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-    <span class="p">}</span>
-
-    <span class="c1">// otherwise, we either search the left half or the right half</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">left_length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">quickselect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">quickselect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="n">left_length</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/randomized/quick-select.cpp">Full Implementation</a>
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Correctness of quickselect</b></h4>
-<p>TODO.
-Here is a proof by strong induction: <a href="http://web.stanford.edu/class/cs161/Lectures/Lecture4/CS161_handout_lecture4.pdf">here</a>
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Worst case analysis</b></h4>
-<p>In the worst-case, we’re always choosing a pivot such that our kth element ends up in the larger half. Not only that, but our choice of pivot is always either the smallest or largest element and so in each iteration, the number of elements decrease by only one element. Therefore, we have the following recurrence,</p>
-<div center="">
-$$
-\begin{align*}
-T(n) &amp;= T(n-1) + O(n).
-\end{align*}
-$$
-</div>
-<p>Remember that the $O(n)$ part is due to partition. This recurrence has the solution, $T(n) = O(n^2)$.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Best case analysis</b></h4>
-<p>In the best-case, we’re always choosing a pivot that divides the array in the middle and so we have the following recurrence,</p>
-<div center="">
-$$
-\begin{align*}
-T(n) &amp;= T(n/2) + O(n).
-\end{align*}
-$$
-</div>
-<p>This recurrence has the solution, $T(n) = O(n)$.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Expected case analysis</b></h4>
-<p>The expected running time of quickselect turns out to be $O(n)$.<br />
-Proof: TODO: (basically section 9.2 in CLRS (not easy though))
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Can quickselect run in linear time in the worst case?</b></h4>
-<p>So far, we’ve seen that quickselect runs in $O(n^2)$ in the worst case. Could we do something so that quickselect actually runs in linear time in the worst case? The answer is yes! we can modify the way we select the pivot to guarantee a linear runtime in the worst-case! (TODO: 9.3 in CLRS)
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-  <li>CLRS Chapter 9</li>
-  <li><a href="http://web.stanford.edu/class/cs161/Lectures/Lecture4/Lecture4-compressed.pdf">CS161 Stanford</a>
-<br />
-<br /></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Given an array with $n$ elements. We can find the minimum element or maximum element in $O(n)$ time by doing a linear scan and keeping track of the minimum and maximum elements seen so far. What if we want to find the median element or the $k$th smallest element in general? One approach could be to sort the array in $O(n\log(n))$ time and extracting the $k$th smallest element in $O(1)$ time. Is there a faster way? Fortunately, yes! Quickselect is a randomized algorithm that can find the $k$th smallest element in just $O(n)$ expected time. Moreover, with some smart modification to how we select the pivot, we can achieve a worst-case running time of only $O(n)$ time. Algorithm Quickselect turns out to be just a slight modification on quicksort which is described here! As a reminder, in quicksort, we start by picking a random pivot,]]></summary></entry><entry><title type="html">Quicksort</title><link href="http://localhost:4000/jekyll/update/2020/05/21/quicksort.html" rel="alternate" type="text/html" title="Quicksort" /><published>2020-05-21T08:01:36-07:00</published><updated>2020-05-21T08:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2020/05/21/quicksort</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/21/quicksort.html"><![CDATA[<p><img src="http://localhost:4000/assets/randomized/quicksort/intro.png" width="100%" />
-Given an array with $n$ elements. Quicksort is a fabulous divide-and-conquer sorting algorithm with a worst-case running time of $O(n^2)$ and an expected running time of $O(n\log(n))$. The main technique or idea used in quicksort is choosing a pivot, and then partitioning the elements around this pivot.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">quicksort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="kt">int</span> <span class="n">last</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> <span class="cm">/* partition index */</span>
-        <span class="n">quicksort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-        <span class="n">quicksort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-
-<p>Here, we have an unsorted array of 6 elements.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/1.png" width="100%" /></p>
-
-<p>Suppose the first random pivot was 3.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/2.png" width="100%" /></p>
-
-<p>We will partition the array such that all the elements less than or equal to 3 will be on the left and all the elements larger than 3 will be on the right. At this point, we have two new subproblems, the left and right subarrays. We recursively call quicksort on each half.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/3.png" width="100%" /></p>
-
-<p>Next, suppose the next random pivot was 2 for the left subarray and 5 for the right subarray.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/4.png" width="100%" /></p>
-
-<p>We repeat the same process of partitioning around each pivot.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/5.png" width="100%" /></p>
-
-<p>We now call quicksort again on each new subarray, highlighted in blue.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/6.png" width="100%" /></p>
-
-<p>The base case of the recursion is reaching an array of size 1 ($first &lt; last$ is not true). In this case, we do nothing since an array of size 1 is already sorted. So, it’s time to combine all these smaller solutions in one array. However, unlike Mergesort, we’re doing all the partitioning work in place and so naturally we’re done.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/7.png" width="100%" />
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Partition</b></h4>
-
-<p>The most critical or the only thing we really do in Quicksort is partitioning the array around a chosen pivot. There isn’t anything cuter than partition. The implementation trick to partition is to move the pivot to the end of the array. So, for the above example, we will swap 3 and 4 and set the pivot to be the last index of the array.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/p1.png" width="100%" /></p>
-
-<p>We will also keep track of an index, $i$, to iterate through the array. At each iteration, we will compare the element at index $i$ with the the pivot. The trick to partition is keeping track of another index, \(write{\_}index\). Whenever we see an element that is less than the pivot, we swap it with the element at \(write{\_}index\) and increment \(write{\_}index\). The intuition here is that we want all the elements less than the pivot to be stored below \(write{\_}index\). 
-<br />
-<br />
-Initially, $i=0$ and \(write {\_} index =0\). We compare $array[i=0]=6$ to the pivot, 3. Since 6 is not smaller, we just increment $i$.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/p2.png" width="100%" /></p>
-
-<p>Next, we have $i=1$ and \(write{\_}index =0\). We compare $array[i=1]=2$ to the pivot, 3. 2 is smaller so we swap 2 and 6 and then increment both \(write{\_}index\) to 1 and $i$ to 2.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/p3.png" width="100%" /></p>
-
-<p>Notice below that 2 and 6 are now swapped. \(array[write{\_}index = 1] = 6\) and $array[i = 1] = 1$. 1 is also smaller than 3 so we swap 6 and 1 and increment both $i$ and \(write{\_}index\).</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/p4.png" width="100%" /></p>
-
-<p>You can see below that the elements before \(write{\_}index\) are indeed smaller than the pivot. We repeat the same process of comparing the current element at $i$ to the pivot. 4 is not smaller than 3 so we just increment $i$.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/p5.png" width="100%" /></p>
-
-<p>We repeat the above process until we reach the pivot and we stop. The very last thing we want to do is to place the pivot back in its correct place. We swap the pivot with the element at \(write{\_}index\).</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/p6.png" width="100%" /></p>
-
-<p>The write_index is now our real pivot that we want to return to quicksort.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/p7.png" width="100%" /></p>
-
-<!------------------------------------------------------------------------------------>
-<h4><b>Implementation</b></h4>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">partition</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">first</span><span class="p">,</span> <span class="kt">int</span> <span class="n">last</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
-    <span class="kt">int</span> <span class="n">random_pivot</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="p">(</span><span class="n">last</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">first</span><span class="p">)</span> <span class="o">+</span> <span class="n">first</span><span class="p">;</span>
-
-    <span class="c1">// move the pivot to the end of the array</span>
-    <span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">random_pivot</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">last</span><span class="p">]);</span>
-    <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
-
-    <span class="kt">int</span> <span class="n">write_index</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>                                                      
-        <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">pivot</span><span class="p">])</span> <span class="p">{</span>
-            <span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
-            <span class="n">write_index</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">pivot</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">write_index</span><span class="p">]);</span>
-    <span class="k">return</span> <span class="n">write_index</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/sorting/quick-sort.c">Quicksort in C</a>
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Correctness of partition</b></h4>
-<p>The proof is done with a standard loop invariant. For partition above, we want to establish the following invariant:
-<br />
-<br />
-For any index $k$ in the array:</p>
-<ul>
-  <li>If \(write{\_}index \leq k \leq i\), then $array[k] \leq array[pivot]$. (Remember we’ve already said any element below \(write{\_}index\) is less than the pivot).</li>
-  <li>If \(i &lt; k \leq pivot - 1\), then $array[k] \leq array[pivot]$.</li>
-  <li>If \(i == pivot\), then \(array[k] = array[pivot]\).</li>
-</ul>
-
-<p><br />
-Proof is in CLRS ;)
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Worst-case running time analysis</b></h4>
-<p>What’s the worst possible input to quicksort? Suppose we always pick the pivot to be the largest or the smallest element in the array. Then, we will have two subproblems, one of size $n-1$ elements and the other of size $0$. We know partition runs in linear time. If $T(n)$ was the total time it takes to run quicksort then,</p>
-<div center="">
-$$
-\begin{align*}
-T(n) &amp;= T(n-1) + T(0) + O(n) \\
-T(n) &amp;= T(n-1) + O(n).
-\end{align*}
-$$
-</div>
-<p>This recurrence has the solution $T(n)=O(n^2)$ which is the worst-case running time of quicksort. Intuitively, if we always choose either the smallest or the largest index as a pivot, then we will be making \(O(n)\) calls to partition. Partition takes linear time and so the total running time will be $O(n^2)$.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Best running time analysis</b></h4>
-<p>How good can quicksort be? Suppose that the pivot is always chosen to be the middle element in the array. Then our recurrence would look like the following,</p>
-<div center="">
-$$
-\begin{align*}
-T(n) &amp;= 2T(n/2) + O(n).
-\end{align*}
-$$
-</div>
-<p>By the master theorem, the solution is $T(n) = O(n\log(n))$. Intuitively, if we always partition the array around the middle element, we will need to make $O(\log(n))$ calls to partition and therefore, we get $O(n\log(n))$ as the overall runtime.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Expected running time analysis</b></h4>
-<p>This analysis depends on the important idea that quicksort is dominated by the number of comparisons it makes while partitioning the array (proof in CLRS). Moreover,</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>for any given pair of elements, $x$ and $y$. We know that $x$ and $y$ are compared at most once during quicksort.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><i>Proof:</i> $x$ and $y$ are only ever compared if one of them is chosen as a pivot. Moreover, once we do the comparison, the pivot will be excluded from all future calls to partition and so $x$ and $y$ will not be compared to each other again.
-<br />
-<img src="http://localhost:4000/assets/randomized/quicksort/a1.png" width="100%" /></p>
-
-<p>So, how do we count the number of comparisons quicksort makes? Let $A = \{z_1, z_2, …, z_n\}$ be an array of distinct elements, such that $z_i$ is the $i$th smallest element. Let $X$ be the total number of comparisons quicksort makes and let $X_{ij}$ be an indicator random variable such that,</p>
-<div center="">
-$$
-\begin{align*}
-X_{ij} = \Big\{ \begin{array}{@{}lr@{}}
-        1 \quad \text{ if } x_i \text{ is compared to } x_j \\
-        0 \quad \text{ otherwise} \\
-        \end{array}
-\end{align*}
-$$
-</div>
-<p>Since we make at most one comparison between each pair, we can write $X$ as follows</p>
-<div center="">
-$$
-\begin{align*}
-X = \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} X_{ij}
-\end{align*}
-$$
-</div>
-<p>We are interested however in the expected number of comparisons. Therefore, we take the expectation of both sides to see that,</p>
-<div center="">
-$$
-\begin{align*}
-E[X] &amp;= E[\sum_{i=1}^{n-1} \sum_{j=i+1}{n} X_{ij}] \\
-&amp;= \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} E[X_{ij}] \quad \text { (linearity of expectation)}  \\
-&amp;= \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} P(X_{ij}=1) \quad \text { (expectation of an indicator random variable)} \\
-\end{align*}
-$$
-</div>
-
-<p><u>How to compute $P(X_{ij}=1)$? </u>
-<br />
-Let $Z_{ij} = \{z_i,…,z_j\}$ be the set of elements between $z_i$ and $z_j$ inclusive.</p>
-
-<p><img src="http://localhost:4000/assets/randomized/quicksort/a2.png" width="100%" /></p>
-
-<p><u>What is the significance of $Z_{ij}$ to the probability of $x_i$ and $x_j$ being compared?</u>
-<br />
-Suppose we pick a pivot that’s not in $Z_{ij}$, then this event doesn’t affect the chance of $z_i$ and $z_j$ being compared. However, if the choice of pivot was from the set $Z_{ij}$ then we have two cases:</p>
-<ul>
-  <li>If the pivot was $z_i$ or $z_j$ then the $z_i$ and $z_j$ will be compared.</li>
-  <li>If the pivot was any other element in $Z_{ij}$, then $z_i$ and $z_j$ will be partitioned in separate halfs and will never be compared.
-Based on the above, only two choices out of $j-i+1$ choices will lead to having $z_i$ and $z_j$ be compared. Therefore,</li>
-</ul>
-<div center="">
-$$
-\begin{align*}
-P(X_{ij} = 1) &amp;= \frac{2}{j - i + 1}
-\end{align*}
-$$
-</div>
-<p>Apply this back in the previous expectation,</p>
-<div center="">
-$$
-\begin{align*}
-E[X] &amp;= \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} P(X_{ij}=1) \\
-&amp;= \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}  \frac{2}{j - i + 1} \\
-&amp;= \sum_{i=1}^{n-1} \sum_{k=1}^{n-i}  \frac{2}{k + 1} \quad (\text{let } k = j - i) \\
-\end{align*}
-$$
-</div>
-
-<p>Using the harmonic series,</p>
-<div center="">
-$$
-\begin{align*}
-H_n = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n} = \sum_{k=1}^{n} \frac{1}{k} = \ln(n) + O(1)
-\end{align*}
-$$
-</div>
-<p>We can further simplify the expectation to be</p>
-<div center="">
-$$
-\begin{align*}
-E[X] &amp;= \sum_{i=1}^{n-1} \sum_{k=1}^{n-i}  \frac{2}{k + 1} \\
-&amp;\leq \sum_{i=1}^{n-1} \sum_{k=1}^{n}  \frac{2}{k} \quad \text { (CLRS's bag of tricks)}\\
-&amp;= \sum_{i=1}^{n-1} O(\log(n)) \quad \text { (Harmonic series above) } \\
-&amp;=O(n\log(n)) \\
-\end{align*}
-$$
-</div>
-<p>Thus, the expected running time of quick sort is $O(n\log(n))$ when the elements are distinct. 
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-  <li>CLRS Chapter 7</li>
-  <li><a href="http://web.stanford.edu/class/cs161/Lectures/Lecture5/Lecture5-compressed.pdf">CS161 Stanford</a>
-<br />
-<br /></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Given an array with $n$ elements. Quicksort is a fabulous divide-and-conquer sorting algorithm with a worst-case running time of $O(n^2)$ and an expected running time of $O(n\log(n))$. The main technique or idea used in quicksort is choosing a pivot, and then partitioning the elements around this pivot.]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this note, I want to revisit the master theorem along with its proof outline as I’ve learned it in CS161 at Stanford (Professor Mary Wootters). The Master Theorem Let $T(n) = aT(\frac{n}{b})+O(n^d)$ be a recurrence where $a \geq 1$ and $b \geq 1$. Then, $$ \begin{align*} T(n) = \Bigg \{ \begin{array}{@{}lr@{}} O(n^d\log(n)) \ \text{ if } a = b^d,\\ O(n^d) \ \ \quad \quad \text{ if } a &lt; b^d, \\ O(n^{\log_b(a)}) \quad \text{ if } a &gt; b^d \end{array} \end{align*} $$ If this recurrence represents the running time of an algorithm then, $a$ is the number of subproblems. $b$ is the factor by which the input is decreasing at each level of the recursion. $n^d$ is the total time needed to create the subproblems and combine their solutions. Example We can apply the master theorem on many recurrences. For example, if we’re given, $$ \begin{align*} T(n) = 4T(\frac{n}{2}) + (n). \end{align*} $$ We can quickly see that we have $a = 4$, $b = 2$ and $d = 1$. Therefore, $a &gt; b^d$ and so by using the master theorem, we can see that $T(n) = O(n^{\log_2(4)}) = O(n^2)$. Intuition Why do we have 3 cases and what’s the intuition behind each case? To see this, we discuss three examples, one for each case, starting with case 2. Case 2: $$ \begin{align*} T(n) &amp;= T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ Clearly by the master theorem (case 2), the solution should be $O(n)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion and at the same time, the decrease in the number of subproblem is more than the increase in the number of subproblems. So, the work is dominated by the top level of the recursion tree. To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$. $$ \begin{align*} T(n) &amp;= \sum_{t=0}^{\log(n)} \frac{n}{2^t} \\ &amp;= n\sum_{t=0}^{\log(n)} \big(\frac{1}{2}\big)^t \\ &amp;= n\big(\frac{1/2^{\log(n)+1} - 1}{1/2 - 1}\big) \\ &amp;= -2n\big(1/2^{\log(n)+1} - 1\big) \\ &amp;= -2n\big(\frac{1}{2 (2^{\log(n)})} - 1\big) \\ &amp;= -2n\big(\frac{1}{2n} - 1\big) \\ &amp;= 2n - 1 \\ &amp;= O(n). \end{align*} $$ Case 3: $$ \begin{align*} T(n) &amp;= 4T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ Again by the master theorem (case 3), the solution should be $O(n^2)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion but at the same time, the number of subproblems is actually increasing by a lot more! So, the work is dominated by the bottom level of recursion tree. Drawing only the first three levels, you can see, the bottom level will carry most of the work To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$. $$ \begin{align*} T(n) &amp;= \sum_{t=0}^{\log(n)} 4^t\frac{n}{2^t} \\ T(n) &amp;= n\sum_{t=0}^{\log(n)} 2^t \\ &amp;= n\big(\frac{2^{\log(n)+1} - 1}{2 - 1}\big) \\ &amp;= n\big(2^{\log(n)+1} - 1\big) \\ &amp;= n\big(2(2^{\log(n)}) - 1\big) \\ &amp;= n\big(2n - 1\big) \\ &amp;= O(n^2). \end{align*} $$ Case 1: $$ \begin{align*} T(n) &amp;= 2T(\frac{n}{2}) + n. \quad T(1) = 1. \end{align*} $$ By the master theorem (case 1), the solution should be $O(\log(n))$. Intuitively, we’re reducing the size of the problem by half at each level of the recursion and at the same time, we’re doubling the number of subproblems (balanced case). So, at each level, we have the same amount of work. If we draw only the first three levels, you’ll notice that at each level, we’re doing precisely $n$ total amount of work. To make this formal, we sum all the work done across all levels, $$ \begin{align*} T(n) &amp;= \sum_{t=0}^{\log(n)} 2^t\frac{n}{2^t} = n\sum_{t=0}^{\log(n)} 1 = n\log(n). \end{align*} $$ Proof Outline Why is the master theorem correct? Let’s take a look at the recurrence again, $$ \begin{align*} T(n) &amp;= aT(\frac{n}{b})+O(n^d) \\ &amp;= aT(\frac{n}{b}) + cn^d. \end{align*} $$ We will assume that $T(1) = 1$ for simplicity. To solve the recurrence, we will use the recursion tree method similar exactly to what we did for Mergesort. Let’s build the same table that we built for Mergesort to calculate the amount of work done per each level of recursion and get the following, All we need to do now is to sum the amount of work done for all the levels in the table. We see that, $$ \begin{align*} T(n) &amp;= \sum_{t=0}^{\log_b(n)} a^t c(\frac{n}{b^t})^d \\ &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t. \end{align*} $$ So now we can handle each case. Case 1: $a = b^d$ $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{b^d}{b^d})^t \\ &amp;= cn^d \sum_{t=0}^{\log_b(n)} 1 \\ &amp;= cn^d (\log_b(n) + 1) \\ &amp;= cn^d (\frac{\log(n)}{\log(b)} + 1) \\ &amp;= O(n^d\log(n)). \end{align*} $$ Case 2: $a &lt; b^d$ $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \end{align*} $$ We note in the above sum that $\frac{a}{b^d} &lt; 1$. We can then use the geometric series, $$ \begin{align*} \sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}. \end{align*} $$ When $|x| &lt; 1$ and the summation is infinite, this sum approaches $\frac{1}{1-x}$. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $\frac{1}{1-a/b^d}$ which is some constant that doesn’t depend on $n$. Therefore, $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\ &amp;= O(n^d) \end{align*} $$ Case 3: $a &gt; b^d$ $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \end{align*} $$ We note in the above sum that $\frac{a}{b^d} &gt; 1$. We can then use the geometric series again, $$ \begin{align*} \sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}. \end{align*} $$ When $|x| &gt; 1$ and the summation is infinite, this sum approaches the last term in the series. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $(a/b^d)^{\log_b(b)}$. Therefore, $$ \begin{align*} T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\ &amp;= cn^d\big(\frac{a}{b^d}\big)^{\log_b(n)} \\ &amp;= cn^d\big(b^{\log_b(\frac{a}{b^d})}\big)^{\log_b(n)} \\ &amp;= cn^d\big(b^{\log_b(n)}\big)^{\log_b(\frac{a}{b^d})} \\ &amp;= cn^d\big(n\big)^{\log_b(\frac{a}{b^d})} \\ &amp;= cn^d(n)^{\log_b(a) - \log_b(b^d)} \\ &amp;= cn^d(n)^{\log_b(a) - d} \\ &amp;= c(n)^{d + \log_b(a) - d} \\ &amp;= cn^{\log_b(a)} \\ &amp; = O(n^{\log_b(a)}) \end{align*} $$ References Stanford CS161 CLRS]]></summary></entry></feed>

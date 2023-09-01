@@ -4,4 +4,5 @@ title: About
 permalink: /about/
 ---
 
-These are my personal notes of algorithms and data structures I either have learned in class or on my own from various resources.
+These are my personal notes of everything I'm learning either from books or formal classes or online resources.
+Reach out at (strcatt at gmail)

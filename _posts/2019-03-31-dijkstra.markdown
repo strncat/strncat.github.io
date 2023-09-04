@@ -38,15 +38,15 @@ mathjax: true
 	<polygon fill="black" stroke-width="1" points="486.343,116.587 477.386,119.55 485.082,125.936"/>
 	<text x="452.5" y="184.5" font-family="Times New Roman" font-size="20">4</text>
 </svg>
-Given a graph $$G=(E,V)$$ and a source node $$s$$. Dijkstra finds the shortest weighted path from $$s$$ to every other node in the graph. The graph however needs to only have non-negative edge weights. In the above graph the shortest path between nodes $$s$$ and $$t$$ is $$s \rightarrow a \rightarrow b \rightarrow t$$. Dikstra is extremely fast. It can run in amortized time $$O(n\log(n) + m)$$ if we implement Dijkstra with a fiponacci heap. 
+Given a graph $G=(E,V)$ and a source node $s$. Dijkstra finds the shortest weighted path from $s$ to every other node in the graph. The graph however needs to only have non-negative edge weights. In the above graph the shortest path between nodes $s$ and $t$ is $s \rightarrow a \rightarrow b \rightarrow t$. Dikstra is extremely fast. It can run in amortized time $O(n\log(n) + m)$ if we implement Dijkstra with a fiponacci heap. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example</b></h4>
-How does Dijkstra work? Using the above example, we maintain a set of <i>not-sure</i> nodes $$\{a, b, c, t, s\}$$. We let $$d[v]$$ be the current distance from $$s$$ to $$v$$. Initially we let $$d[v] = \infty$$ for any node in <i>not-sure</i> and $$d[s] = 0$$ for the source node only.
+How does Dijkstra work? Using the above example, we maintain a set of <i>not-sure</i> nodes $\{a, b, c, t, s\}$. We let $d[v]$ be the current distance from $s$ to $v$. Initially we let $d[v] = \infty$ for any node in <i>not-sure</i> and $d[s] = 0$ for the source node only.
 <br>
 <br>
-In the first iteration of Dijkstra, we extra the minimum distance node in the <i>not-sure</i> list. This node is $$s$$. We then update the distance of each neighbor based on the following,
+In the first iteration of Dijkstra, we extract the node with the minimum distance in the <i>not-sure</i> list. This node is $s$. We then update the distance of each neighbor based on the following,
 <div center>
 $$
 \begin{align*}
@@ -54,32 +54,32 @@ d[u] &= min(d[u], d[u]+weight(s,u))
 \end{align*}
 $$
 </div>
-After updating each neightbor we get the following the values. Also, after updating all neighbors, we mark $$s$$ as sure.
+After updating each neightbor, we mark $s$ as sure. We should see the following values after this iteration.
 
 | Iteration | s | a | b | c | t |
 |-------|--------|---------|
-| 0 (extract $$s$$) | 0 | 2 | $$\infty$$ | 1 | $$\infty$$ |
+| 0 (extract $s$) | 0 | 2 | $\infty$ | 1 | $\infty$ |
 
 
 <i>Iteration 1</i><br>
-We extract the minimum again from the not-sure nodes. This time we extract $$c$$. We update all the neighbors and at the end of this iteration, we mark $$c$$ as sure.
+We extract the node with the minimum distance again from the not-sure list. This time we extract $c$. We update all the neighbors and at the end of this iteration, we mark $c$ as sure.
 
 
 | Iteration | s | a | b | c | t |
 |-------|--------|---------|
-| 0 (extract $$s$$) | 0 | 2 | $$\infty$$ | 1 | $$\infty$$ |
-| 1 (extract $$c$$) | 0 | 2 | 5 | 1 | 7 |
+| 0 (extract $s$) | 0 | 2 | $\infty$ | 1 | $\infty$ |
+| 1 (extract $c$) | 0 | 2 | 5 | 1 | 7 |
 
 <i>Final iteration</i><br>
-We continue with the same process. We extract the node $$a$$ and update its neighbors. We then mark it as sure, meaning that the distance from node $$s$$ to node $$a$$ is 2 and will not change again. We next extract $$b$$ and update the neighbors again. We then mark $$b$$ as sure. We finally extract $$t$$ which has no out-going edges. At the end of the algorithm, we see that we generated all the shortest paths from $$s$$ to all the other nodes in the graph.
+We continue the same process. We extract the node $a$ and update its neighbors. We then mark it as sure, meaning that the distance from node $s$ to node $a$ is 2 and will not change again. We next extract $b$ and update the neighbors again. We then mark $b$ as sure. We finally extract $t$ which has no out-going edges. At the end of the algorithm, we see that we generated all the shortest paths from $s$ to all the other nodes in the graph.
 
 | Iteration | s | a | b | c | t |
 |-------|--------|---------|
-| 0 (extract $$s$$) | 0 | 2 | $$\infty$$ | 1 | $$\infty$$ |
-| 1 (extract $$c$$) | 0 | 2 | 5 | 1 | 7 |
-| 2 (extract $$a$$) | 0 | 2 | 4 | 1 | 7 |
-| 3 (extract $$b$$) | 0 | 2 | 4 | 1 | 5 |
-| 4 (extract $$t$$) | 0 | 2 | 4 | 1 | 5 |
+| 0 (extract $s$) | 0 | 2 | $\infty$ | 1 | $\infty$ |
+| 1 (extract $c$) | 0 | 2 | 5 | 1 | 7 |
+| 2 (extract $a$) | 0 | 2 | 4 | 1 | 7 |
+| 3 (extract $b$) | 0 | 2 | 4 | 1 | 5 |
+| 4 (extract $t$) | 0 | 2 | 4 | 1 | 5 |
 
 <br>
 <!------------------------------------------------------------------------------------>
@@ -102,7 +102,7 @@ while there are not-sure nodes {
 {% endhighlight %}
 <!------------------------------------------------------------------------------------>
 <h4><b>Extracting the path</b></h4>
-To reconstruct the actuall path take, we just maintain a pointer to the parent node. We simply keep an additional array $$p$$ and modify the update step as follows:
+To reconstruct the actuall path take, we just maintain a pointer to the parent node. We simply keep an additional array $p$ and modify the update step as follows:
 <br>
 {% highlight c++ %}
 p[v] = -1 for all v in V
@@ -121,31 +121,31 @@ while there are not-sure nodes {
 Why does Dijkstra work? We need to prove two important claims in order to prove that Dijkstra is correct.
 <br>
 
-| Claim 1: For all $$v$$, $$d[v] \geq d(s,v)$$. That is, $$d[v]$$ will never be an underestimate for any node $$v$$. |
+| Claim 1: For all $v$, $d[v] \geq d(s,v)$. That is, $d[v]$ will never be an underestimate for any node $v$. |
 
 <i>Proof:</i> <br>
-<b>Inducive Hypothesis:</b> After $$t$$ iterations, $$d[v] \geq d(s,v)$$ for all $$v$$. <br>
+<b>Inducive Hypothesis:</b> After $t$ iterations, $d[v] \geq d(s,v)$ for all $v$. <br>
 
-<b>Base Case:</b> After 0 iterations, the algorithms sets $$d[s]= 0 = d(s,s)$$ and sets $$d[v]$$ to $$\infty$$ for all $$v \neq s$$ and therefore we have $$d[v] \geq d(s,v)$$, as required.<br>
+<b>Base Case:</b> After 0 iterations, the algorithms sets $d[s]= 0 = d(s,s)$ and sets $d[v]$ to $\infty$ for all $v \neq s$ and therefore we have $d[v] \geq d(s,v)$, as required.<br>
 
-<b>Inductive Step:</b> Assume that after $$t$$ iterations, $$d[v] \geq d(s,v)$$ for all $$v$$. We will prove the inequality holds after $$t+1$$ iterations. At iteration $$t+1$$, we pick the minimum not-sure node $$u$$ and then update all neighbors $$v$$ such that:
-$$d[v] = min(d[v], d[u]+w(u,v))$$. To see that $$d[v] \geq d(s,v)$$, notice that: <br>
-(1) $$d[v] \geq d(s,v)$$ by the inductive hypothesis. <br>
-(2) $$d[u] + w(u,v) \geq d(s,v)$$. This is because we know that $$d(s,v) \leq d(s,u) + d(u,v)$$ and we also know that $$d[u] \geq d(s,u)$$ by the inductive hypothesis. Therefore, $$d(s,v) \leq d[u] + d(u,v)$$.
+<b>Inductive Step:</b> Assume that after $t$ iterations, $d[v] \geq d(s,v)$ for all $v$. We will prove the inequality holds after $t+1$ iterations. At iteration $t+1$, we pick the minimum not-sure node $u$ and then update all neighbors $v$ such that:
+$d[v] = min(d[v], d[u]+w(u,v))$. To see that $d[v] \geq d(s,v)$, notice that: <br>
+(1) $d[v] \geq d(s,v)$ by the inductive hypothesis. <br>
+(2) $d[u] + w(u,v) \geq d(s,v)$. This is because we know that $d(s,v) \leq d(s,u) + d(u,v)$ and we also know that $d[u] \geq d(s,u)$ by the inductive hypothesis. Therefore, $d(s,v) \leq d[u] + d(u,v)$.
 
 <b>Conclusion:</b> 
-After the algorithm terminates, we have $$d[v] \geq d(s,v)$$ for all $v$ in $V$, as required. $$\blacksquare$$
+After the algorithm terminates, we have $d[v] \geq d(s,v)$ for all $v$ in $V$, as required. $\blacksquare$
 <br>
 
-| Claim 2: When a vertex $$u$$ is marked sure, $$d[u] = d(s,u)$$ |
+| Claim 2: When a vertex $u$ is marked sure, $d[u] = d(s,u)$ |
 
 
 <i>Proof:</i> <br>
-<b>Inducive Hypothesis:</b> When the t'th vertex $$v$$ is marked as sure, $$d[v] = d(s,v)$$. <br>
+<b>Inducive Hypothesis:</b> When the t'th vertex $v$ is marked as sure, $d[v] = d(s,v)$. <br>
 
-<b>Base Case:</b> When the first vertex $$s$$ is marked sure, we know that $$d[s]=0=d(s,s)$$, as required. <br>
+<b>Base Case:</b> When the first vertex $s$ is marked sure, we know that $d[s]=0=d(s,s)$, as required. <br>
 
-<b>Inductive Step:</b> Suppose we're about to mark vertex $$u$$ as sure, and assume every vertex already marked as sure has $$d[v]=d(s,v)$$. We will show that $$d[u]=d(s,u)$$. Consider a shortest path from $$s$$ to $$u$$. 
+<b>Inductive Step:</b> Suppose we're about to mark vertex $u$ as sure, and assume every vertex already marked as sure has $d[v]=d(s,v)$. We will show that $d[u]=d(s,u)$. Consider a shortest path from $s$ to $u$. 
 
 <svg width="800" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="1" fill="none" cx="101.5" cy="106.5" rx="30" ry="30"/>
@@ -166,16 +166,16 @@ After the algorithm terminates, we have $$d[v] \geq d(s,v)$$ for all $v$ in $V$,
 	<polygon stroke="black" stroke-width="1" points="545.091,74.587 616.909,97.413"/>
 	<polygon fill="black" stroke-width="1" points="616.909,97.413 610.8,90.225 607.771,99.755"/>
 </svg>
-We want to prove that $$d[u]=d(s,u)$$. Suppose toward a contradiction that our claim is not true and that $$u$$ has the wrong estimate. Also suppose that node $$z$$ is the last node with a correct estimate before node $$u$$ and that vertex $$z'$$ is the vertex after $$z$$ in the shortest path above. We can see that <br>
+We want to prove that $d[u]=d(s,u)$. Suppose toward a contradiction that our claim is not true and that $u$ has the wrong estimate. Also suppose that node $z$ is the last node with a correct estimate before node $u$ and that vertex $z'$ is the vertex after $z$ in the shortest path above. We can see that <br>
 <div center>
 $$ d[z] = d(s,z) \leq d(s,u) \leq d[u] $$ <br>
 </div>
-This is because we assumed $$z$$ has a correct estimate and we also know that $$d(s,z) \leq d(s,u)$$ because first, sub-paths of shortest paths are shortest paths (can be proved by contradiction). Second, the distance from $$z$$ to $$u$$ is non-negative because all edges have non-negative weights and therefore $$d(s,z) \leq d(s,u)$$. The last part $$d(s,u) \leq d[u]$$ follows from claim 1!
+This is because we assumed $z$ has a correct estimate and we also know that $d(s,z) \leq d(s,u)$ because first, sub-paths of shortest paths are shortest paths (can be proved by contradiction). Second, the distance from $z$ to $u$ is non-negative because all edges have non-negative weights and therefore $d(s,z) \leq d(s,u)$. The last part $d(s,u) \leq d[u]$ follows from claim 1!
 <br>
 <br>
-So now, we have $$d[z] \leq d[u]$$. There are two cases: <br>
-Case 1: If $$d[z] = d[u]$$. In this case, since we assumed $$z$$ has a correct estimate then $$u$$ must have a correct estimate and we're done! <br>
-Case 2: If $$d[z] < d[u]$$. In this case, since $$u$$ was the smallest not-sure node, then $$z$$ must be sure. Otherwise we would have picked $$z$$ as the smallest not-sure node. Since $$z$$ is sure then we must have updated $$z$$'s neighbors. In particular, we know that $$z'$$ comes after $$z$$ so,
+So now, we have $d[z] \leq d[u]$. There are two cases: <br>
+Case 1: If $d[z] = d[u]$. In this case, since we assumed $z$ has a correct estimate then $u$ must have a correct estimate and we're done! <br>
+Case 2: If $d[z] < d[u]$. In this case, since $u$ was the smallest not-sure node, then $z$ must be sure. Otherwise we would have picked $z$ as the smallest not-sure node. Since $z$ is sure then we must have updated $z$'s neighbors. In particular, we know that $z'$ comes after $z$ so,
 <div center>
 $$
 \begin{align*}
@@ -186,10 +186,10 @@ d[z'] &\leq d[z] + w(z,z') \\
 \end{align*}
 $$
 </div>
-This means that $$z'$$ has a correct estimate. This is a contradiction because we assumed that $$z$$ is the last node with a good estimate and therefore, $$u$$ must have the correct estimate, as required.
+This means that $z'$ has a correct estimate. This is a contradiction because we assumed that $z$ is the last node with a good estimate and therefore, $u$ must have the correct estimate, as required.
 
 <b>Conclusion:</b> 
-After the last node is marked sure, we have $$d[v] = d(s,v)$$ for all $v$ in $V$, as we wanted to show. $$\blacksquare$$
+After the last node is marked sure, we have $d[v] = d(s,v)$ for all $v$ in $V$, as we wanted to show. $\blacksquare$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -199,7 +199,7 @@ What are we doing in this algorithm? For each vertex in the not-sure list, we <b
 (2) remove that vertex. <br>
 (3) update all neighbors with lower estimates if possible.<br>
 <br>
-Therefore we see that if we have $$n$$ vertices and $$m$$ edges:
+Therefore we see that if we have $n$ vertices and $m$ edges:
 <div center>
 $$
 \begin{align*}
@@ -211,23 +211,23 @@ $$
 </div>
 Now it is clear that it really depends on how we implement the list that holds the not-sure nodes. Let's consider different data structures
 - Arrays
-	- findMin will run in $$O(n)$$
-	- RemoveMin will run in $$O(n)$$
-	- UpdateKey will run in $$O(1)$$<br>
-Therefore, the total time will be $$O(n(2n) + m) = O(n^2 + m) = O(n^2)$$
+	- findMin will run in $O(n)$
+	- RemoveMin will run in $O(n)$
+	- UpdateKey will run in $O(1)$<br>
+Therefore, the total time will be $O(n(2n) + m) = O(n^2 + m) = O(n^2)$
 
 - Red Black Tree
-	- findMin will run in $$O(\log(n))$$
-	- RemoveMin will run in $$O(\log(n))$$
-	- UpdateKey will run in $$O(\log(n))$$<br>
-Therefore, the total time will be $$O(n\log(n) + m\log(n)) = O((n+m)\log(n))$$. <br>
-Notice here, if the graph is dense, meaning that $$m=O(n^2)$$, then this is worse than arrays! if it's sparse, then it's better.
+	- findMin will run in $O(\log(n))$
+	- RemoveMin will run in $O(\log(n))$
+	- UpdateKey will run in $O(\log(n))$<br>
+Therefore, the total time will be $O(n\log(n) + m\log(n)) = O((n+m)\log(n))$. <br>
+Notice here, if the graph is dense, meaning that $m=O(n^2)$, then this is worse than arrays! if it's sparse, then it's better.
 
 - Fibonacci Heaps
-	- findMin will run in $$O(1)$$, amortized time.
-	- RemoveMin will run in $$O(\log(n))$$, amortized time. 
-	- UpdateKey will run in $$O(1)$$, amortized time.<br>
-Therefore, the total time will be $$O(n\log(n) + m)$$, amortized time.
+	- findMin will run in $O(1)$, amortized time.
+	- RemoveMin will run in $O(\log(n))$, amortized time. 
+	- UpdateKey will run in $O(1)$, amortized time.<br>
+Therefore, the total time will be $O(n\log(n) + m)$, amortized time.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

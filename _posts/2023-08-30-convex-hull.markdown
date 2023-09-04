@@ -52,7 +52,7 @@ Jarvis's March is similar to Selection Sort. In each iteration of Selection Sort
 <!------------------------------------------------------------------------------------>
 <h4><b>1. Preconditions</b></h4>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-1.png" width="60%" class="center"></p>
-Initially, we will pick the a vertex that we know will be in the hull. We can pick the left most vertex or the bottom most vertex or any vertex where all the points will be on one side (half plane). Let's pick the left most vertex and let it be $p_0$. 
+Initially, we will pick a vertex that we know will be in the hull. We can pick the left most vertex or the bottom most vertex or any vertex where all the points will be on one side (half plane). Let's pick the left most vertex and let it be $p_0$. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

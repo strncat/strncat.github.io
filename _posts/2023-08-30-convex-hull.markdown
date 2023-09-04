@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Finding the Convex Hull (Jarvis's March / Gift Wrapping)"
+title:  "Jarvis's March (Gift Wrapping)"
 date:   2023-08-30 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -38,7 +38,6 @@ conv(S) = \text{ Intersection of all "half planes" containing $S$ }
 \end{align*}
 $$
 </div>
-This result is helpful in (TODO: revisit this part of the lecture)
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Finding the Convex Hull</b></h4>
@@ -58,8 +57,10 @@ Initially, we will pick the a vertex that we know will be in the hull. We can pi
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>2. Picking the Right Most Vertex</b></h4>
-<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-2.png" width="60%" class="center"></p>
-So now we have a point in the convex hull and we need to proceed by picking the right most vertex relative to $p_0$. How do we determine the right most vertex? Previously we derived an expression to find out whether a point $r$ is on the left or right of the line that goes through two given points $p$ and $q$ (see the post: Orientation of Three Points). We can wrap the expression in a function: (we also used this in triangulating polygons. See Triangulation (Finding a Diagonal).
+<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-2.png" width="70%" class="center"></p>
+So now that we have a point in the convex hull, we need to proceed by picking the right most vertex relative to $p_0$. How do we determine the right most vertex? Imagine shooting a ray from $p_0$ to each of the remaining vertices. Before iterating over these vertices, we'll start by labeling the first vertex from this set as "right_most" because it's the right most one relative to $p_0$ for now. We will continue iterating through remaining vertices while updating "right_most" whenever we come across a vertex more to the right relative to $p_0$.
+<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-2a.png" width="85%" class="center"></p>
+In each iteration, we will have the vertex $p_0$ on the hull, the current "right most" vertex so far and the vertex we're testing right now $i$. The immediate approach we might think of is just to simply compare the angels right? comparing floating points is a pain. There is actually a much better way that we've previously discovered and used when triagulating a polygon. (See Orientation of Three Points). Precisely, we've derived an expression to find out whether a point $r$ is on the left or right of the line that goes through two given points $p$ and $q$. We can wrap this expression in the function below.
 {% highlight c++ %}
 // determines if r is on the left of the line pq
 int direction(p, q, r) {
@@ -72,37 +73,43 @@ int direction(p, q, r) {
     return 0; // collinear
 }
 {% endhighlight c++ %}
+We can then call this function to test if vertex $i$ above is located on the right or left of the line that goes through the segment $\overline{p_0, "right most"}$ below.
+<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-2b.png" width="85%" class="center"></p>
+We can see above that $i$ is indeed more to the right of the line and hence more to the right relative to $p_0$. So this means that our "most right" vertex is now $i$ and in the next iteration, we will compare the next vertex from the remaining vertices below.
+<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-2c.png" width="75%" class="center"></p>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Picking the Next Vertex</b></h4>
+<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-3.png" width="65%" class="center"></p>
+Once we we're done with step 2, we know we have arrived at the most to the right vertex relative to $p_0$. We go and add this vertex to the convex hull and label it as $p_1$. We then repeat step 2 to find the most to the right vertex relative to $p_1$ this time around. The pesudo code below shows an outline of what we're doing. The outer loop sets the initial "right most" vertex and also adds it to the hull after we're done with the inner loop. The inner loop will test all the vertices and update "right most" whenever we find a better vertex.
+{% highlight c++ %}
+while (....) {
+    // 1) let most_right be the first vertex in the remaining vertices
+    // not on the convex hull and call this set S
+    most_right = S[0]
+    // 2) iterate through each vertex i and update most_right if
+	// necessary 
+    for i in 1...size(S) {}
+        if (orientation(hull_point, most_right, i) < 0) {
+	        most_right_ = i
+	    }
+	}
+    // step 3: add most_right_ to the convex hull
+    convex_hull.add(most_right)
+	// most_right is the new hull point for the next iteration
+    hull_point = most_right
+{% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>3. Termination</b></h4>
-<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-3.png" width="65%" class="center"></p>
-In the previous section, we used the orientation test to pick the right most vertex. Once we do so, we then repeat the same process by finding the most right vertex relative to $p_1$ this time (figure above). But when do we terminate? We terminate when our next right most vertex happens to be our starting point $p_0$. Once we get to this point, then we terminate and return the convex hull points.
+When do we terminate? We terminate when our next right most vertex happens to be our starting point $p_0$. Once we get to this point, then we terminate and return the convex hull points.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-4.png" width="65%" class="center"></p>
-
-
-
+<br>
+<br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation Details (Optional)</b></h4>
-<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-2b.png" width="80%" class="center"></p>
-There are some details when it comes to implementing this algorithm. Suppose that the last point added to the convex hull was $p_0$. How do we use the direction test previously discussed to find the right most vertex relative to $p_0$? In other words, which three points will we compare? 
-<br><br>
-We will maintain two variables. One tracks the current "best" or "right most" vetex call it $candidate$ (green shaded vertex above) and a variable, $i$, to track the vertex we're currently testing. For each vertex $i$ (orange lines below), we will call $direction(p_0, candidate, i)$. This answers the question of whether vertex $i$ on the left or right of the line that goes through $\overline{p_0, candidate}$. If the test returns -1, then know that $i$ is better than the current candidate vertex and so we set the candidate to be $i$ and increate $i$ to move to the next vertex. 
-{% highlight c++ %}
-while (hull_candidate != first_convex_hull_point) {
-    // step 1: the next candidate the next point
-    hull_candidate = (hull_point + 1) % points.size();
-    // step 2: run the previous loop to find a better hull_candidate if any
-	for i in the remaining vertices (not in the hull yet):
-	    if (orientation(points[hull_point], 
-                        points[hull_candidate], points[i]) < 0) {
-	        hull_candidate = i;
-	    }
-	}
-    // step 3: add candidate to the convex hull
-    convex_hull.add(hull_candidate)
-    hull_point = hull_candidate; // it's the current hull point for the next iteration
-{% endhighlight %}
-Source Code <a href="?">TODO</a>
+<h4><b>Running Time</b></h4>
+How fast is Jarvis's March? The inner loop goes over $O(n)$ vertices. The outerloop really depends on the size of the convex hull. If we have $h$ points in the hull, then the running time is $O(h)$. Therefore, the overall running time is $O(hn)$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

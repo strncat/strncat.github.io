@@ -1,0 +1,91 @@
+I"�8<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-0.png" width="80%" class="center" /></p>
+<p>So now that we know that every polygon $p$ has a triangulation, how are we going to triangulate $p$? The key to proving that triangulation exists was finding a diagonal. Similarly, the first step in triangulation is to find an internal diagonal. So given a diagonal candidate we need to verify two conditions:</p>
+<ul>
+	<li> $\overline{ab}$'s itersection with the boundary of $P$ is exactly its end points $a$ and $b$ and nothing else. </li>
+	<li> $\overline{ab}$ is an an internal diagonal. </li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Naive Solution: Test All Candidates</b></h4>
+<p>How many potentional cadidates for a diagonal do we have in a given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal’s start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test in the worst case. So now that we have a set of candidates, how do we proceed to test each candidate? We will need to verify the conditions we stated earlier. Let’s start with the first condition and see how may test for it.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Condition 1: Intersection of the diagonal $d$ with the boundary of $p$</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-1.png" width="60%" class="center" /></p>
+<p>So given a diagonal candidate $d$ with end points $a$ and $b$, how do we go about testing its intersection with the boundary of $p$. The boundary consists of the edges of the polygon. The diagonal is incident to at most 4 of these edges. If we keep this case seperately and focus on the rest of edges, then we simply want to know if this candidate doesn’t intersect ANY of these edges besides the special 4. In other words, for all other edges that are not incident to $a$ or $b$, their intersection with $d=ab$ is empty.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Segment Intersection</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-2.png" width="60%" class="center" /></p>
+<p>Since we only care about the existence of an intersection rathar than the intersection point itself, then we can go back to what we studided before about the orientation of three ordered points (see Orientation of Three Points post and also Segment Intersection (CLRS)). Suppose we’re given three ordered points $p, q, r$, then the expression $(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$ is</p>
+<ul>
+    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$</li>
+    <li>Equal to zero if they're collinear</li>
+    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$</li>
+</ul>
+<p>We can write a little helper to compute this</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// determines if r is on the left of the line pq</span>
+<span class="kt">int</span> <span class="nf">direction</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">r_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">r_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">q_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// anti-clockwise</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// clockwise</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// collinear</span>
+<span class="p">}</span></code></pre></figure>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-3.png" width="40%" class="center" /></p>
+<p>How do we use this test to determine if $\overline{ab}$ and $\overline{cd}$ intersect? We can use it to test if the points $a$ and $b$ are on opposite sides of the line that goes through $\over{cd}$ above. But is this enough? No! Consider the following figure.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-4.png" width="40%" class="center" /></p>
+<p>$a$ and the $b$ are in fact on opposite sides of the line that goes through $c$ and $d$ but the segment from $a$ to $b$ doesn’t intersect the segment that goes through $c$ and $d$! To fix this, we also need to ask whether the points $c$ and $d$ are on opposite sides of the line that goes through $\overline{ab}$ and the answer is clearly not! $c$ and $d$ are on the same side. This is great but there is one more condition to consider. Consider the following:</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-5.png" width="40%" class="center" /></p>
+<p>Here, the points $a$, $d$ and $b$ are collinear. So $c$ and $d$ are not exactly on opposite sides but they still intersect! So what do we do here? In the book that I’ve been studying “Computational Geometry in C”, the intersection function is split into two to handle the case of improper intersection (when the points are collinear) and the case of proper intersection (when the points are not collinear). I personally found the CLRS way of computing the intersection all at once was easier to understand (likely due to the fact that I studied it first!). In CLRS, we test for proper intersection and in the same function later on, we handle the case when the points are collinear to additionally verify that they indeed intersect.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
+<span class="kt">bool</span> <span class="nf">interesect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span> <span class="c1">// which side is c on?</span>
+    <span class="kt">int</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span> <span class="c1">// same for d</span>
+    <span class="kt">int</span> <span class="n">d3</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">d4</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="c1">// proper interesection</span>
+    <span class="k">if</span>  <span class="p">((</span><span class="n">d1</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">d2</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> 
+         <span class="p">(</span><span class="n">d3</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d4</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">d4</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d3</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// improper intersection</span>
+    <span class="c1">// check if c sits between the end two points</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="c1">// check if d sits between the end two points</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="c1">// check if a sits between the end two points</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="c1">// check if b sits between the end two points</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>So now we have a function that will test if a given candidate $d$ intersects the boundary of $P$ except for the special edges that are incident to $d$ itself. Condition 2 next will handle both testing to see if $d$ is internal and testing the special edges that we didn’t consider this round.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Condition 2: $d$ is an internal diagonal (and more) </b></h4>
+<p>So far, given a polygon $p$ and a candidate diagonal $d=\overline{ab}$, we tested the intersection of $d$ with the edges of $p$ except for the edges that share a vertex with $d$. Suppose that $d$ indeed doesn’t intersect the boundary (minus the special edges) and suppose additionally that $d$ starts at a convex vertex. This can be determined by testing whether $a$ on the (left or on) the line that goes through $\overline{aa_0}$. The claim is that If $a_0$ was on the left of the line that goes through $d=\overline{ab}$ and $a_1$ is on the right of that line, then we can conclude that $d$ is an internal diagonal. To see this, let’s consider all three cases of $a$ being a convex vertex:</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-convex.png" width="100%" class="center" /></p>
+<ul>
+	<li>In figure (1), $a_0$ is the left of the line that goes through $d$ and $a_1$ is on the right of the line that goes through $d$ so we satisfy both conditions and $d$ is indeed internal</li>
+	<li> In figure (2), it's the exact opposite. We have $a_0$ on the right of $d$ and $a_1$ on the left of $d$.</li>
+	<li> In figure (3), $a, a_1$ and $b$ are all collinear. So testing whether $a_1$ is on the right of $d$ will fail immediately. </li>
+</ul>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
+<br />
+<br /></p>
+
+:ET

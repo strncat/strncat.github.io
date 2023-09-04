@@ -6,80 +6,17 @@ categories: jekyll update
 mathjax: true
 ---
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-0.png" width="80%" class="center"></p>
-So now that we know every polygon, $p$, has a triangulation, how are we going to triangulate $p$? The key to proving that triangulation exists was finding a diagonal. Similarly, the first step in triangulation is to find a diagonal. Recall that a line segment $ab$ is a diagonal iff 
-<ul>
-	<li> Its intersection with the boundary of $P$ is exactly its end points $a$ and $b$ and nothing else. </li>
-	<li> $ab$ is an internal diagonal. </li>
-</ul>
-How many potentional cadidates for a diagonal do we have in given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal's start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test in the worst case! later on, we will see algorithms that would not test all candidates!
+So far we discussed some theory behind triangultion. We proved the existence of a diagonal and triagulation for simple polygons. We also wrote code to verify for a given polygon $p$ and a given line segment $d$, whether $d$ is an internal diagonal or not. So where do we go from here to actually triangulate $p$?
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Condition 1: Intersection of the diagonal $d$ with the boundary of $p$</b></h4>
-<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-1.png" width="60%" class="center"></p>
-So given a diagonal candidate $d$ with end points $a$ and $b$, how do we go about testing its intersection with the boundary of $p$. The boundary consists of the edges of the polygon. The diagonal is incident to at most 4 of these edges. If we keep this case seperately and focus on the rest of edges, then we simply want to know if this candidate doesn't intersect ANY of these edges besides the special 4. In other words, for all other edges that are not incident to $a$ or $b$, their intersection with $d=ab$ is empty.
+<h4><b>The Naive Solution: Test All Candidates</b></h4>
+How many potentional cadidates for a diagonal do we have in a given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal's start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test. The test we developed in the previous post (Triangulation (Finding a Diagonal) costs $O(n)$ time since we iterate over all vertices to test for intersection Moreover, we know that since $p$ has $n$ vertices then the triagulation of $p$ will use $n-3$ diagonals. Therefore, we will end up with an $O(n^4)$ total cost if we naively test every possible diagonal to triangulate $p$. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Segment Intersection</b></h4>
-<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-2.png" width="60%" class="center"></p>
-Since we only care about the existence of an intersection rathar than the intersection point itself, then we can go back to what we studided before about the orientation of three ordered points (see Orientation of Three Points post and also Segment Intersection (CLRS)). Suppose we're given three ordered points $p, q, r$, then the expression $(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$ is
-<ul>
-    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$</li>
-    <li>Equal to zero if they're collinear</li>
-    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$</li>
-</ul>
-We can write a little helper to compute this
-{% highlight c++ %}
-// determines if r is on the left of the line pq
-int direction(p, q, r) {
-    int product = (q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y);
-    if (product > 0) {
-        return 1; // anti-clockwise
-    } else if (product < 0) {
-        return -1; // clockwise
-    }
-    return 0; // collinear
-}
-{% endhighlight %}
-<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-3.png" width="40%" class="center"></p>
-How can we use this test here? Naturally, all we want is to know is if the points $a$ and $b$ are on opposite sides of the line that goes through $cd$ above. But is this enough? No! Consider the following figure. 
-<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-4.png" width="40%" class="center"></p>
-$a$ and the $b$ are in fact on opposite sides of the line that goes through $c$ and $d$ but the segment from $a$ to $b$ doesn't intersect the segment that goes throguh $c$ and $d$! To fix this, we also need to ask whether the points $c$ and $d$ are on opposite sides of the line that goes through $a$ and $b$ and the answer is clearly not! $c$ and $d$ are on the same side. So are we done now? Not yet, consider the following:
-<p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-5.png" width="40%" class="center"></p>
-Here, the points $a$, $d$ and $b$ are collinear. So $c$ and $d$ are not exactly on opposite sides but they still intersect! So what do we do here? In Computational Geometry in C,
-<ul>
-	<li> They call the original test of find whether $a$ and $b$ are on opposite sides and similary $c$ and $d$ are on opoosite sides, the proper intersection test meaning that the interior of the segments intersect.</li>
-	<li> They handle the case of having 3 points collinear seperately by writing a different function to compute if the segments improperly intersect, meaning that the intersection point falls on the segment. </li>
-</ul>
-I personally prefer the CLRS way of computing the intersection all at once. Basically, compute $d_1 = direction(a, b, c)$ to find if $c$ is on the left or right or collinear with $a$ and $b$. Similary do this for all 4 points. And then, check if all points fall on different sides to determine if they "properly intersect". Finally, handle the special case of "improper intersection" by checking if any 3 points of the 4 are collinear and in that specific case, make sure that the point is in fact on the segment meaninng it's between its end points.
-{% highlight c++ %} 
-bool interesect(a, b, c, d) {
-    int d1 = direction(a, b, c); // which side is c on?
-    int d2 = direction(a, b, d); // same for d
-    int d3 = direction(c, d, a);
-    int d4 = direction(c, d, b);
-    // proper interesection
-    if  ((d1 < 0 && d2 > 0) || (d2 < 0 && d1 > 0) || 
-         (d3 < 0 && d4 > 0) || (d4 < 0 && d3 > 0)) {
-         return true;
-    }
-    // improper intersection
-    // check if c sits between the end two points
-    if (d1 == 0 && between_line_segment(a, b, c)) return true;
-    // check if d sits between the end two points
-    if (d2 == 0 && between_line_segment(a, b, d)) return true;
-    // check if a sits between the end two points
-    if (d3 == 0 && between_line_segment(c, d, a)) return true;
-    // check if b sits between the end two points
-    if (d4 == 0 && between_line_segment(c, d, b)) return true;
-}
-{% endhighlight %}
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Condition 2: Is $d$ internal or external?</b></h4>
-Actually two things are left. 
+<h4><b>The Naive Solution: Test All Candidates</b></h4>
+How many potentional cadidates for a diagonal do we have in a given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal's start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test. The test we developed in the previous post (Triangulation (Finding a Diagonal) costs $O(n)$ time since we iterate over all vertices to test for intersection Moreover, we know that since $p$ has $n$ vertices then the triagulation of $p$ will use $n-3$ diagonals. Therefore, we will end up with an $O(n^4)$ total cost if we naively test every possible diagonal to triangulate $p$. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

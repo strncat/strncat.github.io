@@ -1,0 +1,72 @@
+I"�<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-0.png" width="80%" class="center" /></p>
+<!------------------------------------------------------------------------------------>
+<h4><b>Convexity</b></h4>
+<p>A set of points $S$ is convex if for any two points $a \in S$ and $b \in S$, then the line segment connecting these two points is also in $S$ ($\overline{ab} subseteq \in S$). A convex polygon is a polygon that is the boundary of a convex set. The left figure is a convex polygon while the right figure is not per our definition.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Convex Hull</b></h4>
+<p>The convex hull of $S={p_1,p_2,…,p_n}$ as the set that contains all the combinations of the points in the $S$</p>
+<div>
+$$
+\begin{align*}
+conv(S) = \{ \sum_{i=1}^{n} \lambda_i p_i | \sum_{i=1}^{n} \lambda_i = 1 \text{ and } \lambda_i \geq 0 \text{ for all $i$} \}
+\end{align*}
+$$
+</div>
+<p>We can also define the convex hull of $S$ to be the smallest convex set that contains all the points in $S$. We also define t
+Another definition that is also used is that the convex hull of $S$ is,</p>
+<div>
+$$
+\begin{align*}
+CH(S) = \text{ Intersection of all convex sets containing $S$ }
+\end{align*}
+$$
+</div>
+
+<p>Why does this definition matter? there are infinitely many convex sets that will contain all the points in $S$. It turns out that this definition also works for a special kind of convex sets, called half-planes.</p>
+<div>
+$$
+\begin{align*}
+CH(S) = \text{ Intersection of all "half planes" containing $P$ }
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Finding the Convex Hull</b></h4>
+<p>Finding the convex hull is a classic computatioal geometry problem and many algorithms have been developed to solve it. Next, we discuss one of the simplest algorithms that is used to find the convex hull of a set of points.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Jarvis's March (Gift Wrapping Algorithm)</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-2.png" width="60%" class="center" /></p>
+<p>Jarvis’s March is very similar to Selection Sort. In Selection Sort, we pick the smallest element in the array and then move it to the very beginning of the array and so on. In Jarvis’s March, we find the next vertex that comes after the vertex that’s already in the convex hull and was found in the previous iteration.</p>
+
+<ul>
+    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$</li>
+    <li>Equal to zero if they're collinear</li>
+    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$</li>
+</ul>
+<p>We can write a little helper to compute this</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// determines if r is on the left of the line pq</span>
+<span class="kt">int</span> <span class="nf">direction</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">r_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">r_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">q_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// anti-clockwise</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// clockwise</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// collinear</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
+<br />
+<br /></p>
+
+:ET

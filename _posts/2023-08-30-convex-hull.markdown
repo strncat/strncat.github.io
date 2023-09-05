@@ -91,7 +91,7 @@ After we're done testing all the vertices, $q$ will be the right most vertex rel
 <!------------------------------------------------------------------------------------>
 <h4><b>Picking the Next Vertex</b></h4>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-3.png" width="65%" class="center"></p>
-Once we we're done with step 2 and have tested all the vertices, then we know we have arrived at the "most to the right vertex relative to $p$. We then will (compare the figures step2 (final) and step 3):
+Once we we're done with step 2 and have tested all the vertices, then we know we have arrived at the "most to the right" vertex relative to $p$. We then will (compare the figures step2 (final) and step 3):
 <ul>
 	<li>Add $q$ to the convex hull. </li>
 	<li>Set $p$ to $q$. </li>

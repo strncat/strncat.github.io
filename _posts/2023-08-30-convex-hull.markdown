@@ -97,28 +97,25 @@ Once we we're done with step 2 and have tested all the vertices, then we know we
 	<li>Set $p$ to $q$. </li>
 	<li>Set $q$ to $p + 1$. (The next vertex in the set of vertices not on the hull yet). </li>
 </ul>
-The pesudo code below shows an outline of what we're doing. The outer loop sets the initial $q$ to $p+1$ later on adds it to the convex hull when we're done with the inner loop. The inner loop will test all the vertices and update "right most" whenever we find a better vertex.
+The pesudo code below shows an outline of what we're doing. The outer loop sets the initial $q$ to $p+1$ later on adds it to the convex hull when we're done with the inner loop. The inner loop will test all the vertices and update $q$ whenever we find a better vertex.
 {% highlight c++ %}
-while (....) {
-    // 1) let most_right be the first vertex in the remaining vertices
-    // not on the convex hull and call this set S
+while (p != first_point_on_hull) {
+    // (1) initialize q
     q = p + 1
-    // 2) iterate through each vertex i and update most_right if
-	// necessary 
+    // (2) iterate through each vertex i and update q if necessary 
     for i in 1...size(S) {}
         if (orientation(p, q, i) < 0) {
 	        q = i
 	    }
 	}
-    // step 3: add q to the convex hull
+    // (3) add q to the convex hull and set p to q
     convex_hull.add(q)
-	// set $p$ to $q$
     p = q
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>3. Termination</b></h4>
-When do we terminate? We terminate when the to be our starting point $p_0$. Once we get to this point, then we terminate and return the convex hull points.
+When do we terminate? We terminate $p$ is the first initial point that we added to the convex hull. Once we get to this point, then we terminate and return the convex hull points.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-4.png" width="65%" class="center"></p>
 <br>
 <br>

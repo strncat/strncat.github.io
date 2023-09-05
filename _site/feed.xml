@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-04T19:27:30-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Graham’s Scan</title><link href="http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan.html" rel="alternate" type="text/html" title="Graham’s Scan" /><published>2023-09-03T01:01:36-07:00</published><updated>2023-09-03T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan.html"><![CDATA[<!------------------------------------------------------------------------------------>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-04T19:31:19-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Graham’s Scan</title><link href="http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan.html" rel="alternate" type="text/html" title="Graham’s Scan" /><published>2023-09-03T01:01:36-07:00</published><updated>2023-09-03T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan.html"><![CDATA[<!------------------------------------------------------------------------------------>
 <h4><b>Recap</b></h4>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/conv-0.png" width="90%" class="center" /></p>
 <p>To recap from the previous post (Jarvis’s March), a set of points $S$ is convex if for any two points $a \in S$ and $b \in S$, then the line segment connecting these two points is also in $S$ ($\overline{ab} \subseteq S$). The convex hull of $S$ to be the smallest convex set that contains all the points in $S$ which also implies the definition that the convex hull of $S$ is the intersection of all convex sets containing $S$.</p>
@@ -117,28 +117,25 @@ $$
 	<li>Set $p$ to $q$. </li>
 	<li>Set $q$ to $p + 1$. (The next vertex in the set of vertices not on the hull yet). </li>
 </ul>
-<p>We’ll go and add this vertex to the convex hull and label it as $p_1$. We then will repeat step 2 to find the most to the right vertex relative to $p_1$ this time around. The pesudo code below shows an outline of what we’re doing. The outer loop sets the initial “right most” vertex and later on adds it to the convex hull when we’re done with the inner loop. The inner loop will test all the vertices and update “right most” whenever we find a better vertex.</p>
+<p>The pesudo code below shows an outline of what we’re doing. The outer loop sets the initial $q$ to $p+1$ later on adds it to the convex hull when we’re done with the inner loop. The inner loop will test all the vertices and update $q$ whenever we find a better vertex.</p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">while</span> <span class="p">(....)</span> <span class="p">{</span>
-    <span class="c1">// 1) let most_right be the first vertex in the remaining vertices</span>
-    <span class="c1">// not on the convex hull and call this set S</span>
-    <span class="n">most_right</span> <span class="o">=</span> <span class="n">hull_point</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="c1">// 2) iterate through each vertex i and update most_right if</span>
-	<span class="c1">// necessary </span>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="n">first_point_on_hull</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// (1) initialize q</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="c1">// (2) iterate through each vertex i and update q if necessary </span>
     <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="mf">1.</span><span class="p">..</span><span class="n">size</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">orientation</span><span class="p">(</span><span class="n">hull_point</span><span class="p">,</span> <span class="n">most_right</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-	        <span class="n">most_right_</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">orientation</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="n">q</span> <span class="o">=</span> <span class="n">i</span>
 	    <span class="p">}</span>
 	<span class="p">}</span>
-    <span class="c1">// step 3: add most_right_ to the convex hull</span>
-    <span class="n">convex_hull</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">most_right</span><span class="p">)</span>
-	<span class="c1">// most_right is the new hull point for the next iteration</span>
-    <span class="n">hull_point</span> <span class="o">=</span> <span class="n">most_right</span></code></pre></figure>
+    <span class="c1">// (3) add q to the convex hull and set p to q</span>
+    <span class="n">convex_hull</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">q</span></code></pre></figure>
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>3. Termination</b></h4>
-<p>When do we terminate? We terminate when the to be our starting point $p_0$. Once we get to this point, then we terminate and return the convex hull points.</p>
+<p>When do we terminate? We terminate $p$ is the first initial point that we added to the convex hull. Once we get to this point, then we terminate and return the convex hull points.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-4.png" width="65%" class="center" /></p>
 <p><br />
 <br />

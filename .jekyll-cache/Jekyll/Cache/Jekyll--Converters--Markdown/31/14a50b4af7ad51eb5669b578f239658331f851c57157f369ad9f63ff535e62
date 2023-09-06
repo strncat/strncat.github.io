@@ -1,64 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
->
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
->
-</script>
-
-
-</head>
-<body><header class="site-header" role="banner">
-
-  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
-      </nav></div>
-  
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Jarvis&#39;s March (Gift Wrapping)</h1>
-    <!--
-    <p class="post-meta">
-      <time class="dt-published" datetime="2023-08-30T01:01:36-07:00" itemprop="datePublished">Aug 30, 2023
-      </time></p>
-     -->
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    <!------------------------------------------------------------------------------------>
+I"�+<!------------------------------------------------------------------------------------>
 <h4><b>Convexity</b></h4>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/conv-0.png" width="100%" class="center" /></p>
 <p>A set of points $S$ is convex if for any two points $a \in S$ and $b \in S$, then the line segment connecting these two points is also in $S$ ($\overline{ab} \subseteq S$). A convex polygon is a polygon that is the boundary of a convex set. The left figure is a convex polygon while the right figure is not per our definition.
@@ -99,32 +39,27 @@ $$
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Jarvis's March (Gift Wrapping Algorithm)</b></h4>
-<p>Jarvis’s March is similar to Selection Sort. In each iteration of Selection Sort, we pick the smallest element in the array and then move it to the front. Once we’re done, we’ll have a sorted array. In Jarvis’s algorithm, the smallest element in each iteration is the vertex that is furthest to the right from the last vertex that was added to the convex hull. There are two main steps.</p>
-<ol>
-	<li>Find the left most vertex</li>
-	<li>Find the next vertex in the hull and repeat this until we're done.</li>
-	
-</ol>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>1. Pick the Left Most Vertex</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-1.png" width="60%" class="center" /></p>
-<p>Initially, we will pick a vertex that we know will be in the hull. We can pick the left most vertex or the bottom most vertex or any vertex where all the points will be on one side (half plane). Let’s pick the left most vertex and let it be $p_0$.</p>
-
-<p><br />
+<p>Jarvis’s March is similar to Selection Sort. In each iteration of Selection Sort, we pick the smallest element in the array and then move it to the front. Once we’re done, we’ll have a sorted array. In Jarvis’s algorithm, the smallest element in each iteration is the right most vertex relative to the last vertex that was added to the convex hull. We start from some initial vertex in the convex hull and each iteration, we add a new vertex. Once we’re done, we’ll have the convex hull of our polygon.
+<br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>2. Pick the Next Vertex in the Convex Hull</b></h4>
+<h4><b>1. Preconditions</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-1.png" width="60%" class="center" /></p>
+<p>Initially, we will pick a vertex that we know will be in the hull. We can pick the left most vertex or the bottom most vertex or any vertex where all the points will be on one side (half plane). Let’s pick the left most vertex and let it be $p_0$. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>2. Picking the Right Most Vertex</b></h4>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2.png" width="70%" class="center" /></p>
-<p>Step two is about picking the next vertex in the hull and doing so until we find all of them. To do so, imagine shooting a ray from $p_0$ to each of the remaining vertices (figure above). The next vertex in the hull is the vertex that is furthest to the right relative to $p_0$. How do we determine which vertex is furthest to the right?. Before exploring this, let’s define two variables:</p>
+<p>So now that we have a point in the convex hull, we need to proceed by picking the right most vertex relative to $p_0$. How do we determine the right most vertex? Imagine shooting a ray from $p_0$ to each of the remaining vertices (figure above). Before iterating over these vertices, we’ll intialize two variables.</p>
 <ul>
 	<li> $p$ will track the last point that was added to the hull. $p$ is initially $p_0$.</li>
-	<li> $q$ will track the current right most vertex relative to $p$. $q$ will be initialized to $p + 1$ at the begining of each iteration.</li>
+	<li> $q$ will track the right most vertex relative to $p$. $q$ will be initialized to $p + 1$ at the begining of each iteration</li>
 	
 </ul>
-<p>We will iterate through the vertices while updating $q$ whenever we come across a vertex that is furthest to the right from $p$.</p>
+<p>We will then iterate through remaining vertices while updating $q$ whenever we come across a vertex more to the right relative to $p$.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2a.png" width="85%" class="center" /></p>
-<p>To test if vertex $i$ is furthest to the right than $q$, we will use the orientation test that we previously developed when triagulating a polygon. (See Orientation of Three Points). Precisely, we’ve derived an expression to find out whether a point $r$ is on the left or right of the line that goes through two given points $p$ and $q$. We can wrap this expression in the function below.</p>
+<p>To test if $i$ is more right than $q$, we will the orientation test that we previously developed we’ve when triagulating a polygon. (See Orientation of Three Points). Precisely, we’ve derived an expression to find out whether a point $r$ is on the left or right of the line that goes through two given points $p$ and $q$. We can wrap this expression in the function below.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// determines if r is on the left of the line pq</span>
 <span class="kt">int</span> <span class="nf">direction</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
@@ -137,8 +72,9 @@ $$
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// collinear</span>
 <span class="p">}</span></code></pre></figure>
 
+<p>We can then call this function to test if vertex $i$ above is located on the right or left of the line that goes through the segment $\overline{p, q}$ below.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2b.png" width="85%" class="center" /></p>
-<p>We can see above that $i$ is indeed more to the right of the line and hence furthest to the right from $p$. So now we set $q$ to $i$ and move on to test the next vertex.</p>
+<p>We can see above that $i$ is indeed more to the right of the line and hence more to the right relative to $p$. So now we set $q$ to $i$ and move on to test the next vertex.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2c.png" width="75%" class="center" /></p>
 <p>After we’re done testing all the vertices, $q$ will be the right most vertex relative to $p$.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2final.png" width="80%" class="center" /></p>
@@ -161,13 +97,12 @@ $$
 	<span class="p">}</span>
     <span class="c1">// (3) add q to the convex hull and set p to q</span>
     <span class="n">convex_hull</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">q</span>
-<span class="p">}</span></code></pre></figure>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">q</span></code></pre></figure>
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>3. Termination</b></h4>
-<p>When do we terminate? We terminate when the next vertex that we want to add to the convex hull is actually the first vertex that we added to the hull. Once we get to this point, then we terminate and return the convex hull points.</p>
+<p>When do we terminate? We terminate $p$ is the first initial point that we added to the convex hull. Once we get to this point, then we terminate and return the convex hull points.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-4.png" width="65%" class="center" /></p>
 <p><br />
 <br />
@@ -182,60 +117,4 @@ $$
 <br />
 <br /></p>
 
-
-  </div><div id="disqus_thread"></div>
-<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = /jekyll/update/2023/08/30/convex-hull.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2023/08/30/convex-hull; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://strncat-github-io.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2023/08/30/convex-hull.html" hidden></a>
-</article>
-		 
-      </div>
-    </main>
-
-    <!--<footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">strncat&#39;s notebook</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">strncat&#39;s notebook</li></ul>
-      </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>personal study notes</p>
-      </div>
-    </div>
-
-  </div>
-
-</footer>
--->
-
-	
-  </body>
-
-</html>
+:ET

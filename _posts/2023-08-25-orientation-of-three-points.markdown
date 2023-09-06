@@ -35,9 +35,9 @@ $$
 </div>
 This expression is
 <ul>
-    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientatio and $r$ is on the left of the line $pq$n</li>
-    <li>Equal to zero if they're collinear</li>
-    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the right of the line $pq$</li>
+    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientatio and $r$ is on the left of the line $pq$.</li>
+    <li>Equal to zero if they're collinear.</li>
+    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the right of the line $pq$.</li>
 </ul>
 
 <!------------------------------------------------------------------------------------>

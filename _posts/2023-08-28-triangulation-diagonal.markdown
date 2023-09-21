@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-0.png" width="80%" class="center"></p>
-So now that we know that every polygon $p$ has a triangulation, how are we going to triangulate $p$? The key to proving that triangulation exists was finding a diagonal. Similarly, the first step in triangulation is to find an internal diagonal. So given a diagonal candidate we need to verify two conditions:
+So now that we know that every polygon $p$ has a triangulation, how are we going to triangulate $p$? The key to proving that triangulation exists was finding a diagonal. Similarly, the first step in triangulation is to find an internal diagonal. Given a diagonal candidate we need to verify two conditions:
 <ul>
 	<li> $\overline{ab}$'s itersection with the boundary of $P$ is exactly its end points $a$ and $b$ and nothing else. </li>
 	<li> $\overline{ab}$ is an an internal diagonal. </li>
 </ul>
-So now suppose we're given a diagonal candidate, how will we verify that it is an internal diagonal? Next we will go through everything we need to verify both conditions we stated above.
+How can we verify the above conditions? In this post, we'll develop procedures to verify these two conditions.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

@@ -10,7 +10,7 @@ Suppose we have two line segments $\overline{ab}$ and $\overline{cd}$. How can w
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Parametric Representation</b></h4>
-Let $\Vec{A} = b - a$ and let $\Vec{B} = d - c$. A point on the line that goes through $\overline{ab}$ can be represented using 
+Let $\vec{A} = b - a$ and let $\vec{B} = d - c$. A point on the line that goes through $\overline{ab}$ can be represented using 
 <div>
 $$
 \begin{align*}

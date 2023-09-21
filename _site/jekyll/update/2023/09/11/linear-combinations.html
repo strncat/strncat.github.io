@@ -49,69 +49,33 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Line Segment Intersection (Intersection Point)</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Linear Combinations</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2023-09-05T01:01:36-07:00" itemprop="datePublished">Sep 5, 2023
+      <time class="dt-published" datetime="2023-09-11T01:01:36-07:00" itemprop="datePublished">Sep 11, 2023
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Suppose we have two line segments $\overline{ab}$ and $\overline{cd}$. How can we determine their intersection? We previously developed a method to determine the existence of the intersection without having to compute the actual intersection point. We did this using the orientation test by basically testing if $c$ and $d$ are on opposite sides of the line that goes through  $\overline{ab}$ and then again if $a$ and $b$ are on opposite sides of the line that goes through $\overline{cd}$. This was neat and we avoided having to deal with floating point values. But what if we wanted to find the actual intersection point, if any?
+    <p>There isn’t a better reference on the internet than the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> but this post is about me taking notes and summarizing what I’ve learned from the above resource. I will tweak and add more stuff from other references as I go.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Parametric Representation</b></h4>
-<p>Let $\vec{A} = b - a$ and let $\vec{B} = d - c$. A point on the line that goes through $\overline{ab}$ can be represented using</p>
-<div>
-$$
-\begin{align*}
-    p(s) = a + sA.
-\end{align*}
-$$
-</div>
-
-<p>Plugging 0 for $s$ results in the point $a$ and plugging 1 on the other hand will result in the point $b$ so when $s \in [0,1]$, the equation represents all the points that fall on the line segment $\overline{ab}$. Similarly, a point on the line that goes through $\overline{cd}$ can be represented using</p>
-<div>
-$$
-\begin{align*}
-    q(t) = c + tB.
-\end{align*}
-$$
-</div>
-
-<p>To find the intersection point, we will need to find the values of $s$ and $t$ that will make $p(s)$ equal to $q(t)$. Moreover, $s$ and $t$ will need to be in the range $[0,1]$ for the intersection point to be within the segments.</p>
-<div>
-$$
-\begin{align*}
-    a + sA = c + tB.
-\end{align*}
-$$
-</div>
-
-<p>Let $a=(a_0,a_1), b=(b_0,b_1), c=(c_0,c_1), d=(d_0, d_1)$. The solution turns out to be</p>
-<div>
-$$
-\begin{align*}
-    s &amp;= [a_0(d_1-c_1)+c_0(a_1-d_1)+d_0(c_1-a_1)]/D, \\
-    t &amp;= [a_0(c_1-b_1)+b_0(a_1-c_1)+c_0(b_1-a_1)]/D, \\
-    D &amp;= a_0(d_1-c_1)+b_0(c_1-d_1)+d_0(b_1-a_1)+c_0(a_1-b_1)
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b></b></h4>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">while</span> <span class="p">(</span><span class="n">hull_candidate</span> <span class="o">!=</span> <span class="n">first_convex_hull_point</span><span class="p">)</span></code></pre></figure>
-
-<p>Source Code <a href="?">TODO</a>
+<h4><b>Vector Coordinates</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-1.png" width="100%" class="center" /></p>
+<p>We studied vectors in the previous post and learned about vectors and their representation. The x-coordinate represented the movement of this vector along the x-axis and the y-coordinate represented the movement of this vector along the y-axis. We then defined addition and multiplication on these vectors (addition show in the figure above). This time, we want to think about these vector coordinates differently.
+<br />
+<br />
+Give a vector’s coordinate, we will think of each coordinate as a scalar. In the xy-coordinate system, we have two special vectors. $\hat{i}$ which is a unit vector pointing to the right in the x-direction. $\hat{j}$ is a unit vector pointing straight up in the y-direction. Now, think of the x-coordinate of our vector as a scalar that scales $\hat{i}$ streching it by ? and the y-coordinate as a scalar that scales $\hat{j}$ by a factor of 3 and also flipping it in the other direction. So here the important observation, this means that the vectors that these coordinates describe is really the sum of two scaled vectors 3i + (-2)j (Addition of two scaled vectors!). 
+<br />
+<br />
+i hat and j hat are the called the basis vectors of the xy coordinate system. So when we think about coordinates as scalars, then the basis vectors are what those scalares scale! By framing our coordiante system in terms of these special basis vectors, 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p><a href="https://jeffe.cs.illinois.edu/teaching/compgeom/schedule.html">CS 498: Computational Geometry</a>
+<p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br />
 <br /></p>
 
@@ -124,8 +88,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2023/09/05/line-segment-interesection-point.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2023/09/05/line-segment-interesection-point; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2023/09/11/linear-combinations.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2023/09/11/linear-combinations; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -136,7 +100,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2023/09/05/line-segment-interesection-point.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2023/09/11/linear-combinations.html" hidden></a>
 </article>
 		 
       </div>

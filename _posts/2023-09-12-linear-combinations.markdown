@@ -1,23 +1,55 @@
 ---
 layout: post
 title:  "Linear Combinations"
-date:   2023-09-11 01:01:36 -0700
+date:   2023-09-12 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-There isn't a better reference on the internet than the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> but this post is about me taking notes and summarizing what I've learned from the above resource. I will tweak and add more stuff from other references as I go.
+This post is just me taking notes while watching Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Vector Coordinates</b></h4>
-<p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/vectors/vector-1.png" width="100%" class="center"></p>
-We studied vectors in the previous post and learned about vectors and their representation. The x-coordinate represented the movement of this vector along the x-axis and the y-coordinate represented the movement of this vector along the y-axis. We then defined addition and multiplication on these vectors (addition show in the figure above). This time, we want to think about these vector coordinates differently.
+<p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-combinations/vector-3.png" width="60%" class="center"></p>
+
+We studied vectors in the previous post and learned about vectors and vector coordinates. The x-coordinate represented the movement from this vector's tail at the origin along the x-axis to its tip and the y-coordinate represented the movement of this vector along the y-axis. We saw how addition and multiplication were defined and what they meant. This time, we want to think about these vector coordinates differently.
+<br>
+<p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-combinations/linear-comb-2.png" width="60%" class="center"></p>
+In the xy-coordinate system, we have two special vectors. $\widehat{i}$ which is a unit vector pointing to the right in the x-direction. $\widehat{j}$ is a unit vector pointing straight up in the y-direction. Now, given a vector's coordinate (green vector in the figure above), we will think of each coordinate as a scalar where the x-coordinate scales $\widehat{i}$ streching it by 3 and the y-coordinate scales $\widehat{j}$ by a factor of 2 and also flipping it in the other direction. $\widehat{i}$ and $\widehat{j}$ are called the <b>basis</b> vectors of the $xy$ coordinate system. So when we think about coordinates as scalars, these scalars scale the basis vectors.
+<p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-combinations/linear-comb-3.png" width="60%" class="center"></p>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Linear Combination</b></h4>
+So here the important observation, this means that the vectors that these coordinates describe is really the sum of two scaled vectors $3\widehat{i} + (-2)\widehat{j}$. (Addition of two scaled vectors!). This sum is also called a <b>linear combination</b> of $\widehat{i}$ and $\widehat{j}$. Why did we call it linear? This is really interesting. Grant said to imagine fixing one of the scalars, then changing the other scalar will result in the tip of the resulting vector drawing a straight line. The animation in the video is so great at showing this.
+<p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-combinations/linear-comb-4.png" width="100%" class="center"></p> 
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Span of Vectors</b></h4>
+Now, if we change both scalars at the same time, then the resulting set is the set of all possible linear combinations of these two vectors and it is formally called the <b>span</b> of these vectors. Morever, we'll have three possible sets:
+<ul>
+	<li>For most pairs of vectors, we'll reach every possible vector in the plane so their span will be the all vectors of the 2D space</li>
+	<li>For the case when both vectors line up, then the tip of the resulting vector is limited to just this single line passing through the origin. So their span is the set of all vectors whose tip sit on that line.</li>
+	<li>Both vectors are the zero vector and in this case, we'll be stuck at the origin. So their span is just the zero vector</li>
+</ul>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Vectors vs. Points</b></h4>
+Grant said that it gets too crowded thinking about a collection of vectors sitting on a line or all vectors in a plane. So it is common to think of each of these vectors as a point that sits exactly at the tip of each vector where it's tail is at the origin. So for example previously, we said that the span of two vectors that sit line up is the set of all vectors whose tip sit on that line. But now with the point notation, we can just think of the line itself. In general, it is easier to refer to a collection of vectors by the points that sit at their tips and just think of these points.
 <br>
 <br>
-Give a vector's coordinate, we will think of each coordinate as a scalar. In the xy-coordinate system, we have two special vectors. $\hat{i}$ which is a unit vector pointing to the right in the x-direction. $\hat{j}$ is a unit vector pointing straight up in the y-direction. Now, think of the x-coordinate of our vector as a scalar that scales $\hat{i}$ streching it by ? and the y-coordinate as a scalar that scales $\hat{j}$ by a factor of 3 and also flipping it in the other direction. So here the important observation, this means that the vectors that these coordinates describe is really the sum of two scaled vectors 3i + (-2)j (Addition of two scaled vectors!). 
+<!------------------------------------------------------------------------------------>
+<h4><b>Span of Two Vectors in 3D Space</b></h4>
+What does the span of two 3d vectors look like? It is a plane cutting through the origin as you would expect. Their span is the set of all possible vectors whose tip sit on that plane. And what happens if we add a third vector? Then we're back to having three possibilites, the span can be the whole 3D space. If two of the vectors are linearly dependent, then the span is a plane. If all three vectors sit on each other so all of them are linearly dependent, then their span is the line that goes through the origin. 
 <br>
 <br>
-i hat and j hat are the called the basis vectors of the xy coordinate system. So when we think about coordinates as scalars, then the basis vectors are what those scalares scale! By framing our coordiante system in terms of these special basis vectors, 
+<!------------------------------------------------------------------------------------>
+<h4><b>Linear Independence</b></h4>
+Formally when two vectors in 2D space sit on top of each other and their span isn't the whole 2D space, these vectors are called <b>linearly dependent</b> vectors, meaning that one vector can expressed as a <b>linear combination</b> of the other vector. On the other hand, if each vector adds another dimension to the span, then they're called <b>linearly independent</b>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Basis of a Vector Space</b></h4>
+Also formally, the <b>basis</b> of a vector space is a set of <b>linearly indepedent</b> vectors that <b>span</b> the full space.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

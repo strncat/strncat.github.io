@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Cross Product</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-10-02T01:01:36-07:00" itemprop="datePublished">Oct 2, 2023
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This post is just me taking notes while watching the 10th and 11th lecture of the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/corssproduct/00.png" width="70%" class="center" /></p>
+
+<p>The cross product of two vectors $v$ and $w$ is the area of the parallelogram that they span out. This cross product can be negative however and again we depend here on the orientation. If v was on the right of w then the cross product is positive. On the other hand, if $v$ was on the left, then the product is negative. To easily remember this, think of $\widehat{i}$ and $\widehat{j}$. if you take the cross product in order, $\widehat{i} \times \widehat{j}$ (meaning that $\widehat{i}$ is on the right of \widehat{j}$), then the product is positive. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing the Cross Product</b></h4>
+<p>How do we compute the cross product without calculating the area? This is where the determinant comes in. 
+Remember from the determinant lesson, we wanted to measure how much a transformation will squish or stretch some area and for that we learned that we can compute the determinant of the transformation to find out this stretching/scaling factor. So now …. (drum rolls) … take these vectors $v$ and $w$ and arrange them as columns in a matrix. This matrix now is a transformation that represents where the basis vectors $widehat{i}$ and $\widehat{j}$ will land. But remember that if we started with $\widehat{i}$ and $\widehat{j}$ themselves, then that initial area of the unit square is only 1. So now after applying the transformation, we will get the scaling factor by which this area grew or shrank and since the initial area is 1, the scaling factor is just the area.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/corssproduct/00.png" width="70%" class="center" /></p>
+
+<p>If the order of $v$ and $w$ flipped from their initial order in the matrix, then we know that the area will be negative.</p>
+
+<h4><b>More</b></h4>
+<p>Some things to notice are if the vectors are perpendicular to each other than the area is larger. Another thing is that if scale one of the vectors then the cross product is also scaled by that amount. So 3v x w = 3 (v x w).</p>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
+<p>Suppose we have the vectors $v=(-3,1)$ and $w=(2,1)$.</p>
+
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+-3 &amp; 2 \\
+1 &amp; 1
+\end{bmatrix}
+=
+-3*1 - 2*1 = -5.
+\end{align*}
+$$
+</div>
+<p>Notice that we had $v$ first in the matrix but in the above figure we see that $v$ is now on the left of $w$ and so the area is negative as we expect.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Three Dimensions</b></h4>
+<p>But …. this isn’t really a cross product. A cross product produces a new vector. In three dimensions, we will take two vectors and their cross product will be a new vector. Take two vectors and consider the parallelogram that they span. Suppose now that this area is 2.5. The new vector that we get from the cross product is a vector whose direction is prependicular to that parallelogram and its length is equal to the area of the parallelogram which is 2.5. Which perpendicular direction? We use the right hand rule. Put the forefinger of your right hand in the direction of $v$ and stick out the middle finger in the direction of $w$. Then where the thumb is pointing is the direction of the cross product. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing the Cross Product in Three Dimensions</b></h4>
+<p>We do this by putting $v$ and $w$ as the second and third columns in the matrix</p>
+<div>
+$$
+\begin{align*}
+det ()
+\begin{bmatrix}
+\widehat{i} &amp; v_1 &amp; w_1 \\
+\widehat{j} &amp; v_2 &amp; w_2 \\
+\widehat{k} &amp; v_3 &amp; w_3
+\end{bmatrix}
+)
+=
+\widehat{i} (v_2w_3 - w_2v_3) - \widehat{j} (v_1w_3 - w_1v_3) + \widehat{k} (v_1w_2 - w_1v_2)
+\end{align*}
+$$
+</div>
+<p>Students are often told that the new vector is the linear combination of these basis vectors above whose length is the area of the parallelogram and whose direction is followed from applying the right hand rule. But this isn’t notational and putting the basis vectors there isn’t random. To understand where this comes from.</p>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing the Cross Product in Three Dimensions</b></h4>
+
+<p>So what’s up with adding $\widehat{i}$, $\widehat{j}$ and $\widehat{k}$ as a column in the matrix? Why did we do that?</p>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+<p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
+<br />
+<br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2023/10/02/cross-product.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2023/10/02/cross-product; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2023/10/02/cross-product.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

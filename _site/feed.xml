@@ -1,16 +1,736 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-25T21:03:48-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Matrix Multiplication As Composition</title><link href="http://localhost:4000/jekyll/update/2023/09/25/determinants.html" rel="alternate" type="text/html" title="Matrix Multiplication As Composition" /><published>2023-09-25T01:01:36-07:00</published><updated>2023-09-25T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/25/determinants</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/25/determinants.html"><![CDATA[<p>This post is just me taking notes while watching <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-03T21:32:39-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">The Virtual World</title><link href="http://localhost:4000/jekyll/update/2023/10/03/virtual-world.html" rel="alternate" type="text/html" title="The Virtual World" /><published>2023-10-03T01:01:36-07:00</published><updated>2023-10-03T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/10/03/virtual-world</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/10/03/virtual-world.html"><![CDATA[<!------------------------------------------------------------------------------------>
+<h4><b>The Virtual World</b></h4>
+<p>Our goal is to mimic human vision in a virtual world. We do this by:</p>
+<ul>
+  <li>Creating a virtual camera and place it somewhere and point it at something.</li>
+  <li>Putting a film that contains pixels with RGB values between 0 and 255 into the camera.</li>
+  <li>Placing some objects in the world. (geometric modeling, transformations, text mapping)</li>
+  <li>Putting lights in the scene.</li>
+  <li>And Finally taking the picture. The light will bounce around the room hitting the objects and back hitting the camera onto the virtual film.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h4><b>Pupil</b></h4>
+<p>What is the role of the pupil in the eye? So we know that the lights goes off every point of an object in every direction and this is why we all see the same point on the same object. We looked at this in the previous lecture. What we didn’t discuss is that without the pupil, this light that is bouncing from every single point on the object, is actually hitting every single cone (or pixel in the camera). The image that we’ll see is just going to be a blurred image averaging all these points. We won’t see any details.
+<br />
+<br />
+The reason why we don’t see everything as a blurry image is the pupil (or the aperture in the camera). The pupil’s rol is to restrict the light bouncing from all these points on every single object. The pupil will only allow some point, enough to see clearly. Moreover, when the pupil gets small, we’d get a sharper image and as the pupil gets larger, we’d see a blurred image. But the pupil (and the aperture) can’t be too small because otherwise the light will bend as it gets through the tiny point due to the particle/wave length duality. Therefore, it has to be small enough but not too small.
+<br />
+<br />
+THe Camera mimic the human eyes but instead of cones we have mechanical pixels and instead of a pupil, we have an aperture. Cameras have also comlex lens system. 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Linear Transformations Recap</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-combinations/vector-3.png" width="60%" class="center" /></p>
-<p>We’ve talked about linear transformations previously. Some squish the space and some strech the space (while of course keeping the grid lines parallel and evenly spaced and the origin in the same place). How can we measure the amount of streching? Given an the area bounded by some region before applying the transformation, how much did it grow by?</p>
+<h4><b>Pinhole Camera</b></h4>
+<p>To model the virtual world camera we use a pinhole camera. Since this is a virtual world, then we won’t have the light bending issue (particle/wave duality) and we can just make the aperture a single point. So now it’s really simple. Light will go through this one point from an object to a pixel. However these images can’t do stuff like depth of field (not blurry as you go farther) but that’s fine.
+<br />
+<br />
+Additionally:</p>
+<ul>
+  <li>object occlude things behind the</li>
+  <li>more distant objects subtend smaller visual angels and appear smaller</li>
+  <li>The image will be an upside version of the real world object
+<br />
+<br />
+To solve this third issue and make the camera more efficient:</li>
+  <li>We’ll move the film out in front of the pinhole so that the image is not upside down.</li>
+  <li>We’ll only render objects further away from the camera than the film plane (of width w and height h).</li>
+  <li>We’ll though add a clipping plane for effiency so we don’t every single object (knowing that we won’t render it)</li>
+  <li>The volume between the film (front clipping plane) and the back clipping plane is called the <b>viewing frustum</b>.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h4><b>Objects in the Virtual World</b></h4>
+<ul>
+  <li>We’ll model the objects with 3D points. Each object will be a collection of points.</li>
+  <li>Objects are created in a reference space that we call the “object space”.</li>
+  <li>Once objects are created, we’ll place the objects into the scene. This space is called the “world space”. It’s important to know that we don’t have geometry in the actual space. Instead, we have code that tell us where to place the objects around us via some rigid body motion such as Rotations (3 ways to rotate) and Translate (3 ways to translate) so a total of 6 degrees of freedom. We can also scale the object. But why do it this way? why not just integrate an object such as a lamp in the virtual world? Because it’s a waste! if the lamp consisted of 100k vertices and the scene needed 100 of these, then we’ll have 10 million vertices just for lamps! Instead we can just create one lamp and then the transformations that we described to place this lamp 100 times around the scene.</li>
+  <li>When we take a virtual picture, points on the object are projected on the 2d film plane which we refer to as a “scene space”. This projection is nonlinear and the source of undesireable distortion.
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h4><b>References</b></h4>
+<p>These are my notes based on attending the lecture on light from CS148 with professor Ron Fedkiw. I’ve modified the notes and also included other notes. They are not official or anything like that. Additionally I’ve used the following sources:</p>
+<ul>
+<li>
+<a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics</a>
+</li>
+</ul>
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The Virtual World Our goal is to mimic human vision in a virtual world. We do this by: Creating a virtual camera and place it somewhere and point it at something. Putting a film that contains pixels with RGB values between 0 and 255 into the camera. Placing some objects in the world. (geometric modeling, transformations, text mapping) Putting lights in the scene. And Finally taking the picture. The light will bounce around the room hitting the objects and back hitting the camera onto the virtual film. Pupil What is the role of the pupil in the eye? So we know that the lights goes off every point of an object in every direction and this is why we all see the same point on the same object. We looked at this in the previous lecture. What we didn’t discuss is that without the pupil, this light that is bouncing from every single point on the object, is actually hitting every single cone (or pixel in the camera). The image that we’ll see is just going to be a blurred image averaging all these points. We won’t see any details. The reason why we don’t see everything as a blurry image is the pupil (or the aperture in the camera). The pupil’s rol is to restrict the light bouncing from all these points on every single object. The pupil will only allow some point, enough to see clearly. Moreover, when the pupil gets small, we’d get a sharper image and as the pupil gets larger, we’d see a blurred image. But the pupil (and the aperture) can’t be too small because otherwise the light will bend as it gets through the tiny point due to the particle/wave length duality. Therefore, it has to be small enough but not too small. THe Camera mimic the human eyes but instead of cones we have mechanical pixels and instead of a pupil, we have an aperture. Cameras have also comlex lens system. Pinhole Camera To model the virtual world camera we use a pinhole camera. Since this is a virtual world, then we won’t have the light bending issue (particle/wave duality) and we can just make the aperture a single point. So now it’s really simple. Light will go through this one point from an object to a pixel. However these images can’t do stuff like depth of field (not blurry as you go farther) but that’s fine. Additionally: object occlude things behind the more distant objects subtend smaller visual angels and appear smaller The image will be an upside version of the real world object To solve this third issue and make the camera more efficient: We’ll move the film out in front of the pinhole so that the image is not upside down. We’ll only render objects further away from the camera than the film plane (of width w and height h). We’ll though add a clipping plane for effiency so we don’t every single object (knowing that we won’t render it) The volume between the film (front clipping plane) and the back clipping plane is called the viewing frustum. Objects in the Virtual World We’ll model the objects with 3D points. Each object will be a collection of points. Objects are created in a reference space that we call the “object space”. Once objects are created, we’ll place the objects into the scene. This space is called the “world space”. It’s important to know that we don’t have geometry in the actual space. Instead, we have code that tell us where to place the objects around us via some rigid body motion such as Rotations (3 ways to rotate) and Translate (3 ways to translate) so a total of 6 degrees of freedom. We can also scale the object. But why do it this way? why not just integrate an object such as a lamp in the virtual world? Because it’s a waste! if the lamp consisted of 100k vertices and the scene needed 100 of these, then we’ll have 10 million vertices just for lamps! Instead we can just create one lamp and then the transformations that we described to place this lamp 100 times around the scene. When we take a virtual picture, points on the object are projected on the 2d film plane which we refer to as a “scene space”. This projection is nonlinear and the source of undesireable distortion. References These are my notes based on attending the lecture on light from CS148 with professor Ron Fedkiw. I’ve modified the notes and also included other notes. They are not official or anything like that. Additionally I’ve used the following sources: Fundamentals of Computer Graphics]]></summary></entry><entry><title type="html">Cross Product</title><link href="http://localhost:4000/jekyll/update/2023/10/02/cross-product.html" rel="alternate" type="text/html" title="Cross Product" /><published>2023-10-02T01:01:36-07:00</published><updated>2023-10-02T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/10/02/cross-product</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/10/02/cross-product.html"><![CDATA[<p>This post is just me taking notes while watching the 10th and 11th lecture of the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/corssproduct/00.png" width="70%" class="center" /></p>
+
+<p>The cross product of two vectors $v$ and $w$ is the area of the parallelogram that they span out. This cross product can be negative however and again we depend here on the orientation. If v was on the right of w then the cross product is positive. On the other hand, if $v$ was on the left, then the product is negative. To easily remember this, think of $\widehat{i}$ and $\widehat{j}$. if you take the cross product in order, $\widehat{i} \times \widehat{j}$ (meaning that $\widehat{i}$ is on the right of \widehat{j}$), then the product is positive. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing the Cross Product</b></h4>
+<p>How do we compute the cross product without calculating the area? This is where the determinant comes in. 
+Remember from the determinant lesson, we wanted to measure how much a transformation will squish or stretch some area and for that we learned that we can compute the determinant of the transformation to find out this stretching/scaling factor. So now …. (drum rolls) … take these vectors $v$ and $w$ and arrange them as columns in a matrix. This matrix now is a transformation that represents where the basis vectors $widehat{i}$ and $\widehat{j}$ will land. But remember that if we started with $\widehat{i}$ and $\widehat{j}$ themselves, then that initial area of the unit square is only 1. So now after applying the transformation, we will get the scaling factor by which this area grew or shrank and since the initial area is 1, the scaling factor is just the area.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/corssproduct/00.png" width="70%" class="center" /></p>
+
+<p>If the order of $v$ and $w$ flipped from their initial order in the matrix, then we know that the area will be negative.</p>
+
+<h4><b>More</b></h4>
+<p>Some things to notice are if the vectors are perpendicular to each other than the area is larger. Another thing is that if scale one of the vectors then the cross product is also scaled by that amount. So 3v x w = 3 (v x w).</p>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
+<p>Suppose we have the vectors $v=(-3,1)$ and $w=(2,1)$.</p>
+
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+-3 &amp; 2 \\
+1 &amp; 1
+\end{bmatrix}
+=
+-3*1 - 2*1 = -5.
+\end{align*}
+$$
+</div>
+<p>Notice that we had $v$ first in the matrix but in the above figure we see that $v$ is now on the left of $w$ and so the area is negative as we expect.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Three Dimensions</b></h4>
+<p>But …. this isn’t really a cross product. A cross product produces a new vector. In three dimensions, we will take two vectors and their cross product will be a new vector. Take two vectors and consider the parallelogram that they span. Suppose now that this area is 2.5. The new vector that we get from the cross product is a vector whose direction is prependicular to that parallelogram and its length is equal to the area of the parallelogram which is 2.5. Which perpendicular direction? We use the right hand rule. Put the forefinger of your right hand in the direction of $v$ and stick out the middle finger in the direction of $w$. Then where the thumb is pointing is the direction of the cross product. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing the Cross Product in Three Dimensions</b></h4>
+<p>We do this by putting $v$ and $w$ as the second and third columns in the matrix</p>
+<div>
+$$
+\begin{align*}
+det ()
+\begin{bmatrix}
+\widehat{i} &amp; v_1 &amp; w_1 \\
+\widehat{j} &amp; v_2 &amp; w_2 \\
+\widehat{k} &amp; v_3 &amp; w_3
+\end{bmatrix}
+)
+=
+\widehat{i} (v_2w_3 - w_2v_3) - \widehat{j} (v_1w_3 - w_1v_3) + \widehat{k} (v_1w_2 - w_1v_2)
+\end{align*}
+$$
+</div>
+<p>Students are often told that the new vector is the linear combination of these basis vectors above whose length is the area of the parallelogram and whose direction is followed from applying the right hand rule. But this isn’t notational and putting the basis vectors there isn’t random. To understand where this comes from.</p>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing the Cross Product in Three Dimensions</b></h4>
+
+<p>So what’s up with adding $\widehat{i}$, $\widehat{j}$ and $\widehat{k}$ as a column in the matrix? Why did we do that?</p>
 
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This post is just me taking notes while watching Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go. Linear Transformations Recap We’ve talked about linear transformations previously. Some squish the space and some strech the space (while of course keeping the grid lines parallel and evenly spaced and the origin in the same place). How can we measure the amount of streching? Given an the area bounded by some region before applying the transformation, how much did it grow by?]]></summary></entry><entry><title type="html">Matrix Multiplication As Composition</title><link href="http://localhost:4000/jekyll/update/2023/09/25/matrix-multiplication-as-composition.html" rel="alternate" type="text/html" title="Matrix Multiplication As Composition" /><published>2023-09-25T01:01:36-07:00</published><updated>2023-09-25T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/25/matrix-multiplication-as-composition</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/25/matrix-multiplication-as-composition.html"><![CDATA[<p>This post is just me taking notes while watching <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This post is just me taking notes while watching the 10th and 11th lecture of the Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go. Introduction]]></summary></entry><entry><title type="html">Working with Light</title><link href="http://localhost:4000/jekyll/update/2023/10/01/light.html" rel="alternate" type="text/html" title="Working with Light" /><published>2023-10-01T01:01:36-07:00</published><updated>2023-10-01T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/10/01/light</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/10/01/light.html"><![CDATA[<!------------------------------------------------------------------------------------>
+<h4><b>Introduction</b></h4>
+<p>What is Light? Light consists of photos that travel along straight paths until they hit a surface. Photons carry some energy represented by its wavelength. A large amount of photons of different energies will together represent a specturm. The sun emits electromagnetic radiation across a wide specturm of wavelengths that includes both visible and not-visible light to the human eye. This includes radio waves, microwaves, visible light, ultraviolet etc. These forms of radiation differ in their wavelengths and frequencies. When lights hits an object, this light is either</p>
+
+<ul>
+  <li>Absorbed: This means that the object just absorbed and transformed these photons into some other energy (maybe heat for example). We don’t care about these photos because they’re not visible to us.</li>
+  <li>Reflected: The light that didn’t get absorbed can be reflected. This light then will hit our eyes and we then will perceive color. For example, If the car is red, this means a lot of the red photons are bouncing off and all the other photons are being absorbed.</li>
+</ul>
+
+<p>Light can also pass through the material (maybe the object is made of glass) and can get bent, scattered and so on. When the light hits the eyes, the brain will create a signal and send it to the brain. The brain then will create an image based on these signals. So color doesn’t really exist. It’s just the brain’s interpretation of the signal generated after the photos reached the back of our eyes. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Physics of Light</b></h4>
+<p>The visible spectrum of the full electromagnetic spectrum of light is really tiny (refer to the slides), but that’s all our eyes care about. Either the wavelengths or the frequencies are usually used to differenciate them but in Graphics, we mostly care about wavelengths.
+<br />
+<br />
+Light carries multiple wavelengths. How did we figure out the wavelight that makes us see red? From experiments, we’ve combined different colored lights and observed the results. This led to discovering the <b>relative power distributions</b> (TODO: add figure).
+<br />
+<br />
+What happens if we shine a red colored light and another green colored light? We will see that the energy adds up. In fact, we’ll have the figure on the right where the peak is now is at 600 instead (yellow light). These two green and red distributions are added together ($E = E_1(\lambda) + E_2(\lambda)$). What if we shine green, red and blue light? We get white light!
+<br />
+<br />
+What happens if we add red, blue and green paint together? do we get white paint? no! we see black/brown paint. This is because we’re now subtracting light. Why is that? How come 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Additive vs. Subtractive Color Spaces</b></h4>
+<p>So why is paint subtractive? why didn’t we add the energies up like when we shined multiple light sources together? With paint, the pigments in the paint absorb certain wavelengths of light. These absorbed wavelengths are then subtracted from the incoming light.
+<br />
+<br />
+Where do we find additive color spaces? Displays are one major example. The monitor uses three color lights that get shined into our eyes. It is additive. Suppose that we’ve shine a light source on multiple surfaces:</p>
+<ul>
+	<li>If the surface is red, then it's going to absorb all the light except for red which will bounce.</li>
+	<li>If the surface is white, then white (all three) is going to bounce</li>
+	<li>If the surface is black, then all light will be absorbed and nothing is bounced. </li>
+</ul>
+<p>In general, we absorb the stuff that we don’t reflect. So the color something is what’s being reflected and everything else is being absorbed. We can actually plot this reflected light energy.</p>
+<div>
+$$
+\begin{align*}
+$Reflected(\lambda)=E(\lambda)r(\lambda) = E(\lambda)(1-a(\lambda))$.
+\end{align*}
+$$
+</div>
+<p>where $r(\lambda)+a(\lambda)=1$ (light is either reflected or absorbed!). This means is that you can’t know what color an object is. By creating a color for the object, you have to know what kind of light you’re shining on it.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Sensor Absorbtion (How does the eye take in the light?)</b></h4>
+
+<p>The sensor (whether a sensor or the eye) absorbs the light cominng in (per unit time) and creates a signal (per unit time). This amount of current that we generate is all we know and nothing else. The cones in our eyes work the same way. To compute the signal power (energy per power), we need to take the integral over $a(\lambda)$ which is the absorbtion.</p>
+<div>
+$$
+\begin{align*}
+A = \int E(\lambda)a(\lambda)d\lambda
+\end{align*}
+$$
+</div>
+<p>Again, this light comes in to our eyes. We know all these wavelenghts and their frequencies. We then want to sum all the wavelengths of the energy coming in. Specifically we want to sum only the portion of it that is getting absorbed by our eyes. $A$ is the total enery that the sensor picked up from the light which is going to be used to generate the current. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Human Eye</b></h4>
+<p>The human eye has 3 types of cones sensors and 1 type of rod sensors. Protiens in the cone/rods absorb the incoming photons changing the cell’s membrane potenial, thus creating a signal that gets interpreted by the brain. The cones are more optimized for seeing during the day while the rods’ signals are over-saturated. During the night, the rods are more optimized for seeing and the cones’ signals are under-saturated. For the rods for example, seeing during the day is like as if we stared directly into the sun! they’re not optimized for sunlight!</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/graphics/light/cones.png" width="70%" class="center" /></p>
+<p>Each cone and rod cell has a specific absorbtion (response) function. This absorbtion function gives is what tells us how good a certain cell at absorbing certain wavelengths. As we’ve expected, one of the cones is really good at the “red” wavelength, one is good at “blue” and the last is good at “green”. The rod cell is really good at green. This is one reason why humans areally good at seeing green.
+<br />
+<br />
+Let’s look at an example. Suppose we shine a light that has a single emission of a specific wavelength that is equal to 520. We then shine this light at a human eye. What will happen? The red cone will absorb very little of the light (let it be A). The green blue cone, a little more. Let that amount be B. Finally, the green cone absorbs of it (let it be C). So, since C is the biggest number, then the brain will see green! but wait, light coming into our eyes is not coming as a single wavelength. It comes with different wavelengths and frenquiences. So how does the eye interpret all of us? We’ll integrate over the absorbtion function for each cell and get the three numbers $A$, $B$ and $C$.</p>
+<div>
+$$
+\begin{align*}
+A = \int E(\lambda)a(\lambda)d\lambda
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Trichromatic Theory</b></h4>
+<p>The previous example implies that we really only need 3 “colors” to re-create/trick the brain into seeing the same color again and this is exactly what scientists did. The idea is that if you have three lasers (single emission of a specific wavelength eg R=700, G=546 and B=436). Then a human is given an object with a “color”. We’ll then use the laser combinations to match that same exact “color” and the human mistakenly believes it’s the same color! This works again because each of the three cones can only send one signal (so 3 dimensional basis). This is why we only use red, green and blue lights in our computers, printers etc. So for example, based on the trichromatic theory, each pixel in an image will only need three numbers!<br />
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>3D Color Spaces</b></h4>
+<p>Since we only need three colors, we can just work in three dimensions and we don’t need the enitre specturm. So we have this huge amount of light hitting the camera but once it hits the camera, the camera is going to have three cones and will knock this light down to only three values. So simple.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/graphics/light/color-cube.png" width="70%" class="center" /></p>
+<p>To construct this three dimensional space of colors, map each primary color (red, green, blue) to the unit distance along the $x,y$ and $z$ axes. Black is at $(0,0,0)$ and White is at $(1,1,1)$. The resulting RGB cube represents all possible color. 
+<br />
+<br />
+Another color space that can be construced is the The cylindrical <b>HSV</b> color space. This is a color space based on hue, saturation and value. saturation is the intesity for a partical color. value is lightness or darkness of a particular color.
+<br />
+<br />
+Another color space is the Luminace and Chrominance (YUV). This color space was used back in black and white televison sets. Why? Because the “Y” component holds most of the spatial details of the image. Therefore, we can agressively compress the other components $U$ and $V$ since we don’t care about color and still maintain a good quality.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Mapping between Color Spaces</b></h4>
+<p>To go back and forth between these color spaces is easy! we just need to find the transformation to take us from one to the other since we’re all working in $R^3$. One can map from YUV to RGB using the following matrix (TODO: ADD THE MATRIX from the Slides).
+Notice in the matrix that 0.58 percent of Y is coming from the green channel. This emphasizes the point that if you want to see more detail then you want to emphasize the green light. Does this mean that we need to change important signs to be colored green because it contains more details? No…. it doesn’t matter what the eyes see. After all it’s a signal that is sent to the brain. What matters is what the brain does with the signal. The brain reacts faster to red for example than yellow or green. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Spatial Resolution</b></h4>
+<p>The cones in the eyes have resolution as well. TODO …
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p>These are my notes based on attending the lecture on light from CS148 with professor Ron Fedkiw. I’ve modified the notes and also included other notes. They are not official or anything like that. Additionally I’ve used the following sources:</p>
+<ul>
+<li>
+<a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics</a>
+</li>
+</ul>
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Introduction What is Light? Light consists of photos that travel along straight paths until they hit a surface. Photons carry some energy represented by its wavelength. A large amount of photons of different energies will together represent a specturm. The sun emits electromagnetic radiation across a wide specturm of wavelengths that includes both visible and not-visible light to the human eye. This includes radio waves, microwaves, visible light, ultraviolet etc. These forms of radiation differ in their wavelengths and frequencies. When lights hits an object, this light is either]]></summary></entry><entry><title type="html">Parametric Representation of an Equation</title><link href="http://localhost:4000/jekyll/update/2023/09/30/parametric-representation.html" rel="alternate" type="text/html" title="Parametric Representation of an Equation" /><published>2023-09-30T01:01:36-07:00</published><updated>2023-09-30T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/30/parametric-representation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/30/parametric-representation.html"><![CDATA[<!------------------------------------------------------------------------------------>
+<h4><b>Introduction</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/parametric/00.png" width="70%" class="center" /></p>
+<p>We’ve already seen the implicit representation in the previous post. This time, we will focus on the parametric representation. The parametric representation describes the line or curve using one or more new variables. This variable is commonly denoted as “t”. For example, we might want to describe a curve with a specific start point, an end point and furthermore we might a want a general independent parameter that once we specify, then we get back a point $(x,y)$ on the curve. More importantly, some curves can be represented with the explicit representations becuase we can’t describe $y$ as a function of $x$! See this for example. $x=1.5$ has two possible $y$ values!</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/parametric/01.png" width="50%" class="center" /></p>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Suppose we’re given this line in its implicit form,</p>
+<div>
+$$
+\begin{align*}
+f(x,y) &amp;= x - 2y + 2 = 0.
+\end{align*}
+$$
+</div>
+<p>The parametric representation will be the following</p>
+<div>
+$$
+\begin{align*}
+x &amp;= 2t \\
+y &amp;= t + 1
+\end{align*}
+$$
+</div>
+<p>It will be clear later on how we derived these terms but for now let’s make sure that we can substitute multiple values of $t$ to see that these points are indeed on the line. You can try $t=0$ to get $(x=0, y=1)$ and see that it indeed satisfies the implicit equation. But now ended up with two functions. Is there a way to simplify this? Yes, we can wrap everything in one function if we used vectors instead! So let $v = [x, y]$ be a vector and then re-write the previous two equations such that</p>
+<div>
+$$
+\begin{align*}
+v = 
+\begin{bmatrix}
+2 \\
+1
+\end{bmatrix}
+t +
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>It looks really good but how do we derive these constants? This part is pretty cool. Take two points on the line. For example $p_0=(0,1)$ and $p_1=(2,2)$. and now we can see that we can represent this line as with the initial point $p_0$ and then the direction of the line using $p_1-p_0$ so,</p>
+<div>
+$$
+\begin{align*}
+v = p_0 + (p_1 - p_0)t.
+\end{align*}
+$$
+</div>
+<p>At $t=0$, we’re at $p_0$. If we’re at $t=1$, we’re at $p_1$. And we can still substitute $t$ values to go beyond this range. We can also re-write this to clean it and replace $v$ with $f(t)$ since this is now just a function of $t$,</p>
+<div>
+$$
+\begin{align*}
+f(t) = (p_1 - p_0)t + p_0.
+\end{align*}
+$$
+</div>
+<p>But there is one more way to write this! re-arrange the terms such that,</p>
+<div>
+$$
+\begin{align*}
+f(t) = (1-t)p_0 + tp_1
+\end{align*}
+$$
+</div>
+<p>So really, it’s like we’re interpolating between the two points. This notation is also nicer since the two points appear once each!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>
+<a href="https://www.youtube.com/watch?v=6jjLSkp0Y7I&amp;list=PLplnkTzzqsZTfYh4UbhLGpI5kGd5oW_Hh&amp;index=10&amp;t=535s">Intro to Graphics 09 - Curves (Part 1) by Cem Yuksel</a>
+</li>
+<li>
+<a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics</a>
+</li>
+</ul>
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Introduction We’ve already seen the implicit representation in the previous post. This time, we will focus on the parametric representation. The parametric representation describes the line or curve using one or more new variables. This variable is commonly denoted as “t”. For example, we might want to describe a curve with a specific start point, an end point and furthermore we might a want a general independent parameter that once we specify, then we get back a point $(x,y)$ on the curve. More importantly, some curves can be represented with the explicit representations becuase we can’t describe $y$ as a function of $x$! See this for example. $x=1.5$ has two possible $y$ values! Example Suppose we’re given this line in its implicit form, $$ \begin{align*} f(x,y) &amp;= x - 2y + 2 = 0. \end{align*} $$ The parametric representation will be the following $$ \begin{align*} x &amp;= 2t \\ y &amp;= t + 1 \end{align*} $$ It will be clear later on how we derived these terms but for now let’s make sure that we can substitute multiple values of $t$ to see that these points are indeed on the line. You can try $t=0$ to get $(x=0, y=1)$ and see that it indeed satisfies the implicit equation. But now ended up with two functions. Is there a way to simplify this? Yes, we can wrap everything in one function if we used vectors instead! So let $v = [x, y]$ be a vector and then re-write the previous two equations such that $$ \begin{align*} v = \begin{bmatrix} 2 \\ 1 \end{bmatrix} t + \begin{bmatrix} 0 \\ 1 \end{bmatrix} \end{align*} $$ It looks really good but how do we derive these constants? This part is pretty cool. Take two points on the line. For example $p_0=(0,1)$ and $p_1=(2,2)$. and now we can see that we can represent this line as with the initial point $p_0$ and then the direction of the line using $p_1-p_0$ so, $$ \begin{align*} v = p_0 + (p_1 - p_0)t. \end{align*} $$ At $t=0$, we’re at $p_0$. If we’re at $t=1$, we’re at $p_1$. And we can still substitute $t$ values to go beyond this range. We can also re-write this to clean it and replace $v$ with $f(t)$ since this is now just a function of $t$, $$ \begin{align*} f(t) = (p_1 - p_0)t + p_0. \end{align*} $$ But there is one more way to write this! re-arrange the terms such that, $$ \begin{align*} f(t) = (1-t)p_0 + tp_1 \end{align*} $$ So really, it’s like we’re interpolating between the two points. This notation is also nicer since the two points appear once each! References Intro to Graphics 09 - Curves (Part 1) by Cem Yuksel Fundamentals of Computer Graphics]]></summary></entry><entry><title type="html">Dot Product</title><link href="http://localhost:4000/jekyll/update/2023/09/29/dot-product.html" rel="alternate" type="text/html" title="Dot Product" /><published>2023-09-29T01:01:36-07:00</published><updated>2023-09-29T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/29/dot-product</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/29/dot-product.html"><![CDATA[<p>This post is just me taking notes while watching the 9th lecture of the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p>It is easy to just compute the dot product numerically. We just multiply the x-coordinate of both vectors followed by multiplying the y-coordinate of the vector and so on. We then add all the terms together. Here is an example:</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+6 \\
+1 \\
+2 
+\end{bmatrix}
+\dot
+\begin{bmatrix}
+4 \\
+-3 \\
+-1 
+\end{bmatrix}
+=
+6*4 + 1*-3 + 2*-1 = 24 - 3 - 2 = 19.
+\end{align*}
+$$
+</div>
+<p>But luckily the dot product has also a nice geometric meaning show below. The dot product $\vec{v}*\vec{w}$ is taking the vector $w$ and projecting it on the line that goes the origin and through the tip of the vector $\vec{v}$ and then multiplying the length of this projected vector by the length of vector $v$ itself!</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/dotproduct/00.png" width="70%" class="center" /></p>
+<p>However if the projected vector is pointing in the opposite direction of $v$, then this product is actually negative.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/dotproduct/00.png" width="70%" class="center" /></p>
+<p>So to summarize, if both vectors are pointing in the same direction, then generally the dot product will be positive, if they’re perpendicular to each other, the product is zero and if they’re pointing in the opposite direction of each other then the product is negative. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Does the Order Matter?</b></h4>
+<p>Weirdly enough, the order doesn’t matter. so if you instead project $v$ onto $w$, take the length of the porjected v and multiply it by the length of w, the product is still the same!</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/inverse/00.png" width="90%" class="center" /></p>
+
+<p>Why doesn’t the order matter? One way to think about this is suppose we let $v$ and $w$ have the same length. In this case, you can see that whether we project $v$ on $w$ or $w$ on $v$, we’ll end up with the same exact dot product. 
+<br />
+<br />
+Suppose now that we scale only one of them by 2 for example. So $w$ and $2v$.</p>
+<ul>
+  <li>If we project $w$ onto $v$, then we’ll multiply this projected w length by the length of v which is now twice it’s original length and we will have</li>
+</ul>
+<div>
+$$
+\begin{align*}
+(2v) \cdot w = 2 (v \cdot w).
+\end{align*}
+$$
+</div>
+<p>This happens because scaling v has no effect on the length of the projected w vector onto v. Now suppose, we’re projecting $2v$ on to $w$ instead. This time, the length of the projection is the thing that will get scaled instead. 2v is getting projected onto w and so the dot product will again be the same. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>More Intuition</b></h4>
+<p>We’ve described the numerical way to calculate a dot product and then the geometric interpretation. But why would these things be related at all? How can multiplying these coordinates and then adding them together be related to projecting vectors onto each other?
+<br />
+<br />
+To understand this, Let’s start by considerings linear transformations from high dimensions into one-dimension (the numbers line). We know linear transformations means that parallel lines stay parallel and evenly spaced (formally, (L(v+w) = L(v) + L(w), L(cv) = cL(v)))). So when we take a line of evenly spaced dots, A linear transformation will keep these dots evenly spaced. We also know that a linear transformation is completely determined by where it takes $\widehat{i}$ and $\widehat{j}$. 
+<br />
+<br />
+Now suppose that $v = (4, 3)$ and suppose we have a linear transformation $L$ that takes $\widehat{i}$ to 1 and $\widehat{j}$ to -2. We can re-write $v$ as a linear combination of $\widehat{i}$ and $\widehat{j}$ yields $\vec{v} = 4\widehat{i} + 3\widehat{j}$.</p>
+
+<p>[pic]</p>
+
+<p>After applying $L$, $v$ will be 4 times the place where $\widehat{i}$ lands and 3 times the place where $\widehat{j}$ lands. This means that $L(v) = 4<em>1 - 2</em>3 = -2$.</p>
+
+<p>[pic]
+<br />
+<br />
+Numerically, this is done by matrix multiplication,</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+1 &amp; -2
+\end{bmatrix}
+\begin{bmatrix}
+4 \\
+3 
+\end{bmatrix}
+=
+1*4 - 2*3 = -2
+\end{align*}
+$$
+</div>
+<p>This looks very familiar to how we compute a dot product essentially! The only difference is that the 1x2 matrix is usually written as a 2x1 vector instead! There is a connection between linear transformations that take vectors to numbers and vectors themselves! hmm
+<br />
+<br />
+Take the numbers line and place it diagonally in a 2d plane where the number 0 will sit exactly at the origin. Let $u$ be a 2d vector such that its tip sits at the number 1 on the numbers line. Suppose now we have a bunch of 2d vectors in the plane. Project these vectors right onto the diagonal number line. We can call this a function that takes 2d vectors and projects them on the numbers line. What’s more is that this function is linear. A line of evenly spaced dots that gets projected results in these projected dots as evenly spaced on the numbers line as well. Since this is a linear function, then we must have a matrix that describes this function/transformation. This matrix must be of size 1x2 since it takes a vector and outputs a single number. To figure out this matrix, we need to find out where $\widehat{i}$ and $\widehat{j}$ have landed on the numbers line.</p>
+
+<p>[pic with i, j and u]</p>
+
+<p>We know that $\widehat{i}$ and $\widehat{j}$ are both unit vectors. Notice here that projecting $\widehat{i}$ onto the line that goes through $\widehat{u}$ looks symmetric to projecting $\widehat{u}$ onto on the the line that goes through $\widehat{i}$ (the x-axis). This is because both $\widehat{i}$ and $\widehat{u}$ are unit vectors. Projecting $\widehat{u}$ on the x-axis is just the x-coordinate $u_x$ of $\widehat{u}$. So now pay attention. Since we just said that the projection will be of the same length whether we we project $\widehat{u}$ on $\widehat{i}$  or $\widehat{i}$  onto $\widehat{u}$, this means that projecting $\widehat{i}$ onto the numbers line, will be at exactly the point $u_x$. Similarly, projecting $\widehat{j}$ onto the numbers line will land exactly at $u_y$! 
+<br />
+<br />
+So now we know exactly where both $\widehat{i}$ and $\widehat{j}$ land and the matrix is [u_x u_y]. And so now FOR ANY VECTOR, computing the project of it onto the numbers line, is just a matter of multiplying the vector by the matrix [u_x u_y].
+<br />
+<br />
+So suppose v =[v_x, v_y], then project this vector on the numbers line is like multiplying [v_x, v_y] * [u_x, u_y]. This looks EXACTLY like a dot product.</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+u_x &amp; u_y
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y 
+\end{bmatrix}
+=
+u_x*x + u_y*y
+\end{align*}
+$$
+</div>
+<p>and</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+u_x \\ 
+u_y
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y 
+\end{bmatrix}
+=
+u_x*x + u_y*y
+\end{align*}
+$$
+</div>
+<p>This is why taking the dot product with a unit vector can be interpreted as projecting a vector into the span of that unit vector and taking the length.</p>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This post is just me taking notes while watching the 9th lecture of the Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go. Introduction It is easy to just compute the dot product numerically. We just multiply the x-coordinate of both vectors followed by multiplying the y-coordinate of the vector and so on. We then add all the terms together. Here is an example: $$ \begin{align*} \begin{bmatrix} 6 \\ 1 \\ 2 \end{bmatrix} \dot \begin{bmatrix} 4 \\ -3 \\ -1 \end{bmatrix} = 6*4 + 1*-3 + 2*-1 = 24 - 3 - 2 = 19. \end{align*} $$ But luckily the dot product has also a nice geometric meaning show below. The dot product $\vec{v}*\vec{w}$ is taking the vector $w$ and projecting it on the line that goes the origin and through the tip of the vector $\vec{v}$ and then multiplying the length of this projected vector by the length of vector $v$ itself! However if the projected vector is pointing in the opposite direction of $v$, then this product is actually negative. So to summarize, if both vectors are pointing in the same direction, then generally the dot product will be positive, if they’re perpendicular to each other, the product is zero and if they’re pointing in the opposite direction of each other then the product is negative. Does the Order Matter? Weirdly enough, the order doesn’t matter. so if you instead project $v$ onto $w$, take the length of the porjected v and multiply it by the length of w, the product is still the same!]]></summary></entry><entry><title type="html">Implicit Representation of an Equation</title><link href="http://localhost:4000/jekyll/update/2023/09/28/implicit-representation.html" rel="alternate" type="text/html" title="Implicit Representation of an Equation" /><published>2023-09-28T01:01:36-07:00</published><updated>2023-09-28T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/28/implicit-representation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/28/implicit-representation.html"><![CDATA[<!------------------------------------------------------------------------------------>
+<h4><b>The implicit Representation of a Line</b></h4>
+<p>Consider the following equation for a line that goes through the origin,</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/implicit/00.png" width="60%" class="center" /></p>
+<p>This line equation ($y = 2x$) is also sometimes referred to as the explicit representation of the line. We can also represent this line using a representation called the <b>implicit representation</b>. We can do so by re-arranging the terms such that</p>
+<div>
+$$
+\begin{align*}
+y - 2x = 0.
+\end{align*}
+$$
+</div>
+<p>The implicit representation describes the relationship between the variables $x$ and $y$. It describes all the points $(x,y)$ that satisfies the equation $y - 2x = 0$. We don’t have an explicit solution. We just know the relationship between the variables that will need to be satisfied. In general, the implicit representation of a line takes the form</p>
+<div>
+$$
+\begin{align*}
+f(x, y) &amp;= 0 \\
+ax + by + c &amp;= 0.
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The implicit Representation of a Circle</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/implicit/circle.png" width="60%" class="center" /></p>
+<p>Moving on from the simple example of a line. Let’s study the circle example. This function returns a real value and for any any point $(x,y)$, if $f(x,y)$ is zero, then the point is on the circle. If it’s not zero, then it’s not on the circle. The equation of a circle can be written as</p>
+<div>
+$$
+\begin{align*}
+f(x,y) &amp;= (x - x_c)^2 + (y - y_c)^2 - r^2 = 0.
+\end{align*}
+$$
+</div>
+<p>where $(x_c, y_c)$ is a point and $r$ is a nonzero real number. Any point that satifies this equation is on the circle of center $(x_c, y_c)$ and radius $r$. We can re-write the equation using vectors to simplify the notation. if we let $c=(x_c, y_c)$ and $p=(x,y)$, then</p>
+<div>
+$$
+\begin{align*}
+f(x,y) = (p - c) \cdot (p - c) - r^2 = 0.
+\end{align*}
+$$
+</div>
+<p>We know that $(p - c) \cdot (p - c)$ is just the length of this vector squared and so</p>
+<div>
+$$
+\begin{align*}
+f(x,y) = \left\lVert p - c \right\rVert^2 - r^2 = 0.
+\end{align*}
+$$
+</div>
+<p>This just means that the points $p$ on the circle are those with a distance $r$ from the center of the circle at $c$.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>
+<a href="https://www.youtube.com/watch?v=6jjLSkp0Y7I&amp;list=PLplnkTzzqsZTfYh4UbhLGpI5kGd5oW_Hh&amp;index=10&amp;t=535s">Intro to Graphics 09 - Curves (Part 1) by Cem Yuksel</a>
+</li>
+<li>
+<a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics</a>
+</li>
+</ul>
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The implicit Representation of a Line Consider the following equation for a line that goes through the origin, This line equation ($y = 2x$) is also sometimes referred to as the explicit representation of the line. We can also represent this line using a representation called the implicit representation. We can do so by re-arranging the terms such that $$ \begin{align*} y - 2x = 0. \end{align*} $$ The implicit representation describes the relationship between the variables $x$ and $y$. It describes all the points $(x,y)$ that satisfies the equation $y - 2x = 0$. We don’t have an explicit solution. We just know the relationship between the variables that will need to be satisfied. In general, the implicit representation of a line takes the form $$ \begin{align*} f(x, y) &amp;= 0 \\ ax + by + c &amp;= 0. \end{align*} $$ The implicit Representation of a Circle Moving on from the simple example of a line. Let’s study the circle example. This function returns a real value and for any any point $(x,y)$, if $f(x,y)$ is zero, then the point is on the circle. If it’s not zero, then it’s not on the circle. The equation of a circle can be written as $$ \begin{align*} f(x,y) &amp;= (x - x_c)^2 + (y - y_c)^2 - r^2 = 0. \end{align*} $$ where $(x_c, y_c)$ is a point and $r$ is a nonzero real number. Any point that satifies this equation is on the circle of center $(x_c, y_c)$ and radius $r$. We can re-write the equation using vectors to simplify the notation. if we let $c=(x_c, y_c)$ and $p=(x,y)$, then $$ \begin{align*} f(x,y) = (p - c) \cdot (p - c) - r^2 = 0. \end{align*} $$ We know that $(p - c) \cdot (p - c)$ is just the length of this vector squared and so $$ \begin{align*} f(x,y) = \left\lVert p - c \right\rVert^2 - r^2 = 0. \end{align*} $$ This just means that the points $p$ on the circle are those with a distance $r$ from the center of the circle at $c$. References Intro to Graphics 09 - Curves (Part 1) by Cem Yuksel Fundamentals of Computer Graphics]]></summary></entry><entry><title type="html">Inverse Matrices, Column Space, Rank and Null Space</title><link href="http://localhost:4000/jekyll/update/2023/09/27/system-of-linear-equations.html" rel="alternate" type="text/html" title="Inverse Matrices, Column Space, Rank and Null Space" /><published>2023-09-27T01:01:36-07:00</published><updated>2023-09-27T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/27/system-of-linear-equations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/27/system-of-linear-equations.html"><![CDATA[<p>This post is just me taking notes while watching the 7th lecture of the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Introduction</b></h4>
+<p>One of the main uses of linear algebra is that it lets us solve a linear system of equations. So if we’re given for example the following set of equations,</p>
+<div>
+$$
+\begin{align*}
+6x - 3y + 2z = 7 \\
+x + 2y + 5z = 0 \\
+2x - 8y - z = -2
+\end{align*}
+$$
+</div>
+<p>We can group all the coefficients in a matrix $A$, all the variables in a vector $\vec{x}$ and all the constants in a vector $\vec{v}$. We can then write,</p>
+<div>
+$$
+\begin{align*}
+A\vec{x} &amp;= \vec{y} \\
+\begin{bmatrix}
+6 &amp; -3 &amp; 2 \\
+1 &amp; 2 &amp; 5 \\
+2 &amp; -8 &amp; -1 
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}
+=
+\begin{bmatrix}
+7 \\ 0 \\ -2
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>This should look very familiar! The matrix $A$ corresponds to some linear transformation so solving $Ax=v$ means we’re looking for a vector $x$ which after applying the transformation $A$, lands on the vector $v$!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>A 2D Example</b></h4>
+<p>Let’s start with a simple example in two dimensions such that the matrix $A$ is a 2x2 matrix. Suppose we have two equations and two unknowns. The equations are</p>
+<div>
+$$
+\begin{align*}
+2x + 2y = 4 \\
+1x + 3y = -1
+\end{align*}
+$$
+</div>
+<p>and after re-arranging everything, we’ll have</p>
+<div>
+$$
+\begin{align*}
+A\vec{x} &amp;= \vec{y} \\
+\begin{bmatrix}
+2 &amp; 2 \\
+1 &amp; 3
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+x \\ y
+\end{bmatrix}
+=
+\begin{bmatrix}
+-4 \\ -1
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>The solution to this system depends on whether A squishes all of the space into a lower dimension or whether it leaves everything still in two dimensions where it started. One way to determine this to use what we learned in the last’s lecture and compute the determinant of this matrix.</p>
+<ul>
+	 <li>If it's zero, then we know, we're squished to a lower dimension.</li>
+	 <li>If it's non-zero, then we know we have a unique solution.</li>
+ </ul>
+<p>We’ll analyze each case seperately next.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Case 1: The Determinant is not zero (The Inverse of a Transformation)</b></h4>
+<p>In case 1, the determinant is not zero. This means the area is not zero and we’re not squished to a lower dimension. Therefore there will be only one vector $x$ such that $Ax = v$. To find it, we really want to play the transformation in reverse going from $v$ to $x$ (imagine playing it slowly from $\vec{v}$ back to $\vec{x}$). In other words, we want the inverse transformation applied to $v$. The inverse of a transformation $A$ is called the <b>inverse of $A$</b> and is denoted by $A^{-1}$. $A^{-1}$ is the unique transformation with the property that if you first apply $A$ and then follow it with $A^{-1}$, you end up back where you started. And we know that applying multiple transformations is captured algebraically with matrix multiplication. So $AA^{-1}$ corresponds to the transformation that does nothing! The transformation that does nothing is called the <b>identity</b> transformation. It leaves both $\widehat{i}$ and $\widehat{j}$ unchanged so $I = matrix (1,0,0,1)$.</p>
+<div>
+$$
+\begin{align*}
+I &amp;=
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>So now to find the unique solution, we can just apply the inverse to both sides of the equation</p>
+<div>
+$$
+\begin{align*}
+A\vec{x} &amp;= \vec{v} \\
+A^{-1}A\vec{x} &amp;= A^{-1}\vec{v} \\
+\vec{x} &amp;= A^{-1}\vec{v}
+\end{align*}
+$$
+</div>
+<p>Again it’s important to stress the geometric meaning of this equation. We’re playing the transformation $A$ in reverse from $v$ and following it back to $x$.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Case 2: The Determinant is Zero</b></h4>
+<p>So we know when the determinant is zero, this means that the two dimensions are squished onto a lower dimension. So there is no inverse because we can’t unsquish a line to turn it into a plane. It is though still possible that a solution exist even when the determinant is zero. It’s just when the whole space is squished into a line, we have to lucky that the vector $v$ lives somewhere on that line. (green means there is a solution and yellow indicates no solution exists)</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/inverse/00.png" width="90%" class="center" /></p>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Rank</b></h4>
+<p>If we take a 3x3 transformation in 3 dimensions where the determinant is zero, we will notice that some of these zero determinant cases feel a lot more restrictive than others. It seems that it will be harder to find a solution if we’re squished to a line versus for example getting squished to a plane. This leads us to develop new terminology to distiguish these cases. We’ll say the transformation that squishes us to a 1 dinmensional line has <b>rank 1</b>. If we’re squished to 2 dimensions, then the tranformation has rank 2. 
+<br />
+<br />
+So really <b>the rank is the number of dimensions in the output of a transformation.</b> So in the 3x3 case, rank 3 is the best rank the matrix can reach and it means that the basis vectors continue to span the full three dimensions of space and the determinant is not zero!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Column Space</b></h4>
+<p>The set of all possible outputs of the 3x3 transformation is called the <b>column space of $A$</b> of the transformation whether it’s a line, a plane or 3D space. 
+<br />
+<br />
+Why did we call it the column space? We know that each column in the matrix $A$ refers to where a vector from the basis vectors have landed. For example the first column is where $\widehat{i}$ has landed, the second is where $\widehat{j}$ has landed and so on. The <b>span</b> of those transformed basis vectors gives you all possible outputs. In other words, the <b>column space</b> is the <b>span of the columns</b> of your matrix. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Null Space</b></h4>
+<p>Another important thing is that the zero vector will always be included in the column space since linear transformations must keep the origin fixed in place. If the matrix is full rank, then the zero vector is the only vector that lands at the origin. But for other non full rank matrics, we can have a bunch of vectors land on zero. These vectors are called the <b>null space</b> or the <b>kernel</b> of your matrix. It’s the set of all vectors that become null (land on the zero vector). 
+<br />
+<br />
+If we’re trying to solve $A\vec{x}=\vec{0}$, then the null space gives you all of the possible solutions to the equation.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This post is just me taking notes while watching the 7th lecture of the Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go. Introduction One of the main uses of linear algebra is that it lets us solve a linear system of equations. So if we’re given for example the following set of equations, $$ \begin{align*} 6x - 3y + 2z = 7 \\ x + 2y + 5z = 0 \\ 2x - 8y - z = -2 \end{align*} $$ We can group all the coefficients in a matrix $A$, all the variables in a vector $\vec{x}$ and all the constants in a vector $\vec{v}$. We can then write, $$ \begin{align*} A\vec{x} &amp;= \vec{y} \\ \begin{bmatrix} 6 &amp; -3 &amp; 2 \\ 1 &amp; 2 &amp; 5 \\ 2 &amp; -8 &amp; -1 \end{bmatrix} &amp;= \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 7 \\ 0 \\ -2 \end{bmatrix} \end{align*} $$ This should look very familiar! The matrix $A$ corresponds to some linear transformation so solving $Ax=v$ means we’re looking for a vector $x$ which after applying the transformation $A$, lands on the vector $v$! A 2D Example Let’s start with a simple example in two dimensions such that the matrix $A$ is a 2x2 matrix. Suppose we have two equations and two unknowns. The equations are $$ \begin{align*} 2x + 2y = 4 \\ 1x + 3y = -1 \end{align*} $$ and after re-arranging everything, we’ll have $$ \begin{align*} A\vec{x} &amp;= \vec{y} \\ \begin{bmatrix} 2 &amp; 2 \\ 1 &amp; 3 \end{bmatrix} &amp;= \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} -4 \\ -1 \end{bmatrix} \end{align*} $$ The solution to this system depends on whether A squishes all of the space into a lower dimension or whether it leaves everything still in two dimensions where it started. One way to determine this to use what we learned in the last’s lecture and compute the determinant of this matrix. If it's zero, then we know, we're squished to a lower dimension. If it's non-zero, then we know we have a unique solution. We’ll analyze each case seperately next. Case 1: The Determinant is not zero (The Inverse of a Transformation) In case 1, the determinant is not zero. This means the area is not zero and we’re not squished to a lower dimension. Therefore there will be only one vector $x$ such that $Ax = v$. To find it, we really want to play the transformation in reverse going from $v$ to $x$ (imagine playing it slowly from $\vec{v}$ back to $\vec{x}$). In other words, we want the inverse transformation applied to $v$. The inverse of a transformation $A$ is called the inverse of $A$ and is denoted by $A^{-1}$. $A^{-1}$ is the unique transformation with the property that if you first apply $A$ and then follow it with $A^{-1}$, you end up back where you started. And we know that applying multiple transformations is captured algebraically with matrix multiplication. So $AA^{-1}$ corresponds to the transformation that does nothing! The transformation that does nothing is called the identity transformation. It leaves both $\widehat{i}$ and $\widehat{j}$ unchanged so $I = matrix (1,0,0,1)$. $$ \begin{align*} I &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \end{align*} $$ So now to find the unique solution, we can just apply the inverse to both sides of the equation $$ \begin{align*} A\vec{x} &amp;= \vec{v} \\ A^{-1}A\vec{x} &amp;= A^{-1}\vec{v} \\ \vec{x} &amp;= A^{-1}\vec{v} \end{align*} $$ Again it’s important to stress the geometric meaning of this equation. We’re playing the transformation $A$ in reverse from $v$ and following it back to $x$. Case 2: The Determinant is Zero So we know when the determinant is zero, this means that the two dimensions are squished onto a lower dimension. So there is no inverse because we can’t unsquish a line to turn it into a plane. It is though still possible that a solution exist even when the determinant is zero. It’s just when the whole space is squished into a line, we have to lucky that the vector $v$ lives somewhere on that line. (green means there is a solution and yellow indicates no solution exists) Rank If we take a 3x3 transformation in 3 dimensions where the determinant is zero, we will notice that some of these zero determinant cases feel a lot more restrictive than others. It seems that it will be harder to find a solution if we’re squished to a line versus for example getting squished to a plane. This leads us to develop new terminology to distiguish these cases. We’ll say the transformation that squishes us to a 1 dinmensional line has rank 1. If we’re squished to 2 dimensions, then the tranformation has rank 2. So really the rank is the number of dimensions in the output of a transformation. So in the 3x3 case, rank 3 is the best rank the matrix can reach and it means that the basis vectors continue to span the full three dimensions of space and the determinant is not zero! Column Space The set of all possible outputs of the 3x3 transformation is called the column space of $A$ of the transformation whether it’s a line, a plane or 3D space. Why did we call it the column space? We know that each column in the matrix $A$ refers to where a vector from the basis vectors have landed. For example the first column is where $\widehat{i}$ has landed, the second is where $\widehat{j}$ has landed and so on. The span of those transformed basis vectors gives you all possible outputs. In other words, the column space is the span of the columns of your matrix. Null Space Another important thing is that the zero vector will always be included in the column space since linear transformations must keep the origin fixed in place. If the matrix is full rank, then the zero vector is the only vector that lands at the origin. But for other non full rank matrics, we can have a bunch of vectors land on zero. These vectors are called the null space or the kernel of your matrix. It’s the set of all vectors that become null (land on the zero vector). If we’re trying to solve $A\vec{x}=\vec{0}$, then the null space gives you all of the possible solutions to the equation. References Essence of Linear Algebra by 3Blue1Brown]]></summary></entry><entry><title type="html">Determinants</title><link href="http://localhost:4000/jekyll/update/2023/09/26/determinants.html" rel="alternate" type="text/html" title="Determinants" /><published>2023-09-26T01:01:36-07:00</published><updated>2023-09-26T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/26/determinants</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/26/determinants.html"><![CDATA[<p>This post is just me taking notes while watching the 6th lecture of the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Determinant</b></h4>
+<p>We’ve talked about linear transformations previously. Some squish the space and some strech the space (while of course keeping the grid lines parallel and evenly spaced and the origin in the same place). How can we measure the amount of streching? Given an area bounded by some region, how much will its area grow by after applying some transformation? For example in the below figure, we can see that the shaded area on the left has area $A = 1$. After the transformation was applied, this area grew by a factor of 4 so the new area is now $4*A$. So the transformation scaled the area by a factor of 4.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/determinants/00.png" width="80%" class="center" /></p>
+<p>The important fact here is that knowing how much the area of that one single unit square changes is enough to know how much any area will change in the space! This follows from the fact that the parallel grid lines remain parallel and evenly spaced. This scaling factor by which a linear transformation changes any area is called the <b>determinant</b>
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>More Examples</b></h4>
+<p>To re-iterate, the determinant is the scaling factor by which a linear transformation changes any area. And it applies to any area because a linear transformation keeps the parallel lines parallel and evenly spaced. Let’s look at some example:</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/determinants/01.png" width="80%" class="center" /></p>
+
+<p>Here, we know that the determinant of that transformation (aka, the factor by which any area would scale) is 0.5. Let the area be $A$ before the transformation. The new area after the transformation will be $0.5*A$ So the determinant is 0.5.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/determinants/02.png" width="80%" class="center" /></p>
+
+<p>This is another example where the area is completely squished and it’s just zero. This means that the area of any region would become also 0 after applying this specific transformation. This is really important because it means that checking if the determinant of a given matrix is 0, will give away wether or not the transformation associated with that matrix squishes everything into a smaller dimension.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Negative Areas?</b></h4>
+<p>Unfortunately, the determinat can be negative! so what would scaling an area by a negative amount even mean? This has to do with the concept of orientation. One way to think about this is to notice that some transformations flip the space (like flipping a sheet of paper). Transformation that flip the space are said to “invert the orientation of space”. (video has beautiful animations for this!)</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/determinants/03.png" width="90%" class="center" /></p>
+<p>Another way to think about this is in terms of $\widehat{i}$ and $\widehat{j}$. Notice that in the above figure and before applying the tranformation, $\widehat{j}$ is to the left of $\widehat{i}$. After applying $L$, $\widehat{j}$ is now on the right of $\widehat{i}$. Whenever the orientation of the space is inverted, the determinant will be negative. But regardless of the sign of the determinant, the absolute value will still determine the scaling factor by which the area of any region will change! 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Three Dimensions</b></h4>
+<p>What about the determinat of a linear transformation in 3 dimensions! This time it will tell us how much the <b>volume</b> of a region will get scaled by! Instead of focusing on the single 1x1 square in dimensions, now we can focus on the 1x1x1 cube and observe what happens to it after the transformation.
+<br />
+<br />
+What about negative determinants? What does orientation mean here? We will follow the right hand rule to determine the orientation. Point the forefinger of your right hand in the direction of $\widehat{i}$, your middle finger in the direction of $\widehat{j}$ and your thumb in the direction of $\widehat{k}$. If your thumb stays in the same direction after the transformation, then the orientation hasn’t changed and the determinant will be positive. If instead, you can only do that with your left hand, then the orientation is flipped and the determinant is negative.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing the Determinant</b></h4>
+<p>We compute the determinant numerically using the following</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/determinants/04.png" width="50%" class="center" /></p>
+<p>What’s the intuition behind this? Suppose that the terms $c$ and $d$ are zero and so in the above, the determinant will just the product $ad$, shown below</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/determinants/05.png" width="55%" class="center" /></p>
+
+<p>In this case $a$ will tell us how much $\widehat{i}$ is stretched in the $x$ direction and the term $d$ will tell us how much $\widehat{j}$ is stretched in the $y$ direction show below,</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/determinants/06.png" width="50%" class="center" /></p>
+
+<p>This should make sense since now $a*d$ is also the area of the rectangle of what the unit square has turned into. What if only $b$ or $c$ are zero and not both! Numerically, the determinant is still $ad$ and so it doesn’t change but visually it’s the area of the parallelogram with base $a$ and height $d$ as show below,</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/determinants/07.png" width="55%" class="center" /></p>
+<p>What if none of the terms are zero? there is a crazy diagram in the video that shows where the term is derived from exactly. Each piece of the area will be mapped to one of the terms in the crazy equation.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This post is just me taking notes while watching the 6th lecture of the Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go. The Determinant We’ve talked about linear transformations previously. Some squish the space and some strech the space (while of course keeping the grid lines parallel and evenly spaced and the origin in the same place). How can we measure the amount of streching? Given an area bounded by some region, how much will its area grow by after applying some transformation? For example in the below figure, we can see that the shaded area on the left has area $A = 1$. After the transformation was applied, this area grew by a factor of 4 so the new area is now $4*A$. So the transformation scaled the area by a factor of 4. The important fact here is that knowing how much the area of that one single unit square changes is enough to know how much any area will change in the space! This follows from the fact that the parallel grid lines remain parallel and evenly spaced. This scaling factor by which a linear transformation changes any area is called the determinant More Examples To re-iterate, the determinant is the scaling factor by which a linear transformation changes any area. And it applies to any area because a linear transformation keeps the parallel lines parallel and evenly spaced. Let’s look at some example:]]></summary></entry><entry><title type="html">Matrix Multiplication As Composition</title><link href="http://localhost:4000/jekyll/update/2023/09/25/matrix-multiplication-as-composition.html" rel="alternate" type="text/html" title="Matrix Multiplication As Composition" /><published>2023-09-25T01:01:36-07:00</published><updated>2023-09-25T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/25/matrix-multiplication-as-composition</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/25/matrix-multiplication-as-composition.html"><![CDATA[<p>This post is just me taking notes while watching <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -160,607 +880,4 @@ $$
 <h4><b>References</b></h4>
 <p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This post is just me taking notes while watching Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go. Transformations So what does transformation mean? A transformation takes a vector as an input and outputs another vector so it’s just a function. So why didn’t we call it a function? This is because the word transformation suggests movement. We’re imagining that this input vector is moving over to the output vector. Of course, when transforming vectors, it is much nicer to use the trick from last time where we think of the vector as the point where its tip sits on. This way it is easier to visulize transforming many vectors all at once. Linear Transformations Transformations can be pretty complex but Linear Algebra is restricted to only linear transformations. Visually speaking a transformation is linear if it has two properties: All lines must remain lines without getting curved. The origin is fixed in place. Describing Linear Transformations Numerically How do we describe a linear transformation? It turns out that all we need to do is to record where the basis vectors will land and then everything else will just follow. Why is this? From the previous post, we know can write any vector as a linear combination of the basis vector of the vector space. Suppose $v = \begin{bmatrix}3 &amp; -2\end{bmatrix}$, then we know that we can write $v$ in terms of $\widehat{i}$ and $\widehat{j}$ as shown below. Writing this again, we have $$ \begin{align*} v &amp;= 3\widehat{i} - 2\widehat{j} \\ \begin{bmatrix} 3 \\ -2 \end{bmatrix} &amp;= 3 \begin{bmatrix} 1 \\ 0 \end{bmatrix} - 2 \begin{bmatrix} 0 \\ 1 \end{bmatrix} \end{align*} $$ After applying the transformation on $\widehat{i}$ and $\widehat{j}$, we can now find out where $v$ will land by writing $v$ as a linear combination of the transformed vectors $\widehat{i}$ and $\widehat{j}$. and now we can just know where $v$ will land based on where $\widehat{i}$ and $\widehat{j}$ landed after the tranformation. We can write, $$ \begin{align*} \text{transformed (} v) &amp;= 3\text{ (transformed }\widehat{i}) - 2 \text{ (transformed }\widehat{j}) \\ &amp;= 3 \begin{bmatrix} 1 \\ -1 \end{bmatrix} - 2 \begin{bmatrix} 1 \\ 1 \end{bmatrix} \\ &amp;= \begin{bmatrix} 1 \\ -5 \end{bmatrix} \end{align*} $$ Representing the transformation with a Matrix So from the above we saw how a two dimensional linear transformation is completely described by four numbers. The two coordinates for where $\widehat{i}$ lands and the two coordinates for where $\widehat{j}$ lands and this is pretty cool! Here is a cooler thing. We can package these coordinates into a two-by-two grid of numbers (a Matrix!) The first column will be where $\widehat{i}$ landed and the second column will be where $\widehat{j}$ landed. So now when we apply the transformation to some vector $v=(x,y)$, what do we get? We’ll multiply the $x$ coordinate with the transformed $\widehat{i}$ vector and similary multiply the $y$ coordinate with the transformed $\widehat{j}$ coordinate.]]></summary></entry><entry><title type="html">Linear Combinations</title><link href="http://localhost:4000/jekyll/update/2023/09/12/linear-combinations.html" rel="alternate" type="text/html" title="Linear Combinations" /><published>2023-09-12T01:01:36-07:00</published><updated>2023-09-12T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/12/linear-combinations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/12/linear-combinations.html"><![CDATA[<p>This post is just me taking notes while watching Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Vector Coordinates</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-combinations/vector-3.png" width="60%" class="center" /></p>
-
-<p>We studied vectors in the previous post and learned about vectors and vector coordinates. The x-coordinate represented the movement from this vector’s tail at the origin along the x-axis to its tip and the y-coordinate represented the movement of this vector along the y-axis. We saw how addition and multiplication were defined and what they meant. This time, we want to think about these vector coordinates differently.
-<br /></p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-combinations/linear-comb-2.png" width="60%" class="center" /></p>
-<p>In the xy-coordinate system, we have two special vectors. $\widehat{i}$ which is a unit vector pointing to the right in the x-direction. $\widehat{j}$ is a unit vector pointing straight up in the y-direction. Now, given a vector’s coordinate (green vector in the figure above), we will think of each coordinate as a scalar where the x-coordinate scales $\widehat{i}$ streching it by 3 and the y-coordinate scales $\widehat{j}$ by a factor of 2 and also flipping it in the other direction. $\widehat{i}$ and $\widehat{j}$ are called the <b>basis</b> vectors of the $xy$ coordinate system. So when we think about coordinates as scalars, these scalars scale the basis vectors.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-combinations/linear-comb-3.png" width="60%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Linear Combination</b></h4>
-<p>So here the important observation, this means that the vectors that these coordinates describe is really the sum of two scaled vectors $3\widehat{i} + (-2)\widehat{j}$. (Addition of two scaled vectors!). This sum is also called a <b>linear combination</b> of $\widehat{i}$ and $\widehat{j}$. Why did we call it linear? This is really interesting. Grant said to imagine fixing one of the scalars, then changing the other scalar will result in the tip of the resulting vector drawing a straight line. The animation in the video is so great at showing this.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-combinations/linear-comb-4.png" width="100%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Span of Vectors</b></h4>
-<p>Now, if we change both scalars at the same time, then the resulting set is the set of all possible linear combinations of these two vectors and it is formally called the <b>span</b> of these vectors. Morever, we’ll have three possible sets:</p>
-<ul>
-	<li>For most pairs of vectors, we'll reach every possible vector in the plane so their span will be the all vectors of the 2D space</li>
-	<li>For the case when both vectors line up, then the tip of the resulting vector is limited to just this single line passing through the origin. So their span is the set of all vectors whose tip sit on that line.</li>
-	<li>Both vectors are the zero vector and in this case, we'll be stuck at the origin. So their span is just the zero vector</li>
-</ul>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Vectors vs. Points</b></h4>
-<p>Grant said that it gets too crowded thinking about a collection of vectors sitting on a line or all vectors in a plane. So it is common to think of each of these vectors as a point that sits exactly at the tip of each vector where it’s tail is at the origin. So for example previously, we said that the span of two vectors that sit line up is the set of all vectors whose tip sit on that line. But now with the point notation, we can just think of the line itself. In general, it is easier to refer to a collection of vectors by the points that sit at their tips and just think of these points.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Span of Two Vectors in 3D Space</b></h4>
-<p>What does the span of two 3d vectors look like? It is a plane cutting through the origin as you would expect. Their span is the set of all possible vectors whose tip sit on that plane. And what happens if we add a third vector? Then we’re back to having three possibilites, the span can be the whole 3D space. If two of the vectors are linearly dependent, then the span is a plane. If all three vectors sit on each other so all of them are linearly dependent, then their span is the line that goes through the origin. 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Linear Independence</b></h4>
-<p>Formally when two vectors in 2D space sit on top of each other and their span isn’t the whole 2D space, these vectors are called <b>linearly dependent</b> vectors, meaning that one vector can expressed as a <b>linear combination</b> of the other vector. On the other hand, if each vector adds another dimension to the span, then they’re called <b>linearly independent</b>
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Basis of a Vector Space</b></h4>
-<p>Also formally, the <b>basis</b> of a vector space is a set of <b>linearly indepedent</b> vectors that <b>span</b> the full space.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This post is just me taking notes while watching Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go. Vector Coordinates]]></summary></entry><entry><title type="html">Vectors</title><link href="http://localhost:4000/jekyll/update/2023/09/11/vectors.html" rel="alternate" type="text/html" title="Vectors" /><published>2023-09-11T01:01:36-07:00</published><updated>2023-09-11T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/11/vectors</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/11/vectors.html"><![CDATA[<p>There isn’t a better reference on the internet than the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> but this post is about me taking notes and summarizing what I’ve learned from the above resource. I will tweak and add more stuff from other references as I go.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>What are Vectors?</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-1.png" width="100%" class="center" /></p>
-<p>So what are vectors exactly? To a physics student, it is an arrow pointing in space that has a given length and a direction. A vector with a given length and a direction remains the same vector even when moved freely in the space. For a computer science student, a vector is an ordered list of numbers. The vector can be a list of features, a house’s properties, for example. The order matters and so in figure (2), the two vectors are not equal. To a mathematics student, a vector is a more abstract concept. A vector can be anything as long as the operations addition and multiplication are defined. 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>From Physics to Computer Science</b></h4>
-<p>Let’s take the physics student’s idea of a vector being an arrow with a given length and a direction but instead of having it move freely in space, we’ll think of this arrow in a coordinate system with its tail at the origin. See below.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-2.png" width="60%" class="center" /></p>
-
-<p>Now that we have the arrow at the origin, we can translate it over to the list of numbers (computer science student’s) point of view by considering taking into account the coordinates of the vector in the coordinate system. What do these coordinates represent? They represent how we can move from the tail of the vector sitting on the origin to its tip. In the example below, 3 tells us how far to walk along the x-axis with positive numbers indicating rightward motion and negative numbers indicate leftward motion. Similarly, 2 tells us how far to walk along the y-axis with positive numbers indicating upward motion and negative numbers indicating downward motion.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-3.png" width="60%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>From Computer Science to Mathematics</b></h4>
-<p>Now that we’ve connected the physics student’s prespective to the computer science student’s prepective. Let’s connect what we’ve developed to the mathematics student’s prespective. Let’s define the two required operations addition and multiplication. Let’s start with addition. 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Addition</b></h4>
-<p>Suppose we have the following two vectors. To add these two vectors, we will move the second vector so that its tail sits at the tip of the first vector.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-4.png" width="100%" class="center" /></p>
-<p>After we do that, now we can draw a vector from the tail of the first vector to the tip of the second vector. This new green vector is the sum of the two vectors. (This is the only time in Linear Algebra where we’re moving a vector away from the origin! interesting!)</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-5.png" width="100%" class="center" /></p>
-<p>Why was addition defined this way? A vector represents a movement or a step with a direction and a distance in space. So here, if we take a step along the first vector and then take another step in the direction of the second vector and by the amount equal to the distance of the second vector, then the overall movement would be the same as moving alone the vector that represents their sum above. You can see this in the second figure below. The green vector is really the sum of the amount the first vector moved in the x-axis’s direction plus the amount that the second vector moved in the x-axis’s direction. Similarly, we add the movements in the y-axis’s direction from both vectors.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-7.png" width="100%" class="center" /></p>
-<p>Moreover, If you think about addition of numbers on a number line, we kind of do a similar thing!</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-6.png" width="70%" class="center" /></p>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Multiplication</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/vectors/vector-multi.png" width="70%" class="center" /></p>
-<p>Multiplication scales a vector by the magnitude you multiply with. The magnitude is the scaler. When the sign of the vector becomes different as a result of this scaling operation, then the direction of the vector is reversed.<br />
-<br />
-<br />
-<!--------Linear Algebra tends to focus on these two fundamental operations. Why do mathematicans think these operations only independently and abstracted away from how vectors are represented? It doesn't matter whether you think about vectors as fundamentally being arrows in space that happen to have a nice numerical representations or fundamentally as lists of numbers that happen to have a nice geometric interpretation. The usefulness of linear algebra comes from the ability to translate back and forth between them.
- ----------------------------------------></p>
-
-<!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
-<p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[There isn’t a better reference on the internet than the Essence of Linear Algebra by 3Blue1Brown but this post is about me taking notes and summarizing what I’ve learned from the above resource. I will tweak and add more stuff from other references as I go. What are Vectors? So what are vectors exactly? To a physics student, it is an arrow pointing in space that has a given length and a direction. A vector with a given length and a direction remains the same vector even when moved freely in the space. For a computer science student, a vector is an ordered list of numbers. The vector can be a list of features, a house’s properties, for example. The order matters and so in figure (2), the two vectors are not equal. To a mathematics student, a vector is a more abstract concept. A vector can be anything as long as the operations addition and multiplication are defined. From Physics to Computer Science Let’s take the physics student’s idea of a vector being an arrow with a given length and a direction but instead of having it move freely in space, we’ll think of this arrow in a coordinate system with its tail at the origin. See below.]]></summary></entry><entry><title type="html">Line Segment Intersection (Intersection Point)</title><link href="http://localhost:4000/jekyll/update/2023/09/05/line-segment-interesection-point.html" rel="alternate" type="text/html" title="Line Segment Intersection (Intersection Point)" /><published>2023-09-05T01:01:36-07:00</published><updated>2023-09-05T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/05/line-segment-interesection-point</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/05/line-segment-interesection-point.html"><![CDATA[<p>Suppose we have two line segments $\overline{ab}$ and $\overline{cd}$. How can we determine their intersection? We previously developed a method to determine the existence of the intersection without having to compute the actual intersection point. We did this using the orientation test by basically testing if $c$ and $d$ are on opposite sides of the line that goes through  $\overline{ab}$ and then again if $a$ and $b$ are on opposite sides of the line that goes through $\overline{cd}$. This was neat and we avoided having to deal with floating point values. But what if we wanted to find the actual intersection point, if any?
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Parametric Representation</b></h4>
-<p>Let $\vec{A} = b - a$ and let $\vec{B} = d - c$. A point on the line that goes through $\overline{ab}$ can be represented using</p>
-<div>
-$$
-\begin{align*}
-    p(s) = a + sA.
-\end{align*}
-$$
-</div>
-
-<p>Plugging 0 for $s$ results in the point $a$ and plugging 1 on the other hand will result in the point $b$ so when $s \in [0,1]$, the equation represents all the points that fall on the line segment $\overline{ab}$. Similarly, a point on the line that goes through $\overline{cd}$ can be represented using</p>
-<div>
-$$
-\begin{align*}
-    q(t) = c + tB.
-\end{align*}
-$$
-</div>
-
-<p>To find the intersection point, we will need to find the values of $s$ and $t$ that will make $p(s)$ equal to $q(t)$. Moreover, $s$ and $t$ will need to be in the range $[0,1]$ for the intersection point to be within the segments.</p>
-<div>
-$$
-\begin{align*}
-    a + sA = c + tB.
-\end{align*}
-$$
-</div>
-
-<p>Let $a=(a_0,a_1), b=(b_0,b_1), c=(c_0,c_1), d=(d_0, d_1)$. The solution turns out to be</p>
-<div>
-$$
-\begin{align*}
-    s &amp;= [a_0(d_1-c_1)+c_0(a_1-d_1)+d_0(c_1-a_1)]/D, \\
-    t &amp;= [a_0(c_1-b_1)+b_0(a_1-c_1)+c_0(b_1-a_1)]/D, \\
-    D &amp;= a_0(d_1-c_1)+b_0(c_1-d_1)+d_0(b_1-a_1)+c_0(a_1-b_1)
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b></b></h4>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">while</span> <span class="p">(</span><span class="n">hull_candidate</span> <span class="o">!=</span> <span class="n">first_convex_hull_point</span><span class="p">)</span></code></pre></figure>
-
-<p>Source Code <a href="?">TODO</a>
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://jeffe.cs.illinois.edu/teaching/compgeom/schedule.html">CS 498: Computational Geometry</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Suppose we have two line segments $\overline{ab}$ and $\overline{cd}$. How can we determine their intersection? We previously developed a method to determine the existence of the intersection without having to compute the actual intersection point. We did this using the orientation test by basically testing if $c$ and $d$ are on opposite sides of the line that goes through $\overline{ab}$ and then again if $a$ and $b$ are on opposite sides of the line that goes through $\overline{cd}$. This was neat and we avoided having to deal with floating point values. But what if we wanted to find the actual intersection point, if any? Parametric Representation Let $\vec{A} = b - a$ and let $\vec{B} = d - c$. A point on the line that goes through $\overline{ab}$ can be represented using $$ \begin{align*} p(s) = a + sA. \end{align*} $$]]></summary></entry><entry><title type="html">Graham’s Scan</title><link href="http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan.html" rel="alternate" type="text/html" title="Graham’s Scan" /><published>2023-09-03T01:01:36-07:00</published><updated>2023-09-03T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/09/03/convex-hull-graham-scan.html"><![CDATA[<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-1.png" width="60%" class="center" /></p>
-<p>A set of points $S$ is convex if for any two points $a \in S$ and $b \in S$, then the line segment connecting these two points is also in $S$ ($\overline{ab} \subseteq S$). The convex hull of $S$ is the smallest convex set that contains all the points in $S$. In the previous post we discussed Jarvis’s algorithm which picked an initial vertex and added it to the convex hull and then iterated over the remaining vertices. In each iteration, we picked and added to the hull the furthest to the right vertex relative to the last added vertex to the hull. The running time of Jarvis’ March is $O(nh)$ where $n$ is the size of the given set of points and $h$ is the size of the convex hull. In this post, we will learn a faster algorithm that runs in time $O(n\log n)$.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Graham's Scan</b></h4>
-<p>Given a set of points $S$ of size $n$, the idea is to pick a point $p_0$ from the set that is known to be in the convex hull and then sort the remaining points by their angle anticlockwise relative to $p_0$. Graham gave a linear-time algorithm to find vertex that is interior to the hull but this isn’t needed at all since we can just pick the lowest or left most vertex and know that all the remaining vertices will be on one side of the line that goes through the point. After picking an initial point, the algorithm will sort the remaining points anitclockwise around the initial point by their angle. The core of the algorithm then is to use a stack to maintain the convex hull. We’ll iterate over the vertices keeping the invariant that for any three consective vertices on the stack $p$, $q$ and $r$, the point $r$ is on the left of the line that goes through the segment $\overline{pq}$. In other words, the angle at $q$ is a convex angle and not a reflex one. In the next few sections we’ll study each step through an example. 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 1: Pick the Left Most Point</b></h4>
-<p>The best way to learn this algorithm is by following an example. Suppose we are given the below 7 points,</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-2.png" width="60%" class="center" /></p>
-<p>The first thing that the algorithm does is pick the left most point breaking ties by choosing the point with the lowest y-coordinate. This turns out to be point $(1,1)$ below</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-3.png" width="60%" class="center" /></p>
-<p>In the implementation, we do something like this</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++">    <span class="n">Point</span> <span class="n">left_most</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">points</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">left_most</span><span class="p">.</span><span class="n">x</span> <span class="o">||</span> <span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="o">==</span> <span class="n">left_most</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">left_most</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">left_most</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="p">}</span>
-    <span class="p">}</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 2: Sort the Points</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-4.png" width="60%" class="center" /></p>
-<p>Next we will sort the points by their angle (anticlockwise) around $(1,1)$. What does this mean? We’re not changing where the points are. We’re just changing the order in which we will process these points. What we want is to traverse the points in an anti-clockwise direction around $(1,1)$. So we want to start with the point that is furthest to the right from $(1,1)$ (remember that this is the left most point and there won’t be points anymore on the left). Therefore, if you imagine $(1,1)$ connected with line segments to each of the remaining points, then what we want is to sort these by the angles they make around $(1,1)$.
-<br />
-<br />
-How do we sort by their angels? We will use the famous orientation test we’ve studied in (<a href="https://strncat.github.io/jekyll/update/2023/08/25/orientation-of-three-points.html">Orientation of Three Points</a>). To recap, Suppose we’re given three ordered points $p, q, r$, then the expression (derived from slopes) $(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$ is</p>
-<ul>
-    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$</li>
-    <li>Equal to zero if they're collinear</li>
-    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$</li>
-</ul>
-<p>This means that if we take the points $(1,1), (7,0)$ and $(4,2)$ and we want to know if $(4,2)$ comes before $(7,0)$ in the sorted order, then we’ll ask the question: “Is $(4,2)$ on the left of the line that goes through $(1,1)$ and $(7,0)$ ? if the answer is yes then $(4,2)$ should instead come after $(7,0)$. Evaluating the expression for $p=(1,1), q=(7,2)$ and $r=(4,2)$, we see that \((7-1)*(2-1) - (4-1)*(0-1) = 6 - (-3) &gt; 0\). Therefore, then we know that $(4,2)$ is on the left and in the sorted order, $(7,0)$ must come first. 
-<br />
-<br />
-How do we break ties? One example would be to choose the closest point between the two based on their distances to “left_most”. The final output will be the following (sorted points from $a$ to $f$).</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-4-sorted.png" width="60%" class="center" /></p>
-<p>In the implementation, this is an example of how one might write the orientation function.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">orientation</span><span class="p">(</span><span class="n">Point</span> <span class="n">a</span><span class="p">,</span> <span class="n">Point</span> <span class="n">b</span><span class="p">,</span> <span class="n">Point</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">long</span> <span class="kt">long</span> <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">area</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// cw</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">area</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// ccw</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>And this is how we can sort the array using $std::sort$,</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++">    <span class="n">sort</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">points</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">left_most</span><span class="p">](</span><span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">orientation</span><span class="p">(</span><span class="n">left_most</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// ccw</span>
-            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// collinear</span>
-            <span class="k">return</span> <span class="n">distance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">left_most</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">(</span><span class="n">left_most</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">});</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 3: The Main Loop</b></h4>
-<p>So now we have an initial point picked and we have the points sorted around it. Next, we will use a stack $s$ to hold the hull points. Initially, $s$ will hold the first two vertices in the sorted list of points, $(1,1)$ and $(7,0)$. Notice that $(1,1)$ and $(7,0)$ will be on the convex hull. $(1,1)$ is the left most point and $(7,0)$ is the point furthest to the right from $(1,1)$. (proof?).</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-step1.png" width="60%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 3: (Iteration 1)</b></h4>
-<p>Next we’ll iterate over the remaining points. In the first iteration we will test $(4,2)$. Let the last vertex added to the stack be $q$ and the vertex that was added before that be $p$. Let $r=(4,2)$. We need to test if $q$ is a convex vertex or in other words that $r$ is on the left of the line that goes through $\overline{pq}$ (we are making a left turn on $q$). How can test this? by performing yet another orientation test! Since $(4,2)$ is indeed on the left of the line, then it is safe to add it to the stack.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-step2.png" width="120%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 3: (Iteration 2)</b></h4>
-<p>Next we will test $(6,4)$ against the last two vertices added to the stack. This time they are $q=(4,2)$ and $p=(7,0)$. Is $r=(6,4)$ on the left of the line that goes through $(7,0)$ and then $(4,2)$. No! it is not. In this case, Graham will pop the last vertex we added to the stack which was $q=(4,2)$.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-step3.png" width="60%" class="center" /></p>
-<p>But now we not exit this iteration yet because we want to give the new point $(6,4)$ another chance. This time however, we will test $(6,4)$ against the current last two points on the stack which are $(7,0)$ and $(1,1)$. We will find that $(6,4)$ is on the left of the line that goes through $(1,1)$ and $(7,0)$ and we will add it to the stack. At this point, we can exit the iteration.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-step4.png" width="120%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 3: (Iteration 3)</b></h4>
-<p>In the next iteration, we will test $(3,5)$. The last two points in the stack are $(6,4)$ and $(7,0)$. Is $(3,5)$ on the left of the line that goes through $(7,0)$ and $(6,4)$? Yes! so we add $(3,5)$ to the stack.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-step5.png" width="120%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 3: (Iteration 4)</b></h4>
-<p>Next, we will test $(5,6)$. Is $(5,6)$ on the left of the line that goes through $(6,4)$ and then $(3,5)$? No! $(5,6)$ is on the right and therefore, we now pop $(3,5)$ from the stack.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-step6.png" width="60%" class="center" /></p>
-<p>After popping $(3,5)$, we remain in the same iteration but now we test $(5,6)$ with current last two points on the stack $(6,4)$ and $(7,0)$. We will see that $(5,6)$ does validate the invariant and the vertex is still convex at $(6,4)$.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/graham-step7.png" width="120%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 3: (Iteration 5)</b></h4>
-<p>The last remaining point left in the array is $(2,7)$. We will perform the same test and find that indeed $(2,7)$ can be added to the stack.</p>
-<p>style="text-align:center;"&gt;<img src="http://localhost:4000/assets/geometry/graham/graham-step8.png" width="120%" class="center" /></p>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Step 3: Recap</b></h4>
-<p>Let’s summarize what we did so far. In each iteration, we will test vertex $i$ with the last two vertices in the stack. Let the top most vertex be $q$ and the second top most vertex be $p$. We will then use the orientation test on $p, q$ and $r$.</p>
-<ul>
-    <li>If test is positive and $r$ is indeed on the left, then we'll push $r$ on the stack and move to the next iteration.</li>
-    <li>If the test is negative and $r$ on the right, then we'll pop $q$ from the stack and repeat the same test (though now we'll have different $q$ and $p$ vertices).</li>
-</ul>
-<p>One possible implementation is the following</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">stack</span><span class="p">;</span>
-    <span class="c1">// The first two vertices are guaranteed to be on the hull</span>
-    <span class="n">stack</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">left_most</span><span class="p">);</span>
-    <span class="n">stack</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-    <span class="c1">// starting from the 3rd point,</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">points</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// let p = stack[stack.size()-2], q = stack[stack.size()-1], r = points[i]</span>
-        <span class="c1">// if r is on the right, of the line pq, then pop q and repeat the same test</span>
-        <span class="c1">// though now with a different p and q points</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">strict_right</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="n">stack</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">stack</span><span class="p">[</span><span class="n">stack</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
-            <span class="n">stack</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="c1">// otherwise, r is on the left so just push it on the stack</span>
-        <span class="n">stack</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Collinear Points</b></h4>
-<p>What do we do with the collinear points? It depends. If we don’t care about collinear points and don’t want to output them, then instead of using “strict_right” above, we will use “right” to disallow collinear points from getting added to the stack. If we care and want to output all collinear points, then we’ll need to do some additional processing. I really struggled with understanding this myself so let’s show this with an example. 
-<br />
-<br />
-Suppose we are given the following points. We know per the algorithm we designed that no points are going to be located either on the left of “left_most” nor directly beneath it and this is because we break ties with picking the lowest y-coordinate.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/col-1.png" width="120%" class="center" /></p>
-
-<p>Next, we sort the points around “left_most” so that we will traverse the points from the most right point (smallest angle) to the most left point. I labeled the points with their traversal order. Also note here that we break ties based on the distance to “left_most”. The 9th and 10th points have the same angle but the 9th point is closer to “left_most” than the 10th point.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/col-2.png" width="120%" class="center" /></p>
-
-<p>Next, we will proceed with the main loop, adding one vertex to the stack each iteration.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/col-3.png" width="120%" class="center" /></p>
-
-<p>When we add the 10th point to the stack, notice that the 10th point is now on the right of the line that goes through the 8th and 9th points and therefore we don’t add it and exit the loop.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/graham/col-4.png" width="120%" class="center" /></p>
-
-<p>How do we fix this? We fix this by reverse sort the very last collinear points in the sorted array such that the closest point to “left_most” is actually the last point in the sorted order. This will allow us to test the 10th point first before the 9th point. We can simply do this using:</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">points</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">collinear</span><span class="p">(</span><span class="n">left_most</span><span class="p">,</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">points</span><span class="p">.</span><span class="n">back</span><span class="p">()))</span> <span class="p">{</span>
-    <span class="n">i</span><span class="o">--</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">reverse</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">points</span><span class="p">.</span><span class="n">end</span><span class="p">());</span></code></pre></figure>
-
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Full Source Code</b></h4>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">while</span> <span class="p">(</span><span class="n">hull_candidate</span> <span class="o">!=</span> <span class="n">first_convex_hull_point</span><span class="p">)</span></code></pre></figure>
-
-<p>Source Code <a href="?">11626 - Convex Hull</a>
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Practice Problems</b></h4>
-<p><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=2673">11626 Convex Hull</a>
-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=622">681 Convex Hull Finding</a>
-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=2037">11096 - Nails</a>
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a></li>
-<li><a href="https://jeffe.cs.illinois.edu/teaching/compgeom/schedule.html">CS 498: Computational Geometry</a></li>
-<li><a href="https://cp-algorithms.com/geometry/convex-hull.html">Convex Hull Graham Scan Implementation</a></li>
-</ul>
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A set of points $S$ is convex if for any two points $a \in S$ and $b \in S$, then the line segment connecting these two points is also in $S$ ($\overline{ab} \subseteq S$). The convex hull of $S$ is the smallest convex set that contains all the points in $S$. In the previous post we discussed Jarvis’s algorithm which picked an initial vertex and added it to the convex hull and then iterated over the remaining vertices. In each iteration, we picked and added to the hull the furthest to the right vertex relative to the last added vertex to the hull. The running time of Jarvis’ March is $O(nh)$ where $n$ is the size of the given set of points and $h$ is the size of the convex hull. In this post, we will learn a faster algorithm that runs in time $O(n\log n)$. Graham's Scan Given a set of points $S$ of size $n$, the idea is to pick a point $p_0$ from the set that is known to be in the convex hull and then sort the remaining points by their angle anticlockwise relative to $p_0$. Graham gave a linear-time algorithm to find vertex that is interior to the hull but this isn’t needed at all since we can just pick the lowest or left most vertex and know that all the remaining vertices will be on one side of the line that goes through the point. After picking an initial point, the algorithm will sort the remaining points anitclockwise around the initial point by their angle. The core of the algorithm then is to use a stack to maintain the convex hull. We’ll iterate over the vertices keeping the invariant that for any three consective vertices on the stack $p$, $q$ and $r$, the point $r$ is on the left of the line that goes through the segment $\overline{pq}$. In other words, the angle at $q$ is a convex angle and not a reflex one. In the next few sections we’ll study each step through an example. Step 1: Pick the Left Most Point The best way to learn this algorithm is by following an example. Suppose we are given the below 7 points, The first thing that the algorithm does is pick the left most point breaking ties by choosing the point with the lowest y-coordinate. This turns out to be point $(1,1)$ below In the implementation, we do something like this Point left_most = points[0]; for (int i = 1; i &lt; points.size(); i++) { if (points[i].x &lt; left_most.x || (points[i].x == left_most.x &amp;&amp; points[i].y &lt; left_most.y)) { left_most = points[i]; } } Step 2: Sort the Points Next we will sort the points by their angle (anticlockwise) around $(1,1)$. What does this mean? We’re not changing where the points are. We’re just changing the order in which we will process these points. What we want is to traverse the points in an anti-clockwise direction around $(1,1)$. So we want to start with the point that is furthest to the right from $(1,1)$ (remember that this is the left most point and there won’t be points anymore on the left). Therefore, if you imagine $(1,1)$ connected with line segments to each of the remaining points, then what we want is to sort these by the angles they make around $(1,1)$. How do we sort by their angels? We will use the famous orientation test we’ve studied in (Orientation of Three Points). To recap, Suppose we’re given three ordered points $p, q, r$, then the expression (derived from slopes) $(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$ is Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$ Equal to zero if they're collinear Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$ This means that if we take the points $(1,1), (7,0)$ and $(4,2)$ and we want to know if $(4,2)$ comes before $(7,0)$ in the sorted order, then we’ll ask the question: “Is $(4,2)$ on the left of the line that goes through $(1,1)$ and $(7,0)$ ? if the answer is yes then $(4,2)$ should instead come after $(7,0)$. Evaluating the expression for $p=(1,1), q=(7,2)$ and $r=(4,2)$, we see that \((7-1)*(2-1) - (4-1)*(0-1) = 6 - (-3) &gt; 0\). Therefore, then we know that $(4,2)$ is on the left and in the sorted order, $(7,0)$ must come first. How do we break ties? One example would be to choose the closest point between the two based on their distances to “left_most”. The final output will be the following (sorted points from $a$ to $f$). In the implementation, this is an example of how one might write the orientation function. int orientation(Point a, Point b, Point c) { long long area = (b.x - a.x)*(c.y - a.y) - (c.x - a.x)*(b.y - a.y); if (area &lt; 0) { return -1; // cw } else if (area &gt; 0) { return 1; // ccw } return 0; } And this is how we can sort the array using $std::sort$, sort(points.begin(), points.end(), [&amp;left_most](const Point&amp; a, const Point&amp; b) { int d = orientation(left_most, a, b); if (d &gt; 0) { // ccw return true; } else if (d == 0) { // collinear return distance(a, left_most) &lt; distance(left_most, b); } return false; }); Step 3: The Main Loop So now we have an initial point picked and we have the points sorted around it. Next, we will use a stack $s$ to hold the hull points. Initially, $s$ will hold the first two vertices in the sorted list of points, $(1,1)$ and $(7,0)$. Notice that $(1,1)$ and $(7,0)$ will be on the convex hull. $(1,1)$ is the left most point and $(7,0)$ is the point furthest to the right from $(1,1)$. (proof?). Step 3: (Iteration 1) Next we’ll iterate over the remaining points. In the first iteration we will test $(4,2)$. Let the last vertex added to the stack be $q$ and the vertex that was added before that be $p$. Let $r=(4,2)$. We need to test if $q$ is a convex vertex or in other words that $r$ is on the left of the line that goes through $\overline{pq}$ (we are making a left turn on $q$). How can test this? by performing yet another orientation test! Since $(4,2)$ is indeed on the left of the line, then it is safe to add it to the stack.]]></summary></entry><entry><title type="html">Jarvis’s March (Gift Wrapping)</title><link href="http://localhost:4000/jekyll/update/2023/08/30/convex-hull.html" rel="alternate" type="text/html" title="Jarvis’s March (Gift Wrapping)" /><published>2023-08-30T01:01:36-07:00</published><updated>2023-08-30T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/08/30/convex-hull</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/08/30/convex-hull.html"><![CDATA[<!------------------------------------------------------------------------------------>
-<h4><b>Convexity</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/conv-0.png" width="100%" class="center" /></p>
-<p>A set of points $S$ is <b>convex</b> if for any two points $p$ and $q$ in $S$, the line segment connecting these two points is also in $S$ ($\overline{pq} \subseteq S$). A convex polygon is a polygon that is the boundary of a convex set. The left figure is a convex polygon while the right figure is not per our definition.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Convex Hull</b></h4>
-<p>Given a set of points $S$, the <b>convex hull</b> of $S$ is the smallest <b>convex</b> set that contains all the points in $S$. This naturally implies that if we take the intersection of all convex sets of $S$, then the result will be the convex hull of $S$.</p>
-<div>
-$$
-\begin{align*}
-conv(S) = \text{ Intersection of all convex sets containing $S$ }
-\end{align*}
-$$
-</div>
-<p>There are infinitely many convex sets that will contain all the points in $S$. It turns out that this definition also works for a special kind of convex sets, called half-planes.</p>
-<div>
-$$
-\begin{align*}
-conv(S) = \text{ Intersection of all "half planes" containing $S$ }
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Finding the Convex Hull</b></h4>
-<p>Finding the convex hull is a classic computatioal geometry problem and many algorithms have been developed to solve it. Next, we discuss one of the simplest algorithms that is used to find the convex hull of a set of points.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Jarvis's March (Gift Wrapping Algorithm)</b></h4>
-<p>Jarvis’s March is similar to Selection Sort. In each iteration of Selection Sort, we pick the smallest element in the array and then move it to the front. Once we’re done, we’ll have a sorted array. In Jarvis’s algorithm, the smallest element in each iteration is the vertex that is furthest to the right from the last vertex that was added to the convex hull. There are two main steps.</p>
-<ol>
-	<li>Find the left most vertex</li>
-	<li>Find the next vertex in the hull and repeat this until we're done.</li>
-	
-</ol>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>1. Pick the Left Most Vertex</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-1.png" width="60%" class="center" /></p>
-<p>Initially, we will pick a vertex that we know will be in the hull. We can pick the left most vertex or the bottom most vertex or any vertex where all the points will be on one side (half plane). Let’s pick the left most vertex and let it be $p_0$.</p>
-
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>2. Pick the Next Vertex in the Convex Hull</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2.png" width="70%" class="center" /></p>
-<p>Step two is about picking the next vertex in the hull and doing so until we find all of them. To do so, imagine shooting a ray from $p_0$ to each of the remaining vertices (figure above). The next vertex in the hull is the vertex that is furthest to the right relative to $p_0$. How do we determine which vertex is furthest to the right?. Before exploring this, let’s define two variables:</p>
-<ul>
-	<li> $p$ will track the last point that was added to the hull. $p$ is initially $p_0$.</li>
-	<li> $q$ will track the current right most vertex relative to $p$. $q$ will be initialized to $p + 1$ at the begining of each iteration.</li>
-	
-</ul>
-<p>We will iterate through the vertices while updating $q$ whenever we come across a vertex that is furthest to the right from $p$.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2a.png" width="85%" class="center" /></p>
-<p>To test if vertex $i$ is furthest to the right than $q$, we will use the orientation test that we previously developed when triagulating a polygon. (See Orientation of Three Points). Precisely, we’ve derived an expression to find out whether a point $r$ is on the left or right of the line that goes through two given points $p$ and $q$. We can wrap this expression in the function below.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// determines if r is on the left of the line pq</span>
-<span class="kt">int</span> <span class="nf">direction</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">r_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">r_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">q_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// anti-clockwise</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// clockwise</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// collinear</span>
-<span class="p">}</span></code></pre></figure>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2b.png" width="85%" class="center" /></p>
-<p>We can see above that $i$ is indeed more to the right of the line and hence furthest to the right from $p$. So now we set $q$ to $i$ and move on to test the next vertex.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2c.png" width="75%" class="center" /></p>
-<p>After we’re done testing all the vertices, $q$ will be the right most vertex relative to $p$.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-2final.png" width="80%" class="center" /></p>
-<p>At this point we will</p>
-<ul>
-	<li>Add $q$ above to the convex hull. </li>
-	<li>Set $p$ to $q$. (the last vertex added to the convex hull is $q$) </li>
-	<li>Set $q$ to $p + 1$. (The next vertex in the set of vertices not on the hull yet). </li>
-</ul>
-<p>The pesudo code below shows an outline of what we’re doing each step or iteration. The outer loop sets the initial $q$ to $p+1$ later on adds it to the convex hull when we’re done with the inner loop. The inner loop will test all the vertices and update $q$ whenever we find a better vertex.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="n">first_point_on_hull</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// (1) initialize q</span>
-    <span class="n">q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="c1">// (2) iterate through each vertex i and update q if necessary </span>
-    <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="mf">1.</span><span class="p">..</span><span class="n">size</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">orientation</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-	        <span class="n">q</span> <span class="o">=</span> <span class="n">i</span>
-	    <span class="p">}</span>
-	<span class="p">}</span>
-    <span class="c1">// (3) add q to the convex hull and set p to q</span>
-    <span class="n">convex_hull</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">q</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>3. Termination</b></h4>
-<p>When do we terminate? We terminate when the next vertex that we want to add to the convex hull is actually the first vertex that we added to the hull. Once we get to this point, then we terminate and return the convex hull points.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/convex-hull/step-4.png" width="65%" class="center" /></p>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Running Time</b></h4>
-<p>How fast is Jarvis’s March? The inner loop goes over $O(n)$ vertices. The outerloop really depends on the size of the convex hull. If we have $h$ points in the hull, then the running time is $O(h)$. Therefore, the overall running time is $O(hn)$.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://jeffe.cs.illinois.edu/teaching/compgeom/schedule.html">CS 498: Computational Geometry</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Convexity A set of points $S$ is convex if for any two points $p$ and $q$ in $S$, the line segment connecting these two points is also in $S$ ($\overline{pq} \subseteq S$). A convex polygon is a polygon that is the boundary of a convex set. The left figure is a convex polygon while the right figure is not per our definition. Convex Hull Given a set of points $S$, the convex hull of $S$ is the smallest convex set that contains all the points in $S$. This naturally implies that if we take the intersection of all convex sets of $S$, then the result will be the convex hull of $S$. $$ \begin{align*} conv(S) = \text{ Intersection of all convex sets containing $S$ } \end{align*} $$ There are infinitely many convex sets that will contain all the points in $S$. It turns out that this definition also works for a special kind of convex sets, called half-planes. $$ \begin{align*} conv(S) = \text{ Intersection of all "half planes" containing $S$ } \end{align*} $$ Finding the Convex Hull Finding the convex hull is a classic computatioal geometry problem and many algorithms have been developed to solve it. Next, we discuss one of the simplest algorithms that is used to find the convex hull of a set of points. Jarvis's March (Gift Wrapping Algorithm) Jarvis’s March is similar to Selection Sort. In each iteration of Selection Sort, we pick the smallest element in the array and then move it to the front. Once we’re done, we’ll have a sorted array. In Jarvis’s algorithm, the smallest element in each iteration is the vertex that is furthest to the right from the last vertex that was added to the convex hull. There are two main steps. Find the left most vertex Find the next vertex in the hull and repeat this until we're done. 1. Pick the Left Most Vertex Initially, we will pick a vertex that we know will be in the hull. We can pick the left most vertex or the bottom most vertex or any vertex where all the points will be on one side (half plane). Let’s pick the left most vertex and let it be $p_0$.]]></summary></entry><entry><title type="html">Triangulation (Algorithm)</title><link href="http://localhost:4000/jekyll/update/2023/08/29/triangulation-algorithm.html" rel="alternate" type="text/html" title="Triangulation (Algorithm)" /><published>2023-08-29T01:01:36-07:00</published><updated>2023-08-29T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/08/29/triangulation-algorithm</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/08/29/triangulation-algorithm.html"><![CDATA[<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-0.png" width="80%" class="center" /></p>
-<p>So far we discussed some theory behind triangultion. We proved the existence of a diagonal and triagulation for simple polygons. We also wrote code to verify for a given polygon $p$ and a given line segment $d$, whether $d$ is an internal diagonal or not. So where do we go from here to actually triangulate $p$?
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>The Naive Solution: Test All Candidates</b></h4>
-<p>How many potentional cadidates for a diagonal do we have in a given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal’s start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test. The test we developed in the previous post (Triangulation (Finding a Diagonal) costs $O(n)$ time since we iterate over all vertices to test for intersection Moreover, we know that since $p$ has $n$ vertices then the triagulation of $p$ will use $n-3$ diagonals. Therefore, we will end up with an $O(n^4)$ total cost if we naively test every possible diagonal to triangulate $p$. 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>The Naive Solution: Test All Candidates</b></h4>
-<p>How many potentional cadidates for a diagonal do we have in a given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal’s start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test. The test we developed in the previous post (Triangulation (Finding a Diagonal) costs $O(n)$ time since we iterate over all vertices to test for intersection Moreover, we know that since $p$ has $n$ vertices then the triagulation of $p$ will use $n-3$ diagonals. Therefore, we will end up with an $O(n^4)$ total cost if we naively test every possible diagonal to triangulate $p$. 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[So far we discussed some theory behind triangultion. We proved the existence of a diagonal and triagulation for simple polygons. We also wrote code to verify for a given polygon $p$ and a given line segment $d$, whether $d$ is an internal diagonal or not. So where do we go from here to actually triangulate $p$? The Naive Solution: Test All Candidates How many potentional cadidates for a diagonal do we have in a given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal’s start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test. The test we developed in the previous post (Triangulation (Finding a Diagonal) costs $O(n)$ time since we iterate over all vertices to test for intersection Moreover, we know that since $p$ has $n$ vertices then the triagulation of $p$ will use $n-3$ diagonals. Therefore, we will end up with an $O(n^4)$ total cost if we naively test every possible diagonal to triangulate $p$. The Naive Solution: Test All Candidates How many potentional cadidates for a diagonal do we have in a given polygon $p$ with $n$ vertices? Since the diagonal must intersect $p$ at its end points, then we know that the diagonal’s start and end points must be from the $n$ vertices. This means that we have ${n \choose 2} = O(n^2)$ possible segments to test. The test we developed in the previous post (Triangulation (Finding a Diagonal) costs $O(n)$ time since we iterate over all vertices to test for intersection Moreover, we know that since $p$ has $n$ vertices then the triagulation of $p$ will use $n-3$ diagonals. Therefore, we will end up with an $O(n^4)$ total cost if we naively test every possible diagonal to triangulate $p$. References Computational Geometry in C]]></summary></entry><entry><title type="html">Triangulation (Finding a Diagonal)</title><link href="http://localhost:4000/jekyll/update/2023/08/28/triangulation-diagonal.html" rel="alternate" type="text/html" title="Triangulation (Finding a Diagonal)" /><published>2023-08-28T01:01:36-07:00</published><updated>2023-08-28T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2023/08/28/triangulation-diagonal</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/08/28/triangulation-diagonal.html"><![CDATA[<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-0.png" width="80%" class="center" /></p>
-<p>So now that we know that every polygon $p$ has a triangulation, how are we going to triangulate $p$? The key to proving that triangulation exists was finding a diagonal. Similarly, the first step in triangulation is to find an internal diagonal. Given a diagonal candidate we need to verify two conditions:</p>
-<ul>
-	<li> $\overline{ab}$'s itersection with the boundary of $P$ is exactly its end points $a$ and $b$ and nothing else. </li>
-	<li> $\overline{ab}$ is an an internal diagonal. </li>
-</ul>
-<p>How can we verify the above conditions? In this post, we’ll develop procedures to verify these two conditions.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Condition 1: Intersection of the diagonal $d$ with the boundary of $p$</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-1.png" width="60%" class="center" /></p>
-<p>So given a diagonal candidate $d$ with end points $a$ and $b$, how do we go about testing its intersection with the boundary of $p$. The boundary consists of the edges of the polygon. The diagonal is incident to at most 4 of these edges. If we keep this case seperately and focus on the rest of edges, then we simply want to know if this candidate doesn’t intersect ANY of these edges besides the special 4. In other words, for all other edges that are not incident to $a$ or $b$, their intersection with $d=ab$ is empty.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Segment Intersection</b></h4>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-2.png" width="60%" class="center" /></p>
-<p>Since we only care about the existence of an intersection rathar than the intersection point itself, then we can go back to what we studided before about the orientation of three ordered points (see Orientation of Three Points post and also Segment Intersection (CLRS)). Suppose we’re given three ordered points $p, q, r$, then the expression $(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$ is</p>
-<ul>
-    <li>Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$</li>
-    <li>Equal to zero if they're collinear</li>
-    <li>Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$</li>
-</ul>
-<p>We can write a little helper to compute this</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// determines if r is on the left of the line pq</span>
-<span class="kt">int</span> <span class="nf">direction</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">r_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">r_x</span><span class="o">-</span><span class="n">p_x</span><span class="p">)(</span><span class="n">q_y</span><span class="o">-</span><span class="n">p_y</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// anti-clockwise</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">product</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// clockwise</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// collinear</span>
-<span class="p">}</span></code></pre></figure>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-3.png" width="40%" class="center" /></p>
-<p>How do we use this test to determine if $\overline{ab}$ and $\overline{cd}$ intersect? We can use it to test if the points $a$ and $b$ are on opposite sides of the line that goes through $\over{cd}$ above. But is this enough? No! Consider the following figure.</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-4.png" width="40%" class="center" /></p>
-<p>$a$ and the $b$ are in fact on opposite sides of the line that goes through $c$ and $d$ but the segment from $a$ to $b$ doesn’t intersect the segment that goes through $c$ and $d$! To fix this, we also need to ask whether the points $c$ and $d$ are on opposite sides of the line that goes through $\overline{ab}$ and the answer is clearly not! $c$ and $d$ are on the same side. This is great but there is one more condition to consider. Consider the following:</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-5.png" width="40%" class="center" /></p>
-<p>Here, the points $a$, $d$ and $b$ are collinear. So $c$ and $d$ are not exactly on opposite sides but they still intersect! So what do we do here? In the book that I’ve been studying “Computational Geometry in C”, the intersection function is split into two to handle the case of improper intersection (when the points are collinear) and the case of proper intersection (when the points are not collinear). I personally found the CLRS way of computing the intersection all at once was easier to understand (likely due to the fact that I studied it first!). In CLRS, we test for proper intersection and in the same function later on, we handle the case when the points are collinear to additionally verify that they indeed intersect.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
-<span class="kt">bool</span> <span class="nf">interesect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span> <span class="c1">// which side is c on?</span>
-    <span class="kt">int</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span> <span class="c1">// same for d</span>
-    <span class="kt">int</span> <span class="n">d3</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">d4</span> <span class="o">=</span> <span class="n">direction</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-    <span class="c1">// proper interesection</span>
-    <span class="k">if</span>  <span class="p">((</span><span class="n">d1</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">d2</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> 
-         <span class="p">(</span><span class="n">d3</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d4</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">d4</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d3</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// improper intersection</span>
-    <span class="c1">// check if c sits between the end two points</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">d1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="c1">// check if d sits between the end two points</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">d2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="c1">// check if a sits between the end two points</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">d3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="c1">// check if b sits between the end two points</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">d4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">between_line_segment</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>So now we have a function that will test if a given candidate $d$ intersects the boundary of $P$ except for the special edges that are incident to $d$ itself.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
-<span class="kt">bool</span> <span class="nf">diagonalie</span><span class="p">(</span><span class="n">tVertex</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">tVertex</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-   <span class="n">tVertex</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">c1</span><span class="p">;</span>
-   <span class="cm">/* For each edge (c,c1) of P */</span>
-   <span class="n">c</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">;</span>
-   <span class="k">do</span> <span class="p">{</span>
-      <span class="n">c1</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-      <span class="cm">/* Skip edges incident to a or b */</span>
-      <span class="k">if</span> <span class="p">((</span><span class="n">c</span> <span class="o">!=</span> <span class="n">a</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">c1</span> <span class="o">!=</span> <span class="n">a</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="n">b</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">c1</span> <span class="o">!=</span> <span class="n">b</span><span class="p">)</span>
-          <span class="o">&amp;&amp;</span> <span class="n">intersect</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">c1</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-      <span class="p">}</span>
-      <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-   <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="n">vertices</span><span class="p">);</span>
-   <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>Next we will study condition 2 which will handle both testing to see if $d$ is internal and testing the special edges that we didn’t consider this round.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Condition 2: $d$ is an internal diagonal (and more) </b></h4>
-<p>Suppose that $d$ indeed doesn’t intersect the boundary (minus the special edges). $d$ has two vertices $a$ and $b$. We will perform the following test on both vertices but just for demonstration, let’s choose vertex $a$. Suppose that vertex $a$ is a convex vertex (this can be determined by checking if $a$ is on the (left or on) of the line that goes through $\overline{aa_0}$). Let’s consider the following cases:</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-convex.png" width="100%" class="center" /></p>
-<ul>
-	<li>In figure (1), $a_0$ is the left of the line that goes through $d$ and $a_1$ is on the right of the line that goes through $d$ so we satisfy both conditions and $d$ is indeed internal</li>
-	<li> In figure (2), both $a_0$ and $a_1$ are on the left of the line that goes through $\overline{ab}$</li>
-	<li> In figure (3), $a, a_1$ and $b$ are all collinear. So testing whether $a_1$ is on the right of $d$ will fail immediately. </li>
-</ul>
-<p>So it seems like we can conclude that $d$ is internal when:</p>
-<ul>
-	<li>$a_0$ is on the left of the line that goes through $d=\overline{ab}$.</li>
-	<li>$a_1$ is on the right of the line that goes through $d=\overline{ab}$.</li>
-</ul>
-<p>(TODO: Actual proof?). Now let’s look at the concave vertex case and see some cases:</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/geometry/triangulation-algorithm/tri-concave.png" width="100%" class="center" /></p>
-<ul>
-	<li>In figure (1), $a_0$ is the right of the line that goes through $d$ and $a_1$ is on the left of the line that goes through $d$ and $d$ is not internal.</li>
-	<li> In figure (2), both $a_0$ and $a_1$ are on the left of the line that goes through $\overline{ab}$. In fact we can draw $ab$ to the right of the two points or between the two points</li>
-	<li> In figure (3), $a, a_1$ and $b$ are all collinear. $d$ is not internal. </li>
-</ul>
-<p>So the diagonal can really be anywhere. But the clever observation here is that if you compare the concave vertex figures to the convex vertex figures, you’ll see that the only difference is the shaded region is now on the opposite side. In fact, when I drew the second set of cases, I just copied the first 3 figures and changed the shaded areas to be the opposite. This means that we can take the same conditions above for the convex vertex and just conclude that if these conditions are NOT present, then we have an internal diagonal. There is one tiny detail though! instead of left and right, we need to check for (left and on) and (right and on) since we don’t want the case when the points are collinear.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
-<span class="kt">bool</span> <span class="nf">in_cone</span><span class="p">(</span><span class="n">tVertex</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">tVertex</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-   <span class="n">tVertex</span> <span class="o">*</span><span class="n">a0</span><span class="p">,</span> <span class="o">*</span><span class="n">a1</span><span class="p">;</span>    <span class="cm">/* a0,a,a1 are consecutive vertices. */</span>
-   <span class="n">a1</span> <span class="o">=</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-   <span class="n">a0</span> <span class="o">=</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">prev</span><span class="p">;</span>
-   <span class="cm">/* If a is a convex vertex */</span>
-   <span class="cm">/* right(a-&gt;v, b-&gt;v, a1-&gt;v) is the same as left(b-&gt;v, a-&gt;v, a1-&gt;v) */</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">left_on</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">a1</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">a0</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">left</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">a0</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">left</span><span class="p">(</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">a1</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">);</span>
-    <span class="p">}</span>
-   <span class="cm">/* else a is reflex: */</span>
-    <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">left_on</span><span class="p">(</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">a1</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">left_on</span><span class="p">(</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">,</span> <span class="n">a0</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">));</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>And finally we can write a function to test if a candidate segment is an internal diagonal below,</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
-<span class="kt">bool</span> <span class="nf">is_diagonal</span><span class="p">(</span><span class="n">tVertex</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">tVertex</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="n">in_cone</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">in_cone</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">diagonalie</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[So now that we know that every polygon $p$ has a triangulation, how are we going to triangulate $p$? The key to proving that triangulation exists was finding a diagonal. Similarly, the first step in triangulation is to find an internal diagonal. Given a diagonal candidate we need to verify two conditions: $\overline{ab}$'s itersection with the boundary of $P$ is exactly its end points $a$ and $b$ and nothing else. $\overline{ab}$ is an an internal diagonal. How can we verify the above conditions? In this post, we’ll develop procedures to verify these two conditions. Condition 1: Intersection of the diagonal $d$ with the boundary of $p$ So given a diagonal candidate $d$ with end points $a$ and $b$, how do we go about testing its intersection with the boundary of $p$. The boundary consists of the edges of the polygon. The diagonal is incident to at most 4 of these edges. If we keep this case seperately and focus on the rest of edges, then we simply want to know if this candidate doesn’t intersect ANY of these edges besides the special 4. In other words, for all other edges that are not incident to $a$ or $b$, their intersection with $d=ab$ is empty. Segment Intersection Since we only care about the existence of an intersection rathar than the intersection point itself, then we can go back to what we studided before about the orientation of three ordered points (see Orientation of Three Points post and also Segment Intersection (CLRS)). Suppose we’re given three ordered points $p, q, r$, then the expression $(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$ is Greater than zero when the slope of $pq$ is smaller than the slope of $pr$ and so the ordered points $p, q$ and $r$ are in anti-clockwise orientation and $r$ is on the left of the line $pq$ Equal to zero if they're collinear Less than zero when the slope of $pq$ is greater than the slop of $pr$ and so the ordered points $p, q$ and $r$ in a counter clockwise orientation and $r$ is on the left of the line $pq$ We can write a little helper to compute this // determines if r is on the left of the line pq int direction(p, q, r) { int product = (q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y); if (product &gt; 0) { return 1; // anti-clockwise } else if (product &lt; 0) { return -1; // clockwise } return 0; // collinear } How do we use this test to determine if $\overline{ab}$ and $\overline{cd}$ intersect? We can use it to test if the points $a$ and $b$ are on opposite sides of the line that goes through $\over{cd}$ above. But is this enough? No! Consider the following figure. $a$ and the $b$ are in fact on opposite sides of the line that goes through $c$ and $d$ but the segment from $a$ to $b$ doesn’t intersect the segment that goes through $c$ and $d$! To fix this, we also need to ask whether the points $c$ and $d$ are on opposite sides of the line that goes through $\overline{ab}$ and the answer is clearly not! $c$ and $d$ are on the same side. This is great but there is one more condition to consider. Consider the following: Here, the points $a$, $d$ and $b$ are collinear. So $c$ and $d$ are not exactly on opposite sides but they still intersect! So what do we do here? In the book that I’ve been studying “Computational Geometry in C”, the intersection function is split into two to handle the case of improper intersection (when the points are collinear) and the case of proper intersection (when the points are not collinear). I personally found the CLRS way of computing the intersection all at once was easier to understand (likely due to the fact that I studied it first!). In CLRS, we test for proper intersection and in the same function later on, we handle the case when the points are collinear to additionally verify that they indeed intersect. bool interesect(a, b, c, d) { int d1 = direction(a, b, c); // which side is c on? int d2 = direction(a, b, d); // same for d int d3 = direction(c, d, a); int d4 = direction(c, d, b); // proper interesection if ((d1 &lt; 0 &amp;&amp; d2 &gt; 0) || (d2 &lt; 0 &amp;&amp; d1 &gt; 0) || (d3 &lt; 0 &amp;&amp; d4 &gt; 0) || (d4 &lt; 0 &amp;&amp; d3 &gt; 0)) { return true; } // improper intersection // check if c sits between the end two points if (d1 == 0 &amp;&amp; between_line_segment(a, b, c)) return true; // check if d sits between the end two points if (d2 == 0 &amp;&amp; between_line_segment(a, b, d)) return true; // check if a sits between the end two points if (d3 == 0 &amp;&amp; between_line_segment(c, d, a)) return true; // check if b sits between the end two points if (d4 == 0 &amp;&amp; between_line_segment(c, d, b)) return true; } So now we have a function that will test if a given candidate $d$ intersects the boundary of $P$ except for the special edges that are incident to $d$ itself. bool diagonalie(tVertex *a, tVertex *b) { tVertex *c, *c1; /* For each edge (c,c1) of P */ c = vertices; do { c1 = c-&gt;next; /* Skip edges incident to a or b */ if ((c != a) &amp;&amp; (c1 != a) &amp;&amp; (c != b) &amp;&amp; (c1 != b) &amp;&amp; intersect(a-&gt;v, b-&gt;v, c-&gt;v, c1-&gt;v)) { return false; } c = c-&gt;next; } while (c != vertices); return true; } Next we will study condition 2 which will handle both testing to see if $d$ is internal and testing the special edges that we didn’t consider this round. Condition 2: $d$ is an internal diagonal (and more) Suppose that $d$ indeed doesn’t intersect the boundary (minus the special edges). $d$ has two vertices $a$ and $b$. We will perform the following test on both vertices but just for demonstration, let’s choose vertex $a$. Suppose that vertex $a$ is a convex vertex (this can be determined by checking if $a$ is on the (left or on) of the line that goes through $\overline{aa_0}$). Let’s consider the following cases: In figure (1), $a_0$ is the left of the line that goes through $d$ and $a_1$ is on the right of the line that goes through $d$ so we satisfy both conditions and $d$ is indeed internal In figure (2), both $a_0$ and $a_1$ are on the left of the line that goes through $\overline{ab}$ In figure (3), $a, a_1$ and $b$ are all collinear. So testing whether $a_1$ is on the right of $d$ will fail immediately. So it seems like we can conclude that $d$ is internal when: $a_0$ is on the left of the line that goes through $d=\overline{ab}$. $a_1$ is on the right of the line that goes through $d=\overline{ab}$. (TODO: Actual proof?). Now let’s look at the concave vertex case and see some cases: In figure (1), $a_0$ is the right of the line that goes through $d$ and $a_1$ is on the left of the line that goes through $d$ and $d$ is not internal. In figure (2), both $a_0$ and $a_1$ are on the left of the line that goes through $\overline{ab}$. In fact we can draw $ab$ to the right of the two points or between the two points In figure (3), $a, a_1$ and $b$ are all collinear. $d$ is not internal. So the diagonal can really be anywhere. But the clever observation here is that if you compare the concave vertex figures to the convex vertex figures, you’ll see that the only difference is the shaded region is now on the opposite side. In fact, when I drew the second set of cases, I just copied the first 3 figures and changed the shaded areas to be the opposite. This means that we can take the same conditions above for the convex vertex and just conclude that if these conditions are NOT present, then we have an internal diagonal. There is one tiny detail though! instead of left and right, we need to check for (left and on) and (right and on) since we don’t want the case when the points are collinear. bool in_cone(tVertex *a, tVertex *b) { tVertex *a0, *a1; /* a0,a,a1 are consecutive vertices. */ a1 = a-&gt;next; a0 = a-&gt;prev; /* If a is a convex vertex */ /* right(a-&gt;v, b-&gt;v, a1-&gt;v) is the same as left(b-&gt;v, a-&gt;v, a1-&gt;v) */ if (left_on(a-&gt;v, a1-&gt;v, a0-&gt;v)) { return left(a-&gt;v, b-&gt;v, a0-&gt;v) &amp;&amp; left(b-&gt;v, a-&gt;v, a1-&gt;v); } /* else a is reflex: */ return !(left_on( a-&gt;v, b-&gt;v, a1-&gt;v) &amp;&amp; left_on(b-&gt;v, a-&gt;v, a0-&gt;v)); } And finally we can write a function to test if a candidate segment is an internal diagonal below, bool is_diagonal(tVertex *a, tVertex *b) { return in_cone(a, b) &amp;&amp; in_cone(b, a) &amp;&amp; diagonalie(a, b); }]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This post is just me taking notes while watching Essence of Linear Algebra by 3Blue1Brown which is the best reference on Linear Algebra ever. I might add other notes from other places as I go. Transformations So what does transformation mean? A transformation takes a vector as an input and outputs another vector so it’s just a function. So why didn’t we call it a function? This is because the word transformation suggests movement. We’re imagining that this input vector is moving over to the output vector. Of course, when transforming vectors, it is much nicer to use the trick from last time where we think of the vector as the point where its tip sits on. This way it is easier to visulize transforming many vectors all at once. Linear Transformations Transformations can be pretty complex but Linear Algebra is restricted to only linear transformations. Visually speaking a transformation is linear if it has two properties: All lines must remain lines without getting curved. The origin is fixed in place. Describing Linear Transformations Numerically How do we describe a linear transformation? It turns out that all we need to do is to record where the basis vectors will land and then everything else will just follow. Why is this? From the previous post, we know can write any vector as a linear combination of the basis vector of the vector space. Suppose $v = \begin{bmatrix}3 &amp; -2\end{bmatrix}$, then we know that we can write $v$ in terms of $\widehat{i}$ and $\widehat{j}$ as shown below. Writing this again, we have $$ \begin{align*} v &amp;= 3\widehat{i} - 2\widehat{j} \\ \begin{bmatrix} 3 \\ -2 \end{bmatrix} &amp;= 3 \begin{bmatrix} 1 \\ 0 \end{bmatrix} - 2 \begin{bmatrix} 0 \\ 1 \end{bmatrix} \end{align*} $$ After applying the transformation on $\widehat{i}$ and $\widehat{j}$, we can now find out where $v$ will land by writing $v$ as a linear combination of the transformed vectors $\widehat{i}$ and $\widehat{j}$. and now we can just know where $v$ will land based on where $\widehat{i}$ and $\widehat{j}$ landed after the tranformation. We can write, $$ \begin{align*} \text{transformed (} v) &amp;= 3\text{ (transformed }\widehat{i}) - 2 \text{ (transformed }\widehat{j}) \\ &amp;= 3 \begin{bmatrix} 1 \\ -1 \end{bmatrix} - 2 \begin{bmatrix} 1 \\ 1 \end{bmatrix} \\ &amp;= \begin{bmatrix} 1 \\ -5 \end{bmatrix} \end{align*} $$ Representing the transformation with a Matrix So from the above we saw how a two dimensional linear transformation is completely described by four numbers. The two coordinates for where $\widehat{i}$ lands and the two coordinates for where $\widehat{j}$ lands and this is pretty cool! Here is a cooler thing. We can package these coordinates into a two-by-two grid of numbers (a Matrix!) The first column will be where $\widehat{i}$ landed and the second column will be where $\widehat{j}$ landed. So now when we apply the transformation to some vector $v=(x,y)$, what do we get? We’ll multiply the $x$ coordinate with the transformed $\widehat{i}$ vector and similary multiply the $y$ coordinate with the transformed $\widehat{j}$ coordinate.]]></summary></entry></feed>

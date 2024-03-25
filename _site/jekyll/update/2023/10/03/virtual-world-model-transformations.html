@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The Virtual World (Model Transformations)</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-10-03T01:01:36-07:00" itemprop="datePublished">Oct 3, 2023
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!------------------------------------------------------------------------------------>
+<h4><b>Note</b></h4>
+<p>These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
+<br />
+<br />
+Our goal is to mimic human vision in a virtual world. We do this by:</p>
+<ul>
+  <li>Creating a virtual camera and placing it somewhere to point at something.</li>
+  <li>Putting a film that contains pixels with RGB values between 0 and 255 into the camera.</li>
+  <li>Placing some objects in the world. (geometric modeling, transformations, texture mapping).</li>
+  <li>Putting lights in the scene.</li>
+  <li>And Finally taking the picture. The light will bounce around the room hitting the objects and back hitting the camera onto the virtual film.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h4><b>Rotations</b></h4>
+<p>In 2D, we can rotate a point counter clock-wise about the origin with</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+cos(\theta) &amp; -sin(\theta) \\
+sin(\theta) &amp; cos(\theta)
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>and in 3D, we’ll have three possible rotations depending on which axis we’re rotating around. If we’re rotating against the x-axis then we’ll have:</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+cos(\theta) &amp; -sin(\theta) &amp; 0 \\
+sin(\theta) &amp; cos(\theta) &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>All standard stuff but the cool part was the next topic which is proving that these rotations preserve line segments and angels!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Rotations Preserve Line Segments</b></h4>
+<p>Consider two points $p$ and $q$ and the line segment between them. Write the line segment in terms of these points</p>
+<div>
+$$
+\begin{align*}
+u(\alpha) = (1 - \alpha)p + \alpha q
+\end{align*}
+$$
+</div>
+<p>so if $\alpha$ is 0, then we get $p$ and if $\alpha$ is 1 then we get the point $q$.
+Apply the rotation $R$ on each point by multiplying the points on the light segment</p>
+<div>
+$$
+\begin{align*}
+Ru(\alpha) &amp;= R((1 - \alpha)p + \alpha q) \\
+&amp;= (1 - \alpha)Rp + \alpha R q \\
+\end{align*}
+$$
+</div>
+<p>When $\alpha = 0$, we get $Ru(0) = Rp$ and when $\alpha = 1$, we get $Ru(1)=Rq$. We know $0 \leq \alpha \leq 1$ specifies all the points connecting $Rp$ and $Rq$. This means that we only need to rotate the endpoints in order to construct the new line segment connecting them. Next, we will show that the distance between the two rotated points is equivalent to the distance between the original points,</p>
+<div>
+$$
+\begin{align*}
+\left\lVert Rp_1 - Rp_2 \right\rVert^2_2 &amp;= \left\lVert R(p_1 - p_2) \right\rVert^2_2  \\
+&amp;= (p1-p2)(p1-p2) \\
+&amp;= \left\lVert p_1 - p_2 \right\rVert^2_2
+
+\end{align*}
+$$
+</div>
+
+<p>so the distance is preserved.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Rotations Preserve Angels</b></h4>
+<p>Consider two line segments $u$ and $v$. The claim is that the angel between two is preseved after $u$ and $v$ are rotated. <br />
+Proof:</p>
+<div>
+$$
+\begin{align*}
+Ru \cdot Rv &amp;= \left\lVert Ru \right\rVert_2 \left\lVert Rv \right\rVert_2  \cos(\theta)
+\end{align*}
+$$
+</div>
+<p>We also know</p>
+<div>
+$$
+\begin{align*}
+Ru \cdot Rv &amp;= u^T R^T R v  \\
+&amp;= u^T v  \\
+&amp;=  \left\lVert Ru \right\rVert_2 \left\lVert Rv \right\rVert_2  \cos(\theta)
+
+\end{align*}
+$$
+</div>
+<p>So the angel between $u$ and $v$ is the same as the angle between $Ru$ and $Rv$. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Rotations Preseve Shape</b></h4>
+<p>TODO
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Scaling (Resizing)</b></h4>
+<p>The shear/scaling matrix (keeping in mind that  shearing cause distortions)</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+s_1 &amp; 0 &amp; 0 \\
+0 &amp; s_2 &amp; 0 \\
+0 &amp; 0 &amp; s_3
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>if $s_1 = s_2 = s_3 = s$, then the object is just getting scaled. In that case, distances between line segments increase/decrease  by a factor of $s$ and the angles between line segments are preseved. (Similar Proof to the Rotation Proof)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Homogenous Coordinates</b></h4>
+<p>Before we can talk about translation, we need to introduce homogenous coordinates. The reason is because we want to do translations with matrix multiplication to speed things up. Instead of applying each transformation seperately, now we can multiply all these transformations first and then apply them all at once.</p>
+<ul>
+  <li>The homogeneous coordinates of a 3D point $x$ = (x, y, z) are</li>
+</ul>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+xw \\
+yw \\
+zw \\
+w
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>for any $w \neq 0$.</p>
+<ul>
+  <li>We typically convert points to homogenous coordinates by setting $w = 1$ for points and $w = 0$ for vectors to deal with translations while vectors have $w = 0$. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h4><b>Order Matters!</b></h4>
+<p>Suppose we want to rotate by 45 degrees around the x-axis and then translate all the points by $(t_1, t_2, t_3)$. We can use homogenous coordinates to accomplish this but we need to remember that we need to rotate first and then translate. If we change the order, then we’ll get a completely different transformations. To correctly apply the transformations, $M_1$ followed by $M_2$, we’ll need to multiply the matrices in the reverse order $M_2M_1$, meaning that we’re applying $M_1$ first.</p>
+<div>
+$$
+\begin{align*}
+R =
+\begin{bmatrix}
+cos(\theta) &amp; -sin(\theta) &amp; 0 &amp; 0 \\
+sin(\theta) &amp; cos(\theta) &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}, T=
+\begin{bmatrix}
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 4 &amp; 0 \\
+0 &amp; 0 &amp; -1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>And now we can multiply all of them first before finally multiplying them with a vector or a point from our scene</p>
+<div>
+$$
+\begin{align*}
+(
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; t_1 \\
+0 &amp; 1 &amp; 0 &amp; t_2 \\
+0 &amp; 0 &amp; 1 &amp; t_3 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+cos(\theta) &amp; -sin(\theta) &amp; 0 &amp; 0 \\
+sin(\theta) &amp; cos(\theta) &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+)
+\begin{bmatrix}
+v_x \\
+v_y \\
+v_z \\
+w
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>$w$ above is either 0 or 1 depending if this is a vector or a point. Note here that if you multiply the translation matrix by a vector then it has no effect as expected. The 0 will cancel out the effect. This doesn’t happen with points. So for points,</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; t_1 \\
+0 &amp; 1 &amp; 0 &amp; t_2 \\
+0 &amp; 0 &amp; 1 &amp; t_3 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+v_x \\
+v_y \\
+v_z \\
+1
+\end{bmatrix}
+=
+\begin{bmatrix}
+v_x + t_1 \\
+v_y + t_2 \\
+v_z + t_3 \\
+1
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p>while for vectors,</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; t_1 \\
+0 &amp; 1 &amp; 0 &amp; t_2 \\
+0 &amp; 0 &amp; 1 &amp; t_3 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+v_x \\
+v_y \\
+v_z \\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+v_x \\
+v_y \\
+v_z \\
+0
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
+<br />
+<a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
+<br />
+<br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2023/10/03/virtual-world-model-transformations.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2023/10/03/virtual-world-model-transformations; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2023/10/03/virtual-world-model-transformations.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

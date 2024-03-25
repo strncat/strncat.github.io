@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">(9) Global Illumination</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-10-24T01:01:36-07:00" itemprop="datePublished">Oct 24, 2023
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!------------------------------------------------------------------------------------>
+<h4><b>Note</b></h4>
+<p>These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Photon Tracing</b></h4>
+<p>Photons come out of the light and then bounce around. One idea for rendering an image is to just follow every photon around and see where it goes. Some will bounce and hit an object like a chair and then get absorbed so they’re gone. Some will go through the camera aperture and hit the film and this is when we can see their contribution. So basically:</p>
+<ul>
+  <li>For each light, choose a number of directions and emit a photon in each direction. 
+(1) Let the photon travel in a straight line until it hit object. Then:
+(2) If the object hit was the camera, record its contribution to the final image.
+(3) If absorbed, terminate this photon. we’re done.
+(4) If reflected/transmitted/scattered: the photon then will go in a new direction. Go to step (1).</li>
+</ul>
+
+<p>Issues:</p>
+<ul>
+  <li>Most of these photons will not hit the tree so it’s impractical/efficient.</li>
+</ul>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>(Backward) Path Tracing</b></h4>
+<p>The solution to the photon tracing problem is to send only a subset of photons. One idea is to start at the film and go backwards (just like a ray tracer). But there is an issue here is that if we go backward and then hit an object. We still don’t know where the photon could come from. It could come from any direction on the hemisphere. (Similar to the BRDF, we had many incoming directions and one outgoing direction to the viewer/pixel)
+<br />
+<br />
+So now from the hemisphere, send like 100 rays/photons (sampling). So for each ray follow it along its path. If it hits an object, then again we’ll need to send another 100 photon rays all over again. We continue this until eventually, some ray will hit the light source. Once we’re here at the light then we know the exact path that started at the light and ended up at the film.
+<br />
+<br />
+The problem with the above solution is the potential exponential growth. For example, most of the time the light sources are not really facing the camera or the eye directly. They’re pointing away but providing enough lighting everywhere. This immediately indicates that we’re going to send many photons that will bounce over and over again until we hit the actual light source.
+<br />
+<br />
+The ray tracer that we discussed was doing this with <b>important sampling</b>. We send a ray until it intersects an object. And then instead of sending photon rays in all directions on the hemisphere, we send one ray directly to the light source because we just assume that there will be a lot of photons in this direction. Why? because the ray that will hit a chair for example before hitting the light source will not contain as many photons. Many of these photons will get absorbed by the chair while the ray hitting the light source with no obstructions will have the most photons. So in the first ray tracer that we did, we just picked the most important ray (direct illumination) and forget about all the others since their contribution will be much smaller.
+<br />
+<br />
+In the recursive ray tracing lecture, we added more rays. We looked at the reflected and transmitted rays. A shiny object will bounce a lot more photons in the reflected direction rather than the other directions. The transmitted and reflected rays are still grouped here under directed illumination or <b>important sampling</b> even though they’re not direct rays. They’re important enough!
+<br />
+<br />
+To summarize, a ray tracer does direct illumination with the shadow rays and some indirect illumination with the transmitted and reflected rays. The downside with ray tracing is that we’re missing lots of other light.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Bidirectional Ray Tracing</b></h4>
+<p>This approach combines both Photon Tracing and Ray Tracing. So not just the backward tracing in ray tracing but also the forward path in photon tracing. 
+<br />
+<br />
+So how do we do it?</p>
+
+<p>(1) Emit photons from the light, bathe objects in these photons, the result is a light map. Light maps don’t change when the camera moves so they can be precomputed. How do we accomplish this?</p>
+
+<ul>
+  <li>Take the area light, break it into chunks like a grid. For each chunk or small piece, pick a hemisphere and shoot photons out of this hemisphere.</li>
+  <li>How many photons? Pick some number, maybe higher for brighter lights and lower for dimmer lights?</li>
+  <li>Next the photon will come out and hit some object. We’ll test and see if this photon will get absorbed or if it bounces. If it bounces, then it will bounce in a hemisphere and go somewhere else. We’ll then again shoot photons in a hemisphere and so on.</li>
+  <li>We’ll save this intersection point (with X,Y,Z coordinates). Later on, when we’re trying to color this point, we’ll see that there was a photon that hit that location. To know from where, we’ll put a sphere around this point and get all the photons in that sphere and then I can use that light in the ray tracer. This is what we called a photon mapping.</li>
+</ul>
+
+<p>(2) Ray trace the scene using the light map to estimate the indirect light.</p>
+
+<p>It’s important to note that we’re still going to use the ray tracer to do important sampling (shadow rays, reflected rays and transmitted rays). We need this because if we don’t have enough photons, the picture won’t look good. So still do the important sampling and then use the photon mapping for the secondary indirect lighting. 
+<br />
+<br />
+Light maps are great for soft shadows, color bleeding and can generate other interesting effects too. (TODO: Prism example)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Equation of Light Revisited</b></h4>
+<p>Recall the lighting equation from the optics lecture</p>
+<div>
+$$
+\begin{align*}
+L_o(\omega_o) = \int_{\text{i \in in}} BRDF(\omega_i, \omega_w) L_i \cos\theta_i d\omega_i
+\end{align*}
+$$
+</div>
+<p>This was the simplified version. We’re now going to add back the position (surface location $x$) and incoming angle $\omega_i$. We also add an emission term $L_e$.</p>
+<div>
+$$
+\begin{align*}
+L_o(x, \omega_o) = L_e(x, \omega_o) + \int_{\text{i \in hemi}} BRDF(x, \omega_i, \omega_w) L_i(x, \omega_i) \cos\theta_i d\omega_i
+\end{align*}
+$$
+</div>
+<p>The incoming light from direction $\omega_i$ left some other surface point $x’$ going in direction $-\omega_i$ so replace $L_i(x,\omega_i)$ with $L_o(x’, -\omega_i)$.</p>
+<div>
+$$
+\begin{align*}
+L_o(x, \omega_o) = L_e(x, \omega_o) + \int_{\text{i \in hemi}} BRDF(x, \omega_i, \omega_w) L_o(x', -\omega_i) \cos\theta_i d\omega_i
+\end{align*}
+$$
+</div>
+<p>So here in this equation we know the terms:</p>
+<ul>
+  <li>The BRDF value $BRDF(x, \omega_i, \omega_w)$</li>
+  <li>The emission term $L_e(x, \omega_o)$</li>
+  <li>The incidence angle $\cos\theta_i$
+What we don’t know is</li>
+  <li>The reflected light term inside $L_o(x’, -\omega_i)$</li>
+  <li>The reflected light term outside $L_o(x, \omega_o)$
+We basically don’t know what light was reflected out of those objects in order to know the light coming out of this point. But luckily this is a known physics equation (Fredholm Integral Equation of the second kind)</li>
+</ul>
+<div>
+$$
+\begin{align*}
+l(u) = e(u) + \int l(v) k(u,v)dv
+\end{align*}
+$$
+</div>
+<p>One additional note here is that we’re still simplifying the light here because we’re assuming that we’re in a vacuum, while in reality there are particles in the air that scatter these photons. So technically, we should be putting a sphere around points not just on objects but on every point in the space!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Discretization of the integral equation</b></h4>
+<p>We will solve the above problem with discretization. Cut up the surface into chuncks and choose a few points and a few directions:</p>
+
+<ul>
+  <li>
+    <p>Choose $p$ points, each representing a chunck of surface area. (for the classroom for example, just choose a bunch of samples. If we care about objects for example then we’ll pick points $p$ on objects). Basically sample the room we’re tring to render.</p>
+  </li>
+  <li>
+    <p>For each point $p$, choose $q$ outgoing directions, each representing a chunck of solid angles of the hemisphere (or sphere). (2d discretization).</p>
+  </li>
+</ul>
+
+<p>Checkpoint: if we do that: pick $p$ and $q$. Look at the previous integral. We’re trying to know something that varies based on where it is $p$ and the direction where the light is going $q$. So we have $p * q$ different combinations of positions and directions there are.</p>
+
+<ul>
+  <li>
+    <p>$L_o$ and $L_e$ then each have $p * q$ unknowns. $L_o$ and $L_e$ can be column vectors $L$ and $E$ of length $p * q$. We can solve this system to know how much light is going in each of those directions.</p>
+  </li>
+  <li>
+    <p>The light transport “kernel” matrix $K$ has size $p * q$ by $p * q$. hmmmm ???</p>
+  </li>
+  <li>
+    <p>The linear system of equations is the following where $K$ and $E$ are known. $I$ is the identity matrix,</p>
+  </li>
+</ul>
+<div>
+$$
+\begin{align*}
+L &amp;= E + KL \\
+(I - K)L &amp;= E
+\end{align*}
+$$
+</div>
+<p>and the solution to this equation is</p>
+<div>
+$$
+\begin{align*}
+L = (I - K)^{-1}E = (I + K + K^2 + ...)E
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Power Series</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/graphics/global-illumination/00-power-series.png" width="80%" class="center" /></p>
+
+<div>
+$$
+\begin{align*}
+L = E + KE + K^2E + K^3E + ...
+\end{align*}
+$$
+</div>
+<ul>
+  <li>E is anything that is directly coming from the light source (emission term).</li>
+  <li>KE means it bounced once. It hit the floor maybe and then our eyes. (direct illumination).</li>
+  <li>K^2E means it bounced twice (global illumination  (indirect lighting)).</li>
+  <li>K^3E means it bounced three times (global illumination  (indirect lighting)) and so on.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h4><b>Tractability</b></h4>
+
+<p>Issues with the power series:</p>
+<ul>
+  <li>A typical scene might have tens of thousands of area chunks. So $p$ could be $1e3, 1e4..$.</li>
+  <li>Incoming light could vary significantly across the hemisphere. For each $p$, we could be again a crazy amount of directions.</li>
+  <li>$L$ and $E$ would then range in length from 1e5 to 1e10</li>
+  <li>The matrix $K$ would be really huge. $K$ could have have between $1e10$ and $1e20$ entries!</li>
+  <li>This tractability analysis is for the 4D problem (5D is even worse)</li>
+  <li>The curse of dimensionality makes problems in 4D and 5D (and higher) hard to discretize (with numerical quadrature)</li>
+</ul>
+
+<p>So this isn’t possible. How to fix this?
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Addressing Tractability</b></h4>
+<p>Idea: Separate the diffuse and specular contribution.</p>
+
+<p>Diffuse:</p>
+<ul>
+  <li>Assume all materials are purely diffuse (no specular contribution).</li>
+  <li>Compute the view-independent global illumination for the entire scene.</li>
+  <li>We can do this in a pre-processing step.</li>
+</ul>
+
+<p>Specular:</p>
+<ul>
+  <li>Compute (view dependent) specular illumination on the fly as the camera moves using phong shading or any other model.</li>
+</ul>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Radiosity and Albedo</b></h4>
+<p>This is what we typically work with in computer vision.</p>
+<ul>
+  <li>Radiosity: power per unit surface area leaving a surface (similar to irradiance, but outgoing instead of incoming):</li>
+</ul>
+<div>
+$$
+\begin{align*}
+B(x) = \frac{d\phi}{dA} = \int_{\text{hemi}} L_o(x, \omega_o)\cos \theta_o d\omega_o
+\end{align*}
+$$
+</div>
+<p>But if $L_o$ is independent of $\omega_o$ (i.e. purely diffuse)</p>
+<div>
+$$
+\begin{align*}
+B(x) = \frac{d\phi}{dA} = L(x) \int_{\text{hemi}} \cos \theta_o d\omega_o = \pi L(x)
+\end{align*}
+$$
+</div>
+<ul>
+  <li>Albedo: a “reflection coefficient” relating incoming light hitting a surface patch (irradiance $E_i$) to outgoing light emitted in all possible directions</li>
+</ul>
+<div>
+$$
+\begin{align*}
+p(x) = \int BRDF(x, \omega_o, \omega_i) \cos \theta_o d\omega_o
+\end{align*}
+$$
+</div>
+<p>But when the BRDF is independent of $\omega_o$ and $\omega_i$ (purely diffuse)</p>
+<div>
+$$
+\begin{align*}
+p(x) = BRDF(x) \int \cos \theta_o d\omega_o = \pi BRDF(x)
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>(Purly Diffuse) Lighting Equation</b></h4>
+<p>So now we can bring back the lighting equation from above,</p>
+<div>
+$$
+\begin{align*}
+L_o(x, \omega_o) = L_e(x, \omega_o) + \int_{\text{i \in hemi}} BRDF(x, \omega_i, \omega_w) L_o(x', -\omega_i) \cos\theta_i d\omega_i
+\end{align*}
+$$
+</div>
+<p>and we’re going to multiply everything by $\cos\theta_o d\omega_o$ and if you integrate, you will get</p>
+<div>
+$$
+\begin{align*}
+B(x) = E(x) + \int_{\text{i \in hemi}} B(x') BRDF(x, \omega_i, \omega_w)  \cos\theta_i d\omega_i
+\end{align*}
+$$
+</div>
+<p>…. TODO ….</p>
+<div>
+$$
+\begin{align*}
+B(x) = E(x) + \frac{p(x)}{pi} \int_{\text{i \in hemi}} B(x')\cos\theta_i d\omega_i
+\end{align*}
+$$
+</div>
+<p>From the solid angle definition, we know that</p>
+<div>
+$$
+\begin{align*}
+d\omega = \frac{dA\cos\theta}{r^2} = \frac{dA\cos\theta}{\left\lVert x - x' \right\rVert_2^2} 
+\end{align*}
+$$
+</div>
+<p>…. SO MUCH TO DO HERE ….
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Understanding the Form Factor</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/graphics/global-illumination/00-form-factor.png" width="80%" class="center" /></p>
+<ul>
+  <li>Place a unit hemisphere at a surface point $x_i$.</li>
+  <li>Project the other surface on the hemisphere, nothing that</li>
+</ul>
+<div>
+$$
+\begin{align*}
+d\omega = \frac{dA\cos\theta}{r^2} = \frac{dA\cos\theta}{\left\lVert x - x' \right\rVert_2^2} 
+\end{align*}
+$$
+</div>
+<p>Project the result downwards onto the circular base of the hemisphere which multiplies by $\cos \theta_i$.</p>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
+<br />
+<a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
+<br />
+<br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2023/10/24/global-illumination.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2023/10/24/global-illumination; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2023/10/24/global-illumination.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

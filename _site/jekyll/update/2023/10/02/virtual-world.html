@@ -49,22 +49,25 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">The Virtual World</h1>
+    <h1 class="post-title p-name" itemprop="name headline">The Virtual World (Pinhole)</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2023-10-03T01:01:36-07:00" itemprop="datePublished">Oct 3, 2023
+      <time class="dt-published" datetime="2023-10-02T01:01:36-07:00" itemprop="datePublished">Oct 2, 2023
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <!------------------------------------------------------------------------------------>
-<h4><b>The Virtual World</b></h4>
-<p>Our goal is to mimic human vision in a virtual world. We do this by:</p>
+<h4><b>Note</b></h4>
+<p>These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
+<br />
+<br />
+Our goal is to mimic human vision in a virtual world. We do this by:</p>
 <ul>
-  <li>Creating a virtual camera and place it somewhere and point it at something.</li>
+  <li>Creating a virtual camera and placing it somewhere to point at something.</li>
   <li>Putting a film that contains pixels with RGB values between 0 and 255 into the camera.</li>
-  <li>Placing some objects in the world. (geometric modeling, transformations, text mapping)</li>
+  <li>Placing some objects in the world. (geometric modeling, transformations, texture mapping).</li>
   <li>Putting lights in the scene.</li>
   <li>And Finally taking the picture. The light will bounce around the room hitting the objects and back hitting the camera onto the virtual film.
 <br />
@@ -78,25 +81,27 @@
 The reason why we don’t see everything as a blurry image is the pupil (or the aperture in the camera). The pupil’s rol is to restrict the light bouncing from all these points on every single object. The pupil will only allow some point, enough to see clearly. Moreover, when the pupil gets small, we’d get a sharper image and as the pupil gets larger, we’d see a blurred image. But the pupil (and the aperture) can’t be too small because otherwise the light will bend as it gets through the tiny point due to the particle/wave length duality. Therefore, it has to be small enough but not too small.
 <br />
 <br />
-THe Camera mimic the human eyes but instead of cones we have mechanical pixels and instead of a pupil, we have an aperture. Cameras have also comlex lens system. 
+The Camera mimic the human eyes but instead of cones we have mechanical pixels. And instead of the pupil, we have an aperture. Cameras have also comlex lens system. 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Pinhole Camera</b></h4>
-<p>To model the virtual world camera we use a pinhole camera. Since this is a virtual world, then we won’t have the light bending issue (particle/wave duality) and we can just make the aperture a single point. So now it’s really simple. Light will go through this one point from an object to a pixel. However these images can’t do stuff like depth of field (not blurry as you go farther) but that’s fine.
+<p style="text-align:center;"><img src="http://localhost:4000/assets/graphics/virtual-world/01-pinhole.png" width="80%" class="center" /></p>
+<p>Since this is a virtual world, then we won’t have the light bending issue (particle/wave duality) so we can just use a simple camera model, the pinhole camera, where the aperture is just a single point. Light will go through this one point from an object to a pixel. 
 <br />
 <br />
-Additionally:</p>
+Here are some more properties of the Pinhole Camera:</p>
 <ul>
-  <li>object occlude things behind the</li>
+  <li>The images created can’t do stuff like depth of field (not blurry as you go farther).</li>
+  <li>Object occlude things that appear behind them.</li>
   <li>more distant objects subtend smaller visual angels and appear smaller</li>
-  <li>The image will be an upside version of the real world object
+  <li>The image will be an upside version of the real world object.
 <br />
 <br />
-To solve this third issue and make the camera more efficient:</li>
+To solve this last issue and make the camera more efficient:</li>
   <li>We’ll move the film out in front of the pinhole so that the image is not upside down.</li>
-  <li>We’ll only render objects further away from the camera than the film plane (of width w and height h).</li>
-  <li>We’ll though add a clipping plane for effiency so we don’t every single object (knowing that we won’t render it)</li>
+  <li>We’ll only render objects further away from the camera than the film plane.</li>
+  <li>We’ll add a clipping plane for effiency so we don’t have to process every single object knowing that we won’t render it since it’s ocluded.</li>
   <li>The volume between the film (front clipping plane) and the back clipping plane is called the <b>viewing frustum</b>.
 <br />
 <br />
@@ -106,18 +111,23 @@ To solve this third issue and make the camera more efficient:</li>
 <ul>
   <li>We’ll model the objects with 3D points. Each object will be a collection of points.</li>
   <li>Objects are created in a reference space that we call the “object space”.</li>
-  <li>Once objects are created, we’ll place the objects into the scene. This space is called the “world space”. It’s important to know that we don’t have geometry in the actual space. Instead, we have code that tell us where to place the objects around us via some rigid body motion such as Rotations (3 ways to rotate) and Translate (3 ways to translate) so a total of 6 degrees of freedom. We can also scale the object. But why do it this way? why not just integrate an object such as a lamp in the virtual world? Because it’s a waste! if the lamp consisted of 100k vertices and the scene needed 100 of these, then we’ll have 10 million vertices just for lamps! Instead we can just create one lamp and then the transformations that we described to place this lamp 100 times around the scene.</li>
-  <li>When we take a virtual picture, points on the object are projected on the 2d film plane which we refer to as a “scene space”. This projection is nonlinear and the source of undesireable distortion.
-<!------------------------------------------------------------------------------------></li>
+  <li>Once objects are created, we’ll place the objects into the scene. This space is called the “world space”. It’s important to know that we don’t have geometry in the actual space. Instead, we have code that tell us where to place the objects around us via some rigid body motion such as Rotations (3 ways to rotate) and Translate (3 ways to translate) so a total of 6 degrees of freedom. We can also scale the object.</li>
 </ul>
+
+<p><br />
+An important question arises here is why create the objects in their object space and then place them via transformations in the virtual world? why not just integrate an object such as a lamp in the virtual world? Because it’s a waste. if the lamp consisted of 100k vertices and the scene needed 100 of these, then we’ll have 10 million vertices just for lamps. Instead we can just create one lamp and then use the transformations that we described to place this lamp 100 times around the scene.
+<br />
+<br />
+Finally, when we take a virtual picture, points on the object are projected on the 2d film plane which we refer to as a “scene space”. This projection is nonlinear and the source of undesireable distortion.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p>These are my notes based on attending the lecture on light from CS148 with professor Ron Fedkiw. I’ve modified the notes and also included other notes. They are not official or anything like that. Additionally I’ve used the following sources:</p>
-<ul>
-<li>
-<a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics</a>
-</li>
-</ul>
-<p><br /></p>
+<p><a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
+<br />
+<a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
+<br />
+<br /></p>
 
 
   </div><div id="disqus_thread"></div>
@@ -128,8 +138,8 @@ To solve this third issue and make the camera more efficient:</li>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2023/10/03/virtual-world.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2023/10/03/virtual-world; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2023/10/02/virtual-world.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2023/10/02/virtual-world; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -140,7 +150,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2023/10/03/virtual-world.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2023/10/02/virtual-world.html" hidden></a>
 </article>
 		 
       </div>

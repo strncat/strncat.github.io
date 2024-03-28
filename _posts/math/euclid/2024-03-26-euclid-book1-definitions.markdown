@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Euclid Book 1 Definitions"
+title:  "Euclid's Elements Book 1: Definitions"
 date:   2024-03-26 07:01:36 -0700
 categories: jekyll update
 mathjax: true

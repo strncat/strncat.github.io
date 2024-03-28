@@ -1,23 +1,23 @@
 ---
 layout: post
-title:  "Euclid Proposition 1"
+title:  "Euclid's Elements Book 1: Proposition 1"
 date:   2024-03-23 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<b>Proposition</b>: To construct an equilateral triangle on a given finite straight line.
+<b>Proposition 1</b>: To construct an equilateral triangle on a given finite straight line.
 <br>
 <hr>
 <br>
 <b>Proof.</b>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr1/1.png" width="40%" class="center"></p>
-Let the finit straight line be $AB$ above. By <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/post3.html">postulate 3</a>, describe a cricle with center $A$.
+Let the finit straight line be $AB$ above. By <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-postulates.html">postulate 3</a>, describe a cricle with center $A$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr1/2.png" width="50%" class="center"></p>
-By <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/post3.html">postulate 3</a>, describe another circle with center $B$.
+By <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-postulates.html">postulate 3</a>, describe another circle with center $B$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr1/3.png" width="60%" class="center"></p>
-Using <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/post1.html">postulate 1</a>, draw two lines from $A$ and from $B$ to point $C$ (the intersection of the two circles). 
+Using <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-postulates.html">postulate 1</a>, draw two lines from $A$ and from $B$ to point $C$ (the intersection of the two circles). 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr1/4.png" width="60%" class="center"></p>
-We know that $AB = AC$ and $AB = BC$ by <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/defI15.html">definition 15</a>. Therefore, $BC = AC$ by <a href="http://aleph0.clarku.edu/~djoyce/elements/bookI/cn.html">axiom 1</a>. We see now that $AB = BC = AC$ and therefore the triangle is equaliteral as required.
+We know that $AB = AC$ and $AB = BC$ by <a href="https://strncat.github.io/jekyll/update/2024/03/26/euclid-book1-definitions.html">definition 15</a>. Therefore, $BC = AC$ by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-axioms.html">axiom 1</a>. We see now that $AB = BC = AC$ and therefore the triangle is equaliteral as required.
 <br>
 <br>
 <hr>

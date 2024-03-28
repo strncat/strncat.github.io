@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Euclid Proposition 2"
+title:  "Euclid's Elements Book 1: Proposition 2"
 date:   2024-03-24 07:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -16,15 +16,15 @@ Use postule 1 to draw a line between $A$ and one of the end points say $B$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/2.png" width="40%" class="center"></p>
 Next, use <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-pr1.html">proposition 1</a> to draw an equilateral triangle from the drawn line $AB$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/3.png" width="40%" class="center"></p>
-Next, describe a circle with center $B$ and radius $CB$ using <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/post2.html">postulate 3</a>
+Next, describe a circle with center $B$ and radius $CB$ using <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-postulates.html">postulate 3</a>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/5.png" width="40%" class="center"></p>
-Extend the line DB all the way till intersects the circle at $E$ using <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/post2.html">postulate 2</a>. 
+Extend the line DB all the way till intersects the circle at $E$ using <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-postulates.html">postulate 2</a>. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/6.png" width="45%" class="center"></p>
 Now describe another circle with center $D$ and radius $DE$ (postulate 3).
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/7.png" width="55%" class="center"></p>
 Extend the line DA until it intersects the circle at $F$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/8.png" width="55%" class="center"></p>
-The claim is that $AF = BC$ which is what we want. To see this, we know that $DF=DE$ by <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/defI15.html">definition 15</a>. We know by $DA = DB$ by construction. Therefore, $BE = AF$ by <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/cn.html">axiom 3</a>. But $CB = BE$ by definition 15 and so $CB = AF$ (axiom 1) as required. 
+The claim is that $AF = BC$ which is what we want. To see this, we know that $DF=DE$ by <a href="https://strncat.github.io/jekyll/update/2024/03/26/euclid-book1-definitions.html">definition 15</a>. We know that $DA = DB$ by construction. Therefore, $BE = AF$ by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-axioms.html">axiom 3</a>. But $CB = BE$ by definition 15 and so $CB = AF$ (axiom 3) as required. 
 <br>
 <br>
 <hr>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Euclid Book 1 Axioms"
+title:  "Euclid's Elements Book 1: Axioms"
 date:   2024-03-25 07:01:36 -0700
 categories: jekyll update
 mathjax: true

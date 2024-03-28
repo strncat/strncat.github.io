@@ -23,6 +23,9 @@ mathjax: true
 <li><a href="/jekyll/update/2024/03/24/euclid-book1-pr2.html">
    <b>Proposition 2: </b>From a given point, to draw a straight line equal to a given finite straight line.
 </a></li>
+<li><a href="/jekyll/update/2024/03/21/euclid-book1-pr3.html">
+   <b>Proposition 3: </b>To cut off from the greater of two given unequal straight lines a straight line equal to the less.
+</a></li>
 </ul>
 <br>
 <!------------------------------------------------------------------->  

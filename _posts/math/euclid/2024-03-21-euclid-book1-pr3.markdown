@@ -17,7 +17,7 @@ Use <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-pr2.html"
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr3/2.png" width="40%" class="center"></p>
 Now, describe a circle with center at point $A$ and radius of length $AE$ using <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-postulates.html">postulate 3</a>.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr3/3.png" width="45%" class="center"></p>
-The claim is that $AF$ is equal to $CD$. To see this, we know that $EA = AF$ by <a href="https://strncat.github.io/jekyll/update/2024/03/26/euclid-book1-definitions.html">definition 15</a>. We also know that $EA = AF$ by construction. Therefore $AF = CD$ by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-axioms.html">axiom 1</a> (Magnitudes which are equal to the same are equal to each other).
+The claim is that $AF$ is equal to $CD$. To see this, we know that $EA = AF$ by <a href="https://strncat.github.io/jekyll/update/2024/03/26/euclid-book1-definitions.html">definition 15</a>. We also know that $EA = CD$ by construction. Therefore $AF = CD$ by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-axioms.html">axiom 1</a> (Magnitudes which are equal to the same are equal to each other).
 <br>
 <br>
 <hr>

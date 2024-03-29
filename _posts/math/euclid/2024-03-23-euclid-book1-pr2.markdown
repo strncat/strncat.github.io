@@ -24,7 +24,7 @@ Now describe another circle with center $D$ and radius $DE$ (postulate 3).
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/7.png" width="55%" class="center"></p>
 Extend the line DA until it intersects the circle at $F$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/8.png" width="55%" class="center"></p>
-The claim is that $AF = BC$ which is what we want. To see this, we know that $DF=DE$ by <a href="https://strncat.github.io/jekyll/update/2024/03/19/euclid-book1-definitions.html">definition 15</a>. We know that $DA = DB$ by construction. Therefore, $BE = AF$ by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-axioms.html">common notion 3</a>. But $CB = BE$ by definition 15 and so $CB = AF$ (common notion 3) as required. 
+The claim is that $AF = BC$ which is what we want. To see this, we know that $DF=DE$ by <a href="https://strncat.github.io/jekyll/update/2024/03/19/euclid-book1-definitions.html">definition 15</a>. We know that $DA = DB$ by construction. Therefore, $BE = AF$ by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-common-notions.html">common notion 3</a>. But $CB = BE$ by definition 15 and so $CB = AF$ (common notion 3) as required. 
 <br>
 <br>
 <hr>

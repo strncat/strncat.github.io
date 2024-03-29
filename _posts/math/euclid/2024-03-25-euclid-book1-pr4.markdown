@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Euclid's Elements Book 1: Proposition 4"
-date:   2024-03-27 07:01:36 -0700
+date:   2024-03-25 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

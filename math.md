@@ -6,29 +6,6 @@ mathjax: true
 ---
 
 <!------------------------------------------------------------------->  
-  <h3> Elements of Euclid, Book 1 </h3>
-  <ul style="list-style-type:none;">
-<li><a href="/jekyll/update/2024/03/26/euclid-book1-definitions.html">
-	     <b>Definitions</b>
-</a></li>
-<li><a href="/jekyll/update/2024/03/22/euclid-book1-postulates.html">
-	     <b>Postulates</b>
-</a></li>
-<li><a href="/jekyll/update/2024/03/25/euclid-book1-axioms.html">
-	     <b>Axioms</b>
-</a></li>
-<li><a href="/jekyll/update/2024/03/23/euclid-book1-pr1.html">
-   <b>Proposition 1: </b>To construct an equilateral triangle on a given finite straight line.
-</a></li>
-<li><a href="/jekyll/update/2024/03/24/euclid-book1-pr2.html">
-   <b>Proposition 2: </b>From a given point, to draw a straight line equal to a given finite straight line.
-</a></li>
-<li><a href="/jekyll/update/2024/03/21/euclid-book1-pr3.html">
-   <b>Proposition 3: </b>To cut off from the greater of two given unequal straight lines a straight line equal to the less.
-</a></li>
-</ul>
-<br>
-<!------------------------------------------------------------------->  
   <h3> Trigonometry </h3>
   <ul style="list-style-type:none;">
     <li><a href="/jekyll/update/2024/03/26/radians.html">
@@ -36,6 +13,76 @@ mathjax: true
     </a></li>
   </ul>
 <br>
+
+<!------------------------------------------------------------------->  
+   <h3> Linear Algebra </h3>
+   <ul style="list-style-type:none;">
+       <li><a href="/jekyll/update/2023/09/11/vectors.html">
+           Vectors
+       </a></li>
+       <li><a href="/jekyll/update/2023/09/12/linear-combinations.html">
+           Linear Combinations
+       </a></li>
+       <li><a href="/jekyll/update/2023/09/22/linear-transformations.html">
+           Linear Transformations
+       </a></li>
+       <li><a href="/jekyll/update/2023/09/25/matrix-multiplication-as-composition.html">
+           Matrix Multiplication As Composition
+       </a></li>
+       <li><a href="/jekyll/update/2023/09/26/determinants.html">
+           Determinants
+       </a></li>
+       <li><a href="/jekyll/update/2023/09/27/system-of-linear-equations.html">
+           Inverse Matrices, Column Space and Null Space 
+       </a></li>
+	   <!--
+       <li><a href="/jekyll/update/2023/09/29/dot-product.html">
+           Dot Product
+       </a></li>
+       <li><a href="/jekyll/update/2023/10/02/cross-product.html">
+           Cross Product
+       </a></li>
+	   -->
+   </ul>
+<br>
+
+<!------------------------------------------------------------------->  
+ <h3> Other Topics </h3>
+   <ul style="list-style-type:none;">
+       <li><a href="/jekyll/update/2023/09/28/implicit-representation.html">
+           Implicit Representation of an Equation
+       </a></li>
+       <li><a href="/jekyll/update/2023/09/30/parametric-representation.html">
+           Parametric Representation an Equation
+       </a></li>
+   </ul>
+<br>
+
+
+
+<!------------------------------------------------------------------->  
+<!--
+   <h3> Abstract Algebra </h3>
+   <ul style="list-style-type:none;">
+       <li><a href="/jekyll/update/2019/09/07/groups.html">
+           Groups
+       </a></li>
+   </ul>
+--> 
+
+
+<!------------------------------------------------------------------->  
+<!--
+   <h3> Number Theory </h3>
+   <ul style="list-style-type:none;">
+       <li><a href="/jekyll/update/2019/08/23/prime-numbers.html">
+           Prime Numbers
+       </a></li>
+       <li><a href="/jekyll/update/2019/08/22/congruences.html">
+           Congruences
+       </a></li>
+   </ul>
+-->
 
 
 <!--

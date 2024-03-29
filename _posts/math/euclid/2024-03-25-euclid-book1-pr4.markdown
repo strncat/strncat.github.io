@@ -5,6 +5,9 @@ date:   2024-03-25 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
+Note: I was using Oliver Byrne's book when I studied this proof. Axiom 10 doesn't seem to exist in the original book
+<br>
+<br>
 <b>Proposition 4</b>: Proposition 4: "IF two triangles have two sides of the one respectively equal to two sides of the other, and the angles contained by those equal sides also equal; then their bases or their sides  are also equal: and the remaining and their remaining angles opposite to equal sides are respectively equal: and the triangles are equal in every respect."
 <br>
 Basically, given two triangles where two of the sides are equal and the angles contained between the two sides in each triangle are also equal, then the two triangles are equal in every other respect meaning that the third side is also equal and the remaining two angles are equal as well.
@@ -39,7 +42,6 @@ Overall, this was a confusing proposition. What does placing a vertex on top ano
 <b>Refererences:</b>
 <ul>
 <li><a href="https://www.amazon.com/dp/B09ZYVSSTP/ref=sspa_dk_detail_0?psc=1&pd_rd_i=B09ZYVSSTP&pd_rd_w=c4vZJ&content-id=amzn1.sym.f734d1a2-0bf9-4a26-ad34-2e1b969a5a75&pf_rd_p=f734d1a2-0bf9-4a26-ad34-2e1b969a5a75&pf_rd_r=WK3ER8B42S7VAPMGWWPZ&pd_rd_wg=8i8vz&pd_rd_r=789c12b3-868b-4990-85da-a643782719d6&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw">Oliver Byrne's Elements of Euclid</a></li>
-<li><a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/post3.html">David E. Joyce's Elements of Euclid</a></li>
 </ul>
 
 

@@ -11,6 +11,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/03/26/radians.html">
           Radians
     </a></li>
+    <li><a href="/jekyll/update/2024/03/28/unit-circle-point.html">
+          Finding a point on the unit circle
+    </a></li>
   </ul>
 <br>
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Elements of Euclid
+title: Euclid's Elements
 permalink: /euclid/
 mathjax: true
 ---

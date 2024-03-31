@@ -33,6 +33,9 @@ mathjax: true
 <li><a href="/jekyll/update/2024/03/27/euclid-book1-pr5.html">
    <b>Proposition 5: </b></a>In isosceles triangles the angles at the base are equal to one another, and, if the equal straight lines be produced further, the angles under the base will be equal to one another.</li>
 <hr>
+<li><a href="/jekyll/update/2024/03/29/euclid-book1-pr6.html">
+   <b>Proposition 6: </b></a>If in a triangle two angles be equal to one another, the sides which subtend the equal angles will also be equal to one another.</li>
+<hr>
 </ul>
 <br>
 

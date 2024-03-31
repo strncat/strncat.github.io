@@ -36,6 +36,9 @@ mathjax: true
 <li><a href="/jekyll/update/2024/03/29/euclid-book1-pr6.html">
    <b>Proposition 6: </b></a>If in a triangle two angles be equal to one another, the sides which subtend the equal angles will also be equal to one another.</li>
 <hr>
+<li><a href="/jekyll/update/2024/03/30/euclid-book1-pr7.html">
+   <b>Proposition 7: </b></a>Given two straight lines constructed on a straight line (from its extremities) and meeting in a point, there cannot be constructed on the same straight line (from its extremities), and on the same side of it, two other straight lines meeting in another point and equal to the former two respectively, namely each to that which has the same extremity with it.</li>
+<hr>
 </ul>
 <br>
 

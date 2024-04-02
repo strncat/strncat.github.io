@@ -14,7 +14,7 @@ Let the given point be $A$ and the given finite line be $CB$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/1.png" width="40%" class="center"></p>
 Use postule 1 to draw a line between $A$ and one of the end points say $B$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/2.png" width="40%" class="center"></p>
-Next, use <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-pr1.html">proposition 1</a> to draw an equilateral triangle from the drawn line $AB$.
+Next, use <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-pr1.html">proposition 1</a> to draw an equilateral triangle from the drawn line $AB$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/3.png" width="40%" class="center"></p>
 Next, describe a circle with center $B$ and radius $CB$ using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 3</a>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/5.png" width="40%" class="center"></p>

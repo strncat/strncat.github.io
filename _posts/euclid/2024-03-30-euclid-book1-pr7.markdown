@@ -5,8 +5,6 @@ date:   2024-03-30 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<br>
-<br>
 <b>Proposition 7</b>: "Given two straight lines constructed on a straight line (from its extremities) and meeting in a point, there cannot be constructed on the same straight line (from its extremities), and on the same side of it, two other straight lines meeting in another point and equal to the former two respectively, namely each to that which has the same extremity with it."
 <br>
 In other words, given some finite line $BC$. If we draw two straight lines from each end point to meet at a point $A$, then it is not possible to draw another set of straight lines equal to the first set and then have them meet at a different point that $A$. 
@@ -50,10 +48,10 @@ Similarly, the angle $\angle ADC$ is the sum of angles $\angle ADB$ and $\angle 
 <hr>
 <!----------------------------------------------------------------------->
 <br>
-<b>Refererences:</b>
+<b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/dp/B09ZYVSSTP/ref=sspa_dk_detail_0?psc=1&pd_rd_i=B09ZYVSSTP&pd_rd_w=c4vZJ&content-id=amzn1.sym.f734d1a2-0bf9-4a26-ad34-2e1b969a5a75&pf_rd_p=f734d1a2-0bf9-4a26-ad34-2e1b969a5a75&pf_rd_r=WK3ER8B42S7VAPMGWWPZ&pd_rd_wg=8i8vz&pd_rd_r=789c12b3-868b-4990-85da-a643782719d6&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw">Oliver Byrne's Elements of Euclid</a></li>
-<li><a href="https://www.youtube.com/watch?v=K0W3KXvZ7EA&list=PLrkQ3hzZrc4j9gT0z--_CiFzQLeVb32hQ&index=7">Sandy Bultena's Proposition 6 video</a></li>
+<li><a href="https://www.youtube.com/watch?v=K0W3KXvZ7EA&list=PLrkQ3hzZrc4j9gT0z--_CiFzQLeVb32hQ&index=7">Sandy Bultena's Proposition 7 video</a></li>
 </ul>
 
 

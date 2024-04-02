@@ -5,8 +5,6 @@ date:   2024-03-31 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<br>
-<br>
 <b>Proposition 8</b>: "If two triangles have the two sides equal to two sides respectively, and have also the base equal to the base, they will also have the angles equal which are contained by the equal straight lines."
 <br>
 <hr>
@@ -22,7 +20,7 @@ Using <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-p
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr8/1.png" width="45%" class="center"></p>
 
-We claim that $AB$ must coincide with $DE$ and $AC$ must coincide with $DF$. To see this, recall that $AB = DE$ and $AC = DF$ by our hypothesis. Since we have the same base and the lines are equal, then we can use <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr7.html">proposition 7</a> to conclude that the lines $DE$ and $DF$ must meet where the lines $AB$ and $AC$ meet which is point $A$. Therefore, we see that point $D$ must coincide with point $A$. Therefore, we see that all points coincide with each other and therefore the triangles are equal (really?). Consquently, all angles are equal to each other.
+We claim that $AB$ must coincide with $DE$ and $AC$ must coincide with $DF$. To see this, recall that $AB = DE$ and $AC = DF$ by our hypothesis. Since we have the same base and the lines are equal, then we can use <a href="https://strncat.github.io/jekyll/update/2024/03/30/euclid-book1-pr7.html">proposition 7</a> to conclude that the lines $DE$ and $DF$ must meet where the lines $AB$ and $AC$ meet which is point $A$. Therefore, we see that point $D$ must coincide with point $A$. Therefore, we see that all points coincide with each other and therefore the triangles are equal (really?). Consequently, all angles are equal to each other.
 <br>
 <hr>
 <!----------------------------------------------------------------------->

@@ -13,7 +13,7 @@ mathjax: true
 <b>Proof.</b><br>
 Let the greater line be $AB$ and the smaller line be $CD$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr3/1.png" width="40%" class="center"></p>
-Use <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-pr2.html">proposition 2</a> to describe a line starting at $A$ that is equal in length to line $CD$.
+Use <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr2.html">proposition 2</a> to describe a line starting at $A$ that is equal in length to line $CD$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr3/2.png" width="40%" class="center"></p>
 Now, describe a circle with center at point $A$ and radius of length $AE$ using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 3</a>.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr3/3.png" width="45%" class="center"></p>

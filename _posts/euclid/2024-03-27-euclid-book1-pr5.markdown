@@ -5,8 +5,6 @@ date:   2024-03-27 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<br>
-<br>
 <b>Proposition 5</b>: "In isosceles triangles the angles at the base are equal to one another, and, if the equal straight lines be produced further, the angles under the base will be equal to one another."
 <br>
 <hr>
@@ -22,7 +20,7 @@ Using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-p
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr5/1.png" width="50%" class="center"></p>
 
-Define some point arbitrarly chosen along the exteneded line that we drew from point $B$. Let this point be $E$. Using <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr2.html">proposition 2</a>, we can define point $D$ on the other side such that $BE = CD$. 
+Define some point arbitrarily chosen along the extended line that we drew from point $B$. Let this point be $E$. Using <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr2.html">proposition 2</a>, we can define point $D$ on the other side such that $BE = CD$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr5/2.png" width="50%" class="center"></p>
 
@@ -33,7 +31,7 @@ Using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-p
 
 
 <b>Proof.</b><br>
-In the shaded triangles $AEC$ and $ADB$, first, the triangles share an angle $A$. Second, $AC = AB$ by construction. Third, $AE = AD$. This is because $AB = AC$ and $BE = CD$ (both by construction). Therefore $AB + BE = AC + CD$ and so $AE = AD$ by <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">common notion 2</a> (if equals are added to equal parts, then the wholes are equal). Since we have one angle and the two sides connecting it all equal then we can conclude that by <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr4.html">proposition 4</a>, the triangles are equal. 
+In the shaded triangles $AEC$ and $ADB$, first, the triangles share an angle $A$. Second, $AC = AB$ by construction. Third, $AE = AD$. This is because $AB = AC$ and $BE = CD$ (both by construction). Therefore $AB + BE = AC + CD$ and so $AE = AD$ by <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">common notion 2</a> (if equals are added to equal parts, then the wholes are equal). Since we have one angle and the two sides connecting it all equal then we can conclude that by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-pr4.html">proposition 4</a>, the triangles are equal. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr5/4.png" width="80%" class="center"></p>
 
@@ -42,13 +40,13 @@ Consequently, the highlighted angles below are equal. Namely $\angle ACE = \angl
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr5/5.png" width="80%" class="center"></p>
 
-Next, consider the triangles $BEC$ and $BCD$ below. We claim that the triangles are also equal. To see this, we know that angles $\angle AEC = \angle ADB$ are equal (previously proven above). We also know that the sides $BD$ and $CE$ are also equal. lastly, $CD = $BE$ by construction. Therefore, these triangles are also equal in all respects by <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr4.html">proposition 4</a>. 
+Next, consider the triangles $BEC$ and $BCD$ below. We claim that the triangles are also equal. To see this, we know that angles $\angle AEC = \angle ADB$ are equal (previously proven above). We also know that the sides $BD$ and $CE$ are also equal. lastly, $CD = $BE$ by construction. Therefore, these triangles are also equal in all respects by <a href="https://strncat.github.io/jekyll/update/2024/03/25References/euclid-book1-pr4.html">proposition 4</a>. 
 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr5/6.png" width="80%" class="center"></p>
 
 
-Consquently, the highlighted angles will be equal, $\angle BCE = \angle CBD = \beta$ and $\angle EBC = \angle BCD = \gamma$. 
+Consequently, the highlighted angles will be equal, $\angle BCE = \angle CBD = \beta$ and $\angle EBC = \angle BCD = \gamma$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr5/7.png" width="80%" class="center"></p>
 
@@ -67,7 +65,7 @@ So far we've proven $\angle ACE = \angle ABD = \alpha$ and $\angle BCE = \angle 
 <hr>
 <!----------------------------------------------------------------------->
 <br>
-<b>Refererences:</b>
+<b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/dp/B09ZYVSSTP/ref=sspa_dk_detail_0?psc=1&pd_rd_i=B09ZYVSSTP&pd_rd_w=c4vZJ&content-id=amzn1.sym.f734d1a2-0bf9-4a26-ad34-2e1b969a5a75&pf_rd_p=f734d1a2-0bf9-4a26-ad34-2e1b969a5a75&pf_rd_r=WK3ER8B42S7VAPMGWWPZ&pd_rd_wg=8i8vz&pd_rd_r=789c12b3-868b-4990-85da-a643782719d6&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw">Oliver Byrne's Elements of Euclid</a></li>
 <li><a href="https://www.youtube.com/watch?v=Bzm9Db1Lsek">Proposition 5 video</a></li>

@@ -51,6 +51,9 @@ mathjax: true
 <li><a href="/jekyll/update/2024/03/03/euclid-book1-pr11.html">
    <b>Proposition 11: </b></a>To draw a straight line at right angles to a given straight line from a given point on it.</li>
 <hr>
+<li><a href="/jekyll/update/2024/03/04/euclid-book1-pr12.html">
+   <b>Proposition 12: </b></a>To a given infinite straight line, from a given point which is not on it, to draw a perpendicular straight line.</li>
+<hr>
 </ul>
 <br>
 

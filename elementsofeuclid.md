@@ -28,7 +28,7 @@ mathjax: true
    <b>Proposition 3: </b></a>To cut off from the greater of two given unequal straight lines a straight line equal to the less.</li>
 <hr>
 <li><a href="/jekyll/update/2024/03/25/euclid-book1-pr4.html">
-   <b>Proposition 4: </b></a>IF two triangles have two sides of the one respectively equal to two sides of the other, and the angles contained by those equal sides also equal; then their bases or their sides  are also equal: and the remaining and their remaining angles opposite to equal sides are respectively equal: and the triangles are equal in every respect.</li>
+   <b>Proposition 4: </b></a>If two triangles have two sides of the one respectively equal to two sides of the other, and the angles contained by those equal sides also equal; then their bases or their sides  are also equal: and the remaining and their remaining angles opposite to equal sides are respectively equal: and the triangles are equal in every respect.</li>
 <hr>
 <li><a href="/jekyll/update/2024/03/27/euclid-book1-pr5.html">
    <b>Proposition 5: </b></a>In isosceles triangles the angles at the base are equal to one another, and, if the equal straight lines be produced further, the angles under the base will be equal to one another.</li>
@@ -53,6 +53,9 @@ mathjax: true
 <hr>
 <li><a href="/jekyll/update/2024/03/04/euclid-book1-pr12.html">
    <b>Proposition 12: </b></a>To a given infinite straight line, from a given point which is not on it, to draw a perpendicular straight line.</li>
+<hr>
+<li><a href="/jekyll/update/2024/03/05/euclid-book1-pr13.html">
+   <b>Proposition 13: </b></a>If a straight line set up on a straight line make angles, it will make either two right angles or angles equal to two right angles.</li>
 <hr>
 </ul>
 <br>

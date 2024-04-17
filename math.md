@@ -50,6 +50,20 @@ mathjax: true
 <br>
 
 <!------------------------------------------------------------------->  
+  <h3> Elementary Stuff </h3>
+  <ul style="list-style-type:none;">
+    <li><a href="/jekyll/update/2024/04/01/rational-equations.html">
+          Solving a Rational Equation
+    </a></li>
+  </ul>
+  <ul style="list-style-type:none;">
+    <li><a href="/jekyll/update/2024/04/02/partial-decomposition.html">
+          Partial Decomposition
+    </a></li>
+  </ul>
+<br>
+
+<!------------------------------------------------------------------->  
  <h3> Other Topics </h3>
    <ul style="list-style-type:none;">
        <li><a href="/jekyll/update/2023/09/28/implicit-representation.html">

@@ -72,6 +72,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/04/04/graph-function-linear-over-linear.html">
           Graphing a Linear Function Over Another Linear Function
     </a></li>
+    <li><a href="/jekyll/update/2024/04/05/graph-function-absolute-value.html">
+          Graphing the Absolute Value Function
+    </a></li>
   </ul>
 <br>
 

@@ -60,10 +60,9 @@ Now, we want to find at least two points to plot for each section of the graph. 
 <br>
 <b>References:</b>
 <ul>
-<li>Graphics from Desmos! https://www.desmos.com/calculator</li>
+<li><a href="https://www.desmos.com/calculator">Desmos Graphing Calculator</a></li>
+<li><a href="https://netmath.illinois.edu">NetMath: 115</a></li>
 </ul>
-
-
 
 
 

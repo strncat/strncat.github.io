@@ -40,12 +40,9 @@ Finally we want to add the term +1 so that $f = 4\log_2(x-3) + 1$. This shift th
 <br>
 <b>References:</b>
 <ul>
-<li>Graphics from Desmos! https://www.desmos.com/calculator</li>
+<li><a href="https://www.desmos.com/calculator">Desmos Graphing Calculator</a></li>
+<li><a href="https://netmath.illinois.edu">NetMath: 115</a></li>
 </ul>
-
-
-
-
 
 
 

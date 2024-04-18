@@ -69,6 +69,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/04/03/graph-function-logarithm.html">
           Graphing a Logarithmic Function
     </a></li>
+    <li><a href="/jekyll/update/2024/04/04/graph-function-linear-over-linear.html">
+          Graphing a Linear Function Over Another Linear Function
+    </a></li>
   </ul>
 <br>
 

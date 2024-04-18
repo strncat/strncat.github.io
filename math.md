@@ -64,6 +64,16 @@ mathjax: true
 <br>
 
 <!------------------------------------------------------------------->  
+  <h3> Graphing Functions </h3>
+  <ul style="list-style-type:none;">
+    <li><a href="/jekyll/update/2024/04/03/graph-function-logarithm.html">
+          Graphing a Logarithmic Function
+    </a></li>
+  </ul>
+<br>
+
+
+<!------------------------------------------------------------------->  
  <h3> Other Topics </h3>
    <ul style="list-style-type:none;">
        <li><a href="/jekyll/update/2023/09/28/implicit-representation.html">

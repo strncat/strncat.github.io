@@ -59,3 +59,11 @@ $$
 \end{align*}
 $$
 </div>
+
+<!----------------------------------------------------------------------->
+<br>
+<b>References:</b>
+<ul>
+<li><a href="https://www.desmos.com/calculator">Desmos Graphing Calculator</a></li>
+<li><a href="https://netmath.illinois.edu">NetMath: 115</a></li>
+</ul>

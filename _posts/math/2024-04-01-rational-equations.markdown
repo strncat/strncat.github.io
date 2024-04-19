@@ -34,4 +34,10 @@ $$
 so we have two solutions $\{\frac{2}{3}, \frac{7}{2} \}$. Note that we need to make sure that neither of the solutions would make the denominator zero. If $x=-1$ was a solution for example, then we exclude that term from the final list of solutions.
 <br>
 
-
+<!----------------------------------------------------------------------->
+<br>
+<b>References:</b>
+<ul>
+<li><a href="https://www.desmos.com/calculator">Desmos Graphing Calculator</a></li>
+<li><a href="https://netmath.illinois.edu">NetMath: 115</a></li>
+</ul>

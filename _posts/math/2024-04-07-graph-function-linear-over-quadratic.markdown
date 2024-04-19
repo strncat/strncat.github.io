@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Graphing a Linear Function over Another Linear Function"
-date:   2024-04-04 01:01:36 -0700
+title:  "Graphing a Linear Function over a Quadratic Function"
+date:   2024-04-07 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

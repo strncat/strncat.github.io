@@ -166,19 +166,17 @@ reverse(points.begin()+i+1, points.end());
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Full Source Code</b></h4>
-{% highlight c++ %}
-while (hull_candidate != first_convex_hull_point)
-{% endhighlight %}
-Source Code <a href="?">11626 - Convex Hull</a>
+<h4><b>Full Implementation</b></h4>
+Source Code <a href="https://github.com/strncat/competitive-programming/blob/master/uva/computational-geometry/convex-hull/11626-convex-hull.cpp">11626 - Convex Hull</a>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Practice Problems</b></h4>
-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2673">11626 Convex Hull</a>
-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=622">681 Convex Hull Finding</a>
-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2037">11096 - Nails</a>
-<br>
+<ul>
+<li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2673">11626 Convex Hull</a></li>
+<li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=622">681 Convex Hull Finding</a></li>
+<li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2037">11096 - Nails</a></li>
+</ul>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>

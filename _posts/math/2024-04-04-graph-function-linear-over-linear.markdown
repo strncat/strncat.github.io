@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Graphing a Linear Function over Another Linear Function"
+title:  "Graphing Rational Functions: (Example: Linear over Linear)"
 date:   2024-04-04 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -18,7 +18,7 @@ How can we approach this?
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Vertical Asymptotes</b></h4>
-The first step is finding the asymptotes. For the vertical asymptote, we want to find what makes the denominator equal to zero. The function is already in a simple form (otherwise we'd need to simplify first). We can then just solve,
+The first step is finding the asymptotes. For the vertical asymptote, we want to find what makes the denominator equal to zero. The function is already in a simple form (otherwise we'd need to simplify it first (why? because the factors that cancel with the numerator will be holes in the graph rather than asymptotes)). We can then just solve,
 <div>
 $$
 \begin{align*}
@@ -32,7 +32,7 @@ So $x = 2$ will be our vertical asymptote.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Horizontal Asymptotes</b></h4>
-Next, we need to find the horizontal asymptote. Here we have three cases. Suppose we have the function 
+Next, we need to find the horizontal asymptote. Let's revise the three cases we did before. Suppose we have the function 
 <div>
 $$
 \begin{align*}
@@ -42,9 +42,9 @@ $$
 </div>
 Then,
 <ul>
-<li> if $m > n$, then the horizontal asymptote is $y = 0$.</li>
+<li> if $m < n$, then the horizontal asymptote is $y = 0$.</li>
 <li> if $m = n$, then the asymptote is the leading coefficient of the numerator over the leading the coefficient of the denominator. $\frac{a_m}{a_n}$. </li>
-<li> if $m < n$, we will not have any asymptotes.</li>
+<li> if $m = n + 1$, we will have a slanted asymptote.</li>
 </ul>
 Here, $m = n$, therefore, the horizontal asymptote is $y = -3$.
 <br>

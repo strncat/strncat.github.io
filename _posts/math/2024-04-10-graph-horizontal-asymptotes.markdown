@@ -6,7 +6,10 @@ categories: jekyll update
 mathjax: true
 ---
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/horizontal-asymptotes/00.png" width="67%" class="center"></p>
-Given some function $f$. A horizontal asymptote is a line $y=a$ where as the input $x$ to the function approaches negative or positive infinity, we will find that $f(x)$ will approach $b$. (So just the opposite of vertical asymptotes where as $x$ approaches $a$, we will approach positive or negative infinity. For example, for $f(x)=\frac{1}{x}$, as we plug in very large values of $x$ (whether positive or negative), we will notice that $f(x)$ will get closer to zero! So the line $y=0$ is a horizontal asymptote for the graph of the function $f(x)=\frac{1}{x}$.
+Given some function $f$. A horizontal asymptote is a line $y=b$ where as $x$ approaches negative or positive infinity, $f(x)$  will approach $b$. (So just the opposite of vertical asymptotes where as $x$ approaches $a$, $f$ will approach positive or negative infinity). 
+<br>
+<br>
+For example, for $f(x)=\frac{1}{x}$, as we plug in very large values of $x$ (whether positive or negative), we will notice that $f(x)$ will get closer to zero! So the line $y=0$ is a horizontal asymptote for the graph of the function $f(x)=\frac{1}{x}$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

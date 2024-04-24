@@ -7,7 +7,10 @@ mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/vertical-asymptotes/00.png" width="67%" class="center"></p>
-Given some function $f$. A vertical asymptote is a line $x=a$ where as the input $x$ to the function approaches $a$, $f(x)$ will approach either positive or negative infinity. For example, for $f(x)=\frac{1}{x}$ in the above graph, we know the value of $f$ at $x = 0.1$, is $10$. Now if we plug in $x = 0.01$, $f$ will be $100$. If we further try $x= 0.000001$, we'll have $f(x) = 1,000,000$. So as $x$ approaches 0, $f(x)$ gets really large and approaches positive infinity. Similarly, as $x$ approaches zero coming from the negative side of the number line, it approaches negative infinity. Because $x = -0.000001$, will get us $f(x) = -1,000,000$. So the line $x=0$ is a vertical asymptote for the graph of the function $f(x)=\frac{1}{x}$.
+Given some function $f$. A vertical asymptote is a line $x=a$ where as $x$ approaches $a$, $f(x)$ will approach either positive or negative infinity. 
+<br>
+<br>
+For example, for $f(x)=\frac{1}{x}$ in the above graph, we know the value of $f$ at $x = 0.1$, is $10$. Now if we plug in $x = 0.01$, $f$ will be $100$. If we further try $x= 0.000001$, we'll have $f(x) = 1,000,000$. So as $x$ approaches 0, $f(x)$ gets really large and approaches positive infinity. Similarly, as $x$ approaches zero coming from the negative side of the number line, it approaches negative infinity. Because $x = -0.000001$, will get us $f(x) = -1,000,000$. So the line $x=0$ is a vertical asymptote for the graph of the function $f(x)=\frac{1}{x}$.
 <br>
 <br>
 Note here for $f(x)=\frac{1}{x}$, that as $x$ approaches positive infinity for example, the function $f$ approaches $0$. This asymptote at $y = 0$, is a horizontal asymptote that will be discussed in the next post.

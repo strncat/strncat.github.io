@@ -6,10 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/slanted-asymptotes/0.png" width="60%" class="center"></p>
-Given some function $f$, the non-horizontal line $y=mx+b (m \neq b)$ is a slant asymptote if as $x$ approaches negative or positive infinity, $f(x)$ will approach $mx+b$.
-<br>
-<br>
-A slanted asymptote occurs when the degree of the numerator ($m$) is larger than the degree of the denominator ($n$) by exactly 1 so $m = n + 1$. To re-iterate from the horizontal asymptotes post, there are multiple cases. The case when $m = n$. Here, we'll have a horizontal asymptote at $a_m/a_n$ where $a_m$ and $a_n$ are the leading coefficients of each of the highest terms. When $m < n$, then we'll have a horizontal asymptote at $y = 0$. Now, we're studying the last case where $m > n$. But we're only focusing on one sub-case where $m = n+1$. For example, suppose we have the function,
+Given some function $f$. A slanted asymptote occurs when the degree of the numerator ($m$) is larger than the degree of the denominator ($n$) by exactly 1 so $m = n + 1$. To re-iterate from the horizontal asymptotes post, there are multiple cases. The case when $m = n$. Here, we'll have a horizontal asymptote at $a_m/a_n$ where $a_m$ and $a_n$ are the leading coefficients of each of the highest terms. When $m < n$, then we'll have a horizontal asymptote at $y = 0$. Now, we're studying the last case where $m > n$. But we're only focusing on one sub-case where $m = n+1$. For example, suppose we have the function,
 <div>
 $$
 \begin{align*}

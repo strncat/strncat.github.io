@@ -8,6 +8,9 @@ mathjax: true
 <!------------------------------------------------------------------->  
   <h3> Trigonometry </h3>
   <ul style="list-style-type:none;">
+    <li><a href="/jekyll/update/2024/04/12/trigonometry-cheat-sheet.html">
+           Trigonometry Cheat Sheet
+      </a></li>
     <li><a href="/jekyll/update/2024/03/26/radians.html">
           Radians
     </a></li>
@@ -16,6 +19,9 @@ mathjax: true
     </a></li>
     <li><a href="/jekyll/update/2024/03/28/unit-circle-point.html">
           Finding a Point on the Unit Circle
+    </a></li>
+    <li><a href="/jekyll/update/2024/04/13/graphing-sine-cosine.html">
+          Graphing the Sine and Cosine Functions
     </a></li>
   </ul>
 <br>

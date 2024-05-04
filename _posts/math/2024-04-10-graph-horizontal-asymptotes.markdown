@@ -27,7 +27,7 @@ f(x) \approx \frac{a_mx}{a_nx}
 \end{align*}
 $$
 </div>
-The degree of the function in the numerator is $m$ and the degree of the function in the denominator is $n$. Horizontal asymptotes occur only when $m \leq n$.
+The degree of the numerator is $m$ and the degree of the denominator is $n$. Horizontal asymptotes occur only when $m \leq n$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

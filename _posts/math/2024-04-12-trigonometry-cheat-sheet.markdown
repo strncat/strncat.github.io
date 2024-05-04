@@ -7,6 +7,17 @@ mathjax: true
 ---
 Adding identities and formulas as they come up while learning trigonometry!
 <!------------------------------------------------------------------------------------>
+<h4><b>Pythagorean Identities</b></h4>
+<div>
+$$
+\begin{align*}
+sin^2(\theta) + \cos^2(\theta) &= 1 \\
+tan^2(\theta) + 1 &= \sec^2(\theta) \\
+1 + cot^2(\theta) &= \csc^2(\theta)
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
 <h4><b>Low of Sines</b></h4>
 <div>
 $$
@@ -58,12 +69,12 @@ $$
 <div>
 $$
 \begin{align*}
-\sin(x) = \cos(\frac{\pi}{2}-x) \\
-\cos(x) = \sin(\frac{\pi}{2}-x) \\
-\tan(x) = \cot(\frac{\pi}{2}-x) \\
-\cot(x) = \tan(\frac{\pi}{2}-x) \\
-\sec(x) = \csc(\frac{\pi}{2}-x) \\
-\csc(x) = \sec(\frac{\pi}{2}-x) \\
+\sin(x) = \cos\big(\frac{\pi}{2}-x\big) \\
+\cos(x) = \sin\big(\frac{\pi}{2}-x\big) \\
+\tan(x) = \cot\big(\frac{\pi}{2}-x\big) \\
+\cot(x) = \tan\big(\frac{\pi}{2}-x\big) \\
+\sec(x) = \csc\big(\frac{\pi}{2}-x\big) \\
+\csc(x) = \sec\big(\frac{\pi}{2}-x\big) \\
 \end{align*}
 $$
 </div>
@@ -72,10 +83,22 @@ $$
 <div>
 $$
 \begin{align*}
-\sin(\alpha)\sin(\beta) = \frac{1}{2}(\cos(\alpha - \beta) - \cos(\alpha + \beta)) \\
-\cos(\alpha)\cos(\beta) = \frac{1}{2}(\cos(\alpha - \beta) + \cos(\alpha + \beta)) \\
-\sin(\alpha)\cos(\beta) = \frac{1}{2}(\sin(\alpha + \beta) + \sin(\alpha - \beta)) \\
-\sin(\alpha)\cos(\beta) = \frac{1}{2}(\sin(\alpha + \beta) - \sin(\alpha - \beta)) \\
+\sin(\alpha)\cos(\beta) = \frac{1}{2}\big[\sin(\alpha + \beta) + \sin(\alpha - \beta)\big] \\
+\cos(\alpha)\sin(\beta) = \frac{1}{2}\big[\sin(\alpha + \beta) - \sin(\alpha - \beta)\big] \\
+\sin(\alpha)\sin(\beta) = \frac{1}{2}\big[\cos(\alpha - \beta) - \cos(\alpha + \beta)\big] \\
+\cos(\alpha)\cos(\beta) = \frac{1}{2}\big[\cos(\alpha - \beta) + \cos(\alpha + \beta)\big] \\
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<h4><b>Sum to Product Formulas</b></h4>
+<div>
+$$
+\begin{align*}
+\sin(\alpha) + \sin(\beta) = 2\sin\big(\frac{\alpha + \beta}{2}\big)\cos\big(\frac{\alpha - \beta}{2}\big)  \\
+\sin(\alpha) - \sin(\beta) = 2\cos\big(\frac{\alpha + \beta}{2}\big)\sin\big(\frac{\alpha - \beta}{2}\big)  \\
+\cos(\alpha) + \cos(\beta) = 2\cos\big(\frac{\alpha + \beta}{2}\big)\cos\big(\frac{\alpha - \beta}{2}\big)  \\
+\cos(\alpha) - \cos(\beta) = -2\sin\big(\frac{\alpha + \beta}{2}\big)\sin\big(\frac{\alpha - \beta}{2}\big)  \\
 \end{align*}
 $$
 </div>

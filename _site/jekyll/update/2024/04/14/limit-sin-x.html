@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">strncat&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/euclid/">Euclid&#39;s Elements</a><a class="page-link" href="/math/">Math</a><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The Limit of sin(x) / x</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-04-14T01:01:36-07:00" itemprop="datePublished">Apr 14, 2024
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I thought this was a really cool example so here it goes: Evaluate the following:</p>
+<div>
+$$
+\begin{align*}
+\lim_{x\to 0} \frac{\sin(x)}{x}
+\end{align*}
+$$
+</div>
+<p>To do this, we’ll need to relate a few quantities that are bigger and smaller than $\sin(x)/x$. Let’s start:
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Area of the Triangle $ABC$</b></h4>
+<p>Suppose we have the following triangle $ABC$ inside the unit circle.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/calculus/limit-sin-x/0.png" width="60%" class="center" /></p>
+<p>We know the area of a triangle is,</p>
+<div>
+$$
+\begin{align*}
+a = \frac{1}{2}bh
+\end{align*}
+$$
+</div>
+<p>where $b$ is the length of the base and $h$ is the height of the triangle. Since this is a unit circle then $b = AB = 1$ because the radius of the unit circle is 1 by construction. 
+<br /><br />
+What about the height? The height is $CE$. What is $CE$? If we look at the smaller triangle, we’ll see $\sin(x) = \frac{opp}{hyp} = \frac{CE}{1} = CE$. So the height is just $\sin(x)$. 
+<br /><br />
+So the area of the pink triangle $ABC$ is therefore,</p>
+<div>
+$$
+\begin{align*}
+a &amp;= \frac{1}{2}bh \\
+a &amp;= \frac{1}{2}(1)(\sin(x)) \\
+&amp;= \frac{sin(x)}{2}.
+\end{align*}
+$$
+</div>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>The Area of the Sector $ABC$</b></h4>
+<p>Now we want to calculate the area of the following shaded sector,</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/calculus/limit-sin-x/1.png" width="60%" class="center" /></p>
+<p>The area of the sector is</p>
+<div>
+$$
+\begin{align*}
+sector &amp;= \frac{1}{2}r\theta
+&amp;= \frac{1}{2}x
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<h4><b>The Area of the Triangle $ABD$</b></h4>
+<p>The last area we’re interested in is the area of the biggest (extended) triangle,</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/calculus/limit-sin-x/2.png" width="65%" class="center" /></p>
+<p>Again, we know the area of a triangle is</p>
+<div>
+$$
+\begin{align*}
+a = \frac{1}{2}bh
+\end{align*}
+$$
+</div>
+<p>We established earlier that the base $AB$ is 1. What about the height? The angle $\angle ABD$ is a right angle by construction so $DB$ is equal to the height of the triangle. What is $DB$? We can’t use $\sin(x)$ like last time because we don’t know anything about the length of $AD$. However we do know the length of $AB$ and one way to relate $AB$ and $DB$ together is through $\tan(x)$. So,</p>
+<div>
+$$
+\begin{align*}
+\tan(x) &amp;= \frac{opp}{adj} \\
+&amp;= \frac{DB}{1} \quad (\text{because $adj = r = 1$})\\
+&amp;= DB \\
+\end{align*}
+$$
+</div>
+<p>The length of the bigger triangle $ABD$ is therefore,</p>
+<div>
+$$
+\begin{align*}
+a &amp;= \frac{1}{2}bh \\
+a &amp;= \frac{1}{2}(1)(\tan(x)) \\
+&amp;= \frac{tan(x)}{2}.
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<h4><b>Finding the Limit</b></h4>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/calculus/limit-sin-x/2.png" width="65%" class="center" /></p>
+<p>Looking back at the areas of the triangles and sector, we know that the area of the biggest triangle must be greater than the area of the sector and the area of the sector is greater than the area of the smaller triangle (proof?). Using this we can write the following inequality,</p>
+<div>
+$$
+\begin{align*}
+\frac{sin(x)}{2} &lt; \frac{1}{2}x &lt; \frac{tan(x)}{2}.
+\end{align*}
+$$
+</div>
+<p>We can further simplify and also divide by $\sin(x)$. Note here that $sin(x)$ is postive,</p>
+<div>
+$$
+\begin{align*}
+sin(x) &amp;&lt; x &lt; tan(x) \\
+\frac{sin(x)}{sin(x)} &amp;&lt; \frac{x}{sin(x)} &lt; \frac{tan(x)}{sin(x)} \\
+\frac{sin(x)}{sin(x)} &amp;&lt; \frac{x}{sin(x)} &lt; \frac{tan(x)}{sin(x)} \\
+1 &amp;&lt; \frac{x}{sin(x)} &lt; \frac{tan(x)}{sin(x)} \\
+1 &amp;&lt; \frac{x}{sin(x)} &lt; \frac{1}{cos(x)} \\
+1 &amp;\geq \frac{sin(x)}{x} \geq cos(x) \\
+\end{align*}
+$$
+</div>
+<p>If we. try to find the limit as $x$ goes to 0 of the first and last term we will find that</p>
+<div>
+$$
+\begin{align*}
+\lim_{x \to 0} 1 = 1.
+\end{align*}
+$$
+</div>
+<p>Similarly we can also find the limit of the last term here</p>
+<div>
+$$
+\begin{align*}
+\lim_{x \to 0} \cos(x) = 1.
+\end{align*}
+$$
+</div>
+<p>We can now use the <a href="https://en.wikipedia.org/wiki/Squeeze_theorem">Squeeze Theorem</a> to conclude that</p>
+<div>
+$$
+\begin{align*}
+\lim_{x \to 0} \frac{sin(x)}{x} = 1.
+\end{align*}
+$$
+</div>
+<p>And that’s what we wanted to find!</p>
+
+<p><br />
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=VSqOZNULRjQ&amp;list=PLF797E961509B4EB5&amp;index=6">Professor Leonard's Calculus 1</a></li>
+</ul>
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2024/04/14/limit-sin-x.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/04/14/limit-sin-x; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2024/04/14/limit-sin-x.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">strncat&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">strncat&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

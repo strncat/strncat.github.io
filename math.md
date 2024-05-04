@@ -27,6 +27,15 @@ mathjax: true
 <br>
 
 <!------------------------------------------------------------------->  
+  <h3> Calculus </h3>
+  <ul style="list-style-type:none;">
+    <li><a href="/jekyll/update/2024/04/14/limit-sin-x.html">
+          The Limit of sin(x) / x
+    </a></li>
+  </ul>
+<br>
+
+<!------------------------------------------------------------------->  
    <h3> Linear Algebra </h3>
    <ul style="list-style-type:none;">
        <li><a href="/jekyll/update/2023/09/11/vectors.html">
@@ -59,21 +68,6 @@ mathjax: true
 <br>
 
 <!------------------------------------------------------------------->  
-  <h3> Elementary Stuff </h3>
-  <ul style="list-style-type:none;">
-    <li><a href="/jekyll/update/2024/04/01/rational-equations.html">
-          Solving a Rational Equation
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/02/partial-decomposition.html">
-          Partial Decomposition
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/06/inverse-rational-function.html">
-          Inverse of a Rational Function
-    </a></li>
-  </ul>
-<br>
-
-<!------------------------------------------------------------------->  
   <h3> Graphing Functions </h3>
   <ul style="list-style-type:none;">
     <li><a href="/jekyll/update/2024/04/09/graph-vertical-asymptotes.html">
@@ -91,6 +85,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/04/07/graph-function-quadratic-over-linear.html">
           Graphing Rational Functions (Example: Quadratic Over Linear)
     </a></li>
+    <li><a href="/jekyll/update/2024/04/15/graph-function-exponential.html">
+          Graphing the Exponential Function
+    </a></li>
     <li><a href="/jekyll/update/2024/04/03/graph-function-logarithm.html">
           Graphing a Logarithmic Function
     </a></li>
@@ -100,6 +97,20 @@ mathjax: true
   </ul>
 <br>
 
+<!------------------------------------------------------------------->  
+  <h3> Elementary Stuff </h3>
+  <ul style="list-style-type:none;">
+    <li><a href="/jekyll/update/2024/04/01/rational-equations.html">
+          Solving a Rational Equation
+    </a></li>
+    <li><a href="/jekyll/update/2024/04/02/partial-decomposition.html">
+          Partial Decomposition
+    </a></li>
+    <li><a href="/jekyll/update/2024/04/06/inverse-rational-function.html">
+          Inverse of a Rational Function
+    </a></li>
+  </ul>
+<br>
 
 <!------------------------------------------------------------------->  
  <h3> Other Topics </h3>

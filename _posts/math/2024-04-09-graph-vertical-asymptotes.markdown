@@ -7,15 +7,20 @@ mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/vertical-asymptotes/00.png" width="67%" class="center"></p>
-Given some function $f$. A vertical asymptote is a line $x=a$ where as the input $x$ to the function approaches $a$, $f(x)$ will approach either positive or negative infinity. For example, for $f(x)=\frac{1}{x}$ in the above graph, we know the value of $f$ at $x = 0.1$, is $10$. Now if we plug in $x = 0.01$, $f$ will be $100$. If we further try $x= 0.000001$, we'll have $f(x) = 1,000,000$. So as $x$ approaches 0, $f(x)$ gets really large and approaches positive infinity. Similarly, as $x$ approaches zero coming from the negative side of the number line, it approaches negative infinity. Because $x = -0.000001$, will get us $f(x) = -1,000,000$. So the line $x=0$ is a vertical asymptote for the graph of the function $f(x)=\frac{1}{x}$.
+Given some function $f$. A vertical asymptote is a line $x=a$ where as the input $x$ to the function approaches $a$, $f(x)$ will approach either positive or negative infinity. 
 <br>
 <br>
-Note here for $f(x)=\frac{1}{x}$, that as $x$ approaches positive infinity for example, the function $f$ approaches $0$. This asymptote at $y = 0$, is a horizontal asymptote that will be discussed in the next post.
+For example take the function $f(x)=\frac{1}{x}$ graphed above. $f(0.1) = 10$, $f(0.01) = 100$ and $f(0.000001) = 1000000$. We notice here that as $x$ approaches 0, $f(x)$ gets really large and approaches positive infinity. Similarly, as $x$ approaches zero coming from the negative side of the number line, it approaches negative infinity. $f(-0.000001) = -1,000,000$ and so on. 
+<br><br>
+So the line $x=0$ is a vertical asymptote for the graph of the function $f(x)=\frac{1}{x}$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Finding a Vertical Asymptote</b></h4>
-A vertical asymptote occurs when the function $f$ has "domain issues", meaning that for some input $b$, the denominator becomes zero. In that case, we exclude these values from the domain. The function $f$ is simply not defined at these values where the denominator is zero. When graphing $f$ however, we'll have two cases. This problematic $b$ can either create a vertical asymptote at $x=b$ or just a hole in the graph. 
+A vertical asymptote occurs when the function $f$ has "domain issues", meaning that for some input $b$, the denominator becomes zero and so we can't really plug this value in $f$ and we typically recognize that by excluding $b$ from the domain of $f$. When graphing $f$ however, we'll have two cases. This problematic $b$ can either create a vertical asymptote at $x=b$ or just a hole in the graph.
+<br>
+<br>
+For example in the example of $1/x$ (graphed above), $x = 0$ is not in the domain of $f$. Here $x = 0$ is a vertical asymptote rather than a hole in the graph. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

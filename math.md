@@ -25,10 +25,12 @@ mathjax: true
     </a></li>
   </ul>
 <br>
-
 <!------------------------------------------------------------------->  
   <h3> Calculus </h3>
   <ul style="list-style-type:none;">
+    <li><a href="/jekyll/update/2024/04/16/limit-rational-functions.html">
+            The Limit of Rational Functions As x Approaches Plus or Negative Infinity
+    </a></li>
     <li><a href="/jekyll/update/2024/04/14/limit-sin-x.html">
           The Limit of sin(x) / x
     </a></li>

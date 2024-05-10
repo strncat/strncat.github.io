@@ -14,7 +14,7 @@ $$
 $$
 </div>
 
-The easiest way to solve a rational equation like this is just to multiply both sides by the LCD (least common multiple) of all the denominators. We can see above that the LCD is $(x+1)(x+2)$ so let's multiply both sides of the equation by $(x+1)(x+2)$.
+The easiest way to solve a rational equation like this is just to multiply both sides by the LCD (least common multiple) of all the denominators. We can see above that the LCD is $$(x+1)(x+2)$$ so let's multiply both sides of the equation by $$(x+1)(x+2)$$.
 
 <div>
 $$
@@ -31,7 +31,7 @@ $$
 $$
 </div>
 
-so we have two solutions $\{\frac{2}{3}, \frac{7}{2} \}$. Note that we need to make sure that neither of the solutions would make the denominator zero. If $x=-1$ was a solution for example, then we exclude that term from the final list of solutions.
+so we have two solutions $$\{\frac{2}{3}, \frac{7}{2} \}$$. Note that we need to make sure that neither of the solutions would make the denominator zero. If $x=-1$ was a solution for example, then we exclude that term from the final list of solutions.
 <br>
 
 <!----------------------------------------------------------------------->

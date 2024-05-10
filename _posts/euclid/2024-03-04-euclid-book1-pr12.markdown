@@ -11,33 +11,33 @@ mathjax: true
 <!----------------------------------------------------------------------->
 <br>
 <b>Proof.</b><br>
-Let $AB$ be the given infinite straight line and $C$ the given point that is not on it. $C$ will be on either side of the line but not on it since the line is infinite. 
+Let $$AB$$ be the given infinite straight line and $$C$$ the given point that is not on it. $$C$$ will be on either side of the line but not on it since the line is infinite. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr12/0.png" width="60%" class="center"></p>
 
-Let a point $D$ be taken at random on the other side of the line. 
+Let a point $$D$$ be taken at random on the other side of the line. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr12/1.png" width="60%" class="center"></p>
 
-Using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 3</a>, describe a circle with center $C$ and radius $CD$. Let the intersection points of the circle with the line $AB$ be $G$ and $E$.
+Using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 3</a>, describe a circle with center $$C$$ and radius $$CD$$. Let the intersection points of the circle with the line $$AB$$ be $$G$$ and $$E$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr12/2.png" width="60%" class="center"></p>
 
-Use <a href="https://strncat.github.io/jekyll/update/2024/03/02/euclid-book1-pr10.html">proposition 10</a> to bisect the line $GE$ at $H$.
+Use <a href="https://strncat.github.io/jekyll/update/2024/03/02/euclid-book1-pr10.html">proposition 10</a> to bisect the line $$GE$$ at $$H$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr12/3.png" width="60%" class="center"></p>
 
 
-Draw a line between points $C$ and $H$ using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 1</a>. Similarly draw lines between $C$ and $G$, and again between $C$ and $E$.
+Draw a line between points $$C$$ and $$H$$ using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 1</a>. Similarly draw lines between $$C$$ and $$G$$, and again between $$C$$ and $$E$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr12/4.png" width="60%" class="center"></p>
 
 
-We claim that $CH$ has been drawn perpendicular to the line $AB$. To see this, notice that in the triangles $CGH$ and $CHE$,  $CG = CE$ by definition 15, $CH$ is common to both triangles and $HG = HE$ by construction. Therefore, we can conclude by proposition 8 that the angles $\angle CHG$ and $\angle CHE$ are equal.
+We claim that $$CH$$ has been drawn perpendicular to the line $$AB$$. To see this, notice that in the triangles $$CGH$$ and $$CHE$$,  $$CG = CE$$ by definition 15, $$CH$$ is common to both triangles and $$HG = HE$$ by construction. Therefore, we can conclude by proposition 8 that the angles $$\angle CHG$$ and $$\angle CHE$$ are equal.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr12/5.png" width="60%" class="center"></p>
 
-But when a straight line is set up on another straight line makes the adjacent angles equal, then each of the equal angles is right and the straight line standing on the other straight line is called a perpendicular to that on which it stands (definition 10). Therefore, we can conclude that $CH$ has been drawn perpendicular to the given infinite line $AB$ from the given point $C$ as required.
+But when a straight line is set up on another straight line makes the adjacent angles equal, then each of the equal angles is right and the straight line standing on the other straight line is called a perpendicular to that on which it stands (definition 10). Therefore, we can conclude that $$CH$$ has been drawn perpendicular to the given infinite line $$AB$$ from the given point $$C$$ as required.
 
 
 <br>

@@ -49,7 +49,7 @@ Notice that we had $v$ first in the matrix but in the above figure we see that $
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Three Dimensions</b></h4>
-But .... this isn't really a cross product. A cross product produces a new vector. In three dimensions, we will take two vectors and their cross product will be a new vector. Take two vectors and consider the parallelogram that they span. Suppose now that this area is 2.5. The new vector that we get from the cross product is a vector whose direction is prependicular to that parallelogram and its length is equal to the area of the parallelogram which is 2.5. Which perpendicular direction? We use the right hand rule. Put the forefinger of your right hand in the direction of $v$ and stick out the middle finger in the direction of $w$. Then where the thumb is pointing is the direction of the cross product. 
+But .... this isn't really a cross product. A cross product produces a new vector. In three dimensions, we will take two vectors and their cross product will be a new vector. Take two vectors and consider the parallelogram that they span. Suppose now that this area is 2.5. The new vector that we get from the cross product is a vector whose direction is perpendicular$$ to that parallelogram and its length is equal to the area of the parallelogram which is 2.5. Which perpendicular direction? We use the right hand rule. Put the forefinger of your right hand in the direction of $v$ and stick out the middle finger in the direction of $w$. Then where the thumb is pointing is the direction of the cross product. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

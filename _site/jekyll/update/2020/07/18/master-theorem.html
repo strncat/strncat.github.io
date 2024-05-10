@@ -5,26 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
->
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
->
-</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 </head>
@@ -62,7 +44,7 @@
 <br />
 <br /></p>
 <h4><b>The Master Theorem</b></h4>
-<p>Let $T(n) = aT(\frac{n}{b})+O(n^d)$ be a recurrence where $a \geq 1$ and $b \geq 1$. Then,</p>
+<p>Let \(T(n) = aT(\frac{n}{b})+O(n^d)\) be a recurrence where \(a \geq 1\) and \(b \geq 1\). Then,</p>
 <div center="">
 $$
 \begin{align*}
@@ -76,9 +58,9 @@ $$
 </div>
 <p>If this recurrence represents the running time of an algorithm then,</p>
 <ul>
-  <li>$a$ is the number of subproblems.</li>
-  <li>$b$ is the factor by which the input is decreasing at each level of the recursion.</li>
-  <li>$n^d$ is the total time needed to create the subproblems and combine their solutions. 
+  <li>\(a\) is the number of subproblems.</li>
+  <li>\(b\) is the factor by which the input is decreasing at each level of the recursion.</li>
+  <li>\(n^d\) is the total time needed to create the subproblems and combine their solutions. 
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></li>
@@ -92,7 +74,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>We can quickly see that we have $a = 4$, $b = 2$ and $d = 1$. Therefore, $a &gt; b^d$ and so by using the master theorem, we can see that $T(n) = O(n^{\log_2(4)}) = O(n^2)$.
+<p>We can quickly see that we have \(a = 4\), \(b = 2\) and \(d = 1\). Therefore, \(a &gt; b^d\) and so by using the master theorem, we can see that \(T(n) = O(n^{\log_2(4)}) = O(n^2)\).
 <br />
 <br />
 <!-----------------------------------------------------------------------------------></p>
@@ -108,9 +90,9 @@ T(n) &amp;= T(\frac{n}{2}) + n. \quad T(1) = 1.
 \end{align*}
 $$
 </div>
-<p>Clearly by the master theorem (case 2), the solution should be $O(n)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion and at the same time, the decrease in the number of subproblem is more than the increase in the number of subproblems. So, the work is dominated by the top level of the recursion tree.
+<p>Clearly by the master theorem (case 2), the solution should be \(O(n)\). Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion and at the same time, the decrease in the number of subproblem is more than the increase in the number of subproblems. So, the work is dominated by the top level of the recursion tree.
 <img src="http://localhost:4000/assets/analysis/master-theorem/1.png" width="100%" />
-To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$.</p>
+To be precise, we sum all the work done across all levels and use the geometric series \(\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}\).</p>
 <div center="">
 $$
 \begin{align*}
@@ -135,9 +117,9 @@ T(n) &amp;= 4T(\frac{n}{2}) + n. \quad T(1) = 1.
 \end{align*}
 $$
 </div>
-<p>Again by the master theorem (case 3), the solution should be $O(n^2)$. Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion but at the same time, the number of subproblems is actually increasing by a lot more! So, the work is dominated by the bottom level of recursion tree. Drawing only the first three levels, you can see, the bottom level will carry most of the work
+<p>Again by the master theorem (case 3), the solution should be \(O(n^2)\). Intuitively, we’re reducing the size of each subproblem by half at each level of the recursion but at the same time, the number of subproblems is actually increasing by a lot more! So, the work is dominated by the bottom level of recursion tree. Drawing only the first three levels, you can see, the bottom level will carry most of the work
 <img src="http://localhost:4000/assets/analysis/master-theorem/2.png" width="100%" />
-To be precise, we sum all the work done across all levels and use the geometric series $\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}$.</p>
+To be precise, we sum all the work done across all levels and use the geometric series \(\sum_{t=0}^{N}x^t = \frac{x^{N+1} - 1}{x - 1}\).</p>
 <div center="">
 $$
 \begin{align*}
@@ -161,7 +143,7 @@ T(n) &amp;= 2T(\frac{n}{2}) + n. \quad T(1) = 1.
 \end{align*}
 $$
 </div>
-<p>By the master theorem (case 1), the solution should be $O(\log(n))$. Intuitively, we’re reducing the size of the problem by half at each level of the recursion and at the same time, we’re doubling the number of subproblems (balanced case). So, at each level, we have the same amount of work. If we draw only the first three levels, you’ll notice that at each level, we’re doing precisely $n$ total amount of work.
+<p>By the master theorem (case 1), the solution should be \(O(\log(n))\). Intuitively, we’re reducing the size of the problem by half at each level of the recursion and at the same time, we’re doubling the number of subproblems (balanced case). So, at each level, we have the same amount of work. If we draw only the first three levels, you’ll notice that at each level, we’re doing precisely \(n\) total amount of work.
 <img src="http://localhost:4000/assets/analysis/master-theorem/3.png" width="100%" />
 To make this formal, we sum all the work done across all levels,</p>
 <div center="">
@@ -184,7 +166,7 @@ T(n) &amp;= aT(\frac{n}{b})+O(n^d) \\
 \end{align*}
 $$
 </div>
-<p>We will assume that $T(1) = 1$ for simplicity. To solve the recurrence, we will use the recursion tree method similar exactly to what we did for <a href="https://strncat.github.io/jekyll/update/2019/07/18/merge-sort-analysis.html">Mergesort</a>. Let’s build the same table that we built for Mergesort to calculate the amount of work done per each level of recursion and get the following,
+<p>We will assume that \(T(1) = 1\) for simplicity. To solve the recurrence, we will use the recursion tree method similar exactly to what we did for <a href="https://strncat.github.io/jekyll/update/2019/07/18/merge-sort-analysis.html">Mergesort</a>. Let’s build the same table that we built for Mergesort to calculate the amount of work done per each level of recursion and get the following,
 <br />
 <br />
 <img src="http://localhost:4000/assets/analysis/master-theorem/summary.png" width="100%" />
@@ -200,7 +182,7 @@ T(n) &amp;= \sum_{t=0}^{\log_b(n)} a^t c(\frac{n}{b^t})^d \\
 $$
 </div>
 <p>So now we can handle each case. <br />
-<b>Case 1:</b> $a = b^d$</p>
+<b>Case 1:</b> \(a = b^d\)</p>
 <div center="">
 $$
 \begin{align*}
@@ -213,7 +195,7 @@ T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{b^d}{b^d})^t \\
 $$
 </div>
 <p><br />
-<b>Case 2:</b> $a &lt; b^d$</p>
+<b>Case 2:</b> \(a &lt; b^d\)</p>
 <div center="">
 $$
 \begin{align*}
@@ -221,7 +203,7 @@ T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t
 \end{align*}
 $$
 </div>
-<p>We note in the above sum that $\frac{a}{b^d} &lt; 1$. We can then use the geometric series,</p>
+<p>We note in the above sum that \(\frac{a}{b^d} &lt; 1\). We can then use the geometric series,</p>
 <div center="">
 $$
 \begin{align*}
@@ -229,7 +211,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>When $|x| &lt; 1$ and the summation is infinite, this sum approaches $\frac{1}{1-x}$. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $\frac{1}{1-a/b^d}$ which is some constant that doesn’t depend on $n$. Therefore,</p>
+<p>When \(|x| &lt; 1\) and the summation is infinite, this sum approaches \(\frac{1}{1-x}\). So, \(\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t\) is bounded by \(\frac{1}{1-a/b^d}\) which is some constant that doesn’t depend on \(n\). Therefore,</p>
 <div center="">
 $$
 \begin{align*}
@@ -239,7 +221,7 @@ T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\
 $$
 </div>
 <p><br />
-<b>Case 3:</b> $a &gt; b^d$</p>
+<b>Case 3:</b> \(a &gt; b^d\)</p>
 <div center="">
 $$
 \begin{align*}
@@ -247,7 +229,7 @@ T(n) &amp;= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t
 \end{align*}
 $$
 </div>
-<p>We note in the above sum that $\frac{a}{b^d} &gt; 1$. We can then use the geometric series again,</p>
+<p>We note in the above sum that \(\frac{a}{b^d} &gt; 1\). We can then use the geometric series again,</p>
 <div center="">
 $$
 \begin{align*}
@@ -255,7 +237,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>When $|x| &gt; 1$ and the summation is infinite, this sum approaches the last term in the series. So, $\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t$ is bounded by $(a/b^d)^{\log_b(b)}$. Therefore,</p>
+<p>When \(|x| &gt; 1\) and the summation is infinite, this sum approaches the last term in the series. So, \(\sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t\) is bounded by \((a/b^d)^{\log_b(b)}\). Therefore,</p>
 <div center="">
 $$
 \begin{align*}

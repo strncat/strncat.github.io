@@ -5,7 +5,7 @@ date:   2019-07-10 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Let $G = (V, E)$ be a directed acyclic graph consisting of $V$ vertices and $E$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $u \in V$ and $v \in V$, if $(u,v) \in E$, then $u$ must come before $v$ in the ordering. For example, we might have some dependency graph of classes and their prerequisites and we want to find an ordering of the classes such that if class $a$ is a prerequisite to class $b$, then $a$ comes before $b$ in the sorted list.
+Let $$G = (V, E)$$ be a directed acyclic graph consisting of $$V$$ vertices and $$E$$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $$u \in V$$ and $$v \in V$$, if $$(u,v) \in E$$, then $$u$$ must come before $$v$$ in the ordering. For example, we might have some dependency graph of classes and their prerequisites and we want to find an ordering of the classes such that if class $$a$$ is a prerequisite to class $$b$$, then $$a$$ comes before $$b$$ in the sorted list.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
@@ -34,52 +34,52 @@ int dfs(int v, int current_time,
 <!----------------------------------------------------------------------------------->
 <h4><b>Example</b></h4>
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/1.png)
-Let's explore the graph above with dfs to see how the start and finish times are set again. We will start from $f$ (arbitrarily chosen), mark its start time as zero and visit $e$. We will mark $e$'s start time and then recursively call DFS on $d$. We will set its start time. At this point, we don't have more neighbors and so we mark its finish time as well. When we come back, $e$ won't have more neighbors and so we will mark its finish time. We do the same thing with $f$ and we'll end up with the graph below.
+Let's explore the graph above with dfs to see how the start and finish times are set again. We will start from $$f$$ (arbitrarily chosen), mark its start time as zero and visit $$e$$. We will mark $$e$$'s start time and then recursively call DFS on $$d$$. We will set its start time. At this point, we don't have more neighbors and so we mark its finish time as well. When we come back, $$e$$ won't have more neighbors and so we will mark its finish time. We do the same thing with $$f$$ and we'll end up with the graph below.
 
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/2.png)
 
-Next we will start from $c$ and visit $b$ and mark both their start and finish times. Finally we will visit $a$ and mark its times as well.
+Next we will start from $$c$$ and visit $$b$$ and mark both their start and finish times. Finally we will visit $$a$$ and mark its times as well.
 
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/3.png)
 
-Notice how if we ordered the nodes by their finishing times ($a, c, b, f, e, d$) descendingly then we'll have a valid ordering of the nodes. 
+Notice how if we ordered the nodes by their finishing times ($$a, c, b, f, e, d$$) descendingly then we'll have a valid ordering of the nodes. 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Correctness Proof</b></h4>
-The first time I saw topological sort I didn't believe it. It seemed strange to just be able to sort the vertices by just doing a depth first search. What do we need to show to prove that topological sort works? what is the intuition here? Let's think about this. We need to prove that for any two vertices $a, b \in V$, if there is an edge from $a$ to be $b$, then $a$ will come before $b$ in the sorted output. 
+The first time I saw topological sort I didn't believe it. It seemed strange to just be able to sort the vertices by just doing a depth first search. What do we need to show to prove that topological sort works? what is the intuition here? Let's think about this. We need to prove that for any two vertices $$a, b \in V$$, if there is an edge from $$a$$ to be $$b$$, then $$a$$ will come before $$b$$ in the sorted output. 
 <br><br>
-How do we prove this? Well, we know that topological sort relies on the finishing times of vertices and we know that $a$'s finishing time gets marked after its children and so this means that we want to prove that $a$'s finishing time is greater than $b$'s finishing time. So to summarize, we want to prove the following 
+How do we prove this? Well, we know that topological sort relies on the finishing times of vertices and we know that $$a$$'s finishing time gets marked after its children and so this means that we want to prove that $$a$$'s finishing time is greater than $$b$$'s finishing time. So to summarize, we want to prove the following 
 
-<h4><b>claim: For any two vertices $a, b \in V$, if there is an edge from $a$ to $b$, then $a$'s finishing time is greater than $b$'s finishing time.</b></h4>
+<b>claim: For any two vertices $$a, b \in V$$, if there is an edge from $$a$$ to $$b$$, then $$a$$'s finishing time is greater than $$b$$'s finishing time.</b>
   
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/claim.png)
   
-To do so, we will use a theorem called the <b>Parenthesis Theorem</b> from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph $G = (V,E)$ and for any vertices $u$ and $v$, exactly one of the following conditions holds:
+To do so, we will use a theorem called the <b>Parenthesis Theorem</b> from CLRS (proof in CLRS). The parenthesis theorem claims that in a depth first search of a graph $$G = (V,E)$$ and for any vertices $$u$$ and $$v$$, exactly one of the following conditions holds:
 
-+ the intervals [u.start, u.finish] and [v.start, v.finish] are disjoint and neither $u$ or $v$ is a descendant of the other in the depth-first forest. 
++ the intervals [u.start, u.finish] and [v.start, v.finish] are disjoint and neither $$u$$ or $$v$$ is a descendant of the other in the depth-first forest. 
 
-+ the interval [u.start, u.finish] is contained within the interval [v.start, v.finish] and $u$ is a descendant of $v$ in the depth-first tree. 
++ the interval [u.start, u.finish] is contained within the interval [v.start, v.finish] and $$u$$ is a descendant of $$v$$ in the depth-first tree. 
 
-+ the interval [v.start, v.finish] is contained within the interval [u.start, u.finish] and $v$ is a descendant of $u$ in the depth-first tree. 
++ the interval [v.start, v.finish] is contained within the interval [u.start, u.finish] and $$v$$ is a descendant of $$u$$ in the depth-first tree. 
 
 Proof: TODO!
 <br>
 <br>
 Now we are ready to prove our earlier claim. 
 
-<h4><b>Let $G = (V,E)$ be a directed acyclic graph. For any two vertices $a, b \in V$, if $(a,b) \in E$, then $a$.finish > $b$.finish.</b></h4>
+<b>Let $$$$G = (V,E)$$$$ be a directed acyclic graph. For any two vertices $$a, b \in V$$, if $$(a,b) \in E$$, then $$a$$.finish > $$b$$.finish.</b>
 
 Proof:<br>
 Let's consider the depth first tree generated after running depth first search and let's apply the parenthesis theorem. According to the theorem one of three conditions must hold:
 
-+ the interval [a.start, a.finish] is contained within the interval [b.start, b.finish] and $a$ is a descendant of $b$ in the depth-first tree. We claim that this case is impossible because by assumption, we know that $(a,b) \in E$ and so if $a$ is descendant of $b$ then $G$ must have a cycle. This is a contradiction since $G$ is acyclic. 
++ the interval [a.start, a.finish] is contained within the interval [b.start, b.finish] and $$a$$ is a descendant of $$b$$ in the depth-first tree. We claim that this case is impossible because by assumption, we know that $$(a,b) \in E$$ and so if $$a$$ is descendant of $$b$$ then $$G$$ must have a cycle. This is a contradiction since $$G$$ is acyclic. 
 
-+ the interval [b.start, b.finish] is contained within the interval [a.start, a.finish] and $b$ is a descendant of $a$ in the depth-first tree. This immediately shows that $b.finish_time < a.finish_time$ as we wanted to show.
++ the interval [b.start, b.finish] is contained within the interval [a.start, a.finish] and $$b$$ is a descendant of $$a$$ in the depth-first tree. This immediately shows that $$b.finish_time < a.finish_time$$ as we wanted to show.
 
-+ the intervals [a.start, a.finish] and [b.start, b.finish] are disjoint and neither $a$ or $b$ is a descendant of the other in the depth-first forest. In this case, we claim that we must have explored $b$ first before $a$. Because if we have explored $a$ first then we would have explored $b$ since $(a,b) \in E$ and so we must have $b.finish < a.finish$ as required. Beautiful isn't it?
++ the intervals [a.start, a.finish] and [b.start, b.finish] are disjoint and neither $$a$$ or $$b$$ is a descendant of the other in the depth-first forest. In this case, we claim that we must have explored $$b$$ first before $$a$$. Because if we have explored $$a$$ first then we would have explored $$b$$ since $$(a,b) \in E$$ and so we must have $$b.finish < a.finish$$ as required. Beautiful isn't it?
 
-We conclude from all three cases that we must have $b.finish < a.finish$. $\blacksquare$ 
+We conclude from all three cases that we must have $$b.finish < a.finish$$. $$\blacksquare$$ 
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
@@ -117,7 +117,7 @@ void topological_sort(graph& g) {
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Running Time</b></h4>
-It is just DFS! so the total time is $O(V+E)$.
+It is just DFS! so the total time is $$O(V+E)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->

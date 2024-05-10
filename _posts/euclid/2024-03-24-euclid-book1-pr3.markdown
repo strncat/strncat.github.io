@@ -5,19 +5,19 @@ date:   2024-03-24 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<b>Proposition 3</b>: "To cut off from the greater of two given unequal straight lines a straight line equal to the less." In other words, given two unqual lines. Let $AB$ be the greater one and $CD$ the smaller one. Cut from $AB$ a line equal to $CD$.
+<b>Proposition 3</b>: "To cut off from the greater of two given unequal straight lines a straight line equal to the less." In other words, given two unqual lines. Let $$AB$$ be the greater one and $$CD$$ the smaller one. Cut from $$AB$$ a line equal to $$CD$$.
 <br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>
 <b>Proof.</b><br>
-Let the greater line be $AB$ and the smaller line be $CD$.
+Let the greater line be $$AB$$ and the smaller line be $$CD$$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr3/1.png" width="40%" class="center"></p>
-Use <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr2.html">proposition 2</a> to describe a line starting at $A$ that is equal in length to line $CD$.
+Use <a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr2.html">proposition 2</a> to describe a line starting at $$A$$ that is equal in length to line $$CD$$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr3/2.png" width="40%" class="center"></p>
-Now, describe a circle with center at point $A$ and radius of length $AE$ using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 3</a>.
+Now, describe a circle with center at point $$A$$ and radius of length $$AE$$ using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 3</a>.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr3/3.png" width="45%" class="center"></p>
-The claim is that $AF$ is equal to $CD$. To see this, we know that $EA = AF$ by <a href="https://strncat.github.io/jekyll/update/2024/03/19/euclid-book1-definitions.html">definition 15</a>. We also know that $EA = CD$ by construction. Therefore $AF = CD$ by <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">axiom 1</a> (Magnitudes which are equal to the same are equal to each other).
+The claim is that $$AF$$ is equal to $$CD$$. To see this, we know that $$EA = AF$$ by <a href="https://strncat.github.io/jekyll/update/2024/03/19/euclid-book1-definitions.html">definition 15</a>. We also know that $$EA = CD$$ by construction. Therefore $$AF = CD$$ by <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">axiom 1</a> (Magnitudes which are equal to the same are equal to each other).
 <br>
 <br>
 <hr>

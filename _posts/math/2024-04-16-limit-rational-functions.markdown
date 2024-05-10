@@ -5,7 +5,7 @@ date:   2024-04-16 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-How to find the limit of a rational function as $x$ goes to $\infty$ or $-\infty$. Suppose we're given:
+How to find the limit of a rational function as $$x$$ goes to $$\infty$$ or $$-\infty$$. Suppose we're given:
 <div>
 $$
 \begin{align*}
@@ -13,7 +13,7 @@ $$
 \end{align*}
 $$
 </div>
-The easiest way to see what happens to $f$ when $x$ approaches $\infty$ is to always divide both the numerator and the denominator by the largest power in the denominator. So for the above example, we'll see:
+The easiest way to see what happens to $$f$$ when $$x$$ approaches $$\infty$$ is to always divide both the numerator and the denominator by the largest power in the denominator. So for the above example, we'll see:
 <div>
 $$
 \begin{align*}
@@ -21,7 +21,7 @@ $$
 \end{align*}
 $$
 </div>
-Notice here that both fractions $2/x$ and $9/x$ will become zero as $x$ approaches infinity. They will both become really small as $x$ increases. So now if we evaluate this limit we'll see that it evaluates to the following
+Notice here that both fractions $$2/x$$ and $$9/x$$ will become zero as $$x$$ approaches infinity. They will both become really small as $$x$$ increases. So now if we evaluate this limit we'll see that it evaluates to the following
 <div>
 $$
 \begin{align*}
@@ -34,7 +34,7 @@ This is such as easy way to clearly see where the limit is going.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example</b></h4>
-Suppose we want to find what this function approaches as $x$ approaches $infinity$:
+Suppose we want to find what this function approaches as $$x$$ approaches $$infinity$$:
 <div>
 $$
 \begin{align*}
@@ -50,7 +50,7 @@ $$
 \end{align*}
 $$
 </div>
-You see now how the denominator will just approach -2 since $9/x$ will be zero. The numerator on the other hand will approach positive infinity making the whole function approach negative infinity at the end! 
+You see now how the denominator will just approach -2 since $$9/x$$ will be zero. The numerator on the other hand will approach positive infinity making the whole function approach negative infinity at the end! 
 <div>
 $$
 \begin{align*}
@@ -69,7 +69,7 @@ $$
 \end{align*}
 $$
 </div>
-We can take the cubic root outside and then divide by the highest power which is $x^2$.
+We can take the cubic root outside and then divide by the highest power which is $$x^2$$.
 <div>
 $$
 \begin{align*}
@@ -90,7 +90,7 @@ $$
 \end{align*}
 $$
 </div>
-This one is trickier. We want to divide by $x$ but the problem is that we'll end up with
+This one is trickier. We want to divide by $$x$$ but the problem is that we'll end up with
 <div>
 $$
 \begin{align*}
@@ -98,7 +98,7 @@ $$
 \end{align*}
 $$
 </div>
-This isn't particularly helpful since we can't simplify the numerator. What we really want to divide by is $\sqrt{x^2}$. This way we can move the x inside the square root. A neat trick to do that is to realize that $|x| = \sqrt{x^2}$. So now we can do this:
+This isn't particularly helpful since we can't simplify the numerator. What we really want to divide by is $$\sqrt{x^2}$$. This way we can move the x inside the square root. A neat trick to do that is to realize that $$|x| = \sqrt{x^2}$$. So now we can do this:
 <div>
 $$
 \begin{align*}
@@ -106,16 +106,16 @@ $$
 \end{align*}
 $$
 </div>
-What's next? How do we simplify the absolute value? well this depends on where we're going. We know that $|x|$ is just a piecewise function such that $|x|=$
+What's next? How do we simplify the absolute value? well this depends on where we're going. We know that $$|x|$$ is just a piecewise function such that $$|x|=$$
 <div>
 $$
 \begin{align*}
-x \quad \text{ if $x \geq 0$} \\
--x \quad \text{ if $x < 0$} \\
+x \quad \text{ if $$x \geq 0$$} \\
+-x \quad \text{ if $$x < 0$$} \\
 \end{align*}
 $$
 </div>
-And we're approaching positive infinity. This means we're going to substitute $x$ with really large positive values! so we can do this,
+And we're approaching positive infinity. This means we're going to substitute $$x$$ with really large positive values! so we can do this,
 <div>
 $$
 \begin{align*}

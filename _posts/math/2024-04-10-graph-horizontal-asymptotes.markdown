@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/horizontal-asymptotes/00.png" width="67%" class="center"></p>
-Given some function $f$. A horizontal asymptote is a line $y=a$ where as the input $x$ to the function approaches negative or positive infinity, we will find that $f(x)$ will approach $b$. (So just the opposite of vertical asymptotes where as $x$ approaches $a$, we will approach positive or negative infinity. For example, for $f(x)=\frac{1}{x}$, as we plug in very large values of $x$ (whether positive or negative), we will notice that $f(x)$ will get closer to zero! So the line $y=0$ is a horizontal asymptote for the graph of the function $f(x)=\frac{1}{x}$.
+Given some function $$f$$. A horizontal asymptote is a line $$y=a$$ where as the input $$x$$ to the function approaches negative or positive infinity, we will find that $$f(x)$$ will approach $$b$$. (So just the opposite of vertical asymptotes where as $$x$$ approaches $$a$$, we will approach positive or negative infinity. For example, for $$f(x)=\frac{1}{x}$$, as we plug in very large values of $$x$$ (whether positive or negative), we will notice that $$f(x)$$ will get closer to zero! So the line $$y=0$$ is a horizontal asymptote for the graph of the function $$f(x)=\frac{1}{x}$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Finding a Horizontal Asymptote</b></h4>
-The end behavior of a rational function is determined by the leading terms in the numerator and the denominator. Intuitively this makes total sense because as we plug in really large values of $x$, the leading term will be the only thing matters. Because of this, we want to focus on only these leading terms. For example if we have,
+The end behavior of a rational function is determined by the leading terms in the numerator and the denominator. Intuitively this makes total sense because as we plug in really large values of $$x$$, the leading term will be the only thing matters. Because of this, we want to focus on only these leading terms. For example if we have,
 <div>
 $$
 \begin{align*}
@@ -27,12 +27,12 @@ f(x) \approx \frac{a_mx}{a_nx}
 \end{align*}
 $$
 </div>
-The degree of the numerator is $m$ and the degree of the denominator is $n$. Horizontal asymptotes occur only when $m \leq n$.
+The degree of the numerator is $$m$$ and the degree of the denominator is $$n$$. Horizontal asymptotes occur only when $$m \leq n$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Case 1: $m < n$</b></h4>
-What happens to the rational when the degree of the numerator is less than the degree of denominator. Take the example of $1/x$ again. We have degree 0 in the numerator and degree 1 in the denominator. You can see here as that as you plug in larger and larger values of $x$, the function will approach zero. Similarly take the function,
+<h4><b>Case 1: $$m < n$$</b></h4>
+What happens to the rational when the degree of the numerator is less than the degree of denominator. Take the example of $$1/x$$ again. We have degree 0 in the numerator and degree 1 in the denominator. You can see here as that as you plug in larger and larger values of $$x$$, the function will approach zero. Similarly take the function,
 <div>
 $$
 \begin{align*}
@@ -49,12 +49,12 @@ g(x) &\approx \frac{x^2}{x^5} \\
 \end{align*}
 $$
 </div>
-We can see here that it simplified again to a constant up in the numerator. Again, as $x$ gets larger, we will approach zero. This is the reason why the rule simply states that if $m < n$, then the horizontal asymptote will always be at $y=0$.
+We can see here that it simplified again to a constant up in the numerator. Again, as $$x$$ gets larger, we will approach zero. This is the reason why the rule simply states that if $$m < n$$, then the horizontal asymptote will always be at $$y=0$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Case 2: $m = n$</b></h4>
-To study the behavior of a rational function when $m = n$, we will again focus on the leading terms in the numerator and the denominator. For example, if we have
+<h4><b>Case 2: $$m = n$$</b></h4>
+To study the behavior of a rational function when $$m = n$$, we will again focus on the leading terms in the numerator and the denominator. For example, if we have
 <div>
 $$
 \begin{align*}
@@ -71,7 +71,7 @@ g(x) &\approx \frac{4x^3}{2x^3} \\
 \end{align*}
 $$
 </div>
-This simply states that as we plug in larger and larger values of $x$, we will notice that our function is approaching the line $y = 2$. Hence the rule states that the horizontal asymptote for when $m = n$, is the leading coefficient of the numerator divided by the leading coefficient of the denominator. 
+This simply states that as we plug in larger and larger values of $$x$$, we will notice that our function is approaching the line $$y = 2$$. Hence the rule states that the horizontal asymptote for when $$m = n$$, is the leading coefficient of the numerator divided by the leading coefficient of the denominator. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

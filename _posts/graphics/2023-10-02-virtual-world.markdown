@@ -26,7 +26,7 @@ What is the role of the pupil in the eye? So we know that the lights goes off ev
 The reason why we don't see everything as a blurry image is the pupil (or the aperture in the camera). The pupil's rol is to restrict the light bouncing from all these points on every single object. The pupil will only allow some point, enough to see clearly. Moreover, when the pupil gets small, we'd get a sharper image and as the pupil gets larger, we'd see a blurred image. But the pupil (and the aperture) can't be too small because otherwise the light will bend as it gets through the tiny point due to the particle/wave length duality. Therefore, it has to be small enough but not too small.
 <br>
 <br>
-The Camera mimic the human eyes but instead of cones we have mechanical pixels. And instead of the pupil, we have an aperture. Cameras have also comlex lens system. 
+The Camera mimic the human eyes but instead of cones we have mechanical pixels. And instead of the pupil, we have an aperture. Cameras have also complex lens system. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -45,7 +45,7 @@ Here are some more properties of the Pinhole Camera:
 To solve this last issue and make the camera more efficient:
 - We'll move the film out in front of the pinhole so that the image is not upside down.
 - We'll only render objects further away from the camera than the film plane.
-- We'll add a clipping plane for effiency so we don't have to process every single object knowing that we won't render it since it's ocluded.
+- We'll add a clipping plane for efficiency so we don't have to process every single object knowing that we won't render it since it's occluded.
 - The volume between the film (front clipping plane) and the back clipping plane is called the <b>viewing frustum</b>.
 <br>
 <br>
@@ -59,7 +59,7 @@ To solve this last issue and make the camera more efficient:
 An important question arises here is why create the objects in their object space and then place them via transformations in the virtual world? why not just integrate an object such as a lamp in the virtual world? Because it's a waste. if the lamp consisted of 100k vertices and the scene needed 100 of these, then we'll have 10 million vertices just for lamps. Instead we can just create one lamp and then use the transformations that we described to place this lamp 100 times around the scene.
 <br>
 <br>
-Finally, when we take a virtual picture, points on the object are projected on the 2d film plane which we refer to as a "scene space". This projection is nonlinear and the source of undesireable distortion.
+Finally, when we take a virtual picture, points on the object are projected on the 2d film plane which we refer to as a "scene space". This projection is nonlinear and the source of undesirable distortion.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

@@ -35,7 +35,7 @@ P(t) &= (1-t)((1-t)P_0 + tP_1) + t((1-t)P_1 + tP_2) \\
 \end{align*}
 $$
 </div>
-This is called a quadractic Bezier curve and it generates a nice smooth curve!
+This is called a quadratic Bezier curve and it generates a nice smooth curve!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

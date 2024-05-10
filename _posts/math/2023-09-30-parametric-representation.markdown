@@ -8,7 +8,7 @@ mathjax: true
 <!------------------------------------------------------------------------------------>
 <h4><b>Introduction</b></h4>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/parametric/00.png" width="70%" class="center"></p>
-We've already seen the implicit representation in the previous post. This time, we will focus on the parametric representation. The parametric representation describes the line or curve using one or more new variables. This variable is commonly denoted as "t". For example, we might want to describe a curve with a specific start point, an end point and furthermore we might a want a general independent parameter that once we specify, then we get back a point $(x,y)$ on the curve. More importantly, some curves can be represented with the explicit representations becuase we can't describe $y$ as a function of $x$! See this for example. $x=1.5$ has two possible $y$ values!
+We've already seen the implicit representation in the previous post. This time, we will focus on the parametric representation. The parametric representation describes the line or curve using one or more new variables. This variable is commonly denoted as "t". For example, we might want to describe a curve with a specific start point, an end point and furthermore we might a want a general independent parameter that once we specify, then we get back a point $$(x,y)$$ on the curve. More importantly, some curves can be represented with the explicit representations because we can't describe $$y$$ as a function of $$x$$! See this for example. $$x=1.5$$ has two possible $$y$$ values!
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/parametric/01.png" width="50%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -30,7 +30,7 @@ y &= t + 1
 \end{align*}
 $$
 </div>
-It will be clear later on how we derived these terms but for now let's make sure that we can substitute multiple values of $t$ to see that these points are indeed on the line. You can try $t=0$ to get $(x=0, y=1)$ and see that it indeed satisfies the implicit equation. But now ended up with two functions. Is there a way to simplify this? Yes, we can wrap everything in one function if we used vectors instead! So let $v = [x, y]$ be a vector and then re-write the previous two equations such that
+It will be clear later on how we derived these terms but for now let's make sure that we can substitute multiple values of $$t$$ to see that these points are indeed on the line. You can try $$t=0$$ to get $$(x=0, y=1)$$ and see that it indeed satisfies the implicit equation. But now ended up with two functions. Is there a way to simplify this? Yes, we can wrap everything in one function if we used vectors instead! So let $$v = [x, y]$$ be a vector and then re-write the previous two equations such that
 <div>
 $$
 \begin{align*}
@@ -47,7 +47,7 @@ t +
 \end{align*}
 $$
 </div>
-It looks really good but how do we derive these constants? This part is pretty cool. Take two points on the line. For example $p_0=(0,1)$ and $p_1=(2,2)$. and now we can see that we can represent this line as with the initial point $p_0$ and then the direction of the line using $p_1-p_0$ so,
+It looks really good but how do we derive these constants? This part is pretty cool. Take two points on the line. For example $$p_0=(0,1)$$ and $$p_1=(2,2)$$. and now we can see that we can represent this line as with the initial point $$p_0$$ and then the direction of the line using $$p_1-p_0$$ so,
 <div>
 $$
 \begin{align*}
@@ -55,7 +55,7 @@ v = p_0 + (p_1 - p_0)t.
 \end{align*}
 $$
 </div>
-At $t=0$, we're at $p_0$. If we're at $t=1$, we're at $p_1$. And we can still substitute $t$ values to go beyond this range. We can also re-write this to clean it and replace $v$ with $f(t)$ since this is now just a function of $t$,
+At $$t=0$$, we're at $$p_0$$. If we're at $$t=1$$, we're at $$p_1$$. And we can still substitute $$t$$ values to go beyond this range. We can also re-write this to clean it and replace $$v$$ with $$f(t)$$ since this is now just a function of $$t$$,
 <div>
 $$
 \begin{align*}

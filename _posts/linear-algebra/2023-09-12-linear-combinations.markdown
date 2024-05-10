@@ -15,17 +15,17 @@ This post is just me taking notes while watching Essence of Linear Algebra by 3B
 We studied vectors in the previous post and learned about vectors and vector coordinates. The x-coordinate represented the movement from this vector's tail at the origin along the x-axis to its tip and the y-coordinate represented the movement of this vector along the y-axis. We saw how addition and multiplication were defined and what they meant. This time, we want to think about these vector coordinates differently.
 <br>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-combinations/linear-comb-2.png" width="60%" class="center"></p>
-In the xy-coordinate system, we have two special vectors. $\widehat{i}$ which is a unit vector pointing to the right in the x-direction. $\widehat{j}$ is a unit vector pointing straight up in the y-direction. Now, given a vector's coordinate (green vector in the figure above), we will think of each coordinate as a scalar where the x-coordinate scales $\widehat{i}$ streching it by 3 and the y-coordinate scales $\widehat{j}$ by a factor of 2 and also flipping it in the other direction. $\widehat{i}$ and $\widehat{j}$ are called the <b>basis</b> vectors of the $xy$ coordinate system. So when we think about coordinates as scalars, these scalars scale the basis vectors.
+In the xy-coordinate system, we have two special vectors. $$\widehat{i}$$ which is a unit vector pointing to the right in the x-direction. $$\widehat{j}$$ is a unit vector pointing straight up in the y-direction. Now, given a vector's coordinate (green vector in the figure above), we will think of each coordinate as a scalar where the x-coordinate scales $$\widehat{i}$$ streching it by 3 and the y-coordinate scales $$\widehat{j}$$ by a factor of 2 and also flipping it in the other direction. $$\widehat{i}$$ and $$\widehat{j}$$ are called the <b>basis</b> vectors of the $$xy$$ coordinate system. So when we think about coordinates as scalars, these scalars scale the basis vectors.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-combinations/linear-comb-3.png" width="60%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Linear Combination</b></h4>
-So here the important observation, this means that the vectors that these coordinates describe is really the sum of two scaled vectors $3\widehat{i} + (-2)\widehat{j}$. (Addition of two scaled vectors!). This sum is also called a <b>linear combination</b> of $\widehat{i}$ and $\widehat{j}$. Why did we call it linear? This is really interesting. Grant said to imagine fixing one of the scalars, then changing the other scalar will result in the tip of the resulting vector drawing a straight line. The animation in the video is so great at showing this.
+So here the important observation, this means that the vectors that these coordinates describe is really the sum of two scaled vectors $$3\widehat{i} + (-2)\widehat{j}$$. (Addition of two scaled vectors!). This sum is also called a <b>linear combination</b> of $$\widehat{i}$$ and $$\widehat{j}$$. Why did we call it linear? This is really interesting. Grant said to imagine fixing one of the scalars, then changing the other scalar will result in the tip of the resulting vector drawing a straight line. The animation in the video is so great at showing this.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-combinations/linear-comb-4.png" width="100%" class="center"></p> 
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Span of Vectors</b></h4>
-Now, if we change both scalars at the same time, then the resulting set is the set of all possible linear combinations of these two vectors and it is formally called the <b>span</b> of these vectors. Morever, we'll have three possible sets:
+Now, if we change both scalars at the same time, then the resulting set is the set of all possible linear combinations of these two vectors and it is formally called the <b>span</b> of these vectors. Moreover, we'll have three possible sets:
 <ul>
 	<li>For most pairs of vectors, we'll reach every possible vector in the plane so their span will be the all vectors of the 2D space</li>
 	<li>For the case when both vectors line up, then the tip of the resulting vector is limited to just this single line passing through the origin. So their span is the set of all vectors whose tip sit on that line.</li>
@@ -49,7 +49,7 @@ Formally when two vectors in 2D space sit on top of each other and their span is
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Basis of a Vector Space</b></h4>
-Also formally, the <b>basis</b> of a vector space is a set of <b>linearly indepedent</b> vectors that <b>span</b> the full space.
+Also formally, the <b>basis</b> of a vector space is a set of <b>linearly independent</b> vectors that <b>span</b> the full space.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

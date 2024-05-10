@@ -7,7 +7,7 @@ mathjax: true
 ---
 <b>Proposition 7</b>: "Given two straight lines constructed on a straight line (from its extremities) and meeting in a point, there cannot be constructed on the same straight line (from its extremities), and on the same side of it, two other straight lines meeting in another point and equal to the former two respectively, namely each to that which has the same extremity with it."
 <br>
-In other words, given some finite line $BC$. If we draw two straight lines from each end point to meet at a point $A$, then it is not possible to draw another set of straight lines equal to the first set and then have them meet at a different point that $A$. 
+In other words, given some finite line $$BC$$. If we draw two straight lines from each end point to meet at a point $$A$$, then it is not possible to draw another set of straight lines equal to the first set and then have them meet at a different point that $$A$$. 
 <br>
 <hr>
 <!----------------------------------------------------------------------->
@@ -15,23 +15,23 @@ In other words, given some finite line $BC$. If we draw two straight lines from 
 <b>Proof.</b><br>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr7/0.png" width="45%" class="center"></p>
 
-Let the straight lines be $AB$ and $AC$ above drawn from the end points of the line $BC$. Suppose that it is possible to draw another set of lines equal to $AB$ and $AC$ and then have the new lines meet at a new point. Let the new point be $D$ and draw $DB$ such that it is equal to $AB$ and draw $DC$ such that it is equal to $AC$. 
+Let the straight lines be $$AB$$ and $$AC$$ above drawn from the end points of the line $$BC$$. Suppose that it is possible to draw another set of lines equal to $$AB$$ and $$AC$$ and then have the new lines meet at a new point. Let the new point be $$D$$ and draw $$DB$$ such that it is equal to $$AB$$ and draw $$DC$$ such that it is equal to $$AC$$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr7/1.png" width="55%" class="center"></p>
 
-Using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 1</a>, draw a line between points $A$ and $D$.
+Using <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 1</a>, draw a line between points $$A$$ and $$D$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr7/2.png" width="55%" class="center"></p>
 
-In the triangles $ABD$, $AB = DB$ by construction. So $ABD$ is an isosceles triangle and the angles at the base are equal (<a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr2.html">proposition 5</a>). Let this angle be $\alpha$. So $\angle DAB = \angle ADB = \alpha$. Similarly, the triangle $ACD$ is also an isosceles triangle by construction and the angles $\angle DAC$ and $\angle ADC$ are equal. Let this angle be $\beta$.  
+In the triangles $$ABD$$, $$AB = DB$$ by construction. So $$ABD$$ is an isosceles triangle and the angles at the base are equal (<a href="https://strncat.github.io/jekyll/update/2024/03/23/euclid-book1-pr2.html">proposition 5</a>). Let this angle be $$\alpha$$. So $$\angle DAB = \angle ADB = \alpha$$. Similarly, the triangle $$ACD$$ is also an isosceles triangle by construction and the angles $$\angle DAC$$ and $$\angle ADC$$ are equal. Let this angle be $$\beta$$.  
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr7/3.png" width="75%" class="center"></p>
 
-Putting the triangles back together, we know that the angle $\angle BAD$ is the sum of angles $\angle BAC$ and $\angle CAD$. By <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">common notion 5</a> (The whole is greater than the part.), $\angle BAD > \angle CAD$. But $\angle BAD = \alpha$ and $\angle CAD = \beta$ so $\alpha > \beta$. 
+Putting the triangles back together, we know that the angle $$\angle BAD$$ is the sum of angles $$\angle BAC$$ and $$\angle CAD$$. By <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">common notion 5</a> (The whole is greater than the part.), $$\angle BAD > \angle CAD$$. But $$\angle BAD = \alpha$$ and $$\angle CAD = \beta$$ so $$\alpha > \beta$$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr7/4.png" width="55%" class="center"></p>
 
-Similarly, the angle $\angle ADC$ is the sum of angles $\angle ADB$ and $\angle BDC$. By common notion 5, $\angle ADC$ must be greater than $\angle ADB$. Therefore, $\beta > \alpha$ which is a contradiction since we said earlier that $\alpha > \beta$. Therefore, there can not exist two straight lines that are equal to $AB$ and $AC$ respectively that meet at a different point than point $A$.
+Similarly, the angle $$\angle ADC$$ is the sum of angles $$\angle ADB$$ and $$\angle BDC$$. By common notion 5, $$\angle ADC$$ must be greater than $$\angle ADB$$. Therefore, $$\beta > \alpha$$ which is a contradiction since we said earlier that $$\alpha > \beta$$. Therefore, there can not exist two straight lines that are equal to $$AB$$ and $$AC$$ respectively that meet at a different point than point $$A$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr7/5.png" width="55%" class="center"></p>
 

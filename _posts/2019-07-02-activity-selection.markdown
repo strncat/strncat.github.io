@@ -17,7 +17,7 @@ As we said earlier, typically greedy solutions are super straight forward and ea
 <h4><b>Example</b></h4>
 Suppose we have the following activities:
 ![my photo]({{ site.url }}/assets/activities.png)
-Based on our strategy, we will pick $A1$ first. We will skip $A2$ since it violates the condition of not having overlapped activities. We will then go on to pick $A3$, $A5$ and $A6$.
+Based on our strategy, we will pick $$A1$$ first. We will skip $$A2$$ since it violates the condition of not having overlapped activities. We will then go on to pick $$A3$$, $$A5$$ and $$A6$$.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
@@ -51,28 +51,28 @@ This should sound very familiar. We have a base case where we start with an empt
 <br>
 <br>
 <i>Proof By Induction:</i><br>
-<b>Inductive Hypothesis: </b> After adding the $t$'th activity, there is an optimal solution that extends our current solution.
+<b>Inductive Hypothesis: </b> After adding the $$t$$'th activity, there is an optimal solution that extends our current solution.
 <br>
  
 <b>Base Case:</b> When we add the zero'th activity, there exists an optimal solution that extends the current solution which contains no activities yet.
 <br>
 
 <b>Inductive Step:</b>
-Let $k$ be a natural number and suppose we're about to add the $k$'th activity and that our inductive hypothesis holds for $k-1$, meaning that we didn't rule out an optimal solution yet and that there is some optimal solution $$T^*$$ that extends the $k-1$ choices we've made so far. We're about to select our $k$'th activity. 
+Let $$k$$ be a natural number and suppose we're about to add the $$k$$'th activity and that our inductive hypothesis holds for $$k-1$$, meaning that we didn't rule out an optimal solution yet and that there is some optimal solution $$T^*$$ that extends the $$k-1$$ choices we've made so far. We're about to select our $$k$$'th activity. 
 <br><br>
-Our greedy algorithm picks the next activity with the earliest finish time such that it doesn't overlap with any of the $k-1$ activities we've selected so far. Let our selection be $a_j$ for some natural number $j$. There are two cases <br><br>
-Case 1: $a_j$ is in the optimal solution so $$a_j \in T^*$$. yay, we didn't rule out the optimal solution and we're done! <br>
-Case 2: $a_j$ is not in the optimal solution so $$a_j \not\in T^*$$. In this case, some other activity was selected instead of $a_j$. Let that activity be $a_k$. Let's consider swapping $a_j$ and $a_k$ to create a new set of activities, $T$.
+Our greedy algorithm picks the next activity with the earliest finish time such that it doesn't overlap with any of the $$k-1$$ activities we've selected so far. Let our selection be $$a_j$$ for some natural number $$j$$. There are two cases <br><br>
+Case 1: $$a_j$$ is in the optimal solution so $$a_j \in T^*$$. yay, we didn't rule out the optimal solution and we're done! <br>
+Case 2: $$a_j$$ is not in the optimal solution so $$a_j \not\in T^*$$. In this case, some other activity was selected instead of $$a_j$$. Let that activity be $$a_k$$. Let's consider swapping $$a_j$$ and $$a_k$$ to create a new set of activities, $$T$$.
 <br><br>
-We claim that $T$ is allowed and optimal. First, we know that $a_j$ has a smaller finish than $a_k$ because our greedy algorithm selects the activity with the earliest finish time. Therefore, $a_j$ doesn't conflict with anything chosen after $a_k$. From this we see that $$T$$ also has the same number of activities as $$T^*$$ and therefore, we can conclude that $$T^*$$ is optimal.
+We claim that $$T$$ is allowed and optimal. First, we know that $$a_j$$ has a smaller finish than $$a_k$$ because our greedy algorithm selects the activity with the earliest finish time. Therefore, $$a_j$$ doesn't conflict with anything chosen after $$a_k$$. From this we see that $$T$$ also has the same number of activities as $$T^*$$ and therefore, we can conclude that $$T^*$$ is optimal.
 
 <b>Conclusion:</b>
-After adding the last activity, we will have an optimal solution that extends our current choices. Our current choices or solution is the only solution that extends the current solution and therefore, our current solution is optimal. $\blacksquare$
+After adding the last activity, we will have an optimal solution that extends our current choices. Our current choices or solution is the only solution that extends the current solution and therefore, our current solution is optimal. $$\blacksquare$$
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h4><b>Running Time</b></h4>
-If we need to sort the activities, then it will be $O(n\log(n))$. If it's sorted, then we're only doing a linear scan of activities and therefore, the running time is $O(n)$. 
+If we need to sort the activities, then it will be $$O(n\log(n))$$. If it's sorted, then we're only doing a linear scan of activities and therefore, the running time is $$O(n)$$. 
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->

@@ -17,7 +17,7 @@ and we want to find its inverse along with its domain and range.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Finding The Inverse</b></h4>
-To find the inverse, we just need to following simple steps. First replace $f(x)$ with $y$.
+To find the inverse, we just need to following simple steps. First replace $$f(x)$$ with $$y$$.
 <div>
 $$
 \begin{align*}
@@ -25,7 +25,7 @@ y = \frac{8x - 7}{7x + 4}.
 \end{align*}
 $$
 </div>
-Next, swap $y$ with $x$.
+Next, swap $$y$$ with $$x$$.
 <div>
 $$
 \begin{align*}
@@ -33,7 +33,7 @@ x = \frac{8y - 7}{7y + 4}.
 \end{align*}
 $$
 </div>
-Now, let's solve for $y$
+Now, let's solve for $$y$$
 <div>
 $$
 \begin{align*}
@@ -46,7 +46,7 @@ y &= \frac{4x + 7}{8 - 7x}. \\
 \end{align*}
 $$
 </div>
-To verify our work is correct, we can take the composition of $f$ and $f^{-1}$ and we should expect to get $x$. Let's test this,
+To verify our work is correct, we can take the composition of $$f$$ and $$f^{-1}$$ and we should expect to get $$x$$. Let's test this,
 <div>
 $$
 \begin{align*}
@@ -65,7 +65,7 @@ Which is what we wanted! We can also try the other direction but let's just not 
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>The Domain</b></h4>
-The domain of the inverse of $f$ is simply all real numbers except for anything that makes the denominator 0. Recall that the inverse function was,
+The domain of the inverse of $$f$$ is simply all real numbers except for anything that makes the denominator 0. Recall that the inverse function was,
 <div>
 $$
 \begin{align*}
@@ -73,11 +73,11 @@ f^{-1}(x) = \frac{4x + 7}{8 - 7x}.
 \end{align*}
 $$
 </div>
-The denominator is zero when $8 - 7x = 0$. This means this happens when $x = \frac{8}{7}$. So in other words, the domain is $(-\infty, \frac{8}{7}) \cup (\frac{8}{7}, \infty)$. 
+The denominator is zero when $$8 - 7x = 0$$. This means this happens when $$x = \frac{8}{7}$$. So in other words, the domain is $$(-\infty, \frac{8}{7}) \cup (\frac{8}{7}, \infty)$$. 
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>The Range</b></h4>
-The range of the inverse of $f$ is simply the range of our original function $f$. Recall that the function was,
+The range of the inverse of $$f$$ is simply the range of our original function $$f$$. Recall that the function was,
 <div>
 $$
 \begin{align*}
@@ -85,7 +85,7 @@ f(x) = \frac{8x - 7}{7x + 4}.
 \end{align*}
 $$
 </div>
-The denominator is zero when $7x + 4 = 0$. This means this happens when $x = \frac{-4}{7}$. So in other words the range is $(-\infty, \frac{-4}{7}) \cup (\frac{-4}{7}, \infty)$.
+The denominator is zero when $$7x + 4 = 0$$. This means this happens when $$x = \frac{-4}{7}$$. So in other words the range is $$(-\infty, \frac{-4}{7}) \cup (\frac{-4}{7}, \infty)$$.
 <!----------------------------------------------------------------------->
 <br>
 <b>References:</b>

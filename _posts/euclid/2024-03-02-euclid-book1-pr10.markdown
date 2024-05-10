@@ -11,23 +11,23 @@ mathjax: true
 <!----------------------------------------------------------------------->
 <br>
 <b>Proof.</b><br>
-Let this straight line be $BC$.
+Let this straight line be $$BC$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr10/1.png" width="35%" class="center"></p>
 
-Use <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-pr1.html">proposition 1</a> to construct an equilateral triangle $ABC$ using $BC$ as a base. 
+Use <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-pr1.html">proposition 1</a> to construct an equilateral triangle $$ABC$$ using $$BC$$ as a base. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr10/2.png" width="35%" class="center"></p>
 
-Bisect the angle $A$ using <a href="https://strncat.github.io/jekyll/update/2024/03/01/euclid-book1-pr9.html">proposition 9</a>. 
+Bisect the angle $$A$$ using <a href="https://strncat.github.io/jekyll/update/2024/03/01/euclid-book1-pr9.html">proposition 9</a>. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr10/3.png" width="35%" class="center"></p>
 
-We claim that $BD = DC$. To see this, notice in the triangles $ABD$ and $ADC$ below that $AB = AC$ by construction, $AD$ is common to both triangles, and $\angle ABC = \angle ACD$ by construction. 
+We claim that $$BD = DC$$. To see this, notice in the triangles $$ABD$$ and $$ADC$$ below that $$AB = AC$$ by construction, $$AD$$ is common to both triangles, and $$\angle ABC = \angle ACD$$ by construction. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr10/4.png" width="35%" class="center"></p>
 
-Therefore, we can conclude by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-pr4.html">proposition 4</a> that the triangles are equal in all respects and consequently we will have $BD = DC$ as required.
+Therefore, we can conclude by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-pr4.html">proposition 4</a> that the triangles are equal in all respects and consequently we will have $$BD = DC$$ as required.
 
 <br>
 <hr>

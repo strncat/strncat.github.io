@@ -12,27 +12,27 @@ mathjax: true
 <br>
 <b>Proof.</b><br>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr9/0.png" width="35%" class="center"></p>
-Given an angle $A$ (a point $A$ with two drawn lines that start at $A$). Choose a point on one of the extended lines arbitrarily. Let that point be $B$. 
+Given an angle $$A$$ (a point $$A$$ with two drawn lines that start at $$A$$). Choose a point on one of the extended lines arbitrarily. Let that point be $$B$$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr9/1.png" width="35%" class="center"></p>
 
-Use <a href="https://strncat.github.io/jekyll/update/2024/03/24/euclid-book1-pr3.html">proposition 3</a> to cut a line equal to $AB$ from the second line. Let that point be $C$. 
+Use <a href="https://strncat.github.io/jekyll/update/2024/03/24/euclid-book1-pr3.html">proposition 3</a> to cut a line equal to $$AB$$ from the second line. Let that point be $$C$$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr9/2.png" width="35%" class="center"></p>
 
-Use <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 1</a> to draw a line between the two points $B$ and $C$.
+Use <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 1</a> to draw a line between the two points $$B$$ and $$C$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr9/3.png" width="35%" class="center"></p>
 
-Next, use <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-pr1.html">proposition 1</a> to construct an equilateral triangle from the line $BC$.
+Next, use <a href="https://strncat.github.io/jekyll/update/2024/03/22/euclid-book1-pr1.html">proposition 1</a> to construct an equilateral triangle from the line $$BC$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr9/4.png" width="40%" class="center"></p>
 
-Use <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 1</a> to draw a line between the two points $A$ and $D$. We claim that this line bisects the angle $A$.
+Use <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 1</a> to draw a line between the two points $$A$$ and $$D$$. We claim that this line bisects the angle $$A$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr9/5.png" width="40%" class="center"></p>
 
-To see this, notice that in the triangles $ABD$ and $ACD$, $AB = AC$ and $BD = CD$ by construction. Moreover, $AD$ is a common side to both triangles. Therefore, by <a href="https://strncat.github.io/jekyll/update/2024/03/31/euclid-book1-pr8.html">proposition 8</a>, we conclude that the angles $\angle BAD$ and $\angle DAC$ are equal. as required.
+To see this, notice that in the triangles $$ABD$$ and $$ACD$$, $$AB = AC$$ and $$BD = CD$$ by construction. Moreover, $$AD$$ is a common side to both triangles. Therefore, by <a href="https://strncat.github.io/jekyll/update/2024/03/31/euclid-book1-pr8.html">proposition 8</a>, we conclude that the angles $$\angle BAD$$ and $$\angle DAC$$ are equal. as required.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr9/6.png" width="40%" class="center"></p>
 <br>

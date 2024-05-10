@@ -5,26 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
->
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
->
-</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 </head>
@@ -122,17 +104,17 @@ A = \int E(\lambda)a(\lambda)d\lambda
 \end{align*}
 $$
 </div>
-<p>Again, this light comes in to our eyes. We know all these wavelenghts and their frequencies. We then want to sum all the wavelengths of the energy coming in. Specifically we want to sum only the portion of it that is getting absorbed by our eyes. $A$ is the total enery that the sensor picked up from the light which is going to be used to generate the current. 
+<p>Again, this light comes in to our eyes. We know all these wavelengths and their frequencies. We then want to sum all the wavelengths of the energy coming in. Specifically we want to sum only the portion of it that is getting absorbed by our eyes. $A$ is the total energy that the sensor picked up from the light which is going to be used to generate the current. 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Human Eye</b></h4>
-<p>The human eye has 3 types of cones sensors and 1 type of rod sensors. Protiens in the cone/rods absorb the incoming photons changing the cell’s membrane potenial, thus creating a signal that gets interpreted by the brain. The cones are more optimized for seeing during the day while the rods’ signals are over-saturated. During the night, the rods are more optimized for seeing and the cones’ signals are under-saturated. For the rods for example, seeing during the day is like as if we stared directly into the sun! they’re not optimized for sunlight!</p>
+<p>The human eye has 3 types of cones sensors and 1 type of rod sensors. Proteins in the cone/rods absorb the incoming photons changing the cell’s membrane potenial, thus creating a signal that gets interpreted by the brain. The cones are more optimized for seeing during the day while the rods’ signals are over-saturated. During the night, the rods are more optimized for seeing and the cones’ signals are under-saturated. For the rods for example, seeing during the day is like as if we stared directly into the sun! they’re not optimized for sunlight!</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/graphics/light/cones.png" width="70%" class="center" /></p>
-<p>Each cone and rod cell has a specific absorbtion (response) function. This absorbtion function gives is what tells us how good a certain cell at absorbing certain wavelengths. As we’ve expected, one of the cones is really good at the “red” wavelength, one is good at “blue” and the last is good at “green”. The rod cell is really good at green. This is one reason why humans areally good at seeing green.
+<p>Each cone and rod cell has a specific absorption (response) function. This absorption function gives is what tells us how good a certain cell at absorbing certain wavelengths. As we’ve expected, one of the cones is really good at the “red” wavelength, one is good at “blue” and the last is good at “green”. The rod cell is really good at green. This is one reason why humans really good at seeing green.
 <br />
 <br />
-Let’s look at an example. Suppose we shine a light that has a single emission of a specific wavelength that is equal to 520. We then shine this light at a human eye. What will happen? The red cone will absorb very little of the light (let it be A). The green blue cone, a little more. Let that amount be B. Finally, the green cone absorbs of it (let it be C). So, since C is the biggest number, then the brain will see green! but wait, light coming into our eyes is not coming as a single wavelength. It comes with different wavelengths and frenquiences. So how does the eye interpret all of us? We’ll integrate over the absorbtion function for each cell and get the three numbers $A$, $B$ and $C$.</p>
+Let’s look at an example. Suppose we shine a light that has a single emission of a specific wavelength that is equal to 520. We then shine this light at a human eye. What will happen? The red cone will absorb very little of the light (let it be A). The green blue cone, a little more. Let that amount be B. Finally, the green cone absorbs of it (let it be C). So, since C is the biggest number, then the brain will see green! but wait, light coming into our eyes is not coming as a single wavelength. It comes with different wavelengths and frequencies. So how does the eye interpret all of us? We’ll integrate over the absorption function for each cell and get the three numbers $A$, $B$ and $C$.</p>
 <div>
 $$
 \begin{align*}
@@ -148,15 +130,15 @@ $$
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>3D Color Spaces</b></h4>
-<p>Since we only need three colors, we can just work in three dimensions and we don’t need the enitre specturm. So we have this huge amount of light hitting the camera but once it hits the camera, the camera is going to have three cones and will knock this light down to only three values. So simple.</p>
+<p>Since we only need three colors, we can just work in three dimensions and we don’t need the entire spectrum. So we have this huge amount of light hitting the camera but once it hits the camera, the camera is going to have three cones and will knock this light down to only three values. So simple.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/graphics/light/color-cube.png" width="70%" class="center" /></p>
 <p>To construct this three dimensional space of colors, map each primary color (red, green, blue) to the unit distance along the $x,y$ and $z$ axes. Black is at $(0,0,0)$ and White is at $(1,1,1)$. The resulting RGB cube represents all possible color. 
 <br />
 <br />
-Another color space that can be construced is the The cylindrical <b>HSV</b> color space. This is a color space based on hue, saturation and value. saturation is the intesity for a partical color. value is lightness or darkness of a particular color.
+Another color space that can be constructed is the The cylindrical <b>HSV</b> color space. This is a color space based on hue, saturation and value. saturation is the intensity for a partical color. value is lightness or darkness of a particular color.
 <br />
 <br />
-Another color space is the Luminace and Chrominance (YUV). This color space was used back in black and white televison sets. Why? Because the “Y” component holds most of the spatial details of the image. Therefore, we can agressively compress the other components $U$ and $V$ since we don’t care about color and still maintain a good quality.
+Another color space is the Luminance and Chrominance (YUV). This color space was used back in black and white television sets. Why? Because the “Y” component holds most of the spatial details of the image. Therefore, we can aggressively compress the other components $U$ and $V$ since we don’t care about color and still maintain a good quality.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>

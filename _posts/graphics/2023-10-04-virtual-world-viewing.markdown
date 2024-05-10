@@ -31,22 +31,22 @@ For a scanline renderer:
 To render a picture:
 1. We need to transform the models into the virtual world via model transformations. Here we went from the "Object Space" to "World Space".We did this already in part 1.
 2. From "World Space", we need to go to "Camera Space". This is where we will place the camera at the origin via some rigid transformation.
-3. Take the viewing frustum and apply a <b>prespective transformation</b> to shrink it into a viewing volume with boundaries at $[l, r]$, $[b, t]$, $[f, n]$.
+3. Take the viewing frustum and apply a <b>perspective transformation</b> to shrink it into a viewing volume with boundaries at $$[l, r]$$, $$[b, t]$$, $$[f, n]$$.
 4. Take this viewing volume and scale/resize it to the canonical viewing unit volume with all these planes are now between -1 and 1. This transformation is called the <b>orthographic projection transformation</b>.
-5. Finally, there is a viewport transformation from go from the unit volumne to pixel coordinates in "screen space". 
+5. Finally, there is a viewport transformation from go from the unit volume to pixel coordinates in "screen space". 
 
 
-- The next transformation is the orthographic projection transformation. The viewing here is looking along the minus z-axis with the head pointing in the y direction. What we want here, is to take this viewing volumn with the left and right planes ($x = r,l$), top and bottm planes ($y = t,b$) and near and far plane ($z = n,f$) and convert this volume to what is called the canonical view volume. Note that we're not doing any prespective projection yet.
+- The next transformation is the orthographic projection transformation. The viewing here is looking along the minus z-axis with the head pointing in the y direction. What we want here, is to take this viewing volumn with the left and right planes ($$x = r,l$$), top and bottm planes ($$y = t,b$$) and near and far plane ($$z = n,f$$) and convert this volume to what is called the canonical view volume. Note that we're not doing any perspective projection yet.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>(2) Camera Transformation</b></h4>
-TODO. This is done to change the view point in 3D. We have three parameters here. The eye position $e$, the gaze direction $g$ and the view up vector $t$. We're going to skip this transformation for now.
+TODO. This is done to change the view point in 3D. We have three parameters here. The eye position $$e$$, the gaze direction $$g$$ and the view up vector $$t$$. We're going to skip this transformation for now.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>(4) Orthographic Projection</b></h4>
-Let's skip (3) and talk about (4) since it's simpler. Here we've already applied the prespective transformation and now we have this viewing volume that is not yet a unit volume. W're just taking the viewing volume and converting it to a canonical volume. Here we're going from the camera space to a canonical view volume. We're going to scale and translate the viewing volume to a canonical volume. Note that we will not need any rotations here. It's just scaling and translating. Here is the matrix that we will end up with.
+Let's skip (3) and talk about (4) since it's simpler. Here we've already applied the perspective transformation and now we have this viewing volume that is not yet a unit volume. W're just taking the viewing volume and converting it to a canonical volume. Here we're going from the camera space to a canonical view volume. We're going to scale and translate the viewing volume to a canonical volume. Note that we will not need any rotations here. It's just scaling and translating. Here is the matrix that we will end up with.
 <div>
 $$
 \begin{align*}
@@ -61,11 +61,11 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(3) Prespective Transformation</b></h4>
+<h4><b>(3) Perspective Transformation</b></h4>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/virtual-world/04-prespective.png" width="60%" class="center"></p>
-Before applying the orthographic projection, we have applied a prespective transformation, shown above. (Image taken from the book in my references). So how do we do this? Let's fix the z-axis below (image from the slides)
+Before applying the orthographic projection, we have applied a perspective transformation, shown above. (Image taken from the book in my references). So how do we do this? Let's fix the z-axis below (image from the slides)
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/virtual-world/02-similar.png" width="100%" class="center"></p>
-The key property of perspective is that the size of an object on the screen is proportional to 1/z. We start from $(x,y,z)$ and we need to find the coordinates $(x',y')$ that will be used in the film plane. To find these coordinates, we can use the properties of similar triangles to derive the film x-coordinate,
+The key property of perspective is that the size of an object on the screen is proportional to 1/z. We start from $$(x,y,z)$$ and we need to find the coordinates $$(x',y')$$ that will be used in the film plane. To find these coordinates, we can use the properties of similar triangles to derive the film x-coordinate,
 <div>
 $$
 \begin{align*}
@@ -83,12 +83,12 @@ y' &= h \frac{y}{z}. \\
 \end{align*}
 $$
 </div>
-Dividing by $z$ is non-linear and we want to use a matrix multiplication for this projection. So how do we solve this issue? We'll use the same the trick that we used with translation which is homogenous coordinates.
+Dividing by $$z$$ is non-linear and we want to use a matrix multiplication for this projection. So how do we solve this issue? We'll use the same the trick that we used with translation which is homogenous coordinates.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Homogeoneous Coordinates Revisited</b></h4>
-The homogenous coordinates will allow us to express this transformation from world coordinates $(x,y,z)$ to film coordinates $(x',y')$. So previously we expressed translations with homogenous coordinates, we said that for points, we're going to add a fourth coordinate that is equal to 1 and for vectors we're going to add a 0. This is just to make translation works as a matrix multiplication. So instead of just "bolting" a 1 (per the book), we're going to define this 4th coordinate as the denominator of the $x$, $y$ and $z$ coordinates. So for example:
+<h4><b>Homogeneous Coordinates Revisited</b></h4>
+The homogenous coordinates will allow us to express this transformation from world coordinates $$(x,y,z)$$ to film coordinates $$(x',y')$$. So previously we expressed translations with homogenous coordinates, we said that for points, we're going to add a fourth coordinate that is equal to 1 and for vectors we're going to add a 0. This is just to make translation works as a matrix multiplication. So instead of just "bolting" a 1 (per the book), we're going to define this 4th coordinate as the denominator of the $$x$$, $$y$$ and $$z$$ coordinates. So for example:
 <div>
 $$
 \begin{align*}
@@ -101,12 +101,12 @@ $$
 \end{align*}
 $$
 </div>
-is the point $(x/w, y/w, z/w, 1)$. 
+is the point $$(x/w, y/w, z/w, 1)$$. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Prespective Matrix</b></h4>
-So what we want is derive some matrix in order to go from $h(x/z)$ for example to $x'$, shown below
+So what we want is derive some matrix in order to go from $$h(x/z)$$ for example to $$x'$$, shown below
 <div>
 $$
 \begin{align*}
@@ -126,7 +126,7 @@ h \frac{y}{z} \\
 \end{align*}
 $$
 </div>
-One idea that will get rid of the division is to use the forth coordinate for storing this $z$ value just as we saw in the previous section. Additionally, we can put the $h$ factor in the matrix where the scale factors go since we're we're scaling. To write this in matrix form:
+One idea that will get rid of the division is to use the forth coordinate for storing this $$z$$ value just as we saw in the previous section. Additionally, we can put the $$h$$ factor in the matrix where the scale factors go since we're we're scaling. To write this in matrix form:
 <div>
 $$
 \begin{align*}
@@ -152,7 +152,7 @@ z \\
 \end{align*}
 $$
 </div>
-So now let's study this matrix. First of all, the forth row has a 1. This 1 is there to save the $z$ coordinate so now we have $w'=z$. This is really important and the trick that we need to do the division. So now we have $w'=z$. Let's now multiply the first row and see what it does. $x'w' = hx$. Since we agreed that the forth coordinate will be the denominator then we get exactly what we wanted $x' = hx/z$ as we wanted. A similar calculation can be done for the $y'$ coordinate in the second row.
+So now let's study this matrix. First of all, the forth row has a 1. This 1 is there to save the $$z$$ coordinate so now we have $$w'=z$$. This is really important and the trick that we need to do the division. So now we have $$w'=z$$. Let's now multiply the first row and see what it does. $$x'w' = hx$$. Since we agreed that the forth coordinate will be the denominator then we get exactly what we wanted $$x' = hx/z$$ as we wanted. A similar calculation can be done for the $$y'$$ coordinate in the second row.
 <br>
 <br>
 What about the mysterious third row? we have 
@@ -164,12 +164,12 @@ z'z = az + b.
 \end{align*}
 $$
 </div>
-So technically here $a$ and $b$ can be zero and we'll be projecting this fine. We don't need them really. So why bother? The idea here is that we might have two objects splattered on the screen with one object infront of the other. But all these geometrics are now squished together because we use the matrix, all of the $z$ values will just be $h$ where the film plane is in here,
+So technically here $$a$$ and $$b$$ can be zero and we'll be projecting this fine. We don't need them really. So why bother? The idea here is that we might have two objects splattered on the screen with one object infront of the other. But all these geometrics are now squished together because we use the matrix, all of the $$z$$ values will just be $$h$$ where the film plane is in here,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/virtual-world/02-similar.png" width="100%" class="center"></p>
-We lost the information that will tell us which object will have a lower or higher $z$ value. So the idea here is use that third row to preseve these values (the notion of what's infront and what's behind). a smaller $z'$ will mean it's infront, a higher means it's behind.
+We lost the information that will tell us which object will have a lower or higher $$z$$ value. So the idea here is use that third row to preseve these values (the notion of what's infront and what's behind). a smaller $$z'$$ will mean it's infront, a higher means it's behind.
 <br>
 <br>
-Let the near clipping plane be $n$ and the far clipping plane be $f$ of the viewing frustrum. (Usually $h$ is just $n$ but doesn't have to be). We also want to preseve the clipping planes so that when $z=n$, $z'$ is also $n$ and when $z=f$, $z' is also $f$. So now we have these two equations,
+Let the near clipping plane be $$n$$ and the far clipping plane be $$f$$ of the viewing frustum. (Usually $$h$$ is just $$n$$ but doesn't have to be). We also want to preserve the clipping planes so that when $$z=n$$, $$z'$$ is also $$n$$ and when $$z=f$$, $$z' is also $$f$$. So now we have these two equations,
 <div>
 $$
 \begin{align*}
@@ -187,7 +187,7 @@ f^2 = af + b.
 \end{align*}
 $$
 </div>
-The solution to these equations are $a=n+f$ and $b=-fn$. So the prespective matrix is now:
+The solution to these equations are $$a=n+f$$ and $$b=-fn$$. So the perspective matrix is now:
 <div>
 $$
 \begin{align*}

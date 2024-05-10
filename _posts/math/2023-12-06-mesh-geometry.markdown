@@ -27,7 +27,7 @@ Note here that we can have the same set of vertices represent two different mesh
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Mesh Representation</b></h4>
-2D manifolds are surfaces such that when cut with a small sphere, it will always yields a disk or half a disk on the boundary. Manfolds have some important properties like
+2D manifolds are surfaces such that when cut with a small sphere, it will always yields a disk or half a disk on the boundary. Manifolds have some important properties like
 - an edge connects two faces exactly.
 - an edge connects two vertices only.
 - a face consists of a ring edges and vertices.

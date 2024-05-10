@@ -13,41 +13,41 @@ mathjax: true
 <b>Proof.</b><br>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr13/0.png" width="45%" class="center"></p>
 
-Suppose we have a straight line $AB$ set up on another straight line $CD$. We claim that the angles $\angle DBA$ and $ABC$ are either two right angles or equal to two right angles.
+Suppose we have a straight line $$AB$$ set up on another straight line $$CD$$. We claim that the angles $$\angle DBA$$ and $$ABC$$ are either two right angles or equal to two right angles.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr13/1.png" width="45%" class="center"></p>
 
-If both angles are equal to each other then by <a href="https://strncat.github.io/jekyll/update/2024/03/19/euclid-book1-definitions.html">definition 10</a>, they are both right angles and we are done. Otherwise, they are not. In this case, use <a href="https://strncat.github.io/jekyll/update/2024/03/03/euclid-book1-pr11.html">proposition 11</a> to draw a perpendicular straight line from $B$ to $E$. 
+If both angles are equal to each other then by <a href="https://strncat.github.io/jekyll/update/2024/03/19/euclid-book1-definitions.html">definition 10</a>, they are both right angles and we are done. Otherwise, they are not. In this case, use <a href="https://strncat.github.io/jekyll/update/2024/03/03/euclid-book1-pr11.html">proposition 11</a> to draw a perpendicular straight line from $$B$$ to $$E$$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr13/2.png" width="45%" class="center"></p>
 
-From proposition 12, we know that the angles $\angle DBE$ and $\angle EBC$ are both right angles. We also know that $\angle DBE$ is equal to the angles $\angle ABE$ and $\angle DBA$. Let the angle $\angle EBC$ be added to each,
+From proposition 12, we know that the angles $$\angle DBE$$ and $$\angle EBC$$ are both right angles. We also know that $$\angle DBE$$ is equal to the angles $$\angle ABE$$ and $$\angle DBA$$. Let the angle $$\angle EBC$$ be added to each,
 <div center>
-$$
+$$$$
 \begin{align}
 \angle DBE &= \angle DBA + \angle ABE \\
 \angle DBE + \angle EBC &= \angle DBA + \angle ABE + \angle EBC
 \end{align}
-$$
+$$$$
 </div>
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr13/3.png" width="90%" class="center"></p>
 
-So angles $\angle DBE$ and $\angle EBC$ are equal to the three angles $\angle DBA$, $\angle ABE$ and $\angle EBC$. Similarly, the angle $\angle ABC$ is equal to the angles $\angle ABE$ and $\angle EBC$. Let the angle $\angle DBA$ be added to each.
+So angles $$\angle DBE$$ and $$\angle EBC$$ are equal to the three angles $$\angle DBA$$, $$\angle ABE$$ and $$\angle EBC$$. Similarly, the angle $$\angle ABC$$ is equal to the angles $$\angle ABE$$ and $$\angle EBC$$. Let the angle $$\angle DBA$$ be added to each.
 
 <div center>
-$$
+$$$$
 \begin{align}
 \angle ABC &= \angle ABE + \angle EBC \\
 \angle ABC + \angle DBA &= \angle ABE + \angle EBC + \angle DBA \\
 \end{align}
-$$
+$$$$
 </div>
-We can see that both $\angle ABC$ and $\angle DBA$ are equal to the three angle $\angle DBA$, $\angle ABE$ and $\angle EBC$. 
+We can see that both $$\angle ABC$$ and $$\angle DBA$$ are equal to the three angle $$\angle DBA$$, $$\angle ABE$$ and $$\angle EBC$$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr13/4.png" width="90%" class="center"></p>
 
-Finally, we can see from both equations that angles $\angle ABC$ and $\angle DBA$ and again angles $\angle DBE$ and $\angle EBC$ are both equal to the same three angles. By <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">common notion 1</a>, things which are equal to the same thing are also equal to one another. Therefore angles $\angle ABC$ and $\angle DBA$ are to equal angles $\angle DBE$ and $\angle EBC$. Since angles $\angle DBE$ and $\angle EBC$ are both right angles, then angles $\angle ABC$ and $\angle DBA$ are equal to two right angles as we claimed.
+Finally, we can see from both equations that angles $$\angle ABC$$ and $$\angle DBA$$ and again angles $$\angle DBE$$ and $$\angle EBC$$ are both equal to the same three angles. By <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">common notion 1</a>, things which are equal to the same thing are also equal to one another. Therefore angles $$\angle ABC$$ and $$\angle DBA$$ are to equal angles $$\angle DBE$$ and $$\angle EBC$$. Since angles $$\angle DBE$$ and $$\angle EBC$$ are both right angles, then angles $$\angle ABC$$ and $$\angle DBA$$ are equal to two right angles as we claimed.
 <br>
 <hr>
 <!----------------------------------------------------------------------->

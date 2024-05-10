@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <img src="{{ site.url }}/assets/graphs/bellman-ford/1.png" width="100%">
-Let $$G=(V,E)$$ be a weighted graph with $$V$$ vertices and $$E$$ edges. Bellman-Ford is a dynamic programming algorithm that for a given a vertex ,$v$, finds all the shortest paths from $$v$$ to all the other vertices in $G$.
+Let $$G=(V,E)$$ be a weighted graph with $$V$$ vertices and $$E$$ edges. Bellman-Ford is a dynamic programming algorithm that for a given a vertex ,$$v$$, finds all the shortest paths from $$v$$ to all the other vertices in $$G$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -18,7 +18,7 @@ But why another shortest paths algorithms. W've already discussed Dijkstra's alg
 <h4><b>Optimal Substructure</b></h4>
 Since it's a dynamic programming algorithm, then this means that we must have some optimal recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
 <br><br>
-Let $$D[v,i]$$ be the length of the shortest path from $$s$$ to some vertex $$v$$ whose number of edges is at most $$i$$. Given that we know $$D[v,i]$$ for all $$v \in V$$, what can we say about $$D[v,i+1]$$? In other words, given that we know the shortest path using at most $i$ edges from $s$ to any vertex in $G$, what can we say about the length of the shortest path from $$s$$ to some vertex $$v$$ with at most $$i+1$$ edges? Let's think about this before looking at the answer. Bellman-Ford definitely wasn't easy for me to think about.
+Let $$D[v,i]$$ be the length of the shortest path from $$s$$ to some vertex $$v$$ whose number of edges is at most $$i$$. Given that we know $$D[v,i]$$ for all $$v \in V$$, what can we say about $$D[v,i+1]$$? In other words, given that we know the shortest path using at most $$i$$ edges from $$s$$ to any vertex in $$G$$, what can we say about the length of the shortest path from $$s$$ to some vertex $$v$$ with at most $$i+1$$ edges? Let's think about this before looking at the answer. Bellman-Ford definitely wasn't easy for me to think about.
 <br><br>
 <img src="{{ site.url }}/assets/graphs/bellman-ford/2.png" width="100%">
 Consider the graph above and let's assume that we already know all the shortest paths using at most 2 edges from $$s$$ to any vertex in $$G$$. So for example, we know that $$D[a,2]=6$$, $$D[b,2]=8$$, $$D[c,2]=4$$ and $$D[t,2]=7$$. So now we know the shortest distance from $$s$$ to $$t$$ using at most two edges is 7. Can we get a shorter path by considering any path that uses 3 edges? Yes!!! we can use the shortest path from $$s$$ to $$b$$ instead of length 8 and then take in $$(b,t)=-4$$ to get a shorter path of length 4. In other words, forget about the path $$s->c->t$$ and go through $$s->a->b->t$$. How can we put this together formally? 
@@ -116,7 +116,7 @@ for (int i = 0; i < g.size(); i++) { // for every edge in the graph
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Why only $n-1$ iterations?</b></h4>
+<h4><b>Why only \(n-1\) iterations?</b></h4>
 To answer this question, we ask: can we have positive cycles in a shortest path? The answer is again no. Suppose that we are given a shortest path with a positive weight cycle. Then we can remove the cycle from the path and arrive at a shorter path. This is a contradiction and therefore, we can not have positive weight cycles. Additionally if the cycle is of zero weight or length, then removing the cycle from the shortest path will produce a path with the same weight/length. Therefore, we can restrict finding the shortest path problem to finding a simple shortest path. Simple paths in a graph with $$n$$ vertices can have at most $$n-1$$ edges and therefore, all we need to do is run Bellman-Ford for $$n-1$$ iterations. (CLRS page 645)
 <br>
 <br>

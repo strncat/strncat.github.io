@@ -13,10 +13,10 @@ $$
 \end{align*}
 $$
 </div>
-To do this, we'll need to relate a few quantities that are bigger and smaller than $\sin(x)/x$. Let's start:
+To do this, we'll need to relate a few quantities that are bigger and smaller than $$\sin(x)/x$$. Let's start:
 <!------------------------------------------------------------------------------------>
-<h4><b>The Area of the Triangle $ABC$</b></h4>
-Suppose we have the following triangle $ABC$ inside the unit circle.
+<h4><b>The Area of the Triangle $$ABC$$</b></h4>
+Suppose we have the following triangle $$ABC$$ inside the unit circle.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/calculus/limit-sin-x/0.png" width="60%" class="center"></p>
 We know the area of a triangle is,
 <div>
@@ -26,11 +26,11 @@ a = \frac{1}{2}bh
 \end{align*}
 $$
 </div>
-where $b$ is the length of the base and $h$ is the height of the triangle. Since this is a unit circle then $b = AB = 1$ because the radius of the unit circle is 1 by construction. 
+where $$b$$ is the length of the base and $$h$$ is the height of the triangle. Since this is a unit circle then $$b = AB = 1$$ because the radius of the unit circle is 1 by construction. 
 <br><br>
-What about the height? The height is $CE$. What is $CE$? If we look at the smaller triangle, we'll see $\sin(x) = \frac{opp}{hyp} = \frac{CE}{1} = CE$. So the height is just $\sin(x)$. 
+What about the height? The height is $$CE$$. What is $$CE$$? If we look at the smaller triangle, we'll see $$\sin(x) = \frac{opp}{hyp} = \frac{CE}{1} = CE$$. So the height is just $$\sin(x)$$. 
 <br><br>
-So the area of the pink triangle $ABC$ is therefore,
+So the area of the pink triangle $$ABC$$ is therefore,
 <div>
 $$
 \begin{align*}
@@ -42,7 +42,7 @@ $$
 </div>
 
 <!------------------------------------------------------------------------------------>
-<h4><b>The Area of the Sector $ABC$</b></h4>
+<h4><b>The Area of the Sector $$ABC$$</b></h4>
 Now we want to calculate the area of the following shaded sector,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/calculus/limit-sin-x/1.png" width="60%" class="center"></p>
 The area of the sector is 
@@ -55,7 +55,7 @@ sector &= \frac{1}{2}r\theta
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Area of the Triangle $ABD$</b></h4>
+<h4><b>The Area of the Triangle $$ABD$$</b></h4>
 The last area we're interested in is the area of the biggest (extended) triangle,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/calculus/limit-sin-x/2.png" width="65%" class="center"></p>
 Again, we know the area of a triangle is 
@@ -66,17 +66,17 @@ a = \frac{1}{2}bh
 \end{align*}
 $$
 </div>
-We established earlier that the base $AB$ is 1. What about the height? The angle $\angle ABD$ is a right angle by construction so $DB$ is equal to the height of the triangle. What is $DB$? We can't use $\sin(x)$ like last time because we don't know anything about the length of $AD$. However we do know the length of $AB$ and one way to relate $AB$ and $DB$ together is through $\tan(x)$. So,
+We established earlier that the base $$AB$$ is 1. What about the height? The angle $$\angle ABD$$ is a right angle by construction so $$DB$$ is equal to the height of the triangle. What is $$DB$$? We can't use $$\sin(x)$$ like last time because we don't know anything about the length of $$AD$$. However we do know the length of $$AB$$ and one way to relate $$AB$$ and $$DB$$ together is through $$\tan(x)$$. So,
 <div>
 $$
 \begin{align*}
 \tan(x) &= \frac{opp}{adj} \\
-&= \frac{DB}{1} \quad (\text{because $adj = r = 1$})\\
+&= \frac{DB}{1} \quad (\text{because $$adj = r = 1$$})\\
 &= DB \\
 \end{align*}
 $$
 </div>
-The length of the bigger triangle $ABD$ is therefore,
+The length of the bigger triangle $$ABD$$ is therefore,
 <div>
 $$
 \begin{align*}
@@ -97,7 +97,7 @@ $$
 \end{align*}
 $$
 </div>
-We can further simplify and also divide by $\sin(x)$. Note here that $sin(x)$ is postive,
+We can further simplify and also divide by $$\sin(x)$$. Note here that $$sin(x)$$ is postive,
 <div>
 $$
 \begin{align*}
@@ -110,7 +110,7 @@ sin(x) &< x < tan(x) \\
 \end{align*}
 $$
 </div>
-If we. try to find the limit as $x$ goes to 0 of the first and last term we will find that
+If we. try to find the limit as $$x$$ goes to 0 of the first and last term we will find that
 <div>
 $$
 \begin{align*}

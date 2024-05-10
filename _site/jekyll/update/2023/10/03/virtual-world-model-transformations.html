@@ -5,26 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
->
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
->
-</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 </head>
@@ -103,7 +85,7 @@ $$
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Rotations Preserve Line Segments</b></h4>
-<p>Consider two points $p$ and $q$ and the line segment between them. Write the line segment in terms of these points</p>
+<p>Consider two points \(p\) and \(q\) and the line segment between them. Write the line segment in terms of these points</p>
 <div>
 $$
 \begin{align*}
@@ -111,8 +93,8 @@ u(\alpha) = (1 - \alpha)p + \alpha q
 \end{align*}
 $$
 </div>
-<p>so if $\alpha$ is 0, then we get $p$ and if $\alpha$ is 1 then we get the point $q$.
-Apply the rotation $R$ on each point by multiplying the points on the light segment</p>
+<p>so if \(\alpha\) is 0, then we get \(p\) and if \(\alpha\) is 1 then we get the point \(q\).
+Apply the rotation \(R\) on each point by multiplying the points on the light segment</p>
 <div>
 $$
 \begin{align*}
@@ -121,7 +103,7 @@ Ru(\alpha) &amp;= R((1 - \alpha)p + \alpha q) \\
 \end{align*}
 $$
 </div>
-<p>When $\alpha = 0$, we get $Ru(0) = Rp$ and when $\alpha = 1$, we get $Ru(1)=Rq$. We know $0 \leq \alpha \leq 1$ specifies all the points connecting $Rp$ and $Rq$. This means that we only need to rotate the endpoints in order to construct the new line segment connecting them. Next, we will show that the distance between the two rotated points is equivalent to the distance between the original points,</p>
+<p>When \(\alpha = 0\), we get \(Ru(0) = Rp\) and when \(\alpha = 1\), we get \(Ru(1)=Rq\). We know \(0 \leq \alpha \leq 1\) specifies all the points connecting \(Rp\) and \(Rq\). This means that we only need to rotate the endpoints in order to construct the new line segment connecting them. Next, we will show that the distance between the two rotated points is equivalent to the distance between the original points,</p>
 <div>
 $$
 \begin{align*}
@@ -138,7 +120,7 @@ $$
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Rotations Preserve Angels</b></h4>
-<p>Consider two line segments $u$ and $v$. The claim is that the angel between two is preseved after $u$ and $v$ are rotated. <br />
+<p>Consider two line segments \(u\) and \(v\). The claim is that the angel between two is preserved after \(u\) and \(v\) are rotated. <br />
 Proof:</p>
 <div>
 $$
@@ -158,11 +140,11 @@ Ru \cdot Rv &amp;= u^T R^T R v  \\
 \end{align*}
 $$
 </div>
-<p>So the angel between $u$ and $v$ is the same as the angle between $Ru$ and $Rv$. 
+<p>So the angel between \(u\) and \(v\) is the same as the angle between \(Ru\) and \(Rv\). 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Rotations Preseve Shape</b></h4>
+<h4><b>Rotations Preserve Shape</b></h4>
 <p>TODO
 <br />
 <br />
@@ -180,14 +162,14 @@ s_1 &amp; 0 &amp; 0 \\
 \end{align*}
 $$
 </div>
-<p>if $s_1 = s_2 = s_3 = s$, then the object is just getting scaled. In that case, distances between line segments increase/decrease  by a factor of $s$ and the angles between line segments are preseved. (Similar Proof to the Rotation Proof)
+<p>if \(s_1 = s_2 = s_3 = s\), then the object is just getting scaled. In that case, distances between line segments increase/decrease  by a factor of \(s\) and the angles between line segments are preserved. (Similar Proof to the Rotation Proof)
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Homogenous Coordinates</b></h4>
-<p>Before we can talk about translation, we need to introduce homogenous coordinates. The reason is because we want to do translations with matrix multiplication to speed things up. Instead of applying each transformation seperately, now we can multiply all these transformations first and then apply them all at once.</p>
+<p>Before we can talk about translation, we need to introduce homogenous coordinates. The reason is because we want to do translations with matrix multiplication to speed things up. Instead of applying each transformation separately, now we can multiply all these transformations first and then apply them all at once.</p>
 <ul>
-  <li>The homogeneous coordinates of a 3D point $x$ = (x, y, z) are</li>
+  <li>The homogeneous coordinates of a 3D point \(x\) = (x, y, z) are</li>
 </ul>
 <div>
 $$
@@ -201,15 +183,15 @@ w
 \end{align*}
 $$
 </div>
-<p>for any $w \neq 0$.</p>
+<p>for any \(w \neq 0\).</p>
 <ul>
-  <li>We typically convert points to homogenous coordinates by setting $w = 1$ for points and $w = 0$ for vectors to deal with translations while vectors have $w = 0$. 
+  <li>We typically convert points to homogenous coordinates by setting \(w = 1\) for points and \(w = 0\) for vectors to deal with translations while vectors have \(w = 0\). 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></li>
 </ul>
 <h4><b>Order Matters!</b></h4>
-<p>Suppose we want to rotate by 45 degrees around the x-axis and then translate all the points by $(t_1, t_2, t_3)$. We can use homogenous coordinates to accomplish this but we need to remember that we need to rotate first and then translate. If we change the order, then we’ll get a completely different transformations. To correctly apply the transformations, $M_1$ followed by $M_2$, we’ll need to multiply the matrices in the reverse order $M_2M_1$, meaning that we’re applying $M_1$ first.</p>
+<p>Suppose we want to rotate by 45 degrees around the x-axis and then translate all the points by \((t_1, t_2, t_3)\). We can use homogenous coordinates to accomplish this but we need to remember that we need to rotate first and then translate. If we change the order, then we’ll get a completely different transformations. To correctly apply the transformations, \(M_1\) followed by \(M_2\), we’ll need to multiply the matrices in the reverse order \(M_2M_1\), meaning that we’re applying \(M_1\) first.</p>
 <div>
 $$
 \begin{align*}
@@ -256,7 +238,7 @@ w
 \end{align*}
 $$
 </div>
-<p>$w$ above is either 0 or 1 depending if this is a vector or a point. Note here that if you multiply the translation matrix by a vector then it has no effect as expected. The 0 will cancel out the effect. This doesn’t happen with points. So for points,</p>
+<p>\(w\) above is either 0 or 1 depending if this is a vector or a point. Note here that if you multiply the translation matrix by a vector then it has no effect as expected. The 0 will cancel out the effect. This doesn’t happen with points. So for points,</p>
 <div>
 $$
 \begin{align*}

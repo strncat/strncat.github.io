@@ -5,26 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
->
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
->
-</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 </head>
@@ -64,7 +46,7 @@
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Transformations</b></h4>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-transformations/01.png" width="60%" class="center" /></p>
-<p>So what does transformation mean? A transformation takes a vector as an input and outputs another vector so it’s just a function. So why didn’t we call it a function? This is because the word transformation suggests movement. We’re imagining that this input vector is moving over to the output vector. Of course, when transforming vectors, it is much nicer to use the trick from last time where we think of the vector as the point where its tip sits on. This way it is easier to visulize transforming many vectors all at once.
+<p>So what does transformation mean? A transformation takes a vector as an input and outputs another vector so it’s just a function. So why didn’t we call it a function? This is because the word transformation suggests movement. We’re imagining that this input vector is moving over to the output vector. Of course, when transforming vectors, it is much nicer to use the trick from last time where we think of the vector as the point where its tip sits on. This way it is easier to visualize transforming many vectors all at once.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -77,11 +59,11 @@
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Describing Linear Transformations Numerically</b></h4>
-<p>How do we describe a linear transformation? It turns out that all we need to do is to record where the basis vectors will land and then everything else will just follow. Why is this? From the previous post, we know can write any vector as a linear combination of the basis vector of the vector space. Suppose $v = \begin{bmatrix}3 &amp; -2\end{bmatrix}$, then we know that we can write $v$ in terms of $\widehat{i}$ and $\widehat{j}$ as shown below.</p>
+<p>How do we describe a linear transformation? It turns out that all we need to do is to record where the basis vectors will land and then everything else will just follow. Why is this? From the previous post, we know can write any vector as a linear combination of the basis vector of the vector space. Suppose \(v = \begin{bmatrix}3 &amp; -2\end{bmatrix}\), then we know that we can write \(v\) in terms of \(\widehat{i}\) and \(\widehat{j}\) as shown below.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-transformations/02.png" width="45%" class="center" /></p>
 <p>Writing this again, we have</p>
 <div>
-$$
+$$$$
 \begin{align*}
 v &amp;= 3\widehat{i} - 2\widehat{j} \\
 \begin{bmatrix}
@@ -98,13 +80,13 @@ v &amp;= 3\widehat{i} - 2\widehat{j} \\
 0 \\ 1
 \end{bmatrix}
 \end{align*}
-$$
+$$$$
 </div>
-<p>After applying the transformation on $\widehat{i}$ and $\widehat{j}$, we can now find out where $v$ will land by writing $v$ as a linear combination of the transformed vectors $\widehat{i}$ and $\widehat{j}$.</p>
+<p>After applying the transformation on \(\widehat{i}\) and \(\widehat{j}\), we can now find out where \(v\) will land by writing \(v\) as a linear combination of the transformed vectors \(\widehat{i}\) and \(\widehat{j}\).</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-transformations/03.png" width="60%" class="center" /></p>
-<p>and now we can just know where $v$ will land based on where $\widehat{i}$ and $\widehat{j}$ landed after the tranformation. We can write,</p>
+<p>and now we can just know where \(v\) will land based on where \(\widehat{i}\)\(and\)\widehat{j}$$ landed after the tranformation. We can write,</p>
 <div>
-$$
+$$$$
 \begin{align*}
 \text{transformed (} v) &amp;= 3\text{ (transformed }\widehat{i}) - 2 \text{ (transformed }\widehat{j}) \\
 &amp;=
@@ -122,26 +104,26 @@ $$
 1 \\ -5
 \end{bmatrix}
 \end{align*}
-$$
+$$$$
 </div>
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Representing the transformation with a Matrix</b></h4>
-<p>So from the above we saw how a two dimensional linear transformation is completely described by four numbers. The two coordinates for where $\widehat{i}$ lands and the two coordinates for where $\widehat{j}$ lands and this is pretty cool! Here is a cooler thing. We can package these coordinates into a two-by-two grid of numbers (a Matrix!)</p>
+<p>So from the above we saw how a two dimensional linear transformation is completely described by four numbers. The two coordinates for where \(\widehat{i}\) lands and the two coordinates for where \(\widehat{j}\) lands and this is pretty cool! Here is a cooler thing. We can package these coordinates into a two-by-two grid of numbers (a Matrix!)</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-transformations/04.png" width="40%" class="center" /></p>
-<p>The first column will be where $\widehat{i}$ landed and the second column will be where $\widehat{j}$ landed. So now when we apply the transformation to some vector $v=(x,y)$, what do we get?</p>
+<p>The first column will be where \(\widehat{i}\) landed and the second column will be where \(\widehat{j}\) landed. So now when we apply the transformation to some vector \(v=(x,y)\), what do we get?</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-transformations/05.png" width="40%" class="center" /></p>
-<p>We’ll multiply the $x$ coordinate with the transformed $\widehat{i}$ vector and similary multiply the $y$ coordinate with the transformed $\widehat{j}$ coordinate.</p>
+<p>We’ll multiply the \(x\) coordinate with the transformed \(\widehat{i}\) vector and similarly multiply the \(y\) coordinate with the transformed \(\widehat{j}\) coordinate.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-transformations/06.png" width="70%" class="center" /></p>
 
 <p>and now we can re-arrange the matrix position to put it on the left of the vector below,</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/linear-transformations/07.png" width="100%" class="center" /></p>
-<p>And this is way more fun than just memeorizing how matrix multipcation works. These matrix columns are just the transformed versions of your basis vectors and the resulting vector is just a linear combinations of these two vectors. 
+<p>And this is way more fun than just memorizing how matrix multiplication works. These matrix columns are just the transformed versions of your basis vectors and the resulting vector is just a linear combinations of these two vectors. 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>More Example Transformations</b></h4>
-<p>TODO: Rotations and Shear. (the video shows really beatiful animation for the examples)
+<p>TODO: Rotations and Shear. (the video shows really beautiful animation for the examples)
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>

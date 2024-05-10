@@ -30,23 +30,23 @@ $$
 \end{align*}
 $$
 </div>
-This time, $A$ is the area of the surface on the sphere. The surface area of a sphere is $4\pi r^2$ so a sphere has $4\pi$ steradins. We want to know how many photons in this cone are coming out. This will tell us how much light power is coming out. Note here that if the cone gets bigger, the amount of photons is not changing. The photons are just spreading farther. At any cross section of that cone, we'll have the same amount of photons.
+This time, $A$ is the area of the surface on the sphere. The surface area of a sphere is $4\pi r^2$ so a sphere has $4\pi$ steradians$$. We want to know how many photons in this cone are coming out. This will tell us how much light power is coming out. Note here that if the cone gets bigger, the amount of photons is not changing. The photons are just spreading farther. At any cross section of that cone, we'll have the same amount of photons.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(1) Radiant Intesity from a Light Source</b></h4>
+<h4><b>(1) Radiant Intensity from a Light Source</b></h4>
 How does light leave a light source? The radiant intensity from a light source is
 <div>
-$$
+$$$
 \begin{align*}
 I(\omega) = \frac{d\phi}{d\omega}.
 \end{align*}
 $$
 </div>
-$\phi$ is the light source power (in watts = joules per second) or the amount of photons. $\omega$ is a solid angle from the previous section. So this is photons per solid angle. The intesity is stronger when a lot of photos are coming out of that cone. So again, we don't measure or care about the amount photons coming out of the light. We instead measure the photons per solid angle ($\omega$). This is what matters.
+$\phi$ is the light source power (in watts = joules per second) or the amount of photons. $\omega$ is a solid angle from the previous section. So this is photons per solid angle. The intensity is stronger when a lot of photos are coming out of that cone. So again, we don't measure or care about the amount photons coming out of the light. We instead measure the photons per solid angle ($\omega$). This is what matters.
 <br>
 <br>
-For isotropic light sources, we have the same amount of photos going out in each direction, So we don't depend on omega anymore. $I$ is just a constant. So we can just bring the $I$ out below and take the integral to find $\phi$. We know from the previous section that the sphere has $4\pi$ sterdians and so we'll end up with,
+For isotropic light sources, we have the same amount of photos going out in each direction, So we don't depend on omega anymore. $I$ is just a constant. So we can just bring the $I$ out below and take the integral to find $\phi$. We know from the previous section that the sphere has $4\pi$ steradians and so we'll end up with,
 <div>
 $$
 \begin{align*}
@@ -121,12 +121,12 @@ d\omega &= \frac{dA_{\text{on the sphere surface}}}{r^2} \\
 \end{align*}
 $$
 </div>
-So what did we do here? We wrote an equation that compares the area of the object that the light is hitting to the sterdians on the surface of the sphere where the light is leaving the light source from. This relationship is defined now by $r^2$ and $\cos(\theta)$. More tilt, means less light and more distance means also less light. This also implies the conservation of light energy. The amount leaving the cone, is captured by the area. To summarize, now we related the the amount of photons leaving the light to area of the surface we're trying to shade.the solid angle varies with the distance and the tilt angle
+So what did we do here? We wrote an equation that compares the area of the object that the light is hitting to the steradians on the surface of the sphere where the light is leaving the light source from. This relationship is defined now by $r^2$ and $\cos(\theta)$. More tilt, means less light and more distance means also less light. This also implies the conservation of light energy. The amount leaving the cone, is captured by the area. To summarize, now we related the the amount of photons leaving the light to area of the surface we're trying to shade.the solid angle varies with the distance and the tilt angle
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Area Lights</b></h4>
-But ... light however doesn't work as a single point. Light power is emitted per unit area. The emitted light goes in varius directions (area or sphere emitting in every direction). So how do we measure this? We break this light area into small area chuncks (so radiant intensity per area chunk), So now we know the radiant intensity unit and we know the area chunck unit and we can write the "Radiant Intensity per Area Chunk (aka Radiance)) as a fraction,
+But ... light however doesn't work as a single point. Light power is emitted per unit area. The emitted light goes in varius directions (area or sphere emitting in every direction). So how do we measure this? We break this light area into small area chunks (so radiant intensity per area chunk), So now we know the radiant intensity unit and we know the area chance unit and we can write the "Radiant Intensity per Area Chunk (aka Radiance)) as a fraction,
 <div>
 $$
 \begin{align*}
@@ -134,7 +134,7 @@ L = \frac{dI}{d A \cos(\theta_{\text{light}})},
 \end{align*}
 $$
 </div>
-In graphics, we don't care about the radiant intesity. We care about the <b>radiance</b>. So now we have both radiance and irradiance for surfaces capturing the light. Morever, remember that the radiant intesity from a few slides ago is $d\phi/d\omega$ and that the irradiance is $E = d\phi /dA$. So substitute to see
+In graphics, we don't care about the radiant intensity. We care about the <b>radiance</b>. So now we have both radiance and irradiance for surfaces capturing the light. Moreover, remember that the radiant intensity from a few slides ago is $d\phi/d\omega$ and that the irradiance is $E = d\phi /dA$. So substitute to see
 
 <div>
 $$

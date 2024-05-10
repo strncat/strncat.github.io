@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <img src="{{ site.url }}/assets/dynamic-programming/coin-change/coin-change.png" width="100%">
-Suppose we're given a bill of value $n=5$. We're also given unlimited amount of coins. The possible coin values are 1, 2 and 5. What is the total number of ways of changing the bill into coins? We can exchange it for 5 coins of value 1. We can also exchange it for 3 coins of value 1 and 1 coin of value 2. Here are total possible ways:
+Suppose we're given a bill of value $$n=5$$. We're also given unlimited amount of coins. The possible coin values are 1, 2 and 5. What is the total number of ways of changing the bill into coins? We can exchange it for 5 coins of value 1. We can also exchange it for 3 coins of value 1 and 1 coin of value 2. Here are total possible ways:
 <img src="{{ site.url }}/assets/dynamic-programming/coin-change/change.png" width="100%">
 How can we design an algorithm to solve this problem?
 <br>
@@ -14,9 +14,9 @@ How can we design an algorithm to solve this problem?
 <!----------------------------------------------------------------------------------->
 <h4><b>Method 1</b></h4>
 One way to count the number of ways to make change is to iterate through the coins and use each coin as a  starting point:
-- Start with a coin of value 5, then make change for $n-5$.
-- Start with a coin of value 2, then make change for $n-2$.
-- Start with a coin of value 1, then make change for $n-1$.
+- Start with a coin of value 5, then make change for $$n-5$$.
+- Start with a coin of value 2, then make change for $$n-2$$.
+- Start with a coin of value 1, then make change for $$n-1$$.
 
 When do we stop?
 
@@ -28,9 +28,9 @@ This is illustrated below with amount = 4 and coins 1, 2 and 5:
 
 The solutions are highlighted in yellow. One thing we immediately notice is that we have duplicates! we're finding (1,1,2), (1,2,1) and (2,1,1) as valid solutions. How can we fix this? The simplest way to fix this issue is to restrict the coins in the next iteration to coins  that are less than our current coin. For example if our current coin is 2, then we only try out coins 1 and 2 at the next level. So our steps will now be:
 
-- Start with a coin of value 5, then make change for $n-5$ with coins (1,2,5).
-- Start with a coin of value 2, then make change for $n-2$ with coins (1,2).
-- Start with a coin of value 1, then make change for $n-1$ with coins (1).
+- Start with a coin of value 5, then make change for $$n-5$$ with coins (1,2,5).
+- Start with a coin of value 2, then make change for $$n-2$$ with coins (1,2).
+- Start with a coin of value 1, then make change for $$n-1$$ with coins (1).
 
 This is illustrated below.
 
@@ -58,10 +58,10 @@ long make_change_recursive_alt(std::vector<int>& coins, int index, int amount) {
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Method 2</b></h4>
-Another way to think about this problem is to divide the solutions into two sets. Fix a coin of choice, $c$, and then divide the set of solutions into solutions that use the coin $c$ and solutions that don't use $c$. For amount 4 and coin "2", we have 1 way that doesn't use coin "2" and 2 different ways that does use it.
+Another way to think about this problem is to divide the solutions into two sets. Fix a coin of choice, $$c$$, and then divide the set of solutions into solutions that use the coin $$c$$ and solutions that don't use $$c$$. For amount 4 and coin "2", we have 1 way that doesn't use coin "2" and 2 different ways that does use it.
 <img src="{{ site.url }}/assets/dynamic-programming/coin-change/method2-coin.png" width="100%">
 
-Let $K[c,n]$ be the total number of ways to make change for amount $n$ and coins $c$. Fix a coin $c_i$ from the set $c$. We will have,
+Let $$K[c,n]$$ be the total number of ways to make change for amount $$n$$ and coins $$c$$. Fix a coin $$c_i$$ from the set $$c$$. We will have,
 <div center>
 $$
 \begin{align*}
@@ -87,13 +87,13 @@ long make_change_recursive(std::vector<int>& coins, int n, int amount) {
 }
 {% endhighlight %}
 
-However, for $n$ coins, this solution still takes $O(2^n)$ time and is not efficient.
+However, for $$n$$ coins, this solution still takes $$O(2^n)$$ time and is not efficient.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Method 3: Dynamic Programming</b></h4>
 <img src="{{ site.url }}/assets/dynamic-programming/coin-change/substructure.png" width="100%">
-Suppose we know the solution to a problem we're solving. An optimal substructure means that the solution will contain solutions to smaller subproblems. Does this apply to the coin change problem? Yes! we just came up with a beautiful recurrence in the recursive solution above. Let $K[c,n]$ be the total number of ways to make change for amount $n$ and coins $c$. Fix a coin $c_i$ from the set $c$. We will have,
+Suppose we know the solution to a problem we're solving. An optimal substructure means that the solution will contain solutions to smaller subproblems. Does this apply to the coin change problem? Yes! we just came up with a beautiful recurrence in the recursive solution above. Let $$K[c,n]$$ be the total number of ways to make change for amount $$n$$ and coins $$c$$. Fix a coin $$c_i$$ from the set $$c$$. We will have,
 <div center>
 $$
 \begin{align*}
@@ -104,13 +104,13 @@ $$
 
 Both subproblems are independent of each other and both are smaller in size than the original problem.
 
-- The first subproblem, $K[c-{c_i},n]$, has one fewer coin.
-- The second subproblem, $K[c,n-{c_i}]$, has a smaller amount.
+- The first subproblem, $$K[c-{c_i},n]$$, has one fewer coin.
+- The second subproblem, $$K[c,n-{c_i}]$$, has a smaller amount.
 
 This is exactly what we need to implement a dynamic programming algorithm. The only thing left is to define the base case. For this particular problem:
  
-- $K[c,0] = 1$. The number of ways to make change for any zero amount is 1. 
-- $K[0,n] = 1$ where $n > 0$. The number of ways to make change for any amount greater than zero using zero coins is 0.
+- $$K[c,0] = 1$$. The number of ways to make change for any zero amount is 1. 
+- $$K[0,n] = 1$$ where $$n > 0$$. The number of ways to make change for any amount greater than zero using zero coins is 0.
 
 It is also important just like in the recursive structure, to take care of the duplicates issue. We need to keep track of which coins we're allowed to use. 
 <table>
@@ -184,7 +184,7 @@ void make_change_2d(std::vector<int>& coins, std::vector<std::vector<int>>& dp) 
     }
 }
 {% endhighlight %}
-For amount $n$ and $m$ coins, The runtime is $$O(nm)$$.
+For amount $$n$$ and $$m$$ coins, The runtime is $$O(nm)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
@@ -210,7 +210,7 @@ TODO?
 <!-- 
 
 <i>Proof:</i> <br>
-Suppose that we have a bill of size $$n$$ and suppose that we have unbounded copies of $$c$$ coins available to us. Now suppose that we know that the number of ways to make change is $K[c,n]$. Fix a coin $c_i$. If We claim that $K[c-{c_i},n]$ is the number of ways to make change and that one of the solutions contains one coin of value $c_i$ for some natural number $i$. We claim that $K[W] - v_k$ is an optimal value for a knapsack of size $$W - x_k$$. That is, $$K[W - x_k] = K[W] - v_k$$.
+Suppose that we have a bill of size $$n$$ and suppose that we have unbounded copies of $$c$$ coins available to us. Now suppose that we know that the number of ways to make change is $$K[c,n]$$. Fix a coin $$c_i$$. If We claim that $$K[c-{c_i},n]$$ is the number of ways to make change and that one of the solutions contains one coin of value $$c_i$$ for some natural number $$i$$. We claim that $$K[W] - v_k$$ is an optimal value for a knapsack of size $$W - x_k$$. That is, $$K[W - x_k] = K[W] - v_k$$.
 <br><br>
 We will prove our claim by contradiction. Suppose that $$K[W] - v_k$$ is not an optimal value and that the optimal value is $$T^{\prime}$$. Since we know that the optimal solution to the knapsack of size $$W$$ contains a copy of item $$x_k$$, we can therefore add $$x_k$$ to $$K[W - x_k]$$ to obtain an optimal value $$T^{\prime} + v_k$$. But $$T^{\prime} + v_k >  K[W] - v_k + v_k = K[W]$$. This is a contradiction since we assumed that $$K[W]$$ is an optimal value. Therefore, $$K[W] - v_k$$ must be an optimal value for a knapsack of size $$W - x_k$$. $$\blacksquare$$
 

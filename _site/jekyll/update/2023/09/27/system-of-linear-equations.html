@@ -5,26 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="strncat&apos;s notebook" />
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
->
-</script>
-<script
-  type="text/javascript"
-  charset="utf-8"
-  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
->
-</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 </head>
@@ -73,7 +55,7 @@ x + 2y + 5z = 0 \\
 \end{align*}
 $$
 </div>
-<p>We can group all the coefficients in a matrix $A$, all the variables in a vector $\vec{x}$ and all the constants in a vector $\vec{v}$. We can then write,</p>
+<p>We can group all the coefficients in a matrix \(A\), all the variables in a vector \(\vec{x}\) and all the constants in a vector \(\vec{v}\). We can then write,</p>
 <div>
 $$
 \begin{align*}
@@ -94,12 +76,12 @@ x \\ y \\ z
 \end{align*}
 $$
 </div>
-<p>This should look very familiar! The matrix $A$ corresponds to some linear transformation so solving $Ax=v$ means we’re looking for a vector $x$ which after applying the transformation $A$, lands on the vector $v$!
+<p>This should look very familiar! The matrix \(A\) corresponds to some linear transformation so solving \(Ax=v\) means we’re looking for a vector \(x\) which after applying the transformation \(A\), lands on the vector \(v\)!
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>A 2D Example</b></h4>
-<p>Let’s start with a simple example in two dimensions such that the matrix $A$ is a 2x2 matrix. Suppose we have two equations and two unknowns. The equations are</p>
+<p>Let’s start with a simple example in two dimensions such that the matrix \(A\) is a 2x2 matrix. Suppose we have two equations and two unknowns. The equations are</p>
 <div>
 $$
 \begin{align*}
@@ -133,12 +115,12 @@ $$
 	 <li>If it's zero, then we know, we're squished to a lower dimension.</li>
 	 <li>If it's non-zero, then we know we have a unique solution.</li>
  </ul>
-<p>We’ll analyze each case seperately next.
+<p>We’ll analyze each case separately next.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Case 1: The Determinant is not zero (The Inverse of a Transformation)</b></h4>
-<p>In case 1, the determinant is not zero. This means the area is not zero and we’re not squished to a lower dimension. Therefore there will be only one vector $x$ such that $Ax = v$. To find it, we really want to play the transformation in reverse going from $v$ to $x$ (imagine playing it slowly from $\vec{v}$ back to $\vec{x}$). In other words, we want the inverse transformation applied to $v$. The inverse of a transformation $A$ is called the <b>inverse of $A$</b> and is denoted by $A^{-1}$. $A^{-1}$ is the unique transformation with the property that if you first apply $A$ and then follow it with $A^{-1}$, you end up back where you started. And we know that applying multiple transformations is captured algebraically with matrix multiplication. So $AA^{-1}$ corresponds to the transformation that does nothing! The transformation that does nothing is called the <b>identity</b> transformation. It leaves both $\widehat{i}$ and $\widehat{j}$ unchanged so $I = matrix (1,0,0,1)$.</p>
+<p>In case 1, the determinant is not zero. This means the area is not zero and we’re not squished to a lower dimension. Therefore there will be only one vector \(x\) such that \(Ax = v\). To find it, we really want to play the transformation in reverse going from \(v\) to \(x\) (imagine playing it slowly from \(\vec{v}\) back to \(\vec{x}\)). In other words, we want the inverse transformation applied to \(v\). The inverse of a transformation \(A\) is called the <b>inverse of \(A\)</b> and is denoted by \(A^{-1}\). \(A^{-1}\) is the unique transformation with the property that if you first apply \(A\) and then follow it with \(A^{-1}\), you end up back where you started. And we know that applying multiple transformations is captured algebraically with matrix multiplication. So \(AA^{-1}\) corresponds to the transformation that does nothing! The transformation that does nothing is called the <b>identity</b> transformation. It leaves both \(\widehat{i}\) and \(\widehat{j}\) unchanged so \(I = matrix (1,0,0,1)\).</p>
 <div>
 $$
 \begin{align*}
@@ -160,18 +142,18 @@ A^{-1}A\vec{x} &amp;= A^{-1}\vec{v} \\
 \end{align*}
 $$
 </div>
-<p>Again it’s important to stress the geometric meaning of this equation. We’re playing the transformation $A$ in reverse from $v$ and following it back to $x$.
+<p>Again it’s important to stress the geometric meaning of this equation. We’re playing the transformation \(A\) in reverse from \(v\) and following it back to \(x\).
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Case 2: The Determinant is Zero</b></h4>
-<p>So we know when the determinant is zero, this means that the two dimensions are squished onto a lower dimension. So there is no inverse because we can’t unsquish a line to turn it into a plane. It is though still possible that a solution exist even when the determinant is zero. It’s just when the whole space is squished into a line, we have to lucky that the vector $v$ lives somewhere on that line. (green means there is a solution and yellow indicates no solution exists)</p>
+<p>So we know when the determinant is zero, this means that the two dimensions are squished onto a lower dimension. So there is no inverse because we can’t unsquish a line to turn it into a plane. It is though still possible that a solution exist even when the determinant is zero. It’s just when the whole space is squished into a line, we have to lucky that the vector \(v\) lives somewhere on that line. (green means there is a solution and yellow indicates no solution exists)</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/linear-algebra/inverse/00.png" width="90%" class="center" /></p>
 <p><br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Rank</b></h4>
-<p>If we take a 3x3 transformation in 3 dimensions where the determinant is zero, we will notice that some of these zero determinant cases feel a lot more restrictive than others. It seems that it will be harder to find a solution if we’re squished to a line versus for example getting squished to a plane. This leads us to develop new terminology to distiguish these cases. We’ll say the transformation that squishes us to a 1 dinmensional line has <b>rank 1</b>. If we’re squished to 2 dimensions, then the tranformation has rank 2. 
+<p>If we take a 3x3 transformation in 3 dimensions where the determinant is zero, we will notice that some of these zero determinant cases feel a lot more restrictive than others. It seems that it will be harder to find a solution if we’re squished to a line versus for example getting squished to a plane. This leads us to develop new terminology to distinguish these cases. We’ll say the transformation that squishes us to a 1 dimensional line has <b>rank 1</b>. If we’re squished to 2 dimensions, then the tranformation has rank 2. 
 <br />
 <br />
 So really <b>the rank is the number of dimensions in the output of a transformation.</b> So in the 3x3 case, rank 3 is the best rank the matrix can reach and it means that the basis vectors continue to span the full three dimensions of space and the determinant is not zero!
@@ -179,18 +161,18 @@ So really <b>the rank is the number of dimensions in the output of a transformat
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Column Space</b></h4>
-<p>The set of all possible outputs of the 3x3 transformation is called the <b>column space of $A$</b> of the transformation whether it’s a line, a plane or 3D space. 
+<p>The set of all possible outputs of the 3x3 transformation is called the <b>column space of \(A\)</b> of the transformation whether it’s a line, a plane or 3D space. 
 <br />
 <br />
-Why did we call it the column space? We know that each column in the matrix $A$ refers to where a vector from the basis vectors have landed. For example the first column is where $\widehat{i}$ has landed, the second is where $\widehat{j}$ has landed and so on. The <b>span</b> of those transformed basis vectors gives you all possible outputs. In other words, the <b>column space</b> is the <b>span of the columns</b> of your matrix. 
+Why did we call it the column space? We know that each column in the matrix \(A\) refers to where a vector from the basis vectors have landed. For example the first column is where \(\widehat{i}\) has landed, the second is where \(\widehat{j}\) has landed and so on. The <b>span</b> of those transformed basis vectors gives you all possible outputs. In other words, the <b>column space</b> is the <b>span of the columns</b> of your matrix. 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Null Space</b></h4>
-<p>Another important thing is that the zero vector will always be included in the column space since linear transformations must keep the origin fixed in place. If the matrix is full rank, then the zero vector is the only vector that lands at the origin. But for other non full rank matrics, we can have a bunch of vectors land on zero. These vectors are called the <b>null space</b> or the <b>kernel</b> of your matrix. It’s the set of all vectors that become null (land on the zero vector). 
+<p>Another important thing is that the zero vector will always be included in the column space since linear transformations must keep the origin fixed in place. If the matrix is full rank, then the zero vector is the only vector that lands at the origin. But for other non full rank matrices, we can have a bunch of vectors land on zero. These vectors are called the <b>null space</b> or the <b>kernel</b> of your matrix. It’s the set of all vectors that become null (land on the zero vector). 
 <br />
 <br />
-If we’re trying to solve $A\vec{x}=\vec{0}$, then the null space gives you all of the possible solutions to the equation.
+If we’re trying to solve \(A\vec{x}=\vec{0}\), then the null space gives you all of the possible solutions to the equation.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>

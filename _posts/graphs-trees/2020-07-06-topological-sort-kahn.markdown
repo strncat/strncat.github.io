@@ -5,30 +5,30 @@ date:   2020-07-06 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Let $G = (V, E)$ be a directed acyclic graph consisting of $V$ vertices and $E$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $u, v \in V$, if $(u,v) \in E$, then $u$ must come before $v$ in the ordering. We have already developed an algorithm for topological sort using depth first search <a href="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html">here</a>. In this article, we will explore another topological sort algorithm, Kahn's algorithm. 
+Let $$G = (V, E)$$ be a directed acyclic graph consisting of $$V$$ vertices and $$E$$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $$u, v \in V$$, if $$(u,v) \in E$$, then $$u$$ must come before $$v$$ in the ordering. We have already developed an algorithm for topological sort using depth first search <a href="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html">here</a>. In this article, we will explore another topological sort algorithm, Kahn's algorithm. 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Kahn's Algorithm</b></h4>
-Kahn's algorithm is extremely intuitive. What are we trying to achieve with topological sort? If we have two vertices/tasks $u$ and $v$ where task $u$ is a perquisite or required to be done before task $v$, then we want to output $u$ before $v$. This dependency is represented with an edge $(u,v)$. 
+Kahn's algorithm is extremely intuitive. What are we trying to achieve with topological sort? If we have two vertices/tasks $$u$$ and $$v$$ where task $$u$$ is a perquisite or required to be done before task $$v$$, then we want to output $$u$$ before $$v$$. This dependency is represented with an edge $$(u,v)$$. 
 
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/kahn1.png)
 
 <b>The in-degree of a vertex</b><br>
-This edge contributes to the in-degree of vertex $v$ and out-degree of vertex $u$. The in-degree of a vertex is the number of incoming edges into the vertex. The out-degree of a vertex is the number of edges leaving the vertex. In Kahn's algorithm, we're interested in the in-degree of each vertex. In the above example, $v$ has an in-degree of 1.
+This edge contributes to the in-degree of vertex $$v$$ and out-degree of vertex $$u$$. The in-degree of a vertex is the number of incoming edges into the vertex. The out-degree of a vertex is the number of edges leaving the vertex. In Kahn's algorithm, we're interested in the in-degree of each vertex. In the above example, $$v$$ has an in-degree of 1.
 <br>
 <br>
 <b>How does Kahn utilizes the in-degree of a vertex?</b><br>
-Intuitively, if we have a vertex with in-degree $=0$, then we know that this vertex has no incoming edges. This means that this vertex (task) can be processed/started because it has no dependencies. Therefore, we can just output or add this vertex to the sorted output! This is the whole idea of Kahn's algorithm. 
+Intuitively, if we have a vertex with in-degree $$=0$$, then we know that this vertex has no incoming edges. This means that this vertex (task) can be processed/started because it has no dependencies. Therefore, we can just output or add this vertex to the sorted output! This is the whole idea of Kahn's algorithm. 
 <br>
 <br>
 <b>What if we don't have a vertex with in-degree 0?</b><br>
-Since the graph is a DAG (no cycles), then it must have at least one node with in-degree $=0$.
+Since the graph is a DAG (no cycles), then it must have at least one node with in-degree $$=0$$.
 <br>
 <br>
-<b>What happens when we don't have any more vertices with in-degree $=0$?</b><br>
+<b>What happens when we don't have any more vertices with in-degree $$=0$$?</b><br>
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/kahn2.png)
-When we add a vertex to the sorted output, we need to decrement the in-degree count of all its neighbors. In the example above, once we add $u$ to the sorted output, we need to decrement the in-degree of $v$. This will lead to $v$ having an in-degree 0. At this point, we need to also add $v$ to the sorted output and decrement its neighbors.
+When we add a vertex to the sorted output, we need to decrement the in-degree count of all its neighbors. In the example above, once we add $$u$$ to the sorted output, we need to decrement the in-degree of $$v$$. This will lead to $$v$$ having an in-degree 0. At this point, we need to also add $$v$$ to the sorted output and decrement its neighbors.
 <br>
 <br>
 <b>How do we do the above?</b><br>
@@ -105,7 +105,7 @@ void kahn(std::vector<std::vector<int>> &g) {
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Running Time</b></h4>
-We compute the in-degree of all vertices in time $O(E+V)$. The while loop runs in time $O(E+V)$ since we push and pop a vertex with indegree-0 once. We also loop through the edges of that vertex only once. The total complexity remains at $O(E+V)$.
+We compute the in-degree of all vertices in time $$O(E+V)$$. The while loop runs in time $$O(E+V)$$ since we push and pop a vertex with indegree-0 once. We also loop through the edges of that vertex only once. The total complexity remains at $$O(E+V)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->

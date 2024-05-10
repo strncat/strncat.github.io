@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <img src="{{ site.url }}/assets/randomized/quicksort/intro.png" width="100%">
-Given an array with $n$ elements. Quicksort is a fabulous divide-and-conquer sorting algorithm with a worst-case running time of $O(n^2)$ and an expected running time of $O(n\log(n))$. The main technique or idea used in quicksort is choosing a pivot, and then partitioning the elements around this pivot. 
+Given an array with $$n$$ elements. Quicksort is a fabulous divide-and-conquer sorting algorithm with a worst-case running time of $$O(n^2)$$ and an expected running time of $$O(n\log(n))$$. The main technique or idea used in quicksort is choosing a pivot, and then partitioning the elements around this pivot. 
 
 {% highlight c++ %}
 void quicksort(int *a, int first, int last, int n) {
@@ -45,7 +45,7 @@ We now call quicksort again on each new subarray, highlighted in blue.
 
 <img src="{{ site.url }}/assets/randomized/quicksort/6.png" width="100%">
 
-The base case of the recursion is reaching an array of size 1 ($first < last$ is not true). In this case, we do nothing since an array of size 1 is already sorted. So, it's time to combine all these smaller solutions in one array. However, unlike Mergesort, we're doing all the partitioning work in place and so naturally we're done. 
+The base case of the recursion is reaching an array of size 1 ($$first < last$$ is not true). In this case, we do nothing since an array of size 1 is already sorted. So, it's time to combine all these smaller solutions in one array. However, unlike Mergesort, we're doing all the partitioning work in place and so naturally we're done. 
 
 <img src="{{ site.url }}/assets/randomized/quicksort/7.png" width="100%">
 <br>
@@ -57,22 +57,22 @@ The most critical or the only thing we really do in Quicksort is partitioning th
 
 <img src="{{ site.url }}/assets/randomized/quicksort/p1.png" width="100%">
 
-We will also keep track of an index, $i$, to iterate through the array. At each iteration, we will compare the element at index $i$ with the the pivot. The trick to partition is keeping track of another index, $$write{\_}index$$. Whenever we see an element that is less than the pivot, we swap it with the element at $$write{\_}index$$ and increment $$write{\_}index$$. The intuition here is that we want all the elements less than the pivot to be stored below $$write{\_}index$$. 
+We will also keep track of an index, $$i$$, to iterate through the array. At each iteration, we will compare the element at index $$i$$ with the the pivot. The trick to partition is keeping track of another index, $$write{\_}index$$. Whenever we see an element that is less than the pivot, we swap it with the element at $$write{\_}index$$ and increment $$write{\_}index$$. The intuition here is that we want all the elements less than the pivot to be stored below $$write{\_}index$$. 
 <br>
 <br>
-Initially, $i=0$ and $$write {\_} index =0$$. We compare $array[i=0]=6$ to the pivot, 3. Since 6 is not smaller, we just increment $i$.
+Initially, $$i=0$$ and $$write {\_} index =0$$. We compare $$array[i=0]=6$$ to the pivot, 3. Since 6 is not smaller, we just increment $$i$$.
 
 <img src="{{ site.url }}/assets/randomized/quicksort/p2.png" width="100%">
 
-Next, we have $i=1$ and $$write{\_}index =0$$. We compare $array[i=1]=2$ to the pivot, 3. 2 is smaller so we swap 2 and 6 and then increment both $$write{\_}index$$ to 1 and $i$ to 2. 
+Next, we have $$i=1$$ and $$write{\_}index =0$$. We compare $$array[i=1]=2$$ to the pivot, 3. 2 is smaller so we swap 2 and 6 and then increment both $$write{\_}index$$ to 1 and $$i$$ to 2. 
 
 <img src="{{ site.url }}/assets/randomized/quicksort/p3.png" width="100%">
 
-Notice below that 2 and 6 are now swapped. $$array[write{\_}index = 1] = 6$$ and $array[i = 1] = 1$. 1 is also smaller than 3 so we swap 6 and 1 and increment both $i$ and $$write{\_}index$$.
+Notice below that 2 and 6 are now swapped. $$array[write{\_}index = 1] = 6$$ and $$array[i = 1] = 1$$. 1 is also smaller than 3 so we swap 6 and 1 and increment both $$i$$ and $$write{\_}index$$.
 
 <img src="{{ site.url }}/assets/randomized/quicksort/p4.png" width="100%">
 
-You can see below that the elements before $$write{\_}index$$ are indeed smaller than the pivot. We repeat the same process of comparing the current element at $i$ to the pivot. 4 is not smaller than 3 so we just increment $i$.
+You can see below that the elements before $$write{\_}index$$ are indeed smaller than the pivot. We repeat the same process of comparing the current element at $$i$$ to the pivot. 4 is not smaller than 3 so we just increment $$i$$.
 
 <img src="{{ site.url }}/assets/randomized/quicksort/p5.png" width="100%">
 
@@ -114,9 +114,9 @@ int partition(int *a, int first, int last, int n) {
 The proof is done with a standard loop invariant. For partition above, we want to establish the following invariant:
 <br>
 <br>
-For any index $k$ in the array:
-- If $$write{\_}index \leq k \leq i$$, then $array[k] \leq array[pivot]$. (Remember we've already said any element below $$write{\_}index$$ is less than the pivot).
-- If $$i < k \leq pivot - 1$$, then $array[k] \leq array[pivot]$.
+For any index $$k$$ in the array:
+- If $$write{\_}index \leq k \leq i$$, then $$array[k] \leq array[pivot]$$. (Remember we've already said any element below $$write{\_}index$$ is less than the pivot).
+- If $$i < k \leq pivot - 1$$, then $$array[k] \leq array[pivot]$$.
 - If $$i == pivot$$, then $$array[k] = array[pivot]$$. 
 
 
@@ -126,7 +126,7 @@ Proof is in CLRS ;)
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Worst-case running time analysis</b></h4>
-What's the worst possible input to quicksort? Suppose we always pick the pivot to be the largest or the smallest element in the array. Then, we will have two subproblems, one of size $n-1$ elements and the other of size $0$. We know partition runs in linear time. If $T(n)$ was the total time it takes to run quicksort then,
+What's the worst possible input to quicksort? Suppose we always pick the pivot to be the largest or the smallest element in the array. Then, we will have two subproblems, one of size $$n-1$$ elements and the other of size $$0$$. We know partition runs in linear time. If $$T(n)$$ was the total time it takes to run quicksort then,
 <div center>
 $$
 \begin{align*}
@@ -135,7 +135,7 @@ T(n) &= T(n-1) + O(n).
 \end{align*}
 $$
 </div>
-This recurrence has the solution $T(n)=O(n^2)$ which is the worst-case running time of quicksort. Intuitively, if we always choose either the smallest or the largest index as a pivot, then we will be making $$O(n)$$ calls to partition. Partition takes linear time and so the total running time will be $O(n^2)$.
+This recurrence has the solution $$T(n)=O(n^2)$$ which is the worst-case running time of quicksort. Intuitively, if we always choose either the smallest or the largest index as a pivot, then we will be making $$O(n)$$ calls to partition. Partition takes linear time and so the total running time will be $$O(n^2)$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -148,20 +148,20 @@ T(n) &= 2T(n/2) + O(n).
 \end{align*}
 $$
 </div>
-By the master theorem, the solution is $T(n) = O(n\log(n))$. Intuitively, if we always partition the array around the middle element, we will need to make $O(\log(n))$ calls to partition and therefore, we get $O(n\log(n))$ as the overall runtime.
+By the master theorem, the solution is $$T(n) = O(n\log(n))$$. Intuitively, if we always partition the array around the middle element, we will need to make $$O(\log(n))$$ calls to partition and therefore, we get $$O(n\log(n))$$ as the overall runtime.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Expected running time analysis</b></h4>
 This analysis depends on the important idea that quicksort is dominated by the number of comparisons it makes while partitioning the array (proof in CLRS). Moreover, 
 
-| for any given pair of elements, $x$ and $y$. We know that $x$ and $y$ are compared at most once during quicksort. |
+| for any given pair of elements, $$x$$ and $$y$$. We know that $$x$$ and $$y$$ are compared at most once during quicksort. |
 
- <i>Proof:</i> $x$ and $y$ are only ever compared if one of them is chosen as a pivot. Moreover, once we do the comparison, the pivot will be excluded from all future calls to partition and so $x$ and $y$ will not be compared to each other again.
+ <i>Proof:</i> $$x$$ and $$y$$ are only ever compared if one of them is chosen as a pivot. Moreover, once we do the comparison, the pivot will be excluded from all future calls to partition and so $$x$$ and $$y$$ will not be compared to each other again.
 <br>
 <img src="{{ site.url }}/assets/randomized/quicksort/a1.png" width="100%">
 
-So, how do we count the number of comparisons quicksort makes? Let $A = \\{z_1, z_2, ..., z_n\\}$ be an array of distinct elements, such that $z_i$ is the $i$th smallest element. Let $X$ be the total number of comparisons quicksort makes and let $X_{ij}$ be an indicator random variable such that,
+So, how do we count the number of comparisons quicksort makes? Let $$A = \\{z_1, z_2, ..., z_n\\}$$ be an array of distinct elements, such that $$z_i$$ is the $$i$$th smallest element. Let $$X$$ be the total number of comparisons quicksort makes and let $$X_{ij}$$ be an indicator random variable such that,
 <div center>
 $$
 \begin{align*}
@@ -172,7 +172,7 @@ X_{ij} = \Big\{ \begin{array}{@{}lr@{}}
 \end{align*}
 $$
 </div>
-Since we make at most one comparison between each pair, we can write $X$ as follows
+Since we make at most one comparison between each pair, we can write $$X$$ as follows
 <div center>
 $$
 \begin{align*}
@@ -191,18 +191,18 @@ E[X] &= E[\sum_{i=1}^{n-1} \sum_{j=i+1}{n} X_{ij}] \\
 $$
 </div>
 
-<u>How to compute $P(X_{ij}=1)$? </u>
+<u>How to compute $$P(X_{ij}=1)$$? </u>
 <br>
-Let $Z_{ij} = \\{z_i,...,z_j\\}$ be the set of elements between $z_i$ and $z_j$ inclusive.
+Let $$Z_{ij} = \\{z_i,...,z_j\\}$$ be the set of elements between $$z_i$$ and $$z_j$$ inclusive.
 
 <img src="{{ site.url }}/assets/randomized/quicksort/a2.png" width="100%">
 
-<u>What is the significance of $Z_{ij}$ to the probability of $x_i$ and $x_j$ being compared?</u>
+<u>What is the significance of $$Z_{ij}$$ to the probability of $$x_i$$ and $$x_j$$ being compared?</u>
 <br>
-Suppose we pick a pivot that's not in $Z_{ij}$, then this event doesn't affect the chance of $z_i$ and $z_j$ being compared. However, if the choice of pivot was from the set $Z_{ij}$ then we have two cases: 
-- If the pivot was $z_i$ or $z_j$ then the $z_i$ and $z_j$ will be compared.
-- If the pivot was any other element in $Z_{ij}$, then $z_i$ and $z_j$ will be partitioned in separate halfs and will never be compared.
-Based on the above, only two choices out of $j-i+1$ choices will lead to having $z_i$ and $z_j$ be compared. Therefore,
+Suppose we pick a pivot that's not in $$Z_{ij}$$, then this event doesn't affect the chance of $$z_i$$ and $$z_j$$ being compared. However, if the choice of pivot was from the set $$Z_{ij}$$ then we have two cases: 
+- If the pivot was $$z_i$$ or $$z_j$$ then the $$z_i$$ and $$z_j$$ will be compared.
+- If the pivot was any other element in $$Z_{ij}$$, then $$z_i$$ and $$z_j$$ will be partitioned in separate halfs and will never be compared.
+Based on the above, only two choices out of $$j-i+1$$ choices will lead to having $$z_i$$ and $$z_j$$ be compared. Therefore,
 <div center>
 $$
 \begin{align*}
@@ -240,7 +240,7 @@ E[X] &= \sum_{i=1}^{n-1} \sum_{k=1}^{n-i}  \frac{2}{k + 1} \\
 \end{align*}
 $$
 </div>
-Thus, the expected running time of quick sort is $O(n\log(n))$ when the elements are distinct. 
+Thus, the expected running time of quick sort is $$O(n\log(n))$$ when the elements are distinct. 
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 - CLRS Chapter 7

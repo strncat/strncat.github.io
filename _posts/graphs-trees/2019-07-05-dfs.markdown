@@ -7,7 +7,7 @@ mathjax: true
 ---
 ![my photo]({{ site.url }}/assets/graphs/dfs/0.png)
 
-Depth first search like breadth first search is an algorithm used to explore a graph. Let $G = (V, E)$ be a graph consisting of $V$ vertices and $E$ edges and let $s$ be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then resumes the search again from a different branch.
+Depth first search like breadth first search is an algorithm used to explore a graph. Let $$G = (V, E)$$ be a graph consisting of $$V$$ vertices and $$E$$ edges and let $$s$$ be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then resumes the search again from a different branch.
 <br><br>
 In a depth first search, we typically keep track of the time we first discovered a vertex and also the time we finished processing a vertex (after we look at all of its neighbors). This information will help later in topologically sorting a graph. 
 <br>
@@ -15,27 +15,27 @@ In a depth first search, we typically keep track of the time we first discovered
 <!----------------------------------------------------------------------------------->
 <h4><b>Implementation Details</b></h4>
 To perform a depth first search, we will maintain the following data structures:
-- A set or an array that keeps track of the visited nodes. Remember that $G$ might contain cycles and so we want to make sure that we explore each node once.
-- A stack. We want to explore the nodes closest to $s$ first. Since we're insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we'll be doing in the implementation below.
+- A set or an array that keeps track of the visited nodes. Remember that $$G$$ might contain cycles and so we want to make sure that we explore each node once.
+- A stack. We want to explore the nodes closest to $$s$$ first. Since we're insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we'll be doing in the implementation below.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Example</b></h4>
-Let's explore the graph above. We will start from $s$ and as soon as we see $a$ we'll recursively call dfs again. The start time for $s$ is 0 and the start time for $a$ is 1.
+Let's explore the graph above. We will start from $$s$$ and as soon as we see $$a$$ we'll recursively call dfs again. The start time for $$s$$ is 0 and the start time for $$a$$ is 1.
 
 ![my photo]({{ site.url }}/assets/graphs/dfs/1.png)
 
-Next we will recursively visit $c$, $e$ and $d$. They will have start times 2, 3 and 4 respectively.
+Next we will recursively visit $$c$$, $$e$$ and $$d$$. They will have start times 2, 3 and 4 respectively.
 
 ![my photo]({{ site.url }}/assets/graphs/dfs/2.png)
 
 
 At this point, there will be no more vertices to traverse and so node 
-$d$ is now finished with time 5, followed by $e$, $c$ and then $a$.
+$$d$$ is now finished with time 5, followed by $$e$$, $$c$$ and then $$a$$.
 
 ![my photo]({{ site.url }}/assets/graphs/dfs/3.png)
 
-Finally, we will traverse node $b$ with start time 9 and finish time 10. Node $s$ will now be done with finish time $11$.
+Finally, we will traverse node $$b$$ with start time 9 and finish time 10. Node $$s$$ will now be done with finish time $$11$$.
 
 ![my photo]({{ site.url }}/assets/graphs/dfs/4.png)
 <br>
@@ -65,7 +65,7 @@ int dfs(int v, int current_time,
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Running Time</b></h4>
-Similar to the analysis of breadth first search. We visit each vertex once only. That's $O(V)$ time. Therefore, we also visit the adjacency list of each vertex at most once and that's $O(E)$ time. Therefore, the total time is $O(V+E)$.
+Similar to the analysis of breadth first search. We visit each vertex once only. That's $$O(V)$$ time. Therefore, we also visit the adjacency list of each vertex at most once and that's $$O(E)$$ time. Therefore, the total time is $$O(V+E)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->

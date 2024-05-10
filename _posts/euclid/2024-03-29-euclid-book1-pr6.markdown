@@ -12,19 +12,19 @@ mathjax: true
 <br>
 <b>Proof.</b><br>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr6/0.png" width="45%" class="center"></p>
-Let the triangle be $ABC$. Choose two angles to be equal. Suppose we let $\angle B = \angle C$. We will prove that $AB = AC$. Suppose they are not. This means that one of them is greater than the other. Choose one arbitrarily to be the greater one. Suppose it is $AB$. Use <a href="https://strncat.github.io/jekyll/update/2024/03/24/euclid-book1-pr3.html">proposition 3</a> to cut a line from $AB$ equal to $AC$. Let the cut line be $DB$.
+Let the triangle be $$ABC$$. Choose two angles to be equal. Suppose we let $$\angle B = \angle C$$. We will prove that $$AB = AC$$. Suppose they are not. This means that one of them is greater than the other. Choose one arbitrarily to be the greater one. Suppose it is $$AB$$. Use <a href="https://strncat.github.io/jekyll/update/2024/03/24/euclid-book1-pr3.html">proposition 3</a> to cut a line from $$AB$$ equal to $$AC$$. Let the cut line be $$DB$$.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr6/1.png" width="45%" class="center"></p>
 
-In the triangles $ABC$ and $DBC$, first $DB = AC$ by construction. Second, $BC$ is a common base. Third, $\angle DBC$ is a common angle. From this we can conclude that the triangles are equal in all respects by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-pr4.html">proposition 4</a>
+In the triangles $$ABC$$ and $$DBC$$, first $$DB = AC$$ by construction. Second, $$BC$$ is a common base. Third, $$\angle DBC$$ is a common angle. From this we can conclude that the triangles are equal in all respects by <a href="https://strncat.github.io/jekyll/update/2024/03/25/euclid-book1-pr4.html">proposition 4</a>
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr6/2.png" width="75%" class="center"></p>
 
-Consequently, w$\angle ACB = \angle DCB$ let this angle be $\alpha$. 
+Consequently, w$$\angle ACB = \angle DCB$$ let this angle be $$\alpha$$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr6/3.png" width="75%" class="center"></p>
 
-But angle $\angle ACB$ equals to the sum of angles $\angle ACD$ and $\angle DCB$. Since $\angle ACB = \angle DCB = \alpha$, this implies that $\angle ACD$ must be 0, but this is impossible because this means that the vertices $A$ and $D$ are the same and we assumed that $AB$ is greater. So $AB$ must be equal to $AC$.
+But angle $$\angle ACB$$ equals to the sum of angles $$\angle ACD$$ and $$\angle DCB$$. Since $$\angle ACB = \angle DCB = \alpha$$, this implies that $$\angle ACD$$ must be 0, but this is impossible because this means that the vertices $$A$$ and $$D$$ are the same and we assumed that $$AB$$ is greater. So $$AB$$ must be equal to $$AC$$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr6/4.png" width="45%" class="center"></p>
 <br>
 <hr>

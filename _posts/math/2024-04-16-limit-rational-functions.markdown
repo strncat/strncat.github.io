@@ -5,7 +5,7 @@ date:   2024-04-16 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-How to find the limit of a rational function as $$x$$ goes to $$\infty$$ or $$-\infty$$. Suppose we're given:
+How to find the limit of a rational function as $$x$$ goes to $$\infty$$ or $$-\infty$$? Suppose we're given:
 <div>
 $$
 \begin{align*}
@@ -29,7 +29,7 @@ $$
 \end{align*}
 $$
 </div>
-This is such as easy way to clearly see where the limit is going.
+This is such as easy way to clearly see where the limit is going. But why do we not divide by the highest power of the numerator for example? This is because if we have something $$5x^2 / x + 3$$ then dividing by $$x^2$$ will give us $$5 / 1/x + 3$$. The denominator is now reaching 0! and that is not helpful as it makes the whole thing undefined.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -110,8 +110,8 @@ What's next? How do we simplify the absolute value? well this depends on where w
 <div>
 $$
 \begin{align*}
-x \quad \text{ if $$x \geq 0$$} \\
--x \quad \text{ if $$x < 0$$} \\
+x \quad \text{ if \(x \geq 0\)} \\
+-x \quad \text{ if \(x < 0\)} \\
 \end{align*}
 $$
 </div>

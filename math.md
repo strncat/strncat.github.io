@@ -9,8 +9,11 @@ mathjax: true
   <h3> Real Analysis </h3>
   <ul style="list-style-type:none;">
     <li><a href="/jekyll/update/2024/05/01/analysis-square-root-two-irrational.html">
-           Prove that \(\sqrt{2}\) is Irrational
-      </a></li>
+          Prove that \(\sqrt{2}\) is Irrational
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/02/analysis-epsilon-proof-for-equal-real-numbers.html">
+          Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\)   
+    </a></li>
   </ul>
 <br>
 <!------------------------------------------------------------------->  

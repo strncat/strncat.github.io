@@ -13,7 +13,7 @@ What is this statement saying? It helps to think about the absolute value of \(a
 We'll prove both directions of the statement since we have an "if and only if".
 <ul>
 	<li>\((\Rightarrow)\) If \(a\) and \(b\) are equal then for every real number \(\epsilon > 0\) we'll have \(|a - b| < \epsilon\). </li>
-So we're given that \(a\) and \(b\) are equal. This means that the distance between \(a\) and \(b\) is zero. In other words, \(|a-b| = 0\). Therefore, no matter what \(epsilon\) we choose, we'll always have \(\epsilon > |a-b|\) as required.
+So we're given that \(a\) and \(b\) are equal. This means that the distance between \(a\) and \(b\) is zero. In other words, \(|a-b| = 0\). Therefore, no matter what \(\epsilon\) we choose, we'll always have \(\epsilon > |a-b|\) as required.
 <br><br>
 	<li>\((\Leftarrow)\) If it's the case that for every real number \(\epsilon > 0\) we have \(|a - b| < \epsilon\), then \(|a = b\)</li>
 Suppose for the sake of contradiction that \(a \neq b\). This means that the distance between \(a\) and \(b\) is greater than zero and so \(|a - b| > 0\). Let this distance be \(d\) so we have \(d = |a - b|\). We know our assumption states that for every real number \(\epsilon > 0\) we have \(|a - b| < \epsilon\) so no matter what \(\epsilon\) we chooses, we're guaranteed that \(|a - b| < \epsilon\). But what if we choose \(\epsilon = d\). The assumption states that we must have \(|a - b| < d\) but then earlier we said that \(d = |a - b|\). This is a contradiction and so \(a\) and \(b\) must be equal.

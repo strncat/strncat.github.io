@@ -14,14 +14,18 @@ mathjax: true
     <li><a href="/jekyll/update/2024/05/02/analysis-epsilon-proof-for-equal-real-numbers.html">
           (2) Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\).   
     </a></li>
+	<h4> <i> Bounds </i> </h4>
     <li><a href="/jekyll/update/2024/05/03/analysis-set-bounded.html">
           (3) Bounded Sets Definitions
     </a></li>
     <li><a href="/jekyll/update/2024/05/04/analysis-least-upper-bound-constant.html">
-          (4) Given a set \(A\) bounded above in \(\mathbf{R}\) and a constant \(c\). The set defined as \(c+A\) has a least upper bound equal to \(c + sup A\).
+          (4) The set defined as \(c+A = \{c + a : a \in A\}\) where \(c\) is a constant has a least upper bound equal to \(c + sup A\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">
           (5) If \(s\) is an upper bound for \(A\), then \(s = \sup A\) if and only if for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon < a\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/06/analysis-least-upper-bound-multiply.html">
+          (6) The set defined as \(cA = \{ca : a \in A\}\) where \(c \geq 0\) has \(\sup cA = c\sup A\).
     </a></li>
   </ul>
 <br>

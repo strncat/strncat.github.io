@@ -31,56 +31,122 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">The Least Upper Bound Epsilon Proof</h1>
+    <h1 class="post-title p-name" itemprop="name headline">(1.3.6) The Least Upper Bound of the Sum of Two Sets</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-05-05T01:01:36-07:00" itemprop="datePublished">May 5, 2024
+      <time class="dt-published" datetime="2024-05-07T01:01:36-07:00" itemprop="datePublished">May 7, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Assume \(s \in \mathbf{R}\) is an upper bound for a set \(A \subseteq \mathbf{R}\). Then \(s = \sup A\) if and only if, for every choice of \(\epsilon &gt; 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon &lt; a\).</b>
+  <b>Given sets A and B, define the set \(A + B = \{a + b : a \in A \text{ and } b \in B\}\). Prove that \(\sup A + B = \sup A + \sup B \)</b>
 </div>
 <p><br />
-What is this statement saying? It’s important to review the definitions in <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">here</a>. Keep these on the side while working on this proof. For a set \(A\) with an upper bound \(s\), \(s\) can be qualified as the least upper bound if and only if “any number smaller than \(s\) is not an upper bound”. In other words, for \(s\) to be the least upper bound, then no matter how tiny \(\epsilon\) is, \(s - \epsilon\) will get disqualified from being an upper bound because we’re guaranteed to find an element in \(A\) that is greater than \(s - \epsilon\). So we can’t make \(s\) any smaller without losing its status of being an upper bound.
+For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br />
 <br /></p>
 <h4><b>Proof:</b></h4>
-<p>We’ll prove both directions of the statement.</p>
-<ul>
-	<li>\((\Rightarrow)\) If \(s = \sup A\), then for every choice of \(\epsilon &gt; 0\) there exists an element \(a \in A\) such that \(s - \epsilon &lt; a\). </li>
-We are given that \(s = \sup A\). We want to prove that \(s - \epsilon\) can't be an upper bound because if it was, then \(s\) is not the least upper bound.<br />
-Consider \(s - \epsilon\) where \(\epsilon\) is chosen arbitrarily. We know by <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">condition two</a> of the defintion of the least upper bound that if \(s = \sup A\), then for any upper bound \(b\) we must have 
-<div>
-$$
-\begin{align*}
-s \leq b.
-\end{align*}
-$$
-</div>
-This is saying that \(s\) must be less than or equal to any upper bound of \(A\) but we also know that 
-<div>
-$$
-\begin{align*}
-s \geq s - \epsilon.
-\end{align*}
-$$
-</div>
-So \(s - \epsilon\) can not be an upper bound. Since it can not be an upper bound, then there must be an element \(a \in A\) such that \(a &gt; s - \epsilon\). This completes the proof in the right direction.
-<br />
-<br />
-	<li>\((\Leftarrow)\) If it's the case that for every choice of \(\epsilon &gt; 0\), there exists an element \(a \in A\) such that \(s - \epsilon &lt; a\) then \(s = \sup A\).</li>
-To prove that \(s = \sup A\), we need to verify the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">two conditions</a> of the least upper bound. We are given that \(s\) is an upper bound for \(A\) so condition one is satisfied. For condition two, let \(\epsilon\) be chosen arbitrarily. We are given that there will always be an element \(a \in A\) such that \(s - \epsilon &lt; a\). This means that for any \(epsilon\), \(s - \epsilon\) is not an upper bound. So for any number less than \(s\), it is impossible for it to be an upper bound. This is precisely condition two  of the least upper bound. Therefore, \(s\) is the least upper bound and we're done. \(\blacksquare\)
+<p>Let \(A\) and \(B\) be sets and let \(A + B\) be the set defined above. We want to prove that \(\sup A+B = \sup A + \sup B\). To do this, we will prove:</p>
+<ul> 
+	<li>\(\sup (A+B) \leq \sup A + \sup B\).</li> 
+	<li>\(\sup (A+B) \geq \sup A + \sup B\).</li>
 </ul>
-<p><br />
+<p>From these two inequalities we will then conclude that \(\sup A+B = \sup A + \sup B\).
+<br />
+<br />
+To prove that \(\sup A+B \leq \sup A + \sup B\), let \(a\) be an arbitrary element in \(A\). Then we must have,</p>
+<div>
+$$
+\begin{align*}
+a &amp;\leq \sup A.
+\end{align*}
+$$
+</div>
+<p>Similarly, Let \(b\) be an arbitrary element in \(B\). Then we must have,</p>
+<div>
+$$
+\begin{align*}
+b &amp;\leq \sup B.
+\end{align*}
+$$
+</div>
+<p>Adding both inequalities will result in</p>
+<div>
+$$
+\begin{align*}
+a + b &amp;\leq \sup A + \sup B.
+\end{align*}
+$$
+</div>
+<p>Since \(a\) and \(b\) were arbitrary, this means that \(\sup A + \sup B\) is an upper bound for \(A + B\). But we know the least upper bound for \(A+B\) is \(\sup A + B\) and by the definition of the least upper bound \(\sup A + B\) must be less than or equal to any other bound on \(A + B\). Therefore we can write,</p>
+<div>
+$$
+\begin{align*}
+\sup (A+B) &amp;\leq \sup A + \sup B.
+\end{align*}
+$$
+</div>
+<p>And this concludes the first part of the proof. To prove condition two, let \(a \in A\) and \(b \in B\) be arbitrary elements. We know that by the definition of the least upper bound we must have,</p>
+<div>
+$$
+\begin{align*}
+a + b &amp;\leq \sup (A + B).
+\end{align*}
+$$
+</div>
+<p>Let’s move \(b\) to the other side of the inequality.</p>
+<div>
+$$
+\begin{align*}
+a &amp;\leq \sup (A + B) - b.
+\end{align*}
+$$
+</div>
+<p>\(a\) here is an arbitrary element in \(A\) so \(\sup (A + B) - b\) must be an upper bound for \(A\) by the definition of an upper bound. But we know that \(\sup A\) is the least upper bound and the least upper bound is less than or equal to any other bound. Therefore, we can write,</p>
+<div>
+$$
+\begin{align*}
+\sup A &amp;\leq \sup (A + B) - b.
+\end{align*}
+$$
+</div>
+<p>We can move swap \(\sup A\) and \(b\) now to see that,</p>
+<div>
+$$
+\begin{align*}
+b &amp;\leq \sup (A + B) - \sup A.
+\end{align*}
+$$
+</div>
+<p>With the same argument we used previously here we can see that \(\sup (A+B) - \sup A\) is an upper bound for \(B\) since \(b\) is arbitrary and we know that the least upper bound is less than or equal to any other bound. Therefore,</p>
+<div>
+$$
+\begin{align*}
+\sup B &amp;\leq \sup (A + B) - \sup A.
+\end{align*}
+$$
+</div>
+<p>Re-arranging the terms gets us,</p>
+<div>
+$$
+\begin{align*}
+\sup A + \sup B &amp;\leq \sup (A + B).
+\end{align*}
+$$
+</div>
+<p>as required. This concludes the second part of the proof. Therefore, \(\sup A + \sup B \leq \sup (A + B)\) as required.
+\(\blacksquare\)
+<br />
 <br />
 <!------------------------------------------------------------------------------------>
 <b>References:</b></p>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=1AK4c0rkcV0">Dr. Peyman</a></li>
 </ul>
+
 
   </div><div id="disqus_thread"></div>
 <script>
@@ -90,8 +156,8 @@ To prove that \(s = \sup A\), we need to verify the <a href="https://strncat.git
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/05/07/analysis-least-upper-bound-sum.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/05/07/analysis-least-upper-bound-sum; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -102,7 +168,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/05/07/analysis-least-upper-bound-sum.html" hidden></a>
 </article>
 		 
       </div>

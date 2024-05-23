@@ -11,9 +11,9 @@ Given some function $$f$$. A slanted asymptote occurs when the degree of the num
 <br>
 To re-iterate from the <a href="https://strncat.github.io/jekyll/update/2024/04/10/graph-horizontal-asymptotes.html">horizontal asymptotes post</a>, we have three cases:
 <ul>
-	<li>The case when $$m = n$$. Here, we'll have a horizontal asymptote at $$a_m/a_n$$ where $$a_m$$ and $$a_n$$ are the leading coefficients of each of the highest terms</li>
-	<li>The case when $$m < n$$. Here, we'll have a horizontal asymptote at $$y = 0$$. </li>
-	<li>The case when $$m > n$$. Here we won't have a horizontal asymptote and for $$m = n + 1$$ we will have a slanted asymptote which is what this post is about!</li>
+	<li>The case when \(m = n\). Here, we'll have a horizontal asymptote at \(a_m/a_n\) where \(a_m\) and \(a_n\) are the leading coefficients of each of the highest terms</li>
+	<li>The case when \(m < n\). Here, we'll have a horizontal asymptote at \(y = 0\). </li>
+	<li>The case when \(m > n\). Here we won't have a horizontal asymptote and for \(m = n + 1\) we will have a slanted asymptote which is what this post is about!</li>
 
 </ul>
 <br>
@@ -43,7 +43,7 @@ However find the slope isn't enough because we need to find the equation of the 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the $$y$$ Intercept of the Slanted Asymptote</b></h4>
+<h4><b>Finding the \(y\) Intercept of the Slanted Asymptote</b></h4>
 We'll divide the numerator by the denominator (see video for how it's done). The divison will result in $$3x + 3$$ and some remainder. We won't care about the remainder since as we approach infinity, the remainder will approach zero. So the equation of the slanted asymptote will just be $$3x + 3$$ and this is exactly the slanted asymptote we're looking for. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/slanted-asymptotes/1.png" width="80%" class="center"></p>
 <br>

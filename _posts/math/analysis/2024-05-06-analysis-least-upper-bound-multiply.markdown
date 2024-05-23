@@ -21,7 +21,7 @@ ca \leq c\sup A.
 \end{align*}
 $$
 </div>
-This means that $$c\sup A$$ is an upper bound for $$cA$$ and verifies condition one. To verify condition two, let $$b$$ be an arbitrary upper bound for $$cA$$. This means that
+This means that $$c\sup A$$ is an upper bound for $$cA$$ and this verifies condition one. To verify condition two, let $$b$$ be an arbitrary upper bound for $$cA$$. This means that
 <div>
 $$
 \begin{align*}

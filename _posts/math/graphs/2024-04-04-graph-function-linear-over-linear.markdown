@@ -42,9 +42,9 @@ $$
 </div>
 Then,
 <ul>
-<li> if $$m < n$$, then the horizontal asymptote is $$y = 0$$.</li>
-<li> if $$m = n$$, then the asymptote is the leading coefficient of the numerator over the leading the coefficient of the denominator. $$\frac{a_m}{a_n}$$. </li>
-<li> if $$m = n + 1$$, we will have a slanted asymptote.</li>
+<li> if \(m < n\), then the horizontal asymptote is \(y = 0\).</li>
+<li> if \(m = n\), then the asymptote is the leading coefficient of the numerator over the leading the coefficient of the denominator. \(\frac{a_m}{a_n}\). </li>
+<li> if \(m = n + 1\), we will have a slanted asymptote.</li>
 </ul>
 Here, $$m = n$$, therefore, the horizontal asymptote is $$y = -3$$.
 <br>

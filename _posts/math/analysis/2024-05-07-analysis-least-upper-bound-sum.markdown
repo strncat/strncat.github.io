@@ -11,7 +11,6 @@ mathjax: true
 <br>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
-<br>
 <h4><b>Proof:</b></h4>
 Let $$A$$ and $$B$$ be sets and let $$A + B$$ be the set defined above. We want to prove that $$\sup A+B = \sup A + \sup B$$. To do this, we will prove:
 <ul> 
@@ -106,7 +105,10 @@ $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<b>References:</b>
+<h4><b>Additional Notes:</b></h4>
+I struggled with this proof because I was trying to figure out in my head how to transition from $$a + b \leq \sup A + \sup B$$ to $$\sup (A+B) \leq \sup A + \sup B$$ by trying to swap $$a + b$$ with $$\sup (A+B)$$. But that not how it works! The first statement establishes that $$\sup A + \sup B$$ is some upper bound on $$A+B$$. But because the least upper bound is always less than or equal than ANY any other then we can just conclude immediately that $$\sup(A+B) \leq \sup A + \sup B$$. 
+<!------------------------------------------------------------------------------------>
+<h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 <li><a href="https://www.youtube.com/watch?v=1AK4c0rkcV0">Dr. Peyman</a></li>

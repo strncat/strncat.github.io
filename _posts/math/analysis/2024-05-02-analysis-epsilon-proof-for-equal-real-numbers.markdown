@@ -8,7 +8,7 @@ mathjax: true
 This was intriguing and took me a while to get what's happening. Here is the statement:
 <br>
 <h4><b>Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\).</b></h4>
-What is this statement saying? It helps to think about the absolute value of \(a-b\) as the distance between $$a$$ and $$b$$ on the numbers line. This means the the claim is suggesting that if the distance is zero, then no matter what number we choose (a number that is greater than zero), this number will be greater than this distance. In the other direction, the claim is suggesting that if it's the case that no matter what value (greater than zero) we choose, if this value is greater than the distance between $$a$$ and $$b$$, then we'll know that the distance between $$a$$ and $$b$$ is zero.
+What is this statement saying? It helps to think about the absolute value of \(a-b\) as the distance between $$a$$ and $$b$$ on the numbers line. In the forward direction, the claim is that if the numbers are equal (meaning that the distance is zero), then no matter what number we choose (a number that is greater than zero), this number will be always be greater than this distance (which is zero). In the other direction, the claim is suggesting that if it's the case that no matter what value (greater than zero) we choose, if this value is greater than the distance between $$a$$ and $$b$$, then the distance between $$a$$ and $$b$$ has to be zero.
 <h4><b>Proof:</b></h4>
 We'll prove both directions of the statement since we have an "if and only if".
 <ul>

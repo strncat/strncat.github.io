@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "(1.3.6) The Least Upper Bound of the Sum of Two Sets (Alternative Proof)"
-date:   2024-05-12 01:01:36 -0700
+date:   2024-05-08 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

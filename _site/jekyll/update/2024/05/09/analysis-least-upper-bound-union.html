@@ -31,7 +31,7 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Exercise 1.3.9</h1>
+    <h1 class="post-title p-name" itemprop="name headline">The Least Upper Bound of the Union of Two Sets</h1>
     <!--
     <p class="post-meta">
       <time class="dt-published" datetime="2024-05-09T01:01:36-07:00" itemprop="datePublished">May 9, 2024
@@ -41,39 +41,42 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>If \(\sup A &lt; \sup B \), show that there exits an element \(b \in B\) that is an upper bound for A.</b>
+  <b>Suppose \(A, B \subseteq \mathbf{R}\) are nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.</b>
 </div>
 <p><br />
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
-<br />
 <br /></p>
 <h4><b>Proof:</b></h4>
-<p>Let \(A\) and \(B\) be sets and let \(s = \sup A\) and \(t = \sup B\). Since \(s\) is a least upper bound for \(A\), than for any other bound \(x\), we must have \(x \geq s\). For any element \(a \in A\), we also have \(s \geq a\) so</p>
+<p>Let \(A, B \subseteq \mathbf{R}\) be nonempty and bounded above. By the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">Axiom of Completeness</a>, \(\sup A\) and \(\sup B\) both exist. We claim that that \(\sup (A \cup B) = \sup (\{\sup A, \sup B\})\). Since \(\sup A\) and \(\sup B\) both exist, then the set \(\{\sup A, \sup B\}\) is nonempty and bounded above. Therefore, \(\sup (A \cup B)\) also exists by the Axiom of Completeness.
+<br />
+<br />
+Without the loss of generality, suppose that \(\sup A \geq \sup B\). If that’s the case, then \(\sup (\{\sup A, \sup B\}) = \sup A\). (Why? because the maximum of the set is the supremum of the set. The <a href="https://www.youtube.com/watch?v=5bLaGzeTMkY">proof</a> for this is straight forward). So now the goal is to prove that \(\sup (A \cup B) = \sup A\). To do this, we will prove that</p>
+<ul>
+	<li>\(\sup (A \cup B) \geq \sup A\)</li>
+	<li>\(\sup (A \cup B) \leq \sup A\)</li>
+</ul>
+<p>For the first inequality, we want to prove that \(\sup (A \cup B)\) is an upper bound on the set \(A\). First, \(\sup(A \cup B)\) is an upper bound on the set \(A \cup B\) (by the definition of the least upper bound). But we know that \(A \subseteq A \cup B\). Therefore, \(\sup(A \cup B)\) is an upper bound on the set \(A\) as well. Second, we know that \(\sup A\) must be less than or equal to any other upper bound by the definition of the least upper bound. Therefore \(\sup A \leq \sup(A \cup B)\).
+<br />
+<br />
+For the second inequality, suppose for the sake of contradiction that it is not the case that \(\sup (A \cup B) \leq \sup A\). So \(\sup (A \cup B) &gt; \sup A\). This means that \(\sup A\) is not upper bound on the set \(A \cup B\). Therefore, there must exists some element \(b \in B\) such that \(b &gt; \sup A\). But we know by the definition of the least upper bound that \(\sup b \geq b\). So now we have,</p>
 <div>
 $$
 \begin{align*}
-x \geq s \geq a.
+\sup A &lt; b &lt; \sup B
 \end{align*}
 $$
 </div>
-<p>We also know that for any \(b \in B\), we must have \(t \geq b\). But we’re also given that \(t &gt; s\) so</p>
-<div>
-$$
-\begin{align*}
-t \geq b.
-\end{align*}
-$$
-</div>
-<p>We’re also given</p>
-
-<p>\(\blacksquare\)
+<p>This is a contradiction since we assumed that \(\sup A &gt; \sup B\) and therefore we must have \(\sup (A \cup B) \leq \sup A\) as required. \(\blacksquare\)
 <br />
 <br />
 <!------------------------------------------------------------------------------------>
 <b>References:</b></p>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://pi.math.cornell.edu/~zbnorwood/3110-s19/">Analysis 2019 - Cornell</a></li>
+<li><a href="https://www.youtube.com/watch?v=acr0drXuNVE">Wrath of Math YouTube Channel</a></li>
 </ul>
+
 
   </div><div id="disqus_thread"></div>
 <script>
@@ -83,8 +86,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/05/09/analysis-least-upper-bound-1.3.9-copy.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/05/09/analysis-least-upper-bound-1.3.9 copy; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/05/09/analysis-least-upper-bound-union.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/05/09/analysis-least-upper-bound-union; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -95,7 +98,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/05/09/analysis-least-upper-bound-1.3.9-copy.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/05/09/analysis-least-upper-bound-union.html" hidden></a>
 </article>
 		 
       </div>

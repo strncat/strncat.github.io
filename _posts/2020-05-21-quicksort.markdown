@@ -191,13 +191,13 @@ E[X] &= E[\sum_{i=1}^{n-1} \sum_{j=i+1}{n} X_{ij}] \\
 $$
 </div>
 
-<u>How to compute $$P(X_{ij}=1)$$? </u>
+<u>How to compute \(P(X_{ij}=1)\)? </u>
 <br>
 Let $$Z_{ij} = \\{z_i,...,z_j\\}$$ be the set of elements between $$z_i$$ and $$z_j$$ inclusive.
 
 <img src="{{ site.url }}/assets/randomized/quicksort/a2.png" width="100%">
 
-<u>What is the significance of $$Z_{ij}$$ to the probability of $$x_i$$ and $$x_j$$ being compared?</u>
+<u>What is the significance of \(Z_{ij}\) to the probability of \(x_i\) and \(x_j\) being compared?</u>
 <br>
 Suppose we pick a pivot that's not in $$Z_{ij}$$, then this event doesn't affect the chance of $$z_i$$ and $$z_j$$ being compared. However, if the choice of pivot was from the set $$Z_{ij}$$ then we have two cases: 
 - If the pivot was $$z_i$$ or $$z_j$$ then the $$z_i$$ and $$z_j$$ will be compared.

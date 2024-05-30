@@ -1,35 +1,43 @@
 ---
 layout: post
-title:  "[1.3.7] a is the least upper bound if it's an upper bound and it's in the set."
-date:   2024-05-10 01:01:36 -0700
+title:  "max(x,y) = 1/2(x+y+|x - y|)"
+date:   2024-05-13 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Prove that if \(a\) is an upper bound for \(A\), and if \(a\) is also an element of \(A\), then it must be that \(a = \sup A\).</b>
+  <b>For two real numbers \(x\) and \(y\), prove that \(\max(x,y) = \frac{1}{2}(x+y+|x - y|)\).</b>
 </div>
 <br>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <br>
 <h4><b>Proof:</b></h4>
-Let $$A$$ be a set with an upper bound $$a$$. The least upper bound of $$A$$ is less than or equal to any other upper bound by the definition of the least upper bound so,
+Suppose $$x$$ and $$y$$ are two real numbers. Consider the following cases
+<ul>
+	<li>Case \(x = y\):</li>
 <div>
 $$
 \begin{align*}
-\sup A \leq a.
+\max(x, x) &= \frac{1}{2}(x + x + |x - x|) \\
+&= x
 \end{align*}
 $$
 </div>
-But $$\sup A$$ is greater than or equal to any element in $$A$$ so we must also have,
+which is true.
+	<li>Case \(x \neq y\): Without the loss of generality suppose that \(x > y\), then</li>
+</ul>
 <div>
 $$
 \begin{align*}
-\sup A \geq a.
+\max{x, y} = &\frac{1}{2}(x + y + |x - y|) \\
+\max{x, y} = &\frac{1}{2}(x + y + x - y) \\
+\max{x, y} = &\frac{1}{2}(2x)) \\
+&= x
 \end{align*}
 $$
 </div>
-From the two inqualities we just established, we can conclude that $$\sup A$$ must equal to $$a$$ as required.
+Which is also true since we assumed that \(x > y\).
 $$\blacksquare$$
 <br>
 <br>

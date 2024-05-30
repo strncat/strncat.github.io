@@ -39,7 +39,7 @@ b &\leq c \sup A.
 \end{align*}
 $$
 </div>
-Recall that $$b$$ was arbitrary upper bound of $$cA$$. Therefore, we can conclude from this that $$c \sup A$$ is a least upper bound for $$cA$$ as required. $$\blacksquare$$
+Recall that $$b$$ was an arbitrary upper bound of $$cA$$. Therefore, we can conclude from this that $$c \sup A$$ is a least upper bound for $$cA$$ as required. $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

@@ -9,7 +9,7 @@ mathjax: true
   <b>Suppose \(A, B \subseteq \mathbf{R}\) are nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.</b>
 </div>
 <br>
-For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
+For the definitions of an upper bound and the least upper bound of a set see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 <br>
 <h4><b>Proof:</b></h4>
 Let $$A, B \subseteq \mathbf{R}$$ be nonempty and bounded above. By the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">Axiom of Completeness</a>, $$\sup A$$ and $$\sup B$$ both exist. We claim that that $$\sup (A \cup B) = \sup (\{\sup A, \sup B\})$$. Since $$\sup A$$ and $$\sup B$$ both exist, then the set $$\{\sup A, \sup B\}$$ is nonempty and bounded above. Therefore, $$\sup (A \cup B)$$ also exists by the Axiom of Completeness.
@@ -23,11 +23,11 @@ Without the loss of generality, suppose that $$\sup A \geq \sup B$$. If that's t
 For the first inequality, we want to prove that $$\sup (A \cup B)$$ is an upper bound on the set $$A$$. First, $$\sup(A \cup B)$$ is an upper bound on the set $$A \cup B$$ (by the definition of the least upper bound). But we know that $$A \subseteq A \cup B$$. Therefore, $$\sup(A \cup B)$$ is an upper bound on the set $$A$$ as well. Second, we know that $$\sup A$$ must be less than or equal to any other upper bound by the definition of the least upper bound. Therefore $$\sup A \leq \sup(A \cup B)$$.
 <br>
 <br>
-For the second inequality, suppose for the sake of contradiction that it is not the case that $$\sup (A \cup B) \leq \sup A$$. So $$\sup (A \cup B) > \sup A$$. This means that $$\sup A$$ is not upper bound on the set $$A \cup B$$. Therefore, there must exists some element $$b \in B$$ such that $$b > \sup A$$. But we know by the definition of the least upper bound that $$\sup b \geq b$$. So now we have,  
+For the second inequality, suppose for the sake of contradiction that it is not the case that $$\sup (A \cup B) \leq \sup A$$. So $$\sup (A \cup B) > \sup A$$. This means that $$\sup A$$ is not an upper bound on the set $$A \cup B$$. Therefore, there must exists some element $$b \in B$$ such that $$b > \sup A$$. But we know by the definition of the least upper bound that $$\sup B \geq b$$. So now we have,  
 <div>
 $$
 \begin{align*}
-\sup A < b < \sup B
+\sup A < b \leq \sup B
 \end{align*}
 $$
 </div>

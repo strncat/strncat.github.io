@@ -1,0 +1,44 @@
+---
+layout: post
+title:  "Sup(A) for A = {(-1)^n / n, n is a natural number}"
+date:   2024-05-12 01:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  <b>Determine \(\sup A\) for \(A = \{(-1)^n / n: n \in \mathbf{N} \ \{0\}\}\).</b>
+</div>
+<br>
+For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
+<br>
+<br>
+<h4><b>Proof:</b></h4>
+Let $$A$$ be the set defined above. We claim that $$\sup A = \frac{1}{2}$$. To see this, we need to prove that $$1/2$$ is an upper bound and then prove that $$1/2$$ is the least upper bound.
+<br>
+<br>
+To prove that 1/2 is an upper bound, we'll assume for the sake of contradiction that it is not. Therefore,
+<div>
+$$
+\begin{align*}
+1/2 < \frac{(-1)^n}{n} \\
+n/2 < (-1)^n.
+\end{align*}
+$$
+</div>
+If we let $n = 1$, then we'll see that $$1/2 < -1$$ which is a contradiction so $$1/2$$ is an upper bound. To prove that $$1/2$$ is the least upper bound, we'll use lemma 1.3.8 which states  that $$s = \sup A$$ iff for all $$\epsilon > 0$$, there exist an element $$a \in A$$ such that $$a > s - \epsilon$$. 
+
+
+So I need to find an $n$ such that if we pick any $\epsilon > 0$, then we'll see that $$\frac{(-1)^n}{n} > 1/2 - \epsilon$$
+
+I was thinking for strategy 2, we pick $n = 2$ and so
+$$\frac{(-1)^2}{2} > 1/2 - \epsilon \\
+  \frac{1}{2} > 1/2 - \epsilon $$
+This is true for any $\epsilon > 0$. So 1/2 is the least upper bound.
+$$\blacksquare$$
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<b>References:</b>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+</ul>

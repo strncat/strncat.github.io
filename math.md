@@ -8,42 +8,64 @@ mathjax: true
 <!------------------------------------------------------------------->  
   <h3> Real Analysis </h3>
   <ul style="list-style-type:none;">
+    <li><a href="/jekyll/update/2024/05/14/analysis-psquared-even-then-p-even.html">
+          (0) Prove that if \(p^2\) is even, then \(p\) is even.
+	</a></li>
     <li><a href="/jekyll/update/2024/05/01/analysis-square-root-two-irrational.html">
-          (1) Prove that \(\sqrt{2}\) is Irrational.
+          (1) Prove that \(\sqrt{2}\) is irrational.
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/15/analysis-square-root-three-irrational.html">
+          (2) Prove that \(\sqrt{3}\) is irrational.
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/29/analysis-square-root-3-5-irrational.html">
+          (3) Prove that \(\sqrt{3} + \sqrt{5}\) is irrational.
     </a></li>
     <li><a href="/jekyll/update/2024/05/02/analysis-epsilon-proof-for-equal-real-numbers.html">
-          (2) Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\).   
+          (4) Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\).   
     </a></li>
-    <li><a href="/jekyll/update/2024/05/13/analysis-max-x-y-proof.html">
-          (3) For two real numbers \(x\) and \(y\), prove that \(\max(x,y) = \frac{1}{2}(x+y+|x - y|)\).   
+	<h4><i> The Absolute Value Function </i> </h4>
+    <li><a href="/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">
+          Definition and Properties  
     </a></li>
-	<h4> <i> Bounds </i> </h4>
+    <li><a href="/jekyll/update/2024/05/13/analysis-absolute-value-max-x-y.html">
+          (0) For two real numbers \(x\) and \(y\), prove that \(\max(x,y) = \frac{1}{2}(x+y+|x - y|)\).   
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/24/analysis-absolute-value-product.html">
+          (1) \(|ab| = |a|\cdot|b|\) holds for all real numbers \(a\) and \(b\).   
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/25/analysis-absolute-value-triangle-inquality.html">
+          (2) \(|a+b| \leq |a|+|b|\) holds for all real numbers \(a\) and \(b\). 
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/27/analysis-absolute-value-triangle-inquality-subtract.html">
+          (3) \(|a - c| \leq |a - b|+|b - c|\) holds for all real numbers \(a\), \(b\) and \(c\).   
+    </a></li>
+	<h4><i> Bounds </i> </h4>
     <li><a href="/jekyll/update/2024/05/03/analysis-set-bounded.html">
           Bounded Sets Definitions
     </a></li>
     <li><a href="/jekyll/update/2024/05/04/analysis-least-upper-bound-constant.html">
-          (4) The set defined as \(c+A = \{c + a : a \in A\}\) where \(c\) is a constant has a least upper bound equal to \(c + sup A\).
+          (0) The set defined as \(c+A = \{c + a : a \in A\}\) where \(c\) is a constant has a least upper bound equal to \(c + sup A\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">
-          (5) If \(s\) is an upper bound for \(A\), then \(s = \sup A\) if and only if for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon < a\).
+          (1) If \(s\) is an upper bound for \(A\), then \(s = \sup A\) if and only if for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon < a\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/06/analysis-least-upper-bound-multiply.html">
-          (6) [1.3.5] The set defined as \(cA = \{ca : a \in A\}\) where \(c \geq 0\) has \(\sup cA = c\sup A\).
+          (2) [1.3.5] The set defined as \(cA = \{ca : a \in A\}\) where \(c \geq 0\) has \(\sup cA = c\sup A\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/07/analysis-least-upper-bound-sum.html">
-          (7) [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\).
+          (3) [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/08/analysis-least-upper-bound-sum-alternative.html">
-          (8) [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\) (Alternative Proof).
+          (4) [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\) (Alternative Proof).
     </a></li>
     <li><a href="/jekyll/update/2024/05/09/analysis-least-upper-bound-union.html">
-          (9) Let \(A\) and \(B\) be nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.
+          (5) Let \(A\) and \(B\) be nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.
     </a></li>
     <li><a href="/jekyll/update/2024/05/11/analysis-least-upper-bound-infb-infa-supb-supa.html">
-          (10) [1.3.11] If \(A\) and \(B\) are nonempty and bounded sets of real numbers such that \(A \subseteq B\) then \(\inf B \leq \inf A \leq \sup A \leq \sup B\).
+          (6) [1.3.11] If \(A\) and \(B\) are nonempty and bounded sets of real numbers such that \(A \subseteq B\) then \(\inf B \leq \inf A \leq \sup A \leq \sup B\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/23/analysis-least-upper-bound-sup0.html">
-          (11) Let \(A = \{x \in \mathbf{R}: x < 0\}\). Then \(\sup(A) = 0\).
+          (7) Let \(A = \{x \in \mathbf{R}: x < 0\}\). Then \(\sup(A) = 0\).
     </a></li>
 	<!--
     <li><a href="/jekyll/update/2024/05/10/analysis-least-upper-bound-1.3.7.html">
@@ -53,7 +75,7 @@ mathjax: true
   </ul>
 <br>
 <!------------------------------------------------------------------->  
-  <h3> Calculus </h3>
+  <h3> Limits </h3>
   <ul style="list-style-type:none;">
     <li><a href="/jekyll/update/2024/04/16/limit-rational-functions.html">
             The Limit of Rational Functions As x Approaches Plus or Negative Infinity

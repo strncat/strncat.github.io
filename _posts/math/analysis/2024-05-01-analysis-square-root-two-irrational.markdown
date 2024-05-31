@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Prove that the square root of 2 is irrational"
+title:  "The Square Root of 2 is Irrational"
 date:   2024-05-01 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Prove that \(\sqrt{2}\) is not rational and rather an irrational number.</b>
+  <b>\(\sqrt{2}\) is not rational and rather an irrational number.</b>
 </div>
 <br>
 <h4><b>Proof:</b></h4>

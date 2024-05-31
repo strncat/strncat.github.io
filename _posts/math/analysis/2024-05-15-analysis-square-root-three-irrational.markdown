@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Prove that the square root of 3 is irrational"
+title:  "The Square Root of 3 is Irrational"
 date:   2024-05-15 01:01:36 -0700
 categories: jekyll update
 mathjax: true

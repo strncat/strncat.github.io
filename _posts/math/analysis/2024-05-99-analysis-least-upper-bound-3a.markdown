@@ -16,23 +16,17 @@ For the definitions of an upper bound and the least upper bound of a set. See <a
 Let $$A$$ be the set defined above. We claim that $$\sup A = \frac{1}{2}$$. To see this, we need to prove that $$1/2$$ is an upper bound and then prove that $$1/2$$ is the least upper bound.
 <br>
 <br>
-To prove that 1/2 is an upper bound, we'll assume for the sake of contradiction that it is not. Therefore,
+To prove that 1/2 is an upper bound, ...
+To prove that $$1/2$$ is the least upper bound, we'll use lemma 1.3.8 which states that $$s = \sup A$$ iff for all $$\epsilon > 0$$, there exist an element $$a \in A$$ such that $$a > s - \epsilon$$. 
+Pick $n$ such that if we pick any $\epsilon > 0$, then we'll see that $$\frac{(-1)^n}{n} > 1/2 - \epsilon$$. If we pick $$2 \in A$$, we'll see that
 <div>
 $$
 \begin{align*}
-1/2 < \frac{(-1)^n}{n} \\
-n/2 < (-1)^n.
+\frac{(-1)^2}{2} &> 1/2 - \epsilon \\
+\frac{1}{2} &> 1/2 - \epsilon
 \end{align*}
 $$
 </div>
-If we let $n = 1$, then we'll see that $$1/2 < -1$$ which is a contradiction so $$1/2$$ is an upper bound. To prove that $$1/2$$ is the least upper bound, we'll use lemma 1.3.8 which states  that $$s = \sup A$$ iff for all $$\epsilon > 0$$, there exist an element $$a \in A$$ such that $$a > s - \epsilon$$. 
-
-
-So I need to find an $n$ such that if we pick any $\epsilon > 0$, then we'll see that $$\frac{(-1)^n}{n} > 1/2 - \epsilon$$
-
-I was thinking for strategy 2, we pick $n = 2$ and so
-$$\frac{(-1)^2}{2} > 1/2 - \epsilon \\
-  \frac{1}{2} > 1/2 - \epsilon $$
 This is true for any $\epsilon > 0$. So 1/2 is the least upper bound.
 $$\blacksquare$$
 <br>

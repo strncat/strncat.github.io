@@ -7,72 +7,86 @@ mathjax: true
 
 <!------------------------------------------------------------------->  
   <h3> Real Analysis </h3>
-  <ul style="list-style-type:none;">
+  <ol type="1">
     <li><a href="/jekyll/update/2024/05/14/analysis-psquared-even-then-p-even.html">
-          (0) Prove that if \(p^2\) is even, then \(p\) is even.
+          Prove that if \(p^2\) is even, then \(p\) is even.
 	</a></li>
     <li><a href="/jekyll/update/2024/05/01/analysis-square-root-two-irrational.html">
-          (1) Prove that \(\sqrt{2}\) is irrational.
+          Prove that \(\sqrt{2}\) is irrational.
     </a></li>
     <li><a href="/jekyll/update/2024/05/15/analysis-square-root-three-irrational.html">
-          (2) Prove that \(\sqrt{3}\) is irrational.
+          Prove that \(\sqrt{3}\) is irrational.
     </a></li>
+	<!--
     <li><a href="/jekyll/update/2024/05/29/analysis-square-root-3-5-irrational.html">
-          (3) Prove that \(\sqrt{3} + \sqrt{5}\) is irrational.
+          Prove that \(\sqrt{3} + \sqrt{5}\) is irrational.
     </a></li>
+	-->
     <li><a href="/jekyll/update/2024/05/02/analysis-epsilon-proof-for-equal-real-numbers.html">
-          (4) Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\).   
+          Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\).   
     </a></li>
-	<h4><i> The Absolute Value Function </i> </h4>
+<h4><i> The Absolute Value Function </i> </h4>
     <li><a href="/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">
           Definition and Properties  
     </a></li>
     <li><a href="/jekyll/update/2024/05/13/analysis-absolute-value-max-x-y.html">
-          (0) For two real numbers \(x\) and \(y\), prove that \(\max(x,y) = \frac{1}{2}(x+y+|x - y|)\).   
+          For two real numbers \(x\) and \(y\), prove that \(\max(x,y) = \frac{1}{2}(x+y+|x - y|)\).   
     </a></li>
     <li><a href="/jekyll/update/2024/05/24/analysis-absolute-value-product.html">
-          (1) \(|ab| = |a|\cdot|b|\) holds for all real numbers \(a\) and \(b\).   
+          \(|ab| = |a|\cdot|b|\) holds for all real numbers \(a\) and \(b\).   
     </a></li>
     <li><a href="/jekyll/update/2024/05/25/analysis-absolute-value-triangle-inquality.html">
-          (2) \(|a+b| \leq |a|+|b|\) holds for all real numbers \(a\) and \(b\). 
+          \(|a+b| \leq |a|+|b|\) holds for all real numbers \(a\) and \(b\). 
     </a></li>
     <li><a href="/jekyll/update/2024/05/27/analysis-absolute-value-triangle-inquality-subtract.html">
-          (3) \(|a - c| \leq |a - b|+|b - c|\) holds for all real numbers \(a\), \(b\) and \(c\).   
+          \(|a - c| \leq |a - b|+|b - c|\) holds for all real numbers \(a\), \(b\) and \(c\).   
     </a></li>
 	<h4><i> Bounds </i> </h4>
     <li><a href="/jekyll/update/2024/05/03/analysis-set-bounded.html">
           Bounded Sets Definitions
     </a></li>
     <li><a href="/jekyll/update/2024/05/04/analysis-least-upper-bound-constant.html">
-          (0) The set defined as \(c+A = \{c + a : a \in A\}\) where \(c\) is a constant has a least upper bound equal to \(c + sup A\).
+          The set defined as \(c+A = \{c + a : a \in A\}\) where \(c\) is a constant has a least upper bound equal to \(c + sup A\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">
-          (1) If \(s\) is an upper bound for \(A\), then \(s = \sup A\) if and only if for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon < a\).
+          [Lemma 1.3.8] If \(s\) is an upper bound for \(A\), then \(s = \sup A\) if and only if for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon < a\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/06/analysis-least-upper-bound-multiply.html">
-          (2) [1.3.5] The set defined as \(cA = \{ca : a \in A\}\) where \(c \geq 0\) has \(\sup cA = c\sup A\).
+          [1.3.5] The set defined as \(cA = \{ca : a \in A\}\) where \(c \geq 0\) has \(\sup cA = c\sup A\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/07/analysis-least-upper-bound-sum.html">
-          (3) [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\).
+          [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/08/analysis-least-upper-bound-sum-alternative.html">
-          (4) [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\) (Alternative Proof).
+          [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\) (Alternative Proof).
     </a></li>
     <li><a href="/jekyll/update/2024/05/09/analysis-least-upper-bound-union.html">
-          (5) Let \(A\) and \(B\) be nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.
+          Let \(A\) and \(B\) be nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.
     </a></li>
     <li><a href="/jekyll/update/2024/05/11/analysis-least-upper-bound-infb-infa-supb-supa.html">
-          (6) [1.3.11] If \(A\) and \(B\) are nonempty and bounded sets of real numbers such that \(A \subseteq B\) then \(\inf B \leq \inf A \leq \sup A \leq \sup B\).
+          [1.3.11] If \(A\) and \(B\) are nonempty and bounded sets of real numbers such that \(A \subseteq B\) then \(\inf B \leq \inf A \leq \sup A \leq \sup B\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/23/analysis-least-upper-bound-sup0.html">
-          (7) Let \(A = \{x \in \mathbf{R}: x < 0\}\). Then \(\sup(A) = 0\).
+          Let \(A = \{x \in \mathbf{R}: x < 0\}\). Then \(\sup(A) = 0\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/16/analysis-archimedian-principle.html">
+          The Archimedean Principle
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/17/analysis-archimedian-principle-inf-N.html">
+          \(\inf\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 0.\)
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/18/analysis-archimedian-principle-sup-N.html">
+          \(\sup\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 1.\)
     </a></li>
 	<!--
+    <li><a href="/jekyll/update/2024/05/19/analysis-bounds-alpha-n.html">
+          Fix \(\alpha \in (0,1)\). Determine \(\inf(A)\) for \(A=\{\alpha^n: n \in \mathbf{N}\}\).
+    </a></li>
     <li><a href="/jekyll/update/2024/05/10/analysis-least-upper-bound-1.3.7.html">
           (11) [1.3.7] If \(a\) is an upper bound for \(A\) and \(a \in A\), then \(a = \sup A\).
     </a></li>
 	-->
-  </ul>
+  </ol>
 <br>
 <!------------------------------------------------------------------->  
   <h3> Limits </h3>

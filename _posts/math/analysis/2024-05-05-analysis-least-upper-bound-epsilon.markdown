@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Least Upper Bound Epsilon Proof"
+title:  "Lemma 1.3.8: The Least Upper Bound Epsilon Proof"
 date:   2024-05-05 01:01:36 -0700
 categories: jekyll update
 mathjax: true

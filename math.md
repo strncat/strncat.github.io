@@ -86,6 +86,9 @@ mathjax: true
           (11) [1.3.7] If \(a\) is an upper bound for \(A\) and \(a \in A\), then \(a = \sup A\).
     </a></li>
 	-->
+    <li><a href="/jekyll/update/2024/05/20/analysis-density-of-q-in-r.html">
+          [Density of \(\mathbf{Q}\) in \(\mathbf{R}\)] For every two real numbers \(a\) and \(b\) with \(a < b\), there exists a rational number \(r\) satisfying \(a < r < b\).
+    </a></li>
   </ol>
 <br>
 <!------------------------------------------------------------------->  

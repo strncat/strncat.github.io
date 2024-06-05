@@ -72,7 +72,7 @@ From this we see that this choice of $$m$$ indeed satisfies $$an < m < bn$$ as r
 $$\blacksquare$$
 <br>
 <br>
-So in a sense $$Q$$ must be dense since we have a rational number no matter what two real numbers are given.
+Notes: So in a sense $$Q$$ must be dense since we have a rational number between no matter what two real numbers are given.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

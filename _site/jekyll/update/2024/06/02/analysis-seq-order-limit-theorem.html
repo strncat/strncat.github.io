@@ -31,83 +31,52 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Density of Q in R</h1>
+    <h1 class="post-title p-name" itemprop="name headline">The Order Limit Theorem</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-05-20T01:01:36-07:00" itemprop="datePublished">May 20, 2024
+      <time class="dt-published" datetime="2024-06-02T01:01:36-07:00" itemprop="datePublished">Jun 2, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>[Density of \(\mathbf{Q}\) in \(\mathbf{R}\)] For every two real numbers \(a\) and \(b\) with \(a &lt; b\), there exists a rational number \(r\) satisfying \(a &lt; r &lt; b\).</b>
+  <b>[The Order Limit Theorem] Assume \(\lim a_n = a\) and \(\lim b_n = a\). Then,</b>
+	  <ol type="i">
+	    <li>If \(a_n \geq 0\) for all \(n \in \mathbf{N}\), then \(a \geq 0\);</li>
+	    <li>If \(a_n \leq b_n\) for all \(n \in \mathbf{N}\), then \(a \leq b\);</li>
+	    <li>If there exists \(c \in \mathbf{R}\) for which \(c \leq b_n\) for all \(n \in \mathbf{N}\), then \(c \leq b\). Similarly, if \(a_n \leq c\) for all \(n \in \mathbf{N}\), then \(a \leq c\) </li>
+	  </ol>
 </div>
 <p><br />
+For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
 <br />
-For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
-For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">this</a>
+For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br />
-<br /></p>
-<h4><b>Proof:</b></h4>
-<p>Let \(a\) and \(b\) be real numbers with with \(a &lt; b\). We will produce \(q = \frac{m}{n} \in \mathbf{Q}\) where \(m \in \mathbf{Z}\) and \(n \in \mathbf{N}\) such that</p>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof (i)</b></h4>
+<p>Assume for the sake of contradiction that \(a &lt; 0\). Since \(\lim a_n = a\), then for \(\epsilon &gt; 0\), there exist some \(n \geq N\) such that \(|a_n - a| &lt; \epsilon\). Choose \(\epsilon = |a|\). Then, we must have an \(n \geq N\) such that</p>
 <div>
 $$
 \begin{align*}
-a &lt; \frac{m}{n} &lt; b.
+|a_n - a| &lt; |a| \\
+|a_n - a| &lt; |a| \\
+|a_n| - |a| &lt; |a|. \\
+|a_n| &lt; 0. \\
 \end{align*}
 $$
 </div>
-<p>We want to pick \(n\) such that it is large enough where a step of size \(1/n\) won’t cross over the entire interval of \([a,b]\). (side note: think of the numbers 0.5 and 1. You don’t want \(n\) to be 1. since any fraction \(m/1\) is never going to be inside the interval). To pick such \(n\), we can use the <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">Archimedean Principle</a> to pick an \(n \in \mathbf{N}\) such that \(n &gt; \frac{1}{b - a}\). Re-arrange the terms to get</p>
-<div>
-$$
-\begin{align*}
-\frac{1}{n} &amp;&lt; b - a.
-\end{align*}
-$$
-</div>
-<p>So now all we need is to find \(m\) such that \(a &lt; \frac{m}{n} &lt; b\). Multiply the inequality by \(n\) to get</p>
-<div>
-$$
-\begin{align*}
-an &lt; m &lt; bn.
-\end{align*}
-$$
-</div>
-<p>Clearly \(m\) needs to be an integer greater than \(an\) and less than \(bn\). The idea in the book’s proof was to pick \(m\) to be the smallest integer greater than \(na\). In other words,</p>
-<div>
-$$
-\begin{align*}
-m-1 \leq na &lt; m.
-\end{align*}
-$$
-</div>
-<p>So now we need to prove that this choice of \(m\) will satisfy the inequality \(an &lt; m &lt; bn\). Clearly, \(na &lt; m\) satisfies the right inequality and we’re done with part. Next, we want to see how \(m - 1 \leq na\) will satisfy \(m &lt; bn\). To see this, we will re-write the inequality \(\frac{1}{n} &gt; b - a\) to isolate \(a\)</p>
-<div>
-$$
-\begin{align*}
-\frac{1}{n} &gt; b - a \\
-a &gt; b - \frac{1}{n}. \\
-\end{align*}
-$$
-</div>
-<p>Now we can plug this in</p>
-<div>
-$$
-\begin{align*}
-m-1 &amp;\leq na \\
-m &amp;\leq na - 1 \\
-m &amp;&lt; n\big(b - \frac{1}{n}\big) - 1 \\
-m &amp;&lt; nb - n/n - 1 \\
-m &amp;&lt; nb. \\
-\end{align*}
-$$
-</div>
-<p>From this we see that this choice of \(m\) indeed satisfies \(an &lt; m &lt; bn\) as required.
+<p>But this contradicts the assumption that \(a_n \geq 0\) for all \(n \in \mathbf{N}\). Therefore, we must have \(a \geq 0\). \(\blacksquare\)
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof (ii)</b></h4>
+<p>Write \(a_n \leq b_n\) as \(b_n - a_n \geq 0\). Since we have both \(\lim a_n = a\) and \(\lim b_n = a\), then by <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">the algebraic limit theorem</a>, This limit will converge to \(b - a\). By part (i), since \(b_n - a_n \geq 0\), then \(b-a \geq 0\) and so \(a \leq b\) as required. 
 \(\blacksquare\)
 <br />
 <br />
-Notes: So in a sense \(Q\) must be dense since we have a rational number between no matter what two real numbers are given.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof (iii)</b></h4>
+<p>TODO
 <br />
 <br />
 <!------------------------------------------------------------------------------------>
@@ -124,8 +93,8 @@ Notes: So in a sense \(Q\) must be dense since we have a rational number between
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/05/20/analysis-density-of-q-in-r.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/05/20/analysis-density-of-q-in-r; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/06/02/analysis-seq-order-limit-theorem.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/06/02/analysis-seq-order-limit-theorem; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -136,7 +105,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/05/20/analysis-density-of-q-in-r.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/06/02/analysis-seq-order-limit-theorem.html" hidden></a>
 </article>
 		 
       </div>

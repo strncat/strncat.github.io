@@ -31,87 +31,42 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Density of Q in R</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Bounded Sequences</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-05-20T01:01:36-07:00" itemprop="datePublished">May 20, 2024
+      <time class="dt-published" datetime="2024-06-03T01:01:36-07:00" itemprop="datePublished">Jun 3, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>[Density of \(\mathbf{Q}\) in \(\mathbf{R}\)] For every two real numbers \(a\) and \(b\) with \(a &lt; b\), there exists a rational number \(r\) satisfying \(a &lt; r &lt; b\).</b>
+    <!------------------------------------------------------------------------------------>
+<h4><b>Definition: Bounded Sequences</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+	A sequence \(x_n\) is bounded if there exists a number \(M &gt; 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
 </div>
-<p><br />
-<br />
-For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
-For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">this</a>
-<br />
-<br /></p>
-<h4><b>Proof:</b></h4>
-<p>Let \(a\) and \(b\) be real numbers with with \(a &lt; b\). We will produce \(q = \frac{m}{n} \in \mathbf{Q}\) where \(m \in \mathbf{Z}\) and \(n \in \mathbf{N}\) such that</p>
+<p><br /></p>
+<h4>Proof:</h4>
+<p>Assume \((x_n)\) converges to some limit \(l\). This means that for any \(\epsilon\), there must exist some natural number \(N\) such that if \(n \geq N\), then \(x_n\) will be in the interval \((l -\epsilon, l + \epsilon)\). Since we’re searching for any bound, we can set \(\epsilon\) to any value like 1. Also, whether \(l\) is positive or negative, we can conclude that for all \(n \geq N\) that</p>
 <div>
-$$
-\begin{align*}
-a &lt; \frac{m}{n} &lt; b.
-\end{align*}
-$$
+  $$
+  \begin{align*}
+  |x_n| \leq |l| + 1
+  \end{align*}
+  $$
 </div>
-<p>We want to pick \(n\) such that it is large enough where a step of size \(1/n\) won’t cross over the entire interval of \([a,b]\). (side note: think of the numbers 0.5 and 1. You don’t want \(n\) to be 1. since any fraction \(m/1\) is never going to be inside the interval). To pick such \(n\), we can use the <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">Archimedean Principle</a> to pick an \(n \in \mathbf{N}\) such that \(n &gt; \frac{1}{b - a}\). Re-arrange the terms to get</p>
+<p>holds. Since this bound only applies to the terms when \(n \geq N\), we can take the maximum of all the early terms to up to \(N\) and \(|l|+1\). So,</p>
 <div>
-$$
-\begin{align*}
-\frac{1}{n} &amp;&lt; b - a.
-\end{align*}
-$$
+  $$
+  \begin{align*}
+  M = \max{\{|x_1|, |x_2|, |x_3|, ....,|x_{N+1}, |l| + 1\}}.
+  \end{align*}
+  $$
 </div>
-<p>So now all we need is to find \(m\) such that \(a &lt; \frac{m}{n} &lt; b\). Multiply the inequality by \(n\) to get</p>
-<div>
-$$
-\begin{align*}
-an &lt; m &lt; bn.
-\end{align*}
-$$
-</div>
-<p>Clearly \(m\) needs to be an integer greater than \(an\) and less than \(bn\). The idea in the book’s proof was to pick \(m\) to be the smallest integer greater than \(na\). In other words,</p>
-<div>
-$$
-\begin{align*}
-m-1 \leq na &lt; m.
-\end{align*}
-$$
-</div>
-<p>So now we need to prove that this choice of \(m\) will satisfy the inequality \(an &lt; m &lt; bn\). Clearly, \(na &lt; m\) satisfies the right inequality and we’re done with part. Next, we want to see how \(m - 1 \leq na\) will satisfy \(m &lt; bn\). To see this, we will re-write the inequality \(\frac{1}{n} &gt; b - a\) to isolate \(a\)</p>
-<div>
-$$
-\begin{align*}
-\frac{1}{n} &gt; b - a \\
-a &gt; b - \frac{1}{n}. \\
-\end{align*}
-$$
-</div>
-<p>Now we can plug this in</p>
-<div>
-$$
-\begin{align*}
-m-1 &amp;\leq na \\
-m &amp;\leq na - 1 \\
-m &amp;&lt; n\big(b - \frac{1}{n}\big) - 1 \\
-m &amp;&lt; nb - n/n - 1 \\
-m &amp;&lt; nb. \\
-\end{align*}
-$$
-</div>
-<p>From this we see that this choice of \(m\) indeed satisfies \(an &lt; m &lt; bn\) as required.
-\(\blacksquare\)
+<p>Therefore, we have \(|x_n| \leq M\) for all \(n \in \mathbf{N}\) as required. \(\blacksquare\).
 <br />
-<br />
-Notes: So in a sense \(Q\) must be dense since we have a rational number between no matter what two real numbers are given.
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 </ul>
@@ -124,8 +79,8 @@ Notes: So in a sense \(Q\) must be dense since we have a rational number between
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/05/20/analysis-density-of-q-in-r.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/05/20/analysis-density-of-q-in-r; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/06/03/analysis-seq-bounded.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/06/03/analysis-seq-bounded; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -136,7 +91,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/05/20/analysis-density-of-q-in-r.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/06/03/analysis-seq-bounded.html" hidden></a>
 </article>
 		 
       </div>

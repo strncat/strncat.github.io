@@ -31,83 +31,83 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Density of Q in R</h1>
+    <h1 class="post-title p-name" itemprop="name headline">The Algebraic Limit Theorem (i)</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-05-20T01:01:36-07:00" itemprop="datePublished">May 20, 2024
+      <time class="dt-published" datetime="2024-05-30T01:01:36-07:00" itemprop="datePublished">May 30, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>[Density of \(\mathbf{Q}\) in \(\mathbf{R}\)] For every two real numbers \(a\) and \(b\) with \(a &lt; b\), there exists a rational number \(r\) satisfying \(a &lt; r &lt; b\).</b>
+  <b>[The Algebraic Limit Theorem] Let \(\lim a_n = a\) and \(\lim b_n = a\). Then,</b>
+	  <ol type="i">
+	    <li>\(\lim (ca_n) = ca\) for all \(c \in \mathbf{R}\);</li>
+	    <li>\(\lim (a_n + b_n) = a + b\);</li>
+	    <li>\(\lim (a_nb_n) = ab\);</li>
+	    <li>\(\lim (a_n/b_n) = a\);</li>
+	  </ol>
 </div>
 <p><br />
+For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
 <br />
-For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
-For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">this</a>
-<br />
-<br /></p>
-<h4><b>Proof:</b></h4>
-<p>Let \(a\) and \(b\) be real numbers with with \(a &lt; b\). We will produce \(q = \frac{m}{n} \in \mathbf{Q}\) where \(m \in \mathbf{Z}\) and \(n \in \mathbf{N}\) such that</p>
-<div>
-$$
-\begin{align*}
-a &lt; \frac{m}{n} &lt; b.
-\end{align*}
-$$
-</div>
-<p>We want to pick \(n\) such that it is large enough where a step of size \(1/n\) won’t cross over the entire interval of \([a,b]\). (side note: think of the numbers 0.5 and 1. You don’t want \(n\) to be 1. since any fraction \(m/1\) is never going to be inside the interval). To pick such \(n\), we can use the <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">Archimedean Principle</a> to pick an \(n \in \mathbf{N}\) such that \(n &gt; \frac{1}{b - a}\). Re-arrange the terms to get</p>
-<div>
-$$
-\begin{align*}
-\frac{1}{n} &amp;&lt; b - a.
-\end{align*}
-$$
-</div>
-<p>So now all we need is to find \(m\) such that \(a &lt; \frac{m}{n} &lt; b\). Multiply the inequality by \(n\) to get</p>
-<div>
-$$
-\begin{align*}
-an &lt; m &lt; bn.
-\end{align*}
-$$
-</div>
-<p>Clearly \(m\) needs to be an integer greater than \(an\) and less than \(bn\). The idea in the book’s proof was to pick \(m\) to be the smallest integer greater than \(na\). In other words,</p>
-<div>
-$$
-\begin{align*}
-m-1 \leq na &lt; m.
-\end{align*}
-$$
-</div>
-<p>So now we need to prove that this choice of \(m\) will satisfy the inequality \(an &lt; m &lt; bn\). Clearly, \(na &lt; m\) satisfies the right inequality and we’re done with part. Next, we want to see how \(m - 1 \leq na\) will satisfy \(m &lt; bn\). To see this, we will re-write the inequality \(\frac{1}{n} &gt; b - a\) to isolate \(a\)</p>
-<div>
-$$
-\begin{align*}
-\frac{1}{n} &gt; b - a \\
-a &gt; b - \frac{1}{n}. \\
-\end{align*}
-$$
-</div>
-<p>Now we can plug this in</p>
-<div>
-$$
-\begin{align*}
-m-1 &amp;\leq na \\
-m &amp;\leq na - 1 \\
-m &amp;&lt; n\big(b - \frac{1}{n}\big) - 1 \\
-m &amp;&lt; nb - n/n - 1 \\
-m &amp;&lt; nb. \\
-\end{align*}
-$$
-</div>
-<p>From this we see that this choice of \(m\) indeed satisfies \(an &lt; m &lt; bn\) as required.
-\(\blacksquare\)
+For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br />
 <br />
-Notes: So in a sense \(Q\) must be dense since we have a rational number between no matter what two real numbers are given.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Problem Discussion</b></h4>
+<p>Similar to the previous two examples in <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">here</a> and <a href="https://strncat.github.io/jekyll/update/2024/05/22/analysis-seq-limit-example.html">here</a>, we’re going to use the template after working on finding the right \(N\) value. For (i) we want to show that \(\lim (ca_n) = ca\). So we want to find \(N\) such that for any \(\epsilon &gt; 0\),</p>
+<div>
+$$
+\begin{align*}
+\big\lvert ca_n - ca \big\rvert &lt; \epsilon.
+\end{align*}
+$$
+</div>
+<p>always holds. Solving for \(n\):</p>
+<div>
+$$
+\begin{align*}
+\big\lvert ca_n - ca \big\rvert &amp;&lt; \epsilon \\
+\big\lvert c \big\rvert \big\lvert a_n - a \big\rvert &amp;&lt; \epsilon \\
+\big\lvert a_n - a \big\rvert &amp;&lt; \frac{\epsilon}{|c|}.
+\end{align*}
+$$
+</div>
+<p>So now we are ready to write a formal proof.
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Formal Proof</b></h4>
+<p>Let \(\epsilon &gt; 0\) be arbitrary. Choose a natural number \(N\) satisfying</p>
+<div>
+$$
+\begin{align*}
+n &amp;&gt; \frac{\epsilon}{|c|}.
+\end{align*}
+$$
+</div>
+<p>We now verify that this choice has the desired property. Let \(n \geq N\). Then,</p>
+<div>
+$$
+\begin{align*}
+\big\lvert ca_n - ca \big\rvert = \big\lvert c \big\rvert \big\lvert a_n - a \big\rvert &lt; \big\lvert c \big\rvert \frac{\epsilon}{|c|}. \\
+\end{align*}
+$$
+</div>
+<p>This means that</p>
+<div>
+$$
+\begin{align*}
+\big\lvert ca_n - ca \big\rvert &lt; \epsilon. \\
+\end{align*}
+$$
+</div>
+<p>as required. \(\blacksquare\)
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Notes</b></h4>
+<p>I’m not too comfortable yet with this proof. I don’t know why it was okay to keep \(|a_n - a|\) as is?
 <br />
 <br />
 <!------------------------------------------------------------------------------------>
@@ -124,8 +124,8 @@ Notes: So in a sense \(Q\) must be dense since we have a rational number between
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/05/20/analysis-density-of-q-in-r.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/05/20/analysis-density-of-q-in-r; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -136,7 +136,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/05/20/analysis-density-of-q-in-r.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html" hidden></a>
 </article>
 		 
       </div>

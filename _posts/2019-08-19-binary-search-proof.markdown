@@ -25,7 +25,7 @@ int binary_search(int *a, int key, int n) {
 <br>
 <!----------------------------------------------------------------------------------->
 <h4><b>Correctness Proof</b></h4>
-This is just my attempt to prove that binary search algorithm implemented above is correct. To prove binary search is correct, we want to prove the following:
+This is just my attempt to prove that the binary search algorithm implemented above is correct. To prove binary search is correct, we want to prove the following:
 - At every iteration binary search is still searching the correct range in the array. This can be achieved with a loop invariant.
 - Binary search terminates.
 
@@ -41,26 +41,28 @@ In addition to preconditions, we also need to describe our postconditions. Given
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Binary Search's Loop Invariant</b></h4>
-As a reminder from CLRS, loop invariants have three parts that we need to prove:
+<h4><b>Loop Invariant Proof Requirements</b></h4>
+As a reminder loop invariants have three parts that we need to prove: (from CLRS)
 - The invariant is true before the first iteration of the loop. (Initialization)
 - If the invariant is true before iteration $$i$$, then it is true before iteration $$i+1$$. (Maintenance)
 - When the loop terminates, the invariant gives us a property to help show that the algorithm is correct. (Termination)
 <br>
-
+<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Binary Search's Loop Invariant</b></h4>
 Let's define the following loop invariant: <br>
 At the start of each iteration of the while loop above the following is true: <br>
 1. $$1 \leq first \leq last \leq n$$<br>
 2. If the key is in the array and so there is some $$index$$ such that $$a[index] = key$$ and $$1 \leq index \leq n$$ then $$first \leq index \leq last$$. This just means that we are correctly picking the right range to search at every iteration.
 <br>
-
-<b>Initialization:</b>
 <br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Initialization</b></h4>
 Before the first iteration we know that $$first = 1$$ and $$last = n-1$$ and so (1) is trivially true. Also, if the key is in $$a$$ then it must be that $$1 \leq index \leq n-1$$ where $$a[index] = key$$. Therefore, we are searching the correct range.
 <br>
 <br>
-<b>Maintenance:</b>
-<br>
+<!----------------------------------------------------------------------------------->
+<h4><b>Maintenance</b></h4>
 Suppose the invariant holds before iteration $$i$$ and that if our key is in $$a$$ then for some index where $$a[index] = key$$ we have $$first \leq index \leq last$$. Let's look at iteration $$i+1$$. We first calculate the mid point in the range $$[first, last]$$. Based on this, we have three cases: 
 <br>
 <br>
@@ -76,9 +78,9 @@ Suppose the invariant holds before iteration $$i$$ and that if our key is in $$a
 From (1), (2), (3) we conclude that the invariant holds before iteration $$i+1$$. 
 <br>
 <br>
-<b>Termination:</b>
-<br>
-Suppose we know we terminate (proof next), then by the loop invariant we know 
+<!----------------------------------------------------------------------------------->
+<h4><b>Termination</b></h4>
+Suppose we know we terminate (proof next), then by the loop invariant ... [TODO]
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
@@ -93,9 +95,11 @@ Suppose $$m$$ is the midpoint in $$[first_i, last_i]$$. There are three cases:
 - $$a[m] > key$$. Our algorithm will then search the new range $$[m+1, last]$$. Similarly, we see here that $$last - m + 1 < last_i - first_i$$.
 
 From the three cases we conclude that binary search must terminate. 
+<br>
+<br>
 <!----------------------------------------------------------------------------------->
 <h4><b>References</b></h4>
-These are my study notes from CLRS and ?
+These are my study notes from <a href="https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844">CLRS</a>.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->

@@ -114,6 +114,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/02/analysis-seq-order-limit-theorem.html">
 		  The Order Limit Theorem
     </a></li>
+    <li><a href="/jekyll/update/2024/06/04/analysis-seq-sqrt.html">
+		  Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).
+    </a></li>
   </ol>
 <br>
 <!------------------------------------------------------------------->  

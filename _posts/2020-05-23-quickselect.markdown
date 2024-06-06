@@ -109,7 +109,7 @@ This recurrence has the solution, $$T(n) = O(n)$$.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Expected case analysis</b></h4>
-The expected running time of Wuickselect turns out to be $$O(n)$$.<br>
+The expected running time of Quickselect turns out to be $$O(n)$$.<br>
 Proof: TODO: (basically section 9.2 in CLRS (not easy though))
 <br>
 <br>

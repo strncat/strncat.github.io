@@ -33,7 +33,7 @@ $$
 \end{align*}
 $$
 </div>
-The numerator is exactly what we want. The denominator however might be 0 since $$x$$ is non-negative. Therefore, we'll just assume that $$x > 0$$ for now to continue the proof and we'll handle the case when $$x = 0$$. Also since the denominator is positive then we can just write:
+The numerator is exactly what we want. The denominator however might be 0 since $$x$$ is non-negative. Therefore, we'll just assume that $$x > 0$$ for now to continue the proof and we'll handle the case when $$x = 0$$ seperately. Also since the denominator is positive then we can just write:
 <div>
 $$
 \begin{align*}
@@ -41,7 +41,7 @@ $$
 \end{align*}
 $$
 </div>
-So far so good but we also know that the sequence $$(x_n)$$ converges to $$x$$ and therefore, it is bounded. This means that there exists some bound $$M$$ such that $$|(x_n)| \leq M$$. Since $$x_n \geq 0$$, then $$M \geq 0$$ and we can remove the bound to the get the following inequality:
+So far so good but we also know that the sequence $$(x_n)$$ converges to $$x$$ and therefore, it is bounded. This means that there exists some bound $$M$$ such that $$|(x_n)| \leq M$$ and so $$\sqrt{|(x_n)|} \leq \sqrt{M}$$ (why?). Since $$x_n \geq 0$$, then $$M \geq 0$$ and we can remove the term to the get the following inequality:
 <div>
 $$
 \begin{align*}
@@ -84,7 +84,7 @@ $$
 &\lvert \sqrt{x_n} - \sqrt{x} \rvert * \frac{\lvert \sqrt{x_n} + \sqrt{x} \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\
 &= \frac{\lvert x_n - x \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\
 &= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}} \\
-&< \frac{\lvert x_n - x \rvert}{\sqrt{x}} \quad \text{($|x_n| \geq 0$ and bounded)} \\
+&< \frac{\lvert x_n - x \rvert}{\sqrt{x}} \quad \text{($(x_n)$ is bounded and $x_n \geq 0$)} \\
 &< \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\
 &< \frac{\sqrt{x}{\epsilon}}{\sqrt{x}} = \epsilon, \\
 \end{align*}

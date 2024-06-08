@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Sequence Convergence Example"
+title:  "Sequence Convergence Example 1"
 date:   2024-06-04 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -124,4 +124,5 @@ as required. $$\blacksquare$$
 <b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=AriEk3QD1z0">Math of Wrath Youtube Channel</a></li>
 </ul>

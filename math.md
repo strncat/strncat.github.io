@@ -103,13 +103,13 @@ mathjax: true
           [Bounded Sequences] A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">
-		  The Algebraic Limit Theorem (i) \(\lim (ca_n) = ca\) for all \(c \in \mathbf{R}\).
+		  [The Algebraic Limit Theorem] (i) \(\lim (ca_n) = ca\) for all \(c \in \mathbf{R}\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">
-		  The Algebraic Limit Theorem (ii) \(\lim (a_n + b_n) = a + b\).
+		  [The Algebraic Limit Theorem] (ii) \(\lim (a_n + b_n) = a + b\).
     </a></li>
     <li><a href="/jekyll/update/2024/06/01/analysis-seq-algebraic-limit-theorem-iii.html">
-		  The Algebraic Limit Theorem (iii) \(\lim (a_nb_n) = ab\).
+		  [The Algebraic Limit Theorem] (iii) \(\lim (a_nb_n) = ab\).
     </a></li>
     <li><a href="/jekyll/update/2024/06/02/analysis-seq-order-limit-theorem.html">
 		  The Order Limit Theorem
@@ -118,7 +118,10 @@ mathjax: true
 		  Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).
     </a></li>
     <li><a href="/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html">
-		  Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.
+		  [Squeeze Theorem] Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.
+    </a></li>
+    <li><a href="/jekyll/update/2024/06/06/analysis-seq-abs-value.html">
+		  Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbf{N}\), then \(x_n \rightarrow 0\).
     </a></li>
   </ol>
 <br>

@@ -137,5 +137,5 @@ From this we can conclude that for any $$\epsilon > 0$$ there exists an $$N \geq
 <!------------------------------------------------------------------------------------>
 <b>References:</b>
 <ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=AriEk3QD1z0">Math of Wrath Youtube Channel</a></li>
 </ul>

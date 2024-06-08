@@ -117,6 +117,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/04/analysis-seq-sqrt.html">
 		  Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).
     </a></li>
+    <li><a href="/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html">
+		  Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.
+    </a></li>
   </ol>
 <br>
 <!------------------------------------------------------------------->  

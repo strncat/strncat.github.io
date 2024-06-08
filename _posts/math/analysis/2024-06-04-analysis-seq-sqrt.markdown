@@ -16,7 +16,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Problem Discussion</b></h4>
-We'll follow a similar approach to proving (i) and (ii) in <a href="https://strncat.github.io/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">here</a> and <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">here</a> For (iii) we want to show that $$\lim (\sqrt{x_n}) = x$$. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
+We'll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">here</a>. We want to show that $$\lim (\sqrt{x_n}) = x$$. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
 <div>
 $$
 \begin{align*}
@@ -73,11 +73,11 @@ To do so, we'll consider two cases for when $$x = 0$$ and $$x > 0$$. For case 1,
 <div>
 $$
 \begin{align*}
-\lvert x_n - x \rvert < \epsilon \sqrt{x} \quad \text{whenever $n \geq N$}.
+\lvert x_n - x \rvert < \epsilon \sqrt{x} \quad \text{whenever $N \geq n$}.
 \end{align*}
 $$
 </div>
-Now assume that $$n \geq N$$, then
+Now assume that $$N \geq n$$, then
 <div>
 $$
 \begin{align*}
@@ -107,7 +107,7 @@ $$
 \end{align*}
 $$
 </div>
-Now assume that $$n \geq N$$, then
+Now assume that $$N \geq n$$, then
 <div>
 $$
 \begin{align*}

@@ -31,17 +31,17 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Sequence Convergence Example</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Sequeeze Theorem for Sequences</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-06-04T01:01:36-07:00" itemprop="datePublished">Jun 4, 2024
+      <time class="dt-published" datetime="2024-06-05T01:01:36-07:00" itemprop="datePublished">Jun 5, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).</b>
+  <b>Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.</b>
 </div>
 <p><br />
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
@@ -51,108 +51,122 @@ For the “show the limit” template and an example, see <a href="https://strnc
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Problem Discussion</b></h4>
-<p>We’ll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">here</a>. We want to show that \(\lim (\sqrt{x_n}) = x\). So we want to find \(N\) such that for any \(\epsilon &gt; 0\),</p>
+<p>We’ll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that \(\lim (y_n) = l\). So we want to find \(N \geq n\) such that for any \(\epsilon &gt; 0\),</p>
 <div>
 $$
 \begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &lt; \epsilon.
+\lvert y_n - l \rvert &lt; \epsilon.
 \end{align*}
 $$
 </div>
-<p>The trick here is to multiply the left hand side by the conjugate!!!</p>
+<p>But we know that since \((x_n)\) converges to \(l\), then there must exist an \(N_1 \geq N\) such that</p>
 <div>
 $$
 \begin{align*}
-&amp;\lvert \sqrt{x_n} - \sqrt{x} \rvert * \frac{\lvert \sqrt{x_n} + \sqrt{x} \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\
-&amp;= \frac{\lvert x_n - x \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert}.
+\lvert y_n - l \rvert &lt; \epsilon   \quad \text{whenever $N_1 \geq n$.}
 \end{align*}
 $$
 </div>
-<p>The numerator is exactly what we want. The denominator however might be 0 since \(x\) is non-negative. Therefore, we’ll just assume that \(x &gt; 0\) for now to continue the proof and we’ll handle the case when \(x = 0\) seperately. Also since the denominator is positive then we can just write:</p>
+<p>Similarly there must exist some \(N_2 \geq n\) such that</p>
 <div>
 $$
 \begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}}.
+\lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $N_2 \geq n$.}
 \end{align*}
 $$
 </div>
-<p>So far so good but we also know that the sequence \((x_n)\) converges to \(x\) and therefore, it is bounded. This means that there exists some bound \(M\) such that \(|(x_n)| \leq M\) and so \(\sqrt{|(x_n)|} \leq \sqrt{M}\) (why?). Since \(x_n \geq 0\), then \(M \geq 0\) and we can remove the term to the get the following inequality:</p>
+<p>Let’s get rid of the absolute value for both inequalities and then add \(l\) to all sides.</p>
 <div>
 $$
 \begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}} \\
-&amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\
+-\epsilon &amp;&lt; y_n - l &lt; \epsilon  \\
+l - \epsilon &amp;&lt; y_n &lt; l + \epsilon \\
 \end{align*}
 $$
 </div>
-<p>We can set \(\lvert x_n - x \rvert\) to anything we like. Particularly we want to set it to a value such that the terms would cancel out and we would get \(\epsilon\) at the end. So let it be \(\epsilon \sqrt{x}\). Remember that \(x\) is a constant so that’s okay.</p>
+<p>We can derive the exact result for \(z_n\) as well.</p>
 <div>
 $$
 \begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\
-&amp;&lt; \frac{\sqrt{x}\epsilon}{\sqrt{x}} = \epsilon.
+l - \epsilon &amp;&lt; z_n &lt; l + \epsilon \\
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
+<p>Now from these two inequalities, notice that \(x_n \leq y_n\) and so we can write</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n \leq y_n \quad \text{whenever $N_1 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>and we also have</p>
+<div>
+$$
+\begin{align*}
+y_n \leq z_n &lt; l + \epsilon \quad \text{whenever $N_2 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>Combining both inequalities will get us what we want! let’s expand on this in the formal proof.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
 <h4><b>Formal Proof</b></h4>
-<p>To show that \(\lim(\sqrt{x_n}) = \sqrt{x}\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that,</p>
+<p>To show that \(\lim(y_n) = l\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that,</p>
 <div>
 $$
 \begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &lt; \epsilon
+\lvert y_n - l \rvert &lt; \epsilon  \quad \text{whenever $N \geq n$}.
 \end{align*}
 $$
 </div>
-<p>To do so, we’ll consider two cases for when \(x = 0\) and \(x &gt; 0\). For case 1, suppose \(x &gt; 0\). We are given that \(\lim x_n = x\). This means that there exists some \(n \geq N\) such that</p>
+<p>To do so, we are given that \(\lim x_n = l\). This means that there exists some \(N_1 \geq n\) such that</p>
 <div>
 $$
 \begin{align*}
-\lvert x_n - x \rvert &lt; \epsilon \sqrt{x} \quad \text{whenever $N \geq n$}.
+\lvert x_n - l \rvert &lt; \epsilon \quad \text{whenever $N_1 \geq n$}.
 \end{align*}
 $$
 </div>
-<p>Now assume that \(N \geq n\), then</p>
+<p>Similarly, we are given that</p>
 <div>
 $$
 \begin{align*}
-&amp;\lvert \sqrt{x_n} - \sqrt{x} \rvert * \frac{\lvert \sqrt{x_n} + \sqrt{x} \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\
-&amp;= \frac{\lvert x_n - x \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\
-&amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}} \\
-&amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \quad \text{($(x_n)$ is bounded and $x_n \geq 0$)} \\
-&amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\
-&amp;&lt; \frac{\sqrt{x}{\epsilon}}{\sqrt{x}} = \epsilon, \\
+\lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $N_2 \geq n$}.
 \end{align*}
 $$
 </div>
-<p>as required. For case 2 when \(x = 0\), we want to prove that</p>
+<p>We can re-write the inequalities such that</p>
 <div>
 $$
 \begin{align*}
-\lvert \sqrt{x_n} - 0 \rvert &amp;&lt; \epsilon \\
-\lvert \sqrt{x_n} \rvert &amp;&lt; \epsilon \\
+l - \epsilon &lt; x_n &lt; l + \epsilon \quad \text{whenever $N_1 \geq n$} \\
+l - \epsilon &lt; z_n &lt; l + \epsilon \quad \text{whenever $N_2 \geq n$}.
 \end{align*}
 $$
 </div>
-<p>We are given that \(\lim x_n = x\) or \(\lim x_n = 0\). This means that there exist some \(N \geq n\) such that</p>
+<p>Now assume that \(n \geq \max{(N_1, N_2)}\), using the above inequalities and the fact that \(x_n \leq y_n \leq z_n\), we can see that</p>
 <div>
 $$
 \begin{align*}
-\lvert x_n - 0 \rvert = \lvert x_n \rvert  &amp;&lt; \epsilon^2. \\
+l - \epsilon &lt; x_n \leq y_n \\
+y_n \leq z_n &lt; l + \epsilon.
 \end{align*}
 $$
 </div>
-<p>Now assume that \(N \geq n\), then</p>
+<p>Combining both inequalities, we get</p>
 <div>
 $$
 \begin{align*}
-\lvert \sqrt{x_n} \rvert &amp;= \sqrt{x_n} \quad \text{since $x_n \geq 0$}\\
-&amp;= \sqrt{|x_n|} \\
-&amp;&lt; \sqrt{\epsilon^2} = \epsilon,
+l - \epsilon &lt; x_n \leq y_n \leq z_n &lt; l + \epsilon \\
+l - \epsilon &lt; y_n &lt; l + \epsilon \\
+- \epsilon &lt; y_n - l &lt; \epsilon \\
+|y_n - l| &lt; \epsilon.
 \end{align*}
 $$
 </div>
-<p>as required. \(\blacksquare\)
+<p>From this we can conclude that for any \(\epsilon &gt; 0\) there exists an \(N \geq n\) such that \(|y_n - l| &lt; \epsilon\). Therefore, \(\lim y_n = l\) as we wanted to show. \(\blacksquare\)
 <br />
 <br />
 <!------------------------------------------------------------------------------------>
@@ -169,8 +183,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/06/04/analysis-seq-sqrt.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/06/04/analysis-seq-sqrt; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/06/05/analysis-seq-squeeze-theorem; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -181,7 +195,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/06/04/analysis-seq-sqrt.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html" hidden></a>
 </article>
 		 
       </div>

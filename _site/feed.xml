@@ -1,4 +1,137 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-06-07T19:02:11-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Sequeeze Theorem for Sequences</title><link href="http://localhost:4000/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html" rel="alternate" type="text/html" title="Sequeeze Theorem for Sequences" /><published>2024-06-05T01:01:36-07:00</published><updated>2024-06-05T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-06-07T19:13:36-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Squeeze Theorem for Sequences</title><link href="http://localhost:4000/jekyll/update/2024/06/06/analysis-seq-abs-value.html" rel="alternate" type="text/html" title="Squeeze Theorem for Sequences" /><published>2024-06-06T01:01:36-07:00</published><updated>2024-06-06T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/06/analysis-seq-abs-value</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/06/analysis-seq-abs-value.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  <b>Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.</b>
+</div>
+<p><br />
+For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
+<br />
+For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Problem Discussion</b></h4>
+<p>We’ll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that \(\lim (y_n) = l\). So we want to find \(N \geq n\) such that for any \(\epsilon &gt; 0\),</p>
+<div>
+$$
+\begin{align*}
+\lvert y_n - l \rvert &lt; \epsilon.
+\end{align*}
+$$
+</div>
+<p>But we know that since \((x_n)\) converges to \(l\), then there must exist an \(N_1 \geq N\) such that</p>
+<div>
+$$
+\begin{align*}
+\lvert y_n - l \rvert &lt; \epsilon   \quad \text{whenever $N_1 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>Similarly there must exist some \(N_2 \geq n\) such that</p>
+<div>
+$$
+\begin{align*}
+\lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $N_2 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>Let’s get rid of the absolute value for both inequalities and then add \(l\) to all sides.</p>
+<div>
+$$
+\begin{align*}
+-\epsilon &amp;&lt; y_n - l &lt; \epsilon  \\
+l - \epsilon &amp;&lt; y_n &lt; l + \epsilon \\
+\end{align*}
+$$
+</div>
+<p>We can derive the exact result for \(z_n\) as well.</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &amp;&lt; z_n &lt; l + \epsilon \\
+\end{align*}
+$$
+</div>
+<p>Now from these two inequalities, notice that \(x_n \leq y_n\) and so we can write</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n \leq y_n \quad \text{whenever $N_1 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>and we also have</p>
+<div>
+$$
+\begin{align*}
+y_n \leq z_n &lt; l + \epsilon \quad \text{whenever $N_2 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>Combining both inequalities will get us what we want! let’s expand on this in the formal proof.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Formal Proof</b></h4>
+<p>To show that \(\lim(y_n) = l\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that,</p>
+<div>
+$$
+\begin{align*}
+\lvert y_n - l \rvert &lt; \epsilon  \quad \text{whenever $N \geq n$}.
+\end{align*}
+$$
+</div>
+<p>To do so, we are given that \(\lim x_n = l\). This means that there exists some \(N_1 \geq n\) such that</p>
+<div>
+$$
+\begin{align*}
+\lvert x_n - l \rvert &lt; \epsilon \quad \text{whenever $N_1 \geq n$}.
+\end{align*}
+$$
+</div>
+<p>Similarly, we are given that</p>
+<div>
+$$
+\begin{align*}
+\lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $N_2 \geq n$}.
+\end{align*}
+$$
+</div>
+<p>We can re-write the inequalities such that</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n &lt; l + \epsilon \quad \text{whenever $N_1 \geq n$} \\
+l - \epsilon &lt; z_n &lt; l + \epsilon \quad \text{whenever $N_2 \geq n$}.
+\end{align*}
+$$
+</div>
+<p>Now assume that \(n \geq \max{(N_1, N_2)}\), using the above inequalities and the fact that \(x_n \leq y_n \leq z_n\), we can see that</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n \leq y_n \\
+y_n \leq z_n &lt; l + \epsilon.
+\end{align*}
+$$
+</div>
+<p>Combining both inequalities, we get</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n \leq y_n \leq z_n &lt; l + \epsilon \\
+l - \epsilon &lt; y_n &lt; l + \epsilon \\
+- \epsilon &lt; y_n - l &lt; \epsilon \\
+|y_n - l| &lt; \epsilon.
+\end{align*}
+$$
+</div>
+<p>From this we can conclude that for any \(\epsilon &gt; 0\) there exists an \(N \geq n\) such that \(|y_n - l| &lt; \epsilon\). Therefore, \(\lim y_n = l\) as we wanted to show. \(\blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well. For the definitions of sequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion We’ll follow a similar approach to proving the example in here. We want to show that \(\lim (y_n) = l\). So we want to find \(N \geq n\) such that for any \(\epsilon &gt; 0\), $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon. \end{align*} $$ But we know that since \((x_n)\) converges to \(l\), then there must exist an \(N_1 \geq N\) such that $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon \quad \text{whenever $N_1 \geq n$.} \end{align*} $$ Similarly there must exist some \(N_2 \geq n\) such that $$ \begin{align*} \lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $N_2 \geq n$.} \end{align*} $$ Let’s get rid of the absolute value for both inequalities and then add \(l\) to all sides. $$ \begin{align*} -\epsilon &amp;&lt; y_n - l &lt; \epsilon \\ l - \epsilon &amp;&lt; y_n &lt; l + \epsilon \\ \end{align*} $$ We can derive the exact result for \(z_n\) as well. $$ \begin{align*} l - \epsilon &amp;&lt; z_n &lt; l + \epsilon \\ \end{align*} $$ Now from these two inequalities, notice that \(x_n \leq y_n\) and so we can write $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \quad \text{whenever $N_1 \geq n$.} \end{align*} $$ and we also have $$ \begin{align*} y_n \leq z_n &lt; l + \epsilon \quad \text{whenever $N_2 \geq n$.} \end{align*} $$ Combining both inequalities will get us what we want! let’s expand on this in the formal proof. Formal Proof To show that \(\lim(y_n) = l\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that, $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon \quad \text{whenever $N \geq n$}. \end{align*} $$ To do so, we are given that \(\lim x_n = l\). This means that there exists some \(N_1 \geq n\) such that $$ \begin{align*} \lvert x_n - l \rvert &lt; \epsilon \quad \text{whenever $N_1 \geq n$}. \end{align*} $$ Similarly, we are given that $$ \begin{align*} \lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $N_2 \geq n$}. \end{align*} $$ We can re-write the inequalities such that $$ \begin{align*} l - \epsilon &lt; x_n &lt; l + \epsilon \quad \text{whenever $N_1 \geq n$} \\ l - \epsilon &lt; z_n &lt; l + \epsilon \quad \text{whenever $N_2 \geq n$}. \end{align*} $$ Now assume that \(n \geq \max{(N_1, N_2)}\), using the above inequalities and the fact that \(x_n \leq y_n \leq z_n\), we can see that $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \\ y_n \leq z_n &lt; l + \epsilon. \end{align*} $$ Combining both inequalities, we get $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \leq z_n &lt; l + \epsilon \\ l - \epsilon &lt; y_n &lt; l + \epsilon \\ - \epsilon &lt; y_n - l &lt; \epsilon \\ |y_n - l| &lt; \epsilon. \end{align*} $$ From this we can conclude that for any \(\epsilon &gt; 0\) there exists an \(N \geq n\) such that \(|y_n - l| &lt; \epsilon\). Therefore, \(\lim y_n = l\) as we wanted to show. \(\blacksquare\) References: Understanding Analysis by Stephen Abbott]]></summary></entry><entry><title type="html">Squeeze Theorem for Sequences</title><link href="http://localhost:4000/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html" rel="alternate" type="text/html" title="Squeeze Theorem for Sequences" /><published>2024-06-05T01:01:36-07:00</published><updated>2024-06-05T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.</b>
 </div>
 <p><br />
@@ -676,50 +809,4 @@ $$
 </div>
 <p>\(\blacksquare\)
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[\(|a - c| \leq |a - b|+|b - c|\) holds for all real numbers \(a\), \(b\) and \(c\). This is in a way saying that the distance between \(a\) and \(c\) is less than or equal to the distance from \(a\) to \(b\) and then from \(b\) to \(c\). Proof: Let \(a\), \(b\) and \(c\) be real numbers. Let \(x = a-b\) and \(y = b-c\). Using the triangle inquality we know that $$ \begin{align*} |x + y| &amp;\leq |x| + |y| \\ |a - b + b - c| &amp;\leq |a - b| + |b - c| \\ |a - c| &amp;\leq |a - c| + |c - b|. \\ \end{align*} $$ \(\blacksquare\)]]></summary></entry><entry><title type="html">The Absolute Value Function</title><link href="http://localhost:4000/jekyll/update/2024/05/26/analysis-absolute-value-properties.html" rel="alternate" type="text/html" title="The Absolute Value Function" /><published>2024-05-26T01:01:36-07:00</published><updated>2024-05-26T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/05/26/analysis-absolute-value-properties</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/05/26/analysis-absolute-value-properties.html"><![CDATA[<p>Some definitions worth keeping in mind while studying for the next of proofs.
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>The Absolute Value Function</b></h4>
-<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Let \(x \in \mathbf{R}\), then the absolute value of \(x\) is denoted \(|x|\) and is given by
-  $$
-  \begin{equation*}
-  |x| = \begin{cases} x \quad \ \ \ \text{if } x \geq 0 \\ -x \quad \text{if } x \lt 0\end{cases}
-  \end{equation*}
-  $$
-</div>
-<p><br /></p>
-
-<!------------------------------------------------------------------------------------>
-<h4><b>Properties</b></h4>
-<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Let \(x \in \mathbf{R}\), \(|x| \geq 0\).
-</div>
-<p><br />
-Proof:
-By the definition of the absolute value function we have two cases:</p>
-<ul>
-<li>if \(x \geq 0\), then \(|x| = x\) and so \(|x| \geq 0\)</li>
-<li>if \(x &lt; 0\), then \(|x| = -x\). Since \(x &lt; 0\), then \(-x &gt; 0\) so this means that \(|x| = -x &gt; 0\). As required</li>
-</ul>
-<p>This second case definitely made me pause. By definition \(|x| = -x\). But \(x\) is negative. This means that \(-x\) is positive! so \(|x|\) is positive!
-<br /></p>
-<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Let \(x \in \mathbf{R}\), \(-|x| \leq x \leq |x|\).
-</div>
-<p><br />
-Proof:
-We have two cases:</p>
-<ul>
-<li>if \(x \geq 0\), then \(|x| = x \geq 0\). So \(-|x|\) is negative and we have \(-|x| \leq 0 \leq x = |x|\)</li>
-<li>if \(x &lt; 0\), then \(|x| = -x\) or \(-|x| = x\). So \(x = -|x| &lt; 0\). But we also know that \(|x| \geq 0\) by the previous lemma. So putting everything together we have, \(-|x| = x &lt; 0 \leq |x| \) </li>
-</ul>
-<p>This was a little hard as well but I need to remember that (x) is negative so (-x) is positive.
-<br /></p>
-
-<p><b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Real-Analysis-Long-Form-Mathematics-Textbook/dp/1724510126">Real Analysis by Jay Cummings</a></li>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-<li><a href="https://personal.math.ubc.ca/~PLP/book/sec-abs-triangle.html">Introduction to Mathematical Proof</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Some definitions worth keeping in mind while studying for the next of proofs. The Absolute Value Function Let \(x \in \mathbf{R}\), then the absolute value of \(x\) is denoted \(|x|\) and is given by $$ \begin{equation*} |x| = \begin{cases} x \quad \ \ \ \text{if } x \geq 0 \\ -x \quad \text{if } x \lt 0\end{cases} \end{equation*} $$]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[\(|a - c| \leq |a - b|+|b - c|\) holds for all real numbers \(a\), \(b\) and \(c\). This is in a way saying that the distance between \(a\) and \(c\) is less than or equal to the distance from \(a\) to \(b\) and then from \(b\) to \(c\). Proof: Let \(a\), \(b\) and \(c\) be real numbers. Let \(x = a-b\) and \(y = b-c\). Using the triangle inquality we know that $$ \begin{align*} |x + y| &amp;\leq |x| + |y| \\ |a - b + b - c| &amp;\leq |a - b| + |b - c| \\ |a - c| &amp;\leq |a - c| + |c - b|. \\ \end{align*} $$ \(\blacksquare\)]]></summary></entry></feed>

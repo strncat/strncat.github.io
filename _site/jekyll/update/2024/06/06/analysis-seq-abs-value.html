@@ -31,65 +31,143 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Show the Limit</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Squeeze Theorem for Sequences</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-05-22T01:01:36-07:00" itemprop="datePublished">May 22, 2024
+      <time class="dt-published" datetime="2024-06-06T01:01:36-07:00" itemprop="datePublished">Jun 6, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>\(\lim\big(\frac{n+1}{n}\big)= 1\).</b>
+  <b>Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.</b>
 </div>
 <p><br />
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
 <br />
-For the “show the limit” template, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
+For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Problem Discussion</b></h4>
-<p>Similar to the previous example the link above, the claim is that it converges to 1. So we want to find \(N\) such that for any \(\epsilon &gt; 0\),</p>
+<p>We’ll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that \(\lim (y_n) = l\). So we want to find \(N \geq n\) such that for any \(\epsilon &gt; 0\),</p>
 <div>
 $$
 \begin{align*}
-\big\lvert \frac{n+1}{n} - 1 \big\rvert &lt; \epsilon.
+\lvert y_n - l \rvert &lt; \epsilon.
 \end{align*}
 $$
 </div>
-<p>always holds. This inequality is saying that the terms in the sequence are going to fall within the neighborhood of \(1\) (\(V_\epsilon(1)\)) for some value \(n \geq N\). In other words, all the terms starting at \(n \geq N\) will be within a radius of \(\epsilon\) around \(a\). Solving for \(n\):</p>
+<p>But we know that since \((x_n)\) converges to \(l\), then there must exist an \(N_1 \geq N\) such that</p>
 <div>
 $$
 \begin{align*}
-\frac{n+1}{n} - 1 &amp;&lt; \epsilon \\
-\frac{1}{n} &amp;&lt; \epsilon \\
-n &amp;&gt; \frac{1}{\epsilon}. \\
+\lvert y_n - l \rvert &lt; \epsilon   \quad \text{whenever $N_1 \geq n$.}
 \end{align*}
 $$
 </div>
-<p>So we want \(n\) to be greater than \(1/\epsilon\). So now we are ready to write a formal proof.
+<p>Similarly there must exist some \(N_2 \geq n\) such that</p>
+<div>
+$$
+\begin{align*}
+\lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $N_2 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>Let’s get rid of the absolute value for both inequalities and then add \(l\) to all sides.</p>
+<div>
+$$
+\begin{align*}
+-\epsilon &amp;&lt; y_n - l &lt; \epsilon  \\
+l - \epsilon &amp;&lt; y_n &lt; l + \epsilon \\
+\end{align*}
+$$
+</div>
+<p>We can derive the exact result for \(z_n\) as well.</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &amp;&lt; z_n &lt; l + \epsilon \\
+\end{align*}
+$$
+</div>
+<p>Now from these two inequalities, notice that \(x_n \leq y_n\) and so we can write</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n \leq y_n \quad \text{whenever $N_1 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>and we also have</p>
+<div>
+$$
+\begin{align*}
+y_n \leq z_n &lt; l + \epsilon \quad \text{whenever $N_2 \geq n$.}
+\end{align*}
+$$
+</div>
+<p>Combining both inequalities will get us what we want! let’s expand on this in the formal proof.
+<br />
+<br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Formal Proof</b></h4>
-<p>Let \(\epsilon &gt; 0\) be arbitrary. Choose a natural number \(N\) satisfying</p>
+<p>To show that \(\lim(y_n) = l\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that,</p>
 <div>
 $$
 \begin{align*}
-n &amp;&gt; \frac{1}{\epsilon}.
+\lvert y_n - l \rvert &lt; \epsilon  \quad \text{whenever $N \geq n$}.
 \end{align*}
 $$
 </div>
-<p>We now verify that this choice has the desired property. Let \(n \geq N\). Then,</p>
+<p>To do so, we are given that \(\lim x_n = l\). This means that there exists some \(N_1 \geq n\) such that</p>
 <div>
 $$
 \begin{align*}
-n &amp;&gt; \frac{1}{\epsilon} \\
-\frac{1}{n} &amp;&lt; \epsilon.
+\lvert x_n - l \rvert &lt; \epsilon \quad \text{whenever $N_1 \geq n$}.
 \end{align*}
 $$
 </div>
-<p>This means that \(\lvert a_n - 1 \rvert &lt; \epsilon\) holds as required. \(\blacksquare\).
+<p>Similarly, we are given that</p>
+<div>
+$$
+\begin{align*}
+\lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $N_2 \geq n$}.
+\end{align*}
+$$
+</div>
+<p>We can re-write the inequalities such that</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n &lt; l + \epsilon \quad \text{whenever $N_1 \geq n$} \\
+l - \epsilon &lt; z_n &lt; l + \epsilon \quad \text{whenever $N_2 \geq n$}.
+\end{align*}
+$$
+</div>
+<p>Now assume that \(n \geq \max{(N_1, N_2)}\), using the above inequalities and the fact that \(x_n \leq y_n \leq z_n\), we can see that</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n \leq y_n \\
+y_n \leq z_n &lt; l + \epsilon.
+\end{align*}
+$$
+</div>
+<p>Combining both inequalities, we get</p>
+<div>
+$$
+\begin{align*}
+l - \epsilon &lt; x_n \leq y_n \leq z_n &lt; l + \epsilon \\
+l - \epsilon &lt; y_n &lt; l + \epsilon \\
+- \epsilon &lt; y_n - l &lt; \epsilon \\
+|y_n - l| &lt; \epsilon.
+\end{align*}
+$$
+</div>
+<p>From this we can conclude that for any \(\epsilon &gt; 0\) there exists an \(N \geq n\) such that \(|y_n - l| &lt; \epsilon\). Therefore, \(\lim y_n = l\) as we wanted to show. \(\blacksquare\)
+<br />
 <br />
 <!------------------------------------------------------------------------------------>
 <b>References:</b></p>
@@ -105,8 +183,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/05/22/analysis-seq-limit-example.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/05/22/analysis-seq-limit-example; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/06/06/analysis-seq-abs-value.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/06/06/analysis-seq-abs-value; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -117,7 +195,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/05/22/analysis-seq-limit-example.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/06/06/analysis-seq-abs-value.html" hidden></a>
 </article>
 		 
       </div>

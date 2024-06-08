@@ -244,6 +244,14 @@ mathjax: true
    </ul>
 <br>
 
+<!------------------------------------------------------------------->  
+ <h3> Elements of Euclid </h3>
+   <ul style="list-style-type:none;">
+       <li><a href="/jekyll/update/2024/04/29/elements-of-euclid-book1.html">
+           Book 1
+       </a></li>
+   </ul>
+<br>
 
 
 <!------------------------------------------------------------------->  

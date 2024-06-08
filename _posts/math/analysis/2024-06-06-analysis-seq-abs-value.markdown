@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Squeeze Theorem for Sequences"
-date:   2024-06-05 01:01:36 -0700
+date:   2024-06-06 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

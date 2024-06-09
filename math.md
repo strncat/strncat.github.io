@@ -146,6 +146,9 @@ mathjax: true
     <p><a href="/jekyll/update/2024/06/07/analysis-card-definitions.html">
           Definitions
     </a></p>
+    <li><a href="/jekyll/update/2024/06/09/analysis-card-cantor-r-uncountable.html">
+		  The open interval \((0,1) = \{x \in \mathbf{R}: 0 < x < 1\}\) is uncountable.
+    </a></li>
 	<!--
     <li><a href="/jekyll/update/2024/06/08/analysis-card-q-countable-r-uncountable.html">
 		  The set \(\mathbf{Q}\) is countable and the set \(\mathbf{R}\) is uncountable.

@@ -33,7 +33,7 @@ $$
 \end{align*}
 $$
 </div>
-The numerator is exactly what we want. The denominator however might be 0 since $$x$$ is non-negative. Therefore, we'll just assume that $$x > 0$$ for now to continue the proof and we'll handle the case when $$x = 0$$ seperately. Also since the denominator is positive then we can just write:
+The numerator is exactly what we want. The denominator however might be 0 since $$x$$ is non-negative. Therefore, we'll just assume that $$x > 0$$ for now to continue the proof and we'll handle the case when $$x = 0$$ separately. Also since the denominator is positive then we can just write:
 <div>
 $$
 \begin{align*}
@@ -73,7 +73,7 @@ To do so, we'll consider two cases for when $$x = 0$$ and $$x > 0$$. For case 1,
 <div>
 $$
 \begin{align*}
-\lvert x_n - x \rvert < \epsilon \sqrt{x} \quad \text{whenever $N \geq n$}.
+\lvert x_n - x \rvert < \epsilon \sqrt{x} \quad \text{whenever $n \geq N$}.
 \end{align*}
 $$
 </div>
@@ -99,7 +99,7 @@ $$
 \end{align*}
 $$
 </div>
-We are given that $$\lim x_n = x$$ or $$\lim x_n = 0$$. This means that there exist some $$N \geq n$$ such that
+We are given that $$\lim x_n = x$$ or $$\lim x_n = 0$$. This means that there exist some $$n \geq N$$ such that
 <div>
 $$
 \begin{align*}
@@ -107,7 +107,7 @@ $$
 \end{align*}
 $$
 </div>
-Now assume that $$N \geq n$$, then
+Now assume that $$n \geq N$$, then
 <div>
 $$
 \begin{align*}

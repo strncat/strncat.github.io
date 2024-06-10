@@ -24,19 +24,19 @@ $$
 \end{align*}
 $$
 </div>
-But we know that since $$(x_n)$$ converges to $$l$$, then there must exist an $$N_1 \geq N$$ such that
+But we know that since $$(x_n)$$ converges to $$l$$, then there must exist an $$n \geq N_1$$ such that
 <div>
 $$
 \begin{align*}
-\lvert y_n - l \rvert < \epsilon   \quad \text{whenever $N_1 \geq n$.}
+\lvert y_n - l \rvert < \epsilon   \quad \text{whenever $n \geq N_1$.}
 \end{align*}
 $$
 </div>
-Similarly there must exist some $$N_2 \geq n$$ such that
+Similarly there must exist some $$n \geq N_2$$ such that
 <div>
 $$
 \begin{align*}
-\lvert z_n - l \rvert < \epsilon \quad \text{whenever $N_2 \geq n$.}
+\lvert z_n - l \rvert < \epsilon \quad \text{whenever $n \geq N_2$.}
 \end{align*}
 $$
 </div>
@@ -61,7 +61,7 @@ Now from these two inequalities, notice that $$x_n \leq y_n$$ and so we can writ
 <div>
 $$
 \begin{align*}
-l - \epsilon < x_n \leq y_n \quad \text{whenever $N_1 \geq n$.}
+l - \epsilon < x_n \leq y_n \quad \text{whenever $n \geq N_1$.}
 \end{align*}
 $$
 </div>
@@ -69,7 +69,7 @@ and we also have
 <div>
 $$
 \begin{align*}
-y_n \leq z_n < l + \epsilon \quad \text{whenever $N_2 \geq n$.}
+y_n \leq z_n < l + \epsilon \quad \text{whenever $n \geq N_2$.}
 \end{align*}
 $$
 </div>
@@ -82,15 +82,15 @@ To show that $$\lim(y_n) = l$$, let $$\epsilon > 0$$ be arbitrary. We want to pr
 <div>
 $$
 \begin{align*}
-\lvert y_n - l \rvert < \epsilon  \quad \text{whenever $N \geq n$}.
+\lvert y_n - l \rvert < \epsilon  \quad \text{whenever $n \geq N$}.
 \end{align*}
 $$
 </div>
-To do so, we are given that $$\lim x_n = l$$. This means that there exists some $$N_1 \geq n$$ such that
+To do so, we are given that $$\lim x_n = l$$. This means that there exists some $$n \geq N_1$$ such that
 <div>
 $$
 \begin{align*}
-\lvert x_n - l \rvert < \epsilon \quad \text{whenever $N_1 \geq n$}.
+\lvert x_n - l \rvert < \epsilon \quad \text{whenever $n \geq N_1$}.
 \end{align*}
 $$
 </div>
@@ -98,7 +98,7 @@ Similarly, we are given that
 <div>
 $$
 \begin{align*}
-\lvert z_n - l \rvert < \epsilon \quad \text{whenever $N_2 \geq n$}.
+\lvert z_n - l \rvert < \epsilon \quad \text{whenever $n \geq N_2$}.
 \end{align*}
 $$
 </div>
@@ -106,8 +106,8 @@ We can re-write the inequalities such that
 <div>
 $$
 \begin{align*}
-l - \epsilon < x_n < l + \epsilon \quad \text{whenever $N_1 \geq n$} \\
-l - \epsilon < z_n < l + \epsilon \quad \text{whenever $N_2 \geq n$}.
+l - \epsilon < x_n < l + \epsilon \quad \text{whenever $n \geq N_1$} \\
+l - \epsilon < z_n < l + \epsilon \quad \text{whenever $n \geq N_2$}.
 \end{align*}
 $$
 </div>

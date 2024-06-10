@@ -40,7 +40,7 @@ $$
 \end{align*}
 $$
 </div>
-Using the same trick from (ii), we can make $$\lvert a_n - a \rvert$$ be as small as we want and similarly we can make $$\lvert b_n - b \rvert$$ be as small as we want. The idea is to bound these two terms to values such that the total will be exactly $$\epsilon$$ which is what we want to prove. So, given that $$\lim b_n = b$$, then we know that for some $$N_1 \geq n$$, 
+Using the same trick from (ii), we can make $$\lvert a_n - a \rvert$$ be as small as we want and similarly we can make $$\lvert b_n - b \rvert$$ be as small as we want. The idea is to bound these two terms to values such that the total will be exactly $$\epsilon$$ which is what we want to prove. So, given that $$\lim b_n = b$$, then we know that for some $$n \geq N_1$$, 
 <div>
 $$
 \begin{align*}
@@ -49,7 +49,7 @@ $$
 \end{align*}
 $$
 </div>
-Similarly,given that $$\lim b_n = b$$, then we know that for some $$N_2 \geq n$$, 
+Similarly, given that $$\lim b_n = b$$, then we know that for some $$n \geq N_2$$, 
 <div>
 $$
 \begin{align*}
@@ -83,7 +83,7 @@ Finally we can choose $$N$$ to be the maximum of $$N_1$$ and $$N_2$$ to guarante
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Formal Proof</b></h4>
-Let $$\epsilon > 0$$ be arbitrary. We are given that $$\lim a_n = a$$. This means that for some $$N_1 \geq n$$ and for any choice of $$\epsilon$$ , the following holds:
+Let $$\epsilon > 0$$ be arbitrary. We are given that $$\lim a_n = a$$. This means that for some $$n \geq N_1$$ and for any choice of $$\epsilon$$ , the following holds:
 <div>
 $$
 \begin{align*}
@@ -99,7 +99,7 @@ $$
 \end{align*}
 $$
 </div>
-Similarly, given that $$\lim b_n = b$$. This means that for some $$N_2 \geq n$$, the following holds:
+Similarly, given that $$\lim b_n = b$$. This means that for some $$n \geq N_2$$, the following holds:
 <div>
 $$
 \begin{align*}

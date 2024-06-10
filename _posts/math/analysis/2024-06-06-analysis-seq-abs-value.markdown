@@ -16,7 +16,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Problem Discussion</b></h4>
-We'll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that $$\lim (x_n) = 0$$. So we want to find $$N \geq n$$ such that for any $$\epsilon > 0$$,
+We'll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that $$\lim (x_n) = 0$$. So we want to find $$n \geq N$$ such that for any $$\epsilon > 0$$,
 <div>
 $$
 \begin{align*}
@@ -49,7 +49,7 @@ $$
 \end{align*}
 $$
 </div>
-To do so, we are given that $$\lim |x_n| = 0$$. This means that there exists some $$N \geq n$$ such that
+To do so, we are given that $$\lim |x_n| = 0$$. This means that there exists some $$n \geq N$$ such that
 <div>
 $$
 \begin{align*}

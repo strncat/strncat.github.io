@@ -39,7 +39,7 @@ $$
 \end{align*}
 $$
 </div>
-So now the goal is to get the right hand side to be $$\epsilon$$. To do so we're given that $$\lim a_n = a$$. This means that we can make $$\lvert a_n - a \rvert$$ be as small as we want and similarly we can make $$\lvert b_n - b \rvert$$ be as small as we want. So if we make each of them be $$\epsilon/2$$ then the terms will total to $$\epsilon$$ which is what we want. Formally, given that $$\lim a_n = a$$, then we know that for some $$N_1 \geq n$$, 
+So now the goal is to get the right hand side to be $$\epsilon$$. To do so we're given that $$\lim a_n = a$$. This means that we can make $$\lvert a_n - a \rvert$$ be as small as we want and similarly we can make $$\lvert b_n - b \rvert$$ be as small as we want. So if we make each of them be $$\epsilon/2$$ then the terms will total to $$\epsilon$$ which is what we want. Formally, given that $$\lim a_n = a$$, then we know that for some $$n \geq N_1$$, 
 <div>
 $$
 \begin{align*}
@@ -47,7 +47,7 @@ $$
 \end{align*}
 $$
 </div>
-Similarly, given that $$\lim b_n = b$$, then we know that for some $$N_2 \geq n$$, 
+Similarly, given that $$\lim b_n = b$$, then we know that for some $$n \geq N_2$$, 
 <div>
 $$
 \begin{align*}
@@ -67,7 +67,7 @@ $$N$$ can safely be set to the maximum of $$N_1$$ and $$N_2$$ to guarantee the a
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Formal Proof</b></h4>
-Let $$\epsilon > 0$$ be arbitrary. We are given that $$\lim a_n = a$$. This means that for some $$N_1 \geq n$$ and for any choice of $$\epsilon$$ (we choose $$\epsilon$$ to be $$\epsilon/2$$), the following holds:
+Let $$\epsilon > 0$$ be arbitrary. We are given that $$\lim a_n = a$$. This means that for some $$n \geq N_1$$ and for any choice of $$\epsilon$$ (we choose $$\epsilon$$ to be $$\epsilon/2$$), the following holds:
 <div>
 $$
 \begin{align*}
@@ -75,7 +75,7 @@ $$
 \end{align*}
 $$
 </div>
-Similarly, given that $$\lim b_n = b$$. This means that for some $$N_2 \geq n$$ and for any choice of $$\epsilon$$ (we choose $$\epsilon$$ to be $$\epsilon/2$$), the following holds:
+Similarly, given that $$\lim b_n = b$$. This means that for some $$n \geq N_2$$ and for any choice of $$\epsilon$$ (we choose $$\epsilon$$ to be $$\epsilon/2$$), the following holds:
 <div>
 $$
 \begin{align*}

@@ -100,6 +100,22 @@ mathjax: true
     <li><a href="/jekyll/update/2024/05/20/analysis-density-of-q-in-r.html">
           [Density of \(\mathbf{Q}\) in \(\mathbf{R}\)] For every two real numbers \(a\) and \(b\) with \(a < b\), there exists a rational number \(r\) satisfying \(a < r < b\).
     </a></li>
+	<!-------------------------------------- Cardinality --------------------------------------->
+	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
+		<h4><i>Cardinality</i></h4>
+	</div>
+	<br>
+    <p><a href="/jekyll/update/2024/06/07/analysis-card-definitions.html">
+          Definitions
+    </a></p>
+    <li><a href="/jekyll/update/2024/06/09/analysis-card-cantor-r-uncountable.html">
+		  The open interval \((0,1) = \{x \in \mathbf{R}: 0 < x < 1\}\) is uncountable.
+    </a></li>
+	<!--
+    <li><a href="/jekyll/update/2024/06/08/analysis-card-q-countable-r-uncountable.html">
+		  The set \(\mathbf{Q}\) is countable and the set \(\mathbf{R}\) is uncountable.
+    </a></li>
+	-->
 	<!-------------------------------------- Sequences --------------------------------------->
 	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
 		<h4><i>Sequences</i></h4>
@@ -138,22 +154,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/06/analysis-seq-abs-value.html">
 		  Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbf{N}\), then \(x_n \rightarrow 0\).
     </a></li>
-	<!-------------------------------------- Cardinality --------------------------------------->
-	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
-		<h4><i>Cardinality</i></h4>
-	</div>
-	<br>
-    <p><a href="/jekyll/update/2024/06/07/analysis-card-definitions.html">
-          Definitions
-    </a></p>
-    <li><a href="/jekyll/update/2024/06/09/analysis-card-cantor-r-uncountable.html">
-		  The open interval \((0,1) = \{x \in \mathbf{R}: 0 < x < 1\}\) is uncountable.
+    <li><a href="/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">
+		  [Monotone Convergence Theorem] If a sequence is monotone and bounded, then  it converges.
     </a></li>
-	<!--
-    <li><a href="/jekyll/update/2024/06/08/analysis-card-q-countable-r-uncountable.html">
-		  The set \(\mathbf{Q}\) is countable and the set \(\mathbf{R}\) is uncountable.
-    </a></li>
-	-->
   </ol>
 <br>
 <!------------------------------------------------------------------->  

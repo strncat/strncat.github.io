@@ -157,6 +157,14 @@ mathjax: true
     <li><a href="/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">
 		  [Monotone Convergence Theorem] If a sequence is monotone and bounded, then  it converges.
     </a></li>
+	<!-------------------------------------- Sequences --------------------------------------->
+	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
+		<h4><i>Series</i></h4>
+	</div>
+	<br>
+    <p><a href="/jekyll/update/2024/06/10/analysis-series-definitions.html">
+          Series Definitions
+    </a></p>
   </ol>
 <br>
 <!------------------------------------------------------------------->  

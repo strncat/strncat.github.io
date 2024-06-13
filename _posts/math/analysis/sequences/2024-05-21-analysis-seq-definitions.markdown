@@ -12,7 +12,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition: Convergence of a Sequence</b></h4>
+<h4><b>Definition: Convergence of a Sequence [2.2.3]</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   A sequence \((a_n)\) converges to a real number \(a\) if, for every positive number \(\epsilon\), there exists an \(N \in \mathbf{N}\) such that whenever \(n \geq N\) it follows that \(|a_n - a| \leq \epsilon\).
 </div>
@@ -63,7 +63,7 @@ This will certainly require a proof!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition: Bounded Sequences</b></h4>
+<h4><b>Definition: Bounded Sequences [2.3.1]</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
 	A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
 </div>
@@ -72,10 +72,58 @@ For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/03/an
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
+<h4><b>Convergent Sequences [2.3.2]</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  Every convergent sequence is bounded.
+</div>
+<br>
+For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html">this</a>.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
 <h4><b>Definition: Increasing, Decreasing and Monotone Sequences</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
 	A sequence \(a_n\) is increasing if \(a_n \leq a_{n+1}\) for all \(n \in \mathbf{N}\) and decreasing if \(a_n \geq a_{n+1}\) for all \(n \in \mathbf{N}\). A sequence is monotone if it is either increasing or decreasing.
 </div>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Monotone Convergence Theorem [2.4.2]</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  If a sequence is monotone and bounded, then it converges.
+</div>
+<br>
+For the proof see <a href="https://strncat.github.io/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">this</a>.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Definition: Subsequence</b></h4>
+<div style="background-color: #E0FBE2; padding: 15px 15px 15px 15px; border:1px solid black;">
+	Let \(a_n\) be a sequence of real numbers, and let \(n_1 < n_2 < n_3 < n_4 < n_5 < ...\) be an increasing sequence of natural numbers. Then the sequence
+		  $$
+		  \begin{align*}
+		  (a_{n_1}, a_{n_2}, a_{n_3}, a_{n_4}, a_{n_5} ...)
+		  \end{align*}
+		  $$
+    is called a <i>subsequence</i> of \((a_n)\) and is denoted by \((a_{nk})\), where \(k \in \mathbf{N}\) indexes the subsequence.
+</div>
+<br>
+It's important to note that the order of the terms in the subsequence is the same as the original sequence and repetitions are not allowed! Also we can't go backward. For example if $$(a_n) = (1,2,3,4,5,6,.....)$$, then $$(2,4,6,..)$$ is a valid subsequence while $$(4, 6, 2...)$$ is not. $$(2,2,2,2)$$ is not either.
+<br>
+<br>
+The notation might be confusing. The subscripts $$n_1, n_2, n_3, ...$$ refer to the positions of the terms in the original sequence. For example if $$n_1$$ is 6. This means that $$a_{n_1} = a_{6}$$ and so the first term in the subsequence $$a_{n_1}$$ is the 6th term from the original sequence! 
+<br>
+<br>
+That's why imposed the order $$n_1 < n_2 < n_3 < ...$$. This just stressed the fact that we can't go backward in the original sequence and we must always select terms moving forward. This implies that $$n_k \geq k$$. For example $$n_3$$ can't really be 2. Since $$n_3$$ implies that there are two terms before this third term.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Convergence of Subsequences [2.5.2]</b></h4>
+<div style="background-color: #E0FBE2; padding: 15px 15px 15px 15px; border:1px solid black;">
+  Subsequences of a convergent sequence converge to the same limit as the original sequence.
+</div>
+<br>
+For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">this</a>.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

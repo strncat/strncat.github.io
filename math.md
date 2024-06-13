@@ -130,6 +130,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/05/22/analysis-seq-limit-example.html">
           Show that \(\lim\big(\frac{n+1}{n}\big)= 1\).
     </a></li>
+    <li><a href="/jekyll/update/2024/04/27/analysis-seq-limits-unique.html">
+          The limit of a sequence, when it exists must be unique.
+    </a></li>
     <li><a href="/jekyll/update/2024/06/03/analysis-seq-bounded.html">
           [Bounded Sequences] A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
     </a></li>
@@ -298,7 +301,7 @@ mathjax: true
 <!------------------------------------------------------------------->  
  <h3> Elements of Euclid </h3>
    <ul style="list-style-type:none;">
-       <li><a href="/jekyll/update/2024/04/29/elements-of-euclid-book1.html">
+       <li><a href="/jekyll/update/2024/04/28/elements-of-euclid-book1.html">
            Book 1
        </a></li>
    </ul>

@@ -17,34 +17,23 @@ Some definitions worth keeping in mind while studying for the next of proofs.
   \end{equation*}
   $$
 </div>
-<br> 
-
+<br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Properties</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \(x \in \mathbf{R}\), \(|x| \geq 0\).
 </div>
 <br>
-Proof:
-By the definition of the absolute value function we have two cases:
-<ul>
-<li>if \(x \geq 0\), then \(|x| = x\) and so \(|x| \geq 0\)</li>
-<li>if \(x < 0\), then \(|x| = -x\). Since \(x < 0\), then \(-x > 0\) so this means that \(|x| = -x > 0\). As required</li>
-</ul>
-This second case definitely made me pause. By definition $$|x| = -x$$. But $$x$$ is negative. This means that $$-x$$ is positive! so $$|x|$$ is positive!
+For the proof, see <a href="https://strncat.github.io/jekyll/update/2024/04/25/analysis-absolute-value-pr1.html">this</a>. 
 <br>
+<!------------------------------------------------------------------------------------>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \(x \in \mathbf{R}\), \(-|x| \leq x \leq |x|\).
 </div>
 <br>
-Proof:
-We have two cases:
-<ul>
-<li>if \(x \geq 0\), then \(|x| = x \geq 0\). So \(-|x|\) is negative and we have \(-|x| \leq 0 \leq x = |x|\)</li>
-<li>if \(x < 0\), then \(|x| = -x\) or \(-|x| = x\). So \(x = -|x| < 0\). But we also know that \(|x| \geq 0\) by the previous lemma. So putting everything together we have, \(-|x| = x < 0 \leq |x| \) </li>
-</ul>
-This was a little hard as well but I need to remember that \(x\) is negative so \(-x\) is positive.
-<br> 
+For the proof, see <a href="https://strncat.github.io/jekyll/update/2024/04/26/analysis-absolute-value-pr2.html">this</a>. 
+<br>
+<!------------------------------------------------------------------------------------>
 
 
 

@@ -33,6 +33,12 @@ mathjax: true
     <p><a href="/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">
           Definition and Properties  
     </a></p>
+    <li><a href="/jekyll/update/2024/04/25/analysis-absolute-value-pr1.html">
+          Let \(x \in \mathbf{R}\), \(|x| \geq 0\).   
+    </a></li>
+    <li><a href="/jekyll/update/2024/04/26/analysis-absolute-value-pr2.html">
+          Let \(x \in \mathbf{R}\), \(-|x| \leq x \leq |x|\).   
+    </a></li>
     <li><a href="/jekyll/update/2024/05/13/analysis-absolute-value-max-x-y.html">
           For two real numbers \(x\) and \(y\), prove that \(\max(x,y) = \frac{1}{2}(x+y+|x - y|)\).   
     </a></li>

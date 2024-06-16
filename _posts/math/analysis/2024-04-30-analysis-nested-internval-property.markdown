@@ -53,7 +53,7 @@ a_n \leq x.
 \end{align*}
 $$
 </div>
-Moreover, we know that $$b_n$$ is an upper bound for $$A$$ and so by the definition of the least upper bound,
+Moreover, we know that $$b_n$$ is an upper bound for $$A$$ and so by the definition of the least upper bound, any other bound must be greater than the least upper bound and so
 <div>
 $$
 \begin{align*}

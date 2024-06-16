@@ -27,7 +27,7 @@ $$
 \end{align*}
 $$
 </div>
-To prove that $$(a_{n_k})$$ also converges, let $$k > N$$. Since $$n_k \geq k$$ for all $$k$$. (see the subsequence definition in <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">here</a> for why), then $$n_k \geq N$$. This means that our subsequence will start after $$N$$. This means that for all $$\epsilon > 0$$, we must have 
+To prove that $$(a_{n_k})$$ also converges, Choose $$k > N$$. Since $$n_k \geq k$$ for all $$k$$. (for why see, <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>), then $$n_k \geq N$$. This means that for all $$\epsilon > 0$$, we must have 
 <div>
 $$
 \begin{align*}

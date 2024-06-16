@@ -59,41 +59,14 @@ mathjax: true
     <p><a href="/jekyll/update/2024/05/03/analysis-set-bounded.html">
           Bounded Sets Definitions
     </a></p>
-    <li><a href="/jekyll/update/2024/05/04/analysis-least-upper-bound-constant.html">
-          The set defined as \(c+A = \{c + a : a \in A\}\) where \(c\) is a constant has a least upper bound equal to \(c + sup A\).
-    </a></li>
     <li><a href="/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">
           [Lemma 1.3.8] If \(s\) is an upper bound for \(A\), then \(s = \sup A\) if and only if for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon < a\).
-    </a></li>
-    <li><a href="/jekyll/update/2024/05/06/analysis-least-upper-bound-multiply.html">
-          [1.3.5] The set defined as \(cA = \{ca : a \in A\}\) where \(c \geq 0\) has \(\sup cA = c\sup A\).
-    </a></li>
-    <li><a href="/jekyll/update/2024/05/07/analysis-least-upper-bound-sum.html">
-          [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\).
-    </a></li>
-    <li><a href="/jekyll/update/2024/05/08/analysis-least-upper-bound-sum-alternative.html">
-          [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\) (Alternative Proof).
-    </a></li>
-    <li><a href="/jekyll/update/2024/05/09/analysis-least-upper-bound-union.html">
-          Let \(A\) and \(B\) be nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.
-    </a></li>
-    <li><a href="/jekyll/update/2024/05/11/analysis-least-upper-bound-infb-infa-supb-supa.html">
-          [1.3.11] If \(A\) and \(B\) are nonempty and bounded sets of real numbers such that \(A \subseteq B\) then \(\inf B \leq \inf A \leq \sup A \leq \sup B\).
-    </a></li>
-    <li><a href="/jekyll/update/2024/05/23/analysis-least-upper-bound-sup0.html">
-          Let \(A = \{x \in \mathbf{R}: x < 0\}\). Then \(\sup(A) = 0\).
     </a></li>
     <li><a href="/jekyll/update/2024/04/30/analysis-nested-internval-property.html">
           The Nested Interval Property
     </a></li>
     <li><a href="/jekyll/update/2024/05/16/analysis-archimedian-principle.html">
           The Archimedean Principle
-    </a></li>
-    <li><a href="/jekyll/update/2024/05/17/analysis-archimedian-principle-inf-N.html">
-          Show that \(\inf\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 0.\)
-    </a></li>
-    <li><a href="/jekyll/update/2024/05/18/analysis-archimedian-principle-sup-N.html">
-          Show that \(\sup\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 1.\)
     </a></li>
 	<!--
     <li><a href="/jekyll/update/2024/05/19/analysis-bounds-alpha-n.html">
@@ -105,6 +78,36 @@ mathjax: true
 	-->
     <li><a href="/jekyll/update/2024/05/20/analysis-density-of-q-in-r.html">
           [Density of \(\mathbf{Q}\) in \(\mathbf{R}\)] For every two real numbers \(a\) and \(b\) with \(a < b\), there exists a rational number \(r\) satisfying \(a < r < b\).
+    </a></li>
+    <p>
+          Exercises
+    </p>
+    <li><a href="/jekyll/update/2024/05/04/analysis-least-upper-bound-constant.html">
+          The set defined as \(c+A = \{c + a : a \in A\}\) where \(c\) is a constant has a least upper bound equal to \(c + sup A\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/06/analysis-least-upper-bound-multiply.html">
+          [1.3.5] The set defined as \(cA = \{ca : a \in A\}\) where \(c \geq 0\) has \(\sup cA = c\sup A\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/07/analysis-least-upper-bound-sum.html">
+          [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/08/analysis-least-upper-bound-sum-alternative.html">
+          [1.3.6] The set defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\) has \(\sup (A+B) = \sup A + \sup B\) (Alternative Proof).
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/09/analysis-least-upper-bound-union.html">
+          [1.3.4] Let \(A\) and \(B\) be nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/11/analysis-least-upper-bound-infb-infa-supb-supa.html">
+          [1.3.11] If \(A\) and \(B\) are nonempty and bounded sets of real numbers such that \(A \subseteq B\) then \(\inf B \leq \inf A \leq \sup A \leq \sup B\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/23/analysis-least-upper-bound-sup0.html">
+          Let \(A = \{x \in \mathbf{R}: x < 0\}\). Then \(\sup(A) = 0\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/17/analysis-archimedian-principle-inf-N.html">
+          Show that \(\inf\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 0.\)
+    </a></li>
+    <li><a href="/jekyll/update/2024/05/18/analysis-archimedian-principle-sup-N.html">
+          Show that \(\sup\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 1.\)
     </a></li>
 	<!-------------------------------------- Cardinality --------------------------------------->
 	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
@@ -133,29 +136,41 @@ mathjax: true
     <li><a href="/jekyll/update/2024/05/12/analysis-seq-limit-template.html">
           Show the Limit Template + Example \(\lim\big(\frac{1}{\sqrt{n}}\big)= 0\).
     </a></li>
-    <li><a href="/jekyll/update/2024/05/22/analysis-seq-limit-example.html">
-          Show that \(\lim\big(\frac{n+1}{n}\big)= 1\).
-    </a></li>
     <li><a href="/jekyll/update/2024/04/27/analysis-seq-limits-unique.html">
-          The limit of a sequence, when it exists must be unique.
+          [Uniqueness of Limits (2.2.7)] The limit of a sequence, when it exists must be unique.
     </a></li>
     <li><a href="/jekyll/update/2024/06/03/analysis-seq-bounded.html">
-          [Bounded Sequences] A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
+          [Bounded Sequences (2.3.1)] A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
     </a></li>
     <li><a href="/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html">
           [Convergent Sequences (2.3.2)] Every convergent sequence is bounded.
     </a></li>
     <li><a href="/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">
-		  [The Algebraic Limit Theorem] (i) \(\lim (ca_n) = ca\) for all \(c \in \mathbf{R}\).
+		  [The Algebraic Limit Theorem (2.3.3)] (i) \(\lim (ca_n) = ca\) for all \(c \in \mathbf{R}\).
     </a></li>
     <li><a href="/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">
-		  [The Algebraic Limit Theorem] (ii) \(\lim (a_n + b_n) = a + b\).
+		  [The Algebraic Limit Theorem (2.3.3)] (ii) \(\lim (a_n + b_n) = a + b\).
     </a></li>
     <li><a href="/jekyll/update/2024/06/01/analysis-seq-algebraic-limit-theorem-iii.html">
-		  [The Algebraic Limit Theorem] (iii) \(\lim (a_nb_n) = ab\).
+		  [The Algebraic Limit Theorem (2.3.3)] (iii) \(\lim (a_nb_n) = ab\).
     </a></li>
     <li><a href="/jekyll/update/2024/06/02/analysis-seq-order-limit-theorem.html">
-		  The Order Limit Theorem
+		  [The Order Limit Theorem ((2.3.4)]
+    </a></li>
+    <li><a href="/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">
+		  [Monotone Convergence Theorem (2.4.2)] If a sequence is monotone and bounded, then it converges.
+    </a></li>
+    <li><a href="/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">
+		  [Convergence of Subsequence (2.5.2)] Subsequences of a convergent sequence converge to the same limit as the original sequence.
+    </a></li>
+    <li><a href="/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html">
+		  [Bolzano-Weierstrass Theorem (2.5.5)] Every bounded sequence contains a convergent subsequence.
+    </a></li>
+    <p>
+          Exercises
+    </p>
+    <li><a href="/jekyll/update/2024/05/22/analysis-seq-limit-example.html">
+          Show that \(\lim\big(\frac{n+1}{n}\big)= 1\).
     </a></li>
     <li><a href="/jekyll/update/2024/06/04/analysis-seq-sqrt.html">
 		  Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).
@@ -166,11 +181,8 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/06/analysis-seq-abs-value.html">
 		  Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbf{N}\), then \(x_n \rightarrow 0\).
     </a></li>
-    <li><a href="/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">
-		  [Monotone Convergence Theorem] If a sequence is monotone and bounded, then it converges.
-    </a></li>
-    <li><a href="/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">
-		  [Convergence of Subsequence (2.5.2)] Subsequences of a convergent sequence converge to the same limit as the original sequence.
+    <li><a href="/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html">
+		  Prove that \(b > b^2 > b^3 > b^4 > ... > 0\) converges to 0 if \(0 < b < 1\). (Example of 2.5.2).
     </a></li>
 	<!-------------------------------------- Series --------------------------------------->
 	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
@@ -179,6 +191,14 @@ mathjax: true
 	<br>
     <p><a href="/jekyll/update/2024/06/10/analysis-series-definitions.html">
           Series Definitions
+    </a></p>
+	<!-------------------------------------- Topology of R --------------------------------------->
+	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
+		<h4><i>Topology of R</i></h4>
+	</div>
+	<br>
+    <p><a href="/jekyll/update/2024/04/24/analysis-sets-cantor.html">
+          Cantor Sets
     </a></p>
   </ol>
 <br>

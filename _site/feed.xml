@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-06-14T08:43:18-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">strncat’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Convergent Sequences are bounded [2.3.2]</title><link href="http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html" rel="alternate" type="text/html" title="Convergent Sequences are bounded [2.3.2]" /><published>2024-06-12T01:01:36-07:00</published><updated>2024-06-12T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-06-16T10:53:19-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">The Bolzano-Weierstrass Theorem</title><link href="http://localhost:4000/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html" rel="alternate" type="text/html" title="The Bolzano-Weierstrass Theorem" /><published>2024-06-14T01:01:36-07:00</published><updated>2024-06-14T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  (2.5.5)[Bolzano-Weirstrass Theorem] Every bounded sequence contains a convergent subsequence.
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------>
+For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
+<br />
+For the definitions of sequences, subsequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
+<br />
+For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
+<br /> 
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Problem Discussion:</b></h4>
+<p>This is a great theorem because we’re saying that given any sequence whether convergent or divergent, we can still extract a convergent subsequence from it. For example if we’re given the sequence \(\{0,1,0,1,0,1,0,1,0,1,.....\}\) which clearly won’t converge, we can still make up the subsequence \(\{0,0,0,0,....\}\) which clearly converges to 0. But how do we prove this? This proof relies on the <a href="https://strncat.github.io/jekyll/update/2024/04/30/analysis-nested-internval-property.html">nested interval property</a> which states that the intersection a nested sequence of closed intervals is non-empty. We will construct a subsequence from having many nested intervals and then we’ll use the nested sequence property to conclude something about its convergence.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof:</b></h4>
+<p>Let \((a_n)\) be a bounded sequence. By <a href="https://strncat.github.io/jekyll/update/2024/06/03/analysis-seq-bounded.html">theorem 2.3.1</a>, we know that there exists a number \(M &gt; 0\) satisfying \(|a_n| \leq M\) for all \(n \in \mathbf{N}\). We will bisect this closed interval \([-M,M]\) into two closed intervals \([-M,0]\) and \([0,M]\) noting here that the mid point belongs to both intervals. Now, \((a_n)\) has infinitely many terms by definition. So one of these halfs must contain an infinite number of terms of the sequence \((a_n)\). Let this interval be \(I_1\) (Choose the left half if both had infinitely many terms).</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/bolzano-0.png" width="80%" class="center" /></p>
+
+<p>Now, we’re construct a subsequence from \((a_n)\). The first term \(a_{n_1}\) will an arbitrary element chosen from \(I_1\) so \(a_n \in I_1\). Bisect \(I_1\) again into two intervals and let \(I_2\) be the interval containing infinite terms (there should be at least one).</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/bolzano-1.png" width="80%" class="center" /></p>
+
+<p>Let \(a_{n_2}\) be chosen from \(I_2\) such that \(n_2 &gt; n_1\) (Side Note: Remember that \(n_2\) indicates the positon of the element in the subsequence. We can choose \(n_2\) to be bigger than \(n_1\) because \(I_2\) has infinitely many terms so even if \(a_{n_1}\) was really big like \(a_{3435453...}\), we can still find a bigger subscript since there are infinitely many terms. Moreover, our sequence is not monotone so we don’t need to worry about picking an element from the right half before the left half. This doesn’t matter. We only care about respecting the order of the elements in the sequence). 
+<br />
+<br />
+Next, we’re going to bisect \(I_2\) in the same way and choose \(I_3\) to be the half with infinitely many terms.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/bolzano-2.png" width="80%" class="center" /></p>
+
+<p>In general, we will construct the closed interval \(I_k\) by taking the half of interval \(I_{k-1}\) that contains infinitely many terms. We will then construct a subsequence \((a_{n_k})\) such that \(a_k \in I_k\) and</p>
+<div>
+$$
+\begin{align*}
+n_k &gt; n_{k-1} &gt; ... &gt; n_2 &gt; n_1.
+\end{align*}
+$$
+</div>
+<p>Now, we want to prove that \((a_{n_k})\) is a convergent subsequence. To do so, we need to find a candidate for limit. We do know by construction that</p>
+<div>
+	$$
+	\begin{align*}
+	I_1 \supseteq I_2 \supseteq I_3 \supseteq ...
+	\end{align*}
+	$$
+</div>
+<p>This forms a nested sequence of closed intervals and so by the <a href="https://strncat.github.io/jekyll/update/2024/04/30/analysis-nested-internval-property.html">Nested Interval Property</a>, there exits at least one point \(x \in \mathbf{R}\) such that it is contained in every interval \(I_k\). So let’s prove that \((a_{n_k}) \rightarrow x\).
+<br />
+<br />
+Let \(\epsilon &gt; 0\) be arbitrary chosen. We will show that there exists a number \(N \in \mathbf{N}\) such that for any \(k \geq N\), we have</p>
+<div>
+	$$
+	\begin{align*}
+	|a_{n_k} - x| \leq \epsilon.
+	\end{align*}
+	$$
+</div>
+<p>To see this, we know by construction that the length of interval \(I_k\) is \(M(1/2)^{k-1}\). But we also know that \((M(1/2)^{k-1}) \rightarrow 0\) (TODO: link). This means that the intervals are getting smaller and smaller until the length of these intervals converges to 0. So in this case, just choose \(N\) such that when \(k \geq N\), the length of interval \(I_k\) is less than \(\epsilon\). Even though we chose the intervals to have length less than \(\epsilon\), we still have \(a_{n_k} \in I_k\) by construction and we still have \(x \in I_k\) by the Nested Interval Property. But since the interval length is less than \(\epsilon\), then the distance between \(a_{n_k}\) and \(x\) must be less than \(\epsilon\) or in other words \(|a_{n_k} - x| \leq \epsilon\) as wanted to show. Therefore, \((a_{n_k}) \rightarrow x\). \(\blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(2.5.5)[Bolzano-Weirstrass Theorem] Every bounded sequence contains a convergent subsequence. For the absolute value function definition and other properties see here. For the definitions of sequences, subsequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion: This is a great theorem because we’re saying that given any sequence whether convergent or divergent, we can still extract a convergent subsequence from it. For example if we’re given the sequence \(\{0,1,0,1,0,1,0,1,0,1,.....\}\) which clearly won’t converge, we can still make up the subsequence \(\{0,0,0,0,....\}\) which clearly converges to 0. But how do we prove this? This proof relies on the nested interval property which states that the intersection a nested sequence of closed intervals is non-empty. We will construct a subsequence from having many nested intervals and then we’ll use the nested sequence property to conclude something about its convergence. Proof: Let \((a_n)\) be a bounded sequence. By theorem 2.3.1, we know that there exists a number \(M &gt; 0\) satisfying \(|a_n| \leq M\) for all \(n \in \mathbf{N}\). We will bisect this closed interval \([-M,M]\) into two closed intervals \([-M,0]\) and \([0,M]\) noting here that the mid point belongs to both intervals. Now, \((a_n)\) has infinitely many terms by definition. So one of these halfs must contain an infinite number of terms of the sequence \((a_n)\). Let this interval be \(I_1\) (Choose the left half if both had infinitely many terms).]]></summary></entry><entry><title type="html">Convergence of Subsequences: Example</title><link href="http://localhost:4000/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html" rel="alternate" type="text/html" title="Convergence of Subsequences: Example" /><published>2024-06-13T01:01:36-07:00</published><updated>2024-06-13T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  Let \(0 &lt; b &lt; 1\). Show that the sequence
+  $$
+  \begin{align*}
+  b &gt; b^2 &gt; b^3 &gt; b^4 &gt; ... &gt; 0,
+  \end{align*}
+  $$
+  converges to 0.
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------>
+For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
+<br />
+For the definitions of sequences, subsequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
+<br />
+For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
+<br /> 
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Problem Discussion:</b></h4>
+<p>This was really tricky. We are given a sequence and to find its limit, the idea here is to extract a subsequence and then concluding that it also converges to the same limit as the original sequence by theorem 2.5.2 which says that subsequences of a convergent sequence converge to the same limit as the original sequence. But then we can also find the limit of the subsequence using a differen path. So’ll end up with two limits for the same subsequence. This is impossible since limits are unique and this will give us a direct us. This final answer is only the limit of the subsequence but also the limit of the sequence itself.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof:</b></h4>
+<p>Let \((b^n)\) is the sequence defined above. This sequence is decreasing and bounded below by definition. By the <a href="https://strncat.github.io/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">monotone convergence theorem</a>, \((b^n)\) convergences to some number \(l\) such that \(b &gt; l \geq 0\). To compute \(l\), let \((b^{2n})\) be a subsequence of \((b^n)\). The terms of \((b^{2n})\) are</p>
+<div>
+$$
+\begin{align*}
+b^2 &gt; b^4 &gt; b^6 &gt; ... &gt; 0.
+\end{align*}
+$$
+</div>
+<p>Since \((b^{2n})\) is a subsequence of \((b^n)\), then by <a href="https://strncat.github.io/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">theorem 2.5.2</a>, we must have that \((b^{2n}) \rightarrow l\). 
+<br /><br />
+But, note that \(b^{2n} = b^nb^n\). So we can use the <a href="https://strncat.github.io/jekyll/update/2024/06/01/analysis-seq-algebraic-limit-theorem-iii.html">algebraic limit theorem</a> to conclude that \((b^{2n}) \rightarrow l*l = l^2\). So now we arrived at two results. First \((b^{2n}) \rightarrow l\) and now \((b^{2n}) \rightarrow l^2\). But we know that the limit of a sequence is unique from <a href="https://strncat.github.io/jekyll/update/2024/04/27/analysis-seq-limits-unique.html">uniqueness of limits theorem (2.2.7)</a>, so we must have that \(l^2 = l\) and therefore \(l = 0\).</p>
+
+<p>\(\blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Let \(0 &lt; b &lt; 1\). Show that the sequence $$ \begin{align*} b &gt; b^2 &gt; b^3 &gt; b^4 &gt; ... &gt; 0, \end{align*} $$ converges to 0. For the absolute value function definition and other properties see here. For the definitions of sequences, subsequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion: This was really tricky. We are given a sequence and to find its limit, the idea here is to extract a subsequence and then concluding that it also converges to the same limit as the original sequence by theorem 2.5.2 which says that subsequences of a convergent sequence converge to the same limit as the original sequence. But then we can also find the limit of the subsequence using a differen path. So’ll end up with two limits for the same subsequence. This is impossible since limits are unique and this will give us a direct us. This final answer is only the limit of the subsequence but also the limit of the sequence itself. Proof: Let \((b^n)\) is the sequence defined above. This sequence is decreasing and bounded below by definition. By the monotone convergence theorem, \((b^n)\) convergences to some number \(l\) such that \(b &gt; l \geq 0\). To compute \(l\), let \((b^{2n})\) be a subsequence of \((b^n)\). The terms of \((b^{2n})\) are $$ \begin{align*} b^2 &gt; b^4 &gt; b^6 &gt; ... &gt; 0. \end{align*} $$ Since \((b^{2n})\) is a subsequence of \((b^n)\), then by theorem 2.5.2, we must have that \((b^{2n}) \rightarrow l\). But, note that \(b^{2n} = b^nb^n\). So we can use the algebraic limit theorem to conclude that \((b^{2n}) \rightarrow l*l = l^2\). So now we arrived at two results. First \((b^{2n}) \rightarrow l\) and now \((b^{2n}) \rightarrow l^2\). But we know that the limit of a sequence is unique from uniqueness of limits theorem (2.2.7), so we must have that \(l^2 = l\) and therefore \(l = 0\).]]></summary></entry><entry><title type="html">Convergent Sequences are bounded [2.3.2]</title><link href="http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html" rel="alternate" type="text/html" title="Convergent Sequences are bounded [2.3.2]" /><published>2024-06-12T01:01:36-07:00</published><updated>2024-06-12T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b> Every convergent sequence is bounded.</b>
 </div>
 <p><br />
@@ -57,7 +169,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>To prove that \((a_{n_k})\) also converges, let \(k &gt; N\). Since \(n_k \geq k\) for all \(k\). (see the subsequence definition in <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">here</a> for why), then \(n_k \geq N\). This means that our subsequence will start after \(N\). This means that for all \(\epsilon &gt; 0\), we must have</p>
+<p>To prove that \((a_{n_k})\) also converges, Choose \(k &gt; N\). Since \(n_k \geq k\) for all \(k\). (for why see, <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>), then \(n_k \geq N\). This means that for all \(\epsilon &gt; 0\), we must have</p>
 <div>
 $$
 \begin{align*}
@@ -73,7 +185,7 @@ $$
 <b>References:</b></p>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Subsequences of a convergent sequence converge to the same limit as the original sequence. For the absolute value function definition and other properties see here. For the definitions of sequences, subsequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Proof: Let \((a_n)\) be a sequence and \((a_{n_k})\) be a subsequence. We know that \((a_n)\) convergences to some number \(l\). By definition (2.2.3), we know that there exists an \(N \in \mathbf{N}\) such that if \(n \geq N\), then for any \(\epsilon &gt; 0\), we have $$ \begin{align*} |a_n - l| \leq \epsilon \quad \text{whenever $n \geq N$}. \end{align*} $$ To prove that \((a_{n_k})\) also converges, let \(k &gt; N\). Since \(n_k \geq k\) for all \(k\). (see the subsequence definition in here for why), then \(n_k \geq N\). This means that our subsequence will start after \(N\). This means that for all \(\epsilon &gt; 0\), we must have $$ \begin{align*} |a_{n_k} - l| \leq \epsilon \quad \text{whenever $k \geq N$}. \end{align*} $$ As we wanted to show. \(\blacksquare\) References: Understanding Analysis by Stephen Abbott]]></summary></entry><entry><title type="html">Series Definitions</title><link href="http://localhost:4000/jekyll/update/2024/06/10/analysis-series-definitions.html" rel="alternate" type="text/html" title="Series Definitions" /><published>2024-06-10T01:01:36-07:00</published><updated>2024-06-10T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/10/analysis-series-definitions</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/10/analysis-series-definitions.html"><![CDATA[<!------------------------------------------------------------------------------------>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Subsequences of a convergent sequence converge to the same limit as the original sequence. For the absolute value function definition and other properties see here. For the definitions of sequences, subsequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Proof: Let \((a_n)\) be a sequence and \((a_{n_k})\) be a subsequence. We know that \((a_n)\) convergences to some number \(l\). By definition (2.2.3), we know that there exists an \(N \in \mathbf{N}\) such that if \(n \geq N\), then for any \(\epsilon &gt; 0\), we have $$ \begin{align*} |a_n - l| \leq \epsilon \quad \text{whenever $n \geq N$}. \end{align*} $$ To prove that \((a_{n_k})\) also converges, Choose \(k &gt; N\). Since \(n_k \geq k\) for all \(k\). (for why see, this), then \(n_k \geq N\). This means that for all \(\epsilon &gt; 0\), we must have $$ \begin{align*} |a_{n_k} - l| \leq \epsilon \quad \text{whenever $k \geq N$}. \end{align*} $$ As we wanted to show. \(\blacksquare\) References: Understanding Analysis by Stephen Abbott]]></summary></entry><entry><title type="html">Series Definitions</title><link href="http://localhost:4000/jekyll/update/2024/06/10/analysis-series-definitions.html" rel="alternate" type="text/html" title="Series Definitions" /><published>2024-06-10T01:01:36-07:00</published><updated>2024-06-10T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/10/analysis-series-definitions</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/10/analysis-series-definitions.html"><![CDATA[<!------------------------------------------------------------------------------------>
 <h4><b>Definition: Series</b></h4>
 <p>A sequence is defined in the book as a function whose domain in \(\mathbf{N}\) (see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>). A series is defined as follows:</p>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
@@ -479,153 +591,4 @@ $$
 <b>References:</b></p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=AriEk3QD1z0">Math of Wrath Youtube Channel</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well. For the definitions of sequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion We’ll follow a similar approach to proving the example in here. We want to show that \(\lim (y_n) = l\). So we want to find \(N \geq n\) such that for any \(\epsilon &gt; 0\), $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon. \end{align*} $$ But we know that since \((x_n)\) converges to \(l\), then there must exist an \(n \geq N_1\) such that $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N_1$.} \end{align*} $$ Similarly there must exist some \(n \geq N_2\) such that $$ \begin{align*} \lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N_2$.} \end{align*} $$ Let’s get rid of the absolute value for both inequalities and then add \(l\) to all sides. $$ \begin{align*} -\epsilon &amp;&lt; y_n - l &lt; \epsilon \\ l - \epsilon &amp;&lt; y_n &lt; l + \epsilon \\ \end{align*} $$ We can derive the exact result for \(z_n\) as well. $$ \begin{align*} l - \epsilon &amp;&lt; z_n &lt; l + \epsilon \\ \end{align*} $$ Now from these two inequalities, notice that \(x_n \leq y_n\) and so we can write $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \quad \text{whenever $n \geq N_1$.} \end{align*} $$ and we also have $$ \begin{align*} y_n \leq z_n &lt; l + \epsilon \quad \text{whenever $n \geq N_2$.} \end{align*} $$ Combining both inequalities will get us what we want! let’s expand on this in the formal proof. Formal Proof To show that \(\lim(y_n) = l\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that, $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N$}. \end{align*} $$ To do so, we are given that \(\lim x_n = l\). This means that there exists some \(n \geq N_1\) such that $$ \begin{align*} \lvert x_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N_1$}. \end{align*} $$ Similarly, we are given that $$ \begin{align*} \lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N_2$}. \end{align*} $$ We can re-write the inequalities such that $$ \begin{align*} l - \epsilon &lt; x_n &lt; l + \epsilon \quad \text{whenever $n \geq N_1$} \\ l - \epsilon &lt; z_n &lt; l + \epsilon \quad \text{whenever $n \geq N_2$}. \end{align*} $$ Now assume that \(n \geq \max{(N_1, N_2)}\), using the above inequalities and the fact that \(x_n \leq y_n \leq z_n\), we can see that $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \\ y_n \leq z_n &lt; l + \epsilon. \end{align*} $$ Combining both inequalities, we get $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \leq z_n &lt; l + \epsilon \\ l - \epsilon &lt; y_n &lt; l + \epsilon \\ - \epsilon &lt; y_n - l &lt; \epsilon \\ |y_n - l| &lt; \epsilon. \end{align*} $$ From this we can conclude that for any \(\epsilon &gt; 0\) there exists an \(N \geq n\) such that \(|y_n - l| &lt; \epsilon\). Therefore, \(\lim y_n = l\) as we wanted to show. \(\blacksquare\) References: Math of Wrath Youtube Channel]]></summary></entry><entry><title type="html">Sequence Convergence Example 1</title><link href="http://localhost:4000/jekyll/update/2024/06/04/analysis-seq-sqrt.html" rel="alternate" type="text/html" title="Sequence Convergence Example 1" /><published>2024-06-04T01:01:36-07:00</published><updated>2024-06-04T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/04/analysis-seq-sqrt</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/04/analysis-seq-sqrt.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).</b>
-</div>
-<p><br />
-For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
-<br />
-For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Problem Discussion</b></h4>
-<p>We’ll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">here</a>. We want to show that \(\lim (\sqrt{x_n}) = x\). So we want to find \(N\) such that for any \(\epsilon &gt; 0\),</p>
-<div>
-$$
-\begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &lt; \epsilon.
-\end{align*}
-$$
-</div>
-<p>The trick here is to multiply the left hand side by the conjugate!!!</p>
-<div>
-$$
-\begin{align*}
-&amp;\lvert \sqrt{x_n} - \sqrt{x} \rvert * \frac{\lvert \sqrt{x_n} + \sqrt{x} \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\
-&amp;= \frac{\lvert x_n - x \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert}.
-\end{align*}
-$$
-</div>
-<p>The numerator is exactly what we want. The denominator however might be 0 since \(x\) is non-negative. Therefore, we’ll just assume that \(x &gt; 0\) for now to continue the proof and we’ll handle the case when \(x = 0\) separately. Also since the denominator is positive then we can just write:</p>
-<div>
-$$
-\begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}}.
-\end{align*}
-$$
-</div>
-<p>So far so good but we also know that the sequence \((x_n)\) converges to \(x\) and therefore, it is bounded. This means that there exists some bound \(M\) such that \(|(x_n)| \leq M\) and so \(\sqrt{|(x_n)|} \leq \sqrt{M}\) (why?). Since \(x_n \geq 0\), then \(M \geq 0\) and we can remove the term to the get the following inequality:</p>
-<div>
-$$
-\begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}} \\
-&amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\
-\end{align*}
-$$
-</div>
-<p>We can set \(\lvert x_n - x \rvert\) to anything we like. Particularly we want to set it to a value such that the terms would cancel out and we would get \(\epsilon\) at the end. So let it be \(\epsilon \sqrt{x}\). Remember that \(x\) is a constant so that’s okay.</p>
-<div>
-$$
-\begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\
-&amp;&lt; \frac{\sqrt{x}\epsilon}{\sqrt{x}} = \epsilon.
-\end{align*}
-$$
-</div>
-<!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
-<p>To show that \(\lim(\sqrt{x_n}) = \sqrt{x}\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that,</p>
-<div>
-$$
-\begin{align*}
-\lvert \sqrt{x_n} - \sqrt{x} \rvert &lt; \epsilon
-\end{align*}
-$$
-</div>
-<p>To do so, we’ll consider two cases for when \(x = 0\) and \(x &gt; 0\). For case 1, suppose \(x &gt; 0\). We are given that \(\lim x_n = x\). This means that there exists some \(n \geq N\) such that</p>
-<div>
-$$
-\begin{align*}
-\lvert x_n - x \rvert &lt; \epsilon \sqrt{x} \quad \text{whenever $n \geq N$}.
-\end{align*}
-$$
-</div>
-<p>Now assume that \(N \geq n\), then</p>
-<div>
-$$
-\begin{align*}
-&amp;\lvert \sqrt{x_n} - \sqrt{x} \rvert * \frac{\lvert \sqrt{x_n} + \sqrt{x} \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\
-&amp;= \frac{\lvert x_n - x \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\
-&amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}} \\
-&amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \quad \text{($(x_n)$ is bounded and $x_n \geq 0$)} \\
-&amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\
-&amp;&lt; \frac{\sqrt{x}{\epsilon}}{\sqrt{x}} = \epsilon, \\
-\end{align*}
-$$
-</div>
-<p>as required. For case 2 when \(x = 0\), we want to prove that</p>
-<div>
-$$
-\begin{align*}
-\lvert \sqrt{x_n} - 0 \rvert &amp;&lt; \epsilon \\
-\lvert \sqrt{x_n} \rvert &amp;&lt; \epsilon \\
-\end{align*}
-$$
-</div>
-<p>We are given that \(\lim x_n = x\) or \(\lim x_n = 0\). This means that there exist some \(n \geq N\) such that</p>
-<div>
-$$
-\begin{align*}
-\lvert x_n - 0 \rvert = \lvert x_n \rvert  &amp;&lt; \epsilon^2. \\
-\end{align*}
-$$
-</div>
-<p>Now assume that \(n \geq N\), then</p>
-<div>
-$$
-\begin{align*}
-\lvert \sqrt{x_n} \rvert &amp;= \sqrt{x_n} \quad \text{since $x_n \geq 0$}\\
-&amp;= \sqrt{|x_n|} \\
-&amp;&lt; \sqrt{\epsilon^2} = \epsilon,
-\end{align*}
-$$
-</div>
-<p>as required. \(\blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-<li><a href="https://www.youtube.com/watch?v=AriEk3QD1z0">Math of Wrath Youtube Channel</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\). For the definitions of sequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion We’ll follow a similar approach to proving the example in here. We want to show that \(\lim (\sqrt{x_n}) = x\). So we want to find \(N\) such that for any \(\epsilon &gt; 0\), $$ \begin{align*} \lvert \sqrt{x_n} - \sqrt{x} \rvert &lt; \epsilon. \end{align*} $$ The trick here is to multiply the left hand side by the conjugate!!! $$ \begin{align*} &amp;\lvert \sqrt{x_n} - \sqrt{x} \rvert * \frac{\lvert \sqrt{x_n} + \sqrt{x} \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\ &amp;= \frac{\lvert x_n - x \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert}. \end{align*} $$ The numerator is exactly what we want. The denominator however might be 0 since \(x\) is non-negative. Therefore, we’ll just assume that \(x &gt; 0\) for now to continue the proof and we’ll handle the case when \(x = 0\) separately. Also since the denominator is positive then we can just write: $$ \begin{align*} \lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}}. \end{align*} $$ So far so good but we also know that the sequence \((x_n)\) converges to \(x\) and therefore, it is bounded. This means that there exists some bound \(M\) such that \(|(x_n)| \leq M\) and so \(\sqrt{|(x_n)|} \leq \sqrt{M}\) (why?). Since \(x_n \geq 0\), then \(M \geq 0\) and we can remove the term to the get the following inequality: $$ \begin{align*} \lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}} \\ &amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\ \end{align*} $$ We can set \(\lvert x_n - x \rvert\) to anything we like. Particularly we want to set it to a value such that the terms would cancel out and we would get \(\epsilon\) at the end. So let it be \(\epsilon \sqrt{x}\). Remember that \(x\) is a constant so that’s okay. $$ \begin{align*} \lvert \sqrt{x_n} - \sqrt{x} \rvert &amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\ &amp;&lt; \frac{\sqrt{x}\epsilon}{\sqrt{x}} = \epsilon. \end{align*} $$ Formal Proof To show that \(\lim(\sqrt{x_n}) = \sqrt{x}\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that, $$ \begin{align*} \lvert \sqrt{x_n} - \sqrt{x} \rvert &lt; \epsilon \end{align*} $$ To do so, we’ll consider two cases for when \(x = 0\) and \(x &gt; 0\). For case 1, suppose \(x &gt; 0\). We are given that \(\lim x_n = x\). This means that there exists some \(n \geq N\) such that $$ \begin{align*} \lvert x_n - x \rvert &lt; \epsilon \sqrt{x} \quad \text{whenever $n \geq N$}. \end{align*} $$ Now assume that \(N \geq n\), then $$ \begin{align*} &amp;\lvert \sqrt{x_n} - \sqrt{x} \rvert * \frac{\lvert \sqrt{x_n} + \sqrt{x} \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\ &amp;= \frac{\lvert x_n - x \rvert}{\lvert \sqrt{x_n} + \sqrt{x} \rvert} \\ &amp;= \frac{\lvert x_n - x \rvert}{\sqrt{x_n} + \sqrt{x}} \\ &amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \quad \text{($(x_n)$ is bounded and $x_n \geq 0$)} \\ &amp;&lt; \frac{\lvert x_n - x \rvert}{\sqrt{x}} \\ &amp;&lt; \frac{\sqrt{x}{\epsilon}}{\sqrt{x}} = \epsilon, \\ \end{align*} $$ as required. For case 2 when \(x = 0\), we want to prove that $$ \begin{align*} \lvert \sqrt{x_n} - 0 \rvert &amp;&lt; \epsilon \\ \lvert \sqrt{x_n} \rvert &amp;&lt; \epsilon \\ \end{align*} $$ We are given that \(\lim x_n = x\) or \(\lim x_n = 0\). This means that there exist some \(n \geq N\) such that $$ \begin{align*} \lvert x_n - 0 \rvert = \lvert x_n \rvert &amp;&lt; \epsilon^2. \\ \end{align*} $$ Now assume that \(n \geq N\), then $$ \begin{align*} \lvert \sqrt{x_n} \rvert &amp;= \sqrt{x_n} \quad \text{since $x_n \geq 0$}\\ &amp;= \sqrt{|x_n|} \\ &amp;&lt; \sqrt{\epsilon^2} = \epsilon, \end{align*} $$ as required. \(\blacksquare\) References: Understanding Analysis by Stephen Abbott Math of Wrath Youtube Channel]]></summary></entry><entry><title type="html">Bounded Sequences</title><link href="http://localhost:4000/jekyll/update/2024/06/03/analysis-seq-bounded.html" rel="alternate" type="text/html" title="Bounded Sequences" /><published>2024-06-03T01:01:36-07:00</published><updated>2024-06-03T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/03/analysis-seq-bounded</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/03/analysis-seq-bounded.html"><![CDATA[<!------------------------------------------------------------------------------------>
-<h4><b>Definition: Bounded Sequences</b></h4>
-<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-	A sequence \(x_n\) is bounded if there exists a number \(M &gt; 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
-</div>
-<p><br /></p>
-<h4>Proof:</h4>
-<p>Assume \((x_n)\) converges to some limit \(l\). This means that for any \(\epsilon\), there must exist some natural number \(N\) such that if \(n \geq N\), then \(x_n\) will be in the interval \((l -\epsilon, l + \epsilon)\). Since we’re searching for any bound, we can set \(\epsilon\) to any value like 1. Also, whether \(l\) is positive or negative, we can conclude that for all \(n \geq N\) that</p>
-<div>
-  $$
-  \begin{align*}
-  |x_n| \leq |l| + 1
-  \end{align*}
-  $$
-</div>
-<p>holds. Since this bound only applies to the terms when \(n \geq N\), we can take the maximum of all the early terms to up to \(N\) and \(|l|+1\). So,</p>
-<div>
-  $$
-  \begin{align*}
-  M = \max{\{|x_1|, |x_2|, |x_3|, ....,|x_{N+1}, |l| + 1\}}.
-  \end{align*}
-  $$
-</div>
-<p>Therefore, we have \(|x_n| \leq M\) for all \(n \in \mathbf{N}\) as required. \(\blacksquare\).
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References:</b></h4>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition: Bounded Sequences A sequence \(x_n\) is bounded if there exists a number \(M &gt; 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\). Proof: Assume \((x_n)\) converges to some limit \(l\). This means that for any \(\epsilon\), there must exist some natural number \(N\) such that if \(n \geq N\), then \(x_n\) will be in the interval \((l -\epsilon, l + \epsilon)\). Since we’re searching for any bound, we can set \(\epsilon\) to any value like 1. Also, whether \(l\) is positive or negative, we can conclude that for all \(n \geq N\) that $$ \begin{align*} |x_n| \leq |l| + 1 \end{align*} $$ holds. Since this bound only applies to the terms when \(n \geq N\), we can take the maximum of all the early terms to up to \(N\) and \(|l|+1\). So, $$ \begin{align*} M = \max{\{|x_1|, |x_2|, |x_3|, ....,|x_{N+1}, |l| + 1\}}. \end{align*} $$ Therefore, we have \(|x_n| \leq M\) for all \(n \in \mathbf{N}\) as required. \(\blacksquare\). References: Understanding Analysis by Stephen Abbott]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well. For the definitions of sequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion We’ll follow a similar approach to proving the example in here. We want to show that \(\lim (y_n) = l\). So we want to find \(N \geq n\) such that for any \(\epsilon &gt; 0\), $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon. \end{align*} $$ But we know that since \((x_n)\) converges to \(l\), then there must exist an \(n \geq N_1\) such that $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N_1$.} \end{align*} $$ Similarly there must exist some \(n \geq N_2\) such that $$ \begin{align*} \lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N_2$.} \end{align*} $$ Let’s get rid of the absolute value for both inequalities and then add \(l\) to all sides. $$ \begin{align*} -\epsilon &amp;&lt; y_n - l &lt; \epsilon \\ l - \epsilon &amp;&lt; y_n &lt; l + \epsilon \\ \end{align*} $$ We can derive the exact result for \(z_n\) as well. $$ \begin{align*} l - \epsilon &amp;&lt; z_n &lt; l + \epsilon \\ \end{align*} $$ Now from these two inequalities, notice that \(x_n \leq y_n\) and so we can write $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \quad \text{whenever $n \geq N_1$.} \end{align*} $$ and we also have $$ \begin{align*} y_n \leq z_n &lt; l + \epsilon \quad \text{whenever $n \geq N_2$.} \end{align*} $$ Combining both inequalities will get us what we want! let’s expand on this in the formal proof. Formal Proof To show that \(\lim(y_n) = l\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that, $$ \begin{align*} \lvert y_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N$}. \end{align*} $$ To do so, we are given that \(\lim x_n = l\). This means that there exists some \(n \geq N_1\) such that $$ \begin{align*} \lvert x_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N_1$}. \end{align*} $$ Similarly, we are given that $$ \begin{align*} \lvert z_n - l \rvert &lt; \epsilon \quad \text{whenever $n \geq N_2$}. \end{align*} $$ We can re-write the inequalities such that $$ \begin{align*} l - \epsilon &lt; x_n &lt; l + \epsilon \quad \text{whenever $n \geq N_1$} \\ l - \epsilon &lt; z_n &lt; l + \epsilon \quad \text{whenever $n \geq N_2$}. \end{align*} $$ Now assume that \(n \geq \max{(N_1, N_2)}\), using the above inequalities and the fact that \(x_n \leq y_n \leq z_n\), we can see that $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \\ y_n \leq z_n &lt; l + \epsilon. \end{align*} $$ Combining both inequalities, we get $$ \begin{align*} l - \epsilon &lt; x_n \leq y_n \leq z_n &lt; l + \epsilon \\ l - \epsilon &lt; y_n &lt; l + \epsilon \\ - \epsilon &lt; y_n - l &lt; \epsilon \\ |y_n - l| &lt; \epsilon. \end{align*} $$ From this we can conclude that for any \(\epsilon &gt; 0\) there exists an \(N \geq n\) such that \(|y_n - l| &lt; \epsilon\). Therefore, \(\lim y_n = l\) as we wanted to show. \(\blacksquare\) References: Math of Wrath Youtube Channel]]></summary></entry></feed>

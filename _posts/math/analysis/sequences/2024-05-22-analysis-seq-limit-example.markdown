@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Show the Limit"
+title:  "Prove that lim((n+1)/n) = 1"
 date:   2024-05-22 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -16,15 +16,18 @@ For the "show the limit" template, see <a href="https://strncat.github.io/jekyll
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Problem Discussion</b></h4>
-Similar to the previous example the link above, the claim is that it converges to 1. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
+We want to prove that $$\lim\big(\frac{n+1}{n}\big) = 1$$. To do so we need to find $$N \in \mathbf{N}$$ such that for any $$\epsilon > 0$$, we have
 <div>
 $$
 \begin{align*}
-\big\lvert \frac{n+1}{n} - 1 \big\rvert < \epsilon.
+\big\lvert \frac{n+1}{n} - 1 \big\rvert < \epsilon \quad \text{whenever $n \geq N$.}
 \end{align*}
 $$
 </div>
-always holds. This inequality is saying that the terms in the sequence are going to fall within the neighborhood of $$1$$ ($$V_\epsilon(1)$$) for some value $$n \geq N$$. In other words, all the terms starting at $$n \geq N$$ will be within a radius of $$\epsilon$$ around $$a$$. Solving for $$n$$:
+This inequality is implying that the terms in the sequence are going to fall within the neighborhood of $$1$$ ($$V_\epsilon(1)$$) for some value $$n \geq N$$. In other words, all the terms starting at $$n \geq N$$ will be within a radius of $$\epsilon$$ around $$1$$.
+<br>
+<br>
+To find $$N$$, we just need to solve the inequality for $$n$$,
 <div>
 $$
 \begin{align*}
@@ -34,27 +37,28 @@ n &> \frac{1}{\epsilon}. \\
 \end{align*}
 $$
 </div>
-So we want $$n$$ to be greater than $$1/\epsilon$$. So now we are ready to write a formal proof.
+From this we want $$n$$ to be greater than $$1/\epsilon$$ in order to make the inequality works. 
 <!------------------------------------------------------------------------------------>
 <h4><b>Formal Proof</b></h4>
-Let $$\epsilon > 0$$ be arbitrary. Choose a natural number $$N$$ satisfying
-<div>
-$$
-\begin{align*}
-n &> \frac{1}{\epsilon}.
-\end{align*}
-$$
-</div>
-We now verify that this choice has the desired property. Let $$n \geq N$$. Then,
+Let $$\epsilon > 0$$ be arbitrary. Choose a natural number $$N \geq \frac{1}{\epsilon}$$. We now verify that this choice is appropriate. Let $$n \geq N$$. Then,
 <div>
 $$
 \begin{align*}
 n &> \frac{1}{\epsilon} \\
-\frac{1}{n} &< \epsilon.
+\frac{1}{n} &< \epsilon \\
+\frac{n+1}{n} - 1 &< \epsilon.
 \end{align*}
 $$
 </div>
-This means that $$\lvert a_n - 1 \rvert < \epsilon$$ holds as required. $$\blacksquare$$.
+$$\frac{n+1}{n} > 1$$ so we can re-write the last inequality as
+<div>
+$$
+\begin{align*}
+| \frac{n+1}{n} - 1 | &< \epsilon.
+\end{align*}
+$$
+</div>
+And this is what we need to prove that the limit converges to 1 $$\blacksquare$$.
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

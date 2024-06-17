@@ -77,7 +77,7 @@ $$
 \end{align*}
 $$
 </div>
-Now assume that $$N \geq n$$, then
+Now assume that $$n \geq N$$, then
 <div>
 $$
 \begin{align*}

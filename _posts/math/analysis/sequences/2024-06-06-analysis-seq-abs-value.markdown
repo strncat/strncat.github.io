@@ -40,7 +40,7 @@ and this is exactly what we wanted to prove. we're done!
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Formal Proof</b></h4>
-To show that $$\lim(x_n) = 0$$, let $$\epsilon > 0$$ be arbitrary. We want to prove that there exists some $$n \geq N$$ such that,
+To show that $$\lim(x_n) = 0$$, let $$\epsilon > 0$$ be arbitrary. We want to prove that there exists some $$N \in \mathbf{N}$$ such that when $$n \geq N$$, we'll have
 <div>
 $$
 \begin{align*}

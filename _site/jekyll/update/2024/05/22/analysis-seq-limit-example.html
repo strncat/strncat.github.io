@@ -31,7 +31,7 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Show the Limit</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Prove that lim((n+1)/n) = 1</h1>
     <!--
     <p class="post-meta">
       <time class="dt-published" datetime="2024-05-22T01:01:36-07:00" itemprop="datePublished">May 22, 2024
@@ -51,15 +51,18 @@ For the “show the limit” template, see <a href="https://strncat.github.io/je
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Problem Discussion</b></h4>
-<p>Similar to the previous example the link above, the claim is that it converges to 1. So we want to find \(N\) such that for any \(\epsilon &gt; 0\),</p>
+<p>We want to prove that \(\lim\big(\frac{n+1}{n}\big) = 1\). To do so we need to find \(N \in \mathbf{N}\) such that for any \(\epsilon &gt; 0\), we have</p>
 <div>
 $$
 \begin{align*}
-\big\lvert \frac{n+1}{n} - 1 \big\rvert &lt; \epsilon.
+\big\lvert \frac{n+1}{n} - 1 \big\rvert &lt; \epsilon \quad \text{whenever $n \geq N$.}
 \end{align*}
 $$
 </div>
-<p>always holds. This inequality is saying that the terms in the sequence are going to fall within the neighborhood of \(1\) (\(V_\epsilon(1)\)) for some value \(n \geq N\). In other words, all the terms starting at \(n \geq N\) will be within a radius of \(\epsilon\) around \(a\). Solving for \(n\):</p>
+<p>This inequality is implying that the terms in the sequence are going to fall within the neighborhood of \(1\) (\(V_\epsilon(1)\)) for some value \(n \geq N\). In other words, all the terms starting at \(n \geq N\) will be within a radius of \(\epsilon\) around \(1\).
+<br />
+<br />
+To find \(N\), we just need to solve the inequality for \(n\),</p>
 <div>
 $$
 \begin{align*}
@@ -69,27 +72,28 @@ n &amp;&gt; \frac{1}{\epsilon}. \\
 \end{align*}
 $$
 </div>
-<p>So we want \(n\) to be greater than \(1/\epsilon\). So now we are ready to write a formal proof.
+<p>From this we want \(n\) to be greater than \(1/\epsilon\) in order to make the inequality works. 
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Formal Proof</b></h4>
-<p>Let \(\epsilon &gt; 0\) be arbitrary. Choose a natural number \(N\) satisfying</p>
-<div>
-$$
-\begin{align*}
-n &amp;&gt; \frac{1}{\epsilon}.
-\end{align*}
-$$
-</div>
-<p>We now verify that this choice has the desired property. Let \(n \geq N\). Then,</p>
+<p>Let \(\epsilon &gt; 0\) be arbitrary. Choose a natural number \(N \geq \frac{1}{\epsilon}\). We now verify that this choice is appropriate. Let \(n \geq N\). Then,</p>
 <div>
 $$
 \begin{align*}
 n &amp;&gt; \frac{1}{\epsilon} \\
-\frac{1}{n} &amp;&lt; \epsilon.
+\frac{1}{n} &amp;&lt; \epsilon \\
+\frac{n+1}{n} - 1 &amp;&lt; \epsilon.
 \end{align*}
 $$
 </div>
-<p>This means that \(\lvert a_n - 1 \rvert &lt; \epsilon\) holds as required. \(\blacksquare\).
+<p>\(\frac{n+1}{n} &gt; 1\) so we can re-write the last inequality as</p>
+<div>
+$$
+\begin{align*}
+| \frac{n+1}{n} - 1 | &amp;&lt; \epsilon.
+\end{align*}
+$$
+</div>
+<p>And this is what we need to prove that the limit converges to 1 \(\blacksquare\).
 <br />
 <!------------------------------------------------------------------------------------>
 <b>References:</b></p>

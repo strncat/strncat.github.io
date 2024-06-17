@@ -31,17 +31,17 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Sequence Convergence Example 2</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Sequence Convergence Example 3</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-06-06T01:01:36-07:00" itemprop="datePublished">Jun 6, 2024
+      <time class="dt-published" datetime="2024-06-15T01:01:36-07:00" itemprop="datePublished">Jun 15, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbf{N}\), then \(x_n \rightarrow 0\).</b>
+  <b>Show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0.</b>
 </div>
 <p><br />
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
@@ -51,86 +51,86 @@ For the “show the limit” template and an example, see <a href="https://strnc
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Problem Discussion</b></h4>
-<p>We’ll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that \(\lim (x_n) = 0\). So we want to find \(n \geq N\) such that for any \(\epsilon &gt; 0\),</p>
+<p>We’ll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0, so we need to find \(N \in \mathbf{N}\) such that for any \(\epsilon &gt; 0\),</p>
 <div>
 $$
 \begin{align*}
-\lvert x_n - 0 \rvert &lt; \epsilon \\
-\lvert x_n \rvert &lt; \epsilon.
+\lvert \sqrt{n + 1} - \sqrt{n} - 0 \rvert &lt; \epsilon \quad \text{whenever $n &gt; N$}.
 \end{align*}
 $$
 </div>
-<p>We’re given that \((|x_n|)\) converges to zero. So,</p>
+<p>since \(\sqrt{n + 1} &gt; \sqrt{n}\), we can drop the absolute value and then we’ll use the trick of multiplying by the conjugate.</p>
 <div>
 $$
 \begin{align*}
-\lvert |x_n - 0| \rvert &lt; \epsilon \\
-\lvert |x_n| \rvert &lt; \epsilon \\
-\lvert x_n \rvert &lt; \epsilon.
+\lvert \sqrt{n + 1} - \sqrt{n} \rvert &amp;&lt; \epsilon \\
+\left(\frac{\sqrt{n + 1} + \sqrt{n}}{\sqrt{n + 1} + \sqrt{n}}\right) \sqrt{n + 1} - \sqrt{n} &amp;&lt; \epsilon \\
+\frac{1}{\sqrt{n + 1} + \sqrt{n}} &amp;&lt; \epsilon.
 \end{align*}
 $$
 </div>
-<p>and this is exactly what we wanted to prove. we’re done!
+<p>We need to remember here that we’re trying to find an \(n\) that would make the above inequality true. So we want to solve for \(n\). but it’s not easy since we have \(\sqrt{n + 1} + \sqrt{n}\) in the denominator. What can we do to simplify this? The goal here is that want to keep this term under \(\epsilon\) so instead of focusing on the term itself, we could maybe find a slightly bigger term that is easier to work with. For example we can simplify the bound to:</p>
+<div>
+$$
+\begin{align*}
+\frac{1}{\sqrt{n + 1} + \sqrt{n}} &amp;&lt; \frac{1}{\sqrt{n} + \sqrt{n}} \\
+&amp;&lt; \frac{1}{2\sqrt{n}}.
+\end{align*}
+$$
+</div>
+<p>\((\frac{1}{2\sqrt{n}})\) is slightly bigger than the original term and so we’re getting an even bigger term to be less than \(\epsilon\) so this definitely works.</p>
+<div>
+$$
+\begin{align*}
+\frac{1}{2\sqrt{n}} &amp;&lt; \epsilon \\
+\frac{1}{2\epsilon} &amp;&lt; \sqrt{n} \\
+\sqrt{n} &amp;&gt; \frac{1}{2\epsilon} \\
+n &amp;&gt; \frac{1}{4\epsilon^2}.
+\end{align*}
+$$
+</div>
+<p>So now if we let \(n\) be greater than \(N = \frac{1}{4\epsilon^2}\), we’ll get the bound that we want \(\lvert \sqrt{n + 1} - \sqrt{n} \rvert &lt; \epsilon\). In the formal proof, we’ll have to walk backwards.
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Formal Proof</b></h4>
-<p>To show that \(\lim(x_n) = 0\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(N \in \mathbf{N}\) such that when \(n \geq N\), we’ll have</p>
+<p>To show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0, let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(N \in \mathbf{N}\) such that when \(n &gt; N\),</p>
 <div>
 $$
 \begin{align*}
-\lvert x_n - 0 \rvert &lt; \epsilon \\
-\lvert x_n \rvert &lt; \epsilon.
+\lvert \sqrt{n + 1} - \sqrt{n} - 0\rvert &lt; \epsilon.
 \end{align*}
 $$
 </div>
-<p>To do so, we are given that \(\lim |x_n| = 0\). This means that there exists some \(n \geq N\) such that</p>
+<p>Pick \(N = \frac{1}{4\epsilon^2}\). We now verify that this choice is appropriate. Let \(n &gt; N\). Then,</p>
+
 <div>
 $$
 \begin{align*}
-\lvert x_n - 0 \rvert &lt; \epsilon \\
-\lvert |x_n| \rvert &lt; \epsilon \\
-\lvert x_n \rvert &lt; \epsilon.
+\lvert \sqrt{n + 1} - \sqrt{n} \rvert \\
+\left(\frac{\sqrt{n + 1} + \sqrt{n}}{\sqrt{n + 1} + \sqrt{n}}\right) \sqrt{n + 1} - \sqrt{n} \\
+\frac{1}{\sqrt{n + 1} + \sqrt{n}} &amp;&lt; \frac{1}{2\sqrt{n}}.
 \end{align*}
 $$
 </div>
-<p>From this we can conclude that \((x_n)\) converges to 0 as we wanted to show. \(\blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Alternative Proof (Squeeze Theorem)</b></h4>
-<p>To show that \(\lim(x_n) = 0\), let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(n \geq N\) such that,</p>
+<p>But we know since \(n &gt; N\) then \(\frac{1}{2\sqrt{n}} &lt; \frac{1}{2\sqrt{N}}\) and so</p>
 <div>
 $$
 \begin{align*}
-\lvert x_n - 0 \rvert &lt; \epsilon \\
-\lvert x_n \rvert &lt; \epsilon
+\frac{1}{2\sqrt{n}} &lt; \frac{1}{2\sqrt{N}} &amp;&lt; \frac{1}{2\sqrt{\frac{1}{4\epsilon^2}}} \\
+&amp;= \frac{1}{\frac{2}{2\epsilon}} \\
+&amp;= \epsilon. \\
 \end{align*}
 $$
 </div>
-<p>Starting with \(x_n\). We know that \(x_n \leq |x_n|\) for any \(n \in \mathbf{N}\). Similarly \(x_n \geq -|x_n|\) (for the full proof see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">this</a>. So now we have</p>
-<div>
-$$
-\begin{align*}
--|x_n| \leq x_n \leq |x_n|.
-\end{align*}
-$$
-</div>
-<p>We’re given that \((|x_n|)\) converges to 0. Furthermore, by <a href="https://strncat.github.io/jekyll/update/2024/06/01/analysis-seq-algebraic-limit-theorem-iii.html"> the algebraic limit theorem</a> we know that if \(\lim(a_n) = a\), then \(\lim(ca_n) = ca\) Therefore \(-|x_n|\) converges to 0 as well by setting \(c\) to -1. so now we have,</p>
-<div>
-$$
-\begin{align*}
-0 \leq \lim(x_n) \leq 0.
-\end{align*}
-$$
-</div>
-<p>By the <a href="https://strncat.github.io/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html">sequenze theorem for sequences</a>, we can conclude that \((x_n)\) converges to 0 as we wanted to show. \(\blacksquare\)
+<p>and we \(\lvert \sqrt{n + 1} - \sqrt{n} \rvert \leq \epsilon\) as desired. \(\blacksquare\)
 <br />
 <br />
 <!------------------------------------------------------------------------------------>
 <b>References:</b></p>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=AriEk3QD1z0">Math of Wrath Youtube Channel</a></li>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=lA-CQuvlHDw&amp;list=PLztBpqftvzxXAN05Gm3iNmpz9SkVfLNqC&amp;index=8">Math of Wrath Youtube Channel</a></li>
 </ul>
 
   </div><div id="disqus_thread"></div>
@@ -141,8 +141,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/06/06/analysis-seq-abs-value.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/06/06/analysis-seq-abs-value; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/06/15/analysis-seq-sqrt-2.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/06/15/analysis-seq-sqrt-2; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -153,7 +153,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/06/06/analysis-seq-abs-value.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/06/15/analysis-seq-sqrt-2.html" hidden></a>
 </article>
 		 
       </div>

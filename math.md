@@ -181,6 +181,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/06/analysis-seq-abs-value.html">
 		  Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbf{N}\), then \(x_n \rightarrow 0\).
     </a></li>
+    <li><a href="/jekyll/update/2024/06/15/analysis-seq-sqrt-2.html">
+		  Show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0.
+    </a></li>
     <li><a href="/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html">
 		  Prove that \(b > b^2 > b^3 > b^4 > ... > 0\) converges to 0 if \(0 < b < 1\). (Example of 2.5.2).
     </a></li>

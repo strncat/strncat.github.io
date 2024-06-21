@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "If a sequence is Cauchy, then it is convergent"
-date:   2024-06-17 01:01:36 -0700
+date:   2024-06-18 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (2.6.4(b)) If a sequence is Cauchy, then it is convergent.
+  Cauchy Criterion (2.6.4)] A sequence converges if and only if it is a Cauchy sequence.
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -19,7 +19,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Discussion:</b></h4>
-We want to find $$N$$ such that 
+We already did the direction every convergent sequence is a Cauchy sequence in <a href="https://strncat.github.io/jekyll/update/2024/06/17/analysis-seq-convergent-sequences-are-cauchy.html">here</a>. For the second part where we want to prove that a Cauchy sequence converges, we want to find $$N$$ such that 
 <div>
 	$$
 	\begin{align*}
@@ -35,7 +35,7 @@ So now we can go back and figure out what $$N$$ would work here. We have $$|a_n 
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Proof:</b></h4>
-we want to prove that if a sequence is cauchy then it is convergent. Let $$(a_n)$$ be a Cauchy sequence. This means that $$(a_n)$$ is bounded by <a href="https://strncat.github.io/jekyll/update/2024/06/16/analysis-seq-cauchy-bounded.html">the proof we did earlier</a>. And since $$(a_n)$$ is bounded, then by <a href="https://strncat.github.io/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html">the Bolzano-Weierstrass theorem</a>, we know that we must have a subsequence that is convergent. Let this subsequence be $$(a_{n_k})$$ and let $$(a_{n_k}) \rightarrow l$$. We will use $$l$$ as the convergence candidate for $$(a_n)$$.
+The direction, a convergent sequence is a Cauchy sequence is proved <a href="https://strncat.github.io/jekyll/update/2024/06/17/analysis-seq-convergent-sequences-are-cauchy.html">here</a>. For the other direction, we want to prove that if a sequence is Cauchy then it is convergent. Let $$(a_n)$$ be a Cauchy sequence. This means that $$(a_n)$$ is bounded by <a href="https://strncat.github.io/jekyll/update/2024/06/16/analysis-seq-cauchy-bounded.html">the proof we did earlier</a>. And since $$(a_n)$$ is bounded, then by <a href="https://strncat.github.io/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html">the Bolzano-Weierstrass theorem</a>, we know that we must have a subsequence that is convergent. Let this subsequence be $$(a_{n_k})$$ and let $$(a_{n_k}) \rightarrow l$$. We will use $$l$$ as the convergence candidate for $$(a_n)$$.
 <br>
 <br>
 Since $$(a_n)$$ is Cauchy, then there exists $$N \in \mathbf{N}$$ such that 

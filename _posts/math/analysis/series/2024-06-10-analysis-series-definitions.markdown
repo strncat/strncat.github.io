@@ -44,7 +44,7 @@ We define the corresponding sequence of partial sums \((s_m)\) by
 and say that the series \(\sum_{n=1}^{\infty} b_n\) converges to \(B\) if the sequence \((s_m)\) converges to \(B\). In this case, we write \(\sum_{n=1}^{\infty} b_n = B\)
 </div>
 <br>
-What is this even say? Suppose for a concrete example we're given the series
+What is this even saying? Suppose for a concrete example we're given the series
 <div>
     $$
     \begin{align*}
@@ -52,7 +52,7 @@ What is this even say? Suppose for a concrete example we're given the series
     \end{align*}
     $$
 </div>
-We want to know if this sum convergences to something. How to determine if the series convergence or not? The idea is to consider instead the <i>sequence of partial sums</i>. Each term in this sequence is defined as $$s_m = b_1 + b_2 + b_3 + ... + b_m$$. So the first few terms will be:
+We want to know if this sum converges to something. How do determine that? The idea is to consider instead the <i>sequence of partial sums</i>. Each term in this sequence is defined as $$s_m = b_1 + b_2 + b_3 + ... + b_m$$. So the first few terms will be:
 <div>
     $$
     \begin{align*}
@@ -71,7 +71,15 @@ And the sequence of partial sum $$(s_m)$$ is
     \end{align*}
     $$
 </div>
-The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) convergences. If we prove that this sequence converges to 1, then we can conclude by the definition above that the infinite sum $$\sum_{n=1}^{\infty} \frac{1}{2^n}$$ also converges to 1. It's important to stress here that through analyzing the sequence of partial sums, we're going to be able to conclude whether the infinite series itself convergences.
+The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) converges. If we prove that this sequence converges to 1, then we can conclude by the definition above that the infinite sum $$\sum_{n=1}^{\infty} \frac{1}{2^n}$$ also converges to 1. It's important to stress here that through analyzing the sequence of partial sums, we're going to be able to conclude whether the infinite series itself convergences. Putting it in another way,
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  Let \((b_n)\) be a sequence and let the infinite series be of the form
+  $$
+  \begin{align*}
+  \sum_{k=1}^{\infty} b_k = B \quad \text{means that} \quad \lim s_n = B
+  \end{align*}
+  $$
+</div>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

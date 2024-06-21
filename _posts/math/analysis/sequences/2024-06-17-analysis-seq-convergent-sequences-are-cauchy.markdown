@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (2.6.4(a)) A Sequence is convergent if and only if it is a Cauchy sequence.
+  Every convergent sequence is a Cauchy sequence.
 </div>
 <br>
 <!------------------------------------------------------------------------------------>

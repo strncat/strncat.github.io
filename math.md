@@ -163,6 +163,12 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">
 		  [Convergence of Subsequence (2.5.2)] Subsequences of a convergent sequence converge to the same limit as the original sequence.
     </a></li>
+    <li><a href="/jekyll/update/2024/06/19/analysis-seq-subseq-convergence.html">
+		  A sequence \(a_n\) converges to \(a\) if and only if every subsequence of \(a_n\) also converges to \(a\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/06/20/analysis-seq-subseq-divergence.html">
+		  If two subsequences of \(a_n\) converge to different limits, or if any subsequences of \(a_n\) diverges then \(a_n\) diverges.
+    </a></li>
     <li><a href="/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html">
 		  [Bolzano-Weierstrass Theorem (2.5.5)] Every bounded sequence contains a convergent subsequence.
     </a></li>
@@ -172,8 +178,8 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/17/analysis-seq-convergent-sequences-are-cauchy.html">
 		  Every convergent sequence is a Cauchy sequence
     </a></li>
-    <li><a href="/jekyll/update/2024/06/17/analysis-seq-cauchy-sequences-are-convergent.html">
-		  If a sequence is Cauchy, then it is convergent
+    <li><a href="/jekyll/update/2024/06/18/analysis-seq-cauchy-critertion.html">
+		  [Cauchy Criterion (2.6.4)] A sequence converges if and only if it is a Cauchy sequence.
     </a></li>
     <p>
           Exercises
@@ -195,6 +201,9 @@ mathjax: true
     </a></li>
     <li><a href="/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html">
 		  Prove that \(b > b^2 > b^3 > b^4 > ... > 0\) converges to 0 if \(0 < b < 1\). (Example of 2.5.2).
+    </a></li>
+    <li><a href="/jekyll/update/2024/06/21/analysis-seq-1n-diverges.html">
+		  Prove that \((a_n) = (-1)^n\) diverges.
     </a></li>
 	<!-------------------------------------- Series --------------------------------------->
 	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">

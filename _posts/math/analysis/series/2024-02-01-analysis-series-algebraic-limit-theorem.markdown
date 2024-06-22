@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "The Algebraic Limit Theorem for Series"
-date:   2024-06-19 01:01:36 -0700
+date:   2024-02-01 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>[The Algebraic Limit Theorem for Series] If \(\sum_{k=1}^{\infty} a_k = A\) and \(\sum_{k=1}^{\infty} b_k = B\), then</b>
+  [The Algebraic Limit Theorem for Series (2.7.1)] If \(\sum_{k=1}^{\infty} a_k = A\) and \(\sum_{k=1}^{\infty} b_k = B\), then
 	  <ol type="i">
 	    <li>\(\sum_{k=1}^{\infty} ca_k = cA\) and</li>
 	    <li>\(\sum_{k=1}^{\infty} (a_k + b_k) = A + B\).</li>
@@ -25,18 +25,26 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Formal Proof</b></h4>
-To show that $$\sum_{k=1}^{\infty} ca_k = cA$$. This means that we need to prove that $$\lim cs_m = cA$$ where $$s_m$$ is the sequence of partial sums,
+To show that $$\sum_{k=1}^{\infty} ca_k = cA$$, this means that we need to prove that the sequence of partial sums converges to $$cA$$. In other words, $$\lim cs_m = cA$$ where $$(s_m)$$ is the sequence of partial sums and $$s_m$$ is defined as,
 <div>
 $$
 \begin{align*}
-s_m = ca_1 + ca_2 + ca_3 + .... + ca_m,
+t_m = ca_1 + ca_2 + ca_3 + .... + ca_m,
 \end{align*}
 $$
 </div>
-converges to $$A$$. To do this, we are given that $$\sum_{k=1}^{\infty} a_k = A$$. This means that the squence of partial sums also converges $$\lim s_m = A$$. By <a href="https://strncat.github.io/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">Algebraic Limit Theorem for Sequences</a>, we have $$\lim c s_m = c A$$ as required. 
+But we are given that $$\sum_{k=1}^{\infty} a_k = A$$. This means that the sequence of partial sums $$(s_m)$$ where $$s_m$$ is defined as
+<div>
+$$
+\begin{align*}
+s_m = a_1 + a_2 + a_3 + .... + a_m,
+\end{align*}
+$$
+</div>
+converges to $$A$$. Since $$\lim s_m = A$$, then by <a href="https://strncat.github.io/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">Algebraic Limit Theorem for Sequences</a>, we have $$\lim c s_m = c A$$ as required. 
 <br>
 <br>
-To prove (ii), we are given that $$\sum_{k=1}^{\infty} a_k = A$$ which means that the sequence of partial sums converges to $$A$$ or $$\lim s_m = A$$. Similarly, $$\lim t_m = B$$ where $$(t_m)$$ is the sequence of partial sums for the series $$\sum_{k=1}^{\infty} b_k$$. By the Algebraic Limit Theorem for Sequences and since $$\lim s_m = A$$ and $$\lim t_m = B$$, we can conclude that $$\lim s_m + t_m = A + B$$. This implies that the series $$\sum_{k=1}^{\infty} (a_k + b_k) = A + B$$ by definition. $$\blacksquare$$
+To prove (ii), we are given that $$\sum_{k=1}^{\infty} a_k = A$$ which means that the sequence of partial sums converges to $$A$$ or $$\lim s_m = A$$. Similarly, $$\lim t_m = B$$ where $$(t_m)$$ is the sequence of partial sums for the series $$\sum_{k=1}^{\infty} b_k$$. Since $$\lim s_m = A$$ and $$\lim t_m = B$$, then by the Algebraic Limit Theorem, we can conclude that $$\lim s_m + t_m = A + B$$. This implies that the series $$\sum_{k=1}^{\infty} (a_k + b_k) = A + B$$ by definition. $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

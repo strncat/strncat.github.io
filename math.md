@@ -163,12 +163,6 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">
 		  [Convergence of Subsequence (2.5.2)] Subsequences of a convergent sequence converge to the same limit as the original sequence.
     </a></li>
-    <li><a href="/jekyll/update/2024/06/19/analysis-seq-subseq-convergence.html">
-		  A sequence \(a_n\) converges to \(a\) if and only if every subsequence of \(a_n\) also converges to \(a\).
-    </a></li>
-    <li><a href="/jekyll/update/2024/06/20/analysis-seq-subseq-divergence.html">
-		  If two subsequences of \(a_n\) converge to different limits, or if any subsequences of \(a_n\) diverges then \(a_n\) diverges.
-    </a></li>
     <li><a href="/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html">
 		  [Bolzano-Weierstrass Theorem (2.5.5)] Every bounded sequence contains a convergent subsequence.
     </a></li>
@@ -202,6 +196,12 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html">
 		  Prove that \(b > b^2 > b^3 > b^4 > ... > 0\) converges to 0 if \(0 < b < 1\). (Example of 2.5.2).
     </a></li>
+    <li><a href="/jekyll/update/2024/06/19/analysis-seq-subseq-convergence.html">
+		  A sequence \(a_n\) converges to \(a\) if and only if every subsequence of \(a_n\) also converges to \(a\).
+    </a></li>
+    <li><a href="/jekyll/update/2024/06/20/analysis-seq-subseq-divergence.html">
+		  If two subsequences of \(a_n\) converge to different limits, or if any subsequences of \(a_n\) diverges then \(a_n\) diverges.
+    </a></li>
     <li><a href="/jekyll/update/2024/06/21/analysis-seq-1n-diverges.html">
 		  Prove that \((a_n) = (-1)^n\) diverges.
     </a></li>
@@ -213,6 +213,9 @@ mathjax: true
     <p><a href="/jekyll/update/2024/06/10/analysis-series-definitions.html">
           Series Definitions
     </a></p>
+    <li><a href="/jekyll/update/2024/02/01/analysis-series-algebraic-limit-theorem.html">
+		  (2.7.1) The Algebraic Limit Theorem for Series
+    </a></li>
 	<!-------------------------------------- Topology of R --------------------------------------->
 	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
 		<h4><i>Topology of R</i></h4>

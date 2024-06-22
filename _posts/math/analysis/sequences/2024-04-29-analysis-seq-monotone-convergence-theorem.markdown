@@ -35,7 +35,7 @@ $$
 \end{align*}
 $$
 </div>
-Let $$\epsilon > 0$$. First, by <a href="https://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a>, $$s - \epsilon$$ is not an upper bound so we know that there exists some $$(a_N)$$ such that
+Let $$\epsilon > 0$$. First, by <a href="https://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a>, $$s - \epsilon$$ is not an upper bound so we know that there exists some $$a_N$$ such that
 <div>
 $$
 \begin{align*}
@@ -43,7 +43,7 @@ s - \epsilon \leq a_N.
 \end{align*}
 $$
 </div>
-Second, since $$(a_n)$$ is increasing, then we know that if $$n \geq N$$, then
+Second, since $$(a_n)$$ is increasing, then if we let $$n \geq N$$, we will have
 <div>
 $$
 \begin{align*}
@@ -51,7 +51,7 @@ a_N \leq a_n.
 \end{align*}
 $$
 </div>
-Combining both inequalities and adding the fact $$s + \epsilon$$ is an upper bound on the set,
+Combining both inequalities and adding the fact $$s + \epsilon$$ is an upper bound on the set, then
 <div>
 $$
 \begin{align*}

@@ -12,7 +12,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition: Convergence of a Sequence [2.2.3]</b></h4>
+<h4><b>[2.2.3] Definition: Convergence of a Sequence</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   A sequence \((a_n)\) converges to a real number \(a\) if, for every positive number \(\epsilon\), there exists an \(N \in \mathbf{N}\) such that whenever \(n \geq N\) it follows that \(|a_n - a| \leq \epsilon\).
 </div>
@@ -63,7 +63,7 @@ This will certainly require a proof!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition: Bounded Sequences [2.3.1]</b></h4>
+<h4><b>[2.3.1] Definition: Bounded Sequences</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
 	A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
 </div>
@@ -72,7 +72,7 @@ For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/03/an
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Convergent Sequences [2.3.2]</b></h4>
+<h4><b>[2.3.2] Convergent Sequences</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Every convergent sequence is bounded.
 </div>
@@ -88,7 +88,7 @@ For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/12/an
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Monotone Convergence Theorem [2.4.2]</b></h4>
+<h4><b>[2.4.2] Monotone Convergence Theorem</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   If a sequence is monotone and bounded, then it converges.
 </div>
@@ -118,12 +118,19 @@ That's why imposed the order $$n_1 < n_2 < n_3 < ...$$. This just stressed the f
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Convergence of Subsequences [2.5.2]</b></h4>
+<h4><b>[2.5.2] Convergence of Subsequences</b></h4>
 <div style="background-color: #E0FBE2; padding: 15px 15px 15px 15px; border:1px solid black;">
   Subsequences of a convergent sequence converge to the same limit as the original sequence.
 </div>
 <br>
 For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">this</a>.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>[2.6.1] Definition: Cauchy Sequences</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+	A sequence \(a_n\) is called a Cauchy sequence if, for every  \(\epsilon > 0\), there exists an \(N \in \mathbf{N}\) such that whenever \(m, n \geq N\) it follows that \(|a_n - a_m| < \epsilon\).
+</div>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

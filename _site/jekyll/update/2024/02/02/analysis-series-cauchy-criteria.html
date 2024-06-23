@@ -31,17 +31,17 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Cauchy Criteria or Series</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Cauchy Criterion for Series</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-06-20T01:01:36-07:00" itemprop="datePublished">Jun 20, 2024
+      <time class="dt-published" datetime="2024-02-02T00:01:36-08:00" itemprop="datePublished">Feb 2, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  [Cauchy Criteria for Series (2.7.2)] The series \(\sum_{k=1}^{\infty} a_k\) converges if and only if, given \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that whenever \(n &gt; m \geq N\) it follows that
+  [Cauchy Criterion for Series (2.7.2)] The series \(\sum_{k=1}^{\infty} a_k\) converges if and only if, given \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that whenever \(n &gt; m \geq N\) it follows that
   $$
   \begin{align*}
 	  | a_{m+1} + a_{m+2} + ... + a_{n} | &lt;  \epsilon.
@@ -61,24 +61,47 @@ For the “show the limit” template and an example, see <a href="https://strnc
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Formal Proof</b></h4>
-<p>To show that \(\sum_{k=1}^{\infty} ca_k = cA\). This means that we need to prove that \(\lim cs_m = cA\) where \(s_m\) is the sequence of partial sums,</p>
+<p>For the forward direction, suppose that \(\sum_{k=1}^{\infty} a_k\) converges, we will prove that given \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that</p>
 <div>
 $$
 \begin{align*}
-s_m = ca_1 + ca_2 + ca_3 + .... + ca_m,
+| a_{m+1} + a_{m+2} + ... + a_{n} | &lt;  \epsilon \quad \text{whenever $n &gt; m \geq N$}
 \end{align*}
 $$
 </div>
-<p>converges to \(A\). To do this, we are given that \(\sum_{k=1}^{\infty} a_k = A\). This means that the squence of partial sums also converges \(\lim s_m = A\). By <a href="https://strncat.github.io/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">Algebraic Limit Theorem for Sequences</a>, we have \(\lim c s_m = c A\) as required. 
-<br />
-<br />
-To prove (ii), we are given that \(\sum_{k=1}^{\infty} a_k = A\) which means that the sequence of partial sums converges to \(A\) or \(\lim s_m = A\). Similarly, \(\lim t_m = B\) where \((t_m)\) is the sequence of partial sums for the series \(\sum_{k=1}^{\infty} b_k\). By the Algebraic Limit Theorem for Sequences and since \(\lim s_m = A\) and \(\lim t_m = B\), we can conclude that \(\lim s_m + t_m = A + B\). This implies that the series \(\sum_{k=1}^{\infty} (a_k + b_k) = A + B\) by definition. \(\blacksquare\)
+<p>To so do, we’re given that \(\sum_{k=1}^{\infty} a_k\) converges, this means that the sequence of partial sums \((s_m)\) where \(s_m\) is</p>
+<div>
+$$
+\begin{align*}
+s_m = a_1 + a_2 + ... + a_m,
+\end{align*}
+$$
+</div>
+<p>converges. Since the sequence of partial sums converges. Since it converges then by the <a href="https://strncat.github.io/jekyll/update/2024/06/18/analysis-seq-cauchy-critertion.html">Cauchy criterion for sequences</a>, this sequence is also Cauchy. Now, let \(\epsilon &gt; 0\). Because the sequence of partial sums is Cauchy, then by definition we can find  \(N \in \mathbf{N}\) such that if \(n &gt; m \geq N\), we have \(|S_n - S_m| &lt; \epsilon\). Expand \(|S_n - S_m|\) to see that</p>
+<div>
+$$
+\begin{align*}
+|S_n - S_m| &amp;= |(a_1 + a_2 + ... + a_m + ... + a_n) - (a_1 + a_2 + ... + a_m)| \\
+&amp;= |a_{m+1} + ... + a_n|.
+\end{align*}
+$$
+</div>
+<p>Which is what we wanted to show. For the backward direction, Suppose that there exists an \(N \in \mathbf{N}\) such that whenever \(n &gt; m \geq N\) it follows that</p>
+<div>
+$$
+\begin{align*}
+    | a_{m+1} + a_{m+2} + ... + a_{n} | &lt;  \epsilon.
+\end{align*}
+$$
+</div>
+<p>This term \(| a_{m+1} + a_{m+2} + ... + a_{n} |\) is equivalent to \(|S_n - S_m|\) and so \(|S_n - S_m| \leq \epsilon\). This means that the sequence of partial sums \((S_m)\) is a Cauchy sequence by definition. Therefore, by the <a href="https://strncat.github.io/jekyll/update/2024/06/18/analysis-seq-cauchy-critertion.html">Cauchy criterion for sequences</a>, \((S_m)\) converges as we wanted to show. \(\blacksquare\)
 <br />
 <br />
 <!------------------------------------------------------------------------------------>
 <b>References:</b></p>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=wTq6HI9w4n8"></a>Michael Penn's Youtube Channel</li>
 </ul>
 
   </div><div id="disqus_thread"></div>
@@ -89,8 +112,8 @@ To prove (ii), we are given that \(\sum_{k=1}^{\infty} a_k = A\) which means tha
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/06/20/analysis-series-cauchy-criteria.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/06/20/analysis-series-cauchy-criteria; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/02/02/analysis-series-cauchy-criteria.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/02/02/analysis-series-cauchy-criteria; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -101,7 +124,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/06/20/analysis-series-cauchy-criteria.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/02/02/analysis-series-cauchy-criteria.html" hidden></a>
 </article>
 		 
       </div>

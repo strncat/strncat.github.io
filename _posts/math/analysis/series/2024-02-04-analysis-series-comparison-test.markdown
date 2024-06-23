@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "The Comparsion Test for Series"
+title:  "The Comparison Test for Series"
 date:   2024-02-04 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  [The Comparsion Test for Series (2.7.4)] Assume \(a_n\) and \(b_n\) are sequences satisfying \(0 \leq a_n \leq b_n\) for all \(n \in \mathbf{N}\). 
+  [The Comparison Test for Series (2.7.4)] Assume \(a_n\) and \(b_n\) are sequences satisfying \(0 \leq a_n \leq b_n\) for all \(n \in \mathbf{N}\). 
 	  <ol type="i">
 	    <li>If \(\sum_{n=1}^{\infty} b_n\) converges, then \(\sum_{n=1}^{\infty} a_n\) converges.</li>
 	    <li>If \(\sum_{n=1}^{\infty} a_n\) diverges, then \(\sum_{n=1}^{\infty} b_n\) diverges.</li>
@@ -49,5 +49,5 @@ From this we can see that $$|a_{m+1} + a_{m+2} + ... + a_n| < \epsilon$$ which m
 <b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-<li><a href="https://www.youtube.com/watch?v=wTq6HI9w4n8"></a>Michael Penn's Youtube Channel</li>
+<li><a href="https://www.youtube.com/watch?v=wTq6HI9w4n8">Michael Penn's Youtube Channel</a></li>
 </ul>

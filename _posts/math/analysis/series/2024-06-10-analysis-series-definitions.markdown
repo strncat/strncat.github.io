@@ -83,6 +83,18 @@ The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) con
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
+<h4><b>(2.7.5): Definition: The Geometric Series</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  A series is called geometric if it is of the form
+  $$
+  \begin{align*}
+  \sum_{k=1}^{\infty} ar^k = a + ar + ar^2 + ar^3 + ...
+  \end{align*}
+  $$
+</div>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
 <h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>

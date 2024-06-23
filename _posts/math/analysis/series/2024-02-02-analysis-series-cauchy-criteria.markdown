@@ -66,5 +66,5 @@ This term $$| a_{m+1} + a_{m+2} + ... + a_{n} |$$ is equivalent to $$|S_n - S_m|
 <b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-<li><a href="https://www.youtube.com/watch?v=wTq6HI9w4n8"></a>Michael Penn's Youtube Channel</li>
+<li><a href="https://www.youtube.com/watch?v=wTq6HI9w4n8">Michael Penn's Youtube Channel</a></li>
 </ul>

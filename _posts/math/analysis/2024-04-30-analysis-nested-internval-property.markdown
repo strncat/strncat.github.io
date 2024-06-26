@@ -22,7 +22,7 @@ For the definitions of an upper bound and the least upper bound of a set, see <a
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Discussion:</b></h4>
-This is a result that shows that $$\mathbf{R}$$ is definitely complete and has no holes because no matter what nested intervals we have, even if we have an infinite number of these nest intervals, their intersection will still not empty. This result is built on top of the axiom of completeness. Why another result? Because it is more intuitive than the axiom of completeness.
+This is a result that shows that $$\mathbf{R}$$ is definitely complete and has no holes because no matter what nested intervals we have, even if we have an infinite number of these nested intervals, their intersection will not be empty. This result is built on top of the axiom of completeness. Why another result? Because it might be more intuitive think about a never ending nested intervals without ever being empty than thinking about always having a least upper bound for bounded sets.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Proof:</b></h4>

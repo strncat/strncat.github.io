@@ -228,6 +228,12 @@ mathjax: true
     <li><a href="/jekyll/update/2024/02/05/analysis-series-geometric.html">
 		  (2.7.5) The Geometric Series
     </a></li>
+    <li><a href="/jekyll/update/2024/02/06/analysis-series-absolute-convergence-test.html">
+		  (2.7.6) [The Absolute Convergence Test] If the series \(\sum_{n=1}^{\infty}|a_n|\) converges, then \(\sum_{n=1}^{\infty} a_n\) converges as well.
+    </a></li>
+    <li><a href="/jekyll/update/2024/02/07/analysis-series-alternating-series-test.html">
+		  (2.7.7) The Alternating Series Test
+    </a></li>
 	<!-------------------------------------- Topology of R --------------------------------------->
 	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
 		<h4><i>Topology of R</i></h4>

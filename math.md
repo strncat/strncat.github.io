@@ -213,6 +213,9 @@ mathjax: true
     <p><a href="/jekyll/update/2024/06/10/analysis-series-definitions.html">
           Series Definitions
     </a></p>
+    <li><a href="/jekyll/update/2024/02/08/analysis-series-cauchy-condensation-test.html">
+		  (2.4.6) Cauchy Condensation Test
+    </a></li>
     <li><a href="/jekyll/update/2024/02/01/analysis-series-algebraic-limit-theorem.html">
 		  (2.7.1) The Algebraic Limit Theorem for Series
     </a></li>

@@ -63,6 +63,7 @@ We want to know if this sum converges to something. How do determine that? The i
     \end{align*}
     $$
 </div>
+<br>
 And the sequence of partial sum $$(s_m)$$ is
 <div>
     $$
@@ -83,7 +84,7 @@ The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) con
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(2.7.5): Definition: The Geometric Series</b></h4>
+<h4><b>(2.7.5) Definition: The Geometric Series</b></h4>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   A series is called geometric if it is of the form
   $$
@@ -91,6 +92,31 @@ The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) con
   \sum_{k=1}^{\infty} ar^k = a + ar + ar^2 + ar^3 + ...
   \end{align*}
   $$
+</div>
+<br>
+For more about its convergence see <a href="https://strncat.github.io/jekyll/update/2024/02/05/analysis-series-geometric.html">this</a>.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>(2.7.8) Definition: Absolute Convergence</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  If \(\sum_{n=1}^{\infty} |a_n|\) converges, then we say that the original series \(\sum_{n=1}^{\infty} a_n\) <i>converges absolutely</i>. If on the other hand, the series \(\sum_{n=1}^{\infty} |a_n|\) does not converge, then we say that the original series \(\sum_{n=1}^{\infty} a_n\) <i>converges conditionally</i>. 
+</div>
+<br>
+As an example $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$$ converges conditionally while $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n^2}$$ converges absolutely. 
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>(2.7.9) Definition: Rearrangement</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  Let \(\sum_{n=1}^{\infty} a_n\) be a series, A series \(\sum_{n=1}^{\infty} b_n\) is called a rearrangement of \(\sum_{n=1}^{\infty} a_n\) if there exists a one-to-one, onto function \(\mathbf{N} \rightarrow \mathbf{N}\) such that \(b_{f(n)} = a_n\) for all \(n \in \mathbf{N}\). 
+</div>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>(2.7.10) Theorem: Rearrangement</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  If a series converges absolutely, then any rearrangement of this series converges to the same limit.
 </div>
 <br>
 <br>

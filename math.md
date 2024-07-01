@@ -237,13 +237,27 @@ mathjax: true
     <li><a href="/jekyll/update/2024/02/07/analysis-series-alternating-series-test.html">
 		  (2.7.7) The Alternating Series Test
     </a></li>
+	<!-- don't get this one!
+    <li><a href="/jekyll/update/2024/02/07/analysis-series-rearrangement.html">
+		  (2.7.10) If a series converges absolutely, then any rearrangements of this series converges to the same limit.
+    </a></li>
+	-->
 	<!-------------------------------------- Topology of R --------------------------------------->
 	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
 		<h4><i>Topology of R</i></h4>
 	</div>
 	<br>
     <p><a href="/jekyll/update/2024/04/24/analysis-sets-cantor.html">
-          Cantor Sets
+		  Cantor Sets
+    </a></p>
+    <p><a href="/jekyll/update/2024/06/22/analysis-sets-open.html">
+		  Open Sets
+    </a></p>
+    <li><a href="/jekyll/update/2024/06/23/analysis-sets-open-sets-union.html">
+		  (3.2.3) The union of an arbitrary collection of open sets is open and the intersection of a finite collection of open sets is open.
+    </a></li>
+    <p><a href="/jekyll/update/2024/06/24/analysis-sets-limit-points.html">
+		  Limit Points
     </a></p>
   </ol>
 <br>

@@ -66,15 +66,15 @@ Is $$G(n)$$ finite for all $$n$$? and can it be expressed with a simple formula?
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Small Values of $$n$$</b></h4>
+<h4><b>Small Values of \(n\)</b></h4>
 
 We can start by plugging in small values of $$n$$ to see if we can find any pattern. For starters, for any polygon we will need at least 1 guard ($$G(n) \geq 1$$) and at most $$n$$ guards ($$G(n)\leq n$$) (proof?).
 
 For polygons of 3 vertices (triangles), it should be obvious that we will always need 1 guard and so $$G(3)=1$$. Polygons with 4 vertices (Quadrilaterals) can be divided into two groups:
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-11.png" width="60%" class="center"></p>
 <ul>
-        <li> convex quadrilaterals (left figure). Here it is clear that $$G(4)=1$$. </li>
-        <li> quadrilaterals with a reflex vertex (right figure). Recall that a reflex vertex is a vertex where its internal angle is greater that $$\pi$$. A quadrilaterals can only have one reflex vertex and so one guard is still sufficient. </li>
+        <li> convex quadrilaterals (left figure). Here it is clear that \(G(4)=1\). </li>
+        <li> quadrilaterals with a reflex vertex (right figure). Recall that a reflex vertex is a vertex where its internal angle is greater that \(\pi\). A quadrilaterals can only have one reflex vertex and so one guard is still sufficient. </li>
 </ul>
 For polygons of 5 vertices (pentagons) can be divided into:
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-12.png" width="100%" class="center"></p>

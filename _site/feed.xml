@@ -1,4 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-06-26T19:15:28-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Divergence of a Sequence Exercise</title><link href="http://localhost:4000/jekyll/update/2024/06/21/analysis-seq-1n-diverges.html" rel="alternate" type="text/html" title="Divergence of a Sequence Exercise" /><published>2024-06-21T01:01:36-07:00</published><updated>2024-06-21T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/21/analysis-seq-1n-diverges</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/21/analysis-seq-1n-diverges.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-06-30T17:25:13-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Limit Points</title><link href="http://localhost:4000/jekyll/update/2024/06/24/analysis-sets-limit-points.html" rel="alternate" type="text/html" title="Limit Points" /><published>2024-06-24T01:01:36-07:00</published><updated>2024-06-24T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/24/analysis-sets-limit-points</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/24/analysis-sets-limit-points.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  (3.2.4) A point \(x\) is a limit point of a set \(A\) if every \(\epsilon\)-neighborhood \(V_{\epsilon}(x)\) of \(x\) intersects the set \(A\) at some point other than \(x\).
+</div>
+<p><br />
+So for any \(\epsilon &gt; 0\), whenever we take the intersection of this neighborhood of \(x\) with the set \(A\), we ‘ll find points close to \(x\) but not \(x\) itself. \(x\) is also called a cluster point or an accumulation point. The next theorem makes it a little easier to understand. In fact it’s equivalent to the definition above and we’ll prove this.
+<!------------------------------------------------------------------------------------></p>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  (3.2.5) A point \(x\) is a limit point of a set \(A\) if and only if \(x = \lim a_n\) for some sequence \(a_n\) contained in \(A\) satisfying \(a_n \neq x\) for all \(n \in \mathbf{N}\).
+</div>
+<p><br />
+So “\(x\) is a limit point of \(A\)” means that \(x\) is the limit of a sequence in \(A\). The only thing we don’t want is to have any term of that sequence be \(x\) itself. The reason for this is then every member of the set could potentially be a limit point since we can create the sequence \(\{x,x,x,x,x,...\}\) and we don’t want that.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof</b></h4>
+<p>\(\Rightarrow\): Assume that \(x\) is a limit point of \(A\) and so for every \(\epsilon &gt; 0\), the intersection of \(V_{\epsilon}(x)\) with the set \(A\) is nonempty and has an element that is not \(x\). We then want to prove that there is a sequence of points \(a_1, a_2, a_3, ...\) from \(A/\{x\}\) such that \((a_n) \rightarrow x\). Now for each \(n \in \mathbf{N}\), pick a point</p>
+<div>
+$$
+\begin{align*}
+a_n \in V_{1/n}(x) \cap A,
+\end{align*}
+$$
+</div>
+<p>This means that the first element in the sequence is in \(V_1(x)\), the second element is in \(V_{1/2}(x)\). The third element is in \(V_{1/3}(x)\) and so on (We are basically getting closer and closer to \(x\)). This sequence \((a_n)\) coverages to \(x\). To see why, let \(\epsilon &gt; 0\). We can choose \(N\) such that \(N &gt; \frac{1}{\epsilon}\). So now for any \(n &gt; N\),</p>
+<div>
+$$
+\begin{align*}
+|a_n - x| &amp;&lt; \frac{1}{n} \quad \text{ All the elements in $V_{1/n}$ must be within $1/n$ at most from $x$}\\
+&amp;&lt; \frac{1}{N} \\
+&amp;&lt; \frac{1}{1/\epsilon} = \epsilon.
+\end{align*}
+$$
+</div>
+
+<p><br />
+<br />
+\(\Leftarrow\): Assume that \((a_n) \rightarrow x\) where \(a_n \in A\) and \(a_n \neq x\). Let \(V_{\epsilon}\) be arbitrary. We want to prove that there some element from \((a_n)\) in that neighborhood \(V_{\epsilon}\). But since \((a_n) \rightarrow x\), then we know that there exists an \(N \in \mathbf{N}\) such that if \(n \geq N\), we must have \(|a_n - x| \leq \epsilon\). Therefore, for any \(n \geq N\), we know that we have \(a_n \in V_{\epsilon}\).</p>
+
+<p>\(\blacksquare\).
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>Other Definitions and Properties</b></p>
+<ul>
+<li>Fo the definition of open, closed, compact, perfect,...etc sets see <a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-definitions.html">this</a>.</li>
+	
+<li>Fo the absolute value function definition and other properties, see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">this</a>.</li>
+
+<li>For the definitions of sequences, subsequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.</li>
+
+<li>For the definitions of series, and what it means to for a series to converge, see <a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">this</a>.</li>
+
+<li>For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.</li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------------------>
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=RmsvftFNMtE">Wrath of Math Youtube Channel</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(3.2.4) A point \(x\) is a limit point of a set \(A\) if every \(\epsilon\)-neighborhood \(V_{\epsilon}(x)\) of \(x\) intersects the set \(A\) at some point other than \(x\). So for any \(\epsilon &gt; 0\), whenever we take the intersection of this neighborhood of \(x\) with the set \(A\), we ‘ll find points close to \(x\) but not \(x\) itself. \(x\) is also called a cluster point or an accumulation point. The next theorem makes it a little easier to understand. In fact it’s equivalent to the definition above and we’ll prove this. (3.2.5) A point \(x\) is a limit point of a set \(A\) if and only if \(x = \lim a_n\) for some sequence \(a_n\) contained in \(A\) satisfying \(a_n \neq x\) for all \(n \in \mathbf{N}\). So “\(x\) is a limit point of \(A\)” means that \(x\) is the limit of a sequence in \(A\). The only thing we don’t want is to have any term of that sequence be \(x\) itself. The reason for this is then every member of the set could potentially be a limit point since we can create the sequence \(\{x,x,x,x,x,...\}\) and we don’t want that. Proof \(\Rightarrow\): Assume that \(x\) is a limit point of \(A\) and so for every \(\epsilon &gt; 0\), the intersection of \(V_{\epsilon}(x)\) with the set \(A\) is nonempty and has an element that is not \(x\). We then want to prove that there is a sequence of points \(a_1, a_2, a_3, ...\) from \(A/\{x\}\) such that \((a_n) \rightarrow x\). Now for each \(n \in \mathbf{N}\), pick a point $$ \begin{align*} a_n \in V_{1/n}(x) \cap A, \end{align*} $$ This means that the first element in the sequence is in \(V_1(x)\), the second element is in \(V_{1/2}(x)\). The third element is in \(V_{1/3}(x)\) and so on (We are basically getting closer and closer to \(x\)). This sequence \((a_n)\) coverages to \(x\). To see why, let \(\epsilon &gt; 0\). We can choose \(N\) such that \(N &gt; \frac{1}{\epsilon}\). So now for any \(n &gt; N\), $$ \begin{align*} |a_n - x| &amp;&lt; \frac{1}{n} \quad \text{ All the elements in $V_{1/n}$ must be within $1/n$ at most from $x$}\\ &amp;&lt; \frac{1}{N} \\ &amp;&lt; \frac{1}{1/\epsilon} = \epsilon. \end{align*} $$]]></summary></entry><entry><title type="html">(3.2.3) The Union of Open Sets is Open</title><link href="http://localhost:4000/jekyll/update/2024/06/23/analysis-sets-open-sets-union.html" rel="alternate" type="text/html" title="(3.2.3) The Union of Open Sets is Open" /><published>2024-06-23T01:01:36-07:00</published><updated>2024-06-23T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/23/analysis-sets-open-sets-union</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/23/analysis-sets-open-sets-union.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  (3.2.3) (i) The union of an arbitrary collection of open sets is open. (ii) The intersection of a finite collection of open sets is open.
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof</b></h4>
+<p>Let \(\{O_{}: \lambda \in \Lambda\}\) be a collection of open sets and let \(O = \bigcup_{\lambda \in \Lambda}O_{\lambda}\). Let \(a\) be an arbitrary element of \(O\). To show that \(O\) is open, we need to produce an \(\epsilon\)-neighborhood of \(a\) that is contained in \(O\). Since \(a \in O\), then \(a\) must be in at least one particular set \(O_{\lambda'}\). But we know that \(O_{\lambda'}\) is open and so there must exists a neighborhood \(V_{\epsilon}(a) \subseteq O_{\lambda'}\). But since \(O_{\lambda'} \subseteq O\), then \(V_{\epsilon}(a) \subseteq O\) as we wanted to show.
+<br />
+<br />
+For (ii), let \(\{O_1, O_2, ..., O_N\}\) be a finite collection of open sets. We know that \(a \in \bigcap_{k=1}^{N} O_k\). This means that there exists  \(V_{\epsilon_k}(a) \subseteq O_{k}\). But since this is an intersection, the trick is to take the smallest one and therefore let \(\epsilon = min\{\epsilon_1, \epsilon_2, ..., \epsilon_N\}\). Since \(V_{\epsilon}(a)\) is the smallest one now, then we know \(V_{\epsilon}(a) \subseteq V_{\epsilon_k}(a)\) for all \(k\) and so \(V_{\epsilon}(a) \subseteq \bigcap_{k=1}^{N} O_k\) as we wanted to show. \(\blacksquare\).
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>Other Definitions and Properties</b></p>
+<ul>
+<li>Fo the definition of open, closed, compact, perfect,...etc sets see <a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-definitions.html">this</a>.</li>
+	
+<li>Fo the absolute value function definition and other properties, see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">this</a>.</li>
+
+<li>For the definitions of sequences, subsequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.</li>
+
+<li>For the definitions of series, and what it means to for a series to converge, see <a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">this</a>.</li>
+
+<li>For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.</li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------------------>
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=JHCQfwKDG2k&amp;list=PL22w63XsKjqxqaF-Q7MSyeSG1W1_xaQoS&amp;index=22">Michael Penn's Youtube Channel</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(3.2.3) (i) The union of an arbitrary collection of open sets is open. (ii) The intersection of a finite collection of open sets is open. Proof Let \(\{O_{}: \lambda \in \Lambda\}\) be a collection of open sets and let \(O = \bigcup_{\lambda \in \Lambda}O_{\lambda}\). Let \(a\) be an arbitrary element of \(O\). To show that \(O\) is open, we need to produce an \(\epsilon\)-neighborhood of \(a\) that is contained in \(O\). Since \(a \in O\), then \(a\) must be in at least one particular set \(O_{\lambda'}\). But we know that \(O_{\lambda'}\) is open and so there must exists a neighborhood \(V_{\epsilon}(a) \subseteq O_{\lambda'}\). But since \(O_{\lambda'} \subseteq O\), then \(V_{\epsilon}(a) \subseteq O\) as we wanted to show. For (ii), let \(\{O_1, O_2, ..., O_N\}\) be a finite collection of open sets. We know that \(a \in \bigcap_{k=1}^{N} O_k\). This means that there exists \(V_{\epsilon_k}(a) \subseteq O_{k}\). But since this is an intersection, the trick is to take the smallest one and therefore let \(\epsilon = min\{\epsilon_1, \epsilon_2, ..., \epsilon_N\}\). Since \(V_{\epsilon}(a)\) is the smallest one now, then we know \(V_{\epsilon}(a) \subseteq V_{\epsilon_k}(a)\) for all \(k\) and so \(V_{\epsilon}(a) \subseteq \bigcap_{k=1}^{N} O_k\) as we wanted to show. \(\blacksquare\). Other Definitions and Properties Fo the definition of open, closed, compact, perfect,...etc sets see this. Fo the absolute value function definition and other properties, see this.]]></summary></entry><entry><title type="html">Open Sets</title><link href="http://localhost:4000/jekyll/update/2024/06/22/analysis-sets-open.html" rel="alternate" type="text/html" title="Open Sets" /><published>2024-06-22T01:01:36-07:00</published><updated>2024-06-22T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/22/analysis-sets-open</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/22/analysis-sets-open.html"><![CDATA[<h4><b>\(\epsilon\)-neighborhood of \(a\)</b></h4>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  Given \(a \in \mathbf{R}\) and \(\epsilon &gt; 0\), the \(\epsilon\)-neighborhood of \(a\) is the set
+  $$
+  \begin{equation*}
+  V_{\epsilon}(a) = \{x \in \mathbf{R}: |x - a| &lt; \epsilon\}.
+  \end{equation*}
+  $$
+  In other words, \(V_{\epsilon}(a)\) is the open interval \(a - \epsilon, a + \epsilon\), centered at \(a\) with radius \(\epsilon\).
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Open Sets</b></h4>
+<p>Based on the previous defintion, we can now define what it means for a set to be open</p>
+<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  (3.2.1) A set \(O \in \mathbf{R}\) is open if for all points \(a \in O\), there exists an \(\epsilon\)-neighborhood \(V_{\epsilon}(a) \subseteq O\).
+</div>
+<p><br />
+<!--<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/cantor-set-1.png" width="80%" class="center"></p>-->
+What does this mean? Consider the set \((c,d)=\{x \in \mathbf{R}, c &lt; x &lt; d\}\). \((c,d)\) is an open set. To see why, let \(x \in (c,d)\) be arbitrary. Set \(\epsilon = \min\{x - c, d - x\}\), then from this we see that \(V_{\epsilon}(a) \subseteq (c,d)\). For example if you take \((1,2)\) and pick \(x\) to be 1.7, we will then set \(\epsilon\) to be 0.3 which is what we need since \(1.7\pm \epsilon\) will always be 
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[\(\epsilon\)-neighborhood of \(a\) Given \(a \in \mathbf{R}\) and \(\epsilon &gt; 0\), the \(\epsilon\)-neighborhood of \(a\) is the set $$ \begin{equation*} V_{\epsilon}(a) = \{x \in \mathbf{R}: |x - a| &lt; \epsilon\}. \end{equation*} $$ In other words, \(V_{\epsilon}(a)\) is the open interval \(a - \epsilon, a + \epsilon\), centered at \(a\) with radius \(\epsilon\). Open Sets Based on the previous defintion, we can now define what it means for a set to be open (3.2.1) A set \(O \in \mathbf{R}\) is open if for all points \(a \in O\), there exists an \(\epsilon\)-neighborhood \(V_{\epsilon}(a) \subseteq O\). What does this mean? Consider the set \((c,d)=\{x \in \mathbf{R}, c &lt; x &lt; d\}\). \((c,d)\) is an open set. To see why, let \(x \in (c,d)\) be arbitrary. Set \(\epsilon = \min\{x - c, d - x\}\), then from this we see that \(V_{\epsilon}(a) \subseteq (c,d)\). For example if you take \((1,2)\) and pick \(x\) to be 1.7, we will then set \(\epsilon\) to be 0.3 which is what we need since \(1.7\pm \epsilon\) will always be References: Understanding Analysis by Stephen Abbott]]></summary></entry><entry><title type="html">Divergence of a Sequence Exercise</title><link href="http://localhost:4000/jekyll/update/2024/06/21/analysis-seq-1n-diverges.html" rel="alternate" type="text/html" title="Divergence of a Sequence Exercise" /><published>2024-06-21T01:01:36-07:00</published><updated>2024-06-21T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/21/analysis-seq-1n-diverges</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/21/analysis-seq-1n-diverges.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Prove that \((a_n) = (-1)^n\) diverges.
 </div>
 <p><br />
@@ -362,153 +477,4 @@ $$
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 <li><a href="https://www.youtube.com/watch?v=lA-CQuvlHDw&amp;list=PLztBpqftvzxXAN05Gm3iNmpz9SkVfLNqC&amp;index=8">Math of Wrath Youtube Channel</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0. For the definitions of sequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion We’ll follow a similar approach to proving the example in here. We want to show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0, so we need to find \(N \in \mathbf{N}\) such that for any \(\epsilon &gt; 0\), $$ \begin{align*} \lvert \sqrt{n + 1} - \sqrt{n} - 0 \rvert &lt; \epsilon \quad \text{whenever $n &gt; N$}. \end{align*} $$ since \(\sqrt{n + 1} &gt; \sqrt{n}\), we can drop the absolute value and then we’ll use the trick of multiplying by the conjugate. $$ \begin{align*} \lvert \sqrt{n + 1} - \sqrt{n} \rvert &amp;&lt; \epsilon \\ \left(\frac{\sqrt{n + 1} + \sqrt{n}}{\sqrt{n + 1} + \sqrt{n}}\right) \sqrt{n + 1} - \sqrt{n} &amp;&lt; \epsilon \\ \frac{1}{\sqrt{n + 1} + \sqrt{n}} &amp;&lt; \epsilon. \end{align*} $$ We need to remember here that we’re trying to find an \(n\) that would make the above inequality true. So we want to solve for \(n\). but it’s not easy since we have \(\sqrt{n + 1} + \sqrt{n}\) in the denominator. What can we do to simplify this? The goal here is that want to keep this term under \(\epsilon\) so instead of focusing on the term itself, we could maybe find a slightly bigger term that is easier to work with. For example we can simplify the bound to: $$ \begin{align*} \frac{1}{\sqrt{n + 1} + \sqrt{n}} &amp;&lt; \frac{1}{\sqrt{n} + \sqrt{n}} \\ &amp;&lt; \frac{1}{2\sqrt{n}}. \end{align*} $$ \((\frac{1}{2\sqrt{n}})\) is slightly bigger than the original term and so we’re getting an even bigger term to be less than \(\epsilon\) so this definitely works. $$ \begin{align*} \frac{1}{2\sqrt{n}} &amp;&lt; \epsilon \\ \frac{1}{2\epsilon} &amp;&lt; \sqrt{n} \\ \sqrt{n} &amp;&gt; \frac{1}{2\epsilon} \\ n &amp;&gt; \frac{1}{4\epsilon^2}. \end{align*} $$ So now if we let \(n\) be greater than \(N = \frac{1}{4\epsilon^2}\), we’ll get the bound that we want \(\lvert \sqrt{n + 1} - \sqrt{n} \rvert &lt; \epsilon\). In the formal proof, we’ll have to walk backwards. Formal Proof To show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0, let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(N \in \mathbf{N}\) such that when \(n &gt; N\), $$ \begin{align*} \lvert \sqrt{n + 1} - \sqrt{n} - 0\rvert &lt; \epsilon. \end{align*} $$ Pick \(N = \frac{1}{4\epsilon^2}\). We now verify that this choice is appropriate. Let \(n &gt; N\). Then,]]></summary></entry><entry><title type="html">The Bolzano-Weierstrass Theorem</title><link href="http://localhost:4000/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html" rel="alternate" type="text/html" title="The Bolzano-Weierstrass Theorem" /><published>2024-06-14T01:01:36-07:00</published><updated>2024-06-14T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (2.5.5)[Bolzano-Weirstrass Theorem] Every bounded sequence contains a convergent subsequence.
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------>
-For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
-<br />
-For the definitions of sequences, subsequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
-<br />
-For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br /> 
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Problem Discussion:</b></h4>
-<p>This is a great theorem because we’re saying that given any sequence whether convergent or divergent, we can still extract a convergent subsequence from it. For example if we’re given the sequence \(\{0,1,0,1,0,1,0,1,0,1,.....\}\) which clearly won’t converge, we can still make up the subsequence \(\{0,0,0,0,....\}\) which clearly converges to 0. But how do we prove this? This proof relies on the <a href="https://strncat.github.io/jekyll/update/2024/04/30/analysis-nested-internval-property.html">nested interval property</a> which states that the intersection a nested sequence of closed intervals is non-empty. We will construct a subsequence from having many nested intervals and then we’ll use the nested sequence property to conclude something about its convergence.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Proof:</b></h4>
-<p>Let \((a_n)\) be a bounded sequence. By <a href="https://strncat.github.io/jekyll/update/2024/06/03/analysis-seq-bounded.html">theorem 2.3.1</a>, we know that there exists a number \(M &gt; 0\) satisfying \(|a_n| \leq M\) for all \(n \in \mathbf{N}\). We will bisect this closed interval \([-M,M]\) into two closed intervals \([-M,0]\) and \([0,M]\) noting here that the mid point belongs to both intervals. Now, \((a_n)\) has infinitely many terms by definition. So one of these halfs must contain an infinite number of terms of the sequence \((a_n)\). Let this interval be \(I_1\) (Choose the left half if both had infinitely many terms).</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/bolzano-0.png" width="80%" class="center" /></p>
-
-<p>Now, we’re construct a subsequence from \((a_n)\). The first term \(a_{n_1}\) will an arbitrary element chosen from \(I_1\) so \(a_n \in I_1\). Bisect \(I_1\) again into two intervals and let \(I_2\) be the interval containing infinite terms (there should be at least one).</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/bolzano-1.png" width="80%" class="center" /></p>
-
-<p>Let \(a_{n_2}\) be chosen from \(I_2\) such that \(n_2 &gt; n_1\) (Side Note: Remember that \(n_2\) indicates the positon of the element in the subsequence. We can choose \(n_2\) to be bigger than \(n_1\) because \(I_2\) has infinitely many terms so even if \(a_{n_1}\) was really big like \(a_{3435453...}\), we can still find a bigger subscript since there are infinitely many terms. Moreover, our sequence is not monotone so we don’t need to worry about picking an element from the right half before the left half. This doesn’t matter. We only care about respecting the order of the elements in the sequence). 
-<br />
-<br />
-Next, we’re going to bisect \(I_2\) in the same way and choose \(I_3\) to be the half with infinitely many terms.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/bolzano-2.png" width="80%" class="center" /></p>
-
-<p>In general, we will construct the closed interval \(I_k\) by taking the half of interval \(I_{k-1}\) that contains infinitely many terms. We will then construct a subsequence \((a_{n_k})\) such that \(a_k \in I_k\) and</p>
-<div>
-$$
-\begin{align*}
-n_k &gt; n_{k-1} &gt; ... &gt; n_2 &gt; n_1.
-\end{align*}
-$$
-</div>
-<p>Now, we want to prove that \((a_{n_k})\) is a convergent subsequence. To do so, we need to find a candidate for limit. We do know by construction that</p>
-<div>
-	$$
-	\begin{align*}
-	I_1 \supseteq I_2 \supseteq I_3 \supseteq ...
-	\end{align*}
-	$$
-</div>
-<p>This forms a nested sequence of closed intervals and so by the <a href="https://strncat.github.io/jekyll/update/2024/04/30/analysis-nested-internval-property.html">Nested Interval Property</a>, there exits at least one point \(x \in \mathbf{R}\) such that it is contained in every interval \(I_k\). So let’s prove that \((a_{n_k}) \rightarrow x\).
-<br />
-<br />
-Let \(\epsilon &gt; 0\) be arbitrary chosen. We will show that there exists a number \(N \in \mathbf{N}\) such that for any \(k \geq N\), we have</p>
-<div>
-	$$
-	\begin{align*}
-	|a_{n_k} - x| \leq \epsilon.
-	\end{align*}
-	$$
-</div>
-<p>To see this, we know by construction that the length of interval \(I_k\) is \(M(1/2)^{k-1}\). But we also know that \((M(1/2)^{k-1}) \rightarrow 0\) (TODO: link). This means that the intervals are getting smaller and smaller until the length of these intervals converges to 0. So in this case, just choose \(N\) such that when \(k \geq N\), the length of interval \(I_k\) is less than \(\epsilon\). Even though we chose the intervals to have length less than \(\epsilon\), we still have \(a_{n_k} \in I_k\) by construction and we still have \(x \in I_k\) by the Nested Interval Property. But since the interval length is less than \(\epsilon\), then the distance between \(a_{n_k}\) and \(x\) must be less than \(\epsilon\) or in other words \(|a_{n_k} - x| \leq \epsilon\) as wanted to show. Therefore, \((a_{n_k}) \rightarrow x\). \(\blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(2.5.5)[Bolzano-Weirstrass Theorem] Every bounded sequence contains a convergent subsequence. For the absolute value function definition and other properties see here. For the definitions of sequences, subsequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion: This is a great theorem because we’re saying that given any sequence whether convergent or divergent, we can still extract a convergent subsequence from it. For example if we’re given the sequence \(\{0,1,0,1,0,1,0,1,0,1,.....\}\) which clearly won’t converge, we can still make up the subsequence \(\{0,0,0,0,....\}\) which clearly converges to 0. But how do we prove this? This proof relies on the nested interval property which states that the intersection a nested sequence of closed intervals is non-empty. We will construct a subsequence from having many nested intervals and then we’ll use the nested sequence property to conclude something about its convergence. Proof: Let \((a_n)\) be a bounded sequence. By theorem 2.3.1, we know that there exists a number \(M &gt; 0\) satisfying \(|a_n| \leq M\) for all \(n \in \mathbf{N}\). We will bisect this closed interval \([-M,M]\) into two closed intervals \([-M,0]\) and \([0,M]\) noting here that the mid point belongs to both intervals. Now, \((a_n)\) has infinitely many terms by definition. So one of these halfs must contain an infinite number of terms of the sequence \((a_n)\). Let this interval be \(I_1\) (Choose the left half if both had infinitely many terms).]]></summary></entry><entry><title type="html">Convergence of Subsequences: Example</title><link href="http://localhost:4000/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html" rel="alternate" type="text/html" title="Convergence of Subsequences: Example" /><published>2024-06-13T01:01:36-07:00</published><updated>2024-06-13T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Let \(0 &lt; b &lt; 1\). Show that the sequence
-  $$
-  \begin{align*}
-  b &gt; b^2 &gt; b^3 &gt; b^4 &gt; ... &gt; 0,
-  \end{align*}
-  $$
-  converges to 0.
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------>
-For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
-<br />
-For the definitions of sequences, subsequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
-<br />
-For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br /> 
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Problem Discussion:</b></h4>
-<p>This was really tricky. We are given a sequence and to find its limit, the idea here is to extract a subsequence and then concluding that it also converges to the same limit as the original sequence by theorem 2.5.2 which says that subsequences of a convergent sequence converge to the same limit as the original sequence. But then we can also find the limit of the subsequence using a differen path. So’ll end up with two limits for the same subsequence. This is impossible since limits are unique and this will give us a direct us. This final answer is only the limit of the subsequence but also the limit of the sequence itself.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Proof:</b></h4>
-<p>Let \((b^n)\) is the sequence defined above. This sequence is decreasing and bounded below by definition. By the <a href="https://strncat.github.io/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">monotone convergence theorem</a>, \((b^n)\) convergences to some number \(l\) such that \(b &gt; l \geq 0\). To compute \(l\), let \((b^{2n})\) be a subsequence of \((b^n)\). The terms of \((b^{2n})\) are</p>
-<div>
-$$
-\begin{align*}
-b^2 &gt; b^4 &gt; b^6 &gt; ... &gt; 0.
-\end{align*}
-$$
-</div>
-<p>Since \((b^{2n})\) is a subsequence of \((b^n)\), then by <a href="https://strncat.github.io/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">theorem 2.5.2</a>, we must have that \((b^{2n}) \rightarrow l\). 
-<br /><br />
-But, note that \(b^{2n} = b^nb^n\). So we can use the <a href="https://strncat.github.io/jekyll/update/2024/06/01/analysis-seq-algebraic-limit-theorem-iii.html">algebraic limit theorem</a> to conclude that \((b^{2n}) \rightarrow l*l = l^2\). So now we arrived at two results. First \((b^{2n}) \rightarrow l\) and now \((b^{2n}) \rightarrow l^2\). But we know that the limit of a sequence is unique from <a href="https://strncat.github.io/jekyll/update/2024/04/27/analysis-seq-limits-unique.html">uniqueness of limits theorem (2.2.7)</a>, so we must have that \(l^2 = l\) and therefore \(l = 0\).</p>
-
-<p>\(\blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Let \(0 &lt; b &lt; 1\). Show that the sequence $$ \begin{align*} b &gt; b^2 &gt; b^3 &gt; b^4 &gt; ... &gt; 0, \end{align*} $$ converges to 0. For the absolute value function definition and other properties see here. For the definitions of sequences, subsequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion: This was really tricky. We are given a sequence and to find its limit, the idea here is to extract a subsequence and then concluding that it also converges to the same limit as the original sequence by theorem 2.5.2 which says that subsequences of a convergent sequence converge to the same limit as the original sequence. But then we can also find the limit of the subsequence using a differen path. So’ll end up with two limits for the same subsequence. This is impossible since limits are unique and this will give us a direct us. This final answer is only the limit of the subsequence but also the limit of the sequence itself. Proof: Let \((b^n)\) is the sequence defined above. This sequence is decreasing and bounded below by definition. By the monotone convergence theorem, \((b^n)\) convergences to some number \(l\) such that \(b &gt; l \geq 0\). To compute \(l\), let \((b^{2n})\) be a subsequence of \((b^n)\). The terms of \((b^{2n})\) are $$ \begin{align*} b^2 &gt; b^4 &gt; b^6 &gt; ... &gt; 0. \end{align*} $$ Since \((b^{2n})\) is a subsequence of \((b^n)\), then by theorem 2.5.2, we must have that \((b^{2n}) \rightarrow l\). But, note that \(b^{2n} = b^nb^n\). So we can use the algebraic limit theorem to conclude that \((b^{2n}) \rightarrow l*l = l^2\). So now we arrived at two results. First \((b^{2n}) \rightarrow l\) and now \((b^{2n}) \rightarrow l^2\). But we know that the limit of a sequence is unique from uniqueness of limits theorem (2.2.7), so we must have that \(l^2 = l\) and therefore \(l = 0\).]]></summary></entry><entry><title type="html">Convergent Sequences are bounded [2.3.2]</title><link href="http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html" rel="alternate" type="text/html" title="Convergent Sequences are bounded [2.3.2]" /><published>2024-06-12T01:01:36-07:00</published><updated>2024-06-12T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b> Every convergent sequence is bounded.</b>
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------>
-For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
-<br />
-For the definitions and theorems of sequences, subsequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
-<br />
-For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br /> 
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Proof:</b></h4>
-<p>Let \((a_n)\) be a sequence that convergences to some number \(l\). By <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">definition (2.2.3)</a>, we know that there exists an \(N \in \mathbf{N}\) such that if \(n \geq N\), then for any \(\epsilon &gt; 0\), we have \(|a_n - l| \leq \epsilon\). If we let \(\epsilon = 1\), then we can conclude that \(a_n\) is in the interval \((l - 1, l + 1)\). Since we don’t know if \(l\) if positive or negative, we can just use \(|l|+1\) (why?) and conclude</p>
-<div>
-$$
-\begin{align*}
-|x_n| &lt; |l| + 1 \text{whenever $n \geq N$}.
-\end{align*}
-$$
-</div>
-<p>For the terms that come before \(N\), let \(M = \max\{|x_1|,|x_2|,...,|x_{N-1}|, |l|+1\}\) and pick \(M\) to be the new bound such that</p>
-<div>
-$$
-\begin{align*}
-|x_n| &lt; M \quad \text{whenever $n \in \mathbf{N}$}.
-\end{align*}
-$$
-</div>
-<p>\(\blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Every convergent sequence is bounded. For the absolute value function definition and other properties see here. For the definitions and theorems of sequences, subsequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Proof: Let \((a_n)\) be a sequence that convergences to some number \(l\). By definition (2.2.3), we know that there exists an \(N \in \mathbf{N}\) such that if \(n \geq N\), then for any \(\epsilon &gt; 0\), we have \(|a_n - l| \leq \epsilon\). If we let \(\epsilon = 1\), then we can conclude that \(a_n\) is in the interval \((l - 1, l + 1)\). Since we don’t know if \(l\) if positive or negative, we can just use \(|l|+1\) (why?) and conclude $$ \begin{align*} |x_n| &lt; |l| + 1 \text{whenever $n \geq N$}. \end{align*} $$ For the terms that come before \(N\), let \(M = \max\{|x_1|,|x_2|,...,|x_{N-1}|, |l|+1\}\) and pick \(M\) to be the new bound such that $$ \begin{align*} |x_n| &lt; M \quad \text{whenever $n \in \mathbf{N}$}. \end{align*} $$ \(\blacksquare\) References: Understanding Analysis by Stephen Abbott]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0. For the definitions of sequences and what it means to for a sequence to converge, see this. For the “show the limit” template and an example, see this. Problem Discussion We’ll follow a similar approach to proving the example in here. We want to show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0, so we need to find \(N \in \mathbf{N}\) such that for any \(\epsilon &gt; 0\), $$ \begin{align*} \lvert \sqrt{n + 1} - \sqrt{n} - 0 \rvert &lt; \epsilon \quad \text{whenever $n &gt; N$}. \end{align*} $$ since \(\sqrt{n + 1} &gt; \sqrt{n}\), we can drop the absolute value and then we’ll use the trick of multiplying by the conjugate. $$ \begin{align*} \lvert \sqrt{n + 1} - \sqrt{n} \rvert &amp;&lt; \epsilon \\ \left(\frac{\sqrt{n + 1} + \sqrt{n}}{\sqrt{n + 1} + \sqrt{n}}\right) \sqrt{n + 1} - \sqrt{n} &amp;&lt; \epsilon \\ \frac{1}{\sqrt{n + 1} + \sqrt{n}} &amp;&lt; \epsilon. \end{align*} $$ We need to remember here that we’re trying to find an \(n\) that would make the above inequality true. So we want to solve for \(n\). but it’s not easy since we have \(\sqrt{n + 1} + \sqrt{n}\) in the denominator. What can we do to simplify this? The goal here is that want to keep this term under \(\epsilon\) so instead of focusing on the term itself, we could maybe find a slightly bigger term that is easier to work with. For example we can simplify the bound to: $$ \begin{align*} \frac{1}{\sqrt{n + 1} + \sqrt{n}} &amp;&lt; \frac{1}{\sqrt{n} + \sqrt{n}} \\ &amp;&lt; \frac{1}{2\sqrt{n}}. \end{align*} $$ \((\frac{1}{2\sqrt{n}})\) is slightly bigger than the original term and so we’re getting an even bigger term to be less than \(\epsilon\) so this definitely works. $$ \begin{align*} \frac{1}{2\sqrt{n}} &amp;&lt; \epsilon \\ \frac{1}{2\epsilon} &amp;&lt; \sqrt{n} \\ \sqrt{n} &amp;&gt; \frac{1}{2\epsilon} \\ n &amp;&gt; \frac{1}{4\epsilon^2}. \end{align*} $$ So now if we let \(n\) be greater than \(N = \frac{1}{4\epsilon^2}\), we’ll get the bound that we want \(\lvert \sqrt{n + 1} - \sqrt{n} \rvert &lt; \epsilon\). In the formal proof, we’ll have to walk backwards. Formal Proof To show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0, let \(\epsilon &gt; 0\) be arbitrary. We want to prove that there exists some \(N \in \mathbf{N}\) such that when \(n &gt; N\), $$ \begin{align*} \lvert \sqrt{n + 1} - \sqrt{n} - 0\rvert &lt; \epsilon. \end{align*} $$ Pick \(N = \frac{1}{4\epsilon^2}\). We now verify that this choice is appropriate. Let \(n &gt; N\). Then,]]></summary></entry></feed>

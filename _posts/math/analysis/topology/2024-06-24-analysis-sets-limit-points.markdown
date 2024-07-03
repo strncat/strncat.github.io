@@ -47,8 +47,6 @@ $$\blacksquare$$.
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>
-<li>Fo the definition of open, closed, compact, perfect,...etc sets see <a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-definitions.html">this</a>.</li>
-	
 <li>Fo the absolute value function definition and other properties, see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">this</a>.</li>
 
 <li>For the definitions of sequences, subsequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.</li>

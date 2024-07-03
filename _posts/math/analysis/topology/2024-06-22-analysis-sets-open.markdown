@@ -13,7 +13,7 @@ mathjax: true
   V_{\epsilon}(a) = \{x \in \mathbf{R}: |x - a| < \epsilon\}.
   \end{equation*}
   $$
-  In other words, \(V_{\epsilon}(a)\) is the open interval \(a - \epsilon, a + \epsilon\), centered at \(a\) with radius \(\epsilon\).
+  In other words, \(V_{\epsilon}(a)\) is the open interval \((a - \epsilon, a + \epsilon)\), centered at \(a\) with radius \(\epsilon\).
 </div>
 <br>
 <!------------------------------------------------------------------------------------>

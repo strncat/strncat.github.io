@@ -276,10 +276,11 @@ mathjax: true
     <li><a href="/jekyll/update/2024/06/29/analysis-sets-closure-is-closed-and-smallest.html">
 		  (3.2.12) For any \(A \subseteq R\), the closure \(\overline{A}\) is a closed set and is the smallest closed set containing \(A\).
     </a></li>
-    <li><a href="/jekyll/update/2024/06/30/analysis-sets-complement.html">
+    ------->
+
+	<li><a href="/jekyll/update/2024/06/30/analysis-sets-complement.html">
 		  (3.2.13) A set \(O\) is open if and only if \(O^c\) is closed. Likewise, a set \(F\) is closed if and only if \(F^c\) is open.
     </a></li>
-	------------>
 
   </ol>
 <br>

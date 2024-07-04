@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The complement of an open set is closed and the complement of a closed set is open"
-date:   2024-06-29 01:01:36 -0700
+date:   2024-06-30 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
@@ -11,18 +11,13 @@ mathjax: true
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Proof</b></h4>
-Let $$O$$ be an open set. We need to prove that $$O^c$$ is a closed set. To do so, we need to prove that $$O^c$$ contains all of its limit points. Let $$x$$ be an arbitrary limit point of $$O^c$$. By the definition of a limit point, every $$\epsilon$$-neighborhood of $$x$$ intersects with $$O^c$$ at some point that is not $$x$$.   
-
-
-
-Suppose $$L$$ is the set of limit points of $$A$$. The closure of $$\overline{A}$$ contains both $$L$$ and $$A$$ by the definition of a closure. 
-<div>
-$$
-\begin{align*}
-V_{\epsilon}(1/n) \cap A = \{\frac{1}{n}\}.
-\end{align*}
-$$
-</div> 
+Let $$O \in \mathbf{R}$$ be an open set. We need to prove that $$O^c$$ is a closed set. To do so, we need to show that $$O^c$$ contains all of its limit points. Let $$x$$ be an arbitrary limit point of $$O^c$$. Now suppose for the sake of contradiction that $$x \notin O^c$$ so $$x \in O$$. By the definition of an open set, this means that there exists some $$\delta$$-neighborhood, $$V_{\delta}(x)$$, of $$x$$ such that $$V_{\delta}(x) \subseteq O$$. By the definition of a limit point, there exists a sequence $$(a_n)$$ such that $$(a_n) \rightarrow x$$ and $$a_n \in O^c$$ and $$x$$ is not a term of the sequence. This implies that for any $$\epsilon > 0$$, we must have an $$N \in \mathbf{N}$$ such that when $$n > N$$, $$|a_n - x| \leq \epsilon$$. But if we set $$\epsilon = \delta$$, then $$a_n \in (x - \delta, x + \delta)$$. This means that $$(a_n)$$ could not possibly converge since the terms in that interval are in $$O$$ and not $$O^c$$ because we earlier said that $$V_{\delta}(x) \subseteq O$$. This is a contradiction and so $$x \in O$$.
+<br>
+<br>
+For the other direction. Suppose that $$O^c$$ is closed. We need to prove that $$O$$ is open. Then by the definition of an open set, given an element $$x \in O$$, we need to produce an $$\epsilon$$-neighborhood of $$x$$ such that $$V_{\epsilon}(x) \subseteq O$$. Since we assumed that $$O^c$$ is closed, then $$O^c$$ must contains all of its limits points and so $$x$$ is not a limit point of $$O^c$$. The definition of a limit point states that if $$x$$ was a limit point, then every $$\epsilon$$-neighborhood of $$x$$ intersects $$O^c$$ at some point other than $$x$$ but $$x$$ is not a limit point of $$O^c$$ and so there exists some $$V_{\epsilon}(x)$$ that doesn't intersect $$O^c$$ and therefore $$V_{\epsilon}(x) \in O$$.
+<br>
+<br>
+For the second statement, it follows from the fact that $$(O^c)^c = O$$. $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -42,4 +37,5 @@ $$
 <b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Wrath of Math Youtube Channel</a></li>
 </ul>

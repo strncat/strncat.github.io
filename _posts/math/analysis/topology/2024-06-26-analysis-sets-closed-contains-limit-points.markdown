@@ -9,7 +9,7 @@ mathjax: true
   Prove that a set \(F \subseteq \mathbf{R}\) is closed if and only if it contains its limit points.
 </div>
 <br>
-This was listed in the book as a definition but I was wondering why it's true. luckily I found this nice proof <a href="https://www.youtube.com/watch?v=Mh1noyFVNVg">online</a> and it goes like this:
+This was listed in the book as a definition but I was wondering why it's true. I did find the following proof <a href="https://www.youtube.com/watch?v=Mh1noyFVNVg">online</a> that relies on the fact that a set $$O$$ is open if and only if $$O^c$$ is closed. But in the book we proved the previous statement using the definition that closed sets contain their limit points. So it's circular and we just have to assume one to get the other. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

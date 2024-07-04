@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Bounded Sets Definitions"
+title:  "Bounds Definitions"
 date:   2024-05-03 01:01:36 -0700
 categories: jekyll update
 mathjax: true

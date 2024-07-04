@@ -53,11 +53,11 @@ mathjax: true
     </a></li>
 	<!-------------------------------------- Bounds --------------------------------------->
 	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
-		<h4><i>Bounded Sets</i></h4>
+		<h4><i>Upper and Lower Bounds</i></h4>
 	</div>
 	<br>
     <p><a href="/jekyll/update/2024/05/03/analysis-set-bounded.html">
-          Bounded Sets Definitions
+          Bounds Definitions
     </a></p>
     <li><a href="/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">
           [Lemma 1.3.8] If \(s\) is an upper bound for \(A\), then \(s = \sup A\) if and only if for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon < a\).
@@ -281,6 +281,10 @@ mathjax: true
 	<li><a href="/jekyll/update/2024/06/30/analysis-sets-complement.html">
 		  (3.2.13) A set \(O\) is open if and only if \(O^c\) is closed. Likewise, a set \(F\) is closed if and only if \(F^c\) is open.
     </a></li>
+	
+    <p><a href="/jekyll/update/2024/07/01/analysis-sets-compact.html">
+		  Compact Sets
+    </a></p>
 
   </ol>
 <br>

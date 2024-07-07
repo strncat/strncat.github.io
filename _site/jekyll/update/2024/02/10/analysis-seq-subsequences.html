@@ -31,87 +31,47 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">The Algebraic Limit Theorem (i)</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Subsequences</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-05-30T01:01:36-07:00" itemprop="datePublished">May 30, 2024
+      <time class="dt-published" datetime="2024-02-10T00:01:36-08:00" itemprop="datePublished">Feb 10, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>[The Algebraic Limit Theorem] Let \(\lim a_n = a\) and \(\lim b_n = a\). Then,</b>
-	  <ol type="i">
-	    <li>\(\lim (ca_n) = ca\) for all \(c \in \mathbf{R}\);</li>
-	    <li>\(\lim (a_n + b_n) = a + b\);</li>
-	    <li>\(\lim (a_nb_n) = ab\);</li>
-	    <li>\(\lim (a_n/b_n) = a\);</li>
-	  </ol>
+    <!------------------------------------------------------------------------------------>
+<h4><b>Definition: Subsequence</b></h4>
+<div style="background-color: #E0FBE2; padding: 15px 15px 15px 15px; border:1px solid black;">
+	Let \(a_n\) be a sequence of real numbers, and let \(n_1 &lt; n_2 &lt; n_3 &lt; n_4 &lt; n_5 &lt; ...\) be an increasing sequence of natural numbers. Then the sequence
+		  $$
+		  \begin{align*}
+		  (a_{n_1}, a_{n_2}, a_{n_3}, a_{n_4}, a_{n_5} ...)
+		  \end{align*}
+		  $$
+    is called a <i>subsequence</i> of \((a_n)\) and is denoted by \((a_{nk})\), where \(k \in \mathbf{N}\) indexes the subsequence.
 </div>
 <p><br />
-For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>, for subsequences see <a href="https://strncat.github.io/jekyll/update/2024/02/10/analysis-seq-subsequences.html">this</a>.
+It’s important to note that the order of the terms in the subsequence is the same as the original sequence and repetitions are not allowed. For example if \((a_n) = (1,2,3,4,5,6,.....)\), then \((2,4,6,..)\) is a valid subsequence while \((4, 6, 2...)\) is not. \((2,2,2,2)\) is not either.
 <br />
-For the “show the limit” template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
+<br />
+The notation might be confusing. The subscripts \(n_1, n_2, n_3, ...\) refer to the positions of the terms in the original sequence. For example, if \(n_1\) is 6, this means that the first term in the subsequence will be the 6th term from the original sequence and write  \(a_{n_1} = a_{6}\). If \(a_{n_2} = a_8\), this the second term in the subsequence will be the eighth term 
+<br />
+<br />
+The imposed the order on the subscripts \(n_1 &lt; n_2 &lt; n_3 &lt; ...\) just stresses the fact that we can’t go backward in the original sequence and we must always select terms moving forward. For example we must have \(n_3 \geq 3\) meaning that the third term of the subsequence must be at least the third term of the original sequence or later. Why? If the third term was the first term of the original sequence then, this means that the first two terms from the subsequence must’ve been picked up from later terms in the sequence. Therefore we must always have \(n_k \geq k\). 
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Problem Discussion</b></h4>
-<p>Similar to the previous two examples in <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">here</a> and <a href="https://strncat.github.io/jekyll/update/2024/05/22/analysis-seq-limit-example.html">here</a>, we’re going to use the template after working on finding the right \(N\) value. For (i) we want to show that \(\lim (ca_n) = ca\). So we want to find \(N\) such that for any \(\epsilon &gt; 0\),</p>
-<div>
-$$
-\begin{align*}
-\big\lvert ca_n - ca \big\rvert &lt; \epsilon.
-\end{align*}
-$$
+<h4><b>[2.5.2] Convergence of Subsequences</b></h4>
+<div style="background-color: #E0FBE2; padding: 15px 15px 15px 15px; border:1px solid black;">
+  Subsequences of a convergent sequence converge to the same limit as the original sequence.
 </div>
-<p>always holds. Solving for \(n\):</p>
-<div>
-$$
-\begin{align*}
-\big\lvert ca_n - ca \big\rvert &amp;&lt; \epsilon \\
-\big\lvert c \big\rvert \big\lvert a_n - a \big\rvert &amp;&lt; \epsilon \\
-\big\lvert a_n - a \big\rvert &amp;&lt; \frac{\epsilon}{|c|}.
-\end{align*}
-$$
-</div>
-<p>So now we are ready to write a formal proof.
+<p><br />
+For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">this</a>.
+<br />
 <br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Formal Proof</b></h4>
-<p>Let \(\epsilon &gt; 0\) be arbitrary. Choose a natural number \(N\) satisfying</p>
-<div>
-$$
-\begin{align*}
-n &amp;&gt; \frac{\epsilon}{|c|}.
-\end{align*}
-$$
-</div>
-<p>We now verify that this choice has the desired property. Let \(n \geq N\). Then,</p>
-<div>
-$$
-\begin{align*}
-\big\lvert ca_n - ca \big\rvert = \big\lvert c \big\rvert \big\lvert a_n - a \big\rvert &lt; \big\lvert c \big\rvert \frac{\epsilon}{|c|}. \\
-\end{align*}
-$$
-</div>
-<p>This means that</p>
-<div>
-$$
-\begin{align*}
-\big\lvert ca_n - ca \big\rvert &lt; \epsilon. \\
-\end{align*}
-$$
-</div>
-<p>as required. \(\blacksquare\)
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Notes</b></h4>
-<p>I’m not too comfortable yet with this proof. I don’t know why it was okay to keep \(|a_n - a|\) as is?
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
+<h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 </ul>
@@ -124,8 +84,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/02/10/analysis-seq-subsequences.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/02/10/analysis-seq-subsequences; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -136,7 +96,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/02/10/analysis-seq-subsequences.html" hidden></a>
 </article>
 		 
       </div>

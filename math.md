@@ -131,7 +131,7 @@ mathjax: true
 	</div>
 	<br>
     <p><a href="/jekyll/update/2024/05/21/analysis-seq-definitions.html">
-          Sequences and Subsequences Definitions
+          Sequences Definitions
     </a></p>
     <li><a href="/jekyll/update/2024/05/12/analysis-seq-limit-template.html">
           Show the Limit Template + Example \(\lim\big(\frac{1}{\sqrt{n}}\big)= 0\).
@@ -160,6 +160,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">
 		  [Monotone Convergence Theorem (2.4.2)] If a sequence is monotone and bounded, then it converges.
     </a></li>
+    <p><a href="/jekyll/update/2024/02/10/analysis-seq-subsequences.html">
+          Subsequences Definitions
+    </a></p>
     <li><a href="/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">
 		  [Convergence of Subsequence (2.5.2)] Subsequences of a convergent sequence converge to the same limit as the original sequence.
     </a></li>
@@ -285,7 +288,16 @@ mathjax: true
     <p><a href="/jekyll/update/2024/07/01/analysis-sets-compact.html">
 		  Compact Sets
     </a></p>
-
+	<li><a href="/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">
+		  (Theorem 3.3.4) [Characterization of Compactness in R] A set \(K \in \mathbf{R}\) is compact if and only if it is closed and bounded.
+    </a></li>
+	
+	<!--------------------
+	<li><a href="/jekyll/update/2024/07/03/analysis-sets-compact-nested.html">
+		  (Theorem 3.3.5) [Nested Compact Set Property]   If \( K_1 \supseteq K2 \supseteq K3 \supseteq K4 \supseteq ...\) is a nested sequence of nonempty compact sets, then the intersection \(\bigcap_{n=1}^{\infty} K_n\) is not empty.
+    </a></li>
+    ------->
+	
   </ol>
 <br>
 <!------------------------------------------------------------------->  

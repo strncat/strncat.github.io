@@ -47,5 +47,4 @@ The first part of the proof is from the book. The second part is Exercise 3.3.3 
 <b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Wrath of Math Youtube Channel</a></li>
 </ul>

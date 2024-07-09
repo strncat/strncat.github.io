@@ -11,14 +11,17 @@ mathjax: true
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Proof</b></h4>
-Let $$A$$ be a set subset of $$\mathbf{R}$$. Suppose $$L$$ is the set of limit points of $$A$$. The closure of $$\overline{A}$$ contains both $$L$$ and $$A$$ by the definition of a closure. 
+Let $$A$$ be a set subset of $$\mathbf{R}$$ and let $$L$$ be the set of its limit points. By definition $$\overline{A} = A \cup L$$. To prove that $$\overline{A}$$ is closed, we'll start by proving that $$L$$ is closed. To do so, let $$x$$ be a limit point of $$L$$. We need to prove that $$x \in L$$. Since $$x$$ is a limit point of $$L$$ this means that given $$\epsilon > 0$$, every $$\epsilon$$-neighborhood $$V_{\epsilon/2}(x)$$ of $$x$$ intersects $$L$$ at some element $$y$$ such that $$x \neq y$$. But this implies that $$y$$ is a limit point of $$A$$ (since $$L$$ is the set of $$A$$'s limit points). Again by the definition of a limit point, this means that given $$\epsilon > 0$$, every $$\epsilon$$-neighborhood $$V_{\epsilon/2}(y)$$ of $$y$$ intersects $$A$$ at some element $$z$$ such that $$y \neq z$$. So now we have $$x$$ and $$z$$ within a distance of at most $$\epsilon$$ of each other. In other words,
 <div>
 $$
 \begin{align*}
-V_{\epsilon}(1/n) \cap A = \{\frac{1}{n}\}.
+|x - z| &= |x - y + y - z| \\
+&\leq |x - y| + |y - z| \quad \text{(by the triangle inequality)} \\
+&< \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
 \end{align*}
 $$
-</div> 
+</div>
+From this we can conclude that $$z$$ is an element of $$V_{\epsilon}(x)$$. But $$z$$ is an element of $$A$$. So this means that $$z$$ is an element of $$V_{\epsilon}(x) \cap A$$. Next, we want to show that $$x \neq z$$. If we do that, then this means that $$x$$ is a limit point of $$A$$ which will imply that $$x$$ is a limit point of $$L$$. So, 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

@@ -1,23 +1,25 @@
 ---
 layout: post
-title:  "Nested Compact Set Property"
-date:   2024-07-03 01:01:36 -0700
+title:  "Heine-Borel Theorem"
+date:   2024-07-05 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  If
-  $$
-  \begin{align*}
-  K_1 \supseteq K_2 \supseteq K_3 \supseteq K_4 \supseteq ...
-  \end{align*}
-  $$
-  is a nested sequence of nonempty compact sets, then the intersection \(\bigcap_{n=1}^{\infty} K_n\) is not empty.
+  (Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two
+	  <ol type="i">
+	    <li>\(K\) is compact.</li>
+	    <li>\(K\) is closed and bounded;</li>
+	    <li>Every open cover for \(K\) has a finite subcover.</li>
+	  </ol>
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Proof</b></h4>
-The goal of the proof is to produce a sequence that is eventually part of each of these sets and the limit of this sequence is included in every set which means that the intersection is not empty. Now, for each $$n \in \mathbf{N}$$, pick $$x_n \in K_n$$. Since the compact sets are nested, then the sequence $$(x_n)$$ is contained in $$K_1$$. By the definition of a compact set, $$(x_n)$$ has a convergent subsequence $$(x_{n_k})$$ whose limit $$x_{n_k} \rightarrow x$$ is an element of $$K_1$$. But it's not just part of $$K_1$$, it is also part of every $$K_n$$. (why? we know the whole sequence is in $$K_1$$, the rest of the sequence except for the first element is in $$K_2$$, the sequence except for the first two elements is in $$K_3$$ and so on. The remaining sets will contain most of the sequence except for the first few terms and eventually converge to $$x$$). Now, given a particular $$n_0 \in \mathbf{N}$$, then in $$K_{n_0}$$, we will get the terms starting at $$n \geq n_0$$ from the sequence $$(x_n)$$. So take these terms to form a subsequence $$(x_{n_k})$$ contained completely in $$K_{n_0}$$. This subsequence converges to $$x$$ and $$x \in K_{n_0}$$. Since $$n_0$$ was arbitrary, then $$x \in \bigcap_{n=1}^{\infty} K_n$$ and we're done. $$\blacksquare$$
+We proved that (i) and (ii) are equivalent in <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for \(K\) has a finite subcover. We'll show that \(K\) is bounded and closed. To show that \(K\) is bounded, 
+
+
+ $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -26,7 +28,7 @@ The goal of the proof is to produce a sequence that is eventually part of each o
 <li><a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-open.html">Open Sets</a></li>
 <li><a href="https://strncat.github.io/jekyll/update/2024/06/24/analysis-sets-limit-points.html">Limit Points</a></li>
 <li><a href="https://strncat.github.io/jekyll/update/2024/06/25/analysis-sets-closed.html">Closed Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/07/01/analysis-sets-compact.html">Closed Sets</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/07/01/analysis-sets-compact.html">Compact Sets</a></li>
 <li><a href="https://strncat.github.io/jekyll/update/2024/06/28/analysis-sets-closure.html">Closure</a></li>
 <li><a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">Absolute Value Function</a></li>
 <li><a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">Sequences, Subsequences and Convergence</a></li>
@@ -38,4 +40,5 @@ The goal of the proof is to produce a sequence that is eventually part of each o
 <b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=5N9wNNc0HH4">Wrath of Math</a></li>
 </ul>

@@ -31,24 +31,80 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Exercise 3.3.1</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Perfect Sets are Uncountable</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-07-04T01:01:36-07:00" itemprop="datePublished">Jul 4, 2024
+      <time class="dt-published" datetime="2024-07-08T01:01:36-07:00" itemprop="datePublished">Jul 8, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  [E3.3.1] Show that if \(K\) is compact and nonempty, then \(\sup K\) and \(\inf K\) both exist and are elements of \(K\).
+  (Theorem 3.4.3) A nonempty perfect set is uncountable.
 </div>
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Proof</b></h4>
-<p>Suppose \(K\) is compact and nonempty. This means that \(K\) is closed and bounded by <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. But if \(K\) is bounded, then there exists a least upper bound. Let the least upper bound be \(s = \sup K\). We know by <a href="http://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a> that since \(s\) is the least upper bound, then for any \(\epsilon\), there exists an \(x \in K\) such that \(s - \epsilon &lt; x\). So now pick \(\epsilon\)????</p>
+<p>If \(P\) is perfect and nonempty, then it must be infinite because otherwise it would consist only of isolated points. Suppose for the sake of contradiction that \(P\) is countable. This means we can write</p>
+<div>
+$$
+\begin{align*}
+P = \{x_1, x_2, x_3, x_4,...\}.
+\end{align*}
+$$
+</div>
+<p>We will construct a sequence of nested compact sets \(K_n\), all contained in \(P\) such that \(K_n\) is not empty and \(x_1 \not\in K_2\), \(x_2 \notin K_3\), …. We can then use <a href="https://strncat.github.io/jekyll/update/2024/07/03/analysis-sets-compact-nested.html">theorem 3.3.5</a> to produce an \(x\) such that</p>
+<div>
+$$
+\begin{align*}
+x \in \bigcap_{n=1}^{\infty} K_n \subseteq P.
+\end{align*}
+$$
+</div>
+<p>and \(x\) is not on the list \(\{x_1, x_2, ...\}\).
+<br />
+<br />
+Let \(I_1=[a_1, b_1]\) be a closed interval in \(P\) that contains \(x_1\) such that \(x_1 \neq a_1\) and \(x_1 \neq b_1\) so \(x_1\) is an interior point. We know that \(P\) is a perfect set. Therefore \(x_1\) is not isolated and so it’s a limit point. This means that there exists an element \(y_2\) in the interior of \(I_1\) (why? because by definition, every \(\epsilon\)-neighborhood \(V_{\epsilon}(x)\) of \(x_1\) must intersect \(P\) at some point other than \(x_1\)). So now construct a closed interval \(I_2\) centered around \(y_2\) such that \(I_2 \subseteq I_1\) but \(x_1 \notin I_2\). In other words, set</p>
+<div>
+$$
+\begin{align*}
+\epsilon = \min\{y_2 - a, b - y_2, |x_1 - y_2|\}.
+\end{align*}
+$$
+</div>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/perfect-set-1.png" width="70%" class="center" /></p>
+<p>Then the interval</p>
+<div>
+$$
+\begin{align*}
+I_2 = [y_2 - \frac{\epsilon}{2}, y_2 + \frac{\epsilon}{2}].
+\end{align*}
+$$
+</div>
+<p>will be contained entirely in \(I_1\) (but formally why though?). We can iteratively continue this process to construct another set contained in \(I_2\). In general, let \(I_n = [a_n, b_n] \in P\) such that \(x_n \in I_n\). Since \(x_n\) is not isolated, then we can find \(y_{n+1} \in [a_n, b_n] \cap P\). Now we can set \(\epsilon_{n+1} = \min\{y_{n+1} - a_n, b_n - y_{n+1}, |x_{n} - y_{n+1}|\}\) and let the interval \(I_{n+1} = [y_{n+1} - \frac{\epsilon_{n+1}}{2}, y_{n+1} + \frac{\epsilon_{n+1}}{2}]\). From this we can observe that</p>
 
-<p>\(\blacksquare\)
+<ul>
+<li>\(I_{n+1} \subseteq I_{n}\) by construction.</li>
+<li>\(x_n \notin I_{n+1}\) also by how we constructed the next interval in each iteration.</li>
+<li>\(I_n \cap P \neq \emptyset\). This was because \(x_n\) is a limit point in \(I_n\) and so the intersection with P must be nonempty.</li>
+</ul>
+
+<p>Next, let \(K_n = I_n \cap P\). For each \(n \in \mathbf{N}\), we know that</p>
+<ul>
+<li>\(K_n\) is closed since \(K_n\) is the intersection of two closed sets.</li>
+<li>\(K_n\) is bounded since it is contained in \(I_n\) and \(I_n\) is bounded by construction.</li>
+</ul>
+
+<p>From this we know that \(K_n\) is compact. But \(K_{n+1}\) is contained in \(K_n\) by construction since we constructed \(I_{n+1}\) to be contained in \(I_n\). Finally, we can use the <a href="https://strncat.github.io/jekyll/update/2024/07/03/analysis-sets-compact-nested.html"> Nested Compact Set Property (Theorem 3.3.5)</a> to conclude that the intersection</p>
+<div>
+$$
+\begin{align*}
+\bigcap_{n=1}^{\infty} K_n
+\end{align*}
+$$
+</div>
+<p>is not empty. But we also know that each \(K_n\) is a subset of \(P\) and \(x_n \notin K_{n+1}\). 
 <br />
 <br />
 <!------------------------------------------------------------------------------------>
@@ -80,8 +136,8 @@
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/07/04/analysis-sets-compact-sup.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/07/04/analysis-sets-compact-sup; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/07/08/analysis-sets-perfect-uncountable.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/07/08/analysis-sets-perfect-uncountable; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -92,7 +148,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/07/04/analysis-sets-compact-sup.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/07/08/analysis-sets-perfect-uncountable.html" hidden></a>
 </article>
 		 
       </div>

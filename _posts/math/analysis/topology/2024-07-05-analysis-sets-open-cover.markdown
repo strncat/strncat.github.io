@@ -33,6 +33,17 @@ $$
 Note here that we had to add two extra sets to cover both end points. This illustrates the difference between what we need to cover an open interval versus a a closed interval.
 <br>
 <br>
+What about a <b>finite subcover</b> of the following open cover of $$(0,4)$$
+<div>
+$$
+\begin{align*}
+\left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}.
+\end{align*}
+$$
+</div>
+Is it possible to get a finite cover that covers $$(0,4)$$? No, in this case no matter what collection we choose, we'll always be missing an element from the interval $$(0,4)$$.
+<br>
+<br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>

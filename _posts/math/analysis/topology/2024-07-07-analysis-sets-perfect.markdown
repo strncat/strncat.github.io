@@ -1,20 +1,20 @@
 ---
 layout: post
-title:  "Exercise 3.3.1"
-date:   2024-07-04 01:01:36 -0700
+title:  "Perfect Sets"
+date:   2024-07-07 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  [E3.3.1] Show that if \(K\) is compact and nonempty, then \(\sup K\) and \(\inf K\) both exist and are elements of \(K\).
+  (Definition 3.4.1) A set \(P \subseteq \mathbf{R}\) is perfect if it is closed and contains no isolated points. 
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
-Suppose $$K$$ is compact and nonempty. This means that $$K$$ is closed and bounded by <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. But if $$K$$ is bounded, then there exists a least upper bound. Let the least upper bound be $$s = \sup K$$. We know by <a href="http://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a> that since $$s$$ is the least upper bound, then for any $$\epsilon$$, there exists an $$x \in K$$ such that $$s - \epsilon < x$$. So now pick $$\epsilon$$????
-
-
- $$\blacksquare$$
+<h4><b>Examples</b></h4>
+Closed intervals are perfect sets except for the singleton sets $$[a,a]$$.
+<br>
+<br>
+The Cantor set is also a perfect set. This is because $$C = \bigcap_{n=0}^{\infty} C_n$$ where each $$C_n$$ is a finite union of closed intervals and we know. By theorem 3.2.14 which states that the union of a finite collection of closed sets is closed, this means that $$C_n$$ is closed and so $$C$$ is closed as well. What about isolated points? Let $$x \in C$$ be arbitrary. To show that it's not isolated, we need to show that it's a limit point. This mean that there is some sequence $$(x_n)$$ such that $$(x_n) \rightarrow x$$ and $$x$$ is not a term in the sequence. (Exercise 3.4.3 will contain the rest of this proof: TODO).
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

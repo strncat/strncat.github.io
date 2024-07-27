@@ -1,17 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-07-08T20:13:14-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Heine-Borel Theorem</title><link href="http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-heine-borel.html" rel="alternate" type="text/html" title="Heine-Borel Theorem" /><published>2024-07-05T01:01:36-07:00</published><updated>2024-07-05T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-heine-borel</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-heine-borel.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two
-	  <ol type="i">
-	    <li>\(K\) is compact.</li>
-	    <li>\(K\) is closed and bounded;</li>
-	    <li>Every open cover for \(K\) has a finite subcover.</li>
-	  </ol>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-07-27T15:14:46-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Perfect Sets are Uncountable</title><link href="http://localhost:4000/jekyll/update/2024/07/08/analysis-sets-perfect-uncountable.html" rel="alternate" type="text/html" title="Perfect Sets are Uncountable" /><published>2024-07-08T01:01:36-07:00</published><updated>2024-07-08T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/08/analysis-sets-perfect-uncountable</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/08/analysis-sets-perfect-uncountable.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  (Theorem 3.4.3) A nonempty perfect set is uncountable.
 </div>
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Proof</b></h4>
-<p>We proved that (i) and (ii) are equivalent in <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for (K) has a finite subcover. We’ll show that (K) is bounded and closed. To show that (K) is bounded,</p>
+<p>If \(P\) is perfect and nonempty, then it must be infinite because otherwise it would consist only of isolated points. Suppose for the sake of contradiction that \(P\) is countable. This means we can write</p>
+<div>
+$$
+\begin{align*}
+P = \{x_1, x_2, x_3, x_4,...\}.
+\end{align*}
+$$
+</div>
+<p>We will construct a sequence of nested compact sets \(K_n\), all contained in \(P\) such that \(K_n\) is not empty and \(x_1 \not\in K_2\), \(x_2 \notin K_3\), …. We can then use <a href="https://strncat.github.io/jekyll/update/2024/07/03/analysis-sets-compact-nested.html">theorem 3.3.5</a> to produce an \(x\) such that</p>
+<div>
+$$
+\begin{align*}
+x \in \bigcap_{n=1}^{\infty} K_n \subseteq P.
+\end{align*}
+$$
+</div>
+<p>and \(x\) is not on the list \(\{x_1, x_2, ...\}\).
+<br />
+<br />
+Let \(I_1=[a_1, b_1]\) be a closed interval in \(P\) that contains \(x_1\) such that \(x_1 \neq a_1\) and \(x_1 \neq b_1\) so \(x_1\) is an interior point. We know that \(P\) is a perfect set. Therefore \(x_1\) is not isolated and so it’s a limit point. This means that there exists an element \(y_2\) in the interior of \(I_1\) (why? because by definition, every \(\epsilon\)-neighborhood \(V_{\epsilon}(x)\) of \(x_1\) must intersect \(P\) at some point other than \(x_1\)). So now construct a closed interval \(I_2\) centered around \(y_2\) such that \(I_2 \subseteq I_1\) but \(x_1 \notin I_2\). In other words, set</p>
+<div>
+$$
+\begin{align*}
+\epsilon = \min\{y_2 - a, b - y_2, |x_1 - y_2|\}.
+\end{align*}
+$$
+</div>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/real-analysis/perfect-set-1.png" width="70%" class="center" /></p>
+<p>Then the interval</p>
+<div>
+$$
+\begin{align*}
+I_2 = [y_2 - \frac{\epsilon}{2}, y_2 + \frac{\epsilon}{2}].
+\end{align*}
+$$
+</div>
+<p>will be contained entirely in \(I_1\) (but formally why though?). We can iteratively continue this process to construct another set contained in \(I_2\). In general, let \(I_n = [a_n, b_n] \in P\) such that \(x_n \in I_n\). Since \(x_n\) is not isolated, then we can find \(y_{n+1} \in [a_n, b_n] \cap P\). Now we can set \(\epsilon_{n+1} = \min\{y_{n+1} - a_n, b_n - y_{n+1}, |x_{n} - y_{n+1}|\}\) and let the interval \(I_{n+1} = [y_{n+1} - \frac{\epsilon_{n+1}}{2}, y_{n+1} + \frac{\epsilon_{n+1}}{2}]\). From this we can observe that</p>
 
-<p>\(\blacksquare\)
+<ul>
+<li>\(I_{n+1} \subseteq I_{n}\) by construction.</li>
+<li>\(x_n \notin I_{n+1}\) also by how we constructed the next interval in each iteration.</li>
+<li>\(I_n \cap P \neq \emptyset\). This was because \(x_n\) is a limit point in \(I_n\) and so the intersection with P must be nonempty.</li>
+</ul>
+
+<p>Next, let \(K_n = I_n \cap P\). For each \(n \in \mathbf{N}\), we know that</p>
+<ul>
+<li>\(K_n\) is closed since \(K_n\) is the intersection of two closed sets.</li>
+<li>\(K_n\) is bounded since it is contained in \(I_n\) and \(I_n\) is bounded by construction.</li>
+</ul>
+
+<p>From this we know that \(K_n\) is compact. But \(K_{n+1}\) is contained in \(K_n\) by construction since we constructed \(I_{n+1}\) to be contained in \(I_n\). Finally, we can use the <a href="https://strncat.github.io/jekyll/update/2024/07/03/analysis-sets-compact-nested.html"> Nested Compact Set Property (Theorem 3.3.5)</a> to conclude that the intersection</p>
+<div>
+$$
+\begin{align*}
+\bigcap_{n=1}^{\infty} K_n
+\end{align*}
+$$
+</div>
+<p>is not empty. But we also know that each \(K_n\) is a subset of \(P\) and \(x_n \notin K_{n+1}\). 
 <br />
 <br />
 <!------------------------------------------------------------------------------------>
@@ -33,7 +84,97 @@
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 <li><a href="https://www.youtube.com/watch?v=5N9wNNc0HH4">Wrath of Math</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two \(K\) is compact. \(K\) is closed and bounded; Every open cover for \(K\) has a finite subcover. Proof We proved that (i) and (ii) are equivalent in theorem 3.3.4. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for (K) has a finite subcover. We’ll show that (K) is bounded and closed. To show that (K) is bounded,]]></summary></entry><entry><title type="html">Open Cover</title><link href="http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover.html" rel="alternate" type="text/html" title="Open Cover" /><published>2024-07-05T01:01:36-07:00</published><updated>2024-07-05T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Theorem 3.4.3) A nonempty perfect set is uncountable. Proof If \(P\) is perfect and nonempty, then it must be infinite because otherwise it would consist only of isolated points. Suppose for the sake of contradiction that \(P\) is countable. This means we can write $$ \begin{align*} P = \{x_1, x_2, x_3, x_4,...\}. \end{align*} $$ We will construct a sequence of nested compact sets \(K_n\), all contained in \(P\) such that \(K_n\) is not empty and \(x_1 \not\in K_2\), \(x_2 \notin K_3\), …. We can then use theorem 3.3.5 to produce an \(x\) such that $$ \begin{align*} x \in \bigcap_{n=1}^{\infty} K_n \subseteq P. \end{align*} $$ and \(x\) is not on the list \(\{x_1, x_2, ...\}\). Let \(I_1=[a_1, b_1]\) be a closed interval in \(P\) that contains \(x_1\) such that \(x_1 \neq a_1\) and \(x_1 \neq b_1\) so \(x_1\) is an interior point. We know that \(P\) is a perfect set. Therefore \(x_1\) is not isolated and so it’s a limit point. This means that there exists an element \(y_2\) in the interior of \(I_1\) (why? because by definition, every \(\epsilon\)-neighborhood \(V_{\epsilon}(x)\) of \(x_1\) must intersect \(P\) at some point other than \(x_1\)). So now construct a closed interval \(I_2\) centered around \(y_2\) such that \(I_2 \subseteq I_1\) but \(x_1 \notin I_2\). In other words, set $$ \begin{align*} \epsilon = \min\{y_2 - a, b - y_2, |x_1 - y_2|\}. \end{align*} $$ Then the interval $$ \begin{align*} I_2 = [y_2 - \frac{\epsilon}{2}, y_2 + \frac{\epsilon}{2}]. \end{align*} $$ will be contained entirely in \(I_1\) (but formally why though?). We can iteratively continue this process to construct another set contained in \(I_2\). In general, let \(I_n = [a_n, b_n] \in P\) such that \(x_n \in I_n\). Since \(x_n\) is not isolated, then we can find \(y_{n+1} \in [a_n, b_n] \cap P\). Now we can set \(\epsilon_{n+1} = \min\{y_{n+1} - a_n, b_n - y_{n+1}, |x_{n} - y_{n+1}|\}\) and let the interval \(I_{n+1} = [y_{n+1} - \frac{\epsilon_{n+1}}{2}, y_{n+1} + \frac{\epsilon_{n+1}}{2}]\). From this we can observe that]]></summary></entry><entry><title type="html">Perfect Sets</title><link href="http://localhost:4000/jekyll/update/2024/07/07/analysis-sets-perfect.html" rel="alternate" type="text/html" title="Perfect Sets" /><published>2024-07-07T01:01:36-07:00</published><updated>2024-07-07T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/07/analysis-sets-perfect</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/07/analysis-sets-perfect.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  (Definition 3.4.1) A set \(P \subseteq \mathbf{R}\) is perfect if it is closed and contains no isolated points. 
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<p>Closed intervals are perfect sets except for the singleton sets \([a,a]\).
+<br />
+<br />
+The Cantor set is also a perfect set. This is because \(C = \bigcap_{n=0}^{\infty} C_n\) where each \(C_n\) is a finite union of closed intervals and we know. By theorem 3.2.14 which states that the union of a finite collection of closed sets is closed, this means that \(C_n\) is closed and so \(C\) is closed as well. What about isolated points? Let \(x \in C\) be arbitrary. To show that it’s not isolated, we need to show that it’s a limit point. This mean that there is some sequence \((x_n)\) such that \((x_n) \rightarrow x\) and \(x\) is not a term in the sequence. (Exercise 3.4.3 will contain the rest of this proof: TODO).
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>Other Definitions and Properties</b></p>
+<ul>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-open.html">Open Sets</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/24/analysis-sets-limit-points.html">Limit Points</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/25/analysis-sets-closed.html">Closed Sets</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/07/01/analysis-sets-compact.html">Compact Sets</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/28/analysis-sets-closure.html">Closure</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">Absolute Value Function</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">Sequences, Subsequences and Convergence</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">Series and Series Convergence</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">Show the Limit Template</a></li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------------------>
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=5N9wNNc0HH4">Wrath of Math</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Definition 3.4.1) A set \(P \subseteq \mathbf{R}\) is perfect if it is closed and contains no isolated points. Examples Closed intervals are perfect sets except for the singleton sets \([a,a]\). The Cantor set is also a perfect set. This is because \(C = \bigcap_{n=0}^{\infty} C_n\) where each \(C_n\) is a finite union of closed intervals and we know. By theorem 3.2.14 which states that the union of a finite collection of closed sets is closed, this means that \(C_n\) is closed and so \(C\) is closed as well. What about isolated points? Let \(x \in C\) be arbitrary. To show that it’s not isolated, we need to show that it’s a limit point. This mean that there is some sequence \((x_n)\) such that \((x_n) \rightarrow x\) and \(x\) is not a term in the sequence. (Exercise 3.4.3 will contain the rest of this proof: TODO). Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Wrath of Math]]></summary></entry><entry><title type="html">Heine-Borel Theorem</title><link href="http://localhost:4000/jekyll/update/2024/07/06/analysis-sets-heine-borel.html" rel="alternate" type="text/html" title="Heine-Borel Theorem" /><published>2024-07-06T01:01:36-07:00</published><updated>2024-07-06T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/06/analysis-sets-heine-borel</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/06/analysis-sets-heine-borel.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+  (Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two
+	  <ol type="i">
+	    <li>\(K\) is compact.</li>
+	    <li>\(K\) is closed and bounded.</li>
+	    <li>Every open cover for \(K\) has a finite subcover.</li>
+	  </ol>
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof</b></h4>
+<p>We proved that (i) and (ii) are equivalent in <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for (K) has a finite subcover. We’ll show that (K) is bounded and closed. 
+<br />
+<br />
+To show that \(K\) is bounded, construct an open cover for \(K\) by defining \(O_x\) to be an open interval of radius 1 around each element of \(x \in K\) so that \(O_x = V_1(x)\). The open cover is defined then as \(\{O_x: x \in K\}\). Since we assume that (iii) is true, then this means there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) that contains \(K\). Since the subcover is a finite collection of bounded sets, then \(K\) must be bounded as well.
+<br />
+<br />
+To show that \(K\) is closed, suppose that \((y_n)\) is a Cauchy sequence contained in \(K\) such that \((y_n) \rightarrow y\). We need to show that \(y \in K\) since a closed set must contain all of its limit points. To show this, suppose for the sake of contradiction that \(y \notin K\). This means that for all \(x \in K\), \(x\) is some positive distance away from \(y\). So construct an open cover by taking \(O_x\) to be an interval of radius \(|x-y|/2\) around each element. Since we assumed (iii) is true, then there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) such that it contains \(K\). But this is impossible. To see why, set</p>
+<div>
+$$
+\begin{align*}
+\epsilon_0 = \min \left\{\frac{x_i - y}{2}: 1 \leq i \leq n \right\}.
+\end{align*}
+$$
+</div>
+<p>Now, since \((y_n) \rightarrow y\), then for all \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that when \(n \geq N\), we have \(|y_n - y| &lt; \epsilon_0\). But this implies that \(y_n\) is not in any \(O_x\) meaning that</p>
+<div>
+$$
+\begin{align*}
+y_n \notin \bigcup_{i=1}^{n} O_{x_i}.
+\end{align*}
+$$
+</div>
+<p>This means that the finite cover doesn’t actually contain all of \(K\) and therefore this is a contradiction and we must have \(y \in K\) as required to show that \(K\) is closed.
+<br />
+<br />
+Next, we need to assume (ii) and prove (iii). So suppose that \(K\) is closed and bounded. We will prove that for every open cover of \(K\), there exists a finite subcover. [TODO]
+ \(\blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>Other Definitions and Properties</b></p>
+<ul>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-open.html">Open Sets</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/24/analysis-sets-limit-points.html">Limit Points</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/25/analysis-sets-closed.html">Closed Sets</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/07/01/analysis-sets-compact.html">Compact Sets</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/28/analysis-sets-closure.html">Closure</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">Absolute Value Function</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">Sequences, Subsequences and Convergence</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">Series and Series Convergence</a></li>
+<li><a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">Show the Limit Template</a></li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------------------>
+<b>References:</b></p>
+<ul>
+<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
+<li><a href="https://www.youtube.com/watch?v=5N9wNNc0HH4">Wrath of Math</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two \(K\) is compact. \(K\) is closed and bounded. Every open cover for \(K\) has a finite subcover. Proof We proved that (i) and (ii) are equivalent in theorem 3.3.4. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for (K) has a finite subcover. We’ll show that (K) is bounded and closed. To show that \(K\) is bounded, construct an open cover for \(K\) by defining \(O_x\) to be an open interval of radius 1 around each element of \(x \in K\) so that \(O_x = V_1(x)\). The open cover is defined then as \(\{O_x: x \in K\}\). Since we assume that (iii) is true, then this means there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) that contains \(K\). Since the subcover is a finite collection of bounded sets, then \(K\) must be bounded as well. To show that \(K\) is closed, suppose that \((y_n)\) is a Cauchy sequence contained in \(K\) such that \((y_n) \rightarrow y\). We need to show that \(y \in K\) since a closed set must contain all of its limit points. To show this, suppose for the sake of contradiction that \(y \notin K\). This means that for all \(x \in K\), \(x\) is some positive distance away from \(y\). So construct an open cover by taking \(O_x\) to be an interval of radius \(|x-y|/2\) around each element. Since we assumed (iii) is true, then there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) such that it contains \(K\). But this is impossible. To see why, set $$ \begin{align*} \epsilon_0 = \min \left\{\frac{x_i - y}{2}: 1 \leq i \leq n \right\}. \end{align*} $$ Now, since \((y_n) \rightarrow y\), then for all \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that when \(n \geq N\), we have \(|y_n - y| &lt; \epsilon_0\). But this implies that \(y_n\) is not in any \(O_x\) meaning that $$ \begin{align*} y_n \notin \bigcup_{i=1}^{n} O_{x_i}. \end{align*} $$ This means that the finite cover doesn’t actually contain all of \(K\) and therefore this is a contradiction and we must have \(y \in K\) as required to show that \(K\) is closed. Next, we need to assume (ii) and prove (iii). So suppose that \(K\) is closed and bounded. We will prove that for every open cover of \(K\), there exists a finite subcover. [TODO] \(\blacksquare\) Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Wrath of Math]]></summary></entry><entry><title type="html">Open Cover</title><link href="http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover.html" rel="alternate" type="text/html" title="Open Cover" /><published>2024-07-05T01:01:36-07:00</published><updated>2024-07-05T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (Definition 3.3.6) Let \(A \subseteq \mathbf{R}\). An <b>open cover</b> for \(A\) is a (possibly infinite) collection of open sets \(\{O_{\lambda}: \lambda \in \Lambda\}\) whose union contains the set \(A\); that is, \(A \subseteq_{\lambda \in \Lambda} O_{\lambda}\). Given an open cover for \(A\), a <b>finite subcover</b> is a finite sub collection of open sets from the original open cover whose union still manages to completely contain \(A\).
 </div>
 <p><br />
@@ -61,6 +202,17 @@ $$
 <p>Note here that we had to add two extra sets to cover both end points. This illustrates the difference between what we need to cover an open interval versus a a closed interval.
 <br />
 <br />
+What about a <b>finite subcover</b> of the following open cover of \((0,4)\)</p>
+<div>
+$$
+\begin{align*}
+\left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}.
+\end{align*}
+$$
+</div>
+<p>Is it possible to get a finite cover that covers \((0,4)\)? No, in this case no matter what collection we choose, we’ll always be missing an element from the interval \((0,4)\).
+<br />
+<br />
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b></p>
 <ul>
@@ -80,13 +232,13 @@ $$
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 <li><a href="https://www.amazon.com/Real-Analysis-Long-Form-Mathematics-Textbook/dp/1077254547/ref=sr_1_1?crid=1EKW8X4WRF3FW&amp;dib=eyJ2IjoiMSJ9.8H96S-vpjIYx8lnvl5zYmBZjrj15kH-_m6pXDzkvCRlb8_xXY2IV9Zipu-8_YsxqJiHrDLuij8XqTNG6YHcqFweSzLEDTzu7r77bvENfD54ua0QoORkYqlE9hnHSTU3dlbiibZPSRE1snfOUjy9aIlUB_SwrjPs1Uaqob4D6dbOvu6otEp0euWD7ilhclz0t34D5E6BgakOV_CBH0-CKDhOAg00t6tXLZgtuRmPkIi0j7RBSp9GctSQADqBS0MW77CwckycJtCV79foESEnRKX8Ed_lD4GJp6ygwB2nGowQ.goqwiMcxQF-evF4CmmslF5VSq-jGrHd8P5npLOuVrAo&amp;dib_tag=se&amp;keywords=real+analysis&amp;qid=1720489245&amp;sprefix=real+analysi%2Caps%2C166&amp;sr=8-1">Real Analysis by Jay Cummings</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Definition 3.3.6) Let \(A \subseteq \mathbf{R}\). An open cover for \(A\) is a (possibly infinite) collection of open sets \(\{O_{\lambda}: \lambda \in \Lambda\}\) whose union contains the set \(A\); that is, \(A \subseteq_{\lambda \in \Lambda} O_{\lambda}\). Given an open cover for \(A\), a finite subcover is a finite sub collection of open sets from the original open cover whose union still manages to completely contain \(A\). Example An open cover of \((0,4)\) is the following $$ \begin{align*} \left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}. \end{align*} $$ Each set above is open. Note here that we have to have an infinite collection of these sets. Any finite subset will not contain all of \((0,4)\). An open cover of \([0,4]\) is the following $$ \begin{align*} \left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} \bigcup \quad \{(-0.2,0.2),(3.8,4.2)\}. \end{align*} $$ Note here that we had to add two extra sets to cover both end points. This illustrates the difference between what we need to cover an open interval versus a a closed interval. Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Real Analysis by Jay Cummings]]></summary></entry><entry><title type="html">Exercise 3.3.1</title><link href="http://localhost:4000/jekyll/update/2024/07/04/analysis-sets-compact-sup.html" rel="alternate" type="text/html" title="Exercise 3.3.1" /><published>2024-07-04T01:01:36-07:00</published><updated>2024-07-04T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/04/analysis-sets-compact-sup</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/04/analysis-sets-compact-sup.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Definition 3.3.6) Let \(A \subseteq \mathbf{R}\). An open cover for \(A\) is a (possibly infinite) collection of open sets \(\{O_{\lambda}: \lambda \in \Lambda\}\) whose union contains the set \(A\); that is, \(A \subseteq_{\lambda \in \Lambda} O_{\lambda}\). Given an open cover for \(A\), a finite subcover is a finite sub collection of open sets from the original open cover whose union still manages to completely contain \(A\). Example An open cover of \((0,4)\) is the following $$ \begin{align*} \left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}. \end{align*} $$ Each set above is open. Note here that we have to have an infinite collection of these sets. Any finite subset will not contain all of \((0,4)\). An open cover of \([0,4]\) is the following $$ \begin{align*} \left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} \bigcup \quad \{(-0.2,0.2),(3.8,4.2)\}. \end{align*} $$ Note here that we had to add two extra sets to cover both end points. This illustrates the difference between what we need to cover an open interval versus a a closed interval. What about a finite subcover of the following open cover of \((0,4)\) $$ \begin{align*} \left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}. \end{align*} $$ Is it possible to get a finite cover that covers \((0,4)\)? No, in this case no matter what collection we choose, we’ll always be missing an element from the interval \((0,4)\). Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Real Analysis by Jay Cummings]]></summary></entry><entry><title type="html">Exercise 3.3.1</title><link href="http://localhost:4000/jekyll/update/2024/07/04/analysis-sets-compact-sup.html" rel="alternate" type="text/html" title="Exercise 3.3.1" /><published>2024-07-04T01:01:36-07:00</published><updated>2024-07-04T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/04/analysis-sets-compact-sup</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/04/analysis-sets-compact-sup.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   [E3.3.1] Show that if \(K\) is compact and nonempty, then \(\sup K\) and \(\inf K\) both exist and are elements of \(K\).
 </div>
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Proof</b></h4>
-<p>Suppose \(K\) is compact and nonempty. This means that \(K\) is closed and bounded by <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. But if \(K\) is bounded, then there exists a least upper bound. Let the least upper bound be \(s = \sup K\). Now let \(\epsilon &gt; 0\). Since \(s\) is the least upper bound, then there exists an \(x \in K\) such that \(s - \epsilon &lt; x\). ????????????????????????</p>
+<p>Suppose \(K\) is compact and nonempty. This means that \(K\) is closed and bounded by <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. But if \(K\) is bounded, then there exists a least upper bound. Let the least upper bound be \(s = \sup K\). We know by <a href="http://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a> that since \(s\) is the least upper bound, then for any \(\epsilon\), there exists an \(x \in K\) such that \(s - \epsilon &lt; x\). So now pick \(\epsilon\)????</p>
 
 <p>\(\blacksquare\)
 <br />
@@ -110,7 +262,7 @@ $$
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 <li><a href="https://www.youtube.com/watch?v=5N9wNNc0HH4">Wrath of Math</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[[E3.3.1] Show that if \(K\) is compact and nonempty, then \(\sup K\) and \(\inf K\) both exist and are elements of \(K\). Proof Suppose \(K\) is compact and nonempty. This means that \(K\) is closed and bounded by theorem 3.3.4. But if \(K\) is bounded, then there exists a least upper bound. Let the least upper bound be \(s = \sup K\). Now let \(\epsilon &gt; 0\). Since \(s\) is the least upper bound, then there exists an \(x \in K\) such that \(s - \epsilon &lt; x\). ????????????????????????]]></summary></entry><entry><title type="html">Nested Compact Set Property</title><link href="http://localhost:4000/jekyll/update/2024/07/03/analysis-sets-compact-nested.html" rel="alternate" type="text/html" title="Nested Compact Set Property" /><published>2024-07-03T01:01:36-07:00</published><updated>2024-07-03T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/03/analysis-sets-compact-nested</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/03/analysis-sets-compact-nested.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[[E3.3.1] Show that if \(K\) is compact and nonempty, then \(\sup K\) and \(\inf K\) both exist and are elements of \(K\). Proof Suppose \(K\) is compact and nonempty. This means that \(K\) is closed and bounded by theorem 3.3.4. But if \(K\) is bounded, then there exists a least upper bound. Let the least upper bound be \(s = \sup K\). We know by lemma 1.3.8 that since \(s\) is the least upper bound, then for any \(\epsilon\), there exists an \(x \in K\) such that \(s - \epsilon &lt; x\). So now pick \(\epsilon\)????]]></summary></entry><entry><title type="html">Nested Compact Set Property</title><link href="http://localhost:4000/jekyll/update/2024/07/03/analysis-sets-compact-nested.html" rel="alternate" type="text/html" title="Nested Compact Set Property" /><published>2024-07-03T01:01:36-07:00</published><updated>2024-07-03T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/03/analysis-sets-compact-nested</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/03/analysis-sets-compact-nested.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   If
   $$
   \begin{align*}
@@ -280,65 +432,4 @@ $$
 <b>References:</b></p>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Theorem 3.2.12) For any \(A \subseteq \mathbf{R}\), the closure \(\overline{A}\) is a closed set and is the smallest closed set containing \(A\). Proof Let \(A\) be a set subset of \(\mathbf{R}\) and let \(L\) be the set of its limit points. By definition \(\overline{A} = A \cup L\). To prove that \(\overline{A}\) is closed, we’ll start by proving that \(L\) is closed. To do so, let \(x\) be a limit point of \(L\). We need to prove that \(x \in L\). Since \(x\) is a limit point of \(L\) this means that given \(\epsilon &gt; 0\), every \(\epsilon\)-neighborhood \(V_{\epsilon/2}(x)\) of \(x\) intersects \(L\) at some element \(y\) such that \(x \neq y\). But this implies that \(y\) is a limit point of \(A\) (since \(L\) is the set of \(A\)’s limit points). Again by the definition of a limit point, this means that given \(\epsilon &gt; 0\), every \(\epsilon\)-neighborhood \(V_{\epsilon/2}(y)\) of \(y\) intersects \(A\) at some element \(z\) such that \(y \neq z\). So now we have \(x\) and \(z\) within a distance of at most \(\epsilon\) of each other. In other words, $$ \begin{align*} |x - z| &amp;= |x - y + y - z| \\ &amp;\leq |x - y| + |y - z| \quad \text{(by the triangle inequality)} \\ &amp;&lt; \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon. \end{align*} $$ From this we can conclude that \(z\) is an element of \(V_{\epsilon}(x)\). But \(z\) is an element of \(A\). So this means that \(z\) is an element of \(V_{\epsilon}(x) \cap A\). Next, we want to show that \(x \neq z\). If we do that, then this means that \(x\) is a limit point of \(A\) which will imply that \(x\) is a limit point of \(L\). So, Other Definitions and Properties Open Sets Limit Points Closed Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott]]></summary></entry><entry><title type="html">Closure</title><link href="http://localhost:4000/jekyll/update/2024/06/28/analysis-sets-closure.html" rel="alternate" type="text/html" title="Closure" /><published>2024-06-28T01:01:36-07:00</published><updated>2024-06-28T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/28/analysis-sets-closure</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/28/analysis-sets-closure.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (Definition 3.2.11) Given a set \(A \subseteq \mathbf{R}\), let \(L\) be the set of all limit points of \(A\). The closure of \(A\) is defined to be \(\overline{A} = A \cup L\)
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(A\) be \(\{1/n: n \in \mathbf{N}\}\). We know that a point \(x=1/n\) is a limit point of a set \(A\) if every \(\epsilon\)-neighborhood \(V_{\epsilon}(1/n)\) of \(1/n\) intersects \(A\) at some point other than \(x\). Set \(\epsilon = 1/n - 1/(n + 1)\). Then</p>
-<div>
-$$
-\begin{align*}
-V_{\epsilon}(1/n) \cap A = \{\frac{1}{n}\}.
-\end{align*}
-$$
-</div>
-<p>So this means that \(1/n\) is not a limit point and is an isolated point instead. The only limit point of \(A\) is in fact 0 and so \(\overline{A} = A \cup \{0\}\).
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>Other Definitions and Properties</b></p>
-<ul>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-open.html">Open Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/24/analysis-sets-limit-points.html">Limit Points</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/25/analysis-sets-closed.html">Closed Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/28/analysis-sets-closure.html">Closure</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">Absolute Value Function</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">Sequences, Subsequences and Convergence</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">Series and Series Convergence</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">Show the Limit Template</a></li>
-</ul>
-<p><br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Definition 3.2.11) Given a set \(A \subseteq \mathbf{R}\), let \(L\) be the set of all limit points of \(A\). The closure of \(A\) is defined to be \(\overline{A} = A \cup L\) Example Let \(A\) be \(\{1/n: n \in \mathbf{N}\}\). We know that a point \(x=1/n\) is a limit point of a set \(A\) if every \(\epsilon\)-neighborhood \(V_{\epsilon}(1/n)\) of \(1/n\) intersects \(A\) at some point other than \(x\). Set \(\epsilon = 1/n - 1/(n + 1)\). Then $$ \begin{align*} V_{\epsilon}(1/n) \cap A = \{\frac{1}{n}\}. \end{align*} $$ So this means that \(1/n\) is not a limit point and is an isolated point instead. The only limit point of \(A\) is in fact 0 and so \(\overline{A} = A \cup \{0\}\). Other Definitions and Properties Open Sets Limit Points Closed Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott]]></summary></entry><entry><title type="html">Prove that a closed interval is a closed set</title><link href="http://localhost:4000/jekyll/update/2024/06/27/analysis-sets-closed-example.html" rel="alternate" type="text/html" title="Prove that a closed interval is a closed set" /><published>2024-06-27T01:01:36-07:00</published><updated>2024-06-27T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/06/27/analysis-sets-closed-example</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/27/analysis-sets-closed-example.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Prove that a closed interval \([c,d] = \{c \leq x \leq d\}\) is a closed set.
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Proof</b></h4>
-<p>Let \([c,d] = \{c \leq x \leq d\}\) be a closed interval. To prove that it’s a closed set, we need to prove that \([c,d]\) contains all of its limit points so let \(x\) be an arbitrary limit point. By the definition of a limit point, we know that there must exist a sequence \((x_n)\) such that \((x_n) \rightarrow x\). We need to show that \(x \in [c,d]\). 
-By the <a href="https://strncat.github.io/jekyll/update/2024/06/02/analysis-seq-order-limit-theorem.html">order limit theorem (iii)</a>, since \(c \leq x_n \leq d\) for all \(n \in \mathbf{N}\) it follows that \(c \leq x \leq d\) as well. Therefore, \([c,d]\) is closed as required. \(\blacksquare\).
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>Other Definitions and Properties</b></p>
-<ul>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-open.html">Open Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/24/analysis-sets-limit-points.html">Limit Points</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/25/analysis-sets-closed.html">Closed Sets</a></li>	
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">Absolute Value Function</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">Sequences, Subsequences and Convergence</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">Series and Series Convergence</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">Show the Limit Template</a></li>
-</ul>
-<p><br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-<li><a href="https://www.youtube.com/watch?v=Mh1noyFVNVg">Wrath of Math Youtube Channel</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Prove that a closed interval \([c,d] = \{c \leq x \leq d\}\) is a closed set. Proof Let \([c,d] = \{c \leq x \leq d\}\) be a closed interval. To prove that it’s a closed set, we need to prove that \([c,d]\) contains all of its limit points so let \(x\) be an arbitrary limit point. By the definition of a limit point, we know that there must exist a sequence \((x_n)\) such that \((x_n) \rightarrow x\). We need to show that \(x \in [c,d]\). By the order limit theorem (iii), since \(c \leq x_n \leq d\) for all \(n \in \mathbf{N}\) it follows that \(c \leq x \leq d\) as well. Therefore, \([c,d]\) is closed as required. \(\blacksquare\). Other Definitions and Properties Open Sets Limit Points Closed Sets Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Wrath of Math Youtube Channel]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Theorem 3.2.12) For any \(A \subseteq \mathbf{R}\), the closure \(\overline{A}\) is a closed set and is the smallest closed set containing \(A\). Proof Let \(A\) be a set subset of \(\mathbf{R}\) and let \(L\) be the set of its limit points. By definition \(\overline{A} = A \cup L\). To prove that \(\overline{A}\) is closed, we’ll start by proving that \(L\) is closed. To do so, let \(x\) be a limit point of \(L\). We need to prove that \(x \in L\). Since \(x\) is a limit point of \(L\) this means that given \(\epsilon &gt; 0\), every \(\epsilon\)-neighborhood \(V_{\epsilon/2}(x)\) of \(x\) intersects \(L\) at some element \(y\) such that \(x \neq y\). But this implies that \(y\) is a limit point of \(A\) (since \(L\) is the set of \(A\)’s limit points). Again by the definition of a limit point, this means that given \(\epsilon &gt; 0\), every \(\epsilon\)-neighborhood \(V_{\epsilon/2}(y)\) of \(y\) intersects \(A\) at some element \(z\) such that \(y \neq z\). So now we have \(x\) and \(z\) within a distance of at most \(\epsilon\) of each other. In other words, $$ \begin{align*} |x - z| &amp;= |x - y + y - z| \\ &amp;\leq |x - y| + |y - z| \quad \text{(by the triangle inequality)} \\ &amp;&lt; \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon. \end{align*} $$ From this we can conclude that \(z\) is an element of \(V_{\epsilon}(x)\). But \(z\) is an element of \(A\). So this means that \(z\) is an element of \(V_{\epsilon}(x) \cap A\). Next, we want to show that \(x \neq z\). If we do that, then this means that \(x\) is a limit point of \(A\) which will imply that \(x\) is a limit point of \(L\). So, Other Definitions and Properties Open Sets Limit Points Closed Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott]]></summary></entry></feed>

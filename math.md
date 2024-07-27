@@ -294,7 +294,16 @@ mathjax: true
     <p><a href="/jekyll/update/2024/07/05/analysis-sets-open-cover.html">
 		  Open Cover
     </a></p>
+	<li><a href="/jekyll/update/2024/07/06/analysis-sets-heine-borel.html">
+		  (Theorem 3.3.8) [Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two (i) \(K\) is compact. (ii) \(K\) is closed and bounded (iii) Every open cover for \(K\) has a finite subcover.
+    </a></li>
+    <p><a href="/jekyll/update/2024/07/07/analysis-sets-perfect.html">
+		  Perfect Sets
+    </a></p>
 	<!--
+	<li><a href="/jekyll/update/2024/07/08/analysis-sets-perfect-uncountable.html">
+		  (Theorem 3.4.3) A nonempty perfect set is uncountable.
+    </a></li>
     <p>
           Exercises
     </p>

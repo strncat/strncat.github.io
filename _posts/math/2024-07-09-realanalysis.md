@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Math
-permalink: /math/
+title: Real Analysis
+date:   2024-07-09 09:01:36 -0700
+categories: jekyll update
 mathjax: true
 ---
 
 <!------------------------------------------------------------------->  
-  <h3> Real Analysis </h3>
   <ol type="1">
     <li><a href="/jekyll/update/2024/05/14/analysis-psquared-even-then-p-even.html">
           Prove that if \(p^2\) is even, then \(p\) is even.
@@ -25,11 +25,11 @@ mathjax: true
     <li><a href="/jekyll/update/2024/05/02/analysis-epsilon-proof-for-equal-real-numbers.html">
           Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\).   
     </a></li>
-	<!---------------------------- The Absolute Value Function ------------------------------->
-	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
-		<h4><i>The Absolute Value Function</i></h4>
-	</div>
-	<br>
+</ol>
+<br>
+<!---------------------------- The Absolute Value Function ------------------------------->
+<h3> The Absolute Value Function </h3>
+<ol>
     <p><a href="/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">
           Definition and Properties  
     </a></p>
@@ -51,11 +51,11 @@ mathjax: true
     <li><a href="/jekyll/update/2024/05/27/analysis-absolute-value-triangle-inquality-subtract.html">
           \(|a - c| \leq |a - b|+|b - c|\) holds for all real numbers \(a\), \(b\) and \(c\).   
     </a></li>
-	<!-------------------------------------- Bounds --------------------------------------->
-	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
-		<h4><i>Upper and Lower Bounds</i></h4>
-	</div>
-	<br>
+</ol>
+<br>
+<!-------------------------------------- Bounds --------------------------------------->
+<h3> Upper and Lower Bounds </h3>	
+<ol>
     <p><a href="/jekyll/update/2024/05/03/analysis-set-bounded.html">
           Bounds Definitions
     </a></p>
@@ -109,11 +109,11 @@ mathjax: true
     <li><a href="/jekyll/update/2024/05/18/analysis-archimedian-principle-sup-N.html">
           Show that \(\sup\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 1.\)
     </a></li>
-	<!-------------------------------------- Cardinality --------------------------------------->
-	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
-		<h4><i>Cardinality</i></h4>
-	</div>
-	<br>
+</ol>
+<br>
+<!-------------------------------------- Cardinality --------------------------------------->
+<h3>Cardinality</h3>
+<ol>
     <p><a href="/jekyll/update/2024/06/07/analysis-card-definitions.html">
           Definitions
     </a></p>
@@ -125,11 +125,11 @@ mathjax: true
 		  The set \(\mathbf{Q}\) is countable and the set \(\mathbf{R}\) is uncountable.
     </a></li>
 	-->
-	<!-------------------------------------- Sequences --------------------------------------->
-	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
-		<h4><i>Sequences and Subsequences</i></h4>
-	</div>
-	<br>
+</ol>
+<br>
+<!-------------------------------------- Sequences --------------------------------------->
+<h3>Sequences and Subsequences</h3>
+<ol>
     <p><a href="/jekyll/update/2024/05/21/analysis-seq-definitions.html">
           Sequences Definitions
     </a></p>
@@ -207,12 +207,12 @@ mathjax: true
     </a></li>
     <li><a href="/jekyll/update/2024/06/21/analysis-seq-1n-diverges.html">
 		  Prove that \((a_n) = (-1)^n\) diverges.
-    </a></li>
-	<!-------------------------------------- Series --------------------------------------->
-	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
-		<h4><i>Series</i></h4>
-	</div>
-	<br>
+</a></li>
+</ol>
+<br>
+<!-------------------------------------- Series --------------------------------------->
+<h3>Series</h3>
+<ol>
     <p><a href="/jekyll/update/2024/06/10/analysis-series-definitions.html">
           Series Definitions
     </a></p>
@@ -245,11 +245,11 @@ mathjax: true
 		  (2.7.10) If a series converges absolutely, then any rearrangements of this series converges to the same limit.
     </a></li>
 	-->
-	<!-------------------------------------- Topology of R --------------------------------------->
-	<div style="background-color: #F3EEEA; padding: 15px 5px 5px 5px; border:0px solid black;">
-		<h4><i>Topology of R</i></h4>
-	</div>
-	<br>
+</ol>
+<br>
+<!-------------------------------------- Topology of R --------------------------------------->
+<h3>Topology of R</h3>
+<ol>
     <p><a href="/jekyll/update/2024/04/24/analysis-sets-cantor.html">
 		  Cantor Sets
     </a></p>
@@ -312,173 +312,4 @@ mathjax: true
     </a></li>
 	-->
   </ol>
-<br>
-<!------------------------------------------------------------------->  
-  <h3> Limits </h3>
-  <ul style="list-style-type:none;">
-    <li><a href="/jekyll/update/2024/04/16/limit-rational-functions.html">
-            The Limit of Rational Functions As x Approaches Plus or Negative Infinity
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/14/limit-sin-x.html">
-          The Limit of sin(x) / x
-    </a></li>
-  </ul>
-<br>
-
-<!------------------------------------------------------------------->  
-   <h3> Linear Algebra </h3>
-   <ul style="list-style-type:none;">
-       <li><a href="/jekyll/update/2023/09/11/vectors.html">
-           Vectors
-       </a></li>
-       <li><a href="/jekyll/update/2023/09/12/linear-combinations.html">
-           Linear Combinations
-       </a></li>
-       <li><a href="/jekyll/update/2023/09/22/linear-transformations.html">
-           Linear Transformations
-       </a></li>
-       <li><a href="/jekyll/update/2023/09/25/matrix-multiplication-as-composition.html">
-           Matrix Multiplication As Composition
-       </a></li>
-       <li><a href="/jekyll/update/2023/09/26/determinants.html">
-           Determinants
-       </a></li>
-       <li><a href="/jekyll/update/2023/09/27/system-of-linear-equations.html">
-           Inverse Matrices, Column Space and Null Space 
-       </a></li>
-	   <!--
-       <li><a href="/jekyll/update/2023/09/29/dot-product.html">
-           Dot Product
-       </a></li>
-       <li><a href="/jekyll/update/2023/10/02/cross-product.html">
-           Cross Product
-       </a></li>
-	   -->
-   </ul>
-<br>
-
-<!------------------------------------------------------------------->  
-  <h3> Trigonometry </h3>
-  <ul style="list-style-type:none;">
-    <li><a href="/jekyll/update/2024/04/12/trigonometry-cheat-sheet.html">
-           Trigonometry Cheat Sheet
-      </a></li>
-    <li><a href="/jekyll/update/2024/03/26/radians.html">
-          Radians
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/08/the-unit-circle.html">
-          Sine, Cosine and The Unit Circle
-    </a></li>
-    <li><a href="/jekyll/update/2024/03/28/unit-circle-point.html">
-          Finding a Point on the Unit Circle
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/13/graphing-sine-cosine.html">
-          Graphing the Sine and Cosine Functions
-    </a></li>
-  </ul>
-<br>
-
-<!------------------------------------------------------------------->  
-  <h3> Graphing Functions </h3>
-  <ul style="list-style-type:none;">
-    <li><a href="/jekyll/update/2024/04/09/graph-vertical-asymptotes.html">
-         Graphing Rational Functions: Vertical Asymptotes
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/10/graph-horizontal-asymptotes.html">
-         Graphing Rational Functions: Horizontal Asymptotes
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/11/graph-slanted-asymptotes.html">
-         Graphing Rational Functions: Slanted Asymptotes
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/04/graph-function-linear-over-linear.html">
-          Graphing Rational Functions (Example: Linear Over Linear)
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/07/graph-function-quadratic-over-linear.html">
-          Graphing Rational Functions (Example: Quadratic Over Linear)
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/15/graph-function-exponential.html">
-          Graphing the Exponential Function
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/03/graph-function-logarithm.html">
-          Graphing a Logarithmic Function
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/05/graph-function-absolute-value.html">
-          Graphing the Absolute Value Function
-    </a></li>
-  </ul>
-<br>
-
-<!------------------------------------------------------------------->  
-  <h3> Elementary Stuff </h3>
-  <ul style="list-style-type:none;">
-    <li><a href="/jekyll/update/2024/04/01/rational-equations.html">
-          Solving a Rational Equation
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/02/partial-decomposition.html">
-          Partial Decomposition
-    </a></li>
-    <li><a href="/jekyll/update/2024/04/06/inverse-rational-function.html">
-          Inverse of a Rational Function
-    </a></li>
-  </ul>
-<br>
-
-<!------------------------------------------------------------------->  
- <h3> Other Topics </h3>
-   <ul style="list-style-type:none;">
-       <li><a href="/jekyll/update/2023/09/28/implicit-representation.html">
-           Implicit Representation of an Equation
-       </a></li>
-       <li><a href="/jekyll/update/2023/09/30/parametric-representation.html">
-           Parametric Representation an Equation
-       </a></li>
-   </ul>
-<br>
-
-<!------------------------------------------------------------------->  
- <h3> Elements of Euclid </h3>
-   <ul style="list-style-type:none;">
-       <li><a href="/jekyll/update/2024/04/28/elements-of-euclid-book1.html">
-           Book 1
-       </a></li>
-   </ul>
-<br>
-
-
-<!------------------------------------------------------------------->  
-<!--
-   <h3> Abstract Algebra </h3>
-   <ul style="list-style-type:none;">
-       <li><a href="/jekyll/update/2019/09/07/groups.html">
-           Groups
-       </a></li>
-   </ul>
---> 
-
-
-<!------------------------------------------------------------------->  
-<!--
-   <h3> Number Theory </h3>
-   <ul style="list-style-type:none;">
-       <li><a href="/jekyll/update/2019/08/23/prime-numbers.html">
-           Prime Numbers
-       </a></li>
-       <li><a href="/jekyll/update/2019/08/22/congruences.html">
-           Congruences
-       </a></li>
-   </ul>
--->
-
-
-<!--
-<li><a href="/jekyll/update/2022/09/23/proof1.html">
-   <b>09/23/2022:</b> If $n \in N,$ then $1 + (-1)^n(2n-1)$ is a multiple of $4$.
-</a></li>
-<li><a href="/jekyll/update/2022/09/24/proof2.html">
-   <b>09/24/2022:</b> If two integers have opposite parity, then their sum is odd.
-</a></li>
-<li><a href="/jekyll/update/2022/09/25/proof3.html">
-   <b>09/25/2022:</b> If $n \in N,$ then $1 + (-1)^n(2n-1)$ is a multiple of $4$.
-</a></li>
--->
 <br>

@@ -5,7 +5,7 @@ date:   2023-09-27 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-This post is just me taking notes while watching the 7th lecture of the <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a> which is the best reference on Linear Algebra ever. I might add other notes from other places as I go.
+These are notes I took while watching the series <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">The Essence of Linear Algebra by 3Blue1Brown</a>.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

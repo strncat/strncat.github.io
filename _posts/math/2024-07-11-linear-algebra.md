@@ -5,6 +5,16 @@ date:   2024-07-11 09:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
+<!------------------------------------------------------------------->  
+  <h3> Linear Algebra Done Right </h3>
+<ul style="list-style-type:none;">
+       <li><a href="/jekyll/update/2024/07/12/vector-space.html">
+           Vector Space
+       </a></li>
+   </ul>
+<br>
+<!------------------------------------------------------------------->  
+  <h3> Essense of Linear Algebra </h3>
 <ul style="list-style-type:none;">
        <li><a href="/jekyll/update/2023/09/11/vectors.html">
            Vectors

@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Vector Space"
+title:  "Vector Spaces"
 date:   2024-07-12 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Lots of definitions and notations are presented in <a href="https://linear.axler.net">Chapter 1: Vector Space</a>. I'm going to write down the definitions that made me pause and maybe more important than the rest of the definitions in the chapter. We'll start with the definition of a vector space from chapter 1. 
+Lots of definitions and notations are presented in <a href="https://linear.axler.net">Chapter 1: Vector Spaces</a>. I'm going to write down the definitions that made me pause and maybe more important than the rest of the definitions in the chapter. We'll start with the definition of a vector space from chapter 1. 
 <div style="background-color: #FFEBAD; padding: 15px 15px 15px 15px; border-top:1px solid black; border-left: 1px solid black; border-right: 1px solid black; border-top-left-radius: 10px; border-top-right-radius: 10px;">
   1.20 definition: vector space
 </div>

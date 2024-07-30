@@ -6,10 +6,10 @@ categories: jekyll update
 mathjax: true
 ---
 Lots of definitions and notations are presented in <a href="https://linear.axler.net">Chapter 1: Vector Spaces</a>. I'm going to write down the definitions that made me pause and maybe more important than the rest of the definitions in the chapter. We'll start with the definition of a vector space from chapter 1. 
-<div style="background-color: #FFEBAD; padding: 15px 15px 15px 15px; border-top:1px solid black; border-left: 1px solid black; border-right: 1px solid black; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+<div class="ydiv">
   1.20 definition: vector space
 </div>
-<div style="background-color: #FFF6BF; padding: 15px 15px 15px 15px; border:1px solid black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+<div class="ybdiv">
   A <i>vector space</i> is a set \(V\) along with an addition on \(V\) and a scalar multiplication on \(V\) such that the following properties hold.
   <br>
   <br>
@@ -30,10 +30,10 @@ Lots of definitions and notations are presented in <a href="https://linear.axler
 Seeing this definition for the first time, I immediately was thinking that this is very similar to the definition of a Field except for the scalar multiplication here instead of the normal multiplication in a field. I also saw this discussion <a href=" https://math.stackexchange.com/questions/969720/what-is-the-main-difference-between-a-vector-space-and-a-field">here</a> which is also interesting. Still not sure though what the point is of a vector space ... too early to tell.
 <br>
 <br>
-<div style="background-color: #FFEBAD; padding: 15px 15px 15px 15px; border-top:1px solid black; border-left: 1px solid black; border-right: 1px solid black; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+<div class="ydiv">
   1.24 notation: \(\mathbf{F}^S\)
 </div>
-<div style="background-color: #FFF6BF; padding: 15px 15px 15px 15px; border:1px solid black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+<div class="ybdiv">
   <ul>
   <li>If \(S\) is a set, then \(\mathbf{F}^S\) denotes the set of functions from \(S\) to \(\mathbf{F}\).</li>
   <li>For \(f, g \in \mathbf{F}^S\), the sum \(f + g \in \mathbf{F}^S\) is the function defined by
@@ -66,10 +66,10 @@ What's more interesting is to know that $$F^{n}$$ (which is what we usually see)
 <br>
 <!------------------------------------------------------------------------------------>
 <h4>Additional Vector Space Results</h4>
-<div style="background-color: #93C6E7; padding: 15px 15px 15px 15px; border-top:1px solid black; border-left: 1px solid black; border-right: 1px solid black; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+<div class="bdiv">
   1.26 unique additive identity
 </div>
-<div style="background-color: #DDF2FD; padding: 15px 15px 15px 15px; border:1px solid black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+<div class="bbdiv">
   A vector space has a unique additive identity.
 </div>
 <br>
@@ -85,10 +85,10 @@ $$
 The first equality holds because 0 is an additive identity. The second equality comes from the fact that addition must be commutative and lastly the last equality holds because 0' is an additive identity. Therefore, $$0 = 0'$$ which is a contradiction and the additive identity must be unique. $$\blacksquare$$
 <br>
 <br>
-<div style="background-color: #93C6E7; padding: 15px 15px 15px 15px; border-top:1px solid black; border-left: 1px solid black; border-right: 1px solid black; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+<div class="bdiv">
   1.27 unique additive inverse
 </div>
-<div style="background-color: #DDF2FD; padding: 15px 15px 15px 15px; border:1px solid black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+<div class="bbdiv">
   Every element in a vector space has a unique additive inverse.
 </div>
 <br>

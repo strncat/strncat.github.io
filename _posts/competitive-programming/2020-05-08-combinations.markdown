@@ -59,7 +59,7 @@ void combinations(std::vector<int>& a,
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Worst case analysis</b></h4>
-At the top level of the recursion tree (level = 0), we make one call. At level 1 we make $$2^1$$ calls. At level 2, we make $2^2$ calls. The last level (level = $n-1$) would have $2^n$ subproblems. For each call, we make $O(1)$ work of selecting or not selecting the element. So the total time would be $1+2+2^2+2^3+...+2^n = 2^{n+1} - 1 = O(2^{n})$.
+At the top level of the recursion tree (level = 0), we make one call. At level 1 we make $$2^1$$ calls. At level 2, we make $$2^2$$ calls. The last level (level = $$n-1$$) would have $$2^n$$ subproblems. For each call, we make $$O(1)$$ work of selecting or not selecting the element. So the total time would be $$1+2+2^2+2^3+...+2^n = 2^{n+1} - 1 = O(2^{n})$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

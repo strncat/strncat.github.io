@@ -1,4 +1,106 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-02T10:03:46-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Subspaces</title><link href="http://localhost:4000/jekyll/update/2024/07/14/subspaces.html" rel="alternate" type="text/html" title="Subspaces" /><published>2024-07-14T01:01:36-07:00</published><updated>2024-07-14T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/14/subspaces</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/14/subspaces.html"><![CDATA[<div class="ydiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-02T12:06:36-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Traversing Diagonals of a Grid</title><link href="http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals.html" rel="alternate" type="text/html" title="Traversing Diagonals of a Grid" /><published>2024-07-15T01:01:36-07:00</published><updated>2024-07-15T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals.html"><![CDATA[<p>This is kind of a misleading title but I didn’t know what to call it. But what I wanted here to print each and every “diagonal” of this grid in both the left and right direction. For example, if left to right, then we’ll have</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/1.png" width="35%" class="center" /></p>
+<p>And we’ll print</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="mi">1</span> <span class="mi">6</span> <span class="mi">11</span>
+<span class="mi">2</span> <span class="mi">7</span> <span class="mi">12</span>
+<span class="mi">3</span> <span class="mi">8</span>
+<span class="mi">4</span>
+<span class="mi">5</span> <span class="mi">10</span>
+<span class="mi">9</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Approach</b></h4>
+<p>We’re going to divide this problem into two subproblems. In the first subproblem, we’ll print the diagonals starting from the cells in the first column below.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/2.png" width="35%" class="center" /></p>
+<p>In the second subproblem, we’ll print the remaining diagonals starting from the cells in the first row but skipping the first overlapping element with the first column since we did that in the first subproblem.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/6.png" width="32%" class="center" /></p>
+
+<!------------------------------------------------------------------------------------>
+<h4><b>First Subproblem</b></h4>
+<p>We’ll iterate over the first column. From the first cell, we’ll print the following diagonal.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/3.png" width="32%" class="center" /></p>
+<p>Next, we’ll move to the next cell in the column and print the diagonal starting from it.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/4.png" width="32%" class="center" /></p>
+<p>And finally the last cell in the column.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/5.png" width="32%" class="center" /></p>
+<p>This is process is captured in the following code:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// left to right direction in an m by n grid</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// print the diagonal</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">m</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+        <span class="n">k</span><span class="o">++</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The above code will output</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="mi">1</span> <span class="mi">6</span> <span class="mi">11</span>
+<span class="mi">5</span> <span class="mi">10</span>
+<span class="mi">9</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Second Subproblem</b></h4>
+<p>We’ll iterate over the row column starting at the second cell and print the diagonal from there.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/7.png" width="32%" class="center" /></p>
+<p>We’ll move on to the third cell and print the diagonal again.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/8.png" width="32%" class="center" /></p>
+<p>Finally, we’ll print the very last diagonal.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/9.png" width="32%" class="center" /></p>
+<p>This process is captured in the following code:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// print the diagonal</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"d: "</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span> <span class="o">&amp;&amp;</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">s</span><span class="p">]);</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>which will print the following</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="mi">2</span> <span class="mi">7</span> <span class="mi">12</span>
+<span class="mi">3</span> <span class="mi">8</span>
+<span class="mi">4</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Right to Left Direction</b></h4>
+<p>What about the complete other direction (right to left) below. How do we print these diagonals?</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/10.png" width="32%" class="center" /></p>
+<p>We’ll do the same thing, divide the problem into two subproblems and tackle each separately. This is captured in the following code:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// right to left</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+        <span class="n">k</span><span class="o">--</span><span class="p">;</span>
+        <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">s</span><span class="p">]);</span>
+            <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is kind of a misleading title but I didn’t know what to call it. But what I wanted here to print each and every “diagonal” of this grid in both the left and right direction. For example, if left to right, then we’ll have And we’ll print 1 6 11 2 7 12 3 8 4 5 10 9 Approach We’re going to divide this problem into two subproblems. In the first subproblem, we’ll print the diagonals starting from the cells in the first column below. In the second subproblem, we’ll print the remaining diagonals starting from the cells in the first row but skipping the first overlapping element with the first column since we did that in the first subproblem.]]></summary></entry><entry><title type="html">Subspaces</title><link href="http://localhost:4000/jekyll/update/2024/07/14/subspaces.html" rel="alternate" type="text/html" title="Subspaces" /><published>2024-07-14T01:01:36-07:00</published><updated>2024-07-14T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/14/subspaces</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/14/subspaces.html"><![CDATA[<div class="ydiv">
   1.33 definition: subspace
 </div>
 <div class="ybdiv">
@@ -859,62 +961,4 @@ Next, we need to assume (ii) and prove (iii). So suppose that \(K\) is closed an
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 <li><a href="https://www.youtube.com/watch?v=5N9wNNc0HH4">Wrath of Math</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two \(K\) is compact. \(K\) is closed and bounded. Every open cover for \(K\) has a finite subcover. Proof We proved that (i) and (ii) are equivalent in theorem 3.3.4. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for (K) has a finite subcover. We’ll show that (K) is bounded and closed. To show that \(K\) is bounded, construct an open cover for \(K\) by defining \(O_x\) to be an open interval of radius 1 around each element of \(x \in K\) so that \(O_x = V_1(x)\). The open cover is defined then as \(\{O_x: x \in K\}\). Since we assume that (iii) is true, then this means there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) that contains \(K\). Since the subcover is a finite collection of bounded sets, then \(K\) must be bounded as well. To show that \(K\) is closed, suppose that \((y_n)\) is a Cauchy sequence contained in \(K\) such that \((y_n) \rightarrow y\). We need to show that \(y \in K\) since a closed set must contain all of its limit points. To show this, suppose for the sake of contradiction that \(y \notin K\). This means that for all \(x \in K\), \(x\) is some positive distance away from \(y\). So construct an open cover by taking \(O_x\) to be an interval of radius \(|x-y|/2\) around each element. Since we assumed (iii) is true, then there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) such that it contains \(K\). But this is impossible. To see why, set $$ \begin{align*} \epsilon_0 = \min \left\{\frac{x_i - y}{2}: 1 \leq i \leq n \right\}. \end{align*} $$ Now, since \((y_n) \rightarrow y\), then for all \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that when \(n \geq N\), we have \(|y_n - y| &lt; \epsilon_0\). But this implies that \(y_n\) is not in any \(O_x\) meaning that $$ \begin{align*} y_n \notin \bigcup_{i=1}^{n} O_{x_i}. \end{align*} $$ This means that the finite cover doesn’t actually contain all of \(K\) and therefore this is a contradiction and we must have \(y \in K\) as required to show that \(K\) is closed. Next, we need to assume (ii) and prove (iii). So suppose that \(K\) is closed and bounded. We will prove that for every open cover of \(K\), there exists a finite subcover. [TODO] \(\blacksquare\) Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Wrath of Math]]></summary></entry><entry><title type="html">Open Cover</title><link href="http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover.html" rel="alternate" type="text/html" title="Open Cover" /><published>2024-07-05T01:01:36-07:00</published><updated>2024-07-05T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/05/analysis-sets-open-cover.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (Definition 3.3.6) Let \(A \subseteq \mathbf{R}\). An <b>open cover</b> for \(A\) is a (possibly infinite) collection of open sets \(\{O_{\lambda}: \lambda \in \Lambda\}\) whose union contains the set \(A\); that is, \(A \subseteq_{\lambda \in \Lambda} O_{\lambda}\). Given an open cover for \(A\), a <b>finite subcover</b> is a finite sub collection of open sets from the original open cover whose union still manages to completely contain \(A\).
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>An open cover of \((0,4)\) is the following</p>
-<div>
-$$
-\begin{align*}
-\left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}.
-\end{align*}
-$$
-</div>
-<p>Each set above is open. Note here that we have to have an infinite collection of these sets. Any finite subset will not contain all of \((0,4)\).
-<br />
-<br />
-An open cover of \([0,4]\) is the following</p>
-<div>
-$$
-\begin{align*}
-\left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} \bigcup \quad \{(-0.2,0.2),(3.8,4.2)\}.
-\end{align*}
-$$
-</div>
-<p>Note here that we had to add two extra sets to cover both end points. This illustrates the difference between what we need to cover an open interval versus a a closed interval.
-<br />
-<br />
-What about a <b>finite subcover</b> of the following open cover of \((0,4)\)</p>
-<div>
-$$
-\begin{align*}
-\left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}.
-\end{align*}
-$$
-</div>
-<p>Is it possible to get a finite cover that covers \((0,4)\)? No, in this case no matter what collection we choose, we’ll always be missing an element from the interval \((0,4)\).
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>Other Definitions and Properties</b></p>
-<ul>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-open.html">Open Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/24/analysis-sets-limit-points.html">Limit Points</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/25/analysis-sets-closed.html">Closed Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/07/01/analysis-sets-compact.html">Compact Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/28/analysis-sets-closure.html">Closure</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">Absolute Value Function</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">Sequences, Subsequences and Convergence</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">Series and Series Convergence</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">Show the Limit Template</a></li>
-</ul>
-<p><br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-<li><a href="https://www.amazon.com/Real-Analysis-Long-Form-Mathematics-Textbook/dp/1077254547/ref=sr_1_1?crid=1EKW8X4WRF3FW&amp;dib=eyJ2IjoiMSJ9.8H96S-vpjIYx8lnvl5zYmBZjrj15kH-_m6pXDzkvCRlb8_xXY2IV9Zipu-8_YsxqJiHrDLuij8XqTNG6YHcqFweSzLEDTzu7r77bvENfD54ua0QoORkYqlE9hnHSTU3dlbiibZPSRE1snfOUjy9aIlUB_SwrjPs1Uaqob4D6dbOvu6otEp0euWD7ilhclz0t34D5E6BgakOV_CBH0-CKDhOAg00t6tXLZgtuRmPkIi0j7RBSp9GctSQADqBS0MW77CwckycJtCV79foESEnRKX8Ed_lD4GJp6ygwB2nGowQ.goqwiMcxQF-evF4CmmslF5VSq-jGrHd8P5npLOuVrAo&amp;dib_tag=se&amp;keywords=real+analysis&amp;qid=1720489245&amp;sprefix=real+analysi%2Caps%2C166&amp;sr=8-1">Real Analysis by Jay Cummings</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Definition 3.3.6) Let \(A \subseteq \mathbf{R}\). An open cover for \(A\) is a (possibly infinite) collection of open sets \(\{O_{\lambda}: \lambda \in \Lambda\}\) whose union contains the set \(A\); that is, \(A \subseteq_{\lambda \in \Lambda} O_{\lambda}\). Given an open cover for \(A\), a finite subcover is a finite sub collection of open sets from the original open cover whose union still manages to completely contain \(A\). Example An open cover of \((0,4)\) is the following $$ \begin{align*} \left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}. \end{align*} $$ Each set above is open. Note here that we have to have an infinite collection of these sets. Any finite subset will not contain all of \((0,4)\). An open cover of \([0,4]\) is the following $$ \begin{align*} \left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} \bigcup \quad \{(-0.2,0.2),(3.8,4.2)\}. \end{align*} $$ Note here that we had to add two extra sets to cover both end points. This illustrates the difference between what we need to cover an open interval versus a a closed interval. What about a finite subcover of the following open cover of \((0,4)\) $$ \begin{align*} \left\{\left(\frac{1}{k}, 4 - \frac{1}{k}\right)\right\}^{\infty}_{k=1} = \left\{(1,3), (\frac{1}{2},4-\frac{1}{2}),...\right\}. \end{align*} $$ Is it possible to get a finite cover that covers \((0,4)\)? No, in this case no matter what collection we choose, we’ll always be missing an element from the interval \((0,4)\). Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Real Analysis by Jay Cummings]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two \(K\) is compact. \(K\) is closed and bounded. Every open cover for \(K\) has a finite subcover. Proof We proved that (i) and (ii) are equivalent in theorem 3.3.4. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for (K) has a finite subcover. We’ll show that (K) is bounded and closed. To show that \(K\) is bounded, construct an open cover for \(K\) by defining \(O_x\) to be an open interval of radius 1 around each element of \(x \in K\) so that \(O_x = V_1(x)\). The open cover is defined then as \(\{O_x: x \in K\}\). Since we assume that (iii) is true, then this means there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) that contains \(K\). Since the subcover is a finite collection of bounded sets, then \(K\) must be bounded as well. To show that \(K\) is closed, suppose that \((y_n)\) is a Cauchy sequence contained in \(K\) such that \((y_n) \rightarrow y\). We need to show that \(y \in K\) since a closed set must contain all of its limit points. To show this, suppose for the sake of contradiction that \(y \notin K\). This means that for all \(x \in K\), \(x\) is some positive distance away from \(y\). So construct an open cover by taking \(O_x\) to be an interval of radius \(|x-y|/2\) around each element. Since we assumed (iii) is true, then there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) such that it contains \(K\). But this is impossible. To see why, set $$ \begin{align*} \epsilon_0 = \min \left\{\frac{x_i - y}{2}: 1 \leq i \leq n \right\}. \end{align*} $$ Now, since \((y_n) \rightarrow y\), then for all \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that when \(n \geq N\), we have \(|y_n - y| &lt; \epsilon_0\). But this implies that \(y_n\) is not in any \(O_x\) meaning that $$ \begin{align*} y_n \notin \bigcup_{i=1}^{n} O_{x_i}. \end{align*} $$ This means that the finite cover doesn’t actually contain all of \(K\) and therefore this is a contradiction and we must have \(y \in K\) as required to show that \(K\) is closed. Next, we need to assume (ii) and prove (iii). So suppose that \(K\) is closed and bounded. We will prove that for every open cover of \(K\), there exists a finite subcover. [TODO] \(\blacksquare\) Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Wrath of Math]]></summary></entry></feed>

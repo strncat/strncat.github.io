@@ -1,57 +1,30 @@
 ---
 layout: post
-title:  "Vector Spaces"
-date:   2024-07-12 01:01:36 -0700
+title:  "Subspaces"
+date:   2024-07-14 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Lots of definitions and notations are presented in <a href="https://linear.axler.net">Chapter 1: Vector Spaces</a>. I'm going to write down the definitions that made me pause and maybe more important than the rest of the definitions in the chapter. We'll start with the definition of a vector space from chapter 1.
-<br>
 <div class="ydiv">
-  1.20 definition: vector space
+  1.33 definition: subspace
 </div>
 <div class="ybdiv">
-  A <i>vector space</i> is a set \(V\) along with an addition on \(V\) and a scalar multiplication on \(V\) such that the following properties hold.
-  <br>
-  <br>
-  <b>commutativity</b><br>
-  \(u + v = v + u\) for all \(u, v \in V\).<br>
-  <b>associativity</b><br>
-  \((u + v) + w = u + (v + w)\) and \(a(bv) = a(bv)\) for all \(u, v, w \in V\) and for all \(a, b \in \mathbf{F}\).<br>
+  A subset \(U\) of \(V\) is called a <i>subspace</i> of \(V\) if \(U\) is also a vector space with the same additive identity, addition and scalar multiplication as on \(V\).
+</div>
+<br>
+Next are the conditions that we must verify to prove that a subset is a subspace.
+<br>
+<div class="bdiv">
+  1.34 conditions for a subspace
+</div>
+<div class="bbdiv">
+  A subset \(U\) of \(V\) is a subspace of \(V\) if and only if \(U\) satisfies the following three conditions.<br>
   <b>additive identity</b><br>
-  There exists an element \(0 \in V\) such that \(v + 0 = v\) for all \(v \in V\). <br>
-  <b>additive inverse</b><br>
-  For every \(v \in V\), there exists \(w \in V\) such that \(v + w = 0\). <br>
-  <b>multiplicative identity</b><br>
-  \(1v = v\) for all \(v \in V\).<br>
-  <b>distributive properties</b><br>
-  \(a(u + v) = au + av\) and \((a + b)v = av + bv\) for all \(u, v \in V\) and for all \(a, b \in \mathbf{F}\).<br>
-</div>
-<br>
-Seeing this definition for the first time, I immediately was thinking that this is very similar to the definition of a Field except for the scalar multiplication here instead of the normal multiplication in a field. I also saw this discussion <a href=" https://math.stackexchange.com/questions/969720/what-is-the-main-difference-between-a-vector-space-and-a-field">here</a> which is also interesting. Still not sure though what the point is of a vector space ... too early to tell.
-<br>
-<br>
-<div class="ydiv">
-  1.24 notation: \(\mathbf{F}^S\)
-</div>
-<div class="ybdiv">
-  <ul>
-  <li>If \(S\) is a set, then \(\mathbf{F}^S\) denotes the set of functions from \(S\) to \(\mathbf{F}\).</li>
-  <li>For \(f, g \in \mathbf{F}^S\), the sum \(f + g \in \mathbf{F}^S\) is the function defined by
-	  $$
-	  \begin{align*}
-	  (f + g)(x) = f(x) + g(x)
-	  \end{align*}
-	  $$ for all \(x \in S\).
-   for all \(x \in S\).</li>
-  <li>For \(\lambda \in \mathbf{F}\) and \(f \in \mathbf{F}^S\), the product \(\lambda f \in \mathbf{F}^S\) is the function defined by
-  $$
-  \begin{align*}
-  (\lambda f)(x) = \lambda f(x)
-  \end{align*}
-  $$ for all \(x \in S\).
-  </li>
-  </ul>
+  \(0 \in U\).<br>
+  <b>closed under addition</b><br>
+  \(u, w \in U implies u + w \in U\).
+  <b>closed under multiplication</b><br>
+  \(a \in \mathbf{F} and u \in U implies au \in U\).
 </div>
 <br>
 This is something that also threw me off. The example in the book defines $$S$$ as the interval $$[0,1]$$ and $$F = R$$ and so $$R^{[0,1]}$$ is the set of all functions from $$[0,1]$$ to $$R$$ or in other words, the set of real-valued functions on $$[0,1]$$.

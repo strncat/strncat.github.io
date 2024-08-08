@@ -1,4 +1,186 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-02T12:06:36-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Traversing Diagonals of a Grid</title><link href="http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals.html" rel="alternate" type="text/html" title="Traversing Diagonals of a Grid" /><published>2024-07-15T01:01:36-07:00</published><updated>2024-07-15T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals.html"><![CDATA[<p>This is kind of a misleading title but I didn’t know what to call it. But what I wanted here to print each and every “diagonal” of this grid in both the left and right direction. For example, if left to right, then we’ll have</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-08-07T20:54:20-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Vector Spaces</title><link href="http://localhost:4000/jekyll/update/2024/07/17/vector-spaces.html" rel="alternate" type="text/html" title="Vector Spaces" /><published>2024-07-17T01:01:36-07:00</published><updated>2024-07-17T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/17/vector-spaces</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/17/vector-spaces.html"><![CDATA[<div class="bdiv">
+  Definition
+</div>
+<div class="bbdiv">
+  A <i>vector space</i> is a set \(V\) with two operations: addition: \(V \times V \rightarrow V\), and a scalar multiplication: \(\mathbf{R} \times V \rightarrow V\), such that the following properties hold:
+  <ol>
+      <li>\(u + v = v + u\) for all \(u,v \in V\).</li>
+	  <li> \((u + v) + w = u + (v + w)\) for all \(u, v, w \in V\).</li>
+      <li>There exists an element \(\bar{0} \in V\) such that \(v + \bar{0} = v\) for all \(v \in V\).</li>
+	  <li>For all \(v \in V\), there exists \(w \in V\) such that \(v + w = \bar{0}\). </li>
+      <li>\(1v = v\) for all \(v \in V\)</li>
+	  <li>\(a(bv) = a(bv)\) for all \(v \in V\) and for all \(a, b \in \mathbf{F}\) </li>
+	  <li>\(a(u + v) = au + av\) for all \(u, v \in V\) and for all \(a \in \mathbf{F}\)</li>
+      <li>\((a + b)v = av + bv\) for all \(u, v \in V\) and for all \(a, b \in \mathbf{F}\)</li>
+</ol>
+</div>
+<p><br />
+For property (4), we don’t call it \(-v\) yet because we didn’t prove yet if it’s unique.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 1: \(\mathbf{R}\)</b></h4>
+<p>\(\mathbf{R}\) is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 2: A Set of Matrices</b></h4>
+<p>The set of \(m\) by \(n\) matrices (\(M_{m \times n}\)) equipped with component wise addition such that</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+a &amp; b &amp; c \\
+d &amp; e &amp; f \\
+\end{pmatrix}
++
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1+a &amp; 2+b &amp; 3+c \\
+4+d &amp; 5+e &amp; 6+f \\
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>and component wise scalar multiplication such that</p>
+<div>
+$$
+\begin{align*}
+c
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1c &amp; 2c &amp; 3c \\
+4c &amp; 5c &amp; 6c \\
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>is a vector space.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 3: Sets of Functions</b></h4>
+<p>let \(S\) be a nonempty set. For example \(S = \mathbf{R}\), or \(S = \{\pi, \pi^2\}\), \(S = \{\)atoms in the universe\(\}\). Basically any non-empty set. 
+Now consider \(F(S) = \{f: S \rightarrow \mathbf{R}\}\), the set of all functions or mappings from \(S\) to \(\mathbf{R}\). One way to think of this is the all the ways we can label the elements in the set \(S\) with real numbers.
+<br /><br />
+Define addition as \((f+g)(s) = f(s) + g(s)\) for all \(s \in S\). So addition of functions works as addition of their values and produces a real number which is what we want. Define scalar multiplication as \(cf(s) =c(f(s))\) for all \(s \in S\). 
+<br /><br />
+\(F(S)\) is a vector space. It satisfies all 8 conditions. For example. The zero vector in this space is \(\bar{0}(s) = 0\) for all \(s \in S\). Note also that \(C^1(\mathbf{R})\) (the functions where with continues derivatives) is a subset of \(C^0(\mathbf{R})\) (the set of continuous functions) which is a subset of \(F(S)\).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 4: The Set of all Sequences</b></h4>
+<p>Consider the set of all natural numbers \(\mathbf{N}\) and the set of functions \(F(\mathbf{N}) = \{\sigma: \mathbf{N} \rightarrow \mathbf{R}\). \(\sigma\) is a function that takes a natural number and assigns it a real number. But</p>
+<div>
+$$
+\begin{align*}
+    \sigma(1), \sigma(2), \sigma(3), ...
+\end{align*}
+$$
+</div>
+<p>is a sequence. So we’re giving the set of sequences the structure of a vector space. Let \(\sigma(1) =a_1, \sigma(2) = a_2, ...\) and so on. So now we can write the sequence as</p>
+<div>
+$$
+\begin{align*}
+    a_1, a_2, a_3 .... = \{a_n\}
+\end{align*}
+$$
+</div>
+<p>Let \(V = \{\) sequences \(\{a_n\}\) is a vector space. Define the addition of two sequences as \(\{a_n\} + \{b_n\} = \{a_n + b_n\}\). Adding the terms one by one. Define scalar multiplication as \(c\{a_n\} = \{ca_n\}\).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 5: The Set of Polynomials</b></h4>
+<div class="bdiv">
+  Definition: Degree of a Polynomial
+</div>
+<div class="bbdiv">
+Let \(f\) be defined as follows,
+$$
+\begin{align*}
+    f(x) = a_nx^n + a_{n-1}x^{n-1}+...+a_1x+a_0.
+\end{align*}
+$$
+the degree of \(f\) is the largest \(k\) such that \(x^k\) appears in \(f\) with \(a_k \neq 0\).
+</div>
+<p><br />
+Let \(P_n = \{\) polynomials \(f(x)\) of degree at most \(n\}\).<br />
+Define the addition operation as follows,</p>
+<div>
+$$
+\begin{align*}
+f(x)+g(x) = (a_nx^n + ...+a_0) + (b_nx^n + ...+b_0) = (a_n+b_n)x^n + ...+(a_0+b_0). 
+\end{align*}
+$$
+</div>
+<p>and define scalar multiplication as</p>
+<div>
+$$
+\begin{align*}
+cf(x) = ca_nx^n + ca_{n-1}x^{n-1} +...ca_0.
+\end{align*}
+$$
+</div>
+<p>\(P_n\) is a vector space. The zero vector is the function \(f\bar{0} = 0 = 0x^n + .... + 0\).
+Question: why did we define the polynomials to have at most \(n\) and not just \(n\)? because take \((X^5 + 1)\) and \((-x^5 + 9)\). The addition of these two will generate a 0 and so we have to say at most.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Additional Vector Space Results</b></h4>
+<div class="purdiv">
+  Theorem
+</div>
+<div class="purbdiv">
+  Let \(u, v, w\) be elements of a vector space \(V\). if \(u + w = v + w\), then \(u = v\).
+</div>
+<p><br />
+<b>Proof:</b>
+Let \(V\) be a vector space and \(u, v, w\) be elements in \(V\). By property (4) there is a \(z \in V\) such that</p>
+<div>
+$$
+\begin{align*}
+    w + z = \bar{0} 
+\end{align*}
+$$
+</div>
+<p>We also know that by property (3) that</p>
+<div>
+$$
+\begin{align*}
+    u = u + \bar{0}.
+\end{align*}
+$$
+</div>
+<p>But \(\bar{0} = w+z\) and so</p>
+<div>
+$$
+\begin{align*}
+u &amp;= u + \bar{0} \\
+  &amp;= u + (w + z) \\
+  &amp;= (u + w) + z \quad \text{ (by property (2)) } \\
+  &amp;= (v + w) + z \quad \text { (by the hypothesis)} \\
+  &amp;= v + (w + z) \quad \text{ (by property (2))} \\
+  &amp;= v + \bar{0} \\
+  &amp;= v \quad
+\end{align*}
+$$
+</div>
+<p>Therefore \(u = v\) as we wanted to show. \(\blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4>References:</h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition A vector space is a set \(V\) with two operations: addition: \(V \times V \rightarrow V\), and a scalar multiplication: \(\mathbf{R} \times V \rightarrow V\), such that the following properties hold: \(u + v = v + u\) for all \(u,v \in V\). \((u + v) + w = u + (v + w)\) for all \(u, v, w \in V\). There exists an element \(\bar{0} \in V\) such that \(v + \bar{0} = v\) for all \(v \in V\). For all \(v \in V\), there exists \(w \in V\) such that \(v + w = \bar{0}\). \(1v = v\) for all \(v \in V\) \(a(bv) = a(bv)\) for all \(v \in V\) and for all \(a, b \in \mathbf{F}\) \(a(u + v) = au + av\) for all \(u, v \in V\) and for all \(a \in \mathbf{F}\) \((a + b)v = av + bv\) for all \(u, v \in V\) and for all \(a, b \in \mathbf{F}\) For property (4), we don’t call it \(-v\) yet because we didn’t prove yet if it’s unique. Example 1: \(\mathbf{R}\) \(\mathbf{R}\) is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties. Example 2: A Set of Matrices The set of \(m\) by \(n\) matrices (\(M_{m \times n}\)) equipped with component wise addition such that $$ \begin{align*} \begin{pmatrix} a &amp; b &amp; c \\ d &amp; e &amp; f \\ \end{pmatrix} + \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ \end{pmatrix} = \begin{pmatrix} 1+a &amp; 2+b &amp; 3+c \\ 4+d &amp; 5+e &amp; 6+f \\ \end{pmatrix} \end{align*} $$ and component wise scalar multiplication such that $$ \begin{align*} c \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ \end{pmatrix} = \begin{pmatrix} 1c &amp; 2c &amp; 3c \\ 4c &amp; 5c &amp; 6c \\ \end{pmatrix} \end{align*} $$ is a vector space. Example 3: Sets of Functions let \(S\) be a nonempty set. For example \(S = \mathbf{R}\), or \(S = \{\pi, \pi^2\}\), \(S = \{\)atoms in the universe\(\}\). Basically any non-empty set. Now consider \(F(S) = \{f: S \rightarrow \mathbf{R}\}\), the set of all functions or mappings from \(S\) to \(\mathbf{R}\). One way to think of this is the all the ways we can label the elements in the set \(S\) with real numbers. Define addition as \((f+g)(s) = f(s) + g(s)\) for all \(s \in S\). So addition of functions works as addition of their values and produces a real number which is what we want. Define scalar multiplication as \(cf(s) =c(f(s))\) for all \(s \in S\). \(F(S)\) is a vector space. It satisfies all 8 conditions. For example. The zero vector in this space is \(\bar{0}(s) = 0\) for all \(s \in S\). Note also that \(C^1(\mathbf{R})\) (the functions where with continues derivatives) is a subset of \(C^0(\mathbf{R})\) (the set of continuous functions) which is a subset of \(F(S)\). Example 4: The Set of all Sequences Consider the set of all natural numbers \(\mathbf{N}\) and the set of functions \(F(\mathbf{N}) = \{\sigma: \mathbf{N} \rightarrow \mathbf{R}\). \(\sigma\) is a function that takes a natural number and assigns it a real number. But $$ \begin{align*} \sigma(1), \sigma(2), \sigma(3), ... \end{align*} $$ is a sequence. So we’re giving the set of sequences the structure of a vector space. Let \(\sigma(1) =a_1, \sigma(2) = a_2, ...\) and so on. So now we can write the sequence as $$ \begin{align*} a_1, a_2, a_3 .... = \{a_n\} \end{align*} $$ Let \(V = \{\) sequences \(\{a_n\}\) is a vector space. Define the addition of two sequences as \(\{a_n\} + \{b_n\} = \{a_n + b_n\}\). Adding the terms one by one. Define scalar multiplication as \(c\{a_n\} = \{ca_n\}\). Example 5: The Set of Polynomials Definition: Degree of a Polynomial Let \(f\) be defined as follows, $$ \begin{align*} f(x) = a_nx^n + a_{n-1}x^{n-1}+...+a_1x+a_0. \end{align*} $$ the degree of \(f\) is the largest \(k\) such that \(x^k\) appears in \(f\) with \(a_k \neq 0\). Let \(P_n = \{\) polynomials \(f(x)\) of degree at most \(n\}\). Define the addition operation as follows, $$ \begin{align*} f(x)+g(x) = (a_nx^n + ...+a_0) + (b_nx^n + ...+b_0) = (a_n+b_n)x^n + ...+(a_0+b_0). \end{align*} $$ and define scalar multiplication as $$ \begin{align*} cf(x) = ca_nx^n + ca_{n-1}x^{n-1} +...ca_0. \end{align*} $$ \(P_n\) is a vector space. The zero vector is the function \(f\bar{0} = 0 = 0x^n + .... + 0\). Question: why did we define the polynomials to have at most \(n\) and not just \(n\)? because take \((X^5 + 1)\) and \((-x^5 + 9)\). The addition of these two will generate a 0 and so we have to say at most. Additional Vector Space Results Theorem Let \(u, v, w\) be elements of a vector space \(V\). if \(u + w = v + w\), then \(u = v\). Proof: Let \(V\) be a vector space and \(u, v, w\) be elements in \(V\). By property (4) there is a \(z \in V\) such that $$ \begin{align*} w + z = \bar{0} \end{align*} $$ We also know that by property (3) that $$ \begin{align*} u = u + \bar{0}. \end{align*} $$ But \(\bar{0} = w+z\) and so $$ \begin{align*} u &amp;= u + \bar{0} \\ &amp;= u + (w + z) \\ &amp;= (u + w) + z \quad \text{ (by property (2)) } \\ &amp;= (v + w) + z \quad \text { (by the hypothesis)} \\ &amp;= v + (w + z) \quad \text{ (by property (2))} \\ &amp;= v + \bar{0} \\ &amp;= v \quad \end{align*} $$ Therefore \(u = v\) as we wanted to show. \(\blacksquare\) References: Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Traversing Diagonals of a Grid</title><link href="http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals.html" rel="alternate" type="text/html" title="Traversing Diagonals of a Grid" /><published>2024-07-15T01:01:36-07:00</published><updated>2024-07-15T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/15/traversal-diagonals.html"><![CDATA[<p>This is kind of a misleading title but I didn’t know what to call it. But what I wanted here to print each and every “diagonal” of this grid in both the left and right direction. For example, if left to right, then we’ll have</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/traversal-d/1.png" width="35%" class="center" /></p>
 <p>And we’ll print</p>
 
@@ -320,19 +502,16 @@ $$
 <ul>
 <li><a href="https://linear.axler.net">Linear Algebra Done Right by Sheldon Axler</a></li>
 </ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Lots of definitions and notations are presented in Chapter 1: Vector Spaces. I’m going to write down the definitions that made me pause and maybe more important than the rest of the definitions in the chapter. We’ll start with the definition of a vector space from chapter 1. 1.20 definition: vector space A vector space is a set \(V\) along with an addition on \(V\) and a scalar multiplication on \(V\) such that the following properties hold. commutativity \(u + v = v + u\) for all \(u, v \in V\). associativity \((u + v) + w = u + (v + w)\) and \(a(bv) = a(bv)\) for all \(u, v, w \in V\) and for all \(a, b \in \mathbf{F}\). additive identity There exists an element \(0 \in V\) such that \(v + 0 = v\) for all \(v \in V\). additive inverse For every \(v \in V\), there exists \(w \in V\) such that \(v + w = 0\). multiplicative identity \(1v = v\) for all \(v \in V\). distributive properties \(a(u + v) = au + av\) and \((a + b)v = av + bv\) for all \(u, v \in V\) and for all \(a, b \in \mathbf{F}\). Seeing this definition for the first time, I immediately was thinking that this is very similar to the definition of a Field except for the scalar multiplication here instead of the normal multiplication in a field. I also saw this discussion here which is also interesting. Still not sure though what the point is of a vector space … too early to tell. 1.24 notation: \(\mathbf{F}^S\) If \(S\) is a set, then \(\mathbf{F}^S\) denotes the set of functions from \(S\) to \(\mathbf{F}\). For \(f, g \in \mathbf{F}^S\), the sum \(f + g \in \mathbf{F}^S\) is the function defined by $$ \begin{align*} (f + g)(x) = f(x) + g(x) \end{align*} $$ for all \(x \in S\). for all \(x \in S\). For \(\lambda \in \mathbf{F}\) and \(f \in \mathbf{F}^S\), the product \(\lambda f \in \mathbf{F}^S\) is the function defined by $$ \begin{align*} (\lambda f)(x) = \lambda f(x) \end{align*} $$ for all \(x \in S\). This is something that also threw me off. The example in the book defines \(S\) as the interval \([0,1]\) and \(F = R\) and so \(R^{[0,1]}\) is the set of all functions from \([0,1]\) to \(R\) or in other words, the set of real-valued functions on \([0,1]\). The Vector Space \(\mathbf{F}^S\) \(\mathbf{F}^S\) is another example of a vector space over \(\mathbf{F}\) along with the operations of addition and scalar multiplication defined previously above. Moreever, let the function 0 defined as \(0(x) = 0\) be the additive identity for all \(x \in S\). For the additive inverse, let \(-f: S \rightarrow \mathbf{F}\) be defined as \((-f)(x) = -f(x)\) be the additive inverse of \(f\) for all \(x \in S\). What’s more interesting is to know that \(F^{n}\) (which is what we usually see) is a special case of the vector space \(\mathbf{F}^S\). [Why? TODO. I didn’t get the explanation in the book] Additional Vector Space Results 1.26 unique additive identity A vector space has a unique additive identity. Proof: Suppose \(V\) is a vector space. Now suppose for the sake of contradiction that 0 and 0’ are additive inverses of \(V\) where \(0 \neq 0'\). This means that $$ \begin{align*} 0' = 0' + 0 = 0 + 0' = 0. \end{align*} $$ The first equality holds because 0 is an additive identity. The second equality comes from the fact that addition must be commutative and lastly the last equality holds because 0’ is an additive identity. Therefore, \(0 = 0'\) which is a contradiction and the additive identity must be unique. \(\blacksquare\) 1.27 unique additive inverse Every element in a vector space has a unique additive inverse. Proof: Suppose \(V\) is a vector space. Let \(v \in V\). Suppose for the sake of contradiction that \(v\) has two additive inverses \(w\) and \(w'\) such that \(w \neq w'\). Then $$ \begin{align*} w = w + 0 = w + (v + w') = (w + v) + w' = 0 + w' = w'. \end{align*} $$ The first equality holds because 0 is the additive identity. The second equality holds because \(v + w' = 0\) since \(w'\) is an additive inverse. The third equality holds because addition is associative and finally \(w + v =\) since \(w\) is also an additive inverse. Since \(w = w'\), we can conclude that \(V\) must have a unique additive inverse. \(\blacksquare\) References: Linear Algebra Done Right by Sheldon Axler]]></summary></entry><entry><title type="html">Linear Algebra</title><link href="http://localhost:4000/jekyll/update/2024/07/11/linear-algebra.html" rel="alternate" type="text/html" title="Linear Algebra" /><published>2024-07-11T09:01:36-07:00</published><updated>2024-07-11T09:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/11/linear-algebra</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/11/linear-algebra.html"><![CDATA[<!------------------------------------------------------------------->
-<h3> Linear Algebra Done Right </h3>
-<h4><i> Chapter 1: Vector Spaces </i></h4>
+<h3> Linear Algebra (Math416) </h3>
+<h4><i> Vector Spaces </i></h4>
 <ul style="list-style-type:none;">
-       <li><a href="/jekyll/update/2024/07/12/vector-space.html">
+       <li><a href="/jekyll/update/2024/07/17/vector-spaces.html">
            Vector Spaces
-       </a></li>
-       <li><a href="/jekyll/update/2024/07/13/ch1-exercise-2.html">
-           Suppose \(a \in \mathbf{F}, v \in V\) and \(av = 0\). Prove that \(a = 0\) or \(v = 0\).
        </a></li>
    </ul>
 <p><br />
 <!-------------------------------------------------------------------></p>
-<h3> Essense of Linear Algebra </h3>
+<h3> Essense of Linear Algebra (3Blue1Brown) </h3>
 <ul style="list-style-type:none;">
        <li><a href="/jekyll/update/2023/09/11/vectors.html">
            Vectors
@@ -361,7 +540,7 @@ $$
        </a></li>
 	   -->
    </ul>
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Linear Algebra Done Right Chapter 1: Vector Spaces Vector Spaces Suppose \(a \in \mathbf{F}, v \in V\) and \(av = 0\). Prove that \(a = 0\) or \(v = 0\). Essense of Linear Algebra Vectors Linear Combinations Linear Transformations Matrix Multiplication As Composition Determinants Inverse Matrices, Column Space and Null Space]]></summary></entry><entry><title type="html">Elementary Stuff</title><link href="http://localhost:4000/jekyll/update/2024/07/10/math-other.html" rel="alternate" type="text/html" title="Elementary Stuff" /><published>2024-07-10T09:01:36-07:00</published><updated>2024-07-10T09:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/10/math-other</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/10/math-other.html"><![CDATA[<!------------------------------------------------------------------->
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Linear Algebra (Math416) Vector Spaces Vector Spaces Essense of Linear Algebra (3Blue1Brown) Vectors Linear Combinations Linear Transformations Matrix Multiplication As Composition Determinants Inverse Matrices, Column Space and Null Space]]></summary></entry><entry><title type="html">Elementary Stuff</title><link href="http://localhost:4000/jekyll/update/2024/07/10/math-other.html" rel="alternate" type="text/html" title="Elementary Stuff" /><published>2024-07-10T09:01:36-07:00</published><updated>2024-07-10T09:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/10/math-other</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/10/math-other.html"><![CDATA[<!------------------------------------------------------------------->
 <h3> Limits </h3>
 <ul style="list-style-type:none;">
     <li><a href="/jekyll/update/2024/04/16/limit-rational-functions.html">
@@ -902,63 +1081,4 @@ The Cantor set is also a perfect set. This is because \(C = \bigcap_{n=0}^{\inft
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 <li><a href="https://www.youtube.com/watch?v=5N9wNNc0HH4">Wrath of Math</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Definition 3.4.1) A set \(P \subseteq \mathbf{R}\) is perfect if it is closed and contains no isolated points. Examples Closed intervals are perfect sets except for the singleton sets \([a,a]\). The Cantor set is also a perfect set. This is because \(C = \bigcap_{n=0}^{\infty} C_n\) where each \(C_n\) is a finite union of closed intervals and we know. By theorem 3.2.14 which states that the union of a finite collection of closed sets is closed, this means that \(C_n\) is closed and so \(C\) is closed as well. What about isolated points? Let \(x \in C\) be arbitrary. To show that it’s not isolated, we need to show that it’s a limit point. This mean that there is some sequence \((x_n)\) such that \((x_n) \rightarrow x\) and \(x\) is not a term in the sequence. (Exercise 3.4.3 will contain the rest of this proof: TODO). Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Wrath of Math]]></summary></entry><entry><title type="html">Heine-Borel Theorem</title><link href="http://localhost:4000/jekyll/update/2024/07/06/analysis-sets-heine-borel.html" rel="alternate" type="text/html" title="Heine-Borel Theorem" /><published>2024-07-06T01:01:36-07:00</published><updated>2024-07-06T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/06/analysis-sets-heine-borel</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/06/analysis-sets-heine-borel.html"><![CDATA[<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two
-	  <ol type="i">
-	    <li>\(K\) is compact.</li>
-	    <li>\(K\) is closed and bounded.</li>
-	    <li>Every open cover for \(K\) has a finite subcover.</li>
-	  </ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Proof</b></h4>
-<p>We proved that (i) and (ii) are equivalent in <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for (K) has a finite subcover. We’ll show that (K) is bounded and closed. 
-<br />
-<br />
-To show that \(K\) is bounded, construct an open cover for \(K\) by defining \(O_x\) to be an open interval of radius 1 around each element of \(x \in K\) so that \(O_x = V_1(x)\). The open cover is defined then as \(\{O_x: x \in K\}\). Since we assume that (iii) is true, then this means there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) that contains \(K\). Since the subcover is a finite collection of bounded sets, then \(K\) must be bounded as well.
-<br />
-<br />
-To show that \(K\) is closed, suppose that \((y_n)\) is a Cauchy sequence contained in \(K\) such that \((y_n) \rightarrow y\). We need to show that \(y \in K\) since a closed set must contain all of its limit points. To show this, suppose for the sake of contradiction that \(y \notin K\). This means that for all \(x \in K\), \(x\) is some positive distance away from \(y\). So construct an open cover by taking \(O_x\) to be an interval of radius \(|x-y|/2\) around each element. Since we assumed (iii) is true, then there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) such that it contains \(K\). But this is impossible. To see why, set</p>
-<div>
-$$
-\begin{align*}
-\epsilon_0 = \min \left\{\frac{x_i - y}{2}: 1 \leq i \leq n \right\}.
-\end{align*}
-$$
-</div>
-<p>Now, since \((y_n) \rightarrow y\), then for all \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that when \(n \geq N\), we have \(|y_n - y| &lt; \epsilon_0\). But this implies that \(y_n\) is not in any \(O_x\) meaning that</p>
-<div>
-$$
-\begin{align*}
-y_n \notin \bigcup_{i=1}^{n} O_{x_i}.
-\end{align*}
-$$
-</div>
-<p>This means that the finite cover doesn’t actually contain all of \(K\) and therefore this is a contradiction and we must have \(y \in K\) as required to show that \(K\) is closed.
-<br />
-<br />
-Next, we need to assume (ii) and prove (iii). So suppose that \(K\) is closed and bounded. We will prove that for every open cover of \(K\), there exists a finite subcover. [TODO]
- \(\blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>Other Definitions and Properties</b></p>
-<ul>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/22/analysis-sets-open.html">Open Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/24/analysis-sets-limit-points.html">Limit Points</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/25/analysis-sets-closed.html">Closed Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/07/01/analysis-sets-compact.html">Compact Sets</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/28/analysis-sets-closure.html">Closure</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">Absolute Value Function</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">Sequences, Subsequences and Convergence</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">Series and Series Convergence</a></li>
-<li><a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">Show the Limit Template</a></li>
-</ul>
-<p><br />
-<!------------------------------------------------------------------------------------>
-<b>References:</b></p>
-<ul>
-<li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
-<li><a href="https://www.youtube.com/watch?v=5N9wNNc0HH4">Wrath of Math</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two \(K\) is compact. \(K\) is closed and bounded. Every open cover for \(K\) has a finite subcover. Proof We proved that (i) and (ii) are equivalent in theorem 3.3.4. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for (K) has a finite subcover. We’ll show that (K) is bounded and closed. To show that \(K\) is bounded, construct an open cover for \(K\) by defining \(O_x\) to be an open interval of radius 1 around each element of \(x \in K\) so that \(O_x = V_1(x)\). The open cover is defined then as \(\{O_x: x \in K\}\). Since we assume that (iii) is true, then this means there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) that contains \(K\). Since the subcover is a finite collection of bounded sets, then \(K\) must be bounded as well. To show that \(K\) is closed, suppose that \((y_n)\) is a Cauchy sequence contained in \(K\) such that \((y_n) \rightarrow y\). We need to show that \(y \in K\) since a closed set must contain all of its limit points. To show this, suppose for the sake of contradiction that \(y \notin K\). This means that for all \(x \in K\), \(x\) is some positive distance away from \(y\). So construct an open cover by taking \(O_x\) to be an interval of radius \(|x-y|/2\) around each element. Since we assumed (iii) is true, then there exists a finite subcover \(\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}\) such that it contains \(K\). But this is impossible. To see why, set $$ \begin{align*} \epsilon_0 = \min \left\{\frac{x_i - y}{2}: 1 \leq i \leq n \right\}. \end{align*} $$ Now, since \((y_n) \rightarrow y\), then for all \(\epsilon &gt; 0\), there exists an \(N \in \mathbf{N}\) such that when \(n \geq N\), we have \(|y_n - y| &lt; \epsilon_0\). But this implies that \(y_n\) is not in any \(O_x\) meaning that $$ \begin{align*} y_n \notin \bigcup_{i=1}^{n} O_{x_i}. \end{align*} $$ This means that the finite cover doesn’t actually contain all of \(K\) and therefore this is a contradiction and we must have \(y \in K\) as required to show that \(K\) is closed. Next, we need to assume (ii) and prove (iii). So suppose that \(K\) is closed and bounded. We will prove that for every open cover of \(K\), there exists a finite subcover. [TODO] \(\blacksquare\) Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Wrath of Math]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[(Definition 3.4.1) A set \(P \subseteq \mathbf{R}\) is perfect if it is closed and contains no isolated points. Examples Closed intervals are perfect sets except for the singleton sets \([a,a]\). The Cantor set is also a perfect set. This is because \(C = \bigcap_{n=0}^{\infty} C_n\) where each \(C_n\) is a finite union of closed intervals and we know. By theorem 3.2.14 which states that the union of a finite collection of closed sets is closed, this means that \(C_n\) is closed and so \(C\) is closed as well. What about isolated points? Let \(x \in C\) be arbitrary. To show that it’s not isolated, we need to show that it’s a limit point. This mean that there is some sequence \((x_n)\) such that \((x_n) \rightarrow x\) and \(x\) is not a term in the sequence. (Exercise 3.4.3 will contain the rest of this proof: TODO). Other Definitions and Properties Open Sets Limit Points Closed Sets Compact Sets Closure Absolute Value Function Sequences, Subsequences and Convergence Series and Series Convergence Show the Limit Template References: Understanding Analysis by Stephen Abbott Wrath of Math]]></summary></entry></feed>

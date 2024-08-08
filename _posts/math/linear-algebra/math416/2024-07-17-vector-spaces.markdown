@@ -184,7 +184,107 @@ Therefore $$u = v$$ as we wanted to show. $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4>References:</h4>
+<div class="purdiv">
+  Theorem
+</div>
+<div class="purbdiv">
+  The zero vector in a vector space is unique.
+</div>
+<br>
+<b>Proof:</b>
+Suppose $$V$$ is a vector space. Now suppose for the sake of contradiction that $$\bar{0}$$ and $$\bar{0}'$$ are additive inverses of $$V$$ where $$\bar{0} \neq \bar{0}'$$. This means that
+<div>
+$$
+\begin{align*}
+\bar{0}' &= \bar{0}' + \bar{0} \quad \text{(By property 3)}\\
+         &= \bar{0} + \bar{0}' \quad \text{By property 1}\\
+		 &= \bar{0}. \quad \text{(by property 3)}
+\end{align*}
+$$
+</div>
+Therefore, $$\bar{0} = \bar{0}'$$ which is a contradiction and the zero vector must be unique. $$\blacksquare$$
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+  Theorem
+</div>
+<div class="purbdiv">
+   For all \(v \in V\), there exists a \(w \in V\) such that \(v + w = \bar{0}\). This \(w\) is unique. We call \(w = -v\).
+</div>
+<br>
+<b>Proof:</b> 
+Suppose $$V$$ is a vector space. Let $$v \in V$$. Suppose for the sake of contradiction that $$w$$ is not unique and there exists two additive inverses $$w$$ and $$w'$$ such that $$w \neq w'$$. Then
+<div>
+$$
+\begin{align*}
+w &= w + 0  \quad \text{By property 3}\\
+  &= w + (v + w')  \quad \text{By property 3}\\
+  &= (w + v) + w'  \quad \text{By property 1}\\
+  &= 0 + w'  \quad \text{By the hypothesis}\\
+  &= w'.  \quad \text{By property 3}\\
+\end{align*}
+$$
+</div>
+Since $$w = w'$$, we can conclude that $$w$$ is a unique additive inverse. $$\blacksquare$$
+<br>
+<br>
+Two additional implications mentioned in the class is that $$w = (-1)v$$ and $$0v = \bar{0}$$.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 6: A Non Example</b></h4>
+Consider the set $$\mathbf{R}^2$$ equipped with a different set of operations. Let's define addition as
+<div>
+$$
+\begin{align*}
+   (a_1, a_2) + (b_1, b_2) = (a_1+b_1, a_2*b_2).
+\end{align*}
+$$
+</div>
+and scalar multiplication.
+<div>
+$$
+\begin{align*}
+    c(a_1, a_2) = (ca_1, a_2).
+\end{align*}
+$$
+</div>
+
+Is this a vector space? No. why?
+
+What is the zero vector is this space?
+<div>
+$$
+\begin{align*}
+    \bar{0} = (0, 1)
+\end{align*}
+$$
+</div>
+because for every vector $$v$$, we want $$v + \bar{0} = v$$. $$(0, 1)$$ works here because
+<div>
+$$
+\begin{align*}
+(a_1,a_2)+(0,1) = (a_1+0, a_2*1) = (a_1,a_2)
+\end{align*}
+$$
+</div>
+<br>
+The claim is that property 4 can't be true. Let $$v = (0,0)$$. There is no $$(a_1, a_2) \in \mathbf{R}^2$$ such that 
+$$v + (a_1, a_2) = \bar{0}$$. To see this, 
+<div>
+$$
+\begin{align*}
+    (0,0) + (a_1, a_2) = (a_1+0, 0*a_2) = (a_1, 0).
+\end{align*}
+$$
+</div>
+so it can never be equal to (0, 1).
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>References:</b></h4>
 <ul>
 <li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Linear Algebra Done Right for the last two proofs</li>
 </ul>

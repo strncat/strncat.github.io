@@ -7,15 +7,17 @@ mathjax: true
 ---
 <!------------------------------------------------------------------->  
 <h3> Linear Algebra (Math416) </h3>
-<h4><i> Vector Spaces </i></h4>
 <ul style="list-style-type:none;">
        <li><a href="/jekyll/update/2024/07/17/vector-spaces.html">
            Vector Spaces
        </a></li>
+       <li><a href="/jekyll/update/2024/07/19/subspaces.html">
+           Subspaces
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  
-  <h3> Essense of Linear Algebra (3Blue1Brown) </h3>
+<h3> Essense of Linear Algebra (3Blue1Brown) </h3>
 <ul style="list-style-type:none;">
        <li><a href="/jekyll/update/2023/09/11/vectors.html">
            Vectors

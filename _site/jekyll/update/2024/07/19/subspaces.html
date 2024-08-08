@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Subspaces</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-07-19T01:01:36-07:00" itemprop="datePublished">Jul 19, 2024
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Consider \(\mathbf{R}^2 = \{(x,y) | x,y \in \mathbf{R}\}\) with component wise addition and component wise scalar multiplication defined in the previous lecture. This is a vector space. Now, consider a line \(L_m\) through the origin.</p>
+<div>
+$$
+\begin{align*}
+L_m &amp;= \{(x,y) | y = mx\} = \{(x, mx) | x \in \mathbf{R}\}.
+\end{align*}
+$$
+</div>
+<p>If we add two vectors in \(L_m\), the result is in \(L_m\).</p>
+<div>
+$$
+\begin{align*}
+(x, mx) + (\tilde{x}, m\tilde{x}) = (x + \tilde{x}, mx + m\tilde{x}) 
+                                  &amp;= (x + \tilde{x}, m(x + \tilde{x})).
+\end{align*}
+$$
+</div>
+<p>Similarly, scalar multiplication also preserves \(L_m\). So \(L_m\) seems to inherit the same structure of a vector space from \(\mathbf{R}^2\). Let’s introduce the following definition</p>
+<div class="bdiv">
+  Definition
+</div>
+<div class="bbdiv">
+  Let \(W\) be a subset of a vector space \(V\). \(W\) is a subspace if
+  <ol style="list-style-type:lower-alpha">
+      <li>\(\bar{0} \in W\).</li>
+	  <li>For any \(w_1, w_2 \in W\). \(w_1 + w_2 \in W\). (\(W\) is closed under addition)</li>
+      <li>For any \(c \in \mathbf{R}\) and \(w \in W\), \(cw \in W\). (\(W\) is closed under scalar multiplication).</li>
+</ol>
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 1: \([0, 1]\)</b></h4>
+<p>Let \(W = [0, 1] \subset \mathbf{R}\). It is not closed under addition. For example, for \(w_1 = 1\) and \(w_2 = 1\), \(w_1 + w_2 \notin \mathbf{R}\). It is not closed under scalar multiplication either. \(\bar{0} \in [0,1]\). 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 2: \(\mathbf{Z}\)</b></h4>
+<p>\(\bar{0} \in [0,1]\). It is closed under addition. But it is not closed under scalar multiplication because we defined scalar multiplication as \(\{c(x, y) = (cx, cy) | c \in \mathbf{R}\}\). (Remember that the vector spaces we’re defining are over \(\mathbf{R}\)).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Subspaces are Vector Spaces</b></h4>
+<div class="purdiv">
+  Theorem
+</div>
+<div class="purbdiv">
+  If \(W \subset V\) is a subspace and \(V\) is a vector space, then \(W\) is a vector space with the operations are inherited from \(V\).
+</div>
+<p><br />
+<b>Proof:</b>
+Let \(V\) be a vector space and \(W \subset V\). Since \(V\) is a vector space, then we know it satisfies conditions (1)-(8) of vector spaces. We also know that \(W\) satisfies properties (a)-(c) since it’s a subspace of \(V\). To verify that \(W\) is a vector space, we need to show that it satisfies conditions (1)-(8) of vector spaces.
+<br />
+<br />
+Conditions (1)-(2) and (5)-(8) are inherited from \(V\). For condition (3), we need a \(\bar{0}\). But we already we know that there exists a zero element since it’s property (1) in the subspaces definition. For property (4), we need to prove that for each \(w \in W\), there exists a \(z \in W\) such that \(w + z = \bar{0}\). But we know there is a \(u \in V\) such that \(w + u = \bar{0}\) since \(V\) is a vector space. We also know that \(u = (-1)w\) (In the previous lecture we proved that \(u\) is unique). But \(u=(-1)w\) must also be in \(W\) since \(W\) is closed under scalar multiplication.
+Therefore \(W\) is a vector space as we wanted to show. \(\blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 3</b></h4>
+<p>Show that \(W = \{(t_1 + t_2, t_1 - t_2, t_1) | t_1, t_2 \in \mathbf{R}\}\) is a vector space.
+<br />
+<br />
+Proof: \(W\) is a subset of \(\mathbf{R}^3\) so by the previous theorem, it suffices to show that \(W\) is a subspace of \(\mathbf{R}^3\). For condition one, set \(t_1\) and \(t_2\) to 0 to get \(\bar{0} = (0,0,0) \in W\). For any \(w \in W\), we see that \(w + \bar{0} = w + (0,0,0) = w\) as required. For condition 2, let \(w_1, w_2 \in W\).</p>
+<div>
+$$
+\begin{align*}
+w_1 + w_2 &amp;= (t_1 + t_2, t_1 - t_2, t_1) + (s_1 + s_2, s_1 - s_2, s_1) \\
+          &amp;= (t_1 + t_2 + s_1 + s_2, t_1 - t_2 + s_1 + s_2, t_1 + s_1) \\
+		  &amp;= ((t_1 + s_1) + (t_2 + s_2), (t_1 + s_1) - (t_2 + s_2), (t_1 + s_1)).
+\end{align*}
+$$
+</div>
+<p>Therefore, \(w_1 + w_2 \in W\). For condition 3, let \(w \in W\) and \(c \in \mathbf{R}\),</p>
+<div>
+$$
+\begin{align*}
+cw &amp;= c(t_1 + t_2, t_1 - t_2, t_1) \\
+   &amp;= ( c(t_1 + t_2), ct_1 - ct_2, ct_1).
+\end{align*}
+$$
+</div>
+<p>This is also clearly in \(W\), Therefore, we can conclude that \(W\) is a vector space. \(\blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Are Solution Sets Vector Spaces?</b></h4>
+<p>From the previous example, \(W\) has the form of a solution set of a linear system so does this mean that every solution set is a vector space? The answer is no. Consider \(W' = \{t_1 + t_2, t_1 - t_2, t_1 + 1\}\). \(W'\) is not a subspace of \(\mathbf{R}^3\). We don’t have a zero vector \(\bar{0}\) in \(W\). To show that, we need to prove that there isn’t a solution for the system \(\{t_1 + t_2, t_1 - t_2, t_1 + 1\}\) where \(t_1+t_2 = 0\), \(t_1 - t_2 = 0\) and \(t_1 + 1 = 0\).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 4: Polynomials of Degree at Most \(k\)</b></h4>
+<p>Consider \(P_k\) which is the set of all polynomials of degree at most \(k\). \(P_k\) is a subspace of \(P_{k+1}\). To show this, we know that \(P_{k+1}\) is a vector space so now we just need to prove the three conditions of subspaces. The zero polynomial is in \(P_k\). For condition 2, if we take any two polynomials in \(k\), then</p>
+<div>
+$$
+\begin{align*}
+(a_kx^k + a_{k-1}x^{k-1} + ... + a_0) + (b_kx^k + b_{k-1}x^{k-1} + ... + b_0) = \\
+(a_k + b_k)x^k + (a_{k-1}+b_{k-1})x^{k-1} + ... + (a_0+b_0).
+\end{align*}
+$$
+</div>
+<p>The result is in \(P_k\) which means that \(P_k\) is closed under addition. For condition 3, take a polynomial in \(P_k\) and a scalar \(c \in \mathbf{R}\), then</p>
+<div>
+$$
+\begin{align*}
+c(a_kx^k + a_{k-1}x^{k-1} + ... + a_0) =  (ca_k)x^k + (ca_{k-1})x^{k-1} + ... + (ca_0).
+\end{align*}
+$$
+</div>
+<p>This is also in \(P_k\) which means that \(P_k\) is closed under scalar multiplication. Therefore, \(P_k\) is a subspace of \(P_{k+1}\).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 4: Continuous Functions</b></h4>
+<p>The claim is that \(C^0(\mathbf{R})\) is a subspace of \(F(\mathbf{R})\). For the zero vector, \(\bar{0}(x) = 0\) is a continuous function so it belongs to \(C^0(\mathbf{R})\). For condition 2, if \(f\) and \(g\) are continuous then we know that \(f+g\) is also continuous (from calculus, needs to be proved). For condition 3, a scalar multiplied by \(f\) is also continuous. 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 5: Continuous Functions</b></h4>
+<p>Consider the map transpose: \(M_{m \times n} \rightarrow M_{n \times m}\).</p>
+<div>
+$$
+\begin{align*}
+A = (a_{ij}) \rightarrow A^t = (a_{ij} = a_{ji}).
+\end{align*}
+$$
+</div>
+<p>Example:</p>
+<div>
+$$
+\begin{align*}
+\begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}^t
+= 
+\begin{bmatrix}
+a &amp; c \\
+b &amp; d
+\end{bmatrix}
+\end{align*}
+$$
+</div>
+<div class="bdiv">
+  Definition
+</div>
+<div class="bbdiv">
+  \(A \in M_{n \times n}\) is symmetric if \(A = A^t\).
+</div>
+<p><br />
+We can show that the set of symmetric matrices in \(M_{n \times n}\) is a subspace. Let the set of symmetric matrices in \(M_{n \times n}\) be \(S\). To show that \(S\) is a subspace, we’ll verify the three conditions</p>
+<ol style="list-style-type:lower-alpha">
+<li>\(\bar{0} = \begin{bmatrix} 0... &amp;... 0 \\ 0... &amp;... 0 \end{bmatrix}^t\) is symmetric and therefore it is in \(S\)</li>
+<li>The sum of two symmetric matrices is symmetric and therefore it is in \(S\) and so \(S\) is closed under addition.</li>
+<li>For any \(c \in \mathbf{R}\) and \(s_1 \in S\), \(cS\) is a symmetric matrix and therefore it is in \(S\). So (\(S\) is closed under scalar multiplication).</li>
+</ol>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References:</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2024/07/19/subspaces.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/07/19/subspaces; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2024/07/19/subspaces.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

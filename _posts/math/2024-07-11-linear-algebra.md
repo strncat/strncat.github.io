@@ -8,11 +8,20 @@ mathjax: true
 <!------------------------------------------------------------------->  
 <h3> Linear Algebra (Math416) </h3>
 <ul style="list-style-type:none;">
+       <li><a href="/jekyll/update/2024/07/21/rref.html">
+        Echelon Form and Reduced Echelon Form
+       </a></li>
+       <li><a href="/jekyll/update/2024/07/22/gaussian-elimination.html">
+        Gaussian Elimination
+       </a></li>
        <li><a href="/jekyll/update/2024/07/17/vector-spaces.html">
            Vector Spaces
        </a></li>
        <li><a href="/jekyll/update/2024/07/19/subspaces.html">
            Subspaces
+       </a></li>
+       <li><a href="/jekyll/update/2024/07/20/span-of-a-subset.html">
+           Span of a Subset
        </a></li>
    </ul>
 <br>

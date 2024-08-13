@@ -159,7 +159,17 @@ $$
 We can show that the set of symmetric matrices in $$M_{n \times n}$$ is a subspace. Let the set of symmetric matrices in $$M_{n \times n}$$ be $$S$$. To show that $$S$$ is a subspace, we'll verify the three conditions
 <ol style="list-style-type:lower-alpha">
 <li>\(\bar{0} = \begin{bmatrix} 0... &... 0 \\ 0... &... 0 \end{bmatrix}^t\) is symmetric and therefore it is in \(S\)</li>
-<li>The sum of two symmetric matrices is symmetric and therefore it is in \(S\) and so \(S\) is closed under addition.</li>
+<li>The sum of two symmetric matrices is symmetric and therefore it is in \(S\) and so \(S\) is closed under addition.
+The sum is symmetric because given two symmetric matrices \(A\) and \(B\), their component wise sum is \(a_{ij}+b_{ij}\). But then we know that
+<div>
+$$
+\begin{align*}
+a_{ij} + b_{ij} = a_{ji} + b_{ji}.
+\end{align*}
+$$
+</div>
+Since both matrices are symmetric. But this implies that \(A+B = (A+B)^t\).
+</li>
 <li>For any \(c \in \mathbf{R}\) and \(s_1 \in S\), \(cS\) is a symmetric matrix and therefore it is in \(S\). So (\(S\) is closed under scalar multiplication).</li>
 </ol>
 <br>

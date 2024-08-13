@@ -27,8 +27,10 @@ For property (4), we don't call it $$-v$$ yet because we didn't prove yet if it'
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 1: \(\mathbf{R}\)</b></h4>
-$$\mathbf{R}$$ is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties.
+$$\mathbf{R}$$ is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties are true.
 <br>
+<br>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 2: A Set of Matrices</b></h4>
@@ -73,6 +75,8 @@ $$
 is a vector space.
 <br>
 <br>
+<hr>
+<br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 3: Sets of Functions</b></h4>
 let $$S$$ be a nonempty set. For example $$S = \mathbf{R}$$, or $$S = \{\pi, \pi^2\}$$, $$S = \{$$atoms in the universe$$\}$$. Basically any non-empty set. 
@@ -82,6 +86,8 @@ Define addition as $$(f+g)(s) = f(s) + g(s)$$ for all $$s \in S$$. So addition o
 <br><br>
 $$F(S)$$ is a vector space. It satisfies all 8 conditions. For example. The zero vector in this space is $$\bar{0}(s) = 0$$ for all $$s \in S$$. Note also that $$C^1(\mathbf{R})$$ (the functions where with continues derivatives) is a subset of $$C^0(\mathbf{R})$$ (the set of continuous functions) which is a subset of $$F(S)$$.
 <br>
+<br>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 4: The Set of all Sequences</b></h4>
@@ -103,6 +109,8 @@ $$
 </div>
 Let $$V = \{$$ sequences $$\{a_n\}$$ is a vector space. Define the addition of two sequences as $$\{a_n\} + \{b_n\} = \{a_n + b_n\}$$. Adding the terms one by one. Define scalar multiplication as $$c\{a_n\} = \{ca_n\}$$.
 <br>
+<br>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 5: The Set of Polynomials</b></h4>
@@ -139,6 +147,8 @@ $$
 $$P_n$$ is a vector space. The zero vector is the function $$f\bar{0} = 0 = 0x^n + .... + 0$$.
 Question: why did we define the polynomials to have at most $$n$$ and not just $$n$$? because take $$(X^5 + 1)$$ and $$(-x^5 + 9)$$. The addition of these two will generate a 0 and so we have to say at most.
 <br>
+<br>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Additional Vector Space Results</b></h4>
@@ -232,6 +242,8 @@ Since $$w = w'$$, we can conclude that $$w$$ is a unique additive inverse. $$\bl
 Two additional implications mentioned in the class is that $$w = (-1)v$$ and $$0v = \bar{0}$$.
 <br>
 <br>
+<hr>
+<br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 6: A Non Example</b></h4>
 Consider the set $$\mathbf{R}^2$$ equipped with a different set of operations. Let's define addition as
@@ -281,6 +293,8 @@ $$
 </div>
 so it can never be equal to (0, 1).
 <br>
+<br>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>References:</b></h4>

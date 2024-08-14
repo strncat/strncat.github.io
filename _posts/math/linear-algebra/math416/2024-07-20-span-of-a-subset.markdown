@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Span of a Subset"
+title:  "Lecture 6: Span of a Subset"
 date:   2024-07-20 01:01:36 -0700
 categories: jekyll update
 mathjax: true

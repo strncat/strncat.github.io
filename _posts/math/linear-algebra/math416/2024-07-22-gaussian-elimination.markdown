@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Gaussian Elimination"
+title:  "Lecture 3: Gaussian Elimination"
 date:   2024-07-22 01:01:36 -0700
 categories: jekyll update
 mathjax: true

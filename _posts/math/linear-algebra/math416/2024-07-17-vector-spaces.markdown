@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Vector Spaces"
+title:  "Lecture 4: Vector Spaces"
 date:   2024-07-17 01:01:36 -0700
 categories: jekyll update
 mathjax: true

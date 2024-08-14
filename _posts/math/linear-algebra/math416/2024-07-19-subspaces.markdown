@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Subspaces"
+title:  "Lecture 5: Subspaces"
 date:   2024-07-19 01:01:36 -0700
 categories: jekyll update
 mathjax: true

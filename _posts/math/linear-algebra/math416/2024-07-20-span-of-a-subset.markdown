@@ -177,7 +177,7 @@ From (a), (b), (c), we can conclude that $$Span(S)$$ is a subspace of $$V$$.
 Is $$x^3 - 3x + 5$$ in $$Span(\{x^3 + 2x^2 - x + 1, x^3 + 3x^2 - 1\})$$?
 <br>
 <br>
-For $$x^3 - 3x + 5$$ to be in the span, this means that $$x^3 - 3x + 5$$ can be written as a linear combinations of what's inside the span. In other words, there exists $$a_1, a_2 \in \mathbf{R}$$ such that
+For $$x^3 - 3x + 5$$ to be in the span, this means that $$x^3 - 3x + 5$$ can be written as a linear combinations of what's inside the set. In other words, there exists $$a_1, a_2 \in \mathbf{R}$$ such that
 <div>
 $$
 \begin{align*}

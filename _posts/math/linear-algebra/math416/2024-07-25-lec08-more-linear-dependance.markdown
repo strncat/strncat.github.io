@@ -112,10 +112,10 @@ Proof in 1.7.
 Theorem
 </div>
 <div class="purbdiv">
-If \(B \subset V\) is a basis then every \(u \in V\) can be expressed in a unique way as an element of \(Span(B)\).
+If \(\beta \subset V\) is a basis then every \(u \in V\) can be expressed in a unique way as an element of \(Span(\beta)\).
 </div>
 <br>
-Proof: Let $$u \in V$$. Let \(B \subset V\) be a basis for \(V\). We can express $$u$$ as
+Proof: Let $$u \in V$$. Let \(\beta \subset V\) be a basis for \(V\). We can express $$u$$ as
 <div>
 	$$
 	\begin{align*}
@@ -123,7 +123,7 @@ Proof: Let $$u \in V$$. Let \(B \subset V\) be a basis for \(V\). We can express
 	\end{align*}
 	$$
 </div>
-for $$u_1, ..., u_k \in B$$ and $$a_1, ....,a_k \in \mathbf{R}$$. We claim that this is the only way to express $$u$$ in terms of the elements in $$B$$. To see why, suppose for the sake of contradiction that it is not the only way. This means that we can also express $$u$$ as
+for $$u_1, ..., u_k \in \beta$$ and $$a_1, ....,a_k \in \mathbf{R}$$. We claim that this is the only way to express $$u$$ in terms of the elements in $$\beta$$. To see why, suppose for the sake of contradiction that it is not the only way. This means that we can also express $$u$$ as
 <div>
  	$$
  	\begin{align*}
@@ -140,13 +140,13 @@ But we know that $$u - u = \bar{0}$$. Evaluating $$u-u$$,
 	\end{align*}
 	$$
 </div>
-We also know that $$B$$ is linearly independent. So for the linear combination above, all the coefficients must be 0. Therefore, we must have,
+We also know that $$\beta$$ is linearly independent. So for the linear combination above, all the coefficients must be 0. Therefore, we must have,
 <div>
 	$$
 	a_1 = b_1, a_2 = b_2, ..., a_k=b_k, b_{k+1}=0, b_{l} = 0.
 	$$
 </div>
-This is exactly the first representation of $$u$$ which is a contradiction and so $$u$$ can only be uniquely expressed in terms of the elements of $$B$$.
+This is exactly the first representation of $$u$$ which is a contradiction and so $$u$$ can only be uniquely expressed in terms of the elements of $$\beta$$.
 <br>
 <br>
 <hr>

@@ -32,11 +32,9 @@ mathjax: true
        <li><a href="/jekyll/update/2024/07/25/lec08-more-linear-dependance.html">
         Lecture 8: More on Linear Dependance
        </a></li>
-	   <!--
        <li><a href="/jekyll/update/2024/07/26/lec09-basis-vectors-replacement-theorem.html">
         Lecture 9: Basis Vectors and the Replacement Theorem
        </a></li>
-	   -->
    </ul>
 <br>
 <!------------------------------------------------------------------->  

@@ -25,7 +25,7 @@ $$\beta = \{e_1,e_2,...,e_n\}$$ is the standard basis of $$\mathbf{R}^n$$.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 2</b></h4>
-In $$P_n$$, the standard basis of polynomials of degree at most $$n$$ is $$\beta = \{1, x, x^2, ..., x^n\}$$. 
+In the vector space of polynomials of degree at most $$n$$ ($$P_n$$), the standard basis is $$\beta = \{1, x, x^2, ..., x^n\}$$. 
 <br>
 <br>
 <hr>
@@ -40,42 +40,125 @@ Recall the space of all sequences, $$V = \{\{a_n\}\}$$ where $$\{a_n\}$$ is a se
 	\end{align*}
 	$$
 </div>
-Where the $$j$$th term is the term 1 above. Then, the standard basis is $$\beta = \{e_1, e_2, ....\}$$. 
-
-
-
-
+Where the $$j$$th term is the term 1 above. Then, the standard basis is $$\beta = \{e_1, e_2, ....\}$$. This basis has infinitely many terms unlike the previous two examples.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
+<h4><b>Example 4</b></h4>
+The vector space of all polynomials ($$P$$). The standard basis is $$\beta = \{1, x, x^2, x^3, ...\}$$.
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 5</b></h4>
+$$\mathcal{F}(\mathbf{R})$$ has a basis ... hard to describe but it exists!
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem (Refinement Theorem)
+Theorem
 </div>
 <div class="purbdiv">
-Suppose \( \{u_1,...,u_k\} \subset V\) is linearly dependent. There is a subset \(\{u_{i1},...,u_{il}\}\) which is linearly independent and satisfies
+If \(V\) has a finite generating set, then \(V\) has a finite basis.
+</div>
+<br>
+Proof: This follows from the Refinement Theorem. If $$\{u_1,...,u_k\}$$ is a finite generating set, then we can find a subset $$\{u_{i1},...,u_{il}\}$$ which is linearly independent and has span $$Span(\{u_{i1},...,u_{ij}\}) = V$$.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+If \(V\) has a finite basis, then any basis of \(V\) has the same number of elements.
+</div>
+<br>
+Proof: This proofs needs another result coming next.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem (Replacement Theorem)
+</div>
+<div class="purbdiv">
+Suppose \(\mathcal{S} = \{s_1,...,s_n\}\) generates \(V\). If \(\ \mathcal{U} = \{u_1,...,u_k\}\) is linearly independent, then \(k \leq n\) and there is a subset \(\mathcal{T} \subset \mathcal{S}\) of size \(n-k\) such that \(Span(\mathcal{U} \cup \mathcal{T}) = V\).
+</div>
+<br>
+Notes: So here, $$\mathcal{U}$$ is a linearly independent subset of $$V$$. But this doesn't mean that it's a basis because it might need some additional vectors added to it. If we know another set $$S$$ that generates $$V$$, then there is a subset $$\mathcal{T} \subset \mathcal{S}$$ such that the span of both $$\mathcal{T}$$ and $$\mathcal{U}$$ will generate $$V$$.
+<br>
+<br>
+<b>Proof</b>: By induction on $$k$$.
+<br>
+Base case: $$k = 0$$. This means that $$\mathcal{U} = \emptyset$$. The empty set is linearly independent and $$k \leq n$$. Also, $$n - k = n$$ and We can take $$\mathcal{T} = \mathcal{S}$$. We know that $$\mathcal{S}$$ generates $$V$$, so $$\mathcal{U} \cup \mathcal{T}$$ generates $$V$$ as required.
+<br><br>
+Inductive Step: Assume that the theorem is true for $$j$$. We need to show that it's true for $$j+1$$. So suppose $$\mathcal{U}_{j+1} = \{u_1, ..., u_{j+1}\}$$ is linearly independent. Specifically, we need to show that:
+<ul>
+	<li>\(j + 1 \leq n\)</li>
+	<li>There exists a subset \(\mathcal{T}_{j+1} \in \mathcal{S}\) of size \(n - (j+1)\) such that \(Span(\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1}) = V\).</li>
+</ul>
+Throw the $$j+1$$th element away. So now we have $$\mathcal{U}_j = \{u_1,...,u_j\}$$ which is linearly independent by theorem (from the book: If $$S_1 \subseteq S_2$$ and $$S_2$$ is linearly independent then, $$S_1$$ must be linearly independent). 
+<br>
+By the inductive hypothesis, we know,
+<ul>
+	<li>\(j \leq n\)</li>
+	<li>There exists a subset \(\mathcal{T}_{j} = \{s_1,...,s_{n-j}\}\) has \(n-j\) elements such that \(Span(\{u_1,...,u_j,s_1,...,s_{n-j}\}) = Span(\mathcal{U}_{j} \cup \mathcal{T}_{j}) = V\).</li>
+</ul>
+But we know that $$u_{j+1}$$ is in $$V$$. Since $$Span(\mathcal{U}_{j} \cup \mathcal{T}_{j})$$ generates $$V$$, then we can write $$u_{j+1}$$ in terms of the elements in the span.
+<div>
 	$$
 	\begin{align*}
-	Span(\{u_{i1},...,u_{il}\}) = Span(\{u_1,...,u_k\}).
+	 u_{j+1} = a_1u_1 + ... + a_{j}u_{j}+b_1s_1+...+b_{n-j}s_{n-j}.
 	\end{align*}
 	$$
 </div>
+Note here that $$b_1,...b_{n-j}$$ can't be all zeros (because if they are, then $$u_{j+1}$$ can be written as a linear combination of the elements of $$\mathcal{U}_{j}$$ alone. But that's not possible since we said that the set $$\mathcal{U}_{j+1}$$ is linearly independent.). Without the loss of generality, let $$b_{n-j}$$ be non-zero. This means that,
+<div>
+	$$
+	\begin{align*}
+	 n - j &\geq 1 \\
+	 n &\geq j+1
+	\end{align*}
+	$$
+</div>
+as desired. Now, we need to satisfy the second condition and find a subset of $$n-(j+1)$$ elements such that the span of $$\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1}$$ generates $$V$$. We can't choose the subset $$\mathcal{T}_{j}$$ since it has $$n-j$$ elements and we need $$n-j-1$$ elements. So the strategy is to remove one element from $$\mathcal{T}_{j}$$. 
 <br>
 <br>
-<hr>
-<br>
-<!------------------------------------------------------------------------------------>
-<div class="purdiv">
-Theorem (Refinement Theorem)
-
-
-
-
-
-
-
-
+Since we said earlier that $$b_{n-j}$$ is not zero along with the inductive hypothesis, $$u_{j+1} = a_1u_1 + ... + a_{j}u_{j}+b_1s_1+...+b_{n-j}s_{n-j}$$, we can re-write this as,
+<div>
+	$$
+	\begin{align*}
+	 s_{n-j} = -\frac{1}{b_{n-j}} (a_1u_1 + ... + a_{j}u_{j}+b_1s_1+...+b_{n-j}s_{n-j}+u_{j+1}).
+	\end{align*}
+	$$
+</div>
+basically as a linear combination of the other elements from the inductive hypothesis equation. This implies that $$s_{n-j} \in Span(\{u_1,...,u_{j+1},s_1,...,s_{n-j-1}\})$$. Let $$\mathcal{T}_{j+1} = s_1,...,s_{n-j-1}$$. The last thing to prove is that ($$Span(\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1})) = V$$. We will do this in two steps. First we will prove that,
+<div>
+	$$
+	\begin{align*}
+	 Span(\{u_1,...,u_{j+1},s_1,...,s_{n-j}\}) = Span(\{u_1,...,u_{j+1},s_1,...,s_{n-j-1}\}).
+	\end{align*}
+	$$
+</div>
+These spans are equal which means that adding $$s_{n-j}$$ to the span, didn't increase the span. This is because we showed earlier that $$s_{n-j}$$ is a linear combination of all the other elements $$\{u_1,...,u_{j+1},s_1,...,s_{n-j-1}\}$$. Moreover,
+<div>
+	$$
+	\begin{align*}
+	Span(\{u_1,...,u_{j+1},s_1,...,s_{n-j}\}) = Span(\{u_1,...u_{j},s_1,...,s_{n-j}\}).
+	\end{align*}
+	$$
+</div>
+This is true because we also showed that $$u_{j+1}$$ is a linear combinations of the elements $$\{u_1,...u_{j},s_1,...,s_{n-j}\}$$. Therefore from the previous two equations, we can conclude that
+<div>
+	$$
+	\begin{align*}
+	Span(\{u_1,...,u_{j+1},s_1,...,s_{n-j-1}\}) = Span(\{u_1,...u_{j},s_1,...,s_{n-j}\}).
+	\end{align*}
+	$$
+</div>
+But we know that $$Span(\{u_1,...u_{j},s_1,...,s_{n-j}\}) = V$$ from the inductive hypothesis. Therefore, $$Span(\{u_1,...,u_{j+1},s_1,...,s_{n-j-1}\})$$ also generates $$V$$ and so $$Span(\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1}) = V$$. $$\blacksquare$$
 <br>
 <br>
 <hr>

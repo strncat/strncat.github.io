@@ -35,6 +35,9 @@ mathjax: true
        <li><a href="/jekyll/update/2024/07/26/lec09-basis-vectors-replacement-theorem.html">
         Lecture 9: Basis Vectors and the Replacement Theorem
        </a></li>
+       <li><a href="/jekyll/update/2024/07/26/lec10-linear-transformations.html">
+        Lecture 10: Linear Transformations
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

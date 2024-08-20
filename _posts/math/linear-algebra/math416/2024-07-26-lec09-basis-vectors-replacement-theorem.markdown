@@ -169,7 +169,7 @@ To prove that it must have size $$n$$, apply the Replacement Theorem again with 
 	\end{align*}
 	$$
 </div>
-But if we apply the replacement theorem with $$(\mathcal{S} = \bar{\beta}, \mathcal{U} = \beta)$$, then the size of $$\beta$$ must be less than or equal to $$\bar{beta}$$,
+But if we apply the replacement theorem with $$(\mathcal{S} = \bar{\beta}, \mathcal{U} = \beta)$$, then the size of $$\beta$$ must be less than or equal to $$\bar{\beta}$$,
 <div>
 	$$
 	\begin{align*}
@@ -178,6 +178,47 @@ But if we apply the replacement theorem with $$(\mathcal{S} = \bar{\beta}, \math
 	$$
 </div>
 From these two inequalities, we must have $$\bar{\beta} = n$$. $$\blacksquare$$.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(V\) is finite dimensional if it has a finite basis. The number of elements in any basis for \(V\) is the dimension of \(V\). Otherwise we say \(V\) is infinite dimensional.
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Examples</b></h4>
+<ul>
+<li>\(\dim(\mathbf{R}^n) = n\) </li>
+<li> \(\dim(M_{m \times n}) = mn\) </li>
+One basis for this space is \(\{E^{ij} \in M_{m \times n} \ | \ a_{ij} = 1, \text{ all other elements are 0}\}\). So We'll have \(mn\) matrices where each matrix will have a 1 in the \((i,j)\) position.<br><br>
+
+<li> \(\dim(P_n) = n+1\) </li>
+<li> \(\dim(P) = \infty\) </li>
+</ul>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+Let \(W\) be a subspace of \(V\). If \(V\) is finite dimensional, then \(\dim V \leq \dim W\), with \(\dim W = \dim V\) if and only if \(W = V\).
+</div>
+<br>
+Proof: 
+Let $$W$$ be a subspace of $$V$$. We're given that $$V$$ is finite dimensional. Let $$\dim V = n$$. Let $$\beta_V = \{u_1, ..., u_n\}$$ be a basis for $$V$$. Let $$\mathcal{U} = \{w_1, ..., w_k\} \subset W$$ be a linearly independent and proper subset of $$W$$. Because $$\beta_V$$ generates $$V$$, $$\mathcal{U}$$ is a linearly independent set and $$k \leq n$$, we can use the Replacement Theorem by setting $$\mathcal{S} = \beta_V$$ and $$U = \mathcal{U}$$. 
+<br>
+<br>
+With this observation, we will construct a basis for $$W$$ recursively keep the set linearly independent in the process,
+<ul>
+	<li>\(W\) is a subspace and it must contain the zero vector. If it only contains that and so \(W = \{\bar{0}_V\}\), then \(\dim W = 0\) and \(0 \leq n\) and we are done. </li>
+	<li>Otherwise there is some non-zero vector so choose that vector \(w_1 \neq \bar{0}_v\)</li>
+	<li>If \(W = Span(\{w_1\}\), then we stop.</li>
+	<li> Otherwise, choose \(w_2\) not in \(Span(\{w_1\)). Note here that \(\{w_1, w_2\}\) are linearly independent.</li>
+</ul>
+We repeat this process, adding a vector every time if it's not in the span of the constructed set. This process will stop at some set $$\{w_1,...,w_k\}$$ such that $$W = Span(\{w_1,...,w_k\})$$. We know this set by construction is linearly independent. By the Replacement Theorem $$k \leq n$$
 <br>
 <br>
 <hr>

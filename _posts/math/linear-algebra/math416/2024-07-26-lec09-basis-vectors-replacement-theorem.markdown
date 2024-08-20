@@ -70,17 +70,6 @@ Proof: This follows from the Refinement Theorem. If $$\{u_1,...,u_k\}$$ is a fin
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-If \(V\) has a finite basis, then any basis of \(V\) has the same number of elements.
-</div>
-<br>
-Proof: This proofs needs another result coming next.
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<div class="purdiv">
 Theorem (Replacement Theorem)
 </div>
 <div class="purbdiv">
@@ -159,6 +148,36 @@ This is true because we also showed that $$u_{j+1}$$ is a linear combinations of
 	$$
 </div>
 But we know that $$Span(\{u_1,...u_{j},s_1,...,s_{n-j}\}) = V$$ from the inductive hypothesis. Therefore, $$Span(\{u_1,...,u_{j+1},s_1,...,s_{n-j-1}\})$$ also generates $$V$$ and so $$Span(\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1}) = V$$. $$\blacksquare$$
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+If \(V\) has a finite basis, then any basis of \(V\) has the same number of elements.
+</div>
+<br>
+Proof: Let $$\beta$$ be a finite basis with $$n$$ elements. Let $$\bar{\beta}$$ be another basis. We claim that $$\bar{\beta}$$ is finite. Suppose for the sake of contradiction that it wasn't, then $$\bar{\beta}$$ contains a set $$\bar{U}$$ that contains at least $$n+1$$ linearly independent vectors. Apply the Replacement Theorem with $$\mathcal{S} = \beta, \mathcal{U} = \bar{U}$$. This means that if the number of elements in $$\bar{U}$$ is $$k$$ then $$k$$ must be less than the number of elements in $$S$$. But $$S$$ has $$n$$ elements and so $$n+1 \leq n$$ is a contradiction. Therefore, $$\bar{beta}$$ must be finite.
+<br>
+<br>
+To prove that it must have size $$n$$, apply the Replacement Theorem again with $$(\mathcal{S} = \beta, \mathcal{U} = \bar{\beta})$$. We know the size of $$\bar{\beta}$$ must be less than or equal to $$n$$, 
+<div>
+	$$
+	\begin{align*}
+	|\bar{\beta}| \leq n.
+	\end{align*}
+	$$
+</div>
+But if we apply the replacement theorem with $$(\mathcal{S} = \bar{\beta}, \mathcal{U} = \beta)$$, then the size of $$\beta$$ must be less than or equal to $$\bar{beta}$$,
+<div>
+	$$
+	\begin{align*}
+	n \leq |\bar{\beta}|.
+	\end{align*}
+	$$
+</div>
+From these two inequalities, we must have $$\bar{\beta} = n$$. $$\blacksquare$$.
 <br>
 <br>
 <hr>

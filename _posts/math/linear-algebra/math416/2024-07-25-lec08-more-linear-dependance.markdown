@@ -115,7 +115,7 @@ Theorem
 If \(\beta \subset V\) is a basis then every \(u \in V\) can be expressed in a unique way as an element of \(Span(\beta)\).
 </div>
 <br>
-Proof: Let $$u \in V$$. Let \(\beta \subset V\) be a basis for \(V\). We can express $$u$$ as
+Proof: Let $$u \in V$$. Let $$\beta \subset V$$ be a basis for $$V$$. We can express $$u$$ as
 <div>
 	$$
 	\begin{align*}

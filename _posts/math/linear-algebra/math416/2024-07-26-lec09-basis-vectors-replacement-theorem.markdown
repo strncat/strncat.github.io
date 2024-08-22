@@ -73,7 +73,7 @@ Proof: This follows from the Refinement Theorem. If $$\{u_1,...,u_k\}$$ is a fin
 Theorem (Replacement Theorem)
 </div>
 <div class="purbdiv">
-Suppose \(\mathcal{S} = \{s_1,...,s_n\}\) generates \(V\). If \(\ \mathcal{U} = \{u_1,...,u_k\}\) is linearly independent, then \(k \leq n\) and there is a subset \(\mathcal{T} \subset \mathcal{S}\) of size \(n-k\) such that \(Span(\mathcal{U} \cup \mathcal{T}) = V\).
+Suppose \(\mathcal{S} = \{s_1,...,s_n\}\) generates \(V\). If \(\ \mathcal{U} = \{u_1,...,u_k\}\) is a linearly independent subset of \(V\), then \(k \leq n\) and there is a subset \(\mathcal{T} \subset \mathcal{S}\) of size \(n-k\) such that \(Span(\mathcal{U} \cup \mathcal{T}) = V\).
 </div>
 <br>
 Notes: So here, $$\mathcal{U}$$ is a linearly independent subset of $$V$$. But this doesn't mean that it's a basis because it might need some additional vectors added to it. If we know another set $$S$$ that generates $$V$$, then there is a subset $$\mathcal{T} \subset \mathcal{S}$$ such that the span of both $$\mathcal{T}$$ and $$\mathcal{U}$$ will generate $$V$$.
@@ -204,21 +204,24 @@ One basis for this space is \(\{E^{ij} \in M_{m \times n} \ | \ a_{ij} = 1, \tex
 Theorem
 </div>
 <div class="purbdiv">
-Let \(W\) be a subspace of \(V\). If \(V\) is finite dimensional, then \(\dim V \leq \dim W\), with \(\dim W = \dim V\) if and only if \(W = V\).
+Let \(W\) be a subspace of \(V\). If \(V\) is finite dimensional, then \(\dim W \leq \dim V\), with \(\dim W = \dim V\) if and only if \(W = V\).
 </div>
 <br>
-Proof: 
-Let $$W$$ be a subspace of $$V$$. We're given that $$V$$ is finite dimensional. Let $$\dim V = n$$. Let $$\beta_V = \{u_1, ..., u_n\}$$ be a basis for $$V$$. Let $$\mathcal{U} = \{w_1, ..., w_k\} \subset W$$ be a linearly independent and proper subset of $$W$$. Because $$\beta_V$$ generates $$V$$, $$\mathcal{U}$$ is a linearly independent set and $$k \leq n$$, we can use the Replacement Theorem by setting $$\mathcal{S} = \beta_V$$ and $$U = \mathcal{U}$$. 
+Proof:
+Let $$W$$ be a subspace of $$V$$. We're given that $$V$$ is finite dimensional. Let $$\dim V = n$$. Let $$\beta_V = \{u_1, ..., u_n\}$$ be a basis for $$V$$. The goal is to find a basis for $$W$$ that has fewer elements than the basis of $$V$$. (Note here that the strategy should not be modifying the basis for $$V$$ since we don't know if these vectors are even in $$W$$. Instead we need to use another tool which is the replacement theorem.)
 <br>
 <br>
-With this observation, we will construct a basis for $$W$$ recursively keep the set linearly independent in the process,
+To find a basis for $$W$$, we need a subset of $$W$$ that is linearly independent and also generates $$W$$. Let $$\mathcal{U} = \{w_1, ..., w_k\} \subseteq W$$ be a linearly independent. Because $$\beta_V$$ generates $$V$$ and $$\mathcal{U}$$ is a linearly independent set, we can use the Replacement Theorem by setting $$\mathcal{S} = \beta_V$$ and $$U = \mathcal{U}$$. This gives us the assertion that $$k \leq n$$. (Note here that we don't need to use the other result that the theorem asserts. We just need the assertion about the size).
+<br>
+<br>
+With this observation ($$k \leq n$$), we will construct a basis for $$W$$ recursively keeping the set linearly independent in the process,
 <ul>
-	<li>\(W\) is a subspace and it must contain the zero vector. If it only contains that and so \(W = \{\bar{0}_V\}\), then \(\dim W = 0\) and \(0 \leq n\) and we are done. </li>
+	<li>If \(W = \{\bar{0}_V\}\) (\(W\) is a subspace and it must contain the zero vector), then \(\dim W = 0\) and we are done (\(\dim W \leq \dim V)\). </li>
 	<li>Otherwise there is some non-zero vector so choose that vector \(w_1 \neq \bar{0}_v\)</li>
-	<li>If \(W = Span(\{w_1\}\), then we stop.</li>
-	<li> Otherwise, choose \(w_2\) not in \(Span(\{w_1\)). Note here that \(\{w_1, w_2\}\) are linearly independent.</li>
+	<li>If \(W = Span(\{w_1\})\), then we stop.</li>
+	<li> Otherwise, choose \(w_2\) not in \(Span(\{w_1\})\)). Note here that \(\{w_1, w_2\}\) is a linearly independent set by construction.</li>
 </ul>
-We repeat this process, adding a vector every time if it's not in the span of the constructed set. This process will stop at some set $$\{w_1,...,w_k\}$$ such that $$W = Span(\{w_1,...,w_k\})$$. We know this set by construction is linearly independent. By the Replacement Theorem $$k \leq n$$
+We repeat this process, if the span is equal to $$W$$, we stop. Otherwise we add a new vector if it's not in the span of the current constructed set. This process will stop at some set $$\{w_1,...,w_k\}$$ such that $$W = Span(\{w_1,...,w_k\})$$. We know this set is linearly independent and that $$W = Span(\{w_1,...,w_k\})$$ by construction. Therefore, it's a basis for $$W$$ and so $$\dim W = k$$. By the Replacement Theorem we discussed previously we know that $$k \leq n$$ and so $$\dim W \leq \dim V$$. $$\blacksquare$$ 
 <br>
 <br>
 <hr>

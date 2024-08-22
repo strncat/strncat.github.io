@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 11: Null Space, Range, and Dimension Theorem</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-07-28T01:01:36-07:00" itemprop="datePublished">Jul 28, 2024
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The null space (kernel) of \(T\) is 
+	$$
+	\begin{align*}
+	 N(T) = \{v \in V \ | \ T(v) = \bar{0}_W\} \subset V
+	\end{align*}
+	$$
+The range (image) of \(T\) is
+	$$
+	\begin{align*}
+	 R(T) = \{T(v) \ | v \in V \} \subset W
+	\end{align*}
+	$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>\(N(T^b_a) = \{\)functions in \(C^0(\mathbf{R})\) whos average over \([a,b]\) is \(0\}\). In other words, it’s the set of all functions whose definite integral is 0. 
+<br />
+<br />
+\(R(T^b_a) = \mathbf{R}\). Here we want all functions whose definite integral is some constant/some real number. In other words, this will be the entire codomain (\(\mathbf{R}\)). We call this map \((T^b_a)\) onto.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+If \( \ T: V \rightarrow W\) is linear then \(N(T)\) is a subspace of \(V\) and \(R(T)\) is a subspace of \(W\).
+</div>
+<p><br />
+Proof:
+<br />
+We need to verify the three subspaces properties. To prove that \(R(T)\) is a subspace:</p>
+<ul>
+<li>We need \(\bar{0}_W \in R(T)\). So we need the zero vector to be in the range. This means that we need a \(v \in V\) such that \(T(v) = \bar{0}_W\). Since \(T\) is linear then \(T(\bar{0}_v) = \bar{0}_W\). (We proved this in the previous lecture?) </li>
+<li>We need \(R(T)\) to be closed under addition. Suppose \(w_1, w_2 \in R(T)\), then \(w_1 = T(v_1)\) and \(w_2 = T(v_2)\) for some \(v_1\) and \(v_2\). Therefore,
+	<div>
+		$$
+		\begin{align*}
+		 w_1 + w_2 &amp;= T(v_1) + T(v_2) \\
+		           &amp;= T(v_1 + v_2) \ \text{because $$T$$ is linear}
+		\end{align*}
+		$$
+	</div>
+By definition of a vector space \(v_1 + v_2 \in V\), so the image of the sum \(w_1 + w_2 \in R(T)\) as required.
+</li>
+<li> We need \(R(T)\) to be closed under multiplication. Suppose \(w_1 \in R(T)\) and \(c\) is a scalar. We need \(cw_1 \in R(T)\). Since \(w_1 \in R(T)\), then there must be a vector \(v_1 \in V\) such that \(w_1 = T(v_1)\). Notice now,
+	<div>
+		$$
+		\begin{align*}
+		 w_1 &amp;= T(v_1) \\
+		 cw_1 &amp;= cT(v_1) \\
+         &amp;= T(cv_1) \ \text{because $$T$$ is linear}
+		\end{align*}
+		$$
+	</div>
+By definition of a vector space \(cv_1 \in V\), so the image of the product \(cv_1 \in R(T)\) as required.
+
+</li>
+</ul>
+<p>From this, we conclude that the \(R(T)\) is a subspace of \(W\).
+Proving that \(N(T)\) is a subspace is an exercise.
+<br />
+<br /></p>
+<div class="purdiv">
+Theorem (Dimension Theorem)
+</div>
+<div class="purbdiv">
+If \( \ T: V \rightarrow W\) is linear and \(V\) is finite dimensional, then
+		$$
+		\begin{align*}
+		 \dim(N(T)) + \dim(R(T)) = \dim(V).
+		\end{align*}
+		$$
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References:</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2024/07/28/lec11-null-space-range-and-dimension-theorem.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/07/28/lec11-null-space-range-and-dimension-theorem; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2024/07/28/lec11-null-space-range-and-dimension-theorem.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

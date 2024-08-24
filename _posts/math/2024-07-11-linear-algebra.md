@@ -41,6 +41,9 @@ mathjax: true
        <li><a href="/jekyll/update/2024/07/28/lec11-null-space-range-and-dimension-theorem.html">
         Lecture 11: Null Space, Range, and Dimension Theorem
        </a></li>
+       <li><a href="/jekyll/update/2024/07/29/lec12-more-linear-transformations.html">
+        Lecture 12: Linear Transformations Continued
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

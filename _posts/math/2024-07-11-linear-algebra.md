@@ -12,7 +12,7 @@ mathjax: true
         Lecture 2: Echelon Form and Reduced Echelon Form
        </a></li>
        <li><a href="/jekyll/update/2024/07/23/elementary-matrices.html">
-        Notes: More on Elementary Matrix Operations and Elementary Matrices
+        Study Notes: More on Elementary Matrix Operations and Elementary Matrices
        </a></li>
        <li><a href="/jekyll/update/2024/07/22/lec03-gaussian-elimination.html">
         Lecture 3: Gaussian Elimination
@@ -34,6 +34,9 @@ mathjax: true
        </a></li>
        <li><a href="/jekyll/update/2024/07/26/lec09-basis-vectors-replacement-theorem.html">
         Lecture 9: Basis Vectors and the Replacement Theorem
+       </a></li>
+       <li><a href="/jekyll/update/2024/07/30/theorem-1.9.html">
+        Study Notes: Theorem 1.9: If \(V\) has a finite generating set, then \(V\) has a finite basis.
        </a></li>
        <li><a href="/jekyll/update/2024/07/27/lec10-linear-transformations.html">
         Lecture 10: Linear Transformations

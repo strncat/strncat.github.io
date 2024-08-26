@@ -156,6 +156,44 @@ Of course we can use an augmented matrix and put the matrix in a reduced row ech
 \end{align*}
 $$
 </div>
+So we can think of $$[\quad]_{\beta'}$$ as a map:
+<div>
+	$$
+	\begin{align*}
+	 [\quad]_{\beta'}: V \rightarrow \mathbf{R}^n
+\end{align*}
+$$
+</div>
+The idea is that each basis $$\beta$$ of $$V$$ with dimension $$\dim V = n$$ gives a map that identifies $$V$$ with $$\mathbf{R}^n$$. This map is linear, 1-1 and onto. "Bijective Correspondance"
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Matrix Representation of linear transformations</b></h4>
+Consider now $$T: V \rightarrow W$$ linear and both $$V$$ and $$W$$ are finite dimensional.
+We know we can identify $$V$$ with $$\mathbf{R}^n$$ and we can identify $$W$$ with $$\mathbf{R}^m$$ but now we want to represent $$T$$ as a matrix.
+<br>
+<br>
+Let $$\beta = \{v_1, ..., v_n\}$$ be a basis for $$V$$ and $$\gamma = \{w_1, ..., w_n\}$$. For $$v \in V$$, we have
+<div>
+	$$
+	\begin{align*}
+	T(v) = a_1w_1 + ... + a_mw_m.
+\end{align*}
+$$
+</div>
+ For $$v_j$$, we have,
+ <div>
+ 	$$
+ 	\begin{align*}
+ 	T(v_j) = a_{1j}w_1 + ... + a_{mj}w_m.
+ \end{align*}
+ $$
+ </div>
+
+
+<br>
 <br>
 <hr>
 <br>

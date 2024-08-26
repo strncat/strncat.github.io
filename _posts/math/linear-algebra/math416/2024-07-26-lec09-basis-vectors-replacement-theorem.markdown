@@ -59,7 +59,7 @@ $$\mathcal{F}(\mathbf{R})$$ has a basis ... hard to describe but it exists!
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem
+Theorem 1.9
 </div>
 <div class="purbdiv">
 If \(V\) has a finite generating set, then \(V\) has a finite basis.
@@ -68,9 +68,12 @@ If \(V\) has a finite generating set, then \(V\) has a finite basis.
 Proof: This follows from the Refinement Theorem. If $$\{u_1,...,u_k\}$$ is a finite generating set, then we can find a subset $$\{u_{i1},...,u_{il}\}$$ which is linearly independent and has span $$Span(\{u_{i1},...,u_{ij}\}) = V$$.
 <br>
 <br>
+Study notes: <a href="">Here</a>is another proof from the book.
+<br>
+<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem (Replacement Theorem)
+Theorem 1.10 (Replacement Theorem)
 </div>
 <div class="purbdiv">
 Suppose \(\mathcal{S} = \{s_1,...,s_n\}\) generates \(V\). If \(\ \mathcal{U} = \{u_1,...,u_k\}\) is a linearly independent subset of \(V\), then \(k \leq n\) and there is a subset \(\mathcal{T} \subset \mathcal{S}\) of size \(n-k\) such that \(Span(\mathcal{U} \cup \mathcal{T}) = V\).

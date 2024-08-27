@@ -86,67 +86,7 @@ Remark: To find $$u_j$$, we start with $$u_1$$ and ask/settle the question (Q1) 
 Conclusion: we can refine a finite subset $$\{u_1,...,u_k\}$$ to obtain a linearly independent subset $$\{u_{i1},...,u_{il}\}$$ with the same span.
 <br>
 <br>
-<!------------------------------------------------------------------------------------>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-\(B \subset V\) is a basis of \(V\) if
-	<ol>
-		<li>\(B\) is linearly independent.</li>
-		<li>\(Span(B) = V\). (\(B\) generates \(V\))</li>
-	</ol>
-</div>
-<br>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-Every vector space has a basis.
-</div>
-<br>
-Proof in 1.7.
-<br>
-<br>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-If \(\beta \subset V\) is a basis then every \(u \in V\) can be expressed in a unique way as an element of \(Span(\beta)\).
-</div>
-<br>
-Proof: Let $$u \in V$$. Let $$\beta \subset V$$ be a basis for $$V$$. We can express $$u$$ as
-<div>
-	$$
-	\begin{align*}
-	 u = a_1u_1 + ... + a_ku_k.
-	\end{align*}
-	$$
-</div>
-for $$u_1, ..., u_k \in \beta$$ and $$a_1, ....,a_k \in \mathbf{R}$$. We claim that this is the only way to express $$u$$ in terms of the elements in $$\beta$$. To see why, suppose for the sake of contradiction that it is not the only way. This means that we can also express $$u$$ as
-<div>
- 	$$
- 	\begin{align*}
- 	 u = b_1u_1 + ... + b_ku_k + b_{k+1}u_{k+1} + ... + b_{l}u_{l}.
- 	\end{align*}
- 	$$
-</div>
-But we know that $$u - u = \bar{0}$$. Evaluating $$u-u$$,
-<div>
-	$$
-	\begin{align*}
-	 u - u &= (a_1u_1 + ... + a_ku_k) - (b_1u_1 + ... + b_ku_k + b_{k+1}u_{k+1} + ... + b_{l}u_{l}) \\
-	\bar{0} &= (a_1-b_1)u_1 + ... + (a_k-b_k)u_k - (b_{k+1}u_{k+1} + ... + b_{l}u_{l}) \\
-	\end{align*}
-	$$
-</div>
-We also know that $$\beta$$ is linearly independent. So for the linear combination above, all the coefficients must be 0. Therefore, we must have,
-<div>
-	$$
-	a_1 = b_1, a_2 = b_2, ..., a_k=b_k, b_{k+1}=0, b_{l} = 0.
-	$$
-</div>
-This is exactly the first representation of $$u$$ which is a contradiction and so $$u$$ can only be uniquely expressed in terms of the elements of $$\beta$$.
+The rest of this lecture covered the definition of what a basis is and some other small result. I decided to move these to lecture 9 since lecture 9 covered basis in depth.
 <br>
 <br>
 <hr>

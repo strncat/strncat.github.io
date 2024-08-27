@@ -116,7 +116,7 @@ This is the $$xz$$-plane in $$\mathbf{R}^3$$.
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem 
+Theorem (part of 1.5 in the book)
 </div>
 <div class="purbdiv">
 For any nonempty subset \(S \subset V\), \(Span(S)\) is a subspace of \(V\).

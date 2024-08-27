@@ -5,8 +5,73 @@ date:   2024-07-26 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-From the previous lecture, we know that a subset $$\beta \subset V$$ is a basis if $$\beta$$ is linearly independent and if $$Span(\beta) = V$$. Moreover, we learned that for any vector $$u \in V$$, we can uniquely express $$u$$ interms of the elements in $$\beta$$. In this lecture, we'll start with some standard examples of basis.
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(B \subset V\) is a basis of \(V\) if
+	<ol>
+		<li>\(B\) is linearly independent.</li>
+		<li>\(Span(B) = V\). (\(B\) generates \(V\))</li>
+	</ol>
+</div>
 <br>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+Every vector space has a basis.
+</div>
+<br>
+Proof in 1.7.
+<br>
+<br>
+<div class="purdiv">
+Theorem 1.8
+</div>
+<div class="purbdiv">
+If \(\beta \subset V\) is a basis then every \(u \in V\) can be expressed in a unique way as an element of \(Span(\beta)\).
+</div>
+<br>
+Proof: Let $$u \in V$$. Let $$\beta \subset V$$ be a basis for $$V$$. We can express $$u$$ as
+<div>
+	$$
+	\begin{align*}
+	 u = a_1u_1 + ... + a_ku_k.
+	\end{align*}
+	$$
+</div>
+for $$u_1, ..., u_k \in \beta$$ and $$a_1, ....,a_k \in \mathbf{R}$$. We claim that this is the only way to express $$u$$ in terms of the elements in $$\beta$$. To see why, suppose for the sake of contradiction that it is not the only way. This means that we can also express $$u$$ as
+<div>
+ 	$$
+ 	\begin{align*}
+ 	 u = b_1u_1 + ... + b_ku_k + b_{k+1}u_{k+1} + ... + b_{l}u_{l}.
+ 	\end{align*}
+ 	$$
+</div>
+But we know that $$u - u = \bar{0}$$. Evaluating $$u-u$$,
+<div>
+	$$
+	\begin{align*}
+	 u - u &= (a_1u_1 + ... + a_ku_k) - (b_1u_1 + ... + b_ku_k + b_{k+1}u_{k+1} + ... + b_{l}u_{l}) \\
+	\bar{0} &= (a_1-b_1)u_1 + ... + (a_k-b_k)u_k - (b_{k+1}u_{k+1} + ... + b_{l}u_{l}) \\
+	\end{align*}
+	$$
+</div>
+We also know that $$\beta$$ is linearly independent. So for the linear combination above, all the coefficients must be 0. Therefore, we must have,
+<div>
+	$$
+	a_1 = b_1, a_2 = b_2, ..., a_k=b_k, b_{k+1}=0, b_{l} = 0.
+	$$
+</div>
+This is exactly the first representation of $$u$$ which is a contradiction and so $$u$$ can only be uniquely expressed in terms of the elements of $$\beta$$.
+<br>
+<br>
+<b>Note here</b> that up to this point, this was all covered in lecture 8 but I moved it here.
+<br>
+<br>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 1</b></h4>
@@ -155,7 +220,7 @@ But we know that $$Span(\{u_1,...u_{j},s_1,...,s_{n-j}\}) = V$$ from the inducti
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem
+Theorem (Corollary 1 in the book)
 </div>
 <div class="purbdiv">
 If \(V\) has a finite basis, then any basis of \(V\) has the same number of elements.
@@ -204,7 +269,7 @@ One basis for this space is \(\{E^{ij} \in M_{m \times n} \ | \ a_{ij} = 1, \tex
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem
+Theorem 1.11
 </div>
 <div class="purbdiv">
 Let \(W\) be a subspace of \(V\). If \(V\) is finite dimensional, then \(\dim W \leq \dim V\), with \(\dim W = \dim V\) if and only if \(W = V\).

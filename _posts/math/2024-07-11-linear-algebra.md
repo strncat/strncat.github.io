@@ -46,7 +46,7 @@ mathjax: true
         Book: Section 1.5 (Theorem 1.7) If \(S\) is a linearly independent subset of \(V\) and \(v\) is a vector in \(V\) but not \(S\). Then \(S \cup \{v\}\) is linearly dependent only if \(v \in span(S)\).
        </a></li>
        <li><a href="/jekyll/update/2024/08/01/1-5-ex-21.html">
-        Book: Section 1.5 (Exercise 21) If \(S_1\) and \(S_2\) are disjoint linearly independent subsets of \(V\), then \(S_1 \cup S_2\) is linearly dependent if and only if \(span(S_1) \cap span(S_2) \neq \{0\}\). 
+        Book: Section 1.5 (Exercise 21). 
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
@@ -58,6 +58,9 @@ mathjax: true
        </a></li>
        <li><a href="/jekyll/update/2024/08/02/1-6-corollary-2.html">
         Book: Section 1.6 (Theorem 1.7) Corollary 2. 
+       </a></li>
+       <li><a href="/jekyll/update/2024/08/03/1-6-ex-20.html">
+        Book: Section 1.6 (Exercise 20). 
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>

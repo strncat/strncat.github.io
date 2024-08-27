@@ -133,7 +133,7 @@ If \(V\) has a finite generating set, then \(V\) has a finite basis.
 Proof: This follows from the Refinement Theorem. If $$\{u_1,...,u_k\}$$ is a finite generating set, then we can find a subset $$\{u_{i1},...,u_{il}\}$$ which is linearly independent and has span $$Span(\{u_{i1},...,u_{ij}\}) = V$$.
 <br>
 <br>
-Study notes: <a href="">Here</a>is another proof from the book.
+Study notes: <a href="https://strncat.github.io/jekyll/update/2024/07/30/1-6-theorem-1.9.html">Here</a> is another proof from the book.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

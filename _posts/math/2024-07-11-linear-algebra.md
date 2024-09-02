@@ -43,10 +43,10 @@ mathjax: true
         Lecture 8: More on Linear Dependance
        </a></li>
        <li><a href="/jekyll/update/2024/07/31/1-6-theorem-1.7.html">
-        Book: Section 1.5 (Theorem 1.7) If \(S\) is a linearly independent subset of \(V\) and \(v\) is a vector in \(V\) but not \(S\). Then \(S \cup \{v\}\) is linearly dependent only if \(v \in span(S)\).
+        Book (1.5) Theorem 1.7: If \(S\) is a linearly independent subset of \(V\) and \(v\) is a vector in \(V\) but not \(S\). Then \(S \cup \{v\}\) is linearly dependent only if \(v \in span(S)\).
        </a></li>
        <li><a href="/jekyll/update/2024/08/01/1-5-ex-21.html">
-        Book: Section 1.5 (Exercise 21). 
+        Book (1.5) Exercise 21
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
@@ -54,13 +54,16 @@ mathjax: true
         Lecture 9: Basis Vectors and the Replacement Theorem
        </a></li>
        <li><a href="/jekyll/update/2024/07/30/1-6-theorem-1.9.html">
-        Book: Section 1.6 (Theorem 1.9) If \(V\) has a finite generating set, then \(V\) has a finite basis.
+        Book (1.6) Theorem 1.9: If \(V\) has a finite generating set, then \(V\) has a finite basis.
        </a></li>
        <li><a href="/jekyll/update/2024/08/02/1-6-corollary-2.html">
-        Book: Section 1.6 (Theorem 1.7) Corollary 2. 
+        Book (1.6) Theorem 1.7: Corollary 2
+       </a></li>
+       <li><a href="/jekyll/update/2024/08/04/1-6-ex-11.html">
+        Book (1.6) Exercise 11
        </a></li>
        <li><a href="/jekyll/update/2024/08/03/1-6-ex-20.html">
-        Book: Section 1.6 (Exercise 20). 
+        Book (1.6) Exercise 20
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>

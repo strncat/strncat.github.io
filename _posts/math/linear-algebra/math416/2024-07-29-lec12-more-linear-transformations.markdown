@@ -69,10 +69,7 @@ We will show that any linear map $$T: V \rightarrow W$$ between finite dimension
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Coordinate Expression for a vector</b></h4>
-Recall that if $$\beta$$ is a basis for $$V$$, then for any $$v \in V$$, $$v$$ can be expressed uniquely as an element of $$Span(\beta)$$. We proved this previously for any vector space whether infinite or finite dimensional. 
-<br>
-<br>
-But if the basis is finite ($$\beta = \{v_1, ... , v_n\}$$), then for every $v \in V$$, $$v$$ can be expressed uniquely in the form,
+Recall that if $$\beta$$ is a basis for $$V$$, then for any $$v \in V$$, $$v$$ can be expressed uniquely as an element of $$Span(\beta)$$. We proved this previously for any vector space whether infinite or finite dimensional. But if the basis is finite ($$\beta = \{v_1, ... , v_n\}$$), then for every $$v \in V$$, $$v$$ can be expressed uniquely in the form,
 <div>
 	$$
 	\begin{align*}
@@ -175,7 +172,23 @@ Consider now $$T: V \rightarrow W$$ linear and both $$V$$ and $$W$$ are finite d
 We know we can identify $$V$$ with $$\mathbf{R}^n$$ and we can identify $$W$$ with $$\mathbf{R}^m$$ but now we want to represent $$T$$ as a matrix.
 <br>
 <br>
-Let $$\beta = \{v_1, ..., v_n\}$$ be a basis for $$V$$ and $$\gamma = \{w_1, ..., w_n\}$$. For $$v \in V$$, we have
+Let $$\beta$$ be the basis for $$V$$ where
+<div>
+	$$
+	\begin{align*}
+	\beta = \{v_1, ..., v_n\}
+\end{align*}
+$$
+</div>
+And let $$\gamma$$ be the basis for $$W$$ where
+<div>
+	$$
+	\begin{align*}
+	\gamma =  \{w_1, ..., w_n\}
+\end{align*}
+$$
+</div>
+For $$v \in V$$, we have
 <div>
 	$$
 	\begin{align*}
@@ -183,7 +196,7 @@ Let $$\beta = \{v_1, ..., v_n\}$$ be a basis for $$V$$ and $$\gamma = \{w_1, ...
 \end{align*}
 $$
 </div>
- For $$v_j$$, we have,
+And for each $$v_j$$ within $$v$$ we have,
  <div>
  	$$
  	\begin{align*}
@@ -191,8 +204,103 @@ $$
  \end{align*}
  $$
  </div>
-
-
+From this, we now have this definition,
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+	$$
+	\begin{align*}
+	 [T]_{\beta}^{\gamma} = (a_{ij}) \text{ where } i=1,...,m, j=1,...,n
+	\end{align*}
+	$$
+is the matrix representation of \(T\) with respect to the bases \(\beta,\gamma\).
+</div>
+<br>
+Remark:
+<div>
+	$$
+\begin{align*}
+	 [T]_{\beta}^{\gamma} = 
+\begin{pmatrix}
+| & & |\\ 
+[T(v_1)]_{\gamma} & ... & [T(v_n)]_{\gamma} \\
+| & & |
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<br>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+	For all \(v \in V\), \([T(v)]_{\gamma} = [T(v)]_{\beta}^{\gamma}[v]_{\beta}\)
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
+Let $$T_d: P_3 \rightarrow P_2, f \rightarrow f'$$. $$P_3$$ has a basis
+<div>
+	$$
+\begin{align*}
+\beta = \{1, x, x^2, x^3\}.
+\end{align*}
+$$
+</div>
+and $$P_2$$ has a basis,
+<div>
+	$$
+\begin{align*}
+\gamma = \{1, x, x^2\}.
+\end{align*}
+$$
+</div>
+We want to compute $$[T_d]_{\beta}^{\gamma}$$.
+<div>
+	$$
+\begin{align*}
+[T_d(1)]_{\gamma} &=  [0]_{\gamma} = 
+\begin{pmatrix}
+0 \\ 
+0 \\
+0
+\end{pmatrix} \\
+[T_d(x)]_{\gamma} &=  [1]_{\gamma} = 
+\begin{pmatrix}
+1 \\ 
+0 \\
+0
+\end{pmatrix} \\
+[T_d(x^2)]_{\gamma} &=  [2x]_{\gamma} = 
+\begin{pmatrix}
+0 \\ 
+2 \\
+0
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+and so
+<div>
+	$$
+\begin{align*}
+[T_d(x^3)]_{\gamma} &=  [3x^2]_{\gamma} = 
+\begin{pmatrix}
+0 \\ 
+0 \\
+3
+\end{pmatrix} \\
+[T_d]^{\gamma}_{\beta} &= 
+\begin{pmatrix}
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 3
+\end{pmatrix}
+\end{align*}
+$$
+</div>
 <br>
 <br>
 <hr>

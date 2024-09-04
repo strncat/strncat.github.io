@@ -241,7 +241,9 @@ Theorem
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example</b></h4>
-Let $$T_d: P_3 \rightarrow P_2, f \rightarrow f'$$. $$P_3$$ has a basis
+Let $$T_d: P_3 \rightarrow P_2, f \rightarrow f'$$. 
+<br>
+$$P_3$$ has a basis
 <div>
 	$$
 \begin{align*}
@@ -257,50 +259,86 @@ and $$P_2$$ has a basis,
 \end{align*}
 $$
 </div>
-We want to compute $$[T_d]_{\beta}^{\gamma}$$.
+We want to compute $$[T_d]_{\beta}^{\gamma}$$. The first thing that we want to do is to apply $$T$$ on the vectors of the basis $$\beta$$ so,
 <div>
 	$$
 \begin{align*}
-[T_d(1)]_{\gamma} &=  [0]_{\gamma} = 
+T_d(1) &= 0 \\
+T_d(x) &= x \\
+T_d(x^2) &= 2x \\
+T_d(x^3) &= 3x^2
+\end{align*}
+$$
+</div>
+Next, we want to write these with respect to the basis $$\gamma = \{1,x,x^2\}$$ meaning that we want to express each result as a linear combination of the vectors in the basis $$\gamma$$. 
+<div>
+	$$
+\begin{align*}
+[T_d(1)]_{\gamma} &=  [0]_{\gamma} = 0(1) + 0(x) + 0(x^2) = 
 \begin{pmatrix}
 0 \\ 
 0 \\
 0
 \end{pmatrix} \\
-[T_d(x)]_{\gamma} &=  [1]_{\gamma} = 
+[T_d(x)]_{\gamma} &=  [1]_{\gamma} = 1(1) + 0(x) + 0(x^2) = 
 \begin{pmatrix}
 1 \\ 
 0 \\
 0
 \end{pmatrix} \\
-[T_d(x^2)]_{\gamma} &=  [2x]_{\gamma} = 
+[T_d(x^2)]_{\gamma} &=  [2x]_{\gamma} = 0(1) + 2(x) + 0(x^2) = 
 \begin{pmatrix}
 0 \\ 
 2 \\
 0
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-and so
-<div>
-	$$
-\begin{align*}
-[T_d(x^3)]_{\gamma} &=  [3x^2]_{\gamma} = 
+\end{pmatrix} \\
+[T_d(x^3)]_{\gamma} &=  [3x^2]_{\gamma} = 0(1) + 2(x) + 2(x^2) = 
 \begin{pmatrix}
 0 \\ 
 0 \\
 3
-\end{pmatrix} \\
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+So the final matrix is
+<div>
+	$$
+\begin{align*}
 [T_d]^{\gamma}_{\beta} &= 
 \begin{pmatrix}
 0 & 1 & 0 & 0 \\ 
 0 & 0 & 2 & 0 \\
 0 & 0 & 0 & 3
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
 $$
 </div>
+As an example, suppose we have the function $$f(x) = 3x^3 + 4x + 5$$ in $$P_3$$. We can express this function in terms of the basis vectors in $$\beta = \{1, x, x^2, x^3\}$$ as the coefficients vector $$(5, 4, 0, 3)$$. So now, let's multiply this vector by the linear transformation matrix
+<div>
+	$$
+\begin{align*}
+\begin{pmatrix}
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 3
+\end{pmatrix}
+\begin{pmatrix}
+5 \\ 
+4 \\
+0 \\
+3
+\end{pmatrix} = 
+\begin{pmatrix}
+4 \\
+0 \\
+9
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+This gives us the coefficients vector with respect to the basis $$\gamma$$. This means that the function will be $$4 + 9x^2$$ which is exactly what we would get if manually applied the transformation on $$f(x)$$ to get $$f'(x)$$ but now instead we have a matrix to do this.
+
 <br>
 <br>
 <hr>

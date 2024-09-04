@@ -277,7 +277,9 @@ Theorem
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>Let \(T_d: P_3 \rightarrow P_2, f \rightarrow f'\). \(P_3\) has a basis</p>
+<p>Let \(T_d: P_3 \rightarrow P_2, f \rightarrow f'\). 
+<br />
+\(P_3\) has a basis</p>
 <div>
 	$$
 \begin{align*}
@@ -293,50 +295,86 @@ $$
 \end{align*}
 $$
 </div>
-<p>We want to compute \([T_d]_{\beta}^{\gamma}\).</p>
+<p>We want to compute \([T_d]_{\beta}^{\gamma}\). The first thing that we want to do is to apply \(T\) on the vectors of the basis \(\beta\) so,</p>
 <div>
 	$$
 \begin{align*}
-[T_d(1)]_{\gamma} &amp;=  [0]_{\gamma} = 
+T_d(1) &amp;= 0 \\
+T_d(x) &amp;= x \\
+T_d(x^2) &amp;= 2x \\
+T_d(x^3) &amp;= 3x^2
+\end{align*}
+$$
+</div>
+<p>Next, we want to write these with respect to the basis \(\gamma = \{1,x,x^2\}\) meaning that we want to express each result as a linear combination of the vectors in the basis \(\gamma\).</p>
+<div>
+	$$
+\begin{align*}
+[T_d(1)]_{\gamma} &amp;=  [0]_{\gamma} = 0(1) + 0(x) + 0(x^2) = 
 \begin{pmatrix}
 0 \\ 
 0 \\
 0
 \end{pmatrix} \\
-[T_d(x)]_{\gamma} &amp;=  [1]_{\gamma} = 
+[T_d(x)]_{\gamma} &amp;=  [1]_{\gamma} = 1(1) + 0(x) + 0(x^2) = 
 \begin{pmatrix}
 1 \\ 
 0 \\
 0
 \end{pmatrix} \\
-[T_d(x^2)]_{\gamma} &amp;=  [2x]_{\gamma} = 
+[T_d(x^2)]_{\gamma} &amp;=  [2x]_{\gamma} = 0(1) + 2(x) + 0(x^2) = 
 \begin{pmatrix}
 0 \\ 
 2 \\
 0
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>and so</p>
-<div>
-	$$
-\begin{align*}
-[T_d(x^3)]_{\gamma} &amp;=  [3x^2]_{\gamma} = 
+\end{pmatrix} \\
+[T_d(x^3)]_{\gamma} &amp;=  [3x^2]_{\gamma} = 0(1) + 2(x) + 2(x^2) = 
 \begin{pmatrix}
 0 \\ 
 0 \\
 3
-\end{pmatrix} \\
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p>So the final matrix is</p>
+<div>
+	$$
+\begin{align*}
 [T_d]^{\gamma}_{\beta} &amp;= 
 \begin{pmatrix}
 0 &amp; 1 &amp; 0 &amp; 0 \\ 
 0 &amp; 0 &amp; 2 &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 3
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
 $$
 </div>
+<p>As an example, suppose we have the function \(f(x) = 3x^3 + 4x + 5\) in \(P_3\). We can express this function in terms of the basis vectors in \(\beta = \{1, x, x^2, x^3\}\) as the coefficients vector \((5, 4, 0, 3)\). So now, let’s multiply this vector by the linear transformation matrix</p>
+<div>
+	$$
+\begin{align*}
+\begin{pmatrix}
+0 &amp; 1 &amp; 0 &amp; 0 \\ 
+0 &amp; 0 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 3
+\end{pmatrix}
+\begin{pmatrix}
+5 \\ 
+4 \\
+0 \\
+3
+\end{pmatrix} = 
+\begin{pmatrix}
+4 \\
+0 \\
+9
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p>This gives us the coefficients vector with respect to the basis \(\gamma\). This means that the function will be \(4 + 9x^2\) which is exactly what we would get if manually applied the transformation on \(f(x)\) to get \(f'(x)\) but now instead we have a matrix to do this.</p>
+
 <p><br />
 <br /></p>
 <hr />

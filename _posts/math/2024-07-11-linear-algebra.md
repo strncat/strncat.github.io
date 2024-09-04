@@ -80,6 +80,11 @@ mathjax: true
        <li><a href="/jekyll/update/2024/07/29/lec12-more-linear-transformations.html">
         Lecture 12: Linear Transformations Continued
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/08/05/lec13-more-linear-transformations.html">
+        Lecture 13: More Linear Transformations
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

@@ -60,12 +60,33 @@ Recall $$A \in M_{m \times n}$$ defines a linear map
 <div>
 	$$
 	\begin{align*}
-	L_A:\mathbf{R}^n \rightarrow \mathbf{R}^m, \ \bar{x} \rightarrow A\bar{x} 
+	L_A: \ &\mathbf{R}^n \rightarrow \mathbf{R}^m \\ 
+	            &\bar{x} \rightarrow A\bar{x} 
 	\end{align*}
 	$$
 </div>
-We will show that any linear map $$T: V \rightarrow W$$ between finite dimensional spaces be represented by a matrix. For example $$T_d: P_3 \rightarrow P_2, \ f \rightarrow f'$$ and $$T_i: P_2 \rightarrow P_3, \ f \rightarrow \int_0^x f(t)dt$$.
+We will show that any linear map $$T: V \rightarrow W$$ between finite dimensional spaces be represented by a matrix. For example 
+<div>
+	$$
+	\begin{align*}
+	T_d: \ &P_3 \rightarrow P_2 \\ 
+	&f \rightarrow f'
+	\end{align*}
+	$$
+</div>
+ and
+<div>
+ 	$$
+ 	\begin{align*}
+ 	T_i: \ &P_2 \rightarrow P_3 \\ 
+ 	&\ f \rightarrow \int_0^x f(t)dt
+ 	\end{align*}
+ 	$$
+</div>
+But in order to show this, we will start with expressing vectors uniquely relative a basis in a vector space.
 <br>
+<br>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Coordinate Expression for a vector</b></h4>
@@ -169,26 +190,7 @@ The idea is that each basis $$\beta$$ of $$V$$ with dimension $$\dim V = n$$ giv
 <!------------------------------------------------------------------------------------>
 <h4><b>Matrix Representation of linear transformations</b></h4>
 Consider now $$T: V \rightarrow W$$ linear and both $$V$$ and $$W$$ are finite dimensional.
-We know we can identify $$V$$ with $$\mathbf{R}^n$$ and we can identify $$W$$ with $$\mathbf{R}^m$$ but now we want to represent $$T$$ as a matrix.
-<br>
-<br>
-Let $$\beta$$ be the basis for $$V$$ where
-<div>
-	$$
-	\begin{align*}
-	\beta = \{v_1, ..., v_n\}
-\end{align*}
-$$
-</div>
-And let $$\gamma$$ be the basis for $$W$$ where
-<div>
-	$$
-	\begin{align*}
-	\gamma =  \{w_1, ..., w_n\}
-\end{align*}
-$$
-</div>
-For $$v \in V$$, we have
+We know we can identify $$V$$ with $$\mathbf{R}^n$$ and we can identify $$W$$ with $$\mathbf{R}^m$$ but now we want to represent $$T$$ as a matrix. Let $$\beta = \{v_1, ..., v_n\}$$ be the basis for $$V$$ and let $$\gamma = \{w_1, ..., w_n\}$$ be the basis for $$W$$. For $$v \in V$$, we have
 <div>
 	$$
 	\begin{align*}
@@ -196,7 +198,7 @@ For $$v \in V$$, we have
 \end{align*}
 $$
 </div>
-And for each $$v_j$$ within $$v$$ we have,
+(This is the image of $$v$$ which can be expressed uniquely in terms of the vectors of the basis $$\gamma$$ because we're in the vector space $$W$$ now.) $$v$$ itself is a linear combination of the basis vectors of $$\beta$$. So for each $$v_j$$ we have,
  <div>
  	$$
  	\begin{align*}
@@ -218,7 +220,7 @@ Definition
 is the matrix representation of \(T\) with respect to the bases \(\beta,\gamma\).
 </div>
 <br>
-Remark:
+Remark: The column vectors of $$T$$ are the images of the 
 <div>
 	$$
 \begin{align*}

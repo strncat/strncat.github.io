@@ -5,14 +5,18 @@ date:   2024-08-05 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Suppose we have $$A \in M_{m \times n}$$ where $$A$$ represents a linear map $$L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m, \bar{x} \rightarrow A\bar{x}$$. We claim that if $$\beta$$ and $$\gamma$$ are the standard bases for $$\mathbf{R}^n$$ and $$\mathbf{R}^m$$ respectively, then
-<div>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+Suppose we have \(A \in M_{m \times n}\) where \(A\) represents a linear map \(L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m, \bar{x} \rightarrow A\bar{x}\). If \(\beta\) and \(\gamma\) are the standard bases for \(\mathbf{R}^n\) and \(\mathbf{R}^m\) respectively, then
 $$
 \begin{align*}
 [L_A]^{\gamma}_{\beta} = A.
 \end{align*}
 $$
 </div>
+<br>
 Proof: Let $$\beta = \{e_1,...,e_n\}$$. where 
 $$e_1 = \begin{pmatrix}
 1 \\
@@ -101,7 +105,7 @@ This is exactly what we wanted to show.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The vector space of linear transformations</b></h4>
+<h4><b>The Vector Space of Linear Transformations</b></h4>
 <div class="bdiv">
 Definition
 </div>
@@ -113,6 +117,11 @@ $$
 \end{align*}
 $$
 </div>
+<br>
+FACT: The set of linear transformations $$\mathcal{L}(V, W)$$ is a vector space. We can think of this as a way to get a new vector space from two vector spaces $$W$$ and $$V$$.
+<br>
+<br>
+Note: This lecture contained the intro to the composition of linear transformations but I moved it to be with the next lecture.
 <br>
 <br>
 <hr>

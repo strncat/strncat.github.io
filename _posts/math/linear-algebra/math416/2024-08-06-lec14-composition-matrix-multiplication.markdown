@@ -335,7 +335,6 @@ $$
 \end{align*}
 $$
 </div>
-
 <br>
 <hr>
 <br>

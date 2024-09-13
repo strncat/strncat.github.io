@@ -124,6 +124,8 @@ S &: \hat{P} \rightarrow P  \\
 \end{align*}
 $$
 </div>
+<hr>
+<br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 4</b></h4>
 <div>
@@ -187,13 +189,198 @@ Suppose \(T: V \rightarrow W\) be linear and invertible. If \(\beta\) is a basis
 </div>
 <br>
 Proof (in the case where $$V$$ and $$W$$ are finite dimensional spaces):<br>
-Let $$T: V \rightarrow W$$ be a linear and invertible map and suppose that $$\dim(V)=n$$. Choose a basis $$\beta = \{v_1, ..., v_n\}$$ for $$V$$. We know that
+Let $$T: V \rightarrow W$$ be a linear and invertible map and suppose that $$\dim(V)=n$$. Choose a basis $$\beta = \{v_1, ..., v_n\}$$ for $$V$$. Consider the set of images,
 <div>
 $$
 \begin{align*}
-T(\beta) = \{T(v_1),...,T(v_n)\}
+T(\beta) = \{T(v_1),...,T(v_n)\}.
 \end{align*}
 $$
+</div>
+We need to show that this set is a basis which means that we need to show that it spans $$W$$ and so $$Span(T(\beta)) = W$$ and that it is a linearly independent set. To show that it spans $$W$$, we need for any $$w \in W$$, scalars $$a_1,...,a_n$$ such that
+<div>
+$$
+\begin{align*}
+w = a_1T(v_1) + ... + a_nT(v_n).
+\end{align*}
+$$
+</div>
+But we know that $$w = T(v)$$ for some $$v \in V$$ since $$T$$ is onto. We also know that $$\beta$$ is a basis for $$V$$ and so we can write $$v$$ as a linear combination of the vectors in $$\beta$$ for some scalars $$a_1,...,a_n$$.
+<div>
+$$
+\begin{align*}
+v = a_1v_1 + ... + a_nv_n.
+\end{align*}
+$$
+</div>
+And now because $$T$$ is linear, we can do the following
+<div>
+$$
+\begin{align*}
+w &= T(v) \\
+  &= T(a_1v_1 + ... + a_nv_n) \\
+  & = a_1T(v_1) + ... + a_nT(v_n).
+\end{align*}
+$$
+</div>
+Which is what we wanted to show. To show that the vectors in $$T(\beta)$$ are linearly independent, we need to show that the solution to 
+<div>
+$$
+\begin{align*}
+a_1T(v_1) + ... + a_nT(v_n) = \bar{0}_W.
+\end{align*}
+$$
+</div>
+is the trivial solution which means that $$a_1=0,..,a_n=0$$. We can use the linearity of $$T$$ to show that
+<div>
+$$
+\begin{align*}
+\bar{0}_W &= a_1T(v_1) + ... + a_nT(v_n) \\
+ &= T(a_1v_1 + ... + a_nv_n).
+\end{align*}
+$$
+</div>
+But $$T$$ is 1-1 and so this implies that $$a_1v_1 + ... + a_nv_n$$ must be $$\bar{0}_V$$. Therefore, we must have $$a_1=0,...,a_n=0$$ as required.
+<br>
+<br>
+<div class="purdiv">
+Corollary
+</div>
+<div class="purbdiv">
+Let \(T: V \rightarrow W\) be linear. If \(\dim(V) = n\) and \(T\) is invertible, then 
+$$
+\begin{align*}
+\dim W = \dim V = n
+\end{align*}
+$$
+</div>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Isomorphism</b></h4>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(V\) and \(W\) are isomorphic if there is an invertible linear map \(T: V \rightarrow W\). Such a map \(T\) is called isomorphism.
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 4</b></h4>
+$$\mathbf{R}^3$$ and $$P_2$$ are isomorphic. To see this, we need an invertible map from one to the other. The maps
+<div>
+$$
+\begin{align*}
+&T : \mathbf{R}^3 \rightarrow P_2  \\
+&(a_1,a_2,a_3) \rightarrow a_1 + a_2x + a_3x^2
+\end{align*}
+$$
+</div>
+and
+<div>
+$$
+\begin{align*}
+&U : \mathbf{R}^3 \rightarrow P_2  \\
+&(a_1,a_2,a_3) \rightarrow a_3 + (a_1 + a_2)x + (a_1 + a_2)x^2
+\end{align*}
+$$
+</div>
+are both isomorphisms.
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 5</b></h4>
+<div>
+$$
+\begin{align*}
+&U : P \rightarrow \hat{P}  \\
+&f \rightarrow xf
+\end{align*}
+$$
+</div>
+is an isomorphism and so $$P$$ and $$\hat{P}$$ are isomorphic.
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Criterion for Isomorphic Finite Dimensional Vector Spaces</b></h4>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+If \(V\) is finite dimensional, then \(W\) is isomorphic to \(V\) if and only if \(\dim W = \dim V\).
+</div>
+<br>
+Proof: 
+$$\Leftarrow$$: Suppose that $$\dim V = \dim W$$. We want to show that they are isomorphic. This means that there exists some invertible map from one to the other. So let $$\beta = \{v_1,...,v_n\}$$ be a basis for $$V$$ and $$\alpha = \{w_1, ...,w_n\}$$ be a basis for $$W$$.
+<br>
+<br>
+Define the map $$T: W \rightarrow V$$ by $$[T]_{\alpha}^{\beta} = I_n$$. This $$T$$ works. Why?
+<div>
+$$
+\begin{align*}
+v_i &= T(w_i) \\
+       &= T(a_1w_1 + ... + a_nw_n) \\
+	   &= a_1v_1 + ... + a_nv_n.
+\end{align*}
+$$
+</div>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Invertible Linear Map of a Matrix</b></h4>
+Recall that $$\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}$$.
+<br>
+<br>
+Question: For what $$A \in M_{m \times n}$$ does $$L_A$$ have an inverse?
+<br>
+<br>
+By Corollary of Theorem 2, we require $$n = m$$. 
+<br>
+<br>
+What else can we find? Consider
+<div>
+$$
+\begin{align*}
+&L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\
+&\bar{x} \rightarrow A\bar{x}
+\end{align*}
+$$
+</div>
+For this map to be invertible there must be a map 
+<div>
+$$
+\begin{align*}
+(L_A)^{-1}: \mathbf{R}^n \rightarrow \mathbf{R}^n
+\end{align*}
+$$
+</div>
+such that
+<div>
+$$
+\begin{align*}
+(L_A)^{-1} \circ L_A = I_{\mathbf{R}^n} = L_A \circ (L_A)^{-1}
+\end{align*}
+$$
+</div>
+This map is linear since the inverse of a linear map is linear. Since it is linear then we can represent it with a matrix so let $$(L_A)^{-1} = L_B$$ for some $$B \in M_{n \times n}$$ and so 
+<div>
+$$
+\begin{align*}
+L_B \circ L_A &= I_{\mathbf{R}^n} = L_A \circ L_B \\
+L_{BA} &= L_{I_n} = L_{AB} \\
+BA &= I_n = AB.
+\end{align*}
+$$
+</div>
+Based on this, we have this definition
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(A \in M_{n \times n}\) is invertible if \(\exists B \in M_{n \times n}\) such that \(BA = I_n = AB\)
 </div>
 <br>
 <hr>

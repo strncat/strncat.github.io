@@ -330,62 +330,6 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Invertible Linear Map of a Matrix</b></h4>
-Recall that $$\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}$$.
-<br>
-<br>
-Question: For what $$A \in M_{m \times n}$$ does $$L_A$$ have an inverse?
-<br>
-<br>
-By Corollary of Theorem 2, we require $$n = m$$. 
-<br>
-<br>
-What else can we find? Consider
-<div>
-$$
-\begin{align*}
-&L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\
-&\bar{x} \rightarrow A\bar{x}
-\end{align*}
-$$
-</div>
-For this map to be invertible there must be a map 
-<div>
-$$
-\begin{align*}
-(L_A)^{-1}: \mathbf{R}^n \rightarrow \mathbf{R}^n
-\end{align*}
-$$
-</div>
-such that
-<div>
-$$
-\begin{align*}
-(L_A)^{-1} \circ L_A = I_{\mathbf{R}^n} = L_A \circ (L_A)^{-1}
-\end{align*}
-$$
-</div>
-This map is linear since the inverse of a linear map is linear. Since it is linear then we can represent it with a matrix so let $$(L_A)^{-1} = L_B$$ for some $$B \in M_{n \times n}$$ and so 
-<div>
-$$
-\begin{align*}
-L_B \circ L_A &= I_{\mathbf{R}^n} = L_A \circ L_B \\
-L_{BA} &= L_{I_n} = L_{AB} \\
-BA &= I_n = AB.
-\end{align*}
-$$
-</div>
-Based on this, we have this definition
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-\(A \in M_{n \times n}\) is invertible if \(\exists B \in M_{n \times n}\) such that \(BA = I_n = AB\)
-</div>
-<br>
-<hr>
-<br>
-<!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <ul>
 <li>Video Lectures from Math416 by Ely Kerman.</li>

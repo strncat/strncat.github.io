@@ -1,4 +1,409 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-12T20:18:30-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 15: Inverse and Invertible Linear Transformations</title><link href="http://localhost:4000/jekyll/update/2024/08/07/lec15-inverse-and-invertible-linear-maps.html" rel="alternate" type="text/html" title="Lecture 15: Inverse and Invertible Linear Transformations" /><published>2024-08-07T01:01:36-07:00</published><updated>2024-08-07T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/07/lec15-inverse-and-invertible-linear-maps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/07/lec15-inverse-and-invertible-linear-maps.html"><![CDATA[<h4><b>Identity matrix and Kronecker delta</b></h4>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-14T20:17:13-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 17: Change of Coordinates and Matrix Representations</title><link href="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html" rel="alternate" type="text/html" title="Lecture 17: Change of Coordinates and Matrix Representations" /><published>2024-08-09T01:01:36-07:00</published><updated>2024-08-09T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html"><![CDATA[<p>Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)?
+<br />
+<br />
+Starting with \([v]_{\beta'}\), we want to derive an expression for \([v]_{\beta}\). We can take the</p>
+<div>
+$$
+\begin{align*}
+[v]_{\beta} &amp;= [I_V(v)]_{\beta'} \\
+           &amp;= [I_V]_{\beta}^{\beta'}[v]_{\beta} \\
+\end{align*}
+$$
+</div>
+<p>In the first line we just re-wrote the vector so now the identity map is applied on \(v\) which doesn’t change \(v\). Since \(I_V\) is a linear map, we can use Theorem 2.14 to re-write this as the second line. We compute the matrix \([I_V]_{\beta}^{\beta'}\) by applying \(I_V\) on the basis vectors of \(\beta\). But since it’s the identity transformation then the vectors in \(\beta\) will not change. We then find the coordinates of each vector when written as a linear combination of the vectors of basis \(\beta'\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Let \(V = P_1\), \(\beta = \{1, x\}\) and \(\beta' = \{1+x, 1-x\}\). Then to compute the matrix \([I_V]_{\beta}^{\beta'}\), we want to apply the map on the basis \(\beta\) and then write these relative to the basis \(\beta'\) (meaning for each vector, find its coordinates when written as a linear combination of the vectors of the basis \(\beta'\)).</p>
+<div>
+$$
+\begin{align*}
+[I_V]_{\beta}^{\beta'} &amp;= 
+\begin{pmatrix}
+[I_V(1)]_{\beta'} &amp; [I_V(x)]_{\beta'}
+\end{pmatrix} \\
+&amp;=
+\begin{pmatrix}
+[1]_{\beta'} &amp; [x]_{\beta'}
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p>Now we need to find the coordinates when 1 is written as a linear combination of the vectors of basis \(\beta'\) so</p>
+<div>
+$$
+\begin{align*}
+1 &amp;= a(1 + x) + b(1 - x) \\
+1 &amp;= a + ax + b - bx \\
+1 &amp;= a + b + x(a - b) \\
+\end{align*}
+$$
+</div>
+<p>from this we see that \(a = b = 1/2\). Similarly we need to find the coordinates of \(x\)</p>
+<div>
+$$
+\begin{align*}
+x &amp;= a(1 + x) + b(1 - x) \\
+0 &amp;= a + ax + b - bx - x \\
+0 &amp;= a + b + x(a - b - 1) \\
+\end{align*}
+$$
+</div>
+<p>A solution to this is \(a = 1/2\) and \(b = -1/2\). So now we have</p>
+<div>
+$$
+\begin{align*}
+[I_V]_{\beta}^{\beta'} &amp;= 
+\begin{pmatrix}
+\frac{1}{2} &amp; \frac{1}{2} \\
+\frac{1}{2} &amp; -\frac{1}{2}
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p>We can now use this matrix to transform any vector in \(V\) written with respect to \(\beta\) to a vector written with respect to \(\beta'\). Given some polynomial in \(V\),</p>
+<div>
+$$
+\begin{align*}
+[a_0 + a_1x]_{\beta'} = 
+\begin{pmatrix}
+\frac{1}{2} &amp; \frac{1}{2} \\
+\frac{1}{2} &amp; -\frac{1}{2}
+\end{pmatrix}
+\begin{pmatrix}
+a_0 \\
+a_1
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{1}{2}(a_0 + a_1) \\
+\frac{1}{2}(a_0 - a_1)
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Inverse of the Change of Coordinates Matrix</b></h4>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+	$$
+	\begin{align*}
+([I_V]_{\beta}^{\beta'})^{-1} = [I_V]^{\beta}_{\beta'}
+    \end{align*}
+	$$
+</div>
+<p><br />
+Proof: To prove that a matrix is an inverse of another matrix, we need to show that their product is the identity matrix so</p>
+<div>
+$$
+\begin{align*}
+[I_V]_{\beta}^{\beta'}[I_V]^{\beta}_{\beta'} &amp;= [I_V \circ I_V]^{\beta'}_{\beta'} \text{ (Theorem 2.11)}\\
+ &amp;= [I_V]^{\beta'}_{\beta'} \\
+ &amp;= I
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Change of Bases</b></h4>
+<p>Question: Given \(T: V \rightarrow W\) and finite bases \(\beta, \beta'\) for \(V\) and \(\gamma, \gamma'\) for \(W\), how are \([T]^{\gamma}_{\beta}\) and \([T]^{\gamma'}_{\beta'}\) related?
+<br />
+<br />
+l
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)? Starting with \([v]_{\beta'}\), we want to derive an expression for \([v]_{\beta}\). We can take the $$ \begin{align*} [v]_{\beta} &amp;= [I_V(v)]_{\beta'} \\ &amp;= [I_V]_{\beta}^{\beta'}[v]_{\beta} \\ \end{align*} $$ In the first line we just re-wrote the vector so now the identity map is applied on \(v\) which doesn’t change \(v\). Since \(I_V\) is a linear map, we can use Theorem 2.14 to re-write this as the second line. We compute the matrix \([I_V]_{\beta}^{\beta'}\) by applying \(I_V\) on the basis vectors of \(\beta\). But since it’s the identity transformation then the vectors in \(\beta\) will not change. We then find the coordinates of each vector when written as a linear combination of the vectors of basis \(\beta'\). Example Let \(V = P_1\), \(\beta = \{1, x\}\) and \(\beta' = \{1+x, 1-x\}\). Then to compute the matrix \([I_V]_{\beta}^{\beta'}\), we want to apply the map on the basis \(\beta\) and then write these relative to the basis \(\beta'\) (meaning for each vector, find its coordinates when written as a linear combination of the vectors of the basis \(\beta'\)). $$ \begin{align*} [I_V]_{\beta}^{\beta'} &amp;= \begin{pmatrix} [I_V(1)]_{\beta'} &amp; [I_V(x)]_{\beta'} \end{pmatrix} \\ &amp;= \begin{pmatrix} [1]_{\beta'} &amp; [x]_{\beta'} \end{pmatrix}. \end{align*} $$ Now we need to find the coordinates when 1 is written as a linear combination of the vectors of basis \(\beta'\) so $$ \begin{align*} 1 &amp;= a(1 + x) + b(1 - x) \\ 1 &amp;= a + ax + b - bx \\ 1 &amp;= a + b + x(a - b) \\ \end{align*} $$ from this we see that \(a = b = 1/2\). Similarly we need to find the coordinates of \(x\) $$ \begin{align*} x &amp;= a(1 + x) + b(1 - x) \\ 0 &amp;= a + ax + b - bx - x \\ 0 &amp;= a + b + x(a - b - 1) \\ \end{align*} $$ A solution to this is \(a = 1/2\) and \(b = -1/2\). So now we have $$ \begin{align*} [I_V]_{\beta}^{\beta'} &amp;= \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; -\frac{1}{2} \end{pmatrix}. \end{align*} $$ We can now use this matrix to transform any vector in \(V\) written with respect to \(\beta\) to a vector written with respect to \(\beta'\). Given some polynomial in \(V\), $$ \begin{align*} [a_0 + a_1x]_{\beta'} = \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; -\frac{1}{2} \end{pmatrix} \begin{pmatrix} a_0 \\ a_1 \end{pmatrix} = \begin{pmatrix} \frac{1}{2}(a_0 + a_1) \\ \frac{1}{2}(a_0 - a_1) \end{pmatrix} \end{align*} $$ The Inverse of the Change of Coordinates Matrix Theorem $$ \begin{align*} ([I_V]_{\beta}^{\beta'})^{-1} = [I_V]^{\beta}_{\beta'} \end{align*} $$ Proof: To prove that a matrix is an inverse of another matrix, we need to show that their product is the identity matrix so $$ \begin{align*} [I_V]_{\beta}^{\beta'}[I_V]^{\beta}_{\beta'} &amp;= [I_V \circ I_V]^{\beta'}_{\beta'} \text{ (Theorem 2.11)}\\ &amp;= [I_V]^{\beta'}_{\beta'} \\ &amp;= I \end{align*} $$ Change of Bases Question: Given \(T: V \rightarrow W\) and finite bases \(\beta, \beta'\) for \(V\) and \(\gamma, \gamma'\) for \(W\), how are \([T]^{\gamma}_{\beta}\) and \([T]^{\gamma'}_{\beta'}\) related? l References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 16: Inverse and Invertible Matrices</title><link href="http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices.html" rel="alternate" type="text/html" title="Lecture 16: Inverse and Invertible Matrices" /><published>2024-08-08T01:01:36-07:00</published><updated>2024-08-08T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices.html"><![CDATA[<p>Recall that \(\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}\). (The vector space of linear transformations)
+<br />
+<br />
+Question: For what \(A \in M_{m \times n}\) does \(L_A\) have an inverse?
+<br />
+<br />
+By Corollary of Theorem 2, we require \(n = m\). 
+<br />
+<br />
+Moreover, consider the following map</p>
+<div>
+$$
+\begin{align*}
+&amp;L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\
+&amp;\bar{x} \rightarrow A\bar{x}
+\end{align*}
+$$
+</div>
+<p>For this map to be invertible there must be a map</p>
+<div>
+$$
+\begin{align*}
+(L_A)^{-1}: \mathbf{R}^n \rightarrow \mathbf{R}^n
+\end{align*}
+$$
+</div>
+<p>such that</p>
+<div>
+$$
+\begin{align*}
+(L_A)^{-1} \circ L_A = I_{\mathbf{R}^n} = L_A \circ (L_A)^{-1}
+\end{align*}
+$$
+</div>
+<p>This map is linear since the inverse of a linear map is linear. Since it is linear then we can represent it with a matrix so let \((L_A)^{-1} = L_B\) for some \(B \in M_{n \times n}\) and so</p>
+<div>
+$$
+\begin{align*}
+L_B \circ L_A &amp;= I_{\mathbf{R}^n} = L_A \circ L_B \\
+L_{BA} &amp;= L_{I_n} = L_{AB} \\
+BA &amp;= I_n = AB.
+\end{align*}
+$$
+</div>
+<p>Based on this, we have this definition</p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(A \in M_{n \times n}\) is invertible if \(\exists B \in M_{n \times n}\) such that \(BA = I_n = AB\)
+</div>
+<p><br />
+Remark: The inverse of \(A\) is unique if it exists.
+<br />
+Proof: Suppose \(BA = I_n = AB\) and \(CA = I_n = AC\). We need to show that \(C = B\). To do this,</p>
+<div>
+$$
+\begin{align*}
+CA &amp;= I_n \\
+(CA)B &amp;= (I_n)B \\
+C(AB) &amp;= B \\
+C(I_n) &amp;= B \\
+C &amp; B.
+\end{align*}
+$$
+</div>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Conditions for An Invertible Matrix</b></h4>
+<p>So when is \(A\) invertible? 
+<br />
+<br />
+\(A\) is invertible if and only if</p>
+<ul>
+	<li>\(L_A: \mathbf{R}^n \rightarrow \mathbf{R}^n\) is invertible.</li>
+	<li>\(L_A\) is 1-1 and onto. (you only need one as consequence of the dimension theorem since the dimension of the domain and the codomain are the same)</li>
+	<li>\(L_A\) is 1-1. (see above or theorem 2.5)</li>
+	<li>\(N(L_A) = \{\bar{0}\}\). The above is equivalent (proved in homework I think) to saying that the null space is only the zero vector.</li>
+	<li>\(\{\bar{x} \ | \ A\bar{x} = \bar{0} = \{\bar{0}\}\). This is just the null space. We can check/settle this by putting the matrix in a row echelon form!</li>
+	<li>a REF of \(A\) has leading entries in each column.</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Matrix Representation for an Inverse Linear Transformation</b></h4>
+<p>Suppose \(T: V \rightarrow W\) is linear. Let \(\beta\) be a finite basis for \(V\) and \(\gamma\) be a finite basis for \(W\). 
+<br />
+<br />
+We know that \(T\) has a matrix representative from \(\beta\) to \(\gamma\), \([T]_{\beta}^{\gamma}\). Therefore, the inverse of \(T\) will have a matrix representative instead from \(\gamma\) to \(\beta\), \([T]_{\gamma}^{\beta}\). We want to know what the relationship is between these two matrices.
+<br />
+<br />
+Claim: If \(T: V \rightarrow W\) is invertible, then</p>
+<div>
+$$
+\begin{align*}
+[T^{-1}]_{\gamma}^{\beta} &amp;= ([T]_{\beta}^{\gamma})^{-1}
+\end{align*}
+$$
+</div>
+<p>To see this, let’s multiply both matrices. By defintion multiplying these matrices is the composition of the matrices from \(\beta\) to \(\beta\) (proved in the last lecture?)</p>
+<div>
+$$
+\begin{align*}
+[T^{-1}]_{\gamma}^{\beta}[T]^{\gamma}_{\beta} &amp;= [T^{-1} \circ T]_{\beta}^{\beta} \\
+                              &amp;= [I_V]_{\beta}^{\beta} \\
+							  &amp;= I_n
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Matrix Representation for an Inverse Linear Transformation</b></h4>
+<p>If \(A\) is invertible, how do you find an its inverse?
+<br />
+<br />
+We need \(B\) such that \(AB = I_n\)
+<br />
+<br />
+We can think of \(AB\) as multiplying the columns of \(B\) by \(A\) and so</p>
+<div>
+$$
+\begin{align*}
+AB &amp;= I_n \\
+A(\bar{b_1} ... \bar{b_n}) &amp;= (e_1 ... e_n) \\
+A\bar{b_1} ... A\bar{b_n} &amp;= (e_1 ... e_n).
+\end{align*}
+$$
+</div>
+<p>This is equivalent to solving the following \(n\) equations in \(n\) variables.</p>
+<div>
+$$
+\begin{align*}
+Ab_1 &amp;= e_1 \\
+... \\
+Ab_n &amp;= e_n.
+\end{align*}
+$$
+</div>
+<p>We can solve this all at once because if you notice here, \(A\) is the same in every equation. We do this by grouping this in the following way</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+A &amp; | &amp; e_1 &amp; ... &amp; e_n
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>We then put this matrix in row reduced echelon form to get \((RREF(A) | B)\). Because we have \(n\) entries, then if \(RREF(A) = I_n\), then \(B = A^{-1}\). If \(RREF(A) \neq I_n\), then \(A\) is not invertible.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Let \(A = \begin{pmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{pmatrix}\). Find if \(A^{-1}\) exists.</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 2 &amp; | &amp; 1 &amp; 0 \\
+3 &amp; 4 &amp; | &amp; 0 &amp; 1
+\end{pmatrix}
+R_2 \rightarrow -3R_1 + R_2
+\begin{pmatrix}
+1 &amp; 2 &amp; | &amp; 1 &amp; 0 \\
+0 &amp; -2 &amp; | &amp; -3 &amp; 1
+\end{pmatrix}\\
+\begin{pmatrix}
+1 &amp; 2 &amp; | &amp; 1 &amp; 0 \\
+0 &amp; -2 &amp; | &amp; -3 &amp; 1
+\end{pmatrix}
+R_1 \rightarrow R_2 + R_1
+\begin{pmatrix}
+1 &amp; 0 &amp; | &amp; -2 &amp; 1 \\
+0 &amp; -2 &amp; | &amp; -3 &amp; 1
+\end{pmatrix}\\
+\begin{pmatrix}
+1 &amp; 0 &amp; | &amp; -2 &amp; 1 \\
+0 &amp; -2 &amp; | &amp; -3 &amp; 1
+\end{pmatrix}
+R_2 \rightarrow -\frac{1}{2}R_2
+\begin{pmatrix}
+1 &amp; 0 &amp; | &amp; -2 &amp; 1 \\
+0 &amp; 1 &amp; | &amp; \frac{3}{2} &amp; -\frac{1}{2}
+\end{pmatrix}\\
+\end{align*}
+$$
+</div>
+<p>From this we see that \(A\) is invertible and its inverse is \(\begin{pmatrix}
+-2 &amp; 1 \\
+\frac{3}{2} &amp; -\frac{1}{2}
+\end{pmatrix}\)
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Special Rule for 2 by 2 Matrices</b></h4>
+<p>In fact, any 2 by 2 matrix \(\begin{pmatrix}
+a &amp; b \\
+c &amp; d
+\end{pmatrix}\) is invertible if \(ad - bc = 0\). In which case</p>
+<div>
+$$
+\begin{align*}
+A^{-1} = \frac{1}{ad - bc}
+\begin{pmatrix}
+d &amp; -b \\
+-c &amp; a
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Proof: We will show that this is true by using the same procedure from the last example. We will also assume that \(a \neq 0\).</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+a &amp; b &amp; | &amp; 1 &amp; 0 \\
+c &amp; d &amp; | &amp; 0 &amp; 1
+\end{pmatrix}
+R_2 \rightarrow -\frac{c}{a}R_1 + R_2
+\begin{pmatrix}
+a &amp; b &amp; | &amp; 1 &amp; 0 \\
+0 &amp; d - \frac{bc}{a} &amp; | &amp; -\frac{c}{a} &amp; 1
+\end{pmatrix}\\
+\begin{pmatrix}
+a &amp; b &amp; | &amp; 1 &amp; 0 \\
+0 &amp; d - \frac{bc}{a} &amp; | &amp; -\frac{c}{a} &amp; 1
+\end{pmatrix}
+R_2 \rightarrow \frac{1}{a}R_2
+\begin{pmatrix}
+a &amp; b &amp; | &amp; 1 &amp; 0 \\
+0 &amp; ad - bc &amp; | &amp; -c &amp; a
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Note here that if \(ad - bc = 0\), then the system for the last column is inconsistent and \(A\) has no inverse. We can proceed until we get to</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 0 &amp; | &amp; \frac{d}{ad - bc} &amp; \frac{-b}{ad - bc} \\
+0 &amp; 1 &amp; | &amp; \frac{-c}{ad - bc} &amp; \frac{a}{ad - bc}
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>And so this will be the inverse. We still need to settle the case when \(a = 0\). (Exercise)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Recall that \(\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}\). (The vector space of linear transformations) Question: For what \(A \in M_{m \times n}\) does \(L_A\) have an inverse? By Corollary of Theorem 2, we require \(n = m\). Moreover, consider the following map $$ \begin{align*} &amp;L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\ &amp;\bar{x} \rightarrow A\bar{x} \end{align*} $$ For this map to be invertible there must be a map $$ \begin{align*} (L_A)^{-1}: \mathbf{R}^n \rightarrow \mathbf{R}^n \end{align*} $$ such that $$ \begin{align*} (L_A)^{-1} \circ L_A = I_{\mathbf{R}^n} = L_A \circ (L_A)^{-1} \end{align*} $$ This map is linear since the inverse of a linear map is linear. Since it is linear then we can represent it with a matrix so let \((L_A)^{-1} = L_B\) for some \(B \in M_{n \times n}\) and so $$ \begin{align*} L_B \circ L_A &amp;= I_{\mathbf{R}^n} = L_A \circ L_B \\ L_{BA} &amp;= L_{I_n} = L_{AB} \\ BA &amp;= I_n = AB. \end{align*} $$ Based on this, we have this definition Definition \(A \in M_{n \times n}\) is invertible if \(\exists B \in M_{n \times n}\) such that \(BA = I_n = AB\) Remark: The inverse of \(A\) is unique if it exists. Proof: Suppose \(BA = I_n = AB\) and \(CA = I_n = AC\). We need to show that \(C = B\). To do this, $$ \begin{align*} CA &amp;= I_n \\ (CA)B &amp;= (I_n)B \\ C(AB) &amp;= B \\ C(I_n) &amp;= B \\ C &amp; B. \end{align*} $$ Conditions for An Invertible Matrix So when is \(A\) invertible? \(A\) is invertible if and only if \(L_A: \mathbf{R}^n \rightarrow \mathbf{R}^n\) is invertible. \(L_A\) is 1-1 and onto. (you only need one as consequence of the dimension theorem since the dimension of the domain and the codomain are the same) \(L_A\) is 1-1. (see above or theorem 2.5) \(N(L_A) = \{\bar{0}\}\). The above is equivalent (proved in homework I think) to saying that the null space is only the zero vector. \(\{\bar{x} \ | \ A\bar{x} = \bar{0} = \{\bar{0}\}\). This is just the null space. We can check/settle this by putting the matrix in a row echelon form! a REF of \(A\) has leading entries in each column. Matrix Representation for an Inverse Linear Transformation Suppose \(T: V \rightarrow W\) is linear. Let \(\beta\) be a finite basis for \(V\) and \(\gamma\) be a finite basis for \(W\). We know that \(T\) has a matrix representative from \(\beta\) to \(\gamma\), \([T]_{\beta}^{\gamma}\). Therefore, the inverse of \(T\) will have a matrix representative instead from \(\gamma\) to \(\beta\), \([T]_{\gamma}^{\beta}\). We want to know what the relationship is between these two matrices. Claim: If \(T: V \rightarrow W\) is invertible, then $$ \begin{align*} [T^{-1}]_{\gamma}^{\beta} &amp;= ([T]_{\beta}^{\gamma})^{-1} \end{align*} $$ To see this, let’s multiply both matrices. By defintion multiplying these matrices is the composition of the matrices from \(\beta\) to \(\beta\) (proved in the last lecture?) $$ \begin{align*} [T^{-1}]_{\gamma}^{\beta}[T]^{\gamma}_{\beta} &amp;= [T^{-1} \circ T]_{\beta}^{\beta} \\ &amp;= [I_V]_{\beta}^{\beta} \\ &amp;= I_n \end{align*} $$ Matrix Representation for an Inverse Linear Transformation If \(A\) is invertible, how do you find an its inverse? We need \(B\) such that \(AB = I_n\) We can think of \(AB\) as multiplying the columns of \(B\) by \(A\) and so $$ \begin{align*} AB &amp;= I_n \\ A(\bar{b_1} ... \bar{b_n}) &amp;= (e_1 ... e_n) \\ A\bar{b_1} ... A\bar{b_n} &amp;= (e_1 ... e_n). \end{align*} $$ This is equivalent to solving the following \(n\) equations in \(n\) variables. $$ \begin{align*} Ab_1 &amp;= e_1 \\ ... \\ Ab_n &amp;= e_n. \end{align*} $$ We can solve this all at once because if you notice here, \(A\) is the same in every equation. We do this by grouping this in the following way $$ \begin{align*} \begin{pmatrix} A &amp; | &amp; e_1 &amp; ... &amp; e_n \end{pmatrix} \end{align*} $$ We then put this matrix in row reduced echelon form to get \((RREF(A) | B)\). Because we have \(n\) entries, then if \(RREF(A) = I_n\), then \(B = A^{-1}\). If \(RREF(A) \neq I_n\), then \(A\) is not invertible. Example Let \(A = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix}\). Find if \(A^{-1}\) exists. $$ \begin{align*} \begin{pmatrix} 1 &amp; 2 &amp; | &amp; 1 &amp; 0 \\ 3 &amp; 4 &amp; | &amp; 0 &amp; 1 \end{pmatrix} R_2 \rightarrow -3R_1 + R_2 \begin{pmatrix} 1 &amp; 2 &amp; | &amp; 1 &amp; 0 \\ 0 &amp; -2 &amp; | &amp; -3 &amp; 1 \end{pmatrix}\\ \begin{pmatrix} 1 &amp; 2 &amp; | &amp; 1 &amp; 0 \\ 0 &amp; -2 &amp; | &amp; -3 &amp; 1 \end{pmatrix} R_1 \rightarrow R_2 + R_1 \begin{pmatrix} 1 &amp; 0 &amp; | &amp; -2 &amp; 1 \\ 0 &amp; -2 &amp; | &amp; -3 &amp; 1 \end{pmatrix}\\ \begin{pmatrix} 1 &amp; 0 &amp; | &amp; -2 &amp; 1 \\ 0 &amp; -2 &amp; | &amp; -3 &amp; 1 \end{pmatrix} R_2 \rightarrow -\frac{1}{2}R_2 \begin{pmatrix} 1 &amp; 0 &amp; | &amp; -2 &amp; 1 \\ 0 &amp; 1 &amp; | &amp; \frac{3}{2} &amp; -\frac{1}{2} \end{pmatrix}\\ \end{align*} $$ From this we see that \(A\) is invertible and its inverse is \(\begin{pmatrix} -2 &amp; 1 \\ \frac{3}{2} &amp; -\frac{1}{2} \end{pmatrix}\) Special Rule for 2 by 2 Matrices In fact, any 2 by 2 matrix \(\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\) is invertible if \(ad - bc = 0\). In which case $$ \begin{align*} A^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d &amp; -b \\ -c &amp; a \end{pmatrix} \end{align*} $$ Proof: We will show that this is true by using the same procedure from the last example. We will also assume that \(a \neq 0\). $$ \begin{align*} \begin{pmatrix} a &amp; b &amp; | &amp; 1 &amp; 0 \\ c &amp; d &amp; | &amp; 0 &amp; 1 \end{pmatrix} R_2 \rightarrow -\frac{c}{a}R_1 + R_2 \begin{pmatrix} a &amp; b &amp; | &amp; 1 &amp; 0 \\ 0 &amp; d - \frac{bc}{a} &amp; | &amp; -\frac{c}{a} &amp; 1 \end{pmatrix}\\ \begin{pmatrix} a &amp; b &amp; | &amp; 1 &amp; 0 \\ 0 &amp; d - \frac{bc}{a} &amp; | &amp; -\frac{c}{a} &amp; 1 \end{pmatrix} R_2 \rightarrow \frac{1}{a}R_2 \begin{pmatrix} a &amp; b &amp; | &amp; 1 &amp; 0 \\ 0 &amp; ad - bc &amp; | &amp; -c &amp; a \end{pmatrix} \end{align*} $$ Note here that if \(ad - bc = 0\), then the system for the last column is inconsistent and \(A\) has no inverse. We can proceed until we get to $$ \begin{align*} \begin{pmatrix} 1 &amp; 0 &amp; | &amp; \frac{d}{ad - bc} &amp; \frac{-b}{ad - bc} \\ 0 &amp; 1 &amp; | &amp; \frac{-c}{ad - bc} &amp; \frac{a}{ad - bc} \end{pmatrix} \end{align*} $$ And so this will be the inverse. We still need to settle the case when \(a = 0\). (Exercise) References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 15: Inverse and Invertible Linear Transformations</title><link href="http://localhost:4000/jekyll/update/2024/08/07/lec15-inverse-and-invertible-linear-maps.html" rel="alternate" type="text/html" title="Lecture 15: Inverse and Invertible Linear Transformations" /><published>2024-08-07T01:01:36-07:00</published><updated>2024-08-07T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/07/lec15-inverse-and-invertible-linear-maps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/07/lec15-inverse-and-invertible-linear-maps.html"><![CDATA[<h4><b>Identity matrix and Kronecker delta</b></h4>
 <p>The identity matrix:</p>
 <div>
 $$
@@ -332,67 +737,10 @@ $$
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Invertible Linear Map of a Matrix</b></h4>
-<p>Recall that \(\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}\).
-<br />
-<br />
-Question: For what \(A \in M_{m \times n}\) does \(L_A\) have an inverse?
-<br />
-<br />
-By Corollary of Theorem 2, we require \(n = m\). 
-<br />
-<br />
-What else can we find? Consider</p>
-<div>
-$$
-\begin{align*}
-&amp;L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\
-&amp;\bar{x} \rightarrow A\bar{x}
-\end{align*}
-$$
-</div>
-<p>For this map to be invertible there must be a map</p>
-<div>
-$$
-\begin{align*}
-(L_A)^{-1}: \mathbf{R}^n \rightarrow \mathbf{R}^n
-\end{align*}
-$$
-</div>
-<p>such that</p>
-<div>
-$$
-\begin{align*}
-(L_A)^{-1} \circ L_A = I_{\mathbf{R}^n} = L_A \circ (L_A)^{-1}
-\end{align*}
-$$
-</div>
-<p>This map is linear since the inverse of a linear map is linear. Since it is linear then we can represent it with a matrix so let \((L_A)^{-1} = L_B\) for some \(B \in M_{n \times n}\) and so</p>
-<div>
-$$
-\begin{align*}
-L_B \circ L_A &amp;= I_{\mathbf{R}^n} = L_A \circ L_B \\
-L_{BA} &amp;= L_{I_n} = L_{AB} \\
-BA &amp;= I_n = AB.
-\end{align*}
-$$
-</div>
-<p>Based on this, we have this definition</p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-\(A \in M_{n \times n}\) is invertible if \(\exists B \in M_{n \times n}\) such that \(BA = I_n = AB\)
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
 <ul>
 <li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Identity matrix and Kronecker delta The identity matrix: $$ \begin{align*} I_n &amp;= \begin{pmatrix} 1 &amp; 0 &amp; \dotsb &amp; 0 \\ 0 &amp; 1 &amp; \dotsb &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} \in M_{n \times n} \end{align*} $$ \(I_n\) is the \(n \times n\) identity matrix. To construct the matrix, we have the following rule. $$ \begin{equation*} (I)_{ij} = \delta_{ij} = \begin{cases} 1 \quad \text{if } i = j \\ 0 \quad \text{if } i \neq j \end{cases} \end{equation*} $$ \(\delta_{ij}\) is the Kronecker delta. Inverse Linear Transformation For \(A \in M_{m \times n}\) $$ \begin{align*} AI_n &amp;= A \text{ and } I_mA = A \end{align*} $$ Exercise: Suppose we have a finite basis \(\beta\) for \(V\), then $$ \begin{align*} [I_V]_{\beta}^{\beta} = I_n \end{align*} $$ Definition An inverse of \(T: V \rightarrow W\) is a map \(S: W \rightarrow V\) such that $$ \begin{align*} S \circ T = I_V \text{ and } T \circ S = I_W \end{align*} $$ Example 2 $$ \begin{align*} T &amp;: \mathbf{R}^2 \rightarrow \mathbf{R}^2 \\ &amp;(x, y) \rightarrow (y, -x) \end{align*} $$ has inverse $$ \begin{align*} S &amp;: \mathbf{R}^2 \rightarrow \mathbf{R}^2 \\ &amp;(x, y) \rightarrow (-y, x) \end{align*} $$ Checking this is true by $$ \begin{align*} S \circ T (x,y) &amp;= S(T(x, y)) = S(y, -x) = (x, y) \\ T \circ S (x,y) &amp;= T(S(x, y)) = T(-y, x) = (x, y) \end{align*} $$ Example 3 $$ \begin{align*} V = P \\ W = \hat{P} = \{a_1x + a_2x^2 ... + a_kx^k\} \end{align*} $$ \(\hat{P}\) is the set of all polynomials without the constant term. We claim that \(\hat{P}\) is a subspace of \(P\). (TODO: verify?) Now consider the following linear map between \(P\) to \(\hat{P}\) where we multiply the polynomial by \(x\) (TODO: verify it’s linear?) $$ \begin{align*} T &amp;: P \rightarrow \hat{P} \\ &amp;a_0 + a_1x + ... + a_kx^k \rightarrow a_0x + a_1x^2 + ... + a_kx^{k+1} \\ &amp;f \rightarrow xf \end{align*} $$ This map has an inverse $$ \begin{align*} S &amp;: \hat{P} \rightarrow P \\ &amp;a_1x + a_2x^2 + ... + a_kx^{k} \rightarrow a_1 + a_2x + ... + a_kx^{k-1} \\ &amp;f \rightarrow \frac{1}{x}f \end{align*} $$ Example 4 $$ \begin{align*} T &amp;: P \rightarrow P \\ &amp;f \rightarrow f' \end{align*} $$ This map has no inverse! (it is onto but not 1-1) This leads us to the following theorem Theorem Let \(T: V \rightarrow W\) be linear. \(T\) has an inverse if and only if \(T\) is 1-1 (\(N(T)=\{\bar{0}_V\)) and onto (\(R(T) = W\). If \(T\) has an inverse, then it is unique \((T^{-1})\). \(T^{-1}\) is linear. The third property is not obvious and requires a proof. Proof: Let \(T: V \rightarrow W\) be a linear map with inverse \(T^{-1}: W \rightarrow V\). We want to show that \(T^{-1}\) is linear. To do this, we need to show that $$ \begin{align*} T^{-1}(w_1 + cw_2) = T^{-1}(w_1) + cT^{-1}(w_2). \end{align*} $$ Because \(T\) has an inverse then \(T\) is onto. This means that \(w_1 = T(v_1)\) and \(w_2 = T(v_2)\) for some \(v_1, v_2 \in V\). Moreover, since \(T\) is 1-1, then \(v_1 \neq v_2\). Now, $$ \begin{align*} T^{-1}(w_1 + cw_2) &amp;= T^{-1}(T(v_1) + cT(v_2)) \\ &amp;= T^{-1}(T(v_1 + cv_2)) \text{ (because $T$ is linear!)} \\ &amp;= I(v_1 + cv_2) \text{ (because $T$ has an inverse!)} \\ &amp;= v_1 + cv_2 \\ &amp; = T^{-1}(w_1) + c T^{-1}(w_2) \end{align*} $$ Therefore, \(T^{-1}\) is linear! Theorem Suppose \(T: V \rightarrow W\) be linear and invertible. If \(\beta\) is a basis for \(V\), then \(T(\beta)\) is a basis for \(W\). Proof (in the case where \(V\) and \(W\) are finite dimensional spaces): Let \(T: V \rightarrow W\) be a linear and invertible map and suppose that \(\dim(V)=n\). Choose a basis \(\beta = \{v_1, ..., v_n\}\) for \(V\). Consider the set of images, $$ \begin{align*} T(\beta) = \{T(v_1),...,T(v_n)\}. \end{align*} $$ We need to show that this set is a basis which means that we need to show that it spans \(W\) and so \(Span(T(\beta)) = W\) and that it is a linearly independent set. To show that it spans \(W\), we need for any \(w \in W\), scalars \(a_1,...,a_n\) such that $$ \begin{align*} w = a_1T(v_1) + ... + a_nT(v_n). \end{align*} $$ But we know that \(w = T(v)\) for some \(v \in V\) since \(T\) is onto. We also know that \(\beta\) is a basis for \(V\) and so we can write \(v\) as a linear combination of the vectors in \(\beta\) for some scalars \(a_1,...,a_n\). $$ \begin{align*} v = a_1v_1 + ... + a_nv_n. \end{align*} $$ And now because \(T\) is linear, we can do the following $$ \begin{align*} w &amp;= T(v) \\ &amp;= T(a_1v_1 + ... + a_nv_n) \\ &amp; = a_1T(v_1) + ... + a_nT(v_n). \end{align*} $$ Which is what we wanted to show. To show that the vectors in \(T(\beta)\) are linearly independent, we need to show that the solution to $$ \begin{align*} a_1T(v_1) + ... + a_nT(v_n) = \bar{0}_W. \end{align*} $$ is the trivial solution which means that \(a_1=0,..,a_n=0\). We can use the linearity of \(T\) to show that $$ \begin{align*} \bar{0}_W &amp;= a_1T(v_1) + ... + a_nT(v_n) \\ &amp;= T(a_1v_1 + ... + a_nv_n). \end{align*} $$ But \(T\) is 1-1 and so this implies that \(a_1v_1 + ... + a_nv_n\) must be \(\bar{0}_V\). Therefore, we must have \(a_1=0,...,a_n=0\) as required. Corollary Let \(T: V \rightarrow W\) be linear. If \(\dim(V) = n\) and \(T\) is invertible, then $$ \begin{align*} \dim W = \dim V = n \end{align*} $$ Isomorphism Definition \(V\) and \(W\) are isomorphic if there is an invertible linear map \(T: V \rightarrow W\). Such a map \(T\) is called isomorphism. Example 4 \(\mathbf{R}^3\) and \(P_2\) are isomorphic. To see this, we need an invertible map from one to the other. The maps $$ \begin{align*} &amp;T : \mathbf{R}^3 \rightarrow P_2 \\ &amp;(a_1,a_2,a_3) \rightarrow a_1 + a_2x + a_3x^2 \end{align*} $$ and $$ \begin{align*} &amp;U : \mathbf{R}^3 \rightarrow P_2 \\ &amp;(a_1,a_2,a_3) \rightarrow a_3 + (a_1 + a_2)x + (a_1 + a_2)x^2 \end{align*} $$ are both isomorphisms. Example 5 $$ \begin{align*} &amp;U : P \rightarrow \hat{P} \\ &amp;f \rightarrow xf \end{align*} $$ is an isomorphism and so \(P\) and \(\hat{P}\) are isomorphic. Criterion for Isomorphic Finite Dimensional Vector Spaces Theorem If \(V\) is finite dimensional, then \(W\) is isomorphic to \(V\) if and only if \(\dim W = \dim V\). Proof: \(\Leftarrow\): Suppose that \(\dim V = \dim W\). We want to show that they are isomorphic. This means that there exists some invertible map from one to the other. So let \(\beta = \{v_1,...,v_n\}\) be a basis for \(V\) and \(\alpha = \{w_1, ...,w_n\}\) be a basis for \(W\). Define the map \(T: W \rightarrow V\) by \([T]_{\alpha}^{\beta} = I_n\). This \(T\) works. Why? $$ \begin{align*} v_i &amp;= T(w_i) \\ &amp;= T(a_1w_1 + ... + a_nw_n) \\ &amp;= a_1v_1 + ... + a_nv_n. \end{align*} $$ Invertible Linear Map of a Matrix Recall that \(\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}\). Question: For what \(A \in M_{m \times n}\) does \(L_A\) have an inverse? By Corollary of Theorem 2, we require \(n = m\). What else can we find? Consider $$ \begin{align*} &amp;L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\ &amp;\bar{x} \rightarrow A\bar{x} \end{align*} $$ For this map to be invertible there must be a map $$ \begin{align*} (L_A)^{-1}: \mathbf{R}^n \rightarrow \mathbf{R}^n \end{align*} $$ such that $$ \begin{align*} (L_A)^{-1} \circ L_A = I_{\mathbf{R}^n} = L_A \circ (L_A)^{-1} \end{align*} $$ This map is linear since the inverse of a linear map is linear. Since it is linear then we can represent it with a matrix so let \((L_A)^{-1} = L_B\) for some \(B \in M_{n \times n}\) and so $$ \begin{align*} L_B \circ L_A &amp;= I_{\mathbf{R}^n} = L_A \circ L_B \\ L_{BA} &amp;= L_{I_n} = L_{AB} \\ BA &amp;= I_n = AB. \end{align*} $$ Based on this, we have this definition Definition \(A \in M_{n \times n}\) is invertible if \(\exists B \in M_{n \times n}\) such that \(BA = I_n = AB\) References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 14: Matrix Representation of Composition and Matrix Multiplication</title><link href="http://localhost:4000/jekyll/update/2024/08/06/lec14-composition-matrix-multiplication.html" rel="alternate" type="text/html" title="Lecture 14: Matrix Representation of Composition and Matrix Multiplication" /><published>2024-08-06T01:01:36-07:00</published><updated>2024-08-06T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/06/lec14-composition-matrix-multiplication</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/06/lec14-composition-matrix-multiplication.html"><![CDATA[<!------------------------------------------------------------------------------------>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Identity matrix and Kronecker delta The identity matrix: $$ \begin{align*} I_n &amp;= \begin{pmatrix} 1 &amp; 0 &amp; \dotsb &amp; 0 \\ 0 &amp; 1 &amp; \dotsb &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} \in M_{n \times n} \end{align*} $$ \(I_n\) is the \(n \times n\) identity matrix. To construct the matrix, we have the following rule. $$ \begin{equation*} (I)_{ij} = \delta_{ij} = \begin{cases} 1 \quad \text{if } i = j \\ 0 \quad \text{if } i \neq j \end{cases} \end{equation*} $$ \(\delta_{ij}\) is the Kronecker delta. Inverse Linear Transformation For \(A \in M_{m \times n}\) $$ \begin{align*} AI_n &amp;= A \text{ and } I_mA = A \end{align*} $$ Exercise: Suppose we have a finite basis \(\beta\) for \(V\), then $$ \begin{align*} [I_V]_{\beta}^{\beta} = I_n \end{align*} $$ Definition An inverse of \(T: V \rightarrow W\) is a map \(S: W \rightarrow V\) such that $$ \begin{align*} S \circ T = I_V \text{ and } T \circ S = I_W \end{align*} $$ Example 2 $$ \begin{align*} T &amp;: \mathbf{R}^2 \rightarrow \mathbf{R}^2 \\ &amp;(x, y) \rightarrow (y, -x) \end{align*} $$ has inverse $$ \begin{align*} S &amp;: \mathbf{R}^2 \rightarrow \mathbf{R}^2 \\ &amp;(x, y) \rightarrow (-y, x) \end{align*} $$ Checking this is true by $$ \begin{align*} S \circ T (x,y) &amp;= S(T(x, y)) = S(y, -x) = (x, y) \\ T \circ S (x,y) &amp;= T(S(x, y)) = T(-y, x) = (x, y) \end{align*} $$ Example 3 $$ \begin{align*} V = P \\ W = \hat{P} = \{a_1x + a_2x^2 ... + a_kx^k\} \end{align*} $$ \(\hat{P}\) is the set of all polynomials without the constant term. We claim that \(\hat{P}\) is a subspace of \(P\). (TODO: verify?) Now consider the following linear map between \(P\) to \(\hat{P}\) where we multiply the polynomial by \(x\) (TODO: verify it’s linear?) $$ \begin{align*} T &amp;: P \rightarrow \hat{P} \\ &amp;a_0 + a_1x + ... + a_kx^k \rightarrow a_0x + a_1x^2 + ... + a_kx^{k+1} \\ &amp;f \rightarrow xf \end{align*} $$ This map has an inverse $$ \begin{align*} S &amp;: \hat{P} \rightarrow P \\ &amp;a_1x + a_2x^2 + ... + a_kx^{k} \rightarrow a_1 + a_2x + ... + a_kx^{k-1} \\ &amp;f \rightarrow \frac{1}{x}f \end{align*} $$ Example 4 $$ \begin{align*} T &amp;: P \rightarrow P \\ &amp;f \rightarrow f' \end{align*} $$ This map has no inverse! (it is onto but not 1-1) This leads us to the following theorem Theorem Let \(T: V \rightarrow W\) be linear. \(T\) has an inverse if and only if \(T\) is 1-1 (\(N(T)=\{\bar{0}_V\)) and onto (\(R(T) = W\). If \(T\) has an inverse, then it is unique \((T^{-1})\). \(T^{-1}\) is linear. The third property is not obvious and requires a proof. Proof: Let \(T: V \rightarrow W\) be a linear map with inverse \(T^{-1}: W \rightarrow V\). We want to show that \(T^{-1}\) is linear. To do this, we need to show that $$ \begin{align*} T^{-1}(w_1 + cw_2) = T^{-1}(w_1) + cT^{-1}(w_2). \end{align*} $$ Because \(T\) has an inverse then \(T\) is onto. This means that \(w_1 = T(v_1)\) and \(w_2 = T(v_2)\) for some \(v_1, v_2 \in V\). Moreover, since \(T\) is 1-1, then \(v_1 \neq v_2\). Now, $$ \begin{align*} T^{-1}(w_1 + cw_2) &amp;= T^{-1}(T(v_1) + cT(v_2)) \\ &amp;= T^{-1}(T(v_1 + cv_2)) \text{ (because $T$ is linear!)} \\ &amp;= I(v_1 + cv_2) \text{ (because $T$ has an inverse!)} \\ &amp;= v_1 + cv_2 \\ &amp; = T^{-1}(w_1) + c T^{-1}(w_2) \end{align*} $$ Therefore, \(T^{-1}\) is linear! Theorem Suppose \(T: V \rightarrow W\) be linear and invertible. If \(\beta\) is a basis for \(V\), then \(T(\beta)\) is a basis for \(W\). Proof (in the case where \(V\) and \(W\) are finite dimensional spaces): Let \(T: V \rightarrow W\) be a linear and invertible map and suppose that \(\dim(V)=n\). Choose a basis \(\beta = \{v_1, ..., v_n\}\) for \(V\). Consider the set of images, $$ \begin{align*} T(\beta) = \{T(v_1),...,T(v_n)\}. \end{align*} $$ We need to show that this set is a basis which means that we need to show that it spans \(W\) and so \(Span(T(\beta)) = W\) and that it is a linearly independent set. To show that it spans \(W\), we need for any \(w \in W\), scalars \(a_1,...,a_n\) such that $$ \begin{align*} w = a_1T(v_1) + ... + a_nT(v_n). \end{align*} $$ But we know that \(w = T(v)\) for some \(v \in V\) since \(T\) is onto. We also know that \(\beta\) is a basis for \(V\) and so we can write \(v\) as a linear combination of the vectors in \(\beta\) for some scalars \(a_1,...,a_n\). $$ \begin{align*} v = a_1v_1 + ... + a_nv_n. \end{align*} $$ And now because \(T\) is linear, we can do the following $$ \begin{align*} w &amp;= T(v) \\ &amp;= T(a_1v_1 + ... + a_nv_n) \\ &amp; = a_1T(v_1) + ... + a_nT(v_n). \end{align*} $$ Which is what we wanted to show. To show that the vectors in \(T(\beta)\) are linearly independent, we need to show that the solution to $$ \begin{align*} a_1T(v_1) + ... + a_nT(v_n) = \bar{0}_W. \end{align*} $$ is the trivial solution which means that \(a_1=0,..,a_n=0\). We can use the linearity of \(T\) to show that $$ \begin{align*} \bar{0}_W &amp;= a_1T(v_1) + ... + a_nT(v_n) \\ &amp;= T(a_1v_1 + ... + a_nv_n). \end{align*} $$ But \(T\) is 1-1 and so this implies that \(a_1v_1 + ... + a_nv_n\) must be \(\bar{0}_V\). Therefore, we must have \(a_1=0,...,a_n=0\) as required. Corollary Let \(T: V \rightarrow W\) be linear. If \(\dim(V) = n\) and \(T\) is invertible, then $$ \begin{align*} \dim W = \dim V = n \end{align*} $$ Isomorphism Definition \(V\) and \(W\) are isomorphic if there is an invertible linear map \(T: V \rightarrow W\). Such a map \(T\) is called isomorphism. Example 4 \(\mathbf{R}^3\) and \(P_2\) are isomorphic. To see this, we need an invertible map from one to the other. The maps $$ \begin{align*} &amp;T : \mathbf{R}^3 \rightarrow P_2 \\ &amp;(a_1,a_2,a_3) \rightarrow a_1 + a_2x + a_3x^2 \end{align*} $$ and $$ \begin{align*} &amp;U : \mathbf{R}^3 \rightarrow P_2 \\ &amp;(a_1,a_2,a_3) \rightarrow a_3 + (a_1 + a_2)x + (a_1 + a_2)x^2 \end{align*} $$ are both isomorphisms. Example 5 $$ \begin{align*} &amp;U : P \rightarrow \hat{P} \\ &amp;f \rightarrow xf \end{align*} $$ is an isomorphism and so \(P\) and \(\hat{P}\) are isomorphic. Criterion for Isomorphic Finite Dimensional Vector Spaces Theorem If \(V\) is finite dimensional, then \(W\) is isomorphic to \(V\) if and only if \(\dim W = \dim V\). Proof: \(\Leftarrow\): Suppose that \(\dim V = \dim W\). We want to show that they are isomorphic. This means that there exists some invertible map from one to the other. So let \(\beta = \{v_1,...,v_n\}\) be a basis for \(V\) and \(\alpha = \{w_1, ...,w_n\}\) be a basis for \(W\). Define the map \(T: W \rightarrow V\) by \([T]_{\alpha}^{\beta} = I_n\). This \(T\) works. Why? $$ \begin{align*} v_i &amp;= T(w_i) \\ &amp;= T(a_1w_1 + ... + a_nw_n) \\ &amp;= a_1v_1 + ... + a_nv_n. \end{align*} $$ References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 14: Matrix Representation of Composition and Matrix Multiplication</title><link href="http://localhost:4000/jekyll/update/2024/08/06/lec14-composition-matrix-multiplication.html" rel="alternate" type="text/html" title="Lecture 14: Matrix Representation of Composition and Matrix Multiplication" /><published>2024-08-06T01:01:36-07:00</published><updated>2024-08-06T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/06/lec14-composition-matrix-multiplication</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/06/lec14-composition-matrix-multiplication.html"><![CDATA[<!------------------------------------------------------------------------------------>
 <h4><b>The Composition of Linear Transformations</b></h4>
 <div class="bdiv">
 Definition
@@ -1080,370 +1428,4 @@ Proof:
 <h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241/ref=tmm_hrd_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">Linear Algebra 5th Edition</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is the proof for theorem 1.7 from the book which I don’t think we covered in lecture. Theorem 1.7 If \(S\) is a linearly independent subset of \(V\) and \(v\) is a vector in \(V\) but not \(S\). Then \(S \cup \{v\}\) is linearly dependent only if \(v \in span(S)\). Proof: \(\Rightarrow\): Since \(S \cup \{v\}\) is linearly dependent, then there are vectors \(u_1,u_2,...,u_n\) in \(S \cup \{v\}\) and not all zero scalars \(a_1,...,a_n\) such that $$ \begin{align*} a_1u_1 + a_2u_2 + ... + a_nu_n = \bar{0}. \end{align*} $$ But we know that \(S\) is linearly independent so this means one of the vectors in \(\{u_1,u_2,...,u_n\}\) must be \(v\). without the loss of generality let \(u_1 = v\) and so $$ \begin{align*} \bar{0} &amp;= a_1v + a_2u_2 + ... + a_nu_n \\ v &amp;= \frac{1}{a_1}(-a_2u_2 - ... - a_nu_n) \\ v &amp;= -\frac{a_2}{a_1}u_2 - ... - \frac{a_n}{a_1}u_n. \\ \end{align*} $$ This tells us that \(v\) is a linear combination of the elements of \(u_2,...,u_n\) in \(S\). Therefore, by definition, \(v \in span(S)\). \(\Leftarrow\): Let \(v \in span(S)\), then there exists vectors \(w_1,w_2,...,w_m\) in \(S\) and scalars \(b_1,...,b_n\) such that $$ \begin{align*} v = b_1w_1 + b_2w_2 + ... + b_nw_m. \end{align*} $$ Moving \(v\) to the other side, we see that, $$ \begin{align*} b_1w_1 + b_2w_2 + ... + b_nw_m + (-1).v = \bar{0}. \end{align*} $$ We know here that \(w\) is not in \(S\) and so none of the vectors \(w_1,...,w_m\) are equal to \(v\). Moreover, the coefficient of \(v\) is none zero. Therefore, by the definition of linear dependence, \(S \cup \{v\}\) is linearly dependent. \(\blacksquare\). References: Linear Algebra 5th Edition]]></summary></entry><entry><title type="html">Section 1.6: Theorem 1.9</title><link href="http://localhost:4000/jekyll/update/2024/07/30/1-6-theorem-1.9.html" rel="alternate" type="text/html" title="Section 1.6: Theorem 1.9" /><published>2024-07-30T01:01:36-07:00</published><updated>2024-07-30T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/30/1-6-theorem-1.9</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/30/1-6-theorem-1.9.html"><![CDATA[<p>This is the proof for theorem 1.9 from the book that doesn’t assume we know the replacement theorem (1.10) yet.</p>
-<div class="purdiv">
-Theorem 1.9
-</div>
-<div class="purbdiv">
-If a vector space \(V\) is generated by a finite set \(S\), then some subset of \(S\) is a basis for \(V\). Hence \(V\) has a finite basis.
-</div>
-<p><br />
-Proof: Let \(V\) be a vector space generated by a finite set \(G\). If \(G = \emptyset\) or \(G = \{0\}\), then \(V = \{0\}\) and \(\emptyset\) is a subset of \(G\) that is a basis for \(V\). Otherwise \(G\) has at least one non-zero vector \(u_1\). Let \(\beta = \{u_1\}\). We know \(\beta\) is linearly independent. Now, keep adding vectors from \(G\) to \(\beta\) while keeping \(\beta\) linearly independent. Since \(G\) is a finite set, then this process must end with a linearly independent set of vectors \(\{u_1, u_2, ..., u_k\}\). We have two cases</p>
-<ol>
-	<li>\(\beta = G\). This means that \(G\) is linearly independent. We know \(G\) is a generating set for \(V\) and so it is a basis for \(V\) and we are done.</li>
-	<li>\(\beta\) is a proper subset of \(G\) that is linearly independent. We need to show that \(\beta\) generates \(V\). From theorem 1.5 (the span of any subset \(S\) of \(V\) is a subspace of \(V\) that contains \(S\) (\(S \subseteq span(S)\)). Moreover, any subspace of \(V\) that contains \(S\) must also contain the span of \(S\)), we need to show that \(S \subseteq span(\beta)\). To do this, let \(v \in S\), we need to show that \(v \in span(\beta)\). If \(v \in \beta\), then \(v \in span(\beta)\) and we are done since. Otherwise, if \(v \not\in \beta\), then \(\{v \cup \beta\}\) must be a linearly dependent set since we know \(\beta\) is linearly independent by construction. Since adding \(v\) turned the set into a linearly dependent set, then we know that \(v\) can be written as a linear combination of the elements of \(\beta\) which means that \(v \in span(\beta)\) as we wanted to show. Therefore, \(S \subseteq span(\beta)\). \(\blacksquare\) </li>
-</ol>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References:</b></h4>
-<ul>
-<li><a href="https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241/ref=tmm_hrd_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">Linear Algebra 5th Edition</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is the proof for theorem 1.9 from the book that doesn’t assume we know the replacement theorem (1.10) yet. Theorem 1.9 If a vector space \(V\) is generated by a finite set \(S\), then some subset of \(S\) is a basis for \(V\). Hence \(V\) has a finite basis. Proof: Let \(V\) be a vector space generated by a finite set \(G\). If \(G = \emptyset\) or \(G = \{0\}\), then \(V = \{0\}\) and \(\emptyset\) is a subset of \(G\) that is a basis for \(V\). Otherwise \(G\) has at least one non-zero vector \(u_1\). Let \(\beta = \{u_1\}\). We know \(\beta\) is linearly independent. Now, keep adding vectors from \(G\) to \(\beta\) while keeping \(\beta\) linearly independent. Since \(G\) is a finite set, then this process must end with a linearly independent set of vectors \(\{u_1, u_2, ..., u_k\}\). We have two cases \(\beta = G\). This means that \(G\) is linearly independent. We know \(G\) is a generating set for \(V\) and so it is a basis for \(V\) and we are done. \(\beta\) is a proper subset of \(G\) that is linearly independent. We need to show that \(\beta\) generates \(V\). From theorem 1.5 (the span of any subset \(S\) of \(V\) is a subspace of \(V\) that contains \(S\) (\(S \subseteq span(S)\)). Moreover, any subspace of \(V\) that contains \(S\) must also contain the span of \(S\)), we need to show that \(S \subseteq span(\beta)\). To do this, let \(v \in S\), we need to show that \(v \in span(\beta)\). If \(v \in \beta\), then \(v \in span(\beta)\) and we are done since. Otherwise, if \(v \not\in \beta\), then \(\{v \cup \beta\}\) must be a linearly dependent set since we know \(\beta\) is linearly independent by construction. Since adding \(v\) turned the set into a linearly dependent set, then we know that \(v\) can be written as a linear combination of the elements of \(\beta\) which means that \(v \in span(\beta)\) as we wanted to show. Therefore, \(S \subseteq span(\beta)\). \(\blacksquare\) References: Linear Algebra 5th Edition]]></summary></entry><entry><title type="html">Lecture 12: Linear Transformations Continued</title><link href="http://localhost:4000/jekyll/update/2024/07/29/lec12-more-linear-transformations.html" rel="alternate" type="text/html" title="Lecture 12: Linear Transformations Continued" /><published>2024-07-29T01:01:36-07:00</published><updated>2024-07-29T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/29/lec12-more-linear-transformations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/29/lec12-more-linear-transformations.html"><![CDATA[<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-\(T: V \rightarrow W\) is onto if \(R(T) = W\) or
-	$$
-	\begin{align*}
-	 \forall w \in W, \exists v \in V \ \text{s.t.} \ T(v) = w.
-	\end{align*}
-	$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-\(T: V \rightarrow W\) is 1-1 if
-	$$
-	\begin{align*}
-	 T(v_1) = T(v_2) \Rightarrow v_1 = v_2.
-	\end{align*}
-	$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-If \(T: V \rightarrow W\) is linear, then \(T\) is 1-1 if and only if \(N(T)=\{\bar{0}_V\}\)
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-Let \(T: V \rightarrow W\) be a linear map between vector spaces of the same finite dimension. Then the following are equivalent 
-<ul>
-	<li> \(T\) is 1-1. </li>
-	<li> \(T\) is onto. </li>
-	<li> \(rank(T) = \dim(V)\). </li>
-</ul>
-</div>
-<p><br />
-Note here that \(rank(T) = \dim(R(T))\).
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Matrix Representation of linear transformations</b></h4>
-<p>Recall \(A \in M_{m \times n}\) defines a linear map</p>
-<div>
-	$$
-	\begin{align*}
-	L_A: \ &amp;\mathbf{R}^n \rightarrow \mathbf{R}^m \\ 
-	            &amp;\bar{x} \rightarrow A\bar{x} 
-	\end{align*}
-	$$
-</div>
-<p>We will show that any linear map \(T: V \rightarrow W\) between finite dimensional spaces be represented by a matrix. For example</p>
-<div>
-	$$
-	\begin{align*}
-	T_d: \ &amp;P_3 \rightarrow P_2 \\ 
-	&amp;f \rightarrow f'
-	\end{align*}
-	$$
-</div>
-<p>and</p>
-<div>
- 	$$
- 	\begin{align*}
- 	T_i: \ &amp;P_2 \rightarrow P_3 \\ 
- 	&amp;\ f \rightarrow \int_0^x f(t)dt
- 	\end{align*}
- 	$$
-</div>
-<p>But in order to show this, we will start with expressing vectors uniquely relative a basis in a vector space.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Coordinate Expression for a vector</b></h4>
-<p>Recall that if \(\beta\) is a basis for \(V\), then for any \(v \in V\), \(v\) can be expressed uniquely as an element of \(Span(\beta)\). We proved this previously for any vector space whether infinite or finite dimensional. But if the basis is finite (\(\beta = \{v_1, ... , v_n\}\)), then for every \(v \in V\), \(v\) can be expressed uniquely in the form,</p>
-<div>
-	$$
-	\begin{align*}
-	v = a_1v_1 + ... + a_nv_n
-	\end{align*}
-	$$
-</div>
-<p>The coefficients \(a_1,...a_n\) are unique for \(v\). We want to think of this relationship as a map. 
-<!------------------------------------------------------------------------------------></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-	$$
-	\begin{align*}
-	 [v]_{\beta} = 
-\begin{pmatrix}
-a_1 \\
-.  \\
-. \\
-. \\
-a_n
-\end{pmatrix}
-\in \mathbf{R}^n
-	\end{align*}
-	$$
-is the coordinate expression for \(v\) with respect to \(\beta\).
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(V = \mathbf{R}^2, v = (2,1), \beta = \{(1,0), (0,1)\}\) and \(\beta' = \{(1,1), (1,-1)\}\).
-<br /></p>
-<div>
-	$$
-	\begin{align*}
-	 [v]_{\beta} &amp;= 
-	 \begin{pmatrix}
-	 2 \\
-	 1 \\
-	 \end{pmatrix} \\
-	 [v]_{\beta'} &amp;= 
-	 \begin{pmatrix}
-	 a_1 \\
-	 a_2 \\
-	 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>These \(a_1\) and \(a_2\) are the coefficients that appear in writing \(v\) as a linear combinations of the vectors in the basis,</p>
-<div>
-	$$
-	\begin{align*}
-	 v = (2,1) = a_1(1,1) + a_2(1,-1).
-\end{align*}
-	 $$
-</div>
-<p>From this, we get</p>
-<div>
-	$$
-	\begin{align*}
-	 a_1 + a_2 &amp;= 2 \\
-	 a_1 - a_2 &amp;= 1 \\
-\end{align*}
-	 $$
-</div>
-<p>Of course we can use an augmented matrix and put the matrix in a reduced row echelon form to solve the system and find that the coefficients are</p>
-<div>
-	$$
-	\begin{align*}
-	 [v]_{\beta'} &amp;= 
-	 \begin{pmatrix}
-	 a_1 \\
-	 a_2 \\
-	 \end{pmatrix} \\
-	 &amp;= 
-	 \begin{pmatrix}
-	 \frac{3}{2} \\
-	 \frac{1}{2} \\
-	 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>So we can think of \([\quad]_{\beta'}\) as a map:</p>
-<div>
-	$$
-	\begin{align*}
-	 [\quad]_{\beta'}: V \rightarrow \mathbf{R}^n
-\end{align*}
-$$
-</div>
-<p>The idea is that each basis \(\beta\) of \(V\) with dimension \(\dim V = n\) gives a map that identifies \(V\) with \(\mathbf{R}^n\). This map is linear, 1-1 and onto. “Bijective Correspondance”
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Matrix Representation of linear transformations</b></h4>
-<p>Consider now \(T: V \rightarrow W\) linear and both \(V\) and \(W\) are finite dimensional.
-We know we can identify \(V\) with \(\mathbf{R}^n\) and we can identify \(W\) with \(\mathbf{R}^m\) but now we want to represent \(T\) as a matrix. Let \(\beta = \{v_1, ..., v_n\}\) be the basis for \(V\) and let \(\gamma = \{w_1, ..., w_n\}\) be the basis for \(W\). For \(v \in V\), we have</p>
-<div>
-	$$
-	\begin{align*}
-	T(v) = a_1w_1 + ... + a_mw_m.
-\end{align*}
-$$
-</div>
-<p>(This is the image of \(v\) which can be expressed uniquely in terms of the vectors of the basis \(\gamma\) because we’re in the vector space \(W\) now.) \(v\) itself is a linear combination of the basis vectors of \(\beta\). So for each \(v_j\) we have,</p>
-<div>
- 	$$
- 	\begin{align*}
- 	T(v_j) = a_{1j}w_1 + ... + a_{mj}w_m.
- \end{align*}
- $$
- </div>
-<p>From this, we now have this definition,
-<!------------------------------------------------------------------------------------></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-	$$
-	\begin{align*}
-	 [T]_{\beta}^{\gamma} = (a_{ij}) \text{ where } i=1,...,m, j=1,...,n
-	\end{align*}
-	$$
-is the matrix representation of \(T\) with respect to the bases \(\beta,\gamma\).
-</div>
-<p><br />
-Remark: The column vectors of \(T\) are the images of the</p>
-<div>
-	$$
-\begin{align*}
-	 [T]_{\beta}^{\gamma} = 
-\begin{pmatrix}
-| &amp; &amp; |\\ 
-[T(v_1)]_{\gamma} &amp; ... &amp; [T(v_n)]_{\gamma} \\
-| &amp; &amp; |
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-	For all \(v \in V\), \([T(v)]_{\gamma} = [T(v)]_{\beta}^{\gamma}[v]_{\beta}\)
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(T_d: P_3 \rightarrow P_2, f \rightarrow f'\). 
-<br />
-\(P_3\) has a basis</p>
-<div>
-	$$
-\begin{align*}
-\beta = \{1, x, x^2, x^3\}.
-\end{align*}
-$$
-</div>
-<p>and \(P_2\) has a basis,</p>
-<div>
-	$$
-\begin{align*}
-\gamma = \{1, x, x^2\}.
-\end{align*}
-$$
-</div>
-<p>We want to compute \([T_d]_{\beta}^{\gamma}\). The first thing that we want to do is to apply \(T\) on the vectors of the basis \(\beta\) so,</p>
-<div>
-	$$
-\begin{align*}
-T_d(1) &amp;= 0 \\
-T_d(x) &amp;= x \\
-T_d(x^2) &amp;= 2x \\
-T_d(x^3) &amp;= 3x^2
-\end{align*}
-$$
-</div>
-<p>Next, we want to write these with respect to the basis \(\gamma = \{1,x,x^2\}\) meaning that we want to express each result as a linear combination of the vectors in the basis \(\gamma\).</p>
-<div>
-	$$
-\begin{align*}
-[T_d(1)]_{\gamma} &amp;=  [0]_{\gamma} = 0(1) + 0(x) + 0(x^2) = 
-\begin{pmatrix}
-0 \\ 
-0 \\
-0
-\end{pmatrix} \\
-[T_d(x)]_{\gamma} &amp;=  [1]_{\gamma} = 1(1) + 0(x) + 0(x^2) = 
-\begin{pmatrix}
-1 \\ 
-0 \\
-0
-\end{pmatrix} \\
-[T_d(x^2)]_{\gamma} &amp;=  [2x]_{\gamma} = 0(1) + 2(x) + 0(x^2) = 
-\begin{pmatrix}
-0 \\ 
-2 \\
-0
-\end{pmatrix} \\
-[T_d(x^3)]_{\gamma} &amp;=  [3x^2]_{\gamma} = 0(1) + 2(x) + 2(x^2) = 
-\begin{pmatrix}
-0 \\ 
-0 \\
-3
-\end{pmatrix}.
-\end{align*}
-$$
-</div>
-<p>So the final matrix is</p>
-<div>
-	$$
-\begin{align*}
-[T_d]^{\gamma}_{\beta} &amp;= 
-\begin{pmatrix}
-0 &amp; 1 &amp; 0 &amp; 0 \\ 
-0 &amp; 0 &amp; 2 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 3
-\end{pmatrix}.
-\end{align*}
-$$
-</div>
-<p>As an example, suppose we have the function \(f(x) = 3x^3 + 4x + 5\) in \(P_3\). We can express this function in terms of the basis vectors in \(\beta = \{1, x, x^2, x^3\}\) as the coefficients vector \((5, 4, 0, 3)\). So now, let’s multiply this vector by the linear transformation matrix</p>
-<div>
-	$$
-\begin{align*}
-\begin{pmatrix}
-0 &amp; 1 &amp; 0 &amp; 0 \\ 
-0 &amp; 0 &amp; 2 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 3
-\end{pmatrix}
-\begin{pmatrix}
-5 \\ 
-4 \\
-0 \\
-3
-\end{pmatrix} = 
-\begin{pmatrix}
-4 \\
-0 \\
-9
-\end{pmatrix}.
-\end{align*}
-$$
-</div>
-<p>This gives us the coefficients vector with respect to the basis \(\gamma\). This means that the function will be \(4 + 9x^2\) which is exactly what we would get if manually applied the transformation on \(f(x)\) to get \(f'(x)\) but now instead we have a matrix to do this.</p>
-
-<p><br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition \(T: V \rightarrow W\) is onto if \(R(T) = W\) or $$ \begin{align*} \forall w \in W, \exists v \in V \ \text{s.t.} \ T(v) = w. \end{align*} $$ Definition \(T: V \rightarrow W\) is 1-1 if $$ \begin{align*} T(v_1) = T(v_2) \Rightarrow v_1 = v_2. \end{align*} $$ Theorem If \(T: V \rightarrow W\) is linear, then \(T\) is 1-1 if and only if \(N(T)=\{\bar{0}_V\}\) Theorem Let \(T: V \rightarrow W\) be a linear map between vector spaces of the same finite dimension. Then the following are equivalent \(T\) is 1-1. \(T\) is onto. \(rank(T) = \dim(V)\). Note here that \(rank(T) = \dim(R(T))\). Matrix Representation of linear transformations Recall \(A \in M_{m \times n}\) defines a linear map $$ \begin{align*} L_A: \ &amp;\mathbf{R}^n \rightarrow \mathbf{R}^m \\ &amp;\bar{x} \rightarrow A\bar{x} \end{align*} $$ We will show that any linear map \(T: V \rightarrow W\) between finite dimensional spaces be represented by a matrix. For example $$ \begin{align*} T_d: \ &amp;P_3 \rightarrow P_2 \\ &amp;f \rightarrow f' \end{align*} $$ and $$ \begin{align*} T_i: \ &amp;P_2 \rightarrow P_3 \\ &amp;\ f \rightarrow \int_0^x f(t)dt \end{align*} $$ But in order to show this, we will start with expressing vectors uniquely relative a basis in a vector space. Coordinate Expression for a vector Recall that if \(\beta\) is a basis for \(V\), then for any \(v \in V\), \(v\) can be expressed uniquely as an element of \(Span(\beta)\). We proved this previously for any vector space whether infinite or finite dimensional. But if the basis is finite (\(\beta = \{v_1, ... , v_n\}\)), then for every \(v \in V\), \(v\) can be expressed uniquely in the form, $$ \begin{align*} v = a_1v_1 + ... + a_nv_n \end{align*} $$ The coefficients \(a_1,...a_n\) are unique for \(v\). We want to think of this relationship as a map. Definition $$ \begin{align*} [v]_{\beta} = \begin{pmatrix} a_1 \\ . \\ . \\ . \\ a_n \end{pmatrix} \in \mathbf{R}^n \end{align*} $$ is the coordinate expression for \(v\) with respect to \(\beta\). Example Let \(V = \mathbf{R}^2, v = (2,1), \beta = \{(1,0), (0,1)\}\) and \(\beta' = \{(1,1), (1,-1)\}\). $$ \begin{align*} [v]_{\beta} &amp;= \begin{pmatrix} 2 \\ 1 \\ \end{pmatrix} \\ [v]_{\beta'} &amp;= \begin{pmatrix} a_1 \\ a_2 \\ \end{pmatrix} \end{align*} $$ These \(a_1\) and \(a_2\) are the coefficients that appear in writing \(v\) as a linear combinations of the vectors in the basis, $$ \begin{align*} v = (2,1) = a_1(1,1) + a_2(1,-1). \end{align*} $$ From this, we get $$ \begin{align*} a_1 + a_2 &amp;= 2 \\ a_1 - a_2 &amp;= 1 \\ \end{align*} $$ Of course we can use an augmented matrix and put the matrix in a reduced row echelon form to solve the system and find that the coefficients are $$ \begin{align*} [v]_{\beta'} &amp;= \begin{pmatrix} a_1 \\ a_2 \\ \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{3}{2} \\ \frac{1}{2} \\ \end{pmatrix} \end{align*} $$ So we can think of \([\quad]_{\beta'}\) as a map: $$ \begin{align*} [\quad]_{\beta'}: V \rightarrow \mathbf{R}^n \end{align*} $$ The idea is that each basis \(\beta\) of \(V\) with dimension \(\dim V = n\) gives a map that identifies \(V\) with \(\mathbf{R}^n\). This map is linear, 1-1 and onto. “Bijective Correspondance” Matrix Representation of linear transformations Consider now \(T: V \rightarrow W\) linear and both \(V\) and \(W\) are finite dimensional. We know we can identify \(V\) with \(\mathbf{R}^n\) and we can identify \(W\) with \(\mathbf{R}^m\) but now we want to represent \(T\) as a matrix. Let \(\beta = \{v_1, ..., v_n\}\) be the basis for \(V\) and let \(\gamma = \{w_1, ..., w_n\}\) be the basis for \(W\). For \(v \in V\), we have $$ \begin{align*} T(v) = a_1w_1 + ... + a_mw_m. \end{align*} $$ (This is the image of \(v\) which can be expressed uniquely in terms of the vectors of the basis \(\gamma\) because we’re in the vector space \(W\) now.) \(v\) itself is a linear combination of the basis vectors of \(\beta\). So for each \(v_j\) we have, $$ \begin{align*} T(v_j) = a_{1j}w_1 + ... + a_{mj}w_m. \end{align*} $$ From this, we now have this definition, Definition $$ \begin{align*} [T]_{\beta}^{\gamma} = (a_{ij}) \text{ where } i=1,...,m, j=1,...,n \end{align*} $$ is the matrix representation of \(T\) with respect to the bases \(\beta,\gamma\). Remark: The column vectors of \(T\) are the images of the $$ \begin{align*} [T]_{\beta}^{\gamma} = \begin{pmatrix} | &amp; &amp; |\\ [T(v_1)]_{\gamma} &amp; ... &amp; [T(v_n)]_{\gamma} \\ | &amp; &amp; | \end{pmatrix} \end{align*} $$ Theorem For all \(v \in V\), \([T(v)]_{\gamma} = [T(v)]_{\beta}^{\gamma}[v]_{\beta}\) Example Let \(T_d: P_3 \rightarrow P_2, f \rightarrow f'\). \(P_3\) has a basis $$ \begin{align*} \beta = \{1, x, x^2, x^3\}. \end{align*} $$ and \(P_2\) has a basis, $$ \begin{align*} \gamma = \{1, x, x^2\}. \end{align*} $$ We want to compute \([T_d]_{\beta}^{\gamma}\). The first thing that we want to do is to apply \(T\) on the vectors of the basis \(\beta\) so, $$ \begin{align*} T_d(1) &amp;= 0 \\ T_d(x) &amp;= x \\ T_d(x^2) &amp;= 2x \\ T_d(x^3) &amp;= 3x^2 \end{align*} $$ Next, we want to write these with respect to the basis \(\gamma = \{1,x,x^2\}\) meaning that we want to express each result as a linear combination of the vectors in the basis \(\gamma\). $$ \begin{align*} [T_d(1)]_{\gamma} &amp;= [0]_{\gamma} = 0(1) + 0(x) + 0(x^2) = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} \\ [T_d(x)]_{\gamma} &amp;= [1]_{\gamma} = 1(1) + 0(x) + 0(x^2) = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \\ [T_d(x^2)]_{\gamma} &amp;= [2x]_{\gamma} = 0(1) + 2(x) + 0(x^2) = \begin{pmatrix} 0 \\ 2 \\ 0 \end{pmatrix} \\ [T_d(x^3)]_{\gamma} &amp;= [3x^2]_{\gamma} = 0(1) + 2(x) + 2(x^2) = \begin{pmatrix} 0 \\ 0 \\ 3 \end{pmatrix}. \end{align*} $$ So the final matrix is $$ \begin{align*} [T_d]^{\gamma}_{\beta} &amp;= \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 3 \end{pmatrix}. \end{align*} $$ As an example, suppose we have the function \(f(x) = 3x^3 + 4x + 5\) in \(P_3\). We can express this function in terms of the basis vectors in \(\beta = \{1, x, x^2, x^3\}\) as the coefficients vector \((5, 4, 0, 3)\). So now, let’s multiply this vector by the linear transformation matrix $$ \begin{align*} \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 3 \end{pmatrix} \begin{pmatrix} 5 \\ 4 \\ 0 \\ 3 \end{pmatrix} = \begin{pmatrix} 4 \\ 0 \\ 9 \end{pmatrix}. \end{align*} $$ This gives us the coefficients vector with respect to the basis \(\gamma\). This means that the function will be \(4 + 9x^2\) which is exactly what we would get if manually applied the transformation on \(f(x)\) to get \(f'(x)\) but now instead we have a matrix to do this.]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is the proof for theorem 1.7 from the book which I don’t think we covered in lecture. Theorem 1.7 If \(S\) is a linearly independent subset of \(V\) and \(v\) is a vector in \(V\) but not \(S\). Then \(S \cup \{v\}\) is linearly dependent only if \(v \in span(S)\). Proof: \(\Rightarrow\): Since \(S \cup \{v\}\) is linearly dependent, then there are vectors \(u_1,u_2,...,u_n\) in \(S \cup \{v\}\) and not all zero scalars \(a_1,...,a_n\) such that $$ \begin{align*} a_1u_1 + a_2u_2 + ... + a_nu_n = \bar{0}. \end{align*} $$ But we know that \(S\) is linearly independent so this means one of the vectors in \(\{u_1,u_2,...,u_n\}\) must be \(v\). without the loss of generality let \(u_1 = v\) and so $$ \begin{align*} \bar{0} &amp;= a_1v + a_2u_2 + ... + a_nu_n \\ v &amp;= \frac{1}{a_1}(-a_2u_2 - ... - a_nu_n) \\ v &amp;= -\frac{a_2}{a_1}u_2 - ... - \frac{a_n}{a_1}u_n. \\ \end{align*} $$ This tells us that \(v\) is a linear combination of the elements of \(u_2,...,u_n\) in \(S\). Therefore, by definition, \(v \in span(S)\). \(\Leftarrow\): Let \(v \in span(S)\), then there exists vectors \(w_1,w_2,...,w_m\) in \(S\) and scalars \(b_1,...,b_n\) such that $$ \begin{align*} v = b_1w_1 + b_2w_2 + ... + b_nw_m. \end{align*} $$ Moving \(v\) to the other side, we see that, $$ \begin{align*} b_1w_1 + b_2w_2 + ... + b_nw_m + (-1).v = \bar{0}. \end{align*} $$ We know here that \(w\) is not in \(S\) and so none of the vectors \(w_1,...,w_m\) are equal to \(v\). Moreover, the coefficient of \(v\) is none zero. Therefore, by the definition of linear dependence, \(S \cup \{v\}\) is linearly dependent. \(\blacksquare\). References: Linear Algebra 5th Edition]]></summary></entry></feed>

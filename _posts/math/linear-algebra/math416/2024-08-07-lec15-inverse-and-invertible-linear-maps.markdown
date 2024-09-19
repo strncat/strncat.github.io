@@ -6,7 +6,6 @@ categories: jekyll update
 mathjax: true
 ---
 <h4><b>Identity matrix and Kronecker delta</b></h4>
-The identity matrix:
 <div>
 $$
 \begin{align*}
@@ -34,22 +33,9 @@ $$\delta_{ij}$$ is the Kronecker delta.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Inverse Linear Transformation</b></h4>
-For $$A \in M_{m \times n}$$
-<div>
-$$
-\begin{align*}
-AI_n &= A \text{ and } I_mA = A
-\end{align*}
-$$
-</div>
-Exercise: Suppose we have a finite basis $$\beta$$ for $$V$$, then
-<div>
-$$
-\begin{align*}
-[I_V]_{\beta}^{\beta} = I_n
-\end{align*}
-$$
-</div>
+For $$A \in M_{m \times n}$$, $$AI_n = A \text{ and } I_mA = A$$ ??
+<br>
+Exercise: Suppose we have a finite basis $$\beta$$ for $$V$$, then $$[I_V]_{\beta}^{\beta} = I_n$$
 <div class="bdiv">
 Definition
 </div>
@@ -95,16 +81,16 @@ $$
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 3</b></h4>
+Suppose we have
 <div>
 $$
 \begin{align*}
-V = P \\
-W = \hat{P} = \{a_1x + a_2x^2 ... + a_kx^k\}    
+V &= P \\
+W &= \hat{P} = \{a_1x + a_2x^2 ... + a_kx^k\}    
 \end{align*}
 $$
 </div>
-$$\hat{P}$$ is the set of all polynomials without the constant term. We claim that $$\hat{P}$$ is a subspace of $$P$$. (TODO: verify?) <br>
-Now consider the following linear map between $$P$$ to $$\hat{P}$$ where we multiply the polynomial by $$x$$ (TODO: verify it's linear?)
+$$\hat{P}$$ is the set of all polynomials without the constant term $$a_0$$. We claim that $$\hat{P}$$ is a subspace of $$P$$. (TODO: verify?). Now consider the following linear map between $$P$$ to $$\hat{P}$$ where we multiply the polynomial by $$x$$.
 <div>
 $$
 \begin{align*}
@@ -114,7 +100,7 @@ T &: P \rightarrow \hat{P}  \\
 \end{align*}
 $$
 </div>
-This map has an inverse
+This map (TODO: verify it's linear?) has an inverse
 <div>
 $$
 \begin{align*}
@@ -136,12 +122,11 @@ T &: P \rightarrow P  \\
 \end{align*}
 $$
 </div>
-This map has no inverse! (it is onto but not 1-1)
+This map has no inverse! (it is onto but not 1-1). Not one-to-one since the derivative of any constant function is 0.
 <br>
-<hr>
 <br>
 <!------------------------------------------------------------------------------------>
-This leads us to the following theorem
+This leads us to the following theorem:
 <div class="purdiv">
 Theorem
 </div>
@@ -178,7 +163,6 @@ $$
 </div>
 Therefore, $$T^{-1}$$ is linear!
 <br>
-<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -243,6 +227,7 @@ $$
 But $$T$$ is 1-1 and so this implies that $$a_1v_1 + ... + a_nv_n$$ must be $$\bar{0}_V$$. Therefore, we must have $$a_1=0,...,a_n=0$$ as required.
 <br>
 <br>
+<!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Corollary
 </div>
@@ -254,7 +239,9 @@ $$
 \end{align*}
 $$
 </div>
-<hr>
+<br>
+(Study Notes:) This is really important. $$T$$ is invertible and $$V$$ having dimension $$n$$ means that $$W$$ has dimension $$n$$. Also $$T$$ is one-to-one and onto. Later we'll learn if both $$V$$ and $$W$$ have the same dimension and $$T$$ is one-to-one, then this is sufficient to conclude that $$T$$ is invertible. (next lecture)
+<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Isomorphism</b></h4>

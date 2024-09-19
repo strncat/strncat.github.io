@@ -123,9 +123,47 @@ $$
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Change of Bases</b></h4>
-Question: Given $$T: V \rightarrow W$$ and finite bases $$\beta, \beta'$$ for $$V$$ and $$\gamma, \gamma'$$ for $$W$$, how are $$[T]^{\gamma}_{\beta}$$ and $$[T]^{\gamma'}_{\beta'}$$ related?
+Question: Given $$T: V \rightarrow W$$ and finite bases $$\beta, \beta'$$ for $$V$$ and $$\gamma, \gamma'$$ for $$W$$, how are $$[T]^{\gamma}_{\beta}$$ and $$[T]^{\gamma'}_{\beta'}$$ related? The only tool we have is composition and using Theorem 2.11 
+<div>
+$$
+\begin{align*}
+[T]^{\gamma'}_{\beta'} &= [I_W \circ T \circ I_V]^{\gamma'}_{\beta'} \\
+	&= [I_W]^{\gamma'}_{\gamma}  [T \circ I_V]^{\gamma}_{\beta'} \\
+	&= [I_W]^{\gamma'}_{\gamma}  [T]^{\gamma}_{\beta} [I_V]^{\beta}_{\beta'} \\
+\end{align*}
+$$
+</div>
+If $$W = V$$ and $$\gamma, \gamma' = \beta, \beta'$$, then
+<div>
+$$
+\begin{align*}
+[T]^{\gamma'}_{\beta'} &= [I_W]^{\beta'}_{\beta}  [T]^{\beta}_{\beta} [I_V]^{\beta}_{\beta'} \\
+						&= Q^{-1}[T]^{\beta}_{\beta}Q
+\end{align*}
+$$
+</div>
+Where $$Q = [I_V]^{\beta}_{\beta'}$$
 <br>
 <br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Similar Matrices</b></h4>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+	\(A, B \in M_{2 \times 2}\) are similar if \(\exists Q \in M_{2 \times 2}\) such that \(B = Q^{-1}AQ\)
+</div>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
+Let $$A =  \begin{pmatrix} 6 & 2 \\2 & 6 \end{pmatrix} $$ and consider the map $$L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2$$. Can we understand $$L_A^k = L_A \circ L_A \circ ... \circ L_A$$ ($$k$$ times)?
+
+
+
 
 <br>
 <br>

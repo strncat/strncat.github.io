@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-18T20:31:26-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 17: Change of Coordinates and Matrix Representations</title><link href="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html" rel="alternate" type="text/html" title="Lecture 17: Change of Coordinates and Matrix Representations" /><published>2024-08-09T01:01:36-07:00</published><updated>2024-08-09T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html"><![CDATA[<p>Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-21T10:06:02-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 17: Change of Coordinates and Matrix Representations</title><link href="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html" rel="alternate" type="text/html" title="Lecture 17: Change of Coordinates and Matrix Representations" /><published>2024-08-09T01:01:36-07:00</published><updated>2024-08-09T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html"><![CDATA[<p>Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)?
 <br />
 <br />
 Starting with \([v]_{\beta'}\), we want to derive an expression for \([v]_{\beta}\). We can take the</p>
@@ -158,8 +158,122 @@ Definition
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>Let \(A =  \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix}\) and consider the map \(L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2\). Can we understand \(L_A^k = L_A \circ L_A \circ ... \circ L_A\) (\(k\) times)?</p>
+<p>Let \(A =  \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix}\) and consider the map \(L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2\). Can we understand \(L_A^k = L_A \circ L_A \circ ... \circ L_A\) (\(k\) times)? If we try this</p>
+<div>
+$$
+\begin{align*}
+A^k = \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} ...
+\end{align*}
+$$
+</div>
+<p>This is really hard to multiply. So what is \(A^2\) really? It’s the matrix representative of the composition \([L_A \circ L_A]\). In fact if we go back to just \([L_A]\). This is the matrix representative of this map with respect to the standard basis so \([L_A]_{\beta}^{\beta} = A\). The idea then is to find another basis such that the matrix representation of the map with respect to that basis is easier to multiply. So the plan is to find \(\beta'\) such that \([L_A]_{\beta'}^{\beta'}\) is easier to multiply.
+<br />
+<br />
+Note that for \(v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, v_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}\), we’ll find that</p>
+<div>
+$$
+\begin{align*}
+L_A(v_1) &amp;= Av_1 \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 8 \\ 8 \end{pmatrix} = 8v_1 \\
+L_A(v_2) &amp;= Av_2 \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} 4 \\ -4 \end{pmatrix} = 4v_2.
+\end{align*}
+$$
+</div>
+<p>Notice that \(\beta' = \{v_1, v_2\}\) is a basis for \(\mathbf{R}^2\).</p>
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta'}^{\beta'} &amp;= ([L_A(v_1)]_{\beta'}, [L_A]_{\beta'}) \\
+              &amp;= \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>This leads to</p>
+<div>
+$$
+\begin{align*}
+[L_A \circ L_A ... \circ L_A]_{\beta'}^{\beta'} &amp;= [L_A]_{\beta'}^{\beta'} ... [L_A]_{\beta'}^{\beta'} \\
+              &amp;= \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} ... \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} \\
+			  &amp;= \begin{pmatrix} 8^k &amp; 0 \\0 &amp; 4^k \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
 
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Matrix Representation of Orthogonal Projection</b></h4>
+<p>Let \(W = Span\{(1,-1,0), (0,1,-1)\}\). \(W\) is a subspace of \(\mathbf{R}^3\) (It is a plane in \(\mathbf{R}^3\)). 
+<br />
+<br />
+Let \(T: \mathbf{R}^3 \rightarrow \mathbf{R}^3\) be the orthogonal projection onto \(W\). Because we’re projecting onto \(W\), then we know that \(T(w_1) = w_1\) and \(T(w_2) = w_2\). 
+<br />
+<br />
+Find \([T]_{\beta}^{\beta}\) where \(\beta\) is the standard basis.
+<br />
+<br />
+The plan is to find \(\beta'\) so that \([T]_{\beta'}^{\beta'}\) is easily understood and use the change of basis formula to convert between the two.
+<br />
+<br />
+What is a candidate for \(\beta'\), something that makes the matrix expression simple? well when \(T\) acts on \(w_1\) and \(w_2\), it doesn’t change them. But we still need one more vector. What should we choose for \(w_3\)? One candidate is the orthogonal vector to the place \(W\) which will mean that its projection is going to be zero. How do we find it? We can take the cross product of \(w_1\) and \(w_2\). \(w_3 = w_1 \times w_2 = (1,1,1)\) and \(T(w_3) = (0,0,0)\).</p>
+<div>
+$$
+\begin{align*}
+[T]_{\beta'}^{\beta'} &amp;= \begin{pmatrix} [T(w_1)]_{\beta'} &amp; [T(w_2)]_{\beta'} &amp; [T(w_3)]_{\beta'} \end{pmatrix} \\
+               &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Again we derived these by writing \(w_1\) as a linear combination of the basis vectors \(\beta'=\{w_1,w_2,w_3\}\). So \(w_1 = 1(w_1) + 0(w_2) + 0(w_3)\). and so the coordinate vector is \((1,0,0)\).
+<br />
+<br />
+But this is \(T\) with respect to \(\beta'\) and we want \(T\) with respect to \(\beta\). So now we need to use the change of basis formula to get what we want. So</p>
+<div>
+$$
+\begin{align*}
+[T]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} [I_{\mathbf{R}^3}]_{\beta}^{\beta'}
+\end{align*}
+$$
+</div>
+<p>So now we need to compute \([I_{\mathbf{R}^3}]_{\beta'}^{\beta}\). This means for each vector in \(\beta'\), we want to write it in terms of the standard basis. For example, \(w_1 = (1, -1, 0) = 1e_1 -1e_2 + 0e_3\) and so on. This will get us</p>
+<div>
+$$
+\begin{align*}
+[I_{\mathbf{R}^3}]_{\beta'}^{\beta} = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ -1 &amp; 1 &amp; 1 \\ 0 &amp; -1 &amp; 1 \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>But for \([I_{\mathbf{R}^3}]_{\beta}^{\beta'}\) is a little tricker since we want to write the vectors in \(\beta'\) as linear combinations of the standard basis which we could do but we can also do the following instead</p>
+<div>
+$$
+\begin{align*}
+[I_{\mathbf{R}^3}]_{\beta}^{\beta'} = ([I_{\mathbf{R}^3}]_{\beta'}^{\beta})^{-1} = \frac{1}{3}\begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Therefore,</p>
+<div>
+$$
+\begin{align*}
+[T]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} 
+ [I_{\mathbf{R}^3}]_{\beta}^{\beta'} \\
+  &amp;= 
+  \frac{1}{3} \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ -1 &amp; 1 &amp; 1 \\ 0 &amp; -1 &amp; 1 \end{pmatrix} 
+  \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}
+  \begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix} \\
+  &amp;= 
+  \frac{1}{3}\begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>To verify this is correct, we should check that</p>
+<div>
+$$
+\begin{align*}
+[T]_{\beta}^{\beta}[w_1]_{\beta} &amp;= [w_1]_{\beta}.
+\end{align*}
+$$
+</div>
 <p><br />
 <br /></p>
 <hr />
@@ -169,7 +283,7 @@ Definition
 <h4><b>References</b></h4>
 <ul>
 <li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)? Starting with \([v]_{\beta'}\), we want to derive an expression for \([v]_{\beta}\). We can take the $$ \begin{align*} [v]_{\beta} &amp;= [I_V(v)]_{\beta'} \\ &amp;= [I_V]_{\beta}^{\beta'}[v]_{\beta} \\ \end{align*} $$ In the first line we just re-wrote the vector so now the identity map is applied on \(v\) which doesn’t change \(v\). Since \(I_V\) is a linear map, we can use Theorem 2.14 to re-write this as the second line. We compute the matrix \([I_V]_{\beta}^{\beta'}\) by applying \(I_V\) on the basis vectors of \(\beta\). But since it’s the identity transformation then the vectors in \(\beta\) will not change. We then find the coordinates of each vector when written as a linear combination of the vectors of basis \(\beta'\). Example Let \(V = P_1\), \(\beta = \{1, x\}\) and \(\beta' = \{1+x, 1-x\}\). Then to compute the matrix \([I_V]_{\beta}^{\beta'}\), we want to apply the map on the basis \(\beta\) and then write these relative to the basis \(\beta'\) (meaning for each vector, find its coordinates when written as a linear combination of the vectors of the basis \(\beta'\)). $$ \begin{align*} [I_V]_{\beta}^{\beta'} &amp;= \begin{pmatrix} [I_V(1)]_{\beta'} &amp; [I_V(x)]_{\beta'} \end{pmatrix} \\ &amp;= \begin{pmatrix} [1]_{\beta'} &amp; [x]_{\beta'} \end{pmatrix}. \end{align*} $$ Now we need to find the coordinates when 1 is written as a linear combination of the vectors of basis \(\beta'\) so $$ \begin{align*} 1 &amp;= a(1 + x) + b(1 - x) \\ 1 &amp;= a + ax + b - bx \\ 1 &amp;= a + b + x(a - b) \\ \end{align*} $$ from this we see that \(a = b = 1/2\). Similarly we need to find the coordinates of \(x\) $$ \begin{align*} x &amp;= a(1 + x) + b(1 - x) \\ 0 &amp;= a + ax + b - bx - x \\ 0 &amp;= a + b + x(a - b - 1) \\ \end{align*} $$ A solution to this is \(a = 1/2\) and \(b = -1/2\). So now we have $$ \begin{align*} [I_V]_{\beta}^{\beta'} &amp;= \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; -\frac{1}{2} \end{pmatrix}. \end{align*} $$ We can now use this matrix to transform any vector in \(V\) written with respect to \(\beta\) to a vector written with respect to \(\beta'\). Given some polynomial in \(V\), $$ \begin{align*} [a_0 + a_1x]_{\beta'} = \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; -\frac{1}{2} \end{pmatrix} \begin{pmatrix} a_0 \\ a_1 \end{pmatrix} = \begin{pmatrix} \frac{1}{2}(a_0 + a_1) \\ \frac{1}{2}(a_0 - a_1) \end{pmatrix} \end{align*} $$ The Inverse of the Change of Coordinates Matrix Theorem $$ \begin{align*} ([I_V]_{\beta}^{\beta'})^{-1} = [I_V]^{\beta}_{\beta'} \end{align*} $$ Proof: To prove that a matrix is an inverse of another matrix, we need to show that their product is the identity matrix so $$ \begin{align*} [I_V]_{\beta}^{\beta'}[I_V]^{\beta}_{\beta'} &amp;= [I_V \circ I_V]^{\beta'}_{\beta'} \text{ (Theorem 2.11)}\\ &amp;= [I_V]^{\beta'}_{\beta'} \\ &amp;= I \end{align*} $$ Change of Bases Question: Given \(T: V \rightarrow W\) and finite bases \(\beta, \beta'\) for \(V\) and \(\gamma, \gamma'\) for \(W\), how are \([T]^{\gamma}_{\beta}\) and \([T]^{\gamma'}_{\beta'}\) related? The only tool we have is composition and using Theorem 2.11 $$ \begin{align*} [T]^{\gamma'}_{\beta'} &amp;= [I_W \circ T \circ I_V]^{\gamma'}_{\beta'} \\ &amp;= [I_W]^{\gamma'}_{\gamma} [T \circ I_V]^{\gamma}_{\beta'} \\ &amp;= [I_W]^{\gamma'}_{\gamma} [T]^{\gamma}_{\beta} [I_V]^{\beta}_{\beta'} \\ \end{align*} $$ If \(W = V\) and \(\gamma, \gamma' = \beta, \beta'\), then $$ \begin{align*} [T]^{\gamma'}_{\beta'} &amp;= [I_W]^{\beta'}_{\beta} [T]^{\beta}_{\beta} [I_V]^{\beta}_{\beta'} \\ &amp;= Q^{-1}[T]^{\beta}_{\beta}Q \end{align*} $$ Where \(Q = [I_V]^{\beta}_{\beta'}\) Similar Matrices Definition \(A, B \in M_{2 \times 2}\) are similar if \(\exists Q \in M_{2 \times 2}\) such that \(B = Q^{-1}AQ\) Example Let \(A = \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix}\) and consider the map \(L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2\). Can we understand \(L_A^k = L_A \circ L_A \circ ... \circ L_A\) (\(k\) times)?]]></summary></entry><entry><title type="html">Lecture 16: Inverse and Invertible Matrices</title><link href="http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices.html" rel="alternate" type="text/html" title="Lecture 16: Inverse and Invertible Matrices" /><published>2024-08-08T01:01:36-07:00</published><updated>2024-08-08T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices.html"><![CDATA[<p>Recall that \(\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}\). (The vector space of linear transformations)
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)? Starting with \([v]_{\beta'}\), we want to derive an expression for \([v]_{\beta}\). We can take the $$ \begin{align*} [v]_{\beta} &amp;= [I_V(v)]_{\beta'} \\ &amp;= [I_V]_{\beta}^{\beta'}[v]_{\beta} \\ \end{align*} $$ In the first line we just re-wrote the vector so now the identity map is applied on \(v\) which doesn’t change \(v\). Since \(I_V\) is a linear map, we can use Theorem 2.14 to re-write this as the second line. We compute the matrix \([I_V]_{\beta}^{\beta'}\) by applying \(I_V\) on the basis vectors of \(\beta\). But since it’s the identity transformation then the vectors in \(\beta\) will not change. We then find the coordinates of each vector when written as a linear combination of the vectors of basis \(\beta'\). Example Let \(V = P_1\), \(\beta = \{1, x\}\) and \(\beta' = \{1+x, 1-x\}\). Then to compute the matrix \([I_V]_{\beta}^{\beta'}\), we want to apply the map on the basis \(\beta\) and then write these relative to the basis \(\beta'\) (meaning for each vector, find its coordinates when written as a linear combination of the vectors of the basis \(\beta'\)). $$ \begin{align*} [I_V]_{\beta}^{\beta'} &amp;= \begin{pmatrix} [I_V(1)]_{\beta'} &amp; [I_V(x)]_{\beta'} \end{pmatrix} \\ &amp;= \begin{pmatrix} [1]_{\beta'} &amp; [x]_{\beta'} \end{pmatrix}. \end{align*} $$ Now we need to find the coordinates when 1 is written as a linear combination of the vectors of basis \(\beta'\) so $$ \begin{align*} 1 &amp;= a(1 + x) + b(1 - x) \\ 1 &amp;= a + ax + b - bx \\ 1 &amp;= a + b + x(a - b) \\ \end{align*} $$ from this we see that \(a = b = 1/2\). Similarly we need to find the coordinates of \(x\) $$ \begin{align*} x &amp;= a(1 + x) + b(1 - x) \\ 0 &amp;= a + ax + b - bx - x \\ 0 &amp;= a + b + x(a - b - 1) \\ \end{align*} $$ A solution to this is \(a = 1/2\) and \(b = -1/2\). So now we have $$ \begin{align*} [I_V]_{\beta}^{\beta'} &amp;= \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; -\frac{1}{2} \end{pmatrix}. \end{align*} $$ We can now use this matrix to transform any vector in \(V\) written with respect to \(\beta\) to a vector written with respect to \(\beta'\). Given some polynomial in \(V\), $$ \begin{align*} [a_0 + a_1x]_{\beta'} = \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; -\frac{1}{2} \end{pmatrix} \begin{pmatrix} a_0 \\ a_1 \end{pmatrix} = \begin{pmatrix} \frac{1}{2}(a_0 + a_1) \\ \frac{1}{2}(a_0 - a_1) \end{pmatrix} \end{align*} $$ The Inverse of the Change of Coordinates Matrix Theorem $$ \begin{align*} ([I_V]_{\beta}^{\beta'})^{-1} = [I_V]^{\beta}_{\beta'} \end{align*} $$ Proof: To prove that a matrix is an inverse of another matrix, we need to show that their product is the identity matrix so $$ \begin{align*} [I_V]_{\beta}^{\beta'}[I_V]^{\beta}_{\beta'} &amp;= [I_V \circ I_V]^{\beta'}_{\beta'} \text{ (Theorem 2.11)}\\ &amp;= [I_V]^{\beta'}_{\beta'} \\ &amp;= I \end{align*} $$ Change of Bases Question: Given \(T: V \rightarrow W\) and finite bases \(\beta, \beta'\) for \(V\) and \(\gamma, \gamma'\) for \(W\), how are \([T]^{\gamma}_{\beta}\) and \([T]^{\gamma'}_{\beta'}\) related? The only tool we have is composition and using Theorem 2.11 $$ \begin{align*} [T]^{\gamma'}_{\beta'} &amp;= [I_W \circ T \circ I_V]^{\gamma'}_{\beta'} \\ &amp;= [I_W]^{\gamma'}_{\gamma} [T \circ I_V]^{\gamma}_{\beta'} \\ &amp;= [I_W]^{\gamma'}_{\gamma} [T]^{\gamma}_{\beta} [I_V]^{\beta}_{\beta'} \\ \end{align*} $$ If \(W = V\) and \(\gamma, \gamma' = \beta, \beta'\), then $$ \begin{align*} [T]^{\gamma'}_{\beta'} &amp;= [I_W]^{\beta'}_{\beta} [T]^{\beta}_{\beta} [I_V]^{\beta}_{\beta'} \\ &amp;= Q^{-1}[T]^{\beta}_{\beta}Q \end{align*} $$ Where \(Q = [I_V]^{\beta}_{\beta'}\) Similar Matrices Definition \(A, B \in M_{2 \times 2}\) are similar if \(\exists Q \in M_{2 \times 2}\) such that \(B = Q^{-1}AQ\) Example Let \(A = \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix}\) and consider the map \(L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2\). Can we understand \(L_A^k = L_A \circ L_A \circ ... \circ L_A\) (\(k\) times)? If we try this $$ \begin{align*} A^k = \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} ... \end{align*} $$ This is really hard to multiply. So what is \(A^2\) really? It’s the matrix representative of the composition \([L_A \circ L_A]\). In fact if we go back to just \([L_A]\). This is the matrix representative of this map with respect to the standard basis so \([L_A]_{\beta}^{\beta} = A\). The idea then is to find another basis such that the matrix representation of the map with respect to that basis is easier to multiply. So the plan is to find \(\beta'\) such that \([L_A]_{\beta'}^{\beta'}\) is easier to multiply. Note that for \(v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, v_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}\), we’ll find that $$ \begin{align*} L_A(v_1) &amp;= Av_1 \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 8 \\ 8 \end{pmatrix} = 8v_1 \\ L_A(v_2) &amp;= Av_2 \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} 4 \\ -4 \end{pmatrix} = 4v_2. \end{align*} $$ Notice that \(\beta' = \{v_1, v_2\}\) is a basis for \(\mathbf{R}^2\). $$ \begin{align*} [L_A]_{\beta'}^{\beta'} &amp;= ([L_A(v_1)]_{\beta'}, [L_A]_{\beta'}) \\ &amp;= \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} \end{align*} $$ This leads to $$ \begin{align*} [L_A \circ L_A ... \circ L_A]_{\beta'}^{\beta'} &amp;= [L_A]_{\beta'}^{\beta'} ... [L_A]_{\beta'}^{\beta'} \\ &amp;= \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} ... \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 8^k &amp; 0 \\0 &amp; 4^k \end{pmatrix} \end{align*} $$ Matrix Representation of Orthogonal Projection Let \(W = Span\{(1,-1,0), (0,1,-1)\}\). \(W\) is a subspace of \(\mathbf{R}^3\) (It is a plane in \(\mathbf{R}^3\)). Let \(T: \mathbf{R}^3 \rightarrow \mathbf{R}^3\) be the orthogonal projection onto \(W\). Because we’re projecting onto \(W\), then we know that \(T(w_1) = w_1\) and \(T(w_2) = w_2\). Find \([T]_{\beta}^{\beta}\) where \(\beta\) is the standard basis. The plan is to find \(\beta'\) so that \([T]_{\beta'}^{\beta'}\) is easily understood and use the change of basis formula to convert between the two. What is a candidate for \(\beta'\), something that makes the matrix expression simple? well when \(T\) acts on \(w_1\) and \(w_2\), it doesn’t change them. But we still need one more vector. What should we choose for \(w_3\)? One candidate is the orthogonal vector to the place \(W\) which will mean that its projection is going to be zero. How do we find it? We can take the cross product of \(w_1\) and \(w_2\). \(w_3 = w_1 \times w_2 = (1,1,1)\) and \(T(w_3) = (0,0,0)\). $$ \begin{align*} [T]_{\beta'}^{\beta'} &amp;= \begin{pmatrix} [T(w_1)]_{\beta'} &amp; [T(w_2)]_{\beta'} &amp; [T(w_3)]_{\beta'} \end{pmatrix} \\ &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \end{align*} $$ Again we derived these by writing \(w_1\) as a linear combination of the basis vectors \(\beta'=\{w_1,w_2,w_3\}\). So \(w_1 = 1(w_1) + 0(w_2) + 0(w_3)\). and so the coordinate vector is \((1,0,0)\). But this is \(T\) with respect to \(\beta'\) and we want \(T\) with respect to \(\beta\). So now we need to use the change of basis formula to get what we want. So $$ \begin{align*} [T]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} [I_{\mathbf{R}^3}]_{\beta}^{\beta'} \end{align*} $$ So now we need to compute \([I_{\mathbf{R}^3}]_{\beta'}^{\beta}\). This means for each vector in \(\beta'\), we want to write it in terms of the standard basis. For example, \(w_1 = (1, -1, 0) = 1e_1 -1e_2 + 0e_3\) and so on. This will get us $$ \begin{align*} [I_{\mathbf{R}^3}]_{\beta'}^{\beta} = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ -1 &amp; 1 &amp; 1 \\ 0 &amp; -1 &amp; 1 \end{pmatrix} \end{align*} $$ But for \([I_{\mathbf{R}^3}]_{\beta}^{\beta'}\) is a little tricker since we want to write the vectors in \(\beta'\) as linear combinations of the standard basis which we could do but we can also do the following instead $$ \begin{align*} [I_{\mathbf{R}^3}]_{\beta}^{\beta'} = ([I_{\mathbf{R}^3}]_{\beta'}^{\beta})^{-1} = \frac{1}{3}\begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix} \end{align*} $$ Therefore, $$ \begin{align*} [T]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} [I_{\mathbf{R}^3}]_{\beta}^{\beta'} \\ &amp;= \frac{1}{3} \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ -1 &amp; 1 &amp; 1 \\ 0 &amp; -1 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;= \frac{1}{3}\begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix} \end{align*} $$ To verify this is correct, we should check that $$ \begin{align*} [T]_{\beta}^{\beta}[w_1]_{\beta} &amp;= [w_1]_{\beta}. \end{align*} $$ References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 16: Inverse and Invertible Matrices</title><link href="http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices.html" rel="alternate" type="text/html" title="Lecture 16: Inverse and Invertible Matrices" /><published>2024-08-08T01:01:36-07:00</published><updated>2024-08-08T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/08/lec16-inverse-and-invertible-matrices.html"><![CDATA[<p>Recall that \(\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}\). (The vector space of linear transformations)
 <br />
 <br />
 Question: For what \(A \in M_{m \times n}\) does \(L_A\) have an inverse?

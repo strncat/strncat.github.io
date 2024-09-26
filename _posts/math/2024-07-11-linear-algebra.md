@@ -105,6 +105,11 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/09/lec17-change-of-coordinates.html">
         Lecture 17: Change of Coordinates and Matrix Representations
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/08/10/lec18-elementary-matrices.html">
+        Lecture 18: Elementary Matrices
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

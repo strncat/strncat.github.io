@@ -1,4 +1,303 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-21T10:06:02-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 17: Change of Coordinates and Matrix Representations</title><link href="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html" rel="alternate" type="text/html" title="Lecture 17: Change of Coordinates and Matrix Representations" /><published>2024-08-09T01:01:36-07:00</published><updated>2024-08-09T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html"><![CDATA[<p>Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-25T21:03:55-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 18: Elementary Matrices</title><link href="http://localhost:4000/jekyll/update/2024/08/10/lec18-elementary-matrices.html" rel="alternate" type="text/html" title="Lecture 18: Elementary Matrices" /><published>2024-08-10T01:01:36-07:00</published><updated>2024-08-10T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/10/lec18-elementary-matrices</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/10/lec18-elementary-matrices.html"><![CDATA[<p>Recall three types of elementary row operations</p>
+<ul style="list-style-type:lower-alpha">
+	<li>\(R_i \leftrightarrow R_j\)</li>
+	<li>\(R_i \rightarrow \lambda R_i\) where \(\lambda \neq 0\)</li>
+	<li>\(R_i \rightarrow R_i + \lambda R_j\)</li>
+</ul>
+<p>Now that we’ve studied matrix multiplication we can state the fact that performing an elementary row operation on \(A \in M_{2 \times 2}\) can actually be described using matrix multiplication.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Elementary Matrices</b></h4>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+An \(m \times n\) elementary matrix obtained from \(I_n\) by performing an elementary row operation of type I, II or III.
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Applying the three types of elementary row operations results in the following matrices</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{pmatrix} \rightarrow E_1 &amp;= 
+\begin{pmatrix}
+0 &amp; 1 \\
+1 &amp; 0
+\end{pmatrix} \\
+E_2 &amp;= 
+\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; \lambda
+\end{pmatrix} \\
+E_3 &amp;= 
+\begin{pmatrix}
+1 &amp; 0 \\
+\lambda &amp; 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>This leads to the next theorem
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+	Let \(E\) be the elementary matrix obtained from \(I_n\) by performing row operation \(\mathcal{R}(E = E(\mathcal{R})))\) for any \(A \in M_{m \times n}\), the product
+	$$
+	\begin{align*}
+	E(\mathcal{R}) \cdot A_{m \times n}
+    \end{align*}
+	$$
+	is equal to the matrix obtained from \(A\) by performing \(\mathcal{R}\).
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Let’s apply the elementary matrices on the following given matrix</p>
+<div>
+$$
+\begin{align*}
+E_1  \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} 
+&amp;= \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}
+\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} 
+= \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} 
+\\
+E_2
+\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} 
+&amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; \lambda \end{pmatrix} 
+\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} 
+= \begin{pmatrix} a &amp; b \\ \lambda c &amp; \lambda d \end{pmatrix} 
+\\
+E_3
+\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} 
+&amp;=\begin{pmatrix} 1 &amp; 0 \\ \lambda &amp; 1 \end{pmatrix}
+\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} 
+= \begin{pmatrix} a &amp; b \\ c + \lambda a &amp; d + \lambda b \end{pmatrix} 
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>RREF by Matrix Multiplication</b></h4>
+<p>Since we can perform elementary row operations by matrix multiplication, then we can possibly see how we can put a matrix in reduced row echelon by multiplication. But first, there is an observation</p>
+<div class="purdiv">
+Corollary
+</div>
+<div class="purbdiv">
+	Each elementary matrix is invertible.
+	$$
+	\begin{align*}
+	&amp;\mathcal{R}: R_i \leftrightarrow R_j \quad \quad \quad \quad \ \ \mathcal{R}^{-1}: R_j \leftrightarrow R_i \\
+	&amp;\mathcal{R}: R_i \rightarrow \lambda R_i \quad \quad \quad \quad \mathcal{R}^{-1}: R_i \rightarrow \frac{1}{\lambda} R_i \\
+	&amp;\mathcal{R}: R_i \rightarrow R_i + \lambda R_j \quad \quad \mathcal{R}^{-1}: R_i \rightarrow R_i - \lambda R_j
+    \end{align*}
+	$$
+</div>
+<p><br />
+Proof: apply the elementary row operation by multiplying by \(E(\mathcal{R})\) and then apply the inverse again by multiplying by \(E(\mathcal{R}^{-1})\). The result is the identity matrix. In other words, \(E(\mathcal{R})E(\mathcal{R}^{-1}) = I_n\). 
+<br />
+<br /></p>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+	For every \(A \in M_{m \times n}\), there is a finite set of elementary matrices \(E_1,...,E_k \in M_{m \times n}\) such that \(E_k ... E_2E_1\) is in RREF.  
+</div>
+<p><br /></p>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+	\(A \in M_{m \times n}\) is invertible if and only iff there is a finite set of elementary matrices \(E_1,...,E_k \in M_{n \times n}\) such that \(E_k...E_2E_1A = I_n\).  \((A \ | \ I_n)\).
+</div>
+<p><br />
+Note here that from the expression above we can see that \(A^{-1} = E_k...E_1\) and \(A = E_1^{-1}E_2^{-1}...E^{-1}_{k-1}E^{-1}_{k}\)
+<br />
+<br /></p>
+<div class="purdiv">
+Corollary
+</div>
+<div class="purbdiv">
+	\(A\) is invertible if and only iff it can be written as a product of elementary matrices.
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Rank of a Matrix</b></h4>
+<p>Recall that the rank of \(T: V \rightarrow W\) is \(\dim(R(T))\).</p>
+
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+	The rank of \(A \in M_{n \times n}\), \(rank(A)\) is the rank of \(L_A: \mathbf{R}^ \rightarrow \mathbf{R}^n\).
+</div>
+<p><br />
+This definition is kind of awkward and instead we want to find an expression for rank(\(A\)) in terms of \(A\) itself and not have to rely on \(L_A\). To figure this out, we need the following result</p>
+<div class="purdiv">
+Proposition
+</div>
+<div class="purbdiv">
+	\(B \in M_{n \times n}\) is invertible, then rank(\(BA\)) = rank(\(A\)).
+</div>
+<p><br />
+So multiplication by \(B\) doesn’t change the rank.
+<br />
+<br />
+Proof: <br />
+By definition \(rank(BA)\) is the rank of the linear map \(L_{BA}\). But the rank of a linear map is the dimension of its range and so</p>
+<div>
+$$
+\begin{align*}
+rank(BA) &amp;= rank(L_{BA}) \\
+         &amp;= \dim(R(L_{BA})).
+\end{align*}
+$$
+</div>
+<p>B definition, to get the range, we just apply the linear map on \(v \in \mathbf{R}^n\). This range is a subset of \(\mathbf{R}^m\). Applying the linear map is just multiplying \(v\) by the matrices \(A\) and \(B\). So we can see this below:</p>
+<div>
+$$
+\begin{align*}
+\dim(R(L_{BA})) &amp;= \{L_{BA}(v) \ | \ v \in \mathbf{R}^n \} \subset \mathbf{R}^m \\
+                &amp;= \{BA(v) \ | \ v \mathbf{R}^n\} \\
+				&amp;= \{B(A(v)) \ | \ v \mathbf{R}^n\} \\
+				&amp;= \{B(A(v)) \ | \ v \mathbf{R}^n\}
+\end{align*}
+$$
+</div>
+<p>We can also re-arrange this by applying the linear map \(L_B\) on the set that we get from applying \(A\) as follows</p>
+<div>
+$$
+\begin{align*}
+\dim(R(L_{BA})) &amp;= L_B(\{A(v) \ | \ v \mathbf{R}^n\}) \\
+\end{align*}
+$$
+</div>
+<p>But this internal set is the range of the linear map \(L_A\), \(R(L_A)\). So define the map</p>
+<div>
+$$
+\begin{align*}
+L_B&amp;: \mathbf{R}^m \rightarrow \mathbf{R}^m \\
+\tilde{L_B}&amp;: R(L_A) \rightarrow L_B(R(L_A))
+\end{align*}
+$$
+</div>
+<p>We claim this new map is invertible. It’s onto because we restricted the target to the image \(R(L_A)\). It’s one-to-one because \(B\) is invertible. Therefore, the dimension of the domain and the target are the same. So</p>
+<div>
+$$
+\begin{align*}
+\dim(R(L_A)) = \dim(L_B(R(L_A)))
+\end{align*}
+$$
+</div>
+<p>But we know that \(\dim(R(L_A))\) is the rank of \(A\). and \(\dim(L_B(R(L_A))\) is the rank of \(L_{BA}\) (why?) so \(rank(A) = rank(BA)\).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>The Rank of a Matrix</b></h4>
+<p>So now we can go back to our original goal of finding an expression for finding the rank of a matrix \(A\) without going back to the rank of the linear map \(L_A\). We just proved that \(rank(BA) = rank(A)\). for any invertible matrix \(B\). We further studied earlier that elementary matrices are invertible. So multiplying \(A\) by a set of elementary matrices will not change its rank. So we can get \(A\) in RREF without its rank changing. Based on this we have the following corollaries:</p>
+<div class="purdiv">
+Corollary
+</div>
+<div class="purbdiv">
+	Elementary row operations don't change rank.
+</div>
+<p><br />
+and</p>
+<div class="purdiv">
+Corollary
+</div>
+<div class="purbdiv">
+	$$
+	\begin{align*}
+	rank(A) = rank(RREF(A))
+    \end{align*}
+	$$
+</div>
+<p><br />
+Why do we want RREF? because it’s easy to read off and we can easily figure out the dimension easily from seeing a matrix in its RREF.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>What is the range of the following matrix?</p>
+<div>
+$$
+\begin{align*}
+A =
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>We know the rank of \(A\). It is the dimension of the range of \(L_A\) or \(\dim(R(L_A))\). Notice for the above matrix, if we multiply \(A\) by a vector \(v\), the result is a linear combination of the columns of \(A\). Recall</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}
+\begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix}
+=
+x
+\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
++
+y
+\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
++
+z
+\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
++
+w
+\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>In other words, the columns span the range. Here, we see that we have 3 non-zero columns and they are linearly independent. so \(rank(A) = \dim(R(L_A)) = 3\). This works here but it’s not generally true!! we’re missing something … so let’s clarify with another example
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>What is the range of the following matrix?</p>
+<div>
+$$
+\begin{align*}
+A =
+\begin{pmatrix}
+1 &amp; 0 &amp; 3 &amp; 0 \\
+0 &amp; 1 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>It’s still true that the range of this is still spanned by the columns (always true). So the rank of \(A\) is the number of columns with leading entries.<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Recall three types of elementary row operations \(R_i \leftrightarrow R_j\) \(R_i \rightarrow \lambda R_i\) where \(\lambda \neq 0\) \(R_i \rightarrow R_i + \lambda R_j\) Now that we’ve studied matrix multiplication we can state the fact that performing an elementary row operation on \(A \in M_{2 \times 2}\) can actually be described using matrix multiplication. Elementary Matrices Definition An \(m \times n\) elementary matrix obtained from \(I_n\) by performing an elementary row operation of type I, II or III. Example Applying the three types of elementary row operations results in the following matrices $$ \begin{align*} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \rightarrow E_1 &amp;= \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \\ E_2 &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; \lambda \end{pmatrix} \\ E_3 &amp;= \begin{pmatrix} 1 &amp; 0 \\ \lambda &amp; 1 \end{pmatrix} \end{align*} $$ This leads to the next theorem Theorem Let \(E\) be the elementary matrix obtained from \(I_n\) by performing row operation \(\mathcal{R}(E = E(\mathcal{R})))\) for any \(A \in M_{m \times n}\), the product $$ \begin{align*} E(\mathcal{R}) \cdot A_{m \times n} \end{align*} $$ is equal to the matrix obtained from \(A\) by performing \(\mathcal{R}\). Example Let’s apply the elementary matrices on the following given matrix $$ \begin{align*} E_1 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \\ E_2 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; \lambda \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ \lambda c &amp; \lambda d \end{pmatrix} \\ E_3 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;=\begin{pmatrix} 1 &amp; 0 \\ \lambda &amp; 1 \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c + \lambda a &amp; d + \lambda b \end{pmatrix} \end{align*} $$ RREF by Matrix Multiplication Since we can perform elementary row operations by matrix multiplication, then we can possibly see how we can put a matrix in reduced row echelon by multiplication. But first, there is an observation Corollary Each elementary matrix is invertible. $$ \begin{align*} &amp;\mathcal{R}: R_i \leftrightarrow R_j \quad \quad \quad \quad \ \ \mathcal{R}^{-1}: R_j \leftrightarrow R_i \\ &amp;\mathcal{R}: R_i \rightarrow \lambda R_i \quad \quad \quad \quad \mathcal{R}^{-1}: R_i \rightarrow \frac{1}{\lambda} R_i \\ &amp;\mathcal{R}: R_i \rightarrow R_i + \lambda R_j \quad \quad \mathcal{R}^{-1}: R_i \rightarrow R_i - \lambda R_j \end{align*} $$ Proof: apply the elementary row operation by multiplying by \(E(\mathcal{R})\) and then apply the inverse again by multiplying by \(E(\mathcal{R}^{-1})\). The result is the identity matrix. In other words, \(E(\mathcal{R})E(\mathcal{R}^{-1}) = I_n\). Theorem For every \(A \in M_{m \times n}\), there is a finite set of elementary matrices \(E_1,...,E_k \in M_{m \times n}\) such that \(E_k ... E_2E_1\) is in RREF. Theorem \(A \in M_{m \times n}\) is invertible if and only iff there is a finite set of elementary matrices \(E_1,...,E_k \in M_{n \times n}\) such that \(E_k...E_2E_1A = I_n\). \((A \ | \ I_n)\). Note here that from the expression above we can see that \(A^{-1} = E_k...E_1\) and \(A = E_1^{-1}E_2^{-1}...E^{-1}_{k-1}E^{-1}_{k}\) Corollary \(A\) is invertible if and only iff it can be written as a product of elementary matrices. The Rank of a Matrix Recall that the rank of \(T: V \rightarrow W\) is \(\dim(R(T))\).]]></summary></entry><entry><title type="html">Lecture 17: Change of Coordinates and Matrix Representations</title><link href="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html" rel="alternate" type="text/html" title="Lecture 17: Change of Coordinates and Matrix Representations" /><published>2024-08-09T01:01:36-07:00</published><updated>2024-08-09T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html"><![CDATA[<p>Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)?
 <br />
 <br />
 Starting with \([v]_{\beta'}\), we want to derive an expression for \([v]_{\beta}\). We can take the</p>
@@ -1508,59 +1807,4 @@ Proof:
 <h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241/ref=tmm_hrd_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">Linear Algebra 5th Edition</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[1.5 Exercise 21 Let \(S_1\) and \(S_2\) be disjoint linearly independent subsets of \(V\). Prove that \(S_1 \cup S_2\) is linearly dependent if and only if \(span(S_1) \cap span(S_2) \neq \{0\}\). Proof: \(\Rightarrow\): Since \(S_1 \cup S_2\) is linearly dependent, then there exists vectors \(u_1,u_2,...,u_n\) in \(S_1\), the vectors \(w_1,w_2,...,w_m\) in \(S_2\) and not all zero scalars \(a_1,...a_n,b_1,...,b_m\) such that $$ \begin{align*} a_1u_1 + a_2u_2 + ... + a_nu_n + b_1w_1 + b_2w_2 + ... + b_nw_m &amp;= \bar{0}. \end{align*} $$ Let \(u = a_1u_1 + a_2u_2 + ... + a_nu_n\) and let \(w = - (b_1w_1 + b_2w_2 + ... + b_nw_m)\). Re-arrange the terms above so that $$ \begin{align*} a_1u_1 + a_2u_2 + ... + a_nu_n &amp;= - (b_1w_1 + b_2w_2 + ... + b_nw_m) \\ u &amp;= w \\ \end{align*} $$ We know \(u\) is a linear combination of the elements in \(S_1\) and therefore, \(u \in span(S_1)\). Moreover, \(w\) is a linear combination of the elements in \(S_2\) and therefore, \(w \in span(S_2)\). We also know that \(v = -w \neq \bar{0}\). This is because at least one scalar was non-zero by the definition of linear dependence. Therefore, \(v\) is a non-zero vector in both \(span(S_1)\) and \(span(S_2)\) and so \(span(S_1) \cap span(S_2) \neq \{\bar{0}\}\) \(\Leftarrow\): Suppose now that \(span(S_1) \cap span(S_2) \neq \{\bar{0}\}\). Let \(v\) be a non-zero vector in both \(span(S_1)\) and \(span(S_2)\). This means we can write \(v\) a linear combination of the elements of \(S_1\), $$ \begin{align*} v = a_1u_1 + a_2u_2 + ... + a_nu_n. \end{align*} $$ And we can also write \(v\) as a linear combination of the elements in \(S_2\) as follows, $$ \begin{align*} v = b_1w_1 + b_2w_2 + ... + b_nw_m. \end{align*} $$ Substituting for \(v\) in the previous equation, $$ \begin{align*} &amp;a_1u_1 + a_2u_2 + ... + a_nu_n = b_1w_1 + b_2w_2 + ... + b_nw_m. \\ &amp;a_1u_1 + a_2u_2 + ... + a_nu_n - (b_1w_1 + b_2w_2 + ... + b_nw_m) = \bar{0}. \end{align*} $$ Since \(v\) is non-zero and both \(S_1\) and \(S_2\) are linearly independent, then all of these scalars are non-zero and so this means that \(S_1 \ cup S_2\) is linearly dependent by the definition of linear dependence. \(\blacksquare\) References: Linear Algebra 5th Edition]]></summary></entry><entry><title type="html">Section 1.5: Theorem 1.7</title><link href="http://localhost:4000/jekyll/update/2024/07/31/1-6-theorem-1.7.html" rel="alternate" type="text/html" title="Section 1.5: Theorem 1.7" /><published>2024-07-31T01:01:36-07:00</published><updated>2024-07-31T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/07/31/1-6-theorem-1.7</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/07/31/1-6-theorem-1.7.html"><![CDATA[<p>This is the proof for theorem 1.7 from the book which I don’t think we covered in lecture.</p>
-<div class="purdiv">
-Theorem 1.7
-</div>
-<div class="purbdiv">
-If \(S\) is a linearly independent subset of \(V\) and \(v\) is a vector in \(V\) but not \(S\). Then \(S \cup \{v\}\) is linearly dependent only if \(v \in span(S)\).
-</div>
-<p><br />
-Proof: 
-<br />
-<br />
-\(\Rightarrow\): Since \(S \cup \{v\}\) is linearly dependent, then there are vectors \(u_1,u_2,...,u_n\) in \(S \cup \{v\}\) and not all zero scalars \(a_1,...,a_n\) such that</p>
-<div>
-	$$
-	\begin{align*}
-	a_1u_1 + a_2u_2 + ... + a_nu_n = \bar{0}.
-	\end{align*}
-	$$
-</div>
-<p>But we know that \(S\) is linearly independent so this means one of the vectors in \(\{u_1,u_2,...,u_n\}\) must be \(v\). without the loss of generality let \(u_1 = v\) and so</p>
-<div>
-	$$
-	\begin{align*}
-	\bar{0} &amp;= a_1v + a_2u_2 + ... + a_nu_n \\
-	v &amp;= \frac{1}{a_1}(-a_2u_2 - ... - a_nu_n) \\
-	v &amp;= -\frac{a_2}{a_1}u_2 - ... - \frac{a_n}{a_1}u_n. \\
-	\end{align*}
-	$$
-</div>
-<p>This tells us that \(v\) is a linear combination of the elements of \(u_2,...,u_n\) in \(S\). Therefore, by definition, \(v \in span(S)\).
-<br />
-<br />
-\(\Leftarrow\): Let \(v \in span(S)\), then there exists vectors \(w_1,w_2,...,w_m\) in \(S\) and scalars \(b_1,...,b_n\) such that</p>
-<div>
-	$$
-	\begin{align*}
-	v = b_1w_1 + b_2w_2 + ... + b_nw_m.
-	\end{align*}
-	$$
-</div>
-<p>Moving \(v\) to the other side, we see that,</p>
-<div>
-	$$
-	\begin{align*}
-	 b_1w_1 + b_2w_2 + ... + b_nw_m + (-1).v = \bar{0}.
-	\end{align*}
-	$$
-</div>
-<p>We know here that \(w\) is not in \(S\) and so none of the vectors \(w_1,...,w_m\) are equal to \(v\). Moreover, the coefficient of \(v\) is none zero. Therefore, by the definition of linear dependence, \(S \cup \{v\}\) is linearly dependent. \(\blacksquare\). 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References:</b></h4>
-<ul>
-<li><a href="https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241/ref=tmm_hrd_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">Linear Algebra 5th Edition</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is the proof for theorem 1.7 from the book which I don’t think we covered in lecture. Theorem 1.7 If \(S\) is a linearly independent subset of \(V\) and \(v\) is a vector in \(V\) but not \(S\). Then \(S \cup \{v\}\) is linearly dependent only if \(v \in span(S)\). Proof: \(\Rightarrow\): Since \(S \cup \{v\}\) is linearly dependent, then there are vectors \(u_1,u_2,...,u_n\) in \(S \cup \{v\}\) and not all zero scalars \(a_1,...,a_n\) such that $$ \begin{align*} a_1u_1 + a_2u_2 + ... + a_nu_n = \bar{0}. \end{align*} $$ But we know that \(S\) is linearly independent so this means one of the vectors in \(\{u_1,u_2,...,u_n\}\) must be \(v\). without the loss of generality let \(u_1 = v\) and so $$ \begin{align*} \bar{0} &amp;= a_1v + a_2u_2 + ... + a_nu_n \\ v &amp;= \frac{1}{a_1}(-a_2u_2 - ... - a_nu_n) \\ v &amp;= -\frac{a_2}{a_1}u_2 - ... - \frac{a_n}{a_1}u_n. \\ \end{align*} $$ This tells us that \(v\) is a linear combination of the elements of \(u_2,...,u_n\) in \(S\). Therefore, by definition, \(v \in span(S)\). \(\Leftarrow\): Let \(v \in span(S)\), then there exists vectors \(w_1,w_2,...,w_m\) in \(S\) and scalars \(b_1,...,b_n\) such that $$ \begin{align*} v = b_1w_1 + b_2w_2 + ... + b_nw_m. \end{align*} $$ Moving \(v\) to the other side, we see that, $$ \begin{align*} b_1w_1 + b_2w_2 + ... + b_nw_m + (-1).v = \bar{0}. \end{align*} $$ We know here that \(w\) is not in \(S\) and so none of the vectors \(w_1,...,w_m\) are equal to \(v\). Moreover, the coefficient of \(v\) is none zero. Therefore, by the definition of linear dependence, \(S \cup \{v\}\) is linearly dependent. \(\blacksquare\). References: Linear Algebra 5th Edition]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[1.5 Exercise 21 Let \(S_1\) and \(S_2\) be disjoint linearly independent subsets of \(V\). Prove that \(S_1 \cup S_2\) is linearly dependent if and only if \(span(S_1) \cap span(S_2) \neq \{0\}\). Proof: \(\Rightarrow\): Since \(S_1 \cup S_2\) is linearly dependent, then there exists vectors \(u_1,u_2,...,u_n\) in \(S_1\), the vectors \(w_1,w_2,...,w_m\) in \(S_2\) and not all zero scalars \(a_1,...a_n,b_1,...,b_m\) such that $$ \begin{align*} a_1u_1 + a_2u_2 + ... + a_nu_n + b_1w_1 + b_2w_2 + ... + b_nw_m &amp;= \bar{0}. \end{align*} $$ Let \(u = a_1u_1 + a_2u_2 + ... + a_nu_n\) and let \(w = - (b_1w_1 + b_2w_2 + ... + b_nw_m)\). Re-arrange the terms above so that $$ \begin{align*} a_1u_1 + a_2u_2 + ... + a_nu_n &amp;= - (b_1w_1 + b_2w_2 + ... + b_nw_m) \\ u &amp;= w \\ \end{align*} $$ We know \(u\) is a linear combination of the elements in \(S_1\) and therefore, \(u \in span(S_1)\). Moreover, \(w\) is a linear combination of the elements in \(S_2\) and therefore, \(w \in span(S_2)\). We also know that \(v = -w \neq \bar{0}\). This is because at least one scalar was non-zero by the definition of linear dependence. Therefore, \(v\) is a non-zero vector in both \(span(S_1)\) and \(span(S_2)\) and so \(span(S_1) \cap span(S_2) \neq \{\bar{0}\}\) \(\Leftarrow\): Suppose now that \(span(S_1) \cap span(S_2) \neq \{\bar{0}\}\). Let \(v\) be a non-zero vector in both \(span(S_1)\) and \(span(S_2)\). This means we can write \(v\) a linear combination of the elements of \(S_1\), $$ \begin{align*} v = a_1u_1 + a_2u_2 + ... + a_nu_n. \end{align*} $$ And we can also write \(v\) as a linear combination of the elements in \(S_2\) as follows, $$ \begin{align*} v = b_1w_1 + b_2w_2 + ... + b_nw_m. \end{align*} $$ Substituting for \(v\) in the previous equation, $$ \begin{align*} &amp;a_1u_1 + a_2u_2 + ... + a_nu_n = b_1w_1 + b_2w_2 + ... + b_nw_m. \\ &amp;a_1u_1 + a_2u_2 + ... + a_nu_n - (b_1w_1 + b_2w_2 + ... + b_nw_m) = \bar{0}. \end{align*} $$ Since \(v\) is non-zero and both \(S_1\) and \(S_2\) are linearly independent, then all of these scalars are non-zero and so this means that \(S_1 \ cup S_2\) is linearly dependent by the definition of linear dependence. \(\blacksquare\) References: Linear Algebra 5th Edition]]></summary></entry></feed>

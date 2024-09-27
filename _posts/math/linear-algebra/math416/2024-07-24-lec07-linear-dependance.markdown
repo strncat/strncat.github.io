@@ -269,7 +269,7 @@ is true only when $$a_1 = 0, a_2 = 0, ... a_k = 0$$.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 0</b></h4>
-Consider $$\{\bar{0}\}$$. This set is linearly dependent because we can choose a scalar $a_1 \neq 0$ such that $$a_1\bar{0} = \bar{0}$$.
+Consider $$\{\bar{0}\}$$. This set is linearly dependent because we can choose a scalar $$a_1 \neq 0$$ such that $$a_1\bar{0} = \bar{0}$$.
 <br>
 <br>
 <hr>

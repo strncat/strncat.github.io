@@ -110,6 +110,11 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/10/lec18-elementary-matrices.html">
         Lecture 18: Elementary Matrices
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/08/11/lec19-determinants.html">
+        Lecture 19: Determinants
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

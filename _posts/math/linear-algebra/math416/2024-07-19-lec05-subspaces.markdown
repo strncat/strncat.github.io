@@ -44,7 +44,7 @@ Let $$W = [0, 1] \subset \mathbf{R}$$. It is not closed under addition. For exam
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 2: \(\mathbf{Z}\)</b></h4>
-$$\bar{0} \in [0,1]$$. It is closed under addition. But it is not closed under scalar multiplication because we defined scalar multiplication as $$\{c(x, y) = (cx, cy) | c \in \mathbf{R}\}$$. (Remember that the vector spaces we're defining are over $$\mathbf{R}$$).
+$$\bar{0} \in \mathbf{Z}$$. It is closed under addition. But it is not closed under scalar multiplication because we defined scalar multiplication as $$\{c(x, y) = (cx, cy) | c \in \mathbf{R}\}$$. (Remember that the vector spaces we're defining are over $$\mathbf{R}$$).
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

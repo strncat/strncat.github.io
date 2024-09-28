@@ -92,7 +92,16 @@ This is crucial because this says that the image of a linear combination with co
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 1</b></h4>
-For $$V, W$$, the map $$T_0: V \rightarrow W, u \rightarrow \bar{0}_W$$ is linear.
+For $$V, W$$, the map
+<div>
+	$$
+	\begin{align*}
+	T_0: \ &V \rightarrow W \\ 
+	&u \rightarrow \bar{0}_W.
+	\end{align*}
+	$$
+</div>
+is linear.
 <br>
 <br>
 We need to verify that it is linear by verifying $$T(v_1 + cv_2) = T(v_1) + cT(v_2)$$. This is easy because for any vectors $$v_1, v_2$$,
@@ -119,14 +128,32 @@ The two sides are equal and so $$T_0$$ is linear.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 2</b></h4>
-The map $$I_V: V \rightarrow V, u \rightarrow u$$ is linear as well.
+The map 
+<div>
+	$$
+	\begin{align*}
+	I_V: \ &V \rightarrow V \\
+	&u \rightarrow u.
+	\end{align*}
+	$$
+</div>
+is linear as well.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 3</b></h4>
-The map $$T: \mathbf{R}^2 \rightarrow \mathbf{R}^2, (x,y) \rightarrow (-y,x)$$ is linear as well. (a rotation by 90 degrees, todo: add pic). To see why it's linear, notice that
+The map 
+<div>
+	$$
+	\begin{align*}
+	T: \ &\mathbf{R}^2 \rightarrow \mathbf{R}^2  \\
+	&(x,y) \rightarrow (-y,x)
+	\end{align*}
+	$$
+</div>
+is linear as well. (a rotation by 90 degrees, todo: add pic). To see why it's linear, notice that
 <div>
 	$$
 	\begin{align*}
@@ -151,21 +178,58 @@ Both sides are equal and so the transformation is linear.
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 4</b></h4>
-The map $$T: P \rightarrow P, f(x) \rightarrow f'(x)$$ is linear. Note here that the map The map $$T (P_n \rightarrow P_{n-1}): f(x) \rightarrow f'(x)$$ is different because the domain and codomain are different here! this is crucial. 
+The map 
+<div>
+	$$
+	\begin{align*}
+	 T: \ &P \rightarrow P \\
+	   &f(x) \rightarrow f'(x).
+	\end{align*}
+	$$
+</div>
+is linear. Note here that the map 
+<div>
+	$$
+	\begin{align*}
+	 T: \ &P \rightarrow P \\
+	  &f(x) \rightarrow f'(x).
+	\end{align*}
+	$$
+</div>
+is different because the domain and codomain are different here! this is crucial. 
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 6</b></h4>
-Let $$A \in M_{m \times n}$$. The map $$L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m, \bar{x} \rightarrow A\bar{x}$$ is linear. Remember here $$A\bar{x}$$ are the linear combinations of the column vectors of $$A$$ with the coefficients being the entries of $$\bar{x}$$. The crucial thing here is that if $$V$$ and $$W$$ are both finite dimensional can be represented with this kind of transformation (matrix). 
+Let $$A \in M_{m \times n}$$. The map 
+<div>
+	$$
+	\begin{align*}
+	 L_A: \ &\mathbf{R}^n \rightarrow \mathbf{R}^m \\
+	  &\bar{x} \rightarrow A\bar{x}.
+	\end{align*}
+	$$
+</div>
+
+is linear. Remember here $$A\bar{x}$$ are the linear combinations of the column vectors of $$A$$ with the coefficients being the entries of $$\bar{x}$$. The crucial thing here is that if $$V$$ and $$W$$ are both finite dimensional, then the map can be represented with this kind of transformation (matrix). 
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 6</b></h4>
-For $$a < b$$, define the map $$T_a^b: C^0(\mathbf{R}) \rightarrow \mathbf{R}, f \rightarrow \int_a^b f(x)dx$$ ($$C^0$$ is the set of continuous functions on $$\mathbf{R})$$). 
+For $$a < b$$, define the map 
+<div>
+	$$
+	\begin{align*}
+	 T_a^b: \ &C^0(\mathbf{R}) \rightarrow \mathbf{R} \\
+	  &f \rightarrow \int_a^b f(x)dx.
+	\end{align*}
+	$$
+</div>
+($$C^0$$ is the set of continuous functions on $$\mathbf{R})$$). 
 <br>
 <br>
 Recall the dimension of $$\mathbf{R}$$ is 1 and the dimension of $$C^0$$ is infinte because the set of all polynomials (which has dimension infinity) is a subset of the set of continuous functions. Therefore, the set of continuous function has dimension infinity as well. This mapping goes from an infinite dimensional space to a finite dimensional space.

@@ -75,6 +75,9 @@ mathjax: true
        <li><a href="/jekyll/update/2024/07/28/lec11-null-space-range-and-dimension-theorem.html">
         Lecture 11: Null Space, Range, and Dimension Theorem
        </a></li>
+       <li><a href="/jekyll/update/2024/08/12/lec11-ex-0.html">
+       Prove that if \(\dim(V) < \dim (W)\), then \(T\) cannot be onto.
+       </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/07/29/lec12-more-linear-transformations.html">

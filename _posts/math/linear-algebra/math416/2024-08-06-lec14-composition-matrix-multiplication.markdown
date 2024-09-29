@@ -5,6 +5,22 @@ date:   2024-08-06 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
+<h4><b>The Vector Space of Linear Transformations</b></h4>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+Given vector spaces \(V, W\) define
+$$
+\begin{align*}
+\mathcal{L}(V, W) = \{T: V \rightarrow W \ | \ T \text{ is linear}\}.
+\end{align*}
+$$
+</div>
+<br>
+FACT: The set of linear transformations $$\mathcal{L}(V, W)$$ is a vector space. We can think of this as a way to get a new vector space from two vector spaces $$W$$ and $$V$$.
+<br>
+<br>
 <!------------------------------------------------------------------------------------>
 <h4><b>The Composition of Linear Transformations</b></h4>
 <div class="bdiv">

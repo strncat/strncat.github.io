@@ -73,20 +73,15 @@ mathjax: true
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/07/28/lec11-null-space-range-and-dimension-theorem.html">
-        Lecture 11: Null Space, Range, and Dimension Theorem
+        Lecture 11/12: Null Space, Range, and Dimension Theorem
        </a></li>
        <li><a href="/jekyll/update/2024/08/12/lec11-ex-0.html">
        Prove that if \(\dim(V) < \dim (W)\), then \(T\) cannot be onto.
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
-       <li><a href="/jekyll/update/2024/07/29/lec12-more-linear-transformations.html">
-        Lecture 12: Linear Transformations Continued
-       </a></li>
-	   <!------------------------------------------------------------------->  
-	   <br>
        <li><a href="/jekyll/update/2024/08/05/lec13-more-linear-transformations.html">
-        Lecture 13: More Linear Transformations
+        Lecture 12/13: Matrix Representation of Linear Transformations
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>

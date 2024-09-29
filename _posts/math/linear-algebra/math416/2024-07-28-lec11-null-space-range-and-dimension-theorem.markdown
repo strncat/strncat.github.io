@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lecture 11: Null Space, Range, and Dimension Theorem"
+title:  "Lecture 11/12: Null Space, Range, and Dimension Theorem"
 date:   2024-07-28 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -138,16 +138,15 @@ Let $$T: V \rightarrow W$$ be a linear transformation and $$V$$ be finite dimens
 (Note: Now that we have a basis for the null space and know its dimension, we need to somehow find a basis for the range to figure out its dimension as well so the plan is to go from the basis we just created to creating a basis for the range. To do this, we're going to use the refinement and the replacement theorems)
 <br>
 <br>
-<b>Claim 1:</b> We can extend the basis $$\beta_N$$ by $$n-k$$ vectors to form a basis of $$V$$. To see this, let $$\beta$$ be a basis for $$V$$. We will use the replacement theorem by setting $$\mathcal{S} = \beta$$ and $$\mathcal{U} = \beta_N$$ ($$\beta_N$$ is a basis so its vectors are linearly independent). The replacement theorem implies that $$k \leq n$$ which we already know. Additionally, it implies that there is a subset of $$\mathcal{T} \subset \mathcal{S}$$ of size $$n-k$$ elements such that $$\mathcal{U} \cup \mathcal{T}$$ generates $$V$$. Label the elements in $$\mathcal{T}$$ as $$v_1,v_2,...v_{n-k}$$ and let $$\beta_V = \mathcal{U} \cup \mathcal{T}$$. So now we have,
+<b>Claim 1:</b> We can extend the basis $$\beta_N$$ by $$n-k$$ vectors to form a basis of $$V$$. To see this, let $$\beta = \{v_1,v_2,...,v_n\}$$ be a basis for $$V$$ (This is just a general basis. The basis that really we want is the one that would include the vectors in the $$\beta_N$$). We will use the replacement theorem by setting $$\mathcal{S} = \beta$$ and $$\mathcal{U} = \beta_N$$. These choices work because $$\beta$$ generates $$V$$ and $$\beta_N$$ is a linearly independent subset of $$V$$. The replacement theorem implies that $$k \leq n$$ which we already know. It also implies that we can add $$n-k$$ elements of $$\beta$$ to $$\beta_N$$ so that the resulting set generates $$V$$. Label the newly added elements from $$\beta$$ as $$v_1,v_2,...v_{n-k}$$ (relabel if necessary). So now we have
 <div>
 	$$
 	\begin{align*}
-	Span(\beta_V) &= Span(\{u_1,...,u_k,v_1,...v_{n-k}\}) \\
-	              &= V.
+	Span(\{u_1,...,u_k,v_1,...v_{n-k}\})= V.
 	\end{align*}
 	$$
 </div>
-We claim that $$\beta_V$$ is a basis for $$V$$. How do we know this? We know that it spans $$V$$ by the replacement theorem above. Moreover, it has $$k+n-k = n$$ elements which is the dimension of $$V$$. To see that the vectors are linearly independent, suppose that they're not. Since $$\beta_V$$ generates $$V$$, then by the refinement theorem, we can take away an element and still have a span that generates $$V$$. But then if we do take an element out, this means that we'll have $$n-1$$ elements in $$\beta_V$$. This is a contradiction since we need at least $$n$$ elements to span $$V$$. (TODO: What result did we use here exactly?)
+Call this set $$\beta_V$$. So $$\beta_V = \{u_1,...,u_k,v_1,...v_{n-k}\}$$. We claim that $$\beta_V$$ is a basis for $$V$$. How do we know this? We know that it spans $$V$$ by the replacement theorem above. Moreover, it has $$k+n-k = n$$ elements which is the dimension of $$V$$. To see that the vectors are linearly independent, suppose that they're not. Since $$\beta_V$$ generates $$V$$, then by the refinement theorem, we can take away an element and still have a span that generates $$V$$. But then if we do take an element out, this means that we'll have $$n-1$$ elements in $$\beta_V$$. This is a contradiction since we need at least $$n$$ elements to span $$V$$. (TODO: What result did we use here exactly?)
 <br>
 <br>
 (Note: so now we need to relate this to the dimension of the range)
@@ -192,11 +191,11 @@ implies that $$a_1 = 0, ..., a_{n-k} = 0$$. To see this, we'll use the linearity
 	\end{align*}
 	$$
 </div>
-If this equation holds, this means that $$a_1v_1 + ... + a_{n-k}v_{n-k}$$ is in the null space $$N(T)$$ by definition since it's image is the zero vector. We defined previously $$\beta_N$$ to be the basis for the null space. So now this linear combination must also be in the span of $$\beta_N$$,
+This equation if it holds, it tells us that $$a_1v_1 + ... + a_{n-k}v_{n-k}$$ is in the null space $$N(T)$$ by definition since it's image is the zero vector. But we have a basis for the null space which is $$\beta_N$$. So now this linear combination must also be in the span of $$\beta_N$$. In other words
 <div>
 	$$
 	\begin{align*}
-	 \{a_1v_1 + ... + a_{n-k}v_{n-k} &\in Span(\beta_N) \\
+	 \{a_1v_1 + ... + a_{n-k}v_{n-k}\} &\in Span(\beta_N) \\
 	  &\in Span(\{u_1,...,u_k\})
 	\end{align*}
 	$$
@@ -211,6 +210,56 @@ We claim that this must imply that $$a_1 = 0, ..., a_{n-k} = 0$$. Why? Suppose n
 	$$
 </div>
 From the above we see that now we have a linear combination of all the $$v$$ vectors and all the $$u$$ vectors equal to the zero vector. But all the $$u$$ and $$v$$ vectors $$\{u_1,...,u_k,v_1,...,v_{n-k}\}$$ are part of the basis $$\beta_V$$ by construction. So any linear combination of these vectors equaling the zero vector must imply that the coefficients are zero because otherwise they are linearly dependent and this is a contradiction. $$\blacksquare$$.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(T: V \rightarrow W\) is onto if \(R(T) = W\) or
+	$$
+	\begin{align*}
+	 \forall w \in W, \exists v \in V \ \text{s.t.} \ T(v) = w.
+	\end{align*}
+	$$
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(T: V \rightarrow W\) is 1-1 if
+	$$
+	\begin{align*}
+	 T(v_1) = T(v_2) \Rightarrow v_1 = v_2.
+	\end{align*}
+	$$
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+If \(T: V \rightarrow W\) is linear, then \(T\) is 1-1 if and only if \(N(T)=\{\bar{0}_V\}\)
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+Let \(T: V \rightarrow W\) be a linear map between vector spaces of the same finite dimension. Then the following are equivalent 
+<ul>
+	<li> \(T\) is 1-1. </li>
+	<li> \(T\) is onto. </li>
+	<li> \(rank(T) = \dim(V)\). </li>
+</ul>
+</div>
+<br>
+Note here that $$rank(T) = \dim(R(T))$$.
 <br>
 <br>
 <hr>

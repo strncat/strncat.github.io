@@ -35,7 +35,7 @@ $$R(T^b_a) = \mathbf{R}$$. Here we want all functions whose definite integral is
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem
+Theorem 2.1
 </div>
 <div class="purbdiv">
 If \( \ T: V \rightarrow W\) is linear then \(N(T)\) is a subspace of \(V\) and \(R(T)\) is a subspace of \(W\).

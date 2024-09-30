@@ -36,7 +36,7 @@ x &\rightarrow T(S(x))
 $$
 </div>
 <br>
-Next, we will show that this transformation is also linear.
+Next, we will show that the composition of two linear transformations is also linear!
 <br>
 <div class="purdiv">
 Theorem
@@ -45,16 +45,22 @@ Theorem
 \(T \circ S: X \rightarrow Z\) is linear (\(T \circ S \in \mathcal{L}(X, Z))\) 
 </div>
 <br>
-Proof: We want to show $$(T \circ S)(x_1 + cx_2) = (T \circ S)(x_1) + c(T \circ S)(x_2).$$. To see this notice that
+Proof: We want to show that
+<div>
+$$
+\begin{align*}
+(T \circ S)(x_1 + cx_2) = (T \circ S)(x_1) + c(T \circ S)(x_2).	 
+\end{align*}
+$$
+</div>
+ To see expand the left hand side as follows:
 <div>
 $$
 \begin{align*}
 (T \circ S)(x_1 + cx_2) &= T(S(x_1 + cx_2)) \\
-                     &= T(S(x_1) + c+S(x_2)) \text{ (because $S$ is linear)} \\
-                     &= T(S(x_1)) + c+T(S(x_2)) \text{ (because $T$ is linear)} \\
-                     &= (T \circ S)(x_1) + c(T \circ S)(x_2) \text{ (because $T$ is linear)}
-					
-					 
+                     &= T(S(x_1) + cS(x_2)) \text{ (because $S$ is linear)} \\
+                     &= T(S(x_1)) + cT(S(x_2)) \text{ (because $T$ is linear)} \\
+                     &= (T \circ S)(x_1) + c(T \circ S)(x_2). \ \blacksquare			 
 \end{align*}
 $$
 </div>
@@ -63,7 +69,7 @@ $$
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>The Matrix of Linear Composition</b></h4>
-Suppose now that $$x$$, $$Y$$ and $$Z$$ are finite dimensional with bases $$\alpha = \{x_1,...,x_n\}, \beta = \{y_1,...,y_m\}$$ and $$\gamma = \{z_1,...,z_n\}$$.
+Suppose now that $$X$$, $$Y$$ and $$Z$$ are finite dimensional with fixed bases $$\alpha = \{x_1,...,x_n\}, \beta = \{y_1,...,y_m\}$$ and $$\gamma = \{z_1,...,z_n\}$$.
 <br>
 <br>
 How are $$[S]_{\alpha}^{\beta}, [T]_{\beta}^{\gamma}$$ and $$[T \circ S]_{\alpha}^{\gamma}$$ related?

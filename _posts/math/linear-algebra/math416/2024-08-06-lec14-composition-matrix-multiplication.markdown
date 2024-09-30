@@ -165,10 +165,39 @@ $$
 &= ([(T(S(x_1))]_{\gamma} ... [(T(S(x_n))]_{\gamma}) \text{( by definition)}\\
 &= ([T]_{\beta}^{\gamma}[(S(x_1)]_{\beta} ... [T]_{\beta}^{\gamma}[(S(x_n)]_{\beta}) \text{( by theorem 2.14 (lecture 13))}\\
 &= [T]_{\beta}^{\gamma}([(S(x_1)]_{\beta} ... [(S(x_n)]_{\beta}) \\
-&= [T]_{\gamma}^{\beta} \circ [S]_{\beta}^{\alpha}. \blacksquare					 
+&= [T]^{\gamma}_{\beta} \circ [S]^{\beta}_{\alpha}. \blacksquare					 
 \end{align*}
 $$
 </div>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
+<div>
+$$
+\begin{align*}
+A &\in M_{m \times n} \rightarrow L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\
+B &\in M_{p \times m} \rightarrow L_B: \mathbf{R}^m \rightarrow \mathbf{R}^p
+\end{align*}
+$$
+</div>
+If we choose the standard basis for all vector spaces, then the theorem tells us
+<div>
+$$
+\begin{align*}
+[L_B \circ L_A]_{\alpha}^{\gamma} &= [L_B]^{\gamma}_{\beta} \circ [L_A]^{\beta}_{\alpha}.
+\end{align*}
+$$
+</div>
+But since we chose the standard basis then we know that $$[L_A]^{\beta}_{\alpha} = A$$ and $$[L_B]^{\gamma}_{\beta} = B$$. So we can also write
+<div>
+$$
+\begin{align*}
+[L_B \circ L_A]_{\alpha}^{\gamma} &= [L_B]^{\gamma}_{\beta} \circ [L_A]^{\beta}_{\alpha} = BA = [L_{BA}]^{\gamma}_{\alpha}.
+\end{align*}
+$$
+</div>
+In particular, this shows that these maps are equal $$L_B \circ L_A = L_{BA}$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -236,7 +265,7 @@ To compose these matrices we just multiply them,
 <div>
 $$
 \begin{align*}
-[T_i]_{\gamma}^{\beta}][T_d]^{\gamma}_{\beta} = 
+[T_i]_{\gamma}^{\beta}[T_d]^{\gamma}_{\beta} = 
 \begin{pmatrix}
 0 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\

@@ -5,25 +5,27 @@ date:   2024-08-08 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Recall that $$\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}$$. (The vector space of linear transformations)
-<br>
-<br>
-Question: For what $$A \in M_{m \times n}$$ does $$L_A$$ have an inverse?
-<br>
-<br>
-By Corollary of Theorem 2, we require $$n = m$$. 
-<br>
-<br>
-Moreover, consider the following map
+Recall the the vector space of linear transformations 
 <div>
 $$
 \begin{align*}
-&L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\
+\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}.
+\end{align*}
+$$
+</div>
+Question: For what $$A \in M_{m \times n}$$ does the map $$L_A$$ have an inverse?
+<br>
+<br>
+By Corollary from last lecture (If $$\dim(V)=n$$ and $$T$$ is invertible, then $$\dim(W)=\dim(V)=n$$), we require $$n = m$$. So now we'll restrict our question to only the following map:
+<div>
+$$
+\begin{align*}
+L_A: \ &\mathbf{R}^n \rightarrow \mathbf{R}^m \\
 &\bar{x} \rightarrow A\bar{x}
 \end{align*}
 $$
 </div>
-For this map to be invertible there must be a map 
+When is this map invertible? For this map to be invertible, we need a map
 <div>
 $$
 \begin{align*}
@@ -39,7 +41,7 @@ $$
 \end{align*}
 $$
 </div>
-This map is linear since the inverse of a linear map is linear. Since it is linear then we can represent it with a matrix so let $$(L_A)^{-1} = L_B$$ for some $$B \in M_{n \times n}$$ and so 
+This map is linear since the inverse of a linear map is linear. Since it is linear, then we can represent it with a matrix so let $$L_B = (L_A)^{-1}$$ for some $$B \in M_{n \times n}$$. Therefore, 
 <div>
 $$
 \begin{align*}
@@ -49,17 +51,25 @@ BA &= I_n = AB.
 \end{align*}
 $$
 </div>
-Based on this, we have this definition
+Based on this, we have the following definition
 <div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
-\(A \in M_{n \times n}\) is invertible if \(\exists B \in M_{n \times n}\) such that \(BA = I_n = AB\)
+\(A \in M_{n \times n}\) is invertible if \(\ \exists B \in M_{n \times n}\) such that 
+$$
+\begin{align*}
+BA = I_n = AB
+\end{align*}
+$$
 </div>
 <br>
 Remark: The inverse of $$A$$ is unique if it exists.
 <br>
-Proof: Suppose $$BA = I_n = AB$$ and $$CA = I_n = AC$$. We need to show that $$C = B$$. To do this, 
+<br>
+<b>Proof:</b> 
+<br>
+Suppose $$BA = I_n = AB$$ and $$CA = I_n = AC$$. We need to show that $$C = B$$. To do this, 
 <div>
 $$
 \begin{align*}
@@ -67,7 +77,7 @@ CA &= I_n \\
 (CA)B &= (I_n)B \\
 C(AB) &= B \\
 C(I_n) &= B \\
-C & B.
+C &= B. \ \blacksquare
 \end{align*}
 $$
 </div>

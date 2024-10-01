@@ -16,7 +16,7 @@ If \(T: V \rightarrow W\) is invertible, then \(V\) is finite dimensional if and
 Proof:
 <br>
 <br>
-$$\Rightarrow:$$ Suppose that $$V$$ is finite dimensional. If $$T$$ is invertible, then $$T$$ is onto. By the definition of onto, this means that $$R(T)=W$$ (or that for any $$w \in W$$, there exists a $$v \in V$$ such that $$T(v)=w$$). Since $$V$$ is finite dimensional, then let $$\beta$$ be a finite basis for $$V$$. By Theorem 2.2, $$span(T(\beta)) = R(T)$$. But $$R(T) = W$$. Therefore, $$W$$ must be finite dimensional.
+$$\Rightarrow:$$ Suppose that $$V$$ is finite dimensional. If $$T$$ is invertible, then $$T$$ is onto. By the definition of onto, this means that $$R(T)=W$$ (or that for any $$w \in W$$, there exists a $$v \in V$$ such that $$T(v)=w$$). Since $$V$$ is finite dimensional, then let $$\beta$$ be a finite basis for $$V$$. By <a href="https://strncat.github.io/jekyll/update/2024/08/14/lec11-theorem-2.2.html">Theorem 2.2</a>, $$span(T(\beta)) = R(T)$$. But $$R(T) = W$$. Therefore, $$W$$ must be finite dimensional.
 <br>
 <br>
 $$\Leftarrow:$$ Suppose that $$W$$ is finite dimensional. If $$T$$ is invertible, then $$T^{-1}$$ is linear and invertible. We can now apply the same argument from before. $$T^{-1}$$ is invertible and so $$T^{-1}$$ is onto. Since $$W$$ is finite dimensional, let $$\gamma$$ be a basis for $$W$$. Therefore, $$R(T^{-1})=V$$ and since $$span(T^{-1}(\gamma)) = R(T^{-1}) = V$$, then $$V$$ is finite dimensional.
@@ -26,7 +26,7 @@ So now suppose that $$V$$ and $$W$$ are finite dimensional. Because $$T$$ is one
 <div>
 	$$
 	\begin{align*}
-	\dim(V) = \dim(N(T)) + \dim(R(T)) \\
+	\dim(V) &= \dim(N(T)) + \dim(R(T)) \\
 	        &= 0 + \dim(W) \\
 	\end{align*}
 	$$

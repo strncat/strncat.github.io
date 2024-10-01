@@ -89,6 +89,11 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/05/lec13-more-linear-transformations.html">
         Lecture 12/13: Matrix Representation of Linear Transformations
        </a></li>
+	   <!--
+       <li><a href="/jekyll/update/2024/08/17/lec13-exercise-12.html">
+        Book (2.2) Exercise 12
+       </a></li>
+	   -->
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/08/06/lec14-composition-matrix-multiplication.html">
@@ -97,7 +102,7 @@ mathjax: true
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/08/07/lec15-inverse-and-invertible-linear-maps.html">
-        Lecture 15: Inverse and Invertible Linear Transformations
+        Lecture 15: Invertible Linear Transformations and Isomorphisms
        </a></li>
        <li><a href="/jekyll/update/2024/08/13/lec15-corollary-2.17.html">
         Book (2.4) Theorem 2.17 (Corollary): If \(T\) is invertible, then \(V\) is finite dimensional iff \(W\) is finite dimensional. In this case \(\dim V = \dim W\).

@@ -31,7 +31,7 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Lecture 15: Inverse and Invertible Linear Transformations</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 15: Invertible Linear Transformations and Isomorphisms</h1>
     <!--
     <p class="post-meta">
       <time class="dt-published" datetime="2024-08-07T01:01:36-07:00" itemprop="datePublished">Aug 7, 2024
@@ -183,7 +183,7 @@ Theorem
 Let \(T: V \rightarrow W\) be linear.
 <ul>
 	<li>\(T\) has an inverse if and only if \(T\) is 1-1 (\(N(T)=\{\bar{0}_V\}\)) and onto (\(R(T) = W\)).</li>
-	<li>If \(T\) has an inverse, then it is unique \((T^{-1})\).</li>
+	<li>If \(T\) is invertible, then its inverse is unique \((T^{-1})\).</li>
 	<li>\(T^{-1}\) is linear. (Theorem 2.17 in the book)</li>
 </ul>
 </div>
@@ -290,7 +290,10 @@ $$
 $$
 </div>
 <p><br />
-(Study Notes:) This is really important. \(T\) is invertible and \(V\) having dimension \(n\) means that \(W\) has dimension \(n\). Also \(T\) is one-to-one and onto. Later we’ll learn if both \(V\) and \(W\) have the same dimension and \(T\) is one-to-one, then this is sufficient to conclude that \(T\) is invertible. (next lecture)
+(Study Notes:) This is really important. \(T\) is invertible and \(V\) having dimension \(n\) means that \(W\) has dimension \(n\). Also \(T\) is one-to-one and onto. Later we’ll learn if both \(V\) and \(W\) have the same dimension and \(T\) is one-to-one, then this is sufficient to conclude that \(T\) is invertible. (next lecture).
+<br />
+<br />
+I also went through the proof in the book for this corollary. See <a href="https://strncat.github.io/jekyll/update/2024/08/13/lec15-corollary-2.17.html">This</a>
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -308,7 +311,7 @@ Definition
 <div>
 $$
 \begin{align*}
-&amp;T : \mathbf{R}^3 \rightarrow P_2  \\
+T : \ &amp;\mathbf{R}^3 \rightarrow P_2  \\
 &amp;(a_1,a_2,a_3) \rightarrow a_1 + a_2x + a_3x^2
 \end{align*}
 $$
@@ -317,7 +320,7 @@ $$
 <div>
 $$
 \begin{align*}
-&amp;U : \mathbf{R}^3 \rightarrow P_2  \\
+U : \ &amp;\mathbf{R}^3 \rightarrow P_2  \\
 &amp;(a_1,a_2,a_3) \rightarrow a_3 + (a_1 + a_2)x + (a_1 + a_2)x^2
 \end{align*}
 $$
@@ -332,7 +335,7 @@ $$
 <div>
 $$
 \begin{align*}
-&amp;U : P \rightarrow \hat{P}  \\
+U : \ &amp;P \rightarrow \hat{P}  \\
 &amp;f \rightarrow xf
 \end{align*}
 $$
@@ -351,16 +354,27 @@ Theorem
 If \(V\) is finite dimensional, then \(W\) is isomorphic to \(V\) if and only if \(\dim W = \dim V\).
 </div>
 <p><br />
-Proof: 
+<b>Proof: </b>
+<br />
+\(\Rightarrow\): If \(W\) is isomorphic to \(T\), then there exists an isomorphism map \(T\). \(T\) is onto and one-to-one because it is invertible. Therefore, \(\dim(W) = \dim(V)\) by the corollary we stated earlier.
+<br />
+<br />
 \(\Leftarrow\): Suppose that \(\dim V = \dim W\). We want to show that they are isomorphic. This means that there exists some invertible map from one to the other. So let \(\beta = \{v_1,...,v_n\}\) be a basis for \(V\) and \(\alpha = \{w_1, ...,w_n\}\) be a basis for \(W\).
 <br />
 <br />
-Define the map \(T: W \rightarrow V\) by \([T]_{\alpha}^{\beta} = I_n\). This \(T\) works. Why?</p>
+Define the map \(T: W \rightarrow V\) by \([T]_{\alpha}^{\beta} = I_n\). This \(T\) works. Why? This \(T\) satisfies:</p>
 <div>
 $$
 \begin{align*}
-v_i &amp;= T(w_i) \\
-       &amp;= T(a_1w_1 + ... + a_nw_n) \\
+T(w_i) = v_i.
+\end{align*}
+$$
+</div>
+<p>More generally,</p>
+<div>
+$$
+\begin{align*}
+T(w) &amp;= T(a_1w_1 + ... + a_nw_n) \\
 	   &amp;= a_1v_1 + ... + a_nv_n.
 \end{align*}
 $$

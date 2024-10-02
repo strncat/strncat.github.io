@@ -51,12 +51,13 @@ BA &= I_n = AB.
 \end{align*}
 $$
 </div>
+<!------------------------------------------------------------------------------------>
 Based on this, we have the following definition
 <div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
-\(A \in M_{n \times n}\) is invertible if \(\ \exists B \in M_{n \times n}\) such that 
+\(A \in M_{n \times n}\) is invertible (yields \(L_A\) invertible) if \(\ \exists B \in M_{n \times n}\) such that 
 $$
 \begin{align*}
 BA = I_n = AB
@@ -81,48 +82,55 @@ C &= B. \ \blacksquare
 \end{align*}
 $$
 </div>
+The inverse of $$A$$ can be denoted by $$A^{-1}$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Conditions for An Invertible Matrix</b></h4>
-So when is $$A$$ invertible? 
-<br>
-<br>
-$$A$$ is invertible if and only if
-<ul>
-	<li>\(L_A: \mathbf{R}^n \rightarrow \mathbf{R}^n\) is invertible.</li>
-	<li>\(L_A\) is 1-1 and onto. (you only need one as consequence of the dimension theorem since the dimension of the domain and the codomain are the same)</li>
-	<li>\(L_A\) is 1-1. (see above or theorem 2.5)</li>
-	<li>\(N(L_A) = \{\bar{0}\}\). The above is equivalent (proved in homework I think) to saying that the null space is only the zero vector.</li>
-	<li>\(\{\bar{x} \ | \ A\bar{x} = \bar{0} = \{\bar{0}\}\). This is just the null space. We can check/settle this by putting the matrix in a row echelon form!</li>
-	<li>a REF of \(A\) has leading entries in each column.</li>
+So now given a matrix $$A$$, how do we know that it's invertible? Previously, we asked if a linear map is invertible and if it was invertible, then we knew the matrix representation of the map is also invertible. So $$A$$ is invertible if and only if
+<ul style="list-style: none;">
+	<li>\(\Leftrightarrow L_A: \mathbf{R}^n \rightarrow \mathbf{R}^n\) is invertible.</li>
+	<li>\(\Leftrightarrow L_A\) is 1-1 and onto. (you only need one as consequence of the dimension theorem since the dimension of the domain and the codomain are the same)</li>
+	<li>\(\Leftrightarrow L_A\) is 1-1. (see above or theorem 2.5)</li>
+	<li>\(\Leftrightarrow N(L_A) = \{\bar{0}\}\). The above is equivalent (proved in homework I think) to saying that the null space is only the zero vector.</li>
+	<li>\(\Leftrightarrow \{\bar{x} \ | \ A\bar{x} = \bar{0} = \{\bar{0}\}\}\). This is just the null space. We can check/settle this by putting the matrix in a row echelon form!</li>
+	<li>\(\Leftrightarrow\) a REF of \(A\) has leading entries in each column.</li>
 </ul>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Matrix Representation for an Inverse Linear Transformation</b></h4>
+We know that linear maps between finite dimensional vector spaces have matrix representations. So now we know to relate these the matrix representation of these maps to their inverse matrices.
+<br>
+<br>
 Suppose $$T: V \rightarrow W$$ is linear. Let $$\beta$$ be a finite basis for $$V$$ and $$\gamma$$ be a finite basis for $$W$$. 
 <br>
 <br>
-We know that $$T$$ has a matrix representative from $$\beta$$ to $$\gamma$$, $$[T]_{\beta}^{\gamma}$$. Therefore, the inverse of $$T$$ will have a matrix representative instead from $$\gamma$$ to $$\beta$$, $$[T]_{\gamma}^{\beta}$$. We want to know what the relationship is between these two matrices.
+We know that $$T$$ has a matrix representative from $$\beta$$ to $$\gamma$$, $$[T]_{\beta}^{\gamma}$$. Therefore, the inverse of $$T$$ will have a matrix representative instead from $$\gamma$$ to $$\beta$$, $$[T]_{\gamma}^{\beta}$$. We want to know what the relationship is between these two matrices. We claim the following:
 <br>
 <br>
-Claim: If $$T: V \rightarrow W$$ is invertible, then
-<div>
+<div class="purdiv">
+Theorem (2.18, part b)
+</div>
+<div class="purbdiv">
+If \(T: V \rightarrow W\) is invertible, then
 $$
 \begin{align*}
-[T^{-1}]_{\gamma}^{\beta} &= ([T]_{\beta}^{\gamma})^{-1}
+[T^{-1}]_{\gamma}^{\beta} &= ([T]_{\beta}^{\gamma})^{-1}.
 \end{align*}
 $$
 </div>
-To see this, let's multiply both matrices. By defintion multiplying these matrices is the composition of the matrices from $$\beta$$ to $$\beta$$ (proved in the last lecture?)
+<br>
+<b>Proof:</b>
+<br>
+To see this, let's multiply both matrices to verify that we get the identity matrix. By theorem 2.11 (lecture 14), we know that multiplying these matrices is the same as the composition of the two matrices.
 <div>
 $$
 \begin{align*}
 [T^{-1}]_{\gamma}^{\beta}[T]^{\gamma}_{\beta} &= [T^{-1} \circ T]_{\beta}^{\beta} \\
                               &= [I_V]_{\beta}^{\beta} \\
-							  &= I_n
+							  &= I_n. \ \blacksquare
 \end{align*}
 $$
 </div>

@@ -5,8 +5,11 @@ date:   2024-08-11 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-The determinant is a map 
-<div>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The determinant is a map
 $$
 \begin{align*}
 \det: &M_{n \times n} \rightarrow \mathbf{R} \\
@@ -14,55 +17,58 @@ $$
 \end{align*}
 $$
 </div>
-Properties of the determinant
-<ul>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Properties of the determinant</b></h4>
+<ol>
 	<li>\(A\) is invertible iff \(\det(A) \neq 0\)</li>
 	<li>\(\det(A)\) has geometric meaning.</li>
-	To see this, let \([0,1]^n = \{(x_1,...,x_n) \in \mathbf{R}^n \ | \ x_i \in [0,1]\)
-	
-	
-	<li>det is not linear except for \(n = 1\). It is linear in the rows of \(A\).</li>
-	<li>\(\det(AB) = \det(A)\det(B)\)</li>
-</ul>
-<br>
+	To see this, let 
+	<div>
+	$$
+	\begin{align*}
+	[0,1]^n = \{(x_1,...,x_n) \in \mathbf{R}^n \ | \ x_i \in [0,1]\}
+	\end{align*}
+	$$
+	</div>
+	What does this represent? In \(\mathbf{R}^2\), this is a unit square. In general, it's a cube determined by the vectors \(\{e_1, e_2,...,e_n\}\). 
+	<br>
+	What does this have anything to do with the determinant? 
+	<br>
+	Consider, the matrix \(A \in M_{n \times n}\). When we apply \(A\) on each vector in the standard basis, we get \(Ae_1, Ae_2, ...\).
+	<br>
+	\(L_A([0,1]^n\) is the parallelepiped determined by \(\{Ae_1, Ae_2, ...,Ae_n\}\) and \(volume(L_A([0,1]^n)) = |det(A)|\).
+	<br>
+	<br>
+	<li>The determinant map is not linear except for \(n = 1\). (It is linear in the rows of \(A\))</li>
+	<li>\(\det(AB) = \det(A)\det(B)\).</li>
+</ol>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Elementary Matrices</b></h4>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-An \(m \times n\) elementary matrix obtained from \(I_n\) by performing an elementary row operation of type I, II or III.
-</div>
+<h4><b>More Properties</b></h4>
+The definition of the $$\det: M_{n \times n} \rightarrow \mathbf{R}$$ is inductive on $$n$$.
 <br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
-Applying the three types of elementary row operations results in the following matrices
+<br>
+For $$n = 1$$: 
+<div>
+$$
+\begin{align*}
+&M_{1\times 1} = \{(a)\} \leftrightarrow \mathbf{R} \\
+       &\det((a)) = a
+\end{align*}
+$$
+</div>
+For the first property, we see that $$(a)^-1 = (\frac{1}{a})$$.
 <div>
 $$
 \begin{align*}
 \begin{pmatrix}
 1 & 0 \\
 0 & 1
-\end{pmatrix} \rightarrow E_1 &= 
-\begin{pmatrix}
-0 & 1 \\
-1 & 0
-\end{pmatrix} \\
-E_2 &= 
-\begin{pmatrix}
-1 & 0 \\
-0 & \lambda
-\end{pmatrix} \\
-E_3 &= 
-\begin{pmatrix}
-1 & 0 \\
-\lambda & 1
 \end{pmatrix}
 \end{align*}
 $$
 </div>
-This leads to the next theorem
 <br>
 <br>
 <br>

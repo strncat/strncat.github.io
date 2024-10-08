@@ -248,23 +248,6 @@ This operation will not further change the value of the determinant. So now we c
 Computing $$\det(A)$$ for $$A \in M_{n \times n}$$ using the inductive formula is roughly $$n!$$ operations. Using row operations, it is roughly $$n^3$$ operations.
 <br>
 <br>
-<br>
-<!-------------------------------------------------------------------------->
-<h4><b>Determinant, rank and invertibility</b></h4>
-It is clear that none of the row operations will lead the determinant to be 0. In fact $$det(A) \neq 0$$ implies
-<ul style="list-style: none;">
-<li>\(\leftrightarrow det(REF) \neq 0\)</li>
-<li>\(\leftrightarrow REF\) of \(A\) has \(n\) leading entries</li>
-<li>\(\leftrightarrow A\) is invertible</li>
-</ul>
-det(AB) = det(A)(B)
-
-
-
-
-
-<br>
-<br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>

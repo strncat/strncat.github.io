@@ -1,4 +1,295 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-07T09:01:48-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 21: Determinants and Row Operations</title><link href="http://localhost:4000/jekyll/update/2024/08/18/lec21-determinants-row-operations.html" rel="alternate" type="text/html" title="Lecture 21: Determinants and Row Operations" /><published>2024-08-18T01:01:36-07:00</published><updated>2024-08-18T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/18/lec21-determinants-row-operations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/18/lec21-determinants-row-operations.html"><![CDATA[<div class="purdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-07T21:03:28-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 22: Determinants and Invertible Matrices</title><link href="http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html" rel="alternate" type="text/html" title="Lecture 22: Determinants and Invertible Matrices" /><published>2024-08-19T01:01:36-07:00</published><updated>2024-08-19T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html"><![CDATA[<p>Last time we proved the theorem that states exactly how row operations change the value of the determinant and then we proved another result where the determinant of upper (lower) triangular matrices is equal to the product of the diagonal entries. This meant that if we put a matrix \(A\) in REF, then we can just multiply the diagonal entries to calculate the determinant in addition to accounting for the type of row operations we applied and how they contribute to the determinant. Specifically, we saw that if we applied some \(k\) row operations on \(A\) to get to \(B\) (REF),</p>
+<div>
+$$
+\begin{align*}
+A \xrightarrow{R_k,...,R_2,R_1} B
+\end{align*}
+$$
+</div>
+<p>Then,</p>
+<div>
+$$
+\begin{align*}
+B_{11}...B_{nn} &amp;= \mathcal{E}(\mathcal{R}_k)...\mathcal{E}(\mathcal{R}_1)\det(A), \\
+\end{align*}
+$$
+</div>
+<p>where</p>
+<div>
+$$
+\begin{align*}
+\mathcal{E}(R) &amp;= 
+\begin{cases} 
+-1, \quad \mathcal{R}\text{ type I } \\
+c, \quad \mathcal{R}\text{ type II w/ scalar $c$ } \\
+1, \quad \mathcal{R}\text{ type III }
+\end{cases}
+\end{align*}
+$$
+</div>
+<p>Therefore,</p>
+<div>
+$$
+\begin{align*}
+\det(A) &amp;= \frac{B_{11}...B_{nn}}{ \mathcal{E}(\mathcal{R}_k)...\mathcal{E}(\mathcal{R}_1)}
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p>It is clear that none of these row operations will lead the determinant to be 0. In fact \(\det(A) \neq 0\) is equivalent to</p>
+<ul style="list-style: none;">
+<li>\(\leftrightarrow \det(REF) \neq 0\)</li>
+<li>\(\leftrightarrow REF\) of \(A\) has \(n\) leading entries</li>
+<li>\(\leftrightarrow A\) is invertible</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------>
+Next, we want to prove a general theorem that states that \(\det(AB) = \det(A)\det(B)\) but in order to do so, we’ll need a couple of theorems. The first theorem is from <a href="https://strncat.github.io/jekyll/update/2024/08/10/lec18-elementary-matrices.html"> lecture 18</a>. We stated a corollary without a proof but now we’ll call it theorem (a) and prove it.
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem (a)
+</div>
+<div class="purbdiv">
+\(A\) is invertible if and only if it can be written as a product of elementary matrices.
+</div>
+<p><br />
+<b>Proof:</b>
+<br />
+\(A\) is invertible is equivalent to</p>
+<ul style="list-style: none;">
+
+<li>\(\leftrightarrow RREF \text{ is } I_n\). When we computed the inverse, we needed  \(A\)'s RREF to be the identity matrix.</li>
+
+<li>\(\leftrightarrow\) This meant that we applied a sequence of elementary row operations on \(A\) to get the identity matrix. These elementary row operations can be represented with matrix multiplication (<a href="https://strncat.github.io/jekyll/update/2024/08/10/lec18-elementary-matrices.html">lecture 18</a>). So \(E_k...E_1A = I_n\). </li>
+
+<li>\(\leftrightarrow\) So we can solve for \(A\) and get \(A = E_1^{-1}...E_k^{-1}\).</li>
+
+<li>\(\leftrightarrow\) These elementary matrices are invertible and they are themselves elementary matrices. So \(A = E_1^{'}...E_k^{'}\) and \(A\) is invertible. \(\blacksquare\)</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------>
+Next, we’ll state the second theorem that we will need
+<br /></p>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+\(A, B\) are invertible if and only if \(AB\) is invertible.
+</div>
+<p><br />
+<br />
+<b>Proof:</b>
+<br />
+\(\Rightarrow\): Suppose \(A\) and \(B\) are invertible. Then, \((AB)^{-1} = B^{-1}A^{-1}\).
+<br />
+<br />
+\(\Leftarrow\): Suppose that \(AB\) is invertible. This implies</p>
+
+<ul style="list-style: none;">
+
+<li>\(\rightarrow L_{ab} = L_a \circ L_b\) is invertible.</li>
+
+<li>\(\rightarrow L_b\) is one to one and \(L_a\) is onto. (We proved this in HW 5 or 6)</li>
+
+<li>\(\rightarrow\) both \(L_a \text{ and } L_b\) map from a vector space to itself. (Note: this was vague but I did prove in the same homework that both matrices must be \(n \times n\) matrices. Here the linear transformations are of the same dimension) as an implication.</li>
+
+<li>\(\rightarrow\) Since they're maps from a vector space to itself, then being onto or one-to-one implies the other so they're both bijective and so both are invertible </li>
+
+<li>\(\rightarrow B, A\) are invertible. \(\blacksquare\) </li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------>
+Finally we’re readying to prove the main theorem:
+<br />
+<br /></p>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+For \(A, B \in M_{n \times n}\)
+$$
+\begin{align*}
+\det(AB) = \det(A)(B)
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<b>Proof:</b>
+<br />
+By Theorem (b) if either \(A\) or \(B\) fails to be invertible, then</p>
+<div>
+$$
+\begin{align*}
+\det(A)\det(B) = 0 = \det(AB)
+\end{align*}
+$$
+</div>
+<p>So assume that \(A\) and \(B\) are both invertible. We have two cases:
+<br />
+Case 1: \(A\) is an elementary matrix so \(A = E(\mathcal{R})\) for some row operation \(\mathcal{R}\). What do we know about the determinant of \(A\)? We need to apply the row operation on the identity matrix and then figure out the type of row operation to determine the relationship between the determinant of \(A\) and the determinant of \(I\). So for,</p>
+<div>
+$$
+\begin{align*}
+I_n \xrightarrow{\mathcal{R}} E(\mathcal{R})
+\end{align*}
+$$
+</div>
+<p>We just need to know the type of operation we applied and apply the previous theorem to figure out \(\mathcal{E}(\mathcal{R})\) (whether it’s 1, 1 or \(-c\)). So we’ll have</p>
+<div>
+$$
+\begin{align*}
+\det(E(R)) = \mathcal{E}(\mathcal{R}) \det I_n = \mathcal{E}(\mathcal{R})  &amp;= 
+\begin{cases} 
+-1, \quad \mathcal{R}\text{ type I } \\
+c, \quad \mathcal{R}\text{ type II w/ scalar $c$ } \\
+1, \quad \mathcal{R}\text{ type III }
+\end{cases}
+\end{align*}
+$$
+</div>
+<p>Putting all of this together</p>
+<div>
+$$
+\begin{align*}
+\det(AB) &amp;= \det(E(\mathcal{R})B) \\ 
+         &amp;= \mathcal{E}(\mathcal{R})\det(B) \\
+		 &amp;= \det(A)\det(B).
+\end{align*}
+$$
+</div>
+<p>For the general case, we know we can write \(A\) and \(B\) as products of elementary matrices by theorem (a) and so</p>
+<div>
+$$
+\begin{align*}
+\det(AB) &amp;= \det(E_1E_2...E_kB) \\ 
+        &amp;= \det(E_1(E_2...E_kB)) \text{ (matrix multiplication is associative)} \\ 
+         &amp;= \det(E_1)\det(E_2...E_kB) \text{ (by Case 1)} \\
+		 &amp;= \det(E_1)\det(E_2)...\det(E_k)\det(B)
+\end{align*}
+$$
+</div>
+<p>Notice here that the product \(\det(E_1)\det(E_2)\) is just \(\det(E_1E_2)\) because \(E_1\) is an elementary matrix (we’re doing the reverse of Case 1). We can continue doing so until we get \(\det(A)\) as follows</p>
+<div>
+$$
+\begin{align*}
+\det(AB) &amp;= \det(E_1)\det(E_2)...\det(E_k)\det(B) \\
+         &amp;= \det(E_1E_2)...\det(E_k)\det(B) \\
+		 &amp;= \det(E_1E_2E_k)\det(B) \\
+		 &amp;= \det(A)\det(B). \blacksquare
+\end{align*}
+$$
+</div>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Cramer's Rule</b></h4>
+<p>Observation: If \(A \in M_{n \times n}\) is invertible, then any system \(A\bar{x}=\bar{b}\) has a unique solution.</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} 
+&amp;=
+\bar{x}
+=
+A^{-1}b.
+\end{align*}
+$$
+</div>
+<p>Cramer’s rule allows to analyze the component of the solution in this setting. What does this mean? For each \(k = 1,...,n\).</p>
+<div>
+$$
+\begin{align*}
+x_ = \frac{\det(M_k)}{\det(A)},
+\end{align*}
+$$
+</div>
+<p>where \(M_k\) is obtained from \(A\) by replacing the \(k\)th column by \(\bar{b}\). This allows to solve for a particular component of the solution without having to solve for everything. It also allows us to analyze the dependence on \(A\) and \(\bar{b}\). Why is this true?
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>Proof:</b>
+Let</p>
+<div>
+$$
+\begin{align*}
+A &amp;= \begin{pmatrix} a_1 &amp; \cdots &amp; a_k \cdots &amp; a_n \end{pmatrix} \\
+M_k &amp;= \begin{pmatrix} a_1 &amp; \cdots &amp; \bar{b_k} \cdots &amp; a_n \end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p>The claim is that if we devide the determinant of \(A\) by the determinant of \(M_k\), we will get the \(k\)th component. Define the matrix \(X_k\) where we will the identity matrix and replace the \(k\)th column with the \(\bar{x}\).</p>
+<div>
+$$
+\begin{align*}
+I_n &amp;= \begin{pmatrix} e_1 &amp; \cdots &amp; \bar{e_k} \cdots &amp; e_n \end{pmatrix} \\
+X_n &amp;= \begin{pmatrix} e_1 &amp; \cdots &amp; \bar{x} \cdots &amp; e_n \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Now, compute the product of \(A\) and \(X\).</p>
+<div>
+$$
+\begin{align*}
+AX_n &amp;= \begin{pmatrix} Ae_1 &amp; \cdots &amp; A\bar{x} \cdots &amp; Ae_k \end{pmatrix} \text{ (definition of matrix multiplication)} \\
+&amp;= \begin{pmatrix} a_1 &amp; \cdots &amp; \bar{b} \cdots &amp; a_n \end{pmatrix} \text{ (Because $Ae_1$ is just the first column of $A$)}\\
+&amp;= M_k
+\end{align*}
+$$
+</div>
+<p>So now take the determinant of both sides to see that,</p>
+<div>
+$$
+\begin{align*}
+\det(AX_n) &amp;= \det(M_k) \\
+\det(A)\det(X_n) &amp;= \det(M_k)  \text{ (By the previous theorem)}\\
+\det(X_n) &amp;= \frac{\det(M_k)}{\det(A)}
+\end{align*}
+$$
+</div>
+<p>Let’s compute \(\det(X_n)\) along the \(r=k\)th column</p>
+<div>
+$$
+\begin{align*}
+\det(X_n) &amp;= \sum_{j=1}^n(-1)^{k+j}(X_n)_{kj}\det(\tilde{X_k})_{kj} \\
+          &amp;= (-1)^{k+k}(x_k)\det(I_{n-1}) \\
+		  &amp;= x_k. \ \blacksquare
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+Suppose \(F: M_{n \times n} \rightarrow \mathbf{R}\) such that
+<ol>
+	<li>\(F\) is linear in rows.</li>
+	<li>\(F(A) = 0\) if \(A\) has two identical rows.</li>
+	<li>\(F(I_n) = 1.\)</li>
+</ol>
+Then \(F = det\)
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Last time we proved the theorem that states exactly how row operations change the value of the determinant and then we proved another result where the determinant of upper (lower) triangular matrices is equal to the product of the diagonal entries. This meant that if we put a matrix \(A\) in REF, then we can just multiply the diagonal entries to calculate the determinant in addition to accounting for the type of row operations we applied and how they contribute to the determinant. Specifically, we saw that if we applied some \(k\) row operations on \(A\) to get to \(B\) (REF), $$ \begin{align*} A \xrightarrow{R_k,...,R_2,R_1} B \end{align*} $$ Then, $$ \begin{align*} B_{11}...B_{nn} &amp;= \mathcal{E}(\mathcal{R}_k)...\mathcal{E}(\mathcal{R}_1)\det(A), \\ \end{align*} $$ where $$ \begin{align*} \mathcal{E}(R) &amp;= \begin{cases} -1, \quad \mathcal{R}\text{ type I } \\ c, \quad \mathcal{R}\text{ type II w/ scalar $c$ } \\ 1, \quad \mathcal{R}\text{ type III } \end{cases} \end{align*} $$ Therefore, $$ \begin{align*} \det(A) &amp;= \frac{B_{11}...B_{nn}}{ \mathcal{E}(\mathcal{R}_k)...\mathcal{E}(\mathcal{R}_1)} \end{align*} $$ It is clear that none of these row operations will lead the determinant to be 0. In fact \(\det(A) \neq 0\) is equivalent to \(\leftrightarrow \det(REF) \neq 0\) \(\leftrightarrow REF\) of \(A\) has \(n\) leading entries \(\leftrightarrow A\) is invertible Next, we want to prove a general theorem that states that \(\det(AB) = \det(A)\det(B)\) but in order to do so, we’ll need a couple of theorems. The first theorem is from lecture 18. We stated a corollary without a proof but now we’ll call it theorem (a) and prove it. Theorem (a) \(A\) is invertible if and only if it can be written as a product of elementary matrices. Proof: \(A\) is invertible is equivalent to]]></summary></entry><entry><title type="html">Lecture 21: Determinants and Row Operations</title><link href="http://localhost:4000/jekyll/update/2024/08/18/lec21-determinants-row-operations.html" rel="alternate" type="text/html" title="Lecture 21: Determinants and Row Operations" /><published>2024-08-18T01:01:36-07:00</published><updated>2024-08-18T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/18/lec21-determinants-row-operations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/18/lec21-determinants-row-operations.html"><![CDATA[<div class="purdiv">
 Theorem
 </div>
 <div class="purbdiv">
@@ -239,19 +530,6 @@ To use the theorem, we’ll put \(A\) in REF.</p>
 <h4><b>Comparisons</b></h4>
 <p>Computing \(\det(A)\) for \(A \in M_{n \times n}\) using the inductive formula is roughly \(n!\) operations. Using row operations, it is roughly \(n^3\) operations.
 <br />
-<br />
-<br />
-<!--------------------------------------------------------------------------></p>
-<h4><b>Determinant, rank and invertibility</b></h4>
-<p>It is clear that none of the row operations will lead the determinant to be 0. In fact \(det(A) \neq 0\) implies</p>
-<ul style="list-style: none;">
-<li>\(\leftrightarrow det(REF) \neq 0\)</li>
-<li>\(\leftrightarrow REF\) of \(A\) has \(n\) leading entries</li>
-<li>\(\leftrightarrow A\) is invertible</li>
-</ul>
-<p>det(AB) = det(A)(B)</p>
-
-<p><br />
 <br /></p>
 <hr />
 
@@ -1254,297 +1532,4 @@ So now if we put together the number of columns without leading entries (nullity
 <h4><b>References</b></h4>
 <ul>
 <li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Recall three types of elementary row operations \(R_i \leftrightarrow R_j\) \(R_i \rightarrow \lambda R_i\) where \(\lambda \neq 0\) \(R_i \rightarrow R_i + \lambda R_j\) Now that we’ve studied matrix multiplication we can state the fact that performing an elementary row operation on \(A \in M_{2 \times 2}\) can actually be described using matrix multiplication. Elementary Matrices Definition An \(m \times n\) elementary matrix obtained from \(I_n\) by performing an elementary row operation of type I, II or III. Example Applying the three types of elementary row operations results in the following matrices $$ \begin{align*} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \rightarrow E_1 &amp;= \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \\ E_2 &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; \lambda \end{pmatrix} \\ E_3 &amp;= \begin{pmatrix} 1 &amp; 0 \\ \lambda &amp; 1 \end{pmatrix} \end{align*} $$ This leads to the next theorem Theorem Let \(E\) be the elementary matrix obtained from \(I_n\) by performing row operation \(\mathcal{R}(E = E(\mathcal{R})))\) for any \(A \in M_{m \times n}\), the product $$ \begin{align*} E(\mathcal{R}) \cdot A_{m \times n} \end{align*} $$ is equal to the matrix obtained from \(A\) by performing \(\mathcal{R}\). Example Let’s apply the elementary matrices on the following given matrix $$ \begin{align*} E_1 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \\ E_2 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; \lambda \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ \lambda c &amp; \lambda d \end{pmatrix} \\ E_3 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;=\begin{pmatrix} 1 &amp; 0 \\ \lambda &amp; 1 \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c + \lambda a &amp; d + \lambda b \end{pmatrix} \end{align*} $$ RREF by Matrix Multiplication Since we can perform elementary row operations by matrix multiplication, then we can possibly see how we can put a matrix in reduced row echelon by multiplication. But first, there is an observation Corollary Each elementary matrix is invertible. $$ \begin{align*} &amp;\mathcal{R}: R_i \leftrightarrow R_j \quad \quad \quad \quad \ \ \mathcal{R}^{-1}: R_j \leftrightarrow R_i \\ &amp;\mathcal{R}: R_i \rightarrow \lambda R_i \quad \quad \quad \quad \mathcal{R}^{-1}: R_i \rightarrow \frac{1}{\lambda} R_i \\ &amp;\mathcal{R}: R_i \rightarrow R_i + \lambda R_j \quad \quad \mathcal{R}^{-1}: R_i \rightarrow R_i - \lambda R_j \end{align*} $$ Proof: apply the elementary row operation by multiplying by \(E(\mathcal{R})\) and then apply the inverse again by multiplying by \(E(\mathcal{R}^{-1})\). The result is the identity matrix. In other words, \(E(\mathcal{R})E(\mathcal{R}^{-1}) = I_n\). Theorem For every \(A \in M_{m \times n}\), there is a finite set of elementary matrices \(E_1,...,E_k \in M_{m \times n}\) such that \(E_k ... E_2E_1\) is in RREF. Theorem \(A \in M_{m \times n}\) is invertible if and only iff there is a finite set of elementary matrices \(E_1,...,E_k \in M_{n \times n}\) such that \(E_k...E_2E_1A = I_n\). \((A \ | \ I_n)\). Note here that from the expression above we can see that \(A^{-1} = E_k...E_1\) and \(A = E_1^{-1}E_2^{-1}...E^{-1}_{k-1}E^{-1}_{k}\) Corollary \(A\) is invertible if and only iff it can be written as a product of elementary matrices. The Rank of a Matrix Recall that the rank of \(T: V \rightarrow W\) is \(\dim(R(T))\).]]></summary></entry><entry><title type="html">Lecture 17: Change of Coordinates and Matrix Representations</title><link href="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html" rel="alternate" type="text/html" title="Lecture 17: Change of Coordinates and Matrix Representations" /><published>2024-08-09T01:01:36-07:00</published><updated>2024-08-09T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/09/lec17-change-of-coordinates.html"><![CDATA[<p>Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)?
-<br />
-<br />
-Starting with \([v]_{\beta'}\), we want to derive an expression for \([v]_{\beta}\). We can write</p>
-<div>
-$$
-\begin{align*}
-[v]_{\beta'} &amp;= [I_V(v)]_{\beta'} \\
-           &amp;= [I_V]_{\beta}^{\beta'}[v]_{\beta} \\
-\end{align*}
-$$
-</div>
-<p>In the first line we just re-wrote the vector so now the identity map is applied on \(v\) which doesn’t change \(v\). 
-<br />
-<br />
-By theorem 2.14, we can re-write this line by first computing the matrix representative of the identity transformation that changes coordinates from \(\beta\) to \(\beta'\). We get this matrix by taking the vectors in \(\beta\), applying the identity transformation which does nothing and then re-writing these vectors with respect to \(\beta'\). These vectors will be the columns of the matrix. 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(V = P_1\), \(\beta = \{1, x\}\) and \(\beta' = \{1+x, 1-x\}\). Then to compute the matrix \([I_V]_{\beta}^{\beta'}\), we want to apply the map on the basis \(\beta\) and then write these relative to the basis \(\beta'\) (meaning for each vector, find its coordinates when written as a linear combination of the vectors of the basis \(\beta'\)).</p>
-<div>
-$$
-\begin{align*}
-[I_V]_{\beta}^{\beta'} &amp;= 
-\begin{pmatrix}
-[I_V(1)]_{\beta'} &amp; [I_V(x)]_{\beta'}
-\end{pmatrix} \\
-&amp;=
-\begin{pmatrix}
-[1]_{\beta'} &amp; [x]_{\beta'}
-\end{pmatrix}.
-\end{align*}
-$$
-</div>
-<p>Now we need to find the coordinates when 1 is written as a linear combination of the vectors of basis \(\beta'\) so</p>
-<div>
-$$
-\begin{align*}
-1 &amp;= a(1 + x) + b(1 - x) \\
-1 &amp;= a + ax + b - bx \\
-1 &amp;= a + b + x(a - b) \\
-\end{align*}
-$$
-</div>
-<p>from this we see that \(a = b = 1/2\). Similarly we need to find the coordinates of \(x\)</p>
-<div>
-$$
-\begin{align*}
-x &amp;= a(1 + x) + b(1 - x) \\
-0 &amp;= a + ax + b - bx - x \\
-0 &amp;= a + b + x(a - b - 1) \\
-\end{align*}
-$$
-</div>
-<p>A solution to this is \(a = 1/2\) and \(b = -1/2\). So now we have</p>
-<div>
-$$
-\begin{align*}
-[I_V]_{\beta}^{\beta'} &amp;= 
-\begin{pmatrix}
-\frac{1}{2} &amp; \frac{1}{2} \\
-\frac{1}{2} &amp; -\frac{1}{2}
-\end{pmatrix}.
-\end{align*}
-$$
-</div>
-<p>We can now use this matrix to transform any vector in \(V\) written with respect to \(\beta\) to a vector written with respect to \(\beta'\). Given some polynomial in \(V\),</p>
-<div>
-$$
-\begin{align*}
-[a_0 + a_1x]_{\beta'} = 
-\begin{pmatrix}
-\frac{1}{2} &amp; \frac{1}{2} \\
-\frac{1}{2} &amp; -\frac{1}{2}
-\end{pmatrix}
-\begin{pmatrix}
-a_0 \\
-a_1
-\end{pmatrix}
-=
-\begin{pmatrix}
-\frac{1}{2}(a_0 + a_1) \\
-\frac{1}{2}(a_0 - a_1)
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>The Inverse of the Change of Coordinates Matrix</b></h4>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-	$$
-	\begin{align*}
-([I_V]_{\beta}^{\beta'})^{-1} = [I_V]^{\beta}_{\beta'}
-    \end{align*}
-	$$
-</div>
-<p><br />
-Proof: To prove that a matrix is an inverse of another matrix, we need to show that their product is the identity matrix so</p>
-<div>
-$$
-\begin{align*}
-[I_V]_{\beta}^{\beta'}[I_V]^{\beta}_{\beta'} &amp;= [I_V \circ I_V]^{\beta'}_{\beta'} \text{ (Theorem 2.11)}\\
- &amp;= [I_V]^{\beta'}_{\beta'} \\
- &amp;= I_n. \ \blacksquare
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Change of Bases</b></h4>
-<p>Question: Given \(T: V \rightarrow W\) and finite bases \(\beta, \beta'\) for \(V\) and \(\gamma, \gamma'\) for \(W\), how are \([T]^{\gamma}_{\beta}\) and \([T]^{\gamma'}_{\beta'}\) related? The only tool we have is composition and using Theorem 2.11</p>
-<div>
-$$
-\begin{align*}
-[T]^{\gamma'}_{\beta'} &amp;= [I_W \circ T \circ I_V]^{\gamma'}_{\beta'} \\
-	&amp;= [I_W]^{\gamma'}_{\gamma}  [T \circ I_V]^{\gamma}_{\beta'} \\
-	&amp;= [I_W]^{\gamma'}_{\gamma}  [T]^{\gamma}_{\beta} [I_V]^{\beta}_{\beta'} \\
-\end{align*}
-$$
-</div>
-<p>If \(W = V\) and \(\gamma, \gamma' = \beta, \beta'\), then</p>
-<div>
-$$
-\begin{align*}
-[T]^{\beta'}_{\beta'} &amp;= [I_W]^{\beta'}_{\beta}  [T]^{\beta}_{\beta} [I_V]^{\beta}_{\beta'} \\
-[T]_{\beta'} &amp;= Q^{-1}[T]_{\beta}Q
-\end{align*}
-$$
-</div>
-<p>Where \(Q = [I_V]^{\beta}_{\beta'}\). If we find such a matrix \(Q\) to relate \([T]_{\beta}\) and \([T]_{\beta'}\) then we call these matrices similar. 
-<br /></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-	\(A, B \in M_{2 \times 2}\) are similar if \(\exists Q \in M_{2 \times 2}\) such that \(B = Q^{-1}AQ\)
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(A =  \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix}\) and consider the map \(L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2\). Suppose we want to compute \(L_A^k = L_A \circ L_A \circ ... \circ L_A\) (\(k\) times)? If we try this the naive way</p>
-<div>
-$$
-\begin{align*}
-A^k = \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} ...
-\end{align*}
-$$
-</div>
-<p>This is going to be really hard to multiply. Can we simplify this computation?
-<br />
-<br />
-So what is \(A^2\) really? It’s the matrix representative of the composition \([L_A \circ L_A]\). In fact if we go back to just \([L_A]_{\beta}\). This is the matrix representative of this map with respect to the standard basis so \([L_A]_{\beta} = A\). The idea then is to find another basis such that the matrix representation of the map with respect to that basis is easier to multiply. So the plan is to find \(\beta'\) such that \([L_A]_{\beta'}^{\beta'}\) is easier to multiply.
-<br />
-<br />
-Note that for \(v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, v_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}\), we’ll find that</p>
-<div>
-$$
-\begin{align*}
-L_A(v_1) &amp;= Av_1 \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 8 \\ 8 \end{pmatrix} = 8v_1 + 0v_2 \\
-L_A(v_2) &amp;= Av_2 \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} 4 \\ -4 \end{pmatrix} = 0v_1 + 4v_2.
-\end{align*}
-$$
-</div>
-<p>Notice that \(\beta' = \{v_1, v_2\}\) is a basis for \(\mathbf{R}^2\). To find \([L_A]_{\beta'}^{\beta'} = [L_A]_{\beta'}\), we need to apply \(L_A\) on the basis vectors of \(\beta'\) and then write them with respect to \(\beta'\).</p>
-<div>
-$$
-\begin{align*}
-[L_A]_{\beta'} &amp;= ([L_A(v_1)]_{\beta'}, [L_A]_{\beta'}) \\
-              &amp;= \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>This leads to</p>
-<div>
-$$
-\begin{align*}
-[L_A \circ L_A ... \circ L_A]_{\beta'}^{\beta'} &amp;= [L_A]_{\beta'}^{\beta'} ... [L_A]_{\beta'}^{\beta'} \\
-              &amp;= \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} ... \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} \\
-			  &amp;= \begin{pmatrix} 8^k &amp; 0 \\0 &amp; 4^k \end{pmatrix}.
-\end{align*}
-$$
-</div>
-<p>The trick here was to find \(v_1\) and \(v_2\) which isn’t yet obvious yet but we will develop a procedure later to find these specific vectors via diagonalization.
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example: Matrix Representation of Orthogonal Projection</b></h4>
-<p>Let \(W = Span\{(1,-1,0), (0,1,-1)\}\). \(W\) is a subspace of \(\mathbf{R}^3\) (It is a plane in \(\mathbf{R}^3\)). 
-<br />
-<br />
-Let \(T: \mathbf{R}^3 \rightarrow \mathbf{R}^3\) be the orthogonal projection onto \(W\). Because we’re projecting onto \(W\) and both \(w_1\) and \(w_2\) are part of this plane, then we know that \(T(w_1) = w_1\) and \(T(w_2) = w_2\). 
-<br />
-<br />
-What we want is to find a matrix expression for this project \([T]_{\beta}^{\beta}\) where \(\beta\) is the standard basis so \(\beta = \{(1,0,0),(0,1,0),(0,0,1)\}\).
-<br />
-<br />
-To find this matrix, it is easier to find \(\beta'\) so that \([T]_{\beta'}^{\beta'}\) is easily understood and use with the tools that we have. We can then use a change of basis formula to convert between the \([T]_{\beta'}\) and \([T]_{\beta}\).
-<br />
-<br />
-What is a candidate for \(\beta'\), something that makes the matrix expression simple? well when \(T\) acts on \(w_1\) and \(w_2\), it doesn’t change them. But we still need one more vector. What should we choose for \(w_3\)? One candidate is the orthogonal vector to the place \(W\) which will mean that its projection is going to be zero. How do we find it? We can take the cross product of \(w_1\) and \(w_2\). \(w_3 = w_1 \times w_2 = (1,1,1)\) and \(T(w_3) = (0,0,0)\).</p>
-<div>
-$$
-\begin{align*}
-[T]_{\beta'}^{\beta'} &amp;= \begin{pmatrix} [T(w_1)]_{\beta'} &amp; [T(w_2)]_{\beta'} &amp; [T(w_3)]_{\beta'} \end{pmatrix} \\
-               &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>Again we derived these by writing \(T(w_1)\) as a linear combination of the basis vectors \(\beta'=\{w_1,w_2,w_3\}\). So \([T(w_1)]_{\beta'} = 1(w_1) + 0(w_2) + 0(w_3)\). and so the coordinate vector is \((1,0,0)\). Similarly \([T(w_2)]_{\beta'} = 0(w_1) + 1(w_2) + 0(w_3)\) and so on.
-<br />
-<br />
-But this is \(T\) with respect to \(\beta'\) and we want \(T\) with respect to \(\beta\). So now we need to use the change of basis formula to get what we want. So</p>
-<div>
-$$
-\begin{align*}
-[T]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} [I_{\mathbf{R}^3}]_{\beta}^{\beta'}
-\end{align*}
-$$
-</div>
-<p>So now we need to compute \([I_{\mathbf{R}^3}]_{\beta'}^{\beta}\). This means for each vector in \(\beta'\), we will apply the identity map which does nothing and then we want to write the vector in terms of the standard basis.</p>
-<div>
-$$
-\begin{align*}
-[I(w_1)]_{\beta} = [w_1]_{\beta} = (1, -1, 0) = 1e_1 -1e_2 + 0e_3 \\
-[I(w_2)]_{\beta} = [w_2]_{\beta} = (0, 1, -1) = 0e_1 + 1e_2 - 1e_3 \\
-[I(w_3)]_{\beta} = [w_3]_{\beta} = (1, 1, 1) = 1e_1 + 1e_2 - 1e_3.
-\end{align*}
-$$
-</div>
-
-<div>
-$$
-\begin{align*}
-[I_{\mathbf{R}^3}]_{\beta'}^{\beta} = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ -1 &amp; 1 &amp; 1 \\ 0 &amp; -1 &amp; 1 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>But \([I_{\mathbf{R}^3}]_{\beta}^{\beta'}\) is a little tricker since we want to write the vectors in \(\beta\) (the standard basis) as linear combinations of the basis \(\beta'\) which we could do. Instead it is easier to just compute the inverse in this case</p>
-<div>
-$$
-\begin{align*}
-[I_{\mathbf{R}^3}]_{\beta}^{\beta'} = ([I_{\mathbf{R}^3}]_{\beta'}^{\beta})^{-1} = \frac{1}{3}\begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>Therefore,</p>
-<div>
-$$
-\begin{align*}
-[T]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} 
- [I_{\mathbf{R}^3}]_{\beta}^{\beta'} \\
-  &amp;= 
-  \frac{1}{3} \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ -1 &amp; 1 &amp; 1 \\ 0 &amp; -1 &amp; 1 \end{pmatrix} 
-  \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}
-  \begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix} \\
-  &amp;= 
-  \frac{1}{3}\begin{pmatrix} 2 &amp; -1 &amp; -1 \\ 1 &amp; 1 &amp; 2 \\ 1 &amp; 1 &amp; 1 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>To verify this is correct, we know how \(T\) acts on \(w_1\) and \(w_2\) so we can check if multiplying by \(T\) gives us the expected result in each so and so we want to verify that</p>
-<div>
-$$
-\begin{align*}
-[T]_{\beta}^{\beta}[w_1]_{\beta} &amp;= [w_1]_{\beta}.
-\end{align*}
-$$
-</div>
-<p><br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Given a vector space \(V\) with two finite basis \(\beta\) and \(\beta'\). For \(v \in V\), what is the relationship between \([v]_{\beta}\) and \([v]_{\beta'}\)? Starting with \([v]_{\beta'}\), we want to derive an expression for \([v]_{\beta}\). We can write $$ \begin{align*} [v]_{\beta'} &amp;= [I_V(v)]_{\beta'} \\ &amp;= [I_V]_{\beta}^{\beta'}[v]_{\beta} \\ \end{align*} $$ In the first line we just re-wrote the vector so now the identity map is applied on \(v\) which doesn’t change \(v\). By theorem 2.14, we can re-write this line by first computing the matrix representative of the identity transformation that changes coordinates from \(\beta\) to \(\beta'\). We get this matrix by taking the vectors in \(\beta\), applying the identity transformation which does nothing and then re-writing these vectors with respect to \(\beta'\). These vectors will be the columns of the matrix. Example Let \(V = P_1\), \(\beta = \{1, x\}\) and \(\beta' = \{1+x, 1-x\}\). Then to compute the matrix \([I_V]_{\beta}^{\beta'}\), we want to apply the map on the basis \(\beta\) and then write these relative to the basis \(\beta'\) (meaning for each vector, find its coordinates when written as a linear combination of the vectors of the basis \(\beta'\)). $$ \begin{align*} [I_V]_{\beta}^{\beta'} &amp;= \begin{pmatrix} [I_V(1)]_{\beta'} &amp; [I_V(x)]_{\beta'} \end{pmatrix} \\ &amp;= \begin{pmatrix} [1]_{\beta'} &amp; [x]_{\beta'} \end{pmatrix}. \end{align*} $$ Now we need to find the coordinates when 1 is written as a linear combination of the vectors of basis \(\beta'\) so $$ \begin{align*} 1 &amp;= a(1 + x) + b(1 - x) \\ 1 &amp;= a + ax + b - bx \\ 1 &amp;= a + b + x(a - b) \\ \end{align*} $$ from this we see that \(a = b = 1/2\). Similarly we need to find the coordinates of \(x\) $$ \begin{align*} x &amp;= a(1 + x) + b(1 - x) \\ 0 &amp;= a + ax + b - bx - x \\ 0 &amp;= a + b + x(a - b - 1) \\ \end{align*} $$ A solution to this is \(a = 1/2\) and \(b = -1/2\). So now we have $$ \begin{align*} [I_V]_{\beta}^{\beta'} &amp;= \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; -\frac{1}{2} \end{pmatrix}. \end{align*} $$ We can now use this matrix to transform any vector in \(V\) written with respect to \(\beta\) to a vector written with respect to \(\beta'\). Given some polynomial in \(V\), $$ \begin{align*} [a_0 + a_1x]_{\beta'} = \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; -\frac{1}{2} \end{pmatrix} \begin{pmatrix} a_0 \\ a_1 \end{pmatrix} = \begin{pmatrix} \frac{1}{2}(a_0 + a_1) \\ \frac{1}{2}(a_0 - a_1) \end{pmatrix} \end{align*} $$ The Inverse of the Change of Coordinates Matrix Theorem $$ \begin{align*} ([I_V]_{\beta}^{\beta'})^{-1} = [I_V]^{\beta}_{\beta'} \end{align*} $$ Proof: To prove that a matrix is an inverse of another matrix, we need to show that their product is the identity matrix so $$ \begin{align*} [I_V]_{\beta}^{\beta'}[I_V]^{\beta}_{\beta'} &amp;= [I_V \circ I_V]^{\beta'}_{\beta'} \text{ (Theorem 2.11)}\\ &amp;= [I_V]^{\beta'}_{\beta'} \\ &amp;= I_n. \ \blacksquare \end{align*} $$ Change of Bases Question: Given \(T: V \rightarrow W\) and finite bases \(\beta, \beta'\) for \(V\) and \(\gamma, \gamma'\) for \(W\), how are \([T]^{\gamma}_{\beta}\) and \([T]^{\gamma'}_{\beta'}\) related? The only tool we have is composition and using Theorem 2.11 $$ \begin{align*} [T]^{\gamma'}_{\beta'} &amp;= [I_W \circ T \circ I_V]^{\gamma'}_{\beta'} \\ &amp;= [I_W]^{\gamma'}_{\gamma} [T \circ I_V]^{\gamma}_{\beta'} \\ &amp;= [I_W]^{\gamma'}_{\gamma} [T]^{\gamma}_{\beta} [I_V]^{\beta}_{\beta'} \\ \end{align*} $$ If \(W = V\) and \(\gamma, \gamma' = \beta, \beta'\), then $$ \begin{align*} [T]^{\beta'}_{\beta'} &amp;= [I_W]^{\beta'}_{\beta} [T]^{\beta}_{\beta} [I_V]^{\beta}_{\beta'} \\ [T]_{\beta'} &amp;= Q^{-1}[T]_{\beta}Q \end{align*} $$ Where \(Q = [I_V]^{\beta}_{\beta'}\). If we find such a matrix \(Q\) to relate \([T]_{\beta}\) and \([T]_{\beta'}\) then we call these matrices similar. Definition \(A, B \in M_{2 \times 2}\) are similar if \(\exists Q \in M_{2 \times 2}\) such that \(B = Q^{-1}AQ\) Example Let \(A = \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix}\) and consider the map \(L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2\). Suppose we want to compute \(L_A^k = L_A \circ L_A \circ ... \circ L_A\) (\(k\) times)? If we try this the naive way $$ \begin{align*} A^k = \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} ... \end{align*} $$ This is going to be really hard to multiply. Can we simplify this computation? So what is \(A^2\) really? It’s the matrix representative of the composition \([L_A \circ L_A]\). In fact if we go back to just \([L_A]_{\beta}\). This is the matrix representative of this map with respect to the standard basis so \([L_A]_{\beta} = A\). The idea then is to find another basis such that the matrix representation of the map with respect to that basis is easier to multiply. So the plan is to find \(\beta'\) such that \([L_A]_{\beta'}^{\beta'}\) is easier to multiply. Note that for \(v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, v_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}\), we’ll find that $$ \begin{align*} L_A(v_1) &amp;= Av_1 \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 8 \\ 8 \end{pmatrix} = 8v_1 + 0v_2 \\ L_A(v_2) &amp;= Av_2 \begin{pmatrix} 6 &amp; 2 \\2 &amp; 6 \end{pmatrix} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} 4 \\ -4 \end{pmatrix} = 0v_1 + 4v_2. \end{align*} $$ Notice that \(\beta' = \{v_1, v_2\}\) is a basis for \(\mathbf{R}^2\). To find \([L_A]_{\beta'}^{\beta'} = [L_A]_{\beta'}\), we need to apply \(L_A\) on the basis vectors of \(\beta'\) and then write them with respect to \(\beta'\). $$ \begin{align*} [L_A]_{\beta'} &amp;= ([L_A(v_1)]_{\beta'}, [L_A]_{\beta'}) \\ &amp;= \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} \end{align*} $$ This leads to $$ \begin{align*} [L_A \circ L_A ... \circ L_A]_{\beta'}^{\beta'} &amp;= [L_A]_{\beta'}^{\beta'} ... [L_A]_{\beta'}^{\beta'} \\ &amp;= \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} ... \begin{pmatrix} 8 &amp; 0 \\0 &amp; 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 8^k &amp; 0 \\0 &amp; 4^k \end{pmatrix}. \end{align*} $$ The trick here was to find \(v_1\) and \(v_2\) which isn’t yet obvious yet but we will develop a procedure later to find these specific vectors via diagonalization. Example: Matrix Representation of Orthogonal Projection Let \(W = Span\{(1,-1,0), (0,1,-1)\}\). \(W\) is a subspace of \(\mathbf{R}^3\) (It is a plane in \(\mathbf{R}^3\)). Let \(T: \mathbf{R}^3 \rightarrow \mathbf{R}^3\) be the orthogonal projection onto \(W\). Because we’re projecting onto \(W\) and both \(w_1\) and \(w_2\) are part of this plane, then we know that \(T(w_1) = w_1\) and \(T(w_2) = w_2\). What we want is to find a matrix expression for this project \([T]_{\beta}^{\beta}\) where \(\beta\) is the standard basis so \(\beta = \{(1,0,0),(0,1,0),(0,0,1)\}\). To find this matrix, it is easier to find \(\beta'\) so that \([T]_{\beta'}^{\beta'}\) is easily understood and use with the tools that we have. We can then use a change of basis formula to convert between the \([T]_{\beta'}\) and \([T]_{\beta}\). What is a candidate for \(\beta'\), something that makes the matrix expression simple? well when \(T\) acts on \(w_1\) and \(w_2\), it doesn’t change them. But we still need one more vector. What should we choose for \(w_3\)? One candidate is the orthogonal vector to the place \(W\) which will mean that its projection is going to be zero. How do we find it? We can take the cross product of \(w_1\) and \(w_2\). \(w_3 = w_1 \times w_2 = (1,1,1)\) and \(T(w_3) = (0,0,0)\). $$ \begin{align*} [T]_{\beta'}^{\beta'} &amp;= \begin{pmatrix} [T(w_1)]_{\beta'} &amp; [T(w_2)]_{\beta'} &amp; [T(w_3)]_{\beta'} \end{pmatrix} \\ &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \end{align*} $$ Again we derived these by writing \(T(w_1)\) as a linear combination of the basis vectors \(\beta'=\{w_1,w_2,w_3\}\). So \([T(w_1)]_{\beta'} = 1(w_1) + 0(w_2) + 0(w_3)\). and so the coordinate vector is \((1,0,0)\). Similarly \([T(w_2)]_{\beta'} = 0(w_1) + 1(w_2) + 0(w_3)\) and so on. But this is \(T\) with respect to \(\beta'\) and we want \(T\) with respect to \(\beta\). So now we need to use the change of basis formula to get what we want. So $$ \begin{align*} [T]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} [I_{\mathbf{R}^3}]_{\beta}^{\beta'} \end{align*} $$ So now we need to compute \([I_{\mathbf{R}^3}]_{\beta'}^{\beta}\). This means for each vector in \(\beta'\), we will apply the identity map which does nothing and then we want to write the vector in terms of the standard basis. $$ \begin{align*} [I(w_1)]_{\beta} = [w_1]_{\beta} = (1, -1, 0) = 1e_1 -1e_2 + 0e_3 \\ [I(w_2)]_{\beta} = [w_2]_{\beta} = (0, 1, -1) = 0e_1 + 1e_2 - 1e_3 \\ [I(w_3)]_{\beta} = [w_3]_{\beta} = (1, 1, 1) = 1e_1 + 1e_2 - 1e_3. \end{align*} $$]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Recall three types of elementary row operations \(R_i \leftrightarrow R_j\) \(R_i \rightarrow \lambda R_i\) where \(\lambda \neq 0\) \(R_i \rightarrow R_i + \lambda R_j\) Now that we’ve studied matrix multiplication we can state the fact that performing an elementary row operation on \(A \in M_{2 \times 2}\) can actually be described using matrix multiplication. Elementary Matrices Definition An \(m \times n\) elementary matrix obtained from \(I_n\) by performing an elementary row operation of type I, II or III. Example Applying the three types of elementary row operations results in the following matrices $$ \begin{align*} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \rightarrow E_1 &amp;= \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \\ E_2 &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; \lambda \end{pmatrix} \\ E_3 &amp;= \begin{pmatrix} 1 &amp; 0 \\ \lambda &amp; 1 \end{pmatrix} \end{align*} $$ This leads to the next theorem Theorem Let \(E\) be the elementary matrix obtained from \(I_n\) by performing row operation \(\mathcal{R}(E = E(\mathcal{R})))\) for any \(A \in M_{m \times n}\), the product $$ \begin{align*} E(\mathcal{R}) \cdot A_{m \times n} \end{align*} $$ is equal to the matrix obtained from \(A\) by performing \(\mathcal{R}\). Example Let’s apply the elementary matrices on the following given matrix $$ \begin{align*} E_1 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \\ E_2 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; \lambda \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ \lambda c &amp; \lambda d \end{pmatrix} \\ E_3 \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} &amp;=\begin{pmatrix} 1 &amp; 0 \\ \lambda &amp; 1 \end{pmatrix} \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c + \lambda a &amp; d + \lambda b \end{pmatrix} \end{align*} $$ RREF by Matrix Multiplication Since we can perform elementary row operations by matrix multiplication, then we can possibly see how we can put a matrix in reduced row echelon by multiplication. But first, there is an observation Corollary Each elementary matrix is invertible. $$ \begin{align*} &amp;\mathcal{R}: R_i \leftrightarrow R_j \quad \quad \quad \quad \ \ \mathcal{R}^{-1}: R_j \leftrightarrow R_i \\ &amp;\mathcal{R}: R_i \rightarrow \lambda R_i \quad \quad \quad \quad \mathcal{R}^{-1}: R_i \rightarrow \frac{1}{\lambda} R_i \\ &amp;\mathcal{R}: R_i \rightarrow R_i + \lambda R_j \quad \quad \mathcal{R}^{-1}: R_i \rightarrow R_i - \lambda R_j \end{align*} $$ Proof: apply the elementary row operation by multiplying by \(E(\mathcal{R})\) and then apply the inverse again by multiplying by \(E(\mathcal{R}^{-1})\). The result is the identity matrix. In other words, \(E(\mathcal{R})E(\mathcal{R}^{-1}) = I_n\). Theorem For every \(A \in M_{m \times n}\), there is a finite set of elementary matrices \(E_1,...,E_k \in M_{m \times n}\) such that \(E_k ... E_2E_1\) is in RREF. Theorem \(A \in M_{m \times n}\) is invertible if and only iff there is a finite set of elementary matrices \(E_1,...,E_k \in M_{n \times n}\) such that \(E_k...E_2E_1A = I_n\). \((A \ | \ I_n)\). Note here that from the expression above we can see that \(A^{-1} = E_k...E_1\) and \(A = E_1^{-1}E_2^{-1}...E^{-1}_{k-1}E^{-1}_{k}\) Corollary \(A\) is invertible if and only iff it can be written as a product of elementary matrices. The Rank of a Matrix Recall that the rank of \(T: V \rightarrow W\) is \(\dim(R(T))\).]]></summary></entry></feed>

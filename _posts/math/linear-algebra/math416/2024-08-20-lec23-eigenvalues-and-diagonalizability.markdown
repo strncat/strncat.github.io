@@ -59,7 +59,7 @@ $$
 <!------------------------------------------------------------------------------------>
 Two questions:
 <br>
-Questions 1: What does such a basis exist?
+Questions 1: Does such a basis exist?
 <br>
 Question 2: If it exists, how can we compute it?
 <br>
@@ -119,7 +119,7 @@ Theorem
 </div>
 <!------------------------------------------------------------------------------------>
 <br>
-This is the same as finding
+This is exactly the same definition we stated earlier. This is the same as finding
 <div>
 $$
 \begin{align*}
@@ -377,7 +377,12 @@ t^2 &= -1 \\
 $$
 </div>
 This polynomial has no real roots! and so the matrix $$A$$ has no eigenvalues.
-
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
 
 
 

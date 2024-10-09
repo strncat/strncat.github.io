@@ -36,13 +36,14 @@ $$
 \end{align*}
 $$
 </div>
-This leads to the question of whether we can transform any matrix to a diagonal matrix so we can perform these computations easily. In the next definition we formalize this,
+This leads to the question of whether we can transform any matrix to a diagonal matrix so we can perform these computations easily. In the next definition we formalize this.
 <!------------------------------------------------------------------------------------>
 <br>
-<div class="bdiv">
-Definition
+<br>
+<div class="purdiv">
+Theorem
 </div>
-<div class="bbdiv">
+<div class="purbdiv">
 \(T \in V \rightarrow V\) is diagonalizable if there is a basis \(\beta = \{v_1,...,v_n\}\) of \(V\) such that 
 $$
 \begin{align*}
@@ -51,20 +52,20 @@ $$
 \lambda_1 & \cdots & 0 \\
 \vdots & \ddots & \vdots \\
 0 & \cdots & \lambda_n
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
 $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-Two questions:
+Two questions arises from this definition:
 <br>
 Questions 1: Does such a basis exist?
 <br>
 Question 2: If it exists, how can we compute it?
 <br>
 <br>
-A basis $$\beta = \{v_1,...,v_n\}$$ such that
+Suppose we have a basis $$\beta = \{v_1,...,v_n\}$$ such that
 $$
 [T]_{\beta}^{\beta} = 
 \begin{pmatrix} 
@@ -73,28 +74,43 @@ $$
 0 & \cdots & \lambda_n
 \end{pmatrix}.
 $$
+<br>
 This is equivalent to
 <ul style="list-style: none;">
-	<li> \(\leftrightarrow [T(v_j)]_{\beta} =   \begin{pmatrix} 0 \\\vdots \\\lambda_j \\ \vdots \\ 0 \end{pmatrix}\). for \(j = 1,..,n\).</li>
-    <li>\(\leftrightarrow [T(v_j)]_{\beta} =  \lambda_j \begin{pmatrix} 0 \\\vdots \\1 \\ \vdots \\ 0 \end{pmatrix} = \lambda_j [v_j]_{\beta} = [\lambda_jv_j]_{\beta} \) for \(j = 1,...,n\). This is true because that coordinate expression is the coordinate expression of the \(j\)th vector in the basis \(\beta\). </li>
-	<li>\(\leftrightarrow T[v_j] = \lambda_jv_j\) for \(j = 1,...,n\) and \(\lambda_1,...,\lambda_n \in \mathbf{R}\). We can just write the transformation since they are both with respect to basis \(\beta\).  </li>
-	<li>\(\leftrightarrow T[v] = \lambda v\).  </li>
-	<li>\(\leftrightarrow T[v] = \lambda I_V(v)\). Since the identity matrix does nothing. </li>
-	<li>\(\leftrightarrow T[v] - \lambda I_V(v) = \bar{0}_V\). </li>
-	<li>\(\leftrightarrow (T - \lambda I_V)(v) = \bar{0}_V\). </li>
+	<li> \(\leftrightarrow\) each vector in the matrix above by definition is a basis vector expressed with respect to the basis \(\beta\). In other words, 
+		\([T(v_j)]_{\beta} =  
+		\begin{pmatrix} 0 & \cdots & \lambda_j & \cdots & 0 \end{pmatrix}^t\). 
+	for \(j = 1,..,n\).
+	</li>
+    <li>\(\leftrightarrow\) We can factor \(\lambda\) to see that \([T(v_j)]_{\beta} =  \lambda_j \begin{pmatrix} 0 & \cdots & 1 & \cdots & 0 \end{pmatrix}^t \). But this is just the \(j\)th vector of the standard basis so we can write it as \(\lambda_j[v_j]_{\beta}\). [TODO: I'm not very convinced here about the last step].
+	</li>
+    <li>\(\leftrightarrow\) We can take the constant \(\lambda_j\) inside since \([]_{\beta}\) is linear to see that \([T(v_j)]_{\beta} = \lambda_j[v_j]_{\beta} = [\lambda_jv_j]_{\beta} \) for \(j = 1,...,n\).
+	</li>
+	<li>\(\leftrightarrow T(v_j) = \lambda_jv_j\) for \(j = 1,...,n\) and \(\lambda_1,...,\lambda_n \in \mathbf{R}\). Because they are both with respect to basis \(\beta\).
+	</li>
+	<li>\(\leftrightarrow T(v) = \lambda v\).
+	</li>
+	<li>\(\leftrightarrow T(v) = \lambda I_V(v)\). Since the identity matrix does nothing.
+	</li>
+	<li>\(\leftrightarrow T(v) - \lambda I_V(v) = \bar{0}_V\).
+	</li>
+	<li>\(\leftrightarrow (T - \lambda I_V)(v) = \bar{0}_V\).
+	</li>
 </ul>
-The left hand side is a family of linear maps parameterized by $$\lambda$$. So we want all the non-zero elements $$v$$ of the null space (we don't care about the zero solution since we want to build a basis).
+The left hand side is a family of linear maps parameterized by $$\lambda$$. The solution to this is the set of all the non-zero vectors $$v$$ of the null space. We don't care about the zero solution since we want to build a basis.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Eigenvectors and Eigenvalues of a Linear Transformation</b></h4>
+So now we've seen that finding such a basis boils down to finding all vectors such that $$T(v) = \lambda v$$. These vectors are called eigenvectors. More formally,
+
 <div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
-An eigenvector of \(T \in V \rightarrow V\) is a \(v \neq \bar{0}_V\) such that
+An eigenvector of \(\ T \in V \rightarrow V\) is a \(v \neq \bar{0}_V\) such that
 $$
 \begin{align*}
 T(v) = \lambda v
@@ -103,13 +119,17 @@ $$
 </div>
 <!------------------------------------------------------------------------------------>
 <br>
+And the $$\lambda$$'s are called,
+<br>
 <div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
-\(\lambda \in \mathbf{R}\) is an eigenvalue of \(T \in V \rightarrow V\) if \(\exists v \neq \bar{0}_V\) such that \(T(v) = \lambda v\).
+\(\lambda \in \mathbf{R}\) is an eigenvalue of \(\ T \in V \rightarrow V\) if \(\exists v \neq \bar{0}_V\) such that \(T(v) = \lambda v\).
 </div>
 <!------------------------------------------------------------------------------------>
+<br>
+We can now restate the previous theorem as the following,
 <br>
 <div class="purdiv">
 Theorem
@@ -119,7 +139,7 @@ Theorem
 </div>
 <!------------------------------------------------------------------------------------>
 <br>
-This is exactly the same definition we stated earlier. This is the same as finding
+As we've seen before, finding eigenvectors $$T(v) = \lambda v$$ is equivalent to finding a basis $$\beta$$ where
 <div>
 $$
 \begin{align*}
@@ -132,7 +152,7 @@ $$
 \end{align*}
 $$
 </div>
-Instead of focusing on these general linear maps. Let's turn now to focus on matrices.
+This is all great. But now instead of looking at general linear maps that satisfy these conditions, let's turn focus on matrices.
 <br>
 <br>
 <hr>

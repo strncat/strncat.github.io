@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-09T09:30:01-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 23: Eigenvalues and Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 23: Eigenvalues and Diagonalizability" /><published>2024-08-20T01:01:36-07:00</published><updated>2024-08-20T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html"><![CDATA[<div class="bdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-09T10:44:53-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 23: Eigenvalues and Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 23: Eigenvalues and Diagonalizability" /><published>2024-08-20T01:01:36-07:00</published><updated>2024-08-20T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html"><![CDATA[<div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
@@ -29,13 +29,14 @@ $$
 \end{align*}
 $$
 </div>
-<p>This leads to the question of whether we can transform any matrix to a diagonal matrix so we can perform these computations easily. In the next definition we formalize this,
+<p>This leads to the question of whether we can transform any matrix to a diagonal matrix so we can perform these computations easily. In the next definition we formalize this.
 <!------------------------------------------------------------------------------------>
+<br />
 <br /></p>
-<div class="bdiv">
-Definition
+<div class="purdiv">
+Theorem
 </div>
-<div class="bbdiv">
+<div class="purbdiv">
 \(T \in V \rightarrow V\) is diagonalizable if there is a basis \(\beta = \{v_1,...,v_n\}\) of \(V\) such that 
 $$
 \begin{align*}
@@ -44,37 +45,50 @@ $$
 \lambda_1 &amp; \cdots &amp; 0 \\
 \vdots &amp; \ddots &amp; \vdots \\
 0 &amp; \cdots &amp; \lambda_n
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
 $$
 </div>
 <p><br />
 <!------------------------------------------------------------------------------------>
-Two questions:
+Two questions arises from this definition:
 <br />
 Questions 1: Does such a basis exist?
 <br />
 Question 2: If it exists, how can we compute it?
 <br />
 <br />
-A basis \(\beta = \{v_1,...,v_n\}\) such that
+Suppose we have a basis \(\beta = \{v_1,...,v_n\}\) such that
 \([T]_{\beta}^{\beta} = 
 \begin{pmatrix} 
 \lambda_1 &amp; \cdots &amp; 0 \\
 \vdots &amp; \ddots &amp; \vdots \\
 0 &amp; \cdots &amp; \lambda_n
 \end{pmatrix}.\)
+<br />
 This is equivalent to</p>
 <ul style="list-style: none;">
-	<li> \(\leftrightarrow [T(v_j)]_{\beta} =   \begin{pmatrix} 0 \\\vdots \\\lambda_j \\ \vdots \\ 0 \end{pmatrix}\). for \(j = 1,..,n\).</li>
-    <li>\(\leftrightarrow [T(v_j)]_{\beta} =  \lambda_j \begin{pmatrix} 0 \\\vdots \\1 \\ \vdots \\ 0 \end{pmatrix} = \lambda_j [v_j]_{\beta} = [\lambda_jv_j]_{\beta} \) for \(j = 1,...,n\). This is true because that coordinate expression is the coordinate expression of the \(j\)th vector in the basis \(\beta\). </li>
-	<li>\(\leftrightarrow T[v_j] = \lambda_jv_j\) for \(j = 1,...,n\) and \(\lambda_1,...,\lambda_n \in \mathbf{R}\). We can just write the transformation since they are both with respect to basis \(\beta\).  </li>
-	<li>\(\leftrightarrow T[v] = \lambda v\).  </li>
-	<li>\(\leftrightarrow T[v] = \lambda I_V(v)\). Since the identity matrix does nothing. </li>
-	<li>\(\leftrightarrow T[v] - \lambda I_V(v) = \bar{0}_V\). </li>
-	<li>\(\leftrightarrow (T - \lambda I_V)(v) = \bar{0}_V\). </li>
+	<li> \(\leftrightarrow\) each vector in the matrix above by definition is a basis vector expressed with respect to the basis \(\beta\). In other words, 
+		\([T(v_j)]_{\beta} =  
+		\begin{pmatrix} 0 &amp; \cdots &amp; \lambda_j &amp; \cdots &amp; 0 \end{pmatrix}^t\). 
+	for \(j = 1,..,n\).
+	</li>
+    <li>\(\leftrightarrow\) We can factor \(\lambda\) to see that \([T(v_j)]_{\beta} =  \lambda_j \begin{pmatrix} 0 &amp; \cdots &amp; 1 &amp; \cdots &amp; 0 \end{pmatrix}^t \). But this is just the \(j\)th vector of the standard basis so we can write it as \(\lambda_j[v_j]_{\beta}\). [TODO: I'm not very convinced here about the last step].
+	</li>
+    <li>\(\leftrightarrow\) We can take the constant \(\lambda_j\) inside since \([]_{\beta}\) is linear to see that \([T(v_j)]_{\beta} = \lambda_j[v_j]_{\beta} = [\lambda_jv_j]_{\beta} \) for \(j = 1,...,n\).
+	</li>
+	<li>\(\leftrightarrow T(v_j) = \lambda_jv_j\) for \(j = 1,...,n\) and \(\lambda_1,...,\lambda_n \in \mathbf{R}\). Because they are both with respect to basis \(\beta\).
+	</li>
+	<li>\(\leftrightarrow T(v) = \lambda v\).
+	</li>
+	<li>\(\leftrightarrow T(v) = \lambda I_V(v)\). Since the identity matrix does nothing.
+	</li>
+	<li>\(\leftrightarrow T(v) - \lambda I_V(v) = \bar{0}_V\).
+	</li>
+	<li>\(\leftrightarrow (T - \lambda I_V)(v) = \bar{0}_V\).
+	</li>
 </ul>
-<p>The left hand side is a family of linear maps parameterized by \(\lambda\). So we want all the non-zero elements \(v\) of the null space (we don’t care about the zero solution since we want to build a basis).
+<p>The left hand side is a family of linear maps parameterized by \(\lambda\). The solution to this is the set of all the non-zero vectors \(v\) of the null space. We don’t care about the zero solution since we want to build a basis.
 <br />
 <br /></p>
 <hr />
@@ -82,11 +96,13 @@ This is equivalent to</p>
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Eigenvectors and Eigenvalues of a Linear Transformation</b></h4>
+<p>So now we’ve seen that finding such a basis boils down to finding all vectors such that \(T(v) = \lambda v\). These vectors are called eigenvectors. More formally,</p>
+
 <div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
-An eigenvector of \(T \in V \rightarrow V\) is a \(v \neq \bar{0}_V\) such that
+An eigenvector of \(\ T \in V \rightarrow V\) is a \(v \neq \bar{0}_V\) such that
 $$
 \begin{align*}
 T(v) = \lambda v
@@ -94,15 +110,19 @@ T(v) = \lambda v
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<p><br /></p>
+<p><br />
+And the \(\lambda\)’s are called,
+<br /></p>
 <div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
-\(\lambda \in \mathbf{R}\) is an eigenvalue of \(T \in V \rightarrow V\) if \(\exists v \neq \bar{0}_V\) such that \(T(v) = \lambda v\).
+\(\lambda \in \mathbf{R}\) is an eigenvalue of \(\ T \in V \rightarrow V\) if \(\exists v \neq \bar{0}_V\) such that \(T(v) = \lambda v\).
 </div>
 <!------------------------------------------------------------------------------------>
-<p><br /></p>
+<p><br />
+We can now restate the previous theorem as the following,
+<br /></p>
 <div class="purdiv">
 Theorem
 </div>
@@ -111,7 +131,7 @@ Theorem
 </div>
 <!------------------------------------------------------------------------------------>
 <p><br />
-This is exactly the same definition we stated earlier. This is the same as finding</p>
+As we’ve seen before, finding eigenvectors \(T(v) = \lambda v\) is equivalent to finding a basis \(\beta\) where</p>
 <div>
 $$
 \begin{align*}
@@ -124,7 +144,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>Instead of focusing on these general linear maps. Let’s turn now to focus on matrices.
+<p>This is all great. But now instead of looking at general linear maps that satisfy these conditions, let’s turn focus on matrices.
 <br />
 <br /></p>
 <hr />
@@ -388,7 +408,7 @@ $$
 <h4><b>References</b></h4>
 <ul>
 <li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition \(A \in M_{n \times n}\) is diagonal if all entries off diagonal are 0. \(A_{ij} = 0\) if \(i \neq j\). All computations involving diagonal matrices are simple. If \(A, B\) are diagonal, then $$ \begin{align*} \det(A) = A_{11}...A_{nn} \end{align*} $$ Similarly, matrix multiplication of diagonal matrices is simple. The \(AB_{ij}\)th entry is $$ \begin{align*} AB_{ij} &amp;= \begin{cases} A_{ij}B_{ij} \quad \text{if } i = j \\ 0\phantom{A_{ij}B} \quad \text{if } i \neq j \end{cases} \end{align*} $$ This can be generalized to computing \((A)^k\) where the \(ij\) entry is $$ \begin{align*} (A^k)_{ij} &amp;= \begin{cases} (A_{ij})^k \quad \text{if } i = j \\ 0\phantom{(A_{ij})} \quad \text{if } i \neq j \end{cases} \end{align*} $$ This leads to the question of whether we can transform any matrix to a diagonal matrix so we can perform these computations easily. In the next definition we formalize this, Definition \(T \in V \rightarrow V\) is diagonalizable if there is a basis \(\beta = \{v_1,...,v_n\}\) of \(V\) such that $$ \begin{align*} [T]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix} \end{align*} $$ Two questions: Questions 1: Does such a basis exist? Question 2: If it exists, how can we compute it? A basis \(\beta = \{v_1,...,v_n\}\) such that \([T]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix}.\) This is equivalent to \(\leftrightarrow [T(v_j)]_{\beta} = \begin{pmatrix} 0 \\\vdots \\\lambda_j \\ \vdots \\ 0 \end{pmatrix}\). for \(j = 1,..,n\). \(\leftrightarrow [T(v_j)]_{\beta} = \lambda_j \begin{pmatrix} 0 \\\vdots \\1 \\ \vdots \\ 0 \end{pmatrix} = \lambda_j [v_j]_{\beta} = [\lambda_jv_j]_{\beta} \) for \(j = 1,...,n\). This is true because that coordinate expression is the coordinate expression of the \(j\)th vector in the basis \(\beta\). \(\leftrightarrow T[v_j] = \lambda_jv_j\) for \(j = 1,...,n\) and \(\lambda_1,...,\lambda_n \in \mathbf{R}\). We can just write the transformation since they are both with respect to basis \(\beta\). \(\leftrightarrow T[v] = \lambda v\). \(\leftrightarrow T[v] = \lambda I_V(v)\). Since the identity matrix does nothing. \(\leftrightarrow T[v] - \lambda I_V(v) = \bar{0}_V\). \(\leftrightarrow (T - \lambda I_V)(v) = \bar{0}_V\). The left hand side is a family of linear maps parameterized by \(\lambda\). So we want all the non-zero elements \(v\) of the null space (we don’t care about the zero solution since we want to build a basis). Eigenvectors and Eigenvalues of a Linear Transformation Definition An eigenvector of \(T \in V \rightarrow V\) is a \(v \neq \bar{0}_V\) such that $$ \begin{align*} T(v) = \lambda v \end{align*} $$ Definition \(\lambda \in \mathbf{R}\) is an eigenvalue of \(T \in V \rightarrow V\) if \(\exists v \neq \bar{0}_V\) such that \(T(v) = \lambda v\). Theorem \(T \in V \rightarrow V\) is diagonalizable if and only if there is a basis \(\beta = \{v_1,...,v_n\}\) consisting of eigenvectors. This is exactly the same definition we stated earlier. This is the same as finding $$ \begin{align*} [T]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix}, \lambda_1,...,\lambda_n \text{ eigenvalues} \end{align*} $$ Instead of focusing on these general linear maps. Let’s turn now to focus on matrices. Eigenvectors and Eigenvalues of Matrices Definition \(A \in M_{n \times n}\) is diagonalizable if \(L_A\) is diagonalizable. This is equivalent to “There is a \(Q \in M_{n \times n}\) such that \(Q^{-1}AQ\) is diagonal”. Definition An eigenvector of \(A \in M_{n \times n}\) is a \(v \neq \bar{0} \in \mathbf{R}^n\) such that \(Av = \lambda v\). and finally, Definition \(\lambda \in \mathbf{R}\) is an eigenvalue of \(A \in M_{n \times n}\) if \(\exists v \neq \bar{0}_V\) such that \(Av = \lambda v\). Finding eigenvectors Okay now that we’ve narrowed down the discussion to matrices, how do we actually find these eigenvectors of \(A\)? Again, let set the null space of \(A\) to \(N(A) = N(L_A)\). Next we will need the following lemma Lemma \(v \in \mathbf{R}^n\) is an eigenvector of \(A\) with eigenvalue \(\lambda\) if and only if \(v \in N(A - \lambda I_n)\). Proof: Suppose \(v\) is an eigenvector of (A). By definition this means that \(Av = \lambda v\). We can re-write this as, $$ \begin{align*} Av &amp;= \lambda I_n v \\ Av - \lambda I_n v &amp;= \bar{0} \end{align*} $$ But this precisely means that \(v \in N(A - \lambda I_n) \ \blacksquare\). Example Find all the eigen values of $$ \begin{align*} A = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ -2 &amp; 0 &amp; 3 \end{pmatrix} \end{align*} $$ with eigenvalue 1. By the lemma, we want all vectors in the null space of \(A - \lambda I_n\). $$ \begin{align*} A - (1)I_n = \begin{pmatrix} -1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 0 \\ -2 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ We’ll put this matrix in row echelon form. $$ \begin{align*} \begin{pmatrix} -1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 0 \\ -2 &amp; 0 &amp; 2 \end{pmatrix} R_3 \rightarrow -2R_1 + R_3, R_1 \leftrightarrow -1R_1 \begin{pmatrix} 1 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \end{align*} $$ From this we see that the null space consists of vectors of the form $$ \begin{align*} &amp;= \{(x_1, x_2, x_3) \ | \ x_3 = t, x_1 = t, x_2 = 0\}. \\ &amp;= \{(t, 0, t) \ | \ t \in \mathbf{R} \} \\ &amp;= span\{ (1,0,1) \} \end{align*} $$ This is easy because we are given the eigenvalue. But typically, we also need to find the eigenvalues too! Eigenspace Definition If \(\lambda\) is an eigenvalue of \(A\), then the eigenspace of \(A\) corresponding to \(\lambda\) is $$ \begin{align*} E_{\lambda} &amp;= N(A - \lambda I_n) \\ &amp;= \{ \text{eigenvectors for } \lambda \} \cup \{\bar{0}\} \end{align*} $$ So this is kind of like another name for the null space except that here we have the zero vector. Finding Eigenvalues Again, if we’re given an eigenvalue, then finding the eigenspace or eigenvectors is easy and simple. We’re just solving a system of linear equations like we did for finding the nullspace. The question is how can we find the eigenvalues? for this we need the following theorem Theorem \(\lambda\) is an eigenvalue of \(A\) if and only if \(\det(A - \lambda I_n) = 0\). Proof: \(\lambda\) is an eigenvalue is equivalent to $$ \begin{align*} &amp;\leftrightarrow \exists v \neq \bar{0} \text{ such that } Av = \lambda v \\ &amp;\leftrightarrow (A - \lambda I_n)(v) = \bar{0} \text{ for } v \neq 0\\ &amp;\leftrightarrow N(A - \lambda I_n)(v) \neq \bar{0} \\ &amp;\leftrightarrow A - \lambda I_n \text{ is not 1-1} \\ &amp;\leftrightarrow A - \lambda I_n \text{ is not invertible} \\ &amp;\leftrightarrow \det(A - \lambda I_n) = 0. \\ \end{align*} $$ So we see now that we have the necessary and sufficient conditions for \(\lambda\) to be an eigenvalue of \(A\). So what’s next? \(A\) is given to us in this equation but we need a \(\lambda\) that would make the equation \(\det(A - \lambda I_n)\) equal to zero. Let’s look at the following definition Definition \(f(t) = \det(A - tI_n)\) is the characteristic polynomial of \(A\). What is this saying? we can interpret the right hand side as a function. We’re given \(A\). We know the identity matrix. So the unknown is \(t\). So inside the determinant, we’ll have a matrix with entries that depend on \(A\) and \(t\). We know the determinant is a map / inductive formula. So this expression when expanded as a whole is some number that depends on it. In fact it shouldn’t be surprising that \(f(t)\) is a polynomial of degree \(n\) (FACT). Based on this, we can rephrase the previous theorem as the following corollary, Corollary 1 \(\lambda\) is an eigenvalue of \(A\) if and only if \(f(t) = \det(A - \lambda I_n)\). So eigenvalues are the roots of this polynomial so it’s not always easy to do. How many roots? We know the degree of \(f(t)\) is at most \(n\). Therefore, Corollary 2 \(A\) has at most \(n\) eigenvalues. So we know at least that there can only be \(n\) roots/eigenvalues at most. Example Find the eigenvalues of \(\begin{align*} A = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}. \end{align*}\) Let’s write the characteristic polynomial and find its roots so $$ \begin{align*} f(t) = \det(A - tI_n) &amp;= 0 \\ \det \begin{pmatrix} -t &amp; -1 \\ 1 &amp; -t \end{pmatrix} &amp;= 0 \\ t^2 + 1 &amp;= 0 \\ t^2 &amp;= -1 \\ \end{align*} $$ This polynomial has no real roots! and so the matrix \(A\) has no eigenvalues. Example]]></summary></entry><entry><title type="html">Lecture 22: Determinants and Invertible Matrices</title><link href="http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html" rel="alternate" type="text/html" title="Lecture 22: Determinants and Invertible Matrices" /><published>2024-08-19T01:01:36-07:00</published><updated>2024-08-19T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html"><![CDATA[<p>Last time we proved the theorem that states exactly how row operations change the value of the determinant and then we proved another result where the determinant of upper (lower) triangular matrices is equal to the product of the diagonal entries. This meant that if we put a matrix \(A\) in REF, then we can just multiply the diagonal entries to calculate the determinant in addition to accounting for the type of row operations we applied and how they contribute to the determinant. Specifically, we saw that if we applied some \(k\) row operations on \(A\) to get to \(B\) (REF),</p>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition \(A \in M_{n \times n}\) is diagonal if all entries off diagonal are 0. \(A_{ij} = 0\) if \(i \neq j\). All computations involving diagonal matrices are simple. If \(A, B\) are diagonal, then $$ \begin{align*} \det(A) = A_{11}...A_{nn} \end{align*} $$ Similarly, matrix multiplication of diagonal matrices is simple. The \(AB_{ij}\)th entry is $$ \begin{align*} AB_{ij} &amp;= \begin{cases} A_{ij}B_{ij} \quad \text{if } i = j \\ 0\phantom{A_{ij}B} \quad \text{if } i \neq j \end{cases} \end{align*} $$ This can be generalized to computing \((A)^k\) where the \(ij\) entry is $$ \begin{align*} (A^k)_{ij} &amp;= \begin{cases} (A_{ij})^k \quad \text{if } i = j \\ 0\phantom{(A_{ij})} \quad \text{if } i \neq j \end{cases} \end{align*} $$ This leads to the question of whether we can transform any matrix to a diagonal matrix so we can perform these computations easily. In the next definition we formalize this. Theorem \(T \in V \rightarrow V\) is diagonalizable if there is a basis \(\beta = \{v_1,...,v_n\}\) of \(V\) such that $$ \begin{align*} [T]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix}. \end{align*} $$ Two questions arises from this definition: Questions 1: Does such a basis exist? Question 2: If it exists, how can we compute it? Suppose we have a basis \(\beta = \{v_1,...,v_n\}\) such that \([T]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix}.\) This is equivalent to \(\leftrightarrow\) each vector in the matrix above by definition is a basis vector expressed with respect to the basis \(\beta\). In other words, \([T(v_j)]_{\beta} = \begin{pmatrix} 0 &amp; \cdots &amp; \lambda_j &amp; \cdots &amp; 0 \end{pmatrix}^t\). for \(j = 1,..,n\). \(\leftrightarrow\) We can factor \(\lambda\) to see that \([T(v_j)]_{\beta} = \lambda_j \begin{pmatrix} 0 &amp; \cdots &amp; 1 &amp; \cdots &amp; 0 \end{pmatrix}^t \). But this is just the \(j\)th vector of the standard basis so we can write it as \(\lambda_j[v_j]_{\beta}\). [TODO: I'm not very convinced here about the last step]. \(\leftrightarrow\) We can take the constant \(\lambda_j\) inside since \([]_{\beta}\) is linear to see that \([T(v_j)]_{\beta} = \lambda_j[v_j]_{\beta} = [\lambda_jv_j]_{\beta} \) for \(j = 1,...,n\). \(\leftrightarrow T(v_j) = \lambda_jv_j\) for \(j = 1,...,n\) and \(\lambda_1,...,\lambda_n \in \mathbf{R}\). Because they are both with respect to basis \(\beta\). \(\leftrightarrow T(v) = \lambda v\). \(\leftrightarrow T(v) = \lambda I_V(v)\). Since the identity matrix does nothing. \(\leftrightarrow T(v) - \lambda I_V(v) = \bar{0}_V\). \(\leftrightarrow (T - \lambda I_V)(v) = \bar{0}_V\). The left hand side is a family of linear maps parameterized by \(\lambda\). The solution to this is the set of all the non-zero vectors \(v\) of the null space. We don’t care about the zero solution since we want to build a basis. Eigenvectors and Eigenvalues of a Linear Transformation So now we’ve seen that finding such a basis boils down to finding all vectors such that \(T(v) = \lambda v\). These vectors are called eigenvectors. More formally,]]></summary></entry><entry><title type="html">Lecture 22: Determinants and Invertible Matrices</title><link href="http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html" rel="alternate" type="text/html" title="Lecture 22: Determinants and Invertible Matrices" /><published>2024-08-19T01:01:36-07:00</published><updated>2024-08-19T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html"><![CDATA[<p>Last time we proved the theorem that states exactly how row operations change the value of the determinant and then we proved another result where the determinant of upper (lower) triangular matrices is equal to the product of the diagonal entries. This meant that if we put a matrix \(A\) in REF, then we can just multiply the diagonal entries to calculate the determinant in addition to accounting for the type of row operations we applied and how they contribute to the determinant. Specifically, we saw that if we applied some \(k\) row operations on \(A\) to get to \(B\) (REF),</p>
 <div>
 $$
 \begin{align*}

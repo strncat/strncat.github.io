@@ -173,10 +173,10 @@ Okay now that we've narrowed down the discussion to matrices, how do we actually
 <br>
 Again, let set the null space of $$A$$ to $$N(A) = N(L_A)$$. Next we will need the following lemma
 <br>
-<div class="bdiv">
+<div class="purdiv">
 Lemma
 </div>
-<div class="bbdiv">
+<div class="purbdiv">
 \(v \in \mathbf{R}^n\) is an eigenvector of \(A\) with eigenvalue \(\lambda\) if and only if \(v \in N(A - \lambda I_n)\).
 </div>
 <!------------------------------------------------------------------------------------>
@@ -276,6 +276,111 @@ E_{\lambda} &= N(A - \lambda I_n) \\
 \end{align*}
 $$
 </div>
+<br>
+So this is kind of like another name for the null space except that here we have the zero vector.
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Finding Eigenvalues</b></h4>
+Again, if we're given an eigenvalue, then finding the eigenspace or eigenvectors is easy and simple. We're just solving a system of linear equations like we did for finding the nullspace. The question is how can we find the eigenvalues? for this we need the following theorem
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+\(\lambda\) is an eigenvalue of \(A\) if and only if \(\det(A - \lambda I_n) = 0\).
+</div>
+<br>
+<b>Proof:</b>
+<br>
+<br>
+$$\lambda$$ is an eigenvalue is equivalent to
+<div>
+$$
+\begin{align*}
+&\leftrightarrow \exists v \neq \bar{0} \text{ such that } Av = \lambda v \\
+&\leftrightarrow (A - \lambda I_n)(v) = \bar{0} \text{ for } v \neq 0\\
+&\leftrightarrow N(A - \lambda I_n)(v) \neq \bar{0} \\
+&\leftrightarrow A - \lambda I_n \text{ is not 1-1} \\
+&\leftrightarrow A - \lambda I_n \text{ is not invertible} \\
+&\leftrightarrow \det(A - \lambda I_n) = 0. \\
+\end{align*}
+$$
+</div>
+<br>
+So we see now that we have the necessary and sufficient conditions for $$\lambda$$ to be an eigenvalue of $$A$$. So what's next? $$A$$ is given to us in this equation but we need a $$\lambda$$ that would make the equation $$\det(A - \lambda I_n)$$ equal to zero. Let's look at the following definition
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(f(t) = \det(A - tI_n)\) is the characteristic polynomial of \(A\).
+</div>
+<br>
+What is this saying? we can interpret the right hand side as a function. We're given $$A$$. We know the identity matrix. So the unknown is $$t$$. So inside the determinant, we'll have a matrix with entries that depend on $$A$$ and $$t$$. We know the determinant is a map / inductive formula. So this expression when expanded as a whole is some number that depends on it. In fact it shouldn't be surprising that $$f(t)$$ is a polynomial of degree $$n$$ (FACT). 
+<br>
+<br>
+Based on this, we can rephrase the previous theorem as the following corollary,
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Corollary 1
+</div>
+<div class="purbdiv">
+\(\lambda\) is an eigenvalue of \(A\) if and only if \(f(t) = \det(A - \lambda I_n)\).
+</div>
+<br>
+So eigenvalues are the roots of this polynomial so it's not always easy to do. How many roots? We know the degree of $$f(t)$$ is at most $$n$$. Therefore,
+<br>
+<div class="purdiv">
+Corollary 2
+</div>
+<div class="purbdiv">
+\(A\) has at most \(n\) eigenvalues.
+</div>
+<br>
+So we know at least that there can only be $$n$$ roots/eigenvalues at most.
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
+Find the eigenvalues of
+$$
+\begin{align*}
+A =
+\begin{pmatrix} 
+0 & -1 \\
+1 & 0
+\end{pmatrix}.
+\end{align*}
+$$
+<br>
+<br>
+Let's write the characteristic polynomial and find its roots so
+<div>
+$$
+\begin{align*}
+f(t) = \det(A - tI_n) &= 0 \\
+\det
+\begin{pmatrix} 
+-t & -1 \\
+1 & -t
+\end{pmatrix} &= 0 \\
+t^2 + 1 &= 0 \\
+t^2 &= -1 \\
+\end{align*}
+$$
+</div>
+This polynomial has no real roots! and so the matrix $$A$$ has no eigenvalues.
+
+
+
+
 
 
 <br>

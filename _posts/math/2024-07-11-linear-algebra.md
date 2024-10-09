@@ -137,7 +137,13 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html">
         Lecture 22: Determinants and Invertible Matrices
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html">
+        Lecture 23: Eigenvalues and Diagonalizability
+       </a></li>
    </ul>
+
 <br>
 <!------------------------------------------------------------------->  
 <h3> Essense of Linear Algebra (3Blue1Brown) </h3>

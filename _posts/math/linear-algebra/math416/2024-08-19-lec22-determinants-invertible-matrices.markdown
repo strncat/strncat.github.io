@@ -285,6 +285,7 @@ Suppose \(F: M_{n \times n} \rightarrow \mathbf{R}\) such that
 Then \(F = det\)
 </div>
 <br>
+Any map with those three properties has to be the determinant!
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>

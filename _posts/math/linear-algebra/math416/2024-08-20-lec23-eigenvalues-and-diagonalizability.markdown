@@ -139,7 +139,7 @@ Theorem
 </div>
 <!------------------------------------------------------------------------------------>
 <br>
-As we've seen before, finding eigenvectors $$T(v) = \lambda v$$ is equivalent to finding a basis $$\beta$$ where
+As we've seen before, finding a basis $$\beta$$ where
 <div>
 $$
 \begin{align*}
@@ -152,13 +152,15 @@ $$
 \end{align*}
 $$
 </div>
-This is all great. But now instead of looking at general linear maps that satisfy these conditions, let's turn focus on matrices.
+is equivalent to find the set of eigenvectors that satisfy $$T(v) = \lambda v$$. This is all great. But now instead of looking at general linear maps that satisfy these conditions, let's turn focus on matrices.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Eigenvectors and Eigenvalues of Matrices</b></h4>
+When is a matrix diagonalizable? and what are the eigenvectors and eigenvalues of a given matrix $$A$$?
+<br>
 <div class="bdiv">
 Definition
 </div>
@@ -186,12 +188,12 @@ Definition
 \(\lambda \in \mathbf{R}\) is an eigenvalue of \(A \in M_{n \times n}\) if \(\exists v \neq \bar{0}_V\) such that \(Av = \lambda v\).
 </div>
 <br>
+<br>
+<hr>
+<br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding eigenvectors</b></h4>
-Okay now that we've narrowed down the discussion to matrices, how do we actually find these eigenvectors of $$A$$?
-<br>
-<br>
-Again, let set the null space of $$A$$ to $$N(A) = N(L_A)$$. Next we will need the following lemma
+<h4><b>Finding the eigenvectors</b></h4>
+Okay now that we've narrowed down the discussion to matrices, how do we actually find these eigenvectors of $$A$$? Set the null space of $$A$$ to $$N(A) = N(L_A)$$. Next we will need the following lemma
 <br>
 <div class="purdiv">
 Lemma
@@ -303,7 +305,7 @@ So this is kind of like another name for the null space except that here we have
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding Eigenvalues</b></h4>
+<h4><b>Finding the eigenvalues</b></h4>
 Again, if we're given an eigenvalue, then finding the eigenspace or eigenvectors is easy and simple. We're just solving a system of linear equations like we did for finding the nullspace. The question is how can we find the eigenvalues? for this we need the following theorem
 <div class="purdiv">
 Theorem
@@ -398,16 +400,6 @@ $$
 </div>
 This polynomial has no real roots! and so the matrix $$A$$ has no eigenvalues.
 <br>
-<br>
-<hr>
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
-
-
-
-
-
 <br>
 <hr>
 <br>

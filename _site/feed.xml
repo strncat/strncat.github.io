@@ -1,4 +1,343 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-09T10:44:53-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 23: Eigenvalues and Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 23: Eigenvalues and Diagonalizability" /><published>2024-08-20T01:01:36-07:00</published><updated>2024-08-20T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html"><![CDATA[<div class="bdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-09T21:10:04-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 24: More Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 24: More Diagonalizability" /><published>2024-08-21T01:01:36-07:00</published><updated>2024-08-21T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html"><![CDATA[<p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if there is a basis \(\beta = \{v_1, v_2,...,v_n\}\) of \(\mathbf{R}^n\) such that</p>
+<div> 
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} = 
+\begin{pmatrix} 
+\lambda_1 &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Where each vector of this matrix is \(Av_j = \lambda_j v_j\). \(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue.
+<br />
+Let the standard basis of \(\mathbf{R}^n\) be \(\alpha\), then we know that \([L_A]_{\alpha}^{\alpha} = A\). We also know that we can find a change of coordinates matrix such that</p>
+<div> 
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha}
+\\
+&amp;= Q^{-1}AQ.
+\end{align*}
+$$
+</div>
+<ul> 
+<li>
+<!------------------------------------------------------------------------------------>
+So now to diagonalize a matrix, we need to find these eigenvectors and eigenvalues that satisfy \(Av_j = \lambda_jv_j\) for \(j = 1,...,n\) and \(v \neq \bar{0}\).
+</li>
+<li>Finding such a basis is equivalent to saying that \(A\) is diagonalizable if and only if there is a basis \(\beta\) consisting of eigenvectors. 
+</li>
+<li>
+In fact, to diagonalize \(A\), we need \(n\) linearly independent eigenvectors of \(A\). 
+</li>
+<li> Given an eigenvalue, it is easy to find the eigenvectors. \(E_{\lambda} = N(A = \lambda I_n) = \{ \text{ eigenvectors of $A$ with eigenvalue $\lambda$} \}\cup \{\bar{0}\} \)
+</li>
+<li>
+	Given \(E_{\lambda} = N(A = \lambda I_n)\), we can find a basis of independent eigenvectors. The number of eigenvectors is the dimension of \(E_{\lambda}\).
+</li>
+<li>This is all good but it required us to know the eigenvalues. To find the eigenvalues, we discovered last time that the eigenvalues of \(A\) are the real roots of the characteristic polynomial \(f(t) = \det(A - tI_n)\).
+</li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------------------>
+This is great and gives up the following plan to diagonalize \(A\):</p>
+<ol>
+	<li>Find all the eigenvalues of \(A\), \(\lambda_1,...,\lambda_k\).</li>
+	<li>Find a basis for \(E_{\lambda_j}\).</li>
+	<li>Determine if these bases combine to form a basis \(\beta\) for \(\mathbf{R}^n\)</li>
+	<li>Compute \(Q, Q^{-1}\) etc.</li>
+</ol>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Diagonalize \(\begin{align*}
+A = 
+\begin{pmatrix} 
+0 &amp; 0 &amp; 1 \\
+0 &amp; 2 &amp; 0 \\
+-2 &amp; 0 &amp; 3
+\end{pmatrix}
+\end{align*}\)
+If possible.
+<br />
+<br />
+Following the above plan:</p>
+<ol>
+	<!-----------------1------------------>
+	<li>Find all the eigenvalues. To do this we need to find the roots of the polynomial \(f(t)\)
+	<div>
+	$$
+	\begin{align*}
+	\det (A - tI_3) &amp;= \det
+	\begin{pmatrix} 
+	-t &amp; 0 &amp; 1 \\
+	0 &amp; 2-t &amp; 0 \\
+	-2 &amp; 0 &amp; 3-t
+	\end{pmatrix} \\
+	&amp;= (-1)^{2+2} \det 
+	\begin{pmatrix} 
+	-t &amp; 1 \\
+	-2 &amp; 3-t
+	\end{pmatrix} \\
+	&amp;= (2-t)((-t)(3-t) + 2) \\
+	&amp;= (2-t)(t^2 -3t + 2) \\
+	&amp;= (2-t)(t-1)(t-2) \\
+	&amp;= -(t-2)^2(t-1)
+	\end{align*}
+	$$
+	</div>
+	The solutions are \(\lambda_1 = 1\) and \(\lambda_2 = 2\). 
+	</li>
+	<!-----------------2------------------>
+	<li>
+	We know from the example of the previous lecture that for \(\lambda_1 = 1\), the eigenspace consists of the vectors \(E_{\lambda_1} = span\{ (1,0,1)\}\). For \(\lambda_2 = 2\), we need again to put \(A - 2I_3\) in row echelon form to find the eigenvectors.
+	<div>
+	$$
+	\begin{align*}
+	A - 2I_3 = 
+	\begin{pmatrix} 
+	-2 &amp; 0 &amp; 1 \\
+	0 &amp; 0 &amp; 0 \\
+	-2 &amp; 0 &amp; 1
+	\end{pmatrix} 
+	&amp;R_3 \rightarrow -R_1 + R_3
+	\begin{pmatrix} 
+	-2 &amp; 0 &amp; 1 \\
+	0 &amp; 0 &amp; 0 \\
+	0 &amp; 0 &amp; 0
+	\end{pmatrix}
+	\\
+	\begin{pmatrix} 
+	-2 &amp; 0 &amp; 1 \\
+	0 &amp; 0 &amp; 0 \\
+	0 &amp; 0 &amp; 0
+	\end{pmatrix} 
+	&amp;R_1 \rightarrow -\frac{1}{2}R_1
+	\begin{pmatrix} 
+	1 &amp; 0 &amp; -\frac{1}{2} \\
+	0 &amp; 0 &amp; 0 \\
+	0 &amp; 0 &amp; 0
+	\end{pmatrix}
+	\end{align*}
+	$$
+	</div>
+	Therefore, 
+	<div>
+	$$
+	\begin{align*}
+	N(A - 2I_3) &amp;= \{(x_1, x_2, x_3) \ | \ x_1 = \frac{1}{2}x_3\} \\
+	        &amp;= \{(\frac{1}{2}t_2, t_1, t_2) \ | \ t_1, t_2 \in \mathbf{R}\} \\
+	        &amp;= span\{(0,1,0), (\frac{1}{2},0,1)\}
+	\end{align*}	
+	$$
+	</div>
+</li>
+	<!-----------------3------------------>
+	<li>Next, we need to determine if \(\{(1,0,1),(0,1,0),(\frac{1}{2},0,1)\}\) is a basis for \(\mathbf{R}^3\). This means we want to know if they are linearly independent. We can do by seeing if 
+		<div>
+		$$
+		\begin{align*}
+		a(1,0,1) + b(0,1,0) + c(\frac{1}{2}, 0,1) = 0
+		\end{align*}	
+		$$
+		</div>
+		has only the zero vector as the solution. This translate to the following system of equations.
+		<div>
+		$$
+		\begin{align*}
+		a + \frac{1}{2}c &amp;= 0 \\
+		b &amp;= 0 \\
+		a + \frac{1}{2}c &amp;= 0
+		\end{align*}	
+		$$
+		</div>
+		We can put this in a matrix and reduce it to row echelon form.
+		<div>
+		$$
+		\begin{align*}
+		\begin{pmatrix} 
+		1 &amp; 0 &amp; \frac{1}{2} \\
+		0 &amp; 1 &amp; 0 \\
+		1 &amp; 0 &amp; 1
+		\end{pmatrix} 
+		&amp;R_3 \rightarrow -R_1 + R_3
+		\begin{pmatrix} 
+		1 &amp; 0 &amp; \frac{1}{2} \\
+		0 &amp; 1 &amp; 0 \\
+		0 &amp; 0 &amp; \frac{1}{2}
+		\end{pmatrix}
+		\end{align*}
+		$$
+		</div>
+		From this we see that the vectors are linearly independent and \(\beta\) is therefore a basis.
+</li>
+	<!-----------------4------------------>
+<li> The last step is to compute the change of coordinate matrix \(Q = [I]_{\beta}^{\alpha}\). 
+	This matrix is easy to compute. Taking each vector from the basis \(\beta\) and expressing it as a linear combination of the standard basis \(\alpha\) will just give us the same vector back. Therefore,
+	<div>
+	$$
+	\begin{align*}
+	Q = 
+	\begin{pmatrix} 
+	1 &amp; 0 &amp; \frac{1}{2} \\
+	0 &amp; 1 &amp; 0 \\
+	1 &amp; 0 &amp; 1
+	\end{pmatrix} 
+	\end{align*}
+	$$
+	</div>
+	We also need to compute \(Q^{-1}\) but we can do saw using the usual method (row reduced echelon form with the identity matrix on the right). 
+	<div>
+	$$
+	\begin{align*}
+	Q^{-1} = 
+	\begin{pmatrix} 
+	2 &amp; 0 &amp; -1 \\
+	0 &amp; 1 &amp; 0 \\
+	-2 &amp; 0 &amp; 2
+	\end{pmatrix} 
+	\end{align*}
+	$$
+	</div>
+</li>
+</ol>
+<p>Therefore, we finally have</p>
+<div>
+$$
+\begin{align*}
+B = [L_A]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha}
+\\
+&amp;= Q^{-1}AQ \\
+&amp;= 
+\begin{pmatrix} 
+2 &amp; 0 &amp; -1 \\
+0 &amp; 1 &amp; 0 \\
+-2 &amp; 0 &amp; 2
+\end{pmatrix} 
+\begin{pmatrix} 
+0 &amp; 0 &amp; 1 \\
+0 &amp; 2 &amp; 0 \\
+-2 &amp; 0 &amp; 3
+\end{pmatrix}
+\begin{pmatrix} 
+1 &amp; 0 &amp; \frac{1}{2} \\
+0 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1
+\end{pmatrix}\\
+&amp;=
+\begin{pmatrix} 
+1 &amp; 0 &amp; 0 \\
+0 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 2
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Remarks:
+<br />
+Remark 1: We knew \(B\) already. We knew what it would look like since the diagonal entries should be the eigenvalues. 
+<br />
+<br />
+Remark 2: We can solve for \(A\) to get this really nice factorization.</p>
+<div>
+$$
+\begin{align*}
+A^k
+&amp;=
+Q
+\begin{pmatrix} 
+1 &amp; 0 &amp; 0 \\
+0 &amp; 2^k &amp; 0 \\
+0 &amp; 0 &amp; 2^k
+\end{pmatrix}
+Q^{-1}
+\end{align*}
+$$
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Eigenvectors of distinct eigenvalues are Linearly Independent</b></h4>
+<p>Question: is the strategy of combining bases of various eigenspaces \(E_{\lambda}\)’s to form larger linearly independent subsets always work or useful?
+<br />
+<br />
+The answer is yes and is demonstrated by the next lemma,
+<br /></p>
+<div class="purdiv">
+Lemma
+</div>
+<div class="purbdiv">
+Suppose \(\lambda_1, \lambda_2\) are distinct eigenvalues of \(A\). If \(w \neq \bar{0}\) is in \(E_{\lambda_2}\), then it is not in \(E_{\lambda_1}\).
+</div>
+<p><br />
+<b>Proof:</b>
+<br />
+<br />
+Let \(\beta = \{v_1,...,v_k\}\) be a basis of \(E_{\lambda_1}\) consisting of eigenvectors. Suppose for the sake of contradiction that \(w \neq 0 \in E_{\lambda_1}\) for some \(w\in E_{\lambda_2}\). Since \(w\) is in the eigenspace of \(\lambda_1\), this means that \(w\) is in the span of of the basis \(\beta\) by the definition of a basis. Therefore, we can write \(w\) can be written as a linear combination of the vectors in \(\beta\) for some unique scalars \(a_1, a_2, ...,a_k\). (unique because it’s a basis)</p>
+<div>
+$$
+\begin{align*}
+w &amp;= a_1v_1 + ... + a_kv_k \\
+Aw &amp;= a_1Av_1 + ... + a_kAv_k \\
+\lambda_2w &amp;= a_1\lambda_1 v_1 + ... + a_k\lambda_1 v_k \text{ (because $Av = \lambda v$ for eigenvectors)} \\
+w &amp;= \frac{\lambda_1}{\lambda_2} a_1v_1 + ... + \frac{\lambda_1}{\lambda_2} a_k v_k \\
+\end{align*}
+$$
+</div>
+<p>But since \(a_1,...,a_k\) are unique scalars then we must have \(\lambda_1 = \lambda_2\). But this is a contradiction since \(\lambda_1 \neq \lambda_2. \ \blacksquare\)
+<br />
+<br />
+This lemma implies that the eigenvectors corresponding to distinct eigenvalues always form linearly independent sets when combined. The following corollary states exactly this.
+<br /></p>
+<div class="purdiv">
+Corollary
+</div>
+<div class="purbdiv">
+If \(\lambda_1 \neq \lambda_2\) and \(\beta_1, \beta_2\) are basis for \(E_{\lambda_1}\) and \(E_{\lambda_2}\) respectively, then \(\beta_1 \cup \beta_2\) is linearly independent. 
+</div>
+<p><br />
+This means that we didn’t need to do step 3 from our algorithm to check that our eigenvectors are linearly independent. They will be! The proof for the corollary is a homework question!
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Is Every Matrix Diagonalizable?</b></h4>
+<p>The answer is no! For some matrices, we won’t be able to find \(n\) linearly independent eigenvectors. One test that we did last time is to check the characteristic polynomial’s roots or in other words, solve \(\det(A - tI_2) = 0\).</p>
+<div>
+$$
+\begin{align*}
+\det(A - tI_2) = 
+\det
+\begin{pmatrix} 
+-t &amp; -1 \\
+1 &amp; -t \\
+\end{pmatrix}
+= t^2 + 1
+\end{align*}
+$$
+</div>
+<p>This polynomial has no real roots and so we don’t have eigenvalues. Is the only test? No, we will develop a better test for this.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if there is a basis \(\beta = \{v_1, v_2,...,v_n\}\) of \(\mathbf{R}^n\) such that $$ \begin{align*} [L_A]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix} \end{align*} $$ Where each vector of this matrix is \(Av_j = \lambda_j v_j\). \(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. Let the standard basis of \(\mathbf{R}^n\) be \(\alpha\), then we know that \([L_A]_{\alpha}^{\alpha} = A\). We also know that we can find a change of coordinates matrix such that $$ \begin{align*} [L_A]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha} \\ &amp;= Q^{-1}AQ. \end{align*} $$ So now to diagonalize a matrix, we need to find these eigenvectors and eigenvalues that satisfy \(Av_j = \lambda_jv_j\) for \(j = 1,...,n\) and \(v \neq \bar{0}\). Finding such a basis is equivalent to saying that \(A\) is diagonalizable if and only if there is a basis \(\beta\) consisting of eigenvectors. In fact, to diagonalize \(A\), we need \(n\) linearly independent eigenvectors of \(A\). Given an eigenvalue, it is easy to find the eigenvectors. \(E_{\lambda} = N(A = \lambda I_n) = \{ \text{ eigenvectors of $A$ with eigenvalue $\lambda$} \}\cup \{\bar{0}\} \) Given \(E_{\lambda} = N(A = \lambda I_n)\), we can find a basis of independent eigenvectors. The number of eigenvectors is the dimension of \(E_{\lambda}\). This is all good but it required us to know the eigenvalues. To find the eigenvalues, we discovered last time that the eigenvalues of \(A\) are the real roots of the characteristic polynomial \(f(t) = \det(A - tI_n)\). This is great and gives up the following plan to diagonalize \(A\): Find all the eigenvalues of \(A\), \(\lambda_1,...,\lambda_k\). Find a basis for \(E_{\lambda_j}\). Determine if these bases combine to form a basis \(\beta\) for \(\mathbf{R}^n\) Compute \(Q, Q^{-1}\) etc. Example Diagonalize \(\begin{align*} A = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ -2 &amp; 0 &amp; 3 \end{pmatrix} \end{align*}\) If possible. Following the above plan: Find all the eigenvalues. To do this we need to find the roots of the polynomial \(f(t)\) $$ \begin{align*} \det (A - tI_3) &amp;= \det \begin{pmatrix} -t &amp; 0 &amp; 1 \\ 0 &amp; 2-t &amp; 0 \\ -2 &amp; 0 &amp; 3-t \end{pmatrix} \\ &amp;= (-1)^{2+2} \det \begin{pmatrix} -t &amp; 1 \\ -2 &amp; 3-t \end{pmatrix} \\ &amp;= (2-t)((-t)(3-t) + 2) \\ &amp;= (2-t)(t^2 -3t + 2) \\ &amp;= (2-t)(t-1)(t-2) \\ &amp;= -(t-2)^2(t-1) \end{align*} $$ The solutions are \(\lambda_1 = 1\) and \(\lambda_2 = 2\). We know from the example of the previous lecture that for \(\lambda_1 = 1\), the eigenspace consists of the vectors \(E_{\lambda_1} = span\{ (1,0,1)\}\). For \(\lambda_2 = 2\), we need again to put \(A - 2I_3\) in row echelon form to find the eigenvectors. $$ \begin{align*} A - 2I_3 = \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ -2 &amp; 0 &amp; 1 \end{pmatrix} &amp;R_3 \rightarrow -R_1 + R_3 \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \\ \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} &amp;R_1 \rightarrow -\frac{1}{2}R_1 \begin{pmatrix} 1 &amp; 0 &amp; -\frac{1}{2} \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \end{align*} $$ Therefore, $$ \begin{align*} N(A - 2I_3) &amp;= \{(x_1, x_2, x_3) \ | \ x_1 = \frac{1}{2}x_3\} \\ &amp;= \{(\frac{1}{2}t_2, t_1, t_2) \ | \ t_1, t_2 \in \mathbf{R}\} \\ &amp;= span\{(0,1,0), (\frac{1}{2},0,1)\} \end{align*} $$ Next, we need to determine if \(\{(1,0,1),(0,1,0),(\frac{1}{2},0,1)\}\) is a basis for \(\mathbf{R}^3\). This means we want to know if they are linearly independent. We can do by seeing if $$ \begin{align*} a(1,0,1) + b(0,1,0) + c(\frac{1}{2}, 0,1) = 0 \end{align*} $$ has only the zero vector as the solution. This translate to the following system of equations. $$ \begin{align*} a + \frac{1}{2}c &amp;= 0 \\ b &amp;= 0 \\ a + \frac{1}{2}c &amp;= 0 \end{align*} $$ We can put this in a matrix and reduce it to row echelon form. $$ \begin{align*} \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix} &amp;R_3 \rightarrow -R_1 + R_3 \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; \frac{1}{2} \end{pmatrix} \end{align*} $$ From this we see that the vectors are linearly independent and \(\beta\) is therefore a basis. The last step is to compute the change of coordinate matrix \(Q = [I]_{\beta}^{\alpha}\). This matrix is easy to compute. Taking each vector from the basis \(\beta\) and expressing it as a linear combination of the standard basis \(\alpha\) will just give us the same vector back. Therefore, $$ \begin{align*} Q = \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix} \end{align*} $$ We also need to compute \(Q^{-1}\) but we can do saw using the usual method (row reduced echelon form with the identity matrix on the right). $$ \begin{align*} Q^{-1} = \begin{pmatrix} 2 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 0 \\ -2 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Therefore, we finally have $$ \begin{align*} B = [L_A]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha} \\ &amp;= Q^{-1}AQ \\ &amp;= \begin{pmatrix} 2 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 0 \\ -2 &amp; 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ -2 &amp; 0 &amp; 3 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix}\\ &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Remarks: Remark 1: We knew \(B\) already. We knew what it would look like since the diagonal entries should be the eigenvalues. Remark 2: We can solve for \(A\) to get this really nice factorization. $$ \begin{align*} A^k &amp;= Q \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2^k &amp; 0 \\ 0 &amp; 0 &amp; 2^k \end{pmatrix} Q^{-1} \end{align*} $$ Eigenvectors of distinct eigenvalues are Linearly Independent Question: is the strategy of combining bases of various eigenspaces \(E_{\lambda}\)’s to form larger linearly independent subsets always work or useful? The answer is yes and is demonstrated by the next lemma, Lemma Suppose \(\lambda_1, \lambda_2\) are distinct eigenvalues of \(A\). If \(w \neq \bar{0}\) is in \(E_{\lambda_2}\), then it is not in \(E_{\lambda_1}\). Proof: Let \(\beta = \{v_1,...,v_k\}\) be a basis of \(E_{\lambda_1}\) consisting of eigenvectors. Suppose for the sake of contradiction that \(w \neq 0 \in E_{\lambda_1}\) for some \(w\in E_{\lambda_2}\). Since \(w\) is in the eigenspace of \(\lambda_1\), this means that \(w\) is in the span of of the basis \(\beta\) by the definition of a basis. Therefore, we can write \(w\) can be written as a linear combination of the vectors in \(\beta\) for some unique scalars \(a_1, a_2, ...,a_k\). (unique because it’s a basis) $$ \begin{align*} w &amp;= a_1v_1 + ... + a_kv_k \\ Aw &amp;= a_1Av_1 + ... + a_kAv_k \\ \lambda_2w &amp;= a_1\lambda_1 v_1 + ... + a_k\lambda_1 v_k \text{ (because $Av = \lambda v$ for eigenvectors)} \\ w &amp;= \frac{\lambda_1}{\lambda_2} a_1v_1 + ... + \frac{\lambda_1}{\lambda_2} a_k v_k \\ \end{align*} $$ But since \(a_1,...,a_k\) are unique scalars then we must have \(\lambda_1 = \lambda_2\). But this is a contradiction since \(\lambda_1 \neq \lambda_2. \ \blacksquare\) This lemma implies that the eigenvectors corresponding to distinct eigenvalues always form linearly independent sets when combined. The following corollary states exactly this. Corollary If \(\lambda_1 \neq \lambda_2\) and \(\beta_1, \beta_2\) are basis for \(E_{\lambda_1}\) and \(E_{\lambda_2}\) respectively, then \(\beta_1 \cup \beta_2\) is linearly independent. This means that we didn’t need to do step 3 from our algorithm to check that our eigenvectors are linearly independent. They will be! The proof for the corollary is a homework question! Is Every Matrix Diagonalizable? The answer is no! For some matrices, we won’t be able to find \(n\) linearly independent eigenvectors. One test that we did last time is to check the characteristic polynomial’s roots or in other words, solve \(\det(A - tI_2) = 0\). $$ \begin{align*} \det(A - tI_2) = \det \begin{pmatrix} -t &amp; -1 \\ 1 &amp; -t \\ \end{pmatrix} = t^2 + 1 \end{align*} $$ This polynomial has no real roots and so we don’t have eigenvalues. Is the only test? No, we will develop a better test for this. References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 23: Eigenvalues and Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 23: Eigenvalues and Diagonalizability" /><published>2024-08-20T01:01:36-07:00</published><updated>2024-08-20T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html"><![CDATA[<div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
@@ -131,7 +470,7 @@ Theorem
 </div>
 <!------------------------------------------------------------------------------------>
 <p><br />
-As we’ve seen before, finding eigenvectors \(T(v) = \lambda v\) is equivalent to finding a basis \(\beta\) where</p>
+As we’ve seen before, finding a basis \(\beta\) where</p>
 <div>
 $$
 \begin{align*}
@@ -144,7 +483,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>This is all great. But now instead of looking at general linear maps that satisfy these conditions, let’s turn focus on matrices.
+<p>is equivalent to find the set of eigenvectors that satisfy \(T(v) = \lambda v\). This is all great. But now instead of looking at general linear maps that satisfy these conditions, let’s turn focus on matrices.
 <br />
 <br /></p>
 <hr />
@@ -152,6 +491,8 @@ $$
 <p><br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Eigenvectors and Eigenvalues of Matrices</b></h4>
+<p>When is a matrix diagonalizable? and what are the eigenvectors and eigenvalues of a given matrix \(A\)?
+<br /></p>
 <div class="bdiv">
 Definition
 </div>
@@ -179,12 +520,13 @@ Definition
 \(\lambda \in \mathbf{R}\) is an eigenvalue of \(A \in M_{n \times n}\) if \(\exists v \neq \bar{0}_V\) such that \(Av = \lambda v\).
 </div>
 <p><br />
+<br /></p>
+<hr />
+
+<p><br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Finding eigenvectors</b></h4>
-<p>Okay now that we’ve narrowed down the discussion to matrices, how do we actually find these eigenvectors of \(A\)?
-<br />
-<br />
-Again, let set the null space of \(A\) to \(N(A) = N(L_A)\). Next we will need the following lemma
+<h4><b>Finding the eigenvectors</b></h4>
+<p>Okay now that we’ve narrowed down the discussion to matrices, how do we actually find these eigenvectors of \(A\)? Set the null space of \(A\) to \(N(A) = N(L_A)\). Next we will need the following lemma
 <br /></p>
 <div class="purdiv">
 Lemma
@@ -299,7 +641,7 @@ So this is kind of like another name for the null space except that here we have
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
-<h4><b>Finding Eigenvalues</b></h4>
+<h4><b>Finding the eigenvalues</b></h4>
 <p>Again, if we’re given an eigenvalue, then finding the eigenspace or eigenvectors is easy and simple. We’re just solving a system of linear equations like we did for finding the nullspace. The question is how can we find the eigenvalues? for this we need the following theorem</p>
 <div class="purdiv">
 Theorem
@@ -394,13 +736,6 @@ $$
 <p>This polynomial has no real roots! and so the matrix \(A\) has no eigenvalues.
 <br />
 <br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-
-<p><br /></p>
 <hr />
 
 <p><br />
@@ -1205,434 +1540,4 @@ This implies that \(Nullity(T) = \dim(V) - \dim(W) &lt; 0\) since \(\dim(V) &lt;
 <h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.geneseo.edu/~heap/courses/333/exam2_F2007_practice_sol.pdf">Practice Midterm</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Problem 4 Let \(V\) and \(W\) be finite dimensional vector spaces and \(T: V \rightarrow W\) be linear. Prove that if \(\dim(V) &lt; \dim (W)\), then \(T\) cannot be onto. Prove that if \(\dim(W) &lt; \dim(V)\), then \(T\) cannot be one-to-one. Proof: Suppose for the sake of contradiction that \(T\) was onto. This means that \(Rank(T) = \dim(W)\). The dimension theorem states that $$ \begin{align*} \dim(V) &amp;= Nullity(T) + Rank(T) \\ &amp;= Nullity(T) + \dim(W) \end{align*} $$ This implies that \(Nullity(T) = \dim(V) - \dim(W) &lt; 0\) since \(\dim(V) &lt; \dim(W)\). This is a contradiction and so \(T\) cannot be onto. \(\blacksquare\) Similarly, suppose for the sake of contradiction that \(T\) is one-to-one. This means that \(Nullity(T) = 0\) and so by the dimension theorem, it must be that \(\dim(V) = \dim(W)\). But this is a contradiction since \(\dim(W) &lt; \dim(V)\). References: Practice Midterm]]></summary></entry><entry><title type="html">Lecture 19/20: Determinants</title><link href="http://localhost:4000/jekyll/update/2024/08/11/lec19-determinants.html" rel="alternate" type="text/html" title="Lecture 19/20: Determinants" /><published>2024-08-11T01:01:36-07:00</published><updated>2024-08-11T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/11/lec19-determinants</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/11/lec19-determinants.html"><![CDATA[<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-The determinant is a map
-$$
-\begin{align*}
-\det: &amp;M_{n \times n} \rightarrow \mathbf{R} \\
-     &amp;A \rightarrow \det(A)
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Properties of the determinant</b></h4>
-<ol>
-	<li>\(A\) is invertible iff \(\det(A) \neq 0\)</li>
-	<li>\(\det(A)\) has geometric meaning.</li>
-	To see this, let 
-	<div>
-	$$
-	\begin{align*}
-	[0,1]^n = \{(x_1,...,x_n) \in \mathbf{R}^n \ | \ x_i \in [0,1]\}
-	\end{align*}
-	$$
-	</div>
-	What does this represent? In \(\mathbf{R}^2\), this is a unit square. In general, it's a cube determined by the vectors \(\{e_1, e_2,...,e_n\}\). 
-	<br />
-	What does this have anything to do with the determinant? 
-	<br />
-	Consider, the matrix \(A \in M_{n \times n}\). When we apply \(A\) on each vector in the standard basis, we get \(Ae_1, Ae_2, ...\).
-	<br />
-	\(L_A([0,1]^n\) is the parallelepiped determined by \(\{Ae_1, Ae_2, ...,Ae_n\}\) and \(volume(L_A([0,1]^n)) = |det(A)|\).
-	<br />
-	<br />
-	<li>The determinant map is not linear except for \(n = 1\). (It is linear in the rows of \(A\))</li>
-	<li>\(\det(AB) = \det(A)\det(B)\).</li>
-</ol>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Definition of the Determinant</b></h4>
-<p>The definition of the \(\det: M_{n \times n} \rightarrow \mathbf{R}\) is inductive on \(n\).
-<br />
-<br />
-<!-------------------n=1------------------->
-For \(n = 1\):</p>
-<div>
-$$
-\begin{align*}
-&amp;M_{1\times 1} = \{(a)\} \leftrightarrow \mathbf{R} \\
-       &amp;\det((a)) = a
-\end{align*}
-$$
-</div>
-<p>Checking the four properties:</p>
-<ol>
-	<li>Since we only have one entry in the matrix, then the inverse exists and is \((a)^{-1} = (\frac{1}{a})\) if and only if \(a = \det((a)) \neq 0\).</li>
-	<li>Checking the second property we see that for \(L_{(a)}: \mathbf{R}^1 \rightarrow \mathbf{R}^1\)
-<div>
-$$
-\begin{align*}
-L_{(a)} : &amp;\mathbf{R}^1 \rightarrow \mathbf{R}^1 \\
-&amp;x \rightarrow ax \\
-L_{(a)}([0,1]) &amp;= \begin{cases} [0,a] \quad \text{if } a \geq 0 \\ [a,0] \quad \text{if } a \lt 0\end{cases}\\
-volume(L_{(a)}([0,1])) &amp;= |a| = |det((a))|.
-\end{align*}
-$$
-</div>
-	</li>
-	<li>The determinant is linear for \(n = 1\)</li>
-	<li>\( det((a)(b)) = det((ab)) = ab = det((a))det((b))  \) </li>
-</ol>
-<p><br />
-<!-------------------n=2------------------->
-For \(n = 2\):</p>
-<div>
-$$
-\begin{align*}
-\det: \ &amp;M_{2 \times 2} \rightarrow \mathbf{R} \\
-       &amp;\begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix} \rightarrow ad - bc
-\end{align*}
-$$
-</div>
-<p>Checking the four properties:</p>
-<ol>
-	<li>We previously proved that \(\begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix}\) is invertible if and only if \(ad - bc \neq 0\).</li>
-	<li> This property takes some work to see. Check the book for a nice description of it.</li>
-	<li>The determinant is not linear for \(n = 2\)</li>
-	<li>We want to check that \(\det(AB) = \det(A)\det(B)\). To see this:
-<div>
-$$
-\begin{align*}
-\begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix}\begin{pmatrix}\alpha &amp; \beta \\ \gamma &amp; \delta \end{pmatrix} &amp;= \begin{pmatrix}a\alpha + b\gamma &amp; a\beta + b\delta \\ c\alpha + d\gamma &amp; c\beta + d\delta \end{pmatrix} \\
-det(AB) &amp;= ((a\alpha + b\gamma)(c\beta + d\delta) - (a\beta + b\delta)(c\beta + d\delta)) \\
-&amp;= a\alpha d\delta + b\gamma c\beta - a\beta d\gamma - b\delta c\alpha \\
-&amp;= (ad - bc)(a\delta - \beta \gamma)\\
-&amp;= \det(A) \det(B).
- \\
-\end{align*}
-$$
-</div>
-	</li>
-</ol>
-<p><br />
-<!-------------------n------------------->
-So now what about the general case?</p>
-<div>
-$$
-\begin{align*}
-\det: \ &amp;M_{n \times n} \rightarrow \mathbf{R}
-\end{align*}
-$$
-</div>
-<p>Define \(\tilde{A_{ij}}\) as the \((n-1)\times(n-1)\) matrix obtained from \(A\) by deleting its \(i\)th row and \(j\)th column.
-<br />
-<br />
-For example</p>
-<div>
-$$
-\begin{align*}
-A &amp;= \begin{pmatrix}1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end{pmatrix} \\
-\tilde{A_{23}} &amp;= \begin{pmatrix}1 &amp; 2 \\ 7 &amp; 8 \end{pmatrix}
-\tilde{A_{31}} = \begin{pmatrix}2 &amp; 3 \\ 5 &amp; 6 \end{pmatrix}  
-\end{align*}
-$$
-</div>
-<p>So now for \(n \geq 2\) and \(A \in M_{n \times n}\)</p>
-<div>
-$$
-\begin{align*}
-det(A) = \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) 
-\end{align*}
-$$
-</div>
-<p>Remark 1:</p>
-<div>
-$$
-\begin{align*}
-(-1)^k &amp;= \begin{cases} 1 \quad \phantom{-} k \text{ even} \\ -1 \quad \text{k odd } \end{cases}
-\end{align*}
-$$
-</div>
-<p>Remark 2:</p>
-<div>
-$$
-\begin{align*}
-\det\left( \begin{pmatrix}A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22} \end{pmatrix}\right)  
-&amp;= (-1)^{1+1}A_{11} det((A_{22})) + (-1)^{1+2}A_{12}det((A_{21})) \\ 
-&amp;= A_{11}A_{22} - A_{12}A_{21}.
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Compute the determinant for</p>
-<div>
-$$
-\begin{align*}
-\begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 1 &amp; 0 &amp; 2 \\ 2 &amp; 1 &amp; 1 \end{pmatrix} 
-\end{align*}
-$$
-</div>
-<div>
-$$
-\begin{align*}
-det(\tilde{A_{11}}) = \det \left(
-\begin{pmatrix} 0 &amp; 2 \\ 1 &amp; 1 \end{pmatrix}\right) &amp;= -2 \\
-det(\tilde{A_{12}}) = \det \left(
-\begin{pmatrix} 1 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}\right) &amp;= -3 \\
-det(\tilde{A_{13}}) = \det \left(
-\begin{pmatrix} 1 &amp; 0 \\ 2 &amp; 1 \end{pmatrix}\right) &amp;= 1 \\
-\end{align*}
-$$
-</div>
-<div>
-$$
-\begin{align*}
-\det(A) &amp;= (-1)^{1+1}(1)(-2) + (-1)^{1+2}(2)(-3) + (-1)^{1+3}(3)(1) \\
-       &amp;= -2 + 6 + 3 = 7.
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-\(\det(A)\) is linear in rows of \(A\).
-</div>
-<p><br />
-What does this mean? Suppose we have three matrices \(A, B\) and \(C\) in \(M_{n \times n}\) which are equal in all rows but the \(r\)th row. And suppose that for the \(r\)th row that \(a_r = b_r + kc_r\).</p>
-<div>
-$$
-\begin{align*}
-B = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}, C = \begin{pmatrix} \pi &amp; \pi \\ 1 &amp; 1 \end{pmatrix}, A = \begin{pmatrix} 1+k\pi &amp; 1+k\pi \\ 1 &amp; 1 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>Here, they’re all equal except for the \(r\)th row which is the first row here so \(r = 1\). The \(r\)th row of \(A\) is \(a_r = b_r + kc_r\). In this case,</p>
-<div>
-$$
-\begin{align*}
-\det(A) = \det(B) + k\det(C)
-\end{align*}
-$$
-</div>
-<p><b>Proof:</b>
-<br />
-We have two cases. The \(r\)th row is 1 or the \(r\)th row is some other row other than 1. Why? because the current definition of the determinant that we have right now is “favoring” the first row. So we want to split the cases around this.
-<br />
-<br />
-Case 1 (\(r = 1\)): 
-<br />
-Suppose the matrices differ in the first row where the first row of \(A\) is some linear combination of the first row in \(B\) and the first row in \(C\). We know that</p>
-<div>
-$$
-\begin{align*}
-\det(A) =  \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}})
-\end{align*}
-$$
-</div>
-<p>However we know that every entry in the first row of \(A\) can be written as a linear combination of the entries in \(B\) and \(C\) and</p>
-<div>
-$$
-\begin{align*}
-A_{1j} = B_{1j} + kC_{1j}.
-\end{align*}
-$$
-</div>
-<p>Additionally, by the definition that we have of computing the determinant,</p>
-<div>
-$$
-\begin{align*}
-\tilde{A_{1j}} = \tilde{B_{1j}} = \tilde{C_{1j}}.
-\end{align*}
-$$
-</div>
-<p>Therefore,</p>
-<div>
-$$
-\begin{align*}
-\det(A) &amp;=  \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \\
-&amp;= \sum_{j=1}^{n} (-1)^{1+j} (B_{1j} + kC_{1j}) \det(\tilde{A_{1j}}) \\
-&amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{A_{1j}}) +  \sum_{j=1}^{n} (-1)^{1+j} kC_{1j} \det(\tilde{A_{1j}}) \\
-&amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{B_{1j}}) +  k\sum_{j=1}^{n} (-1)^{1+j} C_{1j} \det(\tilde{C_{1j}}) \\
-&amp;= \det(B) + k\det(C).
-\end{align*}
-$$
-</div>
-<p>Case 2 (\(r &gt; 1\)): By Induction on \(n\)
-<br />
-Base Case: When \(n = 1\), the determinat is linear.
-<br />
-<br />
-Inductive Step: Suppose it is true for \(n - 1\). Then,</p>
-<div>
-$$
-\begin{align*}
-\det(A) &amp;=  \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}})
-\end{align*}
-$$
-</div>
-<p>In this case, we know the matrices differ in the \(r\)‘th row where \(r &gt; 1\). and so the first row of each matrix is the same. \(A_{1j} = B_{1j} = C_{1j}\) for all \(j\). What about the determinants of \(\tilde{A_{1j}}, \tilde{B_{1j}}\) and \(\tilde{C_{1j}}\)? Well, since they are now of size \(n-1 \times n-1\), then we can use the inductive hypothesis to conclude that,</p>
-<div>
-$$
-\begin{align*}
-\det(\tilde{A_{1j}}) &amp;=  \det(\tilde{B_{1j}}) + k \det(\tilde{C_{1j}})
-\end{align*}
-$$
-</div>
-<p>So now we can use all of these facts to compute the determinant,</p>
-<div>
-$$
-\begin{align*}
-\det(A) &amp;=  \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \\
-&amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} (\det(\tilde{B_{1j}}) + k \det(\tilde{C_{1j}})) \\
-&amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{B_{1j}}) + k \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{C_{1j}}) \\
-&amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{B_{1j}}) + k \sum_{j=1}^{n} (-1)^{1+j} C_{1j} \det(\tilde{C_{1j}}) \\
-&amp;= \det(B) + k\det(C). \ \blacksquare
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-	For any \(r = 1,2,...,n\), we have 
-$$
-\begin{align*}
-\det(A) =  \sum_{j=1}^{n} (-1)^{r+j} A_{rj} \det(\tilde{A_{rj}})
-\end{align*}
-$$
-</div>
-<p><br />
-The proof for this theorem requires the following lemma
-<br />
-<!------------------------------------------------------------------------------------></p>
-<div class="purdiv">
-Lemma
-</div>
-<div class="purbdiv">
-Given \(A\). Let \(B\) be the matrix equal to \(A\) with the \(r\)th row placed by \(e_j\) so 
-$$
-\begin{align*}
-B &amp;= \begin{pmatrix} \bar{b_1} \\ \vdots \\ e_j \\ \vdots \\ \bar{b_n} \end{pmatrix}
-\end{align*}
-$$
-Then,
-$$
-\begin{align*}
-\det(B) &amp;=  (-1)^{r+j} \det(\tilde{B_{rj}})
-\end{align*}
-$$
-</div>
-<p><br />
-The proof of this lemma is in the textbook (page 214). (TODO: check). So now we’ll do the proof for the theorem.
-<!------------------------------------------------------------------------------------>
-<br />
-<br />
-<b>Proof (Using the Lemma)</b>
-<br />
-Given \(A\). Let \(B_j\) be the matrix equal to \(A\) with the \(r\)th row replaced by \(e_j\). By the technical lemma,</p>
-<div>
-$$
-\begin{align*}
-\det(B_j) &amp;=  (-1)^{r+j} \det(\tilde{(B_{j})_{rj}})
-\end{align*}
-$$
-</div>
-<p>(<i>Note this is this the same expression as the technical lemma. It’s just that the matrix here is called \(B_j\) and in the technical lemma it is \(B\). Moreover, \(\det(\tilde{(B_{j})_{rj}})\) says take the matrix \(B_j\) and remove the row \(r\) and column \(j\) to compute that determinant)</i> 
-<br />
-<br />
-So now, since we’re computing the determinant by removing the row \(r\) and column \(j\), this determinant should the same exact determinant as \(\det(\tilde{A_{rj}})\) since they only differ in row \(r\) and column \(j\). Therefore, we replace it with \(\det(\tilde{A_{rj}})\) in</p>
-<div>
-$$
-\begin{align*}
-\det(B_j) &amp;=  (-1)^{r+j} \det(\tilde{(B_{j})_{rj}}) \\
-&amp;=  (-1)^{r+j} \det(\tilde{A_{rj}})
-\end{align*}
-$$
-</div>
-<p>Next, notice that \(e_1,...e_j\) .. are vectors of the standard basis for \(\mathbf{R}^n\). So we know that the \(r\)th row of \(A\) can be expressed as a linear combination of these vectors. Moreover, the coefficients of this linear combination are just the entries in the \(r\)th row of \(A\). So by Theorem 1,</p>
-<div>
-$$
-\begin{align*}
-\det(A) &amp;= \sum A_{rj} \det(B_j) \\
-        &amp;= \sum A_{rj}  (-1)^{r+j} \det(\tilde{A_{rj}}).
-\end{align*}
-$$
-</div>
-<p>as we wanted to show. \(\blacksquare\)
-<!------------------------------------------------------------------------------------>
-<br />
-<br />
-This gives the following corollary
-<br /></p>
-<div class="purdiv">
-Corollary 1
-</div>
-<div class="purbdiv">
-If \(A\) has a row of all zeros, then \(\det A = 0\).
-</div>
-<p><br />
-This is all fine but unfortunately, it doesn’t still solve the problem of the computation of the determinant taking too long to compute. Since a matrix at random will likely not have a row of all zeros. We still have another corollary
-<!------------------------------------------------------------------------------------>
-<br /></p>
-<div class="purdiv">
-Corollary 2
-</div>
-<div class="purbdiv">
-If \(A\) has two identical rows, then \(\det A = 0\).
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-By induction on \(n\). 
-<br />
-<br />
-Base Case: \(n = 2\).</p>
-<div>
-$$
-\begin{align*}
-\det\begin{pmatrix} a &amp; b \\ a &amp; b \end{pmatrix} = ab - ab = 0.
-\end{align*}
-$$
-</div>
-<p>Inductive Step: <br />
-Assume this is true for \(n - 1\).</p>
-<div>
-	$$
-	\begin{align*}
-	A &amp;= \begin{pmatrix} \bar{a_1} \\ \vdots \\ a_i \\ \vdots \\ a_j \\ \vdots \\ \bar{b_n} \end{pmatrix}, \text{ where $a_i = a_j$}
-	\end{align*}
-	$$
-</div>
-<p>The goal is to compute the determinant of \(A\) using the inductive hypothesis. Well if we choose \(r\) such that it is not \(i\) or \(j\), then by the previous theorem we know that</p>
-<div>
-	$$
-	\begin{align*}
-	\det(A) &amp;= \sum A_{rj}  (-1)^{r+j} \det(\tilde{A_{rj}}).
-	\end{align*}
-	$$
-</div>
-<p>But \(\det(\tilde{A_{rj}})\) is 0 since \(\tilde{A_{rj}}\) has two identical rows and its size is \(n-1 \times n-1\). Therefore,</p>
-<div>
-	$$
-	\begin{align*}
-	\det(A) &amp;= 0.
-	\end{align*}
-	$$
-</div>
-<p>As we wanted to show. \(\blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition The determinant is a map $$ \begin{align*} \det: &amp;M_{n \times n} \rightarrow \mathbf{R} \\ &amp;A \rightarrow \det(A) \end{align*} $$ Properties of the determinant \(A\) is invertible iff \(\det(A) \neq 0\) \(\det(A)\) has geometric meaning. To see this, let $$ \begin{align*} [0,1]^n = \{(x_1,...,x_n) \in \mathbf{R}^n \ | \ x_i \in [0,1]\} \end{align*} $$ What does this represent? In \(\mathbf{R}^2\), this is a unit square. In general, it's a cube determined by the vectors \(\{e_1, e_2,...,e_n\}\). What does this have anything to do with the determinant? Consider, the matrix \(A \in M_{n \times n}\). When we apply \(A\) on each vector in the standard basis, we get \(Ae_1, Ae_2, ...\). \(L_A([0,1]^n\) is the parallelepiped determined by \(\{Ae_1, Ae_2, ...,Ae_n\}\) and \(volume(L_A([0,1]^n)) = |det(A)|\). The determinant map is not linear except for \(n = 1\). (It is linear in the rows of \(A\)) \(\det(AB) = \det(A)\det(B)\). Definition of the Determinant The definition of the \(\det: M_{n \times n} \rightarrow \mathbf{R}\) is inductive on \(n\). For \(n = 1\): $$ \begin{align*} &amp;M_{1\times 1} = \{(a)\} \leftrightarrow \mathbf{R} \\ &amp;\det((a)) = a \end{align*} $$ Checking the four properties: Since we only have one entry in the matrix, then the inverse exists and is \((a)^{-1} = (\frac{1}{a})\) if and only if \(a = \det((a)) \neq 0\). Checking the second property we see that for \(L_{(a)}: \mathbf{R}^1 \rightarrow \mathbf{R}^1\) $$ \begin{align*} L_{(a)} : &amp;\mathbf{R}^1 \rightarrow \mathbf{R}^1 \\ &amp;x \rightarrow ax \\ L_{(a)}([0,1]) &amp;= \begin{cases} [0,a] \quad \text{if } a \geq 0 \\ [a,0] \quad \text{if } a \lt 0\end{cases}\\ volume(L_{(a)}([0,1])) &amp;= |a| = |det((a))|. \end{align*} $$ The determinant is linear for \(n = 1\) \( det((a)(b)) = det((ab)) = ab = det((a))det((b)) \) For \(n = 2\): $$ \begin{align*} \det: \ &amp;M_{2 \times 2} \rightarrow \mathbf{R} \\ &amp;\begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix} \rightarrow ad - bc \end{align*} $$ Checking the four properties: We previously proved that \(\begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix}\) is invertible if and only if \(ad - bc \neq 0\). This property takes some work to see. Check the book for a nice description of it. The determinant is not linear for \(n = 2\) We want to check that \(\det(AB) = \det(A)\det(B)\). To see this: $$ \begin{align*} \begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix}\begin{pmatrix}\alpha &amp; \beta \\ \gamma &amp; \delta \end{pmatrix} &amp;= \begin{pmatrix}a\alpha + b\gamma &amp; a\beta + b\delta \\ c\alpha + d\gamma &amp; c\beta + d\delta \end{pmatrix} \\ det(AB) &amp;= ((a\alpha + b\gamma)(c\beta + d\delta) - (a\beta + b\delta)(c\beta + d\delta)) \\ &amp;= a\alpha d\delta + b\gamma c\beta - a\beta d\gamma - b\delta c\alpha \\ &amp;= (ad - bc)(a\delta - \beta \gamma)\\ &amp;= \det(A) \det(B). \\ \end{align*} $$ So now what about the general case? $$ \begin{align*} \det: \ &amp;M_{n \times n} \rightarrow \mathbf{R} \end{align*} $$ Define \(\tilde{A_{ij}}\) as the \((n-1)\times(n-1)\) matrix obtained from \(A\) by deleting its \(i\)th row and \(j\)th column. For example $$ \begin{align*} A &amp;= \begin{pmatrix}1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end{pmatrix} \\ \tilde{A_{23}} &amp;= \begin{pmatrix}1 &amp; 2 \\ 7 &amp; 8 \end{pmatrix} \tilde{A_{31}} = \begin{pmatrix}2 &amp; 3 \\ 5 &amp; 6 \end{pmatrix} \end{align*} $$ So now for \(n \geq 2\) and \(A \in M_{n \times n}\) $$ \begin{align*} det(A) = \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \end{align*} $$ Remark 1: $$ \begin{align*} (-1)^k &amp;= \begin{cases} 1 \quad \phantom{-} k \text{ even} \\ -1 \quad \text{k odd } \end{cases} \end{align*} $$ Remark 2: $$ \begin{align*} \det\left( \begin{pmatrix}A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22} \end{pmatrix}\right) &amp;= (-1)^{1+1}A_{11} det((A_{22})) + (-1)^{1+2}A_{12}det((A_{21})) \\ &amp;= A_{11}A_{22} - A_{12}A_{21}. \end{align*} $$ Example Compute the determinant for $$ \begin{align*} \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 1 &amp; 0 &amp; 2 \\ 2 &amp; 1 &amp; 1 \end{pmatrix} \end{align*} $$ $$ \begin{align*} det(\tilde{A_{11}}) = \det \left( \begin{pmatrix} 0 &amp; 2 \\ 1 &amp; 1 \end{pmatrix}\right) &amp;= -2 \\ det(\tilde{A_{12}}) = \det \left( \begin{pmatrix} 1 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}\right) &amp;= -3 \\ det(\tilde{A_{13}}) = \det \left( \begin{pmatrix} 1 &amp; 0 \\ 2 &amp; 1 \end{pmatrix}\right) &amp;= 1 \\ \end{align*} $$ $$ \begin{align*} \det(A) &amp;= (-1)^{1+1}(1)(-2) + (-1)^{1+2}(2)(-3) + (-1)^{1+3}(3)(1) \\ &amp;= -2 + 6 + 3 = 7. \end{align*} $$ Theorem \(\det(A)\) is linear in rows of \(A\). What does this mean? Suppose we have three matrices \(A, B\) and \(C\) in \(M_{n \times n}\) which are equal in all rows but the \(r\)th row. And suppose that for the \(r\)th row that \(a_r = b_r + kc_r\). $$ \begin{align*} B = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}, C = \begin{pmatrix} \pi &amp; \pi \\ 1 &amp; 1 \end{pmatrix}, A = \begin{pmatrix} 1+k\pi &amp; 1+k\pi \\ 1 &amp; 1 \end{pmatrix} \end{align*} $$ Here, they’re all equal except for the \(r\)th row which is the first row here so \(r = 1\). The \(r\)th row of \(A\) is \(a_r = b_r + kc_r\). In this case, $$ \begin{align*} \det(A) = \det(B) + k\det(C) \end{align*} $$ Proof: We have two cases. The \(r\)th row is 1 or the \(r\)th row is some other row other than 1. Why? because the current definition of the determinant that we have right now is “favoring” the first row. So we want to split the cases around this. Case 1 (\(r = 1\)): Suppose the matrices differ in the first row where the first row of \(A\) is some linear combination of the first row in \(B\) and the first row in \(C\). We know that $$ \begin{align*} \det(A) = \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \end{align*} $$ However we know that every entry in the first row of \(A\) can be written as a linear combination of the entries in \(B\) and \(C\) and $$ \begin{align*} A_{1j} = B_{1j} + kC_{1j}. \end{align*} $$ Additionally, by the definition that we have of computing the determinant, $$ \begin{align*} \tilde{A_{1j}} = \tilde{B_{1j}} = \tilde{C_{1j}}. \end{align*} $$ Therefore, $$ \begin{align*} \det(A) &amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \\ &amp;= \sum_{j=1}^{n} (-1)^{1+j} (B_{1j} + kC_{1j}) \det(\tilde{A_{1j}}) \\ &amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{A_{1j}}) + \sum_{j=1}^{n} (-1)^{1+j} kC_{1j} \det(\tilde{A_{1j}}) \\ &amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{B_{1j}}) + k\sum_{j=1}^{n} (-1)^{1+j} C_{1j} \det(\tilde{C_{1j}}) \\ &amp;= \det(B) + k\det(C). \end{align*} $$ Case 2 (\(r &gt; 1\)): By Induction on \(n\) Base Case: When \(n = 1\), the determinat is linear. Inductive Step: Suppose it is true for \(n - 1\). Then, $$ \begin{align*} \det(A) &amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \end{align*} $$ In this case, we know the matrices differ in the \(r\)‘th row where \(r &gt; 1\). and so the first row of each matrix is the same. \(A_{1j} = B_{1j} = C_{1j}\) for all \(j\). What about the determinants of \(\tilde{A_{1j}}, \tilde{B_{1j}}\) and \(\tilde{C_{1j}}\)? Well, since they are now of size \(n-1 \times n-1\), then we can use the inductive hypothesis to conclude that, $$ \begin{align*} \det(\tilde{A_{1j}}) &amp;= \det(\tilde{B_{1j}}) + k \det(\tilde{C_{1j}}) \end{align*} $$ So now we can use all of these facts to compute the determinant, $$ \begin{align*} \det(A) &amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \\ &amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} (\det(\tilde{B_{1j}}) + k \det(\tilde{C_{1j}})) \\ &amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{B_{1j}}) + k \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{C_{1j}}) \\ &amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{B_{1j}}) + k \sum_{j=1}^{n} (-1)^{1+j} C_{1j} \det(\tilde{C_{1j}}) \\ &amp;= \det(B) + k\det(C). \ \blacksquare \end{align*} $$ Theorem For any \(r = 1,2,...,n\), we have $$ \begin{align*} \det(A) = \sum_{j=1}^{n} (-1)^{r+j} A_{rj} \det(\tilde{A_{rj}}) \end{align*} $$ The proof for this theorem requires the following lemma Lemma Given \(A\). Let \(B\) be the matrix equal to \(A\) with the \(r\)th row placed by \(e_j\) so $$ \begin{align*} B &amp;= \begin{pmatrix} \bar{b_1} \\ \vdots \\ e_j \\ \vdots \\ \bar{b_n} \end{pmatrix} \end{align*} $$ Then, $$ \begin{align*} \det(B) &amp;= (-1)^{r+j} \det(\tilde{B_{rj}}) \end{align*} $$ The proof of this lemma is in the textbook (page 214). (TODO: check). So now we’ll do the proof for the theorem. Proof (Using the Lemma) Given \(A\). Let \(B_j\) be the matrix equal to \(A\) with the \(r\)th row replaced by \(e_j\). By the technical lemma, $$ \begin{align*} \det(B_j) &amp;= (-1)^{r+j} \det(\tilde{(B_{j})_{rj}}) \end{align*} $$ (Note this is this the same expression as the technical lemma. It’s just that the matrix here is called \(B_j\) and in the technical lemma it is \(B\). Moreover, \(\det(\tilde{(B_{j})_{rj}})\) says take the matrix \(B_j\) and remove the row \(r\) and column \(j\) to compute that determinant) So now, since we’re computing the determinant by removing the row \(r\) and column \(j\), this determinant should the same exact determinant as \(\det(\tilde{A_{rj}})\) since they only differ in row \(r\) and column \(j\). Therefore, we replace it with \(\det(\tilde{A_{rj}})\) in $$ \begin{align*} \det(B_j) &amp;= (-1)^{r+j} \det(\tilde{(B_{j})_{rj}}) \\ &amp;= (-1)^{r+j} \det(\tilde{A_{rj}}) \end{align*} $$ Next, notice that \(e_1,...e_j\) .. are vectors of the standard basis for \(\mathbf{R}^n\). So we know that the \(r\)th row of \(A\) can be expressed as a linear combination of these vectors. Moreover, the coefficients of this linear combination are just the entries in the \(r\)th row of \(A\). So by Theorem 1, $$ \begin{align*} \det(A) &amp;= \sum A_{rj} \det(B_j) \\ &amp;= \sum A_{rj} (-1)^{r+j} \det(\tilde{A_{rj}}). \end{align*} $$ as we wanted to show. \(\blacksquare\) This gives the following corollary Corollary 1 If \(A\) has a row of all zeros, then \(\det A = 0\). This is all fine but unfortunately, it doesn’t still solve the problem of the computation of the determinant taking too long to compute. Since a matrix at random will likely not have a row of all zeros. We still have another corollary Corollary 2 If \(A\) has two identical rows, then \(\det A = 0\). Proof By induction on \(n\). Base Case: \(n = 2\). $$ \begin{align*} \det\begin{pmatrix} a &amp; b \\ a &amp; b \end{pmatrix} = ab - ab = 0. \end{align*} $$ Inductive Step: Assume this is true for \(n - 1\). $$ \begin{align*} A &amp;= \begin{pmatrix} \bar{a_1} \\ \vdots \\ a_i \\ \vdots \\ a_j \\ \vdots \\ \bar{b_n} \end{pmatrix}, \text{ where $a_i = a_j$} \end{align*} $$ The goal is to compute the determinant of \(A\) using the inductive hypothesis. Well if we choose \(r\) such that it is not \(i\) or \(j\), then by the previous theorem we know that $$ \begin{align*} \det(A) &amp;= \sum A_{rj} (-1)^{r+j} \det(\tilde{A_{rj}}). \end{align*} $$ But \(\det(\tilde{A_{rj}})\) is 0 since \(\tilde{A_{rj}}\) has two identical rows and its size is \(n-1 \times n-1\). Therefore, $$ \begin{align*} \det(A) &amp;= 0. \end{align*} $$ As we wanted to show. \(\blacksquare\) References Video Lectures from Math416 by Ely Kerman.]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Problem 4 Let \(V\) and \(W\) be finite dimensional vector spaces and \(T: V \rightarrow W\) be linear. Prove that if \(\dim(V) &lt; \dim (W)\), then \(T\) cannot be onto. Prove that if \(\dim(W) &lt; \dim(V)\), then \(T\) cannot be one-to-one. Proof: Suppose for the sake of contradiction that \(T\) was onto. This means that \(Rank(T) = \dim(W)\). The dimension theorem states that $$ \begin{align*} \dim(V) &amp;= Nullity(T) + Rank(T) \\ &amp;= Nullity(T) + \dim(W) \end{align*} $$ This implies that \(Nullity(T) = \dim(V) - \dim(W) &lt; 0\) since \(\dim(V) &lt; \dim(W)\). This is a contradiction and so \(T\) cannot be onto. \(\blacksquare\) Similarly, suppose for the sake of contradiction that \(T\) is one-to-one. This means that \(Nullity(T) = 0\) and so by the dimension theorem, it must be that \(\dim(V) = \dim(W)\). But this is a contradiction since \(\dim(W) &lt; \dim(V)\). References: Practice Midterm]]></summary></entry></feed>

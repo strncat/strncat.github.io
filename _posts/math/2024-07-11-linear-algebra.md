@@ -142,6 +142,11 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html">
         Lecture 23: Eigenvalues and Diagonalizability
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/08/21/lec24-more-diagonalizability.html">
+        Lecture 24: More Diagonalizability
+       </a></li>
    </ul>
 
 <br>

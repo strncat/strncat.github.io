@@ -1,4 +1,178 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-09T21:10:04-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 24: More Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 24: More Diagonalizability" /><published>2024-08-21T01:01:36-07:00</published><updated>2024-08-21T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html"><![CDATA[<p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if there is a basis \(\beta = \{v_1, v_2,...,v_n\}\) of \(\mathbf{R}^n\) such that</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-11T21:10:03-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 25: Diagonalization and Eigenvalues</title><link href="http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html" rel="alternate" type="text/html" title="Lecture 25: Diagonalization and Eigenvalues" /><published>2024-08-22T01:01:36-07:00</published><updated>2024-08-22T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html"><![CDATA[<p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if $A$ has $n$ linearly independent eigenvectors \(\beta = \{v_1, v_2,...,v_n\}\). In that case,</p>
+<div> 
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} = 
+\begin{pmatrix} 
+\lambda_1 &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n
+\end{pmatrix},
+Av_j = \lambda_j v_j
+\end{align*}
+$$
+</div>
+<p>\(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. We developed a plan to find these and eigenvalues and eigenvectors.</p>
+<ol> 
+	<li>Find these eigenvalues \(\lambda_1, ..., \lambda_2\) </li>
+	<li>Find a basis for \(\beta_i\) for each eigenspace \(E_{\lambda_i}\)</li>
+	<li>If \(\sum_{j=1}^{k}\dim(E_{\lambda_i}) = n\), then collect all the separate bases and that's our basis \(\beta = \beta_1 \cup ... \cup \beta_k\). This step works because we proved in the last lecture the corollary \(\lambda_1 \neq \lambda_2 \rightarrow \beta_1 \cup \beta_2\) is linearly independent.</li> 
+</ol>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Examples of Non-Diagonalizable Matrices</b></h4>
+<p>Of course the plan above might not work and there are different ways, a matrix could fail to be diagonalized.</p>
+<div> 
+$$
+\begin{align*}
+A = 
+	\begin{pmatrix} 
+	0 &amp; -1 \\
+	1 &amp; 0
+	\end{pmatrix} 
+	\end{align*}
+$$
+</div>
+<p>This matrix has no eigenvalues so it can’t be diagonalized.</p>
+<div> 
+$$
+\begin{align*}
+B = 
+	\begin{pmatrix} 
+	1 &amp; 1 \\
+	0 &amp; 1
+	\end{pmatrix} 
+\end{align*}
+$$
+</div>
+<p>This matrix has only one eigen value.</p>
+<div>
+$$
+\begin{align*}
+det(A - tI_2) = 
+	\begin{pmatrix} 
+	1-t &amp; 1 \\
+	0 &amp; 1-t
+	\end{pmatrix} = (1-t)^2 = 0 \rightarrow t = 1
+\end{align*}
+$$
+</div>
+<p>This implies</p>
+<div>
+$$
+\begin{align*}
+E_{\lambda_1} = N(B - 1I_n) = N \left(
+	\begin{pmatrix} 
+	0 &amp; 1 \\
+	0 &amp; 0
+	\end{pmatrix} 
+	\right)
+	= \{ (t, 0) \ | \ t \in \mathbf{R} \}
+\end{align*}
+$$
+</div>
+<p>So we don’t have enough linearly independent vectors in \(\beta\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Is There a Better Diagonlization Test?</b></h4>
+<p>Today, we will refine our answer to the question “Is \(A\) diagonalizable?”</p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+A polynomial \(f(t)\) splits over \(\mathbf{R}\) if there are scalars \(c,a_1,...,a_k \in \mathbf{R}\) such that 
+$$
+\begin{align*}
+f(t) = c(t-a_1)(t - a_2)...(t-a_k)
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+In other words, can completely factorize the polynomial?
+<br />
+<br />
+Example 1: \(t^2 + 1\) doesn’t split over \(\mathbf{R}\). It does however split over \(\mathbf{C} as (t - i)(t + i)\).
+<br />
+<br />
+Example 2: \(t^2 - 2t + 1 = (t - 1)(t - 1)\) splits over \(\mathbf{R}\).
+<br />
+<br />
+So now what does splitting have to do with diagonalizability? The following theorem explains this
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem 1
+</div>
+<div class="purbdiv">
+If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\)
+</div>
+<p><br />
+Note that the the converse is false. If the characteristic polynomial splits over \(\mathbf{R}\), it doesn’t necessarily means that \(A\) is diagonalizable. (See example 2 above)
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Eigenvalues of Similar Matrices</b></h4>
+<p>Before going into the proof of theorem 1 above, the following proposition will be useful</p>
+<div class="purdiv">
+Proposition
+</div>
+<div class="purbdiv">
+If \(B = Q^{-1}AQ\), then 
+$$
+\begin{align*}
+\det(B - tI_n) = \det(A - tI_n)
+\end{align*}
+$$
+</div>
+<p><br />
+This means that if \(A\) and \(B\) are similar, then they have the same eigenvalues.
+<br />
+<br />
+<b>Proof:</b>
+<br />
+<br />
+Observe that</p>
+<div>
+$$
+\begin{align*}
+1 = \det(I_n) = \det(QQ^{-1}) = \det(Q)\det(Q^{-1}).
+\end{align*}
+$$
+</div>
+<p>Therefore,</p>
+<div>
+$$
+\begin{align*}
+\det(B - tI_n) &amp;= \det(Q^{-1}AQ - tI_n) \\
+              &amp;= \det(Q^{-1}AQ - QtI_nQ^{-1}) \\
+              &amp;= \det(Q (A - tI_n)Q^{-1}) \text{ (factor out Q on the left ..) }\\ 
+              &amp;= \det(Q) \det((A - tI_n)) \det(Q^{-1}) \\ 
+              &amp;= \det(Q) \det(Q^{-1}) \det((A - tI_n)) \text{ (they are just real numbers)}\\ 			  
+              &amp;= \det((A - tI_n)) \ \blacksquare \\ 			  
+\end{align*}
+$$
+</div>
+<p>Note here that in step 2, \(QtI_nQ^{-1} = tQQ^{-1} = tQtQ^{-1} = tI_n\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if $A$ has $n$ linearly independent eigenvectors \(\beta = \{v_1, v_2,...,v_n\}\). In that case, $$ \begin{align*} [L_A]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix}, Av_j = \lambda_j v_j \end{align*} $$ \(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. We developed a plan to find these and eigenvalues and eigenvectors. Find these eigenvalues \(\lambda_1, ..., \lambda_2\) Find a basis for \(\beta_i\) for each eigenspace \(E_{\lambda_i}\) If \(\sum_{j=1}^{k}\dim(E_{\lambda_i}) = n\), then collect all the separate bases and that's our basis \(\beta = \beta_1 \cup ... \cup \beta_k\). This step works because we proved in the last lecture the corollary \(\lambda_1 \neq \lambda_2 \rightarrow \beta_1 \cup \beta_2\) is linearly independent. Examples of Non-Diagonalizable Matrices Of course the plan above might not work and there are different ways, a matrix could fail to be diagonalized. $$ \begin{align*} A = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \end{align*} $$ This matrix has no eigenvalues so it can’t be diagonalized. $$ \begin{align*} B = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix} \end{align*} $$ This matrix has only one eigen value. $$ \begin{align*} det(A - tI_2) = \begin{pmatrix} 1-t &amp; 1 \\ 0 &amp; 1-t \end{pmatrix} = (1-t)^2 = 0 \rightarrow t = 1 \end{align*} $$ This implies $$ \begin{align*} E_{\lambda_1} = N(B - 1I_n) = N \left( \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} \right) = \{ (t, 0) \ | \ t \in \mathbf{R} \} \end{align*} $$ So we don’t have enough linearly independent vectors in \(\beta\). Is There a Better Diagonlization Test? Today, we will refine our answer to the question “Is \(A\) diagonalizable?” Definition A polynomial \(f(t)\) splits over \(\mathbf{R}\) if there are scalars \(c,a_1,...,a_k \in \mathbf{R}\) such that $$ \begin{align*} f(t) = c(t-a_1)(t - a_2)...(t-a_k) \end{align*} $$ In other words, can completely factorize the polynomial? Example 1: \(t^2 + 1\) doesn’t split over \(\mathbf{R}\). It does however split over \(\mathbf{C} as (t - i)(t + i)\). Example 2: \(t^2 - 2t + 1 = (t - 1)(t - 1)\) splits over \(\mathbf{R}\). So now what does splitting have to do with diagonalizability? The following theorem explains this Theorem 1 If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\) Note that the the converse is false. If the characteristic polynomial splits over \(\mathbf{R}\), it doesn’t necessarily means that \(A\) is diagonalizable. (See example 2 above) Eigenvalues of Similar Matrices Before going into the proof of theorem 1 above, the following proposition will be useful Proposition If \(B = Q^{-1}AQ\), then $$ \begin{align*} \det(B - tI_n) = \det(A - tI_n) \end{align*} $$ This means that if \(A\) and \(B\) are similar, then they have the same eigenvalues. Proof: Observe that $$ \begin{align*} 1 = \det(I_n) = \det(QQ^{-1}) = \det(Q)\det(Q^{-1}). \end{align*} $$ Therefore, $$ \begin{align*} \det(B - tI_n) &amp;= \det(Q^{-1}AQ - tI_n) \\ &amp;= \det(Q^{-1}AQ - QtI_nQ^{-1}) \\ &amp;= \det(Q (A - tI_n)Q^{-1}) \text{ (factor out Q on the left ..) }\\ &amp;= \det(Q) \det((A - tI_n)) \det(Q^{-1}) \\ &amp;= \det(Q) \det(Q^{-1}) \det((A - tI_n)) \text{ (they are just real numbers)}\\ &amp;= \det((A - tI_n)) \ \blacksquare \\ \end{align*} $$ Note here that in step 2, \(QtI_nQ^{-1} = tQQ^{-1} = tQtQ^{-1} = tI_n\) References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 24: More Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 24: More Diagonalizability" /><published>2024-08-21T01:01:36-07:00</published><updated>2024-08-21T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html"><![CDATA[<p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if there is a basis \(\beta = \{v_1, v_2,...,v_n\}\) of \(\mathbf{R}^n\) such that</p>
 <div> 
 $$
 \begin{align*}
@@ -33,10 +207,10 @@ So now to diagonalize a matrix, we need to find these eigenvectors and eigenvalu
 <li>
 In fact, to diagonalize \(A\), we need \(n\) linearly independent eigenvectors of \(A\). 
 </li>
-<li> Given an eigenvalue, it is easy to find the eigenvectors. \(E_{\lambda} = N(A = \lambda I_n) = \{ \text{ eigenvectors of $A$ with eigenvalue $\lambda$} \}\cup \{\bar{0}\} \)
+<li> Given an eigenvalue, it is easy to find the eigenvectors. \(E_{\lambda} = N(A - \lambda I_n) = \{ \text{ eigenvectors of $A$ with eigenvalue $\lambda$} \}\cup \{\bar{0}\} \)
 </li>
 <li>
-	Given \(E_{\lambda} = N(A = \lambda I_n)\), we can find a basis of independent eigenvectors. The number of eigenvectors is the dimension of \(E_{\lambda}\).
+	Given \(E_{\lambda} = N(A - \lambda I_n)\), we can find a basis of independent eigenvectors. The number of eigenvectors is the dimension of \(E_{\lambda}\).
 </li>
 <li>This is all good but it required us to know the eigenvalues. To find the eigenvalues, we discovered last time that the eigenvalues of \(A\) are the real roots of the characteristic polynomial \(f(t) = \det(A - tI_n)\).
 </li>
@@ -337,7 +511,7 @@ $$
 <h4><b>References</b></h4>
 <ul>
 <li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if there is a basis \(\beta = \{v_1, v_2,...,v_n\}\) of \(\mathbf{R}^n\) such that $$ \begin{align*} [L_A]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix} \end{align*} $$ Where each vector of this matrix is \(Av_j = \lambda_j v_j\). \(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. Let the standard basis of \(\mathbf{R}^n\) be \(\alpha\), then we know that \([L_A]_{\alpha}^{\alpha} = A\). We also know that we can find a change of coordinates matrix such that $$ \begin{align*} [L_A]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha} \\ &amp;= Q^{-1}AQ. \end{align*} $$ So now to diagonalize a matrix, we need to find these eigenvectors and eigenvalues that satisfy \(Av_j = \lambda_jv_j\) for \(j = 1,...,n\) and \(v \neq \bar{0}\). Finding such a basis is equivalent to saying that \(A\) is diagonalizable if and only if there is a basis \(\beta\) consisting of eigenvectors. In fact, to diagonalize \(A\), we need \(n\) linearly independent eigenvectors of \(A\). Given an eigenvalue, it is easy to find the eigenvectors. \(E_{\lambda} = N(A = \lambda I_n) = \{ \text{ eigenvectors of $A$ with eigenvalue $\lambda$} \}\cup \{\bar{0}\} \) Given \(E_{\lambda} = N(A = \lambda I_n)\), we can find a basis of independent eigenvectors. The number of eigenvectors is the dimension of \(E_{\lambda}\). This is all good but it required us to know the eigenvalues. To find the eigenvalues, we discovered last time that the eigenvalues of \(A\) are the real roots of the characteristic polynomial \(f(t) = \det(A - tI_n)\). This is great and gives up the following plan to diagonalize \(A\): Find all the eigenvalues of \(A\), \(\lambda_1,...,\lambda_k\). Find a basis for \(E_{\lambda_j}\). Determine if these bases combine to form a basis \(\beta\) for \(\mathbf{R}^n\) Compute \(Q, Q^{-1}\) etc. Example Diagonalize \(\begin{align*} A = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ -2 &amp; 0 &amp; 3 \end{pmatrix} \end{align*}\) If possible. Following the above plan: Find all the eigenvalues. To do this we need to find the roots of the polynomial \(f(t)\) $$ \begin{align*} \det (A - tI_3) &amp;= \det \begin{pmatrix} -t &amp; 0 &amp; 1 \\ 0 &amp; 2-t &amp; 0 \\ -2 &amp; 0 &amp; 3-t \end{pmatrix} \\ &amp;= (-1)^{2+2} \det \begin{pmatrix} -t &amp; 1 \\ -2 &amp; 3-t \end{pmatrix} \\ &amp;= (2-t)((-t)(3-t) + 2) \\ &amp;= (2-t)(t^2 -3t + 2) \\ &amp;= (2-t)(t-1)(t-2) \\ &amp;= -(t-2)^2(t-1) \end{align*} $$ The solutions are \(\lambda_1 = 1\) and \(\lambda_2 = 2\). We know from the example of the previous lecture that for \(\lambda_1 = 1\), the eigenspace consists of the vectors \(E_{\lambda_1} = span\{ (1,0,1)\}\). For \(\lambda_2 = 2\), we need again to put \(A - 2I_3\) in row echelon form to find the eigenvectors. $$ \begin{align*} A - 2I_3 = \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ -2 &amp; 0 &amp; 1 \end{pmatrix} &amp;R_3 \rightarrow -R_1 + R_3 \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \\ \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} &amp;R_1 \rightarrow -\frac{1}{2}R_1 \begin{pmatrix} 1 &amp; 0 &amp; -\frac{1}{2} \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \end{align*} $$ Therefore, $$ \begin{align*} N(A - 2I_3) &amp;= \{(x_1, x_2, x_3) \ | \ x_1 = \frac{1}{2}x_3\} \\ &amp;= \{(\frac{1}{2}t_2, t_1, t_2) \ | \ t_1, t_2 \in \mathbf{R}\} \\ &amp;= span\{(0,1,0), (\frac{1}{2},0,1)\} \end{align*} $$ Next, we need to determine if \(\{(1,0,1),(0,1,0),(\frac{1}{2},0,1)\}\) is a basis for \(\mathbf{R}^3\). This means we want to know if they are linearly independent. We can do by seeing if $$ \begin{align*} a(1,0,1) + b(0,1,0) + c(\frac{1}{2}, 0,1) = 0 \end{align*} $$ has only the zero vector as the solution. This translate to the following system of equations. $$ \begin{align*} a + \frac{1}{2}c &amp;= 0 \\ b &amp;= 0 \\ a + \frac{1}{2}c &amp;= 0 \end{align*} $$ We can put this in a matrix and reduce it to row echelon form. $$ \begin{align*} \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix} &amp;R_3 \rightarrow -R_1 + R_3 \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; \frac{1}{2} \end{pmatrix} \end{align*} $$ From this we see that the vectors are linearly independent and \(\beta\) is therefore a basis. The last step is to compute the change of coordinate matrix \(Q = [I]_{\beta}^{\alpha}\). This matrix is easy to compute. Taking each vector from the basis \(\beta\) and expressing it as a linear combination of the standard basis \(\alpha\) will just give us the same vector back. Therefore, $$ \begin{align*} Q = \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix} \end{align*} $$ We also need to compute \(Q^{-1}\) but we can do saw using the usual method (row reduced echelon form with the identity matrix on the right). $$ \begin{align*} Q^{-1} = \begin{pmatrix} 2 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 0 \\ -2 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Therefore, we finally have $$ \begin{align*} B = [L_A]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha} \\ &amp;= Q^{-1}AQ \\ &amp;= \begin{pmatrix} 2 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 0 \\ -2 &amp; 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ -2 &amp; 0 &amp; 3 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix}\\ &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Remarks: Remark 1: We knew \(B\) already. We knew what it would look like since the diagonal entries should be the eigenvalues. Remark 2: We can solve for \(A\) to get this really nice factorization. $$ \begin{align*} A^k &amp;= Q \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2^k &amp; 0 \\ 0 &amp; 0 &amp; 2^k \end{pmatrix} Q^{-1} \end{align*} $$ Eigenvectors of distinct eigenvalues are Linearly Independent Question: is the strategy of combining bases of various eigenspaces \(E_{\lambda}\)’s to form larger linearly independent subsets always work or useful? The answer is yes and is demonstrated by the next lemma, Lemma Suppose \(\lambda_1, \lambda_2\) are distinct eigenvalues of \(A\). If \(w \neq \bar{0}\) is in \(E_{\lambda_2}\), then it is not in \(E_{\lambda_1}\). Proof: Let \(\beta = \{v_1,...,v_k\}\) be a basis of \(E_{\lambda_1}\) consisting of eigenvectors. Suppose for the sake of contradiction that \(w \neq 0 \in E_{\lambda_1}\) for some \(w\in E_{\lambda_2}\). Since \(w\) is in the eigenspace of \(\lambda_1\), this means that \(w\) is in the span of of the basis \(\beta\) by the definition of a basis. Therefore, we can write \(w\) can be written as a linear combination of the vectors in \(\beta\) for some unique scalars \(a_1, a_2, ...,a_k\). (unique because it’s a basis) $$ \begin{align*} w &amp;= a_1v_1 + ... + a_kv_k \\ Aw &amp;= a_1Av_1 + ... + a_kAv_k \\ \lambda_2w &amp;= a_1\lambda_1 v_1 + ... + a_k\lambda_1 v_k \text{ (because $Av = \lambda v$ for eigenvectors)} \\ w &amp;= \frac{\lambda_1}{\lambda_2} a_1v_1 + ... + \frac{\lambda_1}{\lambda_2} a_k v_k \\ \end{align*} $$ But since \(a_1,...,a_k\) are unique scalars then we must have \(\lambda_1 = \lambda_2\). But this is a contradiction since \(\lambda_1 \neq \lambda_2. \ \blacksquare\) This lemma implies that the eigenvectors corresponding to distinct eigenvalues always form linearly independent sets when combined. The following corollary states exactly this. Corollary If \(\lambda_1 \neq \lambda_2\) and \(\beta_1, \beta_2\) are basis for \(E_{\lambda_1}\) and \(E_{\lambda_2}\) respectively, then \(\beta_1 \cup \beta_2\) is linearly independent. This means that we didn’t need to do step 3 from our algorithm to check that our eigenvectors are linearly independent. They will be! The proof for the corollary is a homework question! Is Every Matrix Diagonalizable? The answer is no! For some matrices, we won’t be able to find \(n\) linearly independent eigenvectors. One test that we did last time is to check the characteristic polynomial’s roots or in other words, solve \(\det(A - tI_2) = 0\). $$ \begin{align*} \det(A - tI_2) = \det \begin{pmatrix} -t &amp; -1 \\ 1 &amp; -t \\ \end{pmatrix} = t^2 + 1 \end{align*} $$ This polynomial has no real roots and so we don’t have eigenvalues. Is the only test? No, we will develop a better test for this. References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 23: Eigenvalues and Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 23: Eigenvalues and Diagonalizability" /><published>2024-08-20T01:01:36-07:00</published><updated>2024-08-20T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html"><![CDATA[<div class="bdiv">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if there is a basis \(\beta = \{v_1, v_2,...,v_n\}\) of \(\mathbf{R}^n\) such that $$ \begin{align*} [L_A]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix} \end{align*} $$ Where each vector of this matrix is \(Av_j = \lambda_j v_j\). \(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. Let the standard basis of \(\mathbf{R}^n\) be \(\alpha\), then we know that \([L_A]_{\alpha}^{\alpha} = A\). We also know that we can find a change of coordinates matrix such that $$ \begin{align*} [L_A]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha} \\ &amp;= Q^{-1}AQ. \end{align*} $$ So now to diagonalize a matrix, we need to find these eigenvectors and eigenvalues that satisfy \(Av_j = \lambda_jv_j\) for \(j = 1,...,n\) and \(v \neq \bar{0}\). Finding such a basis is equivalent to saying that \(A\) is diagonalizable if and only if there is a basis \(\beta\) consisting of eigenvectors. In fact, to diagonalize \(A\), we need \(n\) linearly independent eigenvectors of \(A\). Given an eigenvalue, it is easy to find the eigenvectors. \(E_{\lambda} = N(A - \lambda I_n) = \{ \text{ eigenvectors of $A$ with eigenvalue $\lambda$} \}\cup \{\bar{0}\} \) Given \(E_{\lambda} = N(A - \lambda I_n)\), we can find a basis of independent eigenvectors. The number of eigenvectors is the dimension of \(E_{\lambda}\). This is all good but it required us to know the eigenvalues. To find the eigenvalues, we discovered last time that the eigenvalues of \(A\) are the real roots of the characteristic polynomial \(f(t) = \det(A - tI_n)\). This is great and gives up the following plan to diagonalize \(A\): Find all the eigenvalues of \(A\), \(\lambda_1,...,\lambda_k\). Find a basis for \(E_{\lambda_j}\). Determine if these bases combine to form a basis \(\beta\) for \(\mathbf{R}^n\) Compute \(Q, Q^{-1}\) etc. Example Diagonalize \(\begin{align*} A = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ -2 &amp; 0 &amp; 3 \end{pmatrix} \end{align*}\) If possible. Following the above plan: Find all the eigenvalues. To do this we need to find the roots of the polynomial \(f(t)\) $$ \begin{align*} \det (A - tI_3) &amp;= \det \begin{pmatrix} -t &amp; 0 &amp; 1 \\ 0 &amp; 2-t &amp; 0 \\ -2 &amp; 0 &amp; 3-t \end{pmatrix} \\ &amp;= (-1)^{2+2} \det \begin{pmatrix} -t &amp; 1 \\ -2 &amp; 3-t \end{pmatrix} \\ &amp;= (2-t)((-t)(3-t) + 2) \\ &amp;= (2-t)(t^2 -3t + 2) \\ &amp;= (2-t)(t-1)(t-2) \\ &amp;= -(t-2)^2(t-1) \end{align*} $$ The solutions are \(\lambda_1 = 1\) and \(\lambda_2 = 2\). We know from the example of the previous lecture that for \(\lambda_1 = 1\), the eigenspace consists of the vectors \(E_{\lambda_1} = span\{ (1,0,1)\}\). For \(\lambda_2 = 2\), we need again to put \(A - 2I_3\) in row echelon form to find the eigenvectors. $$ \begin{align*} A - 2I_3 = \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ -2 &amp; 0 &amp; 1 \end{pmatrix} &amp;R_3 \rightarrow -R_1 + R_3 \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \\ \begin{pmatrix} -2 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} &amp;R_1 \rightarrow -\frac{1}{2}R_1 \begin{pmatrix} 1 &amp; 0 &amp; -\frac{1}{2} \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \end{align*} $$ Therefore, $$ \begin{align*} N(A - 2I_3) &amp;= \{(x_1, x_2, x_3) \ | \ x_1 = \frac{1}{2}x_3\} \\ &amp;= \{(\frac{1}{2}t_2, t_1, t_2) \ | \ t_1, t_2 \in \mathbf{R}\} \\ &amp;= span\{(0,1,0), (\frac{1}{2},0,1)\} \end{align*} $$ Next, we need to determine if \(\{(1,0,1),(0,1,0),(\frac{1}{2},0,1)\}\) is a basis for \(\mathbf{R}^3\). This means we want to know if they are linearly independent. We can do by seeing if $$ \begin{align*} a(1,0,1) + b(0,1,0) + c(\frac{1}{2}, 0,1) = 0 \end{align*} $$ has only the zero vector as the solution. This translate to the following system of equations. $$ \begin{align*} a + \frac{1}{2}c &amp;= 0 \\ b &amp;= 0 \\ a + \frac{1}{2}c &amp;= 0 \end{align*} $$ We can put this in a matrix and reduce it to row echelon form. $$ \begin{align*} \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix} &amp;R_3 \rightarrow -R_1 + R_3 \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; \frac{1}{2} \end{pmatrix} \end{align*} $$ From this we see that the vectors are linearly independent and \(\beta\) is therefore a basis. The last step is to compute the change of coordinate matrix \(Q = [I]_{\beta}^{\alpha}\). This matrix is easy to compute. Taking each vector from the basis \(\beta\) and expressing it as a linear combination of the standard basis \(\alpha\) will just give us the same vector back. Therefore, $$ \begin{align*} Q = \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix} \end{align*} $$ We also need to compute \(Q^{-1}\) but we can do saw using the usual method (row reduced echelon form with the identity matrix on the right). $$ \begin{align*} Q^{-1} = \begin{pmatrix} 2 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 0 \\ -2 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Therefore, we finally have $$ \begin{align*} B = [L_A]_{\beta}^{\beta} &amp;= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha} \\ &amp;= Q^{-1}AQ \\ &amp;= \begin{pmatrix} 2 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 0 \\ -2 &amp; 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ -2 &amp; 0 &amp; 3 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \end{pmatrix}\\ &amp;= \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Remarks: Remark 1: We knew \(B\) already. We knew what it would look like since the diagonal entries should be the eigenvalues. Remark 2: We can solve for \(A\) to get this really nice factorization. $$ \begin{align*} A^k &amp;= Q \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2^k &amp; 0 \\ 0 &amp; 0 &amp; 2^k \end{pmatrix} Q^{-1} \end{align*} $$ Eigenvectors of distinct eigenvalues are Linearly Independent Question: is the strategy of combining bases of various eigenspaces \(E_{\lambda}\)’s to form larger linearly independent subsets always work or useful? The answer is yes and is demonstrated by the next lemma, Lemma Suppose \(\lambda_1, \lambda_2\) are distinct eigenvalues of \(A\). If \(w \neq \bar{0}\) is in \(E_{\lambda_2}\), then it is not in \(E_{\lambda_1}\). Proof: Let \(\beta = \{v_1,...,v_k\}\) be a basis of \(E_{\lambda_1}\) consisting of eigenvectors. Suppose for the sake of contradiction that \(w \neq 0 \in E_{\lambda_1}\) for some \(w\in E_{\lambda_2}\). Since \(w\) is in the eigenspace of \(\lambda_1\), this means that \(w\) is in the span of of the basis \(\beta\) by the definition of a basis. Therefore, we can write \(w\) can be written as a linear combination of the vectors in \(\beta\) for some unique scalars \(a_1, a_2, ...,a_k\). (unique because it’s a basis) $$ \begin{align*} w &amp;= a_1v_1 + ... + a_kv_k \\ Aw &amp;= a_1Av_1 + ... + a_kAv_k \\ \lambda_2w &amp;= a_1\lambda_1 v_1 + ... + a_k\lambda_1 v_k \text{ (because $Av = \lambda v$ for eigenvectors)} \\ w &amp;= \frac{\lambda_1}{\lambda_2} a_1v_1 + ... + \frac{\lambda_1}{\lambda_2} a_k v_k \\ \end{align*} $$ But since \(a_1,...,a_k\) are unique scalars then we must have \(\lambda_1 = \lambda_2\). But this is a contradiction since \(\lambda_1 \neq \lambda_2. \ \blacksquare\) This lemma implies that the eigenvectors corresponding to distinct eigenvalues always form linearly independent sets when combined. The following corollary states exactly this. Corollary If \(\lambda_1 \neq \lambda_2\) and \(\beta_1, \beta_2\) are basis for \(E_{\lambda_1}\) and \(E_{\lambda_2}\) respectively, then \(\beta_1 \cup \beta_2\) is linearly independent. This means that we didn’t need to do step 3 from our algorithm to check that our eigenvectors are linearly independent. They will be! The proof for the corollary is a homework question! Is Every Matrix Diagonalizable? The answer is no! For some matrices, we won’t be able to find \(n\) linearly independent eigenvectors. One test that we did last time is to check the characteristic polynomial’s roots or in other words, solve \(\det(A - tI_2) = 0\). $$ \begin{align*} \det(A - tI_2) = \det \begin{pmatrix} -t &amp; -1 \\ 1 &amp; -t \\ \end{pmatrix} = t^2 + 1 \end{align*} $$ This polynomial has no real roots and so we don’t have eigenvalues. Is the only test? No, we will develop a better test for this. References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 23: Eigenvalues and Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 23: Eigenvalues and Diagonalizability" /><published>2024-08-20T01:01:36-07:00</published><updated>2024-08-20T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html"><![CDATA[<div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
@@ -1509,35 +1683,4 @@ So now suppose that \(V\) and \(W\) are finite dimensional. Because \(T\) is one
 <h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241/ref=tmm_hrd_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">Linear Algebra 5th Edition</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is the proof from the book for the Corollary following theorem 2.17. Theorem 2.17 (Corollary) If \(T: V \rightarrow W\) is invertible, then \(V\) is finite dimensional if and only if \(W\) is finite dimensional. In this case \(\dim V = \dim W\) Proof: \(\Rightarrow:\) Suppose that \(V\) is finite dimensional. If \(T\) is invertible, then \(T\) is onto. By the definition of onto, this means that \(R(T)=W\) (or that for any \(w \in W\), there exists a \(v \in V\) such that \(T(v)=w\)). Since \(V\) is finite dimensional, then let \(\beta\) be a finite basis for \(V\). By Theorem 2.2, \(span(T(\beta)) = R(T)\). But \(R(T) = W\). Therefore, \(W\) must be finite dimensional. \(\Leftarrow:\) Suppose that \(W\) is finite dimensional. If \(T\) is invertible, then \(T^{-1}\) is linear and invertible. We can now apply the same argument from before. \(T^{-1}\) is invertible and so \(T^{-1}\) is onto. Since \(W\) is finite dimensional, let \(\gamma\) be a basis for \(W\). Therefore, \(R(T^{-1})=V\) and since \(span(T^{-1}(\gamma)) = R(T^{-1}) = V\), then \(V\) is finite dimensional. So now suppose that \(V\) and \(W\) are finite dimensional. Because \(T\) is one-to-one and onto, then \(nullity(T)=0\) and \(rank(T) = \dim(R(T)) = \dim(W)\). By the dimension theorem we know, $$ \begin{align*} \dim(V) &amp;= \dim(N(T)) + \dim(R(T)) \\ &amp;= 0 + \dim(W) \\ \end{align*} $$ Therefore, \(\dim(V)=\dim(W)\) as we wanted to show. \(\blacksquare\) References: Linear Algebra 5th Edition]]></summary></entry><entry><title type="html">Lecture 11: Exercise 0</title><link href="http://localhost:4000/jekyll/update/2024/08/12/lec11-ex-0.html" rel="alternate" type="text/html" title="Lecture 11: Exercise 0" /><published>2024-08-12T01:01:36-07:00</published><updated>2024-08-12T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/12/lec11-ex-0</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/12/lec11-ex-0.html"><![CDATA[<div class="ydiv">
-Problem 4
-</div>
-<div class="ybdiv">
-Let \(V\) and \(W\) be finite dimensional vector spaces and \(T: V \rightarrow W\) be linear.
-<ol style="list-style-type:lower-alpha">
-	<li>Prove that if \(\dim(V) &lt; \dim (W)\), then \(T\) cannot be onto.</li>
-	<li>Prove that if \(\dim(W) &lt; \dim(V)\), then \(T\) cannot be one-to-one.</li>
-</ol>
-</div>
-<p><br />
-Proof:</p>
-<ol style="list-style-type:lower-alpha">
-	<li>Suppose for the sake of contradiction that \(T\) was onto. This means that \(Rank(T) = \dim(W)\). The dimension theorem states that
-	<div>
-		$$
-		\begin{align*}
-		\dim(V) &amp;= Nullity(T) + Rank(T) \\
-		       &amp;= Nullity(T) + \dim(W)
-		\end{align*}
-		$$
-	</div>
-This implies that \(Nullity(T) = \dim(V) - \dim(W) &lt; 0\) since \(\dim(V) &lt; \dim(W)\). This is a contradiction and so \(T\) cannot be onto. \(\blacksquare\)  
-	</li>
-	<li>Similarly, suppose for the sake of contradiction that \(T\) is one-to-one. This means that \(Nullity(T) = 0\) and so by the dimension theorem, it must be that \(\dim(V) = \dim(W)\). But this is a contradiction since \(\dim(W) &lt; \dim(V)\).</li> </ol>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References:</b></h4>
-<ul>
-<li><a href="https://www.geneseo.edu/~heap/courses/333/exam2_F2007_practice_sol.pdf">Practice Midterm</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Problem 4 Let \(V\) and \(W\) be finite dimensional vector spaces and \(T: V \rightarrow W\) be linear. Prove that if \(\dim(V) &lt; \dim (W)\), then \(T\) cannot be onto. Prove that if \(\dim(W) &lt; \dim(V)\), then \(T\) cannot be one-to-one. Proof: Suppose for the sake of contradiction that \(T\) was onto. This means that \(Rank(T) = \dim(W)\). The dimension theorem states that $$ \begin{align*} \dim(V) &amp;= Nullity(T) + Rank(T) \\ &amp;= Nullity(T) + \dim(W) \end{align*} $$ This implies that \(Nullity(T) = \dim(V) - \dim(W) &lt; 0\) since \(\dim(V) &lt; \dim(W)\). This is a contradiction and so \(T\) cannot be onto. \(\blacksquare\) Similarly, suppose for the sake of contradiction that \(T\) is one-to-one. This means that \(Nullity(T) = 0\) and so by the dimension theorem, it must be that \(\dim(V) = \dim(W)\). But this is a contradiction since \(\dim(W) &lt; \dim(V)\). References: Practice Midterm]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is the proof from the book for the Corollary following theorem 2.17. Theorem 2.17 (Corollary) If \(T: V \rightarrow W\) is invertible, then \(V\) is finite dimensional if and only if \(W\) is finite dimensional. In this case \(\dim V = \dim W\) Proof: \(\Rightarrow:\) Suppose that \(V\) is finite dimensional. If \(T\) is invertible, then \(T\) is onto. By the definition of onto, this means that \(R(T)=W\) (or that for any \(w \in W\), there exists a \(v \in V\) such that \(T(v)=w\)). Since \(V\) is finite dimensional, then let \(\beta\) be a finite basis for \(V\). By Theorem 2.2, \(span(T(\beta)) = R(T)\). But \(R(T) = W\). Therefore, \(W\) must be finite dimensional. \(\Leftarrow:\) Suppose that \(W\) is finite dimensional. If \(T\) is invertible, then \(T^{-1}\) is linear and invertible. We can now apply the same argument from before. \(T^{-1}\) is invertible and so \(T^{-1}\) is onto. Since \(W\) is finite dimensional, let \(\gamma\) be a basis for \(W\). Therefore, \(R(T^{-1})=V\) and since \(span(T^{-1}(\gamma)) = R(T^{-1}) = V\), then \(V\) is finite dimensional. So now suppose that \(V\) and \(W\) are finite dimensional. Because \(T\) is one-to-one and onto, then \(nullity(T)=0\) and \(rank(T) = \dim(R(T)) = \dim(W)\). By the dimension theorem we know, $$ \begin{align*} \dim(V) &amp;= \dim(N(T)) + \dim(R(T)) \\ &amp;= 0 + \dim(W) \\ \end{align*} $$ Therefore, \(\dim(V)=\dim(W)\) as we wanted to show. \(\blacksquare\) References: Linear Algebra 5th Edition]]></summary></entry></feed>

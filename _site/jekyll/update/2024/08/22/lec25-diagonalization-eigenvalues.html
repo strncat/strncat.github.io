@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 25: Diagonalization and Eigenvalues</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-08-22T01:01:36-07:00" itemprop="datePublished">Aug 22, 2024
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if $A$ has $n$ linearly independent eigenvectors \(\beta = \{v_1, v_2,...,v_n\}\). In that case,</p>
+<div> 
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} = 
+\begin{pmatrix} 
+\lambda_1 &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n
+\end{pmatrix},
+Av_j = \lambda_j v_j
+\end{align*}
+$$
+</div>
+<p>\(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. We developed a plan to find these and eigenvalues and eigenvectors.</p>
+<ol> 
+	<li>Find these eigenvalues \(\lambda_1, ..., \lambda_2\) </li>
+	<li>Find a basis for \(\beta_i\) for each eigenspace \(E_{\lambda_i}\)</li>
+	<li>If \(\sum_{j=1}^{k}\dim(E_{\lambda_i}) = n\), then collect all the separate bases and that's our basis \(\beta = \beta_1 \cup ... \cup \beta_k\). This step works because we proved in the last lecture the corollary \(\lambda_1 \neq \lambda_2 \rightarrow \beta_1 \cup \beta_2\) is linearly independent.</li> 
+</ol>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Examples of Non-Diagonalizable Matrices</b></h4>
+<p>Of course the plan above might not work and there are different ways, a matrix could fail to be diagonalized.</p>
+<div> 
+$$
+\begin{align*}
+A = 
+	\begin{pmatrix} 
+	0 &amp; -1 \\
+	1 &amp; 0
+	\end{pmatrix} 
+	\end{align*}
+$$
+</div>
+<p>This matrix has no eigenvalues so it can’t be diagonalized.</p>
+<div> 
+$$
+\begin{align*}
+B = 
+	\begin{pmatrix} 
+	1 &amp; 1 \\
+	0 &amp; 1
+	\end{pmatrix} 
+\end{align*}
+$$
+</div>
+<p>This matrix has only one eigen value.</p>
+<div>
+$$
+\begin{align*}
+det(A - tI_2) = 
+	\begin{pmatrix} 
+	1-t &amp; 1 \\
+	0 &amp; 1-t
+	\end{pmatrix} = (1-t)^2 = 0 \rightarrow t = 1
+\end{align*}
+$$
+</div>
+<p>This implies</p>
+<div>
+$$
+\begin{align*}
+E_{\lambda_1} = N(B - 1I_n) = N \left(
+	\begin{pmatrix} 
+	0 &amp; 1 \\
+	0 &amp; 0
+	\end{pmatrix} 
+	\right)
+	= \{ (t, 0) \ | \ t \in \mathbf{R} \}
+\end{align*}
+$$
+</div>
+<p>So we don’t have enough linearly independent vectors in \(\beta\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Is There a Better Diagonlization Test?</b></h4>
+<p>Today, we will refine our answer to the question “Is \(A\) diagonalizable?”</p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+A polynomial \(f(t)\) splits over \(\mathbf{R}\) if there are scalars \(c,a_1,...,a_k \in \mathbf{R}\) such that 
+$$
+\begin{align*}
+f(t) = c(t-a_1)(t - a_2)...(t-a_k)
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+In other words, can completely factorize the polynomial?
+<br />
+<br />
+Example 1: \(t^2 + 1\) doesn’t split over \(\mathbf{R}\). It does however split over \(\mathbf{C} as (t - i)(t + i)\).
+<br />
+<br />
+Example 2: \(t^2 - 2t + 1 = (t - 1)(t - 1)\) splits over \(\mathbf{R}\).
+<br />
+<br />
+So now what does splitting have to do with diagonalizability? The following theorem explains this
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem 1
+</div>
+<div class="purbdiv">
+If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\)
+</div>
+<p><br />
+Note that the the converse is false. If the characteristic polynomial splits over \(\mathbf{R}\), it doesn’t necessarily means that \(A\) is diagonalizable. (See example 2 above)
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Eigenvalues of Similar Matrices</b></h4>
+<p>Before going into the proof of theorem 1 above, the following proposition will be useful</p>
+<div class="purdiv">
+Proposition
+</div>
+<div class="purbdiv">
+If \(B = Q^{-1}AQ\), then 
+$$
+\begin{align*}
+\det(B - tI_n) = \det(A - tI_n)
+\end{align*}
+$$
+</div>
+<p><br />
+This means that if \(A\) and \(B\) are similar, then they have the same eigenvalues.
+<br />
+<br />
+<b>Proof:</b>
+<br />
+<br />
+Observe that</p>
+<div>
+$$
+\begin{align*}
+1 = \det(I_n) = \det(QQ^{-1}) = \det(Q)\det(Q^{-1}).
+\end{align*}
+$$
+</div>
+<p>Therefore,</p>
+<div>
+$$
+\begin{align*}
+\det(B - tI_n) &amp;= \det(Q^{-1}AQ - tI_n) \\
+              &amp;= \det(Q^{-1}AQ - QtI_nQ^{-1}) \\
+              &amp;= \det(Q (A - tI_n)Q^{-1}) \text{ (factor out Q on the left ..) }\\ 
+              &amp;= \det(Q) \det((A - tI_n)) \det(Q^{-1}) \\ 
+              &amp;= \det(Q) \det(Q^{-1}) \det((A - tI_n)) \text{ (they are just real numbers)}\\ 			  
+              &amp;= \det((A - tI_n)) \ \blacksquare \\ 			  
+\end{align*}
+$$
+</div>
+<p>Note here that in step 2, \(QtI_nQ^{-1} = tQQ^{-1} = tQtQ^{-1} = tI_n\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Video Lectures from Math416 by Ely Kerman.</li>
+</ul>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

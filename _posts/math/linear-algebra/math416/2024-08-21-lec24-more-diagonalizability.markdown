@@ -40,10 +40,10 @@ So now to diagonalize a matrix, we need to find these eigenvectors and eigenvalu
 <li>
 In fact, to diagonalize \(A\), we need \(n\) linearly independent eigenvectors of \(A\). 
 </li>
-<li> Given an eigenvalue, it is easy to find the eigenvectors. \(E_{\lambda} = N(A = \lambda I_n) = \{ \text{ eigenvectors of $A$ with eigenvalue $\lambda$} \}\cup \{\bar{0}\} \)
+<li> Given an eigenvalue, it is easy to find the eigenvectors. \(E_{\lambda} = N(A - \lambda I_n) = \{ \text{ eigenvectors of $A$ with eigenvalue $\lambda$} \}\cup \{\bar{0}\} \)
 </li>
 <li>
-	Given \(E_{\lambda} = N(A = \lambda I_n)\), we can find a basis of independent eigenvectors. The number of eigenvectors is the dimension of \(E_{\lambda}\).
+	Given \(E_{\lambda} = N(A - \lambda I_n)\), we can find a basis of independent eigenvectors. The number of eigenvectors is the dimension of \(E_{\lambda}\).
 </li>
 <li>This is all good but it required us to know the eigenvalues. To find the eigenvalues, we discovered last time that the eigenvalues of \(A\) are the real roots of the characteristic polynomial \(f(t) = \det(A - tI_n)\).
 </li>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-11T21:10:03-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 25: Diagonalization and Eigenvalues</title><link href="http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html" rel="alternate" type="text/html" title="Lecture 25: Diagonalization and Eigenvalues" /><published>2024-08-22T01:01:36-07:00</published><updated>2024-08-22T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html"><![CDATA[<p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if $A$ has $n$ linearly independent eigenvectors \(\beta = \{v_1, v_2,...,v_n\}\). In that case,</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-12T08:10:09-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 25: Diagonalization and Eigenvalues</title><link href="http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html" rel="alternate" type="text/html" title="Lecture 25: Diagonalization and Eigenvalues" /><published>2024-08-22T01:01:36-07:00</published><updated>2024-08-22T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html"><![CDATA[<p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if $A$ has $n$ linearly independent eigenvectors \(\beta = \{v_1, v_2,...,v_n\}\). In that case,</p>
 <div> 
 $$
 \begin{align*}
@@ -158,7 +158,7 @@ $$
               &amp;= \det(Q (A - tI_n)Q^{-1}) \text{ (factor out Q on the left ..) }\\ 
               &amp;= \det(Q) \det((A - tI_n)) \det(Q^{-1}) \\ 
               &amp;= \det(Q) \det(Q^{-1}) \det((A - tI_n)) \text{ (they are just real numbers)}\\ 			  
-              &amp;= \det((A - tI_n)) \ \blacksquare \\ 			  
+              &amp;= \det((A - tI_n)). \ \blacksquare \\ 			  
 \end{align*}
 $$
 </div>
@@ -169,10 +169,126 @@ $$
 
 <p><br />
 <!------------------------------------------------------------------------------------></p>
+<h4><b>Proof of Theorem 1</b></h4>
+<p>Suppose that \(A\) is diagonalizable. This means that there exists a basis \(\beta\) such that</p>
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} = 
+\begin{pmatrix} 
+\lambda_1 &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n
+\end{pmatrix},
+Av_j = \lambda_j v_j		  
+\end{align*}
+$$
+</div>
+<p>If we let \(\alpha\) be the standard basis, then know that there exists a change of coordinate matrix \(Q = [I]^{\alpha}_{\beta}\) such that</p>
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} &amp;= [I]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I]^{\alpha}_{\beta}  \\
+                   &amp;= Q^{-1}AQ.
+\end{align*}
+$$
+</div>
+<p>This means that \([L_A]_{\beta}^{\beta}\) and \(A\) are similar matrices. But by the previous proposition, this means that we have</p>
+<div>
+$$
+\begin{align*}
+\det ([L_A]_{\beta}^{\beta} -tI_n) &amp;= \det(A - tI_n).
+\end{align*}
+$$
+</div>
+<p>On the other hand,</p>
+<div>
+$$
+\begin{align*}
+\det ([L_A]_{\beta}^{\beta} -tI_n) &amp;= 
+\begin{pmatrix} 
+\lambda_1 -t &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n -t
+\end{pmatrix}	  
+\\
+&amp;= (\lambda_1 - t)...(\lambda_n - t). \ \blacksquare
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Algebraic and Geometric Multiplicities of Eigenvalues</b></h4>
+<p>There is another condition for diagonalizability but we need a few more definitions.</p>
+
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The algebraic multiplicity of \(\lambda\) is the number of times \(\lambda - t\) divides \(\det(A - tI_n)\).
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+An an example if \(A =  
+\begin{pmatrix} 
+1 &amp; 1 \\
+0 &amp; 1
+\end{pmatrix}\) then, \(\lambda = 1\) has algebraic multiplicity 2 because \(\det(A - I_n) = (1-t)^2\).</p>
+
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The geometric multiplicity of \(\lambda\) is \(\dim(E_{\lambda})\).
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+For the same example above. The geometric multiplicity of \(\lambda = 1\) is 1 because the nullspace is spanned by one vector.
+<br />
+<br />
+Given these definitions we can now introduce the following theorem.
+<br /></p>
+<div class="purdiv">
+Theorem 2
+</div>
+<div class="purbdiv">
+Geometric multiplicity of \(\lambda \leq\) the algebraic multiplicity of \(\lambda\).
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+Let \(\lambda\) be an eigenvalue of \(A \in M_{n \times n}\) and let the geometric multiplicity of \(\lambda\) be \(k\). Now the goal is to relate the characteristic polynomial of \(\lambda\) to the dimension of \(E_{\lambda}\).
+<br />
+<br />
+Let \(\{v_1,...,v_k\}\) be a basis of \(E_{\lambda}\). We know that \(k \leq n\) so extend this basis to a basis for \(\mathbf{R}^n\).</p>
+
+<p><br />
+<br /></p>
+
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+\(A\) is diagonalizable if and only if
+<ul style="list-style-type:lower-alpha">
+	<li>\(\det(A - tI_n)\) splits over \(\mathbf{R}\)</li>
+	<li>For each eigenvalue \(\lambda\), geometric multiplicity = algebraic multiplictiy</li>
+</ul>
+</div>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
 <ul>
 <li>Video Lectures from Math416 by Ely Kerman.</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if $A$ has $n$ linearly independent eigenvectors \(\beta = \{v_1, v_2,...,v_n\}\). In that case, $$ \begin{align*} [L_A]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix}, Av_j = \lambda_j v_j \end{align*} $$ \(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. We developed a plan to find these and eigenvalues and eigenvectors. Find these eigenvalues \(\lambda_1, ..., \lambda_2\) Find a basis for \(\beta_i\) for each eigenspace \(E_{\lambda_i}\) If \(\sum_{j=1}^{k}\dim(E_{\lambda_i}) = n\), then collect all the separate bases and that's our basis \(\beta = \beta_1 \cup ... \cup \beta_k\). This step works because we proved in the last lecture the corollary \(\lambda_1 \neq \lambda_2 \rightarrow \beta_1 \cup \beta_2\) is linearly independent. Examples of Non-Diagonalizable Matrices Of course the plan above might not work and there are different ways, a matrix could fail to be diagonalized. $$ \begin{align*} A = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \end{align*} $$ This matrix has no eigenvalues so it can’t be diagonalized. $$ \begin{align*} B = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix} \end{align*} $$ This matrix has only one eigen value. $$ \begin{align*} det(A - tI_2) = \begin{pmatrix} 1-t &amp; 1 \\ 0 &amp; 1-t \end{pmatrix} = (1-t)^2 = 0 \rightarrow t = 1 \end{align*} $$ This implies $$ \begin{align*} E_{\lambda_1} = N(B - 1I_n) = N \left( \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} \right) = \{ (t, 0) \ | \ t \in \mathbf{R} \} \end{align*} $$ So we don’t have enough linearly independent vectors in \(\beta\). Is There a Better Diagonlization Test? Today, we will refine our answer to the question “Is \(A\) diagonalizable?” Definition A polynomial \(f(t)\) splits over \(\mathbf{R}\) if there are scalars \(c,a_1,...,a_k \in \mathbf{R}\) such that $$ \begin{align*} f(t) = c(t-a_1)(t - a_2)...(t-a_k) \end{align*} $$ In other words, can completely factorize the polynomial? Example 1: \(t^2 + 1\) doesn’t split over \(\mathbf{R}\). It does however split over \(\mathbf{C} as (t - i)(t + i)\). Example 2: \(t^2 - 2t + 1 = (t - 1)(t - 1)\) splits over \(\mathbf{R}\). So now what does splitting have to do with diagonalizability? The following theorem explains this Theorem 1 If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\) Note that the the converse is false. If the characteristic polynomial splits over \(\mathbf{R}\), it doesn’t necessarily means that \(A\) is diagonalizable. (See example 2 above) Eigenvalues of Similar Matrices Before going into the proof of theorem 1 above, the following proposition will be useful Proposition If \(B = Q^{-1}AQ\), then $$ \begin{align*} \det(B - tI_n) = \det(A - tI_n) \end{align*} $$ This means that if \(A\) and \(B\) are similar, then they have the same eigenvalues. Proof: Observe that $$ \begin{align*} 1 = \det(I_n) = \det(QQ^{-1}) = \det(Q)\det(Q^{-1}). \end{align*} $$ Therefore, $$ \begin{align*} \det(B - tI_n) &amp;= \det(Q^{-1}AQ - tI_n) \\ &amp;= \det(Q^{-1}AQ - QtI_nQ^{-1}) \\ &amp;= \det(Q (A - tI_n)Q^{-1}) \text{ (factor out Q on the left ..) }\\ &amp;= \det(Q) \det((A - tI_n)) \det(Q^{-1}) \\ &amp;= \det(Q) \det(Q^{-1}) \det((A - tI_n)) \text{ (they are just real numbers)}\\ &amp;= \det((A - tI_n)) \ \blacksquare \\ \end{align*} $$ Note here that in step 2, \(QtI_nQ^{-1} = tQQ^{-1} = tQtQ^{-1} = tI_n\) References Video Lectures from Math416 by Ely Kerman.]]></summary></entry><entry><title type="html">Lecture 24: More Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 24: More Diagonalizability" /><published>2024-08-21T01:01:36-07:00</published><updated>2024-08-21T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html"><![CDATA[<p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if there is a basis \(\beta = \{v_1, v_2,...,v_n\}\) of \(\mathbf{R}^n\) such that</p>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if $A$ has $n$ linearly independent eigenvectors \(\beta = \{v_1, v_2,...,v_n\}\). In that case, $$ \begin{align*} [L_A]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix}, Av_j = \lambda_j v_j \end{align*} $$ \(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. We developed a plan to find these and eigenvalues and eigenvectors. Find these eigenvalues \(\lambda_1, ..., \lambda_2\) Find a basis for \(\beta_i\) for each eigenspace \(E_{\lambda_i}\) If \(\sum_{j=1}^{k}\dim(E_{\lambda_i}) = n\), then collect all the separate bases and that's our basis \(\beta = \beta_1 \cup ... \cup \beta_k\). This step works because we proved in the last lecture the corollary \(\lambda_1 \neq \lambda_2 \rightarrow \beta_1 \cup \beta_2\) is linearly independent. Examples of Non-Diagonalizable Matrices Of course the plan above might not work and there are different ways, a matrix could fail to be diagonalized. $$ \begin{align*} A = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \end{align*} $$ This matrix has no eigenvalues so it can’t be diagonalized. $$ \begin{align*} B = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix} \end{align*} $$ This matrix has only one eigen value. $$ \begin{align*} det(A - tI_2) = \begin{pmatrix} 1-t &amp; 1 \\ 0 &amp; 1-t \end{pmatrix} = (1-t)^2 = 0 \rightarrow t = 1 \end{align*} $$ This implies $$ \begin{align*} E_{\lambda_1} = N(B - 1I_n) = N \left( \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} \right) = \{ (t, 0) \ | \ t \in \mathbf{R} \} \end{align*} $$ So we don’t have enough linearly independent vectors in \(\beta\). Is There a Better Diagonlization Test? Today, we will refine our answer to the question “Is \(A\) diagonalizable?” Definition A polynomial \(f(t)\) splits over \(\mathbf{R}\) if there are scalars \(c,a_1,...,a_k \in \mathbf{R}\) such that $$ \begin{align*} f(t) = c(t-a_1)(t - a_2)...(t-a_k) \end{align*} $$ In other words, can completely factorize the polynomial? Example 1: \(t^2 + 1\) doesn’t split over \(\mathbf{R}\). It does however split over \(\mathbf{C} as (t - i)(t + i)\). Example 2: \(t^2 - 2t + 1 = (t - 1)(t - 1)\) splits over \(\mathbf{R}\). So now what does splitting have to do with diagonalizability? The following theorem explains this Theorem 1 If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\) Note that the the converse is false. If the characteristic polynomial splits over \(\mathbf{R}\), it doesn’t necessarily means that \(A\) is diagonalizable. (See example 2 above) Eigenvalues of Similar Matrices Before going into the proof of theorem 1 above, the following proposition will be useful Proposition If \(B = Q^{-1}AQ\), then $$ \begin{align*} \det(B - tI_n) = \det(A - tI_n) \end{align*} $$ This means that if \(A\) and \(B\) are similar, then they have the same eigenvalues. Proof: Observe that $$ \begin{align*} 1 = \det(I_n) = \det(QQ^{-1}) = \det(Q)\det(Q^{-1}). \end{align*} $$ Therefore, $$ \begin{align*} \det(B - tI_n) &amp;= \det(Q^{-1}AQ - tI_n) \\ &amp;= \det(Q^{-1}AQ - QtI_nQ^{-1}) \\ &amp;= \det(Q (A - tI_n)Q^{-1}) \text{ (factor out Q on the left ..) }\\ &amp;= \det(Q) \det((A - tI_n)) \det(Q^{-1}) \\ &amp;= \det(Q) \det(Q^{-1}) \det((A - tI_n)) \text{ (they are just real numbers)}\\ &amp;= \det((A - tI_n)). \ \blacksquare \\ \end{align*} $$ Note here that in step 2, \(QtI_nQ^{-1} = tQQ^{-1} = tQtQ^{-1} = tI_n\) Proof of Theorem 1 Suppose that \(A\) is diagonalizable. This means that there exists a basis \(\beta\) such that $$ \begin{align*} [L_A]_{\beta}^{\beta} = \begin{pmatrix} \lambda_1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n \end{pmatrix}, Av_j = \lambda_j v_j \end{align*} $$ If we let \(\alpha\) be the standard basis, then know that there exists a change of coordinate matrix \(Q = [I]^{\alpha}_{\beta}\) such that $$ \begin{align*} [L_A]_{\beta}^{\beta} &amp;= [I]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I]^{\alpha}_{\beta} \\ &amp;= Q^{-1}AQ. \end{align*} $$ This means that \([L_A]_{\beta}^{\beta}\) and \(A\) are similar matrices. But by the previous proposition, this means that we have $$ \begin{align*} \det ([L_A]_{\beta}^{\beta} -tI_n) &amp;= \det(A - tI_n). \end{align*} $$ On the other hand, $$ \begin{align*} \det ([L_A]_{\beta}^{\beta} -tI_n) &amp;= \begin{pmatrix} \lambda_1 -t &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; \lambda_n -t \end{pmatrix} \\ &amp;= (\lambda_1 - t)...(\lambda_n - t). \ \blacksquare \end{align*} $$ Algebraic and Geometric Multiplicities of Eigenvalues There is another condition for diagonalizability but we need a few more definitions.]]></summary></entry><entry><title type="html">Lecture 24: More Diagonalizability</title><link href="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html" rel="alternate" type="text/html" title="Lecture 24: More Diagonalizability" /><published>2024-08-21T01:01:36-07:00</published><updated>2024-08-21T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/21/lec24-more-diagonalizability.html"><![CDATA[<p>We saw in the previous lecture that \(A \in M_{n \times n}\) is diagonalizable if there is a basis \(\beta = \{v_1, v_2,...,v_n\}\) of \(\mathbf{R}^n\) such that</p>
 <div> 
 $$
 \begin{align*}

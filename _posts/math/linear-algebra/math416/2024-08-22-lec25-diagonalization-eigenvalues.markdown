@@ -162,11 +162,133 @@ $$
               &= \det(Q (A - tI_n)Q^{-1}) \text{ (factor out Q on the left ..) }\\ 
               &= \det(Q) \det((A - tI_n)) \det(Q^{-1}) \\ 
               &= \det(Q) \det(Q^{-1}) \det((A - tI_n)) \text{ (they are just real numbers)}\\ 			  
-              &= \det((A - tI_n)) \ \blacksquare \\ 			  
+              &= \det((A - tI_n)). \ \blacksquare \\ 			  
 \end{align*}
 $$
 </div>
 Note here that in step 2, $$QtI_nQ^{-1} = tQQ^{-1} = tQtQ^{-1} = tI_n  $$
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Proof of Theorem 1</b></h4>
+Suppose that $$A$$ is diagonalizable. This means that there exists a basis $$\beta$$ such that 
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} = 
+\begin{pmatrix} 
+\lambda_1 & \cdots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & \lambda_n
+\end{pmatrix},
+Av_j = \lambda_j v_j		  
+\end{align*}
+$$
+</div>
+If we let $$\alpha$$ be the standard basis, then know that there exists a change of coordinate matrix $$Q = [I]^{\alpha}_{\beta} $$ such that
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} &= [I]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I]^{\alpha}_{\beta}  \\
+                   &= Q^{-1}AQ.
+\end{align*}
+$$
+</div>
+This means that $$[L_A]_{\beta}^{\beta}$$ and $$A$$ are similar matrices. But by the previous proposition, this means that we have
+<div>
+$$
+\begin{align*}
+\det ([L_A]_{\beta}^{\beta} -tI_n) &= \det(A - tI_n).
+\end{align*}
+$$
+</div>
+On the other hand,
+<div>
+$$
+\begin{align*}
+\det ([L_A]_{\beta}^{\beta} -tI_n) &= 
+\begin{pmatrix} 
+\lambda_1 -t & \cdots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & \lambda_n -t
+\end{pmatrix}	  
+\\
+&= (\lambda_1 - t)...(\lambda_n - t). \ \blacksquare
+\end{align*}
+$$
+</div>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Algebraic and Geometric Multiplicities of Eigenvalues</b></h4>
+There is another condition for diagonalizability but we need a few more definitions.
+
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The algebraic multiplicity of \(\lambda\) is the number of times \(\lambda - t\) divides \(\det(A - tI_n)\).
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+An an example if $$
+A =  
+\begin{pmatrix} 
+1 & 1 \\
+0 & 1
+\end{pmatrix}	  
+$$ then, $$\lambda = 1$$ has algebraic multiplicity 2 because $$\det(A - I_n) = (1-t)^2$$.
+
+
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The geometric multiplicity of \(\lambda\) is \(\dim(E_{\lambda})\).
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+For the same example above. The geometric multiplicity of $$\lambda = 1$$ is 1 because the nullspace is spanned by one vector.
+<br>
+<br>
+Given these definitions we can now introduce the following theorem.
+<br>
+<div class="purdiv">
+Theorem 2
+</div>
+<div class="purbdiv">
+Geometric multiplicity of \(\lambda \leq\) the algebraic multiplicity of \(\lambda\).
+</div>
+<br>
+<b>Proof</b>
+<br>
+Let $$\lambda$$ be an eigenvalue of $$A \in M_{n \times n}$$ and let the geometric multiplicity of $$\lambda$$ be $$k$$. Now the goal is to relate the characteristic polynomial of $$\lambda$$ to the dimension of $$E_{\lambda}$$.
+<br>
+<br>
+Let $$\{v_1,...,v_k\}$$ be a basis of $$E_{\lambda}$$. We know that $$k \leq n$$ so extend this basis to a basis for $$\mathbf{R}^n$$. 
+
+
+
+
+<br>
+<br>
+
+
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+\(A\) is diagonalizable if and only if
+<ul style="list-style-type:lower-alpha">
+	<li>\(\det(A - tI_n)\) splits over \(\mathbf{R}\)</li>
+	<li>For each eigenvalue \(\lambda\), geometric multiplicity = algebraic multiplictiy</li>
+</ul>
+</div>
+
+
 <br>
 <br>
 <hr>

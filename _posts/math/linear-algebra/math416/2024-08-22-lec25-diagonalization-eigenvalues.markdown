@@ -5,7 +5,10 @@ date:   2024-08-22 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-We saw in the previous lecture that $$A \in M_{n \times n}$$ is diagonalizable if $A$ has $n$ linearly independent eigenvectors $$\beta = \{v_1, v_2,...,v_n\}$$. In that case, 
+Last time we learned that a matrix $$A$$ is diagonalizable if $$A$$ has $$n$$ linearly independent eigenvectors. In other words if we can form a basis consisting of eigenvectors $$\beta = \{v_1,...,v_n\}$$. 
+<br>
+<br>
+In that case, we will see that the matrix representative of $$L_A$$ with respect to basis $$\beta$$ is a diagonal matrix where the diagonal entries are those eigenvalues corresponding to the eigenvectors
 <div> 
 $$
 \begin{align*}
@@ -19,7 +22,7 @@ Av_j = \lambda_j v_j
 \end{align*}
 $$
 </div>
-$$v_j$$ is an eigenvector and $$\lambda_j$$ is called an eigenvalue. We developed a plan to find these and eigenvalues and eigenvectors.
+$$v_j$$ is an eigenvector and $$\lambda_j$$ is called an eigenvalue. And so to diagonalize a matrix, we need to find these eigenvectors. Last time we developed a plan for this:
 <ol> 
 	<li>Find these eigenvalues \(\lambda_1, ..., \lambda_2\) </li>
 	<li>Find a basis for \(\beta_i\) for each eigenspace \(E_{\lambda_i}\)</li>
@@ -85,7 +88,7 @@ So we don't have enough linearly independent vectors in $$\beta$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Is There a Better Diagonlization Test?</b></h4>
+<h4><b>Is There a Better Diagonalization Test?</b></h4>
 Today, we will refine our answer to the question "Is $$A$$ diagonalizable?"
 <div class="bdiv">
 Definition
@@ -263,20 +266,62 @@ Theorem 2
 Geometric multiplicity of \(\lambda \leq\) the algebraic multiplicity of \(\lambda\).
 </div>
 <br>
+<!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
-Let $$\lambda$$ be an eigenvalue of $$A \in M_{n \times n}$$ and let the geometric multiplicity of $$\lambda$$ be $$k$$. Now the goal is to relate the characteristic polynomial of $$\lambda$$ to the dimension of $$E_{\lambda}$$.
+Let $$\lambda$$ be an eigenvalue of $$A \in M_{n \times n}$$ and let the geometric multiplicity of $$\lambda$$ be $$k$$. Now the goal is to relate the characteristic polynomial of $$\lambda$$ to the dimension of $$E_{\lambda}$$. By definition, we know that $$\dim(E_{\lambda})$$ is $$k$$. (definition above)
 <br>
 <br>
-Let $$\{v_1,...,v_k\}$$ be a basis of $$E_{\lambda}$$. We know that $$k \leq n$$ so extend this basis to a basis for $$\mathbf{R}^n$$. 
-
-
-
-
+Let $$\{v_1,...,v_k\}$$ be a basis for $$E_{\lambda}$$. We know that $$\dim(E_{\lambda})=k$$. We also know that $$k \leq n$$ so extend this basis to a basis for $$\mathbf{R}^n$$ so 
+<div>
+$$
+\begin{align*}
+\beta = \{v_1, ..., v_k, v_{k+1},...,v_n\}.
+\end{align*}
+$$
+</div>
+Again, we are seeking a relationship between the dimension of the eigenspace and the characteristic polynomial of $$A$$. We don't know if $$[L_A]_{\beta}^{\beta}$$ is diagonalizable yet. But we do know by definition that 
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} &= 
+\begin{pmatrix} 
+[Av_1]_{\beta} & \cdots & [Av_n]_{\beta}
+\end{pmatrix}
+\\
+&= 
+\begin{pmatrix} 
+[\lambda v_1]_{\beta} & \cdots & [\lambda v_k]_{\beta} & [Av_{k+1}]_{\beta} & \cdots & [Av_n]_{\beta}
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+The top left section of this matrix is diagonal where it consists of the $$k$$ eigenvectors. By the proposition we introduced earlier, since $$A$$ and $$[L_A]_{\beta}^{\beta}$$ are similar, then
+<div>
+$$
+\begin{align*}
+\det([L_A]_{\beta}^{\beta} - tI_n) = \det(A - tI_n)
+\end{align*}
+$$
+</div>
+But we can write $$\det([L_A]_{\beta}^{\beta} - tI_n)$$ as
+<div>
+$$
+\begin{align*}
+\det([L_A]_{\beta}^{\beta} - tI_n) &= (\lambda - t)^k \det(\text{unknown part of the matrix}) \\
+&= \det(A - tI_n).
+\end{align*}
+$$
+</div>
+Why is this true? The top left section just consists of $$\lambda - t$$ entries on the diagonal while the rest is zero. Hence, the algebraic multiplicity of $$\lambda$$ is at least $$k$$. 
 <br>
 <br>
-
-
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>A More Refined Test for Diagonalizability</b></h4>
+We're finally ready to present the more refined test for diagonalizability. 
+<br>
 <div class="purdiv">
 Theorem
 </div>
@@ -284,12 +329,106 @@ Theorem
 \(A\) is diagonalizable if and only if
 <ul style="list-style-type:lower-alpha">
 	<li>\(\det(A - tI_n)\) splits over \(\mathbf{R}\)</li>
-	<li>For each eigenvalue \(\lambda\), geometric multiplicity = algebraic multiplictiy</li>
+	<li>For each eigenvalue \(\lambda\), geometric multiplicity = algebraic multiplicity</li>
 </ul>
 </div>
-
-
 <br>
+<b>Proof</b>
+<br>
+<br>
+$$\Rightarrow:$$
+Suppose that $$A$$ is diagonalizable. This means that we have a basis $$beta = \{v_1,...,v_n\}$$ consisting entirely of eigenvectors. Now we need to prove that $$a$$ and $$b$$ both hold. Last time we proved that $$a$$ holds. This means that the characteristic polynomial splits over $$R$$ and so 
+<div> 
+$$
+\begin{align*}
+\det(A - tI_n) = (t - \lambda_1)^{m_1}...(t - \lambda_k)^{m_k}
+\end{align*}
+$$
+</div>
+where $$\sum_{j=1}^{k} m_j = n$$. Now, given $$\lambda_j$$, let $$k_j$$ be the geometric multiplicity of $$\lambda_j$$. We know by definition that $$k_j = \dim(E_{\lambda_j})$$. The goal is to prove that $$k_j = \dim(E_{\lambda_j}) = m_j$$. 
+<br>
+<br>
+Last time we proved that the geometric multiplicity is always less than or equal to the algebraic multiplicity of any $$\lambda$$. Therefore, we have $$k_j \leq m_j$$. Moreover, each of the eigenvectors in $$\beta$$ must belong to one of our eigenspaces so let $$l_j = num(\{v_i \in \beta \ | \ v_i \in E_{\lambda_j}\})$$. That is $$l_j$$ is the number of eigenvectors in $$\beta$$ that belong to the eigenspace $$E_{\lambda_j}$$. But we only have $$n$$ eigenvectors in $$\beta$$, therefore,
+<div> 
+$$
+\begin{align*}
+n = \sum_{j=1}^k l_j
+\end{align*}
+$$
+</div>
+We also know that 
+<div> 
+$$
+\begin{align*}
+l_j \leq k_j
+\end{align*}
+$$
+</div>
+This is because the number of vectors in the eigenspace that are selected from the basis can be at most the dimension of the eigenspace itself. Putting the above observations together, we see that 
+<div> 
+$$
+\begin{align*}
+n = \sum_{j=1}^k l_j \leq \sum_{j=1}^k k_j \leq \sum_{j=1}^k m_j = n
+\end{align*}
+$$
+</div>
+Therefore, $$k_j = m_j$$ for $$j = 1,2,...,k$$. 
+<br>
+<br>
+$$\Leftarrow:$$ We're given (a) and (b). One way to prove that $$A$$ is diagonalizable is by constructing a basis of eigenvectors. So let $$\beta_j$$ be a basis for $$E_{\lambda_j}$$. Set $$\beta = \beta_1 \cup \beta_2 \cup ... \cup \beta_k$$. By the homework, $$\beta$$ is linearly independent and by construction, it consists of eigenvectors. It remains to show that the number of vectors in $$\beta$$ is $$n$$. But from (b), we know that
+<div> 
+$$
+\begin{align*}
+num(\beta) = \sum_{j=1}^k l_j = \sum_{j=1}^k k_j = \sum_{j=1}^k m_j
+\end{align*}
+$$
+</div>
+Because in (b) we said that the algebraic multiplicity must be equal to the geometric multiplicity. And from (a), we know that
+<div> 
+$$
+\begin{align*}
+\sum_{j=1}^k m_j = n
+\end{align*}
+$$
+</div>
+So $$\beta$$ is the desired basis and $$A$$ must be diagonalizable. $$ \ \blacksquare$$
+<br>
+<br>
+One final note here: we've developed several tests including the above one to test matrices for diagonalizability. What about general linear transformations $$T: V \rightarrow V$$? well we can find the matrix representable of $$T$$ with respect to  basis $$\gamma$$ so $$[T]_{\gamma}^{\gamma}$$. Check if this matrix is diagonalizable for any basis $$\gamma$$.
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Computing \(A^k\)</b></h4>
+If $$A$$ is diagonalizable, then
+<div> 
+$$
+\begin{align*}
+A = QDQ^{-1} \text { where }
+D = 
+\begin{pmatrix} 
+\lambda_1 & \cdots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & \lambda_n
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+This allows us to compute $$A^k$$ easily since
+<div> 
+$$
+\begin{align*}
+A^k = QD^kQ^{-1} \text { where }
+D^k = 
+\begin{pmatrix} 
+\lambda_1^k & \cdots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & \lambda_n^k
+\end{pmatrix}
+\end{align*}
+$$
+</div>
 <br>
 <hr>
 <br>

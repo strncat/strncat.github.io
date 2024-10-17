@@ -152,8 +152,17 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html">
         Lecture 25: Diagonalization and Eigenvalues
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/08/23/lec26-diagonalizable-matrices-and-markov-chains.html">
+        Lecture 26/27: Markov Chains and Transition Matrices
+       </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/08/24/lec28-invariant-subspaces.html">
+        Lecture 28: Invariant and T-cyclic Subspaces
+       </a></li>
    </ul>
-
 <br>
 <!------------------------------------------------------------------->  
 <h3> Essense of Linear Algebra (3Blue1Brown) </h3>

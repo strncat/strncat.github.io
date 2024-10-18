@@ -1,10 +1,88 @@
 ---
 layout: post
-title:  "Lecture 28: Invariant and T-cyclic Subspaces"
-date:   2024-08-24 01:01:36 -0700
+title:  "Lecture 29: Inner Product Spaces"
+date:   2024-08-25 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
+Let $$V$$ be. vector space over $$\mathbf{F} = \mathbf{R}$$ or $$\mathbf{C}$$. 
+<div> 
+$$
+\begin{align*}
+\mathbf{C} = \{ z=a+ib \ | \ a, b \in \mathbf{R} \}
+\end{align*}
+$$
+</div>
+The complex conjugate of $$z$$ is $$\bar{z} = a - ib$$.
+<div> 
+$$
+\begin{align*}
+z\bar{z} = (a + ib)(a - ib) = a^2 + b^2 = |z|^2
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+An inner product \(\langle \ , \ \rangle\) on a vector \(V\) is a map
+$$
+\begin{align*}
+\langle \ , \ \rangle : \ &V \times V \rightarrow \mathbf{F} = \mathbf{R} \text{ or } \mathbf{C} \\
+&(x, y) \rightarrow \langle x , y \rangle
+\end{align*}
+$$
+such that
+<ol type="i">
+	<li>\(\langle x+z, y \rangle = \langle x , y \rangle + \langle z , y \rangle\)</li>
+	<li>\(\langle cx, y \rangle = c \langle x , y \rangle\)</li>
+	<li>\(\langle x, y \rangle = \overline{\langle y, x \rangle}\). Note if \(\mathbf{F} = \mathbf{R}\), then \(\langle x, y \rangle = \langle y, x \rangle\) </li>
+	<li>\(\langle x, x \rangle > 0 \text{ if } x \neq \bar{0}\)</li>
+</ol>
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Examples</b></h4>
+The simplest example is $$V = \mathbf{R}^1$$ (vector space over $$\mathbf{R}$$) where
+<div> 
+$$
+\begin{align*}
+\langle x, y \rangle &= xy
+\end{align*}
+$$
+</div>
+This map satisfies the inner product properties. Notice that
+<ol type="i">
+	<li>\(\langle x+z, y \rangle = (x+z)y = xy + zx = \langle x , y \rangle + \langle z , y \rangle \)</li>
+	<li>\(\langle cx, y \rangle = cxy = c\langle x, y \rangle\)</li>
+	<li>\(\langle x, y \rangle = \overline{\langle y, x \rangle} = yx = xy\). </li>
+	<li>\(\langle x, x \rangle > 0 \text{ if } x \neq \bar{0}\)</li>
+</ol>
+We can so define this inner product
+<div> 
+$$
+\begin{align*}
+\langle \langle x, y \rangle \rangle_c &= c^2xy \quad c \neq 0
+\end{align*}
+$$
+which also satisfies the inner product properties (TODO)
+<br>
+<br>
+<hr>
+<br>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 Consider a linear map $$T: V \rightarrow V$$. Suppose $$v$$ is an eigenvector of $$T$$. We know by definition that $$Tv = \lambda v$$ and $$v \neq 0$$. We also know that $$span\{v\} \subset V$$ is subspace. The observation here is that since $$v$$ is an eigenvector, then when $$T$$ acts on the subspace, then it stays inside the subspace meaning
 <div> 
 $$

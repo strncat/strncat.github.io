@@ -43,7 +43,7 @@ such that
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Examples</b></h4>
+<h4><b>Example 1</b></h4>
 The simplest example is $$V = \mathbf{R}^1$$ (vector space over $$\mathbf{R}$$) where
 <div> 
 $$
@@ -59,316 +59,111 @@ This map satisfies the inner product properties. Notice that
 	<li>\(\langle x, y \rangle = \overline{\langle y, x \rangle} = yx = xy\). </li>
 	<li>\(\langle x, x \rangle > 0 \text{ if } x \neq \bar{0}\)</li>
 </ol>
-We can so define this inner product
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 2</b></h4>
+We can also define this inner product
 <div> 
 $$
 \begin{align*}
 \langle \langle x, y \rangle \rangle_c &= c^2xy \quad c \neq 0
 \end{align*}
 $$
+</div>
 which also satisfies the inner product properties (TODO)
 <br>
 <br>
 <hr>
 <br>
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-Consider a linear map $$T: V \rightarrow V$$. Suppose $$v$$ is an eigenvector of $$T$$. We know by definition that $$Tv = \lambda v$$ and $$v \neq 0$$. We also know that $$span\{v\} \subset V$$ is subspace. The observation here is that since $$v$$ is an eigenvector, then when $$T$$ acts on the subspace, then it stays inside the subspace meaning
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 3: Dot Product</b></h4>
+Another example is $$V = \mathbf{R}^n$$ over $$\mathbf{R}$$ where
 <div> 
 $$
 \begin{align*}
-T(span\{v\}) \subset span\{v\}
+\langle x, y \rangle &= x_1y_1 + ... + x_ny_n = \sum_j x_jy_j
 \end{align*}
 $$
 </div>
-This is because $$T(cv) = cT(v) = (c\lambda) v$$ which is in the span of $$v$$. The span of an eigenvector is the simplest example an invariant subspace.
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-A subspace \(W \in V\) is \(T\)-invariant if \(T(W) \subset W\).
-</div>
-<br>
-i.e. $$T(w) \in W \ \forall w \in W$$
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<h4><b>Examples</b></h4>
-Example 1: $$W = span\{v\}$$ where $$v$$ is an eigenvector of $$T$$.
-<br>
-<br>
-Example 2: $$I_V:V \rightarrow V$$ Every subspace is $$I_V$$-invariant.
-<br>
-<br>
-Example 3: $$0_V:V \rightarrow V$$ Every subspace is $$0_V$$-invariant.
-<br>
-<br>
-Example 4: 
-<div> 
-$$
-\begin{align*}
-T : \ &\mathbf{R}^2 \rightarrow \mathbf{R}^2 \\
-&(x, y) \rightarrow (x,0)
-\end{align*}
-$$
-</div>
-$$W = span\{(1,0)\}$$ is $$T$$-invariant
-<br>
-$$W = span\{(1,1)\}$$ is not $$T$$-invariant
+which is commonly known as the dot product.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Characteristic Polynomial of Invariant Subspaces</b></h4>
-So what is the point of invariant subspaces? It helps us break off pieces of our map. What does that mean? If $$T: V \rightarrow V$$ and $$W$$ is $$T$$-invariant, then the restriction of $$T$$ to $$W$$, $$T_W$$ satisfies $$T_W: W \rightarrow W$$. So now have a smaller set instead of the entire vector space $$V$$. The following theorem describes the relationship between the characteristic polynomial of $$T:V \rightarrow V$$ and the characteristic polynomial of $$T: W \rightarrow W$$. 
-<br>
-<br>
-<div class="purdiv">
-Theorem
+<h4><b>Example 4</b></h4>
+Another example is $$V = \mathbf{R}^2$$ over $$\mathbf{R}$$ where
+<div> 
+$$
+\begin{align*}
+\langle \langle x, y \rangle \rangle &= 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2
+\end{align*}
+$$
 </div>
-<div class="purbdiv">
-Suppose \(T: V \rightarrow V\) is linear and \(\dim(V) < \infty\). If \(W\) is \(T\)-invariant, then the characteristic polynomial of \(T_W\) divides that of \(T\).
+We claim that $$\langle \langle \ , \ \rangle \rangle$$ is an inner product. To see this check each property in the definition. For example for property 4, we see that
+<div> 
+$$
+\begin{align*}
+\langle \langle x, x \rangle \rangle &= 2x_1x_1 + x_1x_2 + x_2x_1 + x_2x_2 \\
+                                     &= 2x_1^2 + 2x_1x_2 + x_2^2 \\
+									 &= x_1^2 + (x_1 + x_2)^2 > 0
+\end{align*}
+$$
 </div>
 <br>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<b>Proof</b>
-<br>
-<br>
-Let $$\beta_w = \{v_1,...,v_k\}$$ be a basis of $$W$$. Extend this to a basis for $$V$$. so 
+<h4><b>Example 5</b></h4>
+Define $$V = \mathbf{C}$$ over $$\mathbf{C}$$ where
 <div> 
 $$
 \begin{align*}
-\beta = \{v_1,...,v_k,v_{k+1},...,v_n\}
+\langle z_1, z_2 \rangle &= z_1\bar{z_2}
 \end{align*}
 $$
 </div>
-We can express $$T$$ with respect $$\beta$$ to get
-<div> 
-$$
-\begin{align*}
-[T]_{\beta}^{\beta} &= \begin{pmatrix} [T(v_1)]_{\beta_1} & \cdots & [T(v_n)]_{\beta_1} \end{pmatrix}
-\end{align*}
-$$
-</div>
-We know that $$T(v_i) \in W$$ for $$i = 1,...,k$$ since $$W$$ is $$T$$-invariant. Therefore, we can express $$T(v_i)$$ as a linear combination of just the first $$k$$ vectors in $$\beta$$. The rest of the coefficients will be zero for the remaining vectors in $$\beta$$. So you can imagine below that for the first $$k$$ columns of $$[T]_{\beta}^{\beta}$$, we'll have zero entries for anything below the $$k$$th entry. Let $$B_1$$ be the coefficients that we know will not be zero (at least some).
-<div> 
-$$
-\begin{align*}
-[T]_{\beta}^{\beta} &= 
-\begin{pmatrix} 
-B_1 & | & B_2 \\
----- & - & ---- \\
-0 & | & B_3 \\
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-We claim that $$B_1 = [T]_{\beta_W}^{\beta_W}$$. Now, we want to determine the characteristic polynomial of $$[T]_{\beta}^{\beta}$$. 
-<div> 
-$$
-\begin{align*}
-\det([T]_{\beta}^{\beta} - tI_n) &= 
-\begin{pmatrix} 
-[T]_{\beta_W}^{\beta_W} - tI_k & | & B_2 \\
----- & - & ---- \\
-0 & | & B_3 - tI_{n-k} \\
-\end{pmatrix} \\
-&= \det([T]_{\beta_W}^{\beta_W} - tI_k)g(t)
-\end{align*}
-$$
-</div>
+Note here that if we defined the product as $$\langle z_1, z_2 \rangle = z_1z_2$$. This will fail to satisfy the inner product conditions.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>T-cyclic Subspaces</b></h4>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-For \(v \in V\) the \(T\)-cyclic subspace generated by \(v\) is \(W=span\{v, T(v), T^2(v),...\} \subset V\).
-</div>
-<br>
-<br>
-Observe here that $$W$$ is $$T$$-invariant. Why? take any element $$w \in W$$, $$T(w)$$ is still in $$W$$. To see this, notice that
+<h4><b>Example 6: Frobenius Inner Product</b></h4>
+Define $$V = \mathbf{C}^0([0,1]) = \{f: [0,1] \rightarrow \mathbf{R} \ | \ f \text{ continuous}\}$$ 
 <div> 
 $$
 \begin{align*}
-T(a_0v + a_1T(v) + ... + a_kT^k(v)) = a_0T(v) + a_1T^2(v)+...+a_kT^{k+1}(v) \in W
+\langle f, g \rangle &= \int_0^1 f(t)g(t)dt
 \end{align*}
 $$
 </div>
-Question: Are all $$T$$-invariant subspaces $$T$$-cyclic?
-<br>
-<br>
-The answer is no. Suppose
+is an inner product. Checking property (4)
 <div> 
 $$
 \begin{align*}
-T \ &: \mathbf{R}^3 \rightarrow \mathbf{R}^3  \\
- &(x,y,z) \rightarrow (x,y,0)
+\langle f, g \rangle &= \int_0^1 f(t)f(t) dt \\
+                    &= \int_0^1 f^2(t) dt \\
+					&> 0 \text{ unless $f(t)=0 \ \forall t \in [0,1]$ }				
 \end{align*}
 $$
 </div>
-$$W = \{(x,y,0) \ | \ x, y \in \mathbf{R}\}$$ is $$T$$-invariant. We just map it to itself. In fact $$T_W = I_W$$.
 <br>
-<br>
-So we see here that $$W$$ is not $$T$$-cyclic. Take $$(x, y, 0)$$,
-<div> 
-$$
-\begin{align*}
-span\{(x,y,0), T(x,y,0),...\} = span\{(x,y,0)\}
-\end{align*}
-$$
-</div>
+<hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<div class="bdiv">
-Theorem
-</div>
-<div class="bbdiv">
-Suppose \(T: V \rightarrow V\) is linear and \(\dim(V) < \infty\).
-Let \(W\) be a \(T\)-cyclic subspace generated by \(v\). Set \(\dim W = k \leq \dim V\). Then
-<ul style="list-style-type:lower-alpha">
-	<li>\(\{v,T(v),...,T^{k-1}(v)\}\) is a basis for \(W\)</li>
-	<li>If \(T^k(v) = a_0v + ... + a_{k-1}T^{k-1}(v)\), then the characteristic polynomial of \(T_W\) \((-1)^{k+1}(a_0 + a_1t + ... + a_{k-1}t^{k-1} - t^k)\)</li>
-</ul>
-</div>
-<br>
-For (a). Since the dimension is not infinite anymore. Then it's natural to ask if only $$k$$ of the infinitely generated vectors is a span for $$W$$ and the answer is yes.
-<br>
-<br>
-<!------------------------------------------------------------------------------------>
-<b>Proof:</b>
-<br>
-<br>
-We'll start with a proof of (b) given (a). To say anything about the characteristic polynomial, we need to find a basis and then compute the matrix with respect to the basis. A natural choice is the basis given to us in $$a$$ so 
+<h4><b>Example 7</b></h4>
+Define $$V = M_{n \times n}(\mathbf{R})$$ 
 <div> 
 $$
 \begin{align*}
-\beta_W = \{v,T(v),...,T^{k-1}(v)\}
+\langle A, B \rangle &= tr(B^tA)
 \end{align*}
 $$
 </div>
-Next we need to compute $$[T_W]_{\beta_W}^{\beta_W}$$
-<div> 
-$$
-\begin{align*}
-[T_W]_{\beta_W}^{\beta_W} &=
-\begin{pmatrix} 
-[T_W(v)]_{\beta_W} & \cdots & [T_W(T^{k-1}(v))]_{\beta_W}
-\end{pmatrix}\\
-&= 
-\begin{pmatrix} 
-0 & 0 & \cdots & \cdots & 0 & a_0 \\
-1 & 0 & \cdots & \cdots & 0 & a_1  \\
-0 & 1 & \ddots & \cdots & 0 & a_2 \\
-\vdots & \vdots & \ddots & \ddots & \vdots & \vdots \\
-\vdots & \vdots & \ddots & \ddots & \vdots & a_{k-2} \\
-0 & 0 & \cdots & \cdots & 1 & a_{k-1} \\
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-The first column is the coefficients of $$T_W(v)$$ with respect to $$\beta_W$$ so that's just 1 for $$T(v)$$ while the rest are 0. Similarly, we have the same thing for the rest of the $$k-1$$ column vectors. But for the last column, we need to represent $$T_W(T^{k-1}(v)) = T^k(v)$$. We're given $$T^k(v) = a_0v + ... + a_{k-1}T^{k-1}(v)$$ and so the rest of the coefficients are $$a_0,a_1 .... a_{k-1}$$. 
-<br>
-<br>
-Now, we can compute the determinant expanding across the first row
-<div> 
-$$
-\begin{align*}
-&\det([T_W]_{\beta_W}^{\beta_W} -tI_k)
-= 
-\begin{pmatrix} 
--t & 0 & \cdots & \cdots & 0 & a_0 \\
-1 & -t & \cdots & \cdots & 0 & a_1  \\
-0 & 1 & \ddots & \cdots & 0 & a_2 \\
-\vdots & \vdots & \ddots & \ddots & \vdots & \vdots \\
-\vdots & \vdots & \ddots & \ddots & \vdots & a_{k-2} \\
-0 & 0 & \cdots & \cdots & 1 & a_{k-1}-t \\
-\end{pmatrix} \\
-&=
-(-1)^{1+1}(-t)\det 
-\begin{pmatrix}  
--t & \cdots & \cdots & 0 & a_1  \\
-1 & \ddots & \cdots & 0 & a_2 \\
- \vdots & \ddots & \ddots & \vdots & \vdots \\
-\vdots & \ddots & \ddots & \vdots & a_{k-2} \\
- 0 & \cdots & \cdots & -t & a_{k-1}-t \\
-\end{pmatrix}
-+(-1)^{1+k}a_0 (1)
-\end{align*}
-$$
-</div>
-The last determinant for the $$a_0$$ component is 1 because that sub matrix is upper triangular so the determinant is the product of the entries on the diagonal which are all 1.
-<br>
-<br>
-Next, we want to compute that new determinant but notice now that it has the same pattern so
-<div> 
-$$
-\begin{align*}
-&=
--t
-\left(
-\det 
-\begin{pmatrix}  
--t & \cdots & \cdots & 0 & a_1  \\
-1 & \ddots & \cdots & 0 & a_2 \\
- \vdots & \ddots & \ddots & \vdots & \vdots \\
-\vdots & \ddots & \ddots & \vdots & a_{k-2} \\
- 0 & \cdots & \cdots & -t & a_{k-1}-t \\
-\end{pmatrix}
-
-\right)
-+(-1)^{1+k}a_0 (1)
-\\
-&=
-(-t)
-\left(
-(-t)
-\begin{pmatrix}  
--t & \cdots & \cdots & 0 & a_2 \\
-1 & \ddots & \cdots & 0 & a_3 \\
-\vdots & \ddots & \ddots & \vdots & \vdots \\
-0 & \cdots & \ddots & -t & a_{k-2} \\
- 0 & \cdots & \cdots & 1 & a_{k-1}-t \\
-\end{pmatrix}
-+ (-1)^k a_1
-\right)
-+(-1)^{1+k}a_0 (1)
-\\
-&=
-(-1)^2
-t^2
-\begin{pmatrix}  
--t & \cdots & \cdots & 0 & a_2 \\
-1 & \ddots & \cdots & 0 & a_3 \\
-\vdots & \ddots & \ddots & \vdots & \vdots \\
-0 & \cdots & \ddots & -t & a_{k-2} \\
- 0 & \cdots & \cdots & 1 & a_{k-1}-t \\
-\end{pmatrix}
-+ (-1)^{k+1} (ta_1 + a_0)
-\\
-&= (-1)^{k+1}(a_0 + ta_1 + ... + t^{k-1}a_{k-1} - t^k)
-\end{align*}
-$$
-</div>
+Recall $$tr(C) = C_{11} + C_{22} + ... + C_{nn} = \sum_j C_{jj}$$
 <br>
 <br>
 <hr>

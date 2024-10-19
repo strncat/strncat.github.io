@@ -127,30 +127,31 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/11/lec19-determinants.html">
         Lecture 19/20: Determinants
        </a></li>
-	   <!------------------------------------------------------------------->  
-	   <br>
        <li><a href="/jekyll/update/2024/08/18/lec21-determinants-row-operations.html">
         Lecture 21: Determinants and Row Operations
        </a></li>
-	   <!------------------------------------------------------------------->  
-	   <br>
        <li><a href="/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html">
         Lecture 22: Determinants and Invertible Matrices
+       </a></li>
+       <li><a href="/jekyll/update/2024/08/26/lec20-theorem-4.8.html">
+        Book (Section 4.3) Theorem 4.8: For any \(A \in M_{n \times n}(\mathbf{F}\), \(\det(A^t) = \det(A)\).
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html">
         Lecture 23: Eigenvalues and Diagonalizability
        </a></li>
-	   <!------------------------------------------------------------------->  
-	   <br>
        <li><a href="/jekyll/update/2024/08/21/lec24-more-diagonalizability.html">
         Lecture 24: More Diagonalizability
        </a></li>
-	   <!------------------------------------------------------------------->  
-	   <br>
        <li><a href="/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html">
         Lecture 25: Diagonalization and Eigenvalues
+       </a></li>
+       <li><a href="/jekyll/update/2024/08/27/lec25-theorem-5.5.html">
+        Book (Section 5.2) Theorem 5.5
+       </a></li>
+       <li><a href="/jekyll/update/2024/08/27/lec25-exercise-15-characteristic-polynomial-a-at.html">
+        Exercise 15 (Section 5.1): For any square matrix \(A\), prove that \(A\) and \(A^t\) have the same characteristic polynomial (and hence the same eigenvalues).
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>

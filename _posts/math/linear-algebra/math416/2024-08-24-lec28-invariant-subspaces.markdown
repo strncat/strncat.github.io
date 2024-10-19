@@ -21,7 +21,7 @@ This is because $$T(cv) = cT(v) = (c\lambda) v$$ which is in the span of $$v$$. 
 Definition
 </div>
 <div class="bbdiv">
-A subspace \(W \in V\) is \(T\)-invariant if \(T(W) \subset W\).
+A subspace \(W \in V\) is \(T\)-invariant if \(T(W) \subseteq W\).
 </div>
 <br>
 i.e. $$T(w) \in W \ \forall w \in W$$

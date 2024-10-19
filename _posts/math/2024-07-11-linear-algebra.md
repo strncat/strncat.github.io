@@ -82,7 +82,7 @@ mathjax: true
         Book (2.1) Theorem 2.2: If \(T\) is linear and \(\beta=\{v_1,...,v_n\}\) is basis for \(V\), then \(R(T) = span(T(\beta)) = span(\{T(v_1),...,T(v_n)\})\) 
        </a></li>
        <li><a href="/jekyll/update/2024/08/12/lec11-ex-0.html">
-        Exercise: Prove that if \(\dim(V) < \dim (W)\), then \(T\) cannot be onto.
+        External Exercise: Prove that if \(\dim(V) < \dim (W)\), then \(T\) cannot be onto.
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
@@ -134,7 +134,7 @@ mathjax: true
         Lecture 22: Determinants and Invertible Matrices
        </a></li>
        <li><a href="/jekyll/update/2024/08/26/lec20-theorem-4.8.html">
-        Book (Section 4.3) Theorem 4.8: For any \(A \in M_{n \times n}(\mathbf{F}\), \(\det(A^t) = \det(A)\).
+        Book (4.3) Theorem 4.8: For any \(A \in M_{n \times n}(\mathbf{F}\), \(\det(A^t) = \det(A)\).
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
@@ -147,11 +147,14 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/22/lec25-diagonalization-eigenvalues.html">
         Lecture 25: Diagonalization and Eigenvalues
        </a></li>
-       <li><a href="/jekyll/update/2024/08/27/lec25-theorem-5.5.html">
-        Book (Section 5.2) Theorem 5.5
+       <li><a href="/jekyll/update/2024/08/27/lec25-5.1-exercises-15.html">
+        Book (5.1) Exercise 15: For any square matrix \(A\), prove that \(A\) and \(A^t\) have the same characteristic polynomial (and hence the same eigenvalues).
        </a></li>
-       <li><a href="/jekyll/update/2024/08/27/lec25-exercise-15-characteristic-polynomial-a-at.html">
-        Exercise 15 (Section 5.1): For any square matrix \(A\), prove that \(A\) and \(A^t\) have the same characteristic polynomial (and hence the same eigenvalues).
+       <li><a href="/jekyll/update/2024/08/28/lec25-theorem-5.5.html">
+        Book (5.2) Theorem 5.5
+       </a></li>
+       <li><a href="/jekyll/update/2024/08/29/lec25-theorem-5.5-corollary.html">
+        Book (5.2) Theorem 5.5 (Corollary): If \(T\) is a linear operator on an \(n\)-dimensional vector space \(V\) and \(T\) has \(n\) distinct eigenvalues, then \(T\) is diagonalizable.
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>

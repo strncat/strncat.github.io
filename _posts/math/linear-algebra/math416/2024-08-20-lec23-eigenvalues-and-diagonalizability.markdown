@@ -5,6 +5,8 @@ date:   2024-08-20 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
+<!------------------------------------------------------------------------------------>
+<h4><b>Motivation</b></h4>
 <div class="bdiv">
 Definition
 </div>
@@ -37,9 +39,12 @@ $$
 $$
 </div>
 This leads to the question of whether we can transform any matrix to a diagonal matrix so we can perform these computations easily. In the next definition we formalize this.
+<br>
+<br>
+<hr>
+<br>
 <!------------------------------------------------------------------------------------>
-<br>
-<br>
+<h4><b>When is \(A\) Diagonalizable?</b></h4>
 <div class="purdiv">
 Theorem
 </div>
@@ -66,38 +71,55 @@ Question 2: If it exists, how can we compute it?
 <br>
 <br>
 Suppose we have a basis $$\beta = \{v_1,...,v_n\}$$ such that
+<div>
 $$
 [T]_{\beta}^{\beta} = 
 \begin{pmatrix} 
 \lambda_1 & \cdots & 0 \\
 \vdots & \ddots & \vdots \\
 0 & \cdots & \lambda_n
-\end{pmatrix}.
+\end{pmatrix}
 $$
+</div>
 <br>
 This is equivalent to
 <ul style="list-style: none;">
-	<li> \(\leftrightarrow\) each vector in the matrix above by definition is a basis vector expressed with respect to the basis \(\beta\). In other words, 
-		\([T(v_j)]_{\beta} =  
-		\begin{pmatrix} 0 & \cdots & \lambda_j & \cdots & 0 \end{pmatrix}^t\). 
-	for \(j = 1,..,n\).
+	<li> \(\leftrightarrow\) This matrix above by defintion is 
+<div>
+$$
+[T]_{\beta}^{\beta} = 
+\begin{pmatrix} 
+[T(v_1)]_{\beta} & \cdots & [T(v_n)]_{\beta}
+\end{pmatrix}
+$$
+</div>
 	</li>
-    <li>\(\leftrightarrow\) We can factor \(\lambda\) to see that \([T(v_j)]_{\beta} =  \lambda_j \begin{pmatrix} 0 & \cdots & 1 & \cdots & 0 \end{pmatrix}^t \). But this is just the \(j\)th vector of the standard basis so we can write it as \(\lambda_j[v_j]_{\beta}\). [TODO: I'm not very convinced here about the last step].
+    <li>\(\leftrightarrow\) We can factor \(\lambda\) to see that \([T(v_j)]_{\beta} =  \lambda_j \begin{pmatrix} 0 & \cdots & 1 & \cdots & 0 \end{pmatrix}^t \). But this is just the \(j\)th vector of the standard basis so we can write it as \(\lambda_j[v_j]_{\beta}\). [TODO: why?].
 	</li>
-    <li>\(\leftrightarrow\) We can take the constant \(\lambda_j\) inside since \([]_{\beta}\) is linear to see that \([T(v_j)]_{\beta} = \lambda_j[v_j]_{\beta} = [\lambda_jv_j]_{\beta} \) for \(j = 1,...,n\).
+    <li>\(\leftrightarrow\) We can take the constant \(\lambda_j\) inside since \([ \quad ]_{\beta}\) is a linear map to see that
+		<div>
+		$$
+		 [T(v_j)]_{\beta} = \lambda_j[v_j]_{\beta} = [\lambda_jv_j]_{\beta}  \text{ for } j = 1,...,n.
+		$$
+		</div>
 	</li>
-	<li>\(\leftrightarrow T(v_j) = \lambda_jv_j\) for \(j = 1,...,n\) and \(\lambda_1,...,\lambda_n \in \mathbf{R}\). Because they are both with respect to basis \(\beta\).
+	<li>\(\leftrightarrow \). Because both sides of the equation are written with respect to basis \(\beta\), we can take it out and write
+		<div>
+		$$
+		 T(v_j) = \lambda_jv_j \text { for } j = 1,...,n \text { and } \lambda_1,...,\lambda_n \in \mathbf{R}
+		$$
+		</div>
 	</li>
 	<li>\(\leftrightarrow T(v) = \lambda v\).
 	</li>
-	<li>\(\leftrightarrow T(v) = \lambda I_V(v)\). Since the identity matrix does nothing.
+	<li>\(\leftrightarrow T(v) = \lambda I_V(v)\). (Since the identity matrix does nothing)
 	</li>
 	<li>\(\leftrightarrow T(v) - \lambda I_V(v) = \bar{0}_V\).
 	</li>
 	<li>\(\leftrightarrow (T - \lambda I_V)(v) = \bar{0}_V\).
 	</li>
 </ul>
-The left hand side is a family of linear maps parameterized by $$\lambda$$. The solution to this is the set of all the non-zero vectors $$v$$ of the null space. We don't care about the zero solution since we want to build a basis.
+The left hand side is a family of linear maps parameterized by $$\lambda$$. The solution to this is the set of all the non-zero vectors $$v$$ of the nullspace. We don't care about the zero solution since we want to build a basis.
 <br>
 <br>
 <hr>
@@ -152,7 +174,7 @@ $$
 \end{align*}
 $$
 </div>
-is equivalent to find the set of eigenvectors that satisfy $$T(v) = \lambda v$$. This is all great. But now instead of looking at general linear maps that satisfy these conditions, let's turn focus on matrices.
+is equivalent to find the set of eigenvectors that satisfy $$T(v) = \lambda v$$. This is all great. But now instead of looking at general linear maps that satisfy these conditions, let's turn our focus on matrices.
 <br>
 <br>
 <hr>
@@ -193,7 +215,7 @@ Definition
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Finding the Eigenvectors</b></h4>
-Okay now that we've narrowed down the discussion to matrices, how do we actually find these eigenvectors of $$A$$? Set the null space of $$A$$ to $$N(A) = N(L_A)$$. Next we will need the following lemma
+Okay now that we've narrowed down the discussion to matrices, how do we actually find these eigenvectors of $$A$$? Set the nullspace of $$A$$ to $$N(A) = N(L_A)$$. Next we will need the following lemma
 <br>
 <div class="purdiv">
 Lemma
@@ -215,7 +237,7 @@ Av - \lambda I_n v &= \bar{0}
 \end{align*}
 $$
 </div>
-But this precisely means that $$v \in N(A - \lambda I_n) \ \blacksquare$$. 
+But this precisely means that $$v \in N(A - \lambda I_n). \ \blacksquare$$
 <br>
 <br>
 <hr>
@@ -299,7 +321,7 @@ E_{\lambda} &= N(A - \lambda I_n) \\
 $$
 </div>
 <br>
-So this is kind of like another name for the null space except that here we have the zero vector.
+[TODO: What is the difference between the eigenspace and the nullspace?]
 <br>
 <br>
 <hr>

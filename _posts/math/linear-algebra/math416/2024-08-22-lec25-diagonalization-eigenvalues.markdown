@@ -117,7 +117,7 @@ So now what does splitting have to do with diagonalizability? The following theo
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem 1
+Theorem 1 (5.6)
 </div>
 <div class="purbdiv">
 If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\)
@@ -169,13 +169,13 @@ $$
 \end{align*}
 $$
 </div>
-Note here that in step 2, $$QtI_nQ^{-1} = tQQ^{-1} = tQtQ^{-1} = tI_n  $$
+Note here that in step 2, $$QtI_nQ^{-1} = tQQ^{-1} = tI_n  $$
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof of Theorem 1</b></h4>
+<h4><b>Proof of Theorem 1 (5.6)</b></h4>
 Suppose that $$A$$ is diagonalizable. This means that there exists a basis $$\beta$$ such that 
 <div>
 $$
@@ -259,8 +259,9 @@ For the same example above. The geometric multiplicity of $$\lambda = 1$$ is 1 b
 <br>
 Given these definitions we can now introduce the following theorem.
 <br>
+<!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem 2
+Theorem 2 (5.7)
 </div>
 <div class="purbdiv">
 Geometric multiplicity of \(\lambda \leq\) the algebraic multiplicity of \(\lambda\).
@@ -296,20 +297,47 @@ $$
 \end{align*}
 $$
 </div>
-The top left section of this matrix is diagonal where it consists of the $$k$$ eigenvectors. By the proposition we introduced earlier, since $$A$$ and $$[L_A]_{\beta}^{\beta}$$ are similar, then
+If we only look at the first $$k$$ columns of this matrix, they will then be consisting of these eigenvectors so it will be
 <div>
 $$
 \begin{align*}
-\det([L_A]_{\beta}^{\beta} - tI_n) = \det(A - tI_n)
+[L_A]_{\beta}^{\beta} &= 
+\begin{pmatrix} 
+\lambda_1 & 0 & 0 & 0 & \cdots \\
+0 & \lambda_2 & 0 & 0 & \cdots \\
+\vdots & 0 & \ddots & 0 & \cdots \\
+0 & \vdots & 0 & \lambda_k & \cdots \\
+0 & 0 & 0 & 0 \\
+\end{pmatrix}
 \end{align*}
 $$
 </div>
-But we can write $$\det([L_A]_{\beta}^{\beta} - tI_n)$$ as
+If we organize this matrix into blocks, we will see that
 <div>
 $$
 \begin{align*}
-\det([L_A]_{\beta}^{\beta} - tI_n) &= (\lambda - t)^k \det(\text{unknown part of the matrix}) \\
-&= \det(A - tI_n).
+[L_A]_{\beta}^{\beta} &= 
+\begin{pmatrix} 
+\lambda I_k & B \\
+O & C
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+where $$O$$ is the zero matrix and $$B$$ and $$C$$ are unknown. So we can write $$\det([L_A]_{\beta}^{\beta} - tI_n)$$ as
+<div>
+$$
+\begin{align*}
+\det([L_A]_{\beta}^{\beta} - tI_n) &= (\lambda - t)^k \det(\text{unknown part of the matrix})
+\end{align*}
+$$
+</div>
+But by the proposition we introduced earlier, since $$A$$ and $$[L_A]_{\beta}^{\beta}$$ are similar, then
+<div>
+$$
+\begin{align*}
+\det(A - tI_n) &= \det([L_A]_{\beta}^{\beta} - tI_n) \\
+ &= (\lambda - t)^k \det(\text{unknown part of the matrix})
 \end{align*}
 $$
 </div>
@@ -323,7 +351,7 @@ Why is this true? The top left section just consists of $$\lambda - t$$ entries 
 We're finally ready to present the more refined test for diagonalizability. 
 <br>
 <div class="purdiv">
-Theorem
+Theorem (5.8(a))
 </div>
 <div class="purbdiv">
 \(A\) is diagonalizable if and only if

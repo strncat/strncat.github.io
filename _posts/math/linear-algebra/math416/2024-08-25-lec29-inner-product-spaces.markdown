@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lecture 29: Inner Product Spaces"
+title:  "Lecture 29/30: Inner Product Spaces and Norms"
 date:   2024-08-25 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -163,7 +163,146 @@ $$
 \end{align*}
 $$
 </div>
-Recall $$tr(C) = C_{11} + C_{22} + ... + C_{nn} = \sum_j C_{jj}$$
+where
+<div> 
+$$
+\begin{align*}
+tr: \ &M_{n \times n}(\mathbf{R}) \rightarrow M_{n \times n}(\mathbf{R}) \\
+&C \rightarrow \sum_j C_{jj} = C_{11} + C_{22} + ... + C_{nn}
+\end{align*}
+$$
+</div>
+Does this map satisfy the inner product conditions?
+<ol type="i">
+	<!------------(i)---------------->
+	<li> We want to show that \(\langle A + C, B \rangle = \langle A, B \rangle + \langle C, B \rangle\). Expand the inner product to see that
+		<div> 
+		$$
+		\begin{align*}
+		\langle A+C, B \rangle &= tr(B^t(A+C)) \\
+		                       &= tr(B^tA + B^tC) \\
+							   &= tr(B^tA) + tr(B^tC) \\
+							   &= \langle A, B \rangle + \langle C, B \rangle 
+		\end{align*}
+		$$
+		</div>
+	</li>
+	<!------------(ii)---------------->
+	<li>We want to show that \(\langle cA, B \rangle = c\langle A, B \rangle\):
+	<div> 
+	$$
+	\begin{align*}
+	\langle cA, B \rangle &= tr(B^t(cA)) \\
+	                       &= ctr(B^tA) \\
+						   &= c\langle A, B \rangle
+	\end{align*}
+	$$
+	</div>
+	</li>
+	<!------------(iii)---------------->
+	<li>We want to show that \(\langle A, B \rangle = \langle B, A \rangle\). (over \(\mathbf{R}\)). Note here that \(tr(C^t) = tr(C)\). Then
+	<div> 
+	$$
+	\begin{align*}
+	\langle A, B \rangle &= tr(B^tA) \\
+	                       &= tr((B^tA)^t) \\
+	                       &= tr(A^tB) \\
+						   &= \langle B, A \rangle
+	\end{align*}
+	$$
+	</div>
+	</li>
+	<!------------(iv)---------------->
+	<li>We need to show that \(\langle A, A \rangle > 0 \text{ if } A \neq \bar{0} \in M_{n \times n}(\mathbf{R})\)
+		<div> 
+		$$
+		\begin{align*}
+		\langle A, A \rangle &= tr(A^tA) \\
+		                       &= \sum_j (A^tA)_{jj} \\
+		                       &= \sum_j \sum_k (A^t)_{jk} (A)_{kj} \\
+		                       &= \sum_j \sum_k (A)_{kj} (A)_{kj} \\
+							   &= \sum_j \sum_k A^2_{kj}						   
+		\end{align*}
+		$$
+		</div>
+		Note here that \(A^2_{kj} > 0\) unless \(A_{1j},...A_{nj} = 0\). These are the entries of the \(j\)th column of \(A\). This means that this is zero unless \(A\) is the zero matrix.
+	</li>
+</ol>
+In fact, $$tr(B^tA) = \sum_{ij} A_{ij}B_{ij}$$. the definition of $$tr(B^tA)$$ is for square matrices while the definition $$\sum_{ij} A_{ij}B_{ij}$$ works for any matrices. This works for an inner product on matrices.
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Inner Product Spaces</b></h4>
+So far, we've seen that inner products are not unique. We can define many inner products on a given vector space. So we have the following definition to fix a specific inner product on a vector space
+<br>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+An inner product space is a vector space is a vector space \(V\) with a fixed inner product.
+</div>
+<br>
+<br>
+Example: ($$\mathbf{R}^2, \langle x,y \rangle = x_1y_1 + x_2y_2$$) is an inner product space different from $$(\mathbf{R}^2, \langle x,y \rangle = 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2)$$
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>The Norm of a Vector</b></h4>
+For the rest of the lecture, we're going to assume that we have a fixed inner product on $$V$$. 
+<br>
+<br>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+Let \(V, \langle \ , \ \rangle\) be an inner product space. The length (or norm) of \(v \in V\) is
+		$$
+		\begin{align*}
+		\Vert v \Vert = \sqrt{\langle v, v \rangle}				   
+		\end{align*}
+		$$
+</div>
+<br>
+<br>
+Example $$V = \mathbf{C}^0([0,1])$$, Let $$\Vert f \Vert: (\int_0^1 f(t)^2 dt)^{1/2}$$. This is also called the $$L^2$$-norm.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The distance between \(x, y\) in \(V\) is \(\Vert x - y \Vert\)
+</div>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The sphere of radius \(r\) and center \(x \in V\) is \(\{y \in V \ | \ \Vert x - y \Vert = r \}\)
+</div>
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+For any \(x, y \in V\) and \(c \in \mathbf{F}\)
+<ol type="a">
+	<li>\(\Vert cx \Vert = |c|\Vert x \Vert  \)</li>
+	<li>\(\Vert x \Vert = 0 \leftrightarrow x = \bar{0}_V \)</li>
+	<li>\(| \langle x , y \rangle | \leq \Vert x \Vert \Vert y \Vert \). Cauchy-Schwarz</li>
+	<li>\(\Vert x + y \Vert \leq \Vert x \Vert \Vert y \Vert \). The Triangle Inequality</li>
+	
+</ol>
+</div>
 <br>
 <br>
 <hr>
@@ -171,7 +310,7 @@ Recall $$tr(C) = C_{11} + C_{22} + ... + C_{nn} = \sum_j C_{jj}$$
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>
 
 

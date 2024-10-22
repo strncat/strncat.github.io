@@ -177,5 +177,5 @@ Since both matrices are symmetric. But this implies that \(A+B = (A+B)^t\).
 <!------------------------------------------------------------------------------------>
 <h4><b>References:</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>

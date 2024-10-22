@@ -31,37 +31,67 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Section 5.1: Exercise 15</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Section 4.3: Exercise 21</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-08-27T01:01:36-07:00" itemprop="datePublished">Aug 27, 2024
+      <time class="dt-published" datetime="2024-08-31T01:01:36-07:00" itemprop="datePublished">Aug 31, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div class="ydiv">
-Exercise 15
+4.3: Exercise 21
 </div>
 <div class="ybdiv">
-For any square matrix \(A\), prove that \(A\) and \(A^t\) have the same characteristic polynomial (and hence the same eigenvalues).
+Prove that if \(M \in M_{n \times n}(\mathbf{F})\) can be written in the form
+	$$
+	\begin{align*}
+	M = \begin{pmatrix}
+	A &amp; B \\
+	O &amp; C
+	\end{pmatrix}
+	\end{align*}
+	$$
+where \(A\) and \(C\) are square square matrices. Prove that \(\det(M) = \det(A)\det(C)\)
 </div>
 <p><br />
-Proof:
+<b>Proof:</b>
 <br />
 <br />
-Suppose \(A\) is a square matrix of size \(n \times n\). By theorem 4.8, we know that for any matrix \(B \in M_{n\times n}\), \(\det(B) = \det(B^t)\). Therefore,</p>
+Suppose \(A\) is of size \(k \times k\) and \(C\) is of size \(m \times m\), then we know that \(k+m=n\) and \(O\) is of size \(m \times k\). We have two cases. If \(A\) is not invertible, then we know that \(\det(A) = 0\). Moreover, the columns of \(A\) are linearly dependent and the rank of \(A\) is less than \(k\). But \(M\) contains \(k+m\) columns and since the first \(k\) columns are linearly dependent, then the rank of \(M\) is less than \(k+m\). Therefore \(\det(M) = 0 = \det(A)\det(C)\) and we are done.
+<br />
+<br />
+Suppose that \(A\) is invertible. Then define</p>
 <div>
 	$$
 	\begin{align*}
-	\det(A - \lambda I_n) &amp;= \det((A - \lambda I_n)^t) \\
-	                  &amp;= \det((A - \lambda I_n)^t) \\
-	                  &amp;= \det(A^t - (\lambda I_n)^t) \\
-	                  &amp;= \det(A^t - \lambda I_n).
+     P &amp;= 
+ 	 \begin{pmatrix}
+ 	A &amp; O' \\
+ 	O &amp; I_m
+ 	\end{pmatrix},
+	Q = 
+	\begin{pmatrix}
+	I_k &amp; A^{-1}B \\
+	O &amp; C
+	\end{pmatrix}
 	\end{align*}
 	$$
 </div>
-<p>From this, we see that both \(A\) and \(A^t\) have the same characteristic polynomial and therefore, they must have the same eigenvalues. \(\ \blacksquare\)
+<p>Where \(O'\) is of size \(k \times m\). Note here that \(PQ = M\). We claim that \(\det(P) = \det(A)\) and \(\det(Q)=C\). Once we show this claim is true, then we can conclude that \(\det(M) = \det(P)\det(Q) = \det(A)\det(Q)\).
+<br />
+<br />
+To show that \(\det(P)=\det(O)\), We’ll prove this by induction on \(m\).<br />
+Base Case \(m=1\): \(I_m\) is of size \(1 \times 1\). \(O\) is of size \(1 \times k\). The last row of \(P\) therefore contains a row of zeros followed by 1. Computing the determinant of \(P\) by cofactor expansion along this last row yields exactly \(\det(A)\) as required.
+<br />
+<br />
+Inductive Case: Suppose this is true for \(m-1\). We will show that this is true for \(m\). In this case \(O\) is of size \(m \times k\) and \(I_m\) is of size \(m \times m\). The last row of this matrix is also a sequence of zeros followed by a 1 by the definition of \(O\) and \(I_m\). So compute the determinant by cofactor expansion along the last row to see that \(\det(P) = 1 \det(P')\). where \(P'\) is the matrix \(P\) but with the last column and the last row. We can now apply the inductive hypothesis to conclude that \(\det(P') = \det(A)\) and therefore \(\det(P) = 1\det(A) = \det(A)\) as we wanted to show.
+<br />
+<br />
+We can use the same inductive proof to prove that \(\det(Q) = C\). Once we do so, we are done.</p>
+
+<p>\(\ \blacksquare\)
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -79,8 +109,8 @@ Suppose \(A\) is a square matrix of size \(n \times n\). By theorem 4.8, we know
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/08/27/lec25-5.1-exercises-15.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/08/27/lec25-5.1-exercises-15; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/08/31/lec20-4.3-exercise-21.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/08/31/lec20-4.3-exercise-21; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -91,7 +121,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/08/27/lec25-5.1-exercises-15.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/08/31/lec20-4.3-exercise-21.html" hidden></a>
 </article>
 		 
       </div>

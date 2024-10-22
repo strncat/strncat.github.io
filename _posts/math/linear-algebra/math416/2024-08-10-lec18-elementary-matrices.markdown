@@ -311,7 +311,7 @@ So now if we put together the number of columns without leading entries (nullity
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>
 
 

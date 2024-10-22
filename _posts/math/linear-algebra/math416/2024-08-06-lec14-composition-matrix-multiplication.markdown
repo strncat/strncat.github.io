@@ -336,7 +336,7 @@ $$
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>
 
 

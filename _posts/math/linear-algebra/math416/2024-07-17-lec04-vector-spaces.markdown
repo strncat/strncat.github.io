@@ -299,6 +299,6 @@ so it can never be equal to (0, 1).
 <!------------------------------------------------------------------------------------>
 <h4><b>References:</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 <li>Linear Algebra Done Right for the last two proofs</li>
 </ul>

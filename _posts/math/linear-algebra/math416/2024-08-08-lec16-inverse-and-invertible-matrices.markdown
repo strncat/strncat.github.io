@@ -289,7 +289,7 @@ And so this will be the inverse. We still need to settle the case when $$a = 0$$
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>
 
 

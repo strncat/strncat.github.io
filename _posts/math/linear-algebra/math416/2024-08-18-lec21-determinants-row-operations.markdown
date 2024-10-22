@@ -253,7 +253,7 @@ Computing $$\det(A)$$ for $$A \in M_{n \times n}$$ using the inductive formula i
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>
 
 

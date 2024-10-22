@@ -136,6 +136,9 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/26/lec20-theorem-4.8.html">
         Book (4.3) Theorem 4.8: For any \(A \in M_{n \times n}(\mathbf{F}\), \(\det(A^t) = \det(A)\).
        </a></li>
+       <li><a href="/jekyll/update/2024/08/31/lec20-4.3-exercise-21.html">
+        Book (4.3) Exercise 21
+       </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/08/20/lec23-eigenvalues-and-diagonalizability.html">
@@ -172,7 +175,7 @@ mathjax: true
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/08/25/lec29-inner-product-spaces.html">
-        Lecture 29: Inner Product Spaces
+        Lecture 29/30: Inner Product Spaces and Norms
        </a></li>
    </ul>
 <br>

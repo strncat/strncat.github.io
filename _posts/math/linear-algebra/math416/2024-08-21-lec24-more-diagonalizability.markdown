@@ -341,7 +341,7 @@ This polynomial has no real roots and so we don't have eigenvalues. Is the only 
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>
 
 

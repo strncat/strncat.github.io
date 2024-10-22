@@ -399,7 +399,7 @@ $$\frac{1}{6}$$ corresponds to state 1 and $$\frac{5}{6}$$ correspond to state 2
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>
 
 

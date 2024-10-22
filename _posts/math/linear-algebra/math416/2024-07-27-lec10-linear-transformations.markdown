@@ -250,7 +250,7 @@ To prove that this mapping in linear, we notice that
 <!------------------------------------------------------------------------------------>
 <h4><b>References:</b></h4>
 <ul>
-<li>Video Lectures from Math416 by Ely Kerman.</li>
+<li>Math416 by Ely Kerman</li>
 </ul>
 
 

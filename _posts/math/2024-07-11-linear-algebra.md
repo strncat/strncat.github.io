@@ -177,6 +177,11 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/25/lec29-inner-product-spaces.html">
         Lecture 29/30: Inner Product Spaces and Norms
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets.html">
+        Lecture 31: Orthonormal and Orthogonal Sets
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

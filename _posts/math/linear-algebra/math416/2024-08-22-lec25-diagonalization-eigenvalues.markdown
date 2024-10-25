@@ -365,7 +365,7 @@ Theorem (5.8(a))
 <br>
 <br>
 $$\Rightarrow:$$
-Suppose that $$A$$ is diagonalizable. This means that we have a basis $$beta = \{v_1,...,v_n\}$$ consisting entirely of eigenvectors. Now we need to prove that $$a$$ and $$b$$ both hold. Last time we proved that $$a$$ holds. This means that the characteristic polynomial splits over $$R$$ and so 
+Suppose that $$A$$ is diagonalizable. This means that we have a basis $$\beta = \{v_1,...,v_n\}$$ consisting entirely of eigenvectors. Now we need to prove that $$a$$ and $$b$$ both hold. Last time we proved that $$a$$ holds. This means that the characteristic polynomial splits over $$R$$ and so 
 <div> 
 $$
 \begin{align*}

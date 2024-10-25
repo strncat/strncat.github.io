@@ -305,6 +305,77 @@ For any \(x, y \in V\) and \(c \in \mathbf{F}\)
 </div>
 <br>
 <br>
+<!------------------------------------------------------------------------------------>
+The proof for (a) and (b) follow easily. For (c). The motivation is from $$\mathbf{R}^2$$ with the standard inner product. 
+<div> 
+$$
+\begin{align*}
+ \langle x , y \rangle  &= x \cdot y = \Vert x \Vert \Vert y \Vert  \cos(\theta) \\
+| \langle x , y \rangle | &= x \cdot y = \Vert x \Vert \Vert y \Vert | \cos(\theta)|
+\end{align*}
+$$
+</div>
+But we know that $$| \cos(\theta)| \leq 1$$. Therefore
+<div> 
+$$
+\begin{align*}
+| \langle x , y \rangle | &\leq x \cdot y = \Vert x \Vert \Vert y \Vert 
+\end{align*}
+$$
+</div>
+But we want to prove this in general so:
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<b>Proof (c)</b>:
+<br>
+<br>
+If $$y = \bar{0}_V$$, then the inequality is true and we are done. So assume that $$y \neq \bar{0}_V$$. If we multiply both sides by $$\frac{1}{\Vert y \Vert}$$ which is a scalar, then this scalar can be factored out by property 1. Therefore, we can scale $$y$$ by whatever factor we want and so let's just assume that $$y$$ has length 1 ($$\Vert y \Vert = 1$$). So it suffies to show that
+<div> 
+$$
+\begin{align*}
+| \langle x , y \rangle | &\leq \Vert x \Vert \\
+| \langle x , y \rangle |^2 &\leq \Vert x \Vert^2 \text{ (because it's easier than dealing with a squareroot)} \\
+&= \langle x, x \rangle 
+\end{align*}
+$$
+</div>
+To show this, take the project of vector $$x$$ onto vector $$y$$ which has length 1. The projection is a vector $$x - \langle x , y \rangle y$$. Moreover,
+<div> 
+$$
+\begin{align*}
+0 &\leq \Vert x - \langle x , y \rangle y \Vert^2 \text{ ( the length of any vector $\geq 0$)} \\
+ &= \langle x - \langle x , y \rangle y, x - \langle x , y \rangle y \rangle \\
+ &= \langle x, x \rangle - \langle\langle x , y \rangle y, x\rangle +  \langle x, -\langle x , y \rangle y\rangle + \langle - \langle x, y \rangle y, - \langle x, y \rangle y \rangle \text{( by property 1)} \\
+ &= \Vert x \Vert^2 - \langle x, y \rangle \langle y, x \rangle + \overline{- \langle x, y \rangle y, x \rangle} + \Vert -\langle x, y \rangle y \Vert^2 \\ 
+ &= \Vert x \Vert^2 - |\langle x, y \rangle |^2 -  \overline{\langle x, y \rangle} \overline{\langle y, x \rangle}  + |\langle x, y \rangle |^2 \Vert y \Vert^2 \\
+ &= \Vert x \Vert^2 - |\langle x, y \rangle |^2 - |\langle x, y \rangle |^2 + |\langle x, y \rangle |^2 \\
+ &= \Vert x \Vert^2 - |\langle x, y \rangle |^2
+\end{align*}
+$$
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<b>Proof (d)</b>
+<br>
+<div> 
+$$
+\begin{align*}
+\Vert x + y \Vert^2 &= \langle x + y, x + y \rangle \\
+                   &= \Vert x \Vert^2 + \langle x, y \rangle + \langle y, x \rangle + \Vert y \Vert^2 \\
+                   &\leq \Vert x \Vert^2 + 2 |\langle x, y \rangle| + \Vert y \Vert^2 \text{ multiply a complex number by its conjecture to see}\\
+                   &\leq \Vert x \Vert^2 + 2 \Vert x \Vert \Vert y \Vert + \Vert y \Vert^2 \text { (By (c))}\\
+                   &= (\Vert x \Vert + \Vert y \Vert)^2 \\				   
+\end{align*}
+$$
+</div>
+
+
+
+
+
+<br>
+<br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>

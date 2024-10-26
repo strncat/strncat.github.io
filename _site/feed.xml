@@ -1,4 +1,238 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-25T14:08:48-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 31: Orthonormal and Orthogonal Sets</title><link href="http://localhost:4000/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets.html" rel="alternate" type="text/html" title="Lecture 31: Orthonormal and Orthogonal Sets" /><published>2024-09-01T01:01:36-07:00</published><updated>2024-09-01T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets.html"><![CDATA[<div class="bdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-25T20:41:02-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 32: Fourier Coefficients and Decomposition of a Vector</title><link href="http://localhost:4000/jekyll/update/2024/09/02/lec32-fourier-coefficients.html" rel="alternate" type="text/html" title="Lecture 32: Fourier Coefficients and Decomposition of a Vector" /><published>2024-09-02T01:01:36-07:00</published><updated>2024-09-02T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/02/lec32-fourier-coefficients</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/02/lec32-fourier-coefficients.html"><![CDATA[<p>The coefficients with respect to an orthonormal spanning set that we studied last time have a special name:
+<br /></p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+Let \(S \subseteq V\) be an (possibly infinite) orthonormal subset. The scalars \(\langle x, u\rangle\) for \(u \in S\) are called the Fourier coefficients of \(x\) with respect to \(S\).
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 1</b></h4>
+<div> 
+$$
+\begin{align*}
+V &amp;= C^0([-1,1]), \langle f,g \rangle = \int_{-1}^1 f(t)g(t)dt \\
+S &amp;= \big\{\frac{1}{\sqrt{2}}\big\} \cup \{\sin n \pi t\}_{n=1}^{\infty} \cup \{\cos n \pi t \}_{n=1}^{\infty}
+\end{align*}
+$$
+</div>
+<p>We can easily check that \(S\) is an orthonormal set. Each of the two vectors is orthogonal to each other and each vector is of unit length. Find the Fourier coefficients of \(f = |t| \in C^0([-1,1])\)</p>
+<div> 
+$$
+\begin{align*}
+\langle f, \frac{1}{\sqrt{2}} \rangle &amp;= \int_{-1}^1 \frac{1}{\sqrt{2}} |t| dt = \frac{1}{\sqrt{2}} \\
+\langle f, \sin n \pi t \rangle &amp;= \int_{-1}^1 \sin n \pi t |t| dt = 0 \\
+\langle f, \cos n \pi t \rangle &amp;= \int_{-1}^1 \cos n \pi t |t| dt = 
+\begin{cases} 0 \quad \ \ \quad \text{if $n$ even } \\ \frac{-4}{(n\pi)^2} \quad \text{if $n$ odd } \end{cases}
+\end{align*}
+$$
+</div>
+<p>When \(S = \{u_1,...,u_k\}\) is finite, then we can write</p>
+<div> 
+$$
+\begin{align*}
+x = \sum_{j=1}^{k} \langle x, u_j \rangle u_j
+\end{align*}
+$$
+</div>
+<p>But now in the infinite case, Is</p>
+<div> 
+$$
+\begin{align*}
+|t| = \frac{1}{2} = \sum_{n\text{ odd}} \frac{-4}{(n\pi)^2} \cos n \pi t
+\end{align*}
+$$
+</div>
+<p>Yes it is true but this is an infinite sum that converges to a number that is the absolute value of \(t\). This is basically the beginning of studying Fourier Analysis where any sufficiently nice function can be written as an infinite sum of sines and cosines. 
+<br />
+<br />
+But one thing we know here is that \(S\) is not a basis for \(C^0[-1,1]\). \(|t| \neq\) finite set of elements of \(S\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Orthogonal Complement</b></h4>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The orthogonal complement to \(S\) is 
+$$
+\begin{align*}
+S^{\perp} = \{x \in V \ | \ \langle x, y \rangle = 0 \forall y \in S\}
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<p>Suppose \(S = \{(0,0,1)\} \subset \mathbf{R}^3\). The orthogonal complement to \(S\) is any element in \(\mathbf{R}^3\) such that when we take the inner product between any element in \(S\) and any element \(\mathbf{R}^3\), the product must be zero.</p>
+<div>
+$$
+\begin{align*}
+S^{\perp} &amp;= \{(x,y,z) \in V \ | \ \langle (x,y,z), (0,0,1) \rangle = 0\} \\
+          &amp;= \{(x,y,z) \in V \ | \ z = 0\} \\
+          &amp;= \{(x,y,0)\} \\
+\end{align*}
+$$
+</div>
+<p>Note here if we chose \(S' = span(S)\), then the orthogonal complement will be the same! 
+<br />
+Exercise 1: \(S^{\perp}\) is a subspace of \(V\).
+<br />
+Exercise 2: If \(S\) is a subspace, then \(S \cap S^{\perp} = \{0\}\).
+<br />
+<br />
+How to use these orthogonal complements? We have the following theorem
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem 1
+</div>
+<div class="purbdiv">
+Suppose \(W\) is finite dimensional subspace of inner produce space \(V\). For each \(x \in V\) there is a unique \(w \in W\) and \(z \in W^{\perp}\) such that \(x = w + z\)
+<br />
+If \(\{u_1,...,u_k\}\) is an orthonormal basis for \(W\), then \(w = \langle x, u_1 \rangle + ... + \langle x, u_k \rangle u_k\)
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+(TODO: Add pic)
+<br />
+<b>Proof</b>
+<br />
+We can always find \(\{u_1, ..., u_k\}\) using Gram-Schmidt. So we know \(w\) and we’re given \(x\). All we need is to verify that \(z = x - w\) and show that \(w\) and \(z\) are unique. In other words, it suffices to show for</p>
+<div>
+$$
+\begin{align*}
+w = \sum_{j=1}^{k} \langle x, u_j \rangle u_j
+\end{align*}
+$$
+</div>
+<p>that \(z = x - w\) is in \(W^{\perp}\) plus the uniqueness of this decomposition.</p>
+<div>
+$$
+\begin{align*}
+&amp;z = x - w \in W^{\perp} \\
+\Leftrightarrow \ &amp;\langle z, y \rangle = 0 \ \forall y \in W
+\end{align*}
+$$
+</div>
+<p>It isn’t easy to verify this for every vector \(y \in W\). But we do have a basis for \(W\) and any \(y\) can be written as a linear combination of the basis elements. So we can instead check this for every basis element</p>
+<div>
+$$
+\begin{align*}
+\Leftrightarrow \ &amp;\langle z, u_j \rangle = 0 \ \forall j =1,...,k
+\end{align*}
+$$
+</div>
+<p>So let’s check for every basis element that it’s orthogonal to \(x - w\).</p>
+<div>
+$$
+\begin{align*}
+\Leftrightarrow \ \langle z, u_j \rangle &amp;= \langle x-w, u_j \rangle \\ 
+ &amp;= \langle x - \sum_{j=1}^k \langle x, u_j \rangle u_j  , u_j \rangle \\
+ &amp;= \langle x, u_j \rangle - \langle \sum_{i=1}^k \langle x, u_i \rangle u_i  , u_j \rangle  \\
+ &amp;= \langle x, u_j \rangle - \sum_{i=1}^k \langle x, u_i \rangle \langle u_i  , u_j \rangle  \\
+ &amp;= \langle x, u_j \rangle - \sum_{i=1}^k \langle x, u_i \rangle \delta_{ij} \\
+ &amp;= \langle x, u_j \rangle - \langle x, u_j \rangle \\
+ &amp;= 0
+\end{align*}
+$$
+</div>
+<p>So now we see that \(x = w + z\) where \(w \in W\) and \(z \in W^{\perp}\). We still need to show that this decomposition is unique. Suppose it’s not and that \(x = w + z = \tilde{w} + \tilde{z}\). This implies</p>
+<div>
+$$
+\begin{align*}
+w - \tilde{w} = z - \tilde{z} = \bar{0}_V
+\end{align*}
+$$
+</div>
+<p>But \(w,\tilde{w} \in W\) and \(z, \tilde{z} \in Z\) and since \(W \cap W^{\perp} = \bar{0}_V\), then \(w = \tilde{w}\) and \(z = \tilde{z}\). \(\ \blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+Here \(w\) is called the orthogonal projection of \(x\) onto \(W\) and is denoted as
+$$
+\begin{align*}
+proj_W(x) = w
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+<br /></p>
+<div class="purdiv">
+Theorem 2
+</div>
+<div class="purbdiv">
+\(w = proj_W(x)\) is the vector in \(W\) closest to \(x\) in the following sense
+$$
+\begin{align*}
+\Vert x - w \Vert \leq \Vert x - y \Vert \ \forall y \in W
+\end{align*}
+$$
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+<br />
+It’s easier to square things since we don’t want to deal with squareroots so</p>
+<div>
+$$
+\begin{align*}
+\Vert x - y \Vert^2 &amp;= \Vert (w + z) - y \Vert^2 \text{ (by theorem 1)} \\
+                 &amp;= \Vert (w - y) + z \Vert^2 \text{ (w and y are both in $W$)} \\
+                 &amp;= \langle (w - y) + z, (w - y) + z \rangle \\
+                 &amp;= \langle (w - y), (w - y) \rangle 
+				 + \langle (w - y), z \rangle 
+				 + \langle z, z \rangle 
+				 + \langle z, (w - y) \rangle \\
+				 &amp;= \Vert w - y \Vert^2 + \langle (w - y), z \rangle  + \langle z, (w - y) \rangle + \Vert z \Vert^2 \\
+				 &amp;= \Vert w - y \Vert^2 + \Vert z \Vert^2 \text{ ($z \in W^{\perp}$ and $w, y \in W$)} \\
+				 &amp;\geq \Vert z \Vert^2 \\
+				 &amp;=  \Vert x - w \Vert^2. \ \blacksquare
+				
+				 
+\end{align*}
+$$
+</div>
+<p>In general we can think of the projection onto \(W\) as a map.</p>
+<div>
+$$
+\begin{align*}
+proj_W: \ &amp; V \rightarrow W \\
+		&amp;x \rightarrow proj_W(x)		 
+\end{align*}
+$$
+</div>
+<p>where the formula is</p>
+<div>
+$$
+\begin{align*}
+w = \sum_{j = 1}^{k} \langle x, u_j \rangle u_j		 
+\end{align*}
+$$
+</div>
+<p>This formula tells us that the projection is linear in \(x\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Math416 by Ely Kerman</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The coefficients with respect to an orthonormal spanning set that we studied last time have a special name: Definition Let \(S \subseteq V\) be an (possibly infinite) orthonormal subset. The scalars \(\langle x, u\rangle\) for \(u \in S\) are called the Fourier coefficients of \(x\) with respect to \(S\). Example 1 $$ \begin{align*} V &amp;= C^0([-1,1]), \langle f,g \rangle = \int_{-1}^1 f(t)g(t)dt \\ S &amp;= \big\{\frac{1}{\sqrt{2}}\big\} \cup \{\sin n \pi t\}_{n=1}^{\infty} \cup \{\cos n \pi t \}_{n=1}^{\infty} \end{align*} $$ We can easily check that \(S\) is an orthonormal set. Each of the two vectors is orthogonal to each other and each vector is of unit length. Find the Fourier coefficients of \(f = |t| \in C^0([-1,1])\) $$ \begin{align*} \langle f, \frac{1}{\sqrt{2}} \rangle &amp;= \int_{-1}^1 \frac{1}{\sqrt{2}} |t| dt = \frac{1}{\sqrt{2}} \\ \langle f, \sin n \pi t \rangle &amp;= \int_{-1}^1 \sin n \pi t |t| dt = 0 \\ \langle f, \cos n \pi t \rangle &amp;= \int_{-1}^1 \cos n \pi t |t| dt = \begin{cases} 0 \quad \ \ \quad \text{if $n$ even } \\ \frac{-4}{(n\pi)^2} \quad \text{if $n$ odd } \end{cases} \end{align*} $$ When \(S = \{u_1,...,u_k\}\) is finite, then we can write $$ \begin{align*} x = \sum_{j=1}^{k} \langle x, u_j \rangle u_j \end{align*} $$ But now in the infinite case, Is $$ \begin{align*} |t| = \frac{1}{2} = \sum_{n\text{ odd}} \frac{-4}{(n\pi)^2} \cos n \pi t \end{align*} $$ Yes it is true but this is an infinite sum that converges to a number that is the absolute value of \(t\). This is basically the beginning of studying Fourier Analysis where any sufficiently nice function can be written as an infinite sum of sines and cosines. But one thing we know here is that \(S\) is not a basis for \(C^0[-1,1]\). \(|t| \neq\) finite set of elements of \(S\). Orthogonal Complement Definition The orthogonal complement to \(S\) is $$ \begin{align*} S^{\perp} = \{x \in V \ | \ \langle x, y \rangle = 0 \forall y \in S\} \end{align*} $$ Example 2 Suppose \(S = \{(0,0,1)\} \subset \mathbf{R}^3\). The orthogonal complement to \(S\) is any element in \(\mathbf{R}^3\) such that when we take the inner product between any element in \(S\) and any element \(\mathbf{R}^3\), the product must be zero. $$ \begin{align*} S^{\perp} &amp;= \{(x,y,z) \in V \ | \ \langle (x,y,z), (0,0,1) \rangle = 0\} \\ &amp;= \{(x,y,z) \in V \ | \ z = 0\} \\ &amp;= \{(x,y,0)\} \\ \end{align*} $$ Note here if we chose \(S' = span(S)\), then the orthogonal complement will be the same! Exercise 1: \(S^{\perp}\) is a subspace of \(V\). Exercise 2: If \(S\) is a subspace, then \(S \cap S^{\perp} = \{0\}\). How to use these orthogonal complements? We have the following theorem Theorem 1 Suppose \(W\) is finite dimensional subspace of inner produce space \(V\). For each \(x \in V\) there is a unique \(w \in W\) and \(z \in W^{\perp}\) such that \(x = w + z\) If \(\{u_1,...,u_k\}\) is an orthonormal basis for \(W\), then \(w = \langle x, u_1 \rangle + ... + \langle x, u_k \rangle u_k\) (TODO: Add pic) Proof We can always find \(\{u_1, ..., u_k\}\) using Gram-Schmidt. So we know \(w\) and we’re given \(x\). All we need is to verify that \(z = x - w\) and show that \(w\) and \(z\) are unique. In other words, it suffices to show for $$ \begin{align*} w = \sum_{j=1}^{k} \langle x, u_j \rangle u_j \end{align*} $$ that \(z = x - w\) is in \(W^{\perp}\) plus the uniqueness of this decomposition. $$ \begin{align*} &amp;z = x - w \in W^{\perp} \\ \Leftrightarrow \ &amp;\langle z, y \rangle = 0 \ \forall y \in W \end{align*} $$ It isn’t easy to verify this for every vector \(y \in W\). But we do have a basis for \(W\) and any \(y\) can be written as a linear combination of the basis elements. So we can instead check this for every basis element $$ \begin{align*} \Leftrightarrow \ &amp;\langle z, u_j \rangle = 0 \ \forall j =1,...,k \end{align*} $$ So let’s check for every basis element that it’s orthogonal to \(x - w\). $$ \begin{align*} \Leftrightarrow \ \langle z, u_j \rangle &amp;= \langle x-w, u_j \rangle \\ &amp;= \langle x - \sum_{j=1}^k \langle x, u_j \rangle u_j , u_j \rangle \\ &amp;= \langle x, u_j \rangle - \langle \sum_{i=1}^k \langle x, u_i \rangle u_i , u_j \rangle \\ &amp;= \langle x, u_j \rangle - \sum_{i=1}^k \langle x, u_i \rangle \langle u_i , u_j \rangle \\ &amp;= \langle x, u_j \rangle - \sum_{i=1}^k \langle x, u_i \rangle \delta_{ij} \\ &amp;= \langle x, u_j \rangle - \langle x, u_j \rangle \\ &amp;= 0 \end{align*} $$ So now we see that \(x = w + z\) where \(w \in W\) and \(z \in W^{\perp}\). We still need to show that this decomposition is unique. Suppose it’s not and that \(x = w + z = \tilde{w} + \tilde{z}\). This implies $$ \begin{align*} w - \tilde{w} = z - \tilde{z} = \bar{0}_V \end{align*} $$ But \(w,\tilde{w} \in W\) and \(z, \tilde{z} \in Z\) and since \(W \cap W^{\perp} = \bar{0}_V\), then \(w = \tilde{w}\) and \(z = \tilde{z}\). \(\ \blacksquare\) Definition Here \(w\) is called the orthogonal projection of \(x\) onto \(W\) and is denoted as $$ \begin{align*} proj_W(x) = w \end{align*} $$ Theorem 2 \(w = proj_W(x)\) is the vector in \(W\) closest to \(x\) in the following sense $$ \begin{align*} \Vert x - w \Vert \leq \Vert x - y \Vert \ \forall y \in W \end{align*} $$ Proof It’s easier to square things since we don’t want to deal with squareroots so $$ \begin{align*} \Vert x - y \Vert^2 &amp;= \Vert (w + z) - y \Vert^2 \text{ (by theorem 1)} \\ &amp;= \Vert (w - y) + z \Vert^2 \text{ (w and y are both in $W$)} \\ &amp;= \langle (w - y) + z, (w - y) + z \rangle \\ &amp;= \langle (w - y), (w - y) \rangle + \langle (w - y), z \rangle + \langle z, z \rangle + \langle z, (w - y) \rangle \\ &amp;= \Vert w - y \Vert^2 + \langle (w - y), z \rangle + \langle z, (w - y) \rangle + \Vert z \Vert^2 \\ &amp;= \Vert w - y \Vert^2 + \Vert z \Vert^2 \text{ ($z \in W^{\perp}$ and $w, y \in W$)} \\ &amp;\geq \Vert z \Vert^2 \\ &amp;= \Vert x - w \Vert^2. \ \blacksquare \end{align*} $$ In general we can think of the projection onto \(W\) as a map. $$ \begin{align*} proj_W: \ &amp; V \rightarrow W \\ &amp;x \rightarrow proj_W(x) \end{align*} $$ where the formula is $$ \begin{align*} w = \sum_{j = 1}^{k} \langle x, u_j \rangle u_j \end{align*} $$ This formula tells us that the projection is linear in \(x\). References Math416 by Ely Kerman]]></summary></entry><entry><title type="html">Lecture 31: Orthonormal and Orthogonal Sets</title><link href="http://localhost:4000/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets.html" rel="alternate" type="text/html" title="Lecture 31: Orthonormal and Orthogonal Sets" /><published>2024-09-01T01:01:36-07:00</published><updated>2024-09-01T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets.html"><![CDATA[<div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
@@ -1470,403 +1704,4 @@ $$
 <h4><b>References</b></h4>
 <ul>
 <li>Math416 by Ely Kerman</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Consider a linear map \(T: V \rightarrow V\). Suppose \(v\) is an eigenvector of \(T\). We know by definition that \(Tv = \lambda v\) and \(v \neq 0\). We also know that \(span\{v\} \subset V\) is subspace. The observation here is that since \(v\) is an eigenvector, then when \(T\) acts on the subspace, then it stays inside the subspace meaning $$ \begin{align*} T(span\{v\}) \subset span\{v\} \end{align*} $$ This is because \(T(cv) = cT(v) = (c\lambda) v\) which is in the span of \(v\). The span of an eigenvector is the simplest example an invariant subspace. Definition A subspace \(W \in V\) is \(T\)-invariant if \(T(W) \subseteq W\). i.e. \(T(w) \in W \ \forall w \in W\) Examples Example 1: \(W = span\{v\}\) where \(v\) is an eigenvector of \(T\). Example 2: \(I_V:V \rightarrow V\) Every subspace is \(I_V\)-invariant. Example 3: \(0_V:V \rightarrow V\) Every subspace is \(0_V\)-invariant. Example 4: $$ \begin{align*} T : \ &amp;\mathbf{R}^2 \rightarrow \mathbf{R}^2 \\ &amp;(x, y) \rightarrow (x,0) \end{align*} $$ \(W = span\{(1,0)\}\) is \(T\)-invariant \(W = span\{(1,1)\}\) is not \(T\)-invariant The Characteristic Polynomial of Invariant Subspaces So what is the point of invariant subspaces? It helps us break off pieces of our map. What does that mean? If \(T: V \rightarrow V\) and \(W\) is \(T\)-invariant, then the restriction of \(T\) to \(W\), \(T_W\) satisfies \(T_W: W \rightarrow W\). So now have a smaller set instead of the entire vector space \(V\). The following theorem describes the relationship between the characteristic polynomial of \(T:V \rightarrow V\) and the characteristic polynomial of \(T: W \rightarrow W\). Theorem Suppose \(T: V \rightarrow V\) is linear and \(\dim(V) &lt; \infty\). If \(W\) is \(T\)-invariant, then the characteristic polynomial of \(T_W\) divides that of \(T\). Proof Let \(\beta_w = \{v_1,...,v_k\}\) be a basis of \(W\). Extend this to a basis for \(V\). so $$ \begin{align*} \beta = \{v_1,...,v_k,v_{k+1},...,v_n\} \end{align*} $$ We can express \(T\) with respect \(\beta\) to get $$ \begin{align*} [T]_{\beta}^{\beta} &amp;= \begin{pmatrix} [T(v_1)]_{\beta_1} &amp; \cdots &amp; [T(v_n)]_{\beta_1} \end{pmatrix} \end{align*} $$ We know that \(T(v_i) \in W\) for \(i = 1,...,k\) since \(W\) is \(T\)-invariant. Therefore, we can express \(T(v_i)\) as a linear combination of just the first \(k\) vectors in \(\beta\). The rest of the coefficients will be zero for the remaining vectors in \(\beta\). So you can imagine below that for the first \(k\) columns of \([T]_{\beta}^{\beta}\), we’ll have zero entries for anything below the \(k\)th entry. Let \(B_1\) be the coefficients that we know will not be zero (at least some). $$ \begin{align*} [T]_{\beta}^{\beta} &amp;= \begin{pmatrix} B_1 &amp; | &amp; B_2 \\ ---- &amp; - &amp; ---- \\ 0 &amp; | &amp; B_3 \\ \end{pmatrix} \end{align*} $$ We claim that \(B_1 = [T]_{\beta_W}^{\beta_W}\). Now, we want to determine the characteristic polynomial of \([T]_{\beta}^{\beta}\). $$ \begin{align*} \det([T]_{\beta}^{\beta} - tI_n) &amp;= \begin{pmatrix} [T]_{\beta_W}^{\beta_W} - tI_k &amp; | &amp; B_2 \\ ---- &amp; - &amp; ---- \\ 0 &amp; | &amp; B_3 - tI_{n-k} \\ \end{pmatrix} \\ &amp;= \det([T]_{\beta_W}^{\beta_W} - tI_k)g(t) \end{align*} $$ T-cyclic Subspaces Definition For \(v \in V\) the \(T\)-cyclic subspace generated by \(v\) is \(W=span\{v, T(v), T^2(v),...\} \subset V\). Observe here that \(W\) is \(T\)-invariant. Why? take any element \(w \in W\), \(T(w)\) is still in \(W\). To see this, notice that $$ \begin{align*} T(a_0v + a_1T(v) + ... + a_kT^k(v)) = a_0T(v) + a_1T^2(v)+...+a_kT^{k+1}(v) \in W \end{align*} $$ Question: Are all \(T\)-invariant subspaces \(T\)-cyclic? The answer is no. Suppose $$ \begin{align*} T \ &amp;: \mathbf{R}^3 \rightarrow \mathbf{R}^3 \\ &amp;(x,y,z) \rightarrow (x,y,0) \end{align*} $$ \(W = \{(x,y,0) \ | \ x, y \in \mathbf{R}\}\) is \(T\)-invariant. We just map it to itself. In fact \(T_W = I_W\). So we see here that \(W\) is not \(T\)-cyclic. Take \((x, y, 0)\), $$ \begin{align*} span\{(x,y,0), T(x,y,0),...\} = span\{(x,y,0)\} \end{align*} $$ Theorem Suppose \(T: V \rightarrow V\) is linear and \(\dim(V) &lt; \infty\). Let \(W\) be a \(T\)-cyclic subspace generated by \(v\). Set \(\dim W = k \leq \dim V\). Then \(\{v,T(v),...,T^{k-1}(v)\}\) is a basis for \(W\) If \(T^k(v) = a_0v + ... + a_{k-1}T^{k-1}(v)\), then the characteristic polynomial of \(T_W\) \((-1)^{k+1}(a_0 + a_1t + ... + a_{k-1}t^{k-1} - t^k)\) For (a). Since the dimension is not infinite anymore. Then it’s natural to ask if only \(k\) of the infinitely generated vectors is a span for \(W\) and the answer is yes. Proof: We’ll start with a proof of (b) given (a). To say anything about the characteristic polynomial, we need to find a basis and then compute the matrix with respect to the basis. A natural choice is the basis given to us in \(a\) so $$ \begin{align*} \beta_W = \{v,T(v),...,T^{k-1}(v)\} \end{align*} $$ Next we need to compute \([T_W]_{\beta_W}^{\beta_W}\) $$ \begin{align*} [T_W]_{\beta_W}^{\beta_W} &amp;= \begin{pmatrix} [T_W(v)]_{\beta_W} &amp; \cdots &amp; [T_W(T^{k-1}(v))]_{\beta_W} \end{pmatrix}\\ &amp;= \begin{pmatrix} 0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_0 \\ 1 &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1 \\ 0 &amp; 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\ 0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 1 &amp; a_{k-1} \\ \end{pmatrix} \end{align*} $$ The first column is the coefficients of \(T_W(v)\) with respect to \(\beta_W\) so that’s just 1 for \(T(v)\) while the rest are 0. Similarly, we have the same thing for the rest of the \(k-1\) column vectors. But for the last column, we need to represent \(T_W(T^{k-1}(v)) = T^k(v)\). We’re given \(T^k(v) = a_0v + ... + a_{k-1}T^{k-1}(v)\) and so the rest of the coefficients are \(a_0,a_1 .... a_{k-1}\). Now, we can compute the determinant expanding across the first row $$ \begin{align*} &amp;\det([T_W]_{\beta_W}^{\beta_W} -tI_k) = \begin{pmatrix} -t &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_0 \\ 1 &amp; -t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1 \\ 0 &amp; 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\ 0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 1 &amp; a_{k-1}-t \\ \end{pmatrix} \\ &amp;= (-1)^{1+1}(-t)\det \begin{pmatrix} -t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1 \\ 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\ 0 &amp; \cdots &amp; \cdots &amp; -t &amp; a_{k-1}-t \\ \end{pmatrix} +(-1)^{1+k}a_0 (1) \end{align*} $$ The last determinant for the \(a_0\) component is 1 because that sub matrix is upper triangular so the determinant is the product of the entries on the diagonal which are all 1. Next, we want to compute that new determinant but notice now that it has the same pattern so $$ \begin{align*} &amp;= -t \left( \det \begin{pmatrix} -t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1 \\ 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\ 0 &amp; \cdots &amp; \cdots &amp; -t &amp; a_{k-1}-t \\ \end{pmatrix}]]></summary></entry><entry><title type="html">Lecture 26/27: Markov Chains and Transition Matrices</title><link href="http://localhost:4000/jekyll/update/2024/08/23/lec26-markov-chains.html" rel="alternate" type="text/html" title="Lecture 26/27: Markov Chains and Transition Matrices" /><published>2024-08-23T01:01:36-07:00</published><updated>2024-08-23T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/08/23/lec26-markov-chains</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/08/23/lec26-markov-chains.html"><![CDATA[<p>We have a set of ingredients:</p>
-<ul style="list-style-type:lower-alpha">
-	<li>Set of states \(S_1,...,S_n\). If we have 10m people in Chicagoland, then we can divide them into \(S_1\) living in the city and \(S_2\) living in a suburb</li>
-	<li>Time Step. Example: we are interested in how the number of people living in these two states changes over time. So a time step could be 1 year</li>
-	<li>Probability vector at time \(k\)
-<div> 
-$$
-\begin{align*}
-\bar{p_k} = 
-\begin{pmatrix} 
-(\bar{p_k})_1 \\
-\vdots \\
-(\bar{p_k})_n
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-where \(\bar{p_k}_1\) is the probability of being in state 1 at time \(k\). In general \(\bar{p_k}_j \geq 0\) and \(\sum_{j=1}^n \bar{p_k}_j = 1\). For example
-<div> 
-$$
-\begin{align*}
-(\bar{p_k})_0 = 
-\begin{pmatrix} 
-.7 \\
-.3
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-</li>
-<!------------------------>
-<li>Transition matrix \(A \in M_{n \times n}\)
-<div> 
-$$
-\begin{align*}
-A = 
-\begin{pmatrix} 
-A_{11} &amp; \cdots &amp; A_{1n} \\
-\vdots &amp; A_{ij} &amp; \vdots \\
-A_{n1} &amp; \cdots &amp; A_{nn}
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-where \(A_{ij}\) is the probability of moving from state \(j\) to state \(i\) in one time step. This transition matrix doesn't change over time. For example
-<div> 
-$$
-\begin{align*}
-A = 
-\begin{pmatrix} 
-.9 &amp; .02 \\
-.1 &amp; .98
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-Here \(A_{ij} \geq 0\) and \(\sum_{i=1}^nA_{ij} = 1\). So \(A_{12} = 0.02\) is the probability of moving from state 1 (city) to the state 2 (suburb).
-</li>
-</ul>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>The Limit of a Markov Matrix</b></h4>
-
-<p>So \(\bar{p_0}\) is the probability at time step 0. What is \(\bar{p_1}, \bar{p_2},...,\bar{p_n}\)?</p>
-<div> 
-$$
-\begin{align*}
-\bar{p_1} &amp;= A\bar{p_0} \\
-\bar{p_2} &amp;= A\bar{p_1} = A^2\bar{p_0} \\
-\vdots
-\bar{p_n} &amp;= A^n\bar{p_0} \\
-\lim_{n \rightarrow \infty} \bar{p_n} &amp;= (\lim_{n \rightarrow \infty} A^n) \bar{p_0}
-\end{align*}
-$$
-</div>
-<p>What is the limit of this matrix?? This often exists and is easy to describe.
-<br />
-<br />
-Exercise: \(A^d\) is also a transition matrix!
-<br />
-<br />
-What we want to know is what this limit is so we’re going to spend some time studying the properties of this transition matrix.
-<br />
-<!------------------------------------------------------------------------------------></p>
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-Suppose for some \(d \geq 1, A^d\) has all positive entries. Then
-<ul style="list-style-type:lower-alpha">
-	<li>1 is an eigenvalue of \(\det(A)\). \(\dim(E_1) = 1\) and \(E_1 = span\{\bar{u}\}\) where \(\bar{u}\) is a probability vector</li>
-	<li>For any other eigenvalue \(\lambda, |\lambda| &lt; 1\).</li>
-	<li>
-	\(\lim\limits_{n \rightarrow \infty} A^n = 
-		\begin{pmatrix} 
-		\bar{u} &amp; \bar{u} &amp; \cdots &amp; \bar{u} \\
-		\end{pmatrix}
-		\)<br />
-	As a Consequence, \(\lim\limits_{n \rightarrow \infty} \bar{p}_n = 
-		\begin{pmatrix} 
-		\bar{u} &amp; \bar{u} &amp; \cdots &amp; \bar{u} \\
-		\end{pmatrix}\bar{p}_0 = \bar{u} \text{ (for any $\bar{p}_0$)}
-		\)
-	</li>
-</ul>
-</div>
-<p><br />
-<!-------------------------------------------1----------------------------------------->
-<b>Proof</b>
-<br />
-<br />
-We’re going to prove these statements in several parts.
-<br />
-<br />
-<b>1 is an eigenvalue of \(A\):</b>
-<br />
-<br />
-FACT: \(A\) and \(A^t\) has the same eigenvalues. Why? This is because \(\det(B) = \det(B^t)\) which means that \(\det(A - tI_n) = \det(A^t - tI_n)\). We will use this fact to prove what we want.
-<br />
-<br />
-Consider \(A^t\). We know that the rows now add to 1 (in \(A\), the columns add to 1). Let \(\bar{v} = \begin{pmatrix} 1 &amp; \cdots &amp; 1 \end{pmatrix}^t\). Now,</p>
-<div> 
-$$
-\begin{align*}
-A^t\bar{v} &amp;= \begin{pmatrix} a_1^t &amp; \cdots &amp; a_n^t \end{pmatrix}
-\begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix} = a_1^t + ... + a_n^t 
-= \begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix} = \bar{v}
-\end{align*}
-$$
-</div>
-<p>The last step is true because we know in \(A^t\), the sum of each row adds to 1. Therefore, \(\bar{v}\) is an eigenvector of \(A^t\) with eigenvalue is 1. But we know that \(A\) and \(A^t\) have the same eigenvalues and so 1 is an eigenvalue of \(A\).
-<!---------------------------------------2--------------------------------------------->
-<br />
-<br />
-<b>If \(\lambda\) is an eigenvalue of \(A\), then \(|\lambda| \leq 1\):</b>
-<br />
-<br />
-Since \(\lambda\) is an eigenvalue of \(A\), then \(\lambda\) is an eigenvalue of \(A^t\) and</p>
-<div> 
-$$
-\begin{align*}
-A^tv = \lambda v, v = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} \neq \bar{0}
-\end{align*}
-$$
-</div>
-<p>\(v\) is an eigenvector of \(A^t\). Let \(|v_k| = \max_j \{|v_j|\}\). so \(|v_k|\) is the greatest entry in the vector \(v\). Now, let’s look at the \(k\)th entry of \(A^tv\). By the definition of matrix-vector multiplication,</p>
-<div> 
-$$
-\begin{align*}
-(A^tv)_k = \sum_j (A^t)_{kj}v_j
-\end{align*}
-$$
-</div>
-<p>Alternatively,</p>
-<div> 
-$$
-\begin{align*}
-(A^tv)_k = (\lambda v)_k = \lambda v_k
-\end{align*}
-$$
-</div>
-<p>Combining both equations</p>
-<div> 
-$$
-\begin{align*}
-\lambda v_k &amp;= \sum_j (A^t)_{kj}v_j \\
-|\lambda v_k| &amp;= |\sum_j (A^t)_{kj}v_j| \\
-&amp;= |\sum_j A_{jk}v_j| \text{ (replace $A^t$ with $A$)}\\
-&amp;\leq \sum_j |A_{jk}v_j| \text{ (the absolute value of a sum $\leq$ sum of absolute values)} \\
-&amp;\leq \sum_j A_{jk}|v_k| \text{ (the entries in $A$ are positive)} \\
-&amp;\leq |v_k| \sum_j A_{jk} \text{ ($|v_k$ doesn't depend on the sum)} \\
-&amp;\leq |v_k| \text{ (the sum is 1 by definition)} \\
-|\lambda| &amp;\leq 1
-\end{align*}
-$$
-</div>
-<p>As required.
-<!-------------------------------------3----------------------------------------------->
-<br />
-<br />
-<b>If \(A_{ij} &gt; 0\) for all \(i,j\), then \(\dim E_1 = 1\) and \(\lambda \neq 1 \implies |\lambda| &lt; 1\):</b>
-<br />
-<br />
-Suppose \(|\lambda| = 1\) and \(A^tv = \lambda v\) for \(v \neq \bar{0}\). It suffies to show that</p>
-<div> 
-$$
-\begin{align*}
-v = c\begin{pmatrix} 1 \\ \vdots \\ 1 
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>Why? if the eigenvector was \(\begin{pmatrix} 1 &amp; \cdots &amp; 1 \end{pmatrix}^t\), then \(\lambda\) must be 1. Because</p>
-<div> 
-$$
-\begin{align*}
-A\begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix}  = \lambda \begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>so \(\lambda = 1\). So we argue as before,</p>
-<div> 
-$$
-\begin{align*}
-|v_k| &amp;= | \lambda v_k | \text { ( because $ \lambda = 1)$}\\
-&amp;= |\sum_j A_{jk} v_j | \\
-&amp;\leq \sum_j A_{jk} |v_j| \\
-&amp;\leq |v_k| \sum_j A_{jk} = |v_k| \\
-\end{align*}
-$$
-</div>
-<p>So these inequalities are equalities. \(A_{jk}v_j\) all have the same sign.
-[TODO continue this proof .. I’m lost now]
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Diagonalizable Transition Matrix</b></h4>
-
-<div class="purdiv">
-Theorem
-</div>
-<div class="purbdiv">
-Suppose \(A\) is a transition matrix such that \(A_{ij} &gt; 0\) for \(i, j\) and \(A\) is diagonalizable. Then
-$$
-\begin{align*}
-\lim\limits_{k \rightarrow \infty} A^k = \begin{pmatrix} \bar{u} &amp; \cdots &amp; \bar{u} \end{pmatrix}
-\end{align*}
-$$
-where \(\bar{u}\) is a probability vector and \(A\bar{u} = \bar{u}\)
-</div>
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>Proof</b>
-<br />
-<br />
-We know 1 is an eigenvalue and \(\dim(E_1)=1\) and any other \(\lambda\) has \(|\lambda| &lt; 1\). We now have</p>
-<div> 
-$$
-\begin{align*}
-A = QDQ^{-1}, 
-D = 
-\begin{pmatrix} 
-\lambda_1 &amp; \cdots &amp; 0 \\
-\vdots &amp; \ddots &amp; \vdots \\
-0 &amp; \cdots &amp; \lambda_n
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>We may assume</p>
-<div> 
-$$
-\begin{align*}
-D = 
-\begin{pmatrix} 
-1 &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; \lambda_2 &amp; \cdots &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \cdots &amp; \lambda_n
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>We know we can compute \(A^k\) easily using</p>
-<div> 
-$$
-\begin{align*}
-A^k = Q 
-\begin{pmatrix} 
-1 &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; \lambda_2^k &amp; \cdots &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \cdots &amp; \lambda_n^k
-\end{pmatrix}
-Q^{-1}
-\end{align*}
-$$
-</div>
-<p>We can now apply the limit</p>
-<div> 
-$$
-\begin{align*}
-\lim\limits_{k \rightarrow \infty} A^k =
-Q
-\begin{pmatrix} 
-1 &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; 0 &amp; \cdots &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \cdots &amp; 0
-\end{pmatrix}
-Q^{-1}
-= L
-\end{align*}
-$$
-</div>
-<p>What do we know about \(L\)? What happens if we multiply \(A\) by \(L\)?</p>
-<div> 
-$$
-\begin{align*}
-AL &amp;= A\lim\limits_{k \rightarrow \infty} A^k \\
-&amp;= A\lim\limits_{k \rightarrow \infty} A^{k+1} \\
-&amp;= L
-\end{align*}
-$$
-</div>
-<p>We know that \(L\) is a limit of a transition matrix so it’s a transition matrix. So the sum of the entries in each column of \(L\) is 1. Moreover, we saw that \(AL = L\). If \(L\) was a vector, then it would be an eigenvector with \(\lambda = 1\). But \(L\) is not a vector. It is a matrix with column vectors. if we apply the matrix-vector definition, then</p>
-<div> 
-$$
-\begin{align*}
-AL &amp;= \begin{pmatrix} Al_1 &amp; \cdots &amp; Al_n \end{pmatrix} \\
-   &amp;= \begin{pmatrix} l_1 &amp; \cdots &amp; l_n \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>But this means that each column vector \(l_j\) is in fact an eigenvector of \(A\) with eigenvalue 1. But we also know that the eigenspace of \(\lambda=1\) is one-dimensional so all of the eigenvectors \(l_1,...,l_n\) must be in \(E_{\lambda_1}\). Therefore, \(l_j = c_j\bar{u}\) for some \(c_j\). We additionally know that the sum of entries of \(l_j\) is 1. Similarly the sum of entries in \(\bar{u}\) is also 1. So \(c_j\) must be 1 for any \(j\) and so</p>
-<div> 
-$$
-\begin{align*}
-\lim\limits_{k \rightarrow \infty} A^k = \begin{pmatrix} \bar{u} &amp; \cdots &amp; \bar{u} \end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>and \(\bar{u}\) is a probability vector.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Continuing the same example from before where</p>
-<div> 
-$$
-\begin{align*}
-A = 
-\begin{pmatrix} 
-.9 &amp; .02 \\
-.1 &amp; .98
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>We want to check if \(A\) is diagonalizable. In fact it is</p>
-<div> 
-$$
-\begin{align*}
-A = QDQ^{-1}, Q = 
-\begin{pmatrix} 
-\frac{1}{6} &amp; -\frac{1}{6} \\
-\frac{5}{6} &amp; \frac{1}{6}
-\end{pmatrix},
-D = 
-\begin{pmatrix} 
-1 &amp; 0 \\
-0 &amp; 0.88
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>To compute \(A^k\), we know from the previous theorem, that the answer has two copies of the eigenvector corresponding to eigenvalue \(\lambda = 1\). You can see above that the eigenvector corresponding to 1 is the first column vector in \(Q\) and so</p>
-<div> 
-$$
-\begin{align*}
-\lim\limits_{k \rightarrow \infty} A^k =
-\begin{pmatrix} 
-\frac{1}{6} &amp; \frac{1}{6} \\
-\frac{5}{6} &amp; \frac{5}{6}
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>and no matter what is our initially probability vector is,</p>
-<div> 
-$$
-\begin{align*}
-\lim\limits_{k \rightarrow \infty} \bar{p}_k =
-\begin{pmatrix} 
-\frac{1}{6} \\
-\frac{5}{6} 
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>\(\frac{1}{6}\) corresponds to state 1 and \(\frac{5}{6}\) correspond to state 2.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li>Math416 by Ely Kerman</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We have a set of ingredients: Set of states \(S_1,...,S_n\). If we have 10m people in Chicagoland, then we can divide them into \(S_1\) living in the city and \(S_2\) living in a suburb Time Step. Example: we are interested in how the number of people living in these two states changes over time. So a time step could be 1 year Probability vector at time \(k\) $$ \begin{align*} \bar{p_k} = \begin{pmatrix} (\bar{p_k})_1 \\ \vdots \\ (\bar{p_k})_n \end{pmatrix} \end{align*} $$ where \(\bar{p_k}_1\) is the probability of being in state 1 at time \(k\). In general \(\bar{p_k}_j \geq 0\) and \(\sum_{j=1}^n \bar{p_k}_j = 1\). For example $$ \begin{align*} (\bar{p_k})_0 = \begin{pmatrix} .7 \\ .3 \end{pmatrix} \end{align*} $$ Transition matrix \(A \in M_{n \times n}\) $$ \begin{align*} A = \begin{pmatrix} A_{11} &amp; \cdots &amp; A_{1n} \\ \vdots &amp; A_{ij} &amp; \vdots \\ A_{n1} &amp; \cdots &amp; A_{nn} \end{pmatrix} \end{align*} $$ where \(A_{ij}\) is the probability of moving from state \(j\) to state \(i\) in one time step. This transition matrix doesn't change over time. For example $$ \begin{align*} A = \begin{pmatrix} .9 &amp; .02 \\ .1 &amp; .98 \end{pmatrix} \end{align*} $$ Here \(A_{ij} \geq 0\) and \(\sum_{i=1}^nA_{ij} = 1\). So \(A_{12} = 0.02\) is the probability of moving from state 1 (city) to the state 2 (suburb). The Limit of a Markov Matrix]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Consider a linear map \(T: V \rightarrow V\). Suppose \(v\) is an eigenvector of \(T\). We know by definition that \(Tv = \lambda v\) and \(v \neq 0\). We also know that \(span\{v\} \subset V\) is subspace. The observation here is that since \(v\) is an eigenvector, then when \(T\) acts on the subspace, then it stays inside the subspace meaning $$ \begin{align*} T(span\{v\}) \subset span\{v\} \end{align*} $$ This is because \(T(cv) = cT(v) = (c\lambda) v\) which is in the span of \(v\). The span of an eigenvector is the simplest example an invariant subspace. Definition A subspace \(W \in V\) is \(T\)-invariant if \(T(W) \subseteq W\). i.e. \(T(w) \in W \ \forall w \in W\) Examples Example 1: \(W = span\{v\}\) where \(v\) is an eigenvector of \(T\). Example 2: \(I_V:V \rightarrow V\) Every subspace is \(I_V\)-invariant. Example 3: \(0_V:V \rightarrow V\) Every subspace is \(0_V\)-invariant. Example 4: $$ \begin{align*} T : \ &amp;\mathbf{R}^2 \rightarrow \mathbf{R}^2 \\ &amp;(x, y) \rightarrow (x,0) \end{align*} $$ \(W = span\{(1,0)\}\) is \(T\)-invariant \(W = span\{(1,1)\}\) is not \(T\)-invariant The Characteristic Polynomial of Invariant Subspaces So what is the point of invariant subspaces? It helps us break off pieces of our map. What does that mean? If \(T: V \rightarrow V\) and \(W\) is \(T\)-invariant, then the restriction of \(T\) to \(W\), \(T_W\) satisfies \(T_W: W \rightarrow W\). So now have a smaller set instead of the entire vector space \(V\). The following theorem describes the relationship between the characteristic polynomial of \(T:V \rightarrow V\) and the characteristic polynomial of \(T: W \rightarrow W\). Theorem Suppose \(T: V \rightarrow V\) is linear and \(\dim(V) &lt; \infty\). If \(W\) is \(T\)-invariant, then the characteristic polynomial of \(T_W\) divides that of \(T\). Proof Let \(\beta_w = \{v_1,...,v_k\}\) be a basis of \(W\). Extend this to a basis for \(V\). so $$ \begin{align*} \beta = \{v_1,...,v_k,v_{k+1},...,v_n\} \end{align*} $$ We can express \(T\) with respect \(\beta\) to get $$ \begin{align*} [T]_{\beta}^{\beta} &amp;= \begin{pmatrix} [T(v_1)]_{\beta_1} &amp; \cdots &amp; [T(v_n)]_{\beta_1} \end{pmatrix} \end{align*} $$ We know that \(T(v_i) \in W\) for \(i = 1,...,k\) since \(W\) is \(T\)-invariant. Therefore, we can express \(T(v_i)\) as a linear combination of just the first \(k\) vectors in \(\beta\). The rest of the coefficients will be zero for the remaining vectors in \(\beta\). So you can imagine below that for the first \(k\) columns of \([T]_{\beta}^{\beta}\), we’ll have zero entries for anything below the \(k\)th entry. Let \(B_1\) be the coefficients that we know will not be zero (at least some). $$ \begin{align*} [T]_{\beta}^{\beta} &amp;= \begin{pmatrix} B_1 &amp; | &amp; B_2 \\ ---- &amp; - &amp; ---- \\ 0 &amp; | &amp; B_3 \\ \end{pmatrix} \end{align*} $$ We claim that \(B_1 = [T]_{\beta_W}^{\beta_W}\). Now, we want to determine the characteristic polynomial of \([T]_{\beta}^{\beta}\). $$ \begin{align*} \det([T]_{\beta}^{\beta} - tI_n) &amp;= \begin{pmatrix} [T]_{\beta_W}^{\beta_W} - tI_k &amp; | &amp; B_2 \\ ---- &amp; - &amp; ---- \\ 0 &amp; | &amp; B_3 - tI_{n-k} \\ \end{pmatrix} \\ &amp;= \det([T]_{\beta_W}^{\beta_W} - tI_k)g(t) \end{align*} $$ T-cyclic Subspaces Definition For \(v \in V\) the \(T\)-cyclic subspace generated by \(v\) is \(W=span\{v, T(v), T^2(v),...\} \subset V\). Observe here that \(W\) is \(T\)-invariant. Why? take any element \(w \in W\), \(T(w)\) is still in \(W\). To see this, notice that $$ \begin{align*} T(a_0v + a_1T(v) + ... + a_kT^k(v)) = a_0T(v) + a_1T^2(v)+...+a_kT^{k+1}(v) \in W \end{align*} $$ Question: Are all \(T\)-invariant subspaces \(T\)-cyclic? The answer is no. Suppose $$ \begin{align*} T \ &amp;: \mathbf{R}^3 \rightarrow \mathbf{R}^3 \\ &amp;(x,y,z) \rightarrow (x,y,0) \end{align*} $$ \(W = \{(x,y,0) \ | \ x, y \in \mathbf{R}\}\) is \(T\)-invariant. We just map it to itself. In fact \(T_W = I_W\). So we see here that \(W\) is not \(T\)-cyclic. Take \((x, y, 0)\), $$ \begin{align*} span\{(x,y,0), T(x,y,0),...\} = span\{(x,y,0)\} \end{align*} $$ Theorem Suppose \(T: V \rightarrow V\) is linear and \(\dim(V) &lt; \infty\). Let \(W\) be a \(T\)-cyclic subspace generated by \(v\). Set \(\dim W = k \leq \dim V\). Then \(\{v,T(v),...,T^{k-1}(v)\}\) is a basis for \(W\) If \(T^k(v) = a_0v + ... + a_{k-1}T^{k-1}(v)\), then the characteristic polynomial of \(T_W\) \((-1)^{k+1}(a_0 + a_1t + ... + a_{k-1}t^{k-1} - t^k)\) For (a). Since the dimension is not infinite anymore. Then it’s natural to ask if only \(k\) of the infinitely generated vectors is a span for \(W\) and the answer is yes. Proof: We’ll start with a proof of (b) given (a). To say anything about the characteristic polynomial, we need to find a basis and then compute the matrix with respect to the basis. A natural choice is the basis given to us in \(a\) so $$ \begin{align*} \beta_W = \{v,T(v),...,T^{k-1}(v)\} \end{align*} $$ Next we need to compute \([T_W]_{\beta_W}^{\beta_W}\) $$ \begin{align*} [T_W]_{\beta_W}^{\beta_W} &amp;= \begin{pmatrix} [T_W(v)]_{\beta_W} &amp; \cdots &amp; [T_W(T^{k-1}(v))]_{\beta_W} \end{pmatrix}\\ &amp;= \begin{pmatrix} 0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_0 \\ 1 &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1 \\ 0 &amp; 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\ 0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 1 &amp; a_{k-1} \\ \end{pmatrix} \end{align*} $$ The first column is the coefficients of \(T_W(v)\) with respect to \(\beta_W\) so that’s just 1 for \(T(v)\) while the rest are 0. Similarly, we have the same thing for the rest of the \(k-1\) column vectors. But for the last column, we need to represent \(T_W(T^{k-1}(v)) = T^k(v)\). We’re given \(T^k(v) = a_0v + ... + a_{k-1}T^{k-1}(v)\) and so the rest of the coefficients are \(a_0,a_1 .... a_{k-1}\). Now, we can compute the determinant expanding across the first row $$ \begin{align*} &amp;\det([T_W]_{\beta_W}^{\beta_W} -tI_k) = \begin{pmatrix} -t &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_0 \\ 1 &amp; -t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1 \\ 0 &amp; 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\ 0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 1 &amp; a_{k-1}-t \\ \end{pmatrix} \\ &amp;= (-1)^{1+1}(-t)\det \begin{pmatrix} -t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1 \\ 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\ 0 &amp; \cdots &amp; \cdots &amp; -t &amp; a_{k-1}-t \\ \end{pmatrix} +(-1)^{1+k}a_0 (1) \end{align*} $$ The last determinant for the \(a_0\) component is 1 because that sub matrix is upper triangular so the determinant is the product of the entries on the diagonal which are all 1. Next, we want to compute that new determinant but notice now that it has the same pattern so $$ \begin{align*} &amp;= -t \left( \det \begin{pmatrix} -t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1 \\ 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\ 0 &amp; \cdots &amp; \cdots &amp; -t &amp; a_{k-1}-t \\ \end{pmatrix}]]></summary></entry></feed>

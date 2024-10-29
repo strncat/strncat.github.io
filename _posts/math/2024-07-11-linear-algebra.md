@@ -180,12 +180,17 @@ mathjax: true
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets.html">
-        Lecture 31: Orthonormal and Orthogonal Sets
+        Lecture 31/32: Orthonormal Sets, Gram Schmidt and Fourier coefficients
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
-       <li><a href="/jekyll/update/2024/09/02/lec32-fourier-coefficients.html">
-        Lecture 32: Fourier Coefficients and Decomposition of a Vector
+       <li><a href="/jekyll/update/2024/09/02/lec32-decomposition-complement.html">
+        Lecture 32: Decomposition of a Vector, Orthogonal Complement
+       </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/09/03/lec33-adjoint-maps.html">
+        Lecture 33: Least Squares and Adjoint Maps
        </a></li>
    </ul>
 <br>

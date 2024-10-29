@@ -31,7 +31,7 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Lecture 32: Fourier Coefficients and Decomposition of a Vector</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 32: Decomposition of a Vector, Orthogonal Complement</h1>
     <!--
     <p class="post-meta">
       <time class="dt-published" datetime="2024-09-02T01:01:36-07:00" itemprop="datePublished">Sep 2, 2024
@@ -40,64 +40,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>The coefficients with respect to an orthonormal spanning set that we studied last time have a special name:
-<br /></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-Let \(S \subseteq V\) be an (possibly infinite) orthonormal subset. The scalars \(\langle x, u\rangle\) for \(u \in S\) are called the Fourier coefficients of \(x\) with respect to \(S\).
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example 1</b></h4>
-<div> 
-$$
-\begin{align*}
-V &amp;= C^0([-1,1]), \langle f,g \rangle = \int_{-1}^1 f(t)g(t)dt \\
-S &amp;= \big\{\frac{1}{\sqrt{2}}\big\} \cup \{\sin n \pi t\}_{n=1}^{\infty} \cup \{\cos n \pi t \}_{n=1}^{\infty}
-\end{align*}
-$$
-</div>
-<p>We can easily check that \(S\) is an orthonormal set. Each of the two vectors is orthogonal to each other and each vector is of unit length. Find the Fourier coefficients of \(f = |t| \in C^0([-1,1])\)</p>
-<div> 
-$$
-\begin{align*}
-\langle f, \frac{1}{\sqrt{2}} \rangle &amp;= \int_{-1}^1 \frac{1}{\sqrt{2}} |t| dt = \frac{1}{\sqrt{2}} \\
-\langle f, \sin n \pi t \rangle &amp;= \int_{-1}^1 \sin n \pi t |t| dt = 0 \\
-\langle f, \cos n \pi t \rangle &amp;= \int_{-1}^1 \cos n \pi t |t| dt = 
-\begin{cases} 0 \quad \ \ \quad \text{if $n$ even } \\ \frac{-4}{(n\pi)^2} \quad \text{if $n$ odd } \end{cases}
-\end{align*}
-$$
-</div>
-<p>When \(S = \{u_1,...,u_k\}\) is finite, then we can write</p>
-<div> 
-$$
-\begin{align*}
-x = \sum_{j=1}^{k} \langle x, u_j \rangle u_j
-\end{align*}
-$$
-</div>
-<p>But now in the infinite case, Is</p>
-<div> 
-$$
-\begin{align*}
-|t| = \frac{1}{2} = \sum_{n\text{ odd}} \frac{-4}{(n\pi)^2} \cos n \pi t
-\end{align*}
-$$
-</div>
-<p>Yes it is true but this is an infinite sum that converges to a number that is the absolute value of \(t\). This is basically the beginning of studying Fourier Analysis where any sufficiently nice function can be written as an infinite sum of sines and cosines. 
-<br />
-<br />
-But one thing we know here is that \(S\) is not a basis for \(C^0[-1,1]\). \(|t| \neq\) finite set of elements of \(S\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Orthogonal Complement</b></h4>
-<div class="bdiv">
+    <div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
@@ -137,7 +80,12 @@ How to use these orthogonal complements? We have the following theorem
 Theorem 1
 </div>
 <div class="purbdiv">
-Suppose \(W\) is finite dimensional subspace of inner produce space \(V\). For each \(x \in V\) there is a unique \(w \in W\) and \(z \in W^{\perp}\) such that \(x = w + z\)
+Suppose \(W\) is finite dimensional subspace of inner produce space \(V\). For each \(x \in V\) there is a unique \(w \in W\) and \(z \in W^{\perp}\) such that 
+$$
+\begin{align*}
+x = w + z
+\end{align*}
+$$
 <br />
 If \(\{u_1,...,u_k\}\) is an orthonormal basis for \(W\), then \(w = \langle x, u_1 \rangle + ... + \langle x, u_k \rangle u_k\)
 </div>
@@ -196,13 +144,19 @@ $$
 </div>
 <p>But \(w,\tilde{w} \in W\) and \(z, \tilde{z} \in Z\) and since \(W \cap W^{\perp} = \bar{0}_V\), then \(w = \tilde{w}\) and \(z = \tilde{z}\). \(\ \blacksquare\)
 <br />
-<br />
+<br /></p>
+<hr />
+
+<p><br />
 <!------------------------------------------------------------------------------------></p>
+<h4><b>Projection of \(x\) onto \(W\)</b></h4>
+<p>The \(w\) vector we found in the last theorem has a special name. It is the projection of \(x\) onto the subspace \(W\).
+<br /></p>
 <div class="bdiv">
 Definition
 </div>
 <div class="bbdiv">
-Here \(w\) is called the orthogonal projection of \(x\) onto \(W\) and is denoted as
+\(w\) above is called the orthogonal projection of \(x\) onto \(W\) and is denoted as
 $$
 \begin{align*}
 proj_W(x) = w
@@ -211,6 +165,9 @@ $$
 </div>
 <!------------------------------------------------------------------------------------>
 <p><br />
+<br />
+It also has a special geometric interpretation. It is the closest vector to \(x\) in \(W\).
+<br />
 <br /></p>
 <div class="purdiv">
 Theorem 2
@@ -227,7 +184,7 @@ $$
 <b>Proof</b>
 <br />
 <br />
-It’s easier to square things since we don’t want to deal with squareroots so</p>
+It’s easier to square things since we don’t have deal with squareroots so</p>
 <div>
 $$
 \begin{align*}
@@ -247,6 +204,12 @@ $$
 \end{align*}
 $$
 </div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Projection as a Map</b></h4>
 <p>In general we can think of the projection onto \(W\) as a map.</p>
 <div>
 $$
@@ -285,8 +248,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/09/02/lec32-fourier-coefficients.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/09/02/lec32-fourier-coefficients; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/09/02/lec32-decomposition-complement.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/09/02/lec32-decomposition-complement; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -297,7 +260,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/09/02/lec32-fourier-coefficients.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/09/02/lec32-decomposition-complement.html" hidden></a>
 </article>
 		 
       </div>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lecture 31: Orthonormal and Orthogonal Sets"
+title:  "Lecture 31/32: Orthonormal Sets, Gram Schmidt and Fourier coefficients"
 date:   2024-09-01 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -197,6 +197,7 @@ Let \(\{w_1,...,w_k\}\) be a linearly independent subset of \(V\). Set
 Then \(\{u_1,...,u_k\}\) is orthonormal and has same span as \(\{w_1,...,w_k\}\).
 </div>
 <br>
+<!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
 <br>
@@ -240,7 +241,7 @@ Find an orthonormal basis for $$P_2 \in C^0([-1, 1])$$. equipped with
 	\end{align*}
 	$$
 </div>
-Choose $$\{1, x, x^2\}. Apply Gram-Schmidt. So
+Choose $$\{1, x, x^2\}$$. Apply Gram-Schmidt. So
 <div>
 	$$
 	\begin{align*}
@@ -269,6 +270,61 @@ And finally $$u_3$$
 	\end{align*}
 	$$
 </div>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Fourier coefficients</b></h4>
+The coefficients with respect to an orthonormal spanning set that we studied last time have a special name:
+<br>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+Let \(S \subseteq V\) be an (possibly infinite) orthonormal subset. The scalars \(\langle x, u\rangle\) for \(u \in S\) are called the Fourier coefficients of \(x\) with respect to \(S\).
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 1</b></h4>
+<div> 
+$$
+\begin{align*}
+V &= C^0([-1,1]), \langle f,g \rangle = \int_{-1}^1 f(t)g(t)dt \\
+S &= \big\{\frac{1}{\sqrt{2}}\big\} \cup \{\sin n \pi t\}_{n=1}^{\infty} \cup \{\cos n \pi t \}_{n=1}^{\infty}
+\end{align*}
+$$
+</div>
+We can easily check that $$S$$ is an orthonormal set. Each of the two vectors is orthogonal to each other and each vector is of unit length. Find the Fourier coefficients of $$f = |t| \in C^0([-1,1])$$
+<div> 
+$$
+\begin{align*}
+\langle f, \frac{1}{\sqrt{2}} \rangle &= \int_{-1}^1 \frac{1}{\sqrt{2}} |t| dt = \frac{1}{\sqrt{2}} \\
+\langle f, \sin n \pi t \rangle &= \int_{-1}^1 \sin n \pi t |t| dt = 0 \\
+\langle f, \cos n \pi t \rangle &= \int_{-1}^1 \cos n \pi t |t| dt = 
+\begin{cases} 0 \quad \ \ \quad \text{if $n$ even } \\ \frac{-4}{(n\pi)^2} \quad \text{if $n$ odd } \end{cases}
+\end{align*}
+$$
+</div>
+When $$S = \{u_1,...,u_k\}$$ is finite, then we can write
+<div> 
+$$
+\begin{align*}
+x = \sum_{j=1}^{k} \langle x, u_j \rangle u_j
+\end{align*}
+$$
+</div>
+But now in the infinite case, Is
+<div> 
+$$
+\begin{align*}
+|t| = \frac{1}{2} = \sum_{n\text{ odd}} \frac{-4}{(n\pi)^2} \cos n \pi t
+\end{align*}
+$$
+</div>
+Yes it is true but this is an infinite sum that converges to a number that is the absolute value of $$t$$. This is basically the beginning of studying Fourier Analysis where any sufficiently nice function can be written as an infinite sum of sines and cosines. 
+<br>
+<br>
+But one thing we know here is that $$S$$ is not a basis for $$C^0[-1,1]$$. $$|t| \neq $$ finite set of elements of $$S$$. 
 <br>
 <br>
 <hr>

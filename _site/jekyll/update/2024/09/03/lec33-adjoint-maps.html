@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 33:  Least Squares, Adjoint Maps</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-09-03T01:01:36-07:00" itemprop="datePublished">Sep 3, 2024
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>We’re going to use the projection we studied in the previous lecture in studying systems of linear equations that are inconsistent. So consider the system of equations</p>
+<div>
+$$
+\begin{align*}
+Ax = b	 
+\end{align*}
+$$
+</div>
+<p>and suppose that this system is inconsistent. This means that \(b\) can’t be written as \(Ax\) and so \(b \not\in \{Ax \ | \ x \in \mathbf{R}^n\}\). What is \(Ax\)? This is the range of the linear operator \(L_A\), the set of images when \(L_A\) is applied on \(x\) so \(R(L_A)\). But this is also the column space of \(A\) and so</p>
+<div>
+$$
+\begin{align*}
+b \not\in \{Ax \ | \ x \in \mathbf{R}^n\} = R(L_A) = Col(A)
+\end{align*}
+$$
+</div>
+<p>From theorem 2 however, we know that there is a vector in the column space of \(A\) that is closest to \(b\) (with respect to the standard inner product). The closest vector has the form \(Ax_0\) and satisfies</p>
+<div>
+$$
+\begin{align*}
+Ax_0 = proj_{Col(A)}(b)
+\end{align*}
+$$
+</div>
+<p>Note here that \(Ax_0\) is unique but \(x_0\) is not. Such an \(x_0\) is called a least squares approximate solution to \(Ax = b\). So how do we find \(x_0\)? We can just compute \(proj_{Col(A)}(b)\) directly by finding an orthonormal basis for \(Col(A)\) using Gram Schmidt but it is an intensive process. It turns out there is a alternative way to find this vector. Formally we have the following theorem
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem 3
+</div>
+<div class="purbdiv">
+If \(Ax = b\) is inconsistent and rank\((A)=n\), then there is a unique least squares approximate solution
+$$
+\begin{align*}
+x_0 = (A^tA)^{-1}A^tb
+\end{align*}
+$$
+</div>
+<p><br />
+But why is this true? to be able to prove this theorem we need a few other definitions and lemmas first. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Adjoint Linear Maps</b></h4>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+Suppose \(T: V \rightarrow W\) b/w inner product spaces. An adjoint of T is a linear map \(T^*: W \rightarrow V\) such that
+$$
+\begin{align*}
+\langle T(x), y \rangle = \langle x, T^*(y) \rangle \quad \forall x \in V, y \in W
+\end{align*}
+$$
+</div>
+<p><br />
+Note here that the inner product on the left is the inner product of \(W\) but the one on the right is the inner product of \(V\). 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+For \(A \in M_{m \times n}(\mathbf(F)), \ \) \(\mathbf{F} = \mathbf{R}\) or \(\mathbf{C}\)
+Set \(A^* = (\bar{A})^t\)
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>The matrix</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 2 &amp; i \\
+i+1 &amp; 3 &amp; 3
+\end{pmatrix}^*
+=
+\begin{pmatrix}
+1 &amp; i-1 \\
+2 &amp; 3  \\
+-i &amp; 3
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Now we are ready to prove the first result that we need to prove the theorem we introduced earlier (theorem 3). 
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Lemma 1
+</div>
+<div class="purbdiv">
+\(A \in M_{m \times n}(\mathbf{F})\), \(\mathbf{F} = \mathbf{R}\) or \(\mathbf{C}\) 
+$$
+\begin{align*}
+L_A: \ \mathbf{F}^n \rightarrow  \mathbf{F}^m
+\end{align*}
+$$
+has adjoint
+$$
+\begin{align*}
+L_{A^*}: \ \mathbf{F}^m \rightarrow  \mathbf{F}^n
+\end{align*}
+$$
+In other words, \((L_A)^* = L_{A^*}\)
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+<br />
+<b>Proof</b>
+<br />
+In \(\mathbf{F}^n\), we’re going to re-write the standard inner product as</p>
+<div>
+$$
+\begin{align*}
+\langle x, y \rangle &amp;= x_1 \bar{y_1} + ... + x_n \bar{y_n} \\
+&amp;= \begin{pmatrix}
+\bar{y_1} &amp; \cdots &amp; \bar{y_n}
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\ 
+\vdots \\ 
+x_n
+\end{pmatrix} \\
+&amp;= (\bar{y})^t x \\
+&amp;= y^*x
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p>With this observation, we are now ready to prove \((L_A)^* = L_{A^*}\). Specifically, we want to show that</p>
+<div>
+$$
+\begin{align*}
+\langle A(x), y \rangle = \langle x, A(y) \rangle \quad \forall x \in \mathbf{F}^n, y \in \mathbf{F}^m
+\end{align*}
+$$
+</div>
+<p>Expanding the right hand side:</p>
+<div>
+$$
+\begin{align*}
+\langle A(x), y \rangle &amp;= y^*(Ax) \quad \text{(by the previous observation)}\\ 
+                       &amp;= (y^*A)x \\
+					   &amp;= (A^* (y^*)^*)^* x \quad \text{because $(AB)^* = B^*A^*$}\\
+					   &amp;= (A^*y)^* x \quad \text{because $(A^*)^* = A$}\\
+					   &amp;= \langle x, A^*y \rangle \quad \blacksquare
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+This is great but we still need another result before we are ready to prove theorem 3.
+<br />
+<br /></p>
+<div class="purdiv">
+Lemma 2
+</div>
+<div class="purbdiv">
+$$
+\begin{align*}
+rank(A^*A) = rank(A)
+\end{align*}
+$$
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+The dimension theorem implies that</p>
+<div>
+$$
+\begin{align*}
+\dim(N(A)) + \text{rank}(A) = n
+\end{align*}
+$$
+</div>
+<p>Applying the dimension theorem on \(A^*A\), we see that</p>
+<div>
+$$
+\begin{align*}
+\dim(N(A^*A)) + \text{rank}(A^*A) = n \quad \text{(becasuse $A^*A$ is an $n \times n$ matrix)}
+\end{align*}
+$$
+</div>
+<p>From these two equations, \(n=n\), we want to prove that \(\text{rank}(A^*A) = \text{rank}(A)\). Therefore, it suffices to show that \(N(A) = N(A^*A)\).
+<br />
+<br />
+To show that \(N(A) = N(A^*A)\), we want to show that \(N(A) \subseteq N(A^*A)\) and \(N(A^*A) \subseteq N(A)\). But it should be clear that \(N(A) \subseteq N(A^*A)\). Why? because \(A^*A = 0\) implies that \(A = 0\). Next, we will show that \(N(A^*A) \subseteq N(A)\). So suppose that \(x \in N(A^*A)\), then this implies that</p>
+<div>
+$$
+\begin{align*}
+&amp;\implies A^*Ax = \bar{0}_{\mathbf{F}^n} \\
+&amp;\implies \langle A^*Ax, x \rangle = \langle \bar{0}, x \rangle \quad \text{(take the inner product of both sides with $x$)}\\
+&amp;\implies \langle A^*Ax, x \rangle = 0 \in \mathbf{F}\\
+&amp;\implies \langle Ax, (A^*)^*x \rangle = 0 \quad \text{(by the definition of adjoint above)} \\
+&amp;\implies \langle Ax, Ax \rangle = 0 \quad ((A^*)^* =A) \\
+&amp;\implies Ax = \bar{0} \in \mathbf{F}^m \quad \text{(property (b) of the norms theorem)} \\
+&amp;\implies x \in N(A) \quad \blacksquare
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Theorem 3 Proof</b></h4>
+<p>We’re going to set \(\mathbf{F} = \mathbf{R}\). Therefore, \(A^* = A^t\). We are given that rank\((A)=n\). We want to show that</p>
+<div>
+$$
+\begin{align*}
+Ax_0 = \text{proj}_{Col(A)}b \ \Longleftrightarrow \ x_0 = (A^tA)^{-1}A^tb
+\end{align*}
+$$
+</div>
+<p>Which is what theorem 3 is asserting. The solution is unique and given by the above formula. One thing we immediately see is that \(\text{rank}(A) = n\) implies \(\text{rank}(A^tA) = n\) by lemma 2. This implies means that \(A^tA\) is invertible.
+<br />
+<br />
+We also know that \(\text{proj}_{Col(A)}b\) is the unique vector \(w\) from theorem 1. In theorem 1, we asserted that every vector \(x\) (here it is \(b\)) can be decomposed into two components \(w \in W\) and \(z \in W^{\perp}\) such that \(b = w + z\). Here we have \(w = \text{proj}_{Col(A)}b = Ax_0\) but \(b - w = z\) so \(z = b -  Ax_0\) and we want \(z\) to be orthogonal to the column space of \(A\) or \((Col(A))\).</p>
+<div>
+$$
+\begin{align*}
+Ax_0 = \text{proj}_{Col(A)}b \ &amp;\Longleftrightarrow \ \langle b - Ax_0, Ax \rangle = 0 \ \forall x \in \mathbf{R}^n \quad \text{(By Theorem 1)} \\
+&amp; \Longleftrightarrow \ \langle A^t (b - Ax_0), x \rangle = 0 \ \forall x \in \mathbf{R}^n \quad \text{move the adjoint to the other side} \\
+&amp; \Longleftrightarrow \  A^t (b - Ax_0) = \bar{0} \\
+&amp; \Longleftrightarrow \  A^tb - A^tAx_0 = \bar{0} \\
+&amp; \Longleftrightarrow \  x_0 = (A^tA)^{-1}A^tb \quad \blacksquare \\
+\end{align*}
+$$
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Math416 by Ely Kerman</li>
+</ul>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2024/09/03/lec33-adjoint-maps.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/09/03/lec33-adjoint-maps; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2024/09/03/lec33-adjoint-maps.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

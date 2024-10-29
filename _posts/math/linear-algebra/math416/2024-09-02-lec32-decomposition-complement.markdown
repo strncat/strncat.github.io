@@ -12,7 +12,7 @@ Definition
 The orthogonal complement to \(S\) is 
 $$
 \begin{align*}
-S^{\perp} = \{x \in V \ | \ \langle x, y \rangle = 0 \forall y \in S\}
+S^{\perp} = \{x \in V \ | \ \langle x, y \rangle = 0 \quad \forall y \in S\}
 \end{align*}
 $$
 </div>
@@ -20,7 +20,7 @@ $$
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Example 2</b></h4>
-Suppose $$S = \{(0,0,1)\} \subset \mathbf{R}^3$$. The orthogonal complement to $$S$$ is any element in $$\mathbf{R}^3$$ such that when we take the inner product between any element in $$S$$ and any element $$\mathbf{R}^3$$, the product must be zero.
+Suppose $$S = \{(0,0,1)\} \subset \mathbf{R}^3$$. The orthogonal complement to $$S$$ is any element $$x$$ in $$\mathbf{R}^3$$ such that for any element $$y \in S$$, the inner product $$\langle x, y \rangle$$ must be zero.
 <div>
 $$
 \begin{align*}

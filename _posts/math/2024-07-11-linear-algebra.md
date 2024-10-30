@@ -192,6 +192,11 @@ mathjax: true
        <li><a href="/jekyll/update/2024/09/03/lec33-adjoint-maps.html">
         Lecture 33: Least Squares and Adjoint Maps
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/09/04/lec34-normal-self-adjoint-maps.html">
+        Lecture 34: Normal and Self Adjoint Maps
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

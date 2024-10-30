@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lecture 34: Normal and Self Adjoint Maps"
+title:  "Lecture 34: Normal Adjoint Maps"
 date:   2024-09-04 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -219,16 +219,69 @@ Theorem 3
 Suppose \(T: V \rightarrow V\) is normal. Then
 <ol type="a">
 	<li>\( \Vert T(v) \Vert\) = \( \Vert T^*(v) \Vert \quad \forall v \in V\)</li>
-	<li> </li>
+	<li>\(T+ cI_v\) is normal</li>
+	<li>\(T(v) = \lambda v \ \implies \ T^*(v) = \bar{\lambda}v\)</li>
+	<li>Suppose \(T(v_1) = \lambda_1v_1\) and \(T(v_2) = \lambda_2v_2\) where \(\lambda_1 \neq \lambda_2\) Then \(\langle v_1, v_2 \rangle = 0\)</li>
 </ol>
 </div>
-
-
-
-
-
-
-
+<!------------------------------------------------------------------------------------>
+<br>
+<br>
+<b>Proof</b>
+<br>
+For (a), notice that
+<div>
+$$
+\begin{align*}
+\Vert T(v) \Vert^2 &= \langle T(v), T(v) \rangle \\
+                   &= \langle v, T^*(T(v)) \rangle \quad \text{(definition of an adjoint map)} \\
+                   &= \langle v, T(T^*((v)) \rangle \quad \text{(because $T$ is normal)} \\
+                   &= \langle T^*(v), T^*(v) \rangle = \Vert T^*(v) \Vert^2 \quad \blacksquare
+\end{align*}
+$$
+</div>
+For (b), we want to show that $$(T + cI_v)(T + cI_v)^* = (T + cI_v)^*(T + cI_v)$$ to prove that it is normal so,
+<div>
+$$
+\begin{align*}
+(T + cI_v)(T + cI_v)^* &= (T + cI_v)(T^* + \bar{c}I_v) \\
+                       &= TT^* + T\bar{c}I_V + cI_VT^* + cI_V\bar{c}I_V \\
+                       &= T^*T + \bar{c}I_VT + T^*cI_V + \bar{c}I_VcI_V \\
+					   &= (T + cI_v)^*(T + cI_v) \quad \blacksquare
+\end{align*}
+$$
+</div>
+For (c),
+<div>
+$$
+\begin{align*}
+v \in E_{\lambda}(T) \ &\implies \ v \in N(T - \lambda I_V) \\
+                       &\implies \ \Vert (T - \lambda I_V) \Vert = 0
+\end{align*}
+$$
+</div>
+By property (b), we know that $$(T - \lambda I_V)$$ is normal and by property (a), we know that the adjoint will have the same norm therefore,
+<div>
+$$
+\begin{align*}
+\phantom{v \in E_{\lambda}(T)} \ &\implies \ \Vert (T* - \bar{\lambda} I_V) \Vert = 0 \\
+                                 &\implies v \in E_{\bar{\lambda}}(T^*)
+\end{align*}
+$$
+</div>
+For (d),
+<div>
+$$
+\begin{align*}
+\lambda_1 \langle v_1, v_2 \rangle &=  \langle \lambda_1 v_1, v_2 \rangle \\
+                                   &=  \langle T(v_1), v_2 \rangle \\
+								   &=  \langle v_1, T^*(v_2) \rangle \\
+								   &=  \langle v_1, \bar{\lambda_2} v_2 \rangle \quad \text{(by (c))} \\
+								   &=  \lambda_2 \langle v_1, v_2 \rangle							   
+\end{align*}
+$$
+</div>
+But we know that $$\lambda_1 \neq \lambda_2$$. Therefore, we must have that $$\langle v_1, v_2 \rangle = 0$$
 <br>
 <br>
 <hr>

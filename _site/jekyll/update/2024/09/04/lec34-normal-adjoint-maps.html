@@ -31,7 +31,7 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Lecture 34: Normal and Self Adjoint Maps</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 34: Normal Adjoint Maps</h1>
     <!--
     <p class="post-meta">
       <time class="dt-published" datetime="2024-09-04T01:01:36-07:00" itemprop="datePublished">Sep 4, 2024
@@ -258,11 +258,70 @@ Theorem 3
 Suppose \(T: V \rightarrow V\) is normal. Then
 <ol type="a">
 	<li>\( \Vert T(v) \Vert\) = \( \Vert T^*(v) \Vert \quad \forall v \in V\)</li>
-	<li> </li>
+	<li>\(T+ cI_v\) is normal</li>
+	<li>\(T(v) = \lambda v \ \implies \ T^*(v) = \bar{\lambda}v\)</li>
+	<li>Suppose \(T(v_1) = \lambda_1v_1\) and \(T(v_2) = \lambda_2v_2\) where \(\lambda_1 \neq \lambda_2\) Then \(\langle v_1, v_2 \rangle = 0\)</li>
 </ol>
 </div>
-
+<!------------------------------------------------------------------------------------>
 <p><br />
+<br />
+<b>Proof</b>
+<br />
+For (a), notice that</p>
+<div>
+$$
+\begin{align*}
+\Vert T(v) \Vert^2 &amp;= \langle T(v), T(v) \rangle \\
+                   &amp;= \langle v, T^*(T(v)) \rangle \quad \text{(definition of an adjoint map)} \\
+                   &amp;= \langle v, T(T^*((v)) \rangle \quad \text{(because $T$ is normal)} \\
+                   &amp;= \langle T^*(v), T^*(v) \rangle = \Vert T^*(v) \Vert^2 \quad \blacksquare
+\end{align*}
+$$
+</div>
+<p>For (b), we want to show that \((T + cI_v)(T + cI_v)^* = (T + cI_v)^*(T + cI_v)\) to prove that it is normal so,</p>
+<div>
+$$
+\begin{align*}
+(T + cI_v)(T + cI_v)^* &amp;= (T + cI_v)(T^* + \bar{c}I_v) \\
+                       &amp;= TT^* + T\bar{c}I_V + cI_VT^* + cI_V\bar{c}I_V \\
+                       &amp;= T^*T + \bar{c}I_VT + T^*cI_V + \bar{c}I_VcI_V \\
+					   &amp;= (T + cI_v)^*(T + cI_v) \quad \blacksquare
+\end{align*}
+$$
+</div>
+<p>For (c),</p>
+<div>
+$$
+\begin{align*}
+v \in E_{\lambda}(T) \ &amp;\implies \ v \in N(T - \lambda I_V) \\
+                       &amp;\implies \ \Vert (T - \lambda I_V) \Vert = 0
+\end{align*}
+$$
+</div>
+<p>By property (b), we know that \((T - \lambda I_V)\) is normal and by property (a), we know that the adjoint will have the same norm therefore,</p>
+<div>
+$$
+\begin{align*}
+\phantom{v \in E_{\lambda}(T)} \ &amp;\implies \ \Vert (T* - \bar{\lambda} I_V) \Vert = 0 \\
+                                 &amp;\implies v \in E_{\bar{\lambda}}(T^*)
+\end{align*}
+$$
+</div>
+<p>For (d),</p>
+<div>
+$$
+\begin{align*}
+\lambda_1 \langle v_1, v_2 \rangle &amp;=  \langle \lambda_1 v_1, v_2 \rangle \\
+                                   &amp;=  \langle T(v_1), v_2 \rangle \\
+								   &amp;=  \langle v_1, T^*(v_2) \rangle \\
+								   &amp;=  \langle v_1, \bar{\lambda_2} v_2 \rangle \quad \text{(by (c))} \\
+								   &amp;=  \lambda_2 \langle v_1, v_2 \rangle							   
+\end{align*}
+$$
+</div>
+<p>But we know that \(\lambda_1 \neq \lambda_2\). Therefore, we must have that \(\langle v_1, v_2 \rangle = 0\)
+<br />
 <br /></p>
 <hr />
 
@@ -282,8 +341,8 @@ Suppose \(T: V \rightarrow V\) is normal. Then
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/09/04/lec34-normal-self-adjoint-maps.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/09/04/lec34-normal-self-adjoint-maps; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/09/04/lec34-normal-adjoint-maps.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/09/04/lec34-normal-adjoint-maps; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -294,7 +353,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/09/04/lec34-normal-self-adjoint-maps.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/09/04/lec34-normal-adjoint-maps.html" hidden></a>
 </article>
 		 
       </div>

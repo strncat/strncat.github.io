@@ -194,8 +194,13 @@ mathjax: true
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
-       <li><a href="/jekyll/update/2024/09/04/lec34-normal-self-adjoint-maps.html">
-        Lecture 34: Normal and Self Adjoint Maps
+       <li><a href="/jekyll/update/2024/09/04/lec34-normal-adjoint-maps.html">
+        Lecture 34: Normal Adjoint Maps
+       </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/09/05/lec35-self-adjoint-maps.html">
+        Lecture 34: Self Adjoint Maps
        </a></li>
    </ul>
 <br>

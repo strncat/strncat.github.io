@@ -200,7 +200,7 @@ mathjax: true
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/09/05/lec35-self-adjoint-maps.html">
-        Lecture 34: Self Adjoint Maps
+        Lecture 35: Self Adjoint Maps
        </a></li>
    </ul>
 <br>

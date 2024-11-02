@@ -180,12 +180,10 @@ mathjax: true
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/09/01/lec31-orthonormal-orthogonal-sets.html">
-        Lecture 31/32: Orthonormal Sets, Gram Schmidt and Fourier coefficients
+        Lecture 31/32: Orthonormal Sets, Gram Schmidt and Vector Decomposition
        </a></li>
-	   <!------------------------------------------------------------------->  
-	   <br>
-       <li><a href="/jekyll/update/2024/09/02/lec32-decomposition-complement.html">
-        Lecture 32: Decomposition of a Vector, Orthogonal Complement
+       <li><a href="/jekyll/update/2024/09/09/6.2-theorem-6.5.html">
+        Book (6.2) Theorem 6.5
        </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
@@ -198,11 +196,14 @@ mathjax: true
        <li><a href="/jekyll/update/2024/09/05/lec35-self-adjoint-maps.html">
         Lecture 35: Self Adjoint Maps
        </a></li>
-       <li><a href="/jekyll/update/2024/09/06/lec33-theorem-6.8.html">
+       <li><a href="/jekyll/update/2024/09/06/6.3-theorem-6.8.html">
         Book (6.3) Theorem 6.8
        </a></li>
-       <li><a href="/jekyll/update/2024/09/07/lec33-theorem-6.9.html">
+       <li><a href="/jekyll/update/2024/09/07/6.3-theorem-6.9.html">
         Book (6.3) Theorem 6.9
+       </a></li>
+       <li><a href="/jekyll/update/2024/09/08/6.3-theorem-6.10.html">
+        Book (6.3) Theorem 6.10
        </a></li>
    </ul>
 <br>

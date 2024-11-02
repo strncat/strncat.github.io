@@ -31,72 +31,64 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Section 6.3: Theorem 6.8</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Section 6.3: Theorem 6.9</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-09-06T01:01:36-07:00" itemprop="datePublished">Sep 6, 2024
+      <time class="dt-published" datetime="2024-09-07T01:01:36-07:00" itemprop="datePublished">Sep 7, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <div class="purdiv">
-Theorem 6.8
+Theorem 6.9
 </div>
 <div class="purbdiv">
-Let \(V\) be a finite-dimensional inner product space over \(\mathbf{F}\), and let \(g: V \rightarrow \mathbf{F}\) be a linear transformation. Then, there exists a unique vector \(y \in V\) such that \(g(x) = \langle x, y \rangle\) such that \(g(x) = \langle x, y \rangle\) for all \(x \in V\)
+Let \(V\) be a finite-dimensional inner product space over \(\mathbf{F}\), and let \(T\) be a linear operator on \(V\). Then there exists a unique function \(T^*:V \rightarrow V\) such that \( \langle T(x), y \rangle = \langle x, T^*(y) \rangle\) for all \(x,y \in V\). Furthermore \(T^*\) is linear.
 </div>
 <p><br />
 <b>Proof:</b>
 <br />
 <br />
-Let \(\beta = \{v_1,...,v_n\}\) be an orthonormal basis for \(V\), and let</p>
+Let \(y \in V\). Define \(g(x): V \rightarrow \mathbf{F}\) by \(g(x) =  \langle T(x), y \rangle\) for all \(x \in V\). \(g\) is linear. To see this, consider \(x_1, x_2 \in V\), then</p>
 <div>
 $$
 \begin{align*}
-y = \sum_{i=1}^{n} \overline{g(v_i)}v_i
+g(cx_1 + x_2) &amp;= \langle T(cx_1 + x_2), y \rangle \\
+              &amp;= \langle T(cx_1) + T(x_2), y \rangle  \\
+              &amp;= \langle cT(x_1), y \rangle + \langle T(x_2), y \rangle \\
+			  &amp;= cg(x_1) + g(x_2)
 \end{align*}
 $$
 </div>
-<p>Define \(h: V \rightarrow \mathbf{F}\) by \(h(x) = \langle x, y \rangle\) which is linear. Furthermore, for \(i \leq j \leq n\), we have</p>
+<p>So \(g\) is linear. By Theorem 6.8, there exists a unique vector \(y' \in V\) such that \(g(x) = \langle x, y' \rangle\). That is \(\langle T(x), y \rangle = \langle x, y' \rangle\) for all \(x \in V\). Now, define \(T^*: V \rightarrow\) by \(T^*(y) = y'\) so now we have \(\langle T(x), y \rangle = \langle x, T^*(y) \rangle\). \(T^*\) is also linear, to see this, let \(y_1, y_2 \in V\) and \(c \in \mathbf{F}\). Then for any \(x \in V\),</p>
 <div>
 $$
 \begin{align*}
-h(v_j) = \langle v_j \rangle &amp;= \left\langle v_j, \sum_{i=1}^{n} \overline{g(v_i)}v_i \right\rangle \\
-                             &amp;=  \sum_{i=1}^{n} g(v_i) \langle v_j, v_i \rangle \\
-                             &amp;=  \sum_{i=1}^{n} g(v_i) \delta_{ij} \\
-							 &amp;= g(v_j)
+\langle x, T^*(cy_1 + y_2) \rangle &amp;= \langle  T(x), cy_1 + y_2 \rangle \\
+                       &amp;= \langle  T(x), cy_1 \rangle + \langle  T(x), y_2 \rangle\\
+                       &amp;= \bar{c}\langle  T(x), y_1 \rangle + \langle  T(x), y_2 \rangle\\
+                    &amp;= \bar{c}\langle  x, T^*(y_1) \rangle + \langle  x, T^*(y_2) \rangle \\
+                    &amp;= \langle  x, cT^*(y_1) + T^*(y_2) \rangle
+				
 \end{align*}
 $$
 </div>
-<p>But \(h\) and \(g\) agree on a basis so by the corollary from 2.6, \(g = h\).
+<p>Since \(x\) is arbitrary, then \(T^*(cy_1 + y_2) = cT^*(y_1) + T^*(y_2)\) by Theorem 6.1(e). Finally we need to show that \(T^*\) is unique. Suppose it wasn’t. Then, let \(U: V \rightarrow V\) be linear such that it satisfies \(\langle T(x), y \rangle = \langle x, U(y) \rangle\) for all \(x, y \in V\). But this means that \(\langle x, U(y) \rangle = \langle x, T^*(y) \rangle\) for all \(x, y \in V\). Therefore, \(T^* = U\). \(\ \blacksquare\)
 <br />
 <br />
-To show that \(y\) is unique. Suppose it is not and let \(g(x) = \langle x, y' \rangle\). for all \(x\). Then, \(\langle x, y' \rangle = \langle x, y \rangle\) but by Theorem 6.1(e), this means that \(y = y'\) as we wanted to show. \(\ \blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-Notes: So my understanding is that we can turn any linear transformation from \(V\) to \(\mathbf{F}\) into an inner product with some unique vector \(y \in V\). For example if \(V = \mathbf{R}^2\) and we have some \(g(x): V \rightarrow V\). where \(g(a,b) = 3a + 2b\). Then,</p>
+Note here that</p>
 <div>
 $$
 \begin{align*}
-y = (3, 2)
+\langle x, T(y) \rangle &amp;= \overline{\langle T(y), x \rangle} \\
+                        &amp;= \overline{\langle y, T^*(x) \rangle} \\
+                       &amp;= \langle T^*(x), y \rangle
+				
 \end{align*}
 $$
 </div>
-<p>is a unique vector in \(V\) such that</p>
-<div>
-$$
-\begin{align*}
-g(x) &amp;= \langle x, y \rangle \\
-     &amp;= \langle x, (3, 2) \rangle \\
-	 &amp;= 2a + 3b
-\end{align*}
-$$
-</div>
-<p>At least this is what I understood!
+<p>So we can shift back and forth between the two.
 <br />
 <br /></p>
 <hr />
@@ -117,8 +109,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/09/06/lec33-theorem-6.8.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/09/06/lec33-theorem-6.8; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/09/07/6.3-theorem-6.9.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/09/07/6.3-theorem-6.9; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -129,7 +121,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/09/06/lec33-theorem-6.8.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/09/07/6.3-theorem-6.9.html" hidden></a>
 </article>
 		 
       </div>

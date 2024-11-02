@@ -201,6 +201,9 @@ mathjax: true
        <li><a href="/jekyll/update/2024/09/06/lec33-theorem-6.8.html">
         Book (6.3) Theorem 6.8
        </a></li>
+       <li><a href="/jekyll/update/2024/09/07/lec33-theorem-6.9.html">
+        Book (6.3) Theorem 6.9
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

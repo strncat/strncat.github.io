@@ -31,69 +31,55 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Section 6.3: Theorem 6.10</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Section 6.3: Exercise 18</h1>
     <!--
     <p class="post-meta">
-      <time class="dt-published" datetime="2024-09-08T01:01:36-07:00" itemprop="datePublished">Sep 8, 2024
+      <time class="dt-published" datetime="2024-09-11T01:01:36-07:00" itemprop="datePublished">Sep 11, 2024
       </time></p>
      -->
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <div class="purdiv">
-Theorem 6.10
+    <div class="ydiv">
+Exercise 18
 </div>
-<div class="purbdiv">
-Let \(V\) be a finite-dimensional inner product space over \(\mathbf{F}\), and let \(\beta\) be a an orthonormal basis for \(V\). If \(T\) is a linear operation on \(V\), then
-$$
-\begin{align*}
-[T^*]_{\beta} = [T]^*_{\beta}
-\end{align*}
-$$
+<div class="ybdiv">
+Let \(A\) be an \(n \times n\). Prove that \(\det(A^*) = \overline{A}\).
 </div>
 <p><br />
-<b>Proof:</b>
+Proof:
 <br />
 <br />
-Let \(A = [T^*]_{\beta}\). By the <a href="https://strncat.github.io/jekyll/update/2024/09/09/6.2-theorem-6.5.html">Corollary from Theorem 6.5</a> we know that \(A_{ij} = \langle T^*(v_j), v_i \rangle\). Therefore,</p>
+Let \(A\) be a matrix of size \(n \times n\). We first will prove that \(\det(\overline{A}) = \overline{\det{A}}\) by induction on \(n\).
+<br />
+<br />
+Base Case: \(n = 1\). \(\det(\overline{A}) = \overline{a_{11}} = \overline{\det{(A)}}\).
+<br />
+<br />
+Inductive Case: Assume \(\det(\overline{A}) = \overline{\det{A}}\) for \(n-1\). We will prove this for \(n\). Computing the determinant of \(\overline{A}\) by cofactor expansion along the first row and applying the inductive hypothesis</p>
 <div>
-$$
-\begin{align*}
-\langle x, T(y) \rangle &amp;= \overline{\langle T(y), x \rangle} \\
-                        &amp;= \overline{\langle y, T^*(x) \rangle} \\
-                       &amp;= \langle T^*(x), y \rangle \\
-					   &amp;= \overline{A_{ij}} \\
-					   &amp;= (A^*)_{ij}. \ \blacksquare
-				
-\end{align*}
-$$
+	$$
+	\begin{align*}
+	\det(\overline{A}) &amp;= (-1)^{1+1}\overline{a_{11}}\det{\widetilde{\overline{A_{11}}}} 
+	                    + (-1)^{1+2}\overline{a_{12}}\det{\widetilde{\overline{A_{12}}}} + ... + \\
+						&amp;+ (-1)^{1+n}\overline{a_{1n}}\det{\widetilde{\overline{a_{1n}}}} \\
+	&amp;= (-1)^{1+1}\overline{a_{11}}\overline{\det{\widetilde{A_{11}}}} +          (-1)^{1+2}\overline{a_{12}}\overline{\det{\widetilde{A_{11}}}} + ... + \\
+		&amp;+ (-1)^{1+n}\overline{a_{1n}}\overline{\det{\widetilde{A_{11}}}} \\
+	&amp;= \overline{\det{A}}
+	\end{align*}
+	$$
 </div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<div class="purdiv">
-Theorem 6.10 (Corollary)
-</div>
-<div class="purbdiv">
-Let \(A\) be \(n \times n\) matrix. Then \(L_{A^*} = (L_A)^*\)
-</div>
-<p><br />
-<b>Proof:</b>
-<br />
-<br />
-Let \(\beta\) be the standard basis for \(\mathbf{F}^n\). Then, we know that \([L_A]_{\beta} = A\) by Theorem 2.16. We can apply Theorem 6.10 to see that</p>
+<p>So now we can apply this result to show that</p>
 <div>
-$$
-\begin{align*}
-[(L_A)^*]_{\beta} &amp;= [L_A]^*_{\beta} \quad \text{(By Theorem 6.10)} \\
-                  &amp;= A^* \\
-                  &amp;= [L_{A^*}]_{\beta}
-				
-\end{align*}
-$$
+	$$
+	\begin{align*}
+	\det(A^*) &amp;= \det(\overline{A^t}) \\
+	          &amp;= \overline{\det(A^t)} \\
+			  &amp;= \overline{\det{A}} \quad \text{(we prove previously that $\det{A}=\det{A^t}$)}
+	\end{align*}
+	$$
 </div>
-<p>Therefore \(L_{A^*} = (L_A)^*\) as we wanted to show. \(\ \blacksquare\)
-<!------------------------------------------------------------------------------------>
-<br />
+<p><br />
 <br /></p>
 <hr />
 
@@ -101,6 +87,7 @@ $$
 <!------------------------------------------------------------------------------------></p>
 <h4><b>References:</b></h4>
 <ul>
+<li><a href="https://media.pearsoncmg.com/aw/aw_friedberg_linearalgebra_5e/solutions/sec_6_2.html">Reference Solution</a></li>
 <li><a href="https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241/ref=tmm_hrd_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">Linear Algebra 5th Edition</a></li>
 </ul>
 
@@ -113,8 +100,8 @@ $$
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = /jekyll/update/2024/09/08/6.3-theorem-6.10.html;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier =  /jekyll/update/2024/09/08/6.3-theorem-6.10; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = /jekyll/update/2024/09/11/6.3-exercise-18.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2024/09/11/6.3-exercise-18; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -125,7 +112,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a class="u-url" href="/jekyll/update/2024/09/08/6.3-theorem-6.10.html" hidden></a>
+<a class="u-url" href="/jekyll/update/2024/09/11/6.3-exercise-18.html" hidden></a>
 </article>
 		 
       </div>

@@ -1,4 +1,281 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-11-02T21:05:13-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Section 6.3: Theorem 6.11</title><link href="http://localhost:4000/jekyll/update/2024/09/13/6.3-theorem-6.11.html" rel="alternate" type="text/html" title="Section 6.3: Theorem 6.11" /><published>2024-09-13T01:01:36-07:00</published><updated>2024-09-13T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/13/6.3-theorem-6.11</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/13/6.3-theorem-6.11.html"><![CDATA[<div class="purdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-11-06T21:00:26-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">The Jordan Canonical Form</title><link href="http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form.html" rel="alternate" type="text/html" title="The Jordan Canonical Form" /><published>2024-09-15T01:01:36-07:00</published><updated>2024-09-15T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form.html"><![CDATA[<p>Last time we proved that If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\). This therefore lead to the conclusion that \(T\) is diagonalizable.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>A Test For Diagonalizability</b></h4>
+<p>We studied previously a few ways a linear operator can be tested for diagonalizability. From lecture 25,</p>
+<div class="purdiv">
+Theorem (5.8(a))
+</div>
+<div class="purbdiv">
+\(T\) is diagonalizable if and only if
+<ul style="list-style-type:lower-alpha">
+	<li>The characteristic polynomial splits over its field \(\mathbf{R}\) or \(\mathbf{C}\)</li>
+	<li>For each eigenvalue of \(T\), its geometric multiplicity (\(\dim(E_{\lambda})\)) = algebraic multiplicity</li>
+</ul>
+</div>
+<p><br />
+We mentioned last time too that if \(V\) is over \(\mathbf{C}\), the the characteristic polynomial always splits. Note also that you can have \((a)\) but not \((b)\). For example</p>
+<div>
+$$
+\begin{align*}
+A =
+\begin{pmatrix}
+1 &amp; 1 \\
+0 &amp; 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>splits but doesn’t satisfy $(b)$
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Jordan Canonical Form</b></h4>
+<p>Based on the previous observation. It turns out there is a nice form that we can put \(T\) into in order to achieve \((a)\) and \((b)\)
+<br /></p>
+<div class="purdiv">
+Theorem (JCF)
+</div>
+<div class="purbdiv">
+If the characteristic polynomial of \(T: V \rightarrow V\) splits, then there is a basis \(\beta\) of \(V\) such that \([T]_{\beta}^{\beta}\) is in Jordan Canonical form.
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+A Jordan Block is a square matrix of the form
+$$
+\begin{align*}
+\begin{pmatrix}
+\lambda
+\end{pmatrix}
+\quad \text{ or } \quad 
+\begin{pmatrix}
+\lambda &amp; 1 &amp; \cdots &amp; 0 \\
+0 &amp; \ddots &amp; \ddots &amp; \vdots \\
+\vdots &amp; \ddots &amp; \ddots &amp; 1 \\
+0 &amp; \cdots &amp; 0 &amp; \lambda
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+For example, a \(2 \times 2\) and a \(3 \times 3\) matrices, Jordan Canonical Form look like</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+\lambda &amp; 1 \\
+0 &amp; \lambda
+\end{pmatrix}
+,
+\begin{pmatrix}
+\lambda &amp; 1 &amp; 0 \\
+0 &amp; \lambda &amp; 1 \\
+0 &amp; 0 &amp; \lambda
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+A square matrix \(A\) is in Jordan Canonical Form if
+$$
+\begin{align*}
+A =
+\begin{pmatrix}
+A_1 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; A_2 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; \lambda_{l}
+\end{pmatrix},
+\ \text{ where $A_j$ is a Jordan block}
+\end{align*}
+$$
+</div>
+<p><br />
+You can think of this matrix as more of a generalization of a diagonal matrix.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<p>The following are examples of matrix in Jordan Canonical Form</p>
+<div>
+$$
+\begin{align*}
+A = 
+\begin{pmatrix}
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 2
+\end{pmatrix},
+B = 
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 2
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Note here that the characteristic polynomial of both \(A\) and \(B\) is \((1-t)^3(2-t)^2\).</p>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Math416 by Ely Kerman</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Last time we proved that If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\). This therefore lead to the conclusion that \(T\) is diagonalizable. A Test For Diagonalizability We studied previously a few ways a linear operator can be tested for diagonalizability. From lecture 25, Theorem (5.8(a)) \(T\) is diagonalizable if and only if The characteristic polynomial splits over its field \(\mathbf{R}\) or \(\mathbf{C}\) For each eigenvalue of \(T\), its geometric multiplicity (\(\dim(E_{\lambda})\)) = algebraic multiplicity We mentioned last time too that if \(V\) is over \(\mathbf{C}\), the the characteristic polynomial always splits. Note also that you can have \((a)\) but not \((b)\). For example $$ \begin{align*} A = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix} \end{align*} $$ splits but doesn’t satisfy $(b)$ Jordan Canonical Form Based on the previous observation. It turns out there is a nice form that we can put \(T\) into in order to achieve \((a)\) and \((b)\) Theorem (JCF) If the characteristic polynomial of \(T: V \rightarrow V\) splits, then there is a basis \(\beta\) of \(V\) such that \([T]_{\beta}^{\beta}\) is in Jordan Canonical form. Definition A Jordan Block is a square matrix of the form $$ \begin{align*} \begin{pmatrix} \lambda \end{pmatrix} \quad \text{ or } \quad \begin{pmatrix} \lambda &amp; 1 &amp; \cdots &amp; 0 \\ 0 &amp; \ddots &amp; \ddots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; 1 \\ 0 &amp; \cdots &amp; 0 &amp; \lambda \end{pmatrix} \end{align*} $$ For example, a \(2 \times 2\) and a \(3 \times 3\) matrices, Jordan Canonical Form look like $$ \begin{align*} \begin{pmatrix} \lambda &amp; 1 \\ 0 &amp; \lambda \end{pmatrix} , \begin{pmatrix} \lambda &amp; 1 &amp; 0 \\ 0 &amp; \lambda &amp; 1 \\ 0 &amp; 0 &amp; \lambda \end{pmatrix} \end{align*} $$ Definition A square matrix \(A\) is in Jordan Canonical Form if $$ \begin{align*} A = \begin{pmatrix} A_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; A_2 &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_{l} \end{pmatrix}, \ \text{ where $A_j$ is a Jordan block} \end{align*} $$ You can think of this matrix as more of a generalization of a diagonal matrix. Examples The following are examples of matrix in Jordan Canonical Form $$ \begin{align*} A = \begin{pmatrix} 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \end{pmatrix}, B = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Note here that the characteristic polynomial of both \(A\) and \(B\) is \((1-t)^3(2-t)^2\).]]></summary></entry><entry><title type="html">Lecture 36: Isometries</title><link href="http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries.html" rel="alternate" type="text/html" title="Lecture 36: Isometries" /><published>2024-09-14T01:01:36-07:00</published><updated>2024-09-14T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries.html"><![CDATA[<p>We’ve studied special classes of linear maps over an inner product space to itself like normal maps and self-adjoint maps. Today we will study a new special class
+<br /></p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(T:V \rightarrow V\) is an isometry if
+$$
+\begin{align*}
+\langle T(x), T(y) \rangle = \langle x, y \rangle
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------>
+For example, in \(\mathbf{R}^3\), this means that isometries preserve lengths and angles. <br />
+When \(V\) is over \(\mathbf{C}\), an isometry is sometimes called unitary while if \(V\) is over \(\mathbf{R}\), \(T\) is called orthogonal.
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 1</b></h4>
+<p>Let \(T = L_A\) where</p>
+<div>
+$$
+\begin{align*}
+A = 
+\begin{pmatrix}
+\cos\theta &amp; - \sin\theta \\
+\sin\theta &amp; \cos\theta 
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Remember from the previous lecture, \(A\) was normal but not self-adjoint. We claim that \(A\) is an isometry. We can verify this by evaluating</p>
+<div>
+$$
+\begin{align*}
+L_A 
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+&amp;=
+\begin{pmatrix}
+x\cos\theta - y\sin\theta \\
+x\sin\theta + y\cos\theta 
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>while,</p>
+<div>
+$$
+\begin{align*}
+\left\langle
+L_A 
+\begin{pmatrix}
+x_1 \\
+y_1
+\end{pmatrix},
+L_A 
+\begin{pmatrix}
+x_2 \\
+y_2
+\end{pmatrix}
+\right\rangle
+&amp;=
+(x_1\cos\theta - y_1\sin\theta)(x_2\sin\theta + y_2\cos\theta) \\
+&amp; =  x_1y_1 + x_2y_2
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<p>Let</p>
+<div>
+$$
+\begin{align*}
+V &amp;= C^0([0,1]), \mathbf{C}) \\
+  &amp;= \{ F(t) = f(t) + ig(t) \ | \ f, g \in C^0([0,1)]\} \\
+\langle F, G \rangle &amp;= \int_0^1 F(t)\overline{G(t)} dt
+\end{align*}
+$$
+</div>
+<p>Suppose that \(H \in V\) such that \(|H(t)| = 1\). For real numbers, we have only two functions 1 and -1 but for complex numbers, we have many of these functions. For example \(H(t) = e^{ih(t)}\).
+<br />
+<br />
+Now we’re going to use this function to define an isometry. Specifically,</p>
+<div>
+$$
+\begin{align*}
+T \ : \ &amp;V \rightarrow V 
+   &amp;F \rightarrow FH
+\end{align*}
+$$
+</div>
+<p>This is an isometry. \(H\) is kind of rotating by some angle depending on \(t\). To verify this,</p>
+<div>
+$$
+\begin{align*}
+\langle T(F), T(G) \rangle &amp;= \int_0^1 (F(t)H(t))(\overline{G}(t)\overline{H}(t)) \ dt \\
+                           &amp;= \int_0^1 F(t)\overline{G}(t)  \ dt \\
+						   &amp;= \langle F, G \rangle
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Equivalent Conditions for Isometry</b></h4>
+<p>So now we’re ready to put all of this together</p>
+<div class="purdiv">
+The following are equivalent
+</div>
+<div class="purbdiv">
+<ul type="a">
+	<li>\(T: V \rightarrow V\) is an isometry</li>
+	<li>\(TT^* = T^*T = I_V \) (an isometry is a normal map?) </li>
+	<li>If \(\beta\) is an orthonormal basis, then so is \(T(\beta)\)</li>
+	<li>\(T(\beta)\) is orthonormal for some orthonormal \(\beta\)</li>
+	<li>\(\Vert T(x) \Vert = \Vert x \Vert \ \forall x \in V \)</li>
+</ul>
+</div>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>Math416 by Ely Kerman</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We’ve studied special classes of linear maps over an inner product space to itself like normal maps and self-adjoint maps. Today we will study a new special class Definition \(T:V \rightarrow V\) is an isometry if $$ \begin{align*} \langle T(x), T(y) \rangle = \langle x, y \rangle \end{align*} $$ For example, in \(\mathbf{R}^3\), this means that isometries preserve lengths and angles. When \(V\) is over \(\mathbf{C}\), an isometry is sometimes called unitary while if \(V\) is over \(\mathbf{R}\), \(T\) is called orthogonal. Example 1 Let \(T = L_A\) where $$ \begin{align*} A = \begin{pmatrix} \cos\theta &amp; - \sin\theta \\ \sin\theta &amp; \cos\theta \end{pmatrix} \end{align*} $$ Remember from the previous lecture, \(A\) was normal but not self-adjoint. We claim that \(A\) is an isometry. We can verify this by evaluating $$ \begin{align*} L_A \begin{pmatrix} x \\ y \end{pmatrix} &amp;= \begin{pmatrix} x\cos\theta - y\sin\theta \\ x\sin\theta + y\cos\theta \end{pmatrix} \end{align*} $$ while, $$ \begin{align*} \left\langle L_A \begin{pmatrix} x_1 \\ y_1 \end{pmatrix}, L_A \begin{pmatrix} x_2 \\ y_2 \end{pmatrix} \right\rangle &amp;= (x_1\cos\theta - y_1\sin\theta)(x_2\sin\theta + y_2\cos\theta) \\ &amp; = x_1y_1 + x_2y_2 \end{align*} $$ Example 2 Let $$ \begin{align*} V &amp;= C^0([0,1]), \mathbf{C}) \\ &amp;= \{ F(t) = f(t) + ig(t) \ | \ f, g \in C^0([0,1)]\} \\ \langle F, G \rangle &amp;= \int_0^1 F(t)\overline{G(t)} dt \end{align*} $$ Suppose that \(H \in V\) such that \(|H(t)| = 1\). For real numbers, we have only two functions 1 and -1 but for complex numbers, we have many of these functions. For example \(H(t) = e^{ih(t)}\). Now we’re going to use this function to define an isometry. Specifically, $$ \begin{align*} T \ : \ &amp;V \rightarrow V &amp;F \rightarrow FH \end{align*} $$ This is an isometry. \(H\) is kind of rotating by some angle depending on \(t\). To verify this, $$ \begin{align*} \langle T(F), T(G) \rangle &amp;= \int_0^1 (F(t)H(t))(\overline{G}(t)\overline{H}(t)) \ dt \\ &amp;= \int_0^1 F(t)\overline{G}(t) \ dt \\ &amp;= \langle F, G \rangle \end{align*} $$ Equivalent Conditions for Isometry So now we’re ready to put all of this together The following are equivalent \(T: V \rightarrow V\) is an isometry \(TT^* = T^*T = I_V \) (an isometry is a normal map?) If \(\beta\) is an orthonormal basis, then so is \(T(\beta)\) \(T(\beta)\) is orthonormal for some orthonormal \(\beta\) \(\Vert T(x) \Vert = \Vert x \Vert \ \forall x \in V \)]]></summary></entry><entry><title type="html">Section 6.3: Theorem 6.11</title><link href="http://localhost:4000/jekyll/update/2024/09/13/6.3-theorem-6.11.html" rel="alternate" type="text/html" title="Section 6.3: Theorem 6.11" /><published>2024-09-13T01:01:36-07:00</published><updated>2024-09-13T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/13/6.3-theorem-6.11</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/13/6.3-theorem-6.11.html"><![CDATA[<div class="purdiv">
 Theorem 6.11
 </div>
 <div class="purbdiv">
@@ -472,578 +749,4 @@ $$
 <h4><b>References:</b></h4>
 <ul>
 <li><a href="https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241/ref=tmm_hrd_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">Linear Algebra 5th Edition</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Theorem 6.8 Let \(V\) be a finite-dimensional inner product space over \(\mathbf{F}\), and let \(g: V \rightarrow \mathbf{F}\) be a linear transformation. Then, there exists a unique vector \(y \in V\) such that \(g(x) = \langle x, y \rangle\) such that \(g(x) = \langle x, y \rangle\) for all \(x \in V\) Proof: Let \(\beta = \{v_1,...,v_n\}\) be an orthonormal basis for \(V\), and let $$ \begin{align*} y = \sum_{i=1}^{n} \overline{g(v_i)}v_i \end{align*} $$ Define \(h: V \rightarrow \mathbf{F}\) by \(h(x) = \langle x, y \rangle\) which is linear. Furthermore, for \(i \leq j \leq n\), we have $$ \begin{align*} h(v_j) = \langle v_j \rangle &amp;= \left\langle v_j, \sum_{i=1}^{n} \overline{g(v_i)}v_i \right\rangle \\ &amp;= \sum_{i=1}^{n} g(v_i) \langle v_j, v_i \rangle \\ &amp;= \sum_{i=1}^{n} g(v_i) \delta_{ij} \\ &amp;= g(v_j) \end{align*} $$ But \(h\) and \(g\) agree on a basis so by the corollary from 2.6, \(g = h\). To show that \(y\) is unique. Suppose it is not and let \(g(x) = \langle x, y' \rangle\). for all \(x\). Then, \(\langle x, y' \rangle = \langle x, y \rangle\) but by Theorem 6.1(e), this means that \(y = y'\) as we wanted to show. \(\ \blacksquare\) Notes: So my understanding is that we can turn any linear transformation from \(V\) to \(\mathbf{F}\) into an inner product with some unique vector \(y \in V\). For example if \(V = \mathbf{R}^2\) and we have some \(g(x): V \rightarrow V\). where \(g(a,b) = 3a + 2b\). Then, $$ \begin{align*} y = (3, 2) \end{align*} $$ is a unique vector in \(V\) such that $$ \begin{align*} g(x) &amp;= \langle x, y \rangle \\ &amp;= \langle x, (3, 2) \rangle \\ &amp;= 2a + 3b \end{align*} $$ At least this is what I understood! References: Linear Algebra 5th Edition]]></summary></entry><entry><title type="html">Lecture 35: Self Adjoint Maps</title><link href="http://localhost:4000/jekyll/update/2024/09/05/lec35-self-adjoint-maps.html" rel="alternate" type="text/html" title="Lecture 35: Self Adjoint Maps" /><published>2024-09-05T01:01:36-07:00</published><updated>2024-09-05T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/05/lec35-self-adjoint-maps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/05/lec35-self-adjoint-maps.html"><![CDATA[<p>In the last two lectures we studied adjoint maps where an adjoint map is defined as follows
-<br /></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-Suppose \(T: V \rightarrow W\) b/w inner product spaces. An adjoint of T is a linear map \(T^*: W \rightarrow V\) such that
-$$
-\begin{align*}
-\langle T(x), y \rangle = \langle x, T^*(y) \rangle \quad \forall x \in V, y \in W
-\end{align*}
-$$
-</div>
-<!------------------------------------------------------------------------------------>
-<p><br />
-and we also studied a special class of adjoint maps called normal adjoint maps where \(T\) is called normal if \(T \circ T^* = T^* \circ T\). We also studied properties of these normals maps. For example if \(T\) is normal then,</p>
-<div>
-$$
-\begin{align*}
-\Vert T(x) \Vert &amp;= \Vert T^*(x) \Vert \\
-T(x) = \lambda x \ &amp;\implies \ T^*(x) = \bar{\lambda}x
-\end{align*}
-$$
-</div>
-<!------------------------------------------------------------------------------------>
-<p>Next we will study another special class of adjoint maps called self adjoint maps defined below
-<br /></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-\(T: V \rightarrow V\) is self-adjoint if
-$$
-\begin{align*}
-T^* = T
-\end{align*}
-$$
-</div>
-<p><br />
-Note here that self adjoint implies that \(T\) is normal. The converse is not true (rotation matrix is an example)
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example 1</b></h4>
-<p>Let \(A \in M_{n \times n}(\mathbf{R})\) and \(A_{ij} = A_{ji} \ \forall i,j\), then A (L_A) is self-adjoint.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example 2</b></h4>
-<p>Suppose that \(V\) is a finite dimensional inner product space where \(W \subseteq V\) is a subspace.</p>
-<div>
-$$
-\begin{align*}
-T = \text{proj}_W \ : \ V &amp;\rightarrow V \\
-                    x = w + z &amp;\rightarrow w
-\end{align*}
-$$
-</div>
-<p>So if you take a vector \(x \in V\), we know we can decompose it into two vectors \(w \in W\) and \(z \in W^{\perp}\). This map just produces the part that is in \(W\). We claim that \(\text{proj}_W\) is self-adjoint.
-<br />
-<br />
-<b>Proof</b>
-<br />
-Take \(x_1, x_2 \in V\). We need to show that</p>
-<div>
-$$
-\begin{align*}
-\langle T(x_1), x_2 \rangle = \langle x_1, T(x_2) \rangle
-\end{align*}
-$$
-</div>
-<p>We know that \(x_1 = w_1 + z_1\) and \(x_2 = w_2 + z_2\) for some unique vectors \(w_1, w_2 \in W\) and \(z_1, z_2 \in W^{\perp}\). Then,</p>
-<div>
-$$
-\begin{align*}
-\langle T(x_1), x_2 \rangle &amp;= \langle T(w_1 + z_1), x_2 \rangle \\
-                            &amp;= \langle w_1, w_2 + z_2 \rangle \\
-							&amp;= \langle w_1, w_2 \rangle + \langle w_1, z_2 \rangle \\
-							&amp;= \langle w_1, w_2 \rangle \quad \text{(because $w_1 \in W$ and $z_2 \in W^{\perp}$)}\\
-\end{align*}
-$$
-</div>
-<p>At this point, we recognize that \(w_2 = T(x_2)\) but we still have \(w_1\) and want to reach \(x_1\). Notice that \(x_1 = w_1 + z_1\). Moreover, \(\langle z_1, w_2 \rangle = 0\) So</p>
-<div>
-$$
-\begin{align*}
-\langle T(x_1), x_2\rangle &amp;= \langle w_1, w_2 \rangle \phantom{ \quad \text{(because $w_1 \in W$ and $z_2 \in W^{\perp}$)}}\\ 
-                            &amp;=  \langle w_1, w_2 \rangle +  \langle z_1, w_2 \rangle \\
-							&amp;= \langle x_1, w_2 \rangle \\
-							&amp;= \langle x_1, T(x_2) \rangle 
-\end{align*}
-$$
-</div>
-<p>as we wanted to show. \(\blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Self-adjoint Maps are Diagonalizable</b></h4>
-<p>Today’s goal is to prove that self adjoint maps are diagonalizable. Note here that when a matrix \(A\) is symmetric where \(A_{ij} = A_{ji}\), then \(A\) is self-adjoint. This implies \(A\) is diagonalizable and so  \(\det(A - tI_n)\) splits which is really useful to know!
-<br />
-<br />
-Question: What is the diagonal form of the project map \(\text{proj}_W\)? because eigenvectors get mapped to a multiple of themselves, the projection of the vector is either all in \(W\) or all in \(Z\) and you get zero from the projection. Therefore, we notice here that the eigenvalues are 0s and 1s.
-<br />
-<br />
-Proving that self adjoint maps are diagonalizable, requires a few things along the way so we will next prove the results that we need in order to prove that they’re diagonalizable.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Eigenvalues of Self-adjoint Maps</b></h4>
-<div class="purdiv">
-Theorem 1
-</div>
-<div class="purbdiv">
-If \(T: V \rightarrow V\) where \(V\) is over \(\mathbf{C}\) is self-adjoint, then all eigenvalues are real.
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-Since \(T\) is self-adjoint, then \(T\) is normal. Then for any \(\lambda\),</p>
-<div>
-$$
-\begin{align*}
-T(x) &amp;= \lambda x \\
-T^*(x) &amp;= \bar{\lambda} x \quad \text{because $T$ is normal} 
-\end{align*}
-$$
-</div>
-<p>But \(T = T^*\) since \(T\) is self-adjoint. Therefore,</p>
-<div>
-$$
-\begin{align*}
-\lambda x = \bar{\lambda} x \\
-\implies \lambda = \bar{\lambda} 
-\end{align*}
-$$
-</div>
-<p>as we wanted to show. \(\blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Do Self-adjoint Maps have Eigenvalues?</b></h4>
-<p>So eigenvalues are real but are there eigenvalues?
-<br />
-<br />
-If \(V\) is a vector space over \(\mathbf{C}\), then \(T: V \rightarrow V\) always has eigenvalues. It doesn’t matter if \(T\) is self-adjoint or not. The characteristic polynomial \(\det([T]_{\beta}^{\beta} - tI_n)\) with complex entries always splits! (fact from algebra). 
-<br />
-What if \(V\) was over \(\mathbf{R}?\)
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<div class="purdiv">
-Theorem 2
-</div>
-<div class="purbdiv">
-If \(T: V \rightarrow V\) where \(V\) is over \(\mathbf{R}\) is self-adjoint, then \(T\) has at least one eigenvalue.
-</div>
-<p><br />
-An example is the rotation matrix. It is normal but not self-adjoint and it doesn’t have real eigenvalues.
-<br />
-<br />
-<!------------------------------------------------------------------------------------>
-<b>Proof</b>
-Let \(\beta\) be an orthonormal basis of \(V\). We need to show that \(\det([T]_{\beta}^{\beta} - tI_n) = 0\) has a real root. Let \(A = [T]^{\beta}_{\beta}\). Then</p>
-<div>
-$$
-\begin{align*}
-A = [T]^{\beta}_{\beta} &amp;= [T^*]^{\beta}_{\beta} \quad \text{(Because $$T$$ is self-adjoint)} \\
-                    &amp;= ([T]^{\beta}_{\beta})^* \quad \text{(Proof in last lecture)} \\
-					&amp;= A^* \\
-					&amp;= A^t \quad \text{(because $$V$$ is over $$\mathbf{R}$$)}
-\end{align*}
-$$
-</div>
-<p>So \(A\) is symmetric. The idea is to apply theorem 1 which states that if \(V\) is over \(\mathbf{C}\), then we have real eigenvalues. So consider the following map</p>
-<div>
-$$
-\begin{align*}
-L_A \ : \ &amp;\mathbf{C}^n \rightarrow \mathbf{C}^n \\
-          &amp; z \rightarrow Az
-\end{align*}
-$$
-</div>
-<p>We know that \(L_A\) is self adjoint so \((L_A)^* = L_{A^*} = L_{A^t} = L_A\). So the fact from algebra, \(L_A\) has an eigenvalue. By theorem 1, this eigenvalue must be real. Therefore, \(\det([T]_{\beta}^{\beta} - tI_n) = 0\) has a real root. \(\ \blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Eigenvectors of a Self-adjoint Map</b></h4>
-<p>What can we say about the eigenvectors of a linear self-adjoint map? 
-<br /></p>
-<div class="purdiv">
-Theorem 3
-</div>
-<div class="purbdiv">
-If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\)
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-We’re given that we have one at least eigenvalue but we want to prove that we have an orthonormal basis of eigenvectors. Having one eigenvalue gives us a base case. So let’s do this by Induction on \(\dim V = n\).
-<br />
-<br />
-Base Case: \(n = 1\): we have a map from \(\mathbf{F}\) to \(\mathbf{F}\). A linear map is just multiplying by a scalar.</p>
-<div>
-$$
-\begin{align*}
-T \ : \ &amp;\mathbf{F} \rightarrow \mathbf{F} \\
-          &amp; x \rightarrow ax
-\end{align*}
-$$
-</div>
-<p>This map is self-adjoint. Every value of \(a\) is an eigenvalue since it produces a multiple of \(x\) as long as it’s not zero. Therefore, just choose any \(a \neq 0\). The orthonormal basis will then be \(\{\frac{x_0}{|x_0|}\}\)
-<br />
-<br />
-Inductive Case: Assume this is true for \(n\). <br />
-Let \(T: V \rightarrow V\) with \(\dim(V)=n\), be self-adjoint. 
-<br />
-<br />
-By theorem 2, \(T\) has a real eigenvalue \(\lambda_1\) and so \(T(v_1) = \lambda_1 v_1\). Assume \(v_1\) has length 1 (We can normalize otherwise). So now at this point we have our first vector in the orthonormal basis \(\beta\). How do we get our second vector?
-<br />
-<br />
-We know that the second vector must be orthogonal to the first vector. This means that it lies in the orthogonal complement of of where \(v_1\) lies. So Set \(W = \{ v_1 \}^{\perp}\). \(W\) has dimension \(n-1\) because we took away a dimension. But we can’t yet apply the inductive hypothesis on \(W\) because we need a self-adjoint map on \(W\). What could this map be?
-<br />
-<br />
-We know the eigenvectors in the basis \(\beta\) need to be eigenvectors of \(T\) so this map has to be related to \(T\)? So the hope is that \(T\) restricts to a map on \(W\). This happens as we know if \(W\) is \(T\) invariant. For that to happen, we need to show that \(T(W) \subseteq W\). 
-<br /><br />
-To show that \(T(W) \subseteq W\), suppose we’re given \(w \in W\), we want to show that \(T(w) \in W\). But we know that \(W = \{ v_1 \}^{\perp}\). So we want to show that \(\langle T(w), v_1 \rangle = 0\).</p>
-<div>
-$$
-\begin{align*}
-\langle T(w), v_1 \rangle &amp;= \langle w, T(v_1) \rangle \quad \text{(because $T$ is adjoint)}\\
-                      &amp;= \langle w, \lambda_1 v_1 \rangle \quad \text{(because $v_1$ is an eigenvector)}\\
-					  &amp;= \lambda_1 \langle w, v_1 \rangle \\
-					  &amp;= 0 \quad \text{(because $w$ is in the orthogonal complement of $v_1$)}\\
-					  
-\end{align*}
-$$
-</div>
-<p>So now we know that \(W\) is \(T\)-invariant and so we have \(T_W: W \rightarrow W\). We still need two things before we can apply the inductive hypothesis. We need \(W\) to be an inner product space and we also need \(T_W\) to be self-adjoint. But \(W\) is a subspace of \(V\) so it inherits the inner product from \(V\). Moreover, \(T_W\) is a self-adjoint map. To see why, notice that</p>
-<div>
-$$
-\begin{align*}
-\langle T_W(w_1), w_2 \rangle &amp;= \langle T(w_1), w_2 \rangle  \\
-                              &amp;= \langle w_1, T(w_2) \rangle \\
-							  &amp;= \langle w_1, T_W(w_2) \rangle
-					  
-\end{align*}
-$$
-</div>
-<p>So now we can apply the inductive hypothesis to conclude that \(W\) has an orthonormal basis, \(\beta_W = \{v_2,...,v_n\}\) consisting of eigenvectors of \(T_W\). But we know that eigenvectors of a restriction are also eigenvectors of \(T\) itself. so \(\beta = \{v_1,v_2,...,v_n\} and we are done.\)\ \blacksquare$$
-<!------------------------------------------------------------------------------------>
-<br />
-<br /></p>
-<div class="purdiv">
-Corollary
-</div>
-<div class="purbdiv">
-\(T\) is diagonalizable.
-</div>
-<!------------------------------------------------------------------------------------>
-<p><br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li>Math416 by Ely Kerman</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In the last two lectures we studied adjoint maps where an adjoint map is defined as follows Definition Suppose \(T: V \rightarrow W\) b/w inner product spaces. An adjoint of T is a linear map \(T^*: W \rightarrow V\) such that $$ \begin{align*} \langle T(x), y \rangle = \langle x, T^*(y) \rangle \quad \forall x \in V, y \in W \end{align*} $$ and we also studied a special class of adjoint maps called normal adjoint maps where \(T\) is called normal if \(T \circ T^* = T^* \circ T\). We also studied properties of these normals maps. For example if \(T\) is normal then, $$ \begin{align*} \Vert T(x) \Vert &amp;= \Vert T^*(x) \Vert \\ T(x) = \lambda x \ &amp;\implies \ T^*(x) = \bar{\lambda}x \end{align*} $$ Next we will study another special class of adjoint maps called self adjoint maps defined below Definition \(T: V \rightarrow V\) is self-adjoint if $$ \begin{align*} T^* = T \end{align*} $$ Note here that self adjoint implies that \(T\) is normal. The converse is not true (rotation matrix is an example) Example 1 Let \(A \in M_{n \times n}(\mathbf{R})\) and \(A_{ij} = A_{ji} \ \forall i,j\), then A (L_A) is self-adjoint. Example 2 Suppose that \(V\) is a finite dimensional inner product space where \(W \subseteq V\) is a subspace. $$ \begin{align*} T = \text{proj}_W \ : \ V &amp;\rightarrow V \\ x = w + z &amp;\rightarrow w \end{align*} $$ So if you take a vector \(x \in V\), we know we can decompose it into two vectors \(w \in W\) and \(z \in W^{\perp}\). This map just produces the part that is in \(W\). We claim that \(\text{proj}_W\) is self-adjoint. Proof Take \(x_1, x_2 \in V\). We need to show that $$ \begin{align*} \langle T(x_1), x_2 \rangle = \langle x_1, T(x_2) \rangle \end{align*} $$ We know that \(x_1 = w_1 + z_1\) and \(x_2 = w_2 + z_2\) for some unique vectors \(w_1, w_2 \in W\) and \(z_1, z_2 \in W^{\perp}\). Then, $$ \begin{align*} \langle T(x_1), x_2 \rangle &amp;= \langle T(w_1 + z_1), x_2 \rangle \\ &amp;= \langle w_1, w_2 + z_2 \rangle \\ &amp;= \langle w_1, w_2 \rangle + \langle w_1, z_2 \rangle \\ &amp;= \langle w_1, w_2 \rangle \quad \text{(because $w_1 \in W$ and $z_2 \in W^{\perp}$)}\\ \end{align*} $$ At this point, we recognize that \(w_2 = T(x_2)\) but we still have \(w_1\) and want to reach \(x_1\). Notice that \(x_1 = w_1 + z_1\). Moreover, \(\langle z_1, w_2 \rangle = 0\) So $$ \begin{align*} \langle T(x_1), x_2\rangle &amp;= \langle w_1, w_2 \rangle \phantom{ \quad \text{(because $w_1 \in W$ and $z_2 \in W^{\perp}$)}}\\ &amp;= \langle w_1, w_2 \rangle + \langle z_1, w_2 \rangle \\ &amp;= \langle x_1, w_2 \rangle \\ &amp;= \langle x_1, T(x_2) \rangle \end{align*} $$ as we wanted to show. \(\blacksquare\) Self-adjoint Maps are Diagonalizable Today’s goal is to prove that self adjoint maps are diagonalizable. Note here that when a matrix \(A\) is symmetric where \(A_{ij} = A_{ji}\), then \(A\) is self-adjoint. This implies \(A\) is diagonalizable and so \(\det(A - tI_n)\) splits which is really useful to know! Question: What is the diagonal form of the project map \(\text{proj}_W\)? because eigenvectors get mapped to a multiple of themselves, the projection of the vector is either all in \(W\) or all in \(Z\) and you get zero from the projection. Therefore, we notice here that the eigenvalues are 0s and 1s. Proving that self adjoint maps are diagonalizable, requires a few things along the way so we will next prove the results that we need in order to prove that they’re diagonalizable. Eigenvalues of Self-adjoint Maps Theorem 1 If \(T: V \rightarrow V\) where \(V\) is over \(\mathbf{C}\) is self-adjoint, then all eigenvalues are real. Proof Since \(T\) is self-adjoint, then \(T\) is normal. Then for any \(\lambda\), $$ \begin{align*} T(x) &amp;= \lambda x \\ T^*(x) &amp;= \bar{\lambda} x \quad \text{because $T$ is normal} \end{align*} $$ But \(T = T^*\) since \(T\) is self-adjoint. Therefore, $$ \begin{align*} \lambda x = \bar{\lambda} x \\ \implies \lambda = \bar{\lambda} \end{align*} $$ as we wanted to show. \(\blacksquare\) Do Self-adjoint Maps have Eigenvalues? So eigenvalues are real but are there eigenvalues? If \(V\) is a vector space over \(\mathbf{C}\), then \(T: V \rightarrow V\) always has eigenvalues. It doesn’t matter if \(T\) is self-adjoint or not. The characteristic polynomial \(\det([T]_{\beta}^{\beta} - tI_n)\) with complex entries always splits! (fact from algebra). What if \(V\) was over \(\mathbf{R}?\) Theorem 2 If \(T: V \rightarrow V\) where \(V\) is over \(\mathbf{R}\) is self-adjoint, then \(T\) has at least one eigenvalue. An example is the rotation matrix. It is normal but not self-adjoint and it doesn’t have real eigenvalues. Proof Let \(\beta\) be an orthonormal basis of \(V\). We need to show that \(\det([T]_{\beta}^{\beta} - tI_n) = 0\) has a real root. Let \(A = [T]^{\beta}_{\beta}\). Then $$ \begin{align*} A = [T]^{\beta}_{\beta} &amp;= [T^*]^{\beta}_{\beta} \quad \text{(Because $$T$$ is self-adjoint)} \\ &amp;= ([T]^{\beta}_{\beta})^* \quad \text{(Proof in last lecture)} \\ &amp;= A^* \\ &amp;= A^t \quad \text{(because $$V$$ is over $$\mathbf{R}$$)} \end{align*} $$ So \(A\) is symmetric. The idea is to apply theorem 1 which states that if \(V\) is over \(\mathbf{C}\), then we have real eigenvalues. So consider the following map $$ \begin{align*} L_A \ : \ &amp;\mathbf{C}^n \rightarrow \mathbf{C}^n \\ &amp; z \rightarrow Az \end{align*} $$ We know that \(L_A\) is self adjoint so \((L_A)^* = L_{A^*} = L_{A^t} = L_A\). So the fact from algebra, \(L_A\) has an eigenvalue. By theorem 1, this eigenvalue must be real. Therefore, \(\det([T]_{\beta}^{\beta} - tI_n) = 0\) has a real root. \(\ \blacksquare\) Eigenvectors of a Self-adjoint Map What can we say about the eigenvectors of a linear self-adjoint map? Theorem 3 If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\) Proof We’re given that we have one at least eigenvalue but we want to prove that we have an orthonormal basis of eigenvectors. Having one eigenvalue gives us a base case. So let’s do this by Induction on \(\dim V = n\). Base Case: \(n = 1\): we have a map from \(\mathbf{F}\) to \(\mathbf{F}\). A linear map is just multiplying by a scalar. $$ \begin{align*} T \ : \ &amp;\mathbf{F} \rightarrow \mathbf{F} \\ &amp; x \rightarrow ax \end{align*} $$ This map is self-adjoint. Every value of \(a\) is an eigenvalue since it produces a multiple of \(x\) as long as it’s not zero. Therefore, just choose any \(a \neq 0\). The orthonormal basis will then be \(\{\frac{x_0}{|x_0|}\}\) Inductive Case: Assume this is true for \(n\). Let \(T: V \rightarrow V\) with \(\dim(V)=n\), be self-adjoint. By theorem 2, \(T\) has a real eigenvalue \(\lambda_1\) and so \(T(v_1) = \lambda_1 v_1\). Assume \(v_1\) has length 1 (We can normalize otherwise). So now at this point we have our first vector in the orthonormal basis \(\beta\). How do we get our second vector? We know that the second vector must be orthogonal to the first vector. This means that it lies in the orthogonal complement of of where \(v_1\) lies. So Set \(W = \{ v_1 \}^{\perp}\). \(W\) has dimension \(n-1\) because we took away a dimension. But we can’t yet apply the inductive hypothesis on \(W\) because we need a self-adjoint map on \(W\). What could this map be? We know the eigenvectors in the basis \(\beta\) need to be eigenvectors of \(T\) so this map has to be related to \(T\)? So the hope is that \(T\) restricts to a map on \(W\). This happens as we know if \(W\) is \(T\) invariant. For that to happen, we need to show that \(T(W) \subseteq W\). To show that \(T(W) \subseteq W\), suppose we’re given \(w \in W\), we want to show that \(T(w) \in W\). But we know that \(W = \{ v_1 \}^{\perp}\). So we want to show that \(\langle T(w), v_1 \rangle = 0\). $$ \begin{align*} \langle T(w), v_1 \rangle &amp;= \langle w, T(v_1) \rangle \quad \text{(because $T$ is adjoint)}\\ &amp;= \langle w, \lambda_1 v_1 \rangle \quad \text{(because $v_1$ is an eigenvector)}\\ &amp;= \lambda_1 \langle w, v_1 \rangle \\ &amp;= 0 \quad \text{(because $w$ is in the orthogonal complement of $v_1$)}\\ \end{align*} $$ So now we know that \(W\) is \(T\)-invariant and so we have \(T_W: W \rightarrow W\). We still need two things before we can apply the inductive hypothesis. We need \(W\) to be an inner product space and we also need \(T_W\) to be self-adjoint. But \(W\) is a subspace of \(V\) so it inherits the inner product from \(V\). Moreover, \(T_W\) is a self-adjoint map. To see why, notice that $$ \begin{align*} \langle T_W(w_1), w_2 \rangle &amp;= \langle T(w_1), w_2 \rangle \\ &amp;= \langle w_1, T(w_2) \rangle \\ &amp;= \langle w_1, T_W(w_2) \rangle \end{align*} $$ So now we can apply the inductive hypothesis to conclude that \(W\) has an orthonormal basis, \(\beta_W = \{v_2,...,v_n\}\) consisting of eigenvectors of \(T_W\). But we know that eigenvectors of a restriction are also eigenvectors of \(T\) itself. so \(\beta = \{v_1,v_2,...,v_n\} and we are done.\)\ \blacksquare$$ Corollary \(T\) is diagonalizable. References Math416 by Ely Kerman]]></summary></entry><entry><title type="html">Lecture 34: Normal Adjoint Maps</title><link href="http://localhost:4000/jekyll/update/2024/09/04/lec34-normal-adjoint-maps.html" rel="alternate" type="text/html" title="Lecture 34: Normal Adjoint Maps" /><published>2024-09-04T01:01:36-07:00</published><updated>2024-09-04T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/04/lec34-normal-adjoint-maps</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/04/lec34-normal-adjoint-maps.html"><![CDATA[<p>In the last lecture, we studied adjoint linear maps defined as
-<br /></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-Suppose \(T: V \rightarrow W\) b/w inner product spaces. An adjoint of T is a linear map \(T^*: W \rightarrow V\) such that
-$$
-\begin{align*}
-\langle T(x), y \rangle = \langle x, T^*(y) \rangle \quad \forall x \in V, y \in W
-\end{align*}
-$$
-</div>
-<!------------------------------------------------------------------------------------>
-<p><br />
-Here are some additional facts
-<br />
-<br />
-Fact 1: \(T^*\) is unique if it exists
-<br />
-<br />
-Fact 2: In infinite dimensions \(T^*\) need not exist.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example 1</b></h4>
-<p>\(A \in M_{m \times n}(\mathbf{F})\) with \(\mathbf{F} = \mathbf{R}\) or \(\mathbf{C}\)</p>
-<div>
-$$
-\begin{align*}
-(L_A)^* = L_{A^*} \quad \quad A^* = (\bar{A})^t
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Normal Linear Maps</b></h4>
-<p>The goal of today is use this notion of adjoint maps to define more classes of linear maps which will be useful. Though we’re going to restrict the maps to maps from a finite dimensional inner product space \(V\) to \(V\) with \(\beta\) being an orthonormal basis. Therefore, in this setting, we will always have an adjoint map.</p>
-<div class="purdiv">
-Theorem 1
-</div>
-<div class="purbdiv">
-Suppose \(T: V \rightarrow V\) and \(T^*: V \rightarrow V\) with \(\beta\) an orthonormal basis.
-$$
-\begin{align*}
-[T^*]_{\beta}^{\beta} = \left( [T]_{\beta}^{\beta}  \right)^*
-\end{align*}
-$$
-</div>
-<!------------------------------------------------------------------------------------>
-<p><br /></p>
-<div class="bdiv">
-Definition
-</div>
-<div class="bbdiv">
-Suppose \(T: V \rightarrow V\) and \(T^*: V \rightarrow V\). \(T\) is normal if
-$$
-\begin{align*}
-T \circ T^* = T^* \circ T
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example 2</b></h4>
-<p>Let \(A \in M_{n \times n}(\mathbf{F})\) is normal if \(AA^* = A^*A\)</p>
-<div>
-$$
-\begin{align*}
-A = \begin{pmatrix}
-\cos \theta &amp; -\sin \theta \\
-\sin \theta &amp; \cos \theta
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>Note here that this is a rotation matrix. It has no eigenvalues or eigenvectors. This transformation doesn’t take any vector to a multiple of itself. All we’re doing is rotating a vector. To see if it’s a normal matrix (defines a normal operator), we need to compute \(A^*\),</p>
-<div>
-$$
-\begin{align*}
-A^* = \begin{pmatrix}
-\cos \theta &amp; \sin \theta \\
--\sin \theta &amp; \cos \theta
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>and then compute the products</p>
-<div>
-$$
-\begin{align*}
-AA^* = \begin{pmatrix}
-1 &amp; 0 \\
-0 &amp; 1
-\end{pmatrix}
-=
- A^*A
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example 3</b></h4>
-<p>Suppose that \(A^* = - A\), then</p>
-<div>
-$$
-\begin{align*}
-AA^* = -A^2 = A^*A
-\end{align*}
-$$
-</div>
-<p>So \(A\) and \(A^t\) are negative of each other. For example</p>
-<div>
-$$
-\begin{align*}
-A = \begin{pmatrix}
-0 &amp; c \\
--c &amp; 0
-\end{pmatrix}
-\in 
-A \in M_{n \times n}(\mathbf{R})
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>A Sufficient Condition for Normal Linear Maps</b></h4>
-<p>Next, we will describe a sufficient condition for an operator to be normal which will be useful later!
-<br /></p>
-<div class="purdiv">
-Theorem 2
-</div>
-<div class="purbdiv">
-Suppose \(T: V \rightarrow V\) and \(T^*: V \rightarrow V\) with \(\beta\) an orthonormal basis. If \(V\) admits an orthonormal basis consisting of eigenvectors of \(T\), then \(T\) is normal.
-</div>
-<p><br />
-Remark: The converse isn’t too. Example 2 shows this.
-<br />
-<br />
-<b>Proof</b>
-<br />
-Let \(\beta = \{v_1, ..., v_n\}\) be an orthonormal basis consisting of eigenvectors. Therefore</p>
-
-<div>
-$$
-\begin{align*}
-[T \circ T^*]_{\beta}^{\beta} &amp;= [T]_{\beta}^{\beta}[T^*]_{\beta}^{\beta} = [T]_{\beta}^{\beta} \left( [T]_{\beta}^{\beta}  \right)^*
-\end{align*}
-$$
-</div>
-<p>Computing \([T]_{\beta}^{\beta}\)</p>
-<div>
-$$
-\begin{align*}
-[T]_{\beta}^{\beta} &amp;=
-\begin{pmatrix}
-[T(v_1)]_{\beta} &amp; \cdots &amp; [T(v_n)]_{\beta} 
-\end{pmatrix}\\
-&amp;= 
-\begin{pmatrix}
-[\lambda_1 v_1]_{\beta} &amp; \cdots &amp; [\lambda_n v_1]_{\beta} 
-\end{pmatrix}    \quad       \text{ ($v_1,...,v_n$ are eigenvectors) }\\
-&amp;= 
-\begin{pmatrix}
-\lambda_1 &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; \lambda_2 &amp; \cdots &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \cdots &amp; \lambda_n
-\end{pmatrix} \quad \text{ (the coordinate representation of $v$ is just $\lambda$)}
-\end{align*}
-$$
-</div>
-<p>Therefore,</p>
-<div>
-$$
-\begin{align*}
-[T]_{\beta}^{\beta} \left( [T]_{\beta}^{\beta}  \right)^* &amp;=
-\begin{pmatrix}
-\lambda_1 &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; \lambda_2 &amp; \cdots &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \cdots &amp; \lambda_n
-\end{pmatrix}
-<!---->
-\begin{pmatrix}
-\bar{\lambda_1} &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; \bar{\lambda_2} &amp; \cdots &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \cdots &amp; \bar{\lambda_n}
-\end{pmatrix}\\
-&amp;= [T^* \circ T]_{\beta}^{\beta} \quad \text{ (matrix multiplication commutes for diagonal matrices)}
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Properties of Normal Linear Maps</b></h4>
-<p>So now that we have a sufficient condition to identify normal maps. Let’s study their properties.
-<br /></p>
-<div class="purdiv">
-Theorem 3
-</div>
-<div class="purbdiv">
-Suppose \(T: V \rightarrow V\) is normal. Then
-<ol type="a">
-	<li>\( \Vert T(v) \Vert\) = \( \Vert T^*(v) \Vert \quad \forall v \in V\)</li>
-	<li>\(T+ cI_v\) is normal</li>
-	<li>\(T(v) = \lambda v \ \implies \ T^*(v) = \bar{\lambda}v\)</li>
-	<li>Suppose \(T(v_1) = \lambda_1v_1\) and \(T(v_2) = \lambda_2v_2\) where \(\lambda_1 \neq \lambda_2\) Then \(\langle v_1, v_2 \rangle = 0\)</li>
-</ol>
-</div>
-<!------------------------------------------------------------------------------------>
-<p><br />
-<br />
-<b>Proof</b>
-<br />
-For (a), notice that</p>
-<div>
-$$
-\begin{align*}
-\Vert T(v) \Vert^2 &amp;= \langle T(v), T(v) \rangle \\
-                   &amp;= \langle v, T^*(T(v)) \rangle \quad \text{(definition of an adjoint map)} \\
-                   &amp;= \langle v, T(T^*((v)) \rangle \quad \text{(because $T$ is normal)} \\
-                   &amp;= \langle T^*(v), T^*(v) \rangle = \Vert T^*(v) \Vert^2 \quad \blacksquare
-\end{align*}
-$$
-</div>
-<p>For (b), we want to show that \((T + cI_v)(T + cI_v)^* = (T + cI_v)^*(T + cI_v)\) to prove that it is normal so,</p>
-<div>
-$$
-\begin{align*}
-(T + cI_v)(T + cI_v)^* &amp;= (T + cI_v)(T^* + \bar{c}I_v) \\
-                       &amp;= TT^* + T\bar{c}I_V + cI_VT^* + cI_V\bar{c}I_V \\
-                       &amp;= T^*T + \bar{c}I_VT + T^*cI_V + \bar{c}I_VcI_V \\
-					   &amp;= (T + cI_v)^*(T + cI_v) \quad \blacksquare
-\end{align*}
-$$
-</div>
-<p>For (c),</p>
-<div>
-$$
-\begin{align*}
-v \in E_{\lambda}(T) \ &amp;\implies \ v \in N(T - \lambda I_V) \\
-                       &amp;\implies \ \Vert (T - \lambda I_V) \Vert = 0
-\end{align*}
-$$
-</div>
-<p>By property (b), we know that \((T - \lambda I_V)\) is normal and by property (a), we know that the adjoint will have the same norm therefore,</p>
-<div>
-$$
-\begin{align*}
-\phantom{v \in E_{\lambda}(T)} \ &amp;\implies \ \Vert (T* - \bar{\lambda} I_V) \Vert = 0 \\
-                                 &amp;\implies v \in E_{\bar{\lambda}}(T^*)
-\end{align*}
-$$
-</div>
-<p>For (d),</p>
-<div>
-$$
-\begin{align*}
-\lambda_1 \langle v_1, v_2 \rangle &amp;=  \langle \lambda_1 v_1, v_2 \rangle \\
-                                   &amp;=  \langle T(v_1), v_2 \rangle \\
-								   &amp;=  \langle v_1, T^*(v_2) \rangle \\
-								   &amp;=  \langle v_1, \bar{\lambda_2} v_2 \rangle \quad \text{(by (c))} \\
-								   &amp;=  \lambda_2 \langle v_1, v_2 \rangle							   
-\end{align*}
-$$
-</div>
-<p>But we know that \(\lambda_1 \neq \lambda_2\). Therefore, we must have that \(\langle v_1, v_2 \rangle = 0\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li>Math416 by Ely Kerman</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In the last lecture, we studied adjoint linear maps defined as Definition Suppose \(T: V \rightarrow W\) b/w inner product spaces. An adjoint of T is a linear map \(T^*: W \rightarrow V\) such that $$ \begin{align*} \langle T(x), y \rangle = \langle x, T^*(y) \rangle \quad \forall x \in V, y \in W \end{align*} $$ Here are some additional facts Fact 1: \(T^*\) is unique if it exists Fact 2: In infinite dimensions \(T^*\) need not exist. Example 1 \(A \in M_{m \times n}(\mathbf{F})\) with \(\mathbf{F} = \mathbf{R}\) or \(\mathbf{C}\) $$ \begin{align*} (L_A)^* = L_{A^*} \quad \quad A^* = (\bar{A})^t \end{align*} $$ Normal Linear Maps The goal of today is use this notion of adjoint maps to define more classes of linear maps which will be useful. Though we’re going to restrict the maps to maps from a finite dimensional inner product space \(V\) to \(V\) with \(\beta\) being an orthonormal basis. Therefore, in this setting, we will always have an adjoint map. Theorem 1 Suppose \(T: V \rightarrow V\) and \(T^*: V \rightarrow V\) with \(\beta\) an orthonormal basis. $$ \begin{align*} [T^*]_{\beta}^{\beta} = \left( [T]_{\beta}^{\beta} \right)^* \end{align*} $$ Definition Suppose \(T: V \rightarrow V\) and \(T^*: V \rightarrow V\). \(T\) is normal if $$ \begin{align*} T \circ T^* = T^* \circ T \end{align*} $$ Example 2 Let \(A \in M_{n \times n}(\mathbf{F})\) is normal if \(AA^* = A^*A\) $$ \begin{align*} A = \begin{pmatrix} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \end{pmatrix} \end{align*} $$ Note here that this is a rotation matrix. It has no eigenvalues or eigenvectors. This transformation doesn’t take any vector to a multiple of itself. All we’re doing is rotating a vector. To see if it’s a normal matrix (defines a normal operator), we need to compute \(A^*\), $$ \begin{align*} A^* = \begin{pmatrix} \cos \theta &amp; \sin \theta \\ -\sin \theta &amp; \cos \theta \end{pmatrix} \end{align*} $$ and then compute the products $$ \begin{align*} AA^* = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} = A^*A \end{align*} $$ Example 3 Suppose that \(A^* = - A\), then $$ \begin{align*} AA^* = -A^2 = A^*A \end{align*} $$ So \(A\) and \(A^t\) are negative of each other. For example $$ \begin{align*} A = \begin{pmatrix} 0 &amp; c \\ -c &amp; 0 \end{pmatrix} \in A \in M_{n \times n}(\mathbf{R}) \end{align*} $$ A Sufficient Condition for Normal Linear Maps Next, we will describe a sufficient condition for an operator to be normal which will be useful later! Theorem 2 Suppose \(T: V \rightarrow V\) and \(T^*: V \rightarrow V\) with \(\beta\) an orthonormal basis. If \(V\) admits an orthonormal basis consisting of eigenvectors of \(T\), then \(T\) is normal. Remark: The converse isn’t too. Example 2 shows this. Proof Let \(\beta = \{v_1, ..., v_n\}\) be an orthonormal basis consisting of eigenvectors. Therefore]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Theorem 6.8 Let \(V\) be a finite-dimensional inner product space over \(\mathbf{F}\), and let \(g: V \rightarrow \mathbf{F}\) be a linear transformation. Then, there exists a unique vector \(y \in V\) such that \(g(x) = \langle x, y \rangle\) such that \(g(x) = \langle x, y \rangle\) for all \(x \in V\) Proof: Let \(\beta = \{v_1,...,v_n\}\) be an orthonormal basis for \(V\), and let $$ \begin{align*} y = \sum_{i=1}^{n} \overline{g(v_i)}v_i \end{align*} $$ Define \(h: V \rightarrow \mathbf{F}\) by \(h(x) = \langle x, y \rangle\) which is linear. Furthermore, for \(i \leq j \leq n\), we have $$ \begin{align*} h(v_j) = \langle v_j \rangle &amp;= \left\langle v_j, \sum_{i=1}^{n} \overline{g(v_i)}v_i \right\rangle \\ &amp;= \sum_{i=1}^{n} g(v_i) \langle v_j, v_i \rangle \\ &amp;= \sum_{i=1}^{n} g(v_i) \delta_{ij} \\ &amp;= g(v_j) \end{align*} $$ But \(h\) and \(g\) agree on a basis so by the corollary from 2.6, \(g = h\). To show that \(y\) is unique. Suppose it is not and let \(g(x) = \langle x, y' \rangle\). for all \(x\). Then, \(\langle x, y' \rangle = \langle x, y \rangle\) but by Theorem 6.1(e), this means that \(y = y'\) as we wanted to show. \(\ \blacksquare\) Notes: So my understanding is that we can turn any linear transformation from \(V\) to \(\mathbf{F}\) into an inner product with some unique vector \(y \in V\). For example if \(V = \mathbf{R}^2\) and we have some \(g(x): V \rightarrow V\). where \(g(a,b) = 3a + 2b\). Then, $$ \begin{align*} y = (3, 2) \end{align*} $$ is a unique vector in \(V\) such that $$ \begin{align*} g(x) &amp;= \langle x, y \rangle \\ &amp;= \langle x, (3, 2) \rangle \\ &amp;= 2a + 3b \end{align*} $$ At least this is what I understood! References: Linear Algebra 5th Edition]]></summary></entry></feed>

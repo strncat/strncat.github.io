@@ -214,6 +214,15 @@ mathjax: true
        <li><a href="/jekyll/update/2024/09/11/6.3-exercise-18.html">
         Book (6.3) Exercise 18
        </a></li>
+	   <!------------------------------------------------------------------->  
+	   <br>
+       <li><a href="/jekyll/update/2024/09/14/lec36-isometries.html">
+        Lecture 36: Isometries
+       </a></li>
+	   <br>
+       <li><a href="/jekyll/update/2024/09/15/lec37-jordan-canonical-form.html">
+        Lecture 37: The Jordan Canonical Form
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-11-08T09:09:06-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">The Jordan Canonical Form</title><link href="http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form.html" rel="alternate" type="text/html" title="The Jordan Canonical Form" /><published>2024-09-15T01:01:36-07:00</published><updated>2024-09-15T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form.html"><![CDATA[<p>Last time we proved that If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\). This therefore lead to the conclusion that \(T\) is diagonalizable.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-11-08T09:32:43-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">The Jordan Canonical Form</title><link href="http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form.html" rel="alternate" type="text/html" title="The Jordan Canonical Form" /><published>2024-09-15T01:01:36-07:00</published><updated>2024-09-15T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/15/lec37-jordan-canonical-form.html"><![CDATA[<p>Last time we proved that If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\). This therefore lead to the conclusion that \(T\) is diagonalizable.
 <!------------------------------------------------------------------------------------></p>
 <h4><b>A Test For Diagonalizability</b></h4>
 <p>We studied previously a few ways a linear operator can be tested for diagonalizability. From lecture 25,</p>
@@ -25,7 +25,7 @@ A =
 \end{align*}
 $$
 </div>
-<p>splits but doesn’t satisfy $(b)$
+<p>splits but doesn’t satisfy \((b)\)
 <br />
 <br />
 <!------------------------------------------------------------------------------------></p>
@@ -39,6 +39,8 @@ Theorem (JCF)
 If the characteristic polynomial of \(T: V \rightarrow V\) splits, then there is a basis \(\beta\) of \(V\) such that \([T]_{\beta}^{\beta}\) is in Jordan Canonical form.
 </div>
 <p><br />
+But what is a Jordan Canonical form? We first define a Jordan Block as follows
+<br />
 <!------------------------------------------------------------------------------------></p>
 <div class="bdiv">
 Definition
@@ -62,7 +64,7 @@ $$
 </div>
 <!------------------------------------------------------------------------------------>
 <p><br />
-For example, a \(2 \times 2\) and a \(3 \times 3\) matrices, Jordan Canonical Form look like</p>
+For example, for a \(2 \times 2\) and \(3 \times 3\) matrices, a Jordan block looks like</p>
 <div>
 $$
 \begin{align*}
@@ -79,7 +81,9 @@ $$
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
+<p>Using these Jordan blocks, we can now define what the Jordan Canonical form is
+<br />
+<!------------------------------------------------------------------------------------></p>
 <div class="bdiv">
 Definition
 </div>
@@ -127,8 +131,100 @@ B =
 \end{align*}
 $$
 </div>
-<p>Note here that the characteristic polynomial of both \(A\) and \(B\) is \((1-t)^3(2-t)^2\).</p>
+<p>Note here that the characteristic polynomial of both \(A\) and \(B\) is \((1-t)^3(2-t)^2\).
+<br />
+<br /></p>
+<hr />
 
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing Powers of Matrices in JFC</b></h4>
+<p>It turns out that we can write a formula for powers of matrices in JFC. It is not as easy as taking the power of a diagonal matrix but at least have a formula.
+<br />
+<br />
+Fact 1:</p>
+<div>
+$$
+\begin{align*}
+A = 
+\begin{pmatrix}
+\lambda &amp; 1 &amp; \cdots &amp; 0 \\
+0 &amp; \ddots &amp; \ddots &amp; \vdots \\
+\vdots &amp; \ddots &amp; \ddots &amp; 1 \\
+0 &amp; \cdots &amp; 0 &amp; \lambda
+\end{pmatrix}
+\implies
+\begin{pmatrix}
+\lambda^k &amp; k\lambda^{k-1} &amp; \cdots &amp; \frac{k(k-1)...(k-n+2)}{n!}\lambda^{k-n+1} \\
+0 &amp; \ddots &amp; \ddots &amp; \vdots \\
+\vdots &amp; \ddots &amp; \ddots &amp; k\lambda^{k-1} \\
+0 &amp; \cdots &amp; 0 &amp; \lambda^k
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Note here that the third entry in the first row for example is \(\frac{k(k-1)}{2!}\lambda^{k-1}\)
+<br />
+<br /> 
+Fact 2: If \(A\) is in Jordan Canonical form, then the power of the matrix is as follows</p>
+<div>
+$$
+\begin{align*}
+A = 
+\begin{pmatrix}
+A_1 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; A_2 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; \lambda_l
+\end{pmatrix}^k
+\implies
+\begin{pmatrix}
+A_1^k &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; A_2^k &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; \lambda_l^k
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Proof of JCF Theorem</b></h4>
+<p>So now we see that matrices in JCF are useful and we have enough motivation to prove the theorem above. To prove it, let \(\beta = \{v_1, ..., v_n\}\) of \(V\). We this basis to be such that</p>
+<div>
+$$
+\begin{align*}
+[T]^{\beta}_{\beta} = 
+\begin{pmatrix}
+[T(v)]_{\beta} &amp; \cdots &amp; [T(v_n)]_{\beta}
+\end{pmatrix}
+=
+\begin{pmatrix}
+A_1 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; A_2 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; \lambda_l
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>These vectors \(v_1,...,v_j\) are not necessarily eigenvectors. What are they? Let’s focus on \(A_1\) above.</p>
+<div>
+$$
+\begin{align*}
+A_1 =
+\begin{pmatrix}
+\lambda_1 &amp; 1 &amp; \cdots &amp; 0 \\
+0 &amp; \lambda_2 &amp; \ddots &amp; \vdots \\
+\vdots &amp; \ddots &amp; \ddots &amp; 1 \\
+0 &amp; \cdots &amp; 0 &amp; \lambda_l
+\end{pmatrix}
+\end{align*}
+$$
+</div>
 <p><br />
 <br /></p>
 <hr />
@@ -138,7 +234,7 @@ $$
 <h4><b>References</b></h4>
 <ul>
 <li>Math416 by Ely Kerman</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Last time we proved that If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\). This therefore lead to the conclusion that \(T\) is diagonalizable. A Test For Diagonalizability We studied previously a few ways a linear operator can be tested for diagonalizability. From lecture 25, Theorem (5.8(a)) \(T\) is diagonalizable if and only if The characteristic polynomial splits over its field \(\mathbf{R}\) or \(\mathbf{C}\) For each eigenvalue of \(T\), its geometric multiplicity (\(\dim(E_{\lambda})\)) = algebraic multiplicity We mentioned last time too that if \(V\) is over \(\mathbf{C}\), the the characteristic polynomial always splits. Note also that you can have \((a)\) but not \((b)\). For example $$ \begin{align*} A = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix} \end{align*} $$ splits but doesn’t satisfy $(b)$ Jordan Canonical Form Based on the previous observation. It turns out there is a nice form that we can put \(T\) into in order to achieve \((a)\) and \((b)\) Theorem (JCF) If the characteristic polynomial of \(T: V \rightarrow V\) splits, then there is a basis \(\beta\) of \(V\) such that \([T]_{\beta}^{\beta}\) is in Jordan Canonical form. Definition A Jordan Block is a square matrix of the form $$ \begin{align*} \begin{pmatrix} \lambda \end{pmatrix} \quad \text{ or } \quad \begin{pmatrix} \lambda &amp; 1 &amp; \cdots &amp; 0 \\ 0 &amp; \ddots &amp; \ddots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; 1 \\ 0 &amp; \cdots &amp; 0 &amp; \lambda \end{pmatrix} \end{align*} $$ For example, a \(2 \times 2\) and a \(3 \times 3\) matrices, Jordan Canonical Form look like $$ \begin{align*} \begin{pmatrix} \lambda &amp; 1 \\ 0 &amp; \lambda \end{pmatrix} , \begin{pmatrix} \lambda &amp; 1 &amp; 0 \\ 0 &amp; \lambda &amp; 1 \\ 0 &amp; 0 &amp; \lambda \end{pmatrix} \end{align*} $$ Definition A square matrix \(A\) is in Jordan Canonical Form if $$ \begin{align*} A = \begin{pmatrix} A_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; A_2 &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_{l} \end{pmatrix}, \ \text{ where $A_j$ is a Jordan block} \end{align*} $$ You can think of this matrix as more of a generalization of a diagonal matrix. Examples The following are examples of matrix in Jordan Canonical Form $$ \begin{align*} A = \begin{pmatrix} 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \end{pmatrix}, B = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Note here that the characteristic polynomial of both \(A\) and \(B\) is \((1-t)^3(2-t)^2\).]]></summary></entry><entry><title type="html">Lecture 36: Isometries</title><link href="http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries.html" rel="alternate" type="text/html" title="Lecture 36: Isometries" /><published>2024-09-14T01:01:36-07:00</published><updated>2024-09-14T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries.html"><![CDATA[<p>We’ve studied special classes of linear maps over an inner product space to itself like normal maps and self-adjoint maps. Today we will study a new special class
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Last time we proved that If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\). This therefore lead to the conclusion that \(T\) is diagonalizable. A Test For Diagonalizability We studied previously a few ways a linear operator can be tested for diagonalizability. From lecture 25, Theorem (5.8(a)) \(T\) is diagonalizable if and only if The characteristic polynomial splits over its field \(\mathbf{R}\) or \(\mathbf{C}\) For each eigenvalue of \(T\), its geometric multiplicity (\(\dim(E_{\lambda})\)) = algebraic multiplicity We mentioned last time too that if \(V\) is over \(\mathbf{C}\), the the characteristic polynomial always splits. Note also that you can have \((a)\) but not \((b)\). For example $$ \begin{align*} A = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix} \end{align*} $$ splits but doesn’t satisfy \((b)\) Jordan Canonical Form Based on the previous observation. It turns out there is a nice form that we can put \(T\) into in order to achieve \((a)\) and \((b)\) Theorem (JCF) If the characteristic polynomial of \(T: V \rightarrow V\) splits, then there is a basis \(\beta\) of \(V\) such that \([T]_{\beta}^{\beta}\) is in Jordan Canonical form. But what is a Jordan Canonical form? We first define a Jordan Block as follows Definition A Jordan Block is a square matrix of the form $$ \begin{align*} \begin{pmatrix} \lambda \end{pmatrix} \quad \text{ or } \quad \begin{pmatrix} \lambda &amp; 1 &amp; \cdots &amp; 0 \\ 0 &amp; \ddots &amp; \ddots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; 1 \\ 0 &amp; \cdots &amp; 0 &amp; \lambda \end{pmatrix} \end{align*} $$ For example, for a \(2 \times 2\) and \(3 \times 3\) matrices, a Jordan block looks like $$ \begin{align*} \begin{pmatrix} \lambda &amp; 1 \\ 0 &amp; \lambda \end{pmatrix} , \begin{pmatrix} \lambda &amp; 1 &amp; 0 \\ 0 &amp; \lambda &amp; 1 \\ 0 &amp; 0 &amp; \lambda \end{pmatrix} \end{align*} $$ Using these Jordan blocks, we can now define what the Jordan Canonical form is Definition A square matrix \(A\) is in Jordan Canonical Form if $$ \begin{align*} A = \begin{pmatrix} A_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; A_2 &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_{l} \end{pmatrix}, \ \text{ where $A_j$ is a Jordan block} \end{align*} $$ You can think of this matrix as more of a generalization of a diagonal matrix. Examples The following are examples of matrix in Jordan Canonical Form $$ \begin{align*} A = \begin{pmatrix} 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \end{pmatrix}, B = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \end{pmatrix} \end{align*} $$ Note here that the characteristic polynomial of both \(A\) and \(B\) is \((1-t)^3(2-t)^2\). Computing Powers of Matrices in JFC It turns out that we can write a formula for powers of matrices in JFC. It is not as easy as taking the power of a diagonal matrix but at least have a formula. Fact 1: $$ \begin{align*} A = \begin{pmatrix} \lambda &amp; 1 &amp; \cdots &amp; 0 \\ 0 &amp; \ddots &amp; \ddots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; 1 \\ 0 &amp; \cdots &amp; 0 &amp; \lambda \end{pmatrix} \implies \begin{pmatrix} \lambda^k &amp; k\lambda^{k-1} &amp; \cdots &amp; \frac{k(k-1)...(k-n+2)}{n!}\lambda^{k-n+1} \\ 0 &amp; \ddots &amp; \ddots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; k\lambda^{k-1} \\ 0 &amp; \cdots &amp; 0 &amp; \lambda^k \end{pmatrix} \end{align*} $$ Note here that the third entry in the first row for example is \(\frac{k(k-1)}{2!}\lambda^{k-1}\) Fact 2: If \(A\) is in Jordan Canonical form, then the power of the matrix is as follows $$ \begin{align*} A = \begin{pmatrix} A_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; A_2 &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_l \end{pmatrix}^k \implies \begin{pmatrix} A_1^k &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; A_2^k &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_l^k \end{pmatrix} \end{align*} $$ Proof of JCF Theorem So now we see that matrices in JCF are useful and we have enough motivation to prove the theorem above. To prove it, let \(\beta = \{v_1, ..., v_n\}\) of \(V\). We this basis to be such that $$ \begin{align*} [T]^{\beta}_{\beta} = \begin{pmatrix} [T(v)]_{\beta} &amp; \cdots &amp; [T(v_n)]_{\beta} \end{pmatrix} = \begin{pmatrix} A_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; A_2 &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_l \end{pmatrix} \end{align*} $$ These vectors \(v_1,...,v_j\) are not necessarily eigenvectors. What are they? Let’s focus on \(A_1\) above. $$ \begin{align*} A_1 = \begin{pmatrix} \lambda_1 &amp; 1 &amp; \cdots &amp; 0 \\ 0 &amp; \lambda_2 &amp; \ddots &amp; \vdots \\ \vdots &amp; \ddots &amp; \ddots &amp; 1 \\ 0 &amp; \cdots &amp; 0 &amp; \lambda_l \end{pmatrix} \end{align*} $$ References Math416 by Ely Kerman]]></summary></entry><entry><title type="html">Lecture 36: Isometries</title><link href="http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries.html" rel="alternate" type="text/html" title="Lecture 36: Isometries" /><published>2024-09-14T01:01:36-07:00</published><updated>2024-09-14T01:01:36-07:00</updated><id>http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/14/lec36-isometries.html"><![CDATA[<p>We’ve studied special classes of linear maps over an inner product space to itself like normal maps and self-adjoint maps. Today we will study a new special class
 <br /></p>
 <div class="bdiv">
 Definition

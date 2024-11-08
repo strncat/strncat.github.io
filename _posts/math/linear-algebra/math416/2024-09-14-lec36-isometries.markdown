@@ -237,7 +237,52 @@ $$
 \end{align*}
 $$
 </div>
-
+<!------------------------------------------------------------------------------------>
+$$(e) \implies (a):$$ <br>
+We want to show that if we preserve lengths, then we actually preserve all inner products so $$\Vert T(x) \Vert = \Vert x \Vert \implies \langle T(x), T(x) \rangle = \langle x, x \rangle$$. To show this, we can use the following trick
+<div>
+$$
+\begin{align*}
+\Vert x + y \Vert^2 &= \langle x+y, x+y \rangle \\
+                    &= \Vert x\Vert^2 + \langle x, y \rangle + \langle y, x \rangle + \Vert y \Vert^2   \\
+					&= \Vert x\Vert^2 + \langle x, y \rangle + \overline{\langle x, y \rangle} + \Vert y \Vert^2
+\end{align*}
+$$
+</div>
+What is $$\langle x, y \rangle + \overline{\langle x, y \rangle} $$? It's 2 times the real part of $$\langle x, y \rangle + \overline{\langle x, y \rangle}$$. I don't understand why? [TODO]
+<div>
+$$
+\begin{align*}
+2Re\langle x, y \rangle &= \frac{1}{2}(\Vert x + y\Vert^2 - \Vert x\Vert^2 - \Vert y\Vert^2) \\
+Im\langle x, y \rangle &= -\frac{1}{2}(\Vert ix + y\Vert^2 - \Vert x\Vert^2 - \Vert y\Vert^2)
+\end{align*}
+$$
+</div>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Isometries Are Rare</b></h4>
+From research, we know that Isometries are actually rare. One fact is that $$T$$ is an isometry of $$\mathbf{R}^2$$ if and only if 
+<div>
+$$
+\begin{align*}
+T = L_A \text{ for } 
+A = 
+\begin{pmatrix}
+\cos\theta & - \sin\theta \\
+\sin\theta & \cos\theta 
+\end{pmatrix}
+\text{ or }
+A = 
+\begin{pmatrix}
+\cos\theta &  \sin\theta \\
+\sin\theta & -\cos\theta 
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+So these are the only possibilities for isometries for $$\mathbf{R}^2$$.
 
 
 <br>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Jordan Canonical Form"
+title:  "Lecture 37/38: The Jordan Canonical Form and Generalized Eigenvectors"
 date:   2024-09-15 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -43,7 +43,7 @@ Based on the previous observation. It turns out there is a nice form that we can
 Theorem (JCF)
 </div>
 <div class="purbdiv">
-If the characteristic polynomial of \(T: V \rightarrow V\) splits, then there is a basis \(\beta\) of \(V\) such that \([T]_{\beta}^{\beta}\) is in Jordan Canonical form.
+Suppose \(V\) is finite dimensional. If the characteristic polynomial of \(T: V \rightarrow V\) splits, then there is a basis \(\beta\) of \(V\) such that \([T]_{\beta}^{\beta}\) is in Jordan Canonical form.
 </div>
 <br>
 But what is a Jordan Canonical form? We first define a Jordan Block as follows
@@ -71,7 +71,7 @@ $$
 </div>
 <!------------------------------------------------------------------------------------>
 <br>
-For example, for a $$2 \times 2$$ and $$3 \times 3$$ matrices, a Jordan block looks like
+So they're almost diagonal but not really. For example, for a $$2 \times 2$$ and $$3 \times 3$$ matrices, a Jordan block looks like
 <div>
 $$
 \begin{align*}
@@ -198,7 +198,7 @@ $$
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Proof of JCF Theorem</b></h4>
-So now we see that matrices in JCF are useful and we have enough motivation to prove the theorem above. To prove it, let $$\beta = \{v_1, ..., v_n\}$$ of $$V$$. We this basis to be such that
+So now we see that matrices in JCF are useful and we have enough motivation to prove the theorem above which again states that if the characteristic polynomial splits, then there is a basis such that $$[T]^{\beta}_{\beta}$$ is in JFC! To prove it, let $$\beta = \{v_1, ..., v_n\}$$ of $$V$$. We this basis to be such that
 <div>
 $$
 \begin{align*}
@@ -216,7 +216,7 @@ A_1 & 0 & \cdots & 0 \\
 \end{align*}
 $$
 </div>
-These vectors $$v_1,...,v_j$$ are not necessarily eigenvectors. What are they? Let's focus on $$A_1$$ above. 
+These vectors $$v_1,...,v_j$$ are not necessarily eigenvectors. What are they? Let's focus on $$A_1$$ above and let $$A_1$$ be of size $$n_1 \times n_1$$. 
 <div>
 $$
 \begin{align*}
@@ -230,6 +230,264 @@ A_1 =
 \end{align*}
 $$
 </div>
+Since $$A_1$$ has the form above (Jordan block), then we know at least for $$\lambda_1$$, $$T(v_1) = \lambda_1 v_1$$. What about $$T(v_2)$$? We see that column 2 has 1 in the first row and then $$\lambda_2$$ in the second row. So $$T(v_2) = v_1 + \lambda_2 v_2$$. Therefore, $$v_2$$ is not an eigenvector but we can observe that
+<div>
+$$
+\begin{align*}
+T(v_2) &= v_1 + \lambda_2 v_2 \\
+T(v_2) - \lambda_2 v_2 &= v_1 \\
+(T - \lambda_1 I_V)(v_2) &= v_1 \\
+(T - \lambda_1 I_V)^2(v_2) &= \bar{0}_V \quad \text{ (because $v_1$ is an eigenvector)}
+\end{align*}
+$$
+</div>
+What about the remaining vectors?
+<div>
+$$
+\begin{align*}
+T(v_3) &= v_2 + \lambda_1 v_3 \\
+(T - \lambda_1 I_V)(v_3) &= v_2 \\
+(T - \lambda_1 I_V)^3(v_3) &= (T - \lambda_1 I_V)^2(v_2) \\
+(T - \lambda_1 I_V)^3(v_2) &= \bar{0}_V
+\end{align*}
+$$
+</div>
+So they're not eigenvectors but they satisfy these equations. Based on this observation, we're going to define the following
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+\(x \in V\) is a generalized eigenvector of \(T: V \rightarrow V\) corresponding to \(\lambda\) if 
+$$
+\begin{align*}
+(T - \lambda I_V)^p(x) = \bar{0}_V
+\end{align*}
+$$
+for some integer \(p > 0\)
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+So now we know that the basis we want to build will consists of generalized eigenvectors.<br>
+FACT 1: A Jordan Canonical Basis consists of generalized eigenvectors (with special properties). <br>
+If we start with the equations above from the bottom to the top, then
+<div>
+$$
+\begin{align*}
+\{v_1,...v_{n_1-1},v_{n_1}\} = \{(T - \lambda_1 I_V)^{n_1 - 1}(v_{n_1}),...,(T - \lambda_1 I_V)^{2}(v_{n_1}), (T - \lambda_1 I_V)(v_{n_1}), v_{n_1}\}
+\end{align*}
+$$
+</div>
+So we can see here that the first $$n_1$$ basis vectors coming from the $$A_1$$ block are all obtained from the last vector and applying the maps over and over again. This leads to fact 2 below. 
+<br>
+<br>
+FACT 2: A Jordan Canonical Basis is made of "cyclic pieces". The basis is not only made of generalized eigenvectors but they also appear in this cyclic pattern.
+<br>
+<br>
+Here is an observation. Let $$x$$ be a generalized eigenvector of $$T$$ and Let $$p$$ be the smallest positive integer such that $$(T - \lambda I_V)^p(x) = \bar{0}_V$$. Then
+<div>
+$$
+\begin{align*}
+y = (T - \lambda I_V)^{p-1}(x) \neq \bar{0}_V
+\end{align*}
+$$
+</div>
+But if we apply $$(T - \lambda I_V)$$ to both sides, then
+<div>
+$$
+\begin{align*}
+(T - \lambda I_V)(y) = (T - \lambda I_V)^{p}(x) = 0
+\end{align*}
+$$
+</div>
+Then $$y$$ is an eigenvector of $$T$$.
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+Let \(\lambda\) be an eigenvalue of \(T: V \rightarrow V\). The generalized eigenspace of \(\lambda\) is
+$$
+\begin{align*}
+K_{\lambda} = \{x \in V : (T - \lambda I_V)^p(x) = \bar{0}_V \text{ for some } p > 0 \}
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+<div class="purdiv">
+Theorem 1.1
+</div>
+<div class="purbdiv">
+<ol type = "a">
+	<li>\(K_{\lambda}\) is a \(T\)-invariant subspace of \(V\) containing \(E_{\lambda}\).</li>
+	<li>For \(\mu = \lambda\), the restriction of \(T - \mu I_V\) to \(K_{\lambda}\) is one-to-one.</li>
+</ol>
+</div>
+<br>
+<b>Proof</b>
+<br>
+<br>
+(a) We need to show three things. $$K_{\lambda}$$ contains $$E_{\lambda}$$. This is clearly true by definition and $$E_{\lambda} \subseteq K_{\lambda}$$. 
+<br>
+<br>
+Next we need to show that $$K_{\lambda}$$ is a subspace. This means we need to show that it contains the zero vector and it is closed under scalar multiplication and addition. $$(T - \lambda I_V)(\bar{0}_V) = \bar{0}_V$$ so $$\bar{0}_V \in K_{\lambda}$$. Now consider $$x, y \in K_{\lambda}$$ and $$c \in \mathbf{F}$$, we need to show that $$x + cy \in K_{\lambda}$$. Since $$x$$ and $$y$$ are in $$K_{\lambda}$$, then
+<div>
+$$
+\begin{align*}
+(T - \lambda I_V)(x) &= \bar{0}_V \text{ for } p > 0 \\
+(T - \lambda I_V)(y) &= \bar{0}_V \text { for } q > 0
+\end{align*}
+$$
+</div>
+Therefore
+<div>
+$$
+\begin{align*}
+(T - \lambda I_V)^{p+q}(x + cy) &= (T - \lambda I_V)^{p+q}(x) + c(T - \lambda I_V)^{p+q}(y) \\
+                 &= (T - \lambda I_V)^{p}(x)(T - \lambda I_V)^{q}(x) + c(T - \lambda I_V)^{p}(y)(T - \lambda I_V)^{q}(y) \\
+				&= (T - \lambda I_V)^{q}(x) + c(T - \lambda I_V)^{p}(y) \\
+				& = \bar{0}_V
+\end{align*}
+$$
+</div>
+Next, we need to show that $$K_{\lambda}$$ is $$T$$-invariant. This means that we want to show that $$T(K_{\lambda}) \subseteq K_{\lambda}$$. Therefore, Let $$x \in K_{\lambda}$$ so that $$(T - \lambda I_V)^{p}(x) = \bar{0}_V$$ by definition. We want to show that $$T(x) \in K_{\lambda}$$
+<div>
+$$
+\begin{align*}
+(T - \lambda I_V)^{p}(T(x)) &= T(T - \lambda I_V)^{p}(x)
+\end{align*}
+$$
+</div>
+Taking $$(T - \lambda I_V)$$ to a power expands to some form of $$\lambda^k T^l$$. But then we can reverse the order of the terms and write the following instead
+<div>
+$$
+\begin{align*}
+(T - \lambda I_V)^{p}(T(x)) &= T(T - \lambda I_V)^{p}(x) \\
+                            &= (T - \lambda I_V)^{p}T(x) \\1
+                            &= \bar{0}_V
+\end{align*}
+$$
+</div>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+(b) Next, we want to prove that the restriction of $$T - \mu I_V$$ to $$K_{\lambda}$$ is one-to-one. So we want to think of this map $$T - \mu I_V$$ as map on $$K_{\lambda}$$ but what is the right target? We know it maps to $$V$$ but should we consider another target like $$K_{\lambda}$$? Let's look at the image of this map when it acts on a vector in $$K_{\lambda}$$
+<div>
+$$
+\begin{align*}
+(T - \mu I_V)(x) &= T(x) - \mu x \\                       
+\end{align*}
+$$
+</div>
+We know that $$K_{\lambda}$$ is $$T$$-invariant so $$T(x) \in K_{\lambda}$$. What about $$\mu x$$? This is just a multiply of $$x$$ and since $$K_{\lambda}$$ is a subspace then we know that $$\mu x \in K_{\lambda}$$. Therefore the addition of the two terms is also in $$K_{\lambda}$$ since $$K_{\lambda}$$ is a subspace. So this tells us that the target we want to consider is $$K_{\lambda}$$.
+<br>
+<br>
+So now we want to prove that this map $$T - \mu I_V: K_{\lambda} \rightarrow K_{\lambda}$$ is one to one. One way to show this is to prove that the nullspace of this map is trivial. This means that the solution to   
+<div>
+$$
+\begin{align*}
+(T - \mu I_V)(x) &= \bar{0}_V \\                       
+\end{align*}
+$$
+</div>
+is the trivial solution where $$x = \bar{0}_V$$. Suppose for the sake of contradiction that this isn't true and $$x \neq \bar{0}_V$$ but $$(T - \mu I_V)(x) = \bar{0}_V$$. We know that $$x \in K_{\lambda}$$ so it must be killed by some power of the operator so let $$p$$ be the smallest integer such that 
+<div>
+$$
+\begin{align*}
+(T - \lambda I_V)^p(x) &= \bar{0}_V                     
+\end{align*}
+$$
+</div>
+But if we take the power just below $$p$$, then
+<div>
+$$
+\begin{align*}
+(T - \lambda I_V)^{p-1}(x) = y \neq \bar{0}_V                    
+\end{align*}
+$$
+</div>
+This implies that $$y$$ is an eigenvector and $$y \in E_{\lambda}$$. So
+<div>
+$$
+\begin{align*}
+(T - \mu I_V)(y) &= (T - \mu I_V)(T - \lambda I_V)^{p-1}(x) \\
+                &= (T - \lambda I_V)^{p-1}(T - \mu I_V)(x) \quad \text{ same as before, the sum is powers of $\lambda$ and $T$}\\ 
+				&= \bar{0}_V             
+\end{align*}
+$$
+</div>
+So we've shown that $$y$$ is an eigenvector for an eigenvalue $$\mu$$. So $$y \neq \bar{0}_V$$ and $$y \in E_{\mu}$$. But we also see that $$y \in E_{\lambda}$$. However $$\lambda \neq \mu$$. So $$y \in E_{\mu} \cap E_{\lambda}$$. So this is a contradiction. 
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Finding the Generalized Eigenvectors</b></h4>
+So to remind ourselves, the goal of this whole process is to find a basis consisting of generalized eigenvectors. The next theorem makes it practically easier to find them.
+<br>
+<div class="purdiv">
+Theorem 1.2
+</div>
+<div class="purbdiv">
+If \(\lambda\) has algebraic multiplicity \(m\), then the generalized eigenspace
+$$
+\begin{align*}
+K_{\lambda} = N((T - \lambda I_V)^m)          
+\end{align*}
+$$
+</div>
+<br>
+This makes finding a basis for $$K_{\lambda}$$ simple because it's just a matter of finding the nullspace like we did before by putting the matrix in echelon form. What's next? We want these generalized eigenvectors to span $$V$$ since we want a basis. The following theorem confirms it.
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem 1.3
+</div>
+<div class="purbdiv">
+Let \(\lambda_1, ..., \lambda_k\) be the distinct eigenvalues of \(T:V \rightarrow V\). For any \(x \in V\), there are \(v_j \in K_{\lambda_j}\) such that 
+$$
+\begin{align*}
+x = v_1 + ... + v_k        
+\end{align*}
+$$
+In other words, \(\text{span}(K_{\lambda_1} \cup ... \cup K_{\lambda_k}) = V\)
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+The next thing that we need is obviously knowing that these generalized eigenvectors are linearly independent. Once we get that we can construct the basis that we want.
+<br>
+<div class="purdiv">
+Theorem 1.4
+</div>
+<div class="purbdiv">
+Let \(\beta_j\) be a basis for \(K_{\lambda_j}\). Then
+<ol type="a">
+	<li>\(\beta_i \cap \beta_j = \emptyset\) for \(i \neq j\) </li>
+	<li>\(\beta = \beta_1 \cup ... \cup \beta_k\) is a basis for \(V\) </li>
+	<li>\(\dim(K_{\lambda_j}) = \) algebraic multiplicity of \(\lambda_j \) </li>
+</ol>
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>Proof</b>
+<br>
+<br>
+(a): Assume for the sake of contradiction that $$\beta_i \cap \beta_j \neq \emptyset$$. Then there exists $$x \in \beta_i \cap \beta_j$$. We know that $$\beta_i \cap \beta_j \subseteq K_{\lambda_i} \cap K_{\lambda_j}$$ (Why?). Since $$i \neq j$$, then $$\lambda_i \neq \lambda_j$$. Therefore by Theorem 1.1(b)
+<div>
+$$
+\begin{align*}
+&\implies (T - \lambda_i I_V)\Big|_{K_{\lambda_i}} \quad \text{ is one-to-one}    \\
+&\implies  (T - \lambda_i I_V)(x) \neq \bar{0}_V \\ 
+&\implies  (T - \lambda_i I_V)^2(x) \neq \bar{0}_V \\ 
+&\implies  (T - \lambda_i I_V)^p(x) \neq \bar{0}_V \quad \text{ for any $p > 0$}\\
+&\implies x \not\in K_{\lambda_i} 
+\end{align*}
+$$
+</div>
+This is a contradiction.
 <br>
 <br>
 <hr>

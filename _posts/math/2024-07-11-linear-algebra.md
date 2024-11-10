@@ -221,7 +221,10 @@ mathjax: true
        </a></li>
 	   <br>
        <li><a href="/jekyll/update/2024/09/15/lec37-jordan-canonical-form.html">
-        Lecture 37: The Jordan Canonical Form
+        Lecture 37/38: The Jordan Canonical Form and Generalized Eigenvectors
+       </a></li>
+       <li><a href="/jekyll/update/2024/09/16/lec39-jordan-blocks-generalized-eigenvectors.html">
+        Lecture 39: Jordan Blocks and Generalized Eigenvectors
        </a></li>
    </ul>
 <br>

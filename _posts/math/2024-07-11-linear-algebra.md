@@ -226,6 +226,9 @@ mathjax: true
        <li><a href="/jekyll/update/2024/09/16/lec39-jordan-blocks-generalized-eigenvectors.html">
         Lecture 39: Jordan Blocks and Generalized Eigenvectors
        </a></li>
+       <li><a href="/jekyll/update/2024/09/17/7.1.html">
+        Book (7.1): Study Notes
+       </a></li>
    </ul>
 <br>
 <!------------------------------------------------------------------->  

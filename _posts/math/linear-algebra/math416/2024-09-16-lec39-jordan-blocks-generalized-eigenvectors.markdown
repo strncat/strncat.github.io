@@ -358,7 +358,26 @@ r_1 &= \dim(V) - rank(T - \lambda I_V) \\
 r_i &= rank((T - \lambda I_V)^{i-1}) - rank((T - \lambda I_V)^i)
 \end{align*}
 $$
+Using \(r_1, r_2, ...\) form the diagram
+$$
+\begin{align*}
+\begin{matrix}
+\circ & \circ & \cdots & \circ & \quad & r_1\text{ dots} \\
+\circ & \circ & \cdots & \circ & \quad & r_2\text{ dots} \\
+\vdots & \vdots \\
+\circ & \circ &        &       & \quad & r_j\text{ dots} \\
+\end{matrix}
+\end{align*}
+$$
+Then each column corresponds to Jordan block of \(\lambda\) of size the number of the dots in each column 
 </div>
+<br>
+Observation:
+<ul>
+	<li>\(r_1 \geq r_2 \geq r_3 \geq ...\)</li>
+	<li>\(r_1 + r_2 + r_3 + ... = m\)</li>
+	<li>\(r_1 =\) the number of Jordan Blocks for \(\lambda\)</li>
+</ul>
 <br>
 <br>
 <hr>

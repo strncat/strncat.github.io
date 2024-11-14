@@ -172,22 +172,22 @@ rank(BA) &= rank(L_{BA}) \\
 \end{align*}
 $$
 </div>
-B definition, to get the range, we just apply the linear map on $$v \in \mathbf{R}^n$$. This range is a subset of $$\mathbf{R}^m$$. Applying the linear map is just multiplying $$v$$ by the matrices $$A$$ and $$B$$. So we can see this below:
+By definition, to get the range, we just apply the linear map on $$v \in \mathbf{R}^n$$. This range is a subset of $$\mathbf{R}^m$$. Applying the linear map is just multiplying $$v$$ by the matrices $$A$$ and $$B$$. So we can see this below:
 <div>
 $$
 \begin{align*}
 \dim(R(L_{BA})) &= \{L_{BA}(v) \ | \ v \in \mathbf{R}^n \} \subset \mathbf{R}^m \\
-                &= \{BA(v) \ | \ v \mathbf{R}^n\} \\
-				&= \{B(A(v)) \ | \ v \mathbf{R}^n\} \\
-				&= \{B(A(v)) \ | \ v \mathbf{R}^n\}
+                &= \{BA(v) \ | \ v \in \mathbf{R}^n\} \\
+				&= \{B(A(v)) \ | \ v \in \mathbf{R}^n\} \\
+				&= \{B(A(v)) \ | \ v \in \mathbf{R}^n\}
 \end{align*}
 $$
 </div>
-We can also re-arrange this by applying the linear map $$L_B$$ on the set that we get from applying $$A$$ as follows
+Now we will apply the linear map $$L_B$$ on the set that we get from applying $$A$$ as follows
 <div>
 $$
 \begin{align*}
-\dim(R(L_{BA})) &= L_B(\{A(v) \ | \ v \mathbf{R}^n\}) \\
+\dim(R(L_{BA})) &= L_B(\{A(v) \ | \ v \in \mathbf{R}^n\}) \\
 \end{align*}
 $$
 </div>
@@ -213,7 +213,7 @@ But we know that $$\dim(R(L_A))$$ is the rank of $$A$$. and $$\dim(L_B(R(L_A))$$
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>The Rank of a Matrix</b></h4>
-So now we can go back to our original goal of finding an expression for finding the rank of a matrix $$A$$ without going back to the rank of the linear map $$L_A$$. We just proved that $$rank(BA) = rank(A)$$. for any invertible matrix $$B$$. We further studied earlier that elementary matrices are invertible. So multiplying $$A$$ by a set of elementary matrices will not change its rank. So we can get $$A$$ in RREF without its rank changing. Based on this we have the following corollaries:
+So now we can go back to our original goal of finding an expression for finding the rank of a matrix $$A$$ without going back to the rank of the linear map $$L_A$$. We just proved that $$\text{rank}(BA) = \text{rank}(A)$$. for any invertible matrix $$B$$. We further studied earlier that elementary matrices are invertible. So multiplying $$A$$ by a set of elementary matrices will not change its rank. So we can get $$A$$ in RREF without its rank changing. Based on this we have the following corollaries:
 <div class="purdiv">
 Corollary
 </div>
@@ -300,7 +300,7 @@ It's still true that the range of this is still spanned by the columns (always t
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Nullity and The Dimension Theorem</b></h4>
-So we know that $$\text{nullity}(A) = dim(N(A))$$. We found a basis for the null space of $$A$$ by solving $$Ax = 0$$ and finding all the solutions and then writing a set that spans that solution set. From the basis we knew the dimension of the null space. Specifically when we solved $$Ax = 0$$, it was the number of columns without leading entries. So we can write $$\text{nullity}(A) = dim(N(A)) = $$ # of columns without leading entries.
+So we know that $$\text{nullity}(A) = \dim(N(A))$$. We found a basis for the null space of $$A$$ by solving $$Ax = 0$$ and finding all the solutions and then writing a set that spans that solution set. From the basis we knew the dimension of the null space. Specifically when we solved $$Ax = 0$$, it was the number of columns without leading entries. So we can write $$\text{nullity}(A) = \dim(N(A)) = $$ # of columns without leading entries.
 <br>
 <br>
 So now if we put together the number of columns without leading entries (nullity of $$A$$) and the number of columns with leading entries (rank of $$A$$), then we get $$n$$. This is basically the dimension theorem.

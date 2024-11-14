@@ -122,6 +122,9 @@ mathjax: true
        <li><a href="/jekyll/update/2024/08/10/lec18-elementary-matrices.html">
         Lecture 18: Elementary Matrices
        </a></li>
+       <li><a href="/jekyll/update/2024/09/18/3.1-3.2.html">
+        Book (3.1-3.2) Study Notes
+       </a></li>
 	   <!------------------------------------------------------------------->  
 	   <br>
        <li><a href="/jekyll/update/2024/08/11/lec19-determinants.html">
@@ -132,6 +135,9 @@ mathjax: true
        </a></li>
        <li><a href="/jekyll/update/2024/08/19/lec22-determinants-invertible-matrices.html">
         Lecture 22: Determinants and Invertible Matrices
+       </a></li>
+       <li><a href="/jekyll/update/2024/09/19/4.1-4.2.html">
+        Book (4.1-4.2) Study Notes
        </a></li>
        <li><a href="/jekyll/update/2024/08/26/lec20-theorem-4.8.html">
         Book (4.3) Theorem 4.8: For any \(A \in M_{n \times n}(\mathbf{F}\), \(\det(A^t) = \det(A)\).
@@ -227,7 +233,7 @@ mathjax: true
         Lecture 39: Jordan Blocks and Generalized Eigenvectors
        </a></li>
        <li><a href="/jekyll/update/2024/09/17/7.1.html">
-        Book (7.1): Study Notes
+        Book (7.1) Study Notes
        </a></li>
    </ul>
 <br>

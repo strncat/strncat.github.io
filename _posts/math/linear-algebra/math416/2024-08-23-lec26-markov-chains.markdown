@@ -92,7 +92,7 @@ What we want to know is what this limit is so we're going to spend some time stu
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
-Theorem
+Theorem (some parts are 5.18)
 </div>
 <div class="purbdiv">
 Suppose for some \(d \geq 1, A^d\) has all positive entries. Then

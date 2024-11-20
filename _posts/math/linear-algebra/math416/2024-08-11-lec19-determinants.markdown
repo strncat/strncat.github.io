@@ -353,7 +353,7 @@ $$
 \end{align*}
 $$
 </div>
-Next, notice that $$e_1,...e_j$$ .. are vectors of the standard basis for $$\mathbf{R}^n$$. So we know that the $$r$$th row of $$A$$ can be expressed as a linear combination of these vectors. Moreover, the coefficients of this linear combination are just the entries in the $$r$$th row of $$A$$. So by Theorem 1, 
+Next, we know that $$e_1,...e_j$$ are vectors of the standard basis for $$\mathbf{R}^n$$. So we know that the $$r$$th row of $$A$$ can be expressed as a linear combination of these vectors. Moreover, the coefficients of this linear combination are just the entries in the $$r$$th row of $$A$$. So by Theorem 1 ($$\det(A)$$ is linear in the rows of $$A$$), this means that we can break the determinant of $$A$$ into the sum of all these determinants as follows
 <div>
 $$
 \begin{align*}

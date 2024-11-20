@@ -183,7 +183,7 @@ $$
 \end{align*}
 $$
 </div>
-Now we will apply the linear map $$L_B$$ on the set that we get from applying $$A$$ as follows
+This is equivalent to applying the linear map $$L_{B}$$ on the set that we get from applying $$A$$ as follows
 <div>
 $$
 \begin{align*}
@@ -191,7 +191,10 @@ $$
 \end{align*}
 $$
 </div>
-But this internal set is the range of the linear map $$L_A$$, $$R(L_A)$$. So define the map
+But this internal set is the range of the linear map $$L_A$$, $$R(L_A)$$. So what we want to show is that applying $$L_B$$ doesn't change the dinemsion of $$(R(L_A))$$ or multiplying by the matrix $$B$$ above, doesn't change anything about the dimension of the internal set.
+<br>
+<br> 
+The idea is simple but subtle. We know that $$L_B$$ is a map from $$\mathbf{R}^m$$ to $$\mathbf{R}^m$$. But here, $$L_B$$ is not acting on $$\mathbf{R}^m$$ but rather $$R(L_A)$$ (the internal set)$$. The range of $$L_A$$ is a subset of $$\mathbf{R}^m$$. So define the map
 <div>
 $$
 \begin{align*}
@@ -200,7 +203,7 @@ L_B&: \mathbf{R}^m \rightarrow \mathbf{R}^m \\
 \end{align*}
 $$
 </div>
-We claim this new map is invertible. It's onto because we restricted the target to the image $$R(L_A)$$. It's one-to-one because $$B$$ is invertible. Therefore, the dimension of the domain and the target are the same. So
+We claim this new map is invertible. It's onto because we restricted the target to the image $$R(L_A)$$ and it's one-to-one because $$B$$ is invertible. Therefore, the dimension of the domain and the target are the same (It's an invertible map!). In other words,
 <div>
 $$
 \begin{align*}
@@ -208,7 +211,7 @@ $$
 \end{align*}
 $$
 </div>
-But we know that $$\dim(R(L_A))$$ is the rank of $$A$$. and $$\dim(L_B(R(L_A))$$ is the rank of $$L_{BA}$$ (why?) so $$rank(A) = rank(BA)$$.
+But we know that $$\dim(R(L_A))$$ is the rank of $$A$$. and $$\dim(L_B(R(L_A))$$ is the rank of $$L_{BA}$$ so $$rank(A) = rank(BA) \ \blacksquare$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

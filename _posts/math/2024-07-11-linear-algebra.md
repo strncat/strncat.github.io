@@ -200,10 +200,7 @@ mathjax: true
         Lecture 33: Least Squares and Adjoint Maps
        </a></li>
        <li><a href="/jekyll/update/2024/09/04/lec34-normal-adjoint-maps.html">
-        Lecture 34: Normal Adjoint Maps
-       </a></li>
-       <li><a href="/jekyll/update/2024/09/05/lec35-self-adjoint-maps.html">
-        Lecture 35: Self Adjoint Maps
+        Lecture 34/35: Normal and Self Adjoint Maps
        </a></li>
        <li><a href="/jekyll/update/2024/09/06/6.3-theorem-6.8.html">
         Book (6.3) Theorem 6.8

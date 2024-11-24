@@ -232,11 +232,16 @@ $$
 \begin{align*}
 \Vert T(x) \Vert^2 &= \langle T(x), T(x) \rangle \\
                   &= \langle \sum_i  a_i w_i, \sum_j  a_j w_j \rangle \\ 
-				  &= \sum_{i,j} a_i \bar{a_j} \langle w_i, w_j \rangle  \\
-				  &= \sum_{i} |a_i|^2 = \langle x,x \rangle                    
+				  &= \sum_{i,j} a_i \bar{a_j} \langle w_i, w_j \rangle \quad \text{(the sums and constants come out)}  \\
+				  &= \sum_{i,j} a_i \bar{a_j} (\delta_{ij}) \\
+				  &= \sum_{i} |a_i|^2 \quad \text{(because $\delta_{ij} = 0$ when $i \neq j$)}  \\
+				  &= \langle x,x \rangle                
 \end{align*}
 $$
 </div>
+In fact if we had started with $$\Vert T(x) \Vert^2$$, we would arrive at the same result $$\sum_{i} |a_i|^2$$. So we're done.
+<br>
+<br>
 <!------------------------------------------------------------------------------------>
 $$(e) \implies (a):$$ <br>
 We want to show that if we preserve lengths, then we actually preserve all inner products so $$\Vert T(x) \Vert = \Vert x \Vert \implies \langle T(x), T(x) \rangle = \langle x, x \rangle$$. To show this, we can use the following trick

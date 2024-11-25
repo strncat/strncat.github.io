@@ -211,7 +211,7 @@ $$
 A_1 & 0 & \cdots & 0 \\
 0 & A_2 & \cdots & 0 \\
 \vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \cdots & \lambda_l
+0 & 0 & \cdots & A_k
 \end{pmatrix}
 \end{align*}
 $$
@@ -223,9 +223,9 @@ $$
 A_1 =
 \begin{pmatrix}
 \lambda_1 & 1 & \cdots & 0 \\
-0 & \lambda_2 & \ddots & \vdots \\
+0 & \lambda_1 & \ddots & \vdots \\
 \vdots & \ddots & \ddots & 1 \\
-0 & \cdots & 0 & \lambda_l
+0 & \cdots & 0 & \lambda_1
 \end{pmatrix}
 \end{align*}
 $$
@@ -234,9 +234,16 @@ Since $$A_1$$ has the form above (Jordan block), then we know at least for $$\la
 <div>
 $$
 \begin{align*}
-T(v_2) &= v_1 + \lambda_2 v_2 \\
-T(v_2) - \lambda_2 v_2 &= v_1 \\
-(T - \lambda_1 I_V)(v_2) &= v_1 \\
+T(v_2) &= v_1 + \lambda_1 v_2 \\
+T(v_2) - \lambda_1 v_2 &= v_1 \\
+(T - \lambda_1 I_V)(v_2) &= v_1
+\end{align*}
+$$
+</div>
+So at this point, we see that $$v_2$$ is not an eigenvector but if we apply the map $$(T - \lambda_1 I_V)$$ on it, it becomes an eigenvector. What if we apply this map twice?
+<div>
+$$
+\begin{align*}
 (T - \lambda_1 I_V)^2(v_2) &= \bar{0}_V \quad \text{ (because $v_1$ is an eigenvector)}
 \end{align*}
 $$
@@ -269,9 +276,24 @@ for some integer \(p > 0\)
 </div>
 <!------------------------------------------------------------------------------------>
 <br>
+Observation: When $$p$$ is the smallest integer for which $$(T - \lambda I_V)^p(x) = \bar{0}_V$$, then $$y = (T - \lambda I_V)^{p-1}(x)$$ is an eigenvector. 
+<br>
+<br>
 So now we know that the basis we want to build will consists of generalized eigenvectors.<br>
 FACT 1: A Jordan Canonical Basis consists of generalized eigenvectors (with special properties). <br>
-If we start with the equations above from the bottom to the top, then
+If we start with the equations above from the bottom to the top, 
+<div>
+$$
+\begin{align*}
+(T - \lambda_1 I_V)(v_1) &= \bar{0}_V \\
+(T - \lambda_1 I_V)^2(v_2) &= \bar{0}_V \\
+(T - \lambda I_V)^3(v_3) &= \bar{0}_V \\
+\vdots \\
+(T - \lambda I_V)^{n_1}(v_{n_1}) &= \bar{0}_V
+\end{align*}
+$$
+</div>
+then
 <div>
 $$
 \begin{align*}
@@ -279,29 +301,8 @@ $$
 \end{align*}
 $$
 </div>
-So we can see here that the first $$n_1$$ basis vectors coming from the $$A_1$$ block are all obtained from the last vector and applying the maps over and over again. This leads to fact 2 below. 
+So we can see here that the first $$n_1$$ basis vectors coming from the $$A_1$$ block are all obtained from the last vector and applying the maps over and over again.
 <br>
-<br>
-FACT 2: A Jordan Canonical Basis is made of "cyclic pieces". The basis is not only made of generalized eigenvectors but they also appear in this cyclic pattern.
-<br>
-<br>
-Here is an observation. Let $$x$$ be a generalized eigenvector of $$T$$ and Let $$p$$ be the smallest positive integer such that $$(T - \lambda I_V)^p(x) = \bar{0}_V$$. Then
-<div>
-$$
-\begin{align*}
-y = (T - \lambda I_V)^{p-1}(x) \neq \bar{0}_V
-\end{align*}
-$$
-</div>
-But if we apply $$(T - \lambda I_V)$$ to both sides, then
-<div>
-$$
-\begin{align*}
-(T - \lambda I_V)(y) = (T - \lambda I_V)^{p}(x) = 0
-\end{align*}
-$$
-</div>
-Then $$y$$ is an eigenvector of $$T$$.
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
@@ -323,7 +324,7 @@ Theorem 1.1
 <div class="purbdiv">
 <ol type = "a">
 	<li>\(K_{\lambda}\) is a \(T\)-invariant subspace of \(V\) containing \(E_{\lambda}\).</li>
-	<li>For \(\mu = \lambda\), the restriction of \(T - \mu I_V\) to \(K_{\lambda}\) is one-to-one.</li>
+	<li>For \(\mu \neq \lambda\), the restriction of \(T - \mu I_V\) to \(K_{\lambda}\) is one-to-one.</li>
 </ol>
 </div>
 <br>
@@ -475,11 +476,11 @@ Let \(\beta_j\) be a basis for \(K_{\lambda_j}\). Then
 <b>Proof</b>
 <br>
 <br>
-(a): Assume for the sake of contradiction that $$\beta_i \cap \beta_j \neq \emptyset$$. Then there exists $$x \in \beta_i \cap \beta_j$$. We know that $$\beta_i \cap \beta_j \subseteq K_{\lambda_i} \cap K_{\lambda_j}$$ (Why?). Since $$i \neq j$$, then $$\lambda_i \neq \lambda_j$$. Therefore by Theorem 1.1(b)
+(a): Assume for the sake of contradiction that $$\beta_i \cap \beta_j \neq \emptyset$$. Then there exists $$x \in \beta_i \cap \beta_j$$. We know that $$\beta_i \cap \beta_j \subseteq K_{\lambda_i} \cap K_{\lambda_j}$$. Since $$i \neq j$$, then $$\lambda_i \neq \lambda_j$$. Therefore by Theorem 1.1(b)
 <div>
 $$
 \begin{align*}
-&\implies (T - \lambda_i I_V)\Big|_{K_{\lambda_i}} \quad \text{ is one-to-one}    \\
+&\implies (T - \lambda_i I_V)\Big|_{K_{\lambda_j}} \quad \text{ is one-to-one}    \\
 &\implies  (T - \lambda_i I_V)(x) \neq \bar{0}_V \\ 
 &\implies  (T - \lambda_i I_V)^2(x) \neq \bar{0}_V \\ 
 &\implies  (T - \lambda_i I_V)^p(x) \neq \bar{0}_V \quad \text{ for any $p > 0$}\\

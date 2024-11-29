@@ -355,7 +355,7 @@ $$T$$ and $$(T - \lambda I_V)^{p}$$ comute. Why? Taking $$(T - \lambda I_V)$$ to
 <div>
 $$
 \begin{align*}
-(T - \lambda I_V)^{p}T(x) &= \bar{0} \quad \text{(because $T(\bar{0}_V)$ above is \bar{0})}
+(T - \lambda I_V)^{p}T(x) &= \bar{0} \quad \text{(because $T(\bar{0}_V) = \bar{0}$ above)}
 \end{align*}
 $$
 </div>

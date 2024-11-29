@@ -172,11 +172,11 @@ So now we want to use this for the case of $$j+1$$. What do we do? The differenc
 	\end{align*}
 	$$
 </div>
-Note here that $$b_1,...b_{n-j}$$ can't be all zeros (because if they are, then $$u_{j+1}$$ can be written as a linear combination of the elements $$u_1,u_2,...,u_{j}$$ alone. But that's not possible since we said that the set $$\mathcal{U}_{j+1}$$ is linearly independent). Without the loss of generality, let $$b_{n-j}$$ be non-zero. This means that,
+Note here that $$b_1,...b_{n-j}$$ can't be all zeros (because because otherwise, we would be able to write $$u_{j+1} = a_1u_1 + ... + a_{j}u_j$$ but that's not possible since $$\mathcal{U}_{j+1}$$ is linearly independent). Without the loss of generality, let $$b_{n-j}$$ be non-zero. This means that,
 <div>
 	$$
 	\begin{align*}
-	 n - j &\geq 1 \text{ (since we have $b_1w_1$?)}\\
+	 n - j &\geq 1 \text{ (since one of the $b$'s is not zero, so we at least have one element)}\\
 	 n &\geq j+1.
 	\end{align*}
 	$$

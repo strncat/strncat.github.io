@@ -332,24 +332,34 @@ $$
 \end{align*}
 $$
 </div>
-Next, we need to show that $$K_{\lambda}$$ is $$T$$-invariant. This means that we want to show that $$T(K_{\lambda}) \subseteq K_{\lambda}$$. Therefore, Let $$x \in K_{\lambda}$$ so that $$(T - \lambda I_V)^{p}(x) = \bar{0}_V$$ by definition. We want to show that $$T(x) \in K_{\lambda}$$
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+Next, we need to show that $$K_{\lambda}$$ is $$T$$-invariant. This means that we want to show that $$T(K_{\lambda}) \subseteq K_{\lambda}$$. Therefore, Let $$x \in K_{\lambda}$$. We want to show that $$T(x) \in K_{\lambda}$$. Since $$x \in K_{\lambda}$$, then
 <div>
 $$
 \begin{align*}
-(T - \lambda I_V)^{p}(T(x)) &= T(T - \lambda I_V)^{p}(x)
+(T - \lambda I_V)^{p}(x) = \bar{0}_V
 \end{align*}
 $$
 </div>
-Taking $$(T - \lambda I_V)$$ to a power expands to some form of $$\lambda^k T^l$$. But then we can reverse the order of the terms and write the following instead
+Apply the linear map $$T$$ to both sides
 <div>
 $$
 \begin{align*}
-(T - \lambda I_V)^{p}(T(x)) &= T(T - \lambda I_V)^{p}(x) \\
-                            &= (T - \lambda I_V)^{p}T(x) \\1
-                            &= \bar{0}_V
+T(T - \lambda I_V)^{p}(x) &= T(\bar{0}_V)
 \end{align*}
 $$
 </div>
+$$T$$ and $$(T - \lambda I_V)^{p}$$ comute. Why? Taking $$(T - \lambda I_V)$$ to a power expands to some form of $$\lambda^k T^l$$. So
+<div>
+$$
+\begin{align*}
+(T - \lambda I_V)^{p}T(x) &= \bar{0} \quad \text{(because $T(\bar{0}_V)$ above is \bar{0})}
+\end{align*}
+$$
+</div>
+So we see above that $$T(x)$$ belongs to $$K_{\lambda}$$ as we wanted to show.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -372,7 +382,10 @@ $$
 \end{align*}
 $$
 </div>
-is the trivial solution where $$x = \bar{0}_V$$. Suppose for the sake of contradiction that this isn't true and $$x \neq \bar{0}_V$$ but $$(T - \mu I_V)(x) = \bar{0}_V$$. We know that $$x \in K_{\lambda}$$ so it must be killed by some power of the operator so let $$p$$ be the smallest integer such that 
+is the trivial solution where $$x = \bar{0}_V$$. Suppose for the sake of contradiction that this isn't true and $$x \neq \bar{0}_V$$ but $$(T - \mu I_V)(x) = \bar{0}_V$$. 
+<br>
+<br>
+However, we know that $$x \in K_{\lambda}$$ so it must be killed by some power of the operator so let $$p$$ be the smallest integer such that 
 <div>
 $$
 \begin{align*}
@@ -388,12 +401,12 @@ $$
 \end{align*}
 $$
 </div>
-This implies that $$y$$ is an eigenvector and $$y \in E_{\lambda}$$. So
+This implies that $$y$$ is an eigenvector and $$y \in E_{\lambda}$$. Observe next what happens when we apply the map $$(T - \mu I_V)$$ on the eigenvector $$y$$ 
 <div>
 $$
 \begin{align*}
 (T - \mu I_V)(y) &= (T - \mu I_V)(T - \lambda I_V)^{p-1}(x) \\
-                &= (T - \lambda I_V)^{p-1}(T - \mu I_V)(x) \quad \text{ same as before, the sum is powers of $\lambda$ and $T$}\\ 
+                &= (T - \lambda I_V)^{p-1}(T - \mu I_V)(x) \quad \text{($T$ and $(T-\mu I)$ and $(T - \lambda I)^{p-1}$ commute)}\\ 
 				&= \bar{0}_V             
 \end{align*}
 $$

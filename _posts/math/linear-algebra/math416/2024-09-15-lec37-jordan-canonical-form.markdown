@@ -467,19 +467,25 @@ Let \(\beta_j\) be a basis for \(K_{\lambda_j}\). Then
 <b>Proof</b>
 <br>
 <br>
-(a): Assume for the sake of contradiction that $$\beta_i \cap \beta_j \neq \emptyset$$. Then there exists $$x \in \beta_i \cap \beta_j$$. We know that $$\beta_i \cap \beta_j \subseteq K_{\lambda_i} \cap K_{\lambda_j}$$. Since $$i \neq j$$, then $$\lambda_i \neq \lambda_j$$. Therefore by Theorem 1.1(b)
+(a): Assume for the sake of contradiction that $$\beta_i \cap \beta_j \neq \emptyset$$. Then there exists $$x \in \beta_i \cap \beta_j$$. We know that $$\beta_i \cap \beta_j \subseteq K_{\lambda_i} \cap K_{\lambda_j}$$. Since $$i \neq j$$, then $$\lambda_i \neq \lambda_j$$. Therefore by Theorem 1.1(b), the restriction of $$(T - \lambda_i I_V)$$ to $$K_{\lambda_j}$$ is 1-1. 
 <div>
 $$
 \begin{align*}
 &\implies (T - \lambda_i I_V)\Big|_{K_{\lambda_j}} \quad \text{ is one-to-one}    \\
-&\implies  (T - \lambda_i I_V)(x) \neq \bar{0}_V \\ 
-&\implies  (T - \lambda_i I_V)^2(x) \neq \bar{0}_V \\ 
-&\implies  (T - \lambda_i I_V)^p(x) \neq \bar{0}_V \quad \text{ for any $p > 0$}\\
-&\implies x \not\in K_{\lambda_i} 
 \end{align*}
 $$
 </div>
-This is a contradiction.
+Since it's one-to-one, then its nullspace is just the zero vector. This also means no other non-zero vector will make $$(T - \lambda_i I_V)(w)$$ zero for any $$w \in  K_{\lambda_j}$$. So pick $$x \in K_{\lambda_i} \cap K_{\lambda_j}$$. Then
+<div>
+$$
+\begin{align*}
+&\implies  (T - \lambda_i I_V)(x) \neq \bar{0}_V \\ 
+&\implies  (T - \lambda_i I_V)^2(x) \neq \bar{0}_V \\ 
+&\implies  (T - \lambda_i I_V)^p(x) \neq \bar{0}_V \quad \text{ for any $p > 0$}
+\end{align*}
+$$
+</div>
+So we won't get a zero no matter since the map is 1-1. But $$x$$ is also in $$K_{\lambda_i}$$. This implies that $$ x \not\in K_{\lambda_i}$$. This is a contradiction. So the intersection is empty as we wanted to show.
 <br>
 <br>
 <hr>

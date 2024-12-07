@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "1.6 Divisibility in the Integers"
-date:   2024-12-04 01:01:36 -0700
+title:  "[1.6] Divisibility in the Integers (1.6.1 - 1.6.2)"
+date:   2024-11-01 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
@@ -119,7 +119,82 @@ By Induction. <br>
 Base Case: $$n = 2:$$ 2 is a prime number and it is a product of prime numbers (only one factor).
 <br>
 <br>
-Inductive Case: Suppose that for any number $$r$$, we have $$2 \leq r < n$$ and $$r$$ is a product of prime numbers. Now, take $$n$$. We have two cases. If $$n$$ is a prime number, then $$n$$ is a product of prime numbers and we're done. Otherwise, $$n$$ is not a prime number and we can write $$n$$ as a product of two integers $$a$$ and $$b$$ ($$n = ab$$) such that $$1 < a < n$$ and $$1 < b < n$$ (by ?). We can now apply the inductive hypothesis to conclude that both $$a$$ and $$b$$ can be written as a product of prime numbers. There $$n = ab$$ is also a product of prime numbers. $$\ \blacksquare$$. 
+Inductive Case: Suppose that for any number $$r$$, we have $$2 \leq r < n$$ and $$r$$ is a product of prime numbers. Now, take $$n$$. We have two cases. If $$n$$ is a prime number, then $$n$$ is a product of prime numbers and we're done. Otherwise, $$n$$ is not a prime number and we can write $$n$$ as a product of two integers $$a$$ and $$b$$ ($$n = ab$$) such that $$1 < a < n$$ and $$1 < b < n$$ (by ?). We can now apply the inductive hypothesis to conclude that both $$a$$ and $$b$$ can be written as a product of prime numbers. There $$n = ab$$ is also a product of prime numbers. $$\ \blacksquare$$ 
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="yellowheaderdiv">
+Theorem 1.6.6
+</div>
+<div class="yellowbodydiv">
+There are infinitely many prime numbers.
+</div>
+<br>
+Suppose for the sake of contradiction that there are finitely many primes $$p_1,p_2,...,p_k$$. Consider $$p = p_1p_2...p_k + 1$$. We know that $$p$$ is greater than any of the prime numbers $$p_1,p_2,...,p_k$$. By Proposition 1.6.4, we can express $$p$$ as a product of prime numbers. Observe now that $$p$$ can not be divisible by any of the prime numbers $$p_1, p_2, ..., p_k$$ (Why? for any $$p_i$$,  $$\frac{(p_1p_2...p_k)+1}{p_i} = p_1..p_{i-1}p_{i+1}...p_k + \frac{1}{p_i}$$ which is not an integer). Therefore, we must have $$p$$ be a prime number. This is a contradiction and therefore, there are infinitely many primes. $$\ \blacksquare$$
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Proposition 1.6.2
+</div>
+<div class="peachbodydiv">
+Given integers \(a\) and \(d\) with \(d \geq 1\), there exists unique integers \(q\) and \(r\) such that 
+$$
+\begin{align*}
+a = qd + r
+\end{align*}
+$$
+where \(0 \leq r < d\). 
+</div>
+<br>
+<b>Proof</b>
+<br>
+We are given $$a$$ and $$d$$ such that $$d \geq 1$$. <br>
+We want to find unique integers $$q$$ and $$r$$ such that $$r < d$$.
+<br>
+<br>
+We have two cases:
+<br>
+$$a \geq 0$$: If $$d > a$$, then we just take $$q = 0$$ and $$r = a$$.<br>
+Otherwise, suppose that $$d \leq a$$. By Induction on a. Assume that for all non-negative integers smaller than $$a$$, we can find such integers. In particular, suppose it holds for $$a - d$$, then there exists integers $$q'$$ and $$r$$ such that
+<div> 
+$$
+\begin{align*}
+(a - d) &= q'd + r \quad (\text{where } 0 \leq r < d) \\
+a &= q'd + d + r \\
+a &= q'(d + 1) + r 
+\end{align*}
+$$
+</div>
+And we are done.
+<br>
+<br>
+Case $$a > 0$$: If $$a$$ is divisible by $$d$$, then there exists integer $$q$$ such that $$a = qd$$. So we can set $$r = 0$$ and we are done.
+<br>
+Otherwise, $$-a > 0$$ so by the first case ($$a \geq 0$$) there exists integers $$q'$$ and $$r'$$ such that $$-a = q'd + r'$$ with $$0 < r' < d$$. So
+<div> 
+$$
+\begin{align*}
+-a &= q'd + r' \\
+a &= -q'd - r' \\
+a &= -q'd - d + d - r' \\
+a &= (-q' - 1)d + (d - r') \\
+  &= (-q' - 1)d + (d - r').
+\end{align*}
+$$
+</div>
+So $$q = (-q' - 1)$$ and $$r = d - r'$$ with $$0 < d - r' < d$$ and we are done.
+<br>
+<br>
+To show that $$q$$ and $$r$$ are unique, suppose for the sake of contradiction that they are not. Therefore suppose that $$a = qd + r = q'd + r'$$ where $$0 \leq r,r' < d$$. Subtracting the equations, we see that
+<div> 
+$$
+\begin{align*}
+(q - q')d = r - r'
+\end{align*}
+$$
+</div>
+But this means that $$r - r'$$ is divisible by d. However $$|r - r'| \leq \max\{r,r'\} < d$$, so we must have $$|r - r'| = 0$$. This implies that $$(q' - q)d = 0$$ and so $$q' = q$$ as we wanted to show. $$\ \blacksquare$$
 <br>
 <br>
 <hr>

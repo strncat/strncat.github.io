@@ -1,0 +1,192 @@
+---
+layout: post
+title:  "[1.6] Greatest Common Divisor (1.6.8 - 1.6.13)"
+date:   2024-11-04 01:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+<!------------------------------------------------------------------------------------>
+<div class="mintheaderdiv">
+Definition 1.6.8
+</div>
+<div class="mintbodydiv">
+A natural number \(d\) is the greatest common divisor of nonzero integers \(m\) and \(n\) if
+<ol type="a">
+	<li>\(d\) divides \(m\) and \(n\) and</li>
+	<li>whenever \(x \in \mathbf{N}\) divides \(m\) and \(n\), then \(x\) also divides \(d\)</li>
+</ol>
+</div>
+<br>
+The greatest common is unique if it exists by 1.6.2 (why?)
+<!------------------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Proposition 1.6.9
+</div>
+<div class="peachbodydiv">
+For integers \(n\) and \(m\), let
+$$
+\begin{align*}
+I(m,n) = \{am + bn \ | \ a, b \in \mathbf{Z}\}.
+\end{align*}
+$$
+<ol type="a">
+	<li>For \(x, y \in I(m,n)\), \(x + y \in I(m,n)\) and \(-x \in I(m,n)\).</li>
+	<li>For all \(x \in \mathbf{Z}\), \(xI(m,n) \subseteq I(m,n)\).</li>
+	<li>If \(b \in \mathbf{Z}\) divides \(m\) and \(n\), then \(b\) divides all elements of \(I(m,n)\).</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>Proof</b>
+<br>
+Suppose $$x, y \in I(m,n)$$, then $$x = am + bn$$ for some $$a$$ and $$b$$ in $$\mathbf{Z}$$ and $$y = cm + dn$$ for some $$c$$ and $$d$$ in $$\mathbf{Z}$$. Therefore
+<div>
+$$
+\begin{align*}
+x + y &= am + bn + cm + dn \\
+      &= (a+c)m + (b+d)n
+\end{align*}
+$$
+</div>
+And so $$x+y \in I(m,n)$$. $$\ \blacksquare$$
+<br>
+$$(b)$$ and $$(c)$$ have similar proofs.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="yellowheaderdiv">
+Lemma 1.6.10
+</div>
+<div class="yellowbodydiv">
+Let \(m\) and \(n\) be nonzero integers. If a natural number \(d\) is a common divisor of \(m\) and \(n\) and an element of \(I(m,n)\), then \(d\) is the greatest common divisor of \(m\) and \(n\).
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<b>Proof</b>
+<br>
+For any common divisor $$x$$ of $$m$$ and $$n$$, $$x$$ divides every element of $$I(m,n)$$ by proposition 1.6.9(c) and in particular it divides $$d$$. $$\ \blacksquare$$
+<br>
+<br>
+Notes: $$d$$ is an element of $$I(m,n)$$. Therefore, $$d = am + bn$$. For any other common divisor $$x$$, $$x$$ divides every element of $$I(m,n)$$ so $$x$$ divides $$d$$ and we can write $$d = am + bn = qx$$. 
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Finding the Greatest Common Division</b></h4>
+Suppose $$m, n \in \mathbf{N}$$ and suppose without the loss of generality that $$|m| \geq |n|$$. Let $$q$$ and $$r$$ be the quotient and remainder when dividing $$m$$ by $$n$$
+<div>
+$$
+\begin{align*}
+m &= nq_1 + r_1  \\
+n &= r_1q_2 + r_2  \\
+r_1 &= r_2q_3 + r_3 \\
+\vdots \\
+r_{n-3} &= r_{n-2}q_{n-1} + r_{n-1} \\
+r_{n-2} &= r_{n-1}q_{n} + 0
+\end{align*}
+$$
+</div>
+In the case where $$n_1 > 0$$, then define again $$q_2$$ and $$n_2$$ such that
+<div>
+$$
+\begin{align*}
+n &= q_2n_1 + n_2 \quad (\text{where } 0 \leq n_2 < n_1) \\
+\end{align*}
+$$
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Proposition 1.6.11
+</div>
+<div class="peachbodydiv">
+The natural number \(r_{n-1}\) is the greatest common divisor of \(m\) and \(n\) and furthermore \(r_{n-1} \in I(m,n)\)
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<b>Proof</b>
+<br>
+We first need to show that this process terminates. Observe that the sequence $$\{r_1,r_2,...,r\} \in \mathbf{N}$$ is decreasing so it truncates say at $$r_{n-1}$$ (the last non-zero element of the sequence). So it must terminates by the well ordering principle.
+<br>
+<br>
+Next, we need to show that $$r_{n-1}$$ divides both $$m$$ and $$n$$. Observe that from the algorithm above that
+<div>
+$$
+\begin{align*}
+r_{n-2} &= r_{n-1}q_{n}
+\end{align*}
+$$
+</div>
+This shows that $$r_{n-1}| r_{n-2}$$. Looking at the equation above this one, we see
+<div>
+$$
+\begin{align*}
+r_{n-3} &= r_{n-2}q_{n} + r_{n-1}
+\end{align*}
+$$
+</div>
+And combining this with the previous conclusion that $$r_{n-1} | r_{n-2}$$, we see that $$r_{n-1}| r_{n-3}$$. If we continue this process, we will see that $$r_{n-1}|a$$ and $$r_{n-1}|b$$. 
+<br>
+<br>
+Finally, we need to show that $$r_{n-1}$$ is the greatest common divisor. So let $$d$$ be a common divisor of $$m$$ and $$n$$. So that $$d | m$$ and $$d | n$$. Using the first equation in the algorithm above,
+<div>
+$$
+\begin{align*}
+m = nq + r_1
+\end{align*}
+$$
+</div>
+we see that since $$d$$ divides both $$m$$ and $$n$$. Then it must divide $$r_1$$. Continuing with the second equation, we can see that $$d$$ divides $$r_2$$. Eventually, we can conclude that $$d|r_{n_1}$$. Since $$d$$ is arbitrary and $$r_{n-1}$$ is a common divisor, then $$r_{n-1}$$ must the greatest common divisor by definition. $$\ \blacksquare$$
+<br>
+<br>
+TODO: Proof from the book
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Corollary 1.6.11
+</div>
+<div class="peachbodydiv">
+Let \(m\) and \(n\) be nonzero integers, and write \(d = gcd(m,n)\). Then
+<ol type="a">
+	<li>\(d\) is the least element of \(\mathbf{N} \cap I(m,n)\).</li>
+	<li>\(I(m,n) = \mathbf{Z}d\), the set of all integers multiples of \(d\)</li>
+</ol>
+</div>
+<br>
+<b>Proof</b>
+<br>
+TODO
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+<ul>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+<li><a href="https://www.youtube.com/watch?v=8cikffEcyPI&t=5s">Michael Penn's Lectures</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

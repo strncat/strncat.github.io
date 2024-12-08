@@ -5,7 +5,7 @@ date:   2024-12-05 09:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<!---------------------------- [1.6] Divisibility in the Integers ------------------------------->
+<!------------------------ [1.6] Divisibility in the Integers --------------------------->
 <h3> [1.6] Divisibility in the Integers </h3>
 <ol style="list-style-type:none;">
 	   <li><a href="/jekyll/update/2024/11/01/1.6-z.html">
@@ -19,6 +19,12 @@ mathjax: true
        </a></li>
 	   <li><a href="/jekyll/update/2024/11/04/1.6-gcd.html">
         [1.6] Greatest Common Divisor (1.6.8 - 1.6.13)
+       </a></li>
+	   <li><a href="/jekyll/update/2024/11/05/1.6-relatively-prime.html">
+        [1.6] Relatively Prime Integers (1.6.14 - 1.6.21)
+       </a></li>	   
+	   <li><a href="/jekyll/update/2024/11/06/1.6-gcd-many.html">
+        [1.6] Greatest Common Divisor of Many Integers (1.6.22 - 1.6.25)
        </a></li>
    </ol>
 <br>

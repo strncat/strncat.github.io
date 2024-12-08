@@ -1,0 +1,162 @@
+---
+layout: post
+title:  "[1.6] Relatively Prime Integers (1.6.14 - 1.6.20)"
+date:   2024-11-05 01:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+<!------------------------------------------------------------------------------------>
+<div class="mintheaderdiv">
+Definition 1.6.14
+</div>
+<div class="mintbodydiv">
+Nonzero integers \(m\) and \(n\) are relatively prime if \(gcd(m,n) = 1\).
+</div>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Proposition 1.6.15
+</div>
+<div class="peachbodydiv">
+Two nonzero integers \(m\) and \(n\) are relatively prime if and only if there exist integers \(s\) and \(t\) such that \(1 = sm + tn\).
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>Proof</b>
+<br>
+$$\Rightarrow$$: Suppose $$m$$ and $$n$$ are relatively prime. This means that $$gcd(m,n)=1$$. By Proposition 1.6.11, $$1 \in I(m,n)$$. This means that there exists integers $$s$$ and $$t$$ such that $$1 = sm + tn$$ which what we wanted to show.
+<br>
+<br>
+$$\Leftarrow$$: Suppose that there exists integers $$s$$ and $$t$$ such that $$1 = sm + tn$$. This implies that $$1 \in I(m,n)$$. But 1 is obviously is a common divisor of $$m$$ and $$n$$. So now we have common divisor that is also contained in $$I(m,n)$$. So by Lemma 1.6.10, 1 is the greatest common divisor of $$m$$ and $$n$$ as required. $$\ \blacksquare$$
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Corollary 1.6.17
+</div>
+<div class="peachbodydiv">
+Suppose that \(a\) and \(b\) are relatively prime natural numbers, that \(x\) is an integer, and that both \(a\) and \(b\) divide \(x\). Then \(ab\) divides \(x\).
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>Proof</b>
+<br>
+Since $$x$$ and $$b$$ are relatively prime, then this means that there exists integers $$s$$ and $$t$$ such that $$1 = sm + tn$$. Multiply this equation by $$x$$ to get
+<div>
+$$
+\begin{align*}
+x = sax + tbx
+\end{align*}
+$$
+</div>
+Since $$x$$ divides both $$a$$ and $$b$$, then $$x = \alpha a$$ and $$x = \beta b$$. Substitute back
+<div>
+$$
+\begin{align*}
+x &= sa(\beta b) + tb(\alpha a) \\
+  &= (s\beta + t \alpha) (ab)
+\end{align*}
+$$
+</div>
+From this we see that $$ab$$ divides $$x$$ as we wanted to show. $$\ \blacksquare$$
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Proposition 1.6.18
+</div>
+<div class="peachbodydiv">
+If \(p\) is a prime number and \(a\) is any nonzero integer, then either \(p\) divides \(a\) or \(p\) and \(a\) are relatively prime.
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>Proof</b>
+<br>
+Suppose that $$p$$ is a prime number and $$a$$ is a nonzero integer. Suppose that $$a > 0$$, if not then just consider $$-a$$. $$a$$ can be written as a product of prime numbers $$p_1,...,p_k$$. We have two cases. Either $$p$$ is one of the prime factors of $$a$$ so $$p$$ divides $$a$$. Or $$p$$ is not any of the prime factors of $$a$$. So $$p$$ doesn't divide $$a$$. But since $$p$$ is a prime number, then it won't have any other prime factors and therefore, $$p$$ and $$a$$ are relatively prime. $$\ \blacksquare$$.
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Corollary 1.6.20
+</div>
+<div class="peachbodydiv">
+Suppose that a prime number \(p\) divides a product \(a_1a_2...a_r\) of nonzero integers. Then \(p\) divides one of the factors.
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>Proof</b>
+<br>
+By Induction on $$r$$.<br>
+Base Case ($$r = 1$$): This is covered by Proposition 1.6.18.
+<br>
+Inductive Case: Suppose this is true for a product of $$r-1$$ factors. We want to show that this is true for a product of $$r$$ factors. TODO....
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="yellowheaderdiv">
+Theorem 1.6.21
+</div>
+<div class="yellowbodydiv">
+The prime factorization of a natural number is unique.
+</div>
+<!------------------------------------------------------------------------------------>
+<br>
+<b>Proof</b>
+Suppose $$n$$ is a natural number. We want to show that if $$n$$ has the following factorizations
+<div>
+$$
+\begin{align*}
+n = q_1q_2 ... q_r, \\
+n = p_1p_2 ... p_s
+\end{align*}
+$$
+</div>
+where $$q_1,...,q_r$$ and $$p_1,...,p_s$$ are prime numbers, $$q_1 \leq ... \leq q_s$$ and $$p_1 \leq ... \leq p_s$$, that these factorizations are the same. In other words, $$r = s$$ and $$q_i = p_i$$ for all $$i$$. We will show this by induction on $$n$$:
+<br>
+<br>
+Base Case ($$n = 1$$): 1 can't be written as a product of a non-empty collection of prime numbers. For $$n=2$$, 2 has only one prime factor (itself) since it's a prime number.
+<br>
+<br>
+Inductive Case: Suppose the inductive hypothesis is true for any natural number less than $$n$$. Now consider $$n$$ and its factorizations above. Assume without the loss of generality that $$q_1 \leq p_1$$. We know that $$q_1$$ divides $$n$$. By Proposition 1.6.20, $$q_1$$ must divide the product $$p_1p_2...p_s$$. So this means that $$q_1$$ must be equal to one of the factors $$p_1,...,p_s$$. But since $$q_1 \leq p_1 \leq p_2 ... \leq p_k$$, then we must have $$p_1 = q_1$$. So now divide both equations by $$q_1$$ to see that
+<div>
+$$
+\begin{align*}
+n/q_1 = q_2 ... q_r, \\
+n/q_1 = p_2 ... p_s
+\end{align*}
+$$
+</div>
+We can now apply the inductive hypothesis to conclude that $$r = s$$ and $$q_i = p_i$$ for all $$i \geq 2$$. $$\ \blacksquare$$.
+<!------------------------------------------------------------------------------------>
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+<ul>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+<li><a href="https://www.youtube.com/watch?v=8cikffEcyPI&t=5s">Michael Penn's Lectures</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

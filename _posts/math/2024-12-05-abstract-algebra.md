@@ -43,8 +43,8 @@ mathjax: true
 <!------------------------ [2] Basic Theory of Groups --------------------------->
 <h4> [2] Basic Theory of Groups </h4>
 <ol style="list-style-type:none;">
-	   <li>
-        [2.1] First Results
-       </li>
+	   <li><a href="/jekyll/update/2024/11/09/2.1-first-results.html">
+        [1.10] Groups
+       </a></li>
    </ol>
 <br>

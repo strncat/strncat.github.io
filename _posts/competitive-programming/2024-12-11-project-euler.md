@@ -30,5 +30,8 @@ mathjax: true
 	   <li><a href="/jekyll/update/2024/12/10/project-euler-22-names-scores.html">
         Names Scores
        </a></li>
+	   <li><a href="/jekyll/update/2024/12/01/project-euler-23-non-abundant-sums.html">
+        Non-Abundant Sums
+       </a></li>
    </ol>
 <br>

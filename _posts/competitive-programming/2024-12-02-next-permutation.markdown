@@ -1,12 +1,25 @@
 ---
 layout: post
-title:  "Permutations Code Examples"
-date:   2019-07-03 7:01:36 -0700
+title:  "Generating the Next Permutation Lexicographically"
+date:   2024-12-02 7:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Suppose we have an array = [1,2,3] and we would like to permute its elements to generate all possible permutations. In this case we want to print [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1].
-<br><br>
+Suppose we have the array [1,2,3,4] that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this?
+<br>
+<br>
+For [1,2,3,4], the ordered permutations are
+{% highlight c++ %}
+[1,2,3,4]
+[1,2,4,3]
+[1,3,2,4]
+[1,3,4,2]
+[1,4,2,3]
+[2,1,3,4]
+...
+}
+{% endhighlight %}
+
 The first thing we want to do is select a single number from the three numbers available to us. We can model this with an index that we pass to the permutation function indicating which position we're working on. In a for loop, we now loop over the numbers/selections/choices available to us (In this case, all three) and place each number in that specific cell. This is what it is going to look like:
 
 ![my photo]({{ site.url }}/assets/competitive-programming/perm1.png)

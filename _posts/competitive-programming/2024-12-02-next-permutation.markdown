@@ -5,83 +5,114 @@ date:   2024-12-02 7:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Suppose we have the array [1,2,3,4] that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this?
+Suppose we have the array $$a = [1,2,3,4]$$ that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this?
 <br>
 <br>
-For [1,2,3,4], the ordered permutations are
+If we were to generate the next one manually, then we'd want the next smallest number. That it, if 1234 is the smallest number, we'd want the next possible increment which is 1243. Therefore, we'd swap 3 and 4 to get
 {% highlight c++ %}
-[1,2,3,4]
 [1,2,4,3]
+{% endhighlight %}
+<!----------------------------------------------------->
+For the next smallest number, we know it is 1324. We know we exhausted both 1234 and 1243 so it's time to select a new number in place of 2 since. The next smallest number after 2 is 3. But since we're starting fresh with this new placement, anything after 3 needs be in an ascending order and so we get
+{% highlight c++ %}
 [1,3,2,4]
+{% endhighlight %}
+<!----------------------------------------------------->
+For the permutation following 1324, we will simply swap 4 and 2. So really as long the last pair is in an ascending order, then we can do a simple swap and be done.
+{% highlight c++ %}
 [1,3,4,2]
+{% endhighlight %}
+<!----------------------------------------------------->
+Notice now that after 3 everything is in a descending order. This means that it's time to replace the digit 3 with the next number (4). But since this is a new placement, then everything after 4 needs to be in an ascending order. The permutation then will be
+{% highlight c++ %}
 [1,4,2,3]
+{% endhighlight %}
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Finding a Pattern</b></h4>
+So in a way, our first move is always finding the right most pair such that $$a_i < a_{i+1}$$. Given the last permutation we generated, $$[1,4,2,3]$$, $$a_i = 2$$ and $$a_{i+1} = 3$$. Since it's literally the last pair in the permutation, then we'll swap 2 and 3 and be done. 
+{% highlight c++ %}
+[1,4,3,2]
+{% endhighlight %}
+<!----------------------------------------------------->
+However, now we see that $$a_i = 1$$ and $$a_{i+1} = 4$$. Swapping 1 and 4 isn't enough since it will generate 4123. What we really want is to find the smallest number that is bigger than 1. In this case we want to find 2. Swapping 1 and 2 will generate 2431. The only thing left now is to reverse the segment starting at $$i+1$$ to get
+{% highlight c++ %}
 [2,1,3,4]
-...
-}
 {% endhighlight %}
-
-The first thing we want to do is select a single number from the three numbers available to us. We can model this with an index that we pass to the permutation function indicating which position we're working on. In a for loop, we now loop over the numbers/selections/choices available to us (In this case, all three) and place each number in that specific cell. This is what it is going to look like:
-
-![my photo]({{ site.url }}/assets/competitive-programming/perm1.png)
-
-The next thing thing we want to do is from each iteration after selecting a number/choice, we want to go ahead and select the next number for the next position. In our example above, Suppose we selected 1 to be placed in position 0 (left most branch). Now we can call the function again for position 1 but before doing so, we need to mark our current selection (1) as not availble for the next call since we don't want to select 1 again for any position that comes after this one. 
-
-![my photo]({{ site.url }}/assets/competitive-programming/perm2.png)
-
-As we can see above for the next call with position 1 and choices (2,3), we loop again over the choices and place each choice in position 1. From here, we again call the function again to select the next number for the next position 2. If we focus again on the left most branch, we see that the only choice left for position 2 is 3 only.
-
-![my photo]({{ site.url }}/assets/competitive-programming/perm3.png)
-
-The code in C below implements this idea:
-
+<!----------------------------------------------------->
+Looks like we potentially have an algorithm. Let's try this again. In 2134, $$a_i = 3$$ and $$a_{i+1} = 4$$. Starting at $$i$$, 4 is the smallest number bigger than 3. This is also the last pair so swap both and we're done.
 {% highlight c++ %}
-// suppose a = [1,2,3] and sel = [0,0,0,0] (a simple map)
-void generate_numbers(int pos, int *a, int n, int *sel, int m) {
-    if (pos == n) {
-        // we could print a permutation or do anything with it
-    }
-    for (int j = 0; j < m; j++) {
-        if (!sel[j]) { // not selected yet
-            a[pos] = j;
-            sel[j] = 1;
-            generate_numbers(pos+1, a, n, sel, m);
-            sel[j] = 0; // make it available for the next iteration
-        }
-    }
-}
+[2,1,4,3]
 {% endhighlight %}
-<br>
-Another way to do this in C++ is
+<!----------------------------------------------------->
+Now we have $$a_i = 1$$ and $$a_{i+1} = 4$$. Starting at $$i$$, the smallest number bigger than $$a_i=1$$ is actually 3. So we swap 1 and 3 to get 2341. But since they were not consecutive, we will reverse the segment starting at $$i+1$$ to get
 {% highlight c++ %}
-void permute(std::vector<std::vector<int>>& solutions, std::vector<int>& nums, int index, int n) {
-    if (index == n) {
-        solutions.push_back(nums);
-    }
-    for (int i = index; i < n; i++) {
-        std::swap(nums[i], nums[index]);
-        permute(solutions, nums, index+1, n);
-        std::swap(nums[i], nums[index]);
-    }
-}
-std::vector<std::vector<int>> permute(std::vector<int>& nums) {
-    std::vector<std::vector<int>> solutions;
-    permute(solutions, nums, 0, nums.size());
-    for (auto i = 0; i < solutions.size(); i++) {
-        printf("%d %d %d\n", solutions[i][0], solutions[i][1], solutions[i][2]);
-    }
-    return solutions;
-}
+[2,3,1,4]
 {% endhighlight %}
-Of course, there is a library in the standard library which you can use to generate permutions and avoid doing things manually.
-<br>
+<!----------------------------------------------------->
+For the next permutation, we can see that $$a_i = 1$$ and $$a_{i+1} = 4$$. It's also the last pair, so we just need to swap 1 and 4 to get
 {% highlight c++ %}
-std::vector<int> s;
-    for (int i = 0; i < 10; i++) {
-        s.push_back(i); // just fill an array with numbers
-    }
-    do { // generate permutations, yay!
-        // do something
-    } while (next_permutation(s.begin(), s.end())); 
+[2,3,4,1]
 {% endhighlight %}
+<!----------------------------------------------------->
+Now we can see that $$a_i = 3$$ and $$a_{i+1} = 4$$. But searching for a smaller element larger than $$a_i$$ isn't possible as 4 is the best we can find. So we swap 3 and 4.
+{% highlight c++ %}
+[2,4,3,1]
+{% endhighlight %}
+
 <br>
+<br>
+<!------------------------------------------------------------------------------------>
+<h4><b>Putting Things Together</b></h4>
+The first step is simple. Find the most right pair such that $$a_{i} < a_{i+1}$$
+{% highlight c++ %}
+// (1) Find the right most pair such that a_i < a_i+1
+int i = -1;
+for (i = (int)a.size() - 2; i >= 0; i--) {
+	if (a[i] < a[i+1]) {
+		break;
+	}
+}
+// if i = -1, then we're at the last possible permutation
+{% endhighlight %}
+<!------------------------------------------------------------------------------------>
+The next step is looking for the smallest element larger than $$a[i]$$ starting the search at $$i+1$$. But the trick here is that we know from the first pass that anything after the pair $$a_i, a_{i+1}$$ must be in a descending order so we don't to main an extra variable to hold the current minimum. We know that as we go to the end of the array, all the numbers are in a descending order. If they were not, we would've found them when we were searching for a pair such that $$a_i < a_{i+1}$$. So we can write
+{% highlight c++ %}
+// (2) Starting at i, we want to find the smallest number larger than a[i]
+int k = -1;
+for (int j = (int)a.size() - 1; j > i; j--) {
+    if (a[j] > a[i]) {
+        k = j;
+        break;
+    }
+}
+{% endhighlight %}
+<!------------------------------------------------------------------------------------>
+The last step to just swap and reverse like we explained earlier
+{% highlight c++ %}
+// (3) Swap and reverse from i+1 to the end
+std::swap(a[i], a[k]);
+std::reverse(a.begin() + (i+1), a.end());
+{% endhighlight %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br>

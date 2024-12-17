@@ -33,5 +33,8 @@ mathjax: true
 	   <li><a href="/jekyll/update/2024/12/01/project-euler-23-non-abundant-sums.html">
         Non-Abundant Sums
        </a></li>
+	   <li><a href="/jekyll/update/2024/12/03/project-euler-24-lexicographic-permutations.html">
+        Lexicographic Permutations
+       </a></li>
    </ol>
 <br>

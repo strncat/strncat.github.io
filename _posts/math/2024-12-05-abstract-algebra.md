@@ -44,7 +44,10 @@ mathjax: true
 <h4> [2] Basic Theory of Groups </h4>
 <ol style="list-style-type:none;">
 	   <li><a href="/jekyll/update/2024/11/09/2.1-first-results.html">
-        [1.10] Groups
+        [2.1] First Results
+       </a></li>
+	   <li><a href="/jekyll/update/2024/11/10/2.2-subgroups.html">
+        [2.2] Subgroups and Cyclic Groups
        </a></li>
    </ol>
 <br>

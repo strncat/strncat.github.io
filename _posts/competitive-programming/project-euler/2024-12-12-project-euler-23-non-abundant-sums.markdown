@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Project Euler: 23 Non-Abundant Sums"
-date:   2024-12-01 01:01:36 -0700
+date:   2024-12-12 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

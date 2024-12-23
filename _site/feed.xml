@@ -1,4 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-15T20:27:52-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler</title><link href="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html" rel="alternate" type="text/html" title="Project Euler" /><published>2024-12-11T08:01:36-08:00</published><updated>2024-12-11T08:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/11/project-euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html"><![CDATA[<ol>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-22T22:45:11-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 25 1000-digit Fibonacci Number</title><link href="http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html" rel="alternate" type="text/html" title="Project Euler: 25 1000-digit Fibonacci Number" /><published>2024-12-14T00:01:36-08:00</published><updated>2024-12-14T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html"><![CDATA[<p>This was also not so bad. At least the naive way to do this? I had a method that added two arrays together and returned the number of digits in the sum.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">add_two_arrays</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">sum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">an</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// least significant digit is at index 0</span>
+    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">an</span><span class="p">,</span> <span class="n">bn</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">max</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">carry</span><span class="p">;</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">total</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">carry</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">carry</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>I then used this array to sum the first two terms of fibonacci. The first two terms were saved in the arrays f1 and f2. The result will be saved in array sum. After we’re done, we copy f2 into f1 and then copy sum into f2 and repeat for another iteration until we reach the required the number of digits.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">f1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">f2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">an</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bn</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">add_two_arrays</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="n">an</span><span class="p">,</span> <span class="n">bn</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1000</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"we are done this is index = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">f1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">f2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">f2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="n">an</span> <span class="o">=</span> <span class="n">bn</span><span class="p">;</span>
+	<span class="n">bn</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>One small optimization I can think of is to avoid copying sum into f2 and f2 into f1 and instead use pointers to these arrays to just figure out which two arrays to sum.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=25">Project Euler - 25</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This was also not so bad. At least the naive way to do this? I had a method that added two arrays together and returned the number of digits in the sum. int add_two_arrays(int *a, int *b, int *sum, int an, int bn) { // least significant digit is at index 0 int max = std::max(an, bn); int i = 0; int carry = 0; for (; i &lt; max; i++) { int total = a[i] + b[i] + carry; sum[i] = total % 10; carry = total / 10; } sum[i] = carry; if (carry == 0) { return i; } return i+1; } I then used this array to sum the first two terms of fibonacci. The first two terms were saved in the arrays f1 and f2. The result will be saved in array sum. After we’re done, we copy f2 into f1 and then copy sum into f2 and repeat for another iteration until we reach the required the number of digits. f1[0] = 1; f2[0] = 1; int an = 1, bn = 1; for (int k = 0; k &lt; 5000; k++) { int n = add_two_arrays(f1, f2, sum, an, bn); if (n == 1000) { printf("we are done this is index = %d\n", k+3); return 0; } for (int i = 0; i &lt; n; i++) { f1[i] = f2[i]; f2[i] = sum[i]; } an = bn; bn = n; } One small optimization I can think of is to avoid copying sum into f2 and f2 into f1 and instead use pointers to these arrays to just figure out which two arrays to sum. References Project Euler - 25]]></summary></entry><entry><title type="html">Project Euler: 24 Lexicographic Permutations</title><link href="http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations.html" rel="alternate" type="text/html" title="Project Euler: 24 Lexicographic Permutations" /><published>2024-12-13T00:01:36-08:00</published><updated>2024-12-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations.html"><![CDATA[<p>We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">()))</span> <span class="p">{</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+I think the point of the exercise is to implement this on our own or come up with a much faster method. I was more interested in seeing how next permutation is implemented or the idea behind it. I wrote about it <a href="https://strncat.github.io/jekyll/update/2024/12/02/next-permutation.html">here</a> and used my own implementation to solve the problem. The next step is to come up with a faster algorithm to do this!
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=24">Project Euler - 24</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows for (int i = 1; i &lt; 1000000; i++) { if (!std::next_permutation(a.begin(), a.end())) { break; } } I think the point of the exercise is to implement this on our own or come up with a much faster method. I was more interested in seeing how next permutation is implemented or the idea behind it. I wrote about it here and used my own implementation to solve the problem. The next step is to come up with a faster algorithm to do this! References Project Euler - 24]]></summary></entry><entry><title type="html">Project Euler: 23 Non-Abundant Sums</title><link href="http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html" rel="alternate" type="text/html" title="Project Euler: 23 Non-Abundant Sums" /><published>2024-12-12T00:01:36-08:00</published><updated>2024-12-12T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html"><![CDATA[<p>An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\).
+<br />
+<br />
+We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers.
+<br />
+<br />
+We want to find the sum of all numbers that can’t be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Finding If a Number is Abundant</b></h4>
+<p>We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds \(n\)</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> <span class="kt">bool</span> <span class="nf">is_abundant</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//printf("n = %d\n", n);</span>
+    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">divisors_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// it's a divisor</span>
+            <span class="n">divisors_sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// add the other divisor</span>
+                <span class="n">divisors_sum</span> <span class="o">+=</span> <span class="n">n</span><span class="o">/</span><span class="n">i</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">divisors_sum</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Finding If a Number is a Sum of Two Abundant Numbers</b></h4>
+<p>The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer \(n\) and an abundant number \(i\), we check if \(n - i\) is abundant. If \(n - i\) is abundant, then \(n\) can be a written as a sum of two abundant numbers.
+<br />
+<br />
+To implement this, we then need two lists:</p>
+<ul>
+	<li> A list of all abundant numbers below 28123.</li>
+	<li> An array of booleans to indicate whether a given number is abundant. We need this to check if \(n - i\) is abundant </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_abundant</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">abundant</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="n">abundant_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>We can now implement our idea below</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">28123</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Find if i can be expressed as a sum of two abundant numbers</span>
+    <span class="kt">bool</span> <span class="n">abundant_sum</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">abundant_numbers</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">abundant_numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">abundant</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">abundant_numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span> <span class="p">{</span>
+            <span class="n">abundant_sum</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span> <span class="c1">// exist early, this number can be written as a sum of two abundant numbers</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">abundant_sum</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>I’m a fan of adding both of these segments to keep track of the time.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">clock_t</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">time_spent</span><span class="p">;</span>
+<span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+<span class="c1">// SOLUTION</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+<span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"time spent = %f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span></code></pre></figure>
+
+<p>For this solution, the time spent was 0.032616 so well below 1 second.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=23">Project Euler - 23</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\). We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers. We want to find the sum of all numbers that can’t be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123. Finding If a Number is Abundant We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds \(n\) bool is_abundant(int n) { //printf("n = %d\n", n); int max = sqrt(n); int divisors_sum = 0; for (int i = 1; i &lt;= max; i++) { if (n % i == 0) { // it's a divisor divisors_sum += i; if (n / i != i &amp;&amp; i != 1) { // add the other divisor divisors_sum += n/i; } } } if (divisors_sum &gt; n) { return true; } return false; } Finding If a Number is a Sum of Two Abundant Numbers The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer \(n\) and an abundant number \(i\), we check if \(n - i\) is abundant. If \(n - i\) is abundant, then \(n\) can be a written as a sum of two abundant numbers. To implement this, we then need two lists: A list of all abundant numbers below 28123. An array of booleans to indicate whether a given number is abundant. We need this to check if \(n - i\) is abundant for (int i = 1; i &lt;= N; i++) { if (is_abundant(i)) { abundant[i] = true; abundant_numbers.push_back(i); } } We can now implement our idea below int sum = 0; for (int i = 1; i &lt; 28123; i++) { // Find if i can be expressed as a sum of two abundant numbers bool abundant_sum = false; for (int j = 0; j &lt; abundant_numbers.size() &amp;&amp; abundant_numbers[j] &lt; i; j++) { if (abundant[i - abundant_numbers[j]]) { abundant_sum = true; break; // exist early, this number can be written as a sum of two abundant numbers } } if (!abundant_sum) { sum += i; } }]]></summary></entry><entry><title type="html">Project Euler</title><link href="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html" rel="alternate" type="text/html" title="Project Euler" /><published>2024-12-11T08:01:36-08:00</published><updated>2024-12-11T08:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/11/project-euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html"><![CDATA[<ol>
 	   <li>Multiples of 3 or 5</li> 
 	   <li>Even Fibonacci Numbers</li>
 	   <li>Largest Prime Factor</li>
@@ -23,14 +168,17 @@
 	   <li><a href="/jekyll/update/2024/12/10/project-euler-22-names-scores.html">
         Names Scores
        </a></li>
-	   <li><a href="/jekyll/update/2024/12/01/project-euler-23-non-abundant-sums.html">
+	   <li><a href="/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html">
         Non-Abundant Sums
        </a></li>
-	   <li><a href="/jekyll/update/2024/12/03/project-euler-24-lexicographic-permutations.html">
+	   <li><a href="/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations.html">
         Lexicographic Permutations
        </a></li>
+	   <li><a href="/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html">
+        1000-digit Fibonacci Number
+       </a></li>
    </ol>
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Multiples of 3 or 5 Even Fibonacci Numbers Largest Prime Factor Largest Palindrome Product Smallest Multiple Sum Square Difference 10001st Prime Largest Product in a Series Special Pythagorean Triplet Summation of Primes Largest Product in a Grid Highly Divisible Triangular Number Large Sum Longest Collatz Sequence Lattice Paths Power Digit Sum Number Letter Counts Maximum Path Sum I Counting Sundays Factorial Digit Sum Amicable Numbers Names Scores Non-Abundant Sums Lexicographic Permutations]]></summary></entry><entry><title type="html">Project Euler: 22 Names Scores</title><link href="http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores.html" rel="alternate" type="text/html" title="Project Euler: 22 Names Scores" /><published>2024-12-10T00:01:36-08:00</published><updated>2024-12-10T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores.html"><![CDATA[<p>This was pretty straightforward. The first thing that I wanted to do is to point my input stream at the file we’re given. So just the following line.</p>
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Multiples of 3 or 5 Even Fibonacci Numbers Largest Prime Factor Largest Palindrome Product Smallest Multiple Sum Square Difference 10001st Prime Largest Product in a Series Special Pythagorean Triplet Summation of Primes Largest Product in a Grid Highly Divisible Triangular Number Large Sum Longest Collatz Sequence Lattice Paths Power Digit Sum Number Letter Counts Maximum Path Sum I Counting Sundays Factorial Digit Sum Amicable Numbers Names Scores Non-Abundant Sums Lexicographic Permutations 1000-digit Fibonacci Number]]></summary></entry><entry><title type="html">Project Euler: 22 Names Scores</title><link href="http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores.html" rel="alternate" type="text/html" title="Project Euler: 22 Names Scores" /><published>2024-12-10T00:01:36-08:00</published><updated>2024-12-10T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores.html"><![CDATA[<p>This was pretty straightforward. The first thing that I wanted to do is to point my input stream at the file we’re given. So just the following line.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
 <span class="n">freopen</span><span class="p">(</span><span class="s">"0022_names.txt"</span> <span class="p">,</span> <span class="s">"r"</span> <span class="p">,</span> <span class="n">stdin</span><span class="p">);</span></code></pre></figure>
@@ -120,27 +268,13 @@
 <h4> [2] Basic Theory of Groups </h4>
 <ol style="list-style-type:none;">
 	   <li><a href="/jekyll/update/2024/11/09/2.1-first-results.html">
-        [1.10] Groups
+        [2.1] First Results
+       </a></li>
+	   <li><a href="/jekyll/update/2024/11/10/2.2-subgroups.html">
+        [2.2] Subgroups and Cyclic Groups
        </a></li>
    </ol>
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[[1] Algebraic Themes [1.6] Z (1.6.1 - 1.6.2) [1.6] Prime Numbers (1.6.4 - 1.6.7) [1.6] Greatest Common Divisor (1.6.8 - 1.6.13) [1.6] Relatively Prime Integers (1.6.14 - 1.6.21) [1.6] Greatest Common Divisor of Many Integers (1.6.22 - 1.6.25) [1.7] Modular Arithmetic [1.8] Polynomials [1.9] Counting [1.10] Groups [1.9] Rings and Fields [2] Basic Theory of Groups [1.10] Groups]]></summary></entry><entry><title type="html">Project Euler: 24 Lexicographic Permutations</title><link href="http://localhost:4000/jekyll/update/2024/12/03/project-euler-24-lexicographic-permutations.html" rel="alternate" type="text/html" title="Project Euler: 24 Lexicographic Permutations" /><published>2024-12-03T00:01:36-08:00</published><updated>2024-12-03T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/03/project-euler-24-lexicographic-permutations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/03/project-euler-24-lexicographic-permutations.html"><![CDATA[<p>We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> <span class="kt">bool</span> <span class="nf">is_abundant</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">()))</span> <span class="p">{</span>
-		<span class="k">break</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">};</span></code></pre></figure>
-
-<p><br />
-I think the point of the exercise is to implement or understand how you generate the next permutation yourself. I wrote about this in <a href="https://strncat.github.io/jekyll/update/2024/12/02/next-permutation.html">here</a>.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=23">Project Euler - 23</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows bool is_abundant(int n) { for (int i = 1; i &lt; 1000000; i++) { if (!std::next_permutation(a.begin(), a.end())) { break; } }; I think the point of the exercise is to implement or understand how you generate the next permutation yourself. I wrote about this in here. References Project Euler - 23]]></summary></entry><entry><title type="html">Generating the Next Permutation Lexicographically</title><link href="http://localhost:4000/jekyll/update/2024/12/02/next-permutation.html" rel="alternate" type="text/html" title="Generating the Next Permutation Lexicographically" /><published>2024-12-02T06:01:36-08:00</published><updated>2024-12-02T06:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/02/next-permutation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/02/next-permutation.html"><![CDATA[<p>Suppose we have the array \(a = [1,2,3,4]\) that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this?
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[[1] Algebraic Themes [1.6] Z (1.6.1 - 1.6.2) [1.6] Prime Numbers (1.6.4 - 1.6.7) [1.6] Greatest Common Divisor (1.6.8 - 1.6.13) [1.6] Relatively Prime Integers (1.6.14 - 1.6.21) [1.6] Greatest Common Divisor of Many Integers (1.6.22 - 1.6.25) [1.7] Modular Arithmetic [1.8] Polynomials [1.9] Counting [1.10] Groups [1.9] Rings and Fields [2] Basic Theory of Groups [2.1] First Results [2.2] Subgroups and Cyclic Groups]]></summary></entry><entry><title type="html">Generating the Next Permutation Lexicographically</title><link href="http://localhost:4000/jekyll/update/2024/12/02/next-permutation.html" rel="alternate" type="text/html" title="Generating the Next Permutation Lexicographically" /><published>2024-12-02T06:01:36-08:00</published><updated>2024-12-02T06:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/02/next-permutation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/02/next-permutation.html"><![CDATA[<p>Suppose we have the array \(a = [1,2,3,4]\) that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this?
 <br />
 <br />
 If we were to generate the next one manually, then we’d want the next smallest number. That it, if 1234 is the smallest number, we’d want the next possible increment which is 1243. Therefore, we’d swap 3 and 4 to get</p>
@@ -228,91 +362,61 @@ If we were to generate the next one manually, then we’d want the next smallest
 <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
 <span class="n">std</span><span class="o">::</span><span class="n">reverse</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span></code></pre></figure>
 
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Suppose we have the array \(a = [1,2,3,4]\) that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this? If we were to generate the next one manually, then we’d want the next smallest number. That it, if 1234 is the smallest number, we’d want the next possible increment which is 1243. Therefore, we’d swap 3 and 4 to get [1,2,4,3] For the next smallest number, we know it is 1324. We know we exhausted both 1234 and 1243 so it’s time to select a new number in place of 2 since. The next smallest number after 2 is 3. But since we’re starting fresh with this new placement, anything after 3 needs be in an ascending order and so we get [1,3,2,4] For the permutation following 1324, we will simply swap 4 and 2. So really as long the last pair is in an ascending order, then we can do a simple swap and be done. [1,3,4,2] Notice now that after 3 everything is in a descending order. This means that it’s time to replace the digit 3 with the next number (4). But since this is a new placement, then everything after 4 needs to be in an ascending order. The permutation then will be [1,4,2,3] Finding a Pattern So in a way, our first move is always finding the right most pair such that \(a_i &lt; a_{i+1}\). Given the last permutation we generated, \([1,4,2,3]\), \(a_i = 2\) and \(a_{i+1} = 3\). Since it’s literally the last pair in the permutation, then we’ll swap 2 and 3 and be done. [1,4,3,2] However, now we see that \(a_i = 1\) and \(a_{i+1} = 4\). Swapping 1 and 4 isn’t enough since it will generate 4123. What we really want is to find the smallest number that is bigger than 1. In this case we want to find 2. Swapping 1 and 2 will generate 2431. The only thing left now is to reverse the segment starting at \(i+1\) to get [2,1,3,4] Looks like we potentially have an algorithm. Let’s try this again. In 2134, \(a_i = 3\) and \(a_{i+1} = 4\). Starting at \(i\), 4 is the smallest number bigger than 3. This is also the last pair so swap both and we’re done. [2,1,4,3] Now we have \(a_i = 1\) and \(a_{i+1} = 4\). Starting at \(i\), the smallest number bigger than \(a_i=1\) is actually 3. So we swap 1 and 3 to get 2341. But since they were not consecutive, we will reverse the segment starting at \(i+1\) to get [2,3,1,4] For the next permutation, we can see that \(a_i = 1\) and \(a_{i+1} = 4\). It’s also the last pair, so we just need to swap 1 and 4 to get [2,3,4,1] Now we can see that \(a_i = 3\) and \(a_{i+1} = 4\). But searching for a smaller element larger than \(a_i\) isn’t possible as 4 is the best we can find. So we swap 3 and 4. [2,4,3,1]]]></summary></entry><entry><title type="html">Project Euler: 23 Non-Abundant Sums</title><link href="http://localhost:4000/jekyll/update/2024/12/01/project-euler-23-non-abundant-sums.html" rel="alternate" type="text/html" title="Project Euler: 23 Non-Abundant Sums" /><published>2024-12-01T00:01:36-08:00</published><updated>2024-12-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/01/project-euler-23-non-abundant-sums</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/01/project-euler-23-non-abundant-sums.html"><![CDATA[<p>An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\).
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Suppose we have the array \(a = [1,2,3,4]\) that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this? If we were to generate the next one manually, then we’d want the next smallest number. That it, if 1234 is the smallest number, we’d want the next possible increment which is 1243. Therefore, we’d swap 3 and 4 to get [1,2,4,3] For the next smallest number, we know it is 1324. We know we exhausted both 1234 and 1243 so it’s time to select a new number in place of 2 since. The next smallest number after 2 is 3. But since we’re starting fresh with this new placement, anything after 3 needs be in an ascending order and so we get [1,3,2,4] For the permutation following 1324, we will simply swap 4 and 2. So really as long the last pair is in an ascending order, then we can do a simple swap and be done. [1,3,4,2] Notice now that after 3 everything is in a descending order. This means that it’s time to replace the digit 3 with the next number (4). But since this is a new placement, then everything after 4 needs to be in an ascending order. The permutation then will be [1,4,2,3] Finding a Pattern So in a way, our first move is always finding the right most pair such that \(a_i &lt; a_{i+1}\). Given the last permutation we generated, \([1,4,2,3]\), \(a_i = 2\) and \(a_{i+1} = 3\). Since it’s literally the last pair in the permutation, then we’ll swap 2 and 3 and be done. [1,4,3,2] However, now we see that \(a_i = 1\) and \(a_{i+1} = 4\). Swapping 1 and 4 isn’t enough since it will generate 4123. What we really want is to find the smallest number that is bigger than 1. In this case we want to find 2. Swapping 1 and 2 will generate 2431. The only thing left now is to reverse the segment starting at \(i+1\) to get [2,1,3,4] Looks like we potentially have an algorithm. Let’s try this again. In 2134, \(a_i = 3\) and \(a_{i+1} = 4\). Starting at \(i\), 4 is the smallest number bigger than 3. This is also the last pair so swap both and we’re done. [2,1,4,3] Now we have \(a_i = 1\) and \(a_{i+1} = 4\). Starting at \(i\), the smallest number bigger than \(a_i=1\) is actually 3. So we swap 1 and 3 to get 2341. But since they were not consecutive, we will reverse the segment starting at \(i+1\) to get [2,3,1,4] For the next permutation, we can see that \(a_i = 1\) and \(a_{i+1} = 4\). It’s also the last pair, so we just need to swap 1 and 4 to get [2,3,4,1] Now we can see that \(a_i = 3\) and \(a_{i+1} = 4\). But searching for a smaller element larger than \(a_i\) isn’t possible as 4 is the best we can find. So we swap 3 and 4. [2,4,3,1]]]></summary></entry><entry><title type="html">[2.2] Subgroup and Cyclic Groups</title><link href="http://localhost:4000/jekyll/update/2024/11/10/2.2-subgroups.html" rel="alternate" type="text/html" title="[2.2] Subgroup and Cyclic Groups" /><published>2024-11-10T03:01:36-05:00</published><updated>2024-11-10T03:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/11/10/2.2-subgroups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/10/2.2-subgroups.html"><![CDATA[<div class="mintheaderdiv">
+Definition 2.2.1
+</div>
+<div class="mintbodydiv">
+A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\).
+</div>
+<p><br />
+The necessary conditions for a subset (H) of (G) to be a subgroup of (G) are:</p>
+<ol>
+	<li>Closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\)</li>
+	<li>Closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\)</li>
+</ol>
+<p>By \((2)\) we know for any \(h \in H\), \(h^{-1} \in H\) and by (1), we know that \(hh^{-1}=e \in H\). So the identity element is in \(H\). Associativity is inherited from \(GG\). From this we see that these two conditions are sufficient for \(H\) to be a subgroup of \(G\). Sometimes, it is easier to prove that a set is a subgroup rather than proving that it is a group since we only need to check these two conditions.
 <br />
 <br />
-We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers.
+<!------------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.2.8 (Uniqueness of the identity)
+</div>
+<div class="peachbodydiv">
+Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then \(H_1 \cap H_2 \cap ... \cap H_n \) is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup.
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+TODO
 <br />
 <br />
-We want to find the sum of all numbers that can’t be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Finding If a Number is Abundant</b></h4>
-<p>We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds \(n\)</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> <span class="kt">bool</span> <span class="nf">is_abundant</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//printf("n = %d\n", n);</span>
-    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">divisors_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// it's a divisor</span>
-            <span class="n">divisors_sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// add the other divisor</span>
-                <span class="n">divisors_sum</span> <span class="o">+=</span> <span class="n">n</span><span class="o">/</span><span class="n">i</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">divisors_sum</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
+<!------------------------------------------------------------------------------></p>
 
 <p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Finding If a Number is a Sum of Two Abundant Numbers</b></h4>
-<p>The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer \(n\) and an abundant number \(i\), we check if \(n - i\) is abundant. If \(n - i\) is abundant, then \(n\) can be a written as a sum of two abundant numbers.
-<br />
-<br />
-To implement this, we then need two lists:</p>
-<ul>
-	<li> A list of all abundant numbers below 28123.</li>
-	<li> An array of booleans to indicate whether a given number is abundant. We need this to check if \(n - i\) is abundant </li>
-</ul>
+<br /></p>
+<hr />
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">is_abundant</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">abundant</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="n">abundant_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>We can now implement our idea below</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">28123</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Find if i can be expressed as a sum of two abundant numbers</span>
-    <span class="kt">bool</span> <span class="n">abundant_sum</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">abundant_numbers</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">abundant_numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">abundant</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">abundant_numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span> <span class="p">{</span>
-            <span class="n">abundant_sum</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-            <span class="k">break</span><span class="p">;</span> <span class="c1">// exist early, this number can be written as a sum of two abundant numbers</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">abundant_sum</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>I’m a fan of adding both of these segments to keep track of the time.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">clock_t</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
-<span class="kt">double</span> <span class="n">time_spent</span><span class="p">;</span>
-<span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-<span class="c1">// SOLUTION</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-<span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"time spent = %f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span></code></pre></figure>
-
-<p>For this solution, the time spent was 0.032616 so well below 1 second.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
+<p><br />
+<!------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=23">Project Euler - 23</a>
+<ul>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.2.1 A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\). The necessary conditions for a subset (H) of (G) to be a subgroup of (G) are: Closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\) Closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\) By \((2)\) we know for any \(h \in H\), \(h^{-1} \in H\) and by (1), we know that \(hh^{-1}=e \in H\). So the identity element is in \(H\). Associativity is inherited from \(GG\). From this we see that these two conditions are sufficient for \(H\) to be a subgroup of \(G\). Sometimes, it is easier to prove that a set is a subgroup rather than proving that it is a group since we only need to check these two conditions. Proposition 2.2.8 (Uniqueness of the identity) Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then \(H_1 \cap H_2 \cap ... \cap H_n \) is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup. Proof TODO]]></summary></entry><entry><title type="html">[2.1] Group Theory: First Results</title><link href="http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results.html" rel="alternate" type="text/html" title="[2.1] Group Theory: First Results" /><published>2024-11-09T00:01:36-08:00</published><updated>2024-11-09T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results.html"><![CDATA[<p>To review, we have the definition of a group again as follows</p>
+<div class="mintheaderdiv">
+Definition 1.10.1
+</div>
+<div class="mintbodydiv">
+A group is a (nonempty) set \(G\) with a product satisfying the following properties:
+<ol type="a">
+	<li>The group is closed under the operation. </li>
+	<li>The product is associative. For all \(a, b, c \in G\), we have \((ab)c = a(bc)\).</li>
+	<li>There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\).</li>
+	<li>For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse).</li>
+</ol>
+</div>
+<p><br />
+Followed by initial results about groups
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\). We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers. We want to find the sum of all numbers that can’t be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123. Finding If a Number is Abundant We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds \(n\) bool is_abundant(int n) { //printf("n = %d\n", n); int max = sqrt(n); int divisors_sum = 0; for (int i = 1; i &lt;= max; i++) { if (n % i == 0) { // it's a divisor divisors_sum += i; if (n / i != i &amp;&amp; i != 1) { // add the other divisor divisors_sum += n/i; } } } if (divisors_sum &gt; n) { return true; } return false; } Finding If a Number is a Sum of Two Abundant Numbers The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer \(n\) and an abundant number \(i\), we check if \(n - i\) is abundant. If \(n - i\) is abundant, then \(n\) can be a written as a sum of two abundant numbers. To implement this, we then need two lists: A list of all abundant numbers below 28123. An array of booleans to indicate whether a given number is abundant. We need this to check if \(n - i\) is abundant for (int i = 1; i &lt;= N; i++) { if (is_abundant(i)) { abundant[i] = true; abundant_numbers.push_back(i); } } We can now implement our idea below int sum = 0; for (int i = 1; i &lt; 28123; i++) { // Find if i can be expressed as a sum of two abundant numbers bool abundant_sum = false; for (int j = 0; j &lt; abundant_numbers.size() &amp;&amp; abundant_numbers[j] &lt; i; j++) { if (abundant[i - abundant_numbers[j]]) { abundant_sum = true; break; // exist early, this number can be written as a sum of two abundant numbers } } if (!abundant_sum) { sum += i; } }]]></summary></entry><entry><title type="html">[2.1] Group Theory: First Results</title><link href="http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results.html" rel="alternate" type="text/html" title="[2.1] Group Theory: First Results" /><published>2024-11-09T00:01:36-08:00</published><updated>2024-11-09T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results.html"><![CDATA[<p>Going back to studying 
 <!------------------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
 Proposition 2.1.1 (Uniqueness of the identity)
@@ -322,9 +426,9 @@ Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in 
 </div>
 <p><br />
 <b>Proof</b>
-<br /></p>
-
-<p><br />
+<br />
+Since \(e\) is an identity element, then \(e'e = e'\) and since \(e'\) is an identity element \(ee' = e\). Therefore, \(e = e'\). \(\ \blacksquare\)
+<br />
 <br />
 <!------------------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
@@ -335,8 +439,23 @@ Let \(G\) be a group and let \(h, g \in G\). If \(hg = e\), then \(h = g^{-1}\).
 </div>
 <p><br />
 <b>Proof</b>
-<br /></p>
-
+<br />
+Suppose \(hg = e\), then</p>
+<div>
+	$$
+	\begin{align*}
+	 h = h(gg^{-1}) = (hg)g^{-1}= eg^{-1} = g^{-1}.
+	\end{align*}
+	$$
+</div>
+<p>Suppose now that \(gh = e\), then</p>
+<div>
+	$$
+	\begin{align*}
+	 g = g(hh^{-1}) = (gh)h^{-1} = eh^{-1} = h^{-1}. \ \blacksquare
+	\end{align*}
+	$$
+</div>
 <p><br />
 <br /></p>
 
@@ -349,6 +468,8 @@ Let \(g\) be an element of a group \(G\). We have \(g = (g^{-1})^{-1}\)
 </div>
 <p><br />
 <b>Proof</b>
+<br />
+We know \(gg^{-1} = e\). By (2.1.2) \(g = (g^{-1})^{-1}\). \(\ \blacksquare\)
 <br /></p>
 
 <p><br />
@@ -363,9 +484,9 @@ Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{
 </div>
 <p><br />
 <b>Proof</b>
-<br /></p>
-
-<p><br />
+<br />
+Notice that \((ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e\). Therefore, \((ab)^{-1} = b^{-1}a^{-1}\).
+<br />
 <br /></p>
 
 <!------------------------------------------------------------------------------>
@@ -373,13 +494,31 @@ Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{
 Proposition 2.1.5
 </div>
 <div class="peachbodydiv">
-Let \(G\) be a group and \(a \in G\). The map \(L_a: G \rightarrow G\) defined by \(L_a(x) = ax\) is a bijection. Similarly, the map \(R_a: G \rightarrow G\) defined by \(R_a(x) = xa\) is a bijection.
+Let \(G\) be a group and \(a \in G\). <br />
+The map \(L_a: G \rightarrow G\) defined by \(L_a(x) = ax\) is a bijection. Similarly, <br />
+the map \(R_a: G \rightarrow G\) defined by \(R_a(x) = xa\) is a bijection.
 </div>
 <p><br />
 <b>Proof</b>
-<br /></p>
-
-<p><br />
+<br />
+To show that the map \(L_a\) is a bijection, we need to show that \(L_a\) is both one to one and onto or equivalently that \(L_a\) has an inverse. We claim that the left multiplication by \(a^{-1}\) or \(L_{a^{-1}}\) is the inverse of \(L_a\). To see that,</p>
+<div>
+	$$
+	\begin{align*}
+	L_{a^{-1}}(L_a(x)) = a^{-1}(ax) = (a^{-1}a)x = ex = x.
+	\end{align*}
+	$$
+</div>
+<p>Similarly,</p>
+<div>
+	$$
+	\begin{align*}
+	L_a(L_{a^{-1}}(x)) = a(a^{-1}x) = (aa^{-1})x = ex = x.
+	\end{align*}
+	$$
+</div>
+<p>So \(L_{a^{-1}}\) and \(L_a\) are inverse maps so both are bijective. \(\ \blacksquare\)
+<br />
 <br /></p>
 
 <!------------------------------------------------------------------------------>
@@ -391,9 +530,9 @@ Let \(G\) be a group and let \(a\) and \(b\) be elements of \(G\). The equation 
 </div>
 <p><br />
 <b>Proof</b>
-<br /></p>
-
-<p><br />
+<br />
+For \(ax = b\) to have a solution. The map \(L_a\) needs to be onto or surjective. For the solution to be unique, the map needs to be one to one or injective. Similarly for \(xa = b\) to have a solution, we want \(R_a\) to be a bijective. Since we proved earlier that \(L_a\) and \(R_a\) are bijections, then both equations have unique solutions. \(\ \blacksquare\)
+<br />
 <br /></p>
 
 <!------------------------------------------------------------------------------>
@@ -405,9 +544,9 @@ Suppose \(a, x, y\) are elements of a group \(G\). If \(ax = ay\), then \(x = y\
 </div>
 <p><br />
 <b>Proof</b>
-<br /></p>
-
-<p><br />
+<br />
+Suppose \(ax = ay\). We know that \(L_a = ax\) is one to one. So for any elements \(x, y \in G\), \(ax = ay\) must imply that \(x = y\) by definition of a one to one or injective map. A similar arguments shows that if \(xa = ya\) must imply that \(x = y\) by the injectivity of \(R_a\). \(\ \blacksquare\)
+<br />
 <br /></p>
 
 <!------------------------------------------------------------------------------>
@@ -419,9 +558,9 @@ If \(G\) is a finite group, each row and each column of the multiplication table
 </div>
 <p><br />
 <b>Proof</b>
-<br /></p>
-
-<p><br />
+<br />
+A row in the multiplication table can be represented by a left multiplication map \(G \rightarrow G\) if you fix the element multiplied on the left. We know the left multiplication map is a bijective. Therefore every element/result must be unique and each element of \(G\) must show up in the row. Similarly, each column can be represented by a right multiplication map. The map is a bijective and so each element must be unique and shown exactly once. (TODO clean up this proof)
+<br />
 <br /></p>
 
 <!------------------------------------------------------------------------------>
@@ -431,10 +570,6 @@ Definition 2.1.10
 <div class="mintbodydiv">
 The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
 </div>
-<p><br />
-<b>Proof</b>
-<br /></p>
-
 <p><br />
 <br /></p>
 
@@ -446,10 +581,6 @@ Definition 2.1.13
 We say two groups \(G\) and \(H\) are isomorphic if there is a bijection \(\phi: G \rightarrow H\) such that for all \(g_1, g_2 \in G, \phi(g_1g_2) = \phi(g_1)\phi(g_2)\). The map \(\phi\) is called an isomorphism.
 </div>
 <p><br />
-<b>Proof</b>
-<br /></p>
-
-<p><br />
 <br /></p>
 
 <!------------------------------------------------------------------------------>
@@ -459,10 +590,6 @@ Definition 2.1.14
 <div class="mintbodydiv">
 A group \(G\) is called abelian (or commutative) if for all elements \(a, b \in G\), the products in the two orders are equal \(ab = ba\).
 </div>
-<p><br />
-<b>Proof</b>
-<br /></p>
-
 <p><br />
 <br /></p>
 
@@ -482,13 +609,21 @@ Proposition 2.1.17
 </ol>
 </div>
 <p><br />
+Up to isomorphism just means that that two objects will be considered the same if they are isomorphic. We don’t care here about the exact structure of the group. We just want to classify groups into distinct non-isomorphic groups. For example, for statement (c), This means groups of order 3 are all isomorphic to \(\mathbf{Z_3}\) while statement (d) implies that we have two distinct groups of order 4. 
+<br />
+<br />
 <b>Proof</b>
+<br />
+TODO
+<br />
 <br /></p>
+<hr />
 
 <p><br />
-<br /></p>
-
+<br />
 <!------------------------------------------------------------------------------>
+Again two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
+<br /></p>
 <div class="peachheaderdiv">
 Proposition 2.1.18
 </div>
@@ -497,26 +632,102 @@ If \(\phi : G \rightarrow H\) is an isomorphism, then \(\phi(e_G) = e_H\), and f
 </div>
 <p><br />
 <b>Proof</b>
+<br />
+Since \(\phi\) is an isomorphism, then we know that for each \(h \in H\), there is a \(g \in G\) such that \(\phi(g) = h\). Therefore,</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(e_G)h &amp;= \phi(e_G)\phi(g) \\
+	           &amp;= \phi(e_Gg) \quad \text{$\phi$ is an isomorphism}\\
+			   &amp;= \phi(g) \\
+			   &amp;= h \\
+	\end{align*}
+	$$
+</div>
+<p>So \(\phi(e_G)\) is an identity element. But since the identity element is unique, then \(\phi(e_G) = \phi(e_H)\).
+<br />
+<br />
+To show that \(\phi(g^{-1}) = \phi(g)^{-1}\), see that</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(g^{-1})\phi(g) &amp;= \phi(g^{-1}g) \quad \text{$\phi$ is an isomorphism} \\
+	        &amp;= \phi(e_G) \\
+			&amp;= e_H \quad \text{by the previous result} 	
+	\end{align*}
+	$$
+</div>
+<p>So \(\phi(g)\) is the inverse of \(\phi(g^{-1})\) or in other words \(\phi(g)^{-1} = \phi(g^{-1})\) as we wanted to show. \(\ \blacksquare\)
+<br />
 <br /></p>
+<hr />
 
-<p><br />
-<br /></p>
+<p><br /></p>
 
-<!------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------->
+<h4><b>The General Associative Law</b></h4>
+<p>We know by definition that the product is associative so for all \(a, b, c \in G\), we have \((ab)c = a(bc)\). What about the product of 4 or more elements? is it associative? For example, there are five ways to group four elements</p>
+<div>
+	$$
+	\begin{align*}
+	a(b(cd)), a((bc)d), (ab)(cd), (a(bc))d, ((ab)c)d
+	\end{align*}
+	$$
+</div>
+<p>\(a(b(cd))\) and \(((ab)c)d\) follow from the definition. For the rest, see that</p>
+<div>
+	$$
+	\begin{align*}
+	a(bcd) = a(b(cd)) = (ab)(cd) = ((ab)c)d = (abc)d
+	\end{align*}
+	$$
+</div>
+<p>In general this works for any number of elements. This is formally presented in the next proposition.
+<br />
+<!-------------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
-Proposition 2.1.19
+Proposition 2.1.19 (General associative law)
 </div>
 <div class="peachbodydiv">
-If \(\phi : G \rightarrow H\) is an isomorphism, then \(\phi(e_G) = e_H\), and for each \(g \in G\), \(\phi(g^{-1}) = \phi(g)^{-1}\)
+Let \(M\) be a set with an associative operation, \(M \times M \rightarrow M\), denoted by juxtaposition. For every \(n \geq 1\), there is a unique product \(M^n \rightarrow M\),
+	$$
+	\begin{align*}
+	(a_1, a_2,...,a_n) \rightarrow a_1a_2...a_n,
+	\end{align*}
+	$$
+such that
+<ol type="a">
+	<li> The product of one element is that element \((a) = a\).</li>
+	<li> The product of two elements agrees with the given operation \((ab) = ab\).</li>
+	<li>For all \(n \geq 2\), for all \(a_1,...,a_n \in M\), and for all \(1 \leq k \leq n-1\), 
+		$$
+		\begin{align*}
+		a_1a_2...a_n = (a_1...a_k)(a_{k-1}...a_n)
+		\end{align*}
+		$$
+	</li>
+</ol>
 </div>
 <p><br />
 <b>Proof</b>
-<br /></p>
+<br />
+By induction on \(n\). <br />
+Base Case: For \(n \leq 3\), property \((c)\) holds by definition.
+<br />
+Inductive Case: Suppose this is true for all \(1 \leq r \leq n\) where a unique product of \(r\) elements satisfies the properties \((a)-(c)\) above. Suppose now that we have \(n\) elements. Fix elements \(a_1, ...,a_n \in M\). By the inductive hypothesis, the \(n-1\) products</p>
+<div>
+	$$
+	\begin{align*}
+	p_k = (a_1...a_k)(a_{k+1}...a_n),
+	\end{align*}
+	$$
+</div>
+<p>are defined since we have at most \(n-1\) elements.</p>
+
+<p><br /></p>
 
 <p><br />
-<br /></p>
-
-<p><br />
+<br />
 <br /></p>
 <hr />
 
@@ -525,7 +736,7 @@ If \(\phi : G \rightarrow H\) is an isomorphism, then \(\phi(e_G) = e_H\), and f
 <h4><b>References</b></h4>
 <ul>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Going back to studying Proposition 2.1.1 (Uniqueness of the identity) Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\). Proof]]></summary></entry><entry><title type="html">[1.10] Groups</title><link href="http://localhost:4000/jekyll/update/2024/11/08/1.10-groups.html" rel="alternate" type="text/html" title="[1.10] Groups" /><published>2024-11-08T00:01:36-08:00</published><updated>2024-11-08T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/11/08/1.10-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/08/1.10-groups.html"><![CDATA[<p>An operation or product on a set \(G\) is a function from \(G \times G\) to \(G\). This set \(G\) with the operation is a group. More formally,
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[To review, we have the definition of a group again as follows Definition 1.10.1 A group is a (nonempty) set \(G\) with a product satisfying the following properties: The group is closed under the operation. The product is associative. For all \(a, b, c \in G\), we have \((ab)c = a(bc)\). There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\). For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse). Followed by initial results about groups Proposition 2.1.1 (Uniqueness of the identity) Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\). Proof Since \(e\) is an identity element, then \(e'e = e'\) and since \(e'\) is an identity element \(ee' = e\). Therefore, \(e = e'\). \(\ \blacksquare\) Proposition 2.1.2 (Uniqueness of inverses) Let \(G\) be a group and let \(h, g \in G\). If \(hg = e\), then \(h = g^{-1}\). Likewise, if \(gh = e\), then \(h = g^{-1}\). Proof Suppose \(hg = e\), then $$ \begin{align*} h = h(gg^{-1}) = (hg)g^{-1}= eg^{-1} = g^{-1}. \end{align*} $$ Suppose now that \(gh = e\), then $$ \begin{align*} g = g(hh^{-1}) = (gh)h^{-1} = eh^{-1} = h^{-1}. \ \blacksquare \end{align*} $$]]></summary></entry><entry><title type="html">[1.10] Groups</title><link href="http://localhost:4000/jekyll/update/2024/11/08/1.10-groups.html" rel="alternate" type="text/html" title="[1.10] Groups" /><published>2024-11-08T00:01:36-08:00</published><updated>2024-11-08T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/11/08/1.10-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/08/1.10-groups.html"><![CDATA[<p>An operation or product on a set \(G\) is a function from \(G \times G\) to \(G\). This set \(G\) with the operation is a group. More formally,
 <!------------------------------------------------------------------------------></p>
 <div class="mintheaderdiv">
 Definition 1.10.1
@@ -557,190 +768,4 @@ So If we have a set of objects with an operation such that the rules above are s
 <h4><b>References</b></h4>
 <ul>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[An operation or product on a set \(G\) is a function from \(G \times G\) to \(G\). This set \(G\) with the operation is a group. More formally, Definition 1.10.1 A group is a (nonempty) set \(G\) with a product satisfying the following properties: The group is closed under the operation. The product is associative. For all \(a, b, c \in G\), we have (ab)c = a(bc). There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\). For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse). So If we have a set of objects with an operation such that the rules above are satisfied and most importantly when you apply th then this set along with the operation is a group. What are some examples of groups? \(\mathbf{Z}\) with the addition operation. The set of invertible \(n \times n\) matrices with entries in \(\mathbf{R}\) with matrix multiplication as the product. For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\). See more visual examples in this video References Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">[1.7] Modular Arithmetic</title><link href="http://localhost:4000/jekyll/update/2024/11/07/1.7-modular-arthmetic.html" rel="alternate" type="text/html" title="[1.7] Modular Arithmetic" /><published>2024-11-07T00:01:36-08:00</published><updated>2024-11-07T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/11/07/1.7-modular-arthmetic</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/07/1.7-modular-arthmetic.html"><![CDATA[<p>Suppose we have a natural number \(n\), then \((i \mod n)\) is the remainder after dividing \(n\) by \(i\). For example \((1 \mod 7) = (8 \mod 7) = (15 \mod 7) = 1\) and \((7 \mod 7) = 0\). From this we observe that for two numbers \(a\) and \(b\) to leave the same remainder, they need to be \(n\) numbers apart on the numbers line or in other words, \(|a - b|\) is a multiple of \(n\). Formally,
-<!------------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition 1.7.1
-</div>
-<div class="mintbodydiv">
-Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write \(a \equiv b \mod n\) if \(a - b\) is divisible by \(n\).
-</div>
-<p><br />
-This relation \(a \equiv b \mod n\) has the following properties:
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma 1.7.2
-</div>
-<div class="yellowbodydiv">
-<ol type="a">
-	<li>For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\).</li>
-	<li>For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\).</li>
-	<li>For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\).</li>
-</ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-For \((a)\), \(a - a = 0\) is divisible by \(n\). For \((b)\), if \(a - b\) is divisible by \(n\), then \(b - a\) is also divisible by \(n\) and vice versa. For \((c)\), if \(a - b\) is divisible by \(n\) and \(b - c\) is divisible by \(4n\), then \((a - b) + (b - c) = a - c\) is also divisible by \(n\). \(\ \blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-For each integer \(a\), write
-$$
-\begin{align*}
-[a] &amp;= \{b \in \mathbf{Z} \ | \ a \equiv b \mod n\} \\
-    &amp;= \{ a + kn \ | \ k \in \mathbf{Z} \}
-\end{align*}
-$$
-The set \(a\) is called the residue class or congruence class of \(a\) modulo \(n\). <br />
-Also let \(rem_n(a)\) be the unique number \(r\) such that \(0 \leq r &lt; n\) and \(a - r\) is divisible by \(n\).  So it is the unique element of \([a]\) that lies in the interval \( \{0,1,...,n-1\} \).
-</div>
-<p><br />
-<!------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma 1.7.3
-</div>
-<div class="yellowbodydiv">
-For \(a, b \in \mathbf{Z}\), the following are equivalent:
-<ol type="a">
-	<li>\(a \equiv b \mod n\).</li>
-	<li>\([a] = [b]\).</li>
-	<li>\(\text{rem}_n(a) = \text{rem}_n(b)\).</li>
-	<li>\([a] \cap [b] \neq \emptyset\).</li>
-</ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-\((a) \implies (b)\):
-<br />
-Suppose \(a \equiv b \mod n\). We want to show that \([a] = [b]\) by showing that \([a] \subseteq [b]\) and \([b] \subseteq [a]\). For any \(c \in \mathbf{Z}\), we know that if \(c \equiv a \mod n\), then \(c \equiv b \mod n\) by Lemma 1.7.2 (c). Therefore \([a] \subseteq [b]\). Similarly, if \(c \equiv b \mod n\), then \(c \equiv a \mod n\) and so \([a] = [b]\) as required.
-<br />
-<br />
-\((b) \implies (c)\):
-<br />
-By definition, \(\text{rem}_n(x)\) is the unique element of \([x]\) that lies inside \(\{0,1,...,n-1\}\). So if \([a]=[b]\), then it must be the same element.
-<br />
-<br />
-\((c) \implies (d)\):
-<br />
-\((d)\) is an immediate application of \((c)\)
-<br />
-<br />
-\((d) \implies (a)\):
-Suppose that \([a] \cap [b] \neq \emptyset\). Let \(c \in [a] \cap [b]\). Then \(a \equiv c \mod n\) and \(b \equiv c \mod n\). But this implies that \(a \equiv b \mod n\). \(\ \blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Corollary 1.7.4
-</div>
-<div class="yellowbodydiv">
-There exist exactly \(n\) distinct residue classes modulo \(n\) namely \([0], [1],...,[n-1]\). These classes are mutually disjoint.
-</div>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma 1.7.5
-</div>
-<div class="yellowbodydiv">
-Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then \(a + b \equiv a' + b' \mod n\) and \(ab \equiv a'b' \mod n\)
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-<li><a href="https://www.youtube.com/watch?v=8cikffEcyPI&amp;t=5s">Michael Penn's Lectures</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Suppose we have a natural number \(n\), then \((i \mod n)\) is the remainder after dividing \(n\) by \(i\). For example \((1 \mod 7) = (8 \mod 7) = (15 \mod 7) = 1\) and \((7 \mod 7) = 0\). From this we observe that for two numbers \(a\) and \(b\) to leave the same remainder, they need to be \(n\) numbers apart on the numbers line or in other words, \(|a - b|\) is a multiple of \(n\). Formally, Definition 1.7.1 Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write \(a \equiv b \mod n\) if \(a - b\) is divisible by \(n\). This relation \(a \equiv b \mod n\) has the following properties: Lemma 1.7.2 For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\). For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\). For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\). Proof For \((a)\), \(a - a = 0\) is divisible by \(n\). For \((b)\), if \(a - b\) is divisible by \(n\), then \(b - a\) is also divisible by \(n\) and vice versa. For \((c)\), if \(a - b\) is divisible by \(n\) and \(b - c\) is divisible by \(4n\), then \((a - b) + (b - c) = a - c\) is also divisible by \(n\). \(\ \blacksquare\) Definition For each integer \(a\), write $$ \begin{align*} [a] &amp;= \{b \in \mathbf{Z} \ | \ a \equiv b \mod n\} \\ &amp;= \{ a + kn \ | \ k \in \mathbf{Z} \} \end{align*} $$ The set \(a\) is called the residue class or congruence class of \(a\) modulo \(n\). Also let \(rem_n(a)\) be the unique number \(r\) such that \(0 \leq r &lt; n\) and \(a - r\) is divisible by \(n\). So it is the unique element of \([a]\) that lies in the interval \( \{0,1,...,n-1\} \). Lemma 1.7.3 For \(a, b \in \mathbf{Z}\), the following are equivalent: \(a \equiv b \mod n\). \([a] = [b]\). \(\text{rem}_n(a) = \text{rem}_n(b)\). \([a] \cap [b] \neq \emptyset\). Proof \((a) \implies (b)\): Suppose \(a \equiv b \mod n\). We want to show that \([a] = [b]\) by showing that \([a] \subseteq [b]\) and \([b] \subseteq [a]\). For any \(c \in \mathbf{Z}\), we know that if \(c \equiv a \mod n\), then \(c \equiv b \mod n\) by Lemma 1.7.2 (c). Therefore \([a] \subseteq [b]\). Similarly, if \(c \equiv b \mod n\), then \(c \equiv a \mod n\) and so \([a] = [b]\) as required. \((b) \implies (c)\): By definition, \(\text{rem}_n(x)\) is the unique element of \([x]\) that lies inside \(\{0,1,...,n-1\}\). So if \([a]=[b]\), then it must be the same element. \((c) \implies (d)\): \((d)\) is an immediate application of \((c)\) \((d) \implies (a)\): Suppose that \([a] \cap [b] \neq \emptyset\). Let \(c \in [a] \cap [b]\). Then \(a \equiv c \mod n\) and \(b \equiv c \mod n\). But this implies that \(a \equiv b \mod n\). \(\ \blacksquare\) Corollary 1.7.4 There exist exactly \(n\) distinct residue classes modulo \(n\) namely \([0], [1],...,[n-1]\). These classes are mutually disjoint. Lemma 1.7.5 Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then \(a + b \equiv a' + b' \mod n\) and \(ab \equiv a'b' \mod n\) References Algebra: Abstract and Concrete by Frederick M. Goodman Michael Penn's Lectures]]></summary></entry><entry><title type="html">[1.6] Greatest Common Divisor of Many Integers (1.6.22 - 1.6.25)</title><link href="http://localhost:4000/jekyll/update/2024/11/06/1.6-gcd-many.html" rel="alternate" type="text/html" title="[1.6] Greatest Common Divisor of Many Integers (1.6.22 - 1.6.25)" /><published>2024-11-06T00:01:36-08:00</published><updated>2024-11-06T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/11/06/1.6-gcd-many</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/06/1.6-gcd-many.html"><![CDATA[<!------------------------------------------------------------------------------------>
-<div class="mintheaderdiv">
-Definition 1.6.22
-</div>
-<div class="mintbodydiv">
-A natural number \(d\) is the greatest common divisor of nonzero integers \(a_1,a_2,...,a_n\) if
-<ol type="a">
-	<li>\(d\) divides each \(a_i\) and</li>
-	<li>whenever \(x \in \mathbf{N}\) divides each \(a_i\), then \(x\) also divides \(d\)</li>
-</ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma 1.6.23
-</div>
-<div class="yellowbodydiv">
-Given nonzero integers \(a_1,...,a_n (n \geq 2)\), there is a natural number \(d\) and an \(n\)-by-\(n\) integer matrix \(Q\) such that \(Q\) is invertible, \(Q^{-1}\) also has integer entries, and
-$$
-\begin{align*}
-(d,0,...,0) = (a_1,a_2,...,a_n)Q.
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-TODO
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 1.6.24
-</div>
-<div class="peachbodydiv">
-The greatest common divisor of non-zero integers \(a_1,...,a_n\) exists, and is an integer linear combination of \(a_1, a_2,...,a_n\).
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-TODO
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition 1.6.25
-</div>
-<div class="mintbodydiv">
-We say that non-zero integers \(a_1,...,a_n\) are relatively prime if their greatest common divisor is 1. 
-We say that they are pairwise relatively prime if \(a_i\) and \(a_j\) are relatively prime whenever \(i \neq j\).
-</div>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma 1.6.26
-</div>
-<div class="yellowbodydiv">
-Let \(a_1,...,a_n\) be pairwise relatively prime integers, and let \(a = a_1,...,a_n\). If an integer \(z\) is divisible by each \(a_i\), then \(z\) is divisible by \(a\).
-</div>
-<!------------------------------------------------------------------------------------>
-<p><br />
-<b>Proof</b>
-<br />
-TODO
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-<li><a href="https://www.youtube.com/watch?v=8cikffEcyPI&amp;t=5s">Michael Penn's Lectures</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 1.6.22 A natural number \(d\) is the greatest common divisor of nonzero integers \(a_1,a_2,...,a_n\) if \(d\) divides each \(a_i\) and whenever \(x \in \mathbf{N}\) divides each \(a_i\), then \(x\) also divides \(d\) Lemma 1.6.23 Given nonzero integers \(a_1,...,a_n (n \geq 2)\), there is a natural number \(d\) and an \(n\)-by-\(n\) integer matrix \(Q\) such that \(Q\) is invertible, \(Q^{-1}\) also has integer entries, and $$ \begin{align*} (d,0,...,0) = (a_1,a_2,...,a_n)Q. \end{align*} $$ Proof TODO Proposition 1.6.24 The greatest common divisor of non-zero integers \(a_1,...,a_n\) exists, and is an integer linear combination of \(a_1, a_2,...,a_n\). Proof TODO Definition 1.6.25 We say that non-zero integers \(a_1,...,a_n\) are relatively prime if their greatest common divisor is 1. We say that they are pairwise relatively prime if \(a_i\) and \(a_j\) are relatively prime whenever \(i \neq j\). Lemma 1.6.26 Let \(a_1,...,a_n\) be pairwise relatively prime integers, and let \(a = a_1,...,a_n\). If an integer \(z\) is divisible by each \(a_i\), then \(z\) is divisible by \(a\). Proof TODO References Algebra: Abstract and Concrete by Frederick M. Goodman Michael Penn's Lectures]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[An operation or product on a set \(G\) is a function from \(G \times G\) to \(G\). This set \(G\) with the operation is a group. More formally, Definition 1.10.1 A group is a (nonempty) set \(G\) with a product satisfying the following properties: The group is closed under the operation. The product is associative. For all \(a, b, c \in G\), we have (ab)c = a(bc). There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\). For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse). So If we have a set of objects with an operation such that the rules above are satisfied and most importantly when you apply th then this set along with the operation is a group. What are some examples of groups? \(\mathbf{Z}\) with the addition operation. The set of invertible \(n \times n\) matrices with entries in \(\mathbf{R}\) with matrix multiplication as the product. For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\). See more visual examples in this video References Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry></feed>

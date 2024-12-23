@@ -5,7 +5,22 @@ date:   2024-11-09 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Going back to studying 
+To review, we have the definition of a group again as follows
+<div class="mintheaderdiv">
+Definition 1.10.1
+</div>
+<div class="mintbodydiv">
+A group is a (nonempty) set \(G\) with a product satisfying the following properties:
+<ol type="a">
+	<li>The group is closed under the operation. </li>
+	<li>The product is associative. For all \(a, b, c \in G\), we have \((ab)c = a(bc)\).</li>
+	<li>There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\).</li>
+	<li>For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse).</li>
+</ol>
+</div>
+<br>
+Followed by initial results about groups
+<br>
 <!------------------------------------------------------------------------------>
 <div class="peachheaderdiv">
 Proposition 2.1.1 (Uniqueness of the identity)
@@ -16,7 +31,7 @@ Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in 
 <br>
 <b>Proof</b>
 <br>
-
+Since $$e$$ is an identity element, then $$e'e = e'$$ and since $$e'$$ is an identity element $$ee' = e$$. Therefore, $$e = e'$$. $$\ \blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------>
@@ -29,7 +44,22 @@ Let \(G\) be a group and let \(h, g \in G\). If \(hg = e\), then \(h = g^{-1}\).
 <br>
 <b>Proof</b>
 <br>
-
+Suppose $$hg = e$$, then 
+<div>
+	$$
+	\begin{align*}
+	 h = h(gg^{-1}) = (hg)g^{-1}= eg^{-1} = g^{-1}.
+	\end{align*}
+	$$
+</div>
+Suppose now that $$gh = e$$, then
+<div>
+	$$
+	\begin{align*}
+	 g = g(hh^{-1}) = (gh)h^{-1} = eh^{-1} = h^{-1}. \ \blacksquare
+	\end{align*}
+	$$
+</div>
 <br>
 <br>
 
@@ -43,6 +73,8 @@ Let \(g\) be an element of a group \(G\). We have \(g = (g^{-1})^{-1}\)
 </div>
 <br>
 <b>Proof</b>
+<br>
+We know $$gg^{-1} = e$$. By (2.1.2) $$g = (g^{-1})^{-1}$$. $$\ \blacksquare$$
 <br>
 
 <br>
@@ -60,7 +92,7 @@ Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{
 <br>
 <b>Proof</b>
 <br>
-
+Notice that $$(ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e$$. Therefore, $$(ab)^{-1} = b^{-1}a^{-1}$$.
 <br>
 <br>
 
@@ -70,12 +102,30 @@ Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{
 Proposition 2.1.5
 </div>
 <div class="peachbodydiv">
-Let \(G\) be a group and \(a \in G\). The map \(L_a: G \rightarrow G\) defined by \(L_a(x) = ax\) is a bijection. Similarly, the map \(R_a: G \rightarrow G\) defined by \(R_a(x) = xa\) is a bijection.
+Let \(G\) be a group and \(a \in G\). <br>
+The map \(L_a: G \rightarrow G\) defined by \(L_a(x) = ax\) is a bijection. Similarly, <br>
+the map \(R_a: G \rightarrow G\) defined by \(R_a(x) = xa\) is a bijection.
 </div>
 <br>
 <b>Proof</b>
 <br>
-
+To show that the map $$L_a$$ is a bijection, we need to show that $$L_a$$ is both one to one and onto or equivalently that $$L_a$$ has an inverse. We claim that the left multiplication by $$a^{-1}$$ or $$L_{a^{-1}}$$ is the inverse of $$L_a$$. To see that,
+<div>
+	$$
+	\begin{align*}
+	L_{a^{-1}}(L_a(x)) = a^{-1}(ax) = (a^{-1}a)x = ex = x.
+	\end{align*}
+	$$
+</div>
+Similarly,
+<div>
+	$$
+	\begin{align*}
+	L_a(L_{a^{-1}}(x)) = a(a^{-1}x) = (aa^{-1})x = ex = x.
+	\end{align*}
+	$$
+</div>
+So $$L_{a^{-1}}$$ and $$L_a$$ are inverse maps so both are bijective. $$\ \blacksquare$$
 <br>
 <br>
 
@@ -89,7 +139,7 @@ Let \(G\) be a group and let \(a\) and \(b\) be elements of \(G\). The equation 
 <br>
 <b>Proof</b>
 <br>
-
+For $$ax = b$$ to have a solution. The map $$L_a$$ needs to be onto or surjective. For the solution to be unique, the map needs to be one to one or injective. Similarly for $$xa = b$$ to have a solution, we want $$R_a$$ to be a bijective. Since we proved earlier that $$L_a$$ and $$R_a$$ are bijections, then both equations have unique solutions. $$\ \blacksquare$$
 <br>
 <br>
 
@@ -104,7 +154,7 @@ Suppose \(a, x, y\) are elements of a group \(G\). If \(ax = ay\), then \(x = y\
 <br>
 <b>Proof</b>
 <br>
-
+Suppose $$ax = ay$$. We know that $$L_a = ax$$ is one to one. So for any elements $$x, y \in G$$, $$ax = ay$$ must imply that $$x = y$$ by definition of a one to one or injective map. A similar arguments shows that if $$xa = ya$$ must imply that $$x = y$$ by the injectivity of $$R_a$$. $$\ \blacksquare$$
 <br>
 <br>
 
@@ -118,7 +168,7 @@ If \(G\) is a finite group, each row and each column of the multiplication table
 <br>
 <b>Proof</b>
 <br>
-
+A row in the multiplication table can be represented by a left multiplication map $$G \rightarrow G$$ if you fix the element multiplied on the left. We know the left multiplication map is a bijective. Therefore every element/result must be unique and each element of $$G$$ must show up in the row. Similarly, each column can be represented by a right multiplication map. The map is a bijective and so each element must be unique and shown exactly once. (TODO clean up this proof)
 <br>
 <br>
 
@@ -130,10 +180,6 @@ Definition 2.1.10
 <div class="mintbodydiv">
 The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
 </div>
-<br>
-<b>Proof</b>
-<br>
-
 <br>
 <br>
 
@@ -147,11 +193,8 @@ Definition 2.1.13
 We say two groups \(G\) and \(H\) are isomorphic if there is a bijection \(\phi: G \rightarrow H\) such that for all \(g_1, g_2 \in G, \phi(g_1g_2) = \phi(g_1)\phi(g_2)\). The map \(\phi\) is called an isomorphism.
 </div>
 <br>
-<b>Proof</b>
 <br>
 
-<br>
-<br>
 
 
 <!------------------------------------------------------------------------------>
@@ -161,10 +204,6 @@ Definition 2.1.14
 <div class="mintbodydiv">
 A group \(G\) is called abelian (or commutative) if for all elements \(a, b \in G\), the products in the two orders are equal \(ab = ba\).
 </div>
-<br>
-<b>Proof</b>
-<br>
-
 <br>
 <br>
 
@@ -185,14 +224,21 @@ Proposition 2.1.17
 </ol>
 </div>
 <br>
+Up to isomorphism just means that that two objects will be considered the same if they are isomorphic. We don't care here about the exact structure of the group. We just want to classify groups into distinct non-isomorphic groups. For example, for statement (c), This means groups of order 3 are all isomorphic to $$\mathbf{Z_3}$$ while statement (d) implies that we have two distinct groups of order 4. 
+<br>
+<br>
 <b>Proof</b>
 <br>
+TODO
+<br>
+<br>
+<hr>
 
 <br>
 <br>
-
-
 <!------------------------------------------------------------------------------>
+Again two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
+<br>
 <div class="peachheaderdiv">
 Proposition 2.1.18
 </div>
@@ -202,26 +248,102 @@ If \(\phi : G \rightarrow H\) is an isomorphism, then \(\phi(e_G) = e_H\), and f
 <br>
 <b>Proof</b>
 <br>
-
+Since $$\phi$$ is an isomorphism, then we know that for each $$h \in H$$, there is a $$g \in G$$ such that $$\phi(g) = h$$. Therefore,
+<div>
+	$$
+	\begin{align*}
+	\phi(e_G)h &= \phi(e_G)\phi(g) \\
+	           &= \phi(e_Gg) \quad \text{$\phi$ is an isomorphism}\\
+			   &= \phi(g) \\
+			   &= h \\
+	\end{align*}
+	$$
+</div>
+So $$\phi(e_G)$$ is an identity element. But since the identity element is unique, then $$\phi(e_G) = \phi(e_H)$$.
 <br>
 <br>
+To show that $$\phi(g^{-1}) = \phi(g)^{-1}$$, see that
+<div>
+	$$
+	\begin{align*}
+	\phi(g^{-1})\phi(g) &= \phi(g^{-1}g) \quad \text{$\phi$ is an isomorphism} \\
+	        &= \phi(e_G) \\
+			&= e_H \quad \text{by the previous result} 	
+	\end{align*}
+	$$
+</div>
+So $$\phi(g)$$ is the inverse of $$\phi(g^{-1})$$ or in other words $$\phi(g)^{-1} = \phi(g^{-1})$$ as we wanted to show. $$\ \blacksquare$$
+<br>
+<br>
+<hr>
+<br>
 
-
-<!------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------->
+<h4><b>The General Associative Law</b></h4>
+We know by definition that the product is associative so for all $$a, b, c \in G$$, we have $$(ab)c = a(bc)$$. What about the product of 4 or more elements? is it associative? For example, there are five ways to group four elements
+<div>
+	$$
+	\begin{align*}
+	a(b(cd)), a((bc)d), (ab)(cd), (a(bc))d, ((ab)c)d
+	\end{align*}
+	$$
+</div>
+$$a(b(cd))$$ and $$((ab)c)d$$ follow from the definition. For the rest, see that
+<div>
+	$$
+	\begin{align*}
+	a(bcd) = a(b(cd)) = (ab)(cd) = ((ab)c)d = (abc)d
+	\end{align*}
+	$$
+</div>
+In general this works for any number of elements. This is formally presented in the next proposition.
+<br>
+<!------------------------------------------------------------------------->
 <div class="peachheaderdiv">
-Proposition 2.1.19
+Proposition 2.1.19 (General associative law)
 </div>
 <div class="peachbodydiv">
-If \(\phi : G \rightarrow H\) is an isomorphism, then \(\phi(e_G) = e_H\), and for each \(g \in G\), \(\phi(g^{-1}) = \phi(g)^{-1}\)
+Let \(M\) be a set with an associative operation, \(M \times M \rightarrow M\), denoted by juxtaposition. For every \(n \geq 1\), there is a unique product \(M^n \rightarrow M\),
+	$$
+	\begin{align*}
+	(a_1, a_2,...,a_n) \rightarrow a_1a_2...a_n,
+	\end{align*}
+	$$
+such that
+<ol type="a">
+	<li> The product of one element is that element \((a) = a\).</li>
+	<li> The product of two elements agrees with the given operation \((ab) = ab\).</li>
+	<li>For all \(n \geq 2\), for all \(a_1,...,a_n \in M\), and for all \(1 \leq k \leq n-1\), 
+		$$
+		\begin{align*}
+		a_1a_2...a_n = (a_1...a_k)(a_{k-1}...a_n)
+		\end{align*}
+		$$
+	</li>
+</ol>
 </div>
 <br>
 <b>Proof</b>
 <br>
+By induction on $$n$$. <br>
+Base Case: For $$n \leq 3$$, property $$(c)$$ holds by definition.
+<br>
+Inductive Case: Suppose this is true for all $$1 \leq r \leq n$$ where a unique product of $$r$$ elements satisfies the properties $$(a)-(c)$$ above. Suppose now that we have $$n$$ elements. Fix elements $$a_1, ...,a_n \in M$$. By the inductive hypothesis, the $$n-1$$ products
+<div>
+	$$
+	\begin{align*}
+	p_k = (a_1...a_k)(a_{k+1}...a_n),
+	\end{align*}
+	$$
+</div>
+are defined since we have at most $$n-1$$ elements. 
+
+
+
 
 <br>
+
 <br>
-
-
 <br>
 <br>
 <hr>

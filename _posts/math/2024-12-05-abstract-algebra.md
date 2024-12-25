@@ -26,18 +26,6 @@ mathjax: true
 	   <li><a href="/jekyll/update/2024/11/07/1.7-modular-arthmetic.html">
         [1.7] Modular Arithmetic
        </a></li>
-	   <li>
-        [1.8] Polynomials
-       </li>
-	   <li>
-		[1.9] Counting
-	   </li>
-	   <li><a href="/jekyll/update/2024/11/08/1.10-groups.html">
-        [1.10] Groups
-       </a></li>
-	   <li>
-		[1.9] Rings and Fields
-	   </li>
    </ol>
 <br>
 <!------------------------ [2] Basic Theory of Groups --------------------------->

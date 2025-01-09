@@ -39,5 +39,8 @@ mathjax: true
 	   <li><a href="/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html">
         1000-digit Fibonacci Number
        </a></li>
+	   <li><a href="/jekyll/update/2025/01/02/project-euler-26-reciprocal-cycles.html">
+        Reciprocal Cycles
+       </a></li>
    </ol>
 <br>

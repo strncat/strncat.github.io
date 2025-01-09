@@ -1,4 +1,219 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-31T06:02:06-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 25 1000-digit Fibonacci Number</title><link href="http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html" rel="alternate" type="text/html" title="Project Euler: 25 1000-digit Fibonacci Number" /><published>2024-12-14T03:01:36-05:00</published><updated>2024-12-14T03:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html"><![CDATA[<p>This was also not so bad. At least the naive way to do this? I had a method that added two arrays together and returned the number of digits in the sum.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-08T19:48:54-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 26 Reciprocal Cycles</title><link href="http://localhost:4000/jekyll/update/2025/01/02/project-euler-26-reciprocal-cycles.html" rel="alternate" type="text/html" title="Project Euler: 26 Reciprocal Cycles" /><published>2025-01-02T00:01:36-08:00</published><updated>2025-01-02T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/02/project-euler-26-reciprocal-cycles</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/02/project-euler-26-reciprocal-cycles.html"><![CDATA[<p>Before trying to find the longest cycle, we need to find a way to count the digits in the digital expansion of any number. Take 1/7 = 0.(142857) for instance. We want a way to iterate through the digits 1,4,2,8,5,7,… in 1/7. In other words, if you just want to iterate and just simply print the digits in the decimal expansion of 1/7, how do you do it? To simplify, let’s assume that we want to iterate over exactly 6 digits of the decimal expansion of 1/7. The easiest way to do this is to multiply 1 by 10^6 and divide to get</p>
+
+<p>1,000,000 / 7 = 142,857.143 (long division pic)</p>
+
+<p>Multiplying 1 by 10^6 all at once isn’t necessary here and we can’t do this anyway since what if the cycle is of length 300? We’re not going to multiply by 10^{300} and dividing by 7. Instead, we can simulate this long division one step at a time, multiplying the remainder each time by 10 and dividing by 7. So the division will be broken into the following steps:</p>
+
+<p>Step 1:
+Multiply 1 by 10 and divide to get 10 / 7 = 1 with remainder 3.
+Step 2:
+Multiply 3 by 10 and divide to get 30 / 7 = 4 with remainder 2.
+Step 3:
+Multiply 2 by 10 and divide to get 20 / 7 = 2 with remainder 6.
+Step 4:
+Multiply 6 by 10 and divide to get 60 / 7 = 8 with remainder 4.
+Step 5:
+Multiply 4 by 10 and divide to get 40 / 7 = 5 with remainder 5.
+Step 6:
+Multiply 5 by 10 and divide to get 50 / 7 = 7 with remainder 1.</p>
+
+<p>At this point, we have a reminder that we’ve seen before. We know what we’ll see exactly in step 7 and we know this will repeat for the next 5 steps. So we can stop here and declare that the cycle length is exactly 6.</p>
+
+<p>We can simulate this simple long division for all the integers below 1000 to see what integer \(d\) has the longest cycle. We can easily do this with some hash table (unordered_map in c++ for example) to keep track of the remainders we’ve seen so far. Since we’re only checking for up to 1000, we can also put a limit on how many steps in long division we’re willing to do. Playing around with this, it doesn’t seem like any integers below 1000 will have a cycle longer than 1000 digits. So the following is enough to solve this problem</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">long_division</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">seen</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">numerator</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">cycle_len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// let the maximum cycle length be 1000</span>
+        <span class="kt">int</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">%</span> <span class="n">number</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">seen</span><span class="p">[</span><span class="n">remainder</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// cycle ends</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">seen</span><span class="p">[</span><span class="n">remainder</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">numerator</span> <span class="o">=</span> <span class="n">remainder</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">cycle_len</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">cycle_len</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=25">Project Euler - 25</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Before trying to find the longest cycle, we need to find a way to count the digits in the digital expansion of any number. Take 1/7 = 0.(142857) for instance. We want a way to iterate through the digits 1,4,2,8,5,7,… in 1/7. In other words, if you just want to iterate and just simply print the digits in the decimal expansion of 1/7, how do you do it? To simplify, let’s assume that we want to iterate over exactly 6 digits of the decimal expansion of 1/7. The easiest way to do this is to multiply 1 by 10^6 and divide to get]]></summary></entry><entry><title type="html">[2.5] Cosets and Lagrange’s Theorem</title><link href="http://localhost:4000/jekyll/update/2025/01/01/2.5-cosets-lagrange.html" rel="alternate" type="text/html" title="[2.5] Cosets and Lagrange’s Theorem" /><published>2025-01-01T00:01:36-08:00</published><updated>2025-01-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/01/2.5-cosets-lagrange</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/01/2.5-cosets-lagrange.html"><![CDATA[<div class="mintheaderdiv">
+Definition 2.4.14
+</div>
+<div class="mintbodydiv">
+Let \(H\) be subgroup of a group \(G\). A subset of the form
+\(gH\), where \(g \in G\), is called a left coset of \(H\) in \(G\). A subset of the form
+\(Hg\), where \(g \in G\), is called a right coset of \(H\) in \(G\).
+</div>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Example 1</b></h4>
+<p>Consider H = \(\{e , (1,2)\} \subseteq S_3\). We know \(S_3\) has six elements. Let \(\pi \in S_3\) and compute \(\pi H = \{ \pi \sigma \ : \ \sigma \in H \}\). So</p>
+<div>
+$$
+\begin{align*}
+S_3 = \{ e, \begin{pmatrix}1 &amp; 2 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix}2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 &amp; 2 \end{pmatrix} 
+\}
+\end{align*}
+$$
+</div>
+<p>For example \(\begin{pmatrix}1 &amp; 3 \end{pmatrix} H\) is</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}1 &amp; 3 \end{pmatrix} H &amp;= \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}e, \begin{pmatrix}1 &amp; 3 \end{pmatrix}  \begin{pmatrix}1 &amp; 2 \end{pmatrix} \} \\
+&amp;= \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix} 1 &amp; 2 &amp; 3 \end{pmatrix} \}
+\end{align*}
+$$
+</div>
+<p>This is because if we let \(f = (1 \quad 3)\) and \(g = (1 \quad 2)\), then \(f \circ g\) results in \(f(g(1)) = f(2) = 2\). So 1 gets mapped to 2. Similarly \(f(g(2)) = f(1) = 3\). So 2 gets mapped to 3 and \(f(g(3)) = f(3) = 1\) so 3 gets mapped to 1. Writing this in cycle notation means \(1 \rightarrow 2, 2 \rightarrow 3, 3 \rightarrow 1\) or \((1 \quad 2 \quad 3)\).</p>
+<div>
+$$
+\begin{align*}
+eH &amp;= (1 \quad 2) H = H \\
+\begin{pmatrix}1 &amp; 3 \end{pmatrix} H &amp;= (1 \quad 2 \quad 3)H = \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 2 &amp; 3 \end{pmatrix} \} \\
+\begin{pmatrix}2 &amp; 3 \end{pmatrix} H &amp;= (1 \quad 3 \quad 2)H = \{ \begin{pmatrix}2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 &amp; 2 \end{pmatrix} \} \\
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<p>Suppose \(G = (\mathbf{Z}_4, +)\) and $$H = {0, 2}. Then we have the following cosests</p>
+<div>
+$$
+\begin{align*}
+H+0 &amp;= \{0,2\} \\
+H+1 &amp;= \{1,3\} \\
+H+2 &amp;= \{2,0\} \\
+H+3 &amp;= \{3,1\}
+\end{align*}
+$$
+</div>
+<p>We can see here that we have two distinct right cosets. Moreover, the cosets are disjoint and partition the group. Next, we’ll formalize these properties about cosets!
+<br />
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.5.3
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be
+elements of \(G\). The following conditions are equivalent:
+<ol type="a">
+	<li>\(a \in bH\).</li>
+	<li>\(b \in aH\).</li>
+	<li>\(aH = bH\).</li>
+	<li>\(b^{-1}a \in H\).</li>
+	<li>\(a^{-1}b \in H\).</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+<b>Proof</b>
+<br />
+Suppose \((a)\) holds. Let \(a \in bH\). Then there exists some \(h \in H\) such that \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). 
+<br />
+<br />
+For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\).
+<br />
+<br />
+For \((d)\) ….
+<br />
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.5.4
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\).
+<ol type="a">
+	<li>Let \(a\) and \(b\) be elements of \(G\). Either \(aH = bH\) or \(aH \cap bH = \emptyset\)</li>
+	<li>Each left coset \(aH\) is nonempty and the union of left cosets is \(G\).</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+<b>Proof</b>
+<br />
+For \((a)\), Suppose \(aH \cap bH \neq \emptyset\) and let \(c \in aH \cap bH\). Since \(c \in aH\), then \(aH = cH\) by Proposition 2.5.3. Similarly since \(c \in bH\), then \(bH = cH\). Therefore, \(aH = bH\).
+<br />
+<br />
+For \((b)\), \(aH\) is nonempty since \(H\) is a subgroup and can’t be empty. Furthermore, for each element \(g \in G\), \(g \in gH\). By \((a)\) then the union of all the left cosets must be \(G\).
+<br />
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.5.5
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\) and let \(a\) and \(b\) be
+elements of \(G\). Then \(x \longmapsto ba^{-1}\) is a bijection between \(aH\) and \(bH\).
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+<b>Proof</b>
+Let \(f : aH \rightarrow bH\) where \(f(x) = ba^{-1}x\). We want to show that \(f\) is a bijection by showing that it’s one-to-one and onto. Suppose \(a_1, a_2 \in aH\) then we can write \(a_1 = ah_1\) and \(a_2 = ah_2\) for some \(h_1, h_2 \in H\). Moreover, suppose that \(f(a_1) = f(a_2)\). Observe that</p>
+<div>
+$$
+\begin{align*}
+ba^{-1}a_1 &amp;= ba^{-1}a_2 \\
+b^{-1}ba^{-1}a_1 &amp;= b^{-1}ba^{-1}a_2 \quad \text{($G$ is a group so the inverse exists)} \\
+aa^{-1}a_1 &amp;= aa^{-1}a_2 \\
+a_1 &amp;= a_2 \\
+\end{align*}
+$$
+</div>
+<p>From this we see that \(f\) is one-to-one or injective. To see that it’s surjective, we need to show that for any element \(y \in bH\), that there exists an element \(x \in aH\) such that \(f(x) = y\). Since \(y \in bH\), then we can write \(y = bh\) for some \(h \in H\). Now, let \(x = ah \in aH\) and observe that</p>
+<div>
+$$
+\begin{align*}
+f(x) &amp;= ba^{-1}x \\
+     &amp;= ba^{-1}(ah) \\
+	 &amp;= b(a^{-1}ah) \\
+	 &amp;= bh = y.
+\end{align*}
+$$
+</div>
+<p>\(ah\) is in \(aH\) by definition. Therefore \(f\) is surjective. From this we see that \(f\) is a bijection from \(aH\) to \(bH\). \(\ \blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem 2.5.6 (Lagrange's Theorem)
+</div>
+<div class="yellowbodydiv">
+Let \(G\) be a finite group and \(H\) a subgroup. Then the cardinality of \(H\) divides the cardinality of \(G\), and the quotient \(\frac{|G|}{|H|}\) is the number of left cosets of \(H\) in \(G\).
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+<b>Proof</b></p>
+
+<p><br />
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+<li><a href="https://www.youtube.com/watch?v=kthl-MhIf4s&amp;list=PLztBpqftvzxVvdVmBMSM4PVeOsE5w1NnN&amp;index=22">Wrath of Math Youtube Channel</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.4.14 Let \(H\) be subgroup of a group \(G\). A subset of the form \(gH\), where \(g \in G\), is called a left coset of \(H\) in \(G\). A subset of the form \(Hg\), where \(g \in G\), is called a right coset of \(H\) in \(G\). Example 1 Consider H = \(\{e , (1,2)\} \subseteq S_3\). We know \(S_3\) has six elements. Let \(\pi \in S_3\) and compute \(\pi H = \{ \pi \sigma \ : \ \sigma \in H \}\). So $$ \begin{align*} S_3 = \{ e, \begin{pmatrix}1 &amp; 2 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix}2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 &amp; 2 \end{pmatrix} \} \end{align*} $$ For example \(\begin{pmatrix}1 &amp; 3 \end{pmatrix} H\) is $$ \begin{align*} \begin{pmatrix}1 &amp; 3 \end{pmatrix} H &amp;= \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}e, \begin{pmatrix}1 &amp; 3 \end{pmatrix} \begin{pmatrix}1 &amp; 2 \end{pmatrix} \} \\ &amp;= \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix} 1 &amp; 2 &amp; 3 \end{pmatrix} \} \end{align*} $$ This is because if we let \(f = (1 \quad 3)\) and \(g = (1 \quad 2)\), then \(f \circ g\) results in \(f(g(1)) = f(2) = 2\). So 1 gets mapped to 2. Similarly \(f(g(2)) = f(1) = 3\). So 2 gets mapped to 3 and \(f(g(3)) = f(3) = 1\) so 3 gets mapped to 1. Writing this in cycle notation means \(1 \rightarrow 2, 2 \rightarrow 3, 3 \rightarrow 1\) or \((1 \quad 2 \quad 3)\). $$ \begin{align*} eH &amp;= (1 \quad 2) H = H \\ \begin{pmatrix}1 &amp; 3 \end{pmatrix} H &amp;= (1 \quad 2 \quad 3)H = \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 2 &amp; 3 \end{pmatrix} \} \\ \begin{pmatrix}2 &amp; 3 \end{pmatrix} H &amp;= (1 \quad 3 \quad 2)H = \{ \begin{pmatrix}2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 &amp; 2 \end{pmatrix} \} \\ \end{align*} $$ Example 2 Suppose \(G = (\mathbf{Z}_4, +)\) and $$H = {0, 2}. Then we have the following cosests $$ \begin{align*} H+0 &amp;= \{0,2\} \\ H+1 &amp;= \{1,3\} \\ H+2 &amp;= \{2,0\} \\ H+3 &amp;= \{3,1\} \end{align*} $$ We can see here that we have two distinct right cosets. Moreover, the cosets are disjoint and partition the group. Next, we’ll formalize these properties about cosets! Proposition 2.5.3 Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be elements of \(G\). The following conditions are equivalent: \(a \in bH\). \(b \in aH\). \(aH = bH\). \(b^{-1}a \in H\). \(a^{-1}b \in H\). Proof Suppose \((a)\) holds. Let \(a \in bH\). Then there exists some \(h \in H\) such that \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\). For \((d)\) …. Proposition 2.5.4 Let \(H\) be a subgroup of a group \(G\). Let \(a\) and \(b\) be elements of \(G\). Either \(aH = bH\) or \(aH \cap bH = \emptyset\) Each left coset \(aH\) is nonempty and the union of left cosets is \(G\). Proof For \((a)\), Suppose \(aH \cap bH \neq \emptyset\) and let \(c \in aH \cap bH\). Since \(c \in aH\), then \(aH = cH\) by Proposition 2.5.3. Similarly since \(c \in bH\), then \(bH = cH\). Therefore, \(aH = bH\). For \((b)\), \(aH\) is nonempty since \(H\) is a subgroup and can’t be empty. Furthermore, for each element \(g \in G\), \(g \in gH\). By \((a)\) then the union of all the left cosets must be \(G\). Proposition 2.5.5 Let \(H\) be a subgroup of a group \(G\) and let \(a\) and \(b\) be elements of \(G\). Then \(x \longmapsto ba^{-1}\) is a bijection between \(aH\) and \(bH\). Proof Let \(f : aH \rightarrow bH\) where \(f(x) = ba^{-1}x\). We want to show that \(f\) is a bijection by showing that it’s one-to-one and onto. Suppose \(a_1, a_2 \in aH\) then we can write \(a_1 = ah_1\) and \(a_2 = ah_2\) for some \(h_1, h_2 \in H\). Moreover, suppose that \(f(a_1) = f(a_2)\). Observe that $$ \begin{align*} ba^{-1}a_1 &amp;= ba^{-1}a_2 \\ b^{-1}ba^{-1}a_1 &amp;= b^{-1}ba^{-1}a_2 \quad \text{($G$ is a group so the inverse exists)} \\ aa^{-1}a_1 &amp;= aa^{-1}a_2 \\ a_1 &amp;= a_2 \\ \end{align*} $$ From this we see that \(f\) is one-to-one or injective. To see that it’s surjective, we need to show that for any element \(y \in bH\), that there exists an element \(x \in aH\) such that \(f(x) = y\). Since \(y \in bH\), then we can write \(y = bh\) for some \(h \in H\). Now, let \(x = ah \in aH\) and observe that $$ \begin{align*} f(x) &amp;= ba^{-1}x \\ &amp;= ba^{-1}(ah) \\ &amp;= b(a^{-1}ah) \\ &amp;= bh = y. \end{align*} $$ \(ah\) is in \(aH\) by definition. Therefore \(f\) is surjective. From this we see that \(f\) is a bijection from \(aH\) to \(bH\). \(\ \blacksquare\) Theorem 2.5.6 (Lagrange's Theorem) Let \(G\) be a finite group and \(H\) a subgroup. Then the cardinality of \(H\) divides the cardinality of \(G\), and the quotient \(\frac{|G|}{|H|}\) is the number of left cosets of \(H\) in \(G\). Proof]]></summary></entry><entry><title type="html">Project Euler: 25 1000-digit Fibonacci Number</title><link href="http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html" rel="alternate" type="text/html" title="Project Euler: 25 1000-digit Fibonacci Number" /><published>2024-12-14T00:01:36-08:00</published><updated>2024-12-14T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html"><![CDATA[<p>This was also not so bad. At least the naive way to do this? I had a method that added two arrays together and returned the number of digits in the sum.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">add_two_arrays</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">sum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">an</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bn</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// least significant digit is at index 0</span>
@@ -43,7 +258,7 @@
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=25">Project Euler - 25</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This was also not so bad. At least the naive way to do this? I had a method that added two arrays together and returned the number of digits in the sum. int add_two_arrays(int *a, int *b, int *sum, int an, int bn) { // least significant digit is at index 0 int max = std::max(an, bn); int i = 0; int carry = 0; for (; i &lt; max; i++) { int total = a[i] + b[i] + carry; sum[i] = total % 10; carry = total / 10; } sum[i] = carry; if (carry == 0) { return i; } return i+1; } I then used this array to sum the first two terms of fibonacci. The first two terms were saved in the arrays f1 and f2. The result will be saved in array sum. After we’re done, we copy f2 into f1 and then copy sum into f2 and repeat for another iteration until we reach the required the number of digits. f1[0] = 1; f2[0] = 1; int an = 1, bn = 1; for (int k = 0; k &lt; 5000; k++) { int n = add_two_arrays(f1, f2, sum, an, bn); if (n == 1000) { printf("we are done this is index = %d\n", k+3); return 0; } for (int i = 0; i &lt; n; i++) { f1[i] = f2[i]; f2[i] = sum[i]; } an = bn; bn = n; } One small optimization I can think of is to avoid copying sum into f2 and f2 into f1 and instead use pointers to these arrays to just figure out which two arrays to sum. References Project Euler - 25]]></summary></entry><entry><title type="html">Project Euler: 24 Lexicographic Permutations</title><link href="http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations.html" rel="alternate" type="text/html" title="Project Euler: 24 Lexicographic Permutations" /><published>2024-12-13T03:01:36-05:00</published><updated>2024-12-13T03:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations.html"><![CDATA[<p>We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows</p>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This was also not so bad. At least the naive way to do this? I had a method that added two arrays together and returned the number of digits in the sum. int add_two_arrays(int *a, int *b, int *sum, int an, int bn) { // least significant digit is at index 0 int max = std::max(an, bn); int i = 0; int carry = 0; for (; i &lt; max; i++) { int total = a[i] + b[i] + carry; sum[i] = total % 10; carry = total / 10; } sum[i] = carry; if (carry == 0) { return i; } return i+1; } I then used this array to sum the first two terms of fibonacci. The first two terms were saved in the arrays f1 and f2. The result will be saved in array sum. After we’re done, we copy f2 into f1 and then copy sum into f2 and repeat for another iteration until we reach the required the number of digits. f1[0] = 1; f2[0] = 1; int an = 1, bn = 1; for (int k = 0; k &lt; 5000; k++) { int n = add_two_arrays(f1, f2, sum, an, bn); if (n == 1000) { printf("we are done this is index = %d\n", k+3); return 0; } for (int i = 0; i &lt; n; i++) { f1[i] = f2[i]; f2[i] = sum[i]; } an = bn; bn = n; } One small optimization I can think of is to avoid copying sum into f2 and f2 into f1 and instead use pointers to these arrays to just figure out which two arrays to sum. References Project Euler - 25]]></summary></entry><entry><title type="html">Project Euler: 24 Lexicographic Permutations</title><link href="http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations.html" rel="alternate" type="text/html" title="Project Euler: 24 Lexicographic Permutations" /><published>2024-12-13T00:01:36-08:00</published><updated>2024-12-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations.html"><![CDATA[<p>We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">()))</span> <span class="p">{</span>
@@ -59,7 +274,7 @@ I think the point of the exercise is to implement this on our own or come up wit
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=24">Project Euler - 24</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows for (int i = 1; i &lt; 1000000; i++) { if (!std::next_permutation(a.begin(), a.end())) { break; } } I think the point of the exercise is to implement this on our own or come up with a much faster method. I was more interested in seeing how next permutation is implemented or the idea behind it. I wrote about it here and used my own implementation to solve the problem. The next step is to come up with a faster algorithm to do this! References Project Euler - 24]]></summary></entry><entry><title type="html">Project Euler: 23 Non-Abundant Sums</title><link href="http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html" rel="alternate" type="text/html" title="Project Euler: 23 Non-Abundant Sums" /><published>2024-12-12T03:01:36-05:00</published><updated>2024-12-12T03:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html"><![CDATA[<p>An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\).
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows for (int i = 1; i &lt; 1000000; i++) { if (!std::next_permutation(a.begin(), a.end())) { break; } } I think the point of the exercise is to implement this on our own or come up with a much faster method. I was more interested in seeing how next permutation is implemented or the idea behind it. I wrote about it here and used my own implementation to solve the problem. The next step is to come up with a faster algorithm to do this! References Project Euler - 24]]></summary></entry><entry><title type="html">Project Euler: 23 Non-Abundant Sums</title><link href="http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html" rel="alternate" type="text/html" title="Project Euler: 23 Non-Abundant Sums" /><published>2024-12-12T00:01:36-08:00</published><updated>2024-12-12T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html"><![CDATA[<p>An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\).
 <br />
 <br />
 We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers.
@@ -143,7 +358,7 @@ To implement this, we then need two lists:</p>
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=23">Project Euler - 23</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\). We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers. We want to find the sum of all numbers that can’t be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123. Finding If a Number is Abundant We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds \(n\) bool is_abundant(int n) { //printf("n = %d\n", n); int max = sqrt(n); int divisors_sum = 0; for (int i = 1; i &lt;= max; i++) { if (n % i == 0) { // it's a divisor divisors_sum += i; if (n / i != i &amp;&amp; i != 1) { // add the other divisor divisors_sum += n/i; } } } if (divisors_sum &gt; n) { return true; } return false; } Finding If a Number is a Sum of Two Abundant Numbers The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer \(n\) and an abundant number \(i\), we check if \(n - i\) is abundant. If \(n - i\) is abundant, then \(n\) can be a written as a sum of two abundant numbers. To implement this, we then need two lists: A list of all abundant numbers below 28123. An array of booleans to indicate whether a given number is abundant. We need this to check if \(n - i\) is abundant for (int i = 1; i &lt;= N; i++) { if (is_abundant(i)) { abundant[i] = true; abundant_numbers.push_back(i); } } We can now implement our idea below int sum = 0; for (int i = 1; i &lt; 28123; i++) { // Find if i can be expressed as a sum of two abundant numbers bool abundant_sum = false; for (int j = 0; j &lt; abundant_numbers.size() &amp;&amp; abundant_numbers[j] &lt; i; j++) { if (abundant[i - abundant_numbers[j]]) { abundant_sum = true; break; // exist early, this number can be written as a sum of two abundant numbers } } if (!abundant_sum) { sum += i; } }]]></summary></entry><entry><title type="html">Project Euler</title><link href="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html" rel="alternate" type="text/html" title="Project Euler" /><published>2024-12-11T11:01:36-05:00</published><updated>2024-12-11T11:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/12/11/project-euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html"><![CDATA[<ol>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\). We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers. We want to find the sum of all numbers that can’t be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123. Finding If a Number is Abundant We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds \(n\) bool is_abundant(int n) { //printf("n = %d\n", n); int max = sqrt(n); int divisors_sum = 0; for (int i = 1; i &lt;= max; i++) { if (n % i == 0) { // it's a divisor divisors_sum += i; if (n / i != i &amp;&amp; i != 1) { // add the other divisor divisors_sum += n/i; } } } if (divisors_sum &gt; n) { return true; } return false; } Finding If a Number is a Sum of Two Abundant Numbers The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer \(n\) and an abundant number \(i\), we check if \(n - i\) is abundant. If \(n - i\) is abundant, then \(n\) can be a written as a sum of two abundant numbers. To implement this, we then need two lists: A list of all abundant numbers below 28123. An array of booleans to indicate whether a given number is abundant. We need this to check if \(n - i\) is abundant for (int i = 1; i &lt;= N; i++) { if (is_abundant(i)) { abundant[i] = true; abundant_numbers.push_back(i); } } We can now implement our idea below int sum = 0; for (int i = 1; i &lt; 28123; i++) { // Find if i can be expressed as a sum of two abundant numbers bool abundant_sum = false; for (int j = 0; j &lt; abundant_numbers.size() &amp;&amp; abundant_numbers[j] &lt; i; j++) { if (abundant[i - abundant_numbers[j]]) { abundant_sum = true; break; // exist early, this number can be written as a sum of two abundant numbers } } if (!abundant_sum) { sum += i; } }]]></summary></entry><entry><title type="html">Project Euler</title><link href="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html" rel="alternate" type="text/html" title="Project Euler" /><published>2024-12-11T08:01:36-08:00</published><updated>2024-12-11T08:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/11/project-euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html"><![CDATA[<ol>
 	   <li>Multiples of 3 or 5</li> 
 	   <li>Even Fibonacci Numbers</li>
 	   <li>Largest Prime Factor</li>
@@ -177,8 +392,11 @@ To implement this, we then need two lists:</p>
 	   <li><a href="/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html">
         1000-digit Fibonacci Number
        </a></li>
+	   <li><a href="/jekyll/update/2025/01/02/project-euler-26-reciprocal-cycles.html">
+        Reciprocal Cycles
+       </a></li>
    </ol>
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Multiples of 3 or 5 Even Fibonacci Numbers Largest Prime Factor Largest Palindrome Product Smallest Multiple Sum Square Difference 10001st Prime Largest Product in a Series Special Pythagorean Triplet Summation of Primes Largest Product in a Grid Highly Divisible Triangular Number Large Sum Longest Collatz Sequence Lattice Paths Power Digit Sum Number Letter Counts Maximum Path Sum I Counting Sundays Factorial Digit Sum Amicable Numbers Names Scores Non-Abundant Sums Lexicographic Permutations 1000-digit Fibonacci Number]]></summary></entry><entry><title type="html">Project Euler: 22 Names Scores</title><link href="http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores.html" rel="alternate" type="text/html" title="Project Euler: 22 Names Scores" /><published>2024-12-10T03:01:36-05:00</published><updated>2024-12-10T03:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores.html"><![CDATA[<p>This was pretty straightforward. The first thing that I wanted to do is to point my input stream at the file we’re given. So just the following line.</p>
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Multiples of 3 or 5 Even Fibonacci Numbers Largest Prime Factor Largest Palindrome Product Smallest Multiple Sum Square Difference 10001st Prime Largest Product in a Series Special Pythagorean Triplet Summation of Primes Largest Product in a Grid Highly Divisible Triangular Number Large Sum Longest Collatz Sequence Lattice Paths Power Digit Sum Number Letter Counts Maximum Path Sum I Counting Sundays Factorial Digit Sum Amicable Numbers Names Scores Non-Abundant Sums Lexicographic Permutations 1000-digit Fibonacci Number Reciprocal Cycles]]></summary></entry><entry><title type="html">Project Euler: 22 Names Scores</title><link href="http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores.html" rel="alternate" type="text/html" title="Project Euler: 22 Names Scores" /><published>2024-12-10T00:01:36-08:00</published><updated>2024-12-10T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/10/project-euler-22-names-scores.html"><![CDATA[<p>This was pretty straightforward. The first thing that I wanted to do is to point my input stream at the file we’re given. So just the following line.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
 <span class="n">freopen</span><span class="p">(</span><span class="s">"0022_names.txt"</span> <span class="p">,</span> <span class="s">"r"</span> <span class="p">,</span> <span class="n">stdin</span><span class="p">);</span></code></pre></figure>
@@ -229,9 +447,17 @@ To implement this, we then need two lists:</p>
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=22">Project Euler - 22</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This was pretty straightforward. The first thing that I wanted to do is to point my input stream at the file we’re given. So just the following line. freopen("0022_names.txt" , "r" , stdin);]]></summary></entry><entry><title type="html">Abstract Algebra</title><link href="http://localhost:4000/jekyll/update/2024/12/05/abstract-algebra.html" rel="alternate" type="text/html" title="Abstract Algebra" /><published>2024-12-05T11:01:36-05:00</published><updated>2024-12-05T11:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/12/05/abstract-algebra</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/05/abstract-algebra.html"><![CDATA[<!------------------------ [1] Algebraic Themes --------------------------->
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This was pretty straightforward. The first thing that I wanted to do is to point my input stream at the file we’re given. So just the following line. freopen("0022_names.txt" , "r" , stdin);]]></summary></entry><entry><title type="html">Abstract Algebra</title><link href="http://localhost:4000/jekyll/update/2024/12/05/abstract-algebra.html" rel="alternate" type="text/html" title="Abstract Algebra" /><published>2024-12-05T08:01:36-08:00</published><updated>2024-12-05T08:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/05/abstract-algebra</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/05/abstract-algebra.html"><![CDATA[<!------------------------ [1] Algebraic Themes --------------------------->
 <h4> [1] Algebraic Themes </h4>
 <ol style="list-style-type:none;">
+       <!--
+	   <li><a href="/jekyll/update/2024/11/12/1.2-symmetries.html">
+       [1.2] Symmetries
+       </a></li>
+	   -->
+       <li><a href="/jekyll/update/2024/11/13/1.5-permutations.html">
+       [1.5] Permutations (Representing Symmetries)
+       </a></li>
 	   <li><a href="/jekyll/update/2024/11/01/1.6-z.html">
         [1.6] Z (1.6.1 - 1.6.2)
        </a></li>
@@ -261,8 +487,14 @@ To implement this, we then need two lists:</p>
 	   <li><a href="/jekyll/update/2024/11/10/2.2-subgroups.html">
         [2.2] Subgroups and Cyclic Groups
        </a></li>
+	   <li><a href="/jekyll/update/2024/11/11/2.4-homomorphisms-isomorphisms.html">
+        [2.4] Homomorphisms and Isomorphisms
+       </a></li>
+	   <li><a href="/jekyll/update/2025/01/01/2.5-cosets-lagrange.html">
+        [2.5] Cosets and Lagrange’s Theorem
+       </a></li>
    </ol>
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[[1] Algebraic Themes [1.6] Z (1.6.1 - 1.6.2) [1.6] Prime Numbers (1.6.4 - 1.6.7) [1.6] Greatest Common Divisor (1.6.8 - 1.6.13) [1.6] Relatively Prime Integers (1.6.14 - 1.6.21) [1.6] Greatest Common Divisor of Many Integers (1.6.22 - 1.6.25) [1.7] Modular Arithmetic [2] Basic Theory of Groups [2.1] First Results [2.2] Subgroups and Cyclic Groups]]></summary></entry><entry><title type="html">Generating the Next Permutation Lexicographically</title><link href="http://localhost:4000/jekyll/update/2024/12/02/next-permutation.html" rel="alternate" type="text/html" title="Generating the Next Permutation Lexicographically" /><published>2024-12-02T09:01:36-05:00</published><updated>2024-12-02T09:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/12/02/next-permutation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/02/next-permutation.html"><![CDATA[<p>Suppose we have the array \(a = [1,2,3,4]\) that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this?
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[[1] Algebraic Themes [1.5] Permutations (Representing Symmetries) [1.6] Z (1.6.1 - 1.6.2) [1.6] Prime Numbers (1.6.4 - 1.6.7) [1.6] Greatest Common Divisor (1.6.8 - 1.6.13) [1.6] Relatively Prime Integers (1.6.14 - 1.6.21) [1.6] Greatest Common Divisor of Many Integers (1.6.22 - 1.6.25) [1.7] Modular Arithmetic [2] Basic Theory of Groups [2.1] First Results [2.2] Subgroups and Cyclic Groups [2.4] Homomorphisms and Isomorphisms [2.5] Cosets and Lagrange’s Theorem]]></summary></entry><entry><title type="html">Generating the Next Permutation Lexicographically</title><link href="http://localhost:4000/jekyll/update/2024/12/02/next-permutation.html" rel="alternate" type="text/html" title="Generating the Next Permutation Lexicographically" /><published>2024-12-02T06:01:36-08:00</published><updated>2024-12-02T06:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/02/next-permutation</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/02/next-permutation.html"><![CDATA[<p>Suppose we have the array \(a = [1,2,3,4]\) that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this?
 <br />
 <br />
 If we were to generate the next one manually, then we’d want the next smallest number. That it, if 1234 is the smallest number, we’d want the next possible increment which is 1243. Therefore, we’d swap 3 and 4 to get</p>
@@ -350,820 +582,138 @@ If we were to generate the next one manually, then we’d want the next smallest
 <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
 <span class="n">std</span><span class="o">::</span><span class="n">reverse</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span></code></pre></figure>
 
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Suppose we have the array \(a = [1,2,3,4]\) that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this? If we were to generate the next one manually, then we’d want the next smallest number. That it, if 1234 is the smallest number, we’d want the next possible increment which is 1243. Therefore, we’d swap 3 and 4 to get [1,2,4,3] For the next smallest number, we know it is 1324. We know we exhausted both 1234 and 1243 so it’s time to select a new number in place of 2 since. The next smallest number after 2 is 3. But since we’re starting fresh with this new placement, anything after 3 needs be in an ascending order and so we get [1,3,2,4] For the permutation following 1324, we will simply swap 4 and 2. So really as long the last pair is in an ascending order, then we can do a simple swap and be done. [1,3,4,2] Notice now that after 3 everything is in a descending order. This means that it’s time to replace the digit 3 with the next number (4). But since this is a new placement, then everything after 4 needs to be in an ascending order. The permutation then will be [1,4,2,3] Finding a Pattern So in a way, our first move is always finding the right most pair such that \(a_i &lt; a_{i+1}\). Given the last permutation we generated, \([1,4,2,3]\), \(a_i = 2\) and \(a_{i+1} = 3\). Since it’s literally the last pair in the permutation, then we’ll swap 2 and 3 and be done. [1,4,3,2] However, now we see that \(a_i = 1\) and \(a_{i+1} = 4\). Swapping 1 and 4 isn’t enough since it will generate 4123. What we really want is to find the smallest number that is bigger than 1. In this case we want to find 2. Swapping 1 and 2 will generate 2431. The only thing left now is to reverse the segment starting at \(i+1\) to get [2,1,3,4] Looks like we potentially have an algorithm. Let’s try this again. In 2134, \(a_i = 3\) and \(a_{i+1} = 4\). Starting at \(i\), 4 is the smallest number bigger than 3. This is also the last pair so swap both and we’re done. [2,1,4,3] Now we have \(a_i = 1\) and \(a_{i+1} = 4\). Starting at \(i\), the smallest number bigger than \(a_i=1\) is actually 3. So we swap 1 and 3 to get 2341. But since they were not consecutive, we will reverse the segment starting at \(i+1\) to get [2,3,1,4] For the next permutation, we can see that \(a_i = 1\) and \(a_{i+1} = 4\). It’s also the last pair, so we just need to swap 1 and 4 to get [2,3,4,1] Now we can see that \(a_i = 3\) and \(a_{i+1} = 4\). But searching for a smaller element larger than \(a_i\) isn’t possible as 4 is the best we can find. So we swap 3 and 4. [2,4,3,1]]]></summary></entry><entry><title type="html">[2.2] Subgroup and Cyclic Groups</title><link href="http://localhost:4000/jekyll/update/2024/11/10/2.2-subgroups.html" rel="alternate" type="text/html" title="[2.2] Subgroup and Cyclic Groups" /><published>2024-11-10T03:01:36-05:00</published><updated>2024-11-10T03:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/11/10/2.2-subgroups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/10/2.2-subgroups.html"><![CDATA[<div class="mintheaderdiv">
-Definition 2.2.1
-</div>
-<div class="mintbodydiv">
-A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\).
-</div>
-<p><br />
-The necessary conditions for a subset (H) of (G) to be a subgroup of (G) are:</p>
-<ol>
-	<li>Closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\)</li>
-	<li>Closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\)</li>
-</ol>
-<p>By \((2)\) we know for any \(h \in H\), \(h^{-1} \in H\) and by (1), we know that \(hh^{-1}=e \in H\). So the identity element is in \(H\). Associativity is inherited from \(GG\). From this we see that these two conditions are sufficient for \(H\) to be a subgroup of \(G\). Sometimes, it is easier to prove that a set is a subgroup rather than proving that it is a group since we only need to check these two conditions.
+<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Suppose we have the array \(a = [1,2,3,4]\) that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this? If we were to generate the next one manually, then we’d want the next smallest number. That it, if 1234 is the smallest number, we’d want the next possible increment which is 1243. Therefore, we’d swap 3 and 4 to get [1,2,4,3] For the next smallest number, we know it is 1324. We know we exhausted both 1234 and 1243 so it’s time to select a new number in place of 2 since. The next smallest number after 2 is 3. But since we’re starting fresh with this new placement, anything after 3 needs be in an ascending order and so we get [1,3,2,4] For the permutation following 1324, we will simply swap 4 and 2. So really as long the last pair is in an ascending order, then we can do a simple swap and be done. [1,3,4,2] Notice now that after 3 everything is in a descending order. This means that it’s time to replace the digit 3 with the next number (4). But since this is a new placement, then everything after 4 needs to be in an ascending order. The permutation then will be [1,4,2,3] Finding a Pattern So in a way, our first move is always finding the right most pair such that \(a_i &lt; a_{i+1}\). Given the last permutation we generated, \([1,4,2,3]\), \(a_i = 2\) and \(a_{i+1} = 3\). Since it’s literally the last pair in the permutation, then we’ll swap 2 and 3 and be done. [1,4,3,2] However, now we see that \(a_i = 1\) and \(a_{i+1} = 4\). Swapping 1 and 4 isn’t enough since it will generate 4123. What we really want is to find the smallest number that is bigger than 1. In this case we want to find 2. Swapping 1 and 2 will generate 2431. The only thing left now is to reverse the segment starting at \(i+1\) to get [2,1,3,4] Looks like we potentially have an algorithm. Let’s try this again. In 2134, \(a_i = 3\) and \(a_{i+1} = 4\). Starting at \(i\), 4 is the smallest number bigger than 3. This is also the last pair so swap both and we’re done. [2,1,4,3] Now we have \(a_i = 1\) and \(a_{i+1} = 4\). Starting at \(i\), the smallest number bigger than \(a_i=1\) is actually 3. So we swap 1 and 3 to get 2341. But since they were not consecutive, we will reverse the segment starting at \(i+1\) to get [2,3,1,4] For the next permutation, we can see that \(a_i = 1\) and \(a_{i+1} = 4\). It’s also the last pair, so we just need to swap 1 and 4 to get [2,3,4,1] Now we can see that \(a_i = 3\) and \(a_{i+1} = 4\). But searching for a smaller element larger than \(a_i\) isn’t possible as 4 is the best we can find. So we swap 3 and 4. [2,4,3,1]]]></summary></entry><entry><title type="html">[1.5] Permutations (Representing Symmetries)</title><link href="http://localhost:4000/jekyll/update/2024/11/13/1.5-permutations.html" rel="alternate" type="text/html" title="[1.5] Permutations (Representing Symmetries)" /><published>2024-11-13T00:01:36-08:00</published><updated>2024-11-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/11/13/1.5-permutations</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/13/1.5-permutations.html"><![CDATA[<p>What are the symmetries of the configuration of three objects above? There are 6 possible ways to place the objects. The symmetries of a configuration of identical objects are called <b>permutations</b>. 
 <br />
 <br />
-<!------------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.2.8 (Uniqueness of the identity)
+To represent a permutation, we’ll use the following notation. The first row refers to the positions of these objects in the configuration. The second row represents the final configuration of the objects after permuting them.</p>
+<div>
+	$$
+	\begin{align*}
+	 \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 \\ 3 &amp; 2 &amp; 1\end{pmatrix}
+	\end{align*}
+	$$
 </div>
-<div class="peachbodydiv">
-Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then \(H_1 \cap H_2 \ \cap ... \cap \ H_n \) is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup.
+<p>So in the above, the objects in positions 1 and 3 will be switched while the object in position 2 will stay in place.</p>
+<div>
+	$$
+	\begin{align*}
+	 \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 \\ 2 &amp; 3 &amp; 1\end{pmatrix}
+	\end{align*}
+	$$
 </div>
-<p><br />
-<b>Proof</b>
-<br />
-TODO
+<p>In the above, the object in position 1 will move to position 2. The object in position 2 will move to position 3 and the object in position 3 will move to position 1.
 <br />
 <br /></p>
 <hr />
 
 <p><br />
-<!------------------------------------------------------------------------------></p>
-<h4><b>Generated Subgroups</b></h4>
+<!------------------------------------------------------------------------></p>
+<h4><b>Permutations and Symmetries</b></h4>
+<p>The set of permutations of \(n\) identical objects and the set of symmetries of a geometric figure share the following properties</p>
 <ul>
-<li>For any subset \(S \subseteq G\), <b>the subgroup generated by</b> \(S\) is the smallest subgroup in \(G\) that contains \(S\) and is denoted \(\langle S \rangle\). </li>
-<li>If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). </li>
-<li>If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\)</li>
+	<li>The multiplication of permutations is associative.</li>
+	<li>There is an identity element.</li>
+	<li>For each permutation \(\sigma\), there is an inverse permutation \(\sigma^{-1}\).</li>
 </ul>
-<p>One way to describe \(\langle S \rangle\) is that it contains all the possible products \(g_1g_2...g_n\) where \(g_i \in S\) or \(g_i^{-1} \in S\). 
-<br />
-Another way to describe \(\langle S \rangle\) is that it is the intersection of the family of all subgroups of \(G\) that contain \(S\). This family can’t be empty since \(G\) is a group.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Cyclic Groups and Cyclic Subgroups</b></h4>
-
-<!----------------------------------------------------------------------------->
-<div class="peachheaderdiv">
-Proposition 2.2.9
-</div>
-<div class="peachbodydiv">
-Let \(a\) be an element of a group \(G\). The subgroup \(\langle a \rangle\) generated by \(a\) is \(\{a^k \ : \ k \in \mathbf{Z}\}\).
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-Let \(H = \{a^k \ : \ k \in \mathbf{Z}\}\). We will show that \(\langle a \rangle = H\) as follows:
-<br />
-<br />
-\(\langle a \rangle \subseteq H\): We know that \(G\) is a group and \(H\) is subset of \(G\). We claim that it is a subgroup of \(G\). It is closed under multiplication because for any \(a^k\) and \(a^l\) in \(H\), \(a^{k+l} \in H\). It is closed under inverses because for any \(a^k \in H\), \((a^{k})^-1 = a^{-k} \in H\). Furthermore, \(H\) contains \(a\) and since \(H\) is a subgroup, then \(H\) contains all the powers of \(a\). Therefore, \(\langle a \rangle \subseteq H\). 
-<br />
-<br />
-\(H \subseteq \langle a \rangle\): We showed that \(H = \{a^k \ : \ k \in \mathbf{Z}\}\) is a subgroup above. It is closed under multiplication and so it contains all powers of \(a\). Therefore, \(H \subseteq \langle a \rangle\). \(\ \blacksquare\) 
-<br />
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition 2.2.10
-</div>
-<div class="mintbodydiv">
-Let \(a\) be an element of a group \(G\). The set \(\langle a \rangle = \{a^k \ : \ k \in \mathbf{Z}\}\) of powers of \(a\) is called the <b>cyclic subgroup generated by</b> \(a\). If there is an element \(a \in G\) such that \(\langle a \rangle = G\), we say that \(G\) is a <b>cyclic group</b>. We say that \(a\) is a <b>generator</b> of the cyclic group
-</div>
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Examples</b></h4>
-<p>Suppose \(G = \mathbf{Z}\) with the addition operator. For any element \(d \in \mathbf{Z}\), the set of powers of \(d\) is the set of all multiples of \(d\) since the group operation is addition. So \(d+d+d+d+d\) is the fifth power for example. We see here that \(\langle d \rangle = d \mathbf{Z} = \{nd \ : \ n \in \mathbf{Z}\}\) is a cyclic subgroup of \(\mathbf{Z}\). In fact, \(\mathbf{Z}\) itself is cyclic. 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>The Order of a Cyclic Subgroup</b></h4>
-<p>A cyclic subgroup could be infinite or finite. When the powers of \(a\) are all distinct, it’s infinite. Otherwise, it is not. The following definition formalizes this.
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition 2.2.16
-</div>
-<div class="mintbodydiv">
-The <b>order</b> of the cyclic subgroup generated by \(a\) is called <b>the order of </b>\(a\). We denote the order of \(a\) by \(o(a)\).
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-When the order of \(a\) is finite, then two powers of \(a\) will coincide at some point. Suppose that \(k &lt; l\), and \(a^k = a^l\), then \(a^{l-k} = e\). This implies that some positive integer of \(a\) is the identity element. Let \(n\) be the least positive integer such that \(a^n = e\). This means that \(e, a, a^2,...a^{n-1}\) are all distinct (Why? TODO). Write \(k = mn + r\). Therefore,</p>
-<div>
-	$$
-	\begin{align*}
-	 a^{k} &amp;= a^{mn+r} \\
-	       &amp;= a^{mn}a^r \\
-		   &amp;= e^{m}a^r \\
-		   &amp;= a^r
-	\end{align*}
-	$$
-</div>
-<p>This means that \(a^k = a^l\) if and only if \(k\) and \(l\) have the same remainder upon division of \(n\), that is \(k \equiv l \mod n\). This leads to the following proposition
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.2.17
-</div>
-<div class="peachbodydiv">
-If the order of \(a\) is finite, then it is the least positive integer \(n\) such that \(a^n = e\). Furthermore, \(\langle a \rangle = \{a^k \ : \ 0 \leq k &lt; o(a)\}\)
-</div>
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Examples</b></h4>
-<p>What is the order of \([5]\) in \(\phi(14)\)? We know \([5]^2 = [11]\), \([5]^3 = [13]\) because \(5^3 = 125 \mod 14 = 13\). \([5]^4 = [9]\), \([5]^5 = 3\) and finally \([5]^6 = [1]\). So the order of \([5]\) is 6. 
-<br />
-<br />
-The following result shows that in fact any two cyclic groups of the same order are isomorphic!
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.2.20
-</div>
-<div class="peachbodydiv">
-Let \(a\) be an element of a group \(G\).
-<ol type="a">
-	<li>If \(a\) has infinte order, then \(\langle a \rangle\) is isomorphic to \(\mathbf{Z}\)</li>
-	<li>If \(a\) has finite order, then \(\langle a \rangle\) is isomorphic to the group \(\mathbf{Z}_n\)</li>
-</ol>
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-For \((a)\), we want to show this by finding an example of a isomorphism. So define the map \(\varphi \ : \ \mathbf{Z} \rightarrow \langle a \rangle\) by \(\varphi(k) = a^k\). To show that this map is an isomorphism, we need to show that it is a bijection and also that for any two elements \(a, b \in \mathbf{Z}\), \(\varphi(ab) = \varphi(a)\varphi(b)\) (Definition 2.1.13).
-<br />
-<br />
-To show that it is a bijection, observe that this map is surjective or onto by the definition of \(\langle a \rangle\). (Recall that that \(\langle a \rangle\) is of infinite order). It is also injective or 1-1 because all the elements of \(\langle a \rangle\) (powers of \(a\)) are distinct. Furthermore, see that \(\varphi(k + l) = a^{k+l} = a^ka^k\). So \(\varphi\) is an isomorphism.
-<br />
-<br />
-Similarly for \((b)\), we want to define an isomorphism. Note here that both \(\mathbf{Z}_n\) and \(\langle a \rangle\) have \(n\) elements so define the map \(\varphi \ : \ \mathbf{Z}_n \rightarrow \langle a \rangle\) by \(\varphi([k]) = a^k\) where \(0 \leq k \leq n-1\). In \(\mathbf{Z}_n\), the addition of \([k]\) and \([l]\) is \([r]\) where \(r\) is the remainder after dividing \(k+l\) by \(n\). While the multiplication in \(\langle a \rangle\) is given by \(a^ka^l = a^{k+l} = a^r\) where \(r\) is also the remainder after dividing \(k+l\) by \(n\) as we saw earlier. Therefore \(\varphi\) is an isomorphism.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!----------------------------------------------------------------------></p>
-<h4><b>Subgroups of Cyclic Groups</b></h4>
-<p>Every cyclic group is isomorphic to \(\mathbf{Z}\) or \(\mathbf{Z}_n\). Therefore, we’ll determine the subgroups of \(\mathbf{Z}\) and \(\mathbf{Z}_n\) to determine all the subgroups of cyclic groups.
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.2.21
-</div>
-<div class="peachbodydiv">
-<ol type="a">
-	<li>Let \(H\) be a subgroup of \(\mathbf{Z}\). Then either \(H = \{0\}\) or there is a unique \(d \in \mathbf{N}\) such that \(H = \langle d \rangle = d\mathbf{Z}\)</li>
-	<li>If \(d \in \mathbf{N}\), then \(d\mathbf{Z} \cong \mathbf{Z}\).</li>
-	<li>If \(a, b \in \mathbf{N}\), then \(a\mathbf{Z} \subseteq b\mathbf{Z}\) if and only if \(b\) divides \(a\).</li>
-</ol>
-</div>
-<p><br />
-As a reminder, \(d\mathbf{Z} = \{ dn \ | \ n \in \mathbf{Z}\}\). It is the subgroup generated by \(d\).
-<br />
-<br />
-<!---------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-For \((c)\):<br />
-\(\Rightarrow\): If \(a\mathbf{Z} \subseteq b\mathbf{Z}\), then \(a\) is a multiple of \(b\). So \(b\) divides \(a\). <br />
-\(\Leftarrow\): If \(b\) divides \(a\), then \(a \in b\mathbf{Z}\) so \(a\mathbf{Z} \subseteq b\mathbf{Z}\).
-<br />
-<br />
-For \((a)\):<br />
-Suppose \(H\) is a subgroup of \(\mathbf{Z}\). Since \(H\) is a subgroup, then it must contain at least one element. Suppose \(H \neq \{0\}\), then \(H\) contains a nonzero integer. For any integer \(a \in H\), \(H\) must also contain \(-a\). Let \(d\) be the smallest element in \(H \cap \mathbf{N}\). We claim that \(H = d\mathbf{Z}\). We want to show that \(H \subseteq d\mathbf{Z}\) and \(d\mathbf{Z} \subseteq H\).
-<br />
-<br />
-Let \(h \in H\). If \(h = d\), then since \(d \in H\), we have \(\langle d \rangle = d\mathbf{Z} \subseteq H\). Otherwise, we can write \(h = qd + r\) where \(0 \leq r &lt; d\). Now, we know that \(h \in H\) and we know that \(qd \ \in H\) since it’s a multiple of \(d\), so \(r = h + (- qd) = h - qd \in H\). But \(d\) is the least positive element of \(H\) and \(r &lt; d\). So we have \(r = 0\). Therefore, \(h = qd \in d\mathbf{Z}\).
-<br />
-<br />
-So we know that there exists a \(d \in \mathbf{N}\) such that \(d\mathbf{Z} = H\). To see that it’s unique, suppose that \(d' \in H\) and so \(d'\mathbf{Z} = H\) but by (c), \(d\) and \(d'\) divide one another and since they’re both positive then \(d = d'\) so \(d\) is unique. \(\ \blacksquare\). 
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Corollary 2.2.22
-</div>
-<div class="peachbodydiv">
-Every subgroup of \(\mathbf{Z}\) other than \({0}\) is isomorphic to \(\mathbf{Z}\).
-</div>
-<p><br />
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Lemma 2.2.23
-</div>
-<div class="peachbodydiv">
-Let \(n \geq 2\) and let \(d\) be a positive divisor of \(n\). The cyclic subgroup \(\langle [d] \rangle\) generated by \([d]\) in \(\mathbf{Z}_n\) has cardinality \(|\langle [d] \rangle| = n/d\)
-</div>
-<p><br />
-Reminder: The subgroup generated by \(d\) is \(\{...,-2d,-d,0,d,2d,...\}\). The order of this subgroup is clearly infinite. The subgroup generated by \([d]\) is \(\{[0], [d], [2d],...,(k-1)[d]\}\) where \((k+1)[d] = 0\). This group is clearly finite. 
-<br />
-<br />
-Example: Suppose \(d=3\) and \(n=9\). \(Z_9 = \{0,1,2,3,4,5,6,7,8\}\) The cyclic subgroup in \(Z_9\) generated by \(\langle [3] \rangle\) is \(\{k[3] \mod 9 \ | \ k \in \mathbf{Z}\} = \{[0],[3],[6]\}\). The size of \(\langle [3] \rangle\) is \(n/d = 9/3 = 3\).
-<br />
-<br />
-<!---------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-We are given that \(d\) is a positive divisor of \(n\). Since we’re working with addition, this means that for some multiple of \(d\), we will get back to \([0]\). So let \(s\) be the least positive integer such that \(s[d] = [0]\). In other words, \(sd \equiv 0 \mod n\). This implies that \(sd\) is a multiple of \(n\) so \(sd = kn\) for some integer \(k\). But since we need the smallest \(s\), then \(s = \frac{n}{d}\). \(\ \blacksquare\)
-<br />
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.2.24
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of \(\mathbf{Z}_n\).
-<ol type="a">
-	<li>Either \(H = \{0\}\), or there is a \(d &gt; 0\) such that \(H = \langle [d] \rangle\)</li>
-	<li>If \(d\) is the smallest of positive integers \(s\) such that \(H\) = \(\langle [s] \rangle\), then \(d|H| = n\)</li>
-</ol>
-</div>
-<p><br />
-Example \((a)\): Let \(H\) be a subgroup of \(Z_9\). \(H\) must be generated by some \(d &gt; 0\). For example \(Z_9\) is generated by \(H = \langle [1] \rangle\). \(\{[0],[3],[6]\}\) is generated by \(\langle [3] \rangle\) and so on. 
-<br />
-<br />
-Example \((b)\): Take \(s = 6\) such that \(H = \langle [6] \rangle = \{[0], [6], [3]\}\). But \(d = 3\) is the smallest generator for this subgroup because \(\langle [3] \rangle = \{[0], [3], [6]\}\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!---------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-For (a), suppose \(H \neq \{[0]\}\). Then \(H\) contains at least one equivalent such that it is not \([0]\). Let \([d]\) be the smallest positive equivalent class. We claim that \(H = \langle [d] \rangle\). So we need to show that \(\langle [d] \rangle \subseteq H\) and \(H \subseteq \langle [d] \rangle\).
-<br />
-<br />
-\(\langle [d] \rangle \subseteq H\): Since \([d] \in H\), then by definition, \(\langle [d] \rangle \subseteq H\).
-<br />
-<br />
-\(H \subseteq \langle [d] \rangle\). Suppose \([h] \in H\), then by the division algorithm we can find \(q\) and \(r\) such that</p>
-<div>
-	$$
-	\begin{align*}
-	 [h] = [qd] + [r]
-	\end{align*}
-	$$
-</div>
-<p>We know that \([h] \in H\) and \([qd] \in H\). Since \(H\) is closed under addition, then</p>
-<div>
-	$$
-	\begin{align*}
-	 [r] = [h] - [qd]
-	\end{align*}
-	$$
-</div>
-<p>is also in \(H\). But since \([d]\) was the smallest positive equivalent class, then \([r]=0\) and we must have \([h] = [qd]\). Therefore, \([h] \in \langle [d] \rangle\). From this we see that \(H = \langle [d] \rangle\) as we wanted to show.
-<br />
-<br />
-For \((b)\), suppose that \(H = \langle [s] \rangle\) and \(d\) is the smallest of the positive integers \(s\) so \([d]\) also generates \(H\). By the division algorithm, write \(n = qd + r\) where \(0 \leq r &lt; d\). Now</p>
-<div>
-	$$
-	\begin{align*}
-	 [n] &amp;= [qd + r] \\
-	 0 &amp;= [qd] + [r] \\
-	 [r] &amp;= -[qd] \\
-	     &amp;= -q[d] \\
-	\end{align*}
-	$$
-</div>
-<p>But this means that \([r] \in \langle [d] \rangle\)
-<br />
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Corollary 2.2.25
-</div>
-<div class="peachbodydiv">
-For a natural number \(n \geq 2\).
-<ol type="a">
-	<li>Any subgroup of \(\mathbf{Z}_n\) is cyclic.</li>
-	<li>Any subgroup of \(\mathbf{Z}_n\) has cardinality dividing \(n\).</li>
-</ol>
-</div>
-<p><br />
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Corollary 2.2.26
-</div>
-<div class="peachbodydiv">
-For a natural number \(n \geq 2\).
-<ol type="a">
-	<li>For any positive divisor \(q\) of \(n\), there is a unique subgroup of \(\mathbf{Z}_n\) of cardinality \(q\) namely \(\langle [n/q] \rangle\).</li>
-	<li>For any two subgroups \(H\) and \(H'\) of \(\mathbf{Z}_n\), we have \(H \subseteq H' \Leftrightarrow |H|\) divides \(|H'|\).</li>
-</ol>
-</div>
-<p><br />
-Example: Suppose \(n = 8\) and \(q = 2\). Then, there is a unique subgroup of cardinality \(q = 2\), namely \(H = \langle [n/q] \rangle = \langle [4] \rangle = \{[0],[4]\}\)
-<br />
-<br />
-<!---------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-For \((a)\), since \(q\) is a positive divisor of \(n\), then by Lemma 2.2.23, the cyclic subgroup \(\langle [n/q] \rangle\) of \(\mathbf{Z}_n\) has cardinality \(n/(n/q) = q\). On the other hand, if \(H\) is a subgroup of cardinality \(q\), then by Proposition 2.2.24 \((b)\), ….</p>
-
-<p><br />
-<br /></p>
-
-<p><br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
+<p>We know that maps from a set to itself can be composed and the composition is associative. Furthermore, if \(f\) and \(g\) are bijective, then \(f \circ g\) is also bijective. Now, consider the maps from a set \(X\) to itself. Let \(\text{Sym}(X)\) be the set of all bijective maps from the set \(X\) to itself. This set satisfies</p>
 <ul>
-<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-<li><a href="https://www.youtube.com/watch?v=VdLhQs_y_E8&amp;list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5">Algebra: Abstract Lectures By Benedict Gross</a></li>
-<li><a href="https://www.youtube.com/watch?v=NwqCi63p2ik">Math of Wrath Youtube Channel</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.2.1 A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\). The necessary conditions for a subset (H) of (G) to be a subgroup of (G) are: Closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\) Closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\) By \((2)\) we know for any \(h \in H\), \(h^{-1} \in H\) and by (1), we know that \(hh^{-1}=e \in H\). So the identity element is in \(H\). Associativity is inherited from \(GG\). From this we see that these two conditions are sufficient for \(H\) to be a subgroup of \(G\). Sometimes, it is easier to prove that a set is a subgroup rather than proving that it is a group since we only need to check these two conditions. Proposition 2.2.8 (Uniqueness of the identity) Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then \(H_1 \cap H_2 \ \cap ... \cap \ H_n \) is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup. Proof TODO Generated Subgroups For any subset \(S \subseteq G\), the subgroup generated by \(S\) is the smallest subgroup in \(G\) that contains \(S\) and is denoted \(\langle S \rangle\). If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\) One way to describe \(\langle S \rangle\) is that it contains all the possible products \(g_1g_2...g_n\) where \(g_i \in S\) or \(g_i^{-1} \in S\). Another way to describe \(\langle S \rangle\) is that it is the intersection of the family of all subgroups of \(G\) that contain \(S\). This family can’t be empty since \(G\) is a group. Cyclic Groups and Cyclic Subgroups]]></summary></entry><entry><title type="html">[2.1] Group Theory: First Results</title><link href="http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results.html" rel="alternate" type="text/html" title="[2.1] Group Theory: First Results" /><published>2024-11-09T03:01:36-05:00</published><updated>2024-11-09T03:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/09/2.1-first-results.html"><![CDATA[<p>A group is a set with a defined product. This product is associative. The group is closed under this product. We have an identity element and each element has an inverse. Formally,
-<br /></p>
-<div class="mintheaderdiv">
-Definition 1.10.1
-</div>
-<div class="mintbodydiv">
-A group is a (nonempty) set \(G\) with a product satisfying the following properties:
-<ol type="a">
-	<li>The group is closed under the operation. </li>
-	<li>The product is associative. For all \(a, b, c \in G\), we have \((ab)c = a(bc)\).</li>
-	<li>There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\).</li>
-	<li>For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse).</li>
-</ol>
-</div>
-<p><br />
-What are examples of the groups?</p>
-<ol type="a">
-	<li>\(\mathbf{Z}\) with the addition operation.</li>
-	<li>The set of invertible \(n \times n\) matrices with entries in \(\mathbf{R}\) with matrix multiplication as the product.</li>
-	<li>Any vector space is a group if you forget about the scalar multiplication.</li>
-	<li>For any set \(T\), define the set of all bijections \(g: T \rightarrow T\). The set of all bijections is the symmetric group of \(T\). The operation here is the composition of these maps.</li>
-</ol>
-<p><br />
-<!----------------------------------------------------------------------></p>
-<h4><b>The Symmetric Group</b></h4>
-<p>A little more on the symmetric group example above. A permutation is a bijection from a set to itself. A <b>symmetric group</b> is the set of all permutations on a set with the composition as the group operation. 
-<br />
-<br />
-This is a group because the identity element is the identity transformation and it is a valid permutation so it’s in the set. The inverse transformation is the inverse element. We are guaranteed to have an inverse because any bijection has an inverse and the inverse of a permutation is another permutation. The composition of permutations is another permutation so the group is closed under composition. Finally, the product is associative.
-<br />
-<br />
-The symmetric group on a set \(A\) is denoted by \(S_A\). The symmetric group on the set \(\{1,2,3,...,n\}\) is denoted by \(S_n\) where \(n\) is the number of elements.
-<br />
-<br />
-The simplest symmetric group is \(S_1 = \{e\}\) because a group can’t be empty. It must contain at least one element. 
-<br />
-<br />
-What about \(S_2\)? The set is \(\{1,2\}\). We have an identity map \(e\). We also have the map that takes 1 to 2 and 2 to 1. Let this permutation be \(\tau\). So \(S_2 = \{e, \tau\}\). Composing \(\tau \circ \tau = e\). So \(\tau^{-1} = \tau\). Side note here: When a permutation only changes two elements, it is called a transposition. 
-<br />
-<br />
-<!----------------------------------------------------------------------></p>
-<h4><b>Uniqueness of the Identity and the Inverses</b></h4>
-<p>In the next two propositions, we’ll prove that the identity element in a group is unique and similarly the inverses are unique.
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.1.1 (Uniqueness of the identity)
-</div>
-<div class="peachbodydiv">
-Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\).
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-Since \(e\) is an identity element, then \(e'e = e'\) and since \(e'\) is an identity element \(ee' = e\). Therefore, \(e = e'\). \(\ \blacksquare\)
-<br />
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.1.2 (Uniqueness of inverses)
-</div>
-<div class="peachbodydiv">
-Let \(G\) be a group and let \(h, g \in G\). If \(hg = e\), then \(h = g^{-1}\). Likewise, if \(gh = e\), then \(h = g^{-1}\).
-</div>
-<p><br />
-<!---------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-Suppose \(hg = e\), then</p>
-<div>
-	$$
-	\begin{align*}
-	 h = h(gg^{-1}) = (hg)g^{-1}= eg^{-1} = g^{-1}.
-	\end{align*}
-	$$
-</div>
-<p>Suppose now that \(gh = e\), then</p>
-<div>
-	$$
-	\begin{align*}
-	 g = g(hh^{-1}) = (gh)h^{-1} = eh^{-1} = h^{-1}. \ \blacksquare
-	\end{align*}
-	$$
-</div>
-<p><br />
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Corollary 2.1.3
-</div>
-<div class="peachbodydiv">
-Let \(g\) be an element of a group \(G\). We have \(g = (g^{-1})^{-1}\)
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-We know \(gg^{-1} = e\). By (2.1.2) \(g = (g^{-1})^{-1}\). \(\ \blacksquare\)
-<br />
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.1.4
-</div>
-<div class="peachbodydiv">
-Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{-1}\)
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-Notice that \((ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e\). Therefore, \((ab)^{-1} = b^{-1}a^{-1}\).
-<br />
-<br />
-<!----------------------------------------------------------------------></p>
-<h4><b>The Left and Right Multiplication</b></h4>
-
-<div class="peachheaderdiv">
-Proposition 2.1.5
-</div>
-<div class="peachbodydiv">
-Let \(G\) be a group and \(a \in G\). <br />
-The map \(L_a: G \rightarrow G\) defined by \(L_a(x) = ax\) is a bijection. Similarly, <br />
-the map \(R_a: G \rightarrow G\) defined by \(R_a(x) = xa\) is a bijection.
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-To show that the map \(L_a\) is a bijection, we need to show that \(L_a\) is both one to one and onto or equivalently that \(L_a\) has an inverse. We claim that the left multiplication by \(a^{-1}\) or \(L_{a^{-1}}\) is the inverse of \(L_a\). To see that,</p>
-<div>
-	$$
-	\begin{align*}
-	L_{a^{-1}}(L_a(x)) = a^{-1}(ax) = (a^{-1}a)x = ex = x.
-	\end{align*}
-	$$
-</div>
-<p>Similarly,</p>
-<div>
-	$$
-	\begin{align*}
-	L_a(L_{a^{-1}}(x)) = a(a^{-1}x) = (aa^{-1})x = ex = x.
-	\end{align*}
-	$$
-</div>
-<p>So \(L_{a^{-1}}\) and \(L_a\) are inverse maps so both are bijective. \(\ \blacksquare\)
-<br />
-<br /></p>
-
-<!---------------------------------------------------------------------->
-<div class="peachheaderdiv">
-Corollary 2.1.6
-</div>
-<div class="peachbodydiv">
-Let \(G\) be a group and let \(a\) and \(b\) be elements of \(G\). The equation \(ax = b\) has a unique solution \(x\) in \(G\). and likewise the equation \(xa = b\) has a unique solution in \(G\).
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-For \(ax = b\) to have a solution. The map \(L_a\) needs to be onto or surjective. For the solution to be unique, the map needs to be one to one or injective. Similarly for \(xa = b\) to have a solution, we want \(R_a\) to be a bijective. Since we proved earlier that \(L_a\) and \(R_a\) are bijections, then both equations have unique solutions. \(\ \blacksquare\)
-<br />
-<br /></p>
-
-<!---------------------------------------------------------------------->
-<div class="peachheaderdiv">
-Corollary 2.1.7 (Cancellation)
-</div>
-<div class="peachbodydiv">
-Suppose \(a, x, y\) are elements of a group \(G\). If \(ax = ay\), then \(x = y\). Similarly, if \(xa = ya\), then \(x = y\).
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-Suppose \(ax = ay\). We know that \(L_a = ax\) is one to one. So for any elements \(x, y \in G\), \(ax = ay\) must imply that \(x = y\) by definition of a one to one or injective map. A similar arguments shows that if \(xa = ya\) must imply that \(x = y\) by the injectivity of \(R_a\). \(\ \blacksquare\)
-<br />
-<br /></p>
-
-<!---------------------------------------------------------------------->
-<div class="peachheaderdiv">
-Corollary 2.1.8
-</div>
-<div class="peachbodydiv">
-If \(G\) is a finite group, each row and each column of the multiplication table of \(G\) contains each element of \(G\) exactly once.
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-A row in the multiplication table can be represented by a left multiplication map \(G \rightarrow G\) if you fix the element multiplied on the left. We know the left multiplication map is a bijection. Therefore every element/result must be unique and each element of \(G\) must show up in the row. Similarly, each column can be represented by a right multiplication map. The map is a bijection and so each element must be unique and shown exactly once. (TODO clean up this proof)
-<br />
-<br /></p>
-
-<!---------------------------------------------------------------------->
-<h4><b>Isomorphic Groups</b></h4>
-<!---------------------------------------------------------------------->
-<div class="mintheaderdiv">
-Definition 2.1.10
-</div>
-<div class="mintbodydiv">
-The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
-</div>
-<p><br />
-<br /></p>
-
-<!---------------------------------------------------------------------->
-<div class="mintheaderdiv">
-Definition 2.1.13
-</div>
-<div class="mintbodydiv">
-We say two groups \(G\) and \(H\) are isomorphic if there is a bijection \(\phi: G \rightarrow H\) such that for all \(g_1, g_2 \in G, \phi(g_1g_2) = \phi(g_1)\phi(g_2)\). The map \(\phi\) is called an isomorphism.
-</div>
-<p><br />
-<br /></p>
-
-<!---------------------------------------------------------------------->
-<div class="mintheaderdiv">
-Definition 2.1.14
-</div>
-<div class="mintbodydiv">
-A group \(G\) is called abelian (or commutative) if for all elements \(a, b \in G\), the products in the two orders are equal \(ab = ba\).
-</div>
-<p><br />
-<br /></p>
-
-<!--------------------------------------------------------------------->
-<div class="peachheaderdiv">
-Proposition 2.1.17
-</div>
-<div class="peachbodydiv">
-<ol type="a">
-	<li>Up to isomorphism, \(\mathbf{Z_1}\) is the unique group of order 1.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_2}\) is the unique group of order 2.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_3}\) is the unique group of order 3.</li>
-	<li>Up to isomorphism, there are exactly two groups of order 4, namely \(\mathbf{Z_4}\), and the group of rational symmetries of the rectangular card.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_5}\) is the unique group of order 5.</li>
-	<li>All groups of order no more than 5 are abelian.</li>
-	<li>There are at least two non-isomorphic groups of order 6, one abelian and one non-abelian.</li>
-</ol>
-</div>
-<p><br />
-Up to isomorphism just means that that two objects will be considered the same if they are isomorphic. We just want to classify groups into distinct non-isomorphic groups. For example, for statement (c), This means groups of order 3 are all isomorphic to \(\mathbf{Z_3}\) while statement (d) implies that we have two distinct groups of order 4. 
-<br />
-<br />
-<b>Proof</b>
-<br />
-TODO
+	<li>composition of these maps is associative.</li>
+	<li>There is an identity map \(id_X\) such that the composition of this map with any \(f \in \text{Sym}(X)\).</li>
+	<li>The inverse of any map \(f \in \text{Sym}(X)\) is \(f^{-1}\) and the composition of these two maps is \(id_X\).</li>
+</ul>
+<p>We can see now that a permutation of \(n\) objects can really be represented with a bijective function on the set \(\{1,...,n\}\). The multiplication of permutations is really the same as the composition of these bijective maps. Instead of writing \(\text{Sym}(X)\), we write \(S_n\) where \(n\) is the number of elements in the set.
 <br />
 <br /></p>
 <hr />
 
 <p><br />
-<br />
-<!---------------------------------------------------------------------->
-Again two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
-<br /></p>
-<div class="peachheaderdiv">
-Proposition 2.1.18
-</div>
-<div class="peachbodydiv">
-If \(\phi : G \rightarrow H\) is an isomorphism, then \(\phi(e_G) = e_H\), and for each \(g \in G\), \(\phi(g^{-1}) = \phi(g)^{-1}\)
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-Since \(\phi\) is an isomorphism, then we know that for each \(h \in H\), there is a \(g \in G\) such that \(\phi(g) = h\). Therefore,</p>
+<!------------------------------------------------------------------------></p>
+<h4><b>Cycle Notation</b></h4>
+<p>Additionally, instead of writing the whole two rows like we did earlier, we typically write these permutations or maps in an alternative form. Instead of writing</p>
 <div>
 	$$
 	\begin{align*}
-	\phi(e_G)h &amp;= \phi(e_G)\phi(g) \\
-	           &amp;= \phi(e_Gg) \quad \text{$\phi$ is an isomorphism}\\
-			   &amp;= \phi(g) \\
-			   &amp;= h \\
+	 \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 \\ 4 &amp; 3 &amp; 1 &amp; 2 &amp; 6 &amp; 5 &amp; 7\end{pmatrix}
 	\end{align*}
 	$$
 </div>
-<p>So \(\phi(e_G)\) is an identity element. But since the identity element is unique, then \(\phi(e_G) = \phi(e_H)\).
-<br />
-<br />
-To show that \(\phi(g^{-1}) = \phi(g)^{-1}\), see that</p>
+<p>we write</p>
 <div>
 	$$
 	\begin{align*}
-	\phi(g^{-1})\phi(g) &amp;= \phi(g^{-1}g) \quad \text{$\phi$ is an isomorphism} \\
-	        &amp;= \phi(e_G) \\
-			&amp;= e_H \quad \text{by the previous result} 	
+	 \rho = \begin{pmatrix}1 &amp; 4 &amp; 2 &amp; 3\end{pmatrix}\begin{pmatrix}5 &amp; 6\end{pmatrix}
 	\end{align*}
 	$$
 </div>
-<p>So \(\phi(g)\) is the inverse of \(\phi(g^{-1})\) or in other words \(\phi(g)^{-1} = \phi(g^{-1})\) as we wanted to show. \(\ \blacksquare\)
-<br />
-<br /></p>
-<hr />
-
+<p>This form takes 1 to 4, 4 to 2, 2 to 3 and 3 to 1. It also takes 5 to 6 and 6 to 5. A permutation that permutes several numbers cyclically is called a <b>cycle</b>. And two cycles are disjoint if each will leave the numbers moved by the other cycle fixed. An example is the above permutation which has two disjoint cycles. With this representation though, all of the following permutations are equal</p>
+<div>
+	$$
+	\begin{align*}
+	 \begin{pmatrix}1 &amp; 4 &amp; 2 &amp; 3\end{pmatrix} = \begin{pmatrix}4 &amp; 2 &amp; 3 &amp; 1\end{pmatrix} = \begin{pmatrix}2 &amp; 3 &amp; 1 &amp; 4\end{pmatrix} = \begin{pmatrix}3 &amp; 1 &amp; 4 &amp; 2\end{pmatrix}
+	\end{align*}
+	$$
+</div>
 <p><br /></p>
+<hr />
 
-<!--------------------------------------------------------------------->
-<h4><b>The General Associative Law</b></h4>
-<p>We know by definition that the product is associative so for all \(a, b, c \in G\), we have \((ab)c = a(bc)\). What about the product of 4 or more elements? is it associative? For example, there are five ways to group four elements</p>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Multiplication with Cycle Notation</b></h4>
+<p>Suppose we want to compose or multiply the following permutations</p>
 <div>
 	$$
 	\begin{align*}
-	a(b(cd)), a((bc)d), (ab)(cd), (a(bc))d, ((ab)c)d
+	 f = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ 3 &amp; 5 &amp; 4 &amp; 1 &amp; 2 \end{pmatrix}
 	\end{align*}
 	$$
 </div>
-<p>\(a(b(cd))\) and \(((ab)c)d\) follow from the definition. For the rest, see that</p>
+<p>and</p>
 <div>
 	$$
 	\begin{align*}
-	a(bcd) = a(b(cd)) = (ab)(cd) = ((ab)c)d = (abc)d
+	 g = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ 3 &amp; 1 &amp; 5 &amp; 2 &amp; 4 \end{pmatrix}
 	\end{align*}
 	$$
 </div>
-<p>In general this works for any number of elements. This is formally presented in the next proposition.
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.1.19 (General associative law)
-</div>
-<div class="peachbodydiv">
-Let \(M\) be a set with an associative operation, \(M \times M \rightarrow M\), denoted by juxtaposition. For every \(n \geq 1\), there is a unique product \(M^n \rightarrow M\),
+<p>With the non-cycle notation, we can easily see that \(g(1) = 3\) and \(f(3) = 4\) so this means that 1 gets mapped to 4. Similarly, \(g(2) = 1\) and \(f(1) = 3\) so 2 gets mapped to 3. Furthermore, \(f(g(3)) = f(5) = 2\). \(f(g(4)) = f(2) = 5\). So we see that</p>
+<div>
 	$$
 	\begin{align*}
-	(a_1, a_2,...,a_n) \rightarrow a_1a_2...a_n,
+	 f \circ g = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ 4 &amp; 3 &amp; 2 &amp; 5 &amp; 1 \end{pmatrix}
 	\end{align*}
 	$$
-such that
-<ol type="a">
-	<li> The product of one element is that element \((a) = a\).</li>
-	<li> The product of two elements agrees with the given operation \((ab) = ab\).</li>
-	<li>For all \(n \geq 2\), for all \(a_1,...,a_n \in M\), and for all \(1 \leq k \leq n-1\), 
-		$$
-		\begin{align*}
-		a_1a_2...a_n = (a_1...a_k)(a_{k-1}...a_n)
-		\end{align*}
-		$$
-	</li>
-</ol>
+</div>
+<p>In cycle notation, we know that we can write \(f\) and \(g\) as follows</p>
+<div>
+	$$
+	\begin{align*}
+	 f &amp;= \begin{pmatrix} 1 &amp; 3 &amp; 4 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 \end{pmatrix} \\
+	 g &amp;= \begin{pmatrix} 1 &amp; 3 &amp; 5 &amp; 4 &amp; 2 \end{pmatrix}
+	\end{align*}
+	$$
+</div>
+<p>Suppose we want compose \(f\) and \(g\) in cycle notation. We’ll take one element at a time and see where it goes so</p>
+<ul>
+	<li>From \(g\) above we see that 1 goes to 3 and from \(f\), we see that 3 goes to 4. Therefore, \(f(g(1)) = 4\)</li>
+	<li>Similarly using the cycle notation we see that 2 goes to 1 above with \(g\) and \(f\) takes 1 to 3. Therefore, \(f(g(2)) = 3\)</li>
+	<li>Following the same pattern, \(f(g(3))=f(4)=2\). \(f(g(4)) = f(2) = 5\) and finally, \(f(g(5)) = f(4) = 1\)</li>
+</ul>
+<p>Writing the result in cycle notation, we can start with any element to start building a cycle. If we start with 1, then we see that 1 gets mapped to 4. 4 gets mapped to 5. 5 gets mapped to 1. So that’s a cycle. For the second cycle, if we start with 2, then 2 gets mapped 3 and then 3 gets mapped to 2. So that’s the second cycle or a transposition. Therefore we can write the following</p>
+<div>
+	$$
+	\begin{align*}
+	 f \circ g = \begin{pmatrix}1 &amp; 4 &amp; 5\end{pmatrix}\begin{pmatrix}2 &amp; 3\end{pmatrix}
+	\end{align*}
+	$$
 </div>
 <p><br />
-<b>Proof</b>
-<br />
-By induction on \(n\). <br />
-Base Case: For \(n \leq 3\), property \((c)\) holds by definition.
-<br />
-Inductive Case: Suppose this is true for all \(1 \leq r \leq n\) where a unique product of \(r\) elements satisfies the properties \((a)-(c)\) above. Suppose now that we have \(n\) elements. Fix elements \(a_1, ...,a_n \in M\). By the inductive hypothesis, the \(n-1\) products</p>
-<div>
-	$$
-	\begin{align*}
-	p_k = (a_1...a_k)(a_{k+1}...a_n),
-	\end{align*}
-	$$
-</div>
-<p>are defined since we have at most \(n-1\) elements. … [TODO]
-<br />
 <br /></p>
 <hr />
 
 <p><br />
-<!----------------------------------------------------------------------></p>
+<!------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
 <ul>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-<li><a href="https://www.youtube.com/watch?v=VdLhQs_y_E8&amp;list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5">Algebra: Abstract Lectures By Benedict Gross</a></li>
-<li><a href="https://www.youtube.com/watch?v=NwqCi63p2ik">Math of Wrath Youtube Channel</a>
-&lt;/ul&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</li></ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A group is a set with a defined product. This product is associative. The group is closed under this product. We have an identity element and each element has an inverse. Formally, Definition 1.10.1 A group is a (nonempty) set \(G\) with a product satisfying the following properties: The group is closed under the operation. The product is associative. For all \(a, b, c \in G\), we have \((ab)c = a(bc)\). There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\). For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse). What are examples of the groups? \(\mathbf{Z}\) with the addition operation. The set of invertible \(n \times n\) matrices with entries in \(\mathbf{R}\) with matrix multiplication as the product. Any vector space is a group if you forget about the scalar multiplication. For any set \(T\), define the set of all bijections \(g: T \rightarrow T\). The set of all bijections is the symmetric group of \(T\). The operation here is the composition of these maps. The Symmetric Group A little more on the symmetric group example above. A permutation is a bijection from a set to itself. A symmetric group is the set of all permutations on a set with the composition as the group operation. This is a group because the identity element is the identity transformation and it is a valid permutation so it’s in the set. The inverse transformation is the inverse element. We are guaranteed to have an inverse because any bijection has an inverse and the inverse of a permutation is another permutation. The composition of permutations is another permutation so the group is closed under composition. Finally, the product is associative. The symmetric group on a set \(A\) is denoted by \(S_A\). The symmetric group on the set \(\{1,2,3,...,n\}\) is denoted by \(S_n\) where \(n\) is the number of elements. The simplest symmetric group is \(S_1 = \{e\}\) because a group can’t be empty. It must contain at least one element. What about \(S_2\)? The set is \(\{1,2\}\). We have an identity map \(e\). We also have the map that takes 1 to 2 and 2 to 1. Let this permutation be \(\tau\). So \(S_2 = \{e, \tau\}\). Composing \(\tau \circ \tau = e\). So \(\tau^{-1} = \tau\). Side note here: When a permutation only changes two elements, it is called a transposition. Uniqueness of the Identity and the Inverses In the next two propositions, we’ll prove that the identity element in a group is unique and similarly the inverses are unique. Proposition 2.1.1 (Uniqueness of the identity) Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\). Proof Since \(e\) is an identity element, then \(e'e = e'\) and since \(e'\) is an identity element \(ee' = e\). Therefore, \(e = e'\). \(\ \blacksquare\) Proposition 2.1.2 (Uniqueness of inverses) Let \(G\) be a group and let \(h, g \in G\). If \(hg = e\), then \(h = g^{-1}\). Likewise, if \(gh = e\), then \(h = g^{-1}\). Proof Suppose \(hg = e\), then $$ \begin{align*} h = h(gg^{-1}) = (hg)g^{-1}= eg^{-1} = g^{-1}. \end{align*} $$ Suppose now that \(gh = e\), then $$ \begin{align*} g = g(hh^{-1}) = (gh)h^{-1} = eh^{-1} = h^{-1}. \ \blacksquare \end{align*} $$ Corollary 2.1.3 Let \(g\) be an element of a group \(G\). We have \(g = (g^{-1})^{-1}\) Proof We know \(gg^{-1} = e\). By (2.1.2) \(g = (g^{-1})^{-1}\). \(\ \blacksquare\) Proposition 2.1.4 Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{-1}\) Proof Notice that \((ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e\). Therefore, \((ab)^{-1} = b^{-1}a^{-1}\). The Left and Right Multiplication]]></summary></entry><entry><title type="html">[1.7] Modular Arithmetic</title><link href="http://localhost:4000/jekyll/update/2024/11/07/1.7-modular-arthmetic.html" rel="alternate" type="text/html" title="[1.7] Modular Arithmetic" /><published>2024-11-07T03:01:36-05:00</published><updated>2024-11-07T03:01:36-05:00</updated><id>http://localhost:4000/jekyll/update/2024/11/07/1.7-modular-arthmetic</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/11/07/1.7-modular-arthmetic.html"><![CDATA[<p>Suppose we have a natural number \(n\), then \((i \mod n)\) is the remainder after dividing \(n\) by \(i\). For example \((1 \mod 7) = (8 \mod 7) = (15 \mod 7) = 1\) and \((7 \mod 7) = 0\). From this we observe that for two numbers \(a\) and \(b\) to leave the same remainder, they need to be \(n\) numbers apart on the numbers line or in other words, \(|a - b|\) is a multiple of \(n\). Formally,
-<!------------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition 1.7.1
-</div>
-<div class="mintbodydiv">
-Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write \(a \equiv b \mod n\) if \(a - b\) is divisible by \(n\).
-</div>
-<p><br />
-This relation \(a \equiv b \mod n\) has the following properties:
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma 1.7.2
-</div>
-<div class="yellowbodydiv">
-<ol type="a">
-	<li>For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\).</li>
-	<li>For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\).</li>
-	<li>For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\).</li>
-</ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-For \((a)\), \(a - a = 0\) is divisible by \(n\). For \((b)\), if \(a - b\) is divisible by \(n\), then \(b - a\) is also divisible by \(n\) and vice versa. For \((c)\), if \(a - b\) is divisible by \(n\) and \(b - c\) is divisible by \(4n\), then \((a - b) + (b - c) = a - c\) is also divisible by \(n\). \(\ \blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-For each integer \(a\), write
-$$
-\begin{align*}
-[a] &amp;= \{b \in \mathbf{Z} \ | \ a \equiv b \mod n\} \\
-    &amp;= \{ a + kn \ | \ k \in \mathbf{Z} \}
-\end{align*}
-$$
-The set \(a\) is called the residue class or congruence class of \(a\) modulo \(n\). <br />
-Also let \(rem_n(a)\) be the unique number \(r\) such that \(0 \leq r &lt; n\) and \(a - r\) is divisible by \(n\).  So it is the unique element of \([a]\) that lies in the interval \( \{0,1,...,n-1\} \).
-</div>
-<p><br />
-<!------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma 1.7.3
-</div>
-<div class="yellowbodydiv">
-For \(a, b \in \mathbf{Z}\), the following are equivalent:
-<ol type="a">
-	<li>\(a \equiv b \mod n\).</li>
-	<li>\([a] = [b]\).</li>
-	<li>\(\text{rem}_n(a) = \text{rem}_n(b)\).</li>
-	<li>\([a] \cap [b] \neq \emptyset\).</li>
-</ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-\((a) \implies (b)\):
-<br />
-Suppose \(a \equiv b \mod n\). We want to show that \([a] = [b]\) by showing that \([a] \subseteq [b]\) and \([b] \subseteq [a]\). For any \(c \in \mathbf{Z}\), we know that if \(c \equiv a \mod n\), then \(c \equiv b \mod n\) by Lemma 1.7.2 (c). Therefore \([a] \subseteq [b]\). Similarly, if \(c \equiv b \mod n\), then \(c \equiv a \mod n\) and so \([a] = [b]\) as required.
-<br />
-<br />
-\((b) \implies (c)\):
-<br />
-By definition, \(\text{rem}_n(x)\) is the unique element of \([x]\) that lies inside \(\{0,1,...,n-1\}\). So if \([a]=[b]\), then it must be the same element.
-<br />
-<br />
-\((c) \implies (d)\):
-<br />
-\((d)\) is an immediate application of \((c)\)
-<br />
-<br />
-\((d) \implies (a)\):
-Suppose that \([a] \cap [b] \neq \emptyset\). Let \(c \in [a] \cap [b]\). Then \(a \equiv c \mod n\) and \(b \equiv c \mod n\). But this implies that \(a \equiv b \mod n\). \(\ \blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Corollary 1.7.4
-</div>
-<div class="yellowbodydiv">
-There exist exactly \(n\) distinct residue classes modulo \(n\) namely \([0], [1],...,[n-1]\). These classes are mutually disjoint.
-</div>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma 1.7.5
-</div>
-<div class="yellowbodydiv">
-Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then \(a + b \equiv a' + b' \mod n\) and \(ab \equiv a'b' \mod n\)
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-<li><a href="https://www.youtube.com/watch?v=8cikffEcyPI&amp;t=5s">Michael Penn's Lectures</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Suppose we have a natural number \(n\), then \((i \mod n)\) is the remainder after dividing \(n\) by \(i\). For example \((1 \mod 7) = (8 \mod 7) = (15 \mod 7) = 1\) and \((7 \mod 7) = 0\). From this we observe that for two numbers \(a\) and \(b\) to leave the same remainder, they need to be \(n\) numbers apart on the numbers line or in other words, \(|a - b|\) is a multiple of \(n\). Formally, Definition 1.7.1 Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write \(a \equiv b \mod n\) if \(a - b\) is divisible by \(n\). This relation \(a \equiv b \mod n\) has the following properties: Lemma 1.7.2 For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\). For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\). For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\). Proof For \((a)\), \(a - a = 0\) is divisible by \(n\). For \((b)\), if \(a - b\) is divisible by \(n\), then \(b - a\) is also divisible by \(n\) and vice versa. For \((c)\), if \(a - b\) is divisible by \(n\) and \(b - c\) is divisible by \(4n\), then \((a - b) + (b - c) = a - c\) is also divisible by \(n\). \(\ \blacksquare\) Definition For each integer \(a\), write $$ \begin{align*} [a] &amp;= \{b \in \mathbf{Z} \ | \ a \equiv b \mod n\} \\ &amp;= \{ a + kn \ | \ k \in \mathbf{Z} \} \end{align*} $$ The set \(a\) is called the residue class or congruence class of \(a\) modulo \(n\). Also let \(rem_n(a)\) be the unique number \(r\) such that \(0 \leq r &lt; n\) and \(a - r\) is divisible by \(n\). So it is the unique element of \([a]\) that lies in the interval \( \{0,1,...,n-1\} \). Lemma 1.7.3 For \(a, b \in \mathbf{Z}\), the following are equivalent: \(a \equiv b \mod n\). \([a] = [b]\). \(\text{rem}_n(a) = \text{rem}_n(b)\). \([a] \cap [b] \neq \emptyset\). Proof \((a) \implies (b)\): Suppose \(a \equiv b \mod n\). We want to show that \([a] = [b]\) by showing that \([a] \subseteq [b]\) and \([b] \subseteq [a]\). For any \(c \in \mathbf{Z}\), we know that if \(c \equiv a \mod n\), then \(c \equiv b \mod n\) by Lemma 1.7.2 (c). Therefore \([a] \subseteq [b]\). Similarly, if \(c \equiv b \mod n\), then \(c \equiv a \mod n\) and so \([a] = [b]\) as required. \((b) \implies (c)\): By definition, \(\text{rem}_n(x)\) is the unique element of \([x]\) that lies inside \(\{0,1,...,n-1\}\). So if \([a]=[b]\), then it must be the same element. \((c) \implies (d)\): \((d)\) is an immediate application of \((c)\) \((d) \implies (a)\): Suppose that \([a] \cap [b] \neq \emptyset\). Let \(c \in [a] \cap [b]\). Then \(a \equiv c \mod n\) and \(b \equiv c \mod n\). But this implies that \(a \equiv b \mod n\). \(\ \blacksquare\) Corollary 1.7.4 There exist exactly \(n\) distinct residue classes modulo \(n\) namely \([0], [1],...,[n-1]\). These classes are mutually disjoint. Lemma 1.7.5 Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then \(a + b \equiv a' + b' \mod n\) and \(ab \equiv a'b' \mod n\) References Algebra: Abstract and Concrete by Frederick M. Goodman Michael Penn's Lectures]]></summary></entry></feed>
+<li><a href="https://www.youtube.com/watch?v=MpKG6FmcIHk">Socratica</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[What are the symmetries of the configuration of three objects above? There are 6 possible ways to place the objects. The symmetries of a configuration of identical objects are called permutations. To represent a permutation, we’ll use the following notation. The first row refers to the positions of these objects in the configuration. The second row represents the final configuration of the objects after permuting them. $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 \\ 3 &amp; 2 &amp; 1\end{pmatrix} \end{align*} $$ So in the above, the objects in positions 1 and 3 will be switched while the object in position 2 will stay in place. $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 \\ 2 &amp; 3 &amp; 1\end{pmatrix} \end{align*} $$ In the above, the object in position 1 will move to position 2. The object in position 2 will move to position 3 and the object in position 3 will move to position 1. Permutations and Symmetries The set of permutations of \(n\) identical objects and the set of symmetries of a geometric figure share the following properties The multiplication of permutations is associative. There is an identity element. For each permutation \(\sigma\), there is an inverse permutation \(\sigma^{-1}\). We know that maps from a set to itself can be composed and the composition is associative. Furthermore, if \(f\) and \(g\) are bijective, then \(f \circ g\) is also bijective. Now, consider the maps from a set \(X\) to itself. Let \(\text{Sym}(X)\) be the set of all bijective maps from the set \(X\) to itself. This set satisfies composition of these maps is associative. There is an identity map \(id_X\) such that the composition of this map with any \(f \in \text{Sym}(X)\). The inverse of any map \(f \in \text{Sym}(X)\) is \(f^{-1}\) and the composition of these two maps is \(id_X\). We can see now that a permutation of \(n\) objects can really be represented with a bijective function on the set \(\{1,...,n\}\). The multiplication of permutations is really the same as the composition of these bijective maps. Instead of writing \(\text{Sym}(X)\), we write \(S_n\) where \(n\) is the number of elements in the set. Cycle Notation Additionally, instead of writing the whole two rows like we did earlier, we typically write these permutations or maps in an alternative form. Instead of writing $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 \\ 4 &amp; 3 &amp; 1 &amp; 2 &amp; 6 &amp; 5 &amp; 7\end{pmatrix} \end{align*} $$ we write $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 4 &amp; 2 &amp; 3\end{pmatrix}\begin{pmatrix}5 &amp; 6\end{pmatrix} \end{align*} $$ This form takes 1 to 4, 4 to 2, 2 to 3 and 3 to 1. It also takes 5 to 6 and 6 to 5. A permutation that permutes several numbers cyclically is called a cycle. And two cycles are disjoint if each will leave the numbers moved by the other cycle fixed. An example is the above permutation which has two disjoint cycles. With this representation though, all of the following permutations are equal $$ \begin{align*} \begin{pmatrix}1 &amp; 4 &amp; 2 &amp; 3\end{pmatrix} = \begin{pmatrix}4 &amp; 2 &amp; 3 &amp; 1\end{pmatrix} = \begin{pmatrix}2 &amp; 3 &amp; 1 &amp; 4\end{pmatrix} = \begin{pmatrix}3 &amp; 1 &amp; 4 &amp; 2\end{pmatrix} \end{align*} $$ Multiplication with Cycle Notation Suppose we want to compose or multiply the following permutations $$ \begin{align*} f = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ 3 &amp; 5 &amp; 4 &amp; 1 &amp; 2 \end{pmatrix} \end{align*} $$ and $$ \begin{align*} g = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ 3 &amp; 1 &amp; 5 &amp; 2 &amp; 4 \end{pmatrix} \end{align*} $$ With the non-cycle notation, we can easily see that \(g(1) = 3\) and \(f(3) = 4\) so this means that 1 gets mapped to 4. Similarly, \(g(2) = 1\) and \(f(1) = 3\) so 2 gets mapped to 3. Furthermore, \(f(g(3)) = f(5) = 2\). \(f(g(4)) = f(2) = 5\). So we see that $$ \begin{align*} f \circ g = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ 4 &amp; 3 &amp; 2 &amp; 5 &amp; 1 \end{pmatrix} \end{align*} $$ In cycle notation, we know that we can write \(f\) and \(g\) as follows $$ \begin{align*} f &amp;= \begin{pmatrix} 1 &amp; 3 &amp; 4 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 \end{pmatrix} \\ g &amp;= \begin{pmatrix} 1 &amp; 3 &amp; 5 &amp; 4 &amp; 2 \end{pmatrix} \end{align*} $$ Suppose we want compose \(f\) and \(g\) in cycle notation. We’ll take one element at a time and see where it goes so From \(g\) above we see that 1 goes to 3 and from \(f\), we see that 3 goes to 4. Therefore, \(f(g(1)) = 4\) Similarly using the cycle notation we see that 2 goes to 1 above with \(g\) and \(f\) takes 1 to 3. Therefore, \(f(g(2)) = 3\) Following the same pattern, \(f(g(3))=f(4)=2\). \(f(g(4)) = f(2) = 5\) and finally, \(f(g(5)) = f(4) = 1\) Writing the result in cycle notation, we can start with any element to start building a cycle. If we start with 1, then we see that 1 gets mapped to 4. 4 gets mapped to 5. 5 gets mapped to 1. So that’s a cycle. For the second cycle, if we start with 2, then 2 gets mapped 3 and then 3 gets mapped to 2. So that’s the second cycle or a transposition. Therefore we can write the following $$ \begin{align*} f \circ g = \begin{pmatrix}1 &amp; 4 &amp; 5\end{pmatrix}\begin{pmatrix}2 &amp; 3\end{pmatrix} \end{align*} $$ References Algebra: Abstract and Concrete by Frederick M. Goodman Socratica]]></summary></entry></feed>

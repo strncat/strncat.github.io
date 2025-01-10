@@ -6,9 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 This was pretty straightforward. The first thing that I wanted to do is to point my input stream at the file we're given. So just the following line.
-{% highlight c++ %} 
-freopen("0022_names.txt" , "r" , stdin);
-{% endhighlight %}
+{% highlight c++ %}freopen("0022_names.txt" , "r" , stdin);{% endhighlight %}
 
 The next thing we want is to read the chunk of names all at once so
 {% highlight c++ %}

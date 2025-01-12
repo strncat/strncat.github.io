@@ -1,4 +1,113 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-11T16:18:34-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 20 Factorial Digit Sum</title><link href="http://localhost:4000/jekyll/update/2025/01/06/project-euler-20-factorial-digit-sum.html" rel="alternate" type="text/html" title="Project Euler: 20 Factorial Digit Sum" /><published>2025-01-06T00:01:36-08:00</published><updated>2025-01-06T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/06/project-euler-20-factorial-digit-sum</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/06/project-euler-20-factorial-digit-sum.html"><![CDATA[<p>In this one, we want to find the sum of all the digits in the number \(100!\). I did this naively where I just calculate</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-11T20:18:33-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 15 Lattice Paths</title><link href="http://localhost:4000/jekyll/update/2025/01/08/project-euler-15-lattice-paths.html" rel="alternate" type="text/html" title="Project Euler: 15 Lattice Paths" /><published>2025-01-08T00:01:36-08:00</published><updated>2025-01-08T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/08/project-euler-15-lattice-paths</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/08/project-euler-15-lattice-paths.html"><![CDATA[<p>We have a grid of size \(20 \times 20\). We can reach the last step in 40 exactly steps. 20 of these steps must be down steps and the other 20 must be right steps. So we have a sequence of 40 steps total and we want to find all possible sequences of these steps. Suppose we first chose the down steps in the configuration below</p>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+	<td>4</td>
+	<td>5</td>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+	<td>9</td>
+	<td>10</td>
+    <td>11</td>
+    <td>12</td>
+	<td>13</td>
+    <td>14</td>
+    <td>15</td>
+    <td>16</td>
+	<td>...</td>
+  </tr>
+  <tr>
+    <td>D</td>
+    <td> </td>
+    <td>D</td>
+	<td>D</td>
+	<td> </td>
+    <td> </td>
+    <td>D</td>
+    <td>D</td>
+	<td> </td>
+	<td>D</td>
+    <td> </td>
+    <td>D</td>
+	<td>D</td>
+    <td> </td>
+    <td>D</td>
+    <td>D</td>
+	<td>...</td>
+  </tr>
+</table>
+</div>
+<p>So steps 1,3,4,7,8 … all are down steps. Then, automatically we know that the rest of the steps are just right steps. So once we determine the right steps, we’re done. The remaining steps will be down steps. So we’re only choosing 20 of the 40 steps. The number of ways to choose 20 steps out of 40 is given by the binomial coefficient.</p>
+<div>
+	$$
+	\begin{align*}
+	\binom{40}{20} = \frac{40!}{20!20!}
+	\end{align*}
+	$$
+</div>
+<!------------------------------------------------------------------------------------>
+<h4><b>A Dynamic Programming Solution</b></h4>
+<p>Another way to do this problem is with dynamic programming. Why do it this way? maybe just to practice? Suppose we’re at very last step. We could have come from the step above or the step to the left. Let ways\([i][j]\) be a matrix representing the numbers. So the number of the ways to generate the sequence of 40 steps is the sum of all ways if came from a step above plus all the ways if we came from a step on the left. Therefore, we naturally have a recurrence that we can implement below</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ways</span><span class="p">[</span><span class="mi">25</span><span class="p">][</span><span class="mi">25</span><span class="p">];</span>
+<span class="n">memset</span><span class="p">(</span><span class="n">ways</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ways</span><span class="p">));</span>
+<span class="n">ways</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">ways</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">ways</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ways</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ways</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">ways</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"reach(21,21) in %llu steps</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">ways</span><span class="p">[</span><span class="mi">21</span><span class="p">][</span><span class="mi">21</span><span class="p">]);</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=16">Project Euler - 16</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We have a grid of size \(20 \times 20\). We can reach the last step in 40 exactly steps. 20 of these steps must be down steps and the other 20 must be right steps. So we have a sequence of 40 steps total and we want to find all possible sequences of these steps. Suppose we first chose the down steps in the configuration below 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 ... D D D D D D D D D D ... So steps 1,3,4,7,8 … all are down steps. Then, automatically we know that the rest of the steps are just right steps. So once we determine the right steps, we’re done. The remaining steps will be down steps. So we’re only choosing 20 of the 40 steps. The number of ways to choose 20 steps out of 40 is given by the binomial coefficient. $$ \begin{align*} \binom{40}{20} = \frac{40!}{20!20!} \end{align*} $$ A Dynamic Programming Solution Another way to do this problem is with dynamic programming. Why do it this way? maybe just to practice? Suppose we’re at very last step. We could have come from the step above or the step to the left. Let ways\([i][j]\) be a matrix representing the numbers. So the number of the ways to generate the sequence of 40 steps is the sum of all ways if came from a step above plus all the ways if we came from a step on the left. Therefore, we naturally have a recurrence that we can implement below unsigned long long ways[25][25]; memset(ways, 0, sizeof(ways)); ways[0][0] = 0; ways[1][0] = 1; ways[0][1] = 0; for (int i = 1; i &lt; 25; i++) { for (int j = 1; j &lt; 25; j++) { ways[i][j] = ways[i-1][j] + ways[i][j-1]; } } printf("reach(21,21) in %llu steps\n", ways[21][21]); References Project Euler - 16]]></summary></entry><entry><title type="html">Project Euler: 16 Power Digit Sum</title><link href="http://localhost:4000/jekyll/update/2025/01/07/project-euler-16-power-digit-sum.html" rel="alternate" type="text/html" title="Project Euler: 16 Power Digit Sum" /><published>2025-01-07T00:01:36-08:00</published><updated>2025-01-07T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/07/project-euler-16-power-digit-sum</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/07/project-euler-16-power-digit-sum.html"><![CDATA[<p>In this one, we want to find the sum of the digits of \(2^{1000}\). I did this naively where I just multiply by 2 every iteration until we reach \(2^{1000}\). Of course to do so in c\(++\), we need to use arrays. Let <i>s</i> hold the result and initialize to 2. Then
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">s</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">memset</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+<span class="n">s</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">m</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// multiply 2</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum</span> <span class="o">+</span> <span class="n">carry</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">carry</span><span class="p">;</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+Finally, we just need to sum the digits
+<br />
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">sum</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"sum = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=16">Project Euler - 16</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this one, we want to find the sum of the digits of \(2^{1000}\). I did this naively where I just multiply by 2 every iteration until we reach \(2^{1000}\). Of course to do so in c\(++\), we need to use arrays. Let s hold the result and initialize to 2. Then int s[N], carry = 0; memset(s, 0, sizeof(s)); s[N-1] = 2; for (int m = 1; m &lt; 1000; m++) { // multiply 2 int i = N-1; for (; i &gt;= 0; i--) { int sum = s[i] * 2; s[i] = (sum + carry) % 10; carry = sum / 10; } s[i] += carry; carry = 0; } } Finally, we just need to sum the digits int sum = 0; for (int i = 0; i &lt; N; i++) { sum += s[i]; } printf("sum = %d\n", sum); References Project Euler - 16]]></summary></entry><entry><title type="html">Project Euler: 20 Factorial Digit Sum</title><link href="http://localhost:4000/jekyll/update/2025/01/06/project-euler-20-factorial-digit-sum.html" rel="alternate" type="text/html" title="Project Euler: 20 Factorial Digit Sum" /><published>2025-01-06T00:01:36-08:00</published><updated>2025-01-06T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/06/project-euler-20-factorial-digit-sum</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/06/project-euler-20-factorial-digit-sum.html"><![CDATA[<p>In this one, we want to find the sum of all the digits in the number \(100!\). I did this naively where I just calculate</p>
 <div>
 	$$
 	\begin{align*}
@@ -81,9 +190,9 @@ Finally, we just need to sum the digits
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=21">Project Euler - 21</a>
+<p><a href="https://projecteuler.net/problem=20">Project Euler - 20</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this one, we want to find the sum of all the digits in the number \(100!\). I did this naively where I just calculate $$ \begin{align*} 100! = 100 \times 99 \times 98 \times ... \times 1 \end{align*} $$ But of course at least in c\(++\), we’ll need an array to hold the sum. Let result be the array that will hold the final outcome. Before iterating, we’ll store \(24 = 4 \times 3 \times 2 \times 1\) in result. The choice here is arbitrary. We’ll save the least significant digit at index 0. So in result, index 0 will hold the digit 4 and index 1 will hold the digit 2. We’ll also use an array \(a\) that will hold the number we’re going to multiply with. So for example \(a\) will be 5 in the next iteration since we want to calculate \(24 \times 5\). Then at each iteration we’ll do the following Copy the array result into array \(b\). Add one to array \(a\). Multiply arrays \(a\) and \(b\) and save the outcome in result. for (int num = 5; num &lt;= 100; num++) { // copy result to b for (int i = 0; i &lt; N; i++) { b[i] = result[i]; } add_one(a, N); multiply(a, N, b, N, result); } The implementation of adding 1 to an array is pretty straight forward void add_one(int *a, int an) { // least significant digit is at index 0 a[0] += 1; for (int i = 0; i &lt; an; i++) { int sum = a[i]; if (sum &lt; 10) { break; } a[i] = sum % 10; a[i+1] += sum / 10; } } We then have the implementation of multiply. This one needed a little more work but eventually it wasn’t too bad. void multiply(int *a, int an, int *b, int bn, int *result) { for (int i = 0; i &lt; N; i++) { // an + bn result[i] = 0; } // least significant digit is at index 0 for (int i = 0; i &lt; an; i++) { for (int j = 0; j &lt; bn; j++) { int product = a[i] * b[j]; int position = i + j; int carry_position = i + j + 1; int sum = product + result[position]; result[position] = sum % 10; result[carry_position] += sum / 10; } } } Finally, we just need to sum the digits int sum = 0; for (int i = N-1; i &gt;= 0; i--) { sum += result[i]; } printf("sum = %d\n, ", sum); References Project Euler - 21]]></summary></entry><entry><title type="html">Project Euler: 21 Amicable Numbers</title><link href="http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html" rel="alternate" type="text/html" title="Project Euler: 21 Amicable Numbers" /><published>2025-01-05T00:01:36-08:00</published><updated>2025-01-05T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html"><![CDATA[<p>We are given that \(d(n)\) is the sum of proper divisors of \(n\) (So \(n\) itself is not included). If \(d(a) = b\) and \(d(b) = a\) where \(a \neq b\), then \(a\) and \(b\) are amicable numbers. Suppose that \(a = 220\) and \(b = 284\). Observe that</p>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this one, we want to find the sum of all the digits in the number \(100!\). I did this naively where I just calculate $$ \begin{align*} 100! = 100 \times 99 \times 98 \times ... \times 1 \end{align*} $$ But of course at least in c\(++\), we’ll need an array to hold the sum. Let result be the array that will hold the final outcome. Before iterating, we’ll store \(24 = 4 \times 3 \times 2 \times 1\) in result. The choice here is arbitrary. We’ll save the least significant digit at index 0. So in result, index 0 will hold the digit 4 and index 1 will hold the digit 2. We’ll also use an array \(a\) that will hold the number we’re going to multiply with. So for example \(a\) will be 5 in the next iteration since we want to calculate \(24 \times 5\). Then at each iteration we’ll do the following Copy the array result into array \(b\). Add one to array \(a\). Multiply arrays \(a\) and \(b\) and save the outcome in result. for (int num = 5; num &lt;= 100; num++) { // copy result to b for (int i = 0; i &lt; N; i++) { b[i] = result[i]; } add_one(a, N); multiply(a, N, b, N, result); } The implementation of adding 1 to an array is pretty straight forward void add_one(int *a, int an) { // least significant digit is at index 0 a[0] += 1; for (int i = 0; i &lt; an; i++) { int sum = a[i]; if (sum &lt; 10) { break; } a[i] = sum % 10; a[i+1] += sum / 10; } } We then have the implementation of multiply. This one needed a little more work but eventually it wasn’t too bad. void multiply(int *a, int an, int *b, int bn, int *result) { for (int i = 0; i &lt; N; i++) { // an + bn result[i] = 0; } // least significant digit is at index 0 for (int i = 0; i &lt; an; i++) { for (int j = 0; j &lt; bn; j++) { int product = a[i] * b[j]; int position = i + j; int carry_position = i + j + 1; int sum = product + result[position]; result[position] = sum % 10; result[carry_position] += sum / 10; } } } Finally, we just need to sum the digits int sum = 0; for (int i = N-1; i &gt;= 0; i--) { sum += result[i]; } printf("sum = %d\n, ", sum); References Project Euler - 20]]></summary></entry><entry><title type="html">Project Euler: 21 Amicable Numbers</title><link href="http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html" rel="alternate" type="text/html" title="Project Euler: 21 Amicable Numbers" /><published>2025-01-05T00:01:36-08:00</published><updated>2025-01-05T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html"><![CDATA[<p>We are given that \(d(n)\) is the sum of proper divisors of \(n\) (So \(n\) itself is not included). If \(d(a) = b\) and \(d(b) = a\) where \(a \neq b\), then \(a\) and \(b\) are amicable numbers. Suppose that \(a = 220\) and \(b = 284\). Observe that</p>
 <div>
 	$$
 	\begin{align*}
@@ -538,130 +647,4 @@ I think the point of the exercise is to implement this on our own or come up wit
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=24">Project Euler - 24</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows for (int i = 1; i &lt; 1000000; i++) { if (!std::next_permutation(a.begin(), a.end())) { break; } } I think the point of the exercise is to implement this on our own or come up with a much faster method. I was more interested in seeing how next permutation is implemented or the idea behind it. I wrote about it here and used my own implementation to solve the problem. The next step is to come up with a faster algorithm to do this! References Project Euler - 24]]></summary></entry><entry><title type="html">Project Euler: 23 Non-Abundant Sums</title><link href="http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html" rel="alternate" type="text/html" title="Project Euler: 23 Non-Abundant Sums" /><published>2024-12-12T00:01:36-08:00</published><updated>2024-12-12T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html"><![CDATA[<p>An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\).
-<br />
-<br />
-We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers.
-<br />
-<br />
-We want to find the sum of all numbers that can’t be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Finding If a Number is Abundant</b></h4>
-<p>We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds \(n\)</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"> <span class="kt">bool</span> <span class="nf">is_abundant</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//printf("n = %d\n", n);</span>
-    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">divisors_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// it's a divisor</span>
-            <span class="n">divisors_sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// add the other divisor</span>
-                <span class="n">divisors_sum</span> <span class="o">+=</span> <span class="n">n</span><span class="o">/</span><span class="n">i</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">divisors_sum</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Finding If a Number is a Sum of Two Abundant Numbers</b></h4>
-<p>The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer \(n\) and an abundant number \(i\), we check if \(n - i\) is abundant. If \(n - i\) is abundant, then \(n\) can be a written as a sum of two abundant numbers.
-<br />
-<br />
-To implement this, we then need two lists:</p>
-<ul>
-	<li> A list of all abundant numbers below 28123.</li>
-	<li> An array of booleans to indicate whether a given number is abundant. We need this to check if \(n - i\) is abundant </li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">is_abundant</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">abundant</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="n">abundant_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>We can now implement our idea below</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">28123</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Find if i can be expressed as a sum of two abundant numbers</span>
-    <span class="kt">bool</span> <span class="n">abundant_sum</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">abundant_numbers</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">abundant_numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">abundant</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">abundant_numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span> <span class="p">{</span>
-            <span class="n">abundant_sum</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-            <span class="k">break</span><span class="p">;</span> <span class="c1">// exist early, this number can be written as a sum of two abundant numbers</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">abundant_sum</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>I’m a fan of adding both of these segments to keep track of the time.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">clock_t</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
-<span class="kt">double</span> <span class="n">time_spent</span><span class="p">;</span>
-<span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-<span class="c1">// SOLUTION</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-<span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"time spent = %f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span></code></pre></figure>
-
-<p>For this solution, the time spent was 0.032616 so well below 1 second.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=23">Project Euler - 23</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[An abundant number \(n\) is a number for which the sum of its proper divisors is greater than \(n\). We’re given that any number greater than 28123 can be expressed as a sum of two abundant numbers. We want to find the sum of all numbers that can’t be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123. Finding If a Number is Abundant We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds \(n\) bool is_abundant(int n) { //printf("n = %d\n", n); int max = sqrt(n); int divisors_sum = 0; for (int i = 1; i &lt;= max; i++) { if (n % i == 0) { // it's a divisor divisors_sum += i; if (n / i != i &amp;&amp; i != 1) { // add the other divisor divisors_sum += n/i; } } } if (divisors_sum &gt; n) { return true; } return false; } Finding If a Number is a Sum of Two Abundant Numbers The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer \(n\) and an abundant number \(i\), we check if \(n - i\) is abundant. If \(n - i\) is abundant, then \(n\) can be a written as a sum of two abundant numbers. To implement this, we then need two lists: A list of all abundant numbers below 28123. An array of booleans to indicate whether a given number is abundant. We need this to check if \(n - i\) is abundant for (int i = 1; i &lt;= N; i++) { if (is_abundant(i)) { abundant[i] = true; abundant_numbers.push_back(i); } } We can now implement our idea below int sum = 0; for (int i = 1; i &lt; 28123; i++) { // Find if i can be expressed as a sum of two abundant numbers bool abundant_sum = false; for (int j = 0; j &lt; abundant_numbers.size() &amp;&amp; abundant_numbers[j] &lt; i; j++) { if (abundant[i - abundant_numbers[j]]) { abundant_sum = true; break; // exist early, this number can be written as a sum of two abundant numbers } } if (!abundant_sum) { sum += i; } }]]></summary></entry><entry><title type="html">Project Euler</title><link href="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html" rel="alternate" type="text/html" title="Project Euler" /><published>2024-12-11T08:01:36-08:00</published><updated>2024-12-11T08:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2024/12/11/project-euler</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/12/11/project-euler.html"><![CDATA[<ol>
-	   <li>Multiples of 3 or 5</li> 
-	   <li>Even Fibonacci Numbers</li>
-	   <li>Largest Prime Factor</li>
-	   <li>Largest Palindrome Product</li>	   
-	   <li>Smallest Multiple</li>
-	   <li>Sum Square Difference</li>
-	   <li>10001st Prime</li>
-	   <li>Largest Product in a Series</li>
-	   <li>Special Pythagorean Triplet</li>
-	   <li>Summation of Primes</li>
-	   <li>Largest Product in a Grid</li>
-	   <li>Highly Divisible Triangular Number</li>
-	   <li>Large Sum</li>
-	   <li>Longest Collatz Sequence</li>
-	   <li>Lattice Paths</li>
-	   <li>Power Digit Sum</li>
-	   <li>Number Letter Counts</li>
-	   <li>Maximum Path Sum I</li>
-	   <li>Counting Sundays</li>
-	   <li><a href="/jekyll/update/2025/01/06/project-euler-20-factorial-digit-sum.html">
-       Factorial Digit Sum
-       </a></li>
-	   <li><a href="/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html">
-        Amicable Numbers
-       </a></li>	   
-	   <li><a href="/jekyll/update/2024/12/10/project-euler-22-names-scores.html">
-        Names Scores
-       </a></li>
-	   <li><a href="/jekyll/update/2024/12/12/project-euler-23-non-abundant-sums.html">
-        Non-Abundant Sums
-       </a></li>
-	   <li><a href="/jekyll/update/2024/12/13/project-euler-24-lexicographic-permutations.html">
-        Lexicographic Permutations
-       </a></li>
-	   <li><a href="/jekyll/update/2024/12/14/project-euler-25-1000-digit-fibonacci-number.html">
-        1000-digit Fibonacci Number
-       </a></li>
-	   <li><a href="/jekyll/update/2025/01/02/project-euler-26-reciprocal-cycles.html">
-        Reciprocal Cycles
-       </a></li>
-   </ol>
-<p><br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Multiples of 3 or 5 Even Fibonacci Numbers Largest Prime Factor Largest Palindrome Product Smallest Multiple Sum Square Difference 10001st Prime Largest Product in a Series Special Pythagorean Triplet Summation of Primes Largest Product in a Grid Highly Divisible Triangular Number Large Sum Longest Collatz Sequence Lattice Paths Power Digit Sum Number Letter Counts Maximum Path Sum I Counting Sundays Factorial Digit Sum Amicable Numbers Names Scores Non-Abundant Sums Lexicographic Permutations 1000-digit Fibonacci Number Reciprocal Cycles]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We want to generate the millionth lexicographic permutation of the digits 0,1,2,3,4,5,6,7,8 and 9. While this can be done easily with the standard library’s own next_permutation as follows for (int i = 1; i &lt; 1000000; i++) { if (!std::next_permutation(a.begin(), a.end())) { break; } } I think the point of the exercise is to implement this on our own or come up with a much faster method. I was more interested in seeing how next permutation is implemented or the idea behind it. I wrote about it here and used my own implementation to solve the problem. The next step is to come up with a faster algorithm to do this! References Project Euler - 24]]></summary></entry></feed>

@@ -88,7 +88,7 @@ printf("sum = %d\n, ", sum);
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
-<a href="https://projecteuler.net/problem=21">Project Euler - 21</a>
+<a href="https://projecteuler.net/problem=20">Project Euler - 20</a>
 <br>
 <br>
 

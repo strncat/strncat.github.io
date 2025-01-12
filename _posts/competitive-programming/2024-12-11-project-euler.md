@@ -20,8 +20,12 @@ mathjax: true
 	   <li>Highly Divisible Triangular Number</li>
 	   <li>Large Sum</li>
 	   <li>Longest Collatz Sequence</li>
-	   <li>Lattice Paths</li>
-	   <li>Power Digit Sum</li>
+	   <li><a href="/jekyll/update/2025/01/08/project-euler-15-lattice-paths.html">
+       Lattice Paths
+       </a></li>
+	   <li><a href="/jekyll/update/2025/01/07/project-euler-16-power-digit-sum.html">
+       Power Digit Sum
+       </a></li>
 	   <li>Number Letter Counts</li>
 	   <li>Maximum Path Sum I</li>
 	   <li>Counting Sundays</li>

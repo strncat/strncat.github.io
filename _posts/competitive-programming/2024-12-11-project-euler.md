@@ -57,5 +57,8 @@ mathjax: true
 	   <li><a href="/jekyll/update/2025/01/11/project-euler-27-quadratic-primes.html">
         Quadratic Primes
        </a></li>
+	   <li><a href="/jekyll/update/2025/01/12/project-euler-28-Number-spiral-diagonals.html">
+        Number Spiral Diagonals
+       </a></li>
    </ol>
 <br>

@@ -54,5 +54,8 @@ mathjax: true
 	   <li><a href="/jekyll/update/2025/01/02/project-euler-26-reciprocal-cycles.html">
         Reciprocal Cycles
        </a></li>
+	   <li><a href="/jekyll/update/2025/01/11/project-euler-27-quadratic-primes.html">
+        Quadratic Primes
+       </a></li>
    </ol>
 <br>

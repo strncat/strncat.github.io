@@ -41,7 +41,7 @@ This isn't the best solution to this problem. One solution I've seen is tokenizi
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
-<a href="https://projecteuler.net/problem=8">Project Euler - 08</a>
+<a href="https://projecteuler.net/problem=7">Project Euler - 07</a>
 <br>
 <br>
 

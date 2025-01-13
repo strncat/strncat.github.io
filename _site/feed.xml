@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-12T16:53:23-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 7 10001st Prime</title><link href="http://localhost:4000/jekyll/update/2025/01/10/project-euler-07-10001st-prime.html" rel="alternate" type="text/html" title="Project Euler: 7 10001st Prime" /><published>2025-01-10T00:01:36-08:00</published><updated>2025-01-10T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/10/project-euler-07-10001st-prime</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/10/project-euler-07-10001st-prime.html"><![CDATA[<p>This is just Sieve’s algorithm to find all primes until we reach the 10001st prime. I don’t know know if there is a faster algorithm to do this.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-12T17:22:01-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 27 Quadratic Primes</title><link href="http://localhost:4000/jekyll/update/2025/01/11/project-euler-27-quadratic-primes.html" rel="alternate" type="text/html" title="Project Euler: 27 Quadratic Primes" /><published>2025-01-11T00:01:36-08:00</published><updated>2025-01-11T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/11/project-euler-27-quadratic-primes</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/11/project-euler-27-quadratic-primes.html"><![CDATA[<p>I was so scared when I read the problem description! so I was shocked when I just got this on the first try. Admittedly, my solution is just the naive solution but it was fast enough. Basically we want to know \(a\) and \(b\) that will make the equation \(f(n) = n^2 + an + b\) produce the longest sequence of prime numbers. To do so, we need a fast way to check whether a number is prime. For that we can just borrow the sieve algorithm we implemented for problem 7.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">sieve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">s</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+    <span class="c1">// mark all numbers as potential primes</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">primes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">primes</span><span class="p">[</span><span class="n">p</span><span class="p">])</span> <span class="p">{</span>
+            <span class="c1">// mark all multiples of p as not prime</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">primes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+After this, it is pretty straight forward. Just check all possible the values for \(a\) and \(b\). Both variables will range from -999 to 999.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">sieve</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">max_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max_a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max_b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">999</span><span class="p">;</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">a</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">999</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">b</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// f(n) = n^2 + an + b</span>
+        <span class="c1">// f(0) = b is the initial value</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">primes</span><span class="p">[</span><span class="n">fn</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">n</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">fn</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="n">max_count</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">max_count</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span>
+            <span class="n">max_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+            <span class="n">max_b</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"a = %d, b = %d, a*b = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">max_a</span><span class="p">,</span> <span class="n">max_b</span><span class="p">,</span> <span class="n">max_a</span> <span class="o">*</span> <span class="n">max_b</span><span class="p">);</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=27">Project Euler - 27</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[I was so scared when I read the problem description! so I was shocked when I just got this on the first try. Admittedly, my solution is just the naive solution but it was fast enough. Basically we want to know \(a\) and \(b\) that will make the equation \(f(n) = n^2 + an + b\) produce the longest sequence of prime numbers. To do so, we need a fast way to check whether a number is prime. For that we can just borrow the sieve algorithm we implemented for problem 7. void sieve() { int s[N]; // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { primes[i] = 1; } s[0] = s[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (primes[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { primes[i] = 0; } } } } After this, it is pretty straight forward. Just check all possible the values for \(a\) and \(b\). Both variables will range from -999 to 999. sieve(); int max_count = 0, max_a = 0, max_b = 0; for (int a = -999; a &lt; 1000; a++) { for (int b = -999; b &lt; 1000; b++) { // f(n) = n^2 + an + b // f(0) = b is the initial value int n = 0; int fn = b; int count = 0; while (primes[fn]) { count++; n++; fn = n*n + a*n + b; } if (count &gt; max_count) { max_count = count; max_a = a; max_b = b; } } } printf("a = %d, b = %d, a*b = %d\n", max_a, max_b, max_a * max_b); References Project Euler - 27]]></summary></entry><entry><title type="html">Project Euler: 7 10001st Prime</title><link href="http://localhost:4000/jekyll/update/2025/01/10/project-euler-07-10001st-prime.html" rel="alternate" type="text/html" title="Project Euler: 7 10001st Prime" /><published>2025-01-10T00:01:36-08:00</published><updated>2025-01-10T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/10/project-euler-07-10001st-prime</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/10/project-euler-07-10001st-prime.html"><![CDATA[<p>This is just Sieve’s algorithm to find all primes until we reach the 10001st prime. I don’t know know if there is a faster algorithm to do this.
 In Sieve’s algorithm, we mark all numbers up to our limit \(N\) as potential primes. Then starting at 2, we mark all multiples of 2 as non prime. When we’re done, we move to the next potenial prime and repeat the same process.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#define N 1000000
@@ -34,9 +86,9 @@ This isn’t the best solution to this problem. One solution I’ve seen is toke
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=8">Project Euler - 08</a>
+<p><a href="https://projecteuler.net/problem=7">Project Euler - 07</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is just Sieve’s algorithm to find all primes until we reach the 10001st prime. I don’t know know if there is a faster algorithm to do this. In Sieve’s algorithm, we mark all numbers up to our limit \(N\) as potential primes. Then starting at 2, we mark all multiples of 2 as non prime. When we’re done, we move to the next potenial prime and repeat the same process. #define N 1000000 int primes[N]; void sieve() { int s[N]; // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { s[i] = 1; } s[0] = s[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (s[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { s[i] = 0; } } } int index = 0; for (int i = 0; i &lt; N; i++) { if (s[i] == 1) { primes[index++] = i; } } // the 10001st prime is primes[10000] } This isn’t the best solution to this problem. One solution I’ve seen is tokenizing this string on “0” because any product that involves zero will not be the maximum product and you are better off starting at the position right after 0. So now you have \(n\) substrings with no zeros. You can now multiply the first 13 digits and then in each subsequent iteration, you will either have to reset the product since you’ve arrived at a new substring or you will need to multiply by the new number and divide by the first very digit (sliding window kind of algorithm). References Project Euler - 08]]></summary></entry><entry><title type="html">Project Euler: 8 Largest Product in a Series</title><link href="http://localhost:4000/jekyll/update/2025/01/09/project-euler-08-largest-product-in-a-series.html" rel="alternate" type="text/html" title="Project Euler: 8 Largest Product in a Series" /><published>2025-01-09T00:01:36-08:00</published><updated>2025-01-09T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/09/project-euler-08-largest-product-in-a-series</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/09/project-euler-08-largest-product-in-a-series.html"><![CDATA[<p>I did this the naive way of just iterating through the numbers and calculating the product of 13 numbers from every possible position, so the product starting at position 0, 1, 2 etc.</p>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This is just Sieve’s algorithm to find all primes until we reach the 10001st prime. I don’t know know if there is a faster algorithm to do this. In Sieve’s algorithm, we mark all numbers up to our limit \(N\) as potential primes. Then starting at 2, we mark all multiples of 2 as non prime. When we’re done, we move to the next potenial prime and repeat the same process. #define N 1000000 int primes[N]; void sieve() { int s[N]; // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { s[i] = 1; } s[0] = s[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (s[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { s[i] = 0; } } } int index = 0; for (int i = 0; i &lt; N; i++) { if (s[i] == 1) { primes[index++] = i; } } // the 10001st prime is primes[10000] } This isn’t the best solution to this problem. One solution I’ve seen is tokenizing this string on “0” because any product that involves zero will not be the maximum product and you are better off starting at the position right after 0. So now you have \(n\) substrings with no zeros. You can now multiply the first 13 digits and then in each subsequent iteration, you will either have to reset the product since you’ve arrived at a new substring or you will need to multiply by the new number and divide by the first very digit (sliding window kind of algorithm). References Project Euler - 07]]></summary></entry><entry><title type="html">Project Euler: 8 Largest Product in a Series</title><link href="http://localhost:4000/jekyll/update/2025/01/09/project-euler-08-largest-product-in-a-series.html" rel="alternate" type="text/html" title="Project Euler: 8 Largest Product in a Series" /><published>2025-01-09T00:01:36-08:00</published><updated>2025-01-09T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/09/project-euler-08-largest-product-in-a-series</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/09/project-euler-08-largest-product-in-a-series.html"><![CDATA[<p>I did this the naive way of just iterating through the numbers and calculating the product of 13 numbers from every possible position, so the product starting at position 0, 1, 2 etc.</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450"</span><span class="p">;</span>
 
@@ -483,170 +535,4 @@ Since for any full reptend prime \(p\), the the cycle length is \(p - 1\), then 
 <li><a href="https://en.wikipedia.org/wiki/Reciprocals_of_primes">Wikipedia: Reciprocals of Primes</a></li>
 </ol>
 <p><br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In order to find the longest cycle, we first need to find a way to compute the length of a cycle. To do so, we need to find a way to count the digits in the decimal expansion of a given number. Take \(\frac{1}{7} = 0.(142857)\) for instance. We want a way to iterate through the digits 1,4,2,8,5,7,…. How do we do it? To simplify, let’s assume that we want to iterate over exactly 6 digits of the decimal expansion of \(\frac{1}{7}\). What can we do? The easiest way to do this is to multiply 1 by \(10^6\) and divide to get $$ \begin{align*} 1,000,000 / 7 = 142,857.143 \end{align*} $$ But if the cycle is of length 300? So we can’t just multiply the numerator by a huge number all at once. Luckily, we can simulate this long division one step at a time, multiplying the remainder each time by 10 and dividing by 7. So the single division above will be broken into the following steps:]]></summary></entry><entry><title type="html">[2.5] Cosets and Lagrange’s Theorem</title><link href="http://localhost:4000/jekyll/update/2025/01/01/2.5-cosets-lagrange.html" rel="alternate" type="text/html" title="[2.5] Cosets and Lagrange’s Theorem" /><published>2025-01-01T00:01:36-08:00</published><updated>2025-01-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/01/2.5-cosets-lagrange</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/01/2.5-cosets-lagrange.html"><![CDATA[<div class="mintheaderdiv">
-Definition 2.4.14
-</div>
-<div class="mintbodydiv">
-Let \(H\) be subgroup of a group \(G\). A subset of the form
-\(gH\), where \(g \in G\), is called a left coset of \(H\) in \(G\). A subset of the form
-\(Hg\), where \(g \in G\), is called a right coset of \(H\) in \(G\).
-</div>
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>Example 1</b></h4>
-<p>Consider H = \(\{e , (1,2)\} \subseteq S_3\). We know \(S_3\) has six elements. Let \(\pi \in S_3\) and compute \(\pi H = \{ \pi \sigma \ : \ \sigma \in H \}\). So</p>
-<div>
-$$
-\begin{align*}
-S_3 = \{ e, \begin{pmatrix}1 &amp; 2 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix}2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 &amp; 2 \end{pmatrix} 
-\}
-\end{align*}
-$$
-</div>
-<p>For example \(\begin{pmatrix}1 &amp; 3 \end{pmatrix} H\) is</p>
-<div>
-$$
-\begin{align*}
-\begin{pmatrix}1 &amp; 3 \end{pmatrix} H &amp;= \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}e, \begin{pmatrix}1 &amp; 3 \end{pmatrix}  \begin{pmatrix}1 &amp; 2 \end{pmatrix} \} \\
-&amp;= \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix} 1 &amp; 2 &amp; 3 \end{pmatrix} \}
-\end{align*}
-$$
-</div>
-<p>This is because if we let \(f = (1 \quad 3)\) and \(g = (1 \quad 2)\), then \(f \circ g\) results in \(f(g(1)) = f(2) = 2\). So 1 gets mapped to 2. Similarly \(f(g(2)) = f(1) = 3\). So 2 gets mapped to 3 and \(f(g(3)) = f(3) = 1\) so 3 gets mapped to 1. Writing this in cycle notation means \(1 \rightarrow 2, 2 \rightarrow 3, 3 \rightarrow 1\) or \((1 \quad 2 \quad 3)\).</p>
-<div>
-$$
-\begin{align*}
-eH &amp;= (1 \quad 2) H = H \\
-\begin{pmatrix}1 &amp; 3 \end{pmatrix} H &amp;= (1 \quad 2 \quad 3)H = \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 2 &amp; 3 \end{pmatrix} \} \\
-\begin{pmatrix}2 &amp; 3 \end{pmatrix} H &amp;= (1 \quad 3 \quad 2)H = \{ \begin{pmatrix}2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 &amp; 2 \end{pmatrix} \} \\
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>Example 2</b></h4>
-<p>Suppose \(G = (\mathbf{Z}_4, +)\) and $$H = {0, 2}. Then we have the following cosests</p>
-<div>
-$$
-\begin{align*}
-H+0 &amp;= \{0,2\} \\
-H+1 &amp;= \{1,3\} \\
-H+2 &amp;= \{2,0\} \\
-H+3 &amp;= \{3,1\}
-\end{align*}
-$$
-</div>
-<p>We can see here that we have two distinct right cosets. Moreover, the cosets are disjoint and partition the group. Next, we’ll formalize these properties about cosets!
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.5.3
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be
-elements of \(G\). The following conditions are equivalent:
-<ol type="a">
-	<li>\(a \in bH\).</li>
-	<li>\(b \in aH\).</li>
-	<li>\(aH = bH\).</li>
-	<li>\(b^{-1}a \in H\).</li>
-	<li>\(a^{-1}b \in H\).</li>
-</ol>
-</div>
-<!------------------------------------------------------------------------>
-<p><br />
-<b>Proof</b>
-<br />
-Suppose \((a)\) holds. Let \(a \in bH\). Then there exists some \(h \in H\) such that \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). 
-<br />
-<br />
-For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\).
-<br />
-<br />
-For \((d)\) ….
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.5.4
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of a group \(G\).
-<ol type="a">
-	<li>Let \(a\) and \(b\) be elements of \(G\). Either \(aH = bH\) or \(aH \cap bH = \emptyset\)</li>
-	<li>Each left coset \(aH\) is nonempty and the union of left cosets is \(G\).</li>
-</ol>
-</div>
-<!------------------------------------------------------------------------>
-<p><br />
-<b>Proof</b>
-<br />
-For \((a)\), Suppose \(aH \cap bH \neq \emptyset\) and let \(c \in aH \cap bH\). Since \(c \in aH\), then \(aH = cH\) by Proposition 2.5.3. Similarly since \(c \in bH\), then \(bH = cH\). Therefore, \(aH = bH\).
-<br />
-<br />
-For \((b)\), \(aH\) is nonempty since \(H\) is a subgroup and can’t be empty. Furthermore, for each element \(g \in G\), \(g \in gH\). By \((a)\) then the union of all the left cosets must be \(G\).
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.5.5
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of a group \(G\) and let \(a\) and \(b\) be
-elements of \(G\). Then \(x \longmapsto ba^{-1}\) is a bijection between \(aH\) and \(bH\).
-</div>
-<!------------------------------------------------------------------------>
-<p><br />
-<b>Proof</b>
-Let \(f : aH \rightarrow bH\) where \(f(x) = ba^{-1}x\). We want to show that \(f\) is a bijection by showing that it’s one-to-one and onto. Suppose \(a_1, a_2 \in aH\) then we can write \(a_1 = ah_1\) and \(a_2 = ah_2\) for some \(h_1, h_2 \in H\). Moreover, suppose that \(f(a_1) = f(a_2)\). Observe that</p>
-<div>
-$$
-\begin{align*}
-ba^{-1}a_1 &amp;= ba^{-1}a_2 \\
-b^{-1}ba^{-1}a_1 &amp;= b^{-1}ba^{-1}a_2 \quad \text{($G$ is a group so the inverse exists)} \\
-aa^{-1}a_1 &amp;= aa^{-1}a_2 \\
-a_1 &amp;= a_2 \\
-\end{align*}
-$$
-</div>
-<p>From this we see that \(f\) is one-to-one or injective. To see that it’s surjective, we need to show that for any element \(y \in bH\), that there exists an element \(x \in aH\) such that \(f(x) = y\). Since \(y \in bH\), then we can write \(y = bh\) for some \(h \in H\). Now, let \(x = ah \in aH\) and observe that</p>
-<div>
-$$
-\begin{align*}
-f(x) &amp;= ba^{-1}x \\
-     &amp;= ba^{-1}(ah) \\
-	 &amp;= b(a^{-1}ah) \\
-	 &amp;= bh = y.
-\end{align*}
-$$
-</div>
-<p>\(ah\) is in \(aH\) by definition. Therefore \(f\) is surjective. From this we see that \(f\) is a bijection from \(aH\) to \(bH\). \(\ \blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Theorem 2.5.6 (Lagrange's Theorem)
-</div>
-<div class="yellowbodydiv">
-Let \(G\) be a finite group and \(H\) a subgroup. Then the cardinality of \(H\) divides the cardinality of \(G\), and the quotient \(\frac{|G|}{|H|}\) is the number of left cosets of \(H\) in \(G\).
-</div>
-<!------------------------------------------------------------------------>
-<p><br />
-<b>Proof</b></p>
-
-<p><br />
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-<li><a href="https://www.youtube.com/watch?v=kthl-MhIf4s&amp;list=PLztBpqftvzxVvdVmBMSM4PVeOsE5w1NnN&amp;index=22">Wrath of Math Youtube Channel</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.4.14 Let \(H\) be subgroup of a group \(G\). A subset of the form \(gH\), where \(g \in G\), is called a left coset of \(H\) in \(G\). A subset of the form \(Hg\), where \(g \in G\), is called a right coset of \(H\) in \(G\). Example 1 Consider H = \(\{e , (1,2)\} \subseteq S_3\). We know \(S_3\) has six elements. Let \(\pi \in S_3\) and compute \(\pi H = \{ \pi \sigma \ : \ \sigma \in H \}\). So $$ \begin{align*} S_3 = \{ e, \begin{pmatrix}1 &amp; 2 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix}2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 &amp; 2 \end{pmatrix} \} \end{align*} $$ For example \(\begin{pmatrix}1 &amp; 3 \end{pmatrix} H\) is $$ \begin{align*} \begin{pmatrix}1 &amp; 3 \end{pmatrix} H &amp;= \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}e, \begin{pmatrix}1 &amp; 3 \end{pmatrix} \begin{pmatrix}1 &amp; 2 \end{pmatrix} \} \\ &amp;= \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix} 1 &amp; 2 &amp; 3 \end{pmatrix} \} \end{align*} $$ This is because if we let \(f = (1 \quad 3)\) and \(g = (1 \quad 2)\), then \(f \circ g\) results in \(f(g(1)) = f(2) = 2\). So 1 gets mapped to 2. Similarly \(f(g(2)) = f(1) = 3\). So 2 gets mapped to 3 and \(f(g(3)) = f(3) = 1\) so 3 gets mapped to 1. Writing this in cycle notation means \(1 \rightarrow 2, 2 \rightarrow 3, 3 \rightarrow 1\) or \((1 \quad 2 \quad 3)\). $$ \begin{align*} eH &amp;= (1 \quad 2) H = H \\ \begin{pmatrix}1 &amp; 3 \end{pmatrix} H &amp;= (1 \quad 2 \quad 3)H = \{ \begin{pmatrix}1 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 2 &amp; 3 \end{pmatrix} \} \\ \begin{pmatrix}2 &amp; 3 \end{pmatrix} H &amp;= (1 \quad 3 \quad 2)H = \{ \begin{pmatrix}2 &amp; 3 \end{pmatrix}, \begin{pmatrix}1 &amp; 3 &amp; 2 \end{pmatrix} \} \\ \end{align*} $$ Example 2 Suppose \(G = (\mathbf{Z}_4, +)\) and $$H = {0, 2}. Then we have the following cosests $$ \begin{align*} H+0 &amp;= \{0,2\} \\ H+1 &amp;= \{1,3\} \\ H+2 &amp;= \{2,0\} \\ H+3 &amp;= \{3,1\} \end{align*} $$ We can see here that we have two distinct right cosets. Moreover, the cosets are disjoint and partition the group. Next, we’ll formalize these properties about cosets! Proposition 2.5.3 Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be elements of \(G\). The following conditions are equivalent: \(a \in bH\). \(b \in aH\). \(aH = bH\). \(b^{-1}a \in H\). \(a^{-1}b \in H\). Proof Suppose \((a)\) holds. Let \(a \in bH\). Then there exists some \(h \in H\) such that \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\). For \((d)\) …. Proposition 2.5.4 Let \(H\) be a subgroup of a group \(G\). Let \(a\) and \(b\) be elements of \(G\). Either \(aH = bH\) or \(aH \cap bH = \emptyset\) Each left coset \(aH\) is nonempty and the union of left cosets is \(G\). Proof For \((a)\), Suppose \(aH \cap bH \neq \emptyset\) and let \(c \in aH \cap bH\). Since \(c \in aH\), then \(aH = cH\) by Proposition 2.5.3. Similarly since \(c \in bH\), then \(bH = cH\). Therefore, \(aH = bH\). For \((b)\), \(aH\) is nonempty since \(H\) is a subgroup and can’t be empty. Furthermore, for each element \(g \in G\), \(g \in gH\). By \((a)\) then the union of all the left cosets must be \(G\). Proposition 2.5.5 Let \(H\) be a subgroup of a group \(G\) and let \(a\) and \(b\) be elements of \(G\). Then \(x \longmapsto ba^{-1}\) is a bijection between \(aH\) and \(bH\). Proof Let \(f : aH \rightarrow bH\) where \(f(x) = ba^{-1}x\). We want to show that \(f\) is a bijection by showing that it’s one-to-one and onto. Suppose \(a_1, a_2 \in aH\) then we can write \(a_1 = ah_1\) and \(a_2 = ah_2\) for some \(h_1, h_2 \in H\). Moreover, suppose that \(f(a_1) = f(a_2)\). Observe that $$ \begin{align*} ba^{-1}a_1 &amp;= ba^{-1}a_2 \\ b^{-1}ba^{-1}a_1 &amp;= b^{-1}ba^{-1}a_2 \quad \text{($G$ is a group so the inverse exists)} \\ aa^{-1}a_1 &amp;= aa^{-1}a_2 \\ a_1 &amp;= a_2 \\ \end{align*} $$ From this we see that \(f\) is one-to-one or injective. To see that it’s surjective, we need to show that for any element \(y \in bH\), that there exists an element \(x \in aH\) such that \(f(x) = y\). Since \(y \in bH\), then we can write \(y = bh\) for some \(h \in H\). Now, let \(x = ah \in aH\) and observe that $$ \begin{align*} f(x) &amp;= ba^{-1}x \\ &amp;= ba^{-1}(ah) \\ &amp;= b(a^{-1}ah) \\ &amp;= bh = y. \end{align*} $$ \(ah\) is in \(aH\) by definition. Therefore \(f\) is surjective. From this we see that \(f\) is a bijection from \(aH\) to \(bH\). \(\ \blacksquare\) Theorem 2.5.6 (Lagrange's Theorem) Let \(G\) be a finite group and \(H\) a subgroup. Then the cardinality of \(H\) divides the cardinality of \(G\), and the quotient \(\frac{|G|}{|H|}\) is the number of left cosets of \(H\) in \(G\). Proof]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In order to find the longest cycle, we first need to find a way to compute the length of a cycle. To do so, we need to find a way to count the digits in the decimal expansion of a given number. Take \(\frac{1}{7} = 0.(142857)\) for instance. We want a way to iterate through the digits 1,4,2,8,5,7,…. How do we do it? To simplify, let’s assume that we want to iterate over exactly 6 digits of the decimal expansion of \(\frac{1}{7}\). What can we do? The easiest way to do this is to multiply 1 by \(10^6\) and divide to get $$ \begin{align*} 1,000,000 / 7 = 142,857.143 \end{align*} $$ But if the cycle is of length 300? So we can’t just multiply the numerator by a huge number all at once. Luckily, we can simulate this long division one step at a time, multiplying the remainder each time by 10 and dividing by 7. So the single division above will be broken into the following steps:]]></summary></entry></feed>

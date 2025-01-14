@@ -1,4 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-12T20:34:01-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 28 Number Spiral Diagonals</title><link href="http://localhost:4000/jekyll/update/2025/01/12/project-euler-28-number-spiral-diagonals.html" rel="alternate" type="text/html" title="Project Euler: 28 Number Spiral Diagonals" /><published>2025-01-12T00:01:36-08:00</published><updated>2025-01-12T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/12/project-euler-28-number-spiral-diagonals</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/12/project-euler-28-number-spiral-diagonals.html"><![CDATA[<p>My first solution was just to sum the numbers across the diagonals after breaking them into 4 parts.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-13T19:17:44-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 30 Digit Fifth Powers</title><link href="http://localhost:4000/jekyll/update/2025/01/13/project-euler-30-digit-fifth-powers.html" rel="alternate" type="text/html" title="Project Euler: 30 Digit Fifth Powers" /><published>2025-01-13T00:01:36-08:00</published><updated>2025-01-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/13/project-euler-30-digit-fifth-powers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/13/project-euler-30-digit-fifth-powers.html"><![CDATA[<p>This was not bad! the minimum number that can be written as a sum of its 5th digits powers is</p>
+<div>
+	$$
+	\begin{align*}
+	 2 = 0^5 + 0^5 + 0^5 + 1^5 + 1^5.
+	\end{align*}
+	$$
+</div>
+<p>while the maximum number that can be written as a sum of its 5th digits powers is</p>
+<div>
+	$$
+	\begin{align*}
+	 295245 = 9^5 + 9^5 + 9^5 + 9^5 + 9^5.
+	\end{align*}
+	$$
+</div>
+<p>So let’s check all the numbers in this range</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// 9^5 + 9^5 + 9^5 + 9^5 + 9^5 = 5*9^5 = 295,245</span>
+<span class="c1">// 0^5 + 0^5 + 0^5 + 1^5 + 1^5 = 2</span>
+<span class="kt">int</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">295245</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">num</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">p</span><span class="p">;</span>
+        <span class="n">num</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">total_sum</span> <span class="o">+=</span> <span class="n">sum</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">total_sum</span><span class="p">);</span></code></pre></figure>
+
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=30">Project Euler - 30</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This was not bad! the minimum number that can be written as a sum of its 5th digits powers is $$ \begin{align*} 2 = 0^5 + 0^5 + 0^5 + 1^5 + 1^5. \end{align*} $$ while the maximum number that can be written as a sum of its 5th digits powers is $$ \begin{align*} 295245 = 9^5 + 9^5 + 9^5 + 9^5 + 9^5. \end{align*} $$ So let’s check all the numbers in this range // 9^5 + 9^5 + 9^5 + 9^5 + 9^5 = 5*9^5 = 295,245 // 0^5 + 0^5 + 0^5 + 1^5 + 1^5 = 2 int total_sum = 0; for (int n = 2; n &lt;= 295245; n++) { long sum = 0; int num = n; while (num &gt; 0 &amp;&amp; sum &lt;= n) { int d = num%10; int p = pow(d, 5); sum += p; num /= 10; } if (sum == n) { total_sum += sum; } } printf("%d\n", total_sum); References Project Euler - 30]]></summary></entry><entry><title type="html">Project Euler: 28 Number Spiral Diagonals</title><link href="http://localhost:4000/jekyll/update/2025/01/12/project-euler-28-number-spiral-diagonals.html" rel="alternate" type="text/html" title="Project Euler: 28 Number Spiral Diagonals" /><published>2025-01-12T00:01:36-08:00</published><updated>2025-01-12T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/12/project-euler-28-number-spiral-diagonals</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/12/project-euler-28-number-spiral-diagonals.html"><![CDATA[<p>My first solution was just to sum the numbers across the diagonals after breaking them into 4 parts.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/project-euler/28/1.png" width="90%" class="center" /></p>
 <p>We can come up with a formula for the yellow cells for example by observing that the difference between the cells follow a pattern.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/project-euler/28/2.png" width="80%" class="center" /></p>
@@ -356,7 +400,49 @@ Finally, we just need to sum the digits
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=20">Project Euler - 20</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this one, we want to find the sum of all the digits in the number \(100!\). I did this naively where I just calculate $$ \begin{align*} 100! = 100 \times 99 \times 98 \times ... \times 1 \end{align*} $$ But of course at least in c\(++\), we’ll need an array to hold the sum. Let result be the array that will hold the final outcome. Before iterating, we’ll store \(24 = 4 \times 3 \times 2 \times 1\) in result. The choice here is arbitrary. We’ll save the least significant digit at index 0. So in result, index 0 will hold the digit 4 and index 1 will hold the digit 2. We’ll also use an array \(a\) that will hold the number we’re going to multiply with. So for example \(a\) will be 5 in the next iteration since we want to calculate \(24 \times 5\). Then at each iteration we’ll do the following Copy the array result into array \(b\). Add one to array \(a\). Multiply arrays \(a\) and \(b\) and save the outcome in result. for (int num = 5; num &lt;= 100; num++) { // copy result to b for (int i = 0; i &lt; N; i++) { b[i] = result[i]; } add_one(a, N); multiply(a, N, b, N, result); } The implementation of adding 1 to an array is pretty straight forward void add_one(int *a, int an) { // least significant digit is at index 0 a[0] += 1; for (int i = 0; i &lt; an; i++) { int sum = a[i]; if (sum &lt; 10) { break; } a[i] = sum % 10; a[i+1] += sum / 10; } } We then have the implementation of multiply. This one needed a little more work but eventually it wasn’t too bad. void multiply(int *a, int an, int *b, int bn, int *result) { for (int i = 0; i &lt; N; i++) { // an + bn result[i] = 0; } // least significant digit is at index 0 for (int i = 0; i &lt; an; i++) { for (int j = 0; j &lt; bn; j++) { int product = a[i] * b[j]; int position = i + j; int carry_position = i + j + 1; int sum = product + result[position]; result[position] = sum % 10; result[carry_position] += sum / 10; } } } Finally, we just need to sum the digits int sum = 0; for (int i = N-1; i &gt;= 0; i--) { sum += result[i]; } printf("sum = %d\n, ", sum); References Project Euler - 20]]></summary></entry><entry><title type="html">Project Euler: 21 Amicable Numbers</title><link href="http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html" rel="alternate" type="text/html" title="Project Euler: 21 Amicable Numbers" /><published>2025-01-05T00:01:36-08:00</published><updated>2025-01-05T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html"><![CDATA[<p>We are given that \(d(n)\) is the sum of proper divisors of \(n\) (So \(n\) itself is not included). If \(d(a) = b\) and \(d(b) = a\) where \(a \neq b\), then \(a\) and \(b\) are amicable numbers. Suppose that \(a = 220\) and \(b = 284\). Observe that</p>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this one, we want to find the sum of all the digits in the number \(100!\). I did this naively where I just calculate $$ \begin{align*} 100! = 100 \times 99 \times 98 \times ... \times 1 \end{align*} $$ But of course at least in c\(++\), we’ll need an array to hold the sum. Let result be the array that will hold the final outcome. Before iterating, we’ll store \(24 = 4 \times 3 \times 2 \times 1\) in result. The choice here is arbitrary. We’ll save the least significant digit at index 0. So in result, index 0 will hold the digit 4 and index 1 will hold the digit 2. We’ll also use an array \(a\) that will hold the number we’re going to multiply with. So for example \(a\) will be 5 in the next iteration since we want to calculate \(24 \times 5\). Then at each iteration we’ll do the following Copy the array result into array \(b\). Add one to array \(a\). Multiply arrays \(a\) and \(b\) and save the outcome in result. for (int num = 5; num &lt;= 100; num++) { // copy result to b for (int i = 0; i &lt; N; i++) { b[i] = result[i]; } add_one(a, N); multiply(a, N, b, N, result); } The implementation of adding 1 to an array is pretty straight forward void add_one(int *a, int an) { // least significant digit is at index 0 a[0] += 1; for (int i = 0; i &lt; an; i++) { int sum = a[i]; if (sum &lt; 10) { break; } a[i] = sum % 10; a[i+1] += sum / 10; } } We then have the implementation of multiply. This one needed a little more work but eventually it wasn’t too bad. void multiply(int *a, int an, int *b, int bn, int *result) { for (int i = 0; i &lt; N; i++) { // an + bn result[i] = 0; } // least significant digit is at index 0 for (int i = 0; i &lt; an; i++) { for (int j = 0; j &lt; bn; j++) { int product = a[i] * b[j]; int position = i + j; int carry_position = i + j + 1; int sum = product + result[position]; result[position] = sum % 10; result[carry_position] += sum / 10; } } } Finally, we just need to sum the digits int sum = 0; for (int i = N-1; i &gt;= 0; i--) { sum += result[i]; } printf("sum = %d\n, ", sum); References Project Euler - 20]]></summary></entry><entry><title type="html">Reptend Prime</title><link href="http://localhost:4000/jekyll/update/2025/01/05/reptend-prime.html" rel="alternate" type="text/html" title="Reptend Prime" /><published>2025-01-05T00:01:36-08:00</published><updated>2025-01-05T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/05/reptend-prime</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/05/reptend-prime.html"><![CDATA[<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+A Full Reptend Prime is a prime $$p$$ for which $$1/p$$ has $$p-1$$ digits in its decimal expansion. Moreover, a prime \(p\) is full reptend if and only if 10 is a primitive root modulo \(p\). This means that
+$$
+\begin{align*}
+10^k \equiv 1 (mod p)
+\end{align*}
+$$
+for \(k = p - 1\) and not \(k\) less than that. In other words, the multiplicative order of \(10\) modulo \(p\) is \(p-1\).
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Recall that the <a href="">multiplicative order</a> of \(a\) when \(a\) is coprime to \(n\), is the smallest \(k\) such that \(a^k \equiv 1 \mod n\). Here set \(n = p\) and \(a = 10\), the multiplicative order of \(10\) modulo \(p\) is then the smallest \(k\) for which \(10^k \equiv 1 (\mod p)\).
+<br />
+<br />
+As an example, set \(p = 7\), observe that</p>
+<div>
+$$
+\begin{align*}
+10^1 &amp;\equiv 3 (mod 7) \\
+10^2 &amp;\equiv 2 (mod 7) \\
+10^3 &amp;\equiv 6 (mod 7) \\
+10^4 &amp;\equiv 4 (mod 7) \\
+10^5 &amp;\equiv 5 (mod 7) \\
+10^6 &amp;\equiv 1 (mod 7) \\
+\end{align*}
+$$
+</div>
+<p>So the multiplicative order of 10 modulo 7 is 6 which is \(7-1\). So 7 is a full reptend prime.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Multiplicative_order">Wikipedia</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition A Full Reptend Prime is a prime $$p$$ for which $$1/p$$ has $$p-1$$ digits in its decimal expansion. Moreover, a prime \(p\) is full reptend if and only if 10 is a primitive root modulo \(p\). This means that $$ \begin{align*} 10^k \equiv 1 (mod p) \end{align*} $$ for \(k = p - 1\) and not \(k\) less than that. In other words, the multiplicative order of \(10\) modulo \(p\) is \(p-1\). Example Recall that the multiplicative order of \(a\) when \(a\) is coprime to \(n\), is the smallest \(k\) such that \(a^k \equiv 1 \mod n\). Here set \(n = p\) and \(a = 10\), the multiplicative order of \(10\) modulo \(p\) is then the smallest \(k\) for which \(10^k \equiv 1 (\mod p)\). As an example, set \(p = 7\), observe that $$ \begin{align*} 10^1 &amp;\equiv 3 (mod 7) \\ 10^2 &amp;\equiv 2 (mod 7) \\ 10^3 &amp;\equiv 6 (mod 7) \\ 10^4 &amp;\equiv 4 (mod 7) \\ 10^5 &amp;\equiv 5 (mod 7) \\ 10^6 &amp;\equiv 1 (mod 7) \\ \end{align*} $$ So the multiplicative order of 10 modulo 7 is 6 which is \(7-1\). So 7 is a full reptend prime. References Wikipedia]]></summary></entry><entry><title type="html">Project Euler: 21 Amicable Numbers</title><link href="http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html" rel="alternate" type="text/html" title="Project Euler: 21 Amicable Numbers" /><published>2025-01-05T00:01:36-08:00</published><updated>2025-01-05T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/05/project-euler-21-amicable-numbers.html"><![CDATA[<p>We are given that \(d(n)\) is the sum of proper divisors of \(n\) (So \(n\) itself is not included). If \(d(a) = b\) and \(d(b) = a\) where \(a \neq b\), then \(a\) and \(b\) are amicable numbers. Suppose that \(a = 220\) and \(b = 284\). Observe that</p>
 <div>
 	$$
 	\begin{align*}
@@ -418,91 +504,4 @@ It should be obvious that the first thing we need to do is to have a table where
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=21">Project Euler - 21</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We are given that \(d(n)\) is the sum of proper divisors of \(n\) (So \(n\) itself is not included). If \(d(a) = b\) and \(d(b) = a\) where \(a \neq b\), then \(a\) and \(b\) are amicable numbers. Suppose that \(a = 220\) and \(b = 284\). Observe that $$ \begin{align*} d(220) &amp;= 1 + 2 + 4 + 5 + 10 + 11 + 20 + 22 + 44 + 55 + 110 = 284 \\ d(284) &amp;= 1 + 2 + 4 + 71 + 142 = 220. \end{align*} $$ Since \(d(220) = 284\) and \(d(284) = 220\), then 284 and 220 are amicable numbers. The problem wants us to find the sum of all amicable numbers under 10000. It should be obvious that the first thing we need to do is to have a table where each entry \(i\) is the sum of proper divisors of \(i\) for all \(i &lt; 10000\). We can do this right at the beginning with: void fill_amicable_sum(int n) { int max = sqrt(n); for (int i = 1; i &lt;= max; i++) { if (n % i == 0) { // it's a divisor amicable_sum[n] += i; if (n / i != i &amp;&amp; i != 1) { // add the other divisor amicable_sum[n] += n/i; } } } } Next, we want to iterate over all the numbers \(i\) from 1 to 10000. For each \(i\) Let \(a =\) amicable_sum[i]. Check that amicable_sum[a] is equal to \(i\). If the condition above holds, then we want to mark both \(\text{amicable}[i] = \text{amicable}[a] = true\) So suppose that \(i = 220\). Then we’ll let \(a =\)amicable_sum\([i] =\)amicable_sum\([220] = 284\) and then we’ll check that amicable_sum[284] is in fact equal to \(i = 220\). int sum = 0; for (int i = 1; i &lt;= N; i++) { if (amicable[i]) { continue; } int a = amicable_sum[i]; // in the example, this is 284 // now we need to check, that amicable_sum[284] == i if (i == amicable_sum[a] &amp;&amp; i != a) { printf("%d and %d are amicable because amicable[%d]=%d, amicable[%d]=%d\n", i, a, i, amicable_sum[i], a, amicable_sum[a]); sum += i + a; amicable[i] = true; amicable[a] = true; } } The reason why we mark a number as amicable is because we don’t want double count. So if we marked 220 and 284 as amicable. Then on the iteration where \(i = 284\), we’ll just skip this number. References Project Euler - 21]]></summary></entry><entry><title type="html">Reptend Prime</title><link href="http://localhost:4000/jekyll/update/2025/01/05/reptend-prime.html" rel="alternate" type="text/html" title="Reptend Prime" /><published>2025-01-05T00:01:36-08:00</published><updated>2025-01-05T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/05/reptend-prime</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/05/reptend-prime.html"><![CDATA[<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-A Full Reptend Prime is a prime $$p$$ for which $$1/p$$ has $$p-1$$ digits in its decimal expansion. Moreover, a prime \(p\) is full reptend if and only if 10 is a primitive root modulo \(p\). This means that
-$$
-\begin{align*}
-10^k \equiv 1 (mod p)
-\end{align*}
-$$
-for \(k = p - 1\) and not \(k\) less than that. In other words, the multiplicative order of \(10\) modulo \(p\) is \(p-1\).
-</div>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Recall that the <a href="">multiplicative order</a> of \(a\) when \(a\) is coprime to \(n\), is the smallest \(k\) such that \(a^k \equiv 1 \mod n\). Here set \(n = p\) and \(a = 10\), the multiplicative order of \(10\) modulo \(p\) is then the smallest \(k\) for which \(10^k \equiv 1 (\mod p)\).
-<br />
-<br />
-As an example, set \(p = 7\), observe that</p>
-<div>
-$$
-\begin{align*}
-10^1 &amp;\equiv 3 (mod 7) \\
-10^2 &amp;\equiv 2 (mod 7) \\
-10^3 &amp;\equiv 6 (mod 7) \\
-10^4 &amp;\equiv 4 (mod 7) \\
-10^5 &amp;\equiv 5 (mod 7) \\
-10^6 &amp;\equiv 1 (mod 7) \\
-\end{align*}
-$$
-</div>
-<p>So the multiplicative order of 10 modulo 7 is 6 which is \(7-1\). So 7 is a full reptend prime.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Multiplicative_order">Wikipedia</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition A Full Reptend Prime is a prime $$p$$ for which $$1/p$$ has $$p-1$$ digits in its decimal expansion. Moreover, a prime \(p\) is full reptend if and only if 10 is a primitive root modulo \(p\). This means that $$ \begin{align*} 10^k \equiv 1 (mod p) \end{align*} $$ for \(k = p - 1\) and not \(k\) less than that. In other words, the multiplicative order of \(10\) modulo \(p\) is \(p-1\). Example Recall that the multiplicative order of \(a\) when \(a\) is coprime to \(n\), is the smallest \(k\) such that \(a^k \equiv 1 \mod n\). Here set \(n = p\) and \(a = 10\), the multiplicative order of \(10\) modulo \(p\) is then the smallest \(k\) for which \(10^k \equiv 1 (\mod p)\). As an example, set \(p = 7\), observe that $$ \begin{align*} 10^1 &amp;\equiv 3 (mod 7) \\ 10^2 &amp;\equiv 2 (mod 7) \\ 10^3 &amp;\equiv 6 (mod 7) \\ 10^4 &amp;\equiv 4 (mod 7) \\ 10^5 &amp;\equiv 5 (mod 7) \\ 10^6 &amp;\equiv 1 (mod 7) \\ \end{align*} $$ So the multiplicative order of 10 modulo 7 is 6 which is \(7-1\). So 7 is a full reptend prime. References Wikipedia]]></summary></entry><entry><title type="html">Multiplicative Order</title><link href="http://localhost:4000/jekyll/update/2025/01/04/multiplicative-order.html" rel="alternate" type="text/html" title="Multiplicative Order" /><published>2025-01-04T00:01:36-08:00</published><updated>2025-01-04T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/04/multiplicative-order</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/04/multiplicative-order.html"><![CDATA[<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-Given a positive integer \(n\) and an integer \(a\) coprime to \(n\), the multiplicative order of \(a\) modulo \(n\) is the smallest positive integer \(k\) such that 
-$$
-\begin{align*}
-a^k \equiv 1 (mod n)
-\end{align*}
-$$
-</div>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-
-<p>Suppose n = 7 and a = 3, then</p>
-<div>
-$$
-\begin{align*}
-3^1 &amp;= 3 \equiv 3 (mod n) \\
-3^2 &amp;= 6 \equiv 6 (mod n) \\
-3^3 &amp;= 9 \equiv 2 (mod n) \\
-3^4 &amp;= 81 \equiv 4 (mod n) \\
-3^5 &amp;= 243 \equiv 5 (mod n) \\
-3^6 &amp;= 729 \equiv 1 (mod n) \\
-\end{align*}
-$$
-</div>
-<p>So the multiplicative order of 3 modulo 7 is 6. Similarly for a = 4 and n = 7</p>
-<div>
-$$
-\begin{align*}
-4^1 &amp;= 4 \equiv 4 (mod n) \\
-4^2 &amp;= 16 \equiv 2 (mod n) \\
-4^3 &amp;= 64 \equiv 1 (mod n) \\
-\end{align*}
-$$
-</div>
-<p>So the multiplicative order of 4 modulo 7 is 3.</p>
-
-<!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Multiplicative_order">Wikipedia</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition Given a positive integer \(n\) and an integer \(a\) coprime to \(n\), the multiplicative order of \(a\) modulo \(n\) is the smallest positive integer \(k\) such that $$ \begin{align*} a^k \equiv 1 (mod n) \end{align*} $$ Example]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We are given that \(d(n)\) is the sum of proper divisors of \(n\) (So \(n\) itself is not included). If \(d(a) = b\) and \(d(b) = a\) where \(a \neq b\), then \(a\) and \(b\) are amicable numbers. Suppose that \(a = 220\) and \(b = 284\). Observe that $$ \begin{align*} d(220) &amp;= 1 + 2 + 4 + 5 + 10 + 11 + 20 + 22 + 44 + 55 + 110 = 284 \\ d(284) &amp;= 1 + 2 + 4 + 71 + 142 = 220. \end{align*} $$ Since \(d(220) = 284\) and \(d(284) = 220\), then 284 and 220 are amicable numbers. The problem wants us to find the sum of all amicable numbers under 10000. It should be obvious that the first thing we need to do is to have a table where each entry \(i\) is the sum of proper divisors of \(i\) for all \(i &lt; 10000\). We can do this right at the beginning with: void fill_amicable_sum(int n) { int max = sqrt(n); for (int i = 1; i &lt;= max; i++) { if (n % i == 0) { // it's a divisor amicable_sum[n] += i; if (n / i != i &amp;&amp; i != 1) { // add the other divisor amicable_sum[n] += n/i; } } } } Next, we want to iterate over all the numbers \(i\) from 1 to 10000. For each \(i\) Let \(a =\) amicable_sum[i]. Check that amicable_sum[a] is equal to \(i\). If the condition above holds, then we want to mark both \(\text{amicable}[i] = \text{amicable}[a] = true\) So suppose that \(i = 220\). Then we’ll let \(a =\)amicable_sum\([i] =\)amicable_sum\([220] = 284\) and then we’ll check that amicable_sum[284] is in fact equal to \(i = 220\). int sum = 0; for (int i = 1; i &lt;= N; i++) { if (amicable[i]) { continue; } int a = amicable_sum[i]; // in the example, this is 284 // now we need to check, that amicable_sum[284] == i if (i == amicable_sum[a] &amp;&amp; i != a) { printf("%d and %d are amicable because amicable[%d]=%d, amicable[%d]=%d\n", i, a, i, amicable_sum[i], a, amicable_sum[a]); sum += i + a; amicable[i] = true; amicable[a] = true; } } The reason why we mark a number as amicable is because we don’t want double count. So if we marked 220 and 284 as amicable. Then on the iteration where \(i = 284\), we’ll just skip this number. References Project Euler - 21]]></summary></entry></feed>

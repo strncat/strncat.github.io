@@ -82,17 +82,13 @@ We can simulate this simple long division for all the integers below 1000 to see
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">long_division</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">seen</span><span class="p">;</span>
-
     <span class="kt">int</span> <span class="n">numerator</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">cycle_len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// let the maximum cycle length be 1000</span>
         <span class="kt">int</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">%</span> <span class="n">number</span><span class="p">;</span>
-
         <span class="k">if</span> <span class="p">(</span><span class="n">seen</span><span class="p">[</span><span class="n">remainder</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// cycle ends</span>
             <span class="k">break</span><span class="p">;</span>
         <span class="p">}</span>
-
         <span class="n">seen</span><span class="p">[</span><span class="n">remainder</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
         <span class="n">numerator</span> <span class="o">=</span> <span class="n">remainder</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
         <span class="n">cycle_len</span><span class="o">++</span><span class="p">;</span>
@@ -100,13 +96,11 @@ We can simulate this simple long division for all the integers below 1000 to see
     <span class="k">return</span> <span class="n">cycle_len</span><span class="p">;</span>
 <span class="p">}</span></code></pre></figure>
 
-<p><br /></p>
-<hr />
-
 <p><br />
+<br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Other Ideas</b></h4>
-<p>So far we have a solution that is fast and acceptable but is there more to this? Take a look at the longest cycle for all numbers up to 1000 and observe that when d = 7, 1/d has d-1=6 digits, when d = 17, 1/d has d-1=16 digits. Furthermore, when d = 19, 1/d has 19-1=18 digits. Same for 1/23 which has 23-1=22 digits. All of these are prime numbers. But when we take d = 11, 1/11 has only two digits in its cycle. So what’s special about 7, 17, 19, 23 …? It turns out these special primes have a special name. These special primes are <a href="">Full Reptend Primes</a>.
+<p>So far we have a solution that is fast and acceptable but is there more to this? Take a look at the longest cycle for all numbers up to 1000 and observe that when d = 7, 1/d has d-1=6 digits, when d = 17, 1/d has d-1=16 digits. Furthermore, when d = 19, 1/d has 19-1=18 digits. Same for 1/23 which has 23-1=22 digits. All of these are prime numbers. But when we take d = 11, 1/11 has only two digits in its cycle. So what’s special about 7, 17, 19, 23 …? It turns out these special primes have a special name. These special primes are <a href="hello">Full Reptend Primes</a>.
 <br />
 <br />
 Since for any full reptend prime \(p\), the the cycle length is \(p - 1\), then a potenial idea is just finding the maximum full reptend prime less than 1000. In fact, the maximum full reptend prime less than 1000 is 983. But does this mean that any other number between 983 and 999 won’t have more digits in its decimal expansion? I don’t know the answer to this question.

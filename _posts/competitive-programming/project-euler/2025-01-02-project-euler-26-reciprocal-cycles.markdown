@@ -47,17 +47,13 @@ We can simulate this simple long division for all the integers below 1000 to see
 {% highlight c++ %}
 int long_division(int number) {
     std::unordered_map<int,int> seen;
-
     int numerator = 1 * 10;
     int cycle_len = 0;
-
     for (int i = 0; i < 1000; i++) { // let the maximum cycle length be 1000
         int remainder = numerator % number;
-
         if (seen[remainder] == 1) { // cycle ends
             break;
         }
-
         seen[remainder] = 1;
         numerator = remainder * 10;
         cycle_len++;
@@ -66,11 +62,10 @@ int long_division(int number) {
 }
 {% endhighlight %}
 <br>
-<hr>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Other Ideas</b></h4>
-So far we have a solution that is fast and acceptable but is there more to this? Take a look at the longest cycle for all numbers up to 1000 and observe that when d = 7, 1/d has d-1=6 digits, when d = 17, 1/d has d-1=16 digits. Furthermore, when d = 19, 1/d has 19-1=18 digits. Same for 1/23 which has 23-1=22 digits. All of these are prime numbers. But when we take d = 11, 1/11 has only two digits in its cycle. So what's special about 7, 17, 19, 23 ...? It turns out these special primes have a special name. These special primes are <a href="">Full Reptend Primes</a>.
+So far we have a solution that is fast and acceptable but is there more to this? Take a look at the longest cycle for all numbers up to 1000 and observe that when d = 7, 1/d has d-1=6 digits, when d = 17, 1/d has d-1=16 digits. Furthermore, when d = 19, 1/d has 19-1=18 digits. Same for 1/23 which has 23-1=22 digits. All of these are prime numbers. But when we take d = 11, 1/11 has only two digits in its cycle. So what's special about 7, 17, 19, 23 ...? It turns out these special primes have a special name. These special primes are <a href="hello">Full Reptend Primes</a>.
 <br>
 <br>
 Since for any full reptend prime $$p$$, the the cycle length is $$p - 1$$, then a potenial idea is just finding the maximum full reptend prime less than 1000. In fact, the maximum full reptend prime less than 1000 is 983. But does this mean that any other number between 983 and 999 won't have more digits in its decimal expansion? I don't know the answer to this question.

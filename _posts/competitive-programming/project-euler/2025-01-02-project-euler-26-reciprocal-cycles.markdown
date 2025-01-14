@@ -17,25 +17,25 @@ But what if the cycle is of length 300? We can't just multiply the numerator by 
 <br>
 <br>
 Step 1:
-Multiply 1 by 10 and divide to get 10 / 7 = 1 with remainder 3.
+Multiply 1 by $$10$$ and divide to get $$10 / 7 = 1$$ with remainder 3.
 <br>
 Step 2:
-Multiply 3 by 10 and divide to get 30 / 7 = 4 with remainder 2.
+Multiply 3 by $$10$$ and divide to get $$30 / 7 = 4$$ with remainder 2.
 <br>
 Step 3:
-Multiply 2 by 10 and divide to get 20 / 7 = 2 with remainder 6.
+Multiply 2 by $$10$$ and divide to get $$20 / 7 = 2$$ with remainder 6.
 <br>
 Step 4:
-Multiply 6 by 10 and divide to get 60 / 7 = 8 with remainder 4.
+Multiply 6 by $$10$$ and divide to get $$60 / 7 = 8$$ with remainder 4.
 <br>
 Step 5:
-Multiply 4 by 10 and divide to get 40 / 7 = 5 with remainder 5.
+Multiply 4 by $$10$$ and divide to get $$40 / 7 = 5$$ with remainder 5.
 <br>
 Step 6:
-Multiply 5 by 10 and divide to get 50 / 7 = 7 with remainder 1.
+Multiply 5 by $$10$$ and divide to get $$50 / 7 = 7$$ with remainder 1.
 <br>
 Step 7:
-Multiply 1 by 10 and divide to get 10 / 7 = 1 with remainder 3.
+Multiply 1 by $$10$$ and divide to get $$10 / 7 = 1$$ with remainder 3.
 <br>
 <br>
 At this point, we have a reminder that we've seen before. We know what we'll see exactly in step 8 and we know this will repeat for the next 6 steps. So we can stop here and declare that the cycle length is exactly 6.
@@ -65,7 +65,7 @@ int long_division(int number) {
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Other Ideas</b></h4>
-So far we have a solution that is fast and acceptable but is there more to this? Take a look at the longest cycle for all numbers up to 1000 and observe that when d = 7, 1/d has d-1=6 digits, when d = 17, 1/d has d-1=16 digits. Furthermore, when d = 19, 1/d has 19-1=18 digits. Same for 1/23 which has 23-1=22 digits. All of these are prime numbers. But when we take d = 11, 1/11 has only two digits in its cycle. So what's special about 7, 17, 19, 23 ...? It turns out these special primes have a special name. These special primes are <a href="hello">Full Reptend Primes</a>.
+So far we have a solution that is fast and acceptable but is there more to this? Take a look at the longest cycle for all numbers up to 1000 and observe that when d = 7, 1/d has d-1=6 digits, when d = 17, 1/d has d-1=16 digits. Furthermore, when d = 19, 1/d has 19-1=18 digits. Same for 1/23 which has 23-1=22 digits. All of these are prime numbers. But when we take d = 11, 1/11 has only two digits in its cycle. So what's special about 7, 17, 19, 23 ...? It turns out these special primes have a special name. These special primes are <a href="https://strncat.github.io/jekyll/update/2025/01/05/reptend-prime.html">Full Reptend Primes</a>.
 <br>
 <br>
 Since for any full reptend prime $$p$$, the the cycle length is $$p - 1$$, then a potenial idea is just finding the maximum full reptend prime less than 1000. In fact, the maximum full reptend prime less than 1000 is 983. But does this mean that any other number between 983 and 999 won't have more digits in its decimal expansion? I don't know the answer to this question.
@@ -77,7 +77,6 @@ Since for any full reptend prime $$p$$, the the cycle length is $$p - 1$$, then 
 <h4><b>References</b></h4>
 <ol>
 <li><a href="https://projecteuler.net/problem=26">Project Euler - 26</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Reciprocals_of_primes">Wikipedia: Reciprocals of Primes</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Reciprocals_of_primes">Wikipedia: Reciprocals of Primes</a></li>
 </ol>
 <br>

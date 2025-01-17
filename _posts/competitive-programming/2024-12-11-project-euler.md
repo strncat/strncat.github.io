@@ -117,7 +117,9 @@ mathjax: true
         Double-base Palindromes
        </a></li>
 <!---------- 37 ---------->
-	   <li>Truncatable Primes</li>
+	   <li><a href="/jekyll/update/2025/01/16/project-euler-37-truncatable-primes.html">
+        Truncatable Primes
+       </a></li>
 <!---------- 38 ---------->
 	   <li><a href="/jekyll/update/2024/12/28/project-euler-38-pandigital-multiples.html">
         Pandigital Multiples

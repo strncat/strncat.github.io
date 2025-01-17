@@ -17,59 +17,61 @@ $$
 \end{align*}
 $$
 </div>
-Concatenating all the products, we get $$918273645$$. This product is $$1$$ to $$9$$ pandigital by definition. The goal of this problem is to find the largest $$1$$ to $$9$$ pandigital product formed by concatenating an integer with $$(1,2,3,4,...n)$$ where $$n > 1$$. In the above example, 9 is the integer concatenated with $$(1,2,3,4,5)$$.
+<!------------------------------------------------------------------------------------>
+Concatenating all the products, we get $$918273645$$. This product is $$1$$ to $$9$$ pandigital by definition. The goal of this problem is to find the largest $$1$$ to $$9$$ pandigital product formed by concatenating the products of an integer $$k$$ with $$(1,2,3,4,...n)$$ where $$n > 1$$. In the above example, $$k = 9$$ and $$n = 5$$.
 <br>
 <br>
-Given an integer $$n$$, we can check if it's $$1$$ to $$9$$ pandigital with
+Suppose now that we're given an integer $$k$$ with $$d$$ digits. Observe that if $$d = 1$$, then in order to have 9 digits total in the final string produced by concatenating the products of $$k$$ with $$(1,2,...,n)$$, we need at most 9 products total so $$n \leq 9$$. Moreover, if $$d = 2$$, then $$n$$ can at most be 4, since each product will contain a minimum of two digits. Adding a fifth product means that we will exceed 9 digits which makes the entire thing not pandigital. For $$d = 3$$, then we'll only need 3 products. In all cases, we can see that we at most need 9 products total. Based on this, I implemented this in the most naive way where given an integer $$k$$, I will multiply $$k$$ by the range $$(1,...,9)$$ but exiting at any point where we either see a digit repeating twice (not pandigital) or if we reached the pandigital state.
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
-int is_pandigital(int i, int j) {
+bool is_pandigital(int k) {
     int digits[10] = {0};
-    int num = i * j;
-    while (i > 0) {
-        digits[i % 10]++;
-        i /= 10;
-    }
-    while (j > 0) {
-        digits[j % 10]++;
-        j /= 10;
-    }
-    while (num > 0) {
-        digits[num % 10]++;
-        num /= 10;
-    }
-    for (int i = 1; i < 10; i++) {
-        if (digits[i] != 1) {
-            return false;
+    // In each iteration, we will multiply k by a value from the range (1,...,n).
+    // Since we only have 9 digits, we won't ever need more than 9 products.
+    for (int n = 1; n < 9; n++) {
+        int product = k * n;
+        // (1) count the digits of this product and exit any time we see a repeated digit
+        while (product > 0) {
+            int remainder = product % 10;
+            digits[remainder]++;
+            product /= 10;
+            if (digits[remainder] > 1) {
+                return false; // no need to test further since we have a repeated digit
+            }
+        }
+        // (2) before checking the next product, check if we reached the pandigital state
+        int i = 1;
+        while (i < 10 && digits[i++] == 1) {}
+        if (i == 10 && digits[0] == 0) {
+            return true; // we are a pandigital number, let's exit
         }
     }
-    if (digits[0] != 0) { return false; } // zero is not a valid digit
-    return true;
+    return false; // we failed but we should not reach this state with the above checks
 }
 {% endhighlight %}
 <!------------------------------------------------------------------------------------>
-Suppose now that we're given an integer $$k$$ with $$d$$ digits. The product of this integer with 1 will produce $$d$$ digits. The product with 2 will produce at least another $$d$$ digits. If $$d = 1$$, then $$n$$ can at most be 9. If $$d = 2$$, then $$n$$ can at most be 4. For example, consider the products of the smallest 2 digit number with $$(1,2,3,4,5)$$ below
-<div>
-$$
-\begin{align*}
-10 \times 1 &= 10 \\
-10 \times 2 &= 20 \\
-10 \times 3 &= 30 \\
-10 \times 4 &= 40 \\
-10 \times 5  &= 50 \\
-\end{align*}
-$$
-</div>
-We can see here that we have already exceeded the number of digits possible with the 5th equation, so we can only have at most 4 equations. 
-
+How many integers do we need to test? First of all, observe that $$k$$ can't have more than 4 digits. With 5 digits, we'll never get a pandigital product since with one product, we'll get 5 digits but with two we'll get 10 digits. So we can just test up to 9999. Second of all, observe that $$k$$ must start with a 9 since we're searching for the largest pandigital product. So we can search starting from 9999 and exit as soon as we see a pandigital product!
 {% highlight c++ %}
+int max = -1;
+for (int i = 9999; i >= 1; i--) {
+    if (is_pandigital(i)) {
+        max = i;
+        break;
+    }
+}
+int count = 0, temp = max;
+while (temp) { // count the digits in max
+    count++;
+    temp /= 10;
+}
+printf("largest pandigital number is ");
+for (int i = 1; i <= 9/count; i++) {
+    printf("%d", max*i);
+}
+printf("\n");
 {% endhighlight %}
 <!------------------------------------------------------------------------------------>
-One thing we want to pay attention to is that we only want to count the distinct products. For example $$18 \times 297 = 5346$$ and $$27 \times 198 = 5346$$. Both are pandigital but we only want to add 5346 in the sum once. We can use a map to keep track of the products we've seen so far.
-{% highlight c++ %}
-{% endhighlight %}
-<!------------------------------------------------------------------------------------>
-This runs in 0.002568 seconds on my M1 mac.
+This runs in 0.000032 seconds on my M1 mac.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

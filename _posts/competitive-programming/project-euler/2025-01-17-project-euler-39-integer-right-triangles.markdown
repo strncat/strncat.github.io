@@ -78,7 +78,9 @@ for (int a = 1; a < limit; a++) {
     count++;
 }
 {% endhighlight %}
-But this doesn't quite work yet because it will count $$\{30,40,50\}$$ and $$\{40,30,50\}$$ as two different solutions. To solve this, we can go up to half the limit above.
+<br>
+But this doesn't quite work yet because it will count $$\{30,40,50\}$$ and $$\{40,30,50\}$$ as two different solutions. To solve this, we can half the limit above.
+<br>
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
 int max = 0;

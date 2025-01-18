@@ -96,16 +96,53 @@ For a concrete example, suppose that \(p = 120\) and suppose we picked \(a\) to 
 	\end{align*}
 	$$
 </div>
-<p>Therefore, \(b = p - a - c = 120 - 20 - 52 = 48\).
-<br />
-<br />
+<p>Therefore, \(b = p - a - c = 120 - 20 - 52 = 48\). This can be captured in
 <!------------------------------------------------------------------------------------></p>
 
-<!------------------------------------------------------------------------------------>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">;</span> <span class="n">a</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">pa</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">pa</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pa</span><span class="p">);</span>
+    <span class="c1">// we want to know if this fraction is an integer (aa + papa) / 2*pa</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pa</span> <span class="o">!=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">pa</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// c is not a solution since the fraction is not an integer</span>
+        <span class="k">continue</span><span class="p">;</span> <span class="c1">// choose another a</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Solution = %d, %d, %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
-<!------------------------------------------------------------------------------------>
+<p>But this doesn’t quite work yet because it will count \(\{30,40,50\}\) and \(\{40,30,50\}\) as two different solutions. To solve this, we can go up to half the limit above.
+<!------------------------------------------------------------------------------------></p>
 
-<p><br />
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">max_p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">a</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">pa</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">pa</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pa</span><span class="p">);</span>
+        <span class="c1">// we want to know if this fraction is an integer (aa + papa) / 2*pa</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pa</span> <span class="o">!=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">pa</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// c is not a solution since the fraction isn't an integer</span>
+            <span class="k">continue</span><span class="p">;</span> <span class="c1">// choose another a</span>
+        <span class="p">}</span>
+        <span class="c1">//int b = p - a - c; // we don't even need to calculate this (only if we want to print)</span>
+        <span class="c1">//printf("Solution %d, %d, %d\n", a, b, c);</span>
+        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">max</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span>
+        <span class="n">max_p</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"max = %d, max_p = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">max_p</span><span class="p">);</span></code></pre></figure>
+
+<p>Running this takes 0.000241 seconds on my M1 mac.
+<!------------------------------------------------------------------------------------>
+<br />
 <br />
 <!------------------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>

@@ -70,40 +70,40 @@ for (int a = 1; a < limit; a++) {
     int c = (a*a + pa*pa) / (2*pa);
     // we want to know if this fraction is an integer (aa + papa) / 2*pa
     if (c * 2 * pa != a*a + pa*pa) {
-        // c is not a solution since the fraction isn't an integer
+        // c is not a solution since the fraction is not an integer
         continue; // choose another a
     }
     int b = p - a - c;
-    printf("Solution {%d, %d, %d}\n", a, b, c);
+    printf("Solution = %d, %d, %d\n", a, b, c);
     count++;
 }
 {% endhighlight %}
 But this doesn't quite work yet because it will count $$\{30,40,50\}$$ and $$\{40,30,50\}$$ as two different solutions. To solve this, we can go up to half the limit above.
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
-    int max = 0;
-    int max_p = 0;
-    for (int p = 1; p <= 1000; p++) {
-        int count = 0;
-        int limit = p/2;
-        for (int a = 1; a <= limit/2; a++) {
-            int pa = p - a;
-            int c = (a*a + pa*pa) / (2*pa);
-            // we want to know if this fraction is an integer (aa + papa) / 2*pa
-            if (c * 2 * pa != a*a + pa*pa) {
-                // c is not a solution since the fraction isn't an integer
-                continue; // choose another a
-            }
-            //int b = p - a - c; // we don't even need to calculate this (only if we want to print)
-            //printf("Solution {%d, %d, %d}\n", a, b, c);
-            count++;
+int max = 0;
+int max_p = 0;
+for (int p = 1; p <= 1000; p++) {
+    int count = 0;
+    int limit = p/2;
+    for (int a = 1; a <= limit/2; a++) {
+        int pa = p - a;
+        int c = (a*a + pa*pa) / (2*pa);
+        // we want to know if this fraction is an integer (aa + papa) / 2*pa
+        if (c * 2 * pa != a*a + pa*pa) {
+            // c is not a solution since the fraction isn't an integer
+            continue; // choose another a
         }
-        if (count > max) {
-            max = count;
-            max_p = p;
-        }
+        //int b = p - a - c; // we don't even need to calculate this (only if we want to print)
+        //printf("Solution %d, %d, %d\n", a, b, c);
+        count++;
     }
-    printf("max = %d, max_p = %d\n", max, max_p);
+    if (count > max) {
+        max = count;
+        max_p = p;
+    }
+}
+printf("max = %d, max_p = %d\n", max, max_p);
 {% endhighlight %}
 Running this takes 0.000241 seconds on my M1 mac.
 <!------------------------------------------------------------------------------------>

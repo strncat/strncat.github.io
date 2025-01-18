@@ -128,5 +128,13 @@ mathjax: true
 	   <li><a href="/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles.html">
         Integer Right Triangles
        </a></li>
+<!---------- 40---------->
+	   <li>Champernowne's Constant</li>
+<!---------- 41---------->
+	   <li>Pandigital Prime</li>
+<!---------- 42---------->
+	   <li><a href="/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers.html">
+        Coded Triangle Numbers
+       </a></li>
    </ol>
 <br>

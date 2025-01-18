@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-18T08:05:02-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 39 Integer Right Triangles</title><link href="http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles.html" rel="alternate" type="text/html" title="Project Euler: 39 Integer Right Triangles" /><published>2025-01-17T00:01:36-08:00</published><updated>2025-01-17T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles.html"><![CDATA[<p>In this problem, we are given a right triangle with sides \(a, b\) and \(c\). We are also given the perimeter of this triangle \(p\). Given only this, there are multiple solutions to what the side lengths \(\{a,b,c\}\) could be. For example for \(p = 120\), there are exactly three solutions \(\{20,48,52\},\{24,45,51\},\{30,40,50\}\). The goal of this problem is finding \(p\) such that we have the maximum number of solutions.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-18T14:42:54-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 42 Coded Triangle Numbers</title><link href="http://localhost:4000/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers.html" rel="alternate" type="text/html" title="Project Euler: 42 Coded Triangle Numbers" /><published>2025-01-18T00:01:36-08:00</published><updated>2025-01-18T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers.html"><![CDATA[<p>In this problem, we are introduced to the sequence of triangle numbers where the nth term of the sequence is given by</p>
+<div>
+	$$
+	\begin{align*}
+	 t_n = \frac{1}{2}n(n+1).
+	\end{align*}
+	$$
+</div>
+<p>The first 10 triangle numbers are therefore</p>
+<div>
+	$$
+	\begin{align*}
+	 1,3,6,10,15,21,28,36,45,55,...
+	\end{align*}
+	$$
+</div>
+<p>We are given a list of words in a file. A word’s alphabetical score is calculated by summing each letter’s alphabetical position. So for example, SKY’s alphabetical score is \(19+11+25 = 55\). This is also the 10th term in the triangle sequence above. So SKY is a triangle word. The goal of this problem is to find the number of triangle words in the file.
+<br />
+<br />
+Similar to <a href="">Problem 22</a>, the first thing we want to do is read the file we’re given and add the words in an array. We can do this with
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">freopen</span><span class="p">(</span><span class="s">"0022_names.txt"</span> <span class="p">,</span> <span class="s">"r"</span> <span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">str</span><span class="p">;</span> <span class="c1">// read the entire string</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">words</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="nf">ss</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">token</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="sc">','</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">max_length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">word</span> <span class="o">=</span> <span class="n">token</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">token</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">words</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">max_length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">max_length</span> <span class="o">=</span> <span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------>
+And while we parse, we want to know the maximum length of a word in the file. We want this in order to pre-compute enough terms from the triangle sequence. For example, if the maximum word length is 10, then the score of this word is at most \(26 * 10 = 260\) (assuming it’s just a bunch of ZZZ’s). So we want to pre-compute 260 terms from the sequence. We can then build a table of triangle sequence terms as follows
+<!------------------------------------------------------------------------------------>
+<br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">triangle</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">is_valid_term</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">triangle_sequence</span><span class="p">(</span><span class="kt">int</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">term</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">triangle</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">term</span><span class="p">;</span> <span class="c1">// so triangle[10] = 55</span>
+        <span class="n">is_valid_term</span><span class="p">[</span><span class="n">triangle</span><span class="p">[</span><span class="n">n</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// is_triangle[55] is a term in the sequence</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------>
+<br />
+Finally, we want to use that table to determine how many words in the file are triangle words.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">words</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="sc">'A'</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_valid_term</span><span class="p">[</span><span class="n">score</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"triangle terms count = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=42">Project Euler - 42</a>
+<br />
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this problem, we are introduced to the sequence of triangle numbers where the nth term of the sequence is given by $$ \begin{align*} t_n = \frac{1}{2}n(n+1). \end{align*} $$ The first 10 triangle numbers are therefore $$ \begin{align*} 1,3,6,10,15,21,28,36,45,55,... \end{align*} $$ We are given a list of words in a file. A word’s alphabetical score is calculated by summing each letter’s alphabetical position. So for example, SKY’s alphabetical score is \(19+11+25 = 55\). This is also the 10th term in the triangle sequence above. So SKY is a triangle word. The goal of this problem is to find the number of triangle words in the file. Similar to Problem 22, the first thing we want to do is read the file we’re given and add the words in an array. We can do this with freopen("0022_names.txt" , "r" , stdin); std::string str; std::cin &gt;&gt; str; // read the entire string std::vector&lt;std::string&gt; words; std::stringstream ss(str); std::string token; char delimiter = ','; int max_length = 0; while (std::getline(ss, token, delimiter)) { std::string word = token.substr(1, token.size() - 2); words.push_back(word); if (word.length() &gt; max_length) { max_length = word.length(); } } And while we parse, we want to know the maximum length of a word in the file. We want this in order to pre-compute enough terms from the triangle sequence. For example, if the maximum word length is 10, then the score of this word is at most \(26 * 10 = 260\) (assuming it’s just a bunch of ZZZ’s). So we want to pre-compute 260 terms from the sequence. We can then build a table of triangle sequence terms as follows int triangle[N]; std::unordered_map&lt;int,int&gt; is_valid_term; void triangle_sequence(int max) { for (int n = 1; n &lt;= max; n++) { int term = (n * (n+1)) / 2; triangle[n] = term; // so triangle[10] = 55 is_valid_term[triangle[n]] = 1; // is_triangle[55] is a term in the sequence } } Finally, we want to use that table to determine how many words in the file are triangle words. int count = 0; for (int i = 0; i &lt; words.size(); i++) { int score = 0; for (int j = 0; j &lt; words[i].size(); j++) { score += words[i][j]-'A'+1; } if (is_valid_term[score]) { count++; } } printf("triangle terms count = %d\n", count); References Project Euler - 42]]></summary></entry><entry><title type="html">Project Euler: 39 Integer Right Triangles</title><link href="http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles.html" rel="alternate" type="text/html" title="Project Euler: 39 Integer Right Triangles" /><published>2025-01-17T00:01:36-08:00</published><updated>2025-01-17T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles.html"><![CDATA[<p>In this problem, we are given a right triangle with sides \(a, b\) and \(c\). We are also given the perimeter of this triangle \(p\). Given only this, there are multiple solutions to what the side lengths \(\{a,b,c\}\) could be. For example for \(p = 120\), there are exactly three solutions \(\{20,48,52\},\{24,45,51\},\{30,40,50\}\). The goal of this problem is finding \(p\) such that we have the maximum number of solutions.
 <br />
 <br />
 Solution: One fact that we know is that the sum of any two sides in a triangle must be greater than the length of the third side. So for any side, its length can at most be \(\frac{p}{2} - 1\). So when we’re searching for solutions, we can immediately limit the search to that range for any side. Additionally, this is a right triangle, so pick \(c\) to be the hypotenuse. So overall, we have the following equations</p>
@@ -562,76 +640,4 @@ This isn’t the best solution to this problem. One solution I’ve seen is toke
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=8">Project Euler - 08</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[I did this the naive way of just iterating through the numbers and calculating the product of 13 numbers from every possible position, so the product starting at position 0, 1, 2 etc. std::string s = "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450";]]></summary></entry><entry><title type="html">Project Euler: 15 Lattice Paths</title><link href="http://localhost:4000/jekyll/update/2025/01/08/project-euler-15-lattice-paths.html" rel="alternate" type="text/html" title="Project Euler: 15 Lattice Paths" /><published>2025-01-08T00:01:36-08:00</published><updated>2025-01-08T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/08/project-euler-15-lattice-paths</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/08/project-euler-15-lattice-paths.html"><![CDATA[<p>We have a grid of size \(20 \times 20\). We can reach the last step in 40 exactly steps. 20 of these steps must be down steps and the other 20 must be right steps. So we have a sequence of 40 steps total and we want to find all possible sequences of these steps. Suppose we first chose the down steps in the configuration below</p>
-<div>
-<table style="max-width: 500px; margin: 20px auto;">
-  <tr>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-	<td>4</td>
-	<td>5</td>
-    <td>6</td>
-    <td>7</td>
-    <td>8</td>
-	<td>9</td>
-	<td>10</td>
-    <td>11</td>
-    <td>12</td>
-	<td>13</td>
-    <td>14</td>
-    <td>15</td>
-    <td>16</td>
-	<td>...</td>
-  </tr>
-  <tr>
-    <td>D</td>
-    <td> </td>
-    <td>D</td>
-	<td>D</td>
-	<td> </td>
-    <td> </td>
-    <td>D</td>
-    <td>D</td>
-	<td> </td>
-	<td>D</td>
-    <td> </td>
-    <td>D</td>
-	<td>D</td>
-    <td> </td>
-    <td>D</td>
-    <td>D</td>
-	<td>...</td>
-  </tr>
-</table>
-</div>
-<p>So steps 1,3,4,7,8 … all are down steps. Then, automatically we know that the rest of the steps are just right steps. So once we determine the right steps, we’re done. The remaining steps will be down steps. So we’re only choosing 20 of the 40 steps. The number of ways to choose 20 steps out of 40 is given by the binomial coefficient.</p>
-<div>
-	$$
-	\begin{align*}
-	\binom{40}{20} = \frac{40!}{20!20!}
-	\end{align*}
-	$$
-</div>
-<!------------------------------------------------------------------------------------>
-<h4><b>A Dynamic Programming Solution</b></h4>
-<p>Another way to do this problem is with dynamic programming. Why do it this way? maybe just to practice? Suppose we’re at very last step. We could have come from the step above or the step to the left. Let ways\([i][j]\) be a matrix representing the numbers. So the number of the ways to generate the sequence of 40 steps is the sum of all ways if came from a step above plus all the ways if we came from a step on the left. Therefore, we naturally have a recurrence that we can implement below</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ways</span><span class="p">[</span><span class="mi">25</span><span class="p">][</span><span class="mi">25</span><span class="p">];</span>
-<span class="n">memset</span><span class="p">(</span><span class="n">ways</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ways</span><span class="p">));</span>
-<span class="n">ways</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">ways</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">ways</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ways</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ways</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">ways</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"reach(21,21) in %llu steps</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">ways</span><span class="p">[</span><span class="mi">21</span><span class="p">][</span><span class="mi">21</span><span class="p">]);</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=16">Project Euler - 16</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We have a grid of size \(20 \times 20\). We can reach the last step in 40 exactly steps. 20 of these steps must be down steps and the other 20 must be right steps. So we have a sequence of 40 steps total and we want to find all possible sequences of these steps. Suppose we first chose the down steps in the configuration below 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 ... D D D D D D D D D D ... So steps 1,3,4,7,8 … all are down steps. Then, automatically we know that the rest of the steps are just right steps. So once we determine the right steps, we’re done. The remaining steps will be down steps. So we’re only choosing 20 of the 40 steps. The number of ways to choose 20 steps out of 40 is given by the binomial coefficient. $$ \begin{align*} \binom{40}{20} = \frac{40!}{20!20!} \end{align*} $$ A Dynamic Programming Solution Another way to do this problem is with dynamic programming. Why do it this way? maybe just to practice? Suppose we’re at very last step. We could have come from the step above or the step to the left. Let ways\([i][j]\) be a matrix representing the numbers. So the number of the ways to generate the sequence of 40 steps is the sum of all ways if came from a step above plus all the ways if we came from a step on the left. Therefore, we naturally have a recurrence that we can implement below unsigned long long ways[25][25]; memset(ways, 0, sizeof(ways)); ways[0][0] = 0; ways[1][0] = 1; ways[0][1] = 0; for (int i = 1; i &lt; 25; i++) { for (int j = 1; j &lt; 25; j++) { ways[i][j] = ways[i-1][j] + ways[i][j-1]; } } printf("reach(21,21) in %llu steps\n", ways[21][21]); References Project Euler - 16]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[I did this the naive way of just iterating through the numbers and calculating the product of 13 numbers from every possible position, so the product starting at position 0, 1, 2 etc. std::string s = "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450";]]></summary></entry></feed>

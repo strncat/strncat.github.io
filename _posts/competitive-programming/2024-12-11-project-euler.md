@@ -138,5 +138,9 @@ mathjax: true
 	   <li><a href="/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers.html">
         Coded Triangle Numbers
        </a></li>
+<!---------- 43---------->
+	   <li><a href="/jekyll/update/2024/12/26/project-euler-43-sub-string-divisibility.html">
+        Sub-string Divisibility
+       </a></li>
    </ol>
 <br>

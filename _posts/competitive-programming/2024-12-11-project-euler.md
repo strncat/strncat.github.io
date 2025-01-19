@@ -141,6 +141,18 @@ mathjax: true
 <!---------- 43---------->
 	   <li><a href="/jekyll/update/2024/12/26/project-euler-43-sub-string-divisibility.html">
         Sub-string Divisibility
-       </a></li>
+		</a></li>
+<!---------- 44---------->
+       <li></li>
+<!---------- 45---------->
+	   <li></li>
+<!---------- 46---------->
+	   <li></li>
+<!---------- 47---------->
+	   <li></li>
+<!---------- 48---------->
+	   <li><a href="/jekyll/update/2024/12/25/project-euler-48-self-powers.html">
+		   Self Powers
+	   </a></li>
    </ol>
 <br>

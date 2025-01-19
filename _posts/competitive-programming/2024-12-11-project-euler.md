@@ -131,7 +131,9 @@ mathjax: true
 <!---------- 40---------->
 	   <li>Champernowne's Constant</li>
 <!---------- 41---------->
-	   <li>Pandigital Prime</li>
+	   <li><a href="/jekyll/update/2024/12/27/project-euler-41-pandigital-prime.html">
+        Pandigital Prime
+       </a></li>
 <!---------- 42---------->
 	   <li><a href="/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers.html">
         Coded Triangle Numbers

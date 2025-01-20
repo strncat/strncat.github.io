@@ -5,11 +5,11 @@ date:   2025-01-19 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-The prime $41$, can be written as the sum of six consecutive primes $$2 + 3 + 5 + 7 + 11 + 13$$. The goal of this problem is to find which prime below one-million, can be written as the sum of the most consecutive primes. 
+The prime $$41$$, can be written as the sum of six consecutive primes $$2 + 3 + 5 + 7 + 11 + 13$$. The goal of this problem is to find the prime below one-million that can be written as the sum of the most consecutive primes. 
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>Solution</b></h4>
-It took me a few attempts to get this one right. The first few recurrences that I was trying to build didn't go anywhere and one of them was this two dimensional table that included every sum of the range of primes between any pair of prime numbers $$i$$ and $$j$$. After a few pages written, I noticed one critical idea that led to a reasonable solution. To see this, write down the first few consecutive sums below
+It took me a few attempts to get this one right. The first few recurrences that I was trying to build didn't go anywhere and one of them was this two dimensional table that included every sum of the primes between any pair of prime numbers $$i$$ and $$j$$. But that was too much. After a few more attempts on paper, I noticed one critical pattern that led to a reasonable solution. To see this, write down the first few consecutive sums below
 <div>
 <table style="max-width: 500px; margin: 20px auto;">
   <tr>
@@ -44,7 +44,7 @@ Now notice that if we wanted to find the sum of primes between $$3$$ and $$11$$ 
 	\end{align*}
 	$$
 </div>
-which is exactly the sum of primes $$5 + 7 + 11$$. So for any two primes $$i$$ and $$j$$, the sum of the primes between them and including $$j$$ is 
+which is exactly the sum of primes $$5 + 7 + 11$$. So for any two primes $$i$$ and $$j$$, the sum of the primes between them (while including $$j$$ and not $$i$$) is 
 <div>
 	$$
 	\begin{align*}
@@ -52,7 +52,7 @@ which is exactly the sum of primes $$5 + 7 + 11$$. So for any two primes $$i$$ a
 	\end{align*}
 	$$
 </div>
-This idea is crucial. Because all we have to do now is try all the pairs below 1 million and we'll get an $$O(n^2)$$ algorithm instead of an exponential one. All we need to do now is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes below
+This idea is crucial. Because all we have to do now is try all prime pairs below 1 million and we'll get an $$O(n^2)$$ algorithm instead of an exponential one. All we need to do is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes.
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
 int p = 0;
@@ -96,7 +96,7 @@ void prime_sums() {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-Finally, the method to precompute the prime numbers table which is the usual sieve method that we've used over and over again before. Adding it below for completion.
+Finally, the method to precompute the prime_numbers array is the usual sieve method that we've used over and over again before. Adding it below for completion.
 <!------------------------------------------------------------------------------------>
 <br>
 {% highlight c++ %}
@@ -119,6 +119,7 @@ void sieve() {
 }
 {% endhighlight %}
 <!------------------------------------------------------------------------------------>
+The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0050-consecutive-prime-sum.cpp">here</a>.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

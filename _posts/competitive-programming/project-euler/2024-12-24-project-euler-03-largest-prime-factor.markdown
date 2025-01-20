@@ -57,15 +57,13 @@ unsigned long long largest_factor;
 largest_factor = max_prime_factorization(n);
 printf("%llu\n", largest_factor);
 {% endhighlight %}
-
-
 <!------------------------------------------------------------------------------------>
-The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0002-even-fibonacci-numbers.cpp">here</a>.
+The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0003-largest-prime-factor.cpp">here</a>.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4><b>References</b></h4>
-<a href="https://projecteuler.net/problem=2">Project Euler - 02</a>
+<a href="https://projecteuler.net/problem=3">Project Euler - 03</a>
 <br>
 <br>
 

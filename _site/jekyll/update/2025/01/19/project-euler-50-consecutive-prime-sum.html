@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Project Euler: 50 Consecutive Prime Sum</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-01-19T00:01:36-08:00" itemprop="datePublished">Jan 19, 2025
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>The prime $41$, can be written as the sum of six consecutive primes \(2 + 3 + 5 + 7 + 11 + 13\). The goal of this problem is to find which prime below one-million, can be written as the sum of the most consecutive primes. 
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Solution</b></h4>
+<p>It took me a few attempts to get this one right. The first few recurrences that I was trying to build didn’t go anywhere and one of them was this two dimensional table that included every sum of the range of primes between any pair of prime numbers \(i\) and \(j\). After a few pages written, I noticed one critical idea that led to a reasonable solution. To see this, write down the first few consecutive sums below</p>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td>Prime</td>
+    <td>\(2\)</td>
+    <td>\(3\)</td>
+    <td>\(5\)</td>
+	<td>\(7\)</td>
+	<td>\(11\)</td>
+	<td>\(13\)</td>
+	<td>\(17\)</td>
+	<td>\(...\)</td>
+  </tr>
+  <tr>
+    <td>Sum</td>
+    <td>\(2\)</td>
+    <td>\(5\)</td>
+    <td>\(10\)</td>
+	<td>\(17\)</td>
+	<td>\(28\)</td>
+	<td>\(41\)</td>
+	<td>\(58\)</td>
+	<td>\(...\)</td>
+  </tr>
+</table>
+</div>
+<p>Now notice that if we wanted to find the sum of primes between \(3\) and \(11\) not including \(3\), then we can use the table above to see that it is</p>
+<div>
+	$$
+	\begin{align*}
+	 sum(11) - sum(3) &amp;= 28 - 5 = 23
+	\end{align*}
+	$$
+</div>
+<p>which is exactly the sum of primes \(5 + 7 + 11\). So for any two primes \(i\) and \(j\), the sum of the primes between them and including \(j\) is</p>
+<div>
+	$$
+	\begin{align*}
+	 sum(j) - sum(i)
+	\end{align*}
+	$$
+</div>
+<p>This idea is crucial. Because all we have to do now is try all the pairs below 1 million and we’ll get an \(O(n^2)\) algorithm instead of an exponential one! All we need to do is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes.
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">prime_numbers</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">first</span> <span class="o">=</span> <span class="n">prime_numbers</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">second</span> <span class="o">=</span> <span class="n">prime_numbers</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">cons_sum</span> <span class="o">=</span> <span class="n">consecutive_sums</span><span class="p">[</span><span class="n">first</span><span class="p">]</span> <span class="o">-</span> <span class="n">consecutive_sums</span><span class="p">[</span><span class="n">second</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">cons_sum</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">max</span> <span class="o">&lt;</span> <span class="n">abs</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">cons_sum</span><span class="p">;</span>
+            <span class="n">max</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------>
+Another critical aspect to this problem is that there is another hint that I completely missed. The prime we’re trying to find has to be below a million but do we have to search for all the primes below a million? No! In fact, the sum of the first \(546\) primes will already exceed a million!! Therefore, we can limit the search to a much smaller range. Just find the first \(546\) primes and then search for the best prime with the previous code.
+<!------------------------------------------------------------------------------------>
+<br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">prime_sums</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// fake prime</span>
+    <span class="n">consecutive_sums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="n">consecutive_sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+            <span class="n">prime_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
+            <span class="n">index</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span>  <span class="mi">546</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span> <span class="c1">// we don't need more than that!</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------>
+<br />
+Finally, we want to use that table to determine how many words in the file are triangle words.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">prime_sums</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// fake prime</span>
+    <span class="n">consecutive_sums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="n">consecutive_sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+            <span class="n">prime_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
+            <span class="n">index</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span>  <span class="mi">546</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span> <span class="c1">// we don't need more than that!</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=50">Project Euler - 50</a>
+<br />
+<br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2025/01/19/project-euler-50-consecutive-prime-sum.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2025/01/19/project-euler-50-consecutive-prime-sum; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2025/01/19/project-euler-50-consecutive-prime-sum.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

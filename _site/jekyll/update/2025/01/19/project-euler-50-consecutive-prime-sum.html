@@ -87,7 +87,7 @@
 	\end{align*}
 	$$
 </div>
-<p>This idea is crucial. Because all we have to do now is try all the pairs below 1 million and we’ll get an \(O(n^2)\) algorithm instead of an exponential one! All we need to do is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes.
+<p>This idea is crucial. Because all we have to do now is try all the pairs below 1 million and we’ll get an \(O(n^2)\) algorithm instead of an exponential one. All we need to do now is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes below
 <!------------------------------------------------------------------------------------></p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -107,13 +107,14 @@
 
 <p><br />
 <!------------------------------------------------------------------------------------>
-Another critical aspect to this problem is that there is another hint that I completely missed. The prime we’re trying to find has to be below a million but do we have to search for all the primes below a million? No! In fact, the sum of the first \(546\) primes will already exceed a million!! Therefore, we can limit the search to a much smaller range. Just find the first \(546\) primes and then search for the best prime with the previous code.
+But checking every pair below one million is a lot. Does prime_numbers above need to have all the prime numbers below 1 million? No! Another critical hint to this problem that I completely missed is that the prime we’re trying to find has to be below a million. In fact, the sum of the first \(546\) primes will already exceed a million! Therefore, we can limit the search to a much smaller range of prime numbers.
 <!------------------------------------------------------------------------------------>
 <br /></p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">prime_sums</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">prime_numbers</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">consecutive_sums</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">prime_sums</span><span class="p">()</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// fake prime</span>
     <span class="n">consecutive_sums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -121,9 +122,7 @@ Another critical aspect to this problem is that there is another hint that I com
             <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
             <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
             <span class="n">consecutive_sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
-            <span class="n">prime_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
-            <span class="n">index</span><span class="o">++</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span>  <span class="mi">546</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">prime_numbers</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span>  <span class="mi">546</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">break</span><span class="p">;</span> <span class="c1">// we don't need more than that!</span>
             <span class="p">}</span>
         <span class="p">}</span>
@@ -132,23 +131,23 @@ Another critical aspect to this problem is that there is another hint that I com
 
 <p><br />
 <!------------------------------------------------------------------------------------>
-<br />
-Finally, we want to use that table to determine how many words in the file are triangle words.</p>
+Finally, the method to precompute the prime numbers table which is the usual sieve method that we’ve used over and over again before. Adding it below for completion.
+<!------------------------------------------------------------------------------------>
+<br /></p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">prime_sums</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// fake prime</span>
-    <span class="n">consecutive_sums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">prime</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">sieve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// mark all numbers as potential primes</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
-            <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-            <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-            <span class="n">consecutive_sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
-            <span class="n">prime_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
-            <span class="n">index</span><span class="o">++</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span>  <span class="mi">546</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">break</span><span class="p">;</span> <span class="c1">// we don't need more than that!</span>
+        <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">prime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">p</span><span class="p">])</span> <span class="p">{</span>
+            <span class="c1">// mark all multiples of p as not prime</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>

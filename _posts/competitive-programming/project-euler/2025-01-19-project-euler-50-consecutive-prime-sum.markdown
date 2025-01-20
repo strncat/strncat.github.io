@@ -52,7 +52,7 @@ which is exactly the sum of primes $$5 + 7 + 11$$. So for any two primes $$i$$ a
 	\end{align*}
 	$$
 </div>
-This idea is crucial. Because all we have to do now is try all the pairs below 1 million and we'll get an $$O(n^2)$$ algorithm instead of an exponential one! All we need to do is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes.
+This idea is crucial. Because all we have to do now is try all the pairs below 1 million and we'll get an $$O(n^2)$$ algorithm instead of an exponential one. All we need to do now is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes below
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
 int p = 0;
@@ -72,13 +72,14 @@ printf("%d\n", p);
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-Is that all? Does prime_numbers below need to have all the prime numbers below 1 million? No! Another critical aspect to this problem is that there is another hint that I completely missed. The prime we're trying to find has to be below a million. In fact, the sum of the first $$546$$ primes will already exceed a million! Therefore, we can limit the search to a much smaller range of prime numbers. Just run the previous code with the array prime_numbers having only 546 prime numbers!
+But checking every pair below one million is a lot. Does prime_numbers above need to have all the prime numbers below 1 million? No! Another critical hint to this problem that I completely missed is that the prime we're trying to find has to be below a million. In fact, the sum of the first $$546$$ primes will already exceed a million! Therefore, we can limit the search to a much smaller range of prime numbers.
 <!------------------------------------------------------------------------------------>
 <br>
 {% highlight c++ %}
+std::vector<int> prime_numbers;
+std::unordered_map<int,int> consecutive_sums;
 void prime_sums() {
     int sum = 0;
-    int index = 0;
     prime_numbers.push_back(0); // fake prime
     consecutive_sums[0] = 0;
     for (int i = 0; i < N; i++) {
@@ -86,9 +87,7 @@ void prime_sums() {
             sum += i;
             prime_numbers.push_back(i);
             consecutive_sums[i] = sum;
-            prime_indices[i] = index;
-            index++;
-            if (index >  546) {
+            if (prime_numbers.size() >  546) {
                 break; // we don't need more than that!
             }
         }
@@ -101,6 +100,7 @@ Finally, the method to precompute the prime numbers table which is the usual sie
 <!------------------------------------------------------------------------------------>
 <br>
 {% highlight c++ %}
+int prime[N];
 void sieve() {
     // mark all numbers as potential primes
     for (int i = 0; i < N; i++) {
@@ -117,7 +117,6 @@ void sieve() {
         }
     }
 }
-
 {% endhighlight %}
 <!------------------------------------------------------------------------------------>
 <br>

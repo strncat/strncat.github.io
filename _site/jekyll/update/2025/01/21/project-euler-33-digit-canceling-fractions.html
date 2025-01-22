@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Project Euler: 33 Digit Cancelling Fractions</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-01-21T00:01:36-08:00" itemprop="datePublished">Jan 21, 2025
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>The goal of this problem is to find the exact 4 fractions such that</p>
+<ul>
+	<li>The fraction is less than one in value.</li>
+	<li>It contains two digits in the numerator and two digits in the denominator.</li>
+	<li>The numerator and denominator have a digit in common.</li>
+	<li>If you remove the common digit from both the numerator and the denominator, you'll get a fraction equal to what you get when you simplify the fraction in a proper way. For example, \(49 / 98\) has \(9\) as a common digit. If we remove it, then we'll get \(4/8\) which is the actual value that you would get if you properly divide both the numerator and the denominator by \(49\).</li>
+	<li>We should not count trivial examples. For example \(30/50 = 3/5\) is a trivial example.</li>
+</ul>
+<p>With just the first three conditions, the search space contains at most 1377 fractions. You can use the loop below to see them!
+<br /></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="mi">99</span><span class="p">;</span> <span class="n">num</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">den</span> <span class="o">=</span> <span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">den</span> <span class="o">&lt;=</span> <span class="mi">99</span><span class="p">;</span> <span class="n">den</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n1</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">den</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">den</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n1</span> <span class="o">==</span> <span class="n">d1</span> <span class="o">||</span> <span class="n">n1</span> <span class="o">==</span> <span class="n">d2</span> <span class="o">||</span> <span class="n">n2</span> <span class="o">==</span> <span class="n">d1</span> <span class="o">||</span> <span class="n">n2</span> <span class="o">==</span> <span class="n">d2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"%d / %d with digits %d%d / %d%d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"count = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Solution</b></h4>
+<p>Since we have at most \(1377\) cases, then we can easily check all of them. We will ignore trivial cases. For the non-trivial cases like \(49/98\), we will extract the \(4\) digits and save them in different variables. The numerator digits are \(n_1 = 9\) and \(n_2 = 4\). The denominator digits are \(d_1 = 8\) and \(d_2 = 8\). To check if \(\frac{49}{98}\) is equal to \(\frac{4}{8}\), we can check if</p>
+<div>
+	$$
+	\begin{align*}
+	 49 \times 8 &amp;= 98 * 4 \\
+	 numerator \times d_1 &amp;= denominator \times n_2 
+	\end{align*}
+	$$
+</div>
+<p>After we collect all the fractions, we can divide by the greatest common divisor. This is captured in the following code.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">numerator</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">denominator</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="mi">99</span><span class="p">;</span> <span class="n">num</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">den</span> <span class="o">=</span> <span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">den</span> <span class="o">&lt;=</span> <span class="mi">99</span><span class="p">;</span> <span class="n">den</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n1</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">den</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">den</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="c1">//</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n2</span> <span class="o">==</span> <span class="n">d2</span> <span class="o">||</span> <span class="n">n1</span> <span class="o">==</span> <span class="n">d1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span> <span class="c1">// even if it works, this is a trivial example</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n1</span> <span class="o">==</span> <span class="n">d2</span> <span class="o">||</span> <span class="n">n2</span> <span class="o">==</span> <span class="n">d1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// example is 49/98. this will simplify to 4/8</span>
+            <span class="c1">// now we want to check if 49/98 == 4/8 which is the same as checking if 49*8 == 98*4</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">den</span> <span class="o">*</span> <span class="n">n2</span> <span class="o">==</span> <span class="n">num</span> <span class="o">*</span> <span class="n">d1</span> <span class="o">||</span> <span class="n">den</span> <span class="o">*</span> <span class="n">n1</span> <span class="o">==</span> <span class="n">num</span> <span class="o">*</span> <span class="n">d2</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// printf("%d / %d\n", num, den);</span>
+                <span class="n">numerator</span> <span class="o">*=</span> <span class="n">num</span><span class="p">;</span>
+                <span class="n">denominator</span> <span class="o">*=</span> <span class="n">den</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">gcd</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">gcd</span><span class="p">(</span><span class="n">numerator</span><span class="p">,</span><span class="n">denominator</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"denominator = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">denominator</span><span class="o">/</span><span class="n">gcd</span><span class="p">);</span></code></pre></figure>
+
+<p><br />
+<!------------------------------------------------------------------------------------>
+The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0033-digit-canceling-fractions.cpp">here</a>.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<p><a href="https://projecteuler.net/problem=33">Project Euler - 33</a>
+<br />
+<br /></p>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

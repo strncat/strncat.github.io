@@ -170,5 +170,17 @@ mathjax: true
 	   <li><a href="/jekyll/update/2025/01/19/project-euler-50-consecutive-prime-sum.html">
 		   Consecutive Prime Sum
 	   </a></li>
+<!---------- 49---------->
+	   <li>Prime Permutations</li>
+<!---------- 49---------->
+	   <li>Prime Permutations</li>
+<!---------- 49---------->
+	   <li>Prime Permutations</li>
+<!---------- 49---------->
+	   <li>Prime Permutations</li>
+<!---------- 55---------->
+	   <li><a href="/jekyll/update/2024/12/21/project-euler-55-lychrel-numbers.html">
+		   Lychrel Numbers
+	   </a></li>
    </ol>
 <br>

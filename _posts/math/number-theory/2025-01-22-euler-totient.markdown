@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Euler's Totient Function"
-date:   2025-01-05 01:01:36 -0700
+date:   2025-01-22 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

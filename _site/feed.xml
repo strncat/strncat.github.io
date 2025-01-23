@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-23T15:18:03-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 69 Totient Maximum</title><link href="http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html" rel="alternate" type="text/html" title="Project Euler: 69 Totient Maximum" /><published>2025-01-23T00:01:36-08:00</published><updated>2025-01-23T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html"><![CDATA[<p>I wrote about Euler’s Totient function in <a href="">here</a>, but to recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find  \(n\) such that \(\frac{n}{\phi(n)}\) is maximized.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-23T15:20:20-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 69 Totient Maximum</title><link href="http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html" rel="alternate" type="text/html" title="Project Euler: 69 Totient Maximum" /><published>2025-01-23T00:01:36-08:00</published><updated>2025-01-23T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html"><![CDATA[<p>I wrote about Euler’s Totient function in <a href="https://strncat.github.io/jekyll/update/2025/01/22/euler-totient.html">here</a>, but to recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find  \(n\) such that \(\frac{n}{\phi(n)}\) is maximized.
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Solution</b></h4>
 <p>To start, we should definitely make use of the existing formula to compute the Totient function. Given an integer \(n\) and the distinct prime divisors of \(n\),  \(\{p_1,p_2...,p_k\}\), we can compute the Totient function as follows</p>
@@ -90,7 +90,53 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=69">Project Euler - 69</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[I wrote about Euler’s Totient function in here, but to recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find \(n\) such that \(\frac{n}{\phi(n)}\) is maximized. Solution To start, we should definitely make use of the existing formula to compute the Totient function. Given an integer \(n\) and the distinct prime divisors of \(n\), \(\{p_1,p_2...,p_k\}\), we can compute the Totient function as follows $$ \begin{align*} \phi(n) = n \prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big). \end{align*} $$ Since we’re interested in computing specifically \(\frac{n}{\phi(n)}\) so we get a simplified expression as follows $$ \begin{align*} \frac{n}{\phi(n)} &amp;= \frac{n}{n\prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big)} \\ &amp;= \frac{1}{\big( 1 - \frac{1}{p_1} \big) \big( 1 - \frac{1}{p_2} \big) ... \big( 1 - \frac{1}{p_k} \big)} \\ &amp;= \frac{1}{\big( \frac{p_1 - 1}{p_1} \big) \big( \frac{p_2 - 1}{p_2} \big) ... \big( \frac{p_k - 1}{p_k} \big)} \\ &amp;= \frac{p_1 p_2 ... p_k}{ (p_1 - 1) (p_2 - 1) ... (p_k - 1) } \end{align*} $$ Before we can implement the function, we need to generate these distinct prime factors. We implemented this before in Problem 3. void prime_factorization(int n, std::set&lt;int&gt;&amp; factors) { // prime factor 2 while (n % 2 == 0) { n /= 2; factors.insert(2); } // all the other prime factors int limit = sqrt(n); for (int i = 3; i &lt;= limit; i += 2) { while (n % i == 0) { factors.insert(i); n /= i; } } // n is prime itself if (n &gt; 2) { factors.insert(n); } } Once we have these distinct factors, we can just run this for all integers \(n \leq 1000000\) as follows: double max = 0.0; int n = 0; for (int i = 1000000; i &gt; 0; i--) { if (!prime[i]) { std::set&lt;int&gt; factors; prime_factorization(i, factors); double tot = 1; //printf("%d: ", i); for (auto e = factors.begin(); e != factors.end(); e++) { //printf("%d, ", *e); tot *= *e / (*e - 1.0); } if (tot &gt; max) { max = tot; n = i; } //printf("tot = %f \n", tot); } } printf("max n = %d\n", n); I added one small optimization which didn’t do much and feels unnecessary to skip prime numbers since based on the formula, the solution will never be a prime number. The entire code is here. More Advanced Solution? while the brute force solution is great (good to practice writing all of these methods), you can see above that the formula $$ \begin{align*} \frac{n}{\phi(n)} &amp;= \frac{p_1 p_2 ... p_k}{ (p_1 - 1) (p_2 - 1) ... (p_k - 1) } \end{align*} $$ is maximized when we have the most distinct prime numbers. So instead we can generate all prime numbers with sieve and then multiply them until we hit the limit \(1,000,000\). References Project Euler - 69]]></summary></entry><entry><title type="html">Project Euler: 33 Digit Cancelling Fractions</title><link href="http://localhost:4000/jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions.html" rel="alternate" type="text/html" title="Project Euler: 33 Digit Cancelling Fractions" /><published>2025-01-21T00:01:36-08:00</published><updated>2025-01-21T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions.html"><![CDATA[<p>The goal of this problem is to find the exact 4 fractions such that</p>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[I wrote about Euler’s Totient function in here, but to recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find \(n\) such that \(\frac{n}{\phi(n)}\) is maximized. Solution To start, we should definitely make use of the existing formula to compute the Totient function. Given an integer \(n\) and the distinct prime divisors of \(n\), \(\{p_1,p_2...,p_k\}\), we can compute the Totient function as follows $$ \begin{align*} \phi(n) = n \prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big). \end{align*} $$ Since we’re interested in computing specifically \(\frac{n}{\phi(n)}\) so we get a simplified expression as follows $$ \begin{align*} \frac{n}{\phi(n)} &amp;= \frac{n}{n\prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big)} \\ &amp;= \frac{1}{\big( 1 - \frac{1}{p_1} \big) \big( 1 - \frac{1}{p_2} \big) ... \big( 1 - \frac{1}{p_k} \big)} \\ &amp;= \frac{1}{\big( \frac{p_1 - 1}{p_1} \big) \big( \frac{p_2 - 1}{p_2} \big) ... \big( \frac{p_k - 1}{p_k} \big)} \\ &amp;= \frac{p_1 p_2 ... p_k}{ (p_1 - 1) (p_2 - 1) ... (p_k - 1) } \end{align*} $$ Before we can implement the function, we need to generate these distinct prime factors. We implemented this before in Problem 3. void prime_factorization(int n, std::set&lt;int&gt;&amp; factors) { // prime factor 2 while (n % 2 == 0) { n /= 2; factors.insert(2); } // all the other prime factors int limit = sqrt(n); for (int i = 3; i &lt;= limit; i += 2) { while (n % i == 0) { factors.insert(i); n /= i; } } // n is prime itself if (n &gt; 2) { factors.insert(n); } } Once we have these distinct factors, we can just run this for all integers \(n \leq 1000000\) as follows: double max = 0.0; int n = 0; for (int i = 1000000; i &gt; 0; i--) { if (!prime[i]) { std::set&lt;int&gt; factors; prime_factorization(i, factors); double tot = 1; //printf("%d: ", i); for (auto e = factors.begin(); e != factors.end(); e++) { //printf("%d, ", *e); tot *= *e / (*e - 1.0); } if (tot &gt; max) { max = tot; n = i; } //printf("tot = %f \n", tot); } } printf("max n = %d\n", n); I added one small optimization which didn’t do much and feels unnecessary to skip prime numbers since based on the formula, the solution will never be a prime number. The entire code is here. More Advanced Solution? while the brute force solution is great (good to practice writing all of these methods), you can see above that the formula $$ \begin{align*} \frac{n}{\phi(n)} &amp;= \frac{p_1 p_2 ... p_k}{ (p_1 - 1) (p_2 - 1) ... (p_k - 1) } \end{align*} $$ is maximized when we have the most distinct prime numbers. So instead we can generate all prime numbers with sieve and then multiply them until we hit the limit \(1,000,000\). References Project Euler - 69]]></summary></entry><entry><title type="html">Euler’s Totient Function</title><link href="http://localhost:4000/jekyll/update/2025/01/22/euler-totient.html" rel="alternate" type="text/html" title="Euler’s Totient Function" /><published>2025-01-22T00:01:36-08:00</published><updated>2025-01-22T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/22/euler-totient</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/22/euler-totient.html"><![CDATA[<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Given an integer \(n\). Euler's totient function is a function that counts the positive integers up to \(n\) that are relatively prime to \(n\). It is denoted with \(\phi(n)\).
+</div>
+<p><br />
+Alternatively, it is the the number of integers \(k\) in the range \(1 \leq k \leq n\) for which \(gcd(n,k)=1\). 
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Take \(n = 9\). The numbers \(1,2,4,5,7\) and \(8\) are relatively prime to \(9\) while \(3,6\) and \(9\) are not. Therefore \(\phi(9) = 6\). 
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Computing Euler Totient's Function</b></h4>
+<p>One formula that computes Euler’s Totient’s function is the following</p>
+<div>
+$$
+\begin{align*}
+\phi(n) = n \prod_{p|n} \big( 1 - \frac{1}{p} \big).
+\end{align*}
+$$
+</div>
+<p>where \(p\) is a distinct prime factor of \(n\). For example, for \(9\),</p>
+<div>
+$$
+\begin{align*}
+\phi(9) &amp;= 9 \big( 1 - \frac{1}{3} \big) \\
+        &amp;= 9 \big( \frac{2}{3} \big) = 6.
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Multiplicative Function</b></h4>
+<p>Euler’s Totient’s function is a multiplicative function. This means that if \(m\) and \(n\) are relatively prime, then \(\phi(mn) = \phi(m)(n)\) which makes sense since they won’t share any prime divisors. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function">Wikipedia</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition Given an integer \(n\). Euler's totient function is a function that counts the positive integers up to \(n\) that are relatively prime to \(n\). It is denoted with \(\phi(n)\). Alternatively, it is the the number of integers \(k\) in the range \(1 \leq k \leq n\) for which \(gcd(n,k)=1\). Example Take \(n = 9\). The numbers \(1,2,4,5,7\) and \(8\) are relatively prime to \(9\) while \(3,6\) and \(9\) are not. Therefore \(\phi(9) = 6\). Computing Euler Totient's Function One formula that computes Euler’s Totient’s function is the following $$ \begin{align*} \phi(n) = n \prod_{p|n} \big( 1 - \frac{1}{p} \big). \end{align*} $$ where \(p\) is a distinct prime factor of \(n\). For example, for \(9\), $$ \begin{align*} \phi(9) &amp;= 9 \big( 1 - \frac{1}{3} \big) \\ &amp;= 9 \big( \frac{2}{3} \big) = 6. \end{align*} $$ Multiplicative Function Euler’s Totient’s function is a multiplicative function. This means that if \(m\) and \(n\) are relatively prime, then \(\phi(mn) = \phi(m)(n)\) which makes sense since they won’t share any prime divisors. References Wikipedia]]></summary></entry><entry><title type="html">Project Euler: 33 Digit Cancelling Fractions</title><link href="http://localhost:4000/jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions.html" rel="alternate" type="text/html" title="Project Euler: 33 Digit Cancelling Fractions" /><published>2025-01-21T00:01:36-08:00</published><updated>2025-01-21T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/21/project-euler-33-digit-canceling-fractions.html"><![CDATA[<p>The goal of this problem is to find the exact 4 fractions such that</p>
 <ul>
 	<li>The fraction is less than one in value.</li>
 	<li>It contains two digits in the numerator and two digits in the denominator.</li>
@@ -766,46 +812,4 @@ Another example is 1793. We will extract 3 and remove it by dividing by 10 to ge
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=34">Project Euler - 34</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this one, we want the sum of all numbers such that each number’s digit factorials add up to the number itself. For example $$ \begin{align*} 145 = 1! + 4! + 5! \end{align*} $$ We are told not to include the trivial cases \(1! = 1\) and \(2! = 2\) since they are not sums. We are also not given any upper bound. As a guess, we can observe that \(9! * 10 = 3628800\). So a number consisting of 10 digits will at most be 3628800. I tried this upper limit and it was fine. One thing we want to do is to pre-calculate the factorials for all digits a head of time in int f[10]; void calc_factorial() { f[0] = 1; f[1] = 1; for (int i = 2; i &lt; 10; i++) { f[i] = i * f[i-1]; } } The rest is all simple int main(int argc, const char * argv[]) { calc_factorial(); // 9! * 10 = 3628800 // 0! + 0! + 0! + 1! + 1! = 2 int total_sum = 0; for (long long n = 3; n &lt;= 3628800; n++) { long long sum = 0; long long num = n; while (num &gt; 0 &amp;&amp; sum &lt;= n) { int d = num%10; int p = f[d]; sum += p; num /= 10; } if (sum == n) { total_sum += sum; } } printf("%d\n", total_sum); return 0; } References Project Euler - 34]]></summary></entry><entry><title type="html">Project Euler: 30 Digit Fifth Powers</title><link href="http://localhost:4000/jekyll/update/2025/01/13/project-euler-30-digit-fifth-powers.html" rel="alternate" type="text/html" title="Project Euler: 30 Digit Fifth Powers" /><published>2025-01-13T00:01:36-08:00</published><updated>2025-01-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/13/project-euler-30-digit-fifth-powers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/13/project-euler-30-digit-fifth-powers.html"><![CDATA[<p>This was not bad! the minimum number that can be written as a sum of its 5th digits powers is</p>
-<div>
-	$$
-	\begin{align*}
-	 2 = 0^5 + 0^5 + 0^5 + 1^5 + 1^5.
-	\end{align*}
-	$$
-</div>
-<p>while the maximum number that can be written as a sum of its 5th digits powers is</p>
-<div>
-	$$
-	\begin{align*}
-	 295245 = 9^5 + 9^5 + 9^5 + 9^5 + 9^5.
-	\end{align*}
-	$$
-</div>
-<p>So let’s check all the numbers in this range</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// 9^5 + 9^5 + 9^5 + 9^5 + 9^5 = 5*9^5 = 295,245</span>
-<span class="c1">// 0^5 + 0^5 + 0^5 + 1^5 + 1^5 = 2</span>
-<span class="kt">int</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">295245</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">num</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
-        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-        <span class="n">sum</span> <span class="o">+=</span> <span class="n">p</span><span class="p">;</span>
-        <span class="n">num</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">total_sum</span> <span class="o">+=</span> <span class="n">sum</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">total_sum</span><span class="p">);</span></code></pre></figure>
-
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=30">Project Euler - 30</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[This was not bad! the minimum number that can be written as a sum of its 5th digits powers is $$ \begin{align*} 2 = 0^5 + 0^5 + 0^5 + 1^5 + 1^5. \end{align*} $$ while the maximum number that can be written as a sum of its 5th digits powers is $$ \begin{align*} 295245 = 9^5 + 9^5 + 9^5 + 9^5 + 9^5. \end{align*} $$ So let’s check all the numbers in this range // 9^5 + 9^5 + 9^5 + 9^5 + 9^5 = 5*9^5 = 295,245 // 0^5 + 0^5 + 0^5 + 1^5 + 1^5 = 2 int total_sum = 0; for (int n = 2; n &lt;= 295245; n++) { long sum = 0; int num = n; while (num &gt; 0 &amp;&amp; sum &lt;= n) { int d = num%10; int p = pow(d, 5); sum += p; num /= 10; } if (sum == n) { total_sum += sum; } } printf("%d\n", total_sum); References Project Euler - 30]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this one, we want the sum of all numbers such that each number’s digit factorials add up to the number itself. For example $$ \begin{align*} 145 = 1! + 4! + 5! \end{align*} $$ We are told not to include the trivial cases \(1! = 1\) and \(2! = 2\) since they are not sums. We are also not given any upper bound. As a guess, we can observe that \(9! * 10 = 3628800\). So a number consisting of 10 digits will at most be 3628800. I tried this upper limit and it was fine. One thing we want to do is to pre-calculate the factorials for all digits a head of time in int f[10]; void calc_factorial() { f[0] = 1; f[1] = 1; for (int i = 2; i &lt; 10; i++) { f[i] = i * f[i-1]; } } The rest is all simple int main(int argc, const char * argv[]) { calc_factorial(); // 9! * 10 = 3628800 // 0! + 0! + 0! + 1! + 1! = 2 int total_sum = 0; for (long long n = 3; n &lt;= 3628800; n++) { long long sum = 0; long long num = n; while (num &gt; 0 &amp;&amp; sum &lt;= n) { int d = num%10; int p = f[d]; sum += p; num /= 10; } if (sum == n) { total_sum += sum; } } printf("%d\n", total_sum); return 0; } References Project Euler - 34]]></summary></entry></feed>

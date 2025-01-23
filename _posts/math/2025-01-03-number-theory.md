@@ -13,6 +13,9 @@ mathjax: true
 	   <li><a href="/jekyll/update/2025/01/05/reptend-prime.html">
         Reptend Prime
        </a></li>
+	   <li><a href="/jekyll/update/2025/01/22/euler-totient.html">
+        Euler Totient's Function
+       </a></li>
    </ol>
 <br>
 <br>

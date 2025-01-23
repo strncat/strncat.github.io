@@ -182,5 +182,15 @@ mathjax: true
 	   <li><a href="/jekyll/update/2024/12/21/project-euler-55-lychrel-numbers.html">
 		   Lychrel Numbers
 	   </a></li>
+<!---------- 56---------->
+	   <li>Powerful Digit Sum</li>
+<!---------- 57---------->
+	   <li>Square Root Convergents</li>
+<!---------- 58---------->
+	   <li>Spiral Primes</li>
+<!---------- 55---------->
+	   <li><a href="/jekyll/update/2024/12/20/project-euler-59-xor-decryption.html">
+		   XOR Decryption
+	   </a></li>
    </ol>
 <br>

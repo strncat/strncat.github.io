@@ -5,7 +5,7 @@ date:   2024-12-19 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-I wrote about Euler's Totient function in (), but to recap, given an integer $$n$$, the Totient function $$\phi(n)$$ is the number of positive integers not exceeding $$n$$ and are relatively prime to $$n$$. The goal of this problem is to find  $$n$$ such that $$\frac{n}{\phi(n)}$$ is maximized.
+Similar to <a href="https://strncat.github.io/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html">Problem 69</a>, this problem is about Euler's Totient function. To recap, given an integer $$n$$, the Totient function $$\phi(n)$$ is the number of positive integers not exceeding $$n$$ and are relatively prime to $$n$$. The goal of this problem is to find  $$n$$ such that $$\frac{n}{\phi(n)}$$ is maximized.
 <!------------------------------------------------------------------------------------>
 <h4><b>Solution</b></h4>
 To start, we should definitely make use of existing formula to compute the Totient function. The formula is: given an integer $$n$$ and the distinct prime divisors of $$n$$ $$\{p_1,p_2...,p_k\}$$, we can compute the Totient function as follows

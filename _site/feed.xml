@@ -1,4 +1,977 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-23T20:01:52-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Project Euler: 69 Totient Maximum</title><link href="http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html" rel="alternate" type="text/html" title="Project Euler: 69 Totient Maximum" /><published>2025-01-23T00:01:36-08:00</published><updated>2025-01-23T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html"><![CDATA[<p>I wrote about Euler’s Totient function in <a href="https://strncat.github.io/jekyll/update/2025/01/22/euler-totient.html">here</a>, but to recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find  \(n\) such that \(\frac{n}{\phi(n)}\) is maximized.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-25T08:06:52-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 01: Groups and Symmetries</title><link href="http://localhost:4000/jekyll/update/2025/01/24/math417-02-rotations-in-space.html" rel="alternate" type="text/html" title="Lecture 01: Groups and Symmetries" /><published>2025-01-24T00:01:36-08:00</published><updated>2025-01-24T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/24/math417-02-rotations-in-space</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/24/math417-02-rotations-in-space.html"><![CDATA[<h4><b>Introduction</b></h4>
+<p>Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we’ve used in high school. As an example, we have Fields. It’s a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers \(\mathbf{R}\) or the field of complex numbers \(\mathbf{C}\). We also have the field of rational numbers \(\mathbf{Q}\). Or \(\mathbf{Z}_p\) which is a finite field of integers modulo some prime \(p\). It is finite with \(p\) elements.
+<br />
+<br />
+Another example of important structures are Rings. Here we have the operations addition, subtraction and multiplication. The first example of a ring is \(\mathbf{Z}\). Another example of a ring is a polynomial ring in one variable over \(\mathbf{R}\), \(\mathbf{R}[x]\). The set of all square matrices. \(M_{n \times n}(\mathbf{R})\) is also another example. This example is non-commutative.<br />
+<br />
+<br />
+Another structure is a Group. It is a set with one operation usually called “multiplication”. One example is the set of real numbers with just addition. Another example is \((\mathbf{R}^{x})\) (the set of real numbers with zero removed, \(\mathbf{R} - \{0\}\) along with multiplication. \(GL(n,\mathbf{R})\), the set of invertible matrices with multiplication is another example of a Group. This is an example of a non-abelian or non-commutative group.
+<br />
+<br />
+One additional structure that comes up is a Monoid. These are sets with one operation but you don’t have to have inverses like Groups. So \(\mathbf{R}\) with multiplication is not a group because it includes zero and zero doesn’t have an inverse but this set is a Monoid. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Groups and Symmetries</b></h4>
+
+<p>From the book, a symmetry is an undetectable motion. An object is symmetric if it has symmetries. Take an equilateral triangle.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-1.png" width="40%" class="center" /></p>
+
+<p>What are the symmetries of this triangle? We want to rotate the triangle in such a way that we won’t tell if it was rotated. For example, if we rotate this triangle by \(120\) degrees counter clockwise, then we’ll get a triangle in the same exact orientation. We label this rotation with \(r_1\). Note here that the labels on the vertices are used to illustrate that we indeed have rotated the triangle. They are a visual aid.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-2.png" width="70%" class="center" /></p>
+
+<p>We can also rotate this triangle \(120\) degrees clockwise to get the following \(r_2\) rotation.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-3.png" width="70%" class="center" /></p>
+
+<p>Are there more rotations? Yes, consider the rotation around the axis that goes through the vertex \(A\) by 180 degrees so essentially it’s a flip around that axis.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-4.png" width="70%" class="center" /></p>
+
+<p>Similarly, we can do a flip around the axis that goes through the vertex \(B\) and a flip around the axis that goes through the vertex \(C\).</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-5.png" width="40%" class="center" /></p>
+
+<p>So now we have \(5\) symmetries total. Is that all? No, We have one more symmetry representing the identity symmetry \(e\) that does nothing. So the set of symmetries are then</p>
+<div>
+$$
+\begin{align*}
+G = \{e, r_1, r_2, a, b, c\}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Can We Compose Symmetries?</b></h4>
+
+<p>Can we compose symmetries? Yes, in fact we’ll equip the group above with the operation compose. This means that for any \(x, y \in G\), \(xy\) means that we need to apply the rotation \(y\) first and then apply the rotation \(x\). Since we have \(6\) elements in \(G\), then we have \(36\) ways of composing these elements. 
+<br />
+<br />
+For example composing \(r_1\) with \(r_1\) again results in the rotation \(r_2\) so \(r_1r_1 = r_2\).</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-6.png" width="70%" class="center" /></p>
+<p>And if we compose \(r_1\) with \(r_2\), then we’ll get the identity rotation so \(r_1r_2 = e\).</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-7.png" width="70%" class="center" /></p>
+<p>In fact since \(r_1r_1 = r_2\) and \(r_1r_2 = e\), we’ll change the notation to a much simpler notation. Let \(r_1 = r\). Then, \(r_2 = r_1r_1 = rr = r^2\). So now we can fill these in a table as follows
+<br />
+<!------------------------------------------------------------------------></p>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td></td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(e\)</td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(r\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+  <tr>
+    <td>\(r^2\)</td>
+    <td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+  <tr>
+    <td>\(a\)</td>
+    <td>\(a\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+ <tr>
+   <td>\(b\)</td>
+   <td>\(b\)</td>
+   <td>\(\)</td>
+   <td>\(\)</td>	
+   <td>\(\)</td>
+   <td>\(\)</td>
+   <td>\(\)</td>
+ </tr>
+  <tr>
+    <td>\(c\)</td>
+    <td>\(c\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+</table>
+</div>
+<p><br />
+So far so good. What about composing the flips around the axes? For example composing \(a\) with \(b\). What would that do? For starters, note that each flip is a \(180\) degrees flip. So if you compose ANY two flips, we’ll be back to the same face we started with. This means that any two flips will be equivalent to \(e, r\) or \(r^2\). For example, if we apply \(a\) and then apply \(b\), we’ll get</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-8.png" width="90%" class="center" /></p>
+
+<p>Note here that when did the second flip, we still rotated through the \(b\) access which now goes through vertex \(C\) instead. Physically the axis will still be in the same position. So we see above doing two flips \(a\), then around \(b\) is equivalent to applying two rotations so \(ba = r^2\). 
+<br />
+<br />
+What about two flips of the same type? What happens if you apply \(a\) and then again flip it around that same access? We’ll get the identity rotation since we just go back to the same exact orientation. Applying this same logic on the rest of flips, we can fill that forth quadrant of the table which are all about compositions of flips.
+<br />
+<br />
+<!------------------------------------------------------------------------></p>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td></td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(e\)</td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(r\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+  <tr>
+    <td>\(r^2\)</td>
+    <td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+  <tr>
+    <td>\(a\)</td>
+    <td>\(a\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(r^2\)</td>
+  </tr>
+ <tr>
+   <td>\(b\)</td>
+   <td>\(b\)</td>
+   <td>\(\)</td>
+   <td>\(\)</td>	
+   <td>\(r^2\)</td>
+   <td>\(e\)</td>
+   <td>\(r\)</td>
+ </tr>
+  <tr>
+    <td>\(c\)</td>
+    <td>\(c\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+  </tr>
+</table>
+</div>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Second and Third Quadrants</b></h4>
+<p>What about applying a rotation \(r\) followed by a flip \(a\)? What is \(ar\)? We apply a rotation so we move \(120\) degrees anti-clockwise and then we do an \(a\) flip which is now going to be through the \(C\) vertex. The triangle will now be faced down which is equivalent to applying a single flip. Comparing the vertices in the original triangle and the outcome, we see that \(B\) is fixed while \(A\) and \(C\) have switched. This means that this is a flip around the \(b\) access.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-9.png" width="90%" class="center" /></p>
+
+<!------------------------------------------------------------------------>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td></td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(e\)</td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(r\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(c\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+  </tr>
+  <tr>
+    <td>\(r^2\)</td>
+    <td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+	<td>\(a\)</td>
+  </tr>
+  <tr>
+    <td>\(a\)</td>
+    <td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(r^2\)</td>
+  </tr>
+ <tr>
+   <td>\(b\)</td>
+   <td>\(b\)</td>
+   <td>\(c\)</td>
+   <td>\(a\)</td>	
+   <td>\(r^2\)</td>
+   <td>\(e\)</td>
+   <td>\(r\)</td>
+ </tr>
+  <tr>
+    <td>\(c\)</td>
+    <td>\(c\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+  </tr>
+</table>
+</div>
+<p>We notice that each row has each rotation appearing exactly once and it’s the same for each column. Notice also that composition is not commutative above. So \(ar \neq ra\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Matrix Representation of Symmetries</b></h4>
+<p>We can actually represent these symmetries by matrices. For example, the following matrix will represent a \(120\) degrees rotation around the \(z-\) axis</p>
+<div>
+$$
+\begin{align*}
+r(x,y,z) &amp;= 
+\begin{pmatrix}
+\cos\frac{2\pi}{3} &amp; - \sin\frac{2\pi}{3} &amp; 0 \\
+\sin\frac{2\pi}{3} &amp; + \cos\frac{2\pi}{3} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>or we can do the \(a\) flip so a \(180\) degree flip around the \(x\)-axis.</p>
+<div>
+$$
+\begin{align*}
+a(x,y,z) &amp;= 
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 0
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>What about something more complex? like \(ra\) which is equal to \(c\) using the multiplication table above. This will be</p>
+<div>
+$$
+\begin{align*}
+c(x,y,z) &amp;= ra(x,y,z) 
+\\
+&amp;= 
+\begin{pmatrix}
+\cos\frac{2\pi}{3} &amp; - \sin\frac{2\pi}{3} &amp; 0 \\
+\sin\frac{2\pi}{3} &amp; + \cos\frac{2\pi}{3} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 0
+\end{pmatrix}
+\\
+&amp;=
+\begin{pmatrix}
+\cos\frac{2\pi}{3} &amp; \sin\frac{2\pi}{3} &amp; 0 \\
+\sin\frac{2\pi}{3} &amp; - \cos\frac{2\pi}{3} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Symmetries of the Rectangle</b></h4>
+<p>How many symmetries does the rectangle have?</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect.png" width="30%" class="center" /></p>
+
+<p>We can have a rotation \(r_1\) around the \(y-\)axis as follows</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r1.png" width="75%" class="center" /></p>
+
+<p>We can also have a rotation \(r_2\) around the \(x-\)axis</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r2.png" width="75%" class="center" /></p>
+
+<p>Finally, we have one more rotation \(r_3\) around the \(z-\)axis. (the axis coming off the screen toward us from the centroid of the face.)</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r3.png" width="75%" class="center" /></p>
+
+<p>So we have four rotations which make the following group</p>
+<div>
+$$
+\begin{align*}
+G = \{e, r_1, r_2, r_3\}
+\end{align*}
+$$
+</div>
+<p>One thing to notice here that for any rotation in \(G\), if you apply it twice, you’ll get the identity rotation. So each rotation has an order \(2\). The multiplication table for the symmetries of the rectangle is as follows</p>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td></td>
+    <td>\(e\)</td>
+    <td>\(r_1\)</td>
+	<td>\(r_2\)</td>
+	<td>\(r_3\)</td>
+  </tr>
+  <tr>
+    <td>\(e\)</td>
+    <td>\(e\)</td>
+    <td>\(r_1\)</td>
+	<td>\(r_2\)</td>
+	<td>\(r_3\)</td>
+  </tr>
+  <tr>
+    <td>\(r_1\)</td>
+    <td>\(r_1\)</td>
+    <td>\(r_2\)</td>
+	<td>\(r_3\)</td>
+	<td>\(e\)</td>
+  </tr>
+  <tr>
+    <td>\(r_2\)</td>
+    <td>\(r_2\)</td>
+    <td>\(r_3\)</td>
+	<td>\(e\)</td>
+	<td>\(r_1\)</td>
+  </tr>
+  <tr>
+    <td>\(r_3\)</td>
+    <td>\(r_3\)</td>
+    <td>\(e\)</td>
+	<td>\(r_1\)</td>
+	<td>\(r_2\)</td>
+  </tr>
+</table>
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Symmetries of the Square</b></h4>
+<p>What about the symmetries of the square? There are eight of them. First we consider the axis coming through the centroid of the face toward us. There are three rotations around this axis.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r.png" width="55%" class="center" /></p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r2.png" width="55%" class="center" /></p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r3.png" width="55%" class="center" /></p>
+
+<p>Next, we can consider the \(x-\)axis or the axis coming through the center of the edges. We can do a \(180\) degrees rotation around this access (a flip). Call this one \(a\).</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-a.png" width="55%" class="center" /></p>
+
+<p>Similarly, we can do one around the \(y-\)axis.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-b.png" width="55%" class="center" /></p>
+
+<p>And then two more through the diagonals of the square.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-c.png" width="55%" class="center" /></p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-d.png" width="55%" class="center" /></p>
+
+<div>
+$$
+\begin{align*}
+G = \{e, r, r^2, r^3, a, b, c, d\}
+\end{align*}
+$$
+</div>
+<p><br />
+<br />
+<br />
+<br />
+<br />
+<br /></p>
+
+<div class="mintheaderdiv">
+Definition 1.11.1
+</div>
+<div class="mintbodydiv">
+<ol type="a">
+	<li>Under addition, \(R\) is an abelian group.</li>
+	<li>Multiplication is associaive.</li>
+	<li>Multiplication distributes over addition. \(a(b+c) = ab + ac\), and \((b+c)a = ba + ca\) for all \(a,b,c \in R\).</li>
+</ol>
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.5.3
+</div>
+<div class="peachbodydiv">
+<ol type="a">
+	<li>\(a \in bH\).</li>
+	<li>\(b \in aH\).</li>
+	<li>\(aH = bH\).</li>
+	<li>\(b^{-1}a \in H\).</li>
+	<li>\(a^{-1}b \in H\).</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+<b>Proof</b>
+<br />
+<br />
+<br />
+For \((d)\) ….
+<br />
+<br />
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem 2.5.6 (Lagrange's Theorem)
+</div>
+<div class="yellowbodydiv">
+k
+</div>
+<!------------------------------------------------------------------------>
+<p><br /></p>
+
+<p><br />
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>MATH417 by Charles Rezk</li>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Introduction Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we’ve used in high school. As an example, we have Fields. It’s a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers \(\mathbf{R}\) or the field of complex numbers \(\mathbf{C}\). We also have the field of rational numbers \(\mathbf{Q}\). Or \(\mathbf{Z}_p\) which is a finite field of integers modulo some prime \(p\). It is finite with \(p\) elements. Another example of important structures are Rings. Here we have the operations addition, subtraction and multiplication. The first example of a ring is \(\mathbf{Z}\). Another example of a ring is a polynomial ring in one variable over \(\mathbf{R}\), \(\mathbf{R}[x]\). The set of all square matrices. \(M_{n \times n}(\mathbf{R})\) is also another example. This example is non-commutative. Another structure is a Group. It is a set with one operation usually called “multiplication”. One example is the set of real numbers with just addition. Another example is \((\mathbf{R}^{x})\) (the set of real numbers with zero removed, \(\mathbf{R} - \{0\}\) along with multiplication. \(GL(n,\mathbf{R})\), the set of invertible matrices with multiplication is another example of a Group. This is an example of a non-abelian or non-commutative group. One additional structure that comes up is a Monoid. These are sets with one operation but you don’t have to have inverses like Groups. So \(\mathbf{R}\) with multiplication is not a group because it includes zero and zero doesn’t have an inverse but this set is a Monoid. Groups and Symmetries]]></summary></entry><entry><title type="html">Lecture 01: Groups and Symmetries</title><link href="http://localhost:4000/jekyll/update/2025/01/24/math417-01-groups-and-symmetries.html" rel="alternate" type="text/html" title="Lecture 01: Groups and Symmetries" /><published>2025-01-24T00:01:36-08:00</published><updated>2025-01-24T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/24/math417-01-groups-and-symmetries</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/24/math417-01-groups-and-symmetries.html"><![CDATA[<h4><b>Introduction</b></h4>
+<p>Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we’ve used in high school. As an example, we have Fields. It’s a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers \(\mathbf{R}\) or the field of complex numbers \(\mathbf{C}\). We also have the field of rational numbers \(\mathbf{Q}\). Or \(\mathbf{Z}_p\) which is a finite field of integers modulo some prime \(p\). It is finite with \(p\) elements.
+<br />
+<br />
+Another example of important structures are Rings. Here we have the operations addition, subtraction and multiplication. The first example of a ring is \(\mathbf{Z}\). Another example of a ring is a polynomial ring in one variable over \(\mathbf{R}\), \(\mathbf{R}[x]\). The set of all square matrices. \(M_{n \times n}(\mathbf{R})\) is also another example. This example is non-commutative.<br />
+<br />
+<br />
+Another structure is a Group. It is a set with one operation usually called “multiplication”. One example is the set of real numbers with just addition. Another example is \((\mathbf{R}^{x})\) (the set of real numbers with zero removed, \(\mathbf{R} - \{0\}\) along with multiplication. \(GL(n,\mathbf{R})\), the set of invertible matrices with multiplication is another example of a Group. This is an example of a non-abelian or non-commutative group.
+<br />
+<br />
+One additional structure that comes up is a Monoid. These are sets with one operation but you don’t have to have inverses like Groups. So \(\mathbf{R}\) with multiplication is not a group because it includes zero and zero doesn’t have an inverse but this set is a Monoid. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Groups and Symmetries</b></h4>
+
+<p>From the book, a symmetry is an undetectable motion. An object is symmetric if it has symmetries. Take an equilateral triangle.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-1.png" width="40%" class="center" /></p>
+
+<p>What are the symmetries of this triangle? We want to rotate the triangle in such a way that we won’t tell if it was rotated. For example, if we rotate this triangle by \(120\) degrees counter clockwise, then we’ll get a triangle in the same exact orientation. We label this rotation with \(r_1\). Note here that the labels on the vertices are used to illustrate that we indeed have rotated the triangle. They are a visual aid.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-2.png" width="70%" class="center" /></p>
+
+<p>We can also rotate this triangle \(120\) degrees clockwise to get the following \(r_2\) rotation.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-3.png" width="70%" class="center" /></p>
+
+<p>Are there more rotations? Yes, consider the rotation around the axis that goes through the vertex \(A\) by 180 degrees so essentially it’s a flip around that axis.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-4.png" width="70%" class="center" /></p>
+
+<p>Similarly, we can do a flip around the axis that goes through the vertex \(B\) and a flip around the axis that goes through the vertex \(C\).</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-5.png" width="40%" class="center" /></p>
+
+<p>So now we have \(5\) symmetries total. Is that all? No, We have one more symmetry representing the identity symmetry \(e\) that does nothing. So the set of symmetries are then</p>
+<div>
+$$
+\begin{align*}
+G = \{e, r_1, r_2, a, b, c\}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Can We Compose Symmetries?</b></h4>
+
+<p>Can we compose symmetries? Yes, in fact we’ll equip the group above with the operation compose. This means that for any \(x, y \in G\), \(xy\) means that we need to apply the rotation \(y\) first and then apply the rotation \(x\). Since we have \(6\) elements in \(G\), then we have \(36\) ways of composing these elements. 
+<br />
+<br />
+For example composing \(r_1\) with \(r_1\) again results in the rotation \(r_2\) so \(r_1r_1 = r_2\).</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-6.png" width="70%" class="center" /></p>
+<p>And if we compose \(r_1\) with \(r_2\), then we’ll get the identity rotation so \(r_1r_2 = e\).</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-7.png" width="70%" class="center" /></p>
+<p>In fact since \(r_1r_1 = r_2\) and \(r_1r_2 = e\), we’ll change the notation to a much simpler notation. Let \(r_1 = r\). Then, \(r_2 = r_1r_1 = rr = r^2\). So now we can fill these in a table as follows
+<br />
+<!------------------------------------------------------------------------></p>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td></td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(e\)</td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(r\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+  <tr>
+    <td>\(r^2\)</td>
+    <td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+  <tr>
+    <td>\(a\)</td>
+    <td>\(a\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+ <tr>
+   <td>\(b\)</td>
+   <td>\(b\)</td>
+   <td>\(\)</td>
+   <td>\(\)</td>	
+   <td>\(\)</td>
+   <td>\(\)</td>
+   <td>\(\)</td>
+ </tr>
+  <tr>
+    <td>\(c\)</td>
+    <td>\(c\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+</table>
+</div>
+<p><br />
+So far so good. What about composing the flips around the axes? For example composing \(a\) with \(b\). What would that do? For starters, note that each flip is a \(180\) degrees flip. So if you compose ANY two flips, we’ll be back to the same face we started with. This means that any two flips will be equivalent to \(e, r\) or \(r^2\). For example, if we apply \(a\) and then apply \(b\), we’ll get</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-8.png" width="90%" class="center" /></p>
+
+<p>Note here that when did the second flip, we still rotated through the \(b\) access which now goes through vertex \(C\) instead. Physically the axis will still be in the same position. So we see above doing two flips \(a\), then around \(b\) is equivalent to applying two rotations so \(ba = r^2\). 
+<br />
+<br />
+What about two flips of the same type? What happens if you apply \(a\) and then again flip it around that same access? We’ll get the identity rotation since we just go back to the same exact orientation. Applying this same logic on the rest of flips, we can fill that forth quadrant of the table which are all about compositions of flips.
+<br />
+<br />
+<!------------------------------------------------------------------------></p>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td></td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(e\)</td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(r\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+  <tr>
+    <td>\(r^2\)</td>
+    <td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+  </tr>
+  <tr>
+    <td>\(a\)</td>
+    <td>\(a\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(r^2\)</td>
+  </tr>
+ <tr>
+   <td>\(b\)</td>
+   <td>\(b\)</td>
+   <td>\(\)</td>
+   <td>\(\)</td>	
+   <td>\(r^2\)</td>
+   <td>\(e\)</td>
+   <td>\(r\)</td>
+ </tr>
+  <tr>
+    <td>\(c\)</td>
+    <td>\(c\)</td>
+	<td>\(\)</td>
+	<td>\(\)</td>
+	<td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+  </tr>
+</table>
+</div>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Second and Third Quadrants</b></h4>
+<p>What about applying a rotation \(r\) followed by a flip \(a\)? What is \(ar\)? We apply a rotation so we move \(120\) degrees anti-clockwise and then we do an \(a\) flip which is now going to be through the \(C\) vertex. The triangle will now be faced down which is equivalent to applying a single flip. Comparing the vertices in the original triangle and the outcome, we see that \(B\) is fixed while \(A\) and \(C\) have switched. This means that this is a flip around the \(b\) access.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-9.png" width="90%" class="center" /></p>
+
+<!------------------------------------------------------------------------>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td></td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(e\)</td>
+    <td>\(e\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+  </tr>
+  <tr>
+    <td>\(r\)</td>
+    <td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(c\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+  </tr>
+  <tr>
+    <td>\(r^2\)</td>
+    <td>\(r^2\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+	<td>\(a\)</td>
+  </tr>
+  <tr>
+    <td>\(a\)</td>
+    <td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(c\)</td>
+	<td>\(e\)</td>
+	<td>\(r\)</td>
+	<td>\(r^2\)</td>
+  </tr>
+ <tr>
+   <td>\(b\)</td>
+   <td>\(b\)</td>
+   <td>\(c\)</td>
+   <td>\(a\)</td>	
+   <td>\(r^2\)</td>
+   <td>\(e\)</td>
+   <td>\(r\)</td>
+ </tr>
+  <tr>
+    <td>\(c\)</td>
+    <td>\(c\)</td>
+	<td>\(a\)</td>
+	<td>\(b\)</td>
+	<td>\(r\)</td>
+	<td>\(r^2\)</td>
+	<td>\(e\)</td>
+  </tr>
+</table>
+</div>
+<p>We notice that each row has each rotation appearing exactly once and it’s the same for each column. Notice also that composition is not commutative above. So \(ar \neq ra\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Matrix Representation of Symmetries</b></h4>
+<p>We can actually represent these symmetries by matrices. For example, the following matrix will represent a \(120\) degrees rotation around the \(z-\) axis</p>
+<div>
+$$
+\begin{align*}
+r(x,y,z) &amp;= 
+\begin{pmatrix}
+\cos\frac{2\pi}{3} &amp; - \sin\frac{2\pi}{3} &amp; 0 \\
+\sin\frac{2\pi}{3} &amp; + \cos\frac{2\pi}{3} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>or we can do the \(a\) flip so a \(180\) degree flip around the \(x\)-axis.</p>
+<div>
+$$
+\begin{align*}
+a(x,y,z) &amp;= 
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 0
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>What about something more complex? like \(ra\) which is equal to \(c\) using the multiplication table above. This will be</p>
+<div>
+$$
+\begin{align*}
+c(x,y,z) &amp;= ra(x,y,z) 
+\\
+&amp;= 
+\begin{pmatrix}
+\cos\frac{2\pi}{3} &amp; - \sin\frac{2\pi}{3} &amp; 0 \\
+\sin\frac{2\pi}{3} &amp; + \cos\frac{2\pi}{3} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 0
+\end{pmatrix}
+\\
+&amp;=
+\begin{pmatrix}
+\cos\frac{2\pi}{3} &amp; \sin\frac{2\pi}{3} &amp; 0 \\
+\sin\frac{2\pi}{3} &amp; - \cos\frac{2\pi}{3} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Symmetries of the Rectangle</b></h4>
+<p>How many symmetries does the rectangle have?</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect.png" width="30%" class="center" /></p>
+
+<p>We can have a rotation \(r_1\) around the \(y-\)axis as follows</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r1.png" width="75%" class="center" /></p>
+
+<p>We can also have a rotation \(r_2\) around the \(x-\)axis</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r2.png" width="75%" class="center" /></p>
+
+<p>Finally, we have one more rotation \(r_3\) around the \(z-\)axis. (the axis coming off the screen toward us from the centroid of the face.)</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r3.png" width="75%" class="center" /></p>
+
+<p>So we have four rotations which make the following group</p>
+<div>
+$$
+\begin{align*}
+G = \{e, r_1, r_2, r_3\}
+\end{align*}
+$$
+</div>
+<p>One thing to notice here that for any rotation in \(G\), if you apply it twice, you’ll get the identity rotation. So each rotation has an order \(2\). The multiplication table for the symmetries of the rectangle is as follows</p>
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td></td>
+    <td>\(e\)</td>
+    <td>\(r_1\)</td>
+	<td>\(r_2\)</td>
+	<td>\(r_3\)</td>
+  </tr>
+  <tr>
+    <td>\(e\)</td>
+    <td>\(e\)</td>
+    <td>\(r_1\)</td>
+	<td>\(r_2\)</td>
+	<td>\(r_3\)</td>
+  </tr>
+  <tr>
+    <td>\(r_1\)</td>
+    <td>\(r_1\)</td>
+    <td>\(r_2\)</td>
+	<td>\(r_3\)</td>
+	<td>\(e\)</td>
+  </tr>
+  <tr>
+    <td>\(r_2\)</td>
+    <td>\(r_2\)</td>
+    <td>\(r_3\)</td>
+	<td>\(e\)</td>
+	<td>\(r_1\)</td>
+  </tr>
+  <tr>
+    <td>\(r_3\)</td>
+    <td>\(r_3\)</td>
+    <td>\(e\)</td>
+	<td>\(r_1\)</td>
+	<td>\(r_2\)</td>
+  </tr>
+</table>
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Symmetries of the Square</b></h4>
+<p>What about the symmetries of the square? There are eight of them. First we consider the axis coming through the centroid of the face toward us. There are three rotations around this axis.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r.png" width="55%" class="center" /></p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r2.png" width="55%" class="center" /></p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r3.png" width="55%" class="center" /></p>
+
+<p>Next, we can consider the \(x-\)axis or the axis coming through the center of the edges. We can do a \(180\) degrees rotation around this access (a flip). Call this one \(a\).</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-a.png" width="55%" class="center" /></p>
+
+<p>Similarly, we can do one around the \(y-\)axis.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-b.png" width="55%" class="center" /></p>
+
+<p>And then two more through the diagonals of the square.</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-c.png" width="55%" class="center" /></p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-d.png" width="55%" class="center" /></p>
+
+<div>
+$$
+\begin{align*}
+G = \{e, r, r^2, r^3, a, b, c, d\}
+\end{align*}
+$$
+</div>
+<p><br />
+What about the cube? How many symmetries does it have? it has 24 symmetries!
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>MATH417 by Charles Rezk</li>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Introduction Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we’ve used in high school. As an example, we have Fields. It’s a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers \(\mathbf{R}\) or the field of complex numbers \(\mathbf{C}\). We also have the field of rational numbers \(\mathbf{Q}\). Or \(\mathbf{Z}_p\) which is a finite field of integers modulo some prime \(p\). It is finite with \(p\) elements. Another example of important structures are Rings. Here we have the operations addition, subtraction and multiplication. The first example of a ring is \(\mathbf{Z}\). Another example of a ring is a polynomial ring in one variable over \(\mathbf{R}\), \(\mathbf{R}[x]\). The set of all square matrices. \(M_{n \times n}(\mathbf{R})\) is also another example. This example is non-commutative. Another structure is a Group. It is a set with one operation usually called “multiplication”. One example is the set of real numbers with just addition. Another example is \((\mathbf{R}^{x})\) (the set of real numbers with zero removed, \(\mathbf{R} - \{0\}\) along with multiplication. \(GL(n,\mathbf{R})\), the set of invertible matrices with multiplication is another example of a Group. This is an example of a non-abelian or non-commutative group. One additional structure that comes up is a Monoid. These are sets with one operation but you don’t have to have inverses like Groups. So \(\mathbf{R}\) with multiplication is not a group because it includes zero and zero doesn’t have an inverse but this set is a Monoid. Groups and Symmetries]]></summary></entry><entry><title type="html">Project Euler: 69 Totient Maximum</title><link href="http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html" rel="alternate" type="text/html" title="Project Euler: 69 Totient Maximum" /><published>2025-01-23T00:01:36-08:00</published><updated>2025-01-23T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html"><![CDATA[<p>I wrote about Euler’s Totient function in <a href="https://strncat.github.io/jekyll/update/2025/01/22/euler-totient.html">here</a>, but to recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find  \(n\) such that \(\frac{n}{\phi(n)}\) is maximized.
 <!------------------------------------------------------------------------------------></p>
 <h4><b>Solution</b></h4>
 <p>To start, we should definitely make use of the existing formula to compute the Totient function. Given an integer \(n\) and the distinct prime divisors of \(n\),  \(\{p_1,p_2...,p_k\}\), we can compute the Totient function as follows</p>
@@ -686,130 +1659,4 @@ But this doesn’t quite work yet because it will count \(\{30,40,50\}\) and \(\
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=37">Project Euler - 37</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A prime is truncatable if it’s possible to continuously remove digits from either left to right or right to left and have it still be prime. For example, consider 3797. If we remove the digits from left to right, then we’ll get $$ \begin{align*} 3797 \rightarrow 797 \rightarrow 97 \rightarrow 7. \end{align*} $$ All of these numbers are prime. Similarly if we remove the digits from right to left, then $$ \begin{align*} 3797 \rightarrow 379 \rightarrow 37 \rightarrow 3. \end{align*} $$ are all prime as well. As in all of the previous problems involving primes, we’ll reuse the sieve algorithm function to generate prime numbers up to 1 million as a start. We’re given a big hint that says there are only 11 primes with this property. Therefore, we can start with the upper limit 1 million and see how many trucatable primes we can get. int prime[N]; std::vector&lt;int&gt; prime_numbers; void sieve() { // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { prime[i] = 1; } prime[0] = prime[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (prime[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { prime[i] = 0; } } } for (int i = 0; i &lt; N; i++) { if (prime[i]) { prime_numbers.push_back(i); } } } What about implementing truncatable itself? We can easily remove one digit at a time from right to left by constantly dividing by 10 bool is_truncatable_left(int p, int d) { // for example for 3797, we want to check 379 -&gt; 37 -&gt; 3 int m = p; while (m &gt; 0) { if (!prime[m]) { return false; } m /= 10; } return true; } For the left to right direction, consider \(3797\). One way to do this is to subtract \(3000\) from \(3797\) to get \(797\) which is what we want. In the next iteration, we can subtract \(700\) to get \(97\) and so on. To get \(3000\), notice that it’s the most significant digit multiplied by \(10^{d-1}\) where \(d\) is the number of digits in \(3797\). To get the most significant digit itself, we can divide \(3797\) by \(1000\) which is again \(10^{d-1}\). There could be other ways to do this but that’s the way I thought of which worked for this problem. bool is_truncatable_right(int p, int d) { // 797 -&gt; 97 -&gt; 7 int i = 0; while (p &gt; 0) { //example: suppose p = 3797 int divisor = pow(10, d-1-i); // divisor = 10^3 = 1000 if (divisor &lt;= 1) {break;} int most_sig = p/divisor; // 3797/1000 = 3 int new_p = p - divisor * most_sig; // r = 3797 - 3*1000 = 797 if (!prime[new_p]) { return false; } p = new_p; i++; } return true; } One last observation I saw is that for a prime to be truncatable, the last digit must be either 3 or 7. For example consider \(3675\). While \(5\) is prime, \(75\) and \(72\) are definitely not. Putting all of these methods together, we have bool is_truncatable(int p) { // we must end with 3 or 7 only if (p % 10 != 3 &amp;&amp; p % 10 != 7) { return false; } int d = floor(log10(p)) + 1; // (1) check the left to right direction if (!is_truncatable_left(p, d)) { return false; } // (2) now the other direction // 797 -&gt; 97 -&gt; 7 if (!is_truncatable_right(p, d)) { return false; } return true; } Finally, we can just call the above method for all prime numbers under 1 million which turns out to be enough because it did find all of the 11 truncatable numbers! sieve(); int sum = 0; // we start from 4 because 2, 3, 5 and 7 are not truncatable by definition for (int i = 4; i &lt; prime_numbers.size(); i++) { if (is_truncatable(prime_numbers[i])) { printf("%d is truncatable\n", prime_numbers[i]); sum += prime_numbers[i]; } } printf("sum = %d\n", sum); References Project Euler - 37]]></summary></entry><entry><title type="html">Project Euler: 35 Circular Primes</title><link href="http://localhost:4000/jekyll/update/2025/01/15/project-euler-35-circular-primes.html" rel="alternate" type="text/html" title="Project Euler: 35 Circular Primes" /><published>2025-01-15T00:01:36-08:00</published><updated>2025-01-15T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/15/project-euler-35-circular-primes</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/15/project-euler-35-circular-primes.html"><![CDATA[<p>A prime is circular if all rotations of the digits are prime. For example, the rotations of 197 are 197, 971 and 719. All of the rotations are prime numbers so 197 is a circular prime. In this problem, we want to find the number of circular primes below 1 million. To start, we need a method to check if a number is prime. We can re-use the sieve method we did for problem 7 and generate all prime numbers under 1 million.
-<!------------------------------------------------------------------------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">prime</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">prime_numbers</span><span class="p">;</span>
-<span class="kt">void</span> <span class="nf">sieve</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// mark all numbers as potential primes</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">prime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">p</span><span class="p">])</span> <span class="p">{</span>
-            <span class="c1">// mark all multiples of p as not prime</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
-            <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<!------------------------------------------------------------------------------------>
-<p>The next thing we want to do is to generate all possible rotations of a given a number. To do so, consider the number \(p=197\). The umber of digits in 197 is \(n = 3\) so we have a total of 3 rotations (197, 719, 971). to generate these, iterate 3 times where in each iteration, extract and remove the last digit and then multiply it by \(10^{n-1}\) and add it back again to \(p\). In this example, the last digit is 7. We will then add \(7 \times (10^{n-1}) = 7 \times 100 = 700\) to \(19\) to get \(719\).
-<br />
-<br />
-Another example is 1793. We will extract 3 and remove it by dividing by 10 to get 179. We then will add \(3 \times 1000 = 3000\) to \(179\) to get \(3179\) which is the next rotation of \(1793\). In the next iteration, we will again extract \(9\) and add \(9000\) to \(317\) to generate the next rotation \(9317\). At any point of time during these iterations, if a rotation happens to be non-prime, then we exit and return false in
-<!------------------------------------------------------------------------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">count_digits</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">n</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-        <span class="n">d</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">bool</span> <span class="nf">is_circular</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// we want to rotate the digits n times where n is the number of digits</span>
-    <span class="c1">// so 197 -&gt; 719 -&gt; 971</span>
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">count_digits</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">p</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span> <span class="c1">// save the last digit d</span>
-        <span class="n">p</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// git rid of d in p</span>
-        <span class="n">p</span> <span class="o">+=</span> <span class="n">d</span><span class="o">*</span><span class="n">m</span><span class="p">;</span> <span class="c1">// add the last digit*m to p</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">prime</span><span class="p">[</span><span class="n">p</span><span class="p">])</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// not a circular number</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<!------------------------------------------------------------------------------------>
-<p>Finally, we can call this method to check again the primes we generated earlier. I did try using an optimization where I save the rotations in a map in order to avoid generating them again but that didn’t save much time and made the code look more complicated so I removed it. The entire naive solution rain in 0.0094 seconds time on my M1 mac.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">sieve</span><span class="p">();</span>
-    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// There are 4 primes &lt; 10</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prime_numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// prime_numbers[4] = 11</span>
-        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">prime_numbers</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">is_circular</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"total count = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span></code></pre></figure>
-
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=35">Project Euler - 35</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A prime is circular if all rotations of the digits are prime. For example, the rotations of 197 are 197, 971 and 719. All of the rotations are prime numbers so 197 is a circular prime. In this problem, we want to find the number of circular primes below 1 million. To start, we need a method to check if a number is prime. We can re-use the sieve method we did for problem 7 and generate all prime numbers under 1 million. int prime[N]; std::vector&lt;int&gt; prime_numbers; void sieve() { // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { prime[i] = 1; } prime[0] = prime[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (prime[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { prime[i] = 0; } } } for (int i = 0; i &lt; N; i++) { if (prime[i]) { prime_numbers.push_back(i); } } } The next thing we want to do is to generate all possible rotations of a given a number. To do so, consider the number \(p=197\). The umber of digits in 197 is \(n = 3\) so we have a total of 3 rotations (197, 719, 971). to generate these, iterate 3 times where in each iteration, extract and remove the last digit and then multiply it by \(10^{n-1}\) and add it back again to \(p\). In this example, the last digit is 7. We will then add \(7 \times (10^{n-1}) = 7 \times 100 = 700\) to \(19\) to get \(719\). Another example is 1793. We will extract 3 and remove it by dividing by 10 to get 179. We then will add \(3 \times 1000 = 3000\) to \(179\) to get \(3179\) which is the next rotation of \(1793\). In the next iteration, we will again extract \(9\) and add \(9000\) to \(317\) to generate the next rotation \(9317\). At any point of time during these iterations, if a rotation happens to be non-prime, then we exit and return false in int count_digits(int n) { int d = 0; while (n &gt; 0) { n /= 10; d++; } return d; } bool is_circular(int p) { // we want to rotate the digits n times where n is the number of digits // so 197 -&gt; 719 -&gt; 971 int n = count_digits(p); int m = pow(10, n-1); for (int i = 0; i &lt; n; i++) { int d = p%10; // save the last digit d p /= 10; // git rid of d in p p += d*m; // add the last digit*m to p if (!prime[p]) { return false; // not a circular number } } return true; } Finally, we can call this method to check again the primes we generated earlier. I did try using an optimization where I save the rotations in a map in order to avoid generating them again but that didn’t save much time and made the code look more complicated so I removed it. The entire naive solution rain in 0.0094 seconds time on my M1 mac. sieve(); int count = 4; // There are 4 primes &lt; 10 for (int i = 4; i &lt; prime_numbers.size(); i++) { // prime_numbers[4] = 11 int p = prime_numbers[i]; if (is_circular(p)) { count++; } } printf("total count = %d\n", count); References Project Euler - 35]]></summary></entry><entry><title type="html">Project Euler: 34 Digit Factorials</title><link href="http://localhost:4000/jekyll/update/2025/01/14/project-euler-34-digit-factorials.html" rel="alternate" type="text/html" title="Project Euler: 34 Digit Factorials" /><published>2025-01-14T00:01:36-08:00</published><updated>2025-01-14T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/14/project-euler-34-digit-factorials</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/14/project-euler-34-digit-factorials.html"><![CDATA[<p>In this one, we want the sum of all numbers such that each number’s digit factorials add up to the number itself. For example</p>
-<div>
-	$$
-	\begin{align*}
-	 145 = 1! + 4! + 5!
-	\end{align*}
-	$$
-</div>
-<p>We are told not to include the trivial cases \(1! = 1\) and \(2! = 2\) since they are not sums. We are also not given any upper bound. As a guess, we can observe that \(9! * 10 = 3628800\). So a number consisting of 10 digits will at most be 3628800. I tried this upper limit and it was fine. One thing we want to do is to pre-calculate the factorials for all digits a head of time in</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">f</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-<span class="kt">void</span> <span class="nf">calc_factorial</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>The rest is all simple</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="n">calc_factorial</span><span class="p">();</span>
-    <span class="c1">// 9! * 10 = 3628800</span>
-    <span class="c1">// 0! + 0! + 0! + 1! + 1! = 2</span>
-    <span class="kt">int</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">3628800</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="kt">long</span> <span class="kt">long</span> <span class="n">num</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">num</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
-            <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">d</span><span class="p">];</span>
-            <span class="n">sum</span> <span class="o">+=</span> <span class="n">p</span><span class="p">;</span>
-            <span class="n">num</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">total_sum</span> <span class="o">+=</span> <span class="n">sum</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">total_sum</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=34">Project Euler - 34</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this one, we want the sum of all numbers such that each number’s digit factorials add up to the number itself. For example $$ \begin{align*} 145 = 1! + 4! + 5! \end{align*} $$ We are told not to include the trivial cases \(1! = 1\) and \(2! = 2\) since they are not sums. We are also not given any upper bound. As a guess, we can observe that \(9! * 10 = 3628800\). So a number consisting of 10 digits will at most be 3628800. I tried this upper limit and it was fine. One thing we want to do is to pre-calculate the factorials for all digits a head of time in int f[10]; void calc_factorial() { f[0] = 1; f[1] = 1; for (int i = 2; i &lt; 10; i++) { f[i] = i * f[i-1]; } } The rest is all simple int main(int argc, const char * argv[]) { calc_factorial(); // 9! * 10 = 3628800 // 0! + 0! + 0! + 1! + 1! = 2 int total_sum = 0; for (long long n = 3; n &lt;= 3628800; n++) { long long sum = 0; long long num = n; while (num &gt; 0 &amp;&amp; sum &lt;= n) { int d = num%10; int p = f[d]; sum += p; num /= 10; } if (sum == n) { total_sum += sum; } } printf("%d\n", total_sum); return 0; } References Project Euler - 34]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A prime is truncatable if it’s possible to continuously remove digits from either left to right or right to left and have it still be prime. For example, consider 3797. If we remove the digits from left to right, then we’ll get $$ \begin{align*} 3797 \rightarrow 797 \rightarrow 97 \rightarrow 7. \end{align*} $$ All of these numbers are prime. Similarly if we remove the digits from right to left, then $$ \begin{align*} 3797 \rightarrow 379 \rightarrow 37 \rightarrow 3. \end{align*} $$ are all prime as well. As in all of the previous problems involving primes, we’ll reuse the sieve algorithm function to generate prime numbers up to 1 million as a start. We’re given a big hint that says there are only 11 primes with this property. Therefore, we can start with the upper limit 1 million and see how many trucatable primes we can get. int prime[N]; std::vector&lt;int&gt; prime_numbers; void sieve() { // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { prime[i] = 1; } prime[0] = prime[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (prime[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { prime[i] = 0; } } } for (int i = 0; i &lt; N; i++) { if (prime[i]) { prime_numbers.push_back(i); } } } What about implementing truncatable itself? We can easily remove one digit at a time from right to left by constantly dividing by 10 bool is_truncatable_left(int p, int d) { // for example for 3797, we want to check 379 -&gt; 37 -&gt; 3 int m = p; while (m &gt; 0) { if (!prime[m]) { return false; } m /= 10; } return true; } For the left to right direction, consider \(3797\). One way to do this is to subtract \(3000\) from \(3797\) to get \(797\) which is what we want. In the next iteration, we can subtract \(700\) to get \(97\) and so on. To get \(3000\), notice that it’s the most significant digit multiplied by \(10^{d-1}\) where \(d\) is the number of digits in \(3797\). To get the most significant digit itself, we can divide \(3797\) by \(1000\) which is again \(10^{d-1}\). There could be other ways to do this but that’s the way I thought of which worked for this problem. bool is_truncatable_right(int p, int d) { // 797 -&gt; 97 -&gt; 7 int i = 0; while (p &gt; 0) { //example: suppose p = 3797 int divisor = pow(10, d-1-i); // divisor = 10^3 = 1000 if (divisor &lt;= 1) {break;} int most_sig = p/divisor; // 3797/1000 = 3 int new_p = p - divisor * most_sig; // r = 3797 - 3*1000 = 797 if (!prime[new_p]) { return false; } p = new_p; i++; } return true; } One last observation I saw is that for a prime to be truncatable, the last digit must be either 3 or 7. For example consider \(3675\). While \(5\) is prime, \(75\) and \(72\) are definitely not. Putting all of these methods together, we have bool is_truncatable(int p) { // we must end with 3 or 7 only if (p % 10 != 3 &amp;&amp; p % 10 != 7) { return false; } int d = floor(log10(p)) + 1; // (1) check the left to right direction if (!is_truncatable_left(p, d)) { return false; } // (2) now the other direction // 797 -&gt; 97 -&gt; 7 if (!is_truncatable_right(p, d)) { return false; } return true; } Finally, we can just call the above method for all prime numbers under 1 million which turns out to be enough because it did find all of the 11 truncatable numbers! sieve(); int sum = 0; // we start from 4 because 2, 3, 5 and 7 are not truncatable by definition for (int i = 4; i &lt; prime_numbers.size(); i++) { if (is_truncatable(prime_numbers[i])) { printf("%d is truncatable\n", prime_numbers[i]); sum += prime_numbers[i]; } } printf("sum = %d\n", sum); References Project Euler - 37]]></summary></entry></feed>

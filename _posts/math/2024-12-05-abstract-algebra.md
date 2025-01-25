@@ -5,6 +5,16 @@ date:   2024-12-05 09:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
+<h4> MATH417 </h4>
+<ol style="list-style-type:none;">
+       <li><a href="/jekyll/update/2025/01/24/math417-01-groups-and-symmetries.html">
+       Lecture 01: Groups and Symmetries
+       </a></li>
+       <li><a href="/jekyll/update/2025/01/25/math417-02-rotations-in-space.html">
+       Lecture 02: Rotations in Space
+       </a></li>
+   </ol>
+<br>
 <!------------------------ [1] Algebraic Themes --------------------------->
 <h4> [1] Algebraic Themes </h4>
 <ol style="list-style-type:none;">

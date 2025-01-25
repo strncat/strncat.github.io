@@ -214,5 +214,10 @@ mathjax: true
 	   <li><a href="/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html">
 		   Totient Maximum
 	   </a></li>	
+<!---------- 70----------
+	   <li><a href="/jekyll/update/2024/12/19/project-euler-70-totient-permutation.html">
+		   Totient Permutation
+	   </a></li>
+	   -->	
    </ol>
 <br>

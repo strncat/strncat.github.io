@@ -1,511 +1,291 @@
 ---
 layout: post
-title:  "Lecture 01: Groups and Symmetries"
-date:   2025-01-24 01:01:36 -0700
+title:  "Lecture 02: Rotations in Space"
+date:   2025-01-25 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>Introduction</b></h4>
-Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we've used in high school. As an example, we have Fields. It's a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers $$\mathbf{R}$$ or the field of complex numbers $$\mathbf{C}$$. We also have the field of rational numbers $$\mathbf{Q}$$. Or $$\mathbf{Z}_p$$ which is a finite field of integers modulo some prime $$p$$. It is finite with $$p$$ elements.
+A group is a set with a defined product. This product is associative. The group is closed under this product. We have an identity element and each element has an inverse. Formally,
 <br>
+<div class="mintheaderdiv">
+Definition (1.10.1)
+</div>
+<div class="mintbodydiv">
+A group is a (nonempty) set \(G\) with a binary operation (a product) \(G \times G \rightarrow G\) satisfying the following properties:
+<ol type="a">
+	<li>The group is closed under the operation. </li>
+	<li>The product is associative. For all \(a, b, c \in G\), we have \((ab)c = a(bc)\).</li>
+	<li>There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\).</li>
+	<li>For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse).</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
 <br>
-Another example of important structures are Rings. Here we have the operations addition, subtraction and multiplication. The first example of a ring is $$\mathbf{Z}$$. Another example of a ring is a polynomial ring in one variable over $$\mathbf{R}$$, $$\mathbf{R}[x]$$. The set of all square matrices. $$M_{n \times n}(\mathbf{R})$$ is also another example. This example is non-commutative.  
-<br>
-<br>
-Another structure is a Group. It is a set with one operation usually called "multiplication". One example is the set of real numbers with just addition. Another example is $$(\mathbf{R}^{x})$$ (the set of real numbers with zero removed, $$\mathbf{R} - \{0\}$$ along with multiplication. $$GL(n,\mathbf{R})$$, the set of invertible matrices with multiplication is another example of a Group. This is an example of a non-abelian or non-commutative group.
-<br>
-<br>
-One additional structure that comes up is a Monoid. These are sets with one operation but you don't have to have inverses like Groups. So $$\mathbf{R}$$ with multiplication is not a group because it includes zero and zero doesn't have an inverse but this set is a Monoid. 
-<br>
-<br>
-<hr>
+What are examples of the groups?
+<ol type="a">
+	<li>\(\mathbf{R}\) with the addition operation.</li>
+	<li>\(\mathbf{R}^{x} = \mathbf{R} - \{0\}\) with the multiplication operation.</li>
+	<li>\(\mathbf{Z}\) with the addition operation.</li>
+	<li>The set of invertible \(n \times n\) matrices with entries in \(\mathbf{R}\) with matrix multiplication as the product.</li>
+	<li>Any vector space is a group if you forget about the scalar multiplication.</li>
+	<li>For any set \(T\), define the set of all bijections \(g: T \rightarrow T\). The set of all bijections is the symmetric group of \(T\). The operation here is the composition of these maps.</li>
+</ol>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Groups and Symmetries</b></h4>
-
-From the book, a symmetry is an undetectable motion. An object is symmetric if it has symmetries. Take an equilateral triangle. 
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-1.png" width="40%" class="center"></p>
-
-What are the symmetries of this triangle? We want to rotate the triangle in such a way that we won't tell if it was rotated. For example, if we rotate this triangle by $$120$$ degrees counter clockwise, then we'll get a triangle in the same exact orientation. We label this rotation with $$r_1$$. Note here that the labels on the vertices are used to illustrate that we indeed have rotated the triangle. They are a visual aid.
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-2.png" width="70%" class="center"></p>
-
-We can also rotate this triangle $$120$$ degrees clockwise to get the following $$r_2$$ rotation.
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-3.png" width="70%" class="center"></p>
-
-Are there more rotations? Yes, consider the rotation around the axis that goes through the vertex $$A$$ by 180 degrees so essentially it's a flip around that axis.
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-4.png" width="70%" class="center"></p>
-
-Similarly, we can do a flip around the axis that goes through the vertex $$B$$ and a flip around the axis that goes through the vertex $$C$$.
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-5.png" width="40%" class="center"></p>
-
-So now we have $$5$$ symmetries total. Is that all? No, We have one more symmetry representing the identity symmetry $$e$$ that does nothing. So the set of symmetries are then
+<h4><b>Example</b></h4>
+Suppose we define the group $$(\mathbf{R}, \ast)$$ where $$\ast$$ is defined as
 <div>
 $$
 \begin{align*}
-G = \{e, r_1, r_2, a, b, c\}
+x \ast y = \sqrt[3]{x^3 + y^3}
 \end{align*}
 $$
 </div>
-<br>
-<hr>
-<br>
-<!------------------------------------------------------------------------>
-<h4><b>Can We Compose Symmetries?</b></h4>
-
-Can we compose symmetries? Yes, in fact we'll equip the group above with the operation compose. This means that for any $$x, y \in G$$, $$xy$$ means that we need to apply the rotation $$y$$ first and then apply the rotation $$x$$. Since we have $$6$$ elements in $$G$$, then we have $$36$$ ways of composing these elements. 
-<br>
-<br>
-For example composing $$r_1$$ with $$r_1$$ again results in the rotation $$r_2$$ so $$r_1r_1 = r_2$$.
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-6.png" width="70%" class="center"></p>
-And if we compose $$r_1$$ with $$r_2$$, then we'll get the identity rotation so $$r_1r_2 = e$$.
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-7.png" width="70%" class="center"></p>
-In fact since $$r_1r_1 = r_2$$ and $$r_1r_2 = e$$, we'll change the notation to a much simpler notation. Let $$r_1 = r$$. Then, $$r_2 = r_1r_1 = rr = r^2$$. So now we can fill these in a table as follows
-<br>
-<!------------------------------------------------------------------------>
-<div>
-<table style="max-width: 500px; margin: 20px auto;">
-  <tr>
-    <td></td>
-    <td>\(e\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-  </tr>
-  <tr>
-    <td>\(e\)</td>
-    <td>\(e\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-  </tr>
-  <tr>
-    <td>\(r\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(e\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-  </tr>
-  <tr>
-    <td>\(r^2\)</td>
-    <td>\(r^2\)</td>
-	<td>\(e\)</td>
-	<td>\(r\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-  </tr>
-  <tr>
-    <td>\(a\)</td>
-    <td>\(a\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-  </tr>
- <tr>
-   <td>\(b\)</td>
-   <td>\(b\)</td>
-   <td>\(\)</td>
-   <td>\(\)</td>	
-   <td>\(\)</td>
-   <td>\(\)</td>
-   <td>\(\)</td>
- </tr>
-  <tr>
-    <td>\(c\)</td>
-    <td>\(c\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-  </tr>
-</table>
-</div>
-<br>
-So far so good. What about composing the flips around the axes? For example composing $$a$$ with $$b$$. What would that do? For starters, note that each flip is a $$180$$ degrees flip. So if you compose ANY two flips, we'll be back to the same face we started with. This means that any two flips will be equivalent to $$e, r$$ or $$r^2$$. For example, if we apply $$a$$ and then apply $$b$$, we'll get
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-8.png" width="90%" class="center"></p>
-
-Note here that when did the second flip, we still rotated through the $$b$$ access which now goes through vertex $$C$$ instead. Physically the axis will still be in the same position. So we see above doing two flips $$a$$, then around $$b$$ is equivalent to applying two rotations so $$ba = r^2$$. 
-<br>
-<br>
-What about two flips of the same type? What happens if you apply $$a$$ and then again flip it around that same access? We'll get the identity rotation since we just go back to the same exact orientation. Applying this same logic on the rest of flips, we can fill that forth quadrant of the table which are all about compositions of flips.
+We can further check that this product satisfies the three axioms of a group.
 <br>
 <br>
 <!------------------------------------------------------------------------>
-<div>
-<table style="max-width: 500px; margin: 20px auto;">
-  <tr>
-    <td></td>
-    <td>\(e\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-  </tr>
-  <tr>
-    <td>\(e\)</td>
-    <td>\(e\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-  </tr>
-  <tr>
-    <td>\(r\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(e\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-  </tr>
-  <tr>
-    <td>\(r^2\)</td>
-    <td>\(r^2\)</td>
-	<td>\(e\)</td>
-	<td>\(r\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-  </tr>
-  <tr>
-    <td>\(a\)</td>
-    <td>\(a\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(e\)</td>
-	<td>\(r\)</td>
-	<td>\(r^2\)</td>
-  </tr>
- <tr>
-   <td>\(b\)</td>
-   <td>\(b\)</td>
-   <td>\(\)</td>
-   <td>\(\)</td>	
-   <td>\(r^2\)</td>
-   <td>\(e\)</td>
-   <td>\(r\)</td>
- </tr>
-  <tr>
-    <td>\(c\)</td>
-    <td>\(c\)</td>
-	<td>\(\)</td>
-	<td>\(\)</td>
-	<td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(e\)</td>
-  </tr>
-</table>
-</div>
+<h4><b>Example</b></h4>
+Let $$F$$ be a field (for example $$\mathbf{R}$$ or $$\mathbf{C}$$). Let $$Mat_{n \times n}(F)$$ be the set of matrices with entries in $$F$$. Then define $$GL_n(F)$$ (General Linear Group) as a subset of $$A \in M_{n \times n}(F)$$ where $$A$$ is an invertible matrix.  
+<br>
+<br>
+The set $$GL_n(F)$$ equipped with matrix multiplication is a group. It satisfies the three axioms
+<ol type="a">
+	<li>The group is closed under multiplication because multiplying two invertible matrices is another invertible matrix. \((AB)^{-1} = B^{-1}A^{-1}\)</li>
+	<li>The identity element is the identity matrix.</li>
+	<li>Matrix multiplication is associative.</li>
+</ol>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Second and Third Quadrants</b></h4>
-What about applying a rotation $$r$$ followed by a flip $$a$$? What is $$ar$$? We apply a rotation so we move $$120$$ degrees anti-clockwise and then we do an $$a$$ flip which is now going to be through the $$C$$ vertex. The triangle will now be faced down which is equivalent to applying a single flip. Comparing the vertices in the original triangle and the outcome, we see that $$B$$ is fixed while $$A$$ and $$C$$ have switched. This means that this is a flip around the $$b$$ access.
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-9.png" width="90%" class="center"></p>
-
-<!------------------------------------------------------------------------>
-<div>
-<table style="max-width: 500px; margin: 20px auto;">
-  <tr>
-    <td></td>
-    <td>\(e\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-  </tr>
-  <tr>
-    <td>\(e\)</td>
-    <td>\(e\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-  </tr>
-  <tr>
-    <td>\(r\)</td>
-    <td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(e\)</td>
-	<td>\(c\)</td>
-	<td>\(a\)</td>
-	<td>\(b\)</td>
-  </tr>
-  <tr>
-    <td>\(r^2\)</td>
-    <td>\(r^2\)</td>
-	<td>\(e\)</td>
-	<td>\(r\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-	<td>\(a\)</td>
-  </tr>
-  <tr>
-    <td>\(a\)</td>
-    <td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-	<td>\(e\)</td>
-	<td>\(r\)</td>
-	<td>\(r^2\)</td>
-  </tr>
- <tr>
-   <td>\(b\)</td>
-   <td>\(b\)</td>
-   <td>\(c\)</td>
-   <td>\(a\)</td>	
-   <td>\(r^2\)</td>
-   <td>\(e\)</td>
-   <td>\(r\)</td>
- </tr>
-  <tr>
-    <td>\(c\)</td>
-    <td>\(c\)</td>
-	<td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(r\)</td>
-	<td>\(r^2\)</td>
-	<td>\(e\)</td>
-  </tr>
-</table>
-</div>
-We notice that each row has each rotation appearing exactly once and it's the same for each column. Notice also that composition is not commutative above. So $$ar \neq ra$$.
-<br>
-<br>
-<hr>
-<br>
-<!------------------------------------------------------------------------>
-<h4><b>Matrix Representation of Symmetries</b></h4>
-We can actually represent these symmetries by matrices. For example, the following matrix will represent a $$120$$ degrees rotation around the $$z-$$ axis
+<h4><b>Rotations in Plane</b></h4>
+We can define a plane rotation by an angle counter clockwise by the left multiplication by the following rotation matrix
 <div>
 $$
 \begin{align*}
-r(x,y,z) &= 
+Rot(\theta) &= 
 \begin{pmatrix}
-\cos\frac{2\pi}{3} & - \sin\frac{2\pi}{3} & 0 \\
-\sin\frac{2\pi}{3} & + \cos\frac{2\pi}{3} & 0 \\
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+The rotation matrix has some properties
+<ol type="a">
+	<li>\(\text{Rot}(0) = I\) is the identity matrix.</li>
+	<li>\(\text{Rot}(\alpha)Rot(\beta) = \text{Rot}(\alpha + \beta)\).</li>
+	<li>\(\text{Rot}(\alpha)^{-1} = \text{Rot}(-\alpha)\).</li>
+	<li>\(\text{Rot}(\alpha + 2\pi n) = \text{Rot}(\alpha)\) where \(n \in \mathbf{Z}\).</li>
+</ol>
+From this we see that the collection of rotation matrices forms a group with matrix multiplication.
+<br>
+<br>
+<!------------------------------------------------------------------------>
+<h4><b>Rotations in Space</b></h4>
+<div>
+$$
+\begin{align*}
+\text{Rot}_{e_3}(\theta) &= 
+\begin{pmatrix}
+\cos\theta & -\sin\theta & 0 \\
+\sin\theta & \cos\theta & 0 \\
 0 & 0 & 1
 \end{pmatrix}
 \end{align*}
 $$
 </div>
-or we can do the $$a$$ flip so a $$180$$ degree flip around the $$x$$-axis.
+This defines a rotation around the $$z-$$axis by angle $$\theta$$ counter clockwise viewed from the head of the vector $$e_3$$ where $$e_3 = (0,0,1)$$. But instead of using $$e_3$$, we'll use a more general vector $$u \in \mathbf{R}^3$$ such that $$\lVert {u} \rVert = 1$$. So let $$\text{Rot}_u(\theta)$$ be a rotation matrix around the axis through $$u$$ by angle $$\theta$$ counterclockwise when viewed from the head of $$u$$.
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------>
+<h4><b>How Do you Compute The Rotation Matrix?</b></h4>
+Recall from Linear Algebra that
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+An orthogonal matrix is a square matrix \(P \in Mat_{n \times n}(\mathbf{R})\) such that \(P^{T}P = I\) or \(P^{-1} = P^{T}\).
+</div>
+<br>
+Equivalently the columns of $$P$$ are an orthonormal basis of $$\mathbf{R}^n$$ and the rows of $$P$$ are also orthonormal basis of $$\mathbf{R}^n$$.
+<br>
+<br>
+Given the above definition, there is a useful formula where for $$u \in \mathbf{R}^3$$, $$\lVert u \rVert = 1$$, $$\theta \in \mathbf{R}$$ and $$P$$ an orthogonal matrix such the product
 <div>
 $$
 \begin{align*}
-a(x,y,z) &= 
+P \text{Rot}_u(\theta) P^{-1}
+\end{align*}
+$$
+</div>
+is another rotation matrix but instead of having $$u$$ as the axis, we have $$Pu$$ as the axis so
+<div>
+$$
+\begin{align*}
+\text{Rot}_{Pu}(\theta) = P \text{Rot}_u(\theta) P^{-1}
+\end{align*}
+$$
+</div>
+Why is this a useful formula? Given $$\lVert u \rVert = 1$$ and some angle $$\theta$$, construct an orthonormal basis using Gram-Schmidt by setting $$u_3 = u$$ and finding two more perpendicular vectors (normalized) $$u_1, u_2 \in \mathbf{R}^3$$. Let $$P = [u_1 \quad u_2 \quad u_3]$$. This means that $$Pe_3 = u_3 = u$$. Therefore
+<div>
+$$
+\begin{align*}
+\text{Rot}_{u}(\theta) = P \text{Rot}_{e_3}(\theta) P^{T}
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
+So now suppose we want to rotate around $$\frac{(e_1 + e_2)}{\sqrt{2}}$$ (which is a unit vector) by $$\theta = \frac{\pi}{3}$$. Then, we'll need two more orthonormal vectors in addition to $$\frac{(e_1 + e_2)}{\sqrt{2}}$$ to construct an orthonormal basis. We can use Gram-Schmidt to come up with the following orthonormal vectors and set them to be the column vectors of $$P$$ as follows
+<div>
+$$
+\begin{align*}
+P &= 
 \begin{pmatrix}
-1 & 0 & 0 \\
-0 & 1 & 0 \\
-0 & -1 & 0
+0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+0 & -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+1 & 0 & 0
 \end{pmatrix}
 \end{align*}
 $$
 </div>
-What about something more complex? like $$ra$$ which is equal to $$c$$ using the multiplication table above. This will be
+The rotation $$\text{Rot}_{e_3}$$ is as follows
 <div>
 $$
 \begin{align*}
-c(x,y,z) &= ra(x,y,z) 
+\text{Rot}_{e_3}(\frac{\pi}{3}\big) &= 
+\begin{pmatrix}
+\frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 \\
+\frac{\sqrt{3}}{2} & \frac{1}{2} & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+Therefore,
+<div>
+$$
+\begin{align*}
+\text{Rot}_{\frac{e_1 + e_2}{\sqrt{2}}}\big(\frac{\pi}{3}\big) &= P \text{Rot}_{e_3}(\frac{\pi}{3}\big) P^{T}
 \\
 &= 
 \begin{pmatrix}
-\cos\frac{2\pi}{3} & - \sin\frac{2\pi}{3} & 0 \\
-\sin\frac{2\pi}{3} & + \cos\frac{2\pi}{3} & 0 \\
-0 & 0 & 1
-\end{pmatrix}
-\begin{pmatrix}
-1 & 0 & 0 \\
-0 & 1 & 0 \\
-0 & -1 & 0
-\end{pmatrix}
-\\
-&=
-\begin{pmatrix}
-\cos\frac{2\pi}{3} & \sin\frac{2\pi}{3} & 0 \\
-\sin\frac{2\pi}{3} & - \cos\frac{2\pi}{3} & 0 \\
-0 & 0 & 1
+\frac{3}{4} & \frac{1}{4} & \frac{\sqrt{3}}{8} \\
+\frac{3}{4} & \frac{3}{4} & -\frac{\sqrt{3}}{8} \\
+-\frac{\sqrt{3}}{8} & \frac{\sqrt{3}}{8} & \frac{1}{2}
 \end{pmatrix}
 \end{align*}
 $$
 </div>
-<br>
-<hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Symmetries of the Rectangle</b></h4>
-How many symmetries does the rectangle have?
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-rect.png" width="30%" class="center"></p>
-
-We can have a rotation $$r_1$$ around the $$y-$$axis as follows
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-rect-r1.png" width="75%" class="center"></p>
-
-We can also have a rotation $$r_2$$ around the $$x-$$axis
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-rect-r2.png" width="75%" class="center"></p>
-
-Finally, we have one more rotation $$r_3$$ around the $$z-$$axis. (the axis coming off the screen toward us from the centroid of the face.)
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-rect-r3.png" width="75%" class="center"></p>
-
-So we have four rotations which make the following group
-<div>
-$$
-\begin{align*}
-G = \{e, r_1, r_2, r_3\}
-\end{align*}
-$$
-</div>
-One thing to notice here that for any rotation in $$G$$, if you apply it twice, you'll get the identity rotation. So each rotation has an order $$2$$. The multiplication table for the symmetries of the rectangle is as follows
-<div>
-<table style="max-width: 500px; margin: 20px auto;">
-  <tr>
-    <td></td>
-    <td>\(e\)</td>
-    <td>\(r_1\)</td>
-	<td>\(r_2\)</td>
-	<td>\(r_3\)</td>
-  </tr>
-  <tr>
-    <td>\(e\)</td>
-    <td>\(e\)</td>
-    <td>\(r_1\)</td>
-	<td>\(r_2\)</td>
-	<td>\(r_3\)</td>
-  </tr>
-  <tr>
-    <td>\(r_1\)</td>
-    <td>\(r_1\)</td>
-    <td>\(r_2\)</td>
-	<td>\(r_3\)</td>
-	<td>\(e\)</td>
-  </tr>
-  <tr>
-    <td>\(r_2\)</td>
-    <td>\(r_2\)</td>
-    <td>\(r_3\)</td>
-	<td>\(e\)</td>
-	<td>\(r_1\)</td>
-  </tr>
-  <tr>
-    <td>\(r_3\)</td>
-    <td>\(r_3\)</td>
-    <td>\(e\)</td>
-	<td>\(r_1\)</td>
-	<td>\(r_2\)</td>
-  </tr>
-</table>
-</div>
+<h4><b>Rotations in Space</b></h4>
+From last lecture, we saw the symmetries of the square. These symmetries can be represented with rotation matrices. We have the identity rotation $$I$$. We can also define the rotation around the axis coming through the centroid of the face ($$z-$$axis in the lecture) as $$R = \text{Rot}_{e_3}(\frac{\pi}{2})$$. Therefore, $$R^2 = \text{Rot}_{e_3}(\pi)$$ and $$R^3 = \text{Rot}_{e_3}(\frac{3\pi}{2})$$.
 <br>
 <br>
-<hr>
+What about the $$180$$ degrees rotation around the $$x-axis$$ labeled as $$a$$ from last time? We can define it as $$A = \text{Rot}_{e_1}(\pi)$$. Similarly, $$B = \text{Rot}_{e_2}(\pi)$$, $$C = \text{Rot}_{\frac{e_1 - e_2}{\sqrt{2}}}(\pi)$$ and $$D = \text{Rot}_{\frac{e_1 + e_2}{\sqrt{2}}}(\pi)$$
+<br>
+<br>
+Rotations in space have also the following properties / identities
+<ol type="a">
+	<li>\(\text{Rot}_u(0) = I\) is the identity matrix where \(u\) is any unit vector.</li>
+	<li>\(\text{Rot}_u(\theta + 2\pi n) = \text{Rot}_u(\theta)\) where \(n \in \mathbf{Z}\).</li>
+	<li>\(\text{Rot}_u(\theta) = \text{Rot}_{-u}(-\theta)\).</li>
+	<li>\(\text{Rot}_u(\theta)^{-1} = \text{Rot}_{u}(-\theta) = \text{Rot}_{-u}(\theta)\).</li>
+	<li>\(\text{Rot}_u(\alpha)Rot_v(\beta) = a\) is a rotation matrix.</li>
+	<li>\(\text{Rot}_u(\alpha)Rot_u(\beta) = Rot_u(\alpha + \beta)\).</li>
+</ol>
+But why is the last statement true? To figure it out, we need to introduce another definition
+<br>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Symmetries of the Square</b></h4>
-What about the symmetries of the square? There are eight of them. First we consider the axis coming through the centroid of the face toward us. There are three rotations around this axis.
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-square-r.png" width="55%" class="center"></p>
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-square-r2.png" width="55%" class="center"></p>
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-square-r3.png" width="55%" class="center"></p>
-
-Next, we can consider the $$x-$$axis or the axis coming through the center of the edges. We can do a $$180$$ degrees rotation around this access (a flip). Call this one $$a$$. 
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-square-a.png" width="55%" class="center"></p>
-
-Similarly, we can do one around the $$y-$$axis.
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-square-b.png" width="55%" class="center"></p>
-
-And then two more through the diagonals of the square.
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-square-c.png" width="55%" class="center"></p>
-
-<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/01-square-d.png" width="55%" class="center"></p>
-
-<div>
-$$
-\begin{align*}
-G = \{e, r, r^2, r^3, a, b, c, d\}
-\end{align*}
-$$
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-
 <div class="mintheaderdiv">
-Definition 1.11.1
+Definition
 </div>
 <div class="mintbodydiv">
+A special orthogonal matrix is an \(A \in Mat_{n \times n}(\mathbf{R})\) such that
 <ol type="a">
-	<li>Under addition, \(R\) is an abelian group.</li>
-	<li>Multiplication is associaive.</li>
-	<li>Multiplication distributes over addition. \(a(b+c) = ab + ac\), and \((b+c)a = ba + ca\) for all \(a,b,c \in R\).</li>
+	<li>\(A^TA = I\). (The orthogonal property)</li>
+	<li>\(\det(A) = \pm 1\). (This is as a result of the fact that \(det(A^{-1}) = \frac{1}{\det(A)}\) and that \(\det(A) = \det(A^T)\)</li> 
 </ol>
 </div>
 <br>
-<br>
+And now we have the following proposition
 <!------------------------------------------------------------------------>
 <div class="peachheaderdiv">
-Proposition 2.5.3
+Proposition
 </div>
 <div class="peachbodydiv">
-<ol type="a">
-	<li>\(a \in bH\).</li>
-	<li>\(b \in aH\).</li>
-	<li>\(aH = bH\).</li>
-	<li>\(b^{-1}a \in H\).</li>
-	<li>\(a^{-1}b \in H\).</li>
-</ol>
+\(A \in Mat_{3 \times 3}(\mathbf{R})\) is a rotation matrix if and only if it is special orthogonal.
 </div>
-<!------------------------------------------------------------------------>
 <br>
+We denote these matrices special matrices with
+<div>
+$$
+\begin{align*}
+SO(n) = \{ A \in Mat_{n \times n} \text{ special orthogonal} \} \subseteq O(n) \subseteq GL_n(\mathbf{R}) 
+\end{align*}
+$$
+</div>
+Observation: $$A, B \in SO(n)$$ implies that $$AB \in SO(n)$$. To show that this is true, we need to show that properties of special orthogonal matrices hold. To see that, observe that
+<ul>
+	<li>\( (AB)^TAB = B^TA^TAB = B^TB = I \)</li>
+	<li>\( \det(AB) = \det(A)\det(B) = 1 \)</li>
+</ul>
+<br>
+Also observe that the identity matrix is in $$SO(n)$$ and that for any $$A \in SO(n)$$, $$A^{-1} = A^{T} \in SO(n)$$. Therefore $$SO(n)$$ is a group with matrix multiplication.
+<br>
+<br>
+So now we know that the collection of special orthogonal matrices is a group. Therefore, if the proposition we introduced earlier holds (where we said that $$A \in Mat_{3 \times 3}(\mathbf{R})$$ is a rotation matrix if and only if it is special orthogonal), then we can also conclude that the product of two rotation matrices is also a rotation matrix. So let's sketch the proof of the proposition
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
+$$\Rightarrow$$ ($$\text{Rot}_u(\theta) \in SO(3)$$):
 <br>
-<br>
-For $$(d)$$ ....
-<br>
-<br>
-<br>
-<!------------------------------------------------------------------------>
-<div class="yellowheaderdiv">
-Theorem 2.5.6 (Lagrange's Theorem)
+Let $$\text{Rot}_u(\theta) = P\text{Rot}_{e_3}(\theta)P^{-1}$$ for some chosen $$P \in O(3)$$. We want to show that $$P\text{Rot}_{e_3}(\theta)P^{-1} \in SO(3)$$. To do so we need to show that if $$A \in SO(n)$$ and $$P \in O(n)$$, then $$PAP^{-1} = PAP^{T} \in SO(3)$$. We can easily show this by verifying the two properties of special orthogonal matrices. For example,
+<div>
+$$
+\begin{align*}
+(PAP^{T})^{T}PAP^{T} &= PA^TP^TPAP^{T} \\
+                     &= PA^TAP^{T} \quad \text{ (because $P \in O(n)$)} \\
+                     &= PP^{T} = I.
+\end{align*}
+$$
 </div>
-<div class="yellowbodydiv">
-k
+The verification that the determinat is 1 is also the same. So now what's left is to show that $$\text{Rot}_{e_3}(\theta)$$ is in $$SO(3)$$. We can verify this because we know the exact matrix of $$\text{Rot}_{e_3}(\theta)$$ so we can computationally verify that it is a special orthogonal matrix. Finally, since $$P \in O(n)$$ and we just showed that $$\text{Rot}_{e_3}(\theta) \in SO(3)$$, then $$P\text{Rot}_{e_3}(\theta)P^{T}$$ is in $$SO(3)$$ as we wanted to show.
+<br>
+<br>
+$$\Leftarrow$$ ($$A \in SO(3) \implies A = \text{Rot}_u(\theta)$$):
+<br>
+For this we'll use the fact that if $$A \in SO(3)$$, then $$1$$ is an eigenvalue of $$A$$. So let $$u$$ be the eigenvector of $$A$$ corresponding to $$\lambda = 1$$ so $$Au = u$$. Choose $$\lVert u \rVert = 1$$. Now let $$u_3 = u$$ and form an orthonormal basis $$\{u_1, u_2, u_3\}$$. Now Let $$P = [u_1 \quad u_2 \quad u_3]$$ and let $$B = P^{-1}AP = P^{T}AP$$. We know that $$Pe_3 = u_3$$ but $$u_3$$ is an eigenvector of $$A$$. 
+<div>
+$$
+\begin{align*}
+Be_3 = P^{-1}APe_3 = P^{-1}Au_3 = P^{-1}u_3 = e_3
+\end{align*}
+$$
 </div>
-<!------------------------------------------------------------------------>
-<br>
-
-
-<br>
+So $$e_3$$ is an eigenvector of $$B$$ ... then by the fact we used in the left direction, we can conclude that $$B \in SO(3)$$ (Why?). So this means that $$B$$ has orthonormal columns since it's in $$SO(3)$$ and the third column specifically is $$e_3$$. So
+<div>
+$$
+\begin{align*}
+B
+&= 
+\begin{pmatrix}
+a & b & 0 \\
+c & d & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+By an algebraic argument we can show that $$a = d = \cos\theta$$ and $$c = -b = \sin\theta$$. So $$B$$ must be $$\text{Rot}_{e_3}$$. Therefore, $$A = P\text{Rot}_{e_3}P^{T}$$....
 <br>
 <br>
 <hr>

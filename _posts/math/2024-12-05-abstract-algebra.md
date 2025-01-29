@@ -13,6 +13,15 @@ mathjax: true
        <li><a href="/jekyll/update/2025/01/25/math417-02-rotations-in-space.html">
        Lecture 02: Rotations in Space
        </a></li>
+       <li><a href="/jekyll/update/2025/01/26/math417-03-permutation-groups-cycle-decomposition.html">
+       Lecture 03/04: Permutation Groups and Cycle Decomposition
+       </a></li>
+       <li><a href="/jekyll/update/2025/01/27/math417-04-integers.html">
+       Lecture 04: Integers, Primes
+       </a></li>
+       <li><a href="/jekyll/update/2025/01/28/math417-05-gcd.html">
+       Lecture 05: Greatest Common Divisor
+       </a></li>
    </ol>
 <br>
 <!------------------------ [1] Algebraic Themes --------------------------->
@@ -28,9 +37,6 @@ mathjax: true
        </a></li>
 	   <li><a href="/jekyll/update/2024/11/01/1.6-z.html">
         [1.6] Z (1.6.1 - 1.6.2)
-       </a></li>
-	   <li><a href="/jekyll/update/2024/11/02/1.6-primes.html">
-        [1.6] Prime Numbers (1.6.4 - 1.6.7)
        </a></li>
 	   <li><a href="/jekyll/update/2024/11/04/1.6-gcd.html">
         [1.6] Greatest Common Divisor (1.6.8 - 1.6.13)

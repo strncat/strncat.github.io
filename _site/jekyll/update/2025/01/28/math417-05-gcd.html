@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 05: Greatest Common Divisor</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-01-28T00:01:36-08:00" itemprop="datePublished">Jan 28, 2025
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div class="mintheaderdiv">
+Definition 1.6.8
+</div>
+<div class="mintbodydiv">
+A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if
+<ol type="a">
+	<li>\(d\) is a common divisor. So \(d\) divides \(a\) and \(b\)</li>
+	<li>Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\)</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\)
+<br />
+<br />
+Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). 
+<br />
+<br />
+<!------------------------------------------------------------------------>
+Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form
+$$
+\begin{align*}
+I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}.
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). This set includes all of the even integers. Therefore, we can just say that this set is the set of all multiples of 2. In other words, \(\mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the \(GCD\) exists and can even be computed. Formally,
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+Let \(a, b \in \mathbf{Z}\). Then
+<ol type="a">
+	<li>For \(a, b\) have a GCD \(d \geq 0\).</li>
+	<li>\(I(a,b) = \mathbf{Z}d\).</li>
+	<li>\(d\) is computed by the Euclidean algorithm.</li>
+</ol>
+</div>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>The Euclidean Algorithm</b></h4>
+<p>Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). 
+<br />
+Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by</p>
+<div>
+  $$
+  \begin{equation*}
+  F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases}
+  \end{equation*}
+  $$
+</div>
+<p>\(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)).
+<br />
+<br />
+<b>Euclidean Algorithm:</b> Iterate \(F\) until stable.
+<br />
+<br />
+Example:</p>
+<div>
+  $$
+  \begin{align*}
+  (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0)
+  \end{align*}
+  $$
+</div>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>MATH417 by Charles Rezk</li>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>
+
+
+  </div><div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2025/01/28/math417-05-gcd.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2025/01/28/math417-05-gcd; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/jekyll/update/2025/01/28/math417-05-gcd.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

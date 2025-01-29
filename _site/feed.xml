@@ -1,4 +1,621 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-25T19:32:30-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 02: Rotations in Space</title><link href="http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space.html" rel="alternate" type="text/html" title="Lecture 02: Rotations in Space" /><published>2025-01-25T00:01:36-08:00</published><updated>2025-01-25T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space.html"><![CDATA[<p>A group is a set with a defined product. This product is associative. The group is closed under this product. We have an identity element and each element has an inverse. Formally,
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-29T08:50:27-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 05: Greatest Common Divisor</title><link href="http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd.html" rel="alternate" type="text/html" title="Lecture 05: Greatest Common Divisor" /><published>2025-01-28T00:01:36-08:00</published><updated>2025-01-28T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd.html"><![CDATA[<div class="mintheaderdiv">
+Definition 1.6.8
+</div>
+<div class="mintbodydiv">
+A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if
+<ol type="a">
+	<li>\(d\) is a common divisor. So \(d\) divides \(a\) and \(b\)</li>
+	<li>Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\)</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\)
+<br />
+<br />
+Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). 
+<br />
+<br />
+<!------------------------------------------------------------------------>
+Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form
+$$
+\begin{align*}
+I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}.
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). This set includes all of the even integers. Therefore, we can just say that this set is the set of all multiples of 2. In other words, \(\mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the \(GCD\) exists and can even be computed. Formally,
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+Let \(a, b \in \mathbf{Z}\). Then
+<ol type="a">
+	<li>For \(a, b\) have a GCD \(d \geq 0\).</li>
+	<li>\(I(a,b) = \mathbf{Z}d\).</li>
+	<li>\(d\) is computed by the Euclidean algorithm.</li>
+</ol>
+</div>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>The Euclidean Algorithm</b></h4>
+<p>Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). 
+<br />
+Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by</p>
+<div>
+  $$
+  \begin{equation*}
+  F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases}
+  \end{equation*}
+  $$
+</div>
+<p>\(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)).
+<br />
+<br />
+<b>Euclidean Algorithm:</b> Iterate \(F\) until stable.
+<br />
+<br />
+Example:</p>
+<div>
+  $$
+  \begin{align*}
+  (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0)
+  \end{align*}
+  $$
+</div>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>MATH417 by Charles Rezk</li>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 1.6.8 A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if \(d\) is a common divisor. So \(d\) divides \(a\) and \(b\) Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\) If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\) Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing Definition Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form $$ \begin{align*} I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}. \end{align*} $$ For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). This set includes all of the even integers. Therefore, we can just say that this set is the set of all multiples of 2. In other words, \(\mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the \(GCD\) exists and can even be computed. Formally, Theorem Let \(a, b \in \mathbf{Z}\). Then For \(a, b\) have a GCD \(d \geq 0\). \(I(a,b) = \mathbf{Z}d\). \(d\) is computed by the Euclidean algorithm. The Euclidean Algorithm Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by $$ \begin{equation*} F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases} \end{equation*} $$ \(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)). Euclidean Algorithm: Iterate \(F\) until stable. Example: $$ \begin{align*} (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0) \end{align*} $$]]></summary></entry><entry><title type="html">Lecture 04: Integers</title><link href="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html" rel="alternate" type="text/html" title="Lecture 04: Integers" /><published>2025-01-27T00:01:36-08:00</published><updated>2025-01-27T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html"><![CDATA[<p>Some facts about the integers</p>
+<ul>
+	<li>\((\mathbf{Z}, +)\) is a commutative group. \(+\) is associative and commutative. The identity element is \(0\) and each element \(a\)'s inverse is \(-a\).</li>
+	<li>\((\mathbf{Z}, \cdot)\) is a commutative monoid. \(\cdot\) is associative and commutative. The identity element is \(1\). (No inverses required)</li>
+	<li>Distributive Law: \(a(b+c) = (ab) + (ac), \forall a,b,c \in \mathbf{Z}\). (side note: the list of properties so far for reference imply that \(\mathbf{Z}\) is a commutative ring with unit.</li>
+	<li>\(\mathbf{Z} / \{0\}\) is closed under multiplication. In other words, if \(a \neq, b \neq 0\), then \(ab \neq 0\) We can also re-write this by taking its contrapositive so \(ab = 0\) implies that \(a = 0\) or \(b = 0\).</li>
+	<li>\(\mathbf{N} = \mathbf{Z}_{&gt;0}\) is closed under \(+\) and \(\cdot\).</li>
+	<li>If \(a, b \in \mathbf{Z} / \{0\}\), then \( |ab| \geq \max\{|a|,|b|\} \). (Note that \(a &gt; b\) means that \(a - b \in \mathbf{Z}_{&gt;0}\).)</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Divisibility</b></h4>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Let \(a, b \in \mathbf{Z}\). \(a\) <b>divides</b> \(b\) (write \(a | b\)) if there exists \(m \in \mathbf{Z}\) such that \(am = b\).
+<br />
+(We also say that \(a\) is a factor of \(b\) or \(b\) is a multiple of \(a\)).
+<br />
+In fact, \(a|b\) if and only if \(\frac{b}{a} \in \mathbf{Z} \text{if $a \neq 0$}\).
+</div>
+<p><br />
+The factors or divisors of \(6\) for example are \(\{\pm 1, \pm 2, \pm 3, \pm 6\}\) while the divisors of \(0\) are all of \(\mathbf{Z}\). We also have the set of all multiplies of integer \(a\) so if \(a\) is 7, then the set is \(\{...,-14,-7,0,7,14,21,...\}\). Notation: we will denote the set of all multiples as</p>
+<div> 
+$$
+\begin{align*}
+\mathbf{Z}a = \{na \ | \ n \in \mathbf{Z}\}
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Divisibility Properties</b></h4>
+<p>The following are some well known propositions about divisibility.</p>
+<ol>
+	<li>If \(a | b\) and \(b | a\), then \(b \in \{\pm a\}\)</li>
+	<li>If \(a | 1\), then \(a \in \{\pm 1\}\)</li>
+	<li>If \(a | b\) and \(b | c\), then \(a | c\)</li>
+	<li>If \(a | b\) and \(a | c\), then \(a | (b + c)\)</li>
+	<li>If \(a | b\) and \(a | c\), then \(a | (mb + nc) \quad \forall m, n \in \mathbf{Z}\)</li>
+</ol>
+<p>Note that</p>
+<div> 
+$$
+\begin{align*}
+a | b \Leftrightarrow b \in \mathbf{Z}a \Leftrightarrow \mathbf{Z}b \subseteq \mathbf{Z}c
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Prime Numbers</b></h4>
+<div class="mintheaderdiv">
+Definition 1.6.3
+</div>
+<div class="mintbodydiv">
+A natural number is prime if (i) \(n &lt; 1\) and (ii) the only positive divisors of \(n\) are \(\{1, n\}\).
+</div>
+<p><br />
+<br />
+<!-------------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 1.6.4
+</div>
+<div class="peachbodydiv">
+Every \(n \in \mathbf{N}\) greater than 1 is equal to a product of primes (at least one).
+</div>
+<p><br />
+<!------------------------------------------------------------------------------->
+<b>Proof</b><br />
+By Induction on \(n \geq 2\). 
+<br />
+Base Case: \(n = 2:\) 2 is a prime so it’s a product of one prime.
+<br />
+<br />
+Inductive Case \(n &gt; 2\): 
+<br />
+Suppose that inductive hypothesis is true for any number \(r\) where \(2 \leq r &lt; n\). Now, take \(n\). We have two cases. If \(n\) is a prime number, then \(n\) is a product of primes and we’re done. Otherwise, \(n\) is not a prime and has divisors other than \(1\) or itself. Let these divisors be \(a\) and \(b\) so that \(n = ab\). \(a\) and \(b\) are not \(n\) or \(1\) so we know that \(1 &lt; a &lt; n\) and \(1 &lt; b &lt; n\). We can now apply the inductive hypothesis to conclude that both \(a\) and \(b\) can be written as a product of primes. Therefore, \(n = ab\) is also a product of primes. \(\ \blacksquare\) 
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem 1.6.6 (Euclid)
+</div>
+<div class="yellowbodydiv">
+There are infinitely many prime numbers.
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+Suppose for the sake of contradiction that there are finitely many primes \(p_1,p_2,...,p_k\). Consider \(p = p_1p_2...p_k + 1 \in \mathbf{N}\). We know that \(p\) is greater than any of the primes \(p_1,p_2,...,p_k\). Observe now that none of these primes \(p_1, p_2,...,p_k\) can divide \(p\). Why? because if any of these primes did (say it was \(p_i\)), then this means that \(p_i \ | \ n\). But \(p_i\) also divides the product \(p_1p_2...p_k\). By the last fact of integers above, then \(p_i \ | \ (n - p_1p_2...p_k)\). So \(p_i \ | \ 1\). But that’s impossible so \(p_i\) can’t divide \(n\). But by Proposition 1.6.4, \(p\) must be a product of primes. Therefore, there must be another prime or \(p\) itself is a prime. This is a contradiction and so we can conclude that there are infinitely many primes. \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Divison with Remainder</b></h4>
+<p>The way we learn division is this. Given \(a, d \in \mathbf{Z}, d &gt; 0\), then \(\frac{a}{d} = q + \frac{r}{d}\). The quotient, \(q \in \mathbf{Z}\) and the remainder \(r \in \mathbf{Z}\). Moreover, \(\frac{r}{d} \in [0,1)\). Stated differently,
+<br /></p>
+<div class="peachheaderdiv">
+Proposition 1.6.7
+</div>
+<div class="peachbodydiv">
+Given integers \(a\) and \(d \in \mathbf{Z}\) with \(d \geq 1\), there exists unique integers \(q\) and \(r\) such that 
+$$
+\begin{align*}
+a = qd + r
+\end{align*}
+$$
+where \(0 \leq r &lt; d\). 
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+<br />
+<b>Proof: (from my own notes (reading the book))</b>
+<br />
+<br />
+We are given \(a\) and \(d\) such that \(d \geq 1\). <br />
+We want to find unique integers \(q\) and \(r\) such that \(r &lt; d\).
+<br />
+<br />
+We have two cases:
+<br />
+\(a \geq 0\): If \(d &gt; a\), then we just take \(q = 0\) and \(r = a\).<br />
+Otherwise, suppose that \(d \leq a\). By Induction on a. Assume that for all non-negative integers smaller than \(a\), we can find such integers. In particular, suppose it holds for \(a - d\), then there exists integers \(q'\) and \(r\) such that</p>
+<div> 
+$$
+\begin{align*}
+(a - d) &amp;= q'd + r \quad (\text{where } 0 \leq r &lt; d) \\
+a &amp;= q'd + d + r \\
+a &amp;= q'(d + 1) + r 
+\end{align*}
+$$
+</div>
+<p>And we are done.
+<br />
+<br />
+Case \(a &gt; 0\): If \(a\) is divisible by \(d\), then there exists integer \(q\) such that \(a = qd\). So we can set \(r = 0\) and we are done.
+<br />
+Otherwise, \(-a &gt; 0\) so by the first case (\(a \geq 0\)) there exists integers \(q'\) and \(r'\) such that \(-a = q'd + r'\) with \(0 &lt; r' &lt; d\). So</p>
+<div> 
+$$
+\begin{align*}
+-a &amp;= q'd + r' \\
+a &amp;= -q'd - r' \\
+a &amp;= -q'd - d + d - r' \\
+a &amp;= (-q' - 1)d + (d - r') \\
+  &amp;= (-q' - 1)d + (d - r').
+\end{align*}
+$$
+</div>
+<p>So \(q = (-q' - 1)\) and \(r = d - r'\) with \(0 &lt; d - r' &lt; d\) and we are done.
+<br />
+<br />
+To show that \(q\) and \(r\) are unique, suppose for the sake of contradiction that they are not. Therefore suppose that \(a = qd + r = q'd + r'\) where \(0 \leq r,r' &lt; d\). Subtracting the equations, we see that</p>
+<div> 
+$$
+\begin{align*}
+(q - q')d = r - r'
+\end{align*}
+$$
+</div>
+<p>But this means that \(r - r'\) is divisible by d. However \(|r - r'| \leq \max\{r,r'\} &lt; d\), so we must have \(|r - r'| = 0\). This implies that \((q' - q)d = 0\) and so \(q' = q\) as we wanted to show. \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>MATH417 by Charles Rezk</li>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Some facts about the integers \((\mathbf{Z}, +)\) is a commutative group. \(+\) is associative and commutative. The identity element is \(0\) and each element \(a\)'s inverse is \(-a\). \((\mathbf{Z}, \cdot)\) is a commutative monoid. \(\cdot\) is associative and commutative. The identity element is \(1\). (No inverses required) Distributive Law: \(a(b+c) = (ab) + (ac), \forall a,b,c \in \mathbf{Z}\). (side note: the list of properties so far for reference imply that \(\mathbf{Z}\) is a commutative ring with unit. \(\mathbf{Z} / \{0\}\) is closed under multiplication. In other words, if \(a \neq, b \neq 0\), then \(ab \neq 0\) We can also re-write this by taking its contrapositive so \(ab = 0\) implies that \(a = 0\) or \(b = 0\). \(\mathbf{N} = \mathbf{Z}_{&gt;0}\) is closed under \(+\) and \(\cdot\). If \(a, b \in \mathbf{Z} / \{0\}\), then \( |ab| \geq \max\{|a|,|b|\} \). (Note that \(a &gt; b\) means that \(a - b \in \mathbf{Z}_{&gt;0}\).) Divisibility Definition Let \(a, b \in \mathbf{Z}\). \(a\) divides \(b\) (write \(a | b\)) if there exists \(m \in \mathbf{Z}\) such that \(am = b\). (We also say that \(a\) is a factor of \(b\) or \(b\) is a multiple of \(a\)). In fact, \(a|b\) if and only if \(\frac{b}{a} \in \mathbf{Z} \text{if $a \neq 0$}\). The factors or divisors of \(6\) for example are \(\{\pm 1, \pm 2, \pm 3, \pm 6\}\) while the divisors of \(0\) are all of \(\mathbf{Z}\). We also have the set of all multiplies of integer \(a\) so if \(a\) is 7, then the set is \(\{...,-14,-7,0,7,14,21,...\}\). Notation: we will denote the set of all multiples as $$ \begin{align*} \mathbf{Z}a = \{na \ | \ n \in \mathbf{Z}\} \end{align*} $$ Divisibility Properties The following are some well known propositions about divisibility. If \(a | b\) and \(b | a\), then \(b \in \{\pm a\}\) If \(a | 1\), then \(a \in \{\pm 1\}\) If \(a | b\) and \(b | c\), then \(a | c\) If \(a | b\) and \(a | c\), then \(a | (b + c)\) If \(a | b\) and \(a | c\), then \(a | (mb + nc) \quad \forall m, n \in \mathbf{Z}\) Note that $$ \begin{align*} a | b \Leftrightarrow b \in \mathbf{Z}a \Leftrightarrow \mathbf{Z}b \subseteq \mathbf{Z}c \end{align*} $$ Prime Numbers Definition 1.6.3 A natural number is prime if (i) \(n &lt; 1\) and (ii) the only positive divisors of \(n\) are \(\{1, n\}\). Proposition 1.6.4 Every \(n \in \mathbf{N}\) greater than 1 is equal to a product of primes (at least one). Proof By Induction on \(n \geq 2\). Base Case: \(n = 2:\) 2 is a prime so it’s a product of one prime. Inductive Case \(n &gt; 2\): Suppose that inductive hypothesis is true for any number \(r\) where \(2 \leq r &lt; n\). Now, take \(n\). We have two cases. If \(n\) is a prime number, then \(n\) is a product of primes and we’re done. Otherwise, \(n\) is not a prime and has divisors other than \(1\) or itself. Let these divisors be \(a\) and \(b\) so that \(n = ab\). \(a\) and \(b\) are not \(n\) or \(1\) so we know that \(1 &lt; a &lt; n\) and \(1 &lt; b &lt; n\). We can now apply the inductive hypothesis to conclude that both \(a\) and \(b\) can be written as a product of primes. Therefore, \(n = ab\) is also a product of primes. \(\ \blacksquare\) Theorem 1.6.6 (Euclid) There are infinitely many prime numbers. Proof Suppose for the sake of contradiction that there are finitely many primes \(p_1,p_2,...,p_k\). Consider \(p = p_1p_2...p_k + 1 \in \mathbf{N}\). We know that \(p\) is greater than any of the primes \(p_1,p_2,...,p_k\). Observe now that none of these primes \(p_1, p_2,...,p_k\) can divide \(p\). Why? because if any of these primes did (say it was \(p_i\)), then this means that \(p_i \ | \ n\). But \(p_i\) also divides the product \(p_1p_2...p_k\). By the last fact of integers above, then \(p_i \ | \ (n - p_1p_2...p_k)\). So \(p_i \ | \ 1\). But that’s impossible so \(p_i\) can’t divide \(n\). But by Proposition 1.6.4, \(p\) must be a product of primes. Therefore, there must be another prime or \(p\) itself is a prime. This is a contradiction and so we can conclude that there are infinitely many primes. \(\ \blacksquare\) Divison with Remainder The way we learn division is this. Given \(a, d \in \mathbf{Z}, d &gt; 0\), then \(\frac{a}{d} = q + \frac{r}{d}\). The quotient, \(q \in \mathbf{Z}\) and the remainder \(r \in \mathbf{Z}\). Moreover, \(\frac{r}{d} \in [0,1)\). Stated differently, Proposition 1.6.7 Given integers \(a\) and \(d \in \mathbf{Z}\) with \(d \geq 1\), there exists unique integers \(q\) and \(r\) such that $$ \begin{align*} a = qd + r \end{align*} $$ where \(0 \leq r &lt; d\). Proof: (from my own notes (reading the book)) We are given \(a\) and \(d\) such that \(d \geq 1\). We want to find unique integers \(q\) and \(r\) such that \(r &lt; d\). We have two cases: \(a \geq 0\): If \(d &gt; a\), then we just take \(q = 0\) and \(r = a\). Otherwise, suppose that \(d \leq a\). By Induction on a. Assume that for all non-negative integers smaller than \(a\), we can find such integers. In particular, suppose it holds for \(a - d\), then there exists integers \(q'\) and \(r\) such that $$ \begin{align*} (a - d) &amp;= q'd + r \quad (\text{where } 0 \leq r &lt; d) \\ a &amp;= q'd + d + r \\ a &amp;= q'(d + 1) + r \end{align*} $$ And we are done. Case \(a &gt; 0\): If \(a\) is divisible by \(d\), then there exists integer \(q\) such that \(a = qd\). So we can set \(r = 0\) and we are done. Otherwise, \(-a &gt; 0\) so by the first case (\(a \geq 0\)) there exists integers \(q'\) and \(r'\) such that \(-a = q'd + r'\) with \(0 &lt; r' &lt; d\). So $$ \begin{align*} -a &amp;= q'd + r' \\ a &amp;= -q'd - r' \\ a &amp;= -q'd - d + d - r' \\ a &amp;= (-q' - 1)d + (d - r') \\ &amp;= (-q' - 1)d + (d - r'). \end{align*} $$ So \(q = (-q' - 1)\) and \(r = d - r'\) with \(0 &lt; d - r' &lt; d\) and we are done. To show that \(q\) and \(r\) are unique, suppose for the sake of contradiction that they are not. Therefore suppose that \(a = qd + r = q'd + r'\) where \(0 \leq r,r' &lt; d\). Subtracting the equations, we see that $$ \begin{align*} (q - q')d = r - r' \end{align*} $$ But this means that \(r - r'\) is divisible by d. However \(|r - r'| \leq \max\{r,r'\} &lt; d\), so we must have \(|r - r'| = 0\). This implies that \((q' - q)d = 0\) and so \(q' = q\) as we wanted to show. \(\ \blacksquare\) References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 03: Permutation Groups, Cycle Decomposition</title><link href="http://localhost:4000/jekyll/update/2025/01/26/math417-03-permutation-groups-cycle-decomposition.html" rel="alternate" type="text/html" title="Lecture 03: Permutation Groups, Cycle Decomposition" /><published>2025-01-26T00:01:36-08:00</published><updated>2025-01-26T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/26/math417-03-permutation-groups-cycle-decomposition</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/26/math417-03-permutation-groups-cycle-decomposition.html"><![CDATA[<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Let \(X\) be a set. Define the <b>permutation</b> of \(X\) as a bijection from the set to itself (\(f: X \rightarrow X\)). Let \(Sym(X)\) be the set of all bijections from \(X\) to itself (\(X \rightarrow X\)).
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+\(Sym(X)\) equipped with the composition of functions operation is a group. To see this observe that</p>
+<ul>
+<li>\(id: X \rightarrow X, id(x) = x\) is the identity element.</li>
+<li>Composition of functions is associative.</li>
+<li>The composition of two permutations is another permutation.</li>
+<li>Bijections have inverses and the inverse of a bijection is another bijection.</li>
+</ul>
+<p>This group is often denoted by the <b>Permutation Group</b> or more often the <b>Symmetric Group</b>.
+<br />
+<br />
+The standard example for the case of finite sets is the standard set \(X = \{1,2,...,n\}\). The symmetric group has a special name called \(S_n\),</p>
+<div>
+$$
+\begin{align*}
+S_n = Sym(\{1,2,...,n\})
+\end{align*}
+$$
+</div>
+<p>The size of \(S_n\) is \(|S_n| = n!\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Two Line Notation</b></h4>
+<p>Let \(\rho, \psi \in S_4\), then we’ll write</p>
+<div>
+	$$
+	\begin{align*}
+	 \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; 4 &amp; 3 &amp; 2\end{pmatrix}
+	\end{align*}
+	$$
+</div>
+<p>shows that \(\rho(1) = 1\), \(\rho(2) = 4\), \(\rho(3) = 3\) and \(\rho(4) = 2\). Similarly,</p>
+<div>
+	$$
+	\begin{align*}
+	 \psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 2 &amp; 1 &amp; 3\end{pmatrix}
+	\end{align*}
+	$$
+</div>
+<p>shows that \(\psi(1) = 4\), \(\psi(2) = 2\), \(\psi(3) = 1\) and \(\psi(4) = 3\). Finally,</p>
+<div>
+	$$
+	\begin{align*}
+	 \rho\psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 2 &amp; 4 &amp; 1 &amp; 3\end{pmatrix} \in S_4
+	\end{align*}
+	$$
+</div>
+<p>so \(\rho\psi(1) = 2\), \(\rho\psi(2) = 4\), \(\rho\psi(3) = 1\) and \(\rho\psi(4) = 3\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Cycle Notation</b></h4>
+<p>We can decompose the cycles in each permutation above. For example for the first permutation</p>
+<div>
+	$$
+	\begin{align*}
+	 \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; 4 &amp; 3 &amp; 2\end{pmatrix}
+	\end{align*}
+	$$
+</div>
+<p>We can decompose this permutation into the following</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec03/1.png" width="20%" class="center" /></p>
+<p>In this permutation, we have a cycle of length \(2\) For the second permutation</p>
+<div>
+	$$
+	\begin{align*}
+	 \psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 2 &amp; 1 &amp; 3\end{pmatrix}
+	\end{align*}
+	$$
+</div>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec03/2.png" width="20%" class="center" /></p>
+<p>we have a cycle of length \(3\). 
+<br />
+<br />
+To describe a cycle, we can use <b>cycle notation</b> which is defined as follows
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Let \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) where \(a_1,...,a_k \in X\) are distinct. \(\sigma\) is defined by
+	$$
+	\begin{align*}
+	 \sigma(a_i) &amp;= a_{i+1}, \quad i = 1,...,k-1 \\
+	 \sigma(a_k) &amp;= a_1 \\
+	 \sigma(x) &amp;= x, \quad \text{if} x \notin \{a_1,...,a_k\} \\
+	\end{align*}
+	$$
+</div>
+<p><br />
+So we can write the first permutation with cycle notation as \((2,4)\) only since by definition for the other elements \(\sigma(x)=x\), while the second permutation can be written as \((1,4,3)\). 
+<br />
+<br />
+What about the following example?</p>
+<div>
+	$$
+	\begin{align*}
+	 \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5\\ 3 &amp; 5 &amp; 4 &amp; 1 &amp; 2\end{pmatrix}
+	\end{align*}
+	$$
+</div>
+<p>Note here that we have two disjoint cycles. \((1 \quad 4 \quad 3)\) where \(1\) goes to \(3\) and \(3\) goes to \(4\) and \(4\) goes back to \(1\) and \((2 \quad 5)\) where \(2\) goes to \(5\) and \(5\) goes back to \(2\). This permutation can be written as</p>
+<div>
+	$$
+	\begin{align*}
+	 (1 \quad 3 \quad 4)(2 \quad 5)
+	\end{align*}
+	$$
+</div>
+<!------------------------------------------------------------------------>
+<h4><b>Facts</b></h4>
+<p>Some facts about the cycle notation</p>
+<ul>
+<li>\((1) = (2) = ... (n) = id\). All of these represent the identity permutations.</li>
+<li>The order of the elements in a cycle matters up to "cyclic permutation". \((1 \quad 2 \quad 3 \quad 4) = (2 \quad 3 \quad 4 \quad 1) \neq (1 \quad 3 \quad 4 \quad 2)\)</li>
+<li>For the inverse of a permutation, we just reverse the order of elements so \((a_1 \quad a_2 \quad ... \quad a_k)^{-1} = (a_k \quad a_{k-1} \quad ... \quad a_1)\)</li>
+<li>Two cycles \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) and \(\tau = (b_1 \quad b_{2} \quad ... \quad b_l) \in Sym(X)\) are disjoint if \(\{a_1,a_2,...,a_k\} \cap \{b_1,b_2,...,b_l\} = \emptyset\). Moreover, if the two sets are disjoint, then \(\sigma \circ \tau = \tau \circ \sigma\). This means that the permutation above that we described with \((1 \quad 3 \quad 4)(2 \quad 5)\) can also be written as \((2 \quad 5)(1 \quad 3 \quad 4)\)</li>
+</ul>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+Every non-id element in \(Sym(X)\) where \(X\) is finite can be written as a product of pairwise disjoint cycles (of length \(\geq 2\) uniquely up to re-ordering.
+</div>
+<p><br />
+Suppose we have \(\sigma = (1 \quad 3)(2 \quad 7 \quad 8)(4 \quad 5 \quad 6)(9) \in S_9\). Any of the cycles in this notation are pairwise disjoint. We have 3 disjoint cycles where \(9\) is fixed.
+<br />
+<br />
+The proof for this theorem is in the class notes.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Cycle Type</b></h4>
+<p>We can classify permutations of a finite set into groups corresponding to the number of cycles of various lengths in their cycle decomposition.
+<br />
+<br />
+For example for \(S_2\), we have two elements and so we have two permutations</p>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td>\(1 + 1\)</td>
+    <td>\(id = (1)(2)\)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\((1 \quad 2)\)</td>
+  </tr>
+</table>
+<p>For \(S_3\),</p>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td>\(1 + 1 + 1\)</td>
+    <td>\(id = (1)(2)(3)\)</td>
+  </tr>
+  <tr>
+    <td>\(2 + 1\)</td>
+    <td>\((1 \quad 2),(1 \quad 3),(2 \quad 3)\)</td>
+  </tr>
+  <tr>
+    <td>\(3\)</td>
+    <td>\((1 \quad 2 \quad 3),(1 \quad 3 \quad 2)\)</td>
+  </tr>
+</table>
+<p>For \(S_4\),</p>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td>\(1 + 1 + 1 + 1\)</td>
+    <td>\(id = (1)(2)(3)(4)\)</td>
+  </tr>
+  <tr>
+    <td>\(2 + 1 + 1\)</td>
+    <td>\((1 \quad 2),(1 \quad 3),(1 \quad 4),(2 \quad 3),(2 \quad 4),(3 \quad 4)\)</td>
+  </tr>
+  <tr>
+    <td>\(2 + 2\)</td>
+    <td>\((1 \quad 2)(3 \quad 4),(1 \quad 3)(2 \quad 4),(1 \quad 4)(2 \quad 3)\)</td>
+  </tr>
+  <tr>
+    <td>\(3 + 1\)</td>
+    <td>\((1 \quad 2 \quad 3),(1 \quad 2 \quad 4)\),\((1 \quad 3 \quad 4),(2 \quad 3 \quad 4),(1 \quad 3 \quad 2)\),\((1 \quad 4 \quad 2),(1 \quad 4 \quad 3),(2 \quad 4 \quad 3)\)</td>
+  </tr>
+  <tr>
+    <td>\(4\)</td>
+    <td>\((1 \quad 2 \quad 3 \quad 4),(1 \quad 2 \quad 4 \quad 3)\),\((1 \quad 3 \quad 2 \quad 4),(1 \quad 3 \quad 4 \quad 2)\),\((1 \quad 4 \quad 2 \quad 3),(1 \quad 4 \quad 3 \quad 2)\)</td>
+  </tr>
+</table>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>The Order of an Element</b></h4>
+<p>(Start of lecture 4). The first concept that we will talk about is the order of an element in a group.
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Suppose we have a group \((G, \cdot)\) and let \(a \in G\). The order of \(a\) is the smallest positive integer \(n\) such that \(a^n = e\) (or infinite). \(\text{order}(a) \in \mathbf{N} \cup \{\infty\}\).
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+For example let \(\sigma = (1 \quad 2 \quad 3 \quad 4) \in S_5\) The order of \(\sigma\), \(\text{order}(\sigma)\) is \(4\). This is because it will take \(\sigma^4\) will finally get us back to the identity permutation. In fact that the order of a \(k-\)cycle is \(k\).
+<br />
+<br />
+What about \(\tau =  (1 \quad 2)(3 \quad 4 \quad 5)\)? \(\text{order}(\tau) = 6\) because we have to iterate the operation \(6\) times to get to the identity element. Specifically, we have two disjoint cycles and since they are disjoint, then they operate independently. So we need to find \(n\) such that both of the cycles will return to the identity permutation</p>
+<div>
+$$
+\begin{align*}
+(1 \quad 2)^n &amp;= e \\
+(3 \quad 4 \quad 5)^n &amp;= e
+\end{align*}
+$$
+</div>
+<p>This \(n\) must be then the least common multiple of \(2\) and \(3\) which is \(6\).
+<br />
+<br />
+What about \(\nu =  (1 \quad 2)(2 \quad 3 \quad 4)\)? Note here that the two cycles are not disjoint. It’s not clear here what it would be so drawing this permutation might make this very obvious.</p>
+
+<p>[TODO:PIC]</p>
+
+<p>From this we see that \(\text{order}(\nu) = 4\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Parity of a Permutation</b></h4>
+<p>The second concept that we want to talk about is the parity of a permutation but first we’ll start with the following proposition.
+<br /></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Every permutation of a finite set is equal to some product of transpositions (a transposition is  2-cycle) not necessarily disjoint.
+</div>
+<p><br />
+<!------------------------------------------------------------------------>
+For example we can write \((1 \quad 2 \quad 3 \quad 4)\) as \((1 \quad 2)(2 \quad 3)(3 \quad 4)\). 
+<br />
+<br />
+Next, we have the following proposition
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(\sigma\) is a permutation of a finite set and if \(\sigma = \tau_1\tau_2...\tau_k = \nu_1\nu_2...\nu_l\) where each of \(\tau_i\) and \(\nu_j\) are transpositions, then either \(k,l\) are both even, or are both odd. i.e. \((-1)^k = (-1)^l\)
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+Because of this we can classify permutations as even or odd. We also get the fact that composing two even permutations is another even permutations and composing an even permutation with an odd permutation is an odd permutation.
+<br />
+<br />
+<!------------------------------------------------------------------------>
+<b>Proof</b> (there is an alternative proof in the notes)
+<br />
+Define a function \(sgn: S_n \rightarrow \{\pm 1\}\) such that</p>
+<ol>
+	<li>\(sgn(id) = +1\)</li>
+	<li>\(sgn(\sigma \circ \tau) = sgn(\sigma)sgn(\tau)\)</li>
+	<li>If \(\tau\) is a transposition, then \(sgn(\tau) = -1\)</li>
+</ol>
+<p>So now given a permutation \(\sigma \in S_n\), there is a corresponding permutation matrix \(A_{\sigma} \in GL_{n}(\mathbf{R})\). \(A_{\sigma}\) has the standard basis vectors but permuted according to the permutation \(\sigma\). For example</p>
+<div>
+$$
+\begin{align*}
+A_{(1 \quad 2 \quad 3)}
+&amp;= 
+\begin{pmatrix}
+0 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>So</p>
+<div>
+$$
+\begin{align*}
+A_{\sigma}
+&amp;= 
+\begin{pmatrix}
+e_{\sigma(1)} &amp; e_{\sigma(2)} &amp; ... &amp; e_{\sigma(n)}
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>where \(e_{\sigma(k)}\) is the standard column vector \(e_k\) permuted according to \(\sigma(k)\). 
+<br />
+<br />
+The permutation matrix \(A_{\sigma}\) is useful in that left multiplication by \(A_{\sigma}\) permutes the subset \(\{e_1,...,e_n\} \in \mathbf{R}^n\) according to \(\sigma\). So</p>
+<div>
+$$
+\begin{align*}
+A_{\sigma}e_k = e_{\sigma(k)}
+\end{align*}
+$$
+</div>
+<p>This actually leads to a formula</p>
+<div>
+$$
+\begin{align*}
+A_{\sigma}A_{\tau} = A_{\sigma \circ \tau}
+\end{align*}
+$$
+</div>
+<p>This is because</p>
+<div>
+$$
+\begin{align*}
+A_{\sigma}A_{\tau}e_k = A_{\sigma}e_{\tau(k)} = e_{\sigma(\tau(k))} \leftrightarrow A_{\sigma \circ \tau}e_k = e_{(\sigma \circ \tau)(k)}
+\end{align*}
+$$
+</div>
+<p>So now define: \(sgn(\sigma) = \det(A_{\sigma})\) where \(sgn: S_n \rightarrow \{\pm 1\}\). This function satisfies the three properties we defined for the \(sgn\) function above.</p>
+<ol>
+	<li>\(sgn(id) = +1\). This is true because the permutation matrix for the identity permutation is the identity matrix.</li>
+	<li>\(sgn(\sigma \circ \tau) = sgn(\sigma)sgn(\tau)\). This follows from the product property of the determinant. \(\det(AB) = \det(A)\det(B)\).</li>
+	<li>If \(\tau\) is a transposition, then \(sgn(\tau) = -1\). This also follows from the fact that interchanging any two columns from a matrix results in switching the sign of the determinant.</li>
+</ol>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>MATH417 by Charles Rezk</li>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition Let \(X\) be a set. Define the permutation of \(X\) as a bijection from the set to itself (\(f: X \rightarrow X\)). Let \(Sym(X)\) be the set of all bijections from \(X\) to itself (\(X \rightarrow X\)). \(Sym(X)\) equipped with the composition of functions operation is a group. To see this observe that \(id: X \rightarrow X, id(x) = x\) is the identity element. Composition of functions is associative. The composition of two permutations is another permutation. Bijections have inverses and the inverse of a bijection is another bijection. This group is often denoted by the Permutation Group or more often the Symmetric Group. The standard example for the case of finite sets is the standard set \(X = \{1,2,...,n\}\). The symmetric group has a special name called \(S_n\), $$ \begin{align*} S_n = Sym(\{1,2,...,n\}) \end{align*} $$ The size of \(S_n\) is \(|S_n| = n!\). Two Line Notation Let \(\rho, \psi \in S_4\), then we’ll write $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; 4 &amp; 3 &amp; 2\end{pmatrix} \end{align*} $$ shows that \(\rho(1) = 1\), \(\rho(2) = 4\), \(\rho(3) = 3\) and \(\rho(4) = 2\). Similarly, $$ \begin{align*} \psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 2 &amp; 1 &amp; 3\end{pmatrix} \end{align*} $$ shows that \(\psi(1) = 4\), \(\psi(2) = 2\), \(\psi(3) = 1\) and \(\psi(4) = 3\). Finally, $$ \begin{align*} \rho\psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 2 &amp; 4 &amp; 1 &amp; 3\end{pmatrix} \in S_4 \end{align*} $$ so \(\rho\psi(1) = 2\), \(\rho\psi(2) = 4\), \(\rho\psi(3) = 1\) and \(\rho\psi(4) = 3\). Cycle Notation We can decompose the cycles in each permutation above. For example for the first permutation $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; 4 &amp; 3 &amp; 2\end{pmatrix} \end{align*} $$ We can decompose this permutation into the following In this permutation, we have a cycle of length \(2\) For the second permutation $$ \begin{align*} \psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 2 &amp; 1 &amp; 3\end{pmatrix} \end{align*} $$ we have a cycle of length \(3\). To describe a cycle, we can use cycle notation which is defined as follows Definition Let \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) where \(a_1,...,a_k \in X\) are distinct. \(\sigma\) is defined by $$ \begin{align*} \sigma(a_i) &amp;= a_{i+1}, \quad i = 1,...,k-1 \\ \sigma(a_k) &amp;= a_1 \\ \sigma(x) &amp;= x, \quad \text{if} x \notin \{a_1,...,a_k\} \\ \end{align*} $$ So we can write the first permutation with cycle notation as \((2,4)\) only since by definition for the other elements \(\sigma(x)=x\), while the second permutation can be written as \((1,4,3)\). What about the following example? $$ \begin{align*} \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5\\ 3 &amp; 5 &amp; 4 &amp; 1 &amp; 2\end{pmatrix} \end{align*} $$ Note here that we have two disjoint cycles. \((1 \quad 4 \quad 3)\) where \(1\) goes to \(3\) and \(3\) goes to \(4\) and \(4\) goes back to \(1\) and \((2 \quad 5)\) where \(2\) goes to \(5\) and \(5\) goes back to \(2\). This permutation can be written as $$ \begin{align*} (1 \quad 3 \quad 4)(2 \quad 5) \end{align*} $$ Facts Some facts about the cycle notation \((1) = (2) = ... (n) = id\). All of these represent the identity permutations. The order of the elements in a cycle matters up to "cyclic permutation". \((1 \quad 2 \quad 3 \quad 4) = (2 \quad 3 \quad 4 \quad 1) \neq (1 \quad 3 \quad 4 \quad 2)\) For the inverse of a permutation, we just reverse the order of elements so \((a_1 \quad a_2 \quad ... \quad a_k)^{-1} = (a_k \quad a_{k-1} \quad ... \quad a_1)\) Two cycles \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) and \(\tau = (b_1 \quad b_{2} \quad ... \quad b_l) \in Sym(X)\) are disjoint if \(\{a_1,a_2,...,a_k\} \cap \{b_1,b_2,...,b_l\} = \emptyset\). Moreover, if the two sets are disjoint, then \(\sigma \circ \tau = \tau \circ \sigma\). This means that the permutation above that we described with \((1 \quad 3 \quad 4)(2 \quad 5)\) can also be written as \((2 \quad 5)(1 \quad 3 \quad 4)\) Theorem Every non-id element in \(Sym(X)\) where \(X\) is finite can be written as a product of pairwise disjoint cycles (of length \(\geq 2\) uniquely up to re-ordering. Suppose we have \(\sigma = (1 \quad 3)(2 \quad 7 \quad 8)(4 \quad 5 \quad 6)(9) \in S_9\). Any of the cycles in this notation are pairwise disjoint. We have 3 disjoint cycles where \(9\) is fixed. The proof for this theorem is in the class notes. Cycle Type We can classify permutations of a finite set into groups corresponding to the number of cycles of various lengths in their cycle decomposition. For example for \(S_2\), we have two elements and so we have two permutations \(1 + 1\) \(id = (1)(2)\) \(2\) \((1 \quad 2)\) For \(S_3\), \(1 + 1 + 1\) \(id = (1)(2)(3)\) \(2 + 1\) \((1 \quad 2),(1 \quad 3),(2 \quad 3)\) \(3\) \((1 \quad 2 \quad 3),(1 \quad 3 \quad 2)\) For \(S_4\), \(1 + 1 + 1 + 1\) \(id = (1)(2)(3)(4)\) \(2 + 1 + 1\) \((1 \quad 2),(1 \quad 3),(1 \quad 4),(2 \quad 3),(2 \quad 4),(3 \quad 4)\) \(2 + 2\) \((1 \quad 2)(3 \quad 4),(1 \quad 3)(2 \quad 4),(1 \quad 4)(2 \quad 3)\) \(3 + 1\) \((1 \quad 2 \quad 3),(1 \quad 2 \quad 4)\),\((1 \quad 3 \quad 4),(2 \quad 3 \quad 4),(1 \quad 3 \quad 2)\),\((1 \quad 4 \quad 2),(1 \quad 4 \quad 3),(2 \quad 4 \quad 3)\) \(4\) \((1 \quad 2 \quad 3 \quad 4),(1 \quad 2 \quad 4 \quad 3)\),\((1 \quad 3 \quad 2 \quad 4),(1 \quad 3 \quad 4 \quad 2)\),\((1 \quad 4 \quad 2 \quad 3),(1 \quad 4 \quad 3 \quad 2)\) The Order of an Element (Start of lecture 4). The first concept that we will talk about is the order of an element in a group. Definition Suppose we have a group \((G, \cdot)\) and let \(a \in G\). The order of \(a\) is the smallest positive integer \(n\) such that \(a^n = e\) (or infinite). \(\text{order}(a) \in \mathbf{N} \cup \{\infty\}\). For example let \(\sigma = (1 \quad 2 \quad 3 \quad 4) \in S_5\) The order of \(\sigma\), \(\text{order}(\sigma)\) is \(4\). This is because it will take \(\sigma^4\) will finally get us back to the identity permutation. In fact that the order of a \(k-\)cycle is \(k\). What about \(\tau = (1 \quad 2)(3 \quad 4 \quad 5)\)? \(\text{order}(\tau) = 6\) because we have to iterate the operation \(6\) times to get to the identity element. Specifically, we have two disjoint cycles and since they are disjoint, then they operate independently. So we need to find \(n\) such that both of the cycles will return to the identity permutation $$ \begin{align*} (1 \quad 2)^n &amp;= e \\ (3 \quad 4 \quad 5)^n &amp;= e \end{align*} $$ This \(n\) must be then the least common multiple of \(2\) and \(3\) which is \(6\). What about \(\nu = (1 \quad 2)(2 \quad 3 \quad 4)\)? Note here that the two cycles are not disjoint. It’s not clear here what it would be so drawing this permutation might make this very obvious.]]></summary></entry><entry><title type="html">Lecture 02: Rotations in Space</title><link href="http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space.html" rel="alternate" type="text/html" title="Lecture 02: Rotations in Space" /><published>2025-01-25T00:01:36-08:00</published><updated>2025-01-25T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space.html"><![CDATA[<p>A group is a set with a defined product. This product is associative. The group is closed under this product. We have an identity element and each element has an inverse. Formally,
 <br /></p>
 <div class="mintheaderdiv">
 Definition (1.10.1)
@@ -312,23 +929,23 @@ One additional structure that comes up is a Monoid. These are sets with one oper
 
 <p>From the book, a symmetry is an undetectable motion. An object is symmetric if it has symmetries. Take an equilateral triangle.</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-1.png" width="40%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-1.png" width="40%" class="center" /></p>
 
 <p>What are the symmetries of this triangle? We want to rotate the triangle in such a way that we won’t tell if it was rotated. For example, if we rotate this triangle by \(120\) degrees counter clockwise, then we’ll get a triangle in the same exact orientation. We label this rotation with \(r_1\). Note here that the labels on the vertices are used to illustrate that we indeed have rotated the triangle. They are a visual aid.</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-2.png" width="70%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-2.png" width="70%" class="center" /></p>
 
 <p>We can also rotate this triangle \(120\) degrees clockwise to get the following \(r_2\) rotation.</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-3.png" width="70%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-3.png" width="70%" class="center" /></p>
 
 <p>Are there more rotations? Yes, consider the rotation around the axis that goes through the vertex \(A\) by 180 degrees so essentially it’s a flip around that axis.</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-4.png" width="70%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-4.png" width="70%" class="center" /></p>
 
 <p>Similarly, we can do a flip around the axis that goes through the vertex \(B\) and a flip around the axis that goes through the vertex \(C\).</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-5.png" width="40%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-5.png" width="40%" class="center" /></p>
 
 <p>So now we have \(5\) symmetries total. Is that all? No, We have one more symmetry representing the identity symmetry \(e\) that does nothing. So the set of symmetries are then</p>
 <div>
@@ -349,9 +966,9 @@ $$
 <br />
 <br />
 For example composing \(r_1\) with \(r_1\) again results in the rotation \(r_2\) so \(r_1r_1 = r_2\).</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-6.png" width="70%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-6.png" width="70%" class="center" /></p>
 <p>And if we compose \(r_1\) with \(r_2\), then we’ll get the identity rotation so \(r_1r_2 = e\).</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-7.png" width="70%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-7.png" width="70%" class="center" /></p>
 <p>In fact since \(r_1r_1 = r_2\) and \(r_1r_2 = e\), we’ll change the notation to a much simpler notation. Let \(r_1 = r\). Then, \(r_2 = r_1r_1 = rr = r^2\). So now we can fill these in a table as follows
 <br />
 <!------------------------------------------------------------------------></p>
@@ -425,7 +1042,7 @@ For example composing \(r_1\) with \(r_1\) again results in the rotation \(r_2\)
 <p><br />
 So far so good. What about composing the flips around the axes? For example composing \(a\) with \(b\). What would that do? For starters, note that each flip is a \(180\) degrees flip. So if you compose ANY two flips, we’ll be back to the same face we started with. This means that any two flips will be equivalent to \(e, r\) or \(r^2\). For example, if we apply \(a\) and then apply \(b\), we’ll get</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-8.png" width="90%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-8.png" width="90%" class="center" /></p>
 
 <p>Note here that when did the second flip, we still rotated through the \(b\) access which now goes through vertex \(C\) instead. Physically the axis will still be in the same position. So we see above doing two flips \(a\), then around \(b\) is equivalent to applying two rotations so \(ba = r^2\). 
 <br />
@@ -506,7 +1123,7 @@ What about two flips of the same type? What happens if you apply \(a\) and then 
 <h4><b>Second and Third Quadrants</b></h4>
 <p>What about applying a rotation \(r\) followed by a flip \(a\)? What is \(ar\)? We apply a rotation so we move \(120\) degrees anti-clockwise and then we do an \(a\) flip which is now going to be through the \(C\) vertex. The triangle will now be faced down which is equivalent to applying a single flip. Comparing the vertices in the original triangle and the outcome, we see that \(B\) is fixed while \(A\) and \(C\) have switched. This means that this is a flip around the \(b\) access.</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-9.png" width="90%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-9.png" width="90%" class="center" /></p>
 
 <!------------------------------------------------------------------------>
 <div>
@@ -645,16 +1262,16 @@ $$
 <h4><b>Symmetries of the Rectangle</b></h4>
 <p>How many symmetries does the rectangle have?</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect.png" width="30%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-rect.png" width="30%" class="center" /></p>
 
 <p>We can have a rotation \(r_1\) around the \(y-\)axis as follows</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r1.png" width="75%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-rect-r1.png" width="75%" class="center" /></p>
 
 <p>We can also have a rotation \(r_2\) around the \(x-\)axis</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r2.png" width="75%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-rect-r2.png" width="75%" class="center" /></p>
 
 <p>Finally, we have one more rotation \(r_3\) around the \(z-\)axis. (the axis coming off the screen toward us from the centroid of the face.)</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-rect-r3.png" width="75%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-rect-r3.png" width="75%" class="center" /></p>
 
 <p>So we have four rotations which make the following group</p>
 <div>
@@ -713,25 +1330,25 @@ $$
 <h4><b>Symmetries of the Square</b></h4>
 <p>What about the symmetries of the square? There are eight of them. First we consider the axis coming through the centroid of the face toward us. There are three rotations around this axis.</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r.png" width="55%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-square-r.png" width="55%" class="center" /></p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r2.png" width="55%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-square-r2.png" width="55%" class="center" /></p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-r3.png" width="55%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-square-r3.png" width="55%" class="center" /></p>
 
 <p>Next, we can consider the \(x-\)axis or the axis coming through the center of the edges. We can do a \(180\) degrees rotation around this access (a flip). Call this one \(a\).</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-a.png" width="55%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-square-a.png" width="55%" class="center" /></p>
 
 <p>Similarly, we can do one around the \(y-\)axis.</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-b.png" width="55%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-square-b.png" width="55%" class="center" /></p>
 
 <p>And then two more through the diagonals of the square.</p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-c.png" width="55%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-square-c.png" width="55%" class="center" /></p>
 
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/01-square-d.png" width="55%" class="center" /></p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec01/01-square-d.png" width="55%" class="center" /></p>
 
 <div>
 $$
@@ -1130,314 +1747,4 @@ Finally, the method to precompute the prime_numbers array is the usual sieve met
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=50">Project Euler - 50</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The prime \(41\), can be written as the sum of six consecutive primes \(2 + 3 + 5 + 7 + 11 + 13\). The goal of this problem is to find the prime below one-million that can be written as the sum of the most consecutive primes. Solution It took me a few attempts to get this one right. The first few recurrences that I was trying to build didn’t go anywhere and one of them was this two dimensional table that included every sum of the primes between any pair of prime numbers \(i\) and \(j\). But that was too much. After a few more attempts on paper, I noticed one critical pattern that led to a reasonable solution. To see this, write down the first few consecutive sums below Prime \(2\) \(3\) \(5\) \(7\) \(11\) \(13\) \(17\) \(...\) Sum \(2\) \(5\) \(10\) \(17\) \(28\) \(41\) \(58\) \(...\) Now notice that if we wanted to find the sum of primes between \(3\) and \(11\) not including \(3\), then we can use the table above to see that it is $$ \begin{align*} sum(11) - sum(3) &amp;= 28 - 5 = 23 \end{align*} $$ which is exactly the sum of primes \(5 + 7 + 11\). So for any two primes \(i\) and \(j\), the sum of the primes between them (while including \(j\) and not \(i\)) is $$ \begin{align*} sum(j) - sum(i) \end{align*} $$ This idea is crucial. Because all we have to do now is try all prime pairs below 1 million and we’ll get an \(O(n^2)\) algorithm instead of an exponential one. All we need to do is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes. int p = 0; int max = 0; for (int i = prime_numbers.size() - 1; i &gt;= 0; i--) { for (int j = 0; j &lt; i; j++) { int first = prime_numbers[i]; int second = prime_numbers[j]; int cons_sum = consecutive_sums[first] - consecutive_sums[second]; if (prime[cons_sum] &amp;&amp; max &lt; abs(i - j)) { p = cons_sum; max = abs(i - j); } } } printf("%d\n", p); But checking every pair below one million is a lot. Does prime_numbers above need to have all the prime numbers below 1 million? No! Another critical hint to this problem that I completely missed is that the prime we’re trying to find has to be below a million. In fact, the sum of the first \(546\) primes will already exceed a million! Therefore, we can limit the search to a much smaller range of prime numbers. std::vector&lt;int&gt; prime_numbers; std::unordered_map&lt;int,int&gt; consecutive_sums; void prime_sums() { int sum = 0; prime_numbers.push_back(0); // fake prime consecutive_sums[0] = 0; for (int i = 0; i &lt; N; i++) { if (prime[i]) { sum += i; prime_numbers.push_back(i); consecutive_sums[i] = sum; if (prime_numbers.size() &gt; 546) { break; // we don't need more than that! } } } } Finally, the method to precompute the prime_numbers array is the usual sieve method that we’ve used over and over again before. Adding it below for completion. int prime[N]; void sieve() { // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { prime[i] = 1; } prime[0] = prime[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (prime[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { prime[i] = 0; } } } } The entire code is here. References Project Euler - 50]]></summary></entry><entry><title type="html">Project Euler: 42 Coded Triangle Numbers</title><link href="http://localhost:4000/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers.html" rel="alternate" type="text/html" title="Project Euler: 42 Coded Triangle Numbers" /><published>2025-01-18T00:01:36-08:00</published><updated>2025-01-18T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/18/project-euler-42-coded-triangle-numbers.html"><![CDATA[<p>In this problem, we are introduced to the sequence of triangle numbers where the nth term of the sequence is given by</p>
-<div>
-	$$
-	\begin{align*}
-	 t_n = \frac{1}{2}n(n+1).
-	\end{align*}
-	$$
-</div>
-<p>The first 10 triangle numbers are therefore</p>
-<div>
-	$$
-	\begin{align*}
-	 1,3,6,10,15,21,28,36,45,55,...
-	\end{align*}
-	$$
-</div>
-<p>We are given a list of words in a file. A word’s alphabetical score is calculated by summing each letter’s alphabetical position. So for example, SKY’s alphabetical score is \(19+11+25 = 55\). This is also the 10th term in the triangle sequence above. So SKY is a triangle word. The goal of this problem is to find the number of triangle words in the file.
-<br />
-<br />
-Similar to <a href="">Problem 22</a>, the first thing we want to do is read the file we’re given and add the words in an array. We can do this with
-<!------------------------------------------------------------------------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">freopen</span><span class="p">(</span><span class="s">"0022_names.txt"</span> <span class="p">,</span> <span class="s">"r"</span> <span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">str</span><span class="p">;</span> <span class="c1">// read the entire string</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">words</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="nf">ss</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">token</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="sc">','</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">max_length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">word</span> <span class="o">=</span> <span class="n">token</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">token</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
-    <span class="n">words</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">max_length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">max_length</span> <span class="o">=</span> <span class="n">word</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------>
-And while we parse, we want to know the maximum length of a word in the file. We want this in order to pre-compute enough terms from the triangle sequence. For example, if the maximum word length is 10, then the score of this word is at most \(26 * 10 = 260\) (assuming it’s just a bunch of ZZZ’s). So we want to pre-compute 260 terms from the sequence. We can then build a table of triangle sequence terms as follows
-<!------------------------------------------------------------------------------------>
-<br /></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">triangle</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">is_valid_term</span><span class="p">;</span>
-<span class="kt">void</span> <span class="nf">triangle_sequence</span><span class="p">(</span><span class="kt">int</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">term</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-        <span class="n">triangle</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">term</span><span class="p">;</span> <span class="c1">// so triangle[10] = 55</span>
-        <span class="n">is_valid_term</span><span class="p">[</span><span class="n">triangle</span><span class="p">[</span><span class="n">n</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// is_triangle[55] is a term in the sequence</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------>
-<br />
-Finally, we want to use that table to determine how many words in the file are triangle words.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">words</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">score</span> <span class="o">+=</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="sc">'A'</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">is_valid_term</span><span class="p">[</span><span class="n">score</span><span class="p">])</span> <span class="p">{</span>
-        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"triangle terms count = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span></code></pre></figure>
-
-<!------------------------------------------------------------------------------------>
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=42">Project Euler - 42</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this problem, we are introduced to the sequence of triangle numbers where the nth term of the sequence is given by $$ \begin{align*} t_n = \frac{1}{2}n(n+1). \end{align*} $$ The first 10 triangle numbers are therefore $$ \begin{align*} 1,3,6,10,15,21,28,36,45,55,... \end{align*} $$ We are given a list of words in a file. A word’s alphabetical score is calculated by summing each letter’s alphabetical position. So for example, SKY’s alphabetical score is \(19+11+25 = 55\). This is also the 10th term in the triangle sequence above. So SKY is a triangle word. The goal of this problem is to find the number of triangle words in the file. Similar to Problem 22, the first thing we want to do is read the file we’re given and add the words in an array. We can do this with freopen("0022_names.txt" , "r" , stdin); std::string str; std::cin &gt;&gt; str; // read the entire string std::vector&lt;std::string&gt; words; std::stringstream ss(str); std::string token; char delimiter = ','; int max_length = 0; while (std::getline(ss, token, delimiter)) { std::string word = token.substr(1, token.size() - 2); words.push_back(word); if (word.length() &gt; max_length) { max_length = word.length(); } } And while we parse, we want to know the maximum length of a word in the file. We want this in order to pre-compute enough terms from the triangle sequence. For example, if the maximum word length is 10, then the score of this word is at most \(26 * 10 = 260\) (assuming it’s just a bunch of ZZZ’s). So we want to pre-compute 260 terms from the sequence. We can then build a table of triangle sequence terms as follows int triangle[N]; std::unordered_map&lt;int,int&gt; is_valid_term; void triangle_sequence(int max) { for (int n = 1; n &lt;= max; n++) { int term = (n * (n+1)) / 2; triangle[n] = term; // so triangle[10] = 55 is_valid_term[triangle[n]] = 1; // is_triangle[55] is a term in the sequence } } Finally, we want to use that table to determine how many words in the file are triangle words. int count = 0; for (int i = 0; i &lt; words.size(); i++) { int score = 0; for (int j = 0; j &lt; words[i].size(); j++) { score += words[i][j]-'A'+1; } if (is_valid_term[score]) { count++; } } printf("triangle terms count = %d\n", count); References Project Euler - 42]]></summary></entry><entry><title type="html">Project Euler: 39 Integer Right Triangles</title><link href="http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles.html" rel="alternate" type="text/html" title="Project Euler: 39 Integer Right Triangles" /><published>2025-01-17T00:01:36-08:00</published><updated>2025-01-17T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/17/project-euler-39-integer-right-triangles.html"><![CDATA[<p>In this problem, we are given a right triangle with sides \(a, b\) and \(c\). We are also given the perimeter of this triangle \(p\). Given only this, there are multiple solutions to what the side lengths \(\{a,b,c\}\) could be. For example for \(p = 120\), there are exactly three solutions \(\{20,48,52\},\{24,45,51\},\{30,40,50\}\). The goal of this problem is finding \(p\) such that we have the maximum number of solutions.
-<br />
-<br />
-Solution: One fact that we know is that the sum of any two sides in a triangle must be greater than the length of the third side. So for any side, its length can at most be \(\frac{p}{2} - 1\). So when we’re searching for solutions, we can immediately limit the search to that range for any side. Additionally, this is a right triangle, so pick \(c\) to be the hypotenuse. So overall, we have the following equations</p>
-<div>
-	$$
-	\begin{align*}
-	 p &amp;= a + b + c \\
-	 c^2 &amp;= a^2 + b^2
-	\end{align*}
-	$$
-</div>
-<p>So we’re given \(p\) and suppose we choose \(a\) to be a value between \(1\) and \(\frac{p}{2}-1\), then the above becomes two equations in unknowns and we can solve to find both \(b\) and \(c\) as follows. Write the first equation in terms of \(b\):</p>
-<div>
-	$$
-	\begin{align*}
-     p &amp;= a + b + c \\
-	 p - a &amp;= b + c \\
-	 b &amp;= (p - a) - c
-	\end{align*}
-	$$
-</div>
-<p>We can now plug in this into the second equation:</p>
-<div>
-	$$
-	\begin{align*}
-     c^2 &amp;= a^2 + b^2 \\
-     c^2 &amp;= a^2 + ((p - a) - c)^2 \\
-     c^2 &amp;= a^2 + (p - a)^2 -2(p-a)c + c^2 \\
-     2(p-a)c &amp;= a^2 + (p - a)^2 \\
-	 c &amp;= \frac{a^2 + (p - a)^2}{2(p-a)}
-	\end{align*}
-	$$
-</div>
-<p>Once caveat here is that we want to only accept if \(c\) is an integer. To test this, we can multiply \(c\) by \(2(p-a)\) and check if it’s equal to \(a^2 + (p - a)^2\). 
-<br />
-<br />
-For a concrete example, suppose that \(p = 120\) and suppose we picked \(a\) to be 20. Then</p>
-<div>
-	$$
-	\begin{align*}
-	 b &amp;= (p - a) - c \\
-	 &amp; = 100 - c
-	\end{align*}
-	$$
-</div>
-<p>Now we can plug it back in to see that</p>
-<div>
-	$$
-	\begin{align*}
-	 c &amp;= \frac{a^2 + (p - a)^2}{2(p-a)} \\
-	 &amp;= \frac{400 + (100)^2}{2(100)} \\
-	 &amp;= \frac{10400}{200} = 52
-	\end{align*}
-	$$
-</div>
-<p>Therefore, \(b = p - a - c = 120 - 20 - 52 = 48\). This can be captured in
-<!------------------------------------------------------------------------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">;</span> <span class="n">a</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">pa</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">pa</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pa</span><span class="p">);</span>
-    <span class="c1">// we want to know if this fraction is an integer (aa + papa) / 2*pa</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pa</span> <span class="o">!=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">pa</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// c is not a solution since the fraction is not an integer</span>
-        <span class="k">continue</span><span class="p">;</span> <span class="c1">// choose another a</span>
-    <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Solution = %d, %d, %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
-    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-But this doesn’t quite work yet because it will count \(\{30,40,50\}\) and \(\{40,30,50\}\) as two different solutions. To solve this, we can half the limit above.
-<br />
-<!------------------------------------------------------------------------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">max_p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">a</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">pa</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
-        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">pa</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pa</span><span class="p">);</span>
-        <span class="c1">// we want to know if this fraction is an integer (aa + papa) / 2*pa</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pa</span> <span class="o">!=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">pa</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// c is not a solution since the fraction isn't an integer</span>
-            <span class="k">continue</span><span class="p">;</span> <span class="c1">// choose another a</span>
-        <span class="p">}</span>
-        <span class="c1">//int b = p - a - c; // we don't even need to calculate this (only if we want to print)</span>
-        <span class="c1">//printf("Solution %d, %d, %d\n", a, b, c);</span>
-        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">max</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span>
-        <span class="n">max_p</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"max = %d, max_p = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">max_p</span><span class="p">);</span></code></pre></figure>
-
-<p>Running this takes 0.000241 seconds on my M1 mac.
-<!------------------------------------------------------------------------------------>
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=39">Project Euler - 39</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this problem, we are given a right triangle with sides \(a, b\) and \(c\). We are also given the perimeter of this triangle \(p\). Given only this, there are multiple solutions to what the side lengths \(\{a,b,c\}\) could be. For example for \(p = 120\), there are exactly three solutions \(\{20,48,52\},\{24,45,51\},\{30,40,50\}\). The goal of this problem is finding \(p\) such that we have the maximum number of solutions. Solution: One fact that we know is that the sum of any two sides in a triangle must be greater than the length of the third side. So for any side, its length can at most be \(\frac{p}{2} - 1\). So when we’re searching for solutions, we can immediately limit the search to that range for any side. Additionally, this is a right triangle, so pick \(c\) to be the hypotenuse. So overall, we have the following equations $$ \begin{align*} p &amp;= a + b + c \\ c^2 &amp;= a^2 + b^2 \end{align*} $$ So we’re given \(p\) and suppose we choose \(a\) to be a value between \(1\) and \(\frac{p}{2}-1\), then the above becomes two equations in unknowns and we can solve to find both \(b\) and \(c\) as follows. Write the first equation in terms of \(b\): $$ \begin{align*} p &amp;= a + b + c \\ p - a &amp;= b + c \\ b &amp;= (p - a) - c \end{align*} $$ We can now plug in this into the second equation: $$ \begin{align*} c^2 &amp;= a^2 + b^2 \\ c^2 &amp;= a^2 + ((p - a) - c)^2 \\ c^2 &amp;= a^2 + (p - a)^2 -2(p-a)c + c^2 \\ 2(p-a)c &amp;= a^2 + (p - a)^2 \\ c &amp;= \frac{a^2 + (p - a)^2}{2(p-a)} \end{align*} $$ Once caveat here is that we want to only accept if \(c\) is an integer. To test this, we can multiply \(c\) by \(2(p-a)\) and check if it’s equal to \(a^2 + (p - a)^2\). For a concrete example, suppose that \(p = 120\) and suppose we picked \(a\) to be 20. Then $$ \begin{align*} b &amp;= (p - a) - c \\ &amp; = 100 - c \end{align*} $$ Now we can plug it back in to see that $$ \begin{align*} c &amp;= \frac{a^2 + (p - a)^2}{2(p-a)} \\ &amp;= \frac{400 + (100)^2}{2(100)} \\ &amp;= \frac{10400}{200} = 52 \end{align*} $$ Therefore, \(b = p - a - c = 120 - 20 - 52 = 48\). This can be captured in int limit = p/2 - 1; for (int a = 1; a &lt; limit; a++) { int pa = p - a; int c = (a*a + pa*pa) / (2*pa); // we want to know if this fraction is an integer (aa + papa) / 2*pa if (c * 2 * pa != a*a + pa*pa) { // c is not a solution since the fraction is not an integer continue; // choose another a } int b = p - a - c; printf("Solution = %d, %d, %d\n", a, b, c); count++; } But this doesn’t quite work yet because it will count \(\{30,40,50\}\) and \(\{40,30,50\}\) as two different solutions. To solve this, we can half the limit above. int max = 0; int max_p = 0; for (int p = 1; p &lt;= 1000; p++) { int count = 0; int limit = p/2; for (int a = 1; a &lt;= limit/2; a++) { int pa = p - a; int c = (a*a + pa*pa) / (2*pa); // we want to know if this fraction is an integer (aa + papa) / 2*pa if (c * 2 * pa != a*a + pa*pa) { // c is not a solution since the fraction isn't an integer continue; // choose another a } //int b = p - a - c; // we don't even need to calculate this (only if we want to print) //printf("Solution %d, %d, %d\n", a, b, c); count++; } if (count &gt; max) { max = count; max_p = p; } } printf("max = %d, max_p = %d\n", max, max_p); Running this takes 0.000241 seconds on my M1 mac. References Project Euler - 39]]></summary></entry><entry><title type="html">Project Euler: 37 Truncatable Primes</title><link href="http://localhost:4000/jekyll/update/2025/01/16/project-euler-37-truncatable-primes.html" rel="alternate" type="text/html" title="Project Euler: 37 Truncatable Primes" /><published>2025-01-16T00:01:36-08:00</published><updated>2025-01-16T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/16/project-euler-37-truncatable-primes</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/16/project-euler-37-truncatable-primes.html"><![CDATA[<p>A prime is truncatable if it’s possible to continuously remove digits from either left to right or right to left and have it still be prime. For example, consider 3797. If we remove the digits from left to right, then we’ll get</p>
-<div>
-	$$
-	\begin{align*}
-	 3797 \rightarrow 797 \rightarrow 97 \rightarrow 7.
-	\end{align*}
-	$$
-</div>
-<p>All of these numbers are prime. Similarly if we remove the digits from right to left, then</p>
-<div>
-	$$
-	\begin{align*}
-	 3797 \rightarrow 379 \rightarrow 37 \rightarrow 3.
-	\end{align*}
-	$$
-</div>
-<p>are all prime as well. As in all of the previous problems involving primes, we’ll reuse the sieve algorithm function to generate prime numbers up to 1 million as a start. We’re given a big hint that says there are only 11 primes with this property. Therefore, we can start with the upper limit 1 million and see how many trucatable primes we can get.
-<!------------------------------------------------------------------------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">prime</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">prime_numbers</span><span class="p">;</span>
-<span class="kt">void</span> <span class="nf">sieve</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// mark all numbers as potential primes</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">prime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">p</span><span class="p">])</span> <span class="p">{</span>
-            <span class="c1">// mark all multiples of p as not prime</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
-            <span class="n">prime_numbers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<!------------------------------------------------------------------------------------>
-<p>What about implementing truncatable itself? We can easily remove one digit at a time from right to left by constantly dividing by 10</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="nf">is_truncatable_left</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// for example for 3797, we want to check 379 -&gt; 37 -&gt; 3</span>
-    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">m</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">prime</span><span class="p">[</span><span class="n">m</span><span class="p">])</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">m</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<!------------------------------------------------------------------------------------>
-<p>For the left to right direction, consider \(3797\). One way to do this is to subtract \(3000\) from \(3797\) to get \(797\) which is what we want. In the next iteration, we can subtract \(700\) to get \(97\) and so on. To get \(3000\), notice that it’s the most significant digit multiplied by \(10^{d-1}\) where \(d\) is the number of digits in \(3797\). To get the most significant digit itself, we can divide \(3797\) by \(1000\) which is again \(10^{d-1}\). There could be other ways to do this but that’s the way I thought of which worked for this problem.
-<!------------------------------------------------------------------------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="nf">is_truncatable_right</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 797 -&gt; 97 -&gt; 7</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//example: suppose p = 3797</span>
-        <span class="kt">int</span> <span class="n">divisor</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">);</span> <span class="c1">// divisor = 10^3 = 1000</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">divisor</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span><span class="k">break</span><span class="p">;}</span>
-        <span class="kt">int</span> <span class="n">most_sig</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="n">divisor</span><span class="p">;</span> <span class="c1">// 3797/1000 = 3</span>
-        <span class="kt">int</span> <span class="n">new_p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">divisor</span> <span class="o">*</span> <span class="n">most_sig</span><span class="p">;</span> <span class="c1">// r = 3797 - 3*1000 = 797</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">prime</span><span class="p">[</span><span class="n">new_p</span><span class="p">])</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">new_p</span><span class="p">;</span>
-        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<!------------------------------------------------------------------------------------>
-<p>One last observation I saw is that for a prime to be truncatable, the last digit must be either 3 or 7. For example consider \(3675\). While \(5\) is prime, \(75\) and \(72\) are definitely not. Putting all of these methods together, we have
-<!------------------------------------------------------------------------------------></p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="nf">is_truncatable</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// we must end with 3 or 7 only</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">!=</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="n">p</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">!=</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    
-    <span class="c1">// (1) check the left to right direction</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">is_truncatable_left</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// (2) now the other direction</span>
-    <span class="c1">// 797 -&gt; 97 -&gt; 7</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">is_truncatable_right</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<!------------------------------------------------------------------------------------>
-<p>Finally, we can just call the above method for all prime numbers under 1 million which turns out to be enough because it did find all of the 11 truncatable numbers!</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++">    <span class="n">sieve</span><span class="p">();</span>
-    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="c1">// we start from 4 because 2, 3, 5 and 7 are not truncatable by definition</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prime_numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">is_truncatable</span><span class="p">(</span><span class="n">prime_numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"%d is truncatable</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">prime_numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-            <span class="n">sum</span> <span class="o">+=</span> <span class="n">prime_numbers</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"sum = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span></code></pre></figure>
-
-<p><br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=37">Project Euler - 37</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A prime is truncatable if it’s possible to continuously remove digits from either left to right or right to left and have it still be prime. For example, consider 3797. If we remove the digits from left to right, then we’ll get $$ \begin{align*} 3797 \rightarrow 797 \rightarrow 97 \rightarrow 7. \end{align*} $$ All of these numbers are prime. Similarly if we remove the digits from right to left, then $$ \begin{align*} 3797 \rightarrow 379 \rightarrow 37 \rightarrow 3. \end{align*} $$ are all prime as well. As in all of the previous problems involving primes, we’ll reuse the sieve algorithm function to generate prime numbers up to 1 million as a start. We’re given a big hint that says there are only 11 primes with this property. Therefore, we can start with the upper limit 1 million and see how many trucatable primes we can get. int prime[N]; std::vector&lt;int&gt; prime_numbers; void sieve() { // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { prime[i] = 1; } prime[0] = prime[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (prime[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { prime[i] = 0; } } } for (int i = 0; i &lt; N; i++) { if (prime[i]) { prime_numbers.push_back(i); } } } What about implementing truncatable itself? We can easily remove one digit at a time from right to left by constantly dividing by 10 bool is_truncatable_left(int p, int d) { // for example for 3797, we want to check 379 -&gt; 37 -&gt; 3 int m = p; while (m &gt; 0) { if (!prime[m]) { return false; } m /= 10; } return true; } For the left to right direction, consider \(3797\). One way to do this is to subtract \(3000\) from \(3797\) to get \(797\) which is what we want. In the next iteration, we can subtract \(700\) to get \(97\) and so on. To get \(3000\), notice that it’s the most significant digit multiplied by \(10^{d-1}\) where \(d\) is the number of digits in \(3797\). To get the most significant digit itself, we can divide \(3797\) by \(1000\) which is again \(10^{d-1}\). There could be other ways to do this but that’s the way I thought of which worked for this problem. bool is_truncatable_right(int p, int d) { // 797 -&gt; 97 -&gt; 7 int i = 0; while (p &gt; 0) { //example: suppose p = 3797 int divisor = pow(10, d-1-i); // divisor = 10^3 = 1000 if (divisor &lt;= 1) {break;} int most_sig = p/divisor; // 3797/1000 = 3 int new_p = p - divisor * most_sig; // r = 3797 - 3*1000 = 797 if (!prime[new_p]) { return false; } p = new_p; i++; } return true; } One last observation I saw is that for a prime to be truncatable, the last digit must be either 3 or 7. For example consider \(3675\). While \(5\) is prime, \(75\) and \(72\) are definitely not. Putting all of these methods together, we have bool is_truncatable(int p) { // we must end with 3 or 7 only if (p % 10 != 3 &amp;&amp; p % 10 != 7) { return false; } int d = floor(log10(p)) + 1; // (1) check the left to right direction if (!is_truncatable_left(p, d)) { return false; } // (2) now the other direction // 797 -&gt; 97 -&gt; 7 if (!is_truncatable_right(p, d)) { return false; } return true; } Finally, we can just call the above method for all prime numbers under 1 million which turns out to be enough because it did find all of the 11 truncatable numbers! sieve(); int sum = 0; // we start from 4 because 2, 3, 5 and 7 are not truncatable by definition for (int i = 4; i &lt; prime_numbers.size(); i++) { if (is_truncatable(prime_numbers[i])) { printf("%d is truncatable\n", prime_numbers[i]); sum += prime_numbers[i]; } } printf("sum = %d\n", sum); References Project Euler - 37]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The prime \(41\), can be written as the sum of six consecutive primes \(2 + 3 + 5 + 7 + 11 + 13\). The goal of this problem is to find the prime below one-million that can be written as the sum of the most consecutive primes. Solution It took me a few attempts to get this one right. The first few recurrences that I was trying to build didn’t go anywhere and one of them was this two dimensional table that included every sum of the primes between any pair of prime numbers \(i\) and \(j\). But that was too much. After a few more attempts on paper, I noticed one critical pattern that led to a reasonable solution. To see this, write down the first few consecutive sums below Prime \(2\) \(3\) \(5\) \(7\) \(11\) \(13\) \(17\) \(...\) Sum \(2\) \(5\) \(10\) \(17\) \(28\) \(41\) \(58\) \(...\) Now notice that if we wanted to find the sum of primes between \(3\) and \(11\) not including \(3\), then we can use the table above to see that it is $$ \begin{align*} sum(11) - sum(3) &amp;= 28 - 5 = 23 \end{align*} $$ which is exactly the sum of primes \(5 + 7 + 11\). So for any two primes \(i\) and \(j\), the sum of the primes between them (while including \(j\) and not \(i\)) is $$ \begin{align*} sum(j) - sum(i) \end{align*} $$ This idea is crucial. Because all we have to do now is try all prime pairs below 1 million and we’ll get an \(O(n^2)\) algorithm instead of an exponential one. All we need to do is to pre-compute that table with all the sums and then write a double loop to find the prime that can be written as the sum of the most consecutive primes. int p = 0; int max = 0; for (int i = prime_numbers.size() - 1; i &gt;= 0; i--) { for (int j = 0; j &lt; i; j++) { int first = prime_numbers[i]; int second = prime_numbers[j]; int cons_sum = consecutive_sums[first] - consecutive_sums[second]; if (prime[cons_sum] &amp;&amp; max &lt; abs(i - j)) { p = cons_sum; max = abs(i - j); } } } printf("%d\n", p); But checking every pair below one million is a lot. Does prime_numbers above need to have all the prime numbers below 1 million? No! Another critical hint to this problem that I completely missed is that the prime we’re trying to find has to be below a million. In fact, the sum of the first \(546\) primes will already exceed a million! Therefore, we can limit the search to a much smaller range of prime numbers. std::vector&lt;int&gt; prime_numbers; std::unordered_map&lt;int,int&gt; consecutive_sums; void prime_sums() { int sum = 0; prime_numbers.push_back(0); // fake prime consecutive_sums[0] = 0; for (int i = 0; i &lt; N; i++) { if (prime[i]) { sum += i; prime_numbers.push_back(i); consecutive_sums[i] = sum; if (prime_numbers.size() &gt; 546) { break; // we don't need more than that! } } } } Finally, the method to precompute the prime_numbers array is the usual sieve method that we’ve used over and over again before. Adding it below for completion. int prime[N]; void sieve() { // mark all numbers as potential primes for (int i = 0; i &lt; N; i++) { prime[i] = 1; } prime[0] = prime[1] = 0; int limit = sqrt(N); for (int p = 2; p &lt;= limit; p++) { if (prime[p]) { // mark all multiples of p as not prime for (int i = p*p; i &lt; N; i += p) { prime[i] = 0; } } } } The entire code is here. References Project Euler - 50]]></summary></entry></feed>

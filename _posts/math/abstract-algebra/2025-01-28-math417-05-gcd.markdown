@@ -1,0 +1,122 @@
+---
+layout: post
+title:  "Lecture 05: Greatest Common Divisor"
+date:   2025-01-28 01:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+<div class="mintheaderdiv">
+Definition 1.6.8
+</div>
+<div class="mintbodydiv">
+A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if
+<ol type="a">
+	<li>\(d\) is a common divisor. So \(d\) divides \(a\) and \(b\)</li>
+	<li>Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\)</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
+<br>
+If the greatest common exists, then it is unique. Why? suppose $$d$$ and $$d'$$ are both greatest common divisors. Then by definition, $$d \ | \ d'$$ and $$d' \ | \ d$$ because every common divisor divides the gcd and they each must divide each other. But this means that $$d = \pm 'd$$ by the divisibility properties from last lecture. But also by definition, $$d$$ is non-negative and so $$d = 'd$$. $$\ \blacksquare$$
+<br>
+<br>
+Note that in the book $$a$$ and $$b$$ are nonzero in the definition. With this definition, the set of divisors of $$0$$ is $$\mathbf{Z}$$. If $$a = 0$$ and $$b \neq 0$$, then $$|a|$$ is the gcd of $$a$$ and $$0$$. If both $$a$$ and $$b$$ are zero, then $$0$$ is the gcd of $$0$$ and $$0$$. 
+<br>
+<br>
+<!------------------------------------------------------------------------>
+Before addressing the question of whether the greatest common divisor exists, we'll to define one more thing
+<br>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form
+$$
+\begin{align*}
+I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}.
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------>
+<br>
+For example $$I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}$$. This set includes all of the even integers. Therefore, we can just say that this set is the set of all multiples of 2. In other words, $$\mathbf{Z}2$$. In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is $$0$$. So yes the $$GCD$$ exists and can even be computed. Formally,
+<br>
+<br>
+<!------------------------------------------------------------------------------------>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+Let \(a, b \in \mathbf{Z}\). Then
+<ol type="a">
+	<li>For \(a, b\) have a GCD \(d \geq 0\).</li>
+	<li>\(I(a,b) = \mathbf{Z}d\).</li>
+	<li>\(d\) is computed by the Euclidean algorithm.</li>
+</ol>
+</div>
+<br>
+<!------------------------------------------------------------------------>
+<h4><b>The Euclidean Algorithm</b></h4>
+Let $$\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}$$. 
+<br>
+Define $$F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2$$ by
+<div>
+  $$
+  \begin{equation*}
+  F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &\text{if } n \neq 0 \\ (|m|,0) \quad \quad &\text{if } n = 0\end{cases}
+  \end{equation*}
+  $$
+</div>
+$$rem_n(m)$$ is the remainder of $$m \div n$$ (recall that we can write $$m = qn + r$$ where $$0 \leq r < |n|)$$).
+<br>
+<br>
+<b>Euclidean Algorithm:</b> Iterate $$F$$ until stable.
+<br>
+<br>
+Example:
+<div>
+  $$
+  \begin{align*}
+  (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0)
+  \end{align*}
+  $$
+</div>
+
+
+
+
+
+
+
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------>
+<h4><b>References</b></h4>
+<ul>
+<li>MATH417 by Charles Rezk</li>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

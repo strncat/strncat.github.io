@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-29T08:50:27-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 05: Greatest Common Divisor</title><link href="http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd.html" rel="alternate" type="text/html" title="Lecture 05: Greatest Common Divisor" /><published>2025-01-28T00:01:36-08:00</published><updated>2025-01-28T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd.html"><![CDATA[<div class="mintheaderdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-29T20:37:18-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 05: Greatest Common Divisor</title><link href="http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd.html" rel="alternate" type="text/html" title="Lecture 05: Greatest Common Divisor" /><published>2025-01-28T00:01:36-08:00</published><updated>2025-01-28T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/28/math417-05-gcd.html"><![CDATA[<div class="mintheaderdiv">
 Definition 1.6.8
 </div>
 <div class="mintbodydiv">
@@ -32,35 +32,26 @@ $$
 </div>
 <!------------------------------------------------------------------------>
 <p><br />
-For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). This set includes all of the even integers. Therefore, we can just say that this set is the set of all multiples of 2. In other words, \(\mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the \(GCD\) exists and can even be computed. Formally,
+For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). If we let \(s = -1\) and \(t = 1\), then \(2 \in I(4,6)\). In fact, this set produces all of the even integers. It includes all multiples of 2. In other words, we can also write that \(I(4,6) = \mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the GCD exists and can even be computed. Before formally proving its existence, we’ll present the way it can be computed next.
 <br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Theorem
-</div>
-<div class="yellowbodydiv">
-Let \(a, b \in \mathbf{Z}\). Then
-<ol type="a">
-	<li>For \(a, b\) have a GCD \(d \geq 0\).</li>
-	<li>\(I(a,b) = \mathbf{Z}d\).</li>
-	<li>\(d\) is computed by the Euclidean algorithm.</li>
-</ol>
-</div>
+<br /></p>
+<hr />
+
 <p><br />
 <!------------------------------------------------------------------------></p>
 <h4><b>The Euclidean Algorithm</b></h4>
 <p>Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). 
 <br />
 Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by</p>
-<div>
+<div class="ediv">
   $$
   \begin{equation*}
   F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases}
   \end{equation*}
   $$
 </div>
-<p>\(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)).
+<p><br />
+\(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)).
 <br />
 <br />
 <b>Euclidean Algorithm:</b> Iterate \(F\) until stable.
@@ -74,6 +65,114 @@ Example:</p>
   \end{align*}
   $$
 </div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>The GCD Theorem</b></h4>
+<p>So now we have an algorithm to compute the GCD algorithm. Next, we will prove that it does compute the GCD and so the GCD does exist.
+<br />
+<!-------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+Let \(a, b \in \mathbf{Z}\). Then
+<ol>
+	<li>For \(a, b\) have a GCD \(d \geq 0\).</li>
+	<li>\(I(a,b) = \mathbf{Z}d\).</li>
+	<li>\(d\) is computed by the Euclidean algorithm.</li>
+</ol>
+</div>
+<p><br />
+We’ll start from (3) and then prove that the answer produced by the algorithm is in fact an integer combination of the original input (statement 2). Finally, we’ll show that this just means that we have computed the GCD (statement). To do all of this we will also need the following lemmas
+<br />
+<br />
+<!-------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Lemma
+</div>
+<div class="yellowbodydiv">
+If \(a, b \in I(c,d)\), then \(I(a,b) \subseteq I(c,d)\)
+</div>
+<p><br />
+<b>Proof</b>: Homework Problem
+<br />
+<br />
+<!-------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Lemma
+</div>
+<div class="yellowbodydiv">
+If \(F(m,n) = (a,b)\), then \(I(m,n) = I(a,b)\)
+</div>
+<p><br />
+<b>Proof</b>:
+<br />
+We have two cases:
+<br />
+<br />
+Case 1: \(n \neq 0\). In this case, \(F(m,n) = (n, r)\) where \(r\) is the remainder after dividing \(m\) by \(n\). So \(m = qn + r\) where \(0 \leq r &lt; |n|\). We want to show that the integer combinations of \(m\) and \(n\) is the same as the integer combinations of \(n\) and \(r\), that is, \(I(m,n) = I(n,r)\). To do this, we will show that \(I(m,n) \subseteq I(n,r)\) and \(I(n,r) \subseteq I(m,n)\). To show that \(I(m,n) \subseteq I(n,r)\), observe that \(m\) is an integer combination of \(n\) and \(r\) because we can write \(m\) as</p>
+<div>
+  $$
+  \begin{align*}
+  m &amp;= qn + 1r.  
+  \end{align*}
+  $$
+</div>
+<p>Similarly, \(n\) is also an integer combination of \(n\) and \(r\) because we can write \(n\) as</p>
+<div>
+  $$
+  \begin{align*}
+  n &amp;= 1n + 0r.
+  \end{align*}
+  $$
+</div>
+<p>Since \(m\) and \(n\) can both be written as integer combinations of \(n\) and \(r\), that is \(m \in I(n,r)\) and \(n \in I(n,r)\), then by the previous lemma,  \(I(m,n) \subseteq I(n,r)\). To see that \(I(m,n) \subseteq I(n,r)\), observe that we can write \(n\) as \(n = 0m + 1n\) so \(n \in I(m,n)\). Similarly, \(r = 1m + (-q)m\) so \(r \in I(m,n)\). Then, by the previous lemma, \(I(m,n) \subseteq I(n,r)\). Therefore, \(I(m,n) = I(n,r)\). 
+<br />
+<br />
+Case 2: \(n = 0\). In this case, \(F(m,n) = F(m,0) = (|m|,0)\). In this case the integer combinations of \(0\) and \(m\) are just multiples of \(m\) so \(I(m,0) = \mathbf{Z}m\). But this is the same as the integer combinations of \(|m|\) and \(0\) so \(\mathbf{Z}m = I(|m|,0) = I(m,0)\) which is what we wanted to show. \(\blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Proof of the GCD Theorem</b></h4>
+<p>We iterate the algorithm until \(n = 0\) and \(F(m,n) = (|m|,0)\). By the previous lemma we saw that \(I(m,n) = \mathbf{Z}d\) for some \(d \geq 0\). 
+<br />
+<br />
+<b>Claim:</b> \(d\) is a GCD.<br /></p>
+<ol>
+	<li>\(m,n \in I(m,n) = \mathbf{Z}d\). So \(m\) and \(n\) are both multiples of \(d\) and d divides both of them. \(d \ | \ m\) and \(d \ | \ n\).</li>
+	<li>So now for condition 2, suppose \(e\) is a common divisor of \(m\) and \(n\). We want to show that \(e\) divides \(d\). Since \(e \ | \ m\) and \(e \ | \ n\), then \(m\) and \(n\) are both multiples of \(e\). So we can write \(m = eu\) and \(n = ev\) for some \(u,v \in \mathbf{Z}\). 
+	<br />
+	<br />
+	But we know that any integer combination of \(m\) and \(n\) is a multiple of \(d\). So we can write for some \(r, s \in \mathbf{Z}\) 
+	<div>
+	  $$
+	  \begin{align*}
+	  d &amp;= rm + sn \\
+	   &amp;= reu + sev \\
+	   &amp;= e(ru + sv).
+	  \end{align*}
+	  $$
+	</div>
+	So \(e\) must divide \(d\).
+</li>
+</ol>
+<p>Therefore, \(d = gcd(m,n)\) as desired. \(\ \blacksquare\) 
+<br />
+Note that the Euclidean Algorithm gives a method for computing \(r, s \in \mathbf{Z}\), so \(d = rm + sn\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>GCD Example</b></h4>
 
 <p><br />
 <br /></p>
@@ -85,7 +184,7 @@ Example:</p>
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 1.6.8 A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if \(d\) is a common divisor. So \(d\) divides \(a\) and \(b\) Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\) If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\) Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing Definition Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form $$ \begin{align*} I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}. \end{align*} $$ For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). This set includes all of the even integers. Therefore, we can just say that this set is the set of all multiples of 2. In other words, \(\mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the \(GCD\) exists and can even be computed. Formally, Theorem Let \(a, b \in \mathbf{Z}\). Then For \(a, b\) have a GCD \(d \geq 0\). \(I(a,b) = \mathbf{Z}d\). \(d\) is computed by the Euclidean algorithm. The Euclidean Algorithm Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by $$ \begin{equation*} F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases} \end{equation*} $$ \(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)). Euclidean Algorithm: Iterate \(F\) until stable. Example: $$ \begin{align*} (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0) \end{align*} $$]]></summary></entry><entry><title type="html">Lecture 04: Integers</title><link href="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html" rel="alternate" type="text/html" title="Lecture 04: Integers" /><published>2025-01-27T00:01:36-08:00</published><updated>2025-01-27T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html"><![CDATA[<p>Some facts about the integers</p>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 1.6.8 A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if \(d\) is a common divisor. So \(d\) divides \(a\) and \(b\) Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\) If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\) Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing Definition Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form $$ \begin{align*} I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}. \end{align*} $$ For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). If we let \(s = -1\) and \(t = 1\), then \(2 \in I(4,6)\). In fact, this set produces all of the even integers. It includes all multiples of 2. In other words, we can also write that \(I(4,6) = \mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the GCD exists and can even be computed. Before formally proving its existence, we’ll present the way it can be computed next. The Euclidean Algorithm Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by $$ \begin{equation*} F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases} \end{equation*} $$ \(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)). Euclidean Algorithm: Iterate \(F\) until stable. Example: $$ \begin{align*} (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0) \end{align*} $$ The GCD Theorem So now we have an algorithm to compute the GCD algorithm. Next, we will prove that it does compute the GCD and so the GCD does exist. Theorem Let \(a, b \in \mathbf{Z}\). Then For \(a, b\) have a GCD \(d \geq 0\). \(I(a,b) = \mathbf{Z}d\). \(d\) is computed by the Euclidean algorithm. We’ll start from (3) and then prove that the answer produced by the algorithm is in fact an integer combination of the original input (statement 2). Finally, we’ll show that this just means that we have computed the GCD (statement). To do all of this we will also need the following lemmas Lemma If \(a, b \in I(c,d)\), then \(I(a,b) \subseteq I(c,d)\) Proof: Homework Problem Lemma If \(F(m,n) = (a,b)\), then \(I(m,n) = I(a,b)\) Proof: We have two cases: Case 1: \(n \neq 0\). In this case, \(F(m,n) = (n, r)\) where \(r\) is the remainder after dividing \(m\) by \(n\). So \(m = qn + r\) where \(0 \leq r &lt; |n|\). We want to show that the integer combinations of \(m\) and \(n\) is the same as the integer combinations of \(n\) and \(r\), that is, \(I(m,n) = I(n,r)\). To do this, we will show that \(I(m,n) \subseteq I(n,r)\) and \(I(n,r) \subseteq I(m,n)\). To show that \(I(m,n) \subseteq I(n,r)\), observe that \(m\) is an integer combination of \(n\) and \(r\) because we can write \(m\) as $$ \begin{align*} m &amp;= qn + 1r. \end{align*} $$ Similarly, \(n\) is also an integer combination of \(n\) and \(r\) because we can write \(n\) as $$ \begin{align*} n &amp;= 1n + 0r. \end{align*} $$ Since \(m\) and \(n\) can both be written as integer combinations of \(n\) and \(r\), that is \(m \in I(n,r)\) and \(n \in I(n,r)\), then by the previous lemma, \(I(m,n) \subseteq I(n,r)\). To see that \(I(m,n) \subseteq I(n,r)\), observe that we can write \(n\) as \(n = 0m + 1n\) so \(n \in I(m,n)\). Similarly, \(r = 1m + (-q)m\) so \(r \in I(m,n)\). Then, by the previous lemma, \(I(m,n) \subseteq I(n,r)\). Therefore, \(I(m,n) = I(n,r)\). Case 2: \(n = 0\). In this case, \(F(m,n) = F(m,0) = (|m|,0)\). In this case the integer combinations of \(0\) and \(m\) are just multiples of \(m\) so \(I(m,0) = \mathbf{Z}m\). But this is the same as the integer combinations of \(|m|\) and \(0\) so \(\mathbf{Z}m = I(|m|,0) = I(m,0)\) which is what we wanted to show. \(\blacksquare\) Proof of the GCD Theorem We iterate the algorithm until \(n = 0\) and \(F(m,n) = (|m|,0)\). By the previous lemma we saw that \(I(m,n) = \mathbf{Z}d\) for some \(d \geq 0\). Claim: \(d\) is a GCD. \(m,n \in I(m,n) = \mathbf{Z}d\). So \(m\) and \(n\) are both multiples of \(d\) and d divides both of them. \(d \ | \ m\) and \(d \ | \ n\). So now for condition 2, suppose \(e\) is a common divisor of \(m\) and \(n\). We want to show that \(e\) divides \(d\). Since \(e \ | \ m\) and \(e \ | \ n\), then \(m\) and \(n\) are both multiples of \(e\). So we can write \(m = eu\) and \(n = ev\) for some \(u,v \in \mathbf{Z}\). But we know that any integer combination of \(m\) and \(n\) is a multiple of \(d\). So we can write for some \(r, s \in \mathbf{Z}\) $$ \begin{align*} d &amp;= rm + sn \\ &amp;= reu + sev \\ &amp;= e(ru + sv). \end{align*} $$ So \(e\) must divide \(d\). Therefore, \(d = gcd(m,n)\) as desired. \(\ \blacksquare\) Note that the Euclidean Algorithm gives a method for computing \(r, s \in \mathbf{Z}\), so \(d = rm + sn\). GCD Example]]></summary></entry><entry><title type="html">Lecture 04: Integers</title><link href="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html" rel="alternate" type="text/html" title="Lecture 04: Integers" /><published>2025-01-27T00:01:36-08:00</published><updated>2025-01-27T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html"><![CDATA[<p>Some facts about the integers</p>
 <ul>
 	<li>\((\mathbf{Z}, +)\) is a commutative group. \(+\) is associative and commutative. The identity element is \(0\) and each element \(a\)'s inverse is \(-a\).</li>
 	<li>\((\mathbf{Z}, \cdot)\) is a commutative monoid. \(\cdot\) is associative and commutative. The identity element is \(1\). (No inverses required)</li>

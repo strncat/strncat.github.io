@@ -43,10 +43,10 @@ mathjax: true
        Lecture 05: Greatest Common Divisor
        </a></li>
 	   <li><a href="/jekyll/update/2024/11/04/1.6-gcd.html">
-       Book Notes: [1.6] Greatest Common Divisor (1.6.8 - 1.6.13)
+       Book Notes: [1.6] Alternative Greatest Common Divisor Proof
        </a></li>
-	   <li><a href="/jekyll/update/2024/11/05/1.6-relatively-prime.html">
-       Book Notes: [1.6] Relatively Prime Integers (1.6.14 - 1.6.21)
+	   <li><a href="/jekyll/update/2024/11/05/1.6-prime-factorization-unique.html">
+       Book Notes: [1.6] Prime Factorization is Unique
        </a></li>
 	   <!-------------->
 	   <!------6------->
@@ -55,17 +55,18 @@ mathjax: true
        <li><a href="/jekyll/update/2025/01/29/math417-06-lcm.html">
        Lecture 06: Least Common Multiple
        </a></li>
+	   <!-------------->
+	   <!------7------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/01/30/math417-07-modular-arithmetic.html">
+       Lecture 06/07: Modular Arithmetic
+       </a></li>
    </ol>
 <br>
 <!------------------------ BOOK NOTES --------------------------->
 <h4> Extra Book Notes (to go over) </h4>
-<ol style="list-style-type:none;">   
-	   <li><a href="/jekyll/update/2024/11/06/1.6-gcd-many.html">
-        [1.6] Greatest Common Divisor of Many Integers (1.6.22 - 1.6.25)
-       </a></li>
-	   <li><a href="/jekyll/update/2024/11/07/1.7-modular-arthmetic.html">
-        [1.7] Modular Arithmetic
-       </a></li>
+<ol style="list-style-type:none;">
 	   <li><a href="/jekyll/update/2024/11/09/2.1-first-results.html">
         [2.1] First Results
        </a></li>

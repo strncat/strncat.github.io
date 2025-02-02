@@ -1,4 +1,457 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-01T08:13:23-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 06: Least Common Multiple</title><link href="http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm.html" rel="alternate" type="text/html" title="Lecture 06: Least Common Multiple" /><published>2025-01-29T00:01:36-08:00</published><updated>2025-01-29T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm.html"><![CDATA[<div class="mintheaderdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-01T21:21:00-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 06/07: Modular Arithmetic</title><link href="http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic.html" rel="alternate" type="text/html" title="Lecture 06/07: Modular Arithmetic" /><published>2025-01-30T00:01:36-08:00</published><updated>2025-01-30T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic.html"><![CDATA[<!------------------------------------------------------------------------------>
+<div class="mintheaderdiv">
+Definition (Book Definition 1.7.1)
+</div>
+<div class="mintbodydiv">
+Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write 
+$$
+\begin{align*}
+a \equiv b \mod n \quad \text{or} \quad a \equiv_n b
+\end{align*}
+$$
+if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbf{Z}\) such that \(a - b = tn\)
+</div>
+<!------------------------------------------------------------------------------>
+<p><br />
+<br />
+Example: \((1 \mod 7) = (8 \mod 7) = 1\). Therefore, \(1 \equiv_7 8\).
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+For each integer \(a\), write
+$$
+\begin{align*}
+[a] &amp;= [a]_n = \{x \in \mathbf{Z} \ | \ x \equiv a \mod n\} \subseteq \mathbf{Z} \\
+    &amp;= \{ a + ny \ | \ y \in \mathbf{Z} \}
+\end{align*}
+$$
+The set \([a]\) is called the residue class or congruence class of \(a\) modulo \(n\).
+</div>
+<!------------------------------------------------------------------------------>
+<p><br />
+<br />
+Example: \([2]_6 = \{2 + 6y \ | \ y \in \mathbf{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}\)
+<br />
+\([2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>The Remainder Function</b></h4>
+<p>Another important definition that we need is the following
+<br />
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+	\(rem_n \ : \ \mathbf{Z} \rightarrow \{0,1,2,...,n-1\}\) is the remainder function after dividing by \(n\).
+	<br />
+	\(rem_n(a) = r\) is the unique remainder of \(a \div n\) such that \(0 \leq r &lt; n\) and \(a = qn + r\) for some \(q \in \mathbf{Z}\). Note that \(a - r\) is divisible by \(n\) or \(a \equiv_n r\).
+</div>
+<!------------------------------------------------------------------------------>
+<p><br />
+It’s important to note that the remainder is in the same congruence class as \(a\). In fact \([a]_n \cap \{0,...n-1\} = \{r\}\). Usually the remainder \(r\) is the standard/canonical name for the congruence class. So for example, we usually don’t write \([602]_6\) but write \([2]_6\). But we don’t have to put it in canonical form.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Properties of Congruence</b></h4>
+<p>Congruence is an equivalence relation. The following properties show this.
+<br />
+<br />
+<!-------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Lemma (Book 1.7.2)
+</div>
+<div class="yellowbodydiv">
+	Properties of Congruence:
+<ol>
+	<li>Reflexive: For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\).</li>
+	<li>Symmetric: For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\).</li>
+	<li>Transitive: For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\).</li>
+</ol>
+</div>
+<p><br />
+<!------------------------------------------------------------------------------>
+<b>Proof (book)</b>
+<br />
+For \((a)\), \(a - a = 0\) is divisible by \(n\). For \((b)\), if \(a - b\) is divisible by \(n\), then \(b - a\) is also divisible by \(n\) and vice versa. For \((c)\), if \(a - b\) is divisible by \(n\) and \(b - c\) is divisible by \(4n\), then \((a - b) + (b - c) = a - c\) is also divisible by \(n\). \(\ \blacksquare\)
+<br />
+<br />
+<!------------------------------------------------------------------------------>
+Based on these properties, we have the following proposition
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Proposition (Book Lemma 1.7.3)
+</div>
+<div class="yellowbodydiv">
+For \(a, b \in \mathbf{Z}\), the following are equivalent:
+<ol type="a">
+	<li>\(a \equiv b \mod n\).</li>
+	<li>\([a]_n = [b]_n\).</li>
+	<li>\(\text{rem}_n(a) = \text{rem}_n(b)\).</li>
+	<li>\([a]_n \cap [b]_n \neq \emptyset\).</li>
+</ol>
+</div>
+<p><br />
+<!------------------------------------------------------------------------------>
+<b>Proof (Book):</b>
+<br />
+\((a) \implies (b)\):
+<br />
+Suppose \(a \equiv b \mod n\). We want to show that \([a]_n = [b]_n\). 
+<br />
+\([a]_n \subseteq [b]_n\): Let \(c \in \mathbf{Z}\). If \(c \equiv a \mod n\), then \(c \equiv b \mod n\) by Lemma 1.7.2 (c). Therefore \([a]_n \subseteq [b]_n\).
+<br />
+\([b]_n \subseteq [a]_n\): If \(c \equiv b \mod n\), then \(c \equiv a \mod n\) and so \([a] = [b]\) as required.
+<br />
+<br />
+\((b) \implies (c)\):
+<br />
+By definition, \(\text{rem}_n(x)\) is the unique element of \([x]\) that lies inside \(\{0,1,...,n-1\}\). So if \([a]_n=[b]_n\), then it must be the same element.
+<br />
+<br />
+\((c) \implies (d)\):
+<br />
+\((d)\) is an immediate application of \((c)\)
+<br />
+<br />
+\((d) \implies (a)\):
+Suppose that \([a]_n \cap [b]_n \neq \emptyset\). Let \(c \in [a]_n \cap [b]_n\). Then \(a \equiv c \mod n\) and \(b \equiv c \mod n\). But this implies that \(a \equiv b \mod n\). \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Modular Arithmetic</b></h4>
+<p>The following lemma establishes how modular arithmetic is done.
+<br /></p>
+<div class="yellowheaderdiv">
+Proposition (Book Lemma 1.7.5)
+</div>
+<div class="yellowbodydiv">
+Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then 
+$$
+\begin{align*}
+a + b &amp;\equiv a' + b' \mod n \\
+ab &amp;\equiv a'b' \mod n
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------>
+<b>Proof</b>
+<br />
+[TODO]
+<br />
+<br />
+<!------------------------------------------------------------------------------>
+We can now use these modular arithmetic properties to define algebraic structures on a set.
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+	$$
+	\begin{align*}
+	\mathbf{Z}_n &amp;= \{ \text{ set of congruence classes mod } n \} \\
+	             &amp;= \{ [a]_n \ | \ a \in \mathbf{Z} \} \\
+				 &amp;= \{ [0]_n, [1]_n,...,[n-1]_n \ | \ a \in \mathbf{Z} \} \\
+	\end{align*}
+	$$
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------>
+So now we can use the operations we defined previously to turn this set into a commutative ring.
+<br />
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by
+	$$
+	\begin{align*}
+	[a]_n + [b]_n &amp;= [a + b]_n \\
+	[a]_n + [b]_n &amp;= [ab]_n
+	\end{align*}
+	$$
+</div>
+<p><br />
+\((\mathbf{Z}_n,+,\cdot)\) is commutative ring with identity while \((\mathbf{Z}_n,\cdot)\) is a commutative monoid. \([1]\) is the identity element.
+<br />
+<br />
+Only some elements \([a] \in \mathbf{Z}_n\) have a multiplicative inverse. (such that \([a][b] = [1] = [b][a]\)). The question is when do we have a multiplicative inverse? The answer is in the following proposition.
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Let \(n \geq 1, a \in \mathbf{Z}\). Then \([a]\) has a multiplicative inverse in \(\mathbf{Z}\) if and only if \(gcd(a,n) = 1\).
+</div>
+<p><br />
+<!------------------------------------------------------------------------------>
+<b>Proof</b>
+<br />
+Suppose that \(gcd(a,n)=1\). Then there exists \(r, s \in \mathbf{Z}\) such that \(ar + ns = 1\). Re-writing this equation, we observe that</p>
+<div>
+$$
+\begin{align*}
+ar + ns = 1 &amp;\Longleftrightarrow ar = 1 + (-s)n \quad \text{ (so $ar$ and 1 differ by a multiple of $n$)}\\
+             &amp;\Longleftrightarrow ar = 1 \mod n \\
+			 &amp;\Longleftrightarrow [a][r] = 1. \ \blacksquare \\
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------>
+We will use \(\phi(n) = \{x \in \mathbf{Z}_n \ | \ x \text{ has a multiplicative inverse}\} \in \mathbf{Z}_n\). 
+<br />
+\((\phi(n))\) is a commutative group.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Binomial Theorem</b></h4>
+<p><br />
+Next we have the binomial theorem which we need to prove a proposition which will then lead to Fermat’s Little Theorem.
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem (Binomial Theorem)
+</div>
+<div class="yellowbodydiv">
+	\(a, b \in \mathbf{R}, n \in \mathbf{N}\). Then
+	$$
+	\begin{align*}
+	(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k
+	\end{align*}
+	$$
+	where \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\) for \(a \leq k \leq n\)
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+Use Pascal’s Identity: \(\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}\)… TODO
+<br />
+<br />
+As a consequence of the binomial theorem, we have the next proposition
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Let \(p\) be prime. For all \(a, b \in \mathbf{Z}\):
+	$$
+	\begin{align*}
+	(a + b)^p \equiv a^p + b^p \mod p
+	\end{align*}
+	$$
+</div>
+<p><br />
+<br />
+First observe that \((a+b)^5 = a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5\). So those middle terms all have coefficients divisible by 5. Therefore, they’ll go away if we apply mod \(5\). This happens when \(p\) is prime.
+<br />
+<br />
+<!------------------------------------------------------------------------------>
+<b>Proof</b>
+<br />
+Using the binomial theorem, we can first expand the sum \((a+b)^p\) as follows</p>
+<div>
+	$$
+	\begin{align*}
+	(a + b)^p &amp;= \sum_{k=0}^{n} \binom{p}{k} a^{p-k} b^k \\
+	          &amp;= a^{p} + \binom{p}{1} a^{p-1} b + \binom{p}{2} a^{p-2} b^2 + ... + b^k \\
+	\end{align*}
+	$$
+</div>
+<p>What we need to show is that \(\binom{p}{k} \equiv 0 \mod p\) if \(0 &lt; k &lt; p\). If we show this, then what’s left is the first and last terms only. Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	\binom{p}{k} &amp;= \frac{p!}{k!(p-k)!} \\
+	\binom{p}{k} k! (p-k)! &amp;= p! \\
+	\end{align*}
+	$$
+</div>
+<p>\(p! = p(p-1)...1\). So \(p \ | \ p!\). But \(p! = \binom{p}{k} k! (p-k)!\) so \(p\) divides this whole product. Since \(p\) is prime, then \(p\) must divide one of the factors. Now observe that \(p\) can’t divide \(k!\) since \(k &lt; p\). \(p\) doesn’t divide \((p - k)!\) either since \(p - k &lt; p\). Therefore, \(p\) must divide \(\binom{p}{k}\) as desired. \(\ \blacksquare\). 
+<!------------------------------------------------------------------------------>
+<br />
+<br />
+A consequence of this proof is Fermat’s Little Theorem
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Fermat's Little Theorem</b></h4>
+<p>Next, we will prove Fermat’s Little Theorem.
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+	Let \(p\) be prime, \(a \in \mathbf{Z}\)
+	<ol>
+		<li>\(a^p \equiv a \mod p\)</li>
+		<li>If \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\)</li>
+	</ol>
+</div>
+<!------------------------------------------------------------------------------>
+<p><br />
+<b>Proof of (1)</b>
+<br />
+By Induction on \(a\) for \(a \geq 1\).
+<br />
+Base Case (\(a = 1\)): \(1^p \equiv 1 \mod p\) and so we’re done.
+<br />
+<br />
+Inductive Case (\(a &gt; 1\)):</p>
+<div>
+	$$
+	\begin{align*}
+	(a + 1)^p &amp;\equiv a^p + 1^p \quad \text{(By the previous proposition)} \\
+	          &amp;\equiv a + 1 \quad \text{(By the inductive hypothesis)}
+	\end{align*}
+	$$
+</div>
+<p>If \(a = 0\), then \(0^p = 0\). 
+<br />
+<br />
+For \(a \leq 0\), we can use downward induction.
+<br />
+Base Case \((a = -1)\): We need to show that \((-1)^p \equiv -1 \mod p\). \(p\) is prime so we have two cases. If \(p = 2\), then \((-1)^2 = 1 = -1 \mod 2\). If \(p\) is odd, then \((-1)^p = -1\).
+<br />
+<br />
+Inductive Case \((a &lt; -1)\): We want to show that \(a^p \equiv a\) implies \((a - 1)^p = a - 1\)
+<br />
+<br />
+<b>Proof of (2)</b>
+<br />
+We are given that \(a \nmid p\). From part (1), we know that \(a^p \equiv a \mod p\). So \(p \ | \ a^p - a = a(a^{p-1} - 1)\). But since \(p\) is prime and since it doesn’t divide \(p\), then it must divide \(a^{p-1} - 1\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Two-Prime Fermat</b></h4>
+<p>There is a more generalized version of Fermat’s Little Theorem. We will use Fermat’s theorem to prove it.
+<br />
+<br /></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+	Let \(p, q\) be distinct primes and let \(n = pq\). Let \(m\) be
+	$$
+	\begin{align*}
+	   m = lcm(p-1, q-1) = \frac{(p-1)(q-1)}{gcd(p-1,q-1)}
+	\end{align*}
+	$$
+If \(a \in \mathbf{Z}\), \(h \in \mathbf{N}\) such that \(h \equiv 1 \mod m\), then \(a^h \equiv a \mod n\)
+</div>
+<!------------------------------------------------------------------------------>
+<p><br />
+<b>Proof</b>
+We know that \(h \equiv 1 \mod m\) so \(h = 1 + tm\) for some \(t \in \mathbf{Z}\). We want to show that \(a^h \equiv a \mod n\). In other words, we want to show that \(n \ | \ a^h - a\) or \(pq \ | \ a^h - a\). Expanding this expression further as</p>
+<div>
+	$$
+	\begin{align*}
+	   a^h - a &amp;= a^{1+tm} - a \\
+	           &amp;= a(a^{tm} - 1)
+	\end{align*}
+	$$
+</div>
+<p>We want to show that \(n = pq\) divides this number. \(p\) and \(q\) are distinct primes so they are relatively prime and their gcd is 1. By the Proposition from lecture 5 (Corollary 1.6.17 in the book), then if \(p\) divides this number and \(q\) divides this number, then we know that \(pq\) divides it. Therefore, we want to show to that \(p\) and \(q\) each divide \(a(a^{tm} - 1)\) 
+<br />
+<br />
+To start, we want to show that \(p \ | \ a(a^{tm} - 1)\). But since \(p\) is prime, then it will have to divide \(a\) or \(a^{tm} - 1\). So suppose that \(p \nmid a\). We claim that \(p \ | \ a^{tm} - 1\). Recall that \(m = lcm(p-1, q-1)\). So \(m = (p - 1)s\) for some \(s \in \mathbf{N}\). So</p>
+<div>
+	$$
+	\begin{align*}
+	   a^{tm} &amp;= a^{ts(p-1)} \\
+	              &amp;= (a^{p-1})^{ts}.
+	\end{align*}
+	$$
+</div>
+<p>Observe here that by Fermat’s Little Theorem (part 2), if \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\). Therefore</p>
+<div>
+	$$
+	\begin{align*}
+	   (a^{p-1})^{ts} &amp;\equiv 1^{ts} \mod p \\
+	                  &amp;\equiv 1 \mod p.
+	\end{align*}
+	$$
+</div>
+<p>This means that \(a^{tm} - 1\) is divisible by \(p\) as we wanted to show. So \(p\) divides the product \(a(a^{tm} - 1)\). With a similar arugment, we can show this for \(q\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>RSA Cryptosystem</b></h4>
+<p>This encryption method is based on the two prime fermat theorem. It is widely used to encrypt many of the transactions that happen on the internet.
+<br />
+<br />
+Symmetric Encryption:
+We have some plain text (\(x \in \mathbf{Z}_n\)) that we want to encrypt. We have a function that takes a key (\(e \in \mathbf{Z}\)) to encrypt the plain text and turn it to encrypted text (\(y \in \mathbf{Z}_n\)). To decrypt it back, we have to use the same key again to turn it to plain text. The flaw in this method is that the encryption and decryption keys are the same and will need to be shared somehow. That’s why we have an alternative:
+<br />
+<br />
+Asymmetric Encryption:
+This is the same proces except that now we have a decryption key \((d \in \mathbf{Z})\). So now we have a pair of keys \((e, d)\). You will broadcast \(e\) so that anyone can encrypt a message and send it to you, but you are the only with the decryption key. The goal here is to design the pair such that one one can deduce \(d\) from \(e\). So how to design such a pair?
+<br />
+<br />
+One way to implement this idea is the following (RSA):</p>
+<ol>
+	<li>Pick a prime number \(p,q\) large (100s of digits)</li>
+	<li>\(n = pq\)</li>
+	<li>\(m = lcm(p-1,q-1)\)</li>
+	<li>Choose \(1 &lt; d, e &lt; m\) such that \(de \equiv 1 \mod m\). You can first pick \(d\) and then you can pick a multiplicative inverse of \(d\) to be \(e\) using the Euclidean Algorithm.</li>
+</ol>
+<p>So now, you take the plain test \(x\) and raise it to the \(e\)th power. \(x^e\) is the encrypted text. \(e\) is the encryption key. The output \(y = x^e\) is the encrypted text. To decrypt it, raise the encrypted text to the \(d\)th power so \(y^d = x^{ed}\) and so now we have the following equation</p>
+<div>
+	$$
+	\begin{align*}
+	  x^{ed} \equiv x \mod pq
+	\end{align*}
+	$$
+</div>
+<p>This is Two-prime Fermat.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+<li>MATH417 by Charles Rezk</li>
+<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition (Book Definition 1.7.1) Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write $$ \begin{align*} a \equiv b \mod n \quad \text{or} \quad a \equiv_n b \end{align*} $$ if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbf{Z}\) such that \(a - b = tn\) Example: \((1 \mod 7) = (8 \mod 7) = 1\). Therefore, \(1 \equiv_7 8\). Definition For each integer \(a\), write $$ \begin{align*} [a] &amp;= [a]_n = \{x \in \mathbf{Z} \ | \ x \equiv a \mod n\} \subseteq \mathbf{Z} \\ &amp;= \{ a + ny \ | \ y \in \mathbf{Z} \} \end{align*} $$ The set \([a]\) is called the residue class or congruence class of \(a\) modulo \(n\). Example: \([2]_6 = \{2 + 6y \ | \ y \in \mathbf{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}\) \([2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....\) The Remainder Function Another important definition that we need is the following Definition \(rem_n \ : \ \mathbf{Z} \rightarrow \{0,1,2,...,n-1\}\) is the remainder function after dividing by \(n\). \(rem_n(a) = r\) is the unique remainder of \(a \div n\) such that \(0 \leq r &lt; n\) and \(a = qn + r\) for some \(q \in \mathbf{Z}\). Note that \(a - r\) is divisible by \(n\) or \(a \equiv_n r\). It’s important to note that the remainder is in the same congruence class as \(a\). In fact \([a]_n \cap \{0,...n-1\} = \{r\}\). Usually the remainder \(r\) is the standard/canonical name for the congruence class. So for example, we usually don’t write \([602]_6\) but write \([2]_6\). But we don’t have to put it in canonical form. Properties of Congruence Congruence is an equivalence relation. The following properties show this. Lemma (Book 1.7.2) Properties of Congruence: Reflexive: For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\). Symmetric: For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\). Transitive: For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\). Proof (book) For \((a)\), \(a - a = 0\) is divisible by \(n\). For \((b)\), if \(a - b\) is divisible by \(n\), then \(b - a\) is also divisible by \(n\) and vice versa. For \((c)\), if \(a - b\) is divisible by \(n\) and \(b - c\) is divisible by \(4n\), then \((a - b) + (b - c) = a - c\) is also divisible by \(n\). \(\ \blacksquare\) Based on these properties, we have the following proposition Proposition (Book Lemma 1.7.3) For \(a, b \in \mathbf{Z}\), the following are equivalent: \(a \equiv b \mod n\). \([a]_n = [b]_n\). \(\text{rem}_n(a) = \text{rem}_n(b)\). \([a]_n \cap [b]_n \neq \emptyset\). Proof (Book): \((a) \implies (b)\): Suppose \(a \equiv b \mod n\). We want to show that \([a]_n = [b]_n\). \([a]_n \subseteq [b]_n\): Let \(c \in \mathbf{Z}\). If \(c \equiv a \mod n\), then \(c \equiv b \mod n\) by Lemma 1.7.2 (c). Therefore \([a]_n \subseteq [b]_n\). \([b]_n \subseteq [a]_n\): If \(c \equiv b \mod n\), then \(c \equiv a \mod n\) and so \([a] = [b]\) as required. \((b) \implies (c)\): By definition, \(\text{rem}_n(x)\) is the unique element of \([x]\) that lies inside \(\{0,1,...,n-1\}\). So if \([a]_n=[b]_n\), then it must be the same element. \((c) \implies (d)\): \((d)\) is an immediate application of \((c)\) \((d) \implies (a)\): Suppose that \([a]_n \cap [b]_n \neq \emptyset\). Let \(c \in [a]_n \cap [b]_n\). Then \(a \equiv c \mod n\) and \(b \equiv c \mod n\). But this implies that \(a \equiv b \mod n\). \(\ \blacksquare\) Modular Arithmetic The following lemma establishes how modular arithmetic is done. Proposition (Book Lemma 1.7.5) Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then $$ \begin{align*} a + b &amp;\equiv a' + b' \mod n \\ ab &amp;\equiv a'b' \mod n \end{align*} $$ Proof [TODO] We can now use these modular arithmetic properties to define algebraic structures on a set. Definition $$ \begin{align*} \mathbf{Z}_n &amp;= \{ \text{ set of congruence classes mod } n \} \\ &amp;= \{ [a]_n \ | \ a \in \mathbf{Z} \} \\ &amp;= \{ [0]_n, [1]_n,...,[n-1]_n \ | \ a \in \mathbf{Z} \} \\ \end{align*} $$ So now we can use the operations we defined previously to turn this set into a commutative ring. Definition Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by $$ \begin{align*} [a]_n + [b]_n &amp;= [a + b]_n \\ [a]_n + [b]_n &amp;= [ab]_n \end{align*} $$ \((\mathbf{Z}_n,+,\cdot)\) is commutative ring with identity while \((\mathbf{Z}_n,\cdot)\) is a commutative monoid. \([1]\) is the identity element. Only some elements \([a] \in \mathbf{Z}_n\) have a multiplicative inverse. (such that \([a][b] = [1] = [b][a]\)). The question is when do we have a multiplicative inverse? The answer is in the following proposition. Proposition Let \(n \geq 1, a \in \mathbf{Z}\). Then \([a]\) has a multiplicative inverse in \(\mathbf{Z}\) if and only if \(gcd(a,n) = 1\). Proof Suppose that \(gcd(a,n)=1\). Then there exists \(r, s \in \mathbf{Z}\) such that \(ar + ns = 1\). Re-writing this equation, we observe that $$ \begin{align*} ar + ns = 1 &amp;\Longleftrightarrow ar = 1 + (-s)n \quad \text{ (so $ar$ and 1 differ by a multiple of $n$)}\\ &amp;\Longleftrightarrow ar = 1 \mod n \\ &amp;\Longleftrightarrow [a][r] = 1. \ \blacksquare \\ \end{align*} $$ We will use \(\phi(n) = \{x \in \mathbf{Z}_n \ | \ x \text{ has a multiplicative inverse}\} \in \mathbf{Z}_n\). \((\phi(n))\) is a commutative group. Binomial Theorem Next we have the binomial theorem which we need to prove a proposition which will then lead to Fermat’s Little Theorem. Theorem (Binomial Theorem) \(a, b \in \mathbf{R}, n \in \mathbf{N}\). Then $$ \begin{align*} (a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k \end{align*} $$ where \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\) for \(a \leq k \leq n\) Proof Use Pascal’s Identity: \(\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}\)… TODO As a consequence of the binomial theorem, we have the next proposition Proposition Let \(p\) be prime. For all \(a, b \in \mathbf{Z}\): $$ \begin{align*} (a + b)^p \equiv a^p + b^p \mod p \end{align*} $$ First observe that \((a+b)^5 = a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5\). So those middle terms all have coefficients divisible by 5. Therefore, they’ll go away if we apply mod \(5\). This happens when \(p\) is prime. Proof Using the binomial theorem, we can first expand the sum \((a+b)^p\) as follows $$ \begin{align*} (a + b)^p &amp;= \sum_{k=0}^{n} \binom{p}{k} a^{p-k} b^k \\ &amp;= a^{p} + \binom{p}{1} a^{p-1} b + \binom{p}{2} a^{p-2} b^2 + ... + b^k \\ \end{align*} $$ What we need to show is that \(\binom{p}{k} \equiv 0 \mod p\) if \(0 &lt; k &lt; p\). If we show this, then what’s left is the first and last terms only. Observe that $$ \begin{align*} \binom{p}{k} &amp;= \frac{p!}{k!(p-k)!} \\ \binom{p}{k} k! (p-k)! &amp;= p! \\ \end{align*} $$ \(p! = p(p-1)...1\). So \(p \ | \ p!\). But \(p! = \binom{p}{k} k! (p-k)!\) so \(p\) divides this whole product. Since \(p\) is prime, then \(p\) must divide one of the factors. Now observe that \(p\) can’t divide \(k!\) since \(k &lt; p\). \(p\) doesn’t divide \((p - k)!\) either since \(p - k &lt; p\). Therefore, \(p\) must divide \(\binom{p}{k}\) as desired. \(\ \blacksquare\). A consequence of this proof is Fermat’s Little Theorem Fermat's Little Theorem Next, we will prove Fermat’s Little Theorem. Theorem Let \(p\) be prime, \(a \in \mathbf{Z}\) \(a^p \equiv a \mod p\) If \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\) Proof of (1) By Induction on \(a\) for \(a \geq 1\). Base Case (\(a = 1\)): \(1^p \equiv 1 \mod p\) and so we’re done. Inductive Case (\(a &gt; 1\)): $$ \begin{align*} (a + 1)^p &amp;\equiv a^p + 1^p \quad \text{(By the previous proposition)} \\ &amp;\equiv a + 1 \quad \text{(By the inductive hypothesis)} \end{align*} $$ If \(a = 0\), then \(0^p = 0\). For \(a \leq 0\), we can use downward induction. Base Case \((a = -1)\): We need to show that \((-1)^p \equiv -1 \mod p\). \(p\) is prime so we have two cases. If \(p = 2\), then \((-1)^2 = 1 = -1 \mod 2\). If \(p\) is odd, then \((-1)^p = -1\). Inductive Case \((a &lt; -1)\): We want to show that \(a^p \equiv a\) implies \((a - 1)^p = a - 1\) Proof of (2) We are given that \(a \nmid p\). From part (1), we know that \(a^p \equiv a \mod p\). So \(p \ | \ a^p - a = a(a^{p-1} - 1)\). But since \(p\) is prime and since it doesn’t divide \(p\), then it must divide \(a^{p-1} - 1\). Two-Prime Fermat There is a more generalized version of Fermat’s Little Theorem. We will use Fermat’s theorem to prove it. Theorem Let \(p, q\) be distinct primes and let \(n = pq\). Let \(m\) be $$ \begin{align*} m = lcm(p-1, q-1) = \frac{(p-1)(q-1)}{gcd(p-1,q-1)} \end{align*} $$ If \(a \in \mathbf{Z}\), \(h \in \mathbf{N}\) such that \(h \equiv 1 \mod m\), then \(a^h \equiv a \mod n\) Proof We know that \(h \equiv 1 \mod m\) so \(h = 1 + tm\) for some \(t \in \mathbf{Z}\). We want to show that \(a^h \equiv a \mod n\). In other words, we want to show that \(n \ | \ a^h - a\) or \(pq \ | \ a^h - a\). Expanding this expression further as $$ \begin{align*} a^h - a &amp;= a^{1+tm} - a \\ &amp;= a(a^{tm} - 1) \end{align*} $$ We want to show that \(n = pq\) divides this number. \(p\) and \(q\) are distinct primes so they are relatively prime and their gcd is 1. By the Proposition from lecture 5 (Corollary 1.6.17 in the book), then if \(p\) divides this number and \(q\) divides this number, then we know that \(pq\) divides it. Therefore, we want to show to that \(p\) and \(q\) each divide \(a(a^{tm} - 1)\) To start, we want to show that \(p \ | \ a(a^{tm} - 1)\). But since \(p\) is prime, then it will have to divide \(a\) or \(a^{tm} - 1\). So suppose that \(p \nmid a\). We claim that \(p \ | \ a^{tm} - 1\). Recall that \(m = lcm(p-1, q-1)\). So \(m = (p - 1)s\) for some \(s \in \mathbf{N}\). So $$ \begin{align*} a^{tm} &amp;= a^{ts(p-1)} \\ &amp;= (a^{p-1})^{ts}. \end{align*} $$ Observe here that by Fermat’s Little Theorem (part 2), if \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\). Therefore $$ \begin{align*} (a^{p-1})^{ts} &amp;\equiv 1^{ts} \mod p \\ &amp;\equiv 1 \mod p. \end{align*} $$ This means that \(a^{tm} - 1\) is divisible by \(p\) as we wanted to show. So \(p\) divides the product \(a(a^{tm} - 1)\). With a similar arugment, we can show this for \(q\). RSA Cryptosystem This encryption method is based on the two prime fermat theorem. It is widely used to encrypt many of the transactions that happen on the internet. Symmetric Encryption: We have some plain text (\(x \in \mathbf{Z}_n\)) that we want to encrypt. We have a function that takes a key (\(e \in \mathbf{Z}\)) to encrypt the plain text and turn it to encrypted text (\(y \in \mathbf{Z}_n\)). To decrypt it back, we have to use the same key again to turn it to plain text. The flaw in this method is that the encryption and decryption keys are the same and will need to be shared somehow. That’s why we have an alternative: Asymmetric Encryption: This is the same proces except that now we have a decryption key \((d \in \mathbf{Z})\). So now we have a pair of keys \((e, d)\). You will broadcast \(e\) so that anyone can encrypt a message and send it to you, but you are the only with the decryption key. The goal here is to design the pair such that one one can deduce \(d\) from \(e\). So how to design such a pair? One way to implement this idea is the following (RSA): Pick a prime number \(p,q\) large (100s of digits) \(n = pq\) \(m = lcm(p-1,q-1)\) Choose \(1 &lt; d, e &lt; m\) such that \(de \equiv 1 \mod m\). You can first pick \(d\) and then you can pick a multiplicative inverse of \(d\) to be \(e\) using the Euclidean Algorithm. So now, you take the plain test \(x\) and raise it to the \(e\)th power. \(x^e\) is the encrypted text. \(e\) is the encryption key. The output \(y = x^e\) is the encrypted text. To decrypt it, raise the encrypted text to the \(d\)th power so \(y^d = x^{ed}\) and so now we have the following equation $$ \begin{align*} x^{ed} \equiv x \mod pq \end{align*} $$ This is Two-prime Fermat. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 06: Least Common Multiple</title><link href="http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm.html" rel="alternate" type="text/html" title="Lecture 06: Least Common Multiple" /><published>2025-01-29T00:01:36-08:00</published><updated>2025-01-29T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm.html"><![CDATA[<div class="mintheaderdiv">
 Definition
 </div>
 <div class="mintbodydiv">
@@ -380,11 +833,11 @@ Note that the Euclidean Algorithm gives a method for computing \(r, s \in \mathb
 
 <p><br />
 <!------------------------------------------------------------------------></p>
-<h4><b>Applications of the GCD</b></h4>
+<h4><b>Relatively Prime Integers</b></h4>
 <p>Next, we’ll see how the GCD is used in the definition of relatively prime numbers.
 <br /></p>
 <div class="mintheaderdiv">
-Definition
+Definition (Book Definition 1.6.14)
 </div>
 <div class="mintbodydiv">
 \(a, b \in \mathbf{Z}\) are relatively prime if gcd\((a,b) = 1\).
@@ -397,7 +850,7 @@ For example \(4\) and \(9\) are relatively prime. gcd\((4,9)=1\).
 <br />
 <!------------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
-Proposition
+Proposition (Book Proposition 1.6.15)
 </div>
 <div class="peachbodydiv">
 \(a, b\) are relatively prime if and only if
@@ -419,7 +872,7 @@ for some \(r,s \in \mathbf{Z}\)
 <br />
 <!------------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
-Proposition
+Proposition (Book Corollary 1.6.17)
 </div>
 <div class="peachbodydiv">
 If \(a, b\) are relatively prime and if \(a \ | \ n\) and \(b \ | \ n\), then \(ab \ | n\).
@@ -428,7 +881,7 @@ If \(a, b\) are relatively prime and if \(a \ | \ n\) and \(b \ | \ n\), then \(
 <p><br />
 <b>Proof</b>
 <br />
-Suppose \(a\) and \(b\) are relatively prime. Then by definition gcd\((a,b)=1\). This means that \(I(a,b) = 1\) and we can write \(1 = ra + sb\) for some integers \(s, r \in \mathbf{Z}\). We’re also given that \(a \ | \ n\) so \(n = au\) for some \(u \in \mathbf{Z}\). Similarly, \(b \ | \ n\) and so \(n = bv\) for some \(v \in \mathbf{Z}\). Putting all of this together we have</p>
+Suppose \(a\) and \(b\) are relatively prime. We are given that \(a \ | \ n\) so \(n = au\) for some \(u \in \mathbf{Z}\). Similarly, \(b \ | \ n\) and so \(n = bv\) for some \(v \in \mathbf{Z}\). Since \(a\) and \(b\) are relatively prime, then by definition gcd\((a,b)=1\). This means that \(I(a,b) = 1\) and we can write \(1 = ra + sb\) for some integers \(s, r \in \mathbf{Z}\). Multiply this equation by \(b\) as follows</p>
 <div>
 $$
 \begin{align*}
@@ -437,7 +890,7 @@ n &amp;= n(ra + sb) \\
   &amp;= nra + nsb \\
   &amp;= (bv)ra + (au)sb \\
   &amp;= (ab)vr + (ab)us \\
-  &amp;= (ab)(vr + us) \\
+  &amp;= (ab)(vr + us). \\
 \end{align*}
 $$
 </div>
@@ -479,7 +932,7 @@ Fact: If \(p \ | \ a_1a_2...a_k\), then \(p\) divides at least one of the factor
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 1.6.8 A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if \(d\) is a common divisor. So \(d\) divides \(a\) and \(b\) Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\) If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\) Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing Definition Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form $$ \begin{align*} I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}. \end{align*} $$ For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). If we let \(s = -1\) and \(t = 1\), then \(2 \in I(4,6)\). In fact, this set produces all of the even integers. It includes all multiples of 2. In other words, we can also write that \(I(4,6) = \mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the GCD exists and can even be computed. Before formally proving its existence, we’ll present the way it can be computed next. The Euclidean Algorithm Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by $$ \begin{equation*} F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases} \end{equation*} $$ \(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)). Euclidean Algorithm: Iterate \(F\) until stable. Example: $$ \begin{align*} (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0) \end{align*} $$ The GCD Theorem So now we have an algorithm to compute the GCD algorithm. Next, we will prove that it does compute the GCD and so the GCD does exist. Theorem Let \(a, b \in \mathbf{Z}\). Then For \(a, b\) have a GCD \(d \geq 0\). \(I(a,b) = \mathbf{Z}d\). \(d\) is computed by the Euclidean algorithm. We’ll start from (3) and then prove that the answer produced by the algorithm is in fact an integer combination of the original input (statement 2). Finally, we’ll show that this just means that we have computed the GCD (statement). To do all of this we will also need the following lemmas Lemma If \(a, b \in I(c,d)\), then \(I(a,b) \subseteq I(c,d)\) Proof: Homework Problem Lemma If \(F(m,n) = (a,b)\), then \(I(m,n) = I(a,b)\) Proof: We have two cases: Case 1: \(n \neq 0\). In this case, \(F(m,n) = (n, r)\) where \(r\) is the remainder after dividing \(m\) by \(n\). So \(m = qn + r\) where \(0 \leq r &lt; |n|\). We want to show that the integer combinations of \(m\) and \(n\) is the same as the integer combinations of \(n\) and \(r\), that is, \(I(m,n) = I(n,r)\). To do this, we will show that \(I(m,n) \subseteq I(n,r)\) and \(I(n,r) \subseteq I(m,n)\). To show that \(I(m,n) \subseteq I(n,r)\), observe that \(m\) is an integer combination of \(n\) and \(r\) because we can write \(m\) as $$ \begin{align*} m &amp;= qn + 1r. \end{align*} $$ Similarly, \(n\) is also an integer combination of \(n\) and \(r\) because we can write \(n\) as $$ \begin{align*} n &amp;= 1n + 0r. \end{align*} $$ Since \(m\) and \(n\) can both be written as integer combinations of \(n\) and \(r\), that is \(m \in I(n,r)\) and \(n \in I(n,r)\), then by the previous lemma, \(I(m,n) \subseteq I(n,r)\). To see that \(I(m,n) \subseteq I(n,r)\), observe that we can write \(n\) as \(n = 0m + 1n\) so \(n \in I(m,n)\). Similarly, \(r = 1m + (-q)m\) so \(r \in I(m,n)\). Then, by the previous lemma, \(I(m,n) \subseteq I(n,r)\). Therefore, \(I(m,n) = I(n,r)\). Case 2: \(n = 0\). In this case, \(F(m,n) = F(m,0) = (|m|,0)\). In this case the integer combinations of \(0\) and \(m\) are just multiples of \(m\) so \(I(m,0) = \mathbf{Z}m\). But this is the same as the integer combinations of \(|m|\) and \(0\) so \(\mathbf{Z}m = I(|m|,0) = I(m,0)\) which is what we wanted to show. \(\blacksquare\) Proof of the GCD Theorem We iterate the algorithm until \(n = 0\) and \(F(m,n) = (|m|,0)\). By the previous lemma we saw that \(I(m,n) = \mathbf{Z}d\) for some \(d \geq 0\). Claim: \(d\) is a GCD. \(m,n \in I(m,n) = \mathbf{Z}d\). So \(m\) and \(n\) are both multiples of \(d\) and d divides both of them. \(d \ | \ m\) and \(d \ | \ n\). So now for condition 2, suppose \(e\) is a common divisor of \(m\) and \(n\). We want to show that \(e\) divides \(d\). Since \(e \ | \ m\) and \(e \ | \ n\), then \(m\) and \(n\) are both multiples of \(e\). So we can write \(m = eu\) and \(n = ev\) for some \(u,v \in \mathbf{Z}\). But we know that any integer combination of \(m\) and \(n\) is a multiple of \(d\). So we can write for some \(r, s \in \mathbf{Z}\) $$ \begin{align*} d &amp;= rm + sn \\ &amp;= reu + sev \\ &amp;= e(ru + sv). \end{align*} $$ So \(e\) must divide \(d\). Therefore, \(d = gcd(m,n)\) as desired. \(\ \blacksquare\) Note that the Euclidean Algorithm gives a method for computing \(r, s \in \mathbf{Z}\), so \(d = rm + sn\). GCD Example TODO … all I have now is this Applications of the GCD Next, we’ll see how the GCD is used in the definition of relatively prime numbers. Definition \(a, b \in \mathbf{Z}\) are relatively prime if gcd\((a,b) = 1\). For example \(4\) and \(9\) are relatively prime. gcd\((4,9)=1\). Proposition \(a, b\) are relatively prime if and only if $$ \begin{align*} 1 = ra + sb \end{align*} $$ for some \(r,s \in \mathbf{Z}\) Proof \(\Rightarrow:\) If \(a\) and \(b\) are relatively prime, then by definition gcd\((a,b)=1\). By the GCD Theorem, this means that \(I(a,b) = 1\) and so we’re done. \(\Leftarrow:\) If \(1 = ra + sb\) for some \(r,s \in \mathbf{Z}\), then this means that \(1 \in I(a,b)\). But \(I(a,b)\) is also the set of multiples of some integer \(m\). But since \(1\) is in the set, then it must contains all multiples of \(1\). Therefore, we must have \(1 = I(a,b)\). By the GCD Theorem, \(1\) is therefore the gcd of \(a\) and \(b\) and so \(a\) and \(b\) are relatively prime. \(\ \blacksquare\) Proposition If \(a, b\) are relatively prime and if \(a \ | \ n\) and \(b \ | \ n\), then \(ab \ | n\). Proof Suppose \(a\) and \(b\) are relatively prime. Then by definition gcd\((a,b)=1\). This means that \(I(a,b) = 1\) and we can write \(1 = ra + sb\) for some integers \(s, r \in \mathbf{Z}\). We’re also given that \(a \ | \ n\) so \(n = au\) for some \(u \in \mathbf{Z}\). Similarly, \(b \ | \ n\) and so \(n = bv\) for some \(v \in \mathbf{Z}\). Putting all of this together we have $$ \begin{align*} 1 &amp;= ra + sb \\ n &amp;= n(ra + sb) \\ &amp;= nra + nsb \\ &amp;= (bv)ra + (au)sb \\ &amp;= (ab)vr + (ab)us \\ &amp;= (ab)(vr + us) \\ \end{align*} $$ From this we see that \(ab \ | \ n\) as desired. \(\ \blacksquare\) Proposition If \(p\) is prime and \(p \ | \ ab\), then either \(p \ | \ a\) or \(p \ | \ b\) Proof We’ll show that \(p \ | \ ab\) by showing that if \(p \nmid a\), then \(p \ | \ b\). Since \(p\) is prime and \(p \nmid a\), then gcd\((p,a)=\). By the Proposition, this implies that \(1 = pr + as\) for some \(r, s \in \mathbf{Z}\). Observe that $$ \begin{align*} 1 &amp;= pr + as \\ b &amp;= b(pr + as) \\ b &amp;= p(br) + (ab)s \\ \end{align*} $$ Now, we know that \(p \ | \ ab\). So \(p\) divides both terms. Therefore, \(p\) must divide \(b\) as we wanted to show. \(\ \blacksquare\) Fact: If \(p \ | \ a_1a_2...a_k\), then \(p\) divides at least one of the factors. So \(p \ | \ a_i\) for some \(i \in \{1,...,k\}\) References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 04: Integers</title><link href="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html" rel="alternate" type="text/html" title="Lecture 04: Integers" /><published>2025-01-27T00:01:36-08:00</published><updated>2025-01-27T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html"><![CDATA[<p>Some facts about the integers</p>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 1.6.8 A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if \(d\) is a common divisor. So \(d\) divides \(a\) and \(b\) Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\) If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\) Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing Definition Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form $$ \begin{align*} I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}. \end{align*} $$ For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). If we let \(s = -1\) and \(t = 1\), then \(2 \in I(4,6)\). In fact, this set produces all of the even integers. It includes all multiples of 2. In other words, we can also write that \(I(4,6) = \mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the GCD exists and can even be computed. Before formally proving its existence, we’ll present the way it can be computed next. The Euclidean Algorithm Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by $$ \begin{equation*} F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases} \end{equation*} $$ \(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)). Euclidean Algorithm: Iterate \(F\) until stable. Example: $$ \begin{align*} (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0) \end{align*} $$ The GCD Theorem So now we have an algorithm to compute the GCD algorithm. Next, we will prove that it does compute the GCD and so the GCD does exist. Theorem Let \(a, b \in \mathbf{Z}\). Then For \(a, b\) have a GCD \(d \geq 0\). \(I(a,b) = \mathbf{Z}d\). \(d\) is computed by the Euclidean algorithm. We’ll start from (3) and then prove that the answer produced by the algorithm is in fact an integer combination of the original input (statement 2). Finally, we’ll show that this just means that we have computed the GCD (statement). To do all of this we will also need the following lemmas Lemma If \(a, b \in I(c,d)\), then \(I(a,b) \subseteq I(c,d)\) Proof: Homework Problem Lemma If \(F(m,n) = (a,b)\), then \(I(m,n) = I(a,b)\) Proof: We have two cases: Case 1: \(n \neq 0\). In this case, \(F(m,n) = (n, r)\) where \(r\) is the remainder after dividing \(m\) by \(n\). So \(m = qn + r\) where \(0 \leq r &lt; |n|\). We want to show that the integer combinations of \(m\) and \(n\) is the same as the integer combinations of \(n\) and \(r\), that is, \(I(m,n) = I(n,r)\). To do this, we will show that \(I(m,n) \subseteq I(n,r)\) and \(I(n,r) \subseteq I(m,n)\). To show that \(I(m,n) \subseteq I(n,r)\), observe that \(m\) is an integer combination of \(n\) and \(r\) because we can write \(m\) as $$ \begin{align*} m &amp;= qn + 1r. \end{align*} $$ Similarly, \(n\) is also an integer combination of \(n\) and \(r\) because we can write \(n\) as $$ \begin{align*} n &amp;= 1n + 0r. \end{align*} $$ Since \(m\) and \(n\) can both be written as integer combinations of \(n\) and \(r\), that is \(m \in I(n,r)\) and \(n \in I(n,r)\), then by the previous lemma, \(I(m,n) \subseteq I(n,r)\). To see that \(I(m,n) \subseteq I(n,r)\), observe that we can write \(n\) as \(n = 0m + 1n\) so \(n \in I(m,n)\). Similarly, \(r = 1m + (-q)m\) so \(r \in I(m,n)\). Then, by the previous lemma, \(I(m,n) \subseteq I(n,r)\). Therefore, \(I(m,n) = I(n,r)\). Case 2: \(n = 0\). In this case, \(F(m,n) = F(m,0) = (|m|,0)\). In this case the integer combinations of \(0\) and \(m\) are just multiples of \(m\) so \(I(m,0) = \mathbf{Z}m\). But this is the same as the integer combinations of \(|m|\) and \(0\) so \(\mathbf{Z}m = I(|m|,0) = I(m,0)\) which is what we wanted to show. \(\blacksquare\) Proof of the GCD Theorem We iterate the algorithm until \(n = 0\) and \(F(m,n) = (|m|,0)\). By the previous lemma we saw that \(I(m,n) = \mathbf{Z}d\) for some \(d \geq 0\). Claim: \(d\) is a GCD. \(m,n \in I(m,n) = \mathbf{Z}d\). So \(m\) and \(n\) are both multiples of \(d\) and d divides both of them. \(d \ | \ m\) and \(d \ | \ n\). So now for condition 2, suppose \(e\) is a common divisor of \(m\) and \(n\). We want to show that \(e\) divides \(d\). Since \(e \ | \ m\) and \(e \ | \ n\), then \(m\) and \(n\) are both multiples of \(e\). So we can write \(m = eu\) and \(n = ev\) for some \(u,v \in \mathbf{Z}\). But we know that any integer combination of \(m\) and \(n\) is a multiple of \(d\). So we can write for some \(r, s \in \mathbf{Z}\) $$ \begin{align*} d &amp;= rm + sn \\ &amp;= reu + sev \\ &amp;= e(ru + sv). \end{align*} $$ So \(e\) must divide \(d\). Therefore, \(d = gcd(m,n)\) as desired. \(\ \blacksquare\) Note that the Euclidean Algorithm gives a method for computing \(r, s \in \mathbf{Z}\), so \(d = rm + sn\). GCD Example TODO … all I have now is this Relatively Prime Integers Next, we’ll see how the GCD is used in the definition of relatively prime numbers. Definition (Book Definition 1.6.14) \(a, b \in \mathbf{Z}\) are relatively prime if gcd\((a,b) = 1\). For example \(4\) and \(9\) are relatively prime. gcd\((4,9)=1\). Proposition (Book Proposition 1.6.15) \(a, b\) are relatively prime if and only if $$ \begin{align*} 1 = ra + sb \end{align*} $$ for some \(r,s \in \mathbf{Z}\) Proof \(\Rightarrow:\) If \(a\) and \(b\) are relatively prime, then by definition gcd\((a,b)=1\). By the GCD Theorem, this means that \(I(a,b) = 1\) and so we’re done. \(\Leftarrow:\) If \(1 = ra + sb\) for some \(r,s \in \mathbf{Z}\), then this means that \(1 \in I(a,b)\). But \(I(a,b)\) is also the set of multiples of some integer \(m\). But since \(1\) is in the set, then it must contains all multiples of \(1\). Therefore, we must have \(1 = I(a,b)\). By the GCD Theorem, \(1\) is therefore the gcd of \(a\) and \(b\) and so \(a\) and \(b\) are relatively prime. \(\ \blacksquare\) Proposition (Book Corollary 1.6.17) If \(a, b\) are relatively prime and if \(a \ | \ n\) and \(b \ | \ n\), then \(ab \ | n\). Proof Suppose \(a\) and \(b\) are relatively prime. We are given that \(a \ | \ n\) so \(n = au\) for some \(u \in \mathbf{Z}\). Similarly, \(b \ | \ n\) and so \(n = bv\) for some \(v \in \mathbf{Z}\). Since \(a\) and \(b\) are relatively prime, then by definition gcd\((a,b)=1\). This means that \(I(a,b) = 1\) and we can write \(1 = ra + sb\) for some integers \(s, r \in \mathbf{Z}\). Multiply this equation by \(b\) as follows $$ \begin{align*} 1 &amp;= ra + sb \\ n &amp;= n(ra + sb) \\ &amp;= nra + nsb \\ &amp;= (bv)ra + (au)sb \\ &amp;= (ab)vr + (ab)us \\ &amp;= (ab)(vr + us). \\ \end{align*} $$ From this we see that \(ab \ | \ n\) as desired. \(\ \blacksquare\) Proposition If \(p\) is prime and \(p \ | \ ab\), then either \(p \ | \ a\) or \(p \ | \ b\) Proof We’ll show that \(p \ | \ ab\) by showing that if \(p \nmid a\), then \(p \ | \ b\). Since \(p\) is prime and \(p \nmid a\), then gcd\((p,a)=\). By the Proposition, this implies that \(1 = pr + as\) for some \(r, s \in \mathbf{Z}\). Observe that $$ \begin{align*} 1 &amp;= pr + as \\ b &amp;= b(pr + as) \\ b &amp;= p(br) + (ab)s \\ \end{align*} $$ Now, we know that \(p \ | \ ab\). So \(p\) divides both terms. Therefore, \(p\) must divide \(b\) as we wanted to show. \(\ \blacksquare\) Fact: If \(p \ | \ a_1a_2...a_k\), then \(p\) divides at least one of the factors. So \(p \ | \ a_i\) for some \(i \in \{1,...,k\}\) References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 04: Integers</title><link href="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html" rel="alternate" type="text/html" title="Lecture 04: Integers" /><published>2025-01-27T00:01:36-08:00</published><updated>2025-01-27T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html"><![CDATA[<p>Some facts about the integers</p>
 <ul>
 	<li>\((\mathbf{Z}, +)\) is a commutative group. \(+\) is associative and commutative. The identity element is \(0\) and each element \(a\)'s inverse is \(-a\).</li>
 	<li>\((\mathbf{Z}, \cdot)\) is a commutative monoid. \(\cdot\) is associative and commutative. The identity element is \(1\). (No inverses required)</li>
@@ -1976,48 +2429,4 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=33">Project Euler - 33</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The goal of this problem is to find the exact 4 fractions such that The fraction is less than one in value. It contains two digits in the numerator and two digits in the denominator. The numerator and denominator have a digit in common. If you remove the common digit from both the numerator and the denominator, you'll get a fraction equal to what you get when you simplify the fraction in a proper way. For example, \(49 / 98\) has \(9\) as a common digit. If we remove it, then we'll get \(4/8\) which is the actual value that you would get if you properly divide both the numerator and the denominator by \(49\). We should not count trivial examples. For example \(30/50 = 3/5\) is a trivial example. With just the first three conditions, the search space contains at most 1377 fractions. You can use the loop below to see them! int count = 0; for (int num = 10; num &lt;= 99; num++) { for (int den = num+1; den &lt;= 99; den++) { int n1 = num % 10; int n2 = num / 10; int d1 = den % 10; int d2 = den / 10; if (n1 == d1 || n1 == d2 || n2 == d1 || n2 == d2) { count++; printf("%d / %d with digits %d%d / %d%d \n", num, den, n2, n1, d2, d1); } } } printf("count = %d\n", count); Solution Since we have at most \(1377\) cases, then we can easily check all of them. We will ignore trivial cases. For the non-trivial cases like \(49/98\), we will extract the \(4\) digits and save them in different variables. The numerator digits are \(n_1 = 9\) and \(n_2 = 4\). The denominator digits are \(d_1 = 8\) and \(d_2 = 8\). To check if \(\frac{49}{98}\) is equal to \(\frac{4}{8}\), we can check if $$ \begin{align*} 49 \times 8 &amp;= 98 * 4 \\ numerator \times d_1 &amp;= denominator \times n_2 \end{align*} $$ After we collect all the fractions, we can divide by the greatest common divisor. This is captured in the following code. int numerator = 1; int denominator = 1; for (int num = 10; num &lt;= 99; num++) { for (int den = num+1; den &lt;= 99; den++) { int n1 = num % 10; int n2 = num / 10; int d1 = den % 10; int d2 = den / 10; // if (n2 == d2 || n1 == d1) { continue; // even if it works, this is a trivial example } if (n1 == d2 || n2 == d1) { // example is 49/98. this will simplify to 4/8 // now we want to check if 49/98 == 4/8 which is the same as checking if 49*8 == 98*4 if (den * n2 == num * d1 || den * n1 == num * d2) { // printf("%d / %d\n", num, den); numerator *= num; denominator *= den; } } } } int gcd = std::gcd(numerator,denominator); printf("denominator = %d\n", denominator/gcd); The entire code is here. References Project Euler - 33]]></summary></entry><entry><title type="html">Project Euler: 02 Even Fibonacci Numbers</title><link href="http://localhost:4000/jekyll/update/2025/01/20/project-euler-02-even-fibonacci-numbers.html" rel="alternate" type="text/html" title="Project Euler: 02 Even Fibonacci Numbers" /><published>2025-01-20T00:01:36-08:00</published><updated>2025-01-20T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/20/project-euler-02-even-fibonacci%20numbers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/20/project-euler-02-even-fibonacci-numbers.html"><![CDATA[<p>The first few terms of the fibonacci sequence are</p>
-<div>
-	$$
-	\begin{align*}
-	1,2,3,5,8,13,21,34,55,89,...
-	\end{align*}
-	$$
-</div>
-<p>The goal of this problem is finding the sum of the even-valued terms where the maximum term that we need to consider is at most 4 million.
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Solution</b></h4>
-<p>One thing to note immediately is that we’re going to exceed 4 million just with the 35th term! So the simplest solution that just implements the fibonacci recurrence (below) will work.</p>
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#define N 35 // the 35th term exceeds 4 million
-</span><span class="c1">// all fibonacci's terms</span>
-<span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">all</span><span class="p">[</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-<span class="kt">void</span> <span class="nf">fibonacci_all</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">all</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">35</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">all</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">all</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">];</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="n">fibonacci_all</span><span class="p">();</span>
-    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// add only if it's even</span>
-            <span class="n">sum</span> <span class="o">+=</span> <span class="n">all</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"sum = %llu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span> <span class="c1">// works!</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><br />
-<!------------------------------------------------------------------------------------>
-The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0002-even-fibonacci-numbers.cpp">here</a>.
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<p><a href="https://projecteuler.net/problem=2">Project Euler - 02</a>
-<br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The first few terms of the fibonacci sequence are $$ \begin{align*} 1,2,3,5,8,13,21,34,55,89,... \end{align*} $$ The goal of this problem is finding the sum of the even-valued terms where the maximum term that we need to consider is at most 4 million. Solution One thing to note immediately is that we’re going to exceed 4 million just with the 35th term! So the simplest solution that just implements the fibonacci recurrence (below) will work. #define N 35 // the 35th term exceeds 4 million // all fibonacci's terms unsigned long long all[N] = {0}; void fibonacci_all() { all[0] = 0; all[1] = 1; all[2] = 1; for (int i = 3; i &lt; 35; i++) { all[i] = all[i-1] + all[i-2]; } } int main(int argc, const char * argv[]) { fibonacci_all(); unsigned long long sum = 0; for (int i = 0; i &lt; N; i++) { if (all[i] % 2 == 0) { // add only if it's even sum += all[i]; } } printf("sum = %llu\n", sum); // works! return 0; } The entire code is here. References Project Euler - 02]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The goal of this problem is to find the exact 4 fractions such that The fraction is less than one in value. It contains two digits in the numerator and two digits in the denominator. The numerator and denominator have a digit in common. If you remove the common digit from both the numerator and the denominator, you'll get a fraction equal to what you get when you simplify the fraction in a proper way. For example, \(49 / 98\) has \(9\) as a common digit. If we remove it, then we'll get \(4/8\) which is the actual value that you would get if you properly divide both the numerator and the denominator by \(49\). We should not count trivial examples. For example \(30/50 = 3/5\) is a trivial example. With just the first three conditions, the search space contains at most 1377 fractions. You can use the loop below to see them! int count = 0; for (int num = 10; num &lt;= 99; num++) { for (int den = num+1; den &lt;= 99; den++) { int n1 = num % 10; int n2 = num / 10; int d1 = den % 10; int d2 = den / 10; if (n1 == d1 || n1 == d2 || n2 == d1 || n2 == d2) { count++; printf("%d / %d with digits %d%d / %d%d \n", num, den, n2, n1, d2, d1); } } } printf("count = %d\n", count); Solution Since we have at most \(1377\) cases, then we can easily check all of them. We will ignore trivial cases. For the non-trivial cases like \(49/98\), we will extract the \(4\) digits and save them in different variables. The numerator digits are \(n_1 = 9\) and \(n_2 = 4\). The denominator digits are \(d_1 = 8\) and \(d_2 = 8\). To check if \(\frac{49}{98}\) is equal to \(\frac{4}{8}\), we can check if $$ \begin{align*} 49 \times 8 &amp;= 98 * 4 \\ numerator \times d_1 &amp;= denominator \times n_2 \end{align*} $$ After we collect all the fractions, we can divide by the greatest common divisor. This is captured in the following code. int numerator = 1; int denominator = 1; for (int num = 10; num &lt;= 99; num++) { for (int den = num+1; den &lt;= 99; den++) { int n1 = num % 10; int n2 = num / 10; int d1 = den % 10; int d2 = den / 10; // if (n2 == d2 || n1 == d1) { continue; // even if it works, this is a trivial example } if (n1 == d2 || n2 == d1) { // example is 49/98. this will simplify to 4/8 // now we want to check if 49/98 == 4/8 which is the same as checking if 49*8 == 98*4 if (den * n2 == num * d1 || den * n1 == num * d2) { // printf("%d / %d\n", num, den); numerator *= num; denominator *= den; } } } } int gcd = std::gcd(numerator,denominator); printf("denominator = %d\n", denominator/gcd); The entire code is here. References Project Euler - 33]]></summary></entry></feed>

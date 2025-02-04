@@ -1,53 +1,131 @@
 ---
 layout: post
-title:  "[2.1] Group Theory: First Results"
-date:   2024-11-09 01:01:36 -0700
+title:  "Groups and Isomorphism"
+date:   2025-02-01 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+A group \((G, G \times G \rightarrow G)\) is a set with a binary operation on that set such that. 
+<ol>
+	<li>The operation is associative so that \((ab)c = a(bc), \forall a,b,c \in G\)</li>
+	<li>There exists an identity element. \(\exists e \in G\) such that \(ae = a = ea \forall a \in G\).</li>
+	<li>Every element has an inverse. \(\forall a \in G, \exists a^{-1} \in G\) such that \(aa^{-1} = e = a^{-1}a\)</li>
+</ol>
+Additionally, a group is commutative/abelian if \(ab = ba, \forall a, b \in G.\).
+</div>
+<br>
+<br>
+In addition to groups, we also have
+<ul> 
+<li>Monoids which satisfy \((1)\) and \((2)\). </li>
+<li>Semi-groups which satisfy \((1)\).</li>
+<li>Magma \(G, \cdot\) with no additional properties. </li>
+</ul>
+<br>
+<hr>
+<br>
 <!---------------------------------------------------------------------->
-<h4><b>The Symmetric Group</b></h4>
-A little more on the symmetric group example above. A permutation is a bijection from a set to itself. A <b>symmetric group</b> is the set of all permutations on a set with the composition as the group operation. 
-<br>
-<br>
-This is a group because the identity element is the identity transformation and it is a valid permutation so it's in the set. The inverse transformation is the inverse element. We are guaranteed to have an inverse because any bijection has an inverse and the inverse of a permutation is another permutation. The composition of permutations is another permutation so the group is closed under composition. Finally, the product is associative.
-<br>
-<br>
-The symmetric group on a set $$A$$ is denoted by $$S_A$$. The symmetric group on the set $$\{1,2,3,...,n\}$$ is denoted by $$S_n$$ where $$n$$ is the number of elements.
-<br>
-<br>
-The simplest symmetric group is $$S_1 = \{e\}$$ because a group can't be empty. It must contain at least one element. 
-<br>
-<br>
-What about $$S_2$$? The set is $$\{1,2\}$$. We have an identity map $$e$$. We also have the map that takes 1 to 2 and 2 to 1. Let this permutation be $$\tau$$. So $$S_2 = \{e, \tau\}$$. Composing $$\tau \circ \tau = e$$. So $$\tau^{-1} = \tau$$. Side note here: When a permutation only changes two elements, it is called a transposition. 
-<br>
-<br>
-<!---------------------------------------------------------------------->
-<h4><b>Uniqueness of the Identity and the Inverses</b></h4>
-In the next two propositions, we'll prove that the identity element in a group is unique and similarly the inverses are unique.
+<h4><b>Basic Properties of Groups</b></h4>
+In the next few propositions, we'll prove that the identity element in a group is unique and similarly the inverses are unique.
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
-Proposition 2.1.1 (Uniqueness of the identity)
+Proposition (Uniqueness of the identity (2.1.1))
 </div>
 <div class="peachbodydiv">
-Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\).
+The identity element is unique. (In other words, Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\).)
 </div>
 <br>
 <b>Proof</b>
 <br>
-Since $$e$$ is an identity element, then $$e'e = e'$$ and since $$e'$$ is an identity element $$ee' = e$$. Therefore, $$e = e'$$. $$\ \blacksquare$$
+Let $$e$$ and $$e'$$ be identity elements. Then by definition for any $$x, y \in G$$
+<div>
+	$$
+	\begin{align*}
+	 xe &= x = e'x \\
+	 ye &= y = e'y
+	\end{align*}
+	$$
+</div>
+If we let $$x = e'$$ and let $$y = e$$, then
+<div>
+	$$
+	\begin{align*}
+	 ee &= e = e'e \\
+	 e'e &= e' = e'e'
+	\end{align*}
+	$$
+</div>
+From this we see that $$e = e'$$ as desired. $$\ \blacksquare$$
 <br>
 <br>
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
-Proposition 2.1.2 (Uniqueness of inverses)
+Proposition
 </div>
 <div class="peachbodydiv">
-Let \(G\) be a group and let \(h, g \in G\). If \(hg = e\), then \(h = g^{-1}\). Likewise, if \(gh = e\), then \(h = g^{-1}\).
+Inverses in a group are unique.
 </div>
 <br>
 <!---------------------------------------------------------------------->
 <b>Proof</b>
+Let $$a \in G$$ and suppose for the sake of contradiction that $$a$$ has two inverses $$b$$ and $$c$$. That is $$ab = e = ba$$ and $$ac = e = ca$$. Then,
+<div>
+	$$
+	\begin{align*}
+	 c = ec = (ba)c = b(ac) = be = b.
+	\end{align*}
+	$$
+</div>
+Therefore, $$c = b$$ which is a contradiction so the inverse must be unique. $$\ \blacksquare$$
+<br>
+<br>
+<!---------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition ((2.1.2))
+</div>
+<div class="peachbodydiv">
+Let \(G\) be a group and let \(a, b \in G\). If \(ab = e\), then \(a = b^{-1}\). Likewise, if \(ba = e\), then \(b = a^{-1}\).
+</div>
+<br>
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br>
+Even though the definition of the inverse requires the equation $$ab = ba = e$$ so it's an inverse on both sides, To check if something is an inverse in a group, we can just check one side so if $$ab = e$$, then $$a = b^{-1}$$ and $$b$$ is the inverse. So what we want to show here is that suppose $$ab = e$$, then we want to show that $$ba = e$$ which means that $$b$$ is the inverse of $$a$$. Basically, we want to show that that checking one side ($$ab = e$$) is enough to imply that $$ba = e$$ in a group. One side implies the other.
+<br>
+<br>
+How do we do it? We know from the previous proposition that $$a$$ has an inverse $$a^{-1} \in G$$. Now consider the expression $$a^{-1}ab$$. By associativity, we can reduce this expression in two ways
+<div>
+	$$
+	\begin{align*}
+	 (a^{-1}a)b &= a^{-1}(ab)
+	\end{align*}
+	$$
+</div>
+The left hand side
+<div>
+	$$
+	\begin{align*}
+	 (a^{-1}a)b &= eb = b
+	\end{align*}
+	$$
+</div>
+The right hand side is
+<div>
+	$$
+	\begin{align*}
+	 (a^{-1}(ab) &= a^{-1}
+	\end{align*}
+	$$
+</div>
+So $$b = a^{-1}$$ and therefore, $$ba = a^{-1}a = e$$. 
+<br>
+<br>
+<!---------------------------------------------------------------------->
+<b>Proof (Book)</b>
 <br>
 Suppose $$hg = e$$, then 
 <div>
@@ -92,6 +170,8 @@ Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{
 <br>
 Notice that $$(ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e$$. Therefore, $$(ab)^{-1} = b^{-1}a^{-1}$$.
 <br>
+<br>
+<hr>
 <br>
 <!---------------------------------------------------------------------->
 <h4><b>The Left and Right Multiplication Maps</b></h4>
@@ -152,7 +232,7 @@ Suppose \(a, x, y\) are elements of a group \(G\). If \(ax = ay\), then \(x = y\
 <br>
 <b>Proof</b>
 <br>
-Suppose $$ax = ay$$. We know that $$L_a = ax$$ is one to one. So for any elements $$x, y \in G$$, $$ax = ay$$ must imply that $$x = y$$ by definition of a one to one or injective map. A similar arguments shows that if $$xa = ya$$ must imply that $$x = y$$ by the injectivity of $$R_a$$. $$\ \blacksquare$$
+Suppose $$ax = ay$$. We know that $$L_a(x) = ax$$ is one to one. So for any elements $$x, y \in G$$, $$ax = ay$$ must imply that $$x = y$$ by definition of a one to one or injective map. A similar arguments shows that if $$xa = ya$$ must imply that $$x = y$$ by the injectivity of $$R_a$$. $$\ \blacksquare$$
 <br>
 <br>
 
@@ -164,11 +244,96 @@ Corollary 2.1.8
 If \(G\) is a finite group, each row and each column of the multiplication table of \(G\) contains each element of \(G\) exactly once.
 </div>
 <br>
-<b>Proof</b>
+<b>Proof (book)</b>
 <br>
 A row in the multiplication table can be represented by a left multiplication map $$G \rightarrow G$$ if you fix the element multiplied on the left. We know the left multiplication map is a bijection. Therefore every element/result must be unique and each element of $$G$$ must show up in the row. Similarly, each column can be represented by a right multiplication map. The map is a bijection and so each element must be unique and shown exactly once. (TODO clean up this proof)
 <br>
 <br>
+Note that the above was not really included in the lecture. It was from the book ...
+<br>
+<br>
+<hr>
+<br>
+<!--------------------------------------------------------------------->
+<h4><b>Associativity in Groups</b></h4>
+We know by definition that the product is associative so for all $$a, b, c \in G$$, we have $$(ab)c = a(bc)$$. What about the product of 4 or more elements? is it associative? For example, there are five ways to group four elements
+<div>
+	$$
+	\begin{align*}
+	a(b(cd)), a((bc)d), (ab)(cd), (a(bc))d, ((ab)c)d
+	\end{align*}
+	$$
+</div>
+$$a(b(cd))$$ and $$((ab)c)d$$ follow from the definition. For the rest, see that
+<div>
+	$$
+	\begin{align*}
+	a(bcd) = a(b(cd)) = (ab)(cd) = ((ab)c)d = (abc)d
+	\end{align*}
+	$$
+</div>
+How many ways are there to associate an $$n$$-fold product?
+<div>
+	$$
+	\begin{align*}
+	\frac{1}{2}\binom{2n - 2}{n - 1}
+	\end{align*}
+	$$
+</div>
+In general this works for any number of elements. Formally,
+<br>
+<!---------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition 2.1.19 (General Associative law)
+</div>
+<div class="peachbodydiv">
+Let \(M\) be a set with an associative operation, \(M \times M \rightarrow M\), denoted by juxtaposition. For every \(n \geq 1\), there is a unique product \(M^n \rightarrow M\),
+	$$
+	\begin{align*}
+	(a_1, a_2,...,a_n) \rightarrow a_1a_2...a_n,
+	\end{align*}
+	$$
+such that
+<ol type="a">
+	<li> The product of one element is that element \((a) = a\).</li>
+	<li> The product of two elements agrees with the given operation \((ab) = ab\).</li>
+	<li>For all \(n \geq 2\), for all \(a_1,...,a_n \in M\), and for all \(1 \leq k \leq n-1\), 
+		$$
+		\begin{align*}
+		a_1a_2...a_n = (a_1...a_k)(a_{k-1}...a_n)
+		\end{align*}
+		$$
+	</li>
+</ol>
+</div>
+<br>
+<b>Proof</b>
+<br>
+By induction on $$n$$. <br>
+Base Case: For $$n \leq 3$$, property $$(c)$$ holds by definition.
+<br>
+Inductive Case: Suppose this is true for all $$1 \leq r \leq n$$ where a unique product of $$r$$ elements satisfies the properties $$(a)-(c)$$ above. Suppose now that we have $$n$$ elements. Fix elements $$a_1, ...,a_n \in M$$. By the inductive hypothesis, the $$n-1$$ products
+<div>
+	$$
+	\begin{align*}
+	p_k = (a_1...a_k)(a_{k+1}...a_n),
+	\end{align*}
+	$$
+</div>
+are defined since we have at most $$n-1$$ elements. ... [TODO]
+<br>
+<br>
+<hr>
+<br>
+
+
+
+
+
+
+
+
+
 
 <!---------------------------------------------------------------------->
 <h4><b>Isomorphic Groups</b></h4>
@@ -274,70 +439,6 @@ To show that $$\phi(g^{-1}) = \phi(g)^{-1}$$, see that
 	$$
 </div>
 So $$\phi(g)$$ is the inverse of $$\phi(g^{-1})$$ or in other words $$\phi(g)^{-1} = \phi(g^{-1})$$ as we wanted to show. $$\ \blacksquare$$
-<br>
-<br>
-<hr>
-<br>
-
-<!--------------------------------------------------------------------->
-<h4><b>The General Associative Law</b></h4>
-We know by definition that the product is associative so for all $$a, b, c \in G$$, we have $$(ab)c = a(bc)$$. What about the product of 4 or more elements? is it associative? For example, there are five ways to group four elements
-<div>
-	$$
-	\begin{align*}
-	a(b(cd)), a((bc)d), (ab)(cd), (a(bc))d, ((ab)c)d
-	\end{align*}
-	$$
-</div>
-$$a(b(cd))$$ and $$((ab)c)d$$ follow from the definition. For the rest, see that
-<div>
-	$$
-	\begin{align*}
-	a(bcd) = a(b(cd)) = (ab)(cd) = ((ab)c)d = (abc)d
-	\end{align*}
-	$$
-</div>
-In general this works for any number of elements. This is formally presented in the next proposition.
-<br>
-<!---------------------------------------------------------------------->
-<div class="peachheaderdiv">
-Proposition 2.1.19 (General associative law)
-</div>
-<div class="peachbodydiv">
-Let \(M\) be a set with an associative operation, \(M \times M \rightarrow M\), denoted by juxtaposition. For every \(n \geq 1\), there is a unique product \(M^n \rightarrow M\),
-	$$
-	\begin{align*}
-	(a_1, a_2,...,a_n) \rightarrow a_1a_2...a_n,
-	\end{align*}
-	$$
-such that
-<ol type="a">
-	<li> The product of one element is that element \((a) = a\).</li>
-	<li> The product of two elements agrees with the given operation \((ab) = ab\).</li>
-	<li>For all \(n \geq 2\), for all \(a_1,...,a_n \in M\), and for all \(1 \leq k \leq n-1\), 
-		$$
-		\begin{align*}
-		a_1a_2...a_n = (a_1...a_k)(a_{k-1}...a_n)
-		\end{align*}
-		$$
-	</li>
-</ol>
-</div>
-<br>
-<b>Proof</b>
-<br>
-By induction on $$n$$. <br>
-Base Case: For $$n \leq 3$$, property $$(c)$$ holds by definition.
-<br>
-Inductive Case: Suppose this is true for all $$1 \leq r \leq n$$ where a unique product of $$r$$ elements satisfies the properties $$(a)-(c)$$ above. Suppose now that we have $$n$$ elements. Fix elements $$a_1, ...,a_n \in M$$. By the inductive hypothesis, the $$n-1$$ products
-<div>
-	$$
-	\begin{align*}
-	p_k = (a_1...a_k)(a_{k+1}...a_n),
-	\end{align*}
-	$$
-</div>
-are defined since we have at most $$n-1$$ elements. ... [TODO]
 <br>
 <br>
 <hr>

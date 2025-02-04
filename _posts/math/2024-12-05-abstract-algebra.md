@@ -62,14 +62,18 @@ mathjax: true
        <li><a href="/jekyll/update/2025/01/30/math417-07-modular-arithmetic.html">
        Lecture 06/07: Modular Arithmetic
        </a></li>
+	   <!-------------->
+	   <!------8------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html">
+       Lecture 08: Groups and Isomorphism
+       </a></li>
    </ol>
 <br>
 <!------------------------ BOOK NOTES --------------------------->
 <h4> Extra Book Notes (to go over) </h4>
 <ol style="list-style-type:none;">
-	   <li><a href="/jekyll/update/2024/11/09/2.1-first-results.html">
-        [2.1] First Results
-       </a></li>
 	   <li><a href="/jekyll/update/2024/11/10/2.2-subgroups.html">
         [2.2] Subgroups and Cyclic Groups
        </a></li>

@@ -17,6 +17,7 @@ A group \((G, G \times G \rightarrow G)\) is a set with a binary operation on th
 </ol>
 Additionally, a group is commutative/abelian if \(ab = ba, \forall a, b \in G.\).
 </div>
+<!---------------------------------------------------------------------->
 <br>
 <br>
 In addition to groups, we also have
@@ -184,6 +185,7 @@ Let \(G\) be a group and \(a \in G\). <br>
 The map \(L_a: G \rightarrow G\) defined by \(L_a(x) = ax\) is a bijection. Similarly, <br>
 the map \(R_a: G \rightarrow G\) defined by \(R_a(x) = xa\) is a bijection.
 </div>
+<!---------------------------------------------------------------------->
 <br>
 <b>Proof</b>
 <br>
@@ -306,6 +308,7 @@ such that
 	</li>
 </ol>
 </div>
+<!---------------------------------------------------------------------->
 <br>
 <b>Proof</b>
 <br>
@@ -323,20 +326,47 @@ Inductive Case: Suppose this is true for all $$1 \leq r \leq n$$ where a unique 
 are defined since we have at most $$n-1$$ elements. ... [TODO]
 <br>
 <br>
+<!---------------------------------------------------------------------->
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+For \(a \in G\) where \(G\) is a group and \(n \in \mathbf{Z}\). Define \(a^n \in G\) by
+<ol>
+	<li>\(a^0 = e\).</li>
+	<li>\(a^1 = a\).</li>
+	<li>\(a^{-1} \) is the inverse of \(a\).</li>
+	<li>\(n \geq 1\), \(a^{n+1} = a^n a\).</li>
+	<li>\(n \leq -1\), \(a^{n-1} = a^n a^{-1}\).</li>
+</ol>
+</div>
+<!---------------------------------------------------------------------->
+<br>
+<br>
+Based on this definition we have the following proposition
+<br>
+<br>
+<!---------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+	$$
+	\begin{align*}
+	a^{m}a^{n} &= a^{m + n} \\
+	(a^m)^{n} &= a^{mn} \\	
+	\end{align*}
+	$$
+</div>
+<br>
+<br>
 <hr>
 <br>
-
-
-
-
-
-
-
-
-
-
 <!---------------------------------------------------------------------->
-<h4><b>Isomorphic Groups</b></h4>
+<h4><b>Isomorphism</b></h4>
+One thing that we want to do is to compare two groups. For example take $$(\mathbf{Z}_4, +)$$, the symmetries of the rectangle, $$(\phi(5), \cdot)$$ and $$(\phi(8), \cdot)$$. These are all groups with exactly 4 elements. In fact, the formal definition for the size of the group is as follows
+<br>
+<br>
 <!---------------------------------------------------------------------->
 <div class="mintheaderdiv">
 Definition 2.1.10
@@ -344,13 +374,12 @@ Definition 2.1.10
 <div class="mintbodydiv">
 The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
 </div>
+<!---------------------------------------------------------------------->
 <br>
-[TODO: Examples]
+<br>
+To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
 <br>
 <br>
-
-
-
 <!---------------------------------------------------------------------->
 <div class="mintheaderdiv">
 Definition 2.1.13
@@ -360,9 +389,44 @@ We say two groups \(G\) and \(H\) are isomorphic if there is a bijection \(\phi:
 </div>
 <br>
 <br>
-
-
-
+An an example consider the group of the symmetries of the equilateral triangle $$D_3$$ and the group $$S_3$$ (permutations of $$\{1,2,3\}$$). Both groups contain exactly 6 elements. They turn out to be isomorphic. Let the isomorphism map the elements as follows:
+<div>
+<table style="max-width: 500px; margin: 20px auto;">
+  <tr>
+    <td>\(D_3\)</td>
+    <td>\(S_3\)</td>
+  </tr>
+  <tr>
+    <td>\(id\)</td>
+    <td>\(id\)</td>
+  </tr>
+  <tr>
+    <td>\(r\)</td>
+    <td>\((1 \quad 2 \quad 3)\)</td>
+  </tr>
+  <tr>
+    <td>\(a\)</td>
+    <td>\((2 \quad 3)\)</td>
+  </tr>
+  <tr>
+    <td>\(r^2\)</td>
+    <td>\((1 \quad 3 \quad 2)\)</td>
+  </tr>
+  <tr>
+    <td>\(b\)</td>
+    <td>\((1 \quad 3)\)</td>
+  </tr>
+  <tr>
+    <td>\(c\)</td>
+    <td>\((1 \quad 2)\)</td>
+  </tr>
+</table>
+</div>
+<br>
+<br>
+<br>
+The rest of the below definitions / propositions are from the book. TODO: move them to the appropriate lectures:
+<br>
 <!---------------------------------------------------------------------->
 <div class="mintheaderdiv">
 Definition 2.1.14
@@ -448,7 +512,7 @@ So $$\phi(g)$$ is the inverse of $$\phi(g^{-1})$$ or in other words $$\phi(g)^{-
 <ul>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
 <li><a href="https://www.youtube.com/watch?v=VdLhQs_y_E8&list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5">Algebra: Abstract Lectures By Benedict Gross</a></li>
-<li><a href="https://www.youtube.com/watch?v=NwqCi63p2ik">Math of Wrath Youtube Channel</a>
+<li><a href="https://www.youtube.com/watch?v=NwqCi63p2ik">Math of Wrath Youtube Channel</a></li>
 </ul>
 
 

@@ -69,6 +69,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html">
        Lecture 08: Groups and Isomorphism
        </a></li>
+	   <!-------------->
+	   <!------8------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/02/math417-09-subgroups.html">
+       Lecture 09: Subgroups
+       </a></li>
    </ol>
 <br>
 <!------------------------ BOOK NOTES --------------------------->

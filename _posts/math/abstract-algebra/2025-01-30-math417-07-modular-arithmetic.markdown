@@ -190,7 +190,7 @@ Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by
 	$$
 	\begin{align*}
 	[a]_n + [b]_n &= [a + b]_n \\
-	[a]_n + [b]_n &= [ab]_n
+	[a]_n[b]_n &= [ab]_n
 	\end{align*}
 	$$
 </div>

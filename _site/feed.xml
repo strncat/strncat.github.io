@@ -1,4 +1,484 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-04T12:38:12-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Groups and Isomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html" rel="alternate" type="text/html" title="Groups and Isomorphism" /><published>2025-02-01T00:01:36-08:00</published><updated>2025-02-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html"><![CDATA[<div class="mintheaderdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-06T20:11:03-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 09: Subgroups</title><link href="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html" rel="alternate" type="text/html" title="Lecture 09: Subgroups" /><published>2025-02-02T00:01:36-08:00</published><updated>2025-02-02T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html"><![CDATA[<div class="mintheaderdiv">
+Definition 2.2.1
+</div>
+<div class="mintbodydiv">
+A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\).
+</div>
+<!------------------------------------------------------------------------------>
+<p><br />
+<br />
+Example:</p>
+<ul>
+	<li>The group \(SO(3)\), the special orthogonal matrices is a subgroup of \(GL_3(\mathbf{R}\), the group of invertible \(3 \times 3\) matrices. Both of these are under the same operation.</li>
+	<li>Non-example: \(\mathbf{Z}_n\): congruence classes modulo \(n\) with addition. We also have \(\phi(n)\): congruence classes with multiplicative inverses. This has the operation multiplication so it's not a subgroup! Even when you define \(\phi(4) = \{[1],[3]\}\) with addition, it will not satisfy the group requirements, so it's not a subgroup.</li>
+</ul>
+<p>Since we need to check a lot for subgroups. We have a set of necessary conditions.
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+The necessary conditions for a subset \(H\) of \(G\) to be a subgroup of \(G\) are:
+<ol>
+	<li>\(H\) is not empty</li>
+	<li>\(H\) is closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\)</li>
+	<li>\(H\) is closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\)</li>
+</ol>
+</div>
+<p><br />
+<b>Proof</b>
+<br /></p>
+<ul>
+	<li>\(H\) is associative. For any \(a,b,c \in H\), \((ab)c = a(bc)\). We're inheriting the same operation from \(G\) so \(H\) must be associative.</li>
+	<li>\(H\) has an identity element: We know \(H\) is non-empty by (1). We also know for any \(h \in H\), \(h^{-1} \in H\) by (3). By (2), \(H\) is closed under multiplication so \(hh^{-1} \in H\) but \(hh^{-1} = e\) so the identity element is in \(H\).  </li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Consider the group \(G = S_4\) permutations of \(\{1,2,3,4\}\). The order of this group is \(|G| = 4\). The following are subgroups of \(S_4\):</p>
+<ul>
+	<li>\(H=\{ \sigma \in S_4 \ | \ \sigma(4) = 4\}\). So this subgroup fixes \(4\) in the permutation. \(|H| = 3! = 6\). In fact, it is permuting only 3 numbers and it is isomorphic to \(S_3\).</li>
+	<li>\(H'=\{e,(1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3)\}\). It's not empty. It has the identity element. Every element is its own inverse. The one thing not too obvious is proving it is closed. This subgroup is isomorphic to the symmetry group of the rectangle.</li>
+	<li>\(H''=\{e,(1 \ 2 \ 3 \ 4)(4 \ 3 \ 2 \ 1), (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3), (1 \ 3),(2 \ 4)\}\). This one is isomorphic to \(D_4\) which is the symmetries of the square.</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------></p>
+<h4><b>Generated Subgroups</b></h4>
+<p>Before talking about subgroups we need the following lemma
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Lemma (Book Proposition 2.2.8)
+</div>
+<div class="yellowbodydiv">
+Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then \(H = H_1 \cap H_2 \ \cap ... \cap \ H_n \) is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup.
+<!------------------------------------------------------------------------------>
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+The intersection must have the identity element. The intersection is closed under the operation because for any two elements \(a, b \in H\), their product \(ab \in H\) and since \(a, b\) is in the intersection, then they are in every \(H_i\) group. Same argument for the inverse. 
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Let \(G\) be a group and let \(S\) be a subset of \(G\). Then
+	$$
+	\begin{align*}
+	 \langle S \rangle = \bigcap_{\text{all } H_i \leq G \text{ such that } S \subseteq H_i}
+	\end{align*}
+	$$
+<ul>
+<li>\(\langle S \rangle\) is the intersection of all subgroups such that \(S\) is a subset of each subgroup \(H_i\).</li>
+<li>\(\langle S \rangle\) is called <b>the subgroup generated by</b> \(S\) and it is the smallest subgroup in \(G\) that contains \(S\).</li>
+</ul>
+</div>
+<!------------------------------------------------------------------------------>
+<p><br />
+<br />
+It is the smallest group because by definition for any \(H \leq G\), we have \(S \subseteq H\). So \(\langle S \rangle \subseteq H\) for any \(H\). Additionally from the book we have</p>
+<ul>
+<li>If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). </li>
+<li>If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\)</li>
+</ul>
+<p>Another way to describe \(\langle S \rangle\) is take a bottom up approach to describe the elements.
+<br />
+<br />
+<!------------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Suppose \(G\) is a group and \(S\) is a subset of \(G\). Then
+	$$
+	\begin{align*}
+	 \langle S \rangle = \{e\} \cup \{g_1g_2...g_k\} \ | \ k \geq 1, \forall i,..,k \ g_i \in S \text{ or } g_i^{-1} \in S
+	\end{align*}
+	$$
+</div>
+<!------------------------------------------------------------------------------>
+<p><br />
+<br />
+In other words, \(\langle S \rangle\) is that it contains all the possible products \(g_1g_2...g_n\) where \(g_i \in S\) or \(g_i^{-1} \in S\). The set that contains these words \(\{e\} \cup \{g_1g_2...g_k\}\) is often called the “set of words in \(S\)” in group theory.
+<br />
+<br />
+<b>Proof</b>
+<br />
+Let \(T\) be the set of words. We need to check that</p>
+<ul>
+	<li>\(S \subseteq T\). [This is true because all the words of length 1 make up the set \(S\).]</li>
+	<li>\(T\) is a subgroup of \(G\). [This is true because \(T\) has the identity element. For any two word, the product of these is just a longer word which is also in \(T\). It is closed under the inverses because \((g_1g_2...g_k) = g_k^{-1}...g_1^{-1}\).]</li>
+	<li>If \(H \leq G\) and \(S \subseteq H\), then \(T \subseteq H\). [This is true because if \(H\) contains \(S\) then it must contain all the inverses of these words and then also the products of all of these words since it's group (closed) so it has all of these elements and it contains \(T\).]</li>
+</ul>
+<p>These three conditions imply that \(T = \langle S \rangle\). We’ll use this proposition a lot. 
+<br />
+<br />
+Some Examples</p>
+<ul>
+	<li>\(\langle (1 \ 2) \rangle = \{e, (1 \ 2)\}\). This says that the subgroup generated by \(\{(1 \ 2)\}\) is \(\{e, (1 \ 2)\} = \langle (1 \ 2) \rangle \)</li>
+	<li>\(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\)</li>
+	<li>\(G = S_3 = \langle (1 \ 2), (1 \ 2 \ 3) \rangle\). So \(S_3\) is generated by </li>
+	
+</ul>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Cyclic Groups and Cyclic Subgroups</b></h4>
+
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition 2.2.9
+</div>
+<div class="peachbodydiv">
+Let \(a\) be an element of a group \(G\). The subgroup \(\langle a \rangle\) generated by \(a\) is \(\{a^k \ : \ k \in \mathbf{Z}\}\).
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+Let \(H = \{a^k \ : \ k \in \mathbf{Z}\}\). We will show that \(\langle a \rangle = H\) as follows:
+<br />
+<br />
+\(\langle a \rangle \subseteq H\): We know that \(G\) is a group and \(H\) is subset of \(G\). We claim that it is a subgroup of \(G\). It is closed under multiplication because for any \(a^k\) and \(a^l\) in \(H\), \(a^{k+l} \in H\). It is closed under inverses because for any \(a^k \in H\), \((a^{k})^-1 = a^{-k} \in H\). Furthermore, \(H\) contains \(a\) and since \(H\) is a subgroup, then \(H\) contains all the powers of \(a\). Therefore, \(\langle a \rangle \subseteq H\). 
+<br />
+<br />
+\(H \subseteq \langle a \rangle\): We showed that \(H = \{a^k \ : \ k \in \mathbf{Z}\}\) is a subgroup above. It is closed under multiplication and so it contains all powers of \(a\). Therefore, \(H \subseteq \langle a \rangle\). \(\ \blacksquare\) 
+<br />
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition 2.2.10
+</div>
+<div class="mintbodydiv">
+Let \(a\) be an element of a group \(G\). The set \(\langle a \rangle = \{a^k \ : \ k \in \mathbf{Z}\}\) of powers of \(a\) is called the <b>cyclic subgroup generated by</b> \(a\). If there is an element \(a \in G\) such that \(\langle a \rangle = G\), we say that \(G\) is a <b>cyclic group</b>. We say that \(a\) is a <b>generator</b> of the cyclic group
+</div>
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<p>Suppose \(G = \mathbf{Z}\) with the addition operator. For any element \(d \in \mathbf{Z}\), the set of powers of \(d\) is the set of all multiples of \(d\) since the group operation is addition. So \(d+d+d+d+d\) is the fifth power for example. We see here that \(\langle d \rangle = d \mathbf{Z} = \{nd \ : \ n \in \mathbf{Z}\}\) is a cyclic subgroup of \(\mathbf{Z}\). In fact, \(\mathbf{Z}\) itself is cyclic. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>The Order of a Cyclic Subgroup</b></h4>
+<p>A cyclic subgroup could be infinite or finite. When the powers of \(a\) are all distinct, it’s infinite. Otherwise, it is not. The following definition formalizes this.
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition 2.2.16
+</div>
+<div class="mintbodydiv">
+The <b>order</b> of the cyclic subgroup generated by \(a\) is called <b>the order of </b>\(a\). We denote the order of \(a\) by \(o(a)\).
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+When the order of \(a\) is finite, then two powers of \(a\) will coincide at some point. Suppose that \(k &lt; l\), and \(a^k = a^l\), then \(a^{l-k} = e\). This implies that some positive integer of \(a\) is the identity element. Let \(n\) be the least positive integer such that \(a^n = e\). This means that \(e, a, a^2,...a^{n-1}\) are all distinct (Why? TODO). Write \(k = mn + r\). Therefore,</p>
+<div>
+	$$
+	\begin{align*}
+	 a^{k} &amp;= a^{mn+r} \\
+	       &amp;= a^{mn}a^r \\
+		   &amp;= e^{m}a^r \\
+		   &amp;= a^r
+	\end{align*}
+	$$
+</div>
+<p>This means that \(a^k = a^l\) if and only if \(k\) and \(l\) have the same remainder upon division of \(n\), that is \(k \equiv l \mod n\). This leads to the following proposition
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.2.17
+</div>
+<div class="peachbodydiv">
+If the order of \(a\) is finite, then it is the least positive integer \(n\) such that \(a^n = e\). Furthermore, \(\langle a \rangle = \{a^k \ : \ 0 \leq k &lt; o(a)\}\)
+</div>
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<p>What is the order of \([5]\) in \(\phi(14)\)? We know \([5]^2 = [11]\), \([5]^3 = [13]\) because \(5^3 = 125 \mod 14 = 13\). \([5]^4 = [9]\), \([5]^5 = 3\) and finally \([5]^6 = [1]\). So the order of \([5]\) is 6. 
+<br />
+<br />
+The following result shows that in fact any two cyclic groups of the same order are isomorphic!
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.2.20
+</div>
+<div class="peachbodydiv">
+Let \(a\) be an element of a group \(G\).
+<ol type="a">
+	<li>If \(a\) has infinte order, then \(\langle a \rangle\) is isomorphic to \(\mathbf{Z}\)</li>
+	<li>If \(a\) has finite order, then \(\langle a \rangle\) is isomorphic to the group \(\mathbf{Z}_n\)</li>
+</ol>
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+For \((a)\), we want to show this by finding an example of a isomorphism. So define the map \(\varphi \ : \ \mathbf{Z} \rightarrow \langle a \rangle\) by \(\varphi(k) = a^k\). To show that this map is an isomorphism, we need to show that it is a bijection and also that for any two elements \(a, b \in \mathbf{Z}\), \(\varphi(ab) = \varphi(a)\varphi(b)\) (Definition 2.1.13).
+<br />
+<br />
+To show that it is a bijection, observe that this map is surjective or onto by the definition of \(\langle a \rangle\). (Recall that that \(\langle a \rangle\) is of infinite order). It is also injective or 1-1 because all the elements of \(\langle a \rangle\) (powers of \(a\)) are distinct. Furthermore, see that \(\varphi(k + l) = a^{k+l} = a^ka^k\). So \(\varphi\) is an isomorphism.
+<br />
+<br />
+Similarly for \((b)\), we want to define an isomorphism. Note here that both \(\mathbf{Z}_n\) and \(\langle a \rangle\) have \(n\) elements so define the map \(\varphi \ : \ \mathbf{Z}_n \rightarrow \langle a \rangle\) by \(\varphi([k]) = a^k\) where \(0 \leq k \leq n-1\). In \(\mathbf{Z}_n\), the addition of \([k]\) and \([l]\) is \([r]\) where \(r\) is the remainder after dividing \(k+l\) by \(n\). While the multiplication in \(\langle a \rangle\) is given by \(a^ka^l = a^{k+l} = a^r\) where \(r\) is also the remainder after dividing \(k+l\) by \(n\) as we saw earlier. Therefore \(\varphi\) is an isomorphism.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!----------------------------------------------------------------------></p>
+<h4><b>Subgroups of Cyclic Groups</b></h4>
+<p>Every cyclic group is isomorphic to \(\mathbf{Z}\) or \(\mathbf{Z}_n\). Therefore, we’ll determine the subgroups of \(\mathbf{Z}\) and \(\mathbf{Z}_n\) to determine all the subgroups of cyclic groups.
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.2.21
+</div>
+<div class="peachbodydiv">
+<ol type="a">
+	<li>Let \(H\) be a subgroup of \(\mathbf{Z}\). Then either \(H = \{0\}\) or there is a unique \(d \in \mathbf{N}\) such that \(H = \langle d \rangle = d\mathbf{Z}\)</li>
+	<li>If \(d \in \mathbf{N}\), then \(d\mathbf{Z} \cong \mathbf{Z}\).</li>
+	<li>If \(a, b \in \mathbf{N}\), then \(a\mathbf{Z} \subseteq b\mathbf{Z}\) if and only if \(b\) divides \(a\).</li>
+</ol>
+</div>
+<p><br />
+As a reminder, \(d\mathbf{Z} = \{ dn \ | \ n \in \mathbf{Z}\}\). It is the subgroup generated by \(d\).
+<br />
+<br />
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+For \((c)\):<br />
+\(\Rightarrow\): If \(a\mathbf{Z} \subseteq b\mathbf{Z}\), then \(a\) is a multiple of \(b\). So \(b\) divides \(a\). <br />
+\(\Leftarrow\): If \(b\) divides \(a\), then \(a \in b\mathbf{Z}\) so \(a\mathbf{Z} \subseteq b\mathbf{Z}\).
+<br />
+<br />
+For \((a)\):<br />
+Suppose \(H\) is a subgroup of \(\mathbf{Z}\). Since \(H\) is a subgroup, then it must contain at least one element. Suppose \(H \neq \{0\}\), then \(H\) contains a nonzero integer. For any integer \(a \in H\), \(H\) must also contain \(-a\). Let \(d\) be the smallest element in \(H \cap \mathbf{N}\). We claim that \(H = d\mathbf{Z}\). We want to show that \(H \subseteq d\mathbf{Z}\) and \(d\mathbf{Z} \subseteq H\).
+<br />
+<br />
+Let \(h \in H\). If \(h = d\), then since \(d \in H\), we have \(\langle d \rangle = d\mathbf{Z} \subseteq H\). Otherwise, we can write \(h = qd + r\) where \(0 \leq r &lt; d\). Now, we know that \(h \in H\) and we know that \(qd \ \in H\) since it’s a multiple of \(d\), so \(r = h + (- qd) = h - qd \in H\). But \(d\) is the least positive element of \(H\) and \(r &lt; d\). So we have \(r = 0\). Therefore, \(h = qd \in d\mathbf{Z}\).
+<br />
+<br />
+So we know that there exists a \(d \in \mathbf{N}\) such that \(d\mathbf{Z} = H\). To see that it’s unique, suppose that \(d' \in H\) and so \(d'\mathbf{Z} = H\) but by (c), \(d\) and \(d'\) divide one another and since they’re both positive then \(d = d'\) so \(d\) is unique. \(\ \blacksquare\). 
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Corollary 2.2.22
+</div>
+<div class="peachbodydiv">
+Every subgroup of \(\mathbf{Z}\) other than \({0}\) is isomorphic to \(\mathbf{Z}\).
+</div>
+<p><br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Lemma 2.2.23
+</div>
+<div class="peachbodydiv">
+Let \(n \geq 2\) and let \(d\) be a positive divisor of \(n\). The cyclic subgroup \(\langle [d] \rangle\) generated by \([d]\) in \(\mathbf{Z}_n\) has cardinality \(|\langle [d] \rangle| = n/d\)
+</div>
+<p><br />
+Reminder: The subgroup generated by \(d\) is \(\{...,-2d,-d,0,d,2d,...\}\). The order of this subgroup is clearly infinite. The subgroup generated by \([d]\) is \(\{[0], [d], [2d],...,(k-1)[d]\}\) where \((k+1)[d] = 0\). This group is clearly finite. 
+<br />
+<br />
+Example: Suppose \(d=3\) and \(n=9\). \(Z_9 = \{0,1,2,3,4,5,6,7,8\}\) The cyclic subgroup in \(Z_9\) generated by \(\langle [3] \rangle\) is \(\{k[3] \mod 9 \ | \ k \in \mathbf{Z}\} = \{[0],[3],[6]\}\). The size of \(\langle [3] \rangle\) is \(n/d = 9/3 = 3\).
+<br />
+<br />
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+We are given that \(d\) is a positive divisor of \(n\). Since we’re working with addition, this means that for some multiple of \(d\), we will get back to \([0]\). So let \(s\) be the least positive integer such that \(s[d] = [0]\). In other words, \(sd \equiv 0 \mod n\). This implies that \(sd\) is a multiple of \(n\) so \(sd = kn\) for some integer \(k\). But since we need the smallest \(s\), then \(s = \frac{n}{d}\). \(\ \blacksquare\)
+<br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.2.24
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of \(\mathbf{Z}_n\).
+<ol type="a">
+	<li>Either \(H = \{0\}\), or there is a \(d &gt; 0\) such that \(H = \langle [d] \rangle\)</li>
+	<li>If \(d\) is the smallest of positive integers \(s\) such that \(H\) = \(\langle [s] \rangle\), then \(d|H| = n\)</li>
+</ol>
+</div>
+<p><br />
+Example \((a)\): Let \(H\) be a subgroup of \(Z_9\). \(H\) must be generated by some \(d &gt; 0\). For example \(Z_9\) is generated by \(H = \langle [1] \rangle\). \(\{[0],[3],[6]\}\) is generated by \(\langle [3] \rangle\) and so on. 
+<br />
+<br />
+Example \((b)\): Take \(s = 6\) such that \(H = \langle [6] \rangle = \{[0], [6], [3]\}\). But \(d = 3\) is the smallest generator for this subgroup because \(\langle [3] \rangle = \{[0], [3], [6]\}\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+For (a), suppose \(H \neq \{[0]\}\). Then \(H\) contains at least one equivalent such that it is not \([0]\). Let \([d]\) be the smallest positive equivalent class. We claim that \(H = \langle [d] \rangle\). So we need to show that \(\langle [d] \rangle \subseteq H\) and \(H \subseteq \langle [d] \rangle\).
+<br />
+<br />
+\(\langle [d] \rangle \subseteq H\): Since \([d] \in H\), then by definition, \(\langle [d] \rangle \subseteq H\).
+<br />
+<br />
+\(H \subseteq \langle [d] \rangle\). Suppose \([h] \in H\), then by the division algorithm we can find \(q\) and \(r\) such that</p>
+<div>
+	$$
+	\begin{align*}
+	 [h] = [qd] + [r]
+	\end{align*}
+	$$
+</div>
+<p>We know that \([h] \in H\) and \([qd] \in H\). Since \(H\) is closed under addition, then</p>
+<div>
+	$$
+	\begin{align*}
+	 [r] = [h] - [qd]
+	\end{align*}
+	$$
+</div>
+<p>is also in \(H\). But since \([d]\) was the smallest positive equivalent class, then \([r]=0\) and we must have \([h] = [qd]\). Therefore, \([h] \in \langle [d] \rangle\). From this we see that \(H = \langle [d] \rangle\) as we wanted to show.
+<br />
+<br />
+For \((b)\), suppose that \(H = \langle [s] \rangle\) and \(d\) is the smallest of the positive integers \(s\) so \([d]\) also generates \(H\). By the division algorithm, write \(n = qd + r\) where \(0 \leq r &lt; d\). Now</p>
+<div>
+	$$
+	\begin{align*}
+	 [n] &amp;= [qd + r] \\
+	 0 &amp;= [qd] + [r] \\
+	 [r] &amp;= -[qd] \\
+	     &amp;= -q[d] \\
+	\end{align*}
+	$$
+</div>
+<p>But this means that \([r] \in \langle [d] \rangle\)
+<br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Corollary 2.2.25
+</div>
+<div class="peachbodydiv">
+For a natural number \(n \geq 2\).
+<ol type="a">
+	<li>Any subgroup of \(\mathbf{Z}_n\) is cyclic.</li>
+	<li>Any subgroup of \(\mathbf{Z}_n\) has cardinality dividing \(n\).</li>
+</ol>
+</div>
+<p><br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Corollary 2.2.26
+</div>
+<div class="peachbodydiv">
+For a natural number \(n \geq 2\).
+<ol type="a">
+	<li>For any positive divisor \(q\) of \(n\), there is a unique subgroup of \(\mathbf{Z}_n\) of cardinality \(q\) namely \(\langle [n/q] \rangle\).</li>
+	<li>For any two subgroups \(H\) and \(H'\) of \(\mathbf{Z}_n\), we have \(H \subseteq H' \Leftrightarrow |H|\) divides \(|H'|\).</li>
+</ol>
+</div>
+<p><br />
+Example: Suppose \(n = 8\) and \(q = 2\). Then, there is a unique subgroup of cardinality \(q = 2\), namely \(H = \langle [n/q] \rangle = \langle [4] \rangle = \{[0],[4]\}\)
+<br />
+<br />
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+For \((a)\), since \(q\) is a positive divisor of \(n\), then by Lemma 2.2.23, the cyclic subgroup \(\langle [n/q] \rangle\) of \(\mathbf{Z}_n\) has cardinality \(n/(n/q) = q\). On the other hand, if \(H\) is a subgroup of cardinality \(q\), then by Proposition 2.2.24 \((b)\), …. TODO
+<br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Corollary 2.2.28
+</div>
+<div class="peachbodydiv">
+Let \(b \in \mathbf{Z}, b \neq 0\)
+<ol type="a">
+	<li>The cyclic subgroup \(\langle [b] \rangle\) of \(\mathbf{Z}_n\) generated by \([b]\) is equal to the cyclic subgroup generated by \([d]\), where \([d] = gcd(b,n)\).</li>
+	<li>The order of \([b]\) in \(\mathbf{Z}_n\) is \(\frac{n}{gcd(b,n)}\).</li>
+	<li>In particular, \([b] = \mathbf{Z}_n\) if and only if \(b\) is relatively prime to \(n\).</li>
+</ol>
+</div>
+<p><br />
+Example: TODO
+<br />
+<br />
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.2.30
+</div>
+<div class="peachbodydiv">
+Every subgroup of a cyclic group is cyclic.
+</div>
+<p><br />
+Example: TODO
+<br />
+<br />
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.2.31
+</div>
+<div class="peachbodydiv">
+Let \(a\) be an element of finite order \(n\) in a group. Then \(\langle a^k \rangle = \langle a \rangle \), if and only if \(k\) is relatively prime to \(n\). The number of generators of \(\langle a \rangle\) is \(\phi(n)\).
+</div>
+<p><br />
+Example: TODO
+<br />
+<br />
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.2.32
+</div>
+<div class="peachbodydiv">
+Let \(a\) be an element of finite order \(n\) in a group. For each positive integer \(q\) dividing \(n\), \(\langle a \rangle\) has a unique subgroup of order \(q\).
+</div>
+<p><br />
+Example: TODO
+<br />
+<br />
+<!---------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+<br /></p>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+	<li><a href="https://www.youtube.com/watch?v=VdLhQs_y_E8&amp;list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5">Algebra: Abstract Lectures By Benedict Gross</a></li>
+	<li><a href="https://www.youtube.com/watch?v=NwqCi63p2ik">Math of Wrath Youtube Channel</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.2.1 A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\). Example: The group \(SO(3)\), the special orthogonal matrices is a subgroup of \(GL_3(\mathbf{R}\), the group of invertible \(3 \times 3\) matrices. Both of these are under the same operation. Non-example: \(\mathbf{Z}_n\): congruence classes modulo \(n\) with addition. We also have \(\phi(n)\): congruence classes with multiplicative inverses. This has the operation multiplication so it's not a subgroup! Even when you define \(\phi(4) = \{[1],[3]\}\) with addition, it will not satisfy the group requirements, so it's not a subgroup. Since we need to check a lot for subgroups. We have a set of necessary conditions. Proposition The necessary conditions for a subset \(H\) of \(G\) to be a subgroup of \(G\) are: \(H\) is not empty \(H\) is closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\) \(H\) is closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\) Proof \(H\) is associative. For any \(a,b,c \in H\), \((ab)c = a(bc)\). We're inheriting the same operation from \(G\) so \(H\) must be associative. \(H\) has an identity element: We know \(H\) is non-empty by (1). We also know for any \(h \in H\), \(h^{-1} \in H\) by (3). By (2), \(H\) is closed under multiplication so \(hh^{-1} \in H\) but \(hh^{-1} = e\) so the identity element is in \(H\). Example Consider the group \(G = S_4\) permutations of \(\{1,2,3,4\}\). The order of this group is \(|G| = 4\). The following are subgroups of \(S_4\): \(H=\{ \sigma \in S_4 \ | \ \sigma(4) = 4\}\). So this subgroup fixes \(4\) in the permutation. \(|H| = 3! = 6\). In fact, it is permuting only 3 numbers and it is isomorphic to \(S_3\). \(H'=\{e,(1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3)\}\). It's not empty. It has the identity element. Every element is its own inverse. The one thing not too obvious is proving it is closed. This subgroup is isomorphic to the symmetry group of the rectangle. \(H''=\{e,(1 \ 2 \ 3 \ 4)(4 \ 3 \ 2 \ 1), (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3), (1 \ 3),(2 \ 4)\}\). This one is isomorphic to \(D_4\) which is the symmetries of the square. Generated Subgroups Before talking about subgroups we need the following lemma Lemma (Book Proposition 2.2.8) Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then \(H = H_1 \cap H_2 \ \cap ... \cap \ H_n \) is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup. Proof The intersection must have the identity element. The intersection is closed under the operation because for any two elements \(a, b \in H\), their product \(ab \in H\) and since \(a, b\) is in the intersection, then they are in every \(H_i\) group. Same argument for the inverse. Definition Let \(G\) be a group and let \(S\) be a subset of \(G\). Then $$ \begin{align*} \langle S \rangle = \bigcap_{\text{all } H_i \leq G \text{ such that } S \subseteq H_i} \end{align*} $$ \(\langle S \rangle\) is the intersection of all subgroups such that \(S\) is a subset of each subgroup \(H_i\). \(\langle S \rangle\) is called the subgroup generated by \(S\) and it is the smallest subgroup in \(G\) that contains \(S\). It is the smallest group because by definition for any \(H \leq G\), we have \(S \subseteq H\). So \(\langle S \rangle \subseteq H\) for any \(H\). Additionally from the book we have If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\) Another way to describe \(\langle S \rangle\) is take a bottom up approach to describe the elements. Proposition Suppose \(G\) is a group and \(S\) is a subset of \(G\). Then $$ \begin{align*} \langle S \rangle = \{e\} \cup \{g_1g_2...g_k\} \ | \ k \geq 1, \forall i,..,k \ g_i \in S \text{ or } g_i^{-1} \in S \end{align*} $$ In other words, \(\langle S \rangle\) is that it contains all the possible products \(g_1g_2...g_n\) where \(g_i \in S\) or \(g_i^{-1} \in S\). The set that contains these words \(\{e\} \cup \{g_1g_2...g_k\}\) is often called the “set of words in \(S\)” in group theory. Proof Let \(T\) be the set of words. We need to check that \(S \subseteq T\). [This is true because all the words of length 1 make up the set \(S\).] \(T\) is a subgroup of \(G\). [This is true because \(T\) has the identity element. For any two word, the product of these is just a longer word which is also in \(T\). It is closed under the inverses because \((g_1g_2...g_k) = g_k^{-1}...g_1^{-1}\).] If \(H \leq G\) and \(S \subseteq H\), then \(T \subseteq H\). [This is true because if \(H\) contains \(S\) then it must contain all the inverses of these words and then also the products of all of these words since it's group (closed) so it has all of these elements and it contains \(T\).] These three conditions imply that \(T = \langle S \rangle\). We’ll use this proposition a lot. Some Examples \(\langle (1 \ 2) \rangle = \{e, (1 \ 2)\}\). This says that the subgroup generated by \(\{(1 \ 2)\}\) is \(\{e, (1 \ 2)\} = \langle (1 \ 2) \rangle \) \(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\) \(G = S_3 = \langle (1 \ 2), (1 \ 2 \ 3) \rangle\). So \(S_3\) is generated by Cyclic Groups and Cyclic Subgroups]]></summary></entry><entry><title type="html">Groups and Isomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html" rel="alternate" type="text/html" title="Groups and Isomorphism" /><published>2025-02-01T00:01:36-08:00</published><updated>2025-02-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html"><![CDATA[<div class="mintheaderdiv">
 Definition
 </div>
 <div class="mintbodydiv">
@@ -6,7 +486,7 @@ A group \((G, G \times G \rightarrow G)\) is a set with a binary operation on th
 <ol>
 	<li>The operation is associative so that \((ab)c = a(bc), \forall a,b,c \in G\)</li>
 	<li>There exists an identity element. \(\exists e \in G\) such that \(ae = a = ea \forall a \in G\).</li>
-	<li>Every element has an inverse. \(\forall a \in G, \exists a^{-1} \in G\) such that \(aa^{-1} = e = a^{-1}a\)</li>
+	<li>Every element has an inverse. \(\forall a \in G, \exists a^{-1} \in G\) such that \(aa^{-1} = e = a^{-1}a\).</li>
 </ol>
 Additionally, a group is commutative/abelian if \(ab = ba, \forall a, b \in G.\).
 </div>
@@ -244,9 +724,6 @@ If \(G\) is a finite group, each row and each column of the multiplication table
 <br />
 A row in the multiplication table can be represented by a left multiplication map \(G \rightarrow G\) if you fix the element multiplied on the left. We know the left multiplication map is a bijection. Therefore every element/result must be unique and each element of \(G\) must show up in the row. Similarly, each column can be represented by a right multiplication map. The map is a bijection and so each element must be unique and shown exactly once. (TODO clean up this proof)
 <br />
-<br />
-Note that the above was not really included in the lecture. It was from the book …
-<br />
 <br /></p>
 <hr />
 
@@ -354,26 +831,10 @@ Proposition
 	$$
 </div>
 <p><br />
-<br /></p>
-<hr />
-
-<p><br />
+<br />
 <!----------------------------------------------------------------------></p>
 <h4><b>Isomorphism</b></h4>
-<p>One thing that we want to do is to compare two groups. For example take \((\mathbf{Z}_4, +)\), the symmetries of the rectangle, \((\phi(5), \cdot)\) and \((\phi(8), \cdot)\). These are all groups with exactly 4 elements. In fact, the formal definition for the size of the group is as follows
-<br />
-<br />
-<!----------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition 2.1.10
-</div>
-<div class="mintbodydiv">
-The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
-</div>
-<!---------------------------------------------------------------------->
-<p><br />
-<br />
-To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
+<p>One thing that we want to do is to compare two groups. For example take \((\mathbf{Z}_4, +)\), the symmetries of the rectangle, \((\phi(5), \cdot)\) and \((\phi(8), \cdot)\). These are all groups with exactly 4 elements. To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
 <br />
 <br />
 <!----------------------------------------------------------------------></p>
@@ -381,9 +842,19 @@ To compare two groups, we want to see if we can construct a bijection between th
 Definition 2.1.13
 </div>
 <div class="mintbodydiv">
-We say two groups \(G\) and \(H\) are isomorphic if there is a bijection \(\phi: G \rightarrow H\) such that for all \(g_1, g_2 \in G, \phi(g_1g_2) = \phi(g_1)\phi(g_2)\). The map \(\phi\) is called an isomorphism.
+We say two groups \(G\) and \(H\) are isomorphic if there is a bijection \(\varphi: G \rightarrow H\) such that for all \(a, b \in G\)
+	$$
+	\begin{align*}
+	\varphi(ab) = \varphi(a)\varphi(b)	
+	\end{align*}
+	$$
+where the first multiplication is in \(G\) while the second is in \(H\).<br />
+ The map \(\varphi\) is called an isomorphism.
 </div>
 <p><br />
+<br />
+We write \(H \approx G\) for \(G\) is isomorphic to \(H\).
+<br />
 <br />
 An an example consider the group of the symmetries of the equilateral triangle \(D_3\) and the group \(S_3\) (permutations of \(\{1,2,3\}\)). Both groups contain exactly 6 elements. They turn out to be isomorphic. Let the isomorphism map the elements as follows:</p>
 <div>
@@ -419,50 +890,89 @@ An an example consider the group of the symmetries of the equilateral triangle \
 </table>
 </div>
 <p><br />
-<br />
-<br />
-The rest of the below definitions / propositions are from the book. TODO: move them to the appropriate lectures:
-<br />
 <!----------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition 2.1.14
-</div>
-<div class="mintbodydiv">
-A group \(G\) is called abelian (or commutative) if for all elements \(a, b \in G\), the products in the two orders are equal \(ab = ba\).
-</div>
-<p><br />
-<br /></p>
-
-<!--------------------------------------------------------------------->
 <div class="peachheaderdiv">
-Proposition 2.1.17
+Proposition
 </div>
 <div class="peachbodydiv">
-<ol type="a">
-	<li>Up to isomorphism, \(\mathbf{Z_1}\) is the unique group of order 1.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_2}\) is the unique group of order 2.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_3}\) is the unique group of order 3.</li>
-	<li>Up to isomorphism, there are exactly two groups of order 4, namely \(\mathbf{Z_4}\), and the group of rational symmetries of the rectangular card.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_5}\) is the unique group of order 5.</li>
-	<li>All groups of order no more than 5 are abelian.</li>
-	<li>There are at least two non-isomorphic groups of order 6, one abelian and one non-abelian.</li>
-</ol>
+	If \(\varphi:G \rightarrow H\) is an isomorphism, then \(\varphi^{-1}: G \rightarrow H\) is also an isomorphism.
 </div>
 <p><br />
-Up to isomorphism just means that that two objects will be considered the same if they are isomorphic. We just want to classify groups into distinct non-isomorphic groups. For example, for statement (c), This means groups of order 3 are all isomorphic to \(\mathbf{Z_3}\) while statement (d) implies that we have two distinct groups of order 4. 
-<br />
-<br />
 <b>Proof</b>
 <br />
-TODO
+Let \(a', b' \in H\). We want to show that</p>
+<div>
+	$$
+	\begin{align*}
+	\varphi^{-1}(a'b') = \varphi^{-1}(a') \varphi^{-1}(b')
+	\end{align*}
+	$$
+</div>
+<p>Let \(a' = \varphi(a)\) and \(b' = \varphi(b)\) for some \(a, b \in G\). Since \(\varphi\) is injective then it suffices to show that</p>
+<div>
+	$$
+	\begin{align*}
+	\varphi(\varphi^{-1}(a'b')) = \varphi(\varphi^{-1}(a') \varphi^{-1}(b'))
+	\end{align*}
+	$$
+</div>
+<p>The right hand side is clearly just \(a'b'\). \(\varphi\) is an isomorphism so the left hand side becomes</p>
+<div>
+	$$
+	\begin{align*}
+	\varphi(\varphi^{-1}(a') \varphi^{-1}(b')) &amp;= 
+	\varphi(\varphi^{-1}(a')) \varphi(\varphi^{-1}(b')) \\
+	                          &amp;= a'b'
+	\end{align*}
+	$$
+</div>
+<p>Therefore \(\varphi^{-1}\) is an isomorphism as desired. \(\ \blacksquare\).
 <br />
 <br /></p>
 <hr />
 
 <p><br />
+<!----------------------------------------------------------------------></p>
+<h4><b>Groups of Small Order</b></h4>
+<p>The order of a group is the number of elements in it. Formally,
+<br />
+<br />
+<!----------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition 2.1.10
+</div>
+<div class="mintbodydiv">
+The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
+</div>
+<p><br />
+<br />
+One interesting thing to do is to classify all groups of a given finite order. If we do that for small sizes, we get
+<!---------------------------------------------------------------------></p>
+<ol>
+	<li>order 0: none. because we need to at least have the identity element.</li>
+	<li>order 1: \(G = \{e\}\). Other groups of order 1 can be \(G'=\{1\}\). These two groups are isomorphic. Technically, it's a different set but to us, they're the same group. So "up to isomorphism", there is only one group of size 1.</li>
+	<li>order 2: \(G \approx \mathbf{Z}_2\) (integers mod 2). An example of \(G\) is \((\mathbf{Z}_2,+)\).</li>
+	<li>order 3: \(G \approx \mathbf{Z}_3\). All groups of size 3 will be isomorphic to \(\mathbf{Z}_3\)</li>
+	<li>order 4: We have two groups which are not isomorphic to each other. \(G = \mathbf{Z}_4 \) or \(G = \mathbf{Z}_2 \times \mathbf{Z}_2\) (symmetries of the rectangle). Groups of order 4 can be isomorphic to either one.</li>
+	<li>order 5: \(G \approx \mathbf{Z}_5\)</li>
+	<li>order 6: We have two groups. \(G \approx \mathbf{Z}_6\) or \(G \approx S_3 \approx D_3\). These two groups are not isomorphic because \(S_3\) is non-abelian while \(\mathbf{Z}_6\) is abelian. In fact the next proposition will formalize this.</li>
+</ol>
+<p><br />
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(G \approx H\), then \(G\) is abelian if and only if \(H\) is abelian.
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+Exercise
+<br />
 <br />
 <!---------------------------------------------------------------------->
-Again two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
+Extra Notes from the book: Two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
 <br /></p>
 <div class="peachheaderdiv">
 Proposition 2.1.18
@@ -506,10 +1016,11 @@ To show that \(\phi(g^{-1}) = \phi(g)^{-1}\), see that</p>
 <!----------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
 <ul>
+	<li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
 <li><a href="https://www.youtube.com/watch?v=VdLhQs_y_E8&amp;list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5">Algebra: Abstract Lectures By Benedict Gross</a></li>
 <li><a href="https://www.youtube.com/watch?v=NwqCi63p2ik">Math of Wrath Youtube Channel</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition A group \((G, G \times G \rightarrow G)\) is a set with a binary operation on that set such that. The operation is associative so that \((ab)c = a(bc), \forall a,b,c \in G\) There exists an identity element. \(\exists e \in G\) such that \(ae = a = ea \forall a \in G\). Every element has an inverse. \(\forall a \in G, \exists a^{-1} \in G\) such that \(aa^{-1} = e = a^{-1}a\) Additionally, a group is commutative/abelian if \(ab = ba, \forall a, b \in G.\). In addition to groups, we also have Monoids which satisfy \((1)\) and \((2)\). Semi-groups which satisfy \((1)\). Magma \(G, \cdot\) with no additional properties. Basic Properties of Groups In the next few propositions, we’ll prove that the identity element in a group is unique and similarly the inverses are unique. Proposition (Uniqueness of the identity (2.1.1)) The identity element is unique. (In other words, Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\).) Proof Let \(e\) and \(e'\) be identity elements. Then by definition for any \(x, y \in G\) $$ \begin{align*} xe &amp;= x = e'x \\ ye &amp;= y = e'y \end{align*} $$ If we let \(x = e'\) and let \(y = e\), then $$ \begin{align*} ee &amp;= e = e'e \\ e'e &amp;= e' = e'e' \end{align*} $$ From this we see that \(e = e'\) as desired. \(\ \blacksquare\) Proposition Inverses in a group are unique. Proof Let \(a \in G\) and suppose for the sake of contradiction that \(a\) has two inverses \(b\) and \(c\). That is \(ab = e = ba\) and \(ac = e = ca\). Then, $$ \begin{align*} c = ec = (ba)c = b(ac) = be = b. \end{align*} $$ Therefore, \(c = b\) which is a contradiction so the inverse must be unique. \(\ \blacksquare\) Proposition ((2.1.2)) Let \(G\) be a group and let \(a, b \in G\). If \(ab = e\), then \(a = b^{-1}\). Likewise, if \(ba = e\), then \(b = a^{-1}\). Proof Even though the definition of the inverse requires the equation \(ab = ba = e\) so it’s an inverse on both sides, To check if something is an inverse in a group, we can just check one side so if \(ab = e\), then \(a = b^{-1}\) and \(b\) is the inverse. So what we want to show here is that suppose \(ab = e\), then we want to show that \(ba = e\) which means that \(b\) is the inverse of \(a\). Basically, we want to show that that checking one side (\(ab = e\)) is enough to imply that \(ba = e\) in a group. One side implies the other. How do we do it? We know from the previous proposition that \(a\) has an inverse \(a^{-1} \in G\). Now consider the expression \(a^{-1}ab\). By associativity, we can reduce this expression in two ways $$ \begin{align*} (a^{-1}a)b &amp;= a^{-1}(ab) \end{align*} $$ The left hand side $$ \begin{align*} (a^{-1}a)b &amp;= eb = b \end{align*} $$ The right hand side is $$ \begin{align*} (a^{-1}(ab) &amp;= a^{-1} \end{align*} $$ So \(b = a^{-1}\) and therefore, \(ba = a^{-1}a = e\). Proof (Book) Suppose \(hg = e\), then $$ \begin{align*} h = h(gg^{-1}) = (hg)g^{-1}= eg^{-1} = g^{-1}. \end{align*} $$ Suppose now that \(gh = e\), then $$ \begin{align*} g = g(hh^{-1}) = (gh)h^{-1} = eh^{-1} = h^{-1}. \ \blacksquare \end{align*} $$ Corollary 2.1.3 Let \(g\) be an element of a group \(G\). We have \(g = (g^{-1})^{-1}\) Proof We know \(gg^{-1} = e\). By (2.1.2) \(g = (g^{-1})^{-1}\). \(\ \blacksquare\) Proposition 2.1.4 Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{-1}\) Proof Notice that \((ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e\). Therefore, \((ab)^{-1} = b^{-1}a^{-1}\). The Left and Right Multiplication Maps]]></summary></entry><entry><title type="html">Lecture 06/07: Modular Arithmetic</title><link href="http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic.html" rel="alternate" type="text/html" title="Lecture 06/07: Modular Arithmetic" /><published>2025-01-30T00:01:36-08:00</published><updated>2025-01-30T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic.html"><![CDATA[<!------------------------------------------------------------------------------>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition A group \((G, G \times G \rightarrow G)\) is a set with a binary operation on that set such that. The operation is associative so that \((ab)c = a(bc), \forall a,b,c \in G\) There exists an identity element. \(\exists e \in G\) such that \(ae = a = ea \forall a \in G\). Every element has an inverse. \(\forall a \in G, \exists a^{-1} \in G\) such that \(aa^{-1} = e = a^{-1}a\). Additionally, a group is commutative/abelian if \(ab = ba, \forall a, b \in G.\). In addition to groups, we also have Monoids which satisfy \((1)\) and \((2)\). Semi-groups which satisfy \((1)\). Magma \(G, \cdot\) with no additional properties. Basic Properties of Groups In the next few propositions, we’ll prove that the identity element in a group is unique and similarly the inverses are unique. Proposition (Uniqueness of the identity (2.1.1)) The identity element is unique. (In other words, Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\).) Proof Let \(e\) and \(e'\) be identity elements. Then by definition for any \(x, y \in G\) $$ \begin{align*} xe &amp;= x = e'x \\ ye &amp;= y = e'y \end{align*} $$ If we let \(x = e'\) and let \(y = e\), then $$ \begin{align*} ee &amp;= e = e'e \\ e'e &amp;= e' = e'e' \end{align*} $$ From this we see that \(e = e'\) as desired. \(\ \blacksquare\) Proposition Inverses in a group are unique. Proof Let \(a \in G\) and suppose for the sake of contradiction that \(a\) has two inverses \(b\) and \(c\). That is \(ab = e = ba\) and \(ac = e = ca\). Then, $$ \begin{align*} c = ec = (ba)c = b(ac) = be = b. \end{align*} $$ Therefore, \(c = b\) which is a contradiction so the inverse must be unique. \(\ \blacksquare\) Proposition ((2.1.2)) Let \(G\) be a group and let \(a, b \in G\). If \(ab = e\), then \(a = b^{-1}\). Likewise, if \(ba = e\), then \(b = a^{-1}\). Proof Even though the definition of the inverse requires the equation \(ab = ba = e\) so it’s an inverse on both sides, To check if something is an inverse in a group, we can just check one side so if \(ab = e\), then \(a = b^{-1}\) and \(b\) is the inverse. So what we want to show here is that suppose \(ab = e\), then we want to show that \(ba = e\) which means that \(b\) is the inverse of \(a\). Basically, we want to show that that checking one side (\(ab = e\)) is enough to imply that \(ba = e\) in a group. One side implies the other. How do we do it? We know from the previous proposition that \(a\) has an inverse \(a^{-1} \in G\). Now consider the expression \(a^{-1}ab\). By associativity, we can reduce this expression in two ways $$ \begin{align*} (a^{-1}a)b &amp;= a^{-1}(ab) \end{align*} $$ The left hand side $$ \begin{align*} (a^{-1}a)b &amp;= eb = b \end{align*} $$ The right hand side is $$ \begin{align*} (a^{-1}(ab) &amp;= a^{-1} \end{align*} $$ So \(b = a^{-1}\) and therefore, \(ba = a^{-1}a = e\). Proof (Book) Suppose \(hg = e\), then $$ \begin{align*} h = h(gg^{-1}) = (hg)g^{-1}= eg^{-1} = g^{-1}. \end{align*} $$ Suppose now that \(gh = e\), then $$ \begin{align*} g = g(hh^{-1}) = (gh)h^{-1} = eh^{-1} = h^{-1}. \ \blacksquare \end{align*} $$ Corollary 2.1.3 Let \(g\) be an element of a group \(G\). We have \(g = (g^{-1})^{-1}\) Proof We know \(gg^{-1} = e\). By (2.1.2) \(g = (g^{-1})^{-1}\). \(\ \blacksquare\) Proposition 2.1.4 Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{-1}\) Proof Notice that \((ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e\). Therefore, \((ab)^{-1} = b^{-1}a^{-1}\). The Left and Right Multiplication Maps]]></summary></entry><entry><title type="html">Lecture 06/07: Modular Arithmetic</title><link href="http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic.html" rel="alternate" type="text/html" title="Lecture 06/07: Modular Arithmetic" /><published>2025-01-30T00:01:36-08:00</published><updated>2025-01-30T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/30/math417-07-modular-arithmetic.html"><![CDATA[<!------------------------------------------------------------------------------>
 <div class="mintheaderdiv">
 Definition (Book Definition 1.7.1)
 </div>
@@ -697,7 +1208,7 @@ Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by
 	$$
 	\begin{align*}
 	[a]_n + [b]_n &amp;= [a + b]_n \\
-	[a]_n + [b]_n &amp;= [ab]_n
+	[a]_n[b]_n &amp;= [ab]_n
 	\end{align*}
 	$$
 </div>
@@ -962,7 +1473,7 @@ One way to implement this idea is the following (RSA):</p>
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition (Book Definition 1.7.1) Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write $$ \begin{align*} a \equiv b \mod n \quad \text{or} \quad a \equiv_n b \end{align*} $$ if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbf{Z}\) such that \(a - b = tn\) Example: \((1 \mod 7) = (8 \mod 7) = 1\). Therefore, \(1 \equiv_7 8\). Definition For each integer \(a\), write $$ \begin{align*} [a] &amp;= [a]_n = \{x \in \mathbf{Z} \ | \ x \equiv a \mod n\} \subseteq \mathbf{Z} \\ &amp;= \{ a + ny \ | \ y \in \mathbf{Z} \} \end{align*} $$ The set \([a]\) is called the residue class or congruence class of \(a\) modulo \(n\). Example: \([2]_6 = \{2 + 6y \ | \ y \in \mathbf{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}\) \([2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....\) The Remainder Function Another important definition that we need is the following Definition \(rem_n \ : \ \mathbf{Z} \rightarrow \{0,1,2,...,n-1\}\) is the remainder function after dividing by \(n\). \(rem_n(a) = r\) is the unique remainder of \(a \div n\) such that \(0 \leq r &lt; n\) and \(a = qn + r\) for some \(q \in \mathbf{Z}\). Note that \(a - r\) is divisible by \(n\) or \(a \equiv_n r\). It’s important to note that the remainder is in the same congruence class as \(a\). In fact \([a]_n \cap \{0,...n-1\} = \{r\}\). Usually the remainder \(r\) is the standard/canonical name for the congruence class. So for example, we usually don’t write \([602]_6\) but write \([2]_6\). But we don’t have to put it in canonical form. Properties of Congruence Congruence is an equivalence relation. The following properties show this. Lemma (Book 1.7.2) Properties of Congruence: Reflexive: For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\). Symmetric: For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\). Transitive: For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\). Proof (book) For \((a)\), \(a - a = 0\) is divisible by \(n\). For \((b)\), if \(a - b\) is divisible by \(n\), then \(b - a\) is also divisible by \(n\) and vice versa. For \((c)\), if \(a - b\) is divisible by \(n\) and \(b - c\) is divisible by \(4n\), then \((a - b) + (b - c) = a - c\) is also divisible by \(n\). \(\ \blacksquare\) Based on these properties, we have the following proposition Proposition (Book Lemma 1.7.3) For \(a, b \in \mathbf{Z}\), the following are equivalent: \(a \equiv b \mod n\). \([a]_n = [b]_n\). \(\text{rem}_n(a) = \text{rem}_n(b)\). \([a]_n \cap [b]_n \neq \emptyset\). Proof (Book): \((a) \implies (b)\): Suppose \(a \equiv b \mod n\). We want to show that \([a]_n = [b]_n\). \([a]_n \subseteq [b]_n\): Let \(c \in \mathbf{Z}\). If \(c \equiv a \mod n\), then \(c \equiv b \mod n\) by Lemma 1.7.2 (c). Therefore \([a]_n \subseteq [b]_n\). \([b]_n \subseteq [a]_n\): If \(c \equiv b \mod n\), then \(c \equiv a \mod n\) and so \([a] = [b]\) as required. \((b) \implies (c)\): By definition, \(\text{rem}_n(x)\) is the unique element of \([x]\) that lies inside \(\{0,1,...,n-1\}\). So if \([a]_n=[b]_n\), then it must be the same element. \((c) \implies (d)\): \((d)\) is an immediate application of \((c)\) \((d) \implies (a)\): Suppose that \([a]_n \cap [b]_n \neq \emptyset\). Let \(c \in [a]_n \cap [b]_n\). Then \(a \equiv c \mod n\) and \(b \equiv c \mod n\). But this implies that \(a \equiv b \mod n\). \(\ \blacksquare\) Modular Arithmetic The following lemma establishes how modular arithmetic is done. Proposition (Book Lemma 1.7.5) Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then $$ \begin{align*} a + b &amp;\equiv a' + b' \mod n \\ ab &amp;\equiv a'b' \mod n \end{align*} $$ Proof [TODO] We can now use these modular arithmetic properties to define algebraic structures on a set. Definition $$ \begin{align*} \mathbf{Z}_n &amp;= \{ \text{ set of congruence classes mod } n \} \\ &amp;= \{ [a]_n \ | \ a \in \mathbf{Z} \} \\ &amp;= \{ [0]_n, [1]_n,...,[n-1]_n \ | \ a \in \mathbf{Z} \} \\ \end{align*} $$ So now we can use the operations we defined previously to turn this set into a commutative ring. Definition Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by $$ \begin{align*} [a]_n + [b]_n &amp;= [a + b]_n \\ [a]_n + [b]_n &amp;= [ab]_n \end{align*} $$ \((\mathbf{Z}_n,+,\cdot)\) is commutative ring with identity while \((\mathbf{Z}_n,\cdot)\) is a commutative monoid. \([1]\) is the identity element. Only some elements \([a] \in \mathbf{Z}_n\) have a multiplicative inverse. (such that \([a][b] = [1] = [b][a]\)). The question is when do we have a multiplicative inverse? The answer is in the following proposition. Proposition Let \(n \geq 1, a \in \mathbf{Z}\). Then \([a]\) has a multiplicative inverse in \(\mathbf{Z}\) if and only if \(gcd(a,n) = 1\). Proof Suppose that \(gcd(a,n)=1\). Then there exists \(r, s \in \mathbf{Z}\) such that \(ar + ns = 1\). Re-writing this equation, we observe that $$ \begin{align*} ar + ns = 1 &amp;\Longleftrightarrow ar = 1 + (-s)n \quad \text{ (so $ar$ and 1 differ by a multiple of $n$)}\\ &amp;\Longleftrightarrow ar = 1 \mod n \\ &amp;\Longleftrightarrow [a][r] = 1. \ \blacksquare \\ \end{align*} $$ We will use \(\phi(n) = \{x \in \mathbf{Z}_n \ | \ x \text{ has a multiplicative inverse}\} \in \mathbf{Z}_n\). \((\phi(n))\) is a commutative group. Binomial Theorem Next we have the binomial theorem which we need to prove a proposition which will then lead to Fermat’s Little Theorem. Theorem (Binomial Theorem) \(a, b \in \mathbf{R}, n \in \mathbf{N}\). Then $$ \begin{align*} (a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k \end{align*} $$ where \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\) for \(a \leq k \leq n\) Proof Use Pascal’s Identity: \(\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}\)… TODO As a consequence of the binomial theorem, we have the next proposition Proposition Let \(p\) be prime. For all \(a, b \in \mathbf{Z}\): $$ \begin{align*} (a + b)^p \equiv a^p + b^p \mod p \end{align*} $$ First observe that \((a+b)^5 = a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5\). So those middle terms all have coefficients divisible by 5. Therefore, they’ll go away if we apply mod \(5\). This happens when \(p\) is prime. Proof Using the binomial theorem, we can first expand the sum \((a+b)^p\) as follows $$ \begin{align*} (a + b)^p &amp;= \sum_{k=0}^{n} \binom{p}{k} a^{p-k} b^k \\ &amp;= a^{p} + \binom{p}{1} a^{p-1} b + \binom{p}{2} a^{p-2} b^2 + ... + b^k \\ \end{align*} $$ What we need to show is that \(\binom{p}{k} \equiv 0 \mod p\) if \(0 &lt; k &lt; p\). If we show this, then what’s left is the first and last terms only. Observe that $$ \begin{align*} \binom{p}{k} &amp;= \frac{p!}{k!(p-k)!} \\ \binom{p}{k} k! (p-k)! &amp;= p! \\ \end{align*} $$ \(p! = p(p-1)...1\). So \(p \ | \ p!\). But \(p! = \binom{p}{k} k! (p-k)!\) so \(p\) divides this whole product. Since \(p\) is prime, then \(p\) must divide one of the factors. Now observe that \(p\) can’t divide \(k!\) since \(k &lt; p\). \(p\) doesn’t divide \((p - k)!\) either since \(p - k &lt; p\). Therefore, \(p\) must divide \(\binom{p}{k}\) as desired. \(\ \blacksquare\). A consequence of this proof is Fermat’s Little Theorem Fermat's Little Theorem Next, we will prove Fermat’s Little Theorem. Theorem Let \(p\) be prime, \(a \in \mathbf{Z}\) \(a^p \equiv a \mod p\) If \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\) Proof of (1) By Induction on \(a\) for \(a \geq 1\). Base Case (\(a = 1\)): \(1^p \equiv 1 \mod p\) and so we’re done. Inductive Case (\(a &gt; 1\)): $$ \begin{align*} (a + 1)^p &amp;\equiv a^p + 1^p \quad \text{(By the previous proposition)} \\ &amp;\equiv a + 1 \quad \text{(By the inductive hypothesis)} \end{align*} $$ If \(a = 0\), then \(0^p = 0\). For \(a \leq 0\), we can use downward induction. Base Case \((a = -1)\): We need to show that \((-1)^p \equiv -1 \mod p\). \(p\) is prime so we have two cases. If \(p = 2\), then \((-1)^2 = 1 = -1 \mod 2\). If \(p\) is odd, then \((-1)^p = -1\). Inductive Case \((a &lt; -1)\): We want to show that \(a^p \equiv a\) implies \((a - 1)^p = a - 1\) Proof of (2) We are given that \(a \nmid p\). From part (1), we know that \(a^p \equiv a \mod p\). So \(p \ | \ a^p - a = a(a^{p-1} - 1)\). But since \(p\) is prime and since it doesn’t divide \(p\), then it must divide \(a^{p-1} - 1\). Two-Prime Fermat There is a more generalized version of Fermat’s Little Theorem. We will use Fermat’s theorem to prove it. Theorem Let \(p, q\) be distinct primes and let \(n = pq\). Let \(m\) be $$ \begin{align*} m = lcm(p-1, q-1) = \frac{(p-1)(q-1)}{gcd(p-1,q-1)} \end{align*} $$ If \(a \in \mathbf{Z}\), \(h \in \mathbf{N}\) such that \(h \equiv 1 \mod m\), then \(a^h \equiv a \mod n\) Proof We know that \(h \equiv 1 \mod m\) so \(h = 1 + tm\) for some \(t \in \mathbf{Z}\). We want to show that \(a^h \equiv a \mod n\). In other words, we want to show that \(n \ | \ a^h - a\) or \(pq \ | \ a^h - a\). Expanding this expression further as $$ \begin{align*} a^h - a &amp;= a^{1+tm} - a \\ &amp;= a(a^{tm} - 1) \end{align*} $$ We want to show that \(n = pq\) divides this number. \(p\) and \(q\) are distinct primes so they are relatively prime and their gcd is 1. By the Proposition from lecture 5 (Corollary 1.6.17 in the book), then if \(p\) divides this number and \(q\) divides this number, then we know that \(pq\) divides it. Therefore, we want to show to that \(p\) and \(q\) each divide \(a(a^{tm} - 1)\) To start, we want to show that \(p \ | \ a(a^{tm} - 1)\). But since \(p\) is prime, then it will have to divide \(a\) or \(a^{tm} - 1\). So suppose that \(p \nmid a\). We claim that \(p \ | \ a^{tm} - 1\). Recall that \(m = lcm(p-1, q-1)\). So \(m = (p - 1)s\) for some \(s \in \mathbf{N}\). So $$ \begin{align*} a^{tm} &amp;= a^{ts(p-1)} \\ &amp;= (a^{p-1})^{ts}. \end{align*} $$ Observe here that by Fermat’s Little Theorem (part 2), if \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\). Therefore $$ \begin{align*} (a^{p-1})^{ts} &amp;\equiv 1^{ts} \mod p \\ &amp;\equiv 1 \mod p. \end{align*} $$ This means that \(a^{tm} - 1\) is divisible by \(p\) as we wanted to show. So \(p\) divides the product \(a(a^{tm} - 1)\). With a similar arugment, we can show this for \(q\). RSA Cryptosystem This encryption method is based on the two prime fermat theorem. It is widely used to encrypt many of the transactions that happen on the internet. Symmetric Encryption: We have some plain text (\(x \in \mathbf{Z}_n\)) that we want to encrypt. We have a function that takes a key (\(e \in \mathbf{Z}\)) to encrypt the plain text and turn it to encrypted text (\(y \in \mathbf{Z}_n\)). To decrypt it back, we have to use the same key again to turn it to plain text. The flaw in this method is that the encryption and decryption keys are the same and will need to be shared somehow. That’s why we have an alternative: Asymmetric Encryption: This is the same proces except that now we have a decryption key \((d \in \mathbf{Z})\). So now we have a pair of keys \((e, d)\). You will broadcast \(e\) so that anyone can encrypt a message and send it to you, but you are the only with the decryption key. The goal here is to design the pair such that one one can deduce \(d\) from \(e\). So how to design such a pair? One way to implement this idea is the following (RSA): Pick a prime number \(p,q\) large (100s of digits) \(n = pq\) \(m = lcm(p-1,q-1)\) Choose \(1 &lt; d, e &lt; m\) such that \(de \equiv 1 \mod m\). You can first pick \(d\) and then you can pick a multiplicative inverse of \(d\) to be \(e\) using the Euclidean Algorithm. So now, you take the plain test \(x\) and raise it to the \(e\)th power. \(x^e\) is the encrypted text. \(e\) is the encryption key. The output \(y = x^e\) is the encrypted text. To decrypt it, raise the encrypted text to the \(d\)th power so \(y^d = x^{ed}\) and so now we have the following equation $$ \begin{align*} x^{ed} \equiv x \mod pq \end{align*} $$ This is Two-prime Fermat. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 06: Least Common Multiple</title><link href="http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm.html" rel="alternate" type="text/html" title="Lecture 06: Least Common Multiple" /><published>2025-01-29T00:01:36-08:00</published><updated>2025-01-29T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm.html"><![CDATA[<div class="mintheaderdiv">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition (Book Definition 1.7.1) Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write $$ \begin{align*} a \equiv b \mod n \quad \text{or} \quad a \equiv_n b \end{align*} $$ if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbf{Z}\) such that \(a - b = tn\) Example: \((1 \mod 7) = (8 \mod 7) = 1\). Therefore, \(1 \equiv_7 8\). Definition For each integer \(a\), write $$ \begin{align*} [a] &amp;= [a]_n = \{x \in \mathbf{Z} \ | \ x \equiv a \mod n\} \subseteq \mathbf{Z} \\ &amp;= \{ a + ny \ | \ y \in \mathbf{Z} \} \end{align*} $$ The set \([a]\) is called the residue class or congruence class of \(a\) modulo \(n\). Example: \([2]_6 = \{2 + 6y \ | \ y \in \mathbf{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}\) \([2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....\) The Remainder Function Another important definition that we need is the following Definition \(rem_n \ : \ \mathbf{Z} \rightarrow \{0,1,2,...,n-1\}\) is the remainder function after dividing by \(n\). \(rem_n(a) = r\) is the unique remainder of \(a \div n\) such that \(0 \leq r &lt; n\) and \(a = qn + r\) for some \(q \in \mathbf{Z}\). Note that \(a - r\) is divisible by \(n\) or \(a \equiv_n r\). It’s important to note that the remainder is in the same congruence class as \(a\). In fact \([a]_n \cap \{0,...n-1\} = \{r\}\). Usually the remainder \(r\) is the standard/canonical name for the congruence class. So for example, we usually don’t write \([602]_6\) but write \([2]_6\). But we don’t have to put it in canonical form. Properties of Congruence Congruence is an equivalence relation. The following properties show this. Lemma (Book 1.7.2) Properties of Congruence: Reflexive: For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\). Symmetric: For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\). Transitive: For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\). Proof (book) For \((a)\), \(a - a = 0\) is divisible by \(n\). For \((b)\), if \(a - b\) is divisible by \(n\), then \(b - a\) is also divisible by \(n\) and vice versa. For \((c)\), if \(a - b\) is divisible by \(n\) and \(b - c\) is divisible by \(4n\), then \((a - b) + (b - c) = a - c\) is also divisible by \(n\). \(\ \blacksquare\) Based on these properties, we have the following proposition Proposition (Book Lemma 1.7.3) For \(a, b \in \mathbf{Z}\), the following are equivalent: \(a \equiv b \mod n\). \([a]_n = [b]_n\). \(\text{rem}_n(a) = \text{rem}_n(b)\). \([a]_n \cap [b]_n \neq \emptyset\). Proof (Book): \((a) \implies (b)\): Suppose \(a \equiv b \mod n\). We want to show that \([a]_n = [b]_n\). \([a]_n \subseteq [b]_n\): Let \(c \in \mathbf{Z}\). If \(c \equiv a \mod n\), then \(c \equiv b \mod n\) by Lemma 1.7.2 (c). Therefore \([a]_n \subseteq [b]_n\). \([b]_n \subseteq [a]_n\): If \(c \equiv b \mod n\), then \(c \equiv a \mod n\) and so \([a] = [b]\) as required. \((b) \implies (c)\): By definition, \(\text{rem}_n(x)\) is the unique element of \([x]\) that lies inside \(\{0,1,...,n-1\}\). So if \([a]_n=[b]_n\), then it must be the same element. \((c) \implies (d)\): \((d)\) is an immediate application of \((c)\) \((d) \implies (a)\): Suppose that \([a]_n \cap [b]_n \neq \emptyset\). Let \(c \in [a]_n \cap [b]_n\). Then \(a \equiv c \mod n\) and \(b \equiv c \mod n\). But this implies that \(a \equiv b \mod n\). \(\ \blacksquare\) Modular Arithmetic The following lemma establishes how modular arithmetic is done. Proposition (Book Lemma 1.7.5) Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then $$ \begin{align*} a + b &amp;\equiv a' + b' \mod n \\ ab &amp;\equiv a'b' \mod n \end{align*} $$ Proof [TODO] We can now use these modular arithmetic properties to define algebraic structures on a set. Definition $$ \begin{align*} \mathbf{Z}_n &amp;= \{ \text{ set of congruence classes mod } n \} \\ &amp;= \{ [a]_n \ | \ a \in \mathbf{Z} \} \\ &amp;= \{ [0]_n, [1]_n,...,[n-1]_n \ | \ a \in \mathbf{Z} \} \\ \end{align*} $$ So now we can use the operations we defined previously to turn this set into a commutative ring. Definition Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by $$ \begin{align*} [a]_n + [b]_n &amp;= [a + b]_n \\ [a]_n[b]_n &amp;= [ab]_n \end{align*} $$ \((\mathbf{Z}_n,+,\cdot)\) is commutative ring with identity while \((\mathbf{Z}_n,\cdot)\) is a commutative monoid. \([1]\) is the identity element. Only some elements \([a] \in \mathbf{Z}_n\) have a multiplicative inverse. (such that \([a][b] = [1] = [b][a]\)). The question is when do we have a multiplicative inverse? The answer is in the following proposition. Proposition Let \(n \geq 1, a \in \mathbf{Z}\). Then \([a]\) has a multiplicative inverse in \(\mathbf{Z}\) if and only if \(gcd(a,n) = 1\). Proof Suppose that \(gcd(a,n)=1\). Then there exists \(r, s \in \mathbf{Z}\) such that \(ar + ns = 1\). Re-writing this equation, we observe that $$ \begin{align*} ar + ns = 1 &amp;\Longleftrightarrow ar = 1 + (-s)n \quad \text{ (so $ar$ and 1 differ by a multiple of $n$)}\\ &amp;\Longleftrightarrow ar = 1 \mod n \\ &amp;\Longleftrightarrow [a][r] = 1. \ \blacksquare \\ \end{align*} $$ We will use \(\phi(n) = \{x \in \mathbf{Z}_n \ | \ x \text{ has a multiplicative inverse}\} \in \mathbf{Z}_n\). \((\phi(n))\) is a commutative group. Binomial Theorem Next we have the binomial theorem which we need to prove a proposition which will then lead to Fermat’s Little Theorem. Theorem (Binomial Theorem) \(a, b \in \mathbf{R}, n \in \mathbf{N}\). Then $$ \begin{align*} (a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k \end{align*} $$ where \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\) for \(a \leq k \leq n\) Proof Use Pascal’s Identity: \(\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}\)… TODO As a consequence of the binomial theorem, we have the next proposition Proposition Let \(p\) be prime. For all \(a, b \in \mathbf{Z}\): $$ \begin{align*} (a + b)^p \equiv a^p + b^p \mod p \end{align*} $$ First observe that \((a+b)^5 = a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5\). So those middle terms all have coefficients divisible by 5. Therefore, they’ll go away if we apply mod \(5\). This happens when \(p\) is prime. Proof Using the binomial theorem, we can first expand the sum \((a+b)^p\) as follows $$ \begin{align*} (a + b)^p &amp;= \sum_{k=0}^{n} \binom{p}{k} a^{p-k} b^k \\ &amp;= a^{p} + \binom{p}{1} a^{p-1} b + \binom{p}{2} a^{p-2} b^2 + ... + b^k \\ \end{align*} $$ What we need to show is that \(\binom{p}{k} \equiv 0 \mod p\) if \(0 &lt; k &lt; p\). If we show this, then what’s left is the first and last terms only. Observe that $$ \begin{align*} \binom{p}{k} &amp;= \frac{p!}{k!(p-k)!} \\ \binom{p}{k} k! (p-k)! &amp;= p! \\ \end{align*} $$ \(p! = p(p-1)...1\). So \(p \ | \ p!\). But \(p! = \binom{p}{k} k! (p-k)!\) so \(p\) divides this whole product. Since \(p\) is prime, then \(p\) must divide one of the factors. Now observe that \(p\) can’t divide \(k!\) since \(k &lt; p\). \(p\) doesn’t divide \((p - k)!\) either since \(p - k &lt; p\). Therefore, \(p\) must divide \(\binom{p}{k}\) as desired. \(\ \blacksquare\). A consequence of this proof is Fermat’s Little Theorem Fermat's Little Theorem Next, we will prove Fermat’s Little Theorem. Theorem Let \(p\) be prime, \(a \in \mathbf{Z}\) \(a^p \equiv a \mod p\) If \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\) Proof of (1) By Induction on \(a\) for \(a \geq 1\). Base Case (\(a = 1\)): \(1^p \equiv 1 \mod p\) and so we’re done. Inductive Case (\(a &gt; 1\)): $$ \begin{align*} (a + 1)^p &amp;\equiv a^p + 1^p \quad \text{(By the previous proposition)} \\ &amp;\equiv a + 1 \quad \text{(By the inductive hypothesis)} \end{align*} $$ If \(a = 0\), then \(0^p = 0\). For \(a \leq 0\), we can use downward induction. Base Case \((a = -1)\): We need to show that \((-1)^p \equiv -1 \mod p\). \(p\) is prime so we have two cases. If \(p = 2\), then \((-1)^2 = 1 = -1 \mod 2\). If \(p\) is odd, then \((-1)^p = -1\). Inductive Case \((a &lt; -1)\): We want to show that \(a^p \equiv a\) implies \((a - 1)^p = a - 1\) Proof of (2) We are given that \(a \nmid p\). From part (1), we know that \(a^p \equiv a \mod p\). So \(p \ | \ a^p - a = a(a^{p-1} - 1)\). But since \(p\) is prime and since it doesn’t divide \(p\), then it must divide \(a^{p-1} - 1\). Two-Prime Fermat There is a more generalized version of Fermat’s Little Theorem. We will use Fermat’s theorem to prove it. Theorem Let \(p, q\) be distinct primes and let \(n = pq\). Let \(m\) be $$ \begin{align*} m = lcm(p-1, q-1) = \frac{(p-1)(q-1)}{gcd(p-1,q-1)} \end{align*} $$ If \(a \in \mathbf{Z}\), \(h \in \mathbf{N}\) such that \(h \equiv 1 \mod m\), then \(a^h \equiv a \mod n\) Proof We know that \(h \equiv 1 \mod m\) so \(h = 1 + tm\) for some \(t \in \mathbf{Z}\). We want to show that \(a^h \equiv a \mod n\). In other words, we want to show that \(n \ | \ a^h - a\) or \(pq \ | \ a^h - a\). Expanding this expression further as $$ \begin{align*} a^h - a &amp;= a^{1+tm} - a \\ &amp;= a(a^{tm} - 1) \end{align*} $$ We want to show that \(n = pq\) divides this number. \(p\) and \(q\) are distinct primes so they are relatively prime and their gcd is 1. By the Proposition from lecture 5 (Corollary 1.6.17 in the book), then if \(p\) divides this number and \(q\) divides this number, then we know that \(pq\) divides it. Therefore, we want to show to that \(p\) and \(q\) each divide \(a(a^{tm} - 1)\) To start, we want to show that \(p \ | \ a(a^{tm} - 1)\). But since \(p\) is prime, then it will have to divide \(a\) or \(a^{tm} - 1\). So suppose that \(p \nmid a\). We claim that \(p \ | \ a^{tm} - 1\). Recall that \(m = lcm(p-1, q-1)\). So \(m = (p - 1)s\) for some \(s \in \mathbf{N}\). So $$ \begin{align*} a^{tm} &amp;= a^{ts(p-1)} \\ &amp;= (a^{p-1})^{ts}. \end{align*} $$ Observe here that by Fermat’s Little Theorem (part 2), if \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\). Therefore $$ \begin{align*} (a^{p-1})^{ts} &amp;\equiv 1^{ts} \mod p \\ &amp;\equiv 1 \mod p. \end{align*} $$ This means that \(a^{tm} - 1\) is divisible by \(p\) as we wanted to show. So \(p\) divides the product \(a(a^{tm} - 1)\). With a similar arugment, we can show this for \(q\). RSA Cryptosystem This encryption method is based on the two prime fermat theorem. It is widely used to encrypt many of the transactions that happen on the internet. Symmetric Encryption: We have some plain text (\(x \in \mathbf{Z}_n\)) that we want to encrypt. We have a function that takes a key (\(e \in \mathbf{Z}\)) to encrypt the plain text and turn it to encrypted text (\(y \in \mathbf{Z}_n\)). To decrypt it back, we have to use the same key again to turn it to plain text. The flaw in this method is that the encryption and decryption keys are the same and will need to be shared somehow. That’s why we have an alternative: Asymmetric Encryption: This is the same proces except that now we have a decryption key \((d \in \mathbf{Z})\). So now we have a pair of keys \((e, d)\). You will broadcast \(e\) so that anyone can encrypt a message and send it to you, but you are the only with the decryption key. The goal here is to design the pair such that one one can deduce \(d\) from \(e\). So how to design such a pair? One way to implement this idea is the following (RSA): Pick a prime number \(p,q\) large (100s of digits) \(n = pq\) \(m = lcm(p-1,q-1)\) Choose \(1 &lt; d, e &lt; m\) such that \(de \equiv 1 \mod m\). You can first pick \(d\) and then you can pick a multiplicative inverse of \(d\) to be \(e\) using the Euclidean Algorithm. So now, you take the plain test \(x\) and raise it to the \(e\)th power. \(x^e\) is the encrypted text. \(e\) is the encryption key. The output \(y = x^e\) is the encrypted text. To decrypt it, raise the encrypted text to the \(d\)th power so \(y^d = x^{ed}\) and so now we have the following equation $$ \begin{align*} x^{ed} \equiv x \mod pq \end{align*} $$ This is Two-prime Fermat. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 06: Least Common Multiple</title><link href="http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm.html" rel="alternate" type="text/html" title="Lecture 06: Least Common Multiple" /><published>2025-01-29T00:01:36-08:00</published><updated>2025-01-29T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/29/math417-06-lcm.html"><![CDATA[<div class="mintheaderdiv">
 Definition
 </div>
 <div class="mintbodydiv">
@@ -1419,7 +1930,7 @@ If \(p\) is prime and \(p \ | \ ab\), then either \(p \ | \ a\) or \(p \ | \ b\)
 <p><br />
 <b>Proof</b>
 <br />
-We’ll show that \(p \ | \ ab\) by showing that if \(p \nmid a\), then \(p \ | \ b\). Since \(p\) is prime and \(p \nmid a\), then gcd\((p,a)=1\). By Proposition (1.6.15), this implies that \(1 = pr + as\) for some \(r, s \in \mathbf{Z}\). Multiply this equation by \(b\) to see that</p>
+Suppose that \(p \ | \ ab\). We’ll show that if \(p \nmid a\), then \(p \ | \ b\). Since \(p\) is prime and \(p \nmid a\), then gcd\((p,a)=1\). By Proposition (1.6.15), this implies that \(1 = pr + as\) for some \(r, s \in \mathbf{Z}\). Multiply this equation by \(b\) to see that</p>
 <div>
 $$
 \begin{align*}
@@ -1443,7 +1954,7 @@ Fact: If \(p \ | \ a_1a_2...a_k\), then \(p\) divides at least one of the factor
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 1.6.8 A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if \(d\) is a common divisor. So \(d\) divides \(a\) and \(b\) Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\) If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\) Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing Definition Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form $$ \begin{align*} I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}. \end{align*} $$ For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). If we let \(s = -1\) and \(t = 1\), then \(2 \in I(4,6)\). In fact, this set produces all of the even integers. It includes all multiples of 2. In other words, we can also write that \(I(4,6) = \mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the GCD exists and can even be computed. Before formally proving its existence, we’ll present the way it can be computed next. The Euclidean Algorithm Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by $$ \begin{equation*} F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases} \end{equation*} $$ \(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)). Euclidean Algorithm: Iterate \(F\) until stable. Example: $$ \begin{align*} (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0) \end{align*} $$ The GCD Theorem So now we have an algorithm to compute the GCD algorithm. Next, we will prove that it does compute the GCD and so the GCD does exist. Theorem Let \(a, b \in \mathbf{Z}\). Then For \(a, b\) have a GCD \(d \geq 0\). \(I(a,b) = \mathbf{Z}d\). \(d\) is computed by the Euclidean algorithm. We’ll start from (3) and then prove that the answer produced by the algorithm is in fact an integer combination of the original input (statement 2). Finally, we’ll show that this just means that we have computed the GCD (statement). To do all of this we will also need the following lemmas Lemma If \(a, b \in I(c,d)\), then \(I(a,b) \subseteq I(c,d)\) Proof: Homework Problem Lemma If \(F(m,n) = (a,b)\), then \(I(m,n) = I(a,b)\) Proof: We have two cases: Case 1: \(n \neq 0\). In this case, \(F(m,n) = (n, r)\) where \(r\) is the remainder after dividing \(m\) by \(n\). So \(m = qn + r\) where \(0 \leq r &lt; |n|\). We want to show that the integer combinations of \(m\) and \(n\) is the same as the integer combinations of \(n\) and \(r\), that is, \(I(m,n) = I(n,r)\). To do this, we will show that \(I(m,n) \subseteq I(n,r)\) and \(I(n,r) \subseteq I(m,n)\). To show that \(I(m,n) \subseteq I(n,r)\), observe that \(m\) is an integer combination of \(n\) and \(r\) because we can write \(m\) as $$ \begin{align*} m &amp;= qn + 1r. \end{align*} $$ Similarly, \(n\) is also an integer combination of \(n\) and \(r\) because we can write \(n\) as $$ \begin{align*} n &amp;= 1n + 0r. \end{align*} $$ Since \(m\) and \(n\) can both be written as integer combinations of \(n\) and \(r\), that is \(m \in I(n,r)\) and \(n \in I(n,r)\), then by the previous lemma, \(I(m,n) \subseteq I(n,r)\). To see that \(I(m,n) \subseteq I(n,r)\), observe that we can write \(n\) as \(n = 0m + 1n\) so \(n \in I(m,n)\). Similarly, \(r = 1m + (-q)m\) so \(r \in I(m,n)\). Then, by the previous lemma, \(I(m,n) \subseteq I(n,r)\). Therefore, \(I(m,n) = I(n,r)\). Case 2: \(n = 0\). In this case, \(F(m,n) = F(m,0) = (|m|,0)\). In this case the integer combinations of \(0\) and \(m\) are just multiples of \(m\) so \(I(m,0) = \mathbf{Z}m\). But this is the same as the integer combinations of \(|m|\) and \(0\) so \(\mathbf{Z}m = I(|m|,0) = I(m,0)\) which is what we wanted to show. \(\blacksquare\) Proof of the GCD Theorem We iterate the algorithm until \(n = 0\) and \(F(m,n) = (|m|,0)\). By the previous lemma we saw that \(I(m,n) = \mathbf{Z}d\) for some \(d \geq 0\). Claim: \(d\) is a GCD. \(m,n \in I(m,n) = \mathbf{Z}d\). So \(m\) and \(n\) are both multiples of \(d\) and d divides both of them. \(d \ | \ m\) and \(d \ | \ n\). So now for condition 2, suppose \(e\) is a common divisor of \(m\) and \(n\). We want to show that \(e\) divides \(d\). Since \(e \ | \ m\) and \(e \ | \ n\), then \(m\) and \(n\) are both multiples of \(e\). So we can write \(m = eu\) and \(n = ev\) for some \(u,v \in \mathbf{Z}\). But we know that any integer combination of \(m\) and \(n\) is a multiple of \(d\). So we can write for some \(r, s \in \mathbf{Z}\) $$ \begin{align*} d &amp;= rm + sn \\ &amp;= reu + sev \\ &amp;= e(ru + sv). \end{align*} $$ So \(e\) must divide \(d\). Therefore, \(d = gcd(m,n)\) as desired. \(\ \blacksquare\) Note that the Euclidean Algorithm gives a method for computing \(r, s \in \mathbf{Z}\), so \(d = rm + sn\). GCD Example TODO … all I have now is this Relatively Prime Integers Next, we’ll see how the GCD is used in the definition of relatively prime numbers. Definition (Book Definition 1.6.14) \(a, b \in \mathbf{Z}\) are relatively prime if gcd\((a,b) = 1\). For example \(4\) and \(9\) are relatively prime. gcd\((4,9)=1\). Proposition (Book Proposition 1.6.15) \(a, b\) are relatively prime if and only if $$ \begin{align*} 1 = ra + sb \end{align*} $$ for some \(r,s \in \mathbf{Z}\) Proof \(\Rightarrow:\) If \(a\) and \(b\) are relatively prime, then by definition gcd\((a,b)=1\). By the GCD Theorem, this means that \(I(a,b) = 1\) and so we’re done. \(\Leftarrow:\) If \(1 = ra + sb\) for some \(r,s \in \mathbf{Z}\), then this means that \(1 \in I(a,b)\). But \(I(a,b)\) is also the set of multiples of some integer \(m\). But since \(1\) is in the set, then it must contains all multiples of \(1\). Therefore, we must have \(1 = I(a,b)\). By the GCD Theorem, \(1\) is therefore the gcd of \(a\) and \(b\) and so \(a\) and \(b\) are relatively prime. \(\ \blacksquare\) Proposition (Book Corollary 1.6.17) If \(a, b\) are relatively prime and if \(a \ | \ n\) and \(b \ | \ n\), then \(ab \ | n\). Proof Suppose \(a\) and \(b\) are relatively prime. We are given that \(a \ | \ n\) so \(n = au\) for some \(u \in \mathbf{Z}\). Similarly, \(b \ | \ n\) and so \(n = bv\) for some \(v \in \mathbf{Z}\). Since \(a\) and \(b\) are relatively prime, then by definition gcd\((a,b)=1\). This means that \(I(a,b) = 1\) and we can write \(1 = ra + sb\) for some integers \(s, r \in \mathbf{Z}\). Multiply this equation by \(b\) as follows $$ \begin{align*} 1 &amp;= ra + sb \\ n &amp;= n(ra + sb) \\ &amp;= nra + nsb \\ &amp;= (bv)ra + (au)sb \\ &amp;= (ab)vr + (ab)us \\ &amp;= (ab)(vr + us). \\ \end{align*} $$ From this we see that \(ab \ | \ n\) as desired. \(\ \blacksquare\) Proposition If \(p\) is prime and \(p \ | \ ab\), then either \(p \ | \ a\) or \(p \ | \ b\) Proof We’ll show that \(p \ | \ ab\) by showing that if \(p \nmid a\), then \(p \ | \ b\). Since \(p\) is prime and \(p \nmid a\), then gcd\((p,a)=1\). By Proposition (1.6.15), this implies that \(1 = pr + as\) for some \(r, s \in \mathbf{Z}\). Multiply this equation by \(b\) to see that $$ \begin{align*} 1 &amp;= pr + as \\ b &amp;= b(pr + as) \\ b &amp;= p(br) + (ab)s \\ \end{align*} $$ Clearly \(p\) divides the first term. \(p\) also divides the second term by the assumption we’re given. Therefore, \(p\) must divide \(b\) as we wanted to show. \(\ \blacksquare\) Fact: If \(p \ | \ a_1a_2...a_k\), then \(p\) divides at least one of the factors. So \(p \ | \ a_i\) for some \(i \in \{1,...,k\}\) References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 04: Integers</title><link href="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html" rel="alternate" type="text/html" title="Lecture 04: Integers" /><published>2025-01-27T00:01:36-08:00</published><updated>2025-01-27T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html"><![CDATA[<p>Some facts about the integers</p>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 1.6.8 A natural number \(d\) is the greatest common divisor of integers \(a\) and \(b\) if \(d\) is a common divisor. So \(d\) divides \(a\) and \(b\) Every common divisor \(e\) also divides \(d\). In other words, if \(e \ | \ a\) and \(e \ | \ b\), then \(e \ | \ d\) If the greatest common exists, then it is unique. Why? suppose \(d\) and \(d'\) are both greatest common divisors. Then by definition, \(d \ | \ d'\) and \(d' \ | \ d\) because every common divisor divides the gcd and they each must divide each other. But this means that \(d = \pm 'd\) by the divisibility properties from last lecture. But also by definition, \(d\) is non-negative and so \(d = 'd\). \(\ \blacksquare\) Note that in the book \(a\) and \(b\) are nonzero in the definition. With this definition, the set of divisors of \(0\) is \(\mathbf{Z}\). If \(a = 0\) and \(b \neq 0\), then \(|a|\) is the gcd of \(a\) and \(0\). If both \(a\) and \(b\) are zero, then \(0\) is the gcd of \(0\) and \(0\). Before addressing the question of whether the greatest common divisor exists, we’ll to define one more thing Definition Let \(a, b \in \mathbf{Z}\). An integer combination of \(a\) and \(b\) is any integer of the form $$ \begin{align*} I(a,b) = \{ra + sb \ | \ r, s \in \mathbf{Z}\}. \end{align*} $$ For example \(I(4,6) = \{4s + 6t \ | \ s, t \in \mathbf{Z}\}\). If we let \(s = -1\) and \(t = 1\), then \(2 \in I(4,6)\). In fact, this set produces all of the even integers. It includes all multiples of 2. In other words, we can also write that \(I(4,6) = \mathbf{Z}2\). In fact, this turns out to always be true, the set of integer combinations of two integers is also the set of multiples of a number and that number is the greatest common divisor! even when one of the integers is \(0\). So yes the GCD exists and can even be computed. Before formally proving its existence, we’ll present the way it can be computed next. The Euclidean Algorithm Let \(\mathbf{Z}^2 = \{(a,b), a,b \in \mathbf{Z}\}\). Define \(F: \mathbf{Z}^2 \rightarrow \mathbf{Z}^2\) by $$ \begin{equation*} F(m,n) = \begin{cases} (n,r), r = rem_n(m) \quad &amp;\text{if } n \neq 0 \\ (|m|,0) \quad \quad &amp;\text{if } n = 0\end{cases} \end{equation*} $$ \(rem_n(m)\) is the remainder of \(m \div n\) (recall that we can write \(m = qn + r\) where \(0 \leq r &lt; |n|)\)). Euclidean Algorithm: Iterate \(F\) until stable. Example: $$ \begin{align*} (42, -24) \xrightarrow{F} (-24, 18) \xrightarrow{F} (18, 12) \xrightarrow{F} (12, 6) \xrightarrow{F} (6, 0) \xrightarrow{F} (6, 0) \end{align*} $$ The GCD Theorem So now we have an algorithm to compute the GCD algorithm. Next, we will prove that it does compute the GCD and so the GCD does exist. Theorem Let \(a, b \in \mathbf{Z}\). Then For \(a, b\) have a GCD \(d \geq 0\). \(I(a,b) = \mathbf{Z}d\). \(d\) is computed by the Euclidean algorithm. We’ll start from (3) and then prove that the answer produced by the algorithm is in fact an integer combination of the original input (statement 2). Finally, we’ll show that this just means that we have computed the GCD (statement). To do all of this we will also need the following lemmas Lemma If \(a, b \in I(c,d)\), then \(I(a,b) \subseteq I(c,d)\) Proof: Homework Problem Lemma If \(F(m,n) = (a,b)\), then \(I(m,n) = I(a,b)\) Proof: We have two cases: Case 1: \(n \neq 0\). In this case, \(F(m,n) = (n, r)\) where \(r\) is the remainder after dividing \(m\) by \(n\). So \(m = qn + r\) where \(0 \leq r &lt; |n|\). We want to show that the integer combinations of \(m\) and \(n\) is the same as the integer combinations of \(n\) and \(r\), that is, \(I(m,n) = I(n,r)\). To do this, we will show that \(I(m,n) \subseteq I(n,r)\) and \(I(n,r) \subseteq I(m,n)\). To show that \(I(m,n) \subseteq I(n,r)\), observe that \(m\) is an integer combination of \(n\) and \(r\) because we can write \(m\) as $$ \begin{align*} m &amp;= qn + 1r. \end{align*} $$ Similarly, \(n\) is also an integer combination of \(n\) and \(r\) because we can write \(n\) as $$ \begin{align*} n &amp;= 1n + 0r. \end{align*} $$ Since \(m\) and \(n\) can both be written as integer combinations of \(n\) and \(r\), that is \(m \in I(n,r)\) and \(n \in I(n,r)\), then by the previous lemma, \(I(m,n) \subseteq I(n,r)\). To see that \(I(m,n) \subseteq I(n,r)\), observe that we can write \(n\) as \(n = 0m + 1n\) so \(n \in I(m,n)\). Similarly, \(r = 1m + (-q)m\) so \(r \in I(m,n)\). Then, by the previous lemma, \(I(m,n) \subseteq I(n,r)\). Therefore, \(I(m,n) = I(n,r)\). Case 2: \(n = 0\). In this case, \(F(m,n) = F(m,0) = (|m|,0)\). In this case the integer combinations of \(0\) and \(m\) are just multiples of \(m\) so \(I(m,0) = \mathbf{Z}m\). But this is the same as the integer combinations of \(|m|\) and \(0\) so \(\mathbf{Z}m = I(|m|,0) = I(m,0)\) which is what we wanted to show. \(\blacksquare\) Proof of the GCD Theorem We iterate the algorithm until \(n = 0\) and \(F(m,n) = (|m|,0)\). By the previous lemma we saw that \(I(m,n) = \mathbf{Z}d\) for some \(d \geq 0\). Claim: \(d\) is a GCD. \(m,n \in I(m,n) = \mathbf{Z}d\). So \(m\) and \(n\) are both multiples of \(d\) and d divides both of them. \(d \ | \ m\) and \(d \ | \ n\). So now for condition 2, suppose \(e\) is a common divisor of \(m\) and \(n\). We want to show that \(e\) divides \(d\). Since \(e \ | \ m\) and \(e \ | \ n\), then \(m\) and \(n\) are both multiples of \(e\). So we can write \(m = eu\) and \(n = ev\) for some \(u,v \in \mathbf{Z}\). But we know that any integer combination of \(m\) and \(n\) is a multiple of \(d\). So we can write for some \(r, s \in \mathbf{Z}\) $$ \begin{align*} d &amp;= rm + sn \\ &amp;= reu + sev \\ &amp;= e(ru + sv). \end{align*} $$ So \(e\) must divide \(d\). Therefore, \(d = gcd(m,n)\) as desired. \(\ \blacksquare\) Note that the Euclidean Algorithm gives a method for computing \(r, s \in \mathbf{Z}\), so \(d = rm + sn\). GCD Example TODO … all I have now is this Relatively Prime Integers Next, we’ll see how the GCD is used in the definition of relatively prime numbers. Definition (Book Definition 1.6.14) \(a, b \in \mathbf{Z}\) are relatively prime if gcd\((a,b) = 1\). For example \(4\) and \(9\) are relatively prime. gcd\((4,9)=1\). Proposition (Book Proposition 1.6.15) \(a, b\) are relatively prime if and only if $$ \begin{align*} 1 = ra + sb \end{align*} $$ for some \(r,s \in \mathbf{Z}\) Proof \(\Rightarrow:\) If \(a\) and \(b\) are relatively prime, then by definition gcd\((a,b)=1\). By the GCD Theorem, this means that \(I(a,b) = 1\) and so we’re done. \(\Leftarrow:\) If \(1 = ra + sb\) for some \(r,s \in \mathbf{Z}\), then this means that \(1 \in I(a,b)\). But \(I(a,b)\) is also the set of multiples of some integer \(m\). But since \(1\) is in the set, then it must contains all multiples of \(1\). Therefore, we must have \(1 = I(a,b)\). By the GCD Theorem, \(1\) is therefore the gcd of \(a\) and \(b\) and so \(a\) and \(b\) are relatively prime. \(\ \blacksquare\) Proposition (Book Corollary 1.6.17) If \(a, b\) are relatively prime and if \(a \ | \ n\) and \(b \ | \ n\), then \(ab \ | n\). Proof Suppose \(a\) and \(b\) are relatively prime. We are given that \(a \ | \ n\) so \(n = au\) for some \(u \in \mathbf{Z}\). Similarly, \(b \ | \ n\) and so \(n = bv\) for some \(v \in \mathbf{Z}\). Since \(a\) and \(b\) are relatively prime, then by definition gcd\((a,b)=1\). This means that \(I(a,b) = 1\) and we can write \(1 = ra + sb\) for some integers \(s, r \in \mathbf{Z}\). Multiply this equation by \(b\) as follows $$ \begin{align*} 1 &amp;= ra + sb \\ n &amp;= n(ra + sb) \\ &amp;= nra + nsb \\ &amp;= (bv)ra + (au)sb \\ &amp;= (ab)vr + (ab)us \\ &amp;= (ab)(vr + us). \\ \end{align*} $$ From this we see that \(ab \ | \ n\) as desired. \(\ \blacksquare\) Proposition If \(p\) is prime and \(p \ | \ ab\), then either \(p \ | \ a\) or \(p \ | \ b\) Proof Suppose that \(p \ | \ ab\). We’ll show that if \(p \nmid a\), then \(p \ | \ b\). Since \(p\) is prime and \(p \nmid a\), then gcd\((p,a)=1\). By Proposition (1.6.15), this implies that \(1 = pr + as\) for some \(r, s \in \mathbf{Z}\). Multiply this equation by \(b\) to see that $$ \begin{align*} 1 &amp;= pr + as \\ b &amp;= b(pr + as) \\ b &amp;= p(br) + (ab)s \\ \end{align*} $$ Clearly \(p\) divides the first term. \(p\) also divides the second term by the assumption we’re given. Therefore, \(p\) must divide \(b\) as we wanted to show. \(\ \blacksquare\) Fact: If \(p \ | \ a_1a_2...a_k\), then \(p\) divides at least one of the factors. So \(p \ | \ a_i\) for some \(i \in \{1,...,k\}\) References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 04: Integers</title><link href="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html" rel="alternate" type="text/html" title="Lecture 04: Integers" /><published>2025-01-27T00:01:36-08:00</published><updated>2025-01-27T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/27/math417-04-integers.html"><![CDATA[<p>Some facts about the integers</p>
 <ul>
 	<li>\((\mathbf{Z}, +)\) is a commutative group. \(+\) is associative and commutative. The identity element is \(0\) and each element \(a\)'s inverse is \(-a\).</li>
 	<li>\((\mathbf{Z}, \cdot)\) is a commutative monoid. \(\cdot\) is associative and commutative. The identity element is \(1\). (No inverses required)</li>
@@ -2819,50 +3330,4 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <h4><b>References</b></h4>
 <p><a href="https://projecteuler.net/problem=69">Project Euler - 69</a>
 <br />
-<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[I wrote about Euler’s Totient function in here, but to recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find \(n\) such that \(\frac{n}{\phi(n)}\) is maximized. Solution To start, we should definitely make use of the existing formula to compute the Totient function. Given an integer \(n\) and the distinct prime divisors of \(n\), \(\{p_1,p_2...,p_k\}\), we can compute the Totient function as follows $$ \begin{align*} \phi(n) = n \prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big). \end{align*} $$ Since we’re interested in computing specifically \(\frac{n}{\phi(n)}\) so we get a simplified expression as follows $$ \begin{align*} \frac{n}{\phi(n)} &amp;= \frac{n}{n\prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big)} \\ &amp;= \frac{1}{\big( 1 - \frac{1}{p_1} \big) \big( 1 - \frac{1}{p_2} \big) ... \big( 1 - \frac{1}{p_k} \big)} \\ &amp;= \frac{1}{\big( \frac{p_1 - 1}{p_1} \big) \big( \frac{p_2 - 1}{p_2} \big) ... \big( \frac{p_k - 1}{p_k} \big)} \\ &amp;= \frac{p_1 p_2 ... p_k}{ (p_1 - 1) (p_2 - 1) ... (p_k - 1) } \end{align*} $$ Before we can implement the function, we need to generate these distinct prime factors. We implemented this before in Problem 3. void prime_factorization(int n, std::set&lt;int&gt;&amp; factors) { // prime factor 2 while (n % 2 == 0) { n /= 2; factors.insert(2); } // all the other prime factors int limit = sqrt(n); for (int i = 3; i &lt;= limit; i += 2) { while (n % i == 0) { factors.insert(i); n /= i; } } // n is prime itself if (n &gt; 2) { factors.insert(n); } } Once we have these distinct factors, we can just run this for all integers \(n \leq 1000000\) as follows: double max = 0.0; int n = 0; for (int i = 1000000; i &gt; 0; i--) { if (!prime[i]) { std::set&lt;int&gt; factors; prime_factorization(i, factors); double tot = 1; //printf("%d: ", i); for (auto e = factors.begin(); e != factors.end(); e++) { //printf("%d, ", *e); tot *= *e / (*e - 1.0); } if (tot &gt; max) { max = tot; n = i; } //printf("tot = %f \n", tot); } } printf("max n = %d\n", n); I added one small optimization which didn’t do much and feels unnecessary to skip prime numbers since based on the formula, the solution will never be a prime number. The entire code is here. More Advanced Solution? while the brute force solution is great (good to practice writing all of these methods), you can see above that the formula $$ \begin{align*} \frac{n}{\phi(n)} &amp;= \frac{p_1 p_2 ... p_k}{ (p_1 - 1) (p_2 - 1) ... (p_k - 1) } \end{align*} $$ is maximized when we have the most distinct prime numbers. So instead we can generate all prime numbers with sieve and then multiply them until we hit the limit \(1,000,000\). References Project Euler - 69]]></summary></entry><entry><title type="html">Euler’s Totient Function</title><link href="http://localhost:4000/jekyll/update/2025/01/22/euler-totient.html" rel="alternate" type="text/html" title="Euler’s Totient Function" /><published>2025-01-22T00:01:36-08:00</published><updated>2025-01-22T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/22/euler-totient</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/22/euler-totient.html"><![CDATA[<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-Given an integer \(n\). Euler's totient function is a function that counts the positive integers up to \(n\) that are relatively prime to \(n\). It is denoted with \(\phi(n)\).
-</div>
-<p><br />
-Alternatively, it is the the number of integers \(k\) in the range \(1 \leq k \leq n\) for which \(gcd(n,k)=1\). 
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Take \(n = 9\). The numbers \(1,2,4,5,7\) and \(8\) are relatively prime to \(9\) while \(3,6\) and \(9\) are not. Therefore \(\phi(9) = 6\). 
-<br />
-<br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Computing Euler Totient's Function</b></h4>
-<p>One formula that computes Euler’s Totient’s function is the following</p>
-<div>
-$$
-\begin{align*}
-\phi(n) = n \prod_{p|n} \big( 1 - \frac{1}{p} \big).
-\end{align*}
-$$
-</div>
-<p>where \(p\) is a distinct prime factor of \(n\). For example, for \(9\),</p>
-<div>
-$$
-\begin{align*}
-\phi(9) &amp;= 9 \big( 1 - \frac{1}{3} \big) \\
-        &amp;= 9 \big( \frac{2}{3} \big) = 6.
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>Multiplicative Function</b></h4>
-<p>Euler’s Totient’s function is a multiplicative function. This means that if \(m\) and \(n\) are relatively prime, then \(\phi(mn) = \phi(m)(n)\) which makes sense since they won’t share any prime divisors. 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function">Wikipedia</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition Given an integer \(n\). Euler's totient function is a function that counts the positive integers up to \(n\) that are relatively prime to \(n\). It is denoted with \(\phi(n)\). Alternatively, it is the the number of integers \(k\) in the range \(1 \leq k \leq n\) for which \(gcd(n,k)=1\). Example Take \(n = 9\). The numbers \(1,2,4,5,7\) and \(8\) are relatively prime to \(9\) while \(3,6\) and \(9\) are not. Therefore \(\phi(9) = 6\). Computing Euler Totient's Function One formula that computes Euler’s Totient’s function is the following $$ \begin{align*} \phi(n) = n \prod_{p|n} \big( 1 - \frac{1}{p} \big). \end{align*} $$ where \(p\) is a distinct prime factor of \(n\). For example, for \(9\), $$ \begin{align*} \phi(9) &amp;= 9 \big( 1 - \frac{1}{3} \big) \\ &amp;= 9 \big( \frac{2}{3} \big) = 6. \end{align*} $$ Multiplicative Function Euler’s Totient’s function is a multiplicative function. This means that if \(m\) and \(n\) are relatively prime, then \(\phi(mn) = \phi(m)(n)\) which makes sense since they won’t share any prime divisors. References Wikipedia]]></summary></entry></feed>
+<br /></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[I wrote about Euler’s Totient function in here, but to recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find \(n\) such that \(\frac{n}{\phi(n)}\) is maximized. Solution To start, we should definitely make use of the existing formula to compute the Totient function. Given an integer \(n\) and the distinct prime divisors of \(n\), \(\{p_1,p_2...,p_k\}\), we can compute the Totient function as follows $$ \begin{align*} \phi(n) = n \prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big). \end{align*} $$ Since we’re interested in computing specifically \(\frac{n}{\phi(n)}\) so we get a simplified expression as follows $$ \begin{align*} \frac{n}{\phi(n)} &amp;= \frac{n}{n\prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big)} \\ &amp;= \frac{1}{\big( 1 - \frac{1}{p_1} \big) \big( 1 - \frac{1}{p_2} \big) ... \big( 1 - \frac{1}{p_k} \big)} \\ &amp;= \frac{1}{\big( \frac{p_1 - 1}{p_1} \big) \big( \frac{p_2 - 1}{p_2} \big) ... \big( \frac{p_k - 1}{p_k} \big)} \\ &amp;= \frac{p_1 p_2 ... p_k}{ (p_1 - 1) (p_2 - 1) ... (p_k - 1) } \end{align*} $$ Before we can implement the function, we need to generate these distinct prime factors. We implemented this before in Problem 3. void prime_factorization(int n, std::set&lt;int&gt;&amp; factors) { // prime factor 2 while (n % 2 == 0) { n /= 2; factors.insert(2); } // all the other prime factors int limit = sqrt(n); for (int i = 3; i &lt;= limit; i += 2) { while (n % i == 0) { factors.insert(i); n /= i; } } // n is prime itself if (n &gt; 2) { factors.insert(n); } } Once we have these distinct factors, we can just run this for all integers \(n \leq 1000000\) as follows: double max = 0.0; int n = 0; for (int i = 1000000; i &gt; 0; i--) { if (!prime[i]) { std::set&lt;int&gt; factors; prime_factorization(i, factors); double tot = 1; //printf("%d: ", i); for (auto e = factors.begin(); e != factors.end(); e++) { //printf("%d, ", *e); tot *= *e / (*e - 1.0); } if (tot &gt; max) { max = tot; n = i; } //printf("tot = %f \n", tot); } } printf("max n = %d\n", n); I added one small optimization which didn’t do much and feels unnecessary to skip prime numbers since based on the formula, the solution will never be a prime number. The entire code is here. More Advanced Solution? while the brute force solution is great (good to practice writing all of these methods), you can see above that the formula $$ \begin{align*} \frac{n}{\phi(n)} &amp;= \frac{p_1 p_2 ... p_k}{ (p_1 - 1) (p_2 - 1) ... (p_k - 1) } \end{align*} $$ is maximized when we have the most distinct prime numbers. So instead we can generate all prime numbers with sieve and then multiply them until we hit the limit \(1,000,000\). References Project Euler - 69]]></summary></entry></feed>

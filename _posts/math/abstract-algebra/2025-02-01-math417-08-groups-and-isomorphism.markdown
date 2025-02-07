@@ -13,7 +13,7 @@ A group \((G, G \times G \rightarrow G)\) is a set with a binary operation on th
 <ol>
 	<li>The operation is associative so that \((ab)c = a(bc), \forall a,b,c \in G\)</li>
 	<li>There exists an identity element. \(\exists e \in G\) such that \(ae = a = ea \forall a \in G\).</li>
-	<li>Every element has an inverse. \(\forall a \in G, \exists a^{-1} \in G\) such that \(aa^{-1} = e = a^{-1}a\)</li>
+	<li>Every element has an inverse. \(\forall a \in G, \exists a^{-1} \in G\) such that \(aa^{-1} = e = a^{-1}a\).</li>
 </ol>
 Additionally, a group is commutative/abelian if \(ab = ba, \forall a, b \in G.\).
 </div>
@@ -251,9 +251,6 @@ If \(G\) is a finite group, each row and each column of the multiplication table
 A row in the multiplication table can be represented by a left multiplication map $$G \rightarrow G$$ if you fix the element multiplied on the left. We know the left multiplication map is a bijection. Therefore every element/result must be unique and each element of $$G$$ must show up in the row. Similarly, each column can be represented by a right multiplication map. The map is a bijection and so each element must be unique and shown exactly once. (TODO clean up this proof)
 <br>
 <br>
-Note that the above was not really included in the lecture. It was from the book ...
-<br>
-<br>
 <hr>
 <br>
 <!--------------------------------------------------------------------->
@@ -360,24 +357,9 @@ Proposition
 </div>
 <br>
 <br>
-<hr>
-<br>
 <!---------------------------------------------------------------------->
 <h4><b>Isomorphism</b></h4>
-One thing that we want to do is to compare two groups. For example take $$(\mathbf{Z}_4, +)$$, the symmetries of the rectangle, $$(\phi(5), \cdot)$$ and $$(\phi(8), \cdot)$$. These are all groups with exactly 4 elements. In fact, the formal definition for the size of the group is as follows
-<br>
-<br>
-<!---------------------------------------------------------------------->
-<div class="mintheaderdiv">
-Definition 2.1.10
-</div>
-<div class="mintbodydiv">
-The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
-</div>
-<!---------------------------------------------------------------------->
-<br>
-<br>
-To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
+One thing that we want to do is to compare two groups. For example take $$(\mathbf{Z}_4, +)$$, the symmetries of the rectangle, $$(\phi(5), \cdot)$$ and $$(\phi(8), \cdot)$$. These are all groups with exactly 4 elements. To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
 <br>
 <br>
 <!---------------------------------------------------------------------->
@@ -385,8 +367,18 @@ To compare two groups, we want to see if we can construct a bijection between th
 Definition 2.1.13
 </div>
 <div class="mintbodydiv">
-We say two groups \(G\) and \(H\) are isomorphic if there is a bijection \(\phi: G \rightarrow H\) such that for all \(g_1, g_2 \in G, \phi(g_1g_2) = \phi(g_1)\phi(g_2)\). The map \(\phi\) is called an isomorphism.
+We say two groups \(G\) and \(H\) are isomorphic if there is a bijection \(\varphi: G \rightarrow H\) such that for all \(a, b \in G\)
+	$$
+	\begin{align*}
+	\varphi(ab) = \varphi(a)\varphi(b)	
+	\end{align*}
+	$$
+where the first multiplication is in \(G\) while the second is in \(H\).<br>
+ The map \(\varphi\) is called an isomorphism.
 </div>
+<br>
+<br>
+We write $$H \approx G$$ for $$G$$ is isomorphic to $$H$$.
 <br>
 <br>
 An an example consider the group of the symmetries of the equilateral triangle $$D_3$$ and the group $$S_3$$ (permutations of $$\{1,2,3\}$$). Both groups contain exactly 6 elements. They turn out to be isomorphic. Let the isomorphism map the elements as follows:
@@ -423,51 +415,88 @@ An an example consider the group of the symmetries of the equilateral triangle $
 </table>
 </div>
 <br>
-<br>
-<br>
-The rest of the below definitions / propositions are from the book. TODO: move them to the appropriate lectures:
-<br>
 <!---------------------------------------------------------------------->
-<div class="mintheaderdiv">
-Definition 2.1.14
-</div>
-<div class="mintbodydiv">
-A group \(G\) is called abelian (or commutative) if for all elements \(a, b \in G\), the products in the two orders are equal \(ab = ba\).
-</div>
-<br>
-<br>
-
-
-<!--------------------------------------------------------------------->
 <div class="peachheaderdiv">
-Proposition 2.1.17
+Proposition
 </div>
 <div class="peachbodydiv">
-<ol type="a">
-	<li>Up to isomorphism, \(\mathbf{Z_1}\) is the unique group of order 1.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_2}\) is the unique group of order 2.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_3}\) is the unique group of order 3.</li>
-	<li>Up to isomorphism, there are exactly two groups of order 4, namely \(\mathbf{Z_4}\), and the group of rational symmetries of the rectangular card.</li>
-	<li>Up to isomorphism, \(\mathbf{Z_5}\) is the unique group of order 5.</li>
-	<li>All groups of order no more than 5 are abelian.</li>
-	<li>There are at least two non-isomorphic groups of order 6, one abelian and one non-abelian.</li>
-</ol>
+	If \(\varphi:G \rightarrow H\) is an isomorphism, then \(\varphi^{-1}: G \rightarrow H\) is also an isomorphism.
 </div>
-<br>
-Up to isomorphism just means that that two objects will be considered the same if they are isomorphic. We just want to classify groups into distinct non-isomorphic groups. For example, for statement (c), This means groups of order 3 are all isomorphic to $$\mathbf{Z_3}$$ while statement (d) implies that we have two distinct groups of order 4. 
-<br>
 <br>
 <b>Proof</b>
 <br>
-TODO
+Let $$a', b' \in H$$. We want to show that 
+<div>
+	$$
+	\begin{align*}
+	\varphi^{-1}(a'b') = \varphi^{-1}(a') \varphi^{-1}(b')
+	\end{align*}
+	$$
+</div>
+Let $$a' = \varphi(a)$$ and $$b' = \varphi(b)$$ for some $$a, b \in G$$. Since $$\varphi$$ is injective then it suffices to show that 
+<div>
+	$$
+	\begin{align*}
+	\varphi(\varphi^{-1}(a'b')) = \varphi(\varphi^{-1}(a') \varphi^{-1}(b'))
+	\end{align*}
+	$$
+</div>
+The right hand side is clearly just $$a'b'$$. $$\varphi$$ is an isomorphism so the left hand side becomes
+<div>
+	$$
+	\begin{align*}
+	\varphi(\varphi^{-1}(a') \varphi^{-1}(b')) &= 
+	\varphi(\varphi^{-1}(a')) \varphi(\varphi^{-1}(b')) \\
+	                          &= a'b'
+	\end{align*}
+	$$
+</div>
+Therefore $$\varphi^{-1}$$ is an isomorphism as desired. $$\ \blacksquare$$.
 <br>
 <br>
 <hr>
-
+<br>
+<!---------------------------------------------------------------------->
+<h4><b>Groups of Small Order</b></h4>
+The order of a group is the number of elements in it. Formally,
 <br>
 <br>
 <!---------------------------------------------------------------------->
-Again two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
+<div class="mintheaderdiv">
+Definition 2.1.10
+</div>
+<div class="mintbodydiv">
+The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
+</div>
+<br>
+<br>
+One interesting thing to do is to classify all groups of a given finite order. If we do that for small sizes, we get
+<!--------------------------------------------------------------------->
+<ol>
+	<li>order 0: none. because we need to at least have the identity element.</li>
+	<li>order 1: \(G = \{e\}\). Other groups of order 1 can be \(G'=\{1\}\). These two groups are isomorphic. Technically, it's a different set but to us, they're the same group. So "up to isomorphism", there is only one group of size 1.</li>
+	<li>order 2: \(G \approx \mathbf{Z}_2\) (integers mod 2). An example of \(G\) is \((\mathbf{Z}_2,+)\).</li>
+	<li>order 3: \(G \approx \mathbf{Z}_3\). All groups of size 3 will be isomorphic to \(\mathbf{Z}_3\)</li>
+	<li>order 4: We have two groups which are not isomorphic to each other. \(G = \mathbf{Z}_4 \) or \(G = \mathbf{Z}_2 \times \mathbf{Z}_2\) (symmetries of the rectangle). Groups of order 4 can be isomorphic to either one.</li>
+	<li>order 5: \(G \approx \mathbf{Z}_5\)</li>
+	<li>order 6: We have two groups. \(G \approx \mathbf{Z}_6\) or \(G \approx S_3 \approx D_3\). These two groups are not isomorphic because \(S_3\) is non-abelian while \(\mathbf{Z}_6\) is abelian. In fact the next proposition will formalize this.</li>
+</ol>
+<br>
+<!---------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(G \approx H\), then \(G\) is abelian if and only if \(H\) is abelian.
+</div>
+<br>
+<b>Proof</b>
+<br>
+Exercise
+<br>
+<br>
+<!---------------------------------------------------------------------->
+Extra Notes from the book: Two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
 <br>
 <div class="peachheaderdiv">
 Proposition 2.1.18
@@ -510,6 +539,7 @@ So $$\phi(g)$$ is the inverse of $$\phi(g^{-1})$$ or in other words $$\phi(g)^{-
 <!---------------------------------------------------------------------->
 <h4><b>References</b></h4>
 <ul>
+	<li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
 <li><a href="https://www.youtube.com/watch?v=VdLhQs_y_E8&list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5">Algebra: Abstract Lectures By Benedict Gross</a></li>
 <li><a href="https://www.youtube.com/watch?v=NwqCi63p2ik">Math of Wrath Youtube Channel</a></li>

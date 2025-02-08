@@ -13,7 +13,7 @@ Definition (Book Definition 1.7.1)
 Given integers \(a\) and \(b\), and a natural number \(n\), we say that "\(a\) is congruent to \(b\) modulo \(n\)" and we write 
 $$
 \begin{align*}
-a \equiv b \mod n \quad \text{or} \quad a \equiv_n b
+a \equiv b \bmod n \quad \text{or} \quad a \equiv_n b
 \end{align*}
 $$
 if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbf{Z}\) such that \(a - b = tn\)
@@ -21,7 +21,7 @@ if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(
 <!------------------------------------------------------------------------------>
 <br>
 <br>
-Example: $$(1 \mod 7) = (8 \mod 7) = 1$$. Therefore, $$1 \equiv_7 8$$.
+Example: $$(1 \bmod 7) = (8 \bmod 7) = 1$$. Therefore, $$1 \equiv_7 8$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------>
@@ -32,7 +32,7 @@ Definition
 For each integer \(a\), write
 $$
 \begin{align*}
-[a] &= [a]_n = \{x \in \mathbf{Z} \ | \ x \equiv a \mod n\} \subseteq \mathbf{Z} \\
+[a] &= [a]_n = \{x \in \mathbf{Z} \ | \ x \equiv a \bmod n\} \subseteq \mathbf{Z} \\
     &= \{ a + ny \ | \ y \in \mathbf{Z} \}
 \end{align*}
 $$
@@ -80,9 +80,9 @@ Lemma (Book 1.7.2)
 <div class="yellowbodydiv">
 	Properties of Congruence:
 <ol>
-	<li>Reflexive: For all \(a \in \mathbf{Z}\), \(a \equiv a \mod n\).</li>
-	<li>Symmetric: For all \(a, b \in \mathbf{Z}\), \(a \equiv b \mod n\) if and only if \(b \equiv a \mod n\).</li>
-	<li>Transitive: For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \mod n\) and \(b \equiv c \mod n\), then \(a \equiv c \mod n\).</li>
+	<li>Reflexive: For all \(a \in \mathbf{Z}\), \(a \equiv a \bmod n\).</li>
+	<li>Symmetric: For all \(a, b \in \mathbf{Z}\), \(a \equiv b \bmod n\) if and only if \(b \equiv a \bmod n\).</li>
+	<li>Transitive: For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \bmod n\) and \(b \equiv c \bmod n\), then \(a \equiv c \bmod n\).</li>
 </ol>
 </div>
 <br>
@@ -103,7 +103,7 @@ Proposition (Book Lemma 1.7.3)
 <div class="yellowbodydiv">
 For \(a, b \in \mathbf{Z}\), the following are equivalent:
 <ol type="a">
-	<li>\(a \equiv b \mod n\).</li>
+	<li>\(a \equiv b \bmod n\).</li>
 	<li>\([a]_n = [b]_n\).</li>
 	<li>\(\text{rem}_n(a) = \text{rem}_n(b)\).</li>
 	<li>\([a]_n \cap [b]_n \neq \emptyset\).</li>
@@ -115,11 +115,11 @@ For \(a, b \in \mathbf{Z}\), the following are equivalent:
 <br>
 $$(a) \implies (b)$$:
 <br>
-Suppose $$a \equiv b \mod n$$. We want to show that $$[a]_n = [b]_n$$. 
+Suppose $$a \equiv b \bmod n$$. We want to show that $$[a]_n = [b]_n$$. 
 <br>
-$$[a]_n \subseteq [b]_n$$: Let $$c \in \mathbf{Z}$$. If $$c \equiv a \mod n$$, then $$c \equiv b \mod n$$ by Lemma 1.7.2 (c). Therefore $$[a]_n \subseteq [b]_n$$.
+$$[a]_n \subseteq [b]_n$$: Let $$c \in \mathbf{Z}$$. If $$c \equiv a \bmod n$$, then $$c \equiv b \bmod n$$ by Lemma 1.7.2 (c). Therefore $$[a]_n \subseteq [b]_n$$.
 <br>
-$$[b]_n \subseteq [a]_n$$: If $$c \equiv b \mod n$$, then $$c \equiv a \mod n$$ and so $$[a] = [b]$$ as required.
+$$[b]_n \subseteq [a]_n$$: If $$c \equiv b \bmod n$$, then $$c \equiv a \bmod n$$ and so $$[a] = [b]$$ as required.
 <br>
 <br>
 $$(b) \implies (c)$$:
@@ -133,7 +133,7 @@ $$(d)$$ is an immediate application of $$(c)$$
 <br>
 <br>
 $$(d) \implies (a)$$:
-Suppose that $$[a]_n \cap [b]_n \neq \emptyset$$. Let $$c \in [a]_n \cap [b]_n$$. Then $$a \equiv c \mod n$$ and $$b \equiv c \mod n$$. But this implies that $$a \equiv b \mod n$$. $$\ \blacksquare$$
+Suppose that $$[a]_n \cap [b]_n \neq \emptyset$$. Let $$c \in [a]_n \cap [b]_n$$. Then $$a \equiv c \bmod n$$ and $$b \equiv c \bmod n$$. But this implies that $$a \equiv b \bmod n$$. $$\ \blacksquare$$
 <br>
 <br>
 <hr>
@@ -146,11 +146,11 @@ The following lemma establishes how modular arithmetic is done.
 Proposition (Book Lemma 1.7.5)
 </div>
 <div class="yellowbodydiv">
-Let \(a, a', b, b'\) be integers with \(a \equiv a' \mod n\) and \(b \equiv b' \mod n\). Then 
+Let \(a, a', b, b'\) be integers with \(a \equiv a' \bmod n\) and \(b \equiv b' \bmod n\). Then 
 $$
 \begin{align*}
-a + b &\equiv a' + b' \mod n \\
-ab &\equiv a'b' \mod n
+a + b &\equiv a' + b' \bmod n \\
+ab &\equiv a'b' \bmod n
 \end{align*}
 $$
 </div>
@@ -217,7 +217,7 @@ Suppose that $$gcd(a,n)=1$$. Then there exists $$r, s \in \mathbf{Z}$$ such that
 $$
 \begin{align*}
 ar + ns = 1 &\Longleftrightarrow ar = 1 + (-s)n \quad \text{ (so $ar$ and 1 differ by a multiple of $n$)}\\
-             &\Longleftrightarrow ar = 1 \mod n \\
+             &\Longleftrightarrow ar = 1 \bmod n \\
 			 &\Longleftrightarrow [a][r] = 1. \ \blacksquare \\
 \end{align*}
 $$
@@ -266,7 +266,7 @@ Proposition
 Let \(p\) be prime. For all \(a, b \in \mathbf{Z}\):
 	$$
 	\begin{align*}
-	(a + b)^p \equiv a^p + b^p \mod p
+	(a + b)^p \equiv a^p + b^p \bmod p
 	\end{align*}
 	$$
 </div>
@@ -287,7 +287,7 @@ Using the binomial theorem, we can first expand the sum $$(a+b)^p$$ as follows
 	\end{align*}
 	$$
 </div>
-What we need to show is that $$\binom{p}{k} \equiv 0 \mod p$$ if $$0 < k < p$$. If we show this, then what's left is the first and last terms only. Observe that 
+What we need to show is that $$\binom{p}{k} \equiv 0 \bmod p$$ if $$0 < k < p$$. If we show this, then what's left is the first and last terms only. Observe that 
 <div>
 	$$
 	\begin{align*}
@@ -317,20 +317,22 @@ Theorem
 <div class="yellowbodydiv">
 	Let \(p\) be prime, \(a \in \mathbf{Z}\)
 	<ol>
-		<li>\(a^p \equiv a \mod p\)</li>
-		<li>If \(p \nmid a\), then \(a^{p-1} \equiv 1 \mod p\)</li>
+		<li>\(a^p \equiv a \bmod p\)</li>
+		<li>If \(p \nmid a\), then \(a^{p-1} \equiv 1 \bmod p\)</li>
 	</ol>
 </div>
 <!------------------------------------------------------------------------------>
 <br>
 <b>Proof of (1)</b>
 <br>
-By Induction on $$a$$ for $$a \geq 1$$.
+<div class="proofdiv">
+By Induction on \(a\) for \(a \geq 1\).
 <br>
-Base Case ($$a = 1$$): $$1^p \equiv 1 \mod p$$ and so we're done.
+Base Case (\(a = 1\)): \(1^p \equiv 1 \bmod p\) and so we're done.
 <br>
 <br>
-Inductive Case ($$a > 1$$): 
+Inductive Case (\(a > 1\)): 
+Assume it is true for \(a\). We will show that it is true for \(a+1\). 
 <div>
 	$$
 	\begin{align*}
@@ -339,20 +341,26 @@ Inductive Case ($$a > 1$$):
 	\end{align*}
 	$$
 </div>
-If $$a = 0$$, then $$0^p = 0$$. 
+</div>
+<!------------------------------------------------------------------------>
 <br>
+Note that if $$a = 0$$, then $$0^p = 0$$. 
 <br>
+<!------------------------------------------------------------------------>
 For $$a \leq 0$$, we can use downward induction.
+<div class="proofdiv">
+By Induction on \(a\) for \(a < 0\).
 <br>
-Base Case $$(a = -1)$$: We need to show that $$(-1)^p \equiv -1 \mod p$$. $$p$$ is prime so we have two cases. If $$p = 2$$, then $$(-1)^2 = 1 = -1 \mod 2$$. If $$p$$ is odd, then $$(-1)^p = -1$$.
+Base Case (\(a = -1\)):  We need to show that \((-1)^p \equiv -1 \bmod p\). \(p\) is prime so we have two cases. If \(p = 2\), then \((-1)^2 = 1 = -1 \bmod 2\). If \(p\) is odd, then \((-1)^p = -1\).
 <br>
 <br>
-Inductive Case $$(a < -1)$$: We want to show that $$a^p \equiv a$$ implies $$(a - 1)^p = a - 1$$
+Inductive Case (\(a < -1\)): We want to show that \(a^p \equiv a\) implies \((a - 1)^p = a - 1\).
+</div>
 <br>
-<br>
+<!------------------------------------------------------------------------>
 <b>Proof of (2)</b>
 <br>
-We are given that $$a \nmid p$$. From part (1), we know that $$a^p \equiv a \mod p$$. So $$p \ | \ a^p - a = a(a^{p-1} - 1)$$. But since $$p$$ is prime and since it doesn't divide $$p$$, then it must divide $$a^{p-1} - 1$$. 
+We are given that $$a \nmid p$$. From part (1), we know that $$a^p \equiv a \bmod p$$. So $$p \ | \ a^p - a = a(a^{p-1} - 1)$$. But since $$p$$ is prime and since it doesn't divide $$p$$, then it must divide $$a^{p-1} - 1$$. 
 <br>
 <br>
 <hr>
@@ -372,24 +380,25 @@ Theorem
 	   m = lcm(p-1, q-1) = \frac{(p-1)(q-1)}{gcd(p-1,q-1)}
 	\end{align*}
 	$$
-If \(a \in \mathbf{Z}\), \(h \in \mathbf{N}\) such that \(h \equiv 1 \mod m\), then \(a^h \equiv a \mod n\)
+If \(a \in \mathbf{Z}\), \(h \in \mathbf{N}\) such that \(h \equiv 1 \bmod m\), then \(a^h \equiv a \bmod n\)
 </div>
 <!------------------------------------------------------------------------------>
 <br>
 <b>Proof</b>
-We know that $$h \equiv 1 \mod m$$ so $$h = 1 + tm$$ for some $$t \in \mathbf{Z}$$. We want to show that $$a^h \equiv a \mod n$$. In other words, we want to show that $$n \ | \ a^h - a$$ or $$pq \ | \ a^h - a$$. Expanding this expression further as
+<br>
+We know that $$h \equiv 1 \bmod m$$ so $$h = 1 + tm$$ for some $$t \in \mathbf{Z}$$. We want to show that $$a^h \equiv a \bmod n$$. In other words, we want to show that $$n \ | \ a^h - a$$ which means that $$pq \ | \ a^h - a$$. We can write $$a^h - a$$ as follows
 <div>
 	$$
 	\begin{align*}
 	   a^h - a &= a^{1+tm} - a \\
-	           &= a(a^{tm} - 1)
+	           &= a(a^{tm} - 1).
 	\end{align*}
 	$$
 </div>
-We want to show that $$n = pq$$ divides this number. $$p$$ and $$q$$ are distinct primes so they are relatively prime and their gcd is 1. By the Proposition from lecture 5 (Corollary 1.6.17 in the book), then if $$p$$ divides this number and $$q$$ divides this number, then we know that $$pq$$ divides it. Therefore, we want to show to that $$p$$ and $$q$$ each divide $$a(a^{tm} - 1)$$ 
+Therefore, want to show that $$pq$$ divides $$a(a^{tm} - 1)$$. Lecture 5 Proposition (Corollary 1.6.17 in the book) states that if $$a$$ and $$b$$ are relatively prime, $$a \ | \ n$$ and $$b \ | \ n$$, $$ab \ | \ n$$. We're given that $$p$$ and $$q$$ are distinct primes so they are relatively prime. So the goal is to prove that $$p$$ divides $$a(a^{tm} - 1)$$ and $$q$$ divides $$a(a^{tm} - 1)$$ to conclude that the product $$pq$$ divides $$a(a^{tm} - 1)$$.
 <br>
 <br>
-To start, we want to show that $$p \ | \ a(a^{tm} - 1)$$. But since $$p$$ is prime, then it will have to divide $$a$$ or $$a^{tm} - 1$$. So suppose that $$p \nmid a$$. We claim that $$p \ | \ a^{tm} - 1$$. Recall that $$m = lcm(p-1, q-1)$$. So $$m = (p - 1)s$$ for some $$s \in \mathbf{N}$$. So 
+To start, we want to show that $$p \ | \ a(a^{tm} - 1)$$. But since $$p$$ is prime, then it will have to divide $$a$$ or $$a^{tm} - 1$$. So we need to show that either $$p \ | \ a$$ or $$p \ | \ a^{tm} - 1$$. So suppose that $$p \nmid a$$. We claim that $$p \ | \ a^{tm} - 1$$. Recall that $$m = lcm(p-1, q-1)$$. So $$m$$ is a multiple of $$p-1$$ and we can write $$m = (p - 1)s$$ for some $$s \in \mathbf{N}$$. So now we can write $$a^{tm}$$ as follows
 <div>
 	$$
 	\begin{align*}
@@ -398,16 +407,16 @@ To start, we want to show that $$p \ | \ a(a^{tm} - 1)$$. But since $$p$$ is pri
 	\end{align*}
 	$$
 </div>
-Observe here that by Fermat's Little Theorem (part 2), if $$p \nmid a$$, then $$a^{p-1} \equiv 1 \mod p$$. Therefore
+Since we assumed that $$p \nmid a$$. Then we can use Fermat's Little Theorem (part 2) to conclude that $$a^{p-1} \equiv 1 \bmod p$$. Now we can use modular arithmetic to simplify the original expression.
 <div>
 	$$
 	\begin{align*}
-	   (a^{p-1})^{ts} &\equiv 1^{ts} \mod p \\
-	                  &\equiv 1 \mod p.
+	   (a^{p-1})^{ts} &\equiv 1^{ts} \bmod p \text{ (because } a^{p-1} \equiv 1 \bmod p) \\
+	                  &\equiv 1 \bmod p.
 	\end{align*}
 	$$
 </div>
-This means that $$a^{tm} - 1$$ is divisible by $$p$$ as we wanted to show. So $$p$$ divides the product $$a(a^{tm} - 1)$$. With a similar arugment, we can show this for $$q$$.
+This implies that $$a^{tm} - 1 + 1 = a^{tm}$$ must be divisible by $$p$$ as we wanted to show. So $$p$$ divides the product $$a(a^{tm} - 1)$$. With a similar argument, we can show this for $$q$$.
 <br>
 <br>
 <hr>
@@ -430,13 +439,13 @@ One way to implement this idea is the following (RSA):
 	<li>Pick a prime number \(p,q\) large (100s of digits)</li>
 	<li>\(n = pq\)</li>
 	<li>\(m = lcm(p-1,q-1)\)</li>
-	<li>Choose \(1 < d, e < m\) such that \(de \equiv 1 \mod m\). You can first pick \(d\) and then you can pick a multiplicative inverse of \(d\) to be \(e\) using the Euclidean Algorithm.</li>
+	<li>Choose \(1 < d, e < m\) such that \(de \equiv 1 \bmod m\). You can first pick \(d\) and then you can pick a multiplicative inverse of \(d\) to be \(e\) using the Euclidean Algorithm.</li>
 </ol>
 So now, you take the plain test $$x$$ and raise it to the $$e$$th power. $$x^e$$ is the encrypted text. $$e$$ is the encryption key. The output $$y = x^e$$ is the encrypted text. To decrypt it, raise the encrypted text to the $$d$$th power so $$y^d = x^{ed}$$ and so now we have the following equation
 <div>
 	$$
 	\begin{align*}
-	  x^{ed} \equiv x \mod pq
+	  x^{ed} \equiv x \bmod pq
 	\end{align*}
 	$$
 </div>

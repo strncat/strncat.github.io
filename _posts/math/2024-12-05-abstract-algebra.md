@@ -76,14 +76,14 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/02/math417-09-subgroups.html">
        Lecture 09: Subgroups
        </a></li>
+	   <li><a href="/jekyll/update/2024/11/10/2.2-subgroups.html">
+       Book Notes: [2.2] Subgroup and Cyclic Groups
+       </a></li>
    </ol>
 <br>
 <!------------------------ BOOK NOTES --------------------------->
 <h4> Extra Book Notes (to go over) </h4>
 <ol style="list-style-type:none;">
-	   <li><a href="/jekyll/update/2024/11/10/2.2-subgroups.html">
-        [2.2] Subgroups and Cyclic Groups
-       </a></li>
 	   <li><a href="/jekyll/update/2024/11/11/2.4-homomorphisms-isomorphisms.html">
         [2.4] Homomorphisms and Isomorphisms
        </a></li>

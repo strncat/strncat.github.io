@@ -541,8 +541,6 @@ So $$\phi(g)$$ is the inverse of $$\phi(g^{-1})$$ or in other words $$\phi(g)^{-
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-<li><a href="https://www.youtube.com/watch?v=VdLhQs_y_E8&list=PLelIK3uylPMGzHBuR3hLMHrYfMqWWsmx5">Algebra: Abstract Lectures By Benedict Gross</a></li>
-<li><a href="https://www.youtube.com/watch?v=NwqCi63p2ik">Math of Wrath Youtube Channel</a></li>
 </ul>
 
 

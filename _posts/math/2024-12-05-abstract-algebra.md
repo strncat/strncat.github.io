@@ -70,14 +70,21 @@ mathjax: true
        Lecture 08: Groups and Isomorphism
        </a></li>
 	   <!-------------->
-	   <!------8------->
+	   <!------9------->
 	   <!-------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/02/math417-09-subgroups.html">
-       Lecture 09: Subgroups
+       Lecture 09/10: Subgroups
        </a></li>
 	   <li><a href="/jekyll/update/2024/11/10/2.2-subgroups.html">
        Book Notes: [2.2] Subgroup and Cyclic Groups
+       </a></li>
+	   <!-------------->
+	   <!------11------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/03/math417-11-dihedral-groups.html">
+       Lecture 09: Dihedral Groups 
        </a></li>
    </ol>
 <br>

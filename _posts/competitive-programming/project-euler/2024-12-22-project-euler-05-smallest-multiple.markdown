@@ -30,7 +30,6 @@ int main(int argc, const char * argv[]) {
     printf("%llu\n", multiple);
     return 0;
 }
-
 {% endhighlight %}
 <br>
 <br>

@@ -416,7 +416,7 @@ Since we assumed that $$p \nmid a$$. Then we can use Fermat's Little Theorem (pa
 	\end{align*}
 	$$
 </div>
-This implies that $$a^{tm} - 1 + 1 = a^{tm}$$ must be divisible by $$p$$ as we wanted to show. So $$p$$ divides the product $$a(a^{tm} - 1)$$. With a similar argument, we can show this for $$q$$.
+This implies that $$a^{tm} - 1$$ must be divisible by $$p$$ as we wanted to show. So $$p$$ divides the product $$a(a^{tm} - 1)$$. With a similar argument, we can show this for $$q$$.
 <br>
 <br>
 <hr>

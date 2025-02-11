@@ -34,10 +34,10 @@ In addition to groups, we also have
 In the next few propositions, we'll prove that the identity element in a group is unique and similarly the inverses are unique.
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
-Proposition (Uniqueness of the identity (2.1.1))
+Proposition
 </div>
 <div class="peachbodydiv">
-The identity element is unique. (In other words, Let \(G\) be a group and suppose \(e\) and \(e'\) are both identity elements in \(G\); that is, for all \(g \in G\), \(eg = ge = e'g = ge' = g\). Then \(e = e'\).)
+The identity element is unique.
 </div>
 <br>
 <b>Proof</b>
@@ -46,8 +46,8 @@ Let $$e$$ and $$e'$$ be identity elements. Then by definition for any $$x, y \in
 <div>
 	$$
 	\begin{align*}
-	 xe &= x = e'x \\
-	 ye &= y = e'y
+	 xe &= x = ex \\
+	 ye' &= y = e'y
 	\end{align*}
 	$$
 </div>
@@ -55,8 +55,8 @@ If we let $$x = e'$$ and let $$y = e$$, then
 <div>
 	$$
 	\begin{align*}
-	 ee &= e = e'e \\
-	 e'e &= e' = e'e'
+	 e'e &= e' = ee' \\
+	 ee' &= e = e'e
 	\end{align*}
 	$$
 </div>
@@ -73,6 +73,7 @@ Inverses in a group are unique.
 <br>
 <!---------------------------------------------------------------------->
 <b>Proof</b>
+<br>
 Let $$a \in G$$ and suppose for the sake of contradiction that $$a$$ has two inverses $$b$$ and $$c$$. That is $$ab = e = ba$$ and $$ac = e = ca$$. Then,
 <div>
 	$$
@@ -86,19 +87,19 @@ Therefore, $$c = b$$ which is a contradiction so the inverse must be unique. $$\
 <br>
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
-Proposition ((2.1.2))
+Proposition (2.1.2)
 </div>
 <div class="peachbodydiv">
 Let \(G\) be a group and let \(a, b \in G\). If \(ab = e\), then \(a = b^{-1}\). Likewise, if \(ba = e\), then \(b = a^{-1}\).
 </div>
 <br>
+By definition, $$b$$ an inverse of $$a$$ if $$ab = ba = e$$ so it's an inverse on both sides. This proposition proposes that checking only one side is enough. That is if $$ab = e$$, then $$a = b^{-1}$$ and $$b$$ is the inverse. So what we want to show here is that given $$ba = e$$, then $$b$$ is the inverse of $$a$$. We don't check the other side. One side is enough to imply the other.
+<br>
+<br>
 <!---------------------------------------------------------------------->
 <b>Proof</b>
 <br>
-Even though the definition of the inverse requires the equation $$ab = ba = e$$ so it's an inverse on both sides, To check if something is an inverse in a group, we can just check one side so if $$ab = e$$, then $$a = b^{-1}$$ and $$b$$ is the inverse. So what we want to show here is that suppose $$ab = e$$, then we want to show that $$ba = e$$ which means that $$b$$ is the inverse of $$a$$. Basically, we want to show that that checking one side ($$ab = e$$) is enough to imply that $$ba = e$$ in a group. One side implies the other.
-<br>
-<br>
-How do we do it? We know from the previous proposition that $$a$$ has an inverse $$a^{-1} \in G$$. Now consider the expression $$a^{-1}ab$$. By associativity, we can reduce this expression in two ways
+We know from the previous proposition that $$a$$ has an inverse $$a^{-1} \in G$$. Now consider the expression $$a^{-1}ab$$. By associativity, we can reduce this expression in two ways
 <div>
 	$$
 	\begin{align*}
@@ -118,7 +119,7 @@ The right hand side is
 <div>
 	$$
 	\begin{align*}
-	 (a^{-1}(ab) &= a^{-1}
+	 a^{-1}(ab) &= a^{-1}
 	\end{align*}
 	$$
 </div>

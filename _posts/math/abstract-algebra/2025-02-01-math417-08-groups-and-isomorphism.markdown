@@ -324,7 +324,12 @@ Inductive Case: Suppose this is true for all $$1 \leq r \leq n$$ where a unique 
 are defined since we have at most $$n-1$$ elements. ... [TODO]
 <br>
 <br>
-<!---------------------------------------------------------------------->
+<hr>
+<br>
+<!--------------------------------------------------------------------->
+<h4><b>General Powers</b></h4>
+Now, we turn into defining powers of an element in a group
+<br>
 <div class="mintheaderdiv">
 Definition
 </div>
@@ -340,9 +345,7 @@ For \(a \in G\) where \(G\) is a group and \(n \in \mathbf{Z}\). Define \(a^n \i
 </div>
 <!---------------------------------------------------------------------->
 <br>
-<br>
 Based on this definition we have the following proposition
-<br>
 <br>
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
@@ -357,6 +360,43 @@ Proposition
 	$$
 </div>
 <br>
+<b>Proof (1)</b>
+<br>
+By induction on $$n$$. <br>
+Base Case $$(n = 1)$$: $$a^m a = a^{m+1}$$ by definition.
+<br>
+Inductive Case: Suppose the inductive hypothesis is true for $$n$$. That is $$a^m a^n = a^{m+n}$$. Now observe that
+<div>
+	$$
+	\begin{align*}
+	a^m a^{n+1} &= a^m (a^n a) \text{ (by definition)} \\
+	            &= (a^m a^n) a \text{ (by associativity)} \\
+	            &= a^{m+n} a \text{ (by the inductive hypothesis)} \\
+	            &= a^{m+n+1} \text{ (by definition)}. \ \blacksquare
+	\end{align*}
+	$$
+</div>
+<br>
+<b>Proof (2)</b>
+By induction on $$n$$. <br>
+Base Case $$(n = 1)$$: $$(a^{m})^1 = a^{m}$$.
+<br>
+Inductive Case: Suppose the inductive hypothesis is true for $$n$$. That is $$(a^m)^n = a^{mn}$$. Now observe that
+<div>
+	$$
+	\begin{align*}
+	(a^{m})^{n+1} &= (a^{m})^{n} (a^{m})^{1} \text{ (by definition)} \\
+	              &= (a^{m})^{n} a^{m} \\
+	              &= a^{mn} a^{m}  \text{ (by the inductive hypothesis)} \\
+				  &= a^{mn+m}  \text{ (by the previous proof)} \\
+	            &= a^{m(n+1)}. \ \blacksquare
+	\end{align*}
+	$$
+</div>
+
+<br>
+<br>
+<hr>
 <br>
 <!---------------------------------------------------------------------->
 <h4><b>Isomorphism</b></h4>
@@ -382,7 +422,7 @@ where the first multiplication is in \(G\) while the second is in \(H\).<br>
 We write $$H \approx G$$ for $$G$$ is isomorphic to $$H$$.
 <br>
 <br>
-An an example consider the group of the symmetries of the equilateral triangle $$D_3$$ and the group $$S_3$$ (permutations of $$\{1,2,3\}$$). Both groups contain exactly 6 elements. They turn out to be isomorphic. Let the isomorphism map the elements as follows:
+An an example consider the group of symmetries of the equilateral triangle $$D_3$$ and the group $$S_3$$ (permutations of $$\{1,2,3\}$$). Both groups contain exactly 6 elements. They turn out to be isomorphic. Observe here that if we assign the vertices $$A$$ to $$1$$, $$B$$ to $$2$$ and $$C$$ to $$3$$, then the rotation $$a$$ flips the vertices $$B$$ and $$C$$. This is exactly the same as the permutation $$(2 \ 3)$$. Similarly, if you think about the rotation $$r$$, you'll notice that $$r$$ permutes the vertices in the exact way as the permutation $$(1 \ 2 \ 3)$$. In fact, all permutations. Another example is the $$b$$ rotation. This rotation fixes $$b$$ and rotates $$a$$ and $$c$$. This is also the same as the permutation $$(1 \ 3)$$. We can map the rest of the symmetries as follows
 <div>
 <table style="max-width: 500px; margin: 20px auto;">
   <tr>
@@ -474,13 +514,13 @@ The order of a group is its size or cardinality. We will denote the order of a g
 One interesting thing to do is to classify all groups of a given finite order. If we do that for small sizes, we get
 <!--------------------------------------------------------------------->
 <ol>
-	<li>order 0: none. because we need to at least have the identity element.</li>
-	<li>order 1: \(G = \{e\}\). Other groups of order 1 can be \(G'=\{1\}\). These two groups are isomorphic. Technically, it's a different set but to us, they're the same group. So "up to isomorphism", there is only one group of size 1.</li>
-	<li>order 2: \(G \approx \mathbf{Z}_2\) (integers mod 2). An example of \(G\) is \((\mathbf{Z}_2,+)\).</li>
-	<li>order 3: \(G \approx \mathbf{Z}_3\). All groups of size 3 will be isomorphic to \(\mathbf{Z}_3\)</li>
-	<li>order 4: We have two groups which are not isomorphic to each other. \(G = \mathbf{Z}_4 \) or \(G = \mathbf{Z}_2 \times \mathbf{Z}_2\) (symmetries of the rectangle). Groups of order 4 can be isomorphic to either one.</li>
-	<li>order 5: \(G \approx \mathbf{Z}_5\)</li>
-	<li>order 6: We have two groups. \(G \approx \mathbf{Z}_6\) or \(G \approx S_3 \approx D_3\). These two groups are not isomorphic because \(S_3\) is non-abelian while \(\mathbf{Z}_6\) is abelian. In fact the next proposition will formalize this.</li>
+	<li>Order 0: None because we need to at least have the identity element.</li>
+	<li>Order 1: \(G = \{e\}\). Other groups of order 1 can be \(G'=\{1\}\). These two groups are isomorphic. Technically, it's a different set but to us, they're the same group. So "up to isomorphism", there is only one group of size 1.</li>
+	<li>Order 2: Up to isomorphism, the only unique group is \(\mathbf{Z}_2 = \{[0], [1], [2]\}\).</li>
+	<li>Order 3: Up to isomorphism, the only unique group is \(\mathbf{Z}_3\). All other groups of size 3 will be isomorphic to \(\mathbf{Z}_3\).</li>
+	<li>order 4: Up to isomorphism, there are two unique groups. \(\mathbf{Z}_4 \) and \(\mathbf{Z}_2 \times \mathbf{Z}_2\) (symmetries of the rectangle). Groups of order 4 can be isomorphic to either one.</li>
+	<li>Order 5: Up to isomorphism, the only unique group is \(\mathbf{Z}_5\)</li>
+	<li>Order 6: Up to isomorphism, we have two unique groups. \(\mathbf{Z}_6\) and \(S_3 \approx D_3\). These two groups are not isomorphic because \(S_3\) is non-abelian while \(\mathbf{Z}_6\) is abelian. The proof for this fact is next.</li>
 </ol>
 <br>
 <!---------------------------------------------------------------------->
@@ -491,9 +531,49 @@ Proposition
 If \(G \approx H\), then \(G\) is abelian if and only if \(H\) is abelian.
 </div>
 <br>
-<b>Proof</b>
+<b>Proof (Lecture Notes)</b>
 <br>
-Exercise
+Suppose that $$\phi: G \rightarrow H$$ is an isomorphism. Furthermore, let $$a, b \in G$$ and $$a', b' \in H$$ such that $$\phi^{-1}(a') = a$$ and $$\phi^{-1}(b') = b'$$. We will prove both directions of the statement.
+<br>
+<br>
+$$\Rightarrow$$: Suppose that $$G$$ is abelian. We will show that $$H$$ is abelian. Observe that
+<div>
+	$$
+	\begin{align*}
+	\phi(ab) &= \phi(a)\phi(b) = a'b' \\
+	\phi(ba) &= \phi(b)\phi(a) = b'a'.
+	\end{align*}
+	$$
+</div>
+But we know that $$G$$ is abelian and so $$ab = ba$$ so $$\phi(ab) = \phi(ba)$$ and therefore we must have $$a'b' = b'a'$$.
+<br>
+<br>
+$$\Leftarrow$$: Now suppose that $$H$$ is abelian. Then,
+<div>
+	$$
+	\begin{align*}
+	\phi(ab) &= \phi(a)\phi(b) = a'b' \\
+	\phi(ba) &= \phi(b)\phi(a) = b'a'.
+	\end{align*}
+	$$
+</div>
+We know that $$a'b' = b'a'$$ because $$H$$ is abelian. But since $$\phi$$ is injective, this implies that $$ab = ba$$. (remember injective means that $$f(a)=f(b) \implies a = b$$). $$\ \blacksquare$$
+<br>
+<br>
+Note that for this direction, we could've instead relied on $$\phi^{-1}$$ being an isomorphism itself. and so observe that
+<div>
+	$$
+	\begin{align*}
+	\phi^{-1}(a'b') &= \phi^{-}(a')\phi^{-}(b') = ab \\
+	\phi^{-1}(b'a') &= \phi^{-}(b')\phi^{-}(a') = ba.
+	\end{align*}
+	$$
+</div>
+$$H$$ is abelian so $$a'b' = b'a'$$ so $$\phi^{-1}(a'b') = \phi^{-1}(b'a')$$ and thus $$ab = ba$$.
+<br>
+<br>
+<br>
+<hr>
 <br>
 <br>
 <!---------------------------------------------------------------------->

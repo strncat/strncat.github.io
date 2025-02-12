@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-10T20:43:06-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 11: Dihedral Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html" rel="alternate" type="text/html" title="Lecture 11: Dihedral Groups" /><published>2025-02-03T00:01:36-08:00</published><updated>2025-02-03T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html"><![CDATA[<div class="mintheaderdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-11T14:38:55-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 11: Dihedral Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html" rel="alternate" type="text/html" title="Lecture 11: Dihedral Groups" /><published>2025-02-03T00:01:36-08:00</published><updated>2025-02-03T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html"><![CDATA[<div class="mintheaderdiv">
 Definition
 </div>
 <div class="mintbodydiv">
@@ -75,10 +75,15 @@ The necessary conditions for a subset \(H\) of \(G\) to be a subgroup of \(G\) a
 <p><br />
 <!------------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
-<p>Consider the group \(G = S_4\) permutations of \(\{1,2,3,4\}\). The order of this group is \(|G| = 4\). The following are subgroups of \(S_4\):</p>
+<p>Consider the group \(G = S_4\) (permutations of \(\{1,2,3,4\}\)). The order of this group is \(|G| = 4\). The following are subgroups of \(S_4\):</p>
 <ul>
 	<li>\(H=\{ \sigma \in S_4 \ | \ \sigma(4) = 4\}\). So this subgroup fixes \(4\) in the permutation. \(|H| = 3! = 6\). In fact, it is permuting only 3 numbers and it is isomorphic to \(S_3\).</li>
-	<li>\(H'=\{e,(1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3)\}\). It's not empty. It has the identity element. Every element is its own inverse. The one thing not too obvious is proving it is closed. This subgroup is isomorphic to the symmetry group of the rectangle.</li>
+	<!---------------------------->
+	<li>\(H'=\{e,(1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3)\}\). It's not empty. It has the identity element. Every element is its own inverse. The one thing not too obvious is proving it is closed. This subgroup is isomorphic to the symmetry group of the rectangle. What's an isomorphism in this case? Assign \(A\) to 1, \(B\) to 2, \(C\) to 3, \(D\) to 4. Recall that the symmetries of the rectangle has the symmetries \(r_1, r_2, r_3, e\) where \(r_1\) is rotating around the \(x-\)axis. Observe now that \(r_1\)
+		<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec10/rect-r1.png" width="45%" class="center" /></p>
+	</li>
+	rotates the vertices such that \(A\) and \(B\) switch positions and \(C\) and \(D\) switch positions. This is equivalent to the permutation \((1 \ 2)(3 \ 4)\). Following this, we'll see that \(r_2\) gets mapped to \((1 \ 4)(2 \ 3)\) and \(r_3\) gets mapped to \((1 \ 3)(2 \ 4)\).
+	<!---------------------------->
 	<li>\(H''=\{e,(1 \ 2 \ 3 \ 4)(4 \ 3 \ 2 \ 1), (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3), (1 \ 3),(2 \ 4)\}\). This one is isomorphic to \(D_4\) which is the symmetries of the square.</li>
 </ul>
 <p><br /></p>
@@ -87,8 +92,7 @@ The necessary conditions for a subset \(H\) of \(G\) to be a subgroup of \(G\) a
 <p><br />
 <!------------------------------------------------------------------------------></p>
 <h4><b>Generated Subgroups</b></h4>
-<p>Before talking about subgroups we need the following lemma
-<br />
+<p>We begin with the following lemma which states that the intersection of a collection of subgroups is another subgroup.
 <br />
 <!------------------------------------------------------------------------------></p>
 <div class="yellowheaderdiv">
@@ -106,9 +110,13 @@ is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection 
 </div>
 <p><br />
 <b>Proof</b>
-<br />
-The intersection must have the identity element. The intersection is closed under the operation because for any two elements \(a, b \in H\), their product \(ab \in H\) and since \(a, b\) is in the intersection, then they are in every \(H_i\) group. Same argument for the inverse. 
-<br />
+<br /></p>
+<ol>
+<li>Every \(H_i\) is a subgroup. Therefore \(e \in H_i\) for each \(i\) and thus \(e \in H\).</li>
+<li>For any two elements \(a, b \in H\), we must have \(a, b \in H_i\) for each \(i\). Their product \(ab\) must also be in every \(H_i\) since each \(H_i\) is a subgroup. Therefore \(ab \in H\).</li>
+<li>For any \(a \in H\), \(a\) must be in \(H_i\) for each \(i\). Therefore \(a^{-1} \in H_i \ \forall i\) and thus \(a^{-1} \in H\).</li>
+</ol>
+<p>Since any intersection of subgroups is another subgroups, we can then define a generated subgroups as follow
 <br />
 <!------------------------------------------------------------------------------></p>
 <div class="mintheaderdiv">
@@ -118,55 +126,58 @@ Definition
 Let \(G\) be a group and let \(S\) be a subset of \(G\). Then
 	$$
 	\begin{align*}
-	 \langle S \rangle = \bigcap_{\text{all } H_i \leq G \text{ such that } S \subseteq H_i}
+	 \langle S \rangle = \bigcap_{\text{All } H_i \leq G \text{ such that } S \subseteq H_i}
 	\end{align*}
 	$$
-<ul>
-<li>\(\langle S \rangle\) is the intersection of all subgroups such that \(S\) is a subset of each subgroup \(H_i\).</li>
-<li>\(\langle S \rangle\) is called <b>the subgroup generated by</b> \(S\) and it is the smallest subgroup in \(G\) that contains \(S\).</li>
-</ul>
+\(\langle S \rangle\) is called <b>the subgroup generated by</b> \(S\) and it is the smallest subgroup in \(G\) that contains \(S\).
 </div>
 <!------------------------------------------------------------------------------>
 <p><br />
-<br />
-It is the smallest group because by definition for any \(H \leq G\), we have \(S \subseteq H\). So \(\langle S \rangle \subseteq H\) for any \(H\). Additionally from the book we have</p>
+Observe that</p>
+<ul>
+<li>\(\langle S \rangle\) is a subgroup by the previous lemma since it is the intersection of subgroups.</li>
+<li>\(S \subseteq \langle S \rangle\).</li>
+<li>It is the smallest group that contains \(S\). Because for any subgroup \(K \leq G\) such that \(S \subseteq K\), we must have \(\langle S \rangle \leq K\) (why? because if \(S\) is contained in \(K\) and \(K\) is a group, then all the products of the elements of \(S\) are in \(K\). Same for the inverses. So the whole subgroup \(\langle S \rangle\) must also be contained in \(K\).)</li>
+</ul>
+<p>Additionally from the book:</p>
 <ul>
 <li>If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). </li>
 <li>If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\)</li>
 </ul>
 <p>Another way to describe \(\langle S \rangle\) is take a bottom up approach to describe the elements.
 <br />
-<br />
 <!------------------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
 Proposition
 </div>
 <div class="peachbodydiv">
-Suppose \(G\) is a group and \(S\) is a subset of \(G\). Then
+Suppose \(G\) is a group and \(S\) is a subset of \(G\). Then \(\langle S \rangle\) is equal to the set of elements in \(G\) of the form
 	$$
 	\begin{align*}
-	 \langle S \rangle = \{e\} \cup \{g_1g_2...g_k\} \ | \ k \geq 1, \forall i,..,k \ g_i \in S \text{ or } g_i^{-1} \in S
+	 g_1g_2...g_k \quad \text{ where either } g_i \in S \text{ or } g_i^{-1} \in S \text{ for all } i.
 	\end{align*}
 	$$
 </div>
 <!------------------------------------------------------------------------------>
 <p><br />
-<br />
-In other words, \(\langle S \rangle\) is that it contains all the possible products \(g_1g_2...g_n\) where \(g_i \in S\) or \(g_i^{-1} \in S\). The set that contains these words \(\{e\} \cup \{g_1g_2...g_k\}\) is often called the “set of words in \(S\)” in group theory.
+In other words, \(\langle S \rangle\) is a subgroup such that that it contains all the possible products \(g_1g_2...g_n\) which are in \(S\) or an inverse to an element of \(S\). The set that contains such products is often called the “set of words in \(S\)” in group theory.
 <br />
 <br />
 <b>Proof</b>
 <br />
-Let \(T\) be the set of words. We need to check that</p>
-<ul>
-	<li>\(S \subseteq T\). [This is true because all the words of length 1 make up the set \(S\).]</li>
-	<li>\(T\) is a subgroup of \(G\). [This is true because \(T\) has the identity element. For any two word, the product of these is just a longer word which is also in \(T\). It is closed under the inverses because \((g_1g_2...g_k) = g_k^{-1}...g_1^{-1}\).]</li>
-	<li>If \(H \leq G\) and \(S \subseteq H\), then \(T \subseteq H\). [This is true because if \(H\) contains \(S\) then it must contain all the inverses of these words and then also the products of all of these words since it's group (closed) so it has all of these elements and it contains \(T\).]</li>
-</ul>
-<p>These three conditions imply that \(T = \langle S \rangle\). We’ll use this proposition a lot. 
-<br />
-<br />
-Some Examples</p>
+Let \(T\) be the set of words \(\{e\} \cup \{g_1...g_k\}\) where \(g_i \in S\) or \(g_i^{-1} \in S\) for all \(i = 1,...,k\). We need to show that</p>
+<ol>
+	<li>\(T\) is a subgroup of \(G\). [This is true because \(T\) has the identity element. For any two word, the product of these is just a longer word which is also in \(T\). It is closed under the inverses because \((g_1g_2...g_k)^{-1} = g_k^{-1}...g_1^{-1}\).]</li>
+	<li>\(S \subseteq T\). [This is true because all the words of length 1 make up the set \(S\). It is true by construction.]</li>
+	<li>If \(K \leq G\) is a subgroup such that \(S \subseteq K\), then \(T \subseteq K\). [This is true because if \(K\) contains \(S\) then it must contain all the inverses of these words and then also the products of all of these words since it's a group (closed) so it has all of these elements and it contains \(T\) itself.]</li>
+</ol>
+<p>Condition (1) and (2) imply that \(\langle S \rangle \subseteq T\). Conditions (1) and (3) imply that \(T \subseteq \langle S \rangle\). Therefore, \(T = \langle S \rangle\). \(\ \blacksquare\) We’ll use this proposition a lot. 
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
 <ul>
 	<li>\(\langle (1 \ 2) \rangle = \{e, (1 \ 2)\}\). This says that the subgroup generated by \(\{(1 \ 2)\}\) is \(\{e, (1 \ 2)\} = \langle (1 \ 2) \rangle \)</li>
 	<li>\(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\)</li>
@@ -189,9 +200,7 @@ A group \(G\) is cyclic if \(G = \langle a \rangle\) for some \(a \in G\). Simil
 </div>
 <!----------------------------------------------------------------------------->
 <p><br />
-<br />
 In fact, we can describe all the elements in a cyclic subgroup as follows
-<br />
 <br />
 <!-----------------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
@@ -492,7 +501,7 @@ Let G = \(\langle g \rangle\) and \(o(g) = n &lt; \infty\). Then
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.2.1 A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\). Example: The group \(SO(3)\), the special orthogonal matrices is a subgroup of \(GL_3(\mathbf{R}\), the group of invertible \(3 \times 3\) matrices. Both of these are under the same operation. Non-example: \(\mathbf{Z}_n\): congruence classes modulo \(n\) with addition. We also have \(\phi(n)\): congruence classes with multiplicative inverses. This has the operation multiplication so it's not a subgroup! Even when you define \(\phi(4) = \{[1],[3]\}\) with addition, it will not satisfy the group requirements, so it's not a subgroup. Since we need to check a lot for subgroups. We have a set of necessary conditions. Proposition The necessary conditions for a subset \(H\) of \(G\) to be a subgroup of \(G\) are: \(H\) is not empty \(H\) is closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\) \(H\) is closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\) Proof \(H\) is associative. For any \(a,b,c \in H\), \((ab)c = a(bc)\). We're inheriting the same operation from \(G\) so \(H\) must be associative. \(H\) has an identity element: We know \(H\) is non-empty by (1). We also know for any \(h \in H\), \(h^{-1} \in H\) by (3). By (2), \(H\) is closed under multiplication so \(hh^{-1} \in H\) but \(hh^{-1} = e\) so the identity element is in \(H\). Example Consider the group \(G = S_4\) permutations of \(\{1,2,3,4\}\). The order of this group is \(|G| = 4\). The following are subgroups of \(S_4\): \(H=\{ \sigma \in S_4 \ | \ \sigma(4) = 4\}\). So this subgroup fixes \(4\) in the permutation. \(|H| = 3! = 6\). In fact, it is permuting only 3 numbers and it is isomorphic to \(S_3\). \(H'=\{e,(1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3)\}\). It's not empty. It has the identity element. Every element is its own inverse. The one thing not too obvious is proving it is closed. This subgroup is isomorphic to the symmetry group of the rectangle. \(H''=\{e,(1 \ 2 \ 3 \ 4)(4 \ 3 \ 2 \ 1), (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3), (1 \ 3),(2 \ 4)\}\). This one is isomorphic to \(D_4\) which is the symmetries of the square. Generated Subgroups Before talking about subgroups we need the following lemma Lemma (Book Proposition 2.2.8) Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then $$ \begin{align*} H = H_1 \cap H_2 \ \cap ... \cap \ H_n \end{align*} $$ is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup. Proof The intersection must have the identity element. The intersection is closed under the operation because for any two elements \(a, b \in H\), their product \(ab \in H\) and since \(a, b\) is in the intersection, then they are in every \(H_i\) group. Same argument for the inverse. Definition Let \(G\) be a group and let \(S\) be a subset of \(G\). Then $$ \begin{align*} \langle S \rangle = \bigcap_{\text{all } H_i \leq G \text{ such that } S \subseteq H_i} \end{align*} $$ \(\langle S \rangle\) is the intersection of all subgroups such that \(S\) is a subset of each subgroup \(H_i\). \(\langle S \rangle\) is called the subgroup generated by \(S\) and it is the smallest subgroup in \(G\) that contains \(S\). It is the smallest group because by definition for any \(H \leq G\), we have \(S \subseteq H\). So \(\langle S \rangle \subseteq H\) for any \(H\). Additionally from the book we have If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\) Another way to describe \(\langle S \rangle\) is take a bottom up approach to describe the elements. Proposition Suppose \(G\) is a group and \(S\) is a subset of \(G\). Then $$ \begin{align*} \langle S \rangle = \{e\} \cup \{g_1g_2...g_k\} \ | \ k \geq 1, \forall i,..,k \ g_i \in S \text{ or } g_i^{-1} \in S \end{align*} $$ In other words, \(\langle S \rangle\) is that it contains all the possible products \(g_1g_2...g_n\) where \(g_i \in S\) or \(g_i^{-1} \in S\). The set that contains these words \(\{e\} \cup \{g_1g_2...g_k\}\) is often called the “set of words in \(S\)” in group theory. Proof Let \(T\) be the set of words. We need to check that \(S \subseteq T\). [This is true because all the words of length 1 make up the set \(S\).] \(T\) is a subgroup of \(G\). [This is true because \(T\) has the identity element. For any two word, the product of these is just a longer word which is also in \(T\). It is closed under the inverses because \((g_1g_2...g_k) = g_k^{-1}...g_1^{-1}\).] If \(H \leq G\) and \(S \subseteq H\), then \(T \subseteq H\). [This is true because if \(H\) contains \(S\) then it must contain all the inverses of these words and then also the products of all of these words since it's group (closed) so it has all of these elements and it contains \(T\).] These three conditions imply that \(T = \langle S \rangle\). We’ll use this proposition a lot. Some Examples \(\langle (1 \ 2) \rangle = \{e, (1 \ 2)\}\). This says that the subgroup generated by \(\{(1 \ 2)\}\) is \(\{e, (1 \ 2)\} = \langle (1 \ 2) \rangle \) \(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\) \(S_3 = \langle (1 \ 2), (1 \ 2 \ 3) \rangle\). \(S_4 = \langle (1 \ 2 \ 3 \ 4), (2 \ 4) \rangle\). Cyclic Groups and Cyclic Subgroups We’ll start with the definition Definition A group \(G\) is cyclic if \(G = \langle a \rangle\) for some \(a \in G\). Similarly, a subgroup \(H \leq G\) is cyclic if \(H = \langle a \rangle\) for some \(a \in G\). In fact, we can describe all the elements in a cyclic subgroup as follows Proposition (Book 2.2.9) Let \(a\) be an element of a group \(G\). The subgroup \(\langle a \rangle\) generated by \(a\) is \(\{a^k \ : \ k \in \mathbf{Z}\}\). Note here that this subgroup is abelian! Proof (book) Let \(H = \{a^k \ : \ k \in \mathbf{Z}\}\). We will show that \(\langle a \rangle = H\) as follows: \(\langle a \rangle \subseteq H\): We know that \(G\) is a group and \(H\) is subset of \(G\). We claim that it is a subgroup of \(G\). It is closed under multiplication because for any \(a^k\) and \(a^l\) in \(H\), \(a^{k+l} \in H\). It is closed under inverses because for any \(a^k \in H\), \((a^{k})^{-1} = a^{-k} \in H\). Furthermore, \(H\) contains \(a\) and since \(H\) is a subgroup, then \(H\) contains all the powers of \(a\). Therefore, \(\langle a \rangle \subseteq H\). \(H \subseteq \langle a \rangle\): We showed that \(H = \{a^k \ : \ k \in \mathbf{Z}\}\) is a subgroup above. It is closed under multiplication and so it contains all powers of \(a\). Therefore, \(H \subseteq \langle a \rangle\). \(\ \blacksquare\) Example Suppose \(G = (\mathbf{Z}, + )\). For any element \(a \in \mathbf{Z}\), $$ \begin{align*} \langle a \rangle = \{ka \ : \ k \in \mathbf{Z}\} = \mathbf{Z}a. \end{align*} $$ The set of powers of \(a\) is the set of all multiples of \(a\) since the group operation is addition. So \(a+a+a+a+a\) is the fifth power.]]></summary></entry><entry><title type="html">Groups and Isomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html" rel="alternate" type="text/html" title="Groups and Isomorphism" /><published>2025-02-01T00:01:36-08:00</published><updated>2025-02-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html"><![CDATA[<div class="mintheaderdiv">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.2.1 A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\). Example: The group \(SO(3)\), the special orthogonal matrices is a subgroup of \(GL_3(\mathbf{R}\), the group of invertible \(3 \times 3\) matrices. Both of these are under the same operation. Non-example: \(\mathbf{Z}_n\): congruence classes modulo \(n\) with addition. We also have \(\phi(n)\): congruence classes with multiplicative inverses. This has the operation multiplication so it's not a subgroup! Even when you define \(\phi(4) = \{[1],[3]\}\) with addition, it will not satisfy the group requirements, so it's not a subgroup. Since we need to check a lot for subgroups. We have a set of necessary conditions. Proposition The necessary conditions for a subset \(H\) of \(G\) to be a subgroup of \(G\) are: \(H\) is not empty \(H\) is closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\) \(H\) is closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\) Proof \(H\) is associative. For any \(a,b,c \in H\), \((ab)c = a(bc)\). We're inheriting the same operation from \(G\) so \(H\) must be associative. \(H\) has an identity element: We know \(H\) is non-empty by (1). We also know for any \(h \in H\), \(h^{-1} \in H\) by (3). By (2), \(H\) is closed under multiplication so \(hh^{-1} \in H\) but \(hh^{-1} = e\) so the identity element is in \(H\). Example Consider the group \(G = S_4\) (permutations of \(\{1,2,3,4\}\)). The order of this group is \(|G| = 4\). The following are subgroups of \(S_4\): \(H=\{ \sigma \in S_4 \ | \ \sigma(4) = 4\}\). So this subgroup fixes \(4\) in the permutation. \(|H| = 3! = 6\). In fact, it is permuting only 3 numbers and it is isomorphic to \(S_3\). \(H'=\{e,(1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3)\}\). It's not empty. It has the identity element. Every element is its own inverse. The one thing not too obvious is proving it is closed. This subgroup is isomorphic to the symmetry group of the rectangle. What's an isomorphism in this case? Assign \(A\) to 1, \(B\) to 2, \(C\) to 3, \(D\) to 4. Recall that the symmetries of the rectangle has the symmetries \(r_1, r_2, r_3, e\) where \(r_1\) is rotating around the \(x-\)axis. Observe now that \(r_1\) rotates the vertices such that \(A\) and \(B\) switch positions and \(C\) and \(D\) switch positions. This is equivalent to the permutation \((1 \ 2)(3 \ 4)\). Following this, we'll see that \(r_2\) gets mapped to \((1 \ 4)(2 \ 3)\) and \(r_3\) gets mapped to \((1 \ 3)(2 \ 4)\). \(H''=\{e,(1 \ 2 \ 3 \ 4)(4 \ 3 \ 2 \ 1), (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3), (1 \ 3),(2 \ 4)\}\). This one is isomorphic to \(D_4\) which is the symmetries of the square. Generated Subgroups We begin with the following lemma which states that the intersection of a collection of subgroups is another subgroup. Lemma (Book Proposition 2.2.8) Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then $$ \begin{align*} H = H_1 \cap H_2 \ \cap ... \cap \ H_n \end{align*} $$ is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup. Proof Every \(H_i\) is a subgroup. Therefore \(e \in H_i\) for each \(i\) and thus \(e \in H\). For any two elements \(a, b \in H\), we must have \(a, b \in H_i\) for each \(i\). Their product \(ab\) must also be in every \(H_i\) since each \(H_i\) is a subgroup. Therefore \(ab \in H\). For any \(a \in H\), \(a\) must be in \(H_i\) for each \(i\). Therefore \(a^{-1} \in H_i \ \forall i\) and thus \(a^{-1} \in H\). Since any intersection of subgroups is another subgroups, we can then define a generated subgroups as follow Definition Let \(G\) be a group and let \(S\) be a subset of \(G\). Then $$ \begin{align*} \langle S \rangle = \bigcap_{\text{All } H_i \leq G \text{ such that } S \subseteq H_i} \end{align*} $$ \(\langle S \rangle\) is called the subgroup generated by \(S\) and it is the smallest subgroup in \(G\) that contains \(S\). Observe that \(\langle S \rangle\) is a subgroup by the previous lemma since it is the intersection of subgroups. \(S \subseteq \langle S \rangle\). It is the smallest group that contains \(S\). Because for any subgroup \(K \leq G\) such that \(S \subseteq K\), we must have \(\langle S \rangle \leq K\) (why? because if \(S\) is contained in \(K\) and \(K\) is a group, then all the products of the elements of \(S\) are in \(K\). Same for the inverses. So the whole subgroup \(\langle S \rangle\) must also be contained in \(K\).) Additionally from the book: If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\) Another way to describe \(\langle S \rangle\) is take a bottom up approach to describe the elements. Proposition Suppose \(G\) is a group and \(S\) is a subset of \(G\). Then \(\langle S \rangle\) is equal to the set of elements in \(G\) of the form $$ \begin{align*} g_1g_2...g_k \quad \text{ where either } g_i \in S \text{ or } g_i^{-1} \in S \text{ for all } i. \end{align*} $$ In other words, \(\langle S \rangle\) is a subgroup such that that it contains all the possible products \(g_1g_2...g_n\) which are in \(S\) or an inverse to an element of \(S\). The set that contains such products is often called the “set of words in \(S\)” in group theory. Proof Let \(T\) be the set of words \(\{e\} \cup \{g_1...g_k\}\) where \(g_i \in S\) or \(g_i^{-1} \in S\) for all \(i = 1,...,k\). We need to show that \(T\) is a subgroup of \(G\). [This is true because \(T\) has the identity element. For any two word, the product of these is just a longer word which is also in \(T\). It is closed under the inverses because \((g_1g_2...g_k)^{-1} = g_k^{-1}...g_1^{-1}\).] \(S \subseteq T\). [This is true because all the words of length 1 make up the set \(S\). It is true by construction.] If \(K \leq G\) is a subgroup such that \(S \subseteq K\), then \(T \subseteq K\). [This is true because if \(K\) contains \(S\) then it must contain all the inverses of these words and then also the products of all of these words since it's a group (closed) so it has all of these elements and it contains \(T\) itself.] Condition (1) and (2) imply that \(\langle S \rangle \subseteq T\). Conditions (1) and (3) imply that \(T \subseteq \langle S \rangle\). Therefore, \(T = \langle S \rangle\). \(\ \blacksquare\) We’ll use this proposition a lot. Examples \(\langle (1 \ 2) \rangle = \{e, (1 \ 2)\}\). This says that the subgroup generated by \(\{(1 \ 2)\}\) is \(\{e, (1 \ 2)\} = \langle (1 \ 2) \rangle \) \(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\) \(S_3 = \langle (1 \ 2), (1 \ 2 \ 3) \rangle\). \(S_4 = \langle (1 \ 2 \ 3 \ 4), (2 \ 4) \rangle\). Cyclic Groups and Cyclic Subgroups We’ll start with the definition Definition A group \(G\) is cyclic if \(G = \langle a \rangle\) for some \(a \in G\). Similarly, a subgroup \(H \leq G\) is cyclic if \(H = \langle a \rangle\) for some \(a \in G\). In fact, we can describe all the elements in a cyclic subgroup as follows Proposition (Book 2.2.9) Let \(a\) be an element of a group \(G\). The subgroup \(\langle a \rangle\) generated by \(a\) is \(\{a^k \ : \ k \in \mathbf{Z}\}\). Note here that this subgroup is abelian! Proof (book) Let \(H = \{a^k \ : \ k \in \mathbf{Z}\}\). We will show that \(\langle a \rangle = H\) as follows: \(\langle a \rangle \subseteq H\): We know that \(G\) is a group and \(H\) is subset of \(G\). We claim that it is a subgroup of \(G\). It is closed under multiplication because for any \(a^k\) and \(a^l\) in \(H\), \(a^{k+l} \in H\). It is closed under inverses because for any \(a^k \in H\), \((a^{k})^{-1} = a^{-k} \in H\). Furthermore, \(H\) contains \(a\) and since \(H\) is a subgroup, then \(H\) contains all the powers of \(a\). Therefore, \(\langle a \rangle \subseteq H\). \(H \subseteq \langle a \rangle\): We showed that \(H = \{a^k \ : \ k \in \mathbf{Z}\}\) is a subgroup above. It is closed under multiplication and so it contains all powers of \(a\). Therefore, \(H \subseteq \langle a \rangle\). \(\ \blacksquare\) Example Suppose \(G = (\mathbf{Z}, + )\). For any element \(a \in \mathbf{Z}\), $$ \begin{align*} \langle a \rangle = \{ka \ : \ k \in \mathbf{Z}\} = \mathbf{Z}a. \end{align*} $$ The set of powers of \(a\) is the set of all multiples of \(a\) since the group operation is addition. So \(a+a+a+a+a\) is the fifth power.]]></summary></entry><entry><title type="html">Groups and Isomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html" rel="alternate" type="text/html" title="Groups and Isomorphism" /><published>2025-02-01T00:01:36-08:00</published><updated>2025-02-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html"><![CDATA[<div class="mintheaderdiv">
 Definition
 </div>
 <div class="mintbodydiv">
@@ -812,8 +821,14 @@ Inductive Case: Suppose this is true for all \(1 \leq r \leq n\) where a unique 
 </div>
 <p>are defined since we have at most \(n-1\) elements. … [TODO]
 <br />
-<br />
-<!----------------------------------------------------------------------></p>
+<br /></p>
+<hr />
+
+<p><br />
+<!---------------------------------------------------------------------></p>
+<h4><b>General Powers</b></h4>
+<p>Now, we turn into defining powers of an element in a group
+<br /></p>
 <div class="mintheaderdiv">
 Definition
 </div>
@@ -829,9 +844,7 @@ For \(a \in G\) where \(G\) is a group and \(n \in \mathbf{Z}\). Define \(a^n \i
 </div>
 <!---------------------------------------------------------------------->
 <p><br />
-<br />
 Based on this definition we have the following proposition
-<br />
 <br />
 <!----------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
@@ -846,7 +859,45 @@ Proposition
 	$$
 </div>
 <p><br />
+<b>Proof (1)</b>
 <br />
+By induction on \(n\). <br />
+Base Case \((n = 1)\): \(a^m a = a^{m+1}\) by definition.
+<br />
+Inductive Case: Suppose the inductive hypothesis is true for \(n\). That is \(a^m a^n = a^{m+n}\). Now observe that</p>
+<div>
+	$$
+	\begin{align*}
+	a^m a^{n+1} &amp;= a^m (a^n a) \text{ (by definition)} \\
+	            &amp;= (a^m a^n) a \text{ (by associativity)} \\
+	            &amp;= a^{m+n} a \text{ (by the inductive hypothesis)} \\
+	            &amp;= a^{m+n+1} \text{ (by definition)}. \ \blacksquare
+	\end{align*}
+	$$
+</div>
+<p><br />
+<b>Proof (2)</b>
+By induction on \(n\). <br />
+Base Case \((n = 1)\): \((a^{m})^1 = a^{m}\).
+<br />
+Inductive Case: Suppose the inductive hypothesis is true for \(n\). That is \((a^m)^n = a^{mn}\). Now observe that</p>
+<div>
+	$$
+	\begin{align*}
+	(a^{m})^{n+1} &amp;= (a^{m})^{n} (a^{m})^{1} \text{ (by definition)} \\
+	              &amp;= (a^{m})^{n} a^{m} \\
+	              &amp;= a^{mn} a^{m}  \text{ (by the inductive hypothesis)} \\
+				  &amp;= a^{mn+m}  \text{ (by the previous proof)} \\
+	            &amp;= a^{m(n+1)}. \ \blacksquare
+	\end{align*}
+	$$
+</div>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
 <!----------------------------------------------------------------------></p>
 <h4><b>Isomorphism</b></h4>
 <p>One thing that we want to do is to compare two groups. For example take \((\mathbf{Z}_4, +)\), the symmetries of the rectangle, \((\phi(5), \cdot)\) and \((\phi(8), \cdot)\). These are all groups with exactly 4 elements. To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
@@ -871,7 +922,7 @@ where the first multiplication is in \(G\) while the second is in \(H\).<br />
 We write \(H \approx G\) for \(G\) is isomorphic to \(H\).
 <br />
 <br />
-An an example consider the group of the symmetries of the equilateral triangle \(D_3\) and the group \(S_3\) (permutations of \(\{1,2,3\}\)). Both groups contain exactly 6 elements. They turn out to be isomorphic. Let the isomorphism map the elements as follows:</p>
+An an example consider the group of symmetries of the equilateral triangle \(D_3\) and the group \(S_3\) (permutations of \(\{1,2,3\}\)). Both groups contain exactly 6 elements. They turn out to be isomorphic. Observe here that if we assign the vertices \(A\) to \(1\), \(B\) to \(2\) and \(C\) to \(3\), then the rotation \(a\) flips the vertices \(B\) and \(C\). This is exactly the same as the permutation \((2 \ 3)\). Similarly, if you think about the rotation \(r\), you’ll notice that \(r\) permutes the vertices in the exact way as the permutation \((1 \ 2 \ 3)\). In fact, all permutations. Another example is the \(b\) rotation. This rotation fixes \(b\) and rotates \(a\) and \(c\). This is also the same as the permutation \((1 \ 3)\). We can map the rest of the symmetries as follows</p>
 <div>
 <table style="max-width: 500px; margin: 20px auto;">
   <tr>
@@ -964,13 +1015,13 @@ The order of a group is its size or cardinality. We will denote the order of a g
 One interesting thing to do is to classify all groups of a given finite order. If we do that for small sizes, we get
 <!---------------------------------------------------------------------></p>
 <ol>
-	<li>order 0: none. because we need to at least have the identity element.</li>
-	<li>order 1: \(G = \{e\}\). Other groups of order 1 can be \(G'=\{1\}\). These two groups are isomorphic. Technically, it's a different set but to us, they're the same group. So "up to isomorphism", there is only one group of size 1.</li>
-	<li>order 2: \(G \approx \mathbf{Z}_2\) (integers mod 2). An example of \(G\) is \((\mathbf{Z}_2,+)\).</li>
-	<li>order 3: \(G \approx \mathbf{Z}_3\). All groups of size 3 will be isomorphic to \(\mathbf{Z}_3\)</li>
-	<li>order 4: We have two groups which are not isomorphic to each other. \(G = \mathbf{Z}_4 \) or \(G = \mathbf{Z}_2 \times \mathbf{Z}_2\) (symmetries of the rectangle). Groups of order 4 can be isomorphic to either one.</li>
-	<li>order 5: \(G \approx \mathbf{Z}_5\)</li>
-	<li>order 6: We have two groups. \(G \approx \mathbf{Z}_6\) or \(G \approx S_3 \approx D_3\). These two groups are not isomorphic because \(S_3\) is non-abelian while \(\mathbf{Z}_6\) is abelian. In fact the next proposition will formalize this.</li>
+	<li>Order 0: None because we need to at least have the identity element.</li>
+	<li>Order 1: \(G = \{e\}\). Other groups of order 1 can be \(G'=\{1\}\). These two groups are isomorphic. Technically, it's a different set but to us, they're the same group. So "up to isomorphism", there is only one group of size 1.</li>
+	<li>Order 2: Up to isomorphism, the only unique group is \(\mathbf{Z}_2 = \{[0], [1], [2]\}\).</li>
+	<li>Order 3: Up to isomorphism, the only unique group is \(\mathbf{Z}_3\). All other groups of size 3 will be isomorphic to \(\mathbf{Z}_3\).</li>
+	<li>order 4: Up to isomorphism, there are two unique groups. \(\mathbf{Z}_4 \) and \(\mathbf{Z}_2 \times \mathbf{Z}_2\) (symmetries of the rectangle). Groups of order 4 can be isomorphic to either one.</li>
+	<li>Order 5: Up to isomorphism, the only unique group is \(\mathbf{Z}_5\)</li>
+	<li>Order 6: Up to isomorphism, we have two unique groups. \(\mathbf{Z}_6\) and \(S_3 \approx D_3\). These two groups are not isomorphic because \(S_3\) is non-abelian while \(\mathbf{Z}_6\) is abelian. The proof for this fact is next.</li>
 </ol>
 <p><br />
 <!----------------------------------------------------------------------></p>
@@ -981,10 +1032,51 @@ Proposition
 If \(G \approx H\), then \(G\) is abelian if and only if \(H\) is abelian.
 </div>
 <p><br />
-<b>Proof</b>
+<b>Proof (Lecture Notes)</b>
 <br />
-Exercise
+Suppose that \(\phi: G \rightarrow H\) is an isomorphism. Furthermore, let \(a, b \in G\) and \(a', b' \in H\) such that \(\phi^{-1}(a') = a\) and \(\phi^{-1}(b') = b'\). We will prove both directions of the statement.
 <br />
+<br />
+\(\Rightarrow\): Suppose that \(G\) is abelian. We will show that \(H\) is abelian. Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(ab) &amp;= \phi(a)\phi(b) = a'b' \\
+	\phi(ba) &amp;= \phi(b)\phi(a) = b'a'.
+	\end{align*}
+	$$
+</div>
+<p>But we know that \(G\) is abelian and so \(ab = ba\) so \(\phi(ab) = \phi(ba)\) and therefore we must have \(a'b' = b'a'\).
+<br />
+<br />
+\(\Leftarrow\): Now suppose that \(H\) is abelian. Then,</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(ab) &amp;= \phi(a)\phi(b) = a'b' \\
+	\phi(ba) &amp;= \phi(b)\phi(a) = b'a'.
+	\end{align*}
+	$$
+</div>
+<p>We know that \(a'b' = b'a'\) because \(H\) is abelian. But since \(\phi\) is injective, this implies that \(ab = ba\). (remember injective means that \(f(a)=f(b) \implies a = b\)). \(\ \blacksquare\)
+<br />
+<br />
+Note that for this direction, we could’ve instead relied on \(\phi^{-1}\) being an isomorphism itself. and so observe that</p>
+<div>
+	$$
+	\begin{align*}
+	\phi^{-1}(a'b') &amp;= \phi^{-}(a')\phi^{-}(b') = ab \\
+	\phi^{-1}(b'a') &amp;= \phi^{-}(b')\phi^{-}(a') = ba.
+	\end{align*}
+	$$
+</div>
+<p>\(H\) is abelian so \(a'b' = b'a'\) so \(\phi^{-1}(a'b') = \phi^{-1}(b'a')\) and thus \(ab = ba\).
+<br />
+<br />
+<br /></p>
+<hr />
+
+<p><br />
 <br />
 <!---------------------------------------------------------------------->
 Extra Notes from the book: Two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.

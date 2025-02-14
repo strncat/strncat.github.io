@@ -93,14 +93,14 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/04/math417-12-homomorphism.html">
        Lecture 12: Homomorphism
        </a></li>
+	   <li><a href="/jekyll/update/2024/11/11/2.4-homomorphisms-isomorphisms.html">
+       Book Notes: [2.4] Homomorphisms
+       </a></li>
    </ol>
 <br>
 <!------------------------ BOOK NOTES --------------------------->
 <h4> Extra Book Notes (to go over) </h4>
 <ol style="list-style-type:none;">
-	   <li><a href="/jekyll/update/2024/11/11/2.4-homomorphisms-isomorphisms.html">
-        [2.4] Homomorphisms and Isomorphisms
-       </a></li>
 	   <li><a href="/jekyll/update/2025/01/01/2.5-cosets-lagrange.html">
         [2.5] Cosets and Lagrange’s Theorem
        </a></li>

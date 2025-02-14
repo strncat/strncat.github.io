@@ -1,30 +1,156 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-11T14:38:55-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 11: Dihedral Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html" rel="alternate" type="text/html" title="Lecture 11: Dihedral Groups" /><published>2025-02-03T00:01:36-08:00</published><updated>2025-02-03T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html"><![CDATA[<div class="mintheaderdiv">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-14T10:12:10-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 11: Dihedral Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html" rel="alternate" type="text/html" title="Lecture 11: Dihedral Groups" /><published>2025-02-03T00:01:36-08:00</published><updated>2025-02-03T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html"><![CDATA[<div class="mintheaderdiv">
 Definition
 </div>
 <div class="mintbodydiv">
 The Dihedral group is the group of rotational symmetries of a regular n-gon in \(\mathbf{R}^3\). It is a subgroup of the special orthogonal matrices, \(SO(3)\).
 </div>
 <p><br />
-<br />
-Before discussing the Dihedral group, and given a regular polygon, we can inscribe it inside a circle. Notice here that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So let’s start by analyzing these symmetries first
+Before discussing the Dihedral group, we will discuss the symmetries of the disk. Why? if you inscribe a regular polygon inside a circle, observe that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So it’s helpful to start there.
 <br />
 <br />
 <!------------------------------------------------------------------------------></p>
 <h4><b>Symmetries of the Disk</b></h4>
-<p>Let \(D \leq SO(3)\) be the rotational symmetries of the unit disk: \(\{(x,y,0) \ | \ x^2 + y^2 = 1 \}\). There are two types of rotations</p>
-<ol>
-	<li>\(A(e_3) = e_3\). This is when we rotation the disk around the \(z-\)axis. We're fixing the \(z-\)axis and spinning the disk. So the \(z-\)axis remains the same. These are called Rotations (of the disk).</li>
-	<li>\(A(e_3) = -e_3\). These are Flips. Take the disk flip it to face the other way.</li>
-</ol>
-<p><b>Rotations</b>
+<p>Let \(D \leq SO(3)\) be the rotational symmetries of the unit disk: \(\{(x,y,0) \ | \ x^2 + y^2 = 1 \}\). There are two types of rotations in \(D\). A rotation \(g\) around the \(z-\)axis so the \(z-\)axis remains fixed and we’re spinning the disk around it. Here \(g(e_3) = e_3\). The other type is when we flip the disk so the \(z-\)axis is now reversed. Here \(g(e_3) = -e_3\).
 <br />
-A rotation around an arbitrary angle which is \(r_{\theta} = Rot_{e_3}(\theta)\). It is always a symmetry around the unit disk. Note here that \(r_{\theta + 2\pi n} = r_{\theta}\) so for the complete list, we need to specify \(r_{\theta}\) where \(\theta \in [0, 2\pi)]\). Note also that \(r_{\theta}^{-1} = r_{-\theta}\).
+<!------------------------------------------------------------------------------></p>
+<h4><b>Rotations Around the \(z-\)axis</b></h4>
+<p>A rotation around an arbitrary angle which is \(r_{\theta} = Rot_{e_3}(\theta)\). It is always a symmetry around the unit disk. Note here that \(r_0=e\) and if we rotate by more than \(2\pi\), then it’s a rotation we’ve seen before. So \(r_{\theta + 2\pi n} = r_{\theta}\) so we need to specify \(r_{\theta}\) where \(\theta \in [0, 2\pi)]\). Note also that \(r_{\theta}^{-1} = r_{-\theta}\).
 <br />
 <br />
-<b>Flips</b>
+<!------------------------------------------------------------------------------></p>
+<h4><b>Rotations Around the a Line in the \(xy-\)axis (Flips)</b></h4>
+<p>Here the \(z-\)axis will get reversed since we’re flipping the disk by \(180^{\circ}\) (so \(e_3\) will now be \(-e_3\) facing the opposite the direction). The rotation axis itself is parallel to the \(xy\) plane. So \(j_{\theta} = Rot_{u_{\theta}}(\pi)\). Just draw a disk and draw any line that goes through the center. This line will be the rotation axis that is fixed and we’re flipping over it.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec11/disk.png" width="40%" class="center" /></p>
+<p>The rotation vector can written as</p>
+<div>
+	$$
+	\begin{align*}
+	u_\theta = (\cos \theta)e_1 + (\sin \theta)e_2 + 0e_3
+	\end{align*}
+	$$
+</div>
+<p>This vector spans a line \(l_{\theta} = \mathbf{R}u_{\theta}\). This line is in the \(xy\) plane that goes through the vector \(u\). We call this kind of rotation \(j_\theta\) as opposed to \(r_\theta\). Note here that adding another rotation of \(\pi\) will not change the line so \(j_{\theta + \pi n} = j_{\theta}\). However, the vector \(u_{\theta}\) though will face the other direction after adding \(\pi\) and so \(u_{\theta+\pi} = -u_{\theta}\). Based on this, we will see that \(j^2_{\theta} = e\).
 <br />
-Here the \(z-\)axis will get reversed since we’re flipping over it (so \(e_3\) will now be \(-e3\) facing the opposite the direction). So this means that the rotation axis is parallel to the \(xy\) plane. So the rotation vector is \(u_\theta = (\cos \theta)e_1 + (\sin \theta)e_2 + 0e_3\). We’re calling this kind of rotation \(j_\theta\). Note here that \(j_{\theta + \pi n} = j_{\theta}\).
 <br />
+<!------------------------------------------------------------------------------></p>
+<h4><b>Multiplication of Rotations and Flips</b></h4>
+<p>To describe the group structure, we want to see what happens if we perform two rotations, two flips, a rotation followed by a flip and a flip followed by a rotation.</p>
+<ul>
+	<li><b>Two Rotations:</b> This case is easy, since two rotations around the \(z-\)axis (spinning around) is just another rotation so
+		<div>
+			$$
+			\begin{align*}
+			r_{\alpha}r_{\beta} = r_{\alpha+\beta}
+			\end{align*}
+			$$
+		</div>
+	</li>
+	<!------ (2) ------->
+	<li><b>A Flip by \(\beta\) followed by a Rotation of \(\alpha\)</b> \(r_{\alpha}j_{\beta}\): 
+		<div>
+			$$
+			\begin{align*}
+			r_{\alpha}j_{\beta} = j_{\beta+\frac{\alpha}{2}}
+			\end{align*}
+			$$
+		</div>
+		We flip the disk where \(l_{\beta}\) is fixed like before, but then we add a rotation by \(\alpha\) so the end result is a flip around \(u_{\beta+\frac{\alpha}{2}}\) where it's the final fixed rotation axis. Draw a circle and cut it. Draw the original rotation axis \(l_{\beta}\) flip it over this access. Now add a small rotation by \(\alpha\). Mark it on the circle and then flip the shape. again. The composition of these two operations (flip+rotation) will actually be equivalent to a flip around the vector \(u_{\beta+\frac{\alpha}{2}}\). (TODO: why not just \(\alpha + \beta\)?)
+		<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec11/disk1.png" width="40%" class="center" /></p>
+	</li>
+	<!------ (3) ------->
+	<li><b>A Rotation followed by a Flip</b> \(j_{\alpha}r_{\beta}\): 
+		<div>
+			$$
+			\begin{align*}
+			j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}}
+			\end{align*}
+			$$
+		</div>
+	</li>
+	<li><b>Two Flips</b> \(j_{\alpha}j_{\beta}\). Now this is clearly a rotation since we're back to the same face. but we're flipping by a different axis each time. The final rotation is the difference of the two times two. (TODO: why times 2?)
+		<div>
+			$$
+			\begin{align*}
+			j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)}
+			\end{align*}
+			$$
+		</div>
+	</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------></p>
+<h4><b>Elements of \(D\)</b></h4>
+<p>Based on the previous list, we can now list precisely the elements of (D). We have</p>
+<ul>
+	<li>\(r_{\theta}\) for unique \(\theta \in [0, 2\pi)\). Noting that \(r_{\theta + 2\pi n} = r_{\theta}\)</li>
+	<li>\(j_{\theta}\) for unique \(\theta \in [0, \pi)\). Noting that \(j_{\theta + \pi n} = j_{\theta}\)</li>
+</ul>
+<p>In addition to the multiplication table based on the previous discussion.</p>
+<ul>
+	<li>\(r_{\alpha}r_{\beta} = r_{\alpha+\beta}\)</li>
+	<li>\(r_{\alpha}j_{\beta} = j_{\beta+\frac{\alpha}{2}}\)</li>
+	<li>\(j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}}\)</li>
+	<li>\(j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)}\)</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------></p>
+<h4><b>Alternative Description of \(D\)</b></h4>
+<p>Another description is that let \(j = j_{0}\). Then, \(j_{\theta} = r_{2\theta}j\). So every element of \(D\) can be written uniquely in one of the following two forms.</p>
+<ul>
+	<li>\(r_{\theta}, \theta \in [0, 2\pi]\)</li>
+	<li>\(r_{\theta}j, \theta \in [0, 2\pi]\)</li>
+</ul>
+<p>where</p>
+<ul>
+	<li>\(r_{\theta + 2\pi n} = r_{\theta}\)</li>
+	<li>\(r_{\alpha}r_{\beta} = r_{\alpha+\beta}\)</li>
+	<li>\(r_{\alpha + \beta}\)</li>
+	<li>\(j^2 = e\)</li>
+	<li>\(jr_{\theta} = r_{\theta}^{-1}j\). (TODO: Show this using the previous rules)</li>
+</ul>
+<p>This is a complete description of \(D\).
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------></p>
+<h4><b>Dihedral Groups</b></h4>
+<p>Fix \(n \geq 3\). Let \(V = \{u_{\frac{2\pi}{n}k}, k = 0,...,n-1\}\) be the vertices of a regular \(n-\)gon. Note that \(D_n \leq D \leq SO(3)\). Now, the group \(D_n\) will include specifically the symmetries of the disk that take the vertices of the polygon to themselves or another vertex in the polygon. In \(D_n\),</p>
+<div>
+	$$
+	\begin{align*}
+	r_{\frac{2\pi}{n}} = r = Rot_{\frac{2\pi}{n}}(e_3)
+	\end{align*}
+	$$
+</div>
+<p>Rotations in \(D_n\) are therefore: \(e, r, r^2, r^3, ..., r^{n-1}\) where \(r^{k+n} = r^k\).<br />
+Flips in \(D_n\) are \(j, rj, r^2,...,r^{n-1}j\) since we established that \(j_{\frac{\pi}{n}k} = r_{\frac{2\pi}{n}}j_0\). In general, we’ll have \(n\) flips for an \(n-\)polygon illustrated as follows</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec11/flips.png" width="70%" class="center" /></p>
+
+<p>Note that \(D_n\) has \(2n\) symmetries total and we have the following identities:</p>
+<ul>
+	<li>\(r^n = e\)</li>
+	<li>\(j^2 = e\)</li>
+	<li>\(jr = r^{-1}j\)</li>
+	<li>\(j^2 = e\)</li>
+</ul>
+<p>Notice also that this group is generated by two elements so \(D_n = \langle r, j\rangle\). Overall, you will see that</p>
+<div>
+	$$
+	\begin{align*}
+	D_3 &amp;= \{e, r, r^2, j, rj, r^2j\} \\
+	D_4 &amp;= \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}
+	\end{align*}
+	$$
+</div>
+<p><br />
 <br /></p>
 <hr />
 
@@ -34,7 +160,7 @@ Here the \(z-\)axis will get reversed since we’re flipping over it (so \(e_3\)
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition The Dihedral group is the group of rotational symmetries of a regular n-gon in \(\mathbf{R}^3\). It is a subgroup of the special orthogonal matrices, \(SO(3)\). Before discussing the Dihedral group, and given a regular polygon, we can inscribe it inside a circle. Notice here that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So let’s start by analyzing these symmetries first Symmetries of the Disk Let \(D \leq SO(3)\) be the rotational symmetries of the unit disk: \(\{(x,y,0) \ | \ x^2 + y^2 = 1 \}\). There are two types of rotations \(A(e_3) = e_3\). This is when we rotation the disk around the \(z-\)axis. We're fixing the \(z-\)axis and spinning the disk. So the \(z-\)axis remains the same. These are called Rotations (of the disk). \(A(e_3) = -e_3\). These are Flips. Take the disk flip it to face the other way. Rotations A rotation around an arbitrary angle which is \(r_{\theta} = Rot_{e_3}(\theta)\). It is always a symmetry around the unit disk. Note here that \(r_{\theta + 2\pi n} = r_{\theta}\) so for the complete list, we need to specify \(r_{\theta}\) where \(\theta \in [0, 2\pi)]\). Note also that \(r_{\theta}^{-1} = r_{-\theta}\). Flips Here the \(z-\)axis will get reversed since we’re flipping over it (so \(e_3\) will now be \(-e3\) facing the opposite the direction). So this means that the rotation axis is parallel to the \(xy\) plane. So the rotation vector is \(u_\theta = (\cos \theta)e_1 + (\sin \theta)e_2 + 0e_3\). We’re calling this kind of rotation \(j_\theta\). Note here that \(j_{\theta + \pi n} = j_{\theta}\). References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 09/10: Subgroups</title><link href="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html" rel="alternate" type="text/html" title="Lecture 09/10: Subgroups" /><published>2025-02-02T00:01:36-08:00</published><updated>2025-02-02T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html"><![CDATA[<div class="mintheaderdiv">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition The Dihedral group is the group of rotational symmetries of a regular n-gon in \(\mathbf{R}^3\). It is a subgroup of the special orthogonal matrices, \(SO(3)\). Before discussing the Dihedral group, we will discuss the symmetries of the disk. Why? if you inscribe a regular polygon inside a circle, observe that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So it’s helpful to start there. Symmetries of the Disk Let \(D \leq SO(3)\) be the rotational symmetries of the unit disk: \(\{(x,y,0) \ | \ x^2 + y^2 = 1 \}\). There are two types of rotations in \(D\). A rotation \(g\) around the \(z-\)axis so the \(z-\)axis remains fixed and we’re spinning the disk around it. Here \(g(e_3) = e_3\). The other type is when we flip the disk so the \(z-\)axis is now reversed. Here \(g(e_3) = -e_3\). Rotations Around the \(z-\)axis A rotation around an arbitrary angle which is \(r_{\theta} = Rot_{e_3}(\theta)\). It is always a symmetry around the unit disk. Note here that \(r_0=e\) and if we rotate by more than \(2\pi\), then it’s a rotation we’ve seen before. So \(r_{\theta + 2\pi n} = r_{\theta}\) so we need to specify \(r_{\theta}\) where \(\theta \in [0, 2\pi)]\). Note also that \(r_{\theta}^{-1} = r_{-\theta}\). Rotations Around the a Line in the \(xy-\)axis (Flips) Here the \(z-\)axis will get reversed since we’re flipping the disk by \(180^{\circ}\) (so \(e_3\) will now be \(-e_3\) facing the opposite the direction). The rotation axis itself is parallel to the \(xy\) plane. So \(j_{\theta} = Rot_{u_{\theta}}(\pi)\). Just draw a disk and draw any line that goes through the center. This line will be the rotation axis that is fixed and we’re flipping over it. The rotation vector can written as $$ \begin{align*} u_\theta = (\cos \theta)e_1 + (\sin \theta)e_2 + 0e_3 \end{align*} $$ This vector spans a line \(l_{\theta} = \mathbf{R}u_{\theta}\). This line is in the \(xy\) plane that goes through the vector \(u\). We call this kind of rotation \(j_\theta\) as opposed to \(r_\theta\). Note here that adding another rotation of \(\pi\) will not change the line so \(j_{\theta + \pi n} = j_{\theta}\). However, the vector \(u_{\theta}\) though will face the other direction after adding \(\pi\) and so \(u_{\theta+\pi} = -u_{\theta}\). Based on this, we will see that \(j^2_{\theta} = e\). Multiplication of Rotations and Flips To describe the group structure, we want to see what happens if we perform two rotations, two flips, a rotation followed by a flip and a flip followed by a rotation. Two Rotations: This case is easy, since two rotations around the \(z-\)axis (spinning around) is just another rotation so $$ \begin{align*} r_{\alpha}r_{\beta} = r_{\alpha+\beta} \end{align*} $$ A Flip by \(\beta\) followed by a Rotation of \(\alpha\) \(r_{\alpha}j_{\beta}\): $$ \begin{align*} r_{\alpha}j_{\beta} = j_{\beta+\frac{\alpha}{2}} \end{align*} $$ We flip the disk where \(l_{\beta}\) is fixed like before, but then we add a rotation by \(\alpha\) so the end result is a flip around \(u_{\beta+\frac{\alpha}{2}}\) where it's the final fixed rotation axis. Draw a circle and cut it. Draw the original rotation axis \(l_{\beta}\) flip it over this access. Now add a small rotation by \(\alpha\). Mark it on the circle and then flip the shape. again. The composition of these two operations (flip+rotation) will actually be equivalent to a flip around the vector \(u_{\beta+\frac{\alpha}{2}}\). (TODO: why not just \(\alpha + \beta\)?) A Rotation followed by a Flip \(j_{\alpha}r_{\beta}\): $$ \begin{align*} j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}} \end{align*} $$ Two Flips \(j_{\alpha}j_{\beta}\). Now this is clearly a rotation since we're back to the same face. but we're flipping by a different axis each time. The final rotation is the difference of the two times two. (TODO: why times 2?) $$ \begin{align*} j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)} \end{align*} $$ Elements of \(D\) Based on the previous list, we can now list precisely the elements of (D). We have \(r_{\theta}\) for unique \(\theta \in [0, 2\pi)\). Noting that \(r_{\theta + 2\pi n} = r_{\theta}\) \(j_{\theta}\) for unique \(\theta \in [0, \pi)\). Noting that \(j_{\theta + \pi n} = j_{\theta}\) In addition to the multiplication table based on the previous discussion. \(r_{\alpha}r_{\beta} = r_{\alpha+\beta}\) \(r_{\alpha}j_{\beta} = j_{\beta+\frac{\alpha}{2}}\) \(j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}}\) \(j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)}\) Alternative Description of \(D\) Another description is that let \(j = j_{0}\). Then, \(j_{\theta} = r_{2\theta}j\). So every element of \(D\) can be written uniquely in one of the following two forms. \(r_{\theta}, \theta \in [0, 2\pi]\) \(r_{\theta}j, \theta \in [0, 2\pi]\) where \(r_{\theta + 2\pi n} = r_{\theta}\) \(r_{\alpha}r_{\beta} = r_{\alpha+\beta}\) \(r_{\alpha + \beta}\) \(j^2 = e\) \(jr_{\theta} = r_{\theta}^{-1}j\). (TODO: Show this using the previous rules) This is a complete description of \(D\). Dihedral Groups Fix \(n \geq 3\). Let \(V = \{u_{\frac{2\pi}{n}k}, k = 0,...,n-1\}\) be the vertices of a regular \(n-\)gon. Note that \(D_n \leq D \leq SO(3)\). Now, the group \(D_n\) will include specifically the symmetries of the disk that take the vertices of the polygon to themselves or another vertex in the polygon. In \(D_n\), $$ \begin{align*} r_{\frac{2\pi}{n}} = r = Rot_{\frac{2\pi}{n}}(e_3) \end{align*} $$ Rotations in \(D_n\) are therefore: \(e, r, r^2, r^3, ..., r^{n-1}\) where \(r^{k+n} = r^k\). Flips in \(D_n\) are \(j, rj, r^2,...,r^{n-1}j\) since we established that \(j_{\frac{\pi}{n}k} = r_{\frac{2\pi}{n}}j_0\). In general, we’ll have \(n\) flips for an \(n-\)polygon illustrated as follows]]></summary></entry><entry><title type="html">Lecture 09/10: Subgroups</title><link href="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html" rel="alternate" type="text/html" title="Lecture 09/10: Subgroups" /><published>2025-02-02T00:01:36-08:00</published><updated>2025-02-02T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html"><![CDATA[<div class="mintheaderdiv">
 Definition 2.2.1
 </div>
 <div class="mintbodydiv">
@@ -177,14 +303,20 @@ Let \(T\) be the set of words \(\{e\} \cup \{g_1...g_k\}\) where \(g_i \in S\) o
 
 <p><br />
 <!-----------------------------------------------------------------------------></p>
-<h4><b>Examples</b></h4>
+<h4><b>Lattice of Subgroups</b></h4>
+<p>Consider the group \(S_3 = \{e, (1 \ 2), (1 \ 3), (2 \ 3), (1 \ 2 \ 3), (1 \ 3 \ 2)\}\). We can list its subgroups in terms of its generating subsets as follows:</p>
 <ul>
 	<li>\(\langle (1 \ 2) \rangle = \{e, (1 \ 2)\}\). This says that the subgroup generated by \(\{(1 \ 2)\}\) is \(\{e, (1 \ 2)\} = \langle (1 \ 2) \rangle \)</li>
-	<li>\(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\)</li>
+	<li>\(\langle (1 \ 3) \rangle = \{e, (1 \ 3)\}\).</li>
+	<li>\(\langle (2 \ 3) \rangle = \{e, (2 \ 3)\}\).</li>
+	<li>\(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\) = \(\langle (1 \ 3 \ 2) \rangle\) </li>
 	<li>\(S_3 = \langle (1 \ 2), (1 \ 2 \ 3) \rangle\).</li>
-	<li>\(S_4 = \langle (1 \ 2 \ 3 \ 4), (2 \ 4) \rangle\). </li>	
 </ul>
-<p><br /></p>
+<p>We can then draw this in the following figure</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec10/lattice1.png" width="55%" class="center" /></p>
+
+<p>Notice also that 	\(S_4 = \langle (1 \ 2 \ 3 \ 4), (2 \ 4) \rangle\).
+<br /></p>
 <hr />
 
 <p><br />
@@ -243,14 +375,14 @@ Let \(H = \{a^k \ : \ k \in \mathbf{Z}\}\). We will show that \(\langle a \rangl
 
 <li>If \(a = 0\), then \(\langle a \rangle = \mathbf{Z}0 = \{0\}\)  is the trivial subgroup. </li>
 
-<li>If \(a = 0\), then \(\mathbf{Z}a\) is infinite. In fact it is isomorphic to \(\mathbf{Z}\) so \(\mathbf{Z}a \approx \mathbf{Z}\). </li>
+<li>If \(a \neq 0\), then \(\mathbf{Z}a\) is infinite. In fact it is isomorphic to \(\mathbf{Z}\) so \(\mathbf{Z}a \approx \mathbf{Z}\). </li>
 
 <li>Note here that \(\mathbf{Z} \neq \mathbf{Z}a\) unless \(a = \pm 1\).</li>
 
 <li>Also note, that \(\langle a \rangle  = \langle -a \rangle\).</li>
 </ul>
 
-<p>Now consider \(a, b \in \mathbf{Z}\). Suppose we want to find the subgroup generated by the set of \(\{a,b\}\), In other words, \(\langle a,b \rangle\). This is the set of all words composed of \(a\) and \(b\) and their inverses. In fact is the set of all integer combinations of \(a\) and \(b\)</p>
+<p>Now consider \(a, b \in \mathbf{Z}\). Suppose we want to find the subgroup generated by the set of \(\{a,b\}\), In other words, \(\langle a,b \rangle\). This is the set of all words composed of \(a\) and \(b\) and their inverses. In fact this is the set of all integer combinations of \(a\) and \(b\)</p>
 <div>
 	$$
 	\begin{align*}
@@ -259,7 +391,6 @@ Let \(H = \{a^k \ : \ k \in \mathbf{Z}\}\). We will show that \(\langle a \rangl
 	$$
 </div>
 <p>This is also a cyclic subgroup because \(\langle a, b \rangle = I(a,b) = \mathbf{Z}d\) where \(d = gcd(a,b)\) So the gcd is the generator of this subgroup. In fact, we will see next that all subgroups of \(\mathbf{Z}\) are cyclic
-<br />
 <br /></p>
 <hr />
 
@@ -328,7 +459,7 @@ Proposition
 \(o(a) = |\langle a \rangle| \in \mathbf{N} \cap \{\infty\} \)
 </div>
 <p><br />
-Alternatively
+This says that the order of an element is equal to the size of its generated subgroup \(\langle a \rangle\). But we also defined the order of an element previously as follows
 <br />
 <!-----------------------------------------------------------------------------></p>
 <div class="peachheaderdiv">
@@ -342,12 +473,15 @@ Proposition (Book: 2.2.17)
 </div>
 <!----------------------------------------------------------------------------->
 <p><br />
-These two are equivalent.
+The claim is that these two definitions are equivalent.
 <br />
 <br />
 <b>Proof</b>
 <br />
-By definition, the cyclic subgroup generated by \(a\) is \(\langle a \rangle = \{a^k \ | \ k \in \mathbf{Z} \}\). If \(\langle a \rangle\) is finite, then two powers of \(a\) must coincide (side note: why? think of the integers mod 7 with addition, \(2^2 = 2+2\) and \(2^9=18\) both leave a remainder of 4. While \(2^7\) is \(e\)). So \(a^i = a^{j}\) for some \(i &lt; j\). This means that \(a^{j-i} = e\) where \(k = j - i &gt; 0\). Therefore, let \(k\) be the smallest positive number such that \(a^k = e\). We claim that \(k = n\). To see this, suppose we have some power \(m\) of \(a\). Write \(m = kq + r\) where \(0 \leq r &lt; k\) and \(r = rem_k(m)\). This means that</p>
+By definition, the cyclic subgroup generated by \(a\) is \(\langle a \rangle = \{a^k \ | \ k \in \mathbf{Z} \}\). Suppose that \(o(a) = |\langle a \rangle| = n\). Since \(\langle a \rangle\) is finite, then two powers of \(a\) must coincide. So \(a^i = a^{j}\) for some \(i &lt; j\). This means that \(a^{j-i} = e\) where \(k = j - i &gt; 0\) (side note: why? think of the integers mod 7 with addition, \(2^2 = 2+2\) and \(2^9=18\) both leave a remainder of 4. While \(2^7\) is \(e\)). By the well-ordering principle, there a least \(k\) such that \(a^k = e\), We want to show that \(k\) is equal to the order of \(\langle a \rangle\) which is \(n\). 
+<br />
+<br />
+Now, suppose we have some power \(m\) of \(a\). Write \(m = kq + r\) where \(0 \leq r &lt; k\) and \(r = rem_k(m)\). So \(a^m = (a^k)^qa^r = a^qa^r = a^r\). This means that</p>
 <div>
 	$$
 	\begin{align*}
@@ -390,7 +524,16 @@ For \((a)\), we want to show this by finding an example of an isomorphism. So de
 <p>To show that this map is an isomorphism, we need to show that it is a bijection and also that for any two elements \(a, b \in \mathbf{Z}\), \(\varphi(ab) = \varphi(a)\varphi(b)\) (Definition 2.1.13).
 <br />
 <br />
-To show that it is a bijection, observe that this map is surjective or onto by the definition of \(\langle a \rangle\). (Recall that that \(\langle a \rangle\) is of infinite order). It is also injective or 1-1 because all the elements of \(\langle a \rangle\) (powers of \(a\)) are distinct. Furthermore, see that \(\varphi(k + l) = a^{k+l} = a^ka^k\). So \(\varphi\) is an isomorphism.
+To show that it is a bijection, observe that this map is surjective or onto by the definition of \(\langle a \rangle\). (Recall that that \(\langle a \rangle\) is of infinite order). It is also injective or 1-1 because all the elements of \(\langle a \rangle\) (powers of \(a\)) are distinct. Furthermore, observe that for any \(k, l \in \mathbf{Z}\)</p>
+<div>
+	$$
+	\begin{align*}
+	 \varphi(k + l) &amp;= a^{k + l}, \\
+	 \varphi(k)\varphi(l) &amp;= a^k a^l = a^{k+1}.
+	\end{align*}
+	$$
+</div>
+<p>So \(\varphi\) is an isomorphism.
 <br />
 <br />
 Similarly for \((b)\), we want to define an isomorphism. Note here that both \(\mathbf{Z}_n\) and \(\langle a \rangle\) have \(n\) elements so define the map</p>
@@ -402,7 +545,23 @@ Similarly for \((b)\), we want to define an isomorphism. Note here that both \(\
 	\end{align*}
 	$$
 </div>
-<p>where \(0 \leq k \leq n-1\). In \(\mathbf{Z}_n\), the addition of \([k]\) and \([l]\) is \([r]\) where \(r\) is the remainder after dividing \(k+l\) by \(n\). While the multiplication in \(\langle a \rangle\) is given by \(a^ka^l = a^{k+l} = a^r\) where \(r\) is also the remainder after dividing \(k+l\) by \(n\) as we saw earlier. Therefore \(\varphi\) is an isomorphism.
+<p>where \(0 \leq k \leq n-1\). In \(\mathbf{Z}_n\), This map is both injective and surjective. Furthermore, observe that \([k] + [l] = [k+l]\) but since we’re module class \(n\), then \([k+l] = [qn + r] = [0 + r] = [r]\) so</p>
+<div>
+	$$
+	\begin{align*}
+	 \varphi([k] + [l]) &amp;= a^{[k + l]} = a^{[r]}.
+	\end{align*}
+	$$
+</div>
+<p>while,</p>
+<div>
+	$$
+	\begin{align*}
+	 \varphi([k])\varphi([l]) &amp;= a^{[k]}a^{[l]} = a^{[k+l]} = a^{[r]}.
+	\end{align*}
+	$$
+</div>
+<p>Therefore \(\varphi\) is an isomorphism.
 <br />
 <br /></p>
 <hr />
@@ -410,14 +569,23 @@ Similarly for \((b)\), we want to define an isomorphism. Note here that both \(\
 <p><br />
 <!----------------------------------------------------------------------></p>
 <h4><b>Subgroups of \(\mathbf{Z}_{12}\)</b></h4>
-<p>TODO
-<br />
-<br /></p>
+<p>We can also build a lattice for the subgroups of \(\mathbf{Z}_{12}\).</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec10/z12.png" width="80%" class="center" /></p>
+<p>Note that</p>
+<ul>
+	<li>\(\langle [1] \rangle = \mathbf{Z}_{12} = \langle [5] \rangle = \langle [7] \rangle = \langle [11] \rangle\).</li>
+	<li>\(\langle [2] \rangle = \{[0],[2],[4],[6],[8],[10]\}\).</li>
+	<li>\(\langle [3] \rangle = \{[0],[3],[6],[9]\}\).</li>
+	<li>\(\langle [4] \rangle = \{[0],[4],[8]\}\).</li>
+	<li>\(\langle [6] \rangle = \{[0],[6]\}\).</li>
+	<li>\(\langle [12] \rangle = \{[0]\}\).</li>
+</ul>
+<p><br /></p>
 <hr />
 
 <p><br />
 <!----------------------------------------------------------------------></p>
-<h4><b>Cyclic Subgroups in \(\mathbf{Z}_n\)</b></h4>
+<h4><b>Subgroups in the Finite Cyclic Group \(\mathbf{Z}_n\)</b></h4>
 
 <div class="yellowheaderdiv">
 Theorem
@@ -501,7 +669,7 @@ Let G = \(\langle g \rangle\) and \(o(g) = n &lt; \infty\). Then
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.2.1 A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\). Example: The group \(SO(3)\), the special orthogonal matrices is a subgroup of \(GL_3(\mathbf{R}\), the group of invertible \(3 \times 3\) matrices. Both of these are under the same operation. Non-example: \(\mathbf{Z}_n\): congruence classes modulo \(n\) with addition. We also have \(\phi(n)\): congruence classes with multiplicative inverses. This has the operation multiplication so it's not a subgroup! Even when you define \(\phi(4) = \{[1],[3]\}\) with addition, it will not satisfy the group requirements, so it's not a subgroup. Since we need to check a lot for subgroups. We have a set of necessary conditions. Proposition The necessary conditions for a subset \(H\) of \(G\) to be a subgroup of \(G\) are: \(H\) is not empty \(H\) is closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\) \(H\) is closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\) Proof \(H\) is associative. For any \(a,b,c \in H\), \((ab)c = a(bc)\). We're inheriting the same operation from \(G\) so \(H\) must be associative. \(H\) has an identity element: We know \(H\) is non-empty by (1). We also know for any \(h \in H\), \(h^{-1} \in H\) by (3). By (2), \(H\) is closed under multiplication so \(hh^{-1} \in H\) but \(hh^{-1} = e\) so the identity element is in \(H\). Example Consider the group \(G = S_4\) (permutations of \(\{1,2,3,4\}\)). The order of this group is \(|G| = 4\). The following are subgroups of \(S_4\): \(H=\{ \sigma \in S_4 \ | \ \sigma(4) = 4\}\). So this subgroup fixes \(4\) in the permutation. \(|H| = 3! = 6\). In fact, it is permuting only 3 numbers and it is isomorphic to \(S_3\). \(H'=\{e,(1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3)\}\). It's not empty. It has the identity element. Every element is its own inverse. The one thing not too obvious is proving it is closed. This subgroup is isomorphic to the symmetry group of the rectangle. What's an isomorphism in this case? Assign \(A\) to 1, \(B\) to 2, \(C\) to 3, \(D\) to 4. Recall that the symmetries of the rectangle has the symmetries \(r_1, r_2, r_3, e\) where \(r_1\) is rotating around the \(x-\)axis. Observe now that \(r_1\) rotates the vertices such that \(A\) and \(B\) switch positions and \(C\) and \(D\) switch positions. This is equivalent to the permutation \((1 \ 2)(3 \ 4)\). Following this, we'll see that \(r_2\) gets mapped to \((1 \ 4)(2 \ 3)\) and \(r_3\) gets mapped to \((1 \ 3)(2 \ 4)\). \(H''=\{e,(1 \ 2 \ 3 \ 4)(4 \ 3 \ 2 \ 1), (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3), (1 \ 3),(2 \ 4)\}\). This one is isomorphic to \(D_4\) which is the symmetries of the square. Generated Subgroups We begin with the following lemma which states that the intersection of a collection of subgroups is another subgroup. Lemma (Book Proposition 2.2.8) Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then $$ \begin{align*} H = H_1 \cap H_2 \ \cap ... \cap \ H_n \end{align*} $$ is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup. Proof Every \(H_i\) is a subgroup. Therefore \(e \in H_i\) for each \(i\) and thus \(e \in H\). For any two elements \(a, b \in H\), we must have \(a, b \in H_i\) for each \(i\). Their product \(ab\) must also be in every \(H_i\) since each \(H_i\) is a subgroup. Therefore \(ab \in H\). For any \(a \in H\), \(a\) must be in \(H_i\) for each \(i\). Therefore \(a^{-1} \in H_i \ \forall i\) and thus \(a^{-1} \in H\). Since any intersection of subgroups is another subgroups, we can then define a generated subgroups as follow Definition Let \(G\) be a group and let \(S\) be a subset of \(G\). Then $$ \begin{align*} \langle S \rangle = \bigcap_{\text{All } H_i \leq G \text{ such that } S \subseteq H_i} \end{align*} $$ \(\langle S \rangle\) is called the subgroup generated by \(S\) and it is the smallest subgroup in \(G\) that contains \(S\). Observe that \(\langle S \rangle\) is a subgroup by the previous lemma since it is the intersection of subgroups. \(S \subseteq \langle S \rangle\). It is the smallest group that contains \(S\). Because for any subgroup \(K \leq G\) such that \(S \subseteq K\), we must have \(\langle S \rangle \leq K\) (why? because if \(S\) is contained in \(K\) and \(K\) is a group, then all the products of the elements of \(S\) are in \(K\). Same for the inverses. So the whole subgroup \(\langle S \rangle\) must also be contained in \(K\).) Additionally from the book: If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\) Another way to describe \(\langle S \rangle\) is take a bottom up approach to describe the elements. Proposition Suppose \(G\) is a group and \(S\) is a subset of \(G\). Then \(\langle S \rangle\) is equal to the set of elements in \(G\) of the form $$ \begin{align*} g_1g_2...g_k \quad \text{ where either } g_i \in S \text{ or } g_i^{-1} \in S \text{ for all } i. \end{align*} $$ In other words, \(\langle S \rangle\) is a subgroup such that that it contains all the possible products \(g_1g_2...g_n\) which are in \(S\) or an inverse to an element of \(S\). The set that contains such products is often called the “set of words in \(S\)” in group theory. Proof Let \(T\) be the set of words \(\{e\} \cup \{g_1...g_k\}\) where \(g_i \in S\) or \(g_i^{-1} \in S\) for all \(i = 1,...,k\). We need to show that \(T\) is a subgroup of \(G\). [This is true because \(T\) has the identity element. For any two word, the product of these is just a longer word which is also in \(T\). It is closed under the inverses because \((g_1g_2...g_k)^{-1} = g_k^{-1}...g_1^{-1}\).] \(S \subseteq T\). [This is true because all the words of length 1 make up the set \(S\). It is true by construction.] If \(K \leq G\) is a subgroup such that \(S \subseteq K\), then \(T \subseteq K\). [This is true because if \(K\) contains \(S\) then it must contain all the inverses of these words and then also the products of all of these words since it's a group (closed) so it has all of these elements and it contains \(T\) itself.] Condition (1) and (2) imply that \(\langle S \rangle \subseteq T\). Conditions (1) and (3) imply that \(T \subseteq \langle S \rangle\). Therefore, \(T = \langle S \rangle\). \(\ \blacksquare\) We’ll use this proposition a lot. Examples \(\langle (1 \ 2) \rangle = \{e, (1 \ 2)\}\). This says that the subgroup generated by \(\{(1 \ 2)\}\) is \(\{e, (1 \ 2)\} = \langle (1 \ 2) \rangle \) \(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\) \(S_3 = \langle (1 \ 2), (1 \ 2 \ 3) \rangle\). \(S_4 = \langle (1 \ 2 \ 3 \ 4), (2 \ 4) \rangle\). Cyclic Groups and Cyclic Subgroups We’ll start with the definition Definition A group \(G\) is cyclic if \(G = \langle a \rangle\) for some \(a \in G\). Similarly, a subgroup \(H \leq G\) is cyclic if \(H = \langle a \rangle\) for some \(a \in G\). In fact, we can describe all the elements in a cyclic subgroup as follows Proposition (Book 2.2.9) Let \(a\) be an element of a group \(G\). The subgroup \(\langle a \rangle\) generated by \(a\) is \(\{a^k \ : \ k \in \mathbf{Z}\}\). Note here that this subgroup is abelian! Proof (book) Let \(H = \{a^k \ : \ k \in \mathbf{Z}\}\). We will show that \(\langle a \rangle = H\) as follows: \(\langle a \rangle \subseteq H\): We know that \(G\) is a group and \(H\) is subset of \(G\). We claim that it is a subgroup of \(G\). It is closed under multiplication because for any \(a^k\) and \(a^l\) in \(H\), \(a^{k+l} \in H\). It is closed under inverses because for any \(a^k \in H\), \((a^{k})^{-1} = a^{-k} \in H\). Furthermore, \(H\) contains \(a\) and since \(H\) is a subgroup, then \(H\) contains all the powers of \(a\). Therefore, \(\langle a \rangle \subseteq H\). \(H \subseteq \langle a \rangle\): We showed that \(H = \{a^k \ : \ k \in \mathbf{Z}\}\) is a subgroup above. It is closed under multiplication and so it contains all powers of \(a\). Therefore, \(H \subseteq \langle a \rangle\). \(\ \blacksquare\) Example Suppose \(G = (\mathbf{Z}, + )\). For any element \(a \in \mathbf{Z}\), $$ \begin{align*} \langle a \rangle = \{ka \ : \ k \in \mathbf{Z}\} = \mathbf{Z}a. \end{align*} $$ The set of powers of \(a\) is the set of all multiples of \(a\) since the group operation is addition. So \(a+a+a+a+a\) is the fifth power.]]></summary></entry><entry><title type="html">Groups and Isomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html" rel="alternate" type="text/html" title="Groups and Isomorphism" /><published>2025-02-01T00:01:36-08:00</published><updated>2025-02-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html"><![CDATA[<div class="mintheaderdiv">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.2.1 A non-empty subset \(H\) of a group \(G\) is called a subgroup if \(H\) is itself a group with the group operation inherited from \(G\). We write \(H \leq G\) to indicate that \(H\) is a subgroup of \(G\). Example: The group \(SO(3)\), the special orthogonal matrices is a subgroup of \(GL_3(\mathbf{R}\), the group of invertible \(3 \times 3\) matrices. Both of these are under the same operation. Non-example: \(\mathbf{Z}_n\): congruence classes modulo \(n\) with addition. We also have \(\phi(n)\): congruence classes with multiplicative inverses. This has the operation multiplication so it's not a subgroup! Even when you define \(\phi(4) = \{[1],[3]\}\) with addition, it will not satisfy the group requirements, so it's not a subgroup. Since we need to check a lot for subgroups. We have a set of necessary conditions. Proposition The necessary conditions for a subset \(H\) of \(G\) to be a subgroup of \(G\) are: \(H\) is not empty \(H\) is closed under multiplication. That is, for all elements \(h_1\) and \(h_2\) of \(H\), the products \(h_1h_2\) is also an element of \(H\) \(H\) is closed under inverses. For all \(h \in H\), the inverse \(h^{-1}\) is an element of \(H\) Proof \(H\) is associative. For any \(a,b,c \in H\), \((ab)c = a(bc)\). We're inheriting the same operation from \(G\) so \(H\) must be associative. \(H\) has an identity element: We know \(H\) is non-empty by (1). We also know for any \(h \in H\), \(h^{-1} \in H\) by (3). By (2), \(H\) is closed under multiplication so \(hh^{-1} \in H\) but \(hh^{-1} = e\) so the identity element is in \(H\). Example Consider the group \(G = S_4\) (permutations of \(\{1,2,3,4\}\)). The order of this group is \(|G| = 4\). The following are subgroups of \(S_4\): \(H=\{ \sigma \in S_4 \ | \ \sigma(4) = 4\}\). So this subgroup fixes \(4\) in the permutation. \(|H| = 3! = 6\). In fact, it is permuting only 3 numbers and it is isomorphic to \(S_3\). \(H'=\{e,(1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3)\}\). It's not empty. It has the identity element. Every element is its own inverse. The one thing not too obvious is proving it is closed. This subgroup is isomorphic to the symmetry group of the rectangle. What's an isomorphism in this case? Assign \(A\) to 1, \(B\) to 2, \(C\) to 3, \(D\) to 4. Recall that the symmetries of the rectangle has the symmetries \(r_1, r_2, r_3, e\) where \(r_1\) is rotating around the \(x-\)axis. Observe now that \(r_1\) rotates the vertices such that \(A\) and \(B\) switch positions and \(C\) and \(D\) switch positions. This is equivalent to the permutation \((1 \ 2)(3 \ 4)\). Following this, we'll see that \(r_2\) gets mapped to \((1 \ 4)(2 \ 3)\) and \(r_3\) gets mapped to \((1 \ 3)(2 \ 4)\). \(H''=\{e,(1 \ 2 \ 3 \ 4)(4 \ 3 \ 2 \ 1), (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4)(2 \ 3), (1 \ 3),(2 \ 4)\}\). This one is isomorphic to \(D_4\) which is the symmetries of the square. Generated Subgroups We begin with the following lemma which states that the intersection of a collection of subgroups is another subgroup. Lemma (Book Proposition 2.2.8) Let \(G\) be a group and let \(H_1, H_2,...,H_n\) be subgroups of \(G\). Then $$ \begin{align*} H = H_1 \cap H_2 \ \cap ... \cap \ H_n \end{align*} $$ is a subgroup of \(G\). More generally, if \(\{H_{\alpha}\}\) is any collection of subgroups, then \(\cap_{\alpha}\) is a subgroup. Proof Every \(H_i\) is a subgroup. Therefore \(e \in H_i\) for each \(i\) and thus \(e \in H\). For any two elements \(a, b \in H\), we must have \(a, b \in H_i\) for each \(i\). Their product \(ab\) must also be in every \(H_i\) since each \(H_i\) is a subgroup. Therefore \(ab \in H\). For any \(a \in H\), \(a\) must be in \(H_i\) for each \(i\). Therefore \(a^{-1} \in H_i \ \forall i\) and thus \(a^{-1} \in H\). Since any intersection of subgroups is another subgroups, we can then define a generated subgroups as follow Definition Let \(G\) be a group and let \(S\) be a subset of \(G\). Then $$ \begin{align*} \langle S \rangle = \bigcap_{\text{All } H_i \leq G \text{ such that } S \subseteq H_i} \end{align*} $$ \(\langle S \rangle\) is called the subgroup generated by \(S\) and it is the smallest subgroup in \(G\) that contains \(S\). Observe that \(\langle S \rangle\) is a subgroup by the previous lemma since it is the intersection of subgroups. \(S \subseteq \langle S \rangle\). It is the smallest group that contains \(S\). Because for any subgroup \(K \leq G\) such that \(S \subseteq K\), we must have \(\langle S \rangle \leq K\) (why? because if \(S\) is contained in \(K\) and \(K\) is a group, then all the products of the elements of \(S\) are in \(K\). Same for the inverses. So the whole subgroup \(\langle S \rangle\) must also be contained in \(K\).) Additionally from the book: If \(S\) contains a single element, \(S = \{a\}\), then the subgroup generated by \(S\) is denoted by \(\langle a \rangle\). If \(G = \langle S \rangle\), then \(G\) is generated by \(S\) or \(S\) generates \(G\) Another way to describe \(\langle S \rangle\) is take a bottom up approach to describe the elements. Proposition Suppose \(G\) is a group and \(S\) is a subset of \(G\). Then \(\langle S \rangle\) is equal to the set of elements in \(G\) of the form $$ \begin{align*} g_1g_2...g_k \quad \text{ where either } g_i \in S \text{ or } g_i^{-1} \in S \text{ for all } i. \end{align*} $$ In other words, \(\langle S \rangle\) is a subgroup such that that it contains all the possible products \(g_1g_2...g_n\) which are in \(S\) or an inverse to an element of \(S\). The set that contains such products is often called the “set of words in \(S\)” in group theory. Proof Let \(T\) be the set of words \(\{e\} \cup \{g_1...g_k\}\) where \(g_i \in S\) or \(g_i^{-1} \in S\) for all \(i = 1,...,k\). We need to show that \(T\) is a subgroup of \(G\). [This is true because \(T\) has the identity element. For any two word, the product of these is just a longer word which is also in \(T\). It is closed under the inverses because \((g_1g_2...g_k)^{-1} = g_k^{-1}...g_1^{-1}\).] \(S \subseteq T\). [This is true because all the words of length 1 make up the set \(S\). It is true by construction.] If \(K \leq G\) is a subgroup such that \(S \subseteq K\), then \(T \subseteq K\). [This is true because if \(K\) contains \(S\) then it must contain all the inverses of these words and then also the products of all of these words since it's a group (closed) so it has all of these elements and it contains \(T\) itself.] Condition (1) and (2) imply that \(\langle S \rangle \subseteq T\). Conditions (1) and (3) imply that \(T \subseteq \langle S \rangle\). Therefore, \(T = \langle S \rangle\). \(\ \blacksquare\) We’ll use this proposition a lot. Lattice of Subgroups Consider the group \(S_3 = \{e, (1 \ 2), (1 \ 3), (2 \ 3), (1 \ 2 \ 3), (1 \ 3 \ 2)\}\). We can list its subgroups in terms of its generating subsets as follows: \(\langle (1 \ 2) \rangle = \{e, (1 \ 2)\}\). This says that the subgroup generated by \(\{(1 \ 2)\}\) is \(\{e, (1 \ 2)\} = \langle (1 \ 2) \rangle \) \(\langle (1 \ 3) \rangle = \{e, (1 \ 3)\}\). \(\langle (2 \ 3) \rangle = \{e, (2 \ 3)\}\). \(\langle (1 \ 2 \ 3) \rangle = \{e, (1 \ 2 \ 3), (1 \ 3 \ 2)\}\) = \(\langle (1 \ 3 \ 2) \rangle\) \(S_3 = \langle (1 \ 2), (1 \ 2 \ 3) \rangle\). We can then draw this in the following figure]]></summary></entry><entry><title type="html">Groups and Isomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html" rel="alternate" type="text/html" title="Groups and Isomorphism" /><published>2025-02-01T00:01:36-08:00</published><updated>2025-02-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/01/math417-08-groups-and-isomorphism.html"><![CDATA[<div class="mintheaderdiv">
 Definition
 </div>
 <div class="mintbodydiv">

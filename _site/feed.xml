@@ -1,4 +1,164 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-14T14:13:43-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 12: Homomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism.html" rel="alternate" type="text/html" title="Lecture 12: Homomorphism" /><published>2025-02-04T00:01:36-08:00</published><updated>2025-02-04T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism.html"><![CDATA[<p>While isomorphisms need to be bijections, Homomorphisms do not.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-16T08:40:29-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 13: Cosets</title><link href="http://localhost:4000/jekyll/update/2025/02/05/math417-13-cosets.html" rel="alternate" type="text/html" title="Lecture 13: Cosets" /><published>2025-02-05T00:01:36-08:00</published><updated>2025-02-05T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/05/math417-13-cosets</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/05/math417-13-cosets.html"><![CDATA[<div class="mintheaderdiv">
+Definition 2.4.14
+</div>
+<div class="mintbodydiv">
+Let \(H\) be subgroup of a group \(G\). <br />
+\(gH = \{gh \ | \ h \in H\}\) is called a left coset of \(H\) in \(G\). 
+<br />
+\(Hg = \{hg \ | \ h \in H\}\) is called a right coset of \(H\) in \(G\).
+</div>
+<p><br />
+<!------------------------------------------------------------------------></p>
+<h4><b>Example</b></h4>
+<p>Let \(D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). where \(r^4 = e = j^2\) and \(jr = r^{-1}j\).
+<br /> Define the subgroup \(H = \langle j \rangle = \{e, j\}\). The left cosets are:</p>
+<div>
+$$
+\begin{align*}
+eH &amp;= \{e, j\} = jH \\
+rH &amp;= \{r, rj\} = rjH \\
+r^2H &amp;= \{r^2, r^2j\} = r^2jH \\
+r^3H &amp;= \{r^3, r^3j\} = r^3jH \\
+\end{align*}
+$$
+</div>
+<p>Notice here that none of the elements overlap between the sets so this gives us a way to partition the set \(G\) into four pairwise disjoint subsets (We’ll prove this next). The right cosets are</p>
+<div>
+$$
+\begin{align*}
+He &amp;= \{e, j\} = Hj \\
+Hr &amp;= \{r, jr\} = \{e, r^3j\} = Hr^3j \\
+Hr^2 &amp;= \{r^2, r^2j\} = Hr^2j \\
+Hr^3 &amp;= \{r^3, rj\} = Hrj \\
+\end{align*}
+$$
+</div>
+<p>Next we show why these subets must be pairwise disjoint.
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition (2.5.4)
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\). If \(X, Y \subseteq G\) are left \(H-\)cosets, then either
+<ol>
+	<li>\(X \cap Y = \emptyset\).</li>
+	<li>\(X = Y\).</li>
+</ol>
+</div>
+<p><br />
+<!------------------------------------------------------------------------>
+<b>Proof</b>
+<br />
+We’ll prove that not (1) implies (2) (to prove an or statement). <br />
+Suppose that \(g \in X \cap Y\). We want to show that \(X = Y\). Since \(X\) and \(Y\) are left cosets, then we can write \(X = xH\) and \(Y = yH\) for some \(x, y \in G\). Since \(g \in X \cap Y\), then we can write \(g = xh_1 = yh_2\) for some \(h_1, h_2 \in H\). Observe now that</p>
+<div>
+$$
+\begin{align*}
+x &amp;= gh_1^{-1} \\
+  &amp;= (yh_2)h_1^{-1} \\
+  &amp;= y(h_2h_1^{-1})
+\end{align*}
+$$
+</div>
+<p>Likewise</p>
+<div>
+$$
+\begin{align*}
+y &amp;= gh_2^{-1} \\
+  &amp;= (xh_1)h_2^{-1} \\
+  &amp;= x(h_1h_2^{-1})
+\end{align*}
+$$
+</div>
+<p>Now, let \(xh \in xH\), then</p>
+<div>
+$$
+\begin{align*}
+xh &amp;= (yh_2h_1^{-1})h \\
+   &amp;= y(h_2h_1^{-1}h)
+\end{align*}
+$$
+</div>
+<p>But this implies that \(xh \in yH\). So \(xH \subseteq yH\). Likewise, let \(yh \in yH\), then</p>
+<div>
+$$
+\begin{align*}
+yh &amp;= (xh_1h_2^{-1})h \\
+   &amp;= x(h_1h_2^{-1}h)
+\end{align*}
+$$
+</div>
+<p>so \(yh \in xH\) and \(yH \subseteq xH\). Therefore \(xH = yH\). \(\blacksquare\) 
+<br />
+<br />
+Based on this, we have the following proposition
+<br />
+<!------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition 2.5.3
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be
+elements of \(G\). The following conditions are equivalent:
+<ol type="a">
+	<li>\(a \in bH\).</li>
+	<li>\(b \in aH\).</li>
+	<li>\(aH = bH\).</li>
+	<li>\(b^{-1}a \in H\).</li>
+	<li>\(a^{-1}b \in H\).</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
+<p><br />
+<b>Proof (book)</b>
+<br />
+Suppose \((a)\) holds. Let \(a \in bH\). Then we can write \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). 
+<br />
+<br />
+For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\).
+<br />
+<br />
+For \((d)\) ….
+<br />
+<br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Lagrange Theorem</b></h4>
+<p>Based on what we learned so far, we can now present the most important results
+<!------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\). Then every left \(H-\)coset and right \(H-\)coset has the same size as \(H\).
+</div>
+<p><br />
+<br /></p>
+<div class="peachheaderdiv">
+Lagrange Theorem
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a finite group \(G\) (\(|G| = n\). Then \(|H|\) divides \(|G|\).
+</div>
+<p><br />
+<br /></p>
+<div class="peachheaderdiv">
+Order Theorem
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a finite group \(G\). If (\(|G| = n\). Then for any \(g \in G\), \(o(g) = |\langle g \rangle|\) divides \(|G|\).
+</div>
+
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.4.14 Let \(H\) be subgroup of a group \(G\). \(gH = \{gh \ | \ h \in H\}\) is called a left coset of \(H\) in \(G\). \(Hg = \{hg \ | \ h \in H\}\) is called a right coset of \(H\) in \(G\). Example Let \(D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). where \(r^4 = e = j^2\) and \(jr = r^{-1}j\). Define the subgroup \(H = \langle j \rangle = \{e, j\}\). The left cosets are: $$ \begin{align*} eH &amp;= \{e, j\} = jH \\ rH &amp;= \{r, rj\} = rjH \\ r^2H &amp;= \{r^2, r^2j\} = r^2jH \\ r^3H &amp;= \{r^3, r^3j\} = r^3jH \\ \end{align*} $$ Notice here that none of the elements overlap between the sets so this gives us a way to partition the set \(G\) into four pairwise disjoint subsets (We’ll prove this next). The right cosets are $$ \begin{align*} He &amp;= \{e, j\} = Hj \\ Hr &amp;= \{r, jr\} = \{e, r^3j\} = Hr^3j \\ Hr^2 &amp;= \{r^2, r^2j\} = Hr^2j \\ Hr^3 &amp;= \{r^3, rj\} = Hrj \\ \end{align*} $$ Next we show why these subets must be pairwise disjoint. Proposition (2.5.4) Let \(H\) be a subgroup of a group \(G\). If \(X, Y \subseteq G\) are left \(H-\)cosets, then either \(X \cap Y = \emptyset\). \(X = Y\). Proof We’ll prove that not (1) implies (2) (to prove an or statement). Suppose that \(g \in X \cap Y\). We want to show that \(X = Y\). Since \(X\) and \(Y\) are left cosets, then we can write \(X = xH\) and \(Y = yH\) for some \(x, y \in G\). Since \(g \in X \cap Y\), then we can write \(g = xh_1 = yh_2\) for some \(h_1, h_2 \in H\). Observe now that $$ \begin{align*} x &amp;= gh_1^{-1} \\ &amp;= (yh_2)h_1^{-1} \\ &amp;= y(h_2h_1^{-1}) \end{align*} $$ Likewise $$ \begin{align*} y &amp;= gh_2^{-1} \\ &amp;= (xh_1)h_2^{-1} \\ &amp;= x(h_1h_2^{-1}) \end{align*} $$ Now, let \(xh \in xH\), then $$ \begin{align*} xh &amp;= (yh_2h_1^{-1})h \\ &amp;= y(h_2h_1^{-1}h) \end{align*} $$ But this implies that \(xh \in yH\). So \(xH \subseteq yH\). Likewise, let \(yh \in yH\), then $$ \begin{align*} yh &amp;= (xh_1h_2^{-1})h \\ &amp;= x(h_1h_2^{-1}h) \end{align*} $$ so \(yh \in xH\) and \(yH \subseteq xH\). Therefore \(xH = yH\). \(\blacksquare\) Based on this, we have the following proposition Proposition 2.5.3 Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be elements of \(G\). The following conditions are equivalent: \(a \in bH\). \(b \in aH\). \(aH = bH\). \(b^{-1}a \in H\). \(a^{-1}b \in H\). Proof (book) Suppose \((a)\) holds. Let \(a \in bH\). Then we can write \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\). For \((d)\) …. Lagrange Theorem Based on what we learned so far, we can now present the most important results Proposition Let \(H\) be a subgroup of a group \(G\). Then every left \(H-\)coset and right \(H-\)coset has the same size as \(H\). Lagrange Theorem Let \(H\) be a subgroup of a finite group \(G\) (\(|G| = n\). Then \(|H|\) divides \(|G|\). Order Theorem Let \(H\) be a subgroup of a finite group \(G\). If (\(|G| = n\). Then for any \(g \in G\), \(o(g) = |\langle g \rangle|\) divides \(|G|\).]]></summary></entry><entry><title type="html">Lecture 12: Homomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism.html" rel="alternate" type="text/html" title="Lecture 12: Homomorphism" /><published>2025-02-04T00:01:36-08:00</published><updated>2025-02-04T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism.html"><![CDATA[<p>While isomorphisms need to be bijections, Homomorphisms do not.</p>
 <div class="mintheaderdiv">
 Definition 2.4.1
 </div>
@@ -243,13 +403,136 @@ Proposition
 <div class="peachbodydiv">
 To show a subgroup \(N \leq G\) is normal, it suffies to show that \(gNg^{-1} \subseteq N\) for all \(g \in G\).
 </div>
-<!------------------------------------------------------------------------------>
 <p><br />
+That is, we just need to check that each \(gNg^{-1}\) is a subset of \(N\).
+<!------------------------------------------------------------------------------>
+<br />
+<br />
 <b>Proof</b>
 <br />
-TODO</p>
+Given that \(gNg^{-1} \subseteq N\). We want to show that this implies that \(N \subseteq gNg^{-1}\) which means that \(gNg^{-1} = N\) which is what is required by the definition.
+<br />
+<br />
+Let \(g \in G\) and \(n \in N\). Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	n &amp;= (gg^{-1})n(gg^{-1}) \\
+	  &amp;= g(g^{-1}ng)g^{-1} \\
+	  &amp;= g(x)g^{-1}
+	\end{align*}
+	$$
+</div>
+<p>where \(x = g^{-1}ng\). If we show that \(gNg^{-1} \subseteq N\), then we need to show that for any \(n \in N\), this \(n\) can be written as \(n = g^{-1}ng = x\) which means that we want to show that \(x \in N\). But by the hypothesis</p>
+<div>
+	$$
+	\begin{align*}
+	 x &amp;= g^{-1}ng \\
+	   &amp;= g^{-1}n(g^{-1})^{-1} \\
+	   &amp;= ana^{-1} \quad \text{ (let $a = g^{-1}$ where $g^{-1} \in G$)}
+	\end{align*}
+	$$
+</div>
+<p>Since \(g^{-1}\) is just an arbitrary element in \(G\), then \(ana^{-1} \in N\) which is what we wanted to show. \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
 
 <p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<p>Take \(D_3 = \{e, r, r^2, j, rj, r^2j\}\) where \(r^3 = e = j^2\) and \(jr = r^{-1}j\). This rule also implies \(jr^k = r^{-k}j\). Now suppose we have the subgroup generated by \(j\), \(H = \langle j \rangle = \{e, j\}\). Is this a normal subgroup?
+<br />
+<br />
+For every \(g \in G\), we want to show that \(gHg^{-1} \subseteq H\) so</p>
+<div>
+	$$
+	\begin{align*}
+	 eHe^{-1} &amp;= H. \\
+	 rHr^{-1} &amp;= \{rer^{-1}, rjr^{-1}\} = \{e, r^2j\} \neq H.
+	\end{align*}
+	$$
+</div>
+<p>So we stop here. This is not a normal subgroup. Does \(D_3\) have any normal subgroups? The trivial subgroups are normal subgroups. What about any non-trivial subgroups? It turns out that \(N = \langle r \rangle = \{e,r,r^2\}\) is normal in \(D_3\). We have to check all 6 cases</p>
+<div>
+	$$
+	\begin{align*}
+	 eNe^{-1} &amp;= N \\
+	 rNr^{-1} &amp;= N \\
+	 r^2Nr^{-2} &amp;= N \\
+	 jNr^{-1} &amp;= N \\
+	 rjN(rj)^{-1} &amp;= N \\
+	 r^2jN(r^2j)^{-1} &amp;= N.
+	\end{align*}
+	$$
+</div>
+<p>FACT: If \(G\) has some generating set like \(G = \langle g_1, ..., g_r \rangle\), then to check if \(H\) is normal, we just need to show that \(g_kHg_k^{-1}\) for each \(g_i\) in the generating set \(g_1, ... g_k\). So for \(D_3\), we know it is generated by \(\langle r, j \rangle\), so we can check those two.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Kernels are Normal Subgroups</b></h4>
+<p>Back to homomorphisms. It turns out that kernels of homomorphisms are normal subgroups.
+<br /></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(\varphi \ : \ G \rightarrow H\) is a homomorphism, then \(K = ker \varphi = \{g \in G \ | \ \varphi(g) = e\} \) is a normal subgroup.
+</div>
+<p><br />
+<!------------------------------------------------------------------------------>
+<b>Proof</b>
+<br />
+We know that \(k\) is a subgroup of \(G\). We need to show that given \(g \in G\) and \(x \in K\) that \(gxg^{-1} \in K\). By definition, to check if any element is in the kernel, we need to apply the homomorphism and see if the result is the identity element. So</p>
+<div>
+	$$
+	\begin{align*}
+	 \varphi(gNg^{-1}) &amp;= \varphi(g)\varphi(x)\varphi(g)^{-1} \\
+					  &amp;= \varphi(g)e\varphi(g)^{-1} \\
+					  &amp;= \varphi(g)\varphi(g)^{-1} \\
+					  &amp;= e.
+	\end{align*}
+	$$
+</div>
+<p>From this, we see \(gKg^{-1} \subseteq K\) for all \(g \in G\). \(\blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Injectivity of Homomorphisms</b></h4>
+<p>Another useful fact:
+<br /></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Let \(\varphi \ : \ G \rightarrow H\) be a homomorphism, then \(\varphi\) is injective if and only if \(K = ker(\varphi) = \{e\} \).
+</div>
+<p><br />
+<!------------------------------------------------------------------------------>
+<b>Proof</b>
+<br />
+\(\Longrightarrow\): Suppose that \(\varphi\) is injective. This means that if \(\varphi(a) = \varphi(e) = e\), then \(a = e\). But this means that the only element where \(\varphi(a) = e\) is the identity element itself. [why must \(varphi(e)=e\)? I can’t remember, verify].
+<br />
+<br />
+\(\Longleftarrow\):Now suppose that \(K = ker(\varphi) = \{e\}\). We want to show that \(\varphi\) is injective. This means that for any elements \(a, b \in G\), if \(\varphi(a) = \varphi(b)\), then we must have \(a = b\). Let \(\varphi(a) = \varphi(b) = h \in H\). We want to show that \(a = b\). Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	 \varphi(a^{-1}b) &amp;= \varphi(a)^{-1}\varphi(b) \\
+					  &amp;= h^{-1}h \\
+					  &amp;= e_H.
+	\end{align*}
+	$$
+</div>
+<p>Since \(\varphi(a^{-1}b) = e_H\), then this implies that \(a^{-1}b \in K\). But \(K\) has only a single element which is the identity. Then \(a^{-1}b = e\) which means that \(a = b\) as desired. \(\ \blacksquare\)
+<br />
+<br />
 <br /></p>
 <hr />
 
@@ -259,7 +542,7 @@ TODO</p>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[While isomorphisms need to be bijections, Homomorphisms do not. Definition 2.4.1 A map between groups \(\varphi : G \rightarrow H\) is called a homomorphism if it preserves group multiplication, \(\varphi(g_1)(g_2) = \varphi(g_1)\varphi(g_2)\) for all \(g_1, g_2 \in G\). An endomorphism of \(G\) is a homomorphism \(\varphi: G \rightarrow G\). So Given a homomorphism, if we find that it’s a bijection, then it is an isomorphism. Some Facts about Homomorphisms Proposition 2.4.11 Let \(\varphi : G \rightarrow H\) and \(\psi : G \rightarrow H\) be homomorphisms of groups. \(\varphi(e_G) = e_H\) For each \(g \in G\), \(\varphi(g^{-1}) = (\varphi(g))^{-1}\) Proof (Book) For any \(g \in G\). $$ \begin{align*} \varphi(e_G)\varphi(g) &amp;= \varphi(e_Gg) \quad \text{(because $\varphi$ is a homomorphism)} \\ &amp;= \varphi(g) \end{align*} $$ So \(\varphi(e_G)\) is an identity element in \(H\) but by the uniqueness of the identity element, then \(\varphi(e_G) = e_H\). Similarly, for any \(\in G\), $$ \begin{align*} \varphi(g^{-1})\varphi(g) &amp;= \varphi(g^{-1}g) \quad \text{(because $\varphi$ is a homomorphism)} \\ &amp;= \varphi(e_G) \\ &amp; = e_H \end{align*} $$ And by the uniqueness of the inverse, \(\varphi(g^{-1}) = \varphi(g)^{-1}\). \(\ \blacksquare\) The Image of a Homomorphism Given a homomorphism \(\varphi\) between two groups \(G\) and \(H\), the image of \(\varphi\) which is a subset of \(H\) is also a subgroup. Proposition Given some homomorphism \(\varphi: G \rightarrow H\). The image of this function $$ \begin{align*} \varphi(G) = \{\varphi(g) \ : \ g \in G\} \end{align*} $$ is a subgroup of \(H\). Proof TODO The Kernel of a Homomorphism The kernel of a group is simply all the elements such that \(\varphi(g)=e\). Definition 2.4.14 Let \(\varphi: G \rightarrow H\) be a homomorphism of groups. The kernel of the homomorphism \(\varphi\), denoted \(ker(\varphi)\), is \(\varphi^{-1}(e_H) = \{g \in G \ : \ \varphi(g) = e_H\}\). In fact, The kernel of a group \(K = ker \ \varphi\) is a subgroup of \(G\). Proof We will show this by showing that the kernel satisfies the subgroup properties: We know by Proposition 2.4.11, that \(\varphi(e_G) = e_H\) so \(e_G \in K\). Closed under product: For any \(a,b \in K\), \(\varphi(a)\varphi(b) = e_He_H = e_H \in K\) Closed under inverses: For any \(a \in K\), \(\varphi(a^{-1}) = \varphi(a)^{-1} = e_H^{-1} = e_H\). Therefore,\(a^{-1} \in K\). \(\ \blacksquare\) Examples Example 1: Consider the following with the addition operation $$ \begin{align*} \pi \ : \ &amp;\mathbf{Z} \rightarrow \mathbf{Z}_n\\ &amp;a \rightarrow [a]_n \end{align*} $$ \(\pi\) is a homomorphism because \([a+b] = [a] + [b]\). Remember the rule is that \(\varphi(ab) = \varphi(a)\varphi(b)\) where the first operation comes from the first group while the second operation comes from the second group. Here, both groups have addition as their binary operation. \(\pi\) is also surjective. Since for any element \(h \in \mathbf{Z}_n\), we have an element \(g \in \mathbf{Z}\) such that \(\pi(g) = [g]\). Moreover, we see that \(ker(\pi) = \mathbf{Z}n = \langle n \rangle\). Example 2: Suppose \(g \in G\). Let $$ \begin{align*} \varphi \ : \ &amp;\mathbf{Z} \rightarrow G\\ &amp;k \rightarrow g^k \end{align*} $$ We want to show that \(\varphi(ab) = \varphi(a)\varphi(b)\). But we know that \(\varphi(ab) = g^{a+b} = g^ag^b = \varphi(a)\varphi(b)\). So \(\varphi\) is a homomorphism. Note here that the image of \(\varphi\) is the subgroup generated by \(g\), \(\langle g \rangle\). What about the kernel of \(\varphi\)? $$ \begin{equation*} ker(\varphi) = \begin{cases} \{0\} \quad &amp;\text{if } o(g) = \infty \\ \mathbf{Z}d \quad \quad &amp;\text{if } o(g) = d \end{cases} \end{equation*} $$ Example 3: Consider the following $$ \begin{align*} \varphi \ : \ &amp;D_n \rightarrow S_n\\ &amp;V \rightarrow Sym(V) \end{align*} $$ where \(V\) is the vertices of the polygon. In fact \(\varphi(D_n)\) is isomorphic to \(D_n\) and it is a subgroup of \(S_n\). Example 4: Consider the following $$ \begin{align*} \varphi \ : \ &amp;S_n \rightarrow GL(\mathbf{R}^{x})\\ &amp;\sigma \rightarrow P_{\sigma} \end{align*} $$ where \(P_{\sigma}\) is the matrix associated with the permutation \(\sigma\). For example $$ \begin{align*} (1 \ 2 \ 3) \rightarrow \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix} \end{align*} $$ Example 5: Consider the following $$ \begin{align*} \psi \ : \ &amp;GL(\mathbf{R}^{x}) \rightarrow \mathbf{R}^{x}\\ &amp;P \rightarrow \det(P) \end{align*} $$ This is another homomorphism. In fact, The composition of \(\psi \circ \varphi\) is a homomorphism. That is $$ \begin{align*} \psi \circ \varphi \ : \ &amp;S_n \rightarrow \mathbf{R}^{x}\\ &amp;\sigma \rightarrow \det(P_{\sigma}) \end{align*} $$ is a homomorphism. Fact: The composition of two homomorphism is a homomorphism. Example 6: Consider \(V\) where \(V\) is a vector space. Now consider the group \((V, +)\) (throw the scalar multiplication away). This is an abelian group. Consider the linear map $$ \begin{align*} T \ : \ &amp;V \rightarrow W \end{align*} $$ This is a homomorphism (recall that linear maps need to also to preserve scalar multiplication). Furthermore, \(ker T = \{v \in V \ | \ T(v) = 0\}\) (observe that the kernel is also the nullspace of \(T\)). Normal Subgroups It turns out that only a certain kind of subgroups could be kernels of homomorphism. Definition A normal subgroup of \(G\) is a subgroup \(N \leq G\) such that \(gNg^{-1} = N\) for all \(g \in G\) where \(gNg^{-1} = \{gng^{-1} \ | \ n \in N\}\). This operation \(x \rightarrow gxg^{-1}\) is called the conjugation of \(x\) by \(g\). The definition says that if we conjeguate all the elements of \(N\) by a fixed element \(g \in G\), then we should get \(N\) back for every \(g\). Proposition To show a subgroup \(N \leq G\) is normal, it suffies to show that \(gNg^{-1} \subseteq N\) for all \(g \in G\). Proof TODO]]></summary></entry><entry><title type="html">Lecture 11: Dihedral Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html" rel="alternate" type="text/html" title="Lecture 11: Dihedral Groups" /><published>2025-02-03T00:01:36-08:00</published><updated>2025-02-03T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html"><![CDATA[<div class="mintheaderdiv">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[While isomorphisms need to be bijections, Homomorphisms do not. Definition 2.4.1 A map between groups \(\varphi : G \rightarrow H\) is called a homomorphism if it preserves group multiplication, \(\varphi(g_1)(g_2) = \varphi(g_1)\varphi(g_2)\) for all \(g_1, g_2 \in G\). An endomorphism of \(G\) is a homomorphism \(\varphi: G \rightarrow G\). So Given a homomorphism, if we find that it’s a bijection, then it is an isomorphism. Some Facts about Homomorphisms Proposition 2.4.11 Let \(\varphi : G \rightarrow H\) and \(\psi : G \rightarrow H\) be homomorphisms of groups. \(\varphi(e_G) = e_H\) For each \(g \in G\), \(\varphi(g^{-1}) = (\varphi(g))^{-1}\) Proof (Book) For any \(g \in G\). $$ \begin{align*} \varphi(e_G)\varphi(g) &amp;= \varphi(e_Gg) \quad \text{(because $\varphi$ is a homomorphism)} \\ &amp;= \varphi(g) \end{align*} $$ So \(\varphi(e_G)\) is an identity element in \(H\) but by the uniqueness of the identity element, then \(\varphi(e_G) = e_H\). Similarly, for any \(\in G\), $$ \begin{align*} \varphi(g^{-1})\varphi(g) &amp;= \varphi(g^{-1}g) \quad \text{(because $\varphi$ is a homomorphism)} \\ &amp;= \varphi(e_G) \\ &amp; = e_H \end{align*} $$ And by the uniqueness of the inverse, \(\varphi(g^{-1}) = \varphi(g)^{-1}\). \(\ \blacksquare\) The Image of a Homomorphism Given a homomorphism \(\varphi\) between two groups \(G\) and \(H\), the image of \(\varphi\) which is a subset of \(H\) is also a subgroup. Proposition Given some homomorphism \(\varphi: G \rightarrow H\). The image of this function $$ \begin{align*} \varphi(G) = \{\varphi(g) \ : \ g \in G\} \end{align*} $$ is a subgroup of \(H\). Proof TODO The Kernel of a Homomorphism The kernel of a group is simply all the elements such that \(\varphi(g)=e\). Definition 2.4.14 Let \(\varphi: G \rightarrow H\) be a homomorphism of groups. The kernel of the homomorphism \(\varphi\), denoted \(ker(\varphi)\), is \(\varphi^{-1}(e_H) = \{g \in G \ : \ \varphi(g) = e_H\}\). In fact, The kernel of a group \(K = ker \ \varphi\) is a subgroup of \(G\). Proof We will show this by showing that the kernel satisfies the subgroup properties: We know by Proposition 2.4.11, that \(\varphi(e_G) = e_H\) so \(e_G \in K\). Closed under product: For any \(a,b \in K\), \(\varphi(a)\varphi(b) = e_He_H = e_H \in K\) Closed under inverses: For any \(a \in K\), \(\varphi(a^{-1}) = \varphi(a)^{-1} = e_H^{-1} = e_H\). Therefore,\(a^{-1} \in K\). \(\ \blacksquare\) Examples Example 1: Consider the following with the addition operation $$ \begin{align*} \pi \ : \ &amp;\mathbf{Z} \rightarrow \mathbf{Z}_n\\ &amp;a \rightarrow [a]_n \end{align*} $$ \(\pi\) is a homomorphism because \([a+b] = [a] + [b]\). Remember the rule is that \(\varphi(ab) = \varphi(a)\varphi(b)\) where the first operation comes from the first group while the second operation comes from the second group. Here, both groups have addition as their binary operation. \(\pi\) is also surjective. Since for any element \(h \in \mathbf{Z}_n\), we have an element \(g \in \mathbf{Z}\) such that \(\pi(g) = [g]\). Moreover, we see that \(ker(\pi) = \mathbf{Z}n = \langle n \rangle\). Example 2: Suppose \(g \in G\). Let $$ \begin{align*} \varphi \ : \ &amp;\mathbf{Z} \rightarrow G\\ &amp;k \rightarrow g^k \end{align*} $$ We want to show that \(\varphi(ab) = \varphi(a)\varphi(b)\). But we know that \(\varphi(ab) = g^{a+b} = g^ag^b = \varphi(a)\varphi(b)\). So \(\varphi\) is a homomorphism. Note here that the image of \(\varphi\) is the subgroup generated by \(g\), \(\langle g \rangle\). What about the kernel of \(\varphi\)? $$ \begin{equation*} ker(\varphi) = \begin{cases} \{0\} \quad &amp;\text{if } o(g) = \infty \\ \mathbf{Z}d \quad \quad &amp;\text{if } o(g) = d \end{cases} \end{equation*} $$ Example 3: Consider the following $$ \begin{align*} \varphi \ : \ &amp;D_n \rightarrow S_n\\ &amp;V \rightarrow Sym(V) \end{align*} $$ where \(V\) is the vertices of the polygon. In fact \(\varphi(D_n)\) is isomorphic to \(D_n\) and it is a subgroup of \(S_n\). Example 4: Consider the following $$ \begin{align*} \varphi \ : \ &amp;S_n \rightarrow GL(\mathbf{R}^{x})\\ &amp;\sigma \rightarrow P_{\sigma} \end{align*} $$ where \(P_{\sigma}\) is the matrix associated with the permutation \(\sigma\). For example $$ \begin{align*} (1 \ 2 \ 3) \rightarrow \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix} \end{align*} $$ Example 5: Consider the following $$ \begin{align*} \psi \ : \ &amp;GL(\mathbf{R}^{x}) \rightarrow \mathbf{R}^{x}\\ &amp;P \rightarrow \det(P) \end{align*} $$ This is another homomorphism. In fact, The composition of \(\psi \circ \varphi\) is a homomorphism. That is $$ \begin{align*} \psi \circ \varphi \ : \ &amp;S_n \rightarrow \mathbf{R}^{x}\\ &amp;\sigma \rightarrow \det(P_{\sigma}) \end{align*} $$ is a homomorphism. Fact: The composition of two homomorphism is a homomorphism. Example 6: Consider \(V\) where \(V\) is a vector space. Now consider the group \((V, +)\) (throw the scalar multiplication away). This is an abelian group. Consider the linear map $$ \begin{align*} T \ : \ &amp;V \rightarrow W \end{align*} $$ This is a homomorphism (recall that linear maps need to also to preserve scalar multiplication). Furthermore, \(ker T = \{v \in V \ | \ T(v) = 0\}\) (observe that the kernel is also the nullspace of \(T\)). Normal Subgroups It turns out that only a certain kind of subgroups could be kernels of homomorphism. Definition A normal subgroup of \(G\) is a subgroup \(N \leq G\) such that \(gNg^{-1} = N\) for all \(g \in G\) where \(gNg^{-1} = \{gng^{-1} \ | \ n \in N\}\). This operation \(x \rightarrow gxg^{-1}\) is called the conjugation of \(x\) by \(g\). The definition says that if we conjeguate all the elements of \(N\) by a fixed element \(g \in G\), then we should get \(N\) back for every \(g\). Proposition To show a subgroup \(N \leq G\) is normal, it suffies to show that \(gNg^{-1} \subseteq N\) for all \(g \in G\). That is, we just need to check that each \(gNg^{-1}\) is a subset of \(N\). Proof Given that \(gNg^{-1} \subseteq N\). We want to show that this implies that \(N \subseteq gNg^{-1}\) which means that \(gNg^{-1} = N\) which is what is required by the definition. Let \(g \in G\) and \(n \in N\). Observe that $$ \begin{align*} n &amp;= (gg^{-1})n(gg^{-1}) \\ &amp;= g(g^{-1}ng)g^{-1} \\ &amp;= g(x)g^{-1} \end{align*} $$ where \(x = g^{-1}ng\). If we show that \(gNg^{-1} \subseteq N\), then we need to show that for any \(n \in N\), this \(n\) can be written as \(n = g^{-1}ng = x\) which means that we want to show that \(x \in N\). But by the hypothesis $$ \begin{align*} x &amp;= g^{-1}ng \\ &amp;= g^{-1}n(g^{-1})^{-1} \\ &amp;= ana^{-1} \quad \text{ (let $a = g^{-1}$ where $g^{-1} \in G$)} \end{align*} $$ Since \(g^{-1}\) is just an arbitrary element in \(G\), then \(ana^{-1} \in N\) which is what we wanted to show. \(\ \blacksquare\) Examples Take \(D_3 = \{e, r, r^2, j, rj, r^2j\}\) where \(r^3 = e = j^2\) and \(jr = r^{-1}j\). This rule also implies \(jr^k = r^{-k}j\). Now suppose we have the subgroup generated by \(j\), \(H = \langle j \rangle = \{e, j\}\). Is this a normal subgroup? For every \(g \in G\), we want to show that \(gHg^{-1} \subseteq H\) so $$ \begin{align*} eHe^{-1} &amp;= H. \\ rHr^{-1} &amp;= \{rer^{-1}, rjr^{-1}\} = \{e, r^2j\} \neq H. \end{align*} $$ So we stop here. This is not a normal subgroup. Does \(D_3\) have any normal subgroups? The trivial subgroups are normal subgroups. What about any non-trivial subgroups? It turns out that \(N = \langle r \rangle = \{e,r,r^2\}\) is normal in \(D_3\). We have to check all 6 cases $$ \begin{align*} eNe^{-1} &amp;= N \\ rNr^{-1} &amp;= N \\ r^2Nr^{-2} &amp;= N \\ jNr^{-1} &amp;= N \\ rjN(rj)^{-1} &amp;= N \\ r^2jN(r^2j)^{-1} &amp;= N. \end{align*} $$ FACT: If \(G\) has some generating set like \(G = \langle g_1, ..., g_r \rangle\), then to check if \(H\) is normal, we just need to show that \(g_kHg_k^{-1}\) for each \(g_i\) in the generating set \(g_1, ... g_k\). So for \(D_3\), we know it is generated by \(\langle r, j \rangle\), so we can check those two. Kernels are Normal Subgroups Back to homomorphisms. It turns out that kernels of homomorphisms are normal subgroups. Proposition If \(\varphi \ : \ G \rightarrow H\) is a homomorphism, then \(K = ker \varphi = \{g \in G \ | \ \varphi(g) = e\} \) is a normal subgroup. Proof We know that \(k\) is a subgroup of \(G\). We need to show that given \(g \in G\) and \(x \in K\) that \(gxg^{-1} \in K\). By definition, to check if any element is in the kernel, we need to apply the homomorphism and see if the result is the identity element. So $$ \begin{align*} \varphi(gNg^{-1}) &amp;= \varphi(g)\varphi(x)\varphi(g)^{-1} \\ &amp;= \varphi(g)e\varphi(g)^{-1} \\ &amp;= \varphi(g)\varphi(g)^{-1} \\ &amp;= e. \end{align*} $$ From this, we see \(gKg^{-1} \subseteq K\) for all \(g \in G\). \(\blacksquare\) Injectivity of Homomorphisms Another useful fact: Proposition Let \(\varphi \ : \ G \rightarrow H\) be a homomorphism, then \(\varphi\) is injective if and only if \(K = ker(\varphi) = \{e\} \). Proof \(\Longrightarrow\): Suppose that \(\varphi\) is injective. This means that if \(\varphi(a) = \varphi(e) = e\), then \(a = e\). But this means that the only element where \(\varphi(a) = e\) is the identity element itself. [why must \(varphi(e)=e\)? I can’t remember, verify]. \(\Longleftarrow\):Now suppose that \(K = ker(\varphi) = \{e\}\). We want to show that \(\varphi\) is injective. This means that for any elements \(a, b \in G\), if \(\varphi(a) = \varphi(b)\), then we must have \(a = b\). Let \(\varphi(a) = \varphi(b) = h \in H\). We want to show that \(a = b\). Observe that $$ \begin{align*} \varphi(a^{-1}b) &amp;= \varphi(a)^{-1}\varphi(b) \\ &amp;= h^{-1}h \\ &amp;= e_H. \end{align*} $$ Since \(\varphi(a^{-1}b) = e_H\), then this implies that \(a^{-1}b \in K\). But \(K\) has only a single element which is the identity. Then \(a^{-1}b = e\) which means that \(a = b\) as desired. \(\ \blacksquare\) References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 11: Dihedral Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html" rel="alternate" type="text/html" title="Lecture 11: Dihedral Groups" /><published>2025-02-03T00:01:36-08:00</published><updated>2025-02-03T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/03/math417-11-dihedral-groups.html"><![CDATA[<div class="mintheaderdiv">
 Definition
 </div>
 <div class="mintbodydiv">
@@ -280,7 +563,7 @@ Before discussing the Dihedral group, we will discuss the symmetries of the disk
 <br />
 <!------------------------------------------------------------------------------></p>
 <h4><b>Rotations Around the a Line in the \(xy-\)axis (Flips)</b></h4>
-<p>Here the \(z-\)axis will get reversed since we’re flipping the disk by \(180^{\circ}\) (so \(e_3\) will now be \(-e_3\) facing the opposite the direction). The rotation axis itself is parallel to the \(xy\) plane. So \(j_{\theta} = Rot_{u_{\theta}}(\pi)\). Just draw a disk and draw any line that goes through the center. This line will be the rotation axis that is fixed and we’re flipping over it.</p>
+<p>Here the \(z-\)axis will get reversed since we’re flipping the disk by \(180^{\circ}\) (so \(e_3\) will now be \(-e_3\) facing the opposite the direction). The rotation axis itself is parallel to the \(xy\) plane. And we write \(j_{\theta} = Rot_{u_{\theta}}(\pi)\). Just draw a disk and draw any line that goes through the center. This line will be the rotation axis that is fixed and we’re flipping over it.</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec11/disk.png" width="40%" class="center" /></p>
 <p>The rotation vector can written as</p>
 <div>
@@ -290,7 +573,7 @@ Before discussing the Dihedral group, we will discuss the symmetries of the disk
 	\end{align*}
 	$$
 </div>
-<p>This vector spans a line \(l_{\theta} = \mathbf{R}u_{\theta}\). This line is in the \(xy\) plane that goes through the vector \(u\). We call this kind of rotation \(j_\theta\) as opposed to \(r_\theta\). Note here that adding another rotation of \(\pi\) will not change the line so \(j_{\theta + \pi n} = j_{\theta}\). However, the vector \(u_{\theta}\) though will face the other direction after adding \(\pi\) and so \(u_{\theta+\pi} = -u_{\theta}\). Based on this, we will see that \(j^2_{\theta} = e\).
+<p>This vector spans a line \(l_{\theta} = \mathbf{R}u_{\theta}\). This line is in the \(xy\) plane that goes through the vector \(u\). Note here that adding another rotation of \(\pi\) will not change the line so \(j_{\theta + \pi n} = j_{\theta}\). However, the vector \(u_{\theta}\) though will face the other direction after adding \(\pi\) and so \(u_{\theta+\pi} = -u_{\theta}\). Moreover, \(j^2_{\theta} = e\).
 <br />
 <br />
 <!------------------------------------------------------------------------------></p>
@@ -315,7 +598,9 @@ Before discussing the Dihedral group, we will discuss the symmetries of the disk
 			\end{align*}
 			$$
 		</div>
-		We flip the disk where \(l_{\beta}\) is fixed like before, but then we add a rotation by \(\alpha\) so the end result is a flip around \(u_{\beta+\frac{\alpha}{2}}\) where it's the final fixed rotation axis. Draw a circle and cut it. Draw the original rotation axis \(l_{\beta}\) flip it over this access. Now add a small rotation by \(\alpha\). Mark it on the circle and then flip the shape. again. The composition of these two operations (flip+rotation) will actually be equivalent to a flip around the vector \(u_{\beta+\frac{\alpha}{2}}\). (TODO: why not just \(\alpha + \beta\)?)
+		But why? We first flip the disk where \(l_{\beta}\) is fixed like before. After the flip, we rotate the disk around the \(z-\)axis by \(\alpha\) as illustrated below
+		<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec11/flip.png" width="90%" class="center" /></p>
+		So what we want is to compose these two operations into one and find where the fixed rotation axis will be. If you turn the third figure back to the front and now you want to use one flip to get to the same exact positions of the lines in the third figure, you'll see that the new axis will be \(u_{\beta+\frac{\alpha}{2}}\).
 		<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec11/disk1.png" width="40%" class="center" /></p>
 	</li>
 	<!------ (3) ------->
@@ -421,7 +706,7 @@ Flips in \(D_n\) are \(j, rj, r^2,...,r^{n-1}j\) since we established that \(j_{
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition The Dihedral group is the group of rotational symmetries of a regular n-gon in \(\mathbf{R}^3\). It is a subgroup of the special orthogonal matrices, \(SO(3)\). Before discussing the Dihedral group, we will discuss the symmetries of the disk. Why? if you inscribe a regular polygon inside a circle, observe that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So it’s helpful to start there. Symmetries of the Disk Let \(D \leq SO(3)\) be the rotational symmetries of the unit disk: \(\{(x,y,0) \ | \ x^2 + y^2 = 1 \}\). There are two types of rotations in \(D\). A rotation \(g\) around the \(z-\)axis so the \(z-\)axis remains fixed and we’re spinning the disk around it. Here \(g(e_3) = e_3\). The other type is when we flip the disk so the \(z-\)axis is now reversed. Here \(g(e_3) = -e_3\). Rotations Around the \(z-\)axis A rotation around an arbitrary angle which is \(r_{\theta} = Rot_{e_3}(\theta)\). It is always a symmetry around the unit disk. Note here that \(r_0=e\) and if we rotate by more than \(2\pi\), then it’s a rotation we’ve seen before. So \(r_{\theta + 2\pi n} = r_{\theta}\) so we need to specify \(r_{\theta}\) where \(\theta \in [0, 2\pi)]\). Note also that \(r_{\theta}^{-1} = r_{-\theta}\). Rotations Around the a Line in the \(xy-\)axis (Flips) Here the \(z-\)axis will get reversed since we’re flipping the disk by \(180^{\circ}\) (so \(e_3\) will now be \(-e_3\) facing the opposite the direction). The rotation axis itself is parallel to the \(xy\) plane. So \(j_{\theta} = Rot_{u_{\theta}}(\pi)\). Just draw a disk and draw any line that goes through the center. This line will be the rotation axis that is fixed and we’re flipping over it. The rotation vector can written as $$ \begin{align*} u_\theta = (\cos \theta)e_1 + (\sin \theta)e_2 + 0e_3 \end{align*} $$ This vector spans a line \(l_{\theta} = \mathbf{R}u_{\theta}\). This line is in the \(xy\) plane that goes through the vector \(u\). We call this kind of rotation \(j_\theta\) as opposed to \(r_\theta\). Note here that adding another rotation of \(\pi\) will not change the line so \(j_{\theta + \pi n} = j_{\theta}\). However, the vector \(u_{\theta}\) though will face the other direction after adding \(\pi\) and so \(u_{\theta+\pi} = -u_{\theta}\). Based on this, we will see that \(j^2_{\theta} = e\). Multiplication of Rotations and Flips To describe the group structure, we want to see what happens if we perform two rotations, two flips, a rotation followed by a flip and a flip followed by a rotation. Two Rotations: This case is easy, since two rotations around the \(z-\)axis (spinning around) is just another rotation so $$ \begin{align*} r_{\alpha}r_{\beta} = r_{\alpha+\beta} \end{align*} $$ A Flip by \(\beta\) followed by a Rotation of \(\alpha\) \(r_{\alpha}j_{\beta}\): $$ \begin{align*} r_{\alpha}j_{\beta} = j_{\beta+\frac{\alpha}{2}} \end{align*} $$ We flip the disk where \(l_{\beta}\) is fixed like before, but then we add a rotation by \(\alpha\) so the end result is a flip around \(u_{\beta+\frac{\alpha}{2}}\) where it's the final fixed rotation axis. Draw a circle and cut it. Draw the original rotation axis \(l_{\beta}\) flip it over this access. Now add a small rotation by \(\alpha\). Mark it on the circle and then flip the shape. again. The composition of these two operations (flip+rotation) will actually be equivalent to a flip around the vector \(u_{\beta+\frac{\alpha}{2}}\). (TODO: why not just \(\alpha + \beta\)?) A Rotation followed by a Flip \(j_{\alpha}r_{\beta}\): $$ \begin{align*} j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}} \end{align*} $$ Two Flips \(j_{\alpha}j_{\beta}\). Now this is clearly a rotation since we're back to the same face. but we're flipping by a different axis each time. The final rotation is the difference of the two times two. (TODO: why times 2?) $$ \begin{align*} j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)} \end{align*} $$ Elements of \(D\) Based on the previous list, we can now list precisely the elements of (D). We have \(r_{\theta}\) for unique \(\theta \in [0, 2\pi)\). Noting that \(r_{\theta + 2\pi n} = r_{\theta}\) \(j_{\theta}\) for unique \(\theta \in [0, \pi)\). Noting that \(j_{\theta + \pi n} = j_{\theta}\) In addition to the multiplication table based on the previous discussion. \(r_{\alpha}r_{\beta} = r_{\alpha+\beta}\) \(r_{\alpha}j_{\beta} = j_{\beta+\frac{\alpha}{2}}\) \(j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}}\) \(j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)}\) Alternative Description of \(D\) Another description is that let \(j = j_{0}\). Then, \(j_{\theta} = r_{2\theta}j\). So every element of \(D\) can be written uniquely in one of the following two forms. \(r_{\theta}, \theta \in [0, 2\pi]\) \(r_{\theta}j, \theta \in [0, 2\pi]\) where \(r_{\theta + 2\pi n} = r_{\theta}\) \(r_{\alpha}r_{\beta} = r_{\alpha+\beta}\) \(r_{\alpha + \beta}\) \(j^2 = e\) \(jr_{\theta} = r_{\theta}^{-1}j\). (TODO: Show this using the previous rules) This is a complete description of \(D\). Dihedral Groups Fix \(n \geq 3\). Let \(V = \{u_{\frac{2\pi}{n}k}, k = 0,...,n-1\}\) be the vertices of a regular \(n-\)gon. Note that \(D_n \leq D \leq SO(3)\). Now, the group \(D_n\) will include specifically the symmetries of the disk that take the vertices of the polygon to themselves or another vertex in the polygon. In \(D_n\), $$ \begin{align*} r_{\frac{2\pi}{n}} = r = Rot_{\frac{2\pi}{n}}(e_3) \end{align*} $$ Rotations in \(D_n\) are therefore: \(e, r, r^2, r^3, ..., r^{n-1}\) where \(r^{k+n} = r^k\). Flips in \(D_n\) are \(j, rj, r^2,...,r^{n-1}j\) since we established that \(j_{\frac{\pi}{n}k} = r_{\frac{2\pi}{n}}j_0\). In general, we’ll have \(n\) flips for an \(n-\)polygon illustrated as follows]]></summary></entry><entry><title type="html">Lecture 09/10: Subgroups</title><link href="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html" rel="alternate" type="text/html" title="Lecture 09/10: Subgroups" /><published>2025-02-02T00:01:36-08:00</published><updated>2025-02-02T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html"><![CDATA[<div class="mintheaderdiv">
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition The Dihedral group is the group of rotational symmetries of a regular n-gon in \(\mathbf{R}^3\). It is a subgroup of the special orthogonal matrices, \(SO(3)\). Before discussing the Dihedral group, we will discuss the symmetries of the disk. Why? if you inscribe a regular polygon inside a circle, observe that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So it’s helpful to start there. Symmetries of the Disk Let \(D \leq SO(3)\) be the rotational symmetries of the unit disk: \(\{(x,y,0) \ | \ x^2 + y^2 = 1 \}\). There are two types of rotations in \(D\). A rotation \(g\) around the \(z-\)axis so the \(z-\)axis remains fixed and we’re spinning the disk around it. Here \(g(e_3) = e_3\). The other type is when we flip the disk so the \(z-\)axis is now reversed. Here \(g(e_3) = -e_3\). Rotations Around the \(z-\)axis A rotation around an arbitrary angle which is \(r_{\theta} = Rot_{e_3}(\theta)\). It is always a symmetry around the unit disk. Note here that \(r_0=e\) and if we rotate by more than \(2\pi\), then it’s a rotation we’ve seen before. So \(r_{\theta + 2\pi n} = r_{\theta}\) so we need to specify \(r_{\theta}\) where \(\theta \in [0, 2\pi)]\). Note also that \(r_{\theta}^{-1} = r_{-\theta}\). Rotations Around the a Line in the \(xy-\)axis (Flips) Here the \(z-\)axis will get reversed since we’re flipping the disk by \(180^{\circ}\) (so \(e_3\) will now be \(-e_3\) facing the opposite the direction). The rotation axis itself is parallel to the \(xy\) plane. And we write \(j_{\theta} = Rot_{u_{\theta}}(\pi)\). Just draw a disk and draw any line that goes through the center. This line will be the rotation axis that is fixed and we’re flipping over it. The rotation vector can written as $$ \begin{align*} u_\theta = (\cos \theta)e_1 + (\sin \theta)e_2 + 0e_3 \end{align*} $$ This vector spans a line \(l_{\theta} = \mathbf{R}u_{\theta}\). This line is in the \(xy\) plane that goes through the vector \(u\). Note here that adding another rotation of \(\pi\) will not change the line so \(j_{\theta + \pi n} = j_{\theta}\). However, the vector \(u_{\theta}\) though will face the other direction after adding \(\pi\) and so \(u_{\theta+\pi} = -u_{\theta}\). Moreover, \(j^2_{\theta} = e\). Multiplication of Rotations and Flips To describe the group structure, we want to see what happens if we perform two rotations, two flips, a rotation followed by a flip and a flip followed by a rotation. Two Rotations: This case is easy, since two rotations around the \(z-\)axis (spinning around) is just another rotation so $$ \begin{align*} r_{\alpha}r_{\beta} = r_{\alpha+\beta} \end{align*} $$ A Flip by \(\beta\) followed by a Rotation of \(\alpha\) \(r_{\alpha}j_{\beta}\): $$ \begin{align*} r_{\alpha}j_{\beta} = j_{\beta+\frac{\alpha}{2}} \end{align*} $$ But why? We first flip the disk where \(l_{\beta}\) is fixed like before. After the flip, we rotate the disk around the \(z-\)axis by \(\alpha\) as illustrated below So what we want is to compose these two operations into one and find where the fixed rotation axis will be. If you turn the third figure back to the front and now you want to use one flip to get to the same exact positions of the lines in the third figure, you'll see that the new axis will be \(u_{\beta+\frac{\alpha}{2}}\). A Rotation followed by a Flip \(j_{\alpha}r_{\beta}\): $$ \begin{align*} j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}} \end{align*} $$ Two Flips \(j_{\alpha}j_{\beta}\). Now this is clearly a rotation since we're back to the same face. but we're flipping by a different axis each time. The final rotation is the difference of the two times two. (TODO: why times 2?) $$ \begin{align*} j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)} \end{align*} $$ Elements of \(D\) Based on the previous list, we can now list precisely the elements of (D). We have \(r_{\theta}\) for unique \(\theta \in [0, 2\pi)\). Noting that \(r_{\theta + 2\pi n} = r_{\theta}\) \(j_{\theta}\) for unique \(\theta \in [0, \pi)\). Noting that \(j_{\theta + \pi n} = j_{\theta}\) In addition to the multiplication table based on the previous discussion. \(r_{\alpha}r_{\beta} = r_{\alpha+\beta}\) \(r_{\alpha}j_{\beta} = j_{\beta+\frac{\alpha}{2}}\) \(j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}}\) \(j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)}\) Alternative Description of \(D\) Another description is that let \(j = j_{0}\). Then, \(j_{\theta} = r_{2\theta}j\). So every element of \(D\) can be written uniquely in one of the following two forms. \(r_{\theta}, \theta \in [0, 2\pi]\) \(r_{\theta}j, \theta \in [0, 2\pi]\) where \(r_{\theta + 2\pi n} = r_{\theta}\) \(r_{\alpha}r_{\beta} = r_{\alpha+\beta}\) \(r_{\alpha + \beta}\) \(j^2 = e\) \(jr_{\theta} = r_{\theta}^{-1}j\). (TODO: Show this using the previous rules) This is a complete description of \(D\). Dihedral Groups Fix \(n \geq 3\). Let \(V = \{u_{\frac{2\pi}{n}k}, k = 0,...,n-1\}\) be the vertices of a regular \(n-\)gon. Note that \(D_n \leq D \leq SO(3)\). Now, the group \(D_n\) will include specifically the symmetries of the disk that take the vertices of the polygon to themselves or another vertex in the polygon. In \(D_n\), $$ \begin{align*} r_{\frac{2\pi}{n}} = r = Rot_{\frac{2\pi}{n}}(e_3) \end{align*} $$ Rotations in \(D_n\) are therefore: \(e, r, r^2, r^3, ..., r^{n-1}\) where \(r^{k+n} = r^k\). Flips in \(D_n\) are \(j, rj, r^2,...,r^{n-1}j\) since we established that \(j_{\frac{\pi}{n}k} = r_{\frac{2\pi}{n}}j_0\). In general, we’ll have \(n\) flips for an \(n-\)polygon illustrated as follows]]></summary></entry><entry><title type="html">Lecture 09/10: Subgroups</title><link href="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html" rel="alternate" type="text/html" title="Lecture 09/10: Subgroups" /><published>2025-02-02T00:01:36-08:00</published><updated>2025-02-02T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/02/math417-09-subgroups.html"><![CDATA[<div class="mintheaderdiv">
 Definition 2.2.1
 </div>
 <div class="mintbodydiv">
@@ -3027,297 +3312,4 @@ $$
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition Let \(X\) be a set. Define the permutation of \(X\) as a bijection from the set to itself (\(f: X \rightarrow X\)). Let \(Sym(X)\) be the set of all bijections from \(X\) to itself (\(X \rightarrow X\)). \(Sym(X)\) equipped with the composition of functions operation is a group. To see this observe that \(id: X \rightarrow X, id(x) = x\) is the identity element. Composition of functions is associative. The composition of two permutations is another permutation. Bijections have inverses and the inverse of a bijection is another bijection. This group is often denoted by the Permutation Group or more often the Symmetric Group. The standard example for the case of finite sets is the standard set \(X = \{1,2,...,n\}\). The symmetric group has a special name called \(S_n\), $$ \begin{align*} S_n = Sym(\{1,2,...,n\}) \end{align*} $$ The size of \(S_n\) is \(|S_n| = n!\). Two Line Notation Let \(\rho, \psi \in S_4\), then we’ll write $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; 4 &amp; 3 &amp; 2\end{pmatrix} \end{align*} $$ shows that \(\rho(1) = 1\), \(\rho(2) = 4\), \(\rho(3) = 3\) and \(\rho(4) = 2\). Similarly, $$ \begin{align*} \psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 2 &amp; 1 &amp; 3\end{pmatrix} \end{align*} $$ shows that \(\psi(1) = 4\), \(\psi(2) = 2\), \(\psi(3) = 1\) and \(\psi(4) = 3\). Finally, $$ \begin{align*} \rho\psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 2 &amp; 4 &amp; 1 &amp; 3\end{pmatrix} \in S_4 \end{align*} $$ so \(\rho\psi(1) = 2\), \(\rho\psi(2) = 4\), \(\rho\psi(3) = 1\) and \(\rho\psi(4) = 3\). Cycle Notation We can decompose the cycles in each permutation above. For example for the first permutation $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; 4 &amp; 3 &amp; 2\end{pmatrix} \end{align*} $$ We can decompose this permutation into the following In this permutation, we have a cycle of length \(2\) For the second permutation $$ \begin{align*} \psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 2 &amp; 1 &amp; 3\end{pmatrix} \end{align*} $$ we have a cycle of length \(3\). To describe a cycle, we can use cycle notation which is defined as follows Definition Let \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) where \(a_1,...,a_k \in X\) are distinct. \(\sigma\) is defined by $$ \begin{align*} \sigma(a_i) &amp;= a_{i+1}, \quad i = 1,...,k-1 \\ \sigma(a_k) &amp;= a_1 \\ \sigma(x) &amp;= x, \quad \text{if} x \notin \{a_1,...,a_k\} \\ \end{align*} $$ So we can write the first permutation with cycle notation as \((2,4)\) only since by definition for the other elements \(\sigma(x)=x\), while the second permutation can be written as \((1,4,3)\). What about the following example? $$ \begin{align*} \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5\\ 3 &amp; 5 &amp; 4 &amp; 1 &amp; 2\end{pmatrix} \end{align*} $$ Note here that we have two disjoint cycles. \((1 \quad 4 \quad 3)\) where \(1\) goes to \(3\) and \(3\) goes to \(4\) and \(4\) goes back to \(1\) and \((2 \quad 5)\) where \(2\) goes to \(5\) and \(5\) goes back to \(2\). This permutation can be written as $$ \begin{align*} (1 \quad 3 \quad 4)(2 \quad 5) \end{align*} $$ Facts Some facts about the cycle notation \((1) = (2) = ... (n) = id\). All of these represent the identity permutations. The order of the elements in a cycle matters up to "cyclic permutation". \((1 \quad 2 \quad 3 \quad 4) = (2 \quad 3 \quad 4 \quad 1) \neq (1 \quad 3 \quad 4 \quad 2)\) For the inverse of a permutation, we just reverse the order of elements so \((a_1 \quad a_2 \quad ... \quad a_k)^{-1} = (a_k \quad a_{k-1} \quad ... \quad a_1)\) Two cycles \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) and \(\tau = (b_1 \quad b_{2} \quad ... \quad b_l) \in Sym(X)\) are disjoint if \(\{a_1,a_2,...,a_k\} \cap \{b_1,b_2,...,b_l\} = \emptyset\). Moreover, if the two sets are disjoint, then \(\sigma \circ \tau = \tau \circ \sigma\). This means that the permutation above that we described with \((1 \quad 3 \quad 4)(2 \quad 5)\) can also be written as \((2 \quad 5)(1 \quad 3 \quad 4)\) Theorem Every non-id element in \(Sym(X)\) where \(X\) is finite can be written as a product of pairwise disjoint cycles (of length \(\geq 2\) uniquely up to re-ordering. Suppose we have \(\sigma = (1 \quad 3)(2 \quad 7 \quad 8)(4 \quad 5 \quad 6)(9) \in S_9\). Any of the cycles in this notation are pairwise disjoint. We have 3 disjoint cycles where \(9\) is fixed. The proof for this theorem is in the class notes. Cycle Type We can classify permutations of a finite set into groups corresponding to the number of cycles of various lengths in their cycle decomposition. For example for \(S_2\), we have two elements and so we have two permutations \(1 + 1\) \(id = (1)(2)\) \(2\) \((1 \quad 2)\) For \(S_3\), \(1 + 1 + 1\) \(id = (1)(2)(3)\) \(2 + 1\) \((1 \quad 2),(1 \quad 3),(2 \quad 3)\) \(3\) \((1 \quad 2 \quad 3),(1 \quad 3 \quad 2)\) For \(S_4\), \(1 + 1 + 1 + 1\) \(id = (1)(2)(3)(4)\) \(2 + 1 + 1\) \((1 \quad 2),(1 \quad 3),(1 \quad 4),(2 \quad 3),(2 \quad 4),(3 \quad 4)\) \(2 + 2\) \((1 \quad 2)(3 \quad 4),(1 \quad 3)(2 \quad 4),(1 \quad 4)(2 \quad 3)\) \(3 + 1\) \((1 \quad 2 \quad 3),(1 \quad 2 \quad 4)\),\((1 \quad 3 \quad 4),(2 \quad 3 \quad 4),(1 \quad 3 \quad 2)\),\((1 \quad 4 \quad 2),(1 \quad 4 \quad 3),(2 \quad 4 \quad 3)\) \(4\) \((1 \quad 2 \quad 3 \quad 4),(1 \quad 2 \quad 4 \quad 3)\),\((1 \quad 3 \quad 2 \quad 4),(1 \quad 3 \quad 4 \quad 2)\),\((1 \quad 4 \quad 2 \quad 3),(1 \quad 4 \quad 3 \quad 2)\) The Order of an Element (Start of lecture 4). The first concept that we will talk about is the order of an element in a group. Definition Suppose we have a group \((G, \cdot)\) and let \(a \in G\). The order of \(a\) is the smallest positive integer \(n\) such that \(a^n = e\) (or infinite). \(\text{order}(a) \in \mathbf{N} \cup \{\infty\}\). For example let \(\sigma = (1 \quad 2 \quad 3 \quad 4) \in S_5\) The order of \(\sigma\), \(\text{order}(\sigma)\) is \(4\). This is because it will take \(\sigma^4\) will finally get us back to the identity permutation. In fact that the order of a \(k-\)cycle is \(k\). What about \(\tau = (1 \quad 2)(3 \quad 4 \quad 5)\)? \(\text{order}(\tau) = 6\) because we have to iterate the operation \(6\) times to get to the identity element. Specifically, we have two disjoint cycles and since they are disjoint, then they operate independently. So we need to find \(n\) such that both of the cycles will return to the identity permutation $$ \begin{align*} (1 \quad 2)^n &amp;= e \\ (3 \quad 4 \quad 5)^n &amp;= e \end{align*} $$ This \(n\) must be then the least common multiple of \(2\) and \(3\) which is \(6\). What about \(\nu = (1 \quad 2)(2 \quad 3 \quad 4)\)? Note here that the two cycles are not disjoint. It’s not clear here what it would be so drawing this permutation might make this very obvious.]]></summary></entry><entry><title type="html">Lecture 02: Rotations in Space</title><link href="http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space.html" rel="alternate" type="text/html" title="Lecture 02: Rotations in Space" /><published>2025-01-25T00:01:36-08:00</published><updated>2025-01-25T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/01/25/math417-02-rotations-in-space.html"><![CDATA[<p>A group is a set with a defined product. This product is associative. The group is closed under this product. We have an identity element and each element has an inverse. Formally,
-<br /></p>
-<div class="mintheaderdiv">
-Definition (1.10.1)
-</div>
-<div class="mintbodydiv">
-A group is a (nonempty) set \(G\) with a binary operation (a product) \(G \times G \rightarrow G\) satisfying the following properties:
-<ol type="a">
-	<li>The group is closed under the operation. </li>
-	<li>The product is associative. For all \(a, b, c \in G\), we have \((ab)c = a(bc)\).</li>
-	<li>There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\).</li>
-	<li>For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse).</li>
-</ol>
-</div>
-<!------------------------------------------------------------------------>
-<p><br />
-What are examples of the groups?</p>
-<ol type="a">
-	<li>\(\mathbf{R}\) with the addition operation.</li>
-	<li>\(\mathbf{R}^{x} = \mathbf{R} - \{0\}\) with the multiplication operation.</li>
-	<li>\(\mathbf{Z}\) with the addition operation.</li>
-	<li>The set of invertible \(n \times n\) matrices with entries in \(\mathbf{R}\) with matrix multiplication as the product.</li>
-	<li>Any vector space is a group if you forget about the scalar multiplication.</li>
-	<li>For any set \(T\), define the set of all bijections \(g: T \rightarrow T\). The set of all bijections is the symmetric group of \(T\). The operation here is the composition of these maps.</li>
-</ol>
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Suppose we define the group \((\mathbf{R}, \ast)\) where \(\ast\) is defined as</p>
-<div>
-$$
-\begin{align*}
-x \ast y = \sqrt[3]{x^3 + y^3}
-\end{align*}
-$$
-</div>
-<p>We can further check that this product satisfies the three axioms of a group.
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(F\) be a field (for example \(\mathbf{R}\) or \(\mathbf{C}\)). Let \(Mat_{n \times n}(F)\) be the set of matrices with entries in \(F\). Then define \(GL_n(F)\) (General Linear Group) as a subset of \(A \in M_{n \times n}(F)\) where \(A\) is an invertible matrix.<br />
-<br />
-<br />
-The set \(GL_n(F)\) equipped with matrix multiplication is a group. It satisfies the three axioms</p>
-<ol type="a">
-	<li>The group is closed under multiplication because multiplying two invertible matrices is another invertible matrix. \((AB)^{-1} = B^{-1}A^{-1}\)</li>
-	<li>The identity element is the identity matrix.</li>
-	<li>Matrix multiplication is associative.</li>
-</ol>
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>Rotations in Plane</b></h4>
-<p>We can define a plane rotation by an angle counter clockwise by the left multiplication by the following rotation matrix</p>
-<div>
-$$
-\begin{align*}
-Rot(\theta) &amp;= 
-\begin{pmatrix}
-\cos\theta &amp; -\sin\theta \\
-\sin\theta &amp; \cos\theta
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>The rotation matrix has some properties</p>
-<ol type="a">
-	<li>\(\text{Rot}(0) = I\) is the identity matrix.</li>
-	<li>\(\text{Rot}(\alpha)Rot(\beta) = \text{Rot}(\alpha + \beta)\).</li>
-	<li>\(\text{Rot}(\alpha)^{-1} = \text{Rot}(-\alpha)\).</li>
-	<li>\(\text{Rot}(\alpha + 2\pi n) = \text{Rot}(\alpha)\) where \(n \in \mathbf{Z}\).</li>
-</ol>
-<p>From this we see that the collection of rotation matrices forms a group with matrix multiplication.
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<h4><b>Rotations in Space</b></h4>
-<div>
-$$
-\begin{align*}
-\text{Rot}_{e_3}(\theta) &amp;= 
-\begin{pmatrix}
-\cos\theta &amp; -\sin\theta &amp; 0 \\
-\sin\theta &amp; \cos\theta &amp; 0 \\
-0 &amp; 0 &amp; 1
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>This defines a rotation around the \(z-\)axis by angle \(\theta\) counter clockwise viewed from the head of the vector \(e_3\) where \(e_3 = (0,0,1)\). But instead of using \(e_3\), we’ll use a more general vector \(u \in \mathbf{R}^3\) such that \(\lVert {u} \rVert = 1\). So let \(\text{Rot}_u(\theta)\) be a rotation matrix around the axis through \(u\) by angle \(\theta\) counterclockwise when viewed from the head of \(u\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>How Do you Compute The Rotation Matrix?</b></h4>
-<p>Recall from Linear Algebra that</p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-An orthogonal matrix is a square matrix \(P \in Mat_{n \times n}(\mathbf{R})\) such that \(P^{T}P = I\) or \(P^{-1} = P^{T}\).
-</div>
-<p><br />
-Equivalently the columns of \(P\) are an orthonormal basis of \(\mathbf{R}^n\) and the rows of \(P\) are also orthonormal basis of \(\mathbf{R}^n\).
-<br />
-<br />
-Given the above definition, there is a useful formula where for \(u \in \mathbf{R}^3\), \(\lVert u \rVert = 1\), \(\theta \in \mathbf{R}\) and \(P\) an orthogonal matrix such the product</p>
-<div>
-$$
-\begin{align*}
-P \text{Rot}_u(\theta) P^{-1}
-\end{align*}
-$$
-</div>
-<p>is another rotation matrix but instead of having \(u\) as the axis, we have \(Pu\) as the axis so</p>
-<div>
-$$
-\begin{align*}
-\text{Rot}_{Pu}(\theta) = P \text{Rot}_u(\theta) P^{-1}
-\end{align*}
-$$
-</div>
-<p>Why is this a useful formula? Given \(\lVert u \rVert = 1\) and some angle \(\theta\), construct an orthonormal basis using Gram-Schmidt by setting \(u_3 = u\) and finding two more perpendicular vectors (normalized) \(u_1, u_2 \in \mathbf{R}^3\). Let \(P = [u_1 \quad u_2 \quad u_3]\). This means that \(Pe_3 = u_3 = u\). Therefore</p>
-<div>
-$$
-\begin{align*}
-\text{Rot}_{u}(\theta) = P \text{Rot}_{e_3}(\theta) P^{T}
-\end{align*}
-$$
-</div>
-<!------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
-<p>So now suppose we want to rotate around \(\frac{(e_1 + e_2)}{\sqrt{2}}\) (which is a unit vector) by \(\theta = \frac{\pi}{3}\). Then, we’ll need two more orthonormal vectors in addition to \(\frac{(e_1 + e_2)}{\sqrt{2}}\) to construct an orthonormal basis. We can use Gram-Schmidt to come up with the following orthonormal vectors and set them to be the column vectors of \(P\) as follows</p>
-<div>
-$$
-\begin{align*}
-P &amp;= 
-\begin{pmatrix}
-0 &amp; \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \\
-0 &amp; -\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \\
-1 &amp; 0 &amp; 0
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>The rotation \(\text{Rot}_{e_3}\) is as follows</p>
-<div>
-$$
-\begin{align*}
-\text{Rot}_{e_3}(\frac{\pi}{3}\big) &amp;= 
-\begin{pmatrix}
-\frac{1}{2} &amp; -\frac{\sqrt{3}}{2} &amp; 0 \\
-\frac{\sqrt{3}}{2} &amp; \frac{1}{2} &amp; 0 \\
-0 &amp; 0 &amp; 1
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>Therefore,</p>
-<div>
-$$
-\begin{align*}
-\text{Rot}_{\frac{e_1 + e_2}{\sqrt{2}}}\big(\frac{\pi}{3}\big) &amp;= P \text{Rot}_{e_3}(\frac{\pi}{3}\big) P^{T}
-\\
-&amp;= 
-\begin{pmatrix}
-\frac{3}{4} &amp; \frac{1}{4} &amp; \frac{\sqrt{3}}{8} \\
-\frac{3}{4} &amp; \frac{3}{4} &amp; -\frac{\sqrt{3}}{8} \\
--\frac{\sqrt{3}}{8} &amp; \frac{\sqrt{3}}{8} &amp; \frac{1}{2}
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>Rotations in Space</b></h4>
-<p>From last lecture, we saw the symmetries of the square. These symmetries can be represented with rotation matrices. We have the identity rotation \(I\). We can also define the rotation around the axis coming through the centroid of the face (\(z-\)axis in the lecture) as \(R = \text{Rot}_{e_3}(\frac{\pi}{2})\). Therefore, \(R^2 = \text{Rot}_{e_3}(\pi)\) and \(R^3 = \text{Rot}_{e_3}(\frac{3\pi}{2})\).
-<br />
-<br />
-What about the \(180\) degrees rotation around the \(x-axis\) labeled as \(a\) from last time? We can define it as \(A = \text{Rot}_{e_1}(\pi)\). Similarly, \(B = \text{Rot}_{e_2}(\pi)\), \(C = \text{Rot}_{\frac{e_1 - e_2}{\sqrt{2}}}(\pi)\) and \(D = \text{Rot}_{\frac{e_1 + e_2}{\sqrt{2}}}(\pi)\)
-<br />
-<br />
-Rotations in space have also the following properties / identities</p>
-<ol type="a">
-	<li>\(\text{Rot}_u(0) = I\) is the identity matrix where \(u\) is any unit vector.</li>
-	<li>\(\text{Rot}_u(\theta + 2\pi n) = \text{Rot}_u(\theta)\) where \(n \in \mathbf{Z}\).</li>
-	<li>\(\text{Rot}_u(\theta) = \text{Rot}_{-u}(-\theta)\).</li>
-	<li>\(\text{Rot}_u(\theta)^{-1} = \text{Rot}_{u}(-\theta) = \text{Rot}_{-u}(\theta)\).</li>
-	<li>\(\text{Rot}_u(\alpha)Rot_v(\beta) = a\) is a rotation matrix.</li>
-	<li>\(\text{Rot}_u(\alpha)Rot_u(\beta) = Rot_u(\alpha + \beta)\).</li>
-</ol>
-<p>But why is the last statement true? To figure it out, we need to introduce another definition
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-A special orthogonal matrix is an \(A \in Mat_{n \times n}(\mathbf{R})\) such that
-<ol type="a">
-	<li>\(A^TA = I\). (The orthogonal property)</li>
-	<li>\(\det(A) = \pm 1\). (This is as a result of the fact that \(det(A^{-1}) = \frac{1}{\det(A)}\) and that \(\det(A) = \det(A^T)\)</li> 
-</ol>
-</div>
-<p><br />
-And now we have the following proposition
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-\(A \in Mat_{3 \times 3}(\mathbf{R})\) is a rotation matrix if and only if it is special orthogonal.
-</div>
-<p><br />
-We denote these matrices special matrices with</p>
-<div>
-$$
-\begin{align*}
-SO(n) = \{ A \in Mat_{n \times n} \text{ special orthogonal} \} \subseteq O(n) \subseteq GL_n(\mathbf{R}) 
-\end{align*}
-$$
-</div>
-<p>Observation: \(A, B \in SO(n)\) implies that \(AB \in SO(n)\). To show that this is true, we need to show that properties of special orthogonal matrices hold. To see that, observe that</p>
-<ul>
-	<li>\( (AB)^TAB = B^TA^TAB = B^TB = I \)</li>
-	<li>\( \det(AB) = \det(A)\det(B) = 1 \)</li>
-</ul>
-<p><br />
-Also observe that the identity matrix is in \(SO(n)\) and that for any \(A \in SO(n)\), \(A^{-1} = A^{T} \in SO(n)\). Therefore \(SO(n)\) is a group with matrix multiplication.
-<br />
-<br />
-So now we know that the collection of special orthogonal matrices is a group. Therefore, if the proposition we introduced earlier holds (where we said that \(A \in Mat_{3 \times 3}(\mathbf{R})\) is a rotation matrix if and only if it is special orthogonal), then we can also conclude that the product of two rotation matrices is also a rotation matrix. So let’s sketch the proof of the proposition
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-\(\Rightarrow\) (\(\text{Rot}_u(\theta) \in SO(3)\)):
-<br />
-Let \(\text{Rot}_u(\theta) = P\text{Rot}_{e_3}(\theta)P^{-1}\) for some chosen \(P \in O(3)\). We want to show that \(P\text{Rot}_{e_3}(\theta)P^{-1} \in SO(3)\). To do so we need to show that if \(A \in SO(n)\) and \(P \in O(n)\), then \(PAP^{-1} = PAP^{T} \in SO(3)\). We can easily show this by verifying the two properties of special orthogonal matrices. For example,</p>
-<div>
-$$
-\begin{align*}
-(PAP^{T})^{T}PAP^{T} &amp;= PA^TP^TPAP^{T} \\
-                     &amp;= PA^TAP^{T} \quad \text{ (because $P \in O(n)$)} \\
-                     &amp;= PP^{T} = I.
-\end{align*}
-$$
-</div>
-<p>The verification that the determinat is 1 is also the same. So now what’s left is to show that \(\text{Rot}_{e_3}(\theta)\) is in \(SO(3)\). We can verify this because we know the exact matrix of \(\text{Rot}_{e_3}(\theta)\) so we can computationally verify that it is a special orthogonal matrix. Finally, since \(P \in O(n)\) and we just showed that \(\text{Rot}_{e_3}(\theta) \in SO(3)\), then \(P\text{Rot}_{e_3}(\theta)P^{T}\) is in \(SO(3)\) as we wanted to show.
-<br />
-<br />
-\(\Leftarrow\) (\(A \in SO(3) \implies A = \text{Rot}_u(\theta)\)):
-<br />
-For this we’ll use the fact that if \(A \in SO(3)\), then \(1\) is an eigenvalue of \(A\). So let \(u\) be the eigenvector of \(A\) corresponding to \(\lambda = 1\) so \(Au = u\). Choose \(\lVert u \rVert = 1\). Now let \(u_3 = u\) and form an orthonormal basis \(\{u_1, u_2, u_3\}\). Now Let \(P = [u_1 \quad u_2 \quad u_3]\) and let \(B = P^{-1}AP = P^{T}AP\). We know that \(Pe_3 = u_3\) but \(u_3\) is an eigenvector of \(A\).</p>
-<div>
-$$
-\begin{align*}
-Be_3 = P^{-1}APe_3 = P^{-1}Au_3 = P^{-1}u_3 = e_3
-\end{align*}
-$$
-</div>
-<p>So \(e_3\) is an eigenvector of \(B\) … then by the fact we used in the left direction, we can conclude that \(B \in SO(3)\) (Why?). So this means that \(B\) has orthonormal columns since it’s in \(SO(3)\) and the third column specifically is \(e_3\). So</p>
-<div>
-$$
-\begin{align*}
-B
-&amp;= 
-\begin{pmatrix}
-a &amp; b &amp; 0 \\
-c &amp; d &amp; 0 \\
-0 &amp; 0 &amp; 1
-\end{pmatrix}
-\end{align*}
-$$
-</div>
-<p>By an algebraic argument we can show that \(a = d = \cos\theta\) and \(c = -b = \sin\theta\). So \(B\) must be \(\text{Rot}_{e_3}\). Therefore, \(A = P\text{Rot}_{e_3}P^{T}\)….
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-<li>MATH417 by Charles Rezk</li>
-<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A group is a set with a defined product. This product is associative. The group is closed under this product. We have an identity element and each element has an inverse. Formally, Definition (1.10.1) A group is a (nonempty) set \(G\) with a binary operation (a product) \(G \times G \rightarrow G\) satisfying the following properties: The group is closed under the operation. The product is associative. For all \(a, b, c \in G\), we have \((ab)c = a(bc)\). There is an identity element \(e \in G\) with property that for all \(a \in G\), \(ea = ae = a\). For each element \(a \in G\), there is an element \(a^{-1}\ \in G\) satisfying \(aa^{-1} = a^{-1}a = e\) (The inverse). What are examples of the groups? \(\mathbf{R}\) with the addition operation. \(\mathbf{R}^{x} = \mathbf{R} - \{0\}\) with the multiplication operation. \(\mathbf{Z}\) with the addition operation. The set of invertible \(n \times n\) matrices with entries in \(\mathbf{R}\) with matrix multiplication as the product. Any vector space is a group if you forget about the scalar multiplication. For any set \(T\), define the set of all bijections \(g: T \rightarrow T\). The set of all bijections is the symmetric group of \(T\). The operation here is the composition of these maps. Example Suppose we define the group \((\mathbf{R}, \ast)\) where \(\ast\) is defined as $$ \begin{align*} x \ast y = \sqrt[3]{x^3 + y^3} \end{align*} $$ We can further check that this product satisfies the three axioms of a group. Example Let \(F\) be a field (for example \(\mathbf{R}\) or \(\mathbf{C}\)). Let \(Mat_{n \times n}(F)\) be the set of matrices with entries in \(F\). Then define \(GL_n(F)\) (General Linear Group) as a subset of \(A \in M_{n \times n}(F)\) where \(A\) is an invertible matrix. The set \(GL_n(F)\) equipped with matrix multiplication is a group. It satisfies the three axioms The group is closed under multiplication because multiplying two invertible matrices is another invertible matrix. \((AB)^{-1} = B^{-1}A^{-1}\) The identity element is the identity matrix. Matrix multiplication is associative. Rotations in Plane We can define a plane rotation by an angle counter clockwise by the left multiplication by the following rotation matrix $$ \begin{align*} Rot(\theta) &amp;= \begin{pmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{pmatrix} \end{align*} $$ The rotation matrix has some properties \(\text{Rot}(0) = I\) is the identity matrix. \(\text{Rot}(\alpha)Rot(\beta) = \text{Rot}(\alpha + \beta)\). \(\text{Rot}(\alpha)^{-1} = \text{Rot}(-\alpha)\). \(\text{Rot}(\alpha + 2\pi n) = \text{Rot}(\alpha)\) where \(n \in \mathbf{Z}\). From this we see that the collection of rotation matrices forms a group with matrix multiplication. Rotations in Space $$ \begin{align*} \text{Rot}_{e_3}(\theta) &amp;= \begin{pmatrix} \cos\theta &amp; -\sin\theta &amp; 0 \\ \sin\theta &amp; \cos\theta &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \end{align*} $$ This defines a rotation around the \(z-\)axis by angle \(\theta\) counter clockwise viewed from the head of the vector \(e_3\) where \(e_3 = (0,0,1)\). But instead of using \(e_3\), we’ll use a more general vector \(u \in \mathbf{R}^3\) such that \(\lVert {u} \rVert = 1\). So let \(\text{Rot}_u(\theta)\) be a rotation matrix around the axis through \(u\) by angle \(\theta\) counterclockwise when viewed from the head of \(u\). How Do you Compute The Rotation Matrix? Recall from Linear Algebra that Definition An orthogonal matrix is a square matrix \(P \in Mat_{n \times n}(\mathbf{R})\) such that \(P^{T}P = I\) or \(P^{-1} = P^{T}\). Equivalently the columns of \(P\) are an orthonormal basis of \(\mathbf{R}^n\) and the rows of \(P\) are also orthonormal basis of \(\mathbf{R}^n\). Given the above definition, there is a useful formula where for \(u \in \mathbf{R}^3\), \(\lVert u \rVert = 1\), \(\theta \in \mathbf{R}\) and \(P\) an orthogonal matrix such the product $$ \begin{align*} P \text{Rot}_u(\theta) P^{-1} \end{align*} $$ is another rotation matrix but instead of having \(u\) as the axis, we have \(Pu\) as the axis so $$ \begin{align*} \text{Rot}_{Pu}(\theta) = P \text{Rot}_u(\theta) P^{-1} \end{align*} $$ Why is this a useful formula? Given \(\lVert u \rVert = 1\) and some angle \(\theta\), construct an orthonormal basis using Gram-Schmidt by setting \(u_3 = u\) and finding two more perpendicular vectors (normalized) \(u_1, u_2 \in \mathbf{R}^3\). Let \(P = [u_1 \quad u_2 \quad u_3]\). This means that \(Pe_3 = u_3 = u\). Therefore $$ \begin{align*} \text{Rot}_{u}(\theta) = P \text{Rot}_{e_3}(\theta) P^{T} \end{align*} $$ Example So now suppose we want to rotate around \(\frac{(e_1 + e_2)}{\sqrt{2}}\) (which is a unit vector) by \(\theta = \frac{\pi}{3}\). Then, we’ll need two more orthonormal vectors in addition to \(\frac{(e_1 + e_2)}{\sqrt{2}}\) to construct an orthonormal basis. We can use Gram-Schmidt to come up with the following orthonormal vectors and set them to be the column vectors of \(P\) as follows $$ \begin{align*} P &amp;= \begin{pmatrix} 0 &amp; \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \\ 0 &amp; -\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \\ 1 &amp; 0 &amp; 0 \end{pmatrix} \end{align*} $$ The rotation \(\text{Rot}_{e_3}\) is as follows $$ \begin{align*} \text{Rot}_{e_3}(\frac{\pi}{3}\big) &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} &amp; 0 \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \end{align*} $$ Therefore, $$ \begin{align*} \text{Rot}_{\frac{e_1 + e_2}{\sqrt{2}}}\big(\frac{\pi}{3}\big) &amp;= P \text{Rot}_{e_3}(\frac{\pi}{3}\big) P^{T} \\ &amp;= \begin{pmatrix} \frac{3}{4} &amp; \frac{1}{4} &amp; \frac{\sqrt{3}}{8} \\ \frac{3}{4} &amp; \frac{3}{4} &amp; -\frac{\sqrt{3}}{8} \\ -\frac{\sqrt{3}}{8} &amp; \frac{\sqrt{3}}{8} &amp; \frac{1}{2} \end{pmatrix} \end{align*} $$ Rotations in Space From last lecture, we saw the symmetries of the square. These symmetries can be represented with rotation matrices. We have the identity rotation \(I\). We can also define the rotation around the axis coming through the centroid of the face (\(z-\)axis in the lecture) as \(R = \text{Rot}_{e_3}(\frac{\pi}{2})\). Therefore, \(R^2 = \text{Rot}_{e_3}(\pi)\) and \(R^3 = \text{Rot}_{e_3}(\frac{3\pi}{2})\). What about the \(180\) degrees rotation around the \(x-axis\) labeled as \(a\) from last time? We can define it as \(A = \text{Rot}_{e_1}(\pi)\). Similarly, \(B = \text{Rot}_{e_2}(\pi)\), \(C = \text{Rot}_{\frac{e_1 - e_2}{\sqrt{2}}}(\pi)\) and \(D = \text{Rot}_{\frac{e_1 + e_2}{\sqrt{2}}}(\pi)\) Rotations in space have also the following properties / identities \(\text{Rot}_u(0) = I\) is the identity matrix where \(u\) is any unit vector. \(\text{Rot}_u(\theta + 2\pi n) = \text{Rot}_u(\theta)\) where \(n \in \mathbf{Z}\). \(\text{Rot}_u(\theta) = \text{Rot}_{-u}(-\theta)\). \(\text{Rot}_u(\theta)^{-1} = \text{Rot}_{u}(-\theta) = \text{Rot}_{-u}(\theta)\). \(\text{Rot}_u(\alpha)Rot_v(\beta) = a\) is a rotation matrix. \(\text{Rot}_u(\alpha)Rot_u(\beta) = Rot_u(\alpha + \beta)\). But why is the last statement true? To figure it out, we need to introduce another definition Definition A special orthogonal matrix is an \(A \in Mat_{n \times n}(\mathbf{R})\) such that \(A^TA = I\). (The orthogonal property) \(\det(A) = \pm 1\). (This is as a result of the fact that \(det(A^{-1}) = \frac{1}{\det(A)}\) and that \(\det(A) = \det(A^T)\) And now we have the following proposition Proposition \(A \in Mat_{3 \times 3}(\mathbf{R})\) is a rotation matrix if and only if it is special orthogonal. We denote these matrices special matrices with $$ \begin{align*} SO(n) = \{ A \in Mat_{n \times n} \text{ special orthogonal} \} \subseteq O(n) \subseteq GL_n(\mathbf{R}) \end{align*} $$ Observation: \(A, B \in SO(n)\) implies that \(AB \in SO(n)\). To show that this is true, we need to show that properties of special orthogonal matrices hold. To see that, observe that \( (AB)^TAB = B^TA^TAB = B^TB = I \) \( \det(AB) = \det(A)\det(B) = 1 \) Also observe that the identity matrix is in \(SO(n)\) and that for any \(A \in SO(n)\), \(A^{-1} = A^{T} \in SO(n)\). Therefore \(SO(n)\) is a group with matrix multiplication. So now we know that the collection of special orthogonal matrices is a group. Therefore, if the proposition we introduced earlier holds (where we said that \(A \in Mat_{3 \times 3}(\mathbf{R})\) is a rotation matrix if and only if it is special orthogonal), then we can also conclude that the product of two rotation matrices is also a rotation matrix. So let’s sketch the proof of the proposition Proof \(\Rightarrow\) (\(\text{Rot}_u(\theta) \in SO(3)\)): Let \(\text{Rot}_u(\theta) = P\text{Rot}_{e_3}(\theta)P^{-1}\) for some chosen \(P \in O(3)\). We want to show that \(P\text{Rot}_{e_3}(\theta)P^{-1} \in SO(3)\). To do so we need to show that if \(A \in SO(n)\) and \(P \in O(n)\), then \(PAP^{-1} = PAP^{T} \in SO(3)\). We can easily show this by verifying the two properties of special orthogonal matrices. For example, $$ \begin{align*} (PAP^{T})^{T}PAP^{T} &amp;= PA^TP^TPAP^{T} \\ &amp;= PA^TAP^{T} \quad \text{ (because $P \in O(n)$)} \\ &amp;= PP^{T} = I. \end{align*} $$ The verification that the determinat is 1 is also the same. So now what’s left is to show that \(\text{Rot}_{e_3}(\theta)\) is in \(SO(3)\). We can verify this because we know the exact matrix of \(\text{Rot}_{e_3}(\theta)\) so we can computationally verify that it is a special orthogonal matrix. Finally, since \(P \in O(n)\) and we just showed that \(\text{Rot}_{e_3}(\theta) \in SO(3)\), then \(P\text{Rot}_{e_3}(\theta)P^{T}\) is in \(SO(3)\) as we wanted to show. \(\Leftarrow\) (\(A \in SO(3) \implies A = \text{Rot}_u(\theta)\)): For this we’ll use the fact that if \(A \in SO(3)\), then \(1\) is an eigenvalue of \(A\). So let \(u\) be the eigenvector of \(A\) corresponding to \(\lambda = 1\) so \(Au = u\). Choose \(\lVert u \rVert = 1\). Now let \(u_3 = u\) and form an orthonormal basis \(\{u_1, u_2, u_3\}\). Now Let \(P = [u_1 \quad u_2 \quad u_3]\) and let \(B = P^{-1}AP = P^{T}AP\). We know that \(Pe_3 = u_3\) but \(u_3\) is an eigenvector of \(A\). $$ \begin{align*} Be_3 = P^{-1}APe_3 = P^{-1}Au_3 = P^{-1}u_3 = e_3 \end{align*} $$ So \(e_3\) is an eigenvector of \(B\) … then by the fact we used in the left direction, we can conclude that \(B \in SO(3)\) (Why?). So this means that \(B\) has orthonormal columns since it’s in \(SO(3)\) and the third column specifically is \(e_3\). So $$ \begin{align*} B &amp;= \begin{pmatrix} a &amp; b &amp; 0 \\ c &amp; d &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \end{align*} $$ By an algebraic argument we can show that \(a = d = \cos\theta\) and \(c = -b = \sin\theta\). So \(B\) must be \(\text{Rot}_{e_3}\). Therefore, \(A = P\text{Rot}_{e_3}P^{T}\)…. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition Let \(X\) be a set. Define the permutation of \(X\) as a bijection from the set to itself (\(f: X \rightarrow X\)). Let \(Sym(X)\) be the set of all bijections from \(X\) to itself (\(X \rightarrow X\)). \(Sym(X)\) equipped with the composition of functions operation is a group. To see this observe that \(id: X \rightarrow X, id(x) = x\) is the identity element. Composition of functions is associative. The composition of two permutations is another permutation. Bijections have inverses and the inverse of a bijection is another bijection. This group is often denoted by the Permutation Group or more often the Symmetric Group. The standard example for the case of finite sets is the standard set \(X = \{1,2,...,n\}\). The symmetric group has a special name called \(S_n\), $$ \begin{align*} S_n = Sym(\{1,2,...,n\}) \end{align*} $$ The size of \(S_n\) is \(|S_n| = n!\). Two Line Notation Let \(\rho, \psi \in S_4\), then we’ll write $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; 4 &amp; 3 &amp; 2\end{pmatrix} \end{align*} $$ shows that \(\rho(1) = 1\), \(\rho(2) = 4\), \(\rho(3) = 3\) and \(\rho(4) = 2\). Similarly, $$ \begin{align*} \psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 2 &amp; 1 &amp; 3\end{pmatrix} \end{align*} $$ shows that \(\psi(1) = 4\), \(\psi(2) = 2\), \(\psi(3) = 1\) and \(\psi(4) = 3\). Finally, $$ \begin{align*} \rho\psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 2 &amp; 4 &amp; 1 &amp; 3\end{pmatrix} \in S_4 \end{align*} $$ so \(\rho\psi(1) = 2\), \(\rho\psi(2) = 4\), \(\rho\psi(3) = 1\) and \(\rho\psi(4) = 3\). Cycle Notation We can decompose the cycles in each permutation above. For example for the first permutation $$ \begin{align*} \rho = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; 4 &amp; 3 &amp; 2\end{pmatrix} \end{align*} $$ We can decompose this permutation into the following In this permutation, we have a cycle of length \(2\) For the second permutation $$ \begin{align*} \psi = \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 2 &amp; 1 &amp; 3\end{pmatrix} \end{align*} $$ we have a cycle of length \(3\). To describe a cycle, we can use cycle notation which is defined as follows Definition Let \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) where \(a_1,...,a_k \in X\) are distinct. \(\sigma\) is defined by $$ \begin{align*} \sigma(a_i) &amp;= a_{i+1}, \quad i = 1,...,k-1 \\ \sigma(a_k) &amp;= a_1 \\ \sigma(x) &amp;= x, \quad \text{if} x \notin \{a_1,...,a_k\} \\ \end{align*} $$ So we can write the first permutation with cycle notation as \((2,4)\) only since by definition for the other elements \(\sigma(x)=x\), while the second permutation can be written as \((1,4,3)\). What about the following example? $$ \begin{align*} \begin{pmatrix}1 &amp; 2 &amp; 3 &amp; 4 &amp; 5\\ 3 &amp; 5 &amp; 4 &amp; 1 &amp; 2\end{pmatrix} \end{align*} $$ Note here that we have two disjoint cycles. \((1 \quad 4 \quad 3)\) where \(1\) goes to \(3\) and \(3\) goes to \(4\) and \(4\) goes back to \(1\) and \((2 \quad 5)\) where \(2\) goes to \(5\) and \(5\) goes back to \(2\). This permutation can be written as $$ \begin{align*} (1 \quad 3 \quad 4)(2 \quad 5) \end{align*} $$ Facts Some facts about the cycle notation \((1) = (2) = ... (n) = id\). All of these represent the identity permutations. The order of the elements in a cycle matters up to "cyclic permutation". \((1 \quad 2 \quad 3 \quad 4) = (2 \quad 3 \quad 4 \quad 1) \neq (1 \quad 3 \quad 4 \quad 2)\) For the inverse of a permutation, we just reverse the order of elements so \((a_1 \quad a_2 \quad ... \quad a_k)^{-1} = (a_k \quad a_{k-1} \quad ... \quad a_1)\) Two cycles \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) and \(\tau = (b_1 \quad b_{2} \quad ... \quad b_l) \in Sym(X)\) are disjoint if \(\{a_1,a_2,...,a_k\} \cap \{b_1,b_2,...,b_l\} = \emptyset\). Moreover, if the two sets are disjoint, then \(\sigma \circ \tau = \tau \circ \sigma\). This means that the permutation above that we described with \((1 \quad 3 \quad 4)(2 \quad 5)\) can also be written as \((2 \quad 5)(1 \quad 3 \quad 4)\) Theorem Every non-id element in \(Sym(X)\) where \(X\) is finite can be written as a product of pairwise disjoint cycles (of length \(\geq 2\) uniquely up to re-ordering. Suppose we have \(\sigma = (1 \quad 3)(2 \quad 7 \quad 8)(4 \quad 5 \quad 6)(9) \in S_9\). Any of the cycles in this notation are pairwise disjoint. We have 3 disjoint cycles where \(9\) is fixed. The proof for this theorem is in the class notes. Cycle Type We can classify permutations of a finite set into groups corresponding to the number of cycles of various lengths in their cycle decomposition. For example for \(S_2\), we have two elements and so we have two permutations \(1 + 1\) \(id = (1)(2)\) \(2\) \((1 \quad 2)\) For \(S_3\), \(1 + 1 + 1\) \(id = (1)(2)(3)\) \(2 + 1\) \((1 \quad 2),(1 \quad 3),(2 \quad 3)\) \(3\) \((1 \quad 2 \quad 3),(1 \quad 3 \quad 2)\) For \(S_4\), \(1 + 1 + 1 + 1\) \(id = (1)(2)(3)(4)\) \(2 + 1 + 1\) \((1 \quad 2),(1 \quad 3),(1 \quad 4),(2 \quad 3),(2 \quad 4),(3 \quad 4)\) \(2 + 2\) \((1 \quad 2)(3 \quad 4),(1 \quad 3)(2 \quad 4),(1 \quad 4)(2 \quad 3)\) \(3 + 1\) \((1 \quad 2 \quad 3),(1 \quad 2 \quad 4)\),\((1 \quad 3 \quad 4),(2 \quad 3 \quad 4),(1 \quad 3 \quad 2)\),\((1 \quad 4 \quad 2),(1 \quad 4 \quad 3),(2 \quad 4 \quad 3)\) \(4\) \((1 \quad 2 \quad 3 \quad 4),(1 \quad 2 \quad 4 \quad 3)\),\((1 \quad 3 \quad 2 \quad 4),(1 \quad 3 \quad 4 \quad 2)\),\((1 \quad 4 \quad 2 \quad 3),(1 \quad 4 \quad 3 \quad 2)\) The Order of an Element (Start of lecture 4). The first concept that we will talk about is the order of an element in a group. Definition Suppose we have a group \((G, \cdot)\) and let \(a \in G\). The order of \(a\) is the smallest positive integer \(n\) such that \(a^n = e\) (or infinite). \(\text{order}(a) \in \mathbf{N} \cup \{\infty\}\). For example let \(\sigma = (1 \quad 2 \quad 3 \quad 4) \in S_5\) The order of \(\sigma\), \(\text{order}(\sigma)\) is \(4\). This is because it will take \(\sigma^4\) will finally get us back to the identity permutation. In fact that the order of a \(k-\)cycle is \(k\). What about \(\tau = (1 \quad 2)(3 \quad 4 \quad 5)\)? \(\text{order}(\tau) = 6\) because we have to iterate the operation \(6\) times to get to the identity element. Specifically, we have two disjoint cycles and since they are disjoint, then they operate independently. So we need to find \(n\) such that both of the cycles will return to the identity permutation $$ \begin{align*} (1 \quad 2)^n &amp;= e \\ (3 \quad 4 \quad 5)^n &amp;= e \end{align*} $$ This \(n\) must be then the least common multiple of \(2\) and \(3\) which is \(6\). What about \(\nu = (1 \quad 2)(2 \quad 3 \quad 4)\)? Note here that the two cycles are not disjoint. It’s not clear here what it would be so drawing this permutation might make this very obvious.]]></summary></entry></feed>

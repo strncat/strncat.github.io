@@ -96,13 +96,16 @@ mathjax: true
 	   <li><a href="/jekyll/update/2024/11/11/2.4-homomorphisms-isomorphisms.html">
        Book Notes: [2.4] Homomorphisms
        </a></li>
-   </ol>
-<br>
-<!------------------------ BOOK NOTES --------------------------->
-<h4> Extra Book Notes (to go over) </h4>
-<ol style="list-style-type:none;">
+	   <!-------------->
+	   <!------12------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/05/math417-13-cosets.html">
+       Lecture 13: Cosets
+       </a></li>
 	   <li><a href="/jekyll/update/2025/01/01/2.5-cosets-lagrange.html">
-        [2.5] Cosets and Lagrange’s Theorem
+        Book Notes: [2.5] Cosets
        </a></li>
    </ol>
+<br>
 <br>

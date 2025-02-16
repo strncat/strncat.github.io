@@ -1,0 +1,193 @@
+---
+layout: post
+title:  "Lecture 13: Cosets"
+date:   2025-02-05 01:01:36 -0700
+categories: jekyll update
+mathjax: true
+---
+<div class="mintheaderdiv">
+Definition 2.4.14
+</div>
+<div class="mintbodydiv">
+Let \(H\) be subgroup of a group \(G\). <br>
+\(gH = \{gh \ | \ h \in H\}\) is called a left coset of \(H\) in \(G\). 
+<br>
+\(Hg = \{hg \ | \ h \in H\}\) is called a right coset of \(H\) in \(G\).
+</div>
+<br>
+<!------------------------------------------------------------------------>
+<h4><b>Example</b></h4>
+Let $$D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}$$. where $$r^4 = e = j^2$$ and $$jr = r^{-1}j$$.
+<br> Define the subgroup $$H = \langle j \rangle = \{e, j\}$$. The left cosets are:
+<div>
+$$
+\begin{align*}
+eH &= \{e, j\} = jH \\
+rH &= \{r, rj\} = rjH \\
+r^2H &= \{r^2, r^2j\} = r^2jH \\
+r^3H &= \{r^3, r^3j\} = r^3jH \\
+\end{align*}
+$$
+</div>
+Notice here that none of the elements overlap between the sets so this gives us a way to partition the set $$G$$ into four pairwise disjoint subsets (We'll prove this next). The right cosets are
+<div>
+$$
+\begin{align*}
+He &= \{e, j\} = Hj \\
+Hr &= \{r, jr\} = \{e, r^3j\} = Hr^3j \\
+Hr^2 &= \{r^2, r^2j\} = Hr^2j \\
+Hr^3 &= \{r^3, rj\} = Hrj \\
+\end{align*}
+$$
+</div>
+Next we show why these subets must be pairwise disjoint.
+<br>
+<!------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Proposition (2.5.4)
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\). If \(X, Y \subseteq G\) are left \(H-\)cosets, then either
+<ol>
+	<li>\(X \cap Y = \emptyset\).</li>
+	<li>\(X = Y\).</li>
+</ol>
+</div>
+<br>
+<!------------------------------------------------------------------------>
+<b>Proof</b>
+<br>
+We'll prove that not (1) implies (2) (to prove an or statement). <br>
+Suppose that $$g \in X \cap Y$$. We want to show that $$X = Y$$. Since $$X$$ and $$Y$$ are left cosets, then we can write $$X = xH$$ and $$Y = yH$$ for some $$x, y \in G$$. Since $$g \in X \cap Y$$, then we can write $$g = xh_1 = yh_2$$ for some $$h_1, h_2 \in H$$. Observe now that
+<div>
+$$
+\begin{align*}
+x &= gh_1^{-1} \\
+  &= (yh_2)h_1^{-1} \\
+  &= y(h_2h_1^{-1})
+\end{align*}
+$$
+</div>
+Likewise
+<div>
+$$
+\begin{align*}
+y &= gh_2^{-1} \\
+  &= (xh_1)h_2^{-1} \\
+  &= x(h_1h_2^{-1})
+\end{align*}
+$$
+</div>
+Now, let $$xh \in xH$$, then
+<div>
+$$
+\begin{align*}
+xh &= (yh_2h_1^{-1})h \\
+   &= y(h_2h_1^{-1}h)
+\end{align*}
+$$
+</div>
+But this implies that $$xh \in yH$$. So $$xH \subseteq yH$$. Likewise, let $$yh \in yH$$, then
+<div>
+$$
+\begin{align*}
+yh &= (xh_1h_2^{-1})h \\
+   &= x(h_1h_2^{-1}h)
+\end{align*}
+$$
+</div>
+so $$yh \in xH$$ and $$yH \subseteq xH$$. Therefore $$xH = yH$$. $$\blacksquare$$ 
+<br>
+<br>
+Based on this, we have the following proposition
+<br>
+<!------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Proposition 2.5.3
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be
+elements of \(G\). The following conditions are equivalent:
+<ol type="a">
+	<li>\(a \in bH\).</li>
+	<li>\(b \in aH\).</li>
+	<li>\(aH = bH\).</li>
+	<li>\(b^{-1}a \in H\).</li>
+	<li>\(a^{-1}b \in H\).</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------>
+<br>
+<b>Proof (book)</b>
+<br>
+Suppose $$(a)$$ holds. Let $$a \in bH$$. Then we can write $$a = bh$$. Since $$H$$ is a subgroup, then we know $$h^{-1} \in H$$. So we can write $$b = ah^{-1}$$. But $$ah^{-1}$$ is in $$aH$$ by the definition of a left coset which is what we wanted to show. With similar reason $$(b)$$ also implies $$(a)$$. 
+<br>
+<br>
+For $$(c)$$, we want to show that $$aH \subseteq bH$$ and $$bH \subseteq aH$$. To show that $$bH \subseteq aH$$, we want to show that for any arbitrary element $$x$$ in $$bH$$, that $$x$$ is also in $$aH$$. So consider any $$x \in bH$$. By the definition of a coset, we can write $$x = bh$$ for some $$h \in H$$. Now suppose that $$(b)$$ holds and so we have $$b \in aH$$. This means that we can write $$b = ah_1$$ for some $$h_1 \in H$$. But this means that we can write $$x = bh = ah_1h$$. The product $$h_1h$$ is in $$H$$ because $$H$$ is a subgroup. Furthermore, $$ah_1h$$ must be in $$aH$$ by the definition of a coset. Therefore, $$x = bh \in aH$$ and so $$bH \subseteq aH$$ as we wanted to show. Since $$(b)$$ also implies $$(a)$$ we can use a similar reasoning to show that $$aH \subseteq bH$$.
+<br>
+<br>
+For $$(d)$$ ....
+<br>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Lagrange Theorem</b></h4>
+Based on what we learned so far, we can now present the most important results
+<!------------------------------------------------------------------------>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a group \(G\). Then every left \(H-\)coset and right \(H-\)coset has the same size as \(H\).
+</div>
+<br>
+<br>
+<div class="peachheaderdiv">
+Lagrange Theorem
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a finite group \(G\) (\(|G| = n\). Then \(|H|\) divides \(|G|\).
+</div>
+<br>
+<br>
+<div class="peachheaderdiv">
+Order Theorem
+</div>
+<div class="peachbodydiv">
+Let \(H\) be a subgroup of a finite group \(G\). If (\(|G| = n\). Then for any \(g \in G\), \(o(g) = |\langle g \rangle|\) divides \(|G|\).
+</div>
+
+
+
+
+
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

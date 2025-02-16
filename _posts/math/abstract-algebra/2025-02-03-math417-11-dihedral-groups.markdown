@@ -26,7 +26,7 @@ A rotation around an arbitrary angle which is $$r_{\theta} = Rot_{e_3}(\theta)$$
 <br>
 <!------------------------------------------------------------------------------>
 <h4><b>Rotations Around the a Line in the \(xy-\)axis (Flips)</b></h4>
-Here the $$z-$$axis will get reversed since we're flipping the disk by $$180^{\circ}$$ (so $$e_3$$ will now be $$-e_3$$ facing the opposite the direction). The rotation axis itself is parallel to the $$xy$$ plane. So $$j_{\theta} = Rot_{u_{\theta}}(\pi)$$. Just draw a disk and draw any line that goes through the center. This line will be the rotation axis that is fixed and we're flipping over it. 
+Here the $$z-$$axis will get reversed since we're flipping the disk by $$180^{\circ}$$ (so $$e_3$$ will now be $$-e_3$$ facing the opposite the direction). The rotation axis itself is parallel to the $$xy$$ plane. And we write $$j_{\theta} = Rot_{u_{\theta}}(\pi)$$. Just draw a disk and draw any line that goes through the center. This line will be the rotation axis that is fixed and we're flipping over it. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec11/disk.png" width="40%" class="center"></p>
 The rotation vector can written as
 <div>
@@ -36,7 +36,7 @@ The rotation vector can written as
 	\end{align*}
 	$$
 </div>
-This vector spans a line $$l_{\theta} = \mathbf{R}u_{\theta}$$. This line is in the $$xy$$ plane that goes through the vector $$u$$. We call this kind of rotation $$j_\theta$$ as opposed to $$r_\theta$$. Note here that adding another rotation of $$\pi$$ will not change the line so $$j_{\theta + \pi n} = j_{\theta}$$. However, the vector $$u_{\theta}$$ though will face the other direction after adding $$\pi$$ and so $$u_{\theta+\pi} = -u_{\theta}$$. Based on this, we will see that $$j^2_{\theta} = e$$.
+This vector spans a line $$l_{\theta} = \mathbf{R}u_{\theta}$$. This line is in the $$xy$$ plane that goes through the vector $$u$$. Note here that adding another rotation of $$\pi$$ will not change the line so $$j_{\theta + \pi n} = j_{\theta}$$. However, the vector $$u_{\theta}$$ though will face the other direction after adding $$\pi$$ and so $$u_{\theta+\pi} = -u_{\theta}$$. Moreover, $$j^2_{\theta} = e$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------>
@@ -61,7 +61,9 @@ To describe the group structure, we want to see what happens if we perform two r
 			\end{align*}
 			$$
 		</div>
-		We flip the disk where \(l_{\beta}\) is fixed like before, but then we add a rotation by \(\alpha\) so the end result is a flip around \(u_{\beta+\frac{\alpha}{2}}\) where it's the final fixed rotation axis. Draw a circle and cut it. Draw the original rotation axis \(l_{\beta}\) flip it over this access. Now add a small rotation by \(\alpha\). Mark it on the circle and then flip the shape. again. The composition of these two operations (flip+rotation) will actually be equivalent to a flip around the vector \(u_{\beta+\frac{\alpha}{2}}\). (TODO: why not just \(\alpha + \beta\)?)
+		But why? We first flip the disk where \(l_{\beta}\) is fixed like before. After the flip, we rotate the disk around the \(z-\)axis by \(\alpha\) as illustrated below
+		<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec11/flip.png" width="90%" class="center"></p>
+		So what we want is to compose these two operations into one and find where the fixed rotation axis will be. If you turn the third figure back to the front and now you want to use one flip to get to the same exact positions of the lines in the third figure, you'll see that the new axis will be \(u_{\beta+\frac{\alpha}{2}}\).
 		<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec11/disk1.png" width="40%" class="center"></p>
 	</li>
 	<!------ (3) ------->

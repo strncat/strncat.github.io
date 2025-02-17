@@ -341,6 +341,9 @@ We know that $$k$$ is a subgroup of $$G$$. We need to show that given $$g \in G$
 From this, we see $$gKg^{-1} \subseteq K$$ for all $$g \in G$$. $$\blacksquare$$
 <br>
 <br>
+Note also that all subgroups of abelian groups are normal.
+<br>
+<br>
 <hr>
 <br>
 <!----------------------------------------------------------------------------->

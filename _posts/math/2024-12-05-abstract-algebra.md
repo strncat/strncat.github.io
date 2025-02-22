@@ -113,6 +113,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/06/math417-14-lagrange-order-equivalence.html">
        Lecture 14: Lagrange's Theorem, Order Theorem & Equivalence Relations
        </a></li>
+	   <!-------------->
+	   <!------15------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/07/math417-15-quotient-groups.html">
+       Lecture 15: Quotient Groups
+       </a></li>
    </ol>
 <br>
 <br>

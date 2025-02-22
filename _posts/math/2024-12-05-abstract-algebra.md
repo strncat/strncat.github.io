@@ -97,7 +97,7 @@ mathjax: true
        Book Notes: [2.4] Homomorphisms
        </a></li>
 	   <!-------------->
-	   <!------12------->
+	   <!------13------->
 	   <!-------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/05/math417-13-cosets.html">
@@ -105,6 +105,13 @@ mathjax: true
        </a></li>
 	   <li><a href="/jekyll/update/2025/01/01/2.5-cosets-lagrange.html">
         Book Notes: [2.5] Cosets
+       </a></li>
+	   <!-------------->
+	   <!------14------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/06/math417-14-lagrange-order-equivalence.html">
+       Lecture 14: Lagrange's Theorem, Order Theorem & Equivalence Relations
        </a></li>
    </ol>
 <br>

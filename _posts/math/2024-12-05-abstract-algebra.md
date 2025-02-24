@@ -120,6 +120,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/07/math417-15-quotient-groups.html">
        Lecture 15: Quotient Groups
        </a></li>
+	   <!-------------->
+	   <!------16------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/08/math417-16-theorems-homomorphism-and-isomorphism.html">
+       Lecture 16: Theorems: Homomorphism and Isomorphism
+       </a></li>
    </ol>
 <br>
 <br>

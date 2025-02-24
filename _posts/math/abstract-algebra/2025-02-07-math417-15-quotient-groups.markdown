@@ -267,15 +267,156 @@ $$a + \mathbf{Z} = [a] = \{a + n \ | \ n \in \mathbf{Z}\}$$ is a $$\mathbf{Z}$$ 
 $$G/H$$ is a group under addition where $$[a] + [b] = [a + b]$$. This group is abelian. What is this group isomorphic to? 
 <br>
 <br>
-Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = Rot_{e_3}(\theta) \ | \ \theta \in \mathbf{R}\}$$. This is a subgroup of $$SO(3)$$. Note here that $$r_{\theta + 2\pi n} = r_{\theta}$$. It turns out that $$\mathbf{R}/\mathbf{Z}$$ is isomorphic to $$T$$. 
+Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = Rot_{e_3}(\theta) \ | \ \theta \in \mathbf{R}\}$$. This is a subgroup of $$SO(3)$$. Note here that $$r_{\theta + 2\pi n} = r_{\theta}$$. It turns out that $$\mathbf{R}/\mathbf{Z}$$ is isomorphic to $$T$$. The isomorphism is
+<div>
+	$$
+	\begin{align*}
+	\mathbf{R}/\mathbf{Z} &\rightarrow T \\
+	[x] &\rightarrow r_{2\pi x}
+	\end{align*}
+	$$
+</div>
 <br>
 <br>
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
 <h4><b>Example 4</b></h4>
-
-
+Let $$F$$ be a field. ($$F = \mathbf{R}$$ or $$\mathbf{C}$$ or $$\mathbf{Z}p$$, $$p$$ is prime). Now let 
+<div>
+	$$
+	\begin{align*}
+	GL_n(F) = \{ A \in Mat_{n \times n}(F) \ | \ A^{-1} \text{ exists }\}
+	\end{align*}
+	$$
+</div>
+where the product is matrix multiplication. A normal subgroup here is 
+<div>
+	$$
+	\begin{align*}
+	H = \{cI, c \in F^{x}\} \quad \text{ (where } F^{x} = F - \{0\}). 
+	\end{align*}
+	$$
+</div>
+Why is this a normal subgroup? because you can pull out scalars in matrix multiplication so $$A^{-1}cA = cA^{-1}A = cI$$.
+We can form the quotient group
+<div>
+	$$
+	\begin{align*}
+	GL_{n}(F) / H = PGL_n(F) \quad \quad \text{ (The Projective Linear Group) } 
+	\end{align*}
+	$$
+</div>
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Symmetric Groups</b></h4>
+We want to know what the normal subgroups of symmetric groups are. In order to do so, we want to see what happens if we conjugate a permutation $$\tau$$ with element so $$\sigma \tau \sigma^{-1}$$?
+<br>
+<br>
+In turns out in symmetric groups, there is a way to understand conjugation. We actually have a formula. This formula is called the <b>cycle conjugation formula</b>. Given $$\tau = (a_1 \ a_2 \ ... a_k) \in S_n$$ where $$\tau$$ is a permutation consisting of a $$k-$$cycle with $$a_1,a_2... \in \{1,2,....,n\}$$. Then 
+<div>
+	$$
+	\begin{align*}
+	\sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} &= (b_1 \ b_2 \ ... b_k) \quad \text{where } b_i = \sigma(a_i) \\
+	                                         &= (\sigma(a_1) \ \sigma(a_2) \ ...\ \sigma(a_k))
+	\end{align*}
+	$$
+</div>
+So we actually get another $$k$$ cycle.
+<br>
+<br>
+<b>Proof</b>
+<br>
+We want to show that 
+$$\sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} = (\sigma(a_1) \ \sigma(a_2) \ ... \ \sigma(a_k))$$. We will compute the new permutation directly. Let $$x \in \{1,2,...,n\}$$. It turns out that there are two cases.
+<br>
+<br>
+Case 1: $$x = \sigma(a_i)$$:<br>
+So now we'll apply the permutation on $$x$$. First we apply $$\sigma^{-1}$$ but since $$x = \sigma(a_i)$$, then we will just get $$a_i$$. Next, we'll apply the cycle and here we'll get $$a_{i+1}$$ since it's a cycle. Lastly, we need to apply $$\sigma$$. So we get $$\sigma(a_{i+1})$$. (There is a subtly here because $$a_{i+1}$$ for $$i = k$$, is $$i = 1$$. To fix this, we'll let $$a_{k+1} = 1$$).
+<br>
+<br>
+Case 2: $$x \neq \sigma(a_i)$$ for any $$i$$<br>
+Apply $$\sigma^{-1}$$ to get $$\sigma^{-1}(x) \neq a_i$$ for any $$i$$. This means that the cycle actually doesn't do anything to $$x$$. So $$x$$ is in fact fixed. Next, we apply $$\sigma$$ on it to get back $$x$$.
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Cycle Conjugation Formula Application</b></h4>
+Suppose we have an element $$\tau = \tau_1 \tau_2 ... \tau_r \in S_n$$ where each $$\tau_i$$ is a cycle. Now suppose we have another element $$\sigma$$. Then
+<div>
+	$$
+	\begin{align*}
+	\sigma \tau \sigma^{-1} &= \sigma \tau_1 \tau_2 ... \tau_r \sigma^{-1} \\
+	                        &= \sigma \tau_1 (\sigma^{-1}\sigma) \tau_2 (\sigma^{-1}\sigma) ... (\sigma^{-1}\sigma) \tau_r \sigma^{-1} \\
+							&= (\sigma \tau_1 \sigma^{-1}) (\sigma \tau_2 \sigma^{-1}) \sigma ... \sigma^{-1} (\sigma \tau_r \sigma^{-1}) \\
+	\end{align*}
+	$$
+</div>
+So if we have a permutation $$\tau$$ that has a cycle decomposition and therefore a cycle type (cycle decomposition meaning that it can be decomposed into disjoint cycles). Then if we conjugate the permutation, the conjugate will also have exactly the same cycle type. So two facts
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Fact
+</div>
+<div class="peachbodydiv">
+\(\forall \ \sigma, \tau \in S_n\), \(\tau\) and \(\sigma \tau \sigma^{-1}\) have the same cycle type.
+</div>
+<!----------------------------------------------------------------------------->
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Fact
+</div>
+<div class="peachbodydiv">
+If \(\tau, \tau' \in S_n\) have the same cycle type. Then \(\tau' = \sigma \tau \sigma^{-1}\) for some \(\sigma \in S_n\). 
+</div>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Example 1</b></h4>
+For example, let $$\sigma = (1 \ 3 \ 4 \ 7 \ 2 \ 5) \in S_9$$ and let $$\tau = (2 \ 9)(1 \ 8 \ 7)$$. If we conjugate $$\tau$$ with $$\sigma$$, then we know by the previous fact that the cycle type will remain the same. This means that we will get a 3-cycle followed by a 2-cycle $$(a_1 \ a_2 \ a_3)(a_4 \ a_5)$$. Furthermore, to figure out these new numbers. We just apply sigma on $$\tau$$, meaning that we permute the elements in $$\tau$$ according to $$\sigma$$. For example, $$\sigma$$ sends 2 to 5. so we'll replace 2 with 5 in $$\tau$$. $$\sigma$$ doesn't do anything to 6 so it just stays and so on.
+<div>
+	$$
+	\begin{align*}
+	\sigma &= (1 \ 3 \ 4 \ 7 \ 2 \ 5) \\
+	\tau &= (2 \ 9)(1 \ 8 \ 7) \\
+	\sigma \tau \sigma^{-1} &= (5 \ 6)(3 \ 8 \ 2)
+	\end{align*}
+	$$
+</div>
+We can also ask, given $$\tau$$ and given $$\tau' = (5 \ 6)(3 \ 8 \ 2)$$. How can we produce $$\sigma$$ such that $$\tau' = \sigma \tau \sigma^{-1}$$? For this, it is easier to right $$\sigma$$ using the two notation. So now we will look at $$\tau$$ see that the first element is 2 and 2 goes to 5 in $$\tau'$$. The second element is 9 and to goes to 6 in $$\tau'$$ (position wise) and so. Therefore
+<div>
+	$$
+	\begin{align*}
+	\tau &= (2 \ 9)(1 \ 8 \ 7) \\
+	\tau' &= (5 \ 6)(3 \ 8 \ 2) \\
+	\sigma &= 
+	\begin{pmatrix}
+	1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+	3 & 5 & 1 & 4 & 9 & 6 & 2 & 8 & 7
+	\end{pmatrix}
+	\end{align*}
+	$$
+</div>
+Notice that for the other elements 3. We don't care where it goes as long it goes somewhere. As a reminder, $$\sigma$$ is not unique and there could be many $$\sigma$$'s such that $$\tau = \sigma \tau \sigma^{-1}$$.
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Example 2</b></h4>
+Let $$G = S_3$$ and $$N = \{e, (1 \ 2 \ 3), (1 \ 3\ 2)\} \leq S_3$$.
+<br>
+<br>
+Observation: A subgroup $$H \leq S_n$$ is normal if and only if whenever $$g \in H$$, then so is every element with the same cycle type as $$g$$. 
+<br>
+<br>
+Based on this, $$H = \{e, (1 \ 2)\} \leq S_3$$. $$H$$ is not normal since it doesn't have all the elements of the same cycle type. Other normal subgroups of $$S_n$$ are $$\{e\}$$, $$A_n = ker(sgn)$$ even permutations. And if $$n = 4$$, $$K = \{e, (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4),(2 \ 3)\}$$.
 <br>
 <br>
 <hr>

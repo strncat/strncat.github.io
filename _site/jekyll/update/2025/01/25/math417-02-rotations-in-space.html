@@ -129,7 +129,7 @@ $$
 \end{align*}
 $$
 </div>
-<p>This defines a rotation around the \(z-\)axis by angle \(\theta\) counter clockwise viewed from the head of the vector \(e_3\) where \(e_3 = (0,0,1)\). But instead of using \(e_3\), we’ll use a more general vector \(u \in \mathbf{R}^3\) such that \(\lVert {u} \rVert = 1\). So let \(\text{Rot}_u(\theta)\) be a rotation matrix around the axis through \(u\) by angle \(\theta\) counterclockwise when viewed from the head of \(u\).
+<p>This defines a rotation around the \(z-\)axis by angle \(\theta\) counter clockwise viewed from the head of the vector \(e_3\) where \(e_3 = (0,0,1)\). But what if we wanted to rotate around a different vector? let \(u \in \mathbf{R}^3\) such that \(\lVert {u} \rVert = 1\) and let \(\text{Rot}_u(\theta)\) be a rotation matrix around the axis through \(u\) by angle \(\theta\) counterclockwise when viewed from the head of \(u\). How do we compute such a matrix?
 <br />
 <br /></p>
 <hr />
@@ -145,18 +145,7 @@ Definition
 An orthogonal matrix is a square matrix \(P \in Mat_{n \times n}(\mathbf{R})\) such that \(P^{T}P = I\) or \(P^{-1} = P^{T}\).
 </div>
 <p><br />
-Equivalently the columns of \(P\) are an orthonormal basis of \(\mathbf{R}^n\) and the rows of \(P\) are also orthonormal basis of \(\mathbf{R}^n\).
-<br />
-<br />
-Given the above definition, there is a useful formula where for \(u \in \mathbf{R}^3\), \(\lVert u \rVert = 1\), \(\theta \in \mathbf{R}\) and \(P\) an orthogonal matrix such the product</p>
-<div>
-$$
-\begin{align*}
-P \text{Rot}_u(\theta) P^{-1}
-\end{align*}
-$$
-</div>
-<p>is another rotation matrix but instead of having \(u\) as the axis, we have \(Pu\) as the axis so</p>
+Equivalently the columns of \(P\) are an orthonormal basis of \(\mathbf{R}^n\) and the rows of \(P\) are also orthonormal basis of \(\mathbf{R}^n\). Based on this, we have a useful formula where if we’re given \(u \in \mathbf{R}^3\) such that \(\lVert u \rVert = 1\), \(\theta \in \mathbf{R}\) and \(P\) an orthogonal matrix, then \(P \text{Rot}_u(\theta) P^{-1}\) is actually a rotation matrix around the vector \(Pu\). So</p>
 <div>
 $$
 \begin{align*}
@@ -172,7 +161,13 @@ $$
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------>
+<p>So we’re taking the standard rotation around the \(z\)-axis or \(e_3\) and changing the basis from the standard vectors \(e_1, e_2, e_3\) to \(u_1, u_2, u_3\) so now the rotation is actually around \(u_3\) instead.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------></p>
 <h4><b>Example</b></h4>
 <p>So now suppose we want to rotate around \(\frac{(e_1 + e_2)}{\sqrt{2}}\) (which is a unit vector) by \(\theta = \frac{\pi}{3}\). Then, we’ll need two more orthonormal vectors in addition to \(\frac{(e_1 + e_2)}{\sqrt{2}}\) to construct an orthonormal basis. We can use Gram-Schmidt to come up with the following orthonormal vectors and set them to be the column vectors of \(P\) as follows</p>
 <div>

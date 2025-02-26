@@ -304,7 +304,7 @@ So here are some claims about $$\varphi$$
 <ul>
 	<li>\(\varphi\) is a homomorphism from \(S_4\) to \(S_3\).</li>
 	<li>\(\varphi\) is surjective. Recall that \(|S_4| = 24\) while \(|S_3| = 6\). (We still need to check (homework))</li>
-	<li>\(K = ker(\phi)\) is a normal subgroup of \(S_4\). We can further deduce the order of \(K\). How? We know by the Isomorphism Theorem that the quotient group \(S_4/K\) is isomorphic \(S_3\) because \(\varphi\) is a surjective homomorphism and \(K\) is the kernel. This tells us that these two groups have the same size. We also know that the quotient group is the number of cosets. But by Lagrange's Theorem we know that \(\frac{|S_4|}{|K|}\) is equal to the number of cosets. So \(\frac{|S_4|}{|K|} = |S_4/K| = |S_3|\). Therefore, we see that \(|K| = 4\).</li>
+	<li>\(K = ker(\phi)\) is a normal subgroup of \(S_4\). We can further deduce the order of \(K\). How? We know by the Isomorphism Theorem that the quotient group \(S_4/K\) is isomorphic \(S_3\) because \(\varphi\) is a surjective homomorphism and \(K\) is a normal subgroup. This tells us that these two groups have the same size. Since \(K\) is normal, we also know that the quotient group is the number of cosets. But by Lagrange's Theorem we know that \(\frac{|S_4|}{|K|}\) is equal to the number of cosets. So \(\frac{|S_4|}{|K|} = |S_4/K| = |S_3|\). Therefore, we see that \(|K| = 4\).</li>
 	<li>In fact \(K = \{e, (1 \ 2)(3 \ 4), (1 \ 4)(2 \ 3), (1 \ 3)(2 \ 4)\} \)</li>
 </ul>
 Notice here that we first proved that $$|K| = 4$$ before finding the elements in $$K$$. It's just easier to verify that some element is in the kernel rather than finding the elements first.
@@ -314,7 +314,8 @@ Notice here that we first proved that $$|K| = 4$$ before finding the elements in
 <br>
 <!----------------------------------------------------------------------------->
 <h4><b>Example 4</b></h4>
-Suppose that $$n \geq 3$$. Let $$D_{2n}$$ be the symmetries of regular $$2n$$-gon.
+Suppose that $$n \geq 3$$. Let $$D_{2n}$$ be the symmetries of regular $$2n$$-gon (even number of vertices.)<br> 
+We already know that if we have a symmetry of an $$n-$$gon, we get a permutation of its vertices. But there are other ways to construct a homomorphism. Consider the following homomorphism
 <div>
 $$
 \begin{align*}
@@ -322,7 +323,17 @@ $$
 \end{align*}
 $$
 </div>
-Let $$X$$ be the set of diagonals of the polygon.
+where $$X$$ be the set of diagonals of the polygon. For example, for $$n = 3$$, we have 6 vertices. But we let's think of the diagonals. We have 3 diagonals. Notice here that any symmetry will take a diagonal to another diagonal. If we label the diagonals, then a rotation will take diagonal 1 to diagonal 2 for example and diagonal 2 to diagonal 3 as shown below.
+<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec16/2.png" width="40%" class="center"></p>
+In fact, this homomorphism is surjective.
+<div>
+$$
+\begin{align*}
+\varphi \ : \ D_{6} \rightarrow S_3
+\end{align*}
+$$
+</div>
+The kernel of this homomorphism is a normal subgroup of $$D_6$$ and by the Isomorphism Theorem, the quotient group $$D_6/K$$ is isomorphic to $$S_3$$. How big is $$K$$? $$D_6$$ has 12 elements and $$S_3$$ has 6 elements. So $$K$$ must have $$2$$ elements. The kernel is $$\{e, r^3\}$$. 
 <br>
 <br>
 <hr>

@@ -127,6 +127,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/08/math417-16-theorems-homomorphism-and-isomorphism.html">
        Lecture 16: Theorems: Homomorphism and Isomorphism
        </a></li>
+	   <!-------------->
+	   <!------17------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/09/math417-17-correspondence-theorem.html">
+       Lecture 17: Correspondence Theorem
+       </a></li>
    </ol>
 <br>
 <br>

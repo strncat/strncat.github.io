@@ -16,6 +16,7 @@ $$
 b = ah \quad \text{ for some } h \in H
 \end{align*}
 $$
+In other words, \(a \sim_H b\) if \(a^{-1}b \in H\).
 </div>
 <!----------------------------------------------------------------------------->
 <br>
@@ -25,16 +26,16 @@ We claim that $$\sim_H$$ is an equivalence relation. [Exercise: Prove it]
 The equivalence classes are the left cosets $$aH = \{ah \ | \ h \in H\}$$. 
 <br>
 <br>
-Now define $$G / H$$ to be the collection of left $$H$$-cosets in $$G$$ so $$G / H = \{ aH \ | \ a \in G\}$$. Define Quotient function as follows
+Now define $$G / H$$ to be the collection of left $$H$$-cosets in $$G$$ so $$G / H = \{ aH \ | \ a \in G\}$$. Define the Quotient function as follows
 <div>
 $$
 \begin{align*}
 \pi \ : \ &G \rightarrow G / H \\
-     &\pi(g) = gH
+     &\pi(g) = gH.
 \end{align*}
 $$
 </div>
-Of course we can do the same thing for right cosets. We need a different notation so we'll use a backward slash for right cosets $$G \backslash H$$. So $$G \backslash H = \{ Ha \ | \ a \in G\}$$. The Quotient function is
+So $$\pi$$ sends an element to the coset it is contained in. Of course we can do the same thing for right cosets. We need a different notation so we'll use a backward slash for right cosets $$G \backslash H$$. So $$G \backslash H = \{ Ha \ | \ a \in G\}$$. The Quotient function is
 <div>
 $$
 \begin{align*}
@@ -94,21 +95,15 @@ Also if we make that happen and $$\pi$$ is a homomorphism. What would the kernel
 <div>
 $$
 \begin{align*}
-ker(\pi) = \{g \in G \ | \ \pi(g) = e_{G/H}\}.
-\end{align*}
-$$
-</div>
-But since $$\pi$$ is a homomorphism, then $$\pi(e_G) = e_{G/H}$$. And by the definition of $$\pi$$, $$\pi(a) = aH$$ so $$\pi(e_G) = eH$$. So
-<div>
-$$
-\begin{align*}
 ker(\pi) &= \{g \in G \ | \ \pi(g) = e_{G/H}\} \\
-         &= \{g \in G \ | \ gH = eH\} \\
+         &= \{g \in G \ | \ gH = e_{G/H}\} \quad \text{(By def, $\pi(a) = aH$)} \\
+         &= \{g \in G \ | \ gH = \pi(e_G)\} \quad \text{($\pi$ is a homomorphism so $\pi(e_G) = e_{G/H}$)} \\
+         &= \{g \in G \ | \ gH = eH\} \quad \text{(by def of $\pi$ again)} \\
 		 &= H.
 \end{align*}
 $$
 </div>
-But we also know that kernels are normal subgroups so this means that $$H$$ is a normal subgroup. So if we make $$\pi$$ a homomorphism, then we'll see that $$H$$ is actually a normal subgroup. [Is this right?]
+But we also know that kernels are normal subgroups so this means that $$H$$ must be a normal subgroup. So if we make $$\pi$$ a homomorphism, then we'll see that $$H$$ is actually a normal subgroup. [Is this right?]
 <br>
 <br>
 <hr>
@@ -180,19 +175,21 @@ Next we want to show that $$\pi: G \rightarrow G/N$$ is a homomorphism with kern
 <br>
 <!----------------------------------------------------------------------------->
 <h4><b>Example 1</b></h4>
-Let $$G = D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}$$. We know that $$r^4 = e = j^2$$ and $$jr = r^{-1}j$$. Then<br>
-$$N = \langle r^2 \rangle = \{e, r^2\}$$ is a normal subgroup of $$G$$. So now we can form the group $$G / N$$ to be
+Let $$G = D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}$$. We established the identities $$r^4 = e = j^2$$ and $$jr = r^{-1}j$$. We first claim that $$N = \langle r^2 \rangle = \{e, r^2\}$$ is a normal subgroup of $$G$$. Why? For any $$g \in D_4$$, we have $$g r^2 g^{-1} \in \langle r^2 \rangle$$.
+<br>
+<br>
+Since $$N$$ is normal, then we can form the quotient group $$G / N$$ where
 <div>
 	$$
 	\begin{align*}
-	G/N = D_4/N = \{eN, rN, jN, rjN\}
+	G/N = D_4/N = \{eN, rN, jN, rjN\}.
 	\end{align*}
 	$$
 </div>
-Note that $$r^2N = eN$$ and $$r^3N = rN$$. So we have a group of 4 elements (why 4? the number of cosets is $$|G|/|H| = 4$$). So this group must be isomorphic to either the cyclic group of order 4 or the non-cyclic one. How do we know? We can calculate the order of the elements in the group. If there is an element of order 4, then it's cyclic. If there is not, then it can't be cyclic. 
+Note that the other possibilities end up being the same as one of the four cosets above. For example $$r^2N = eN$$ and $$r^3N = rN$$. Note also that this matches Lagrange's Theorem. By Lagrange, we expect to have $$|G|/|N|$$ cosets. $$|G| = 8$$ and $$|N| = 2$$ so we indeed have 4 elements.
 <br>
 <br>
-For example $$(rN)^2 = r^2N$$. Is that the identity? well, $$N = \langle r^2 \rangle = \{e, r^2\}$$. $$r^2 \in N$$, so $$r^2N$$ is in fact $$eN$$. Why? $$r^2N$$ is the coset 
+Since $$D_4/N$$ has 4 elements, then we expect this group to be isomorphic to either the cyclic group of order 4 or the non-cyclic one. How do we know? We can calculate the order of the elements in the group. If there is an element of order 4, then it's cyclic. If there is not, then it can't be cyclic. For example $$(rN)^2 = r^2N = eN$$. Why? $$r^2N$$ is the coset 
 <div>
 	$$
 	\begin{align*}
@@ -225,7 +222,7 @@ Now consider $$D_6 = \{e, r, r^2, r^3, r^4, r^5, j, rj, r^2j, r^3j, r^4j, r^5j\}
 	\end{align*}
 	$$
 </div> 
-This is actually because $$r^3g = gr^3$$ for all $$g \in G$$. This is a property of $$r^3$$. (in this case $$r^3$$ is called "central"). So now $$G/N$$ will have $$|G|/|H| = 6$$ cosets.
+This is actually because $$r^3g = gr^3$$ for all $$g \in G$$. This is a property of $$r^3$$. (in this case $$r^3$$ is called "central"). Moreover, $$G/N$$ will have $$|G|/|H| = 6$$ cosets.
 <div>
 	$$
 	\begin{align*}
@@ -335,11 +332,29 @@ $$\sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} = (\sigma(a_1) \ \sigma(a_2) \ ... 
 <br>
 <br>
 Case 1: $$x = \sigma(a_i)$$:<br>
-So now we'll apply the permutation on $$x$$. First we apply $$\sigma^{-1}$$ but since $$x = \sigma(a_i)$$, then we will just get $$a_i$$. Next, we'll apply the cycle and here we'll get $$a_{i+1}$$ since it's a cycle. Lastly, we need to apply $$\sigma$$. So we get $$\sigma(a_{i+1})$$. (There is a subtly here because $$a_{i+1}$$ for $$i = k$$, is $$i = 1$$. To fix this, we'll let $$a_{k+1} = 1$$).
-<br>
-<br>
+So now we'll apply the permutation on $$x$$. First we apply $$\sigma^{-1}$$ but since $$x = \sigma(a_i)$$, then we will just get $$a_i$$. Next, we'll apply the cycle and here we'll get $$a_{i+1}$$ since it's a cycle. Lastly, we need to apply $$\sigma$$. So we get $$\sigma(a_{i+1})$$. (There is a subtlety here because $$a_{i+1}$$ for $$i = k$$, is $$i = 1$$. To fix this, we'll let $$a_{k+1} = 1$$ or just have two cases). So in summary:
+<div>
+	$$
+	\begin{align*}
+	\sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} (x) &= \sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} (\sigma(a_i)) \\
+	                                               &= \sigma (a_1 \ a_2 \ ... \ a_k) (a_i) \\
+												   &=  \begin{cases} a_{j+1} \quad &\text{if } j \neq k \\ a_1 \quad \quad &\text{if } j = k\end{cases}
+
+	\end{align*}
+	$$
+</div>
 Case 2: $$x \neq \sigma(a_i)$$ for any $$i$$<br>
-Apply $$\sigma^{-1}$$ to get $$\sigma^{-1}(x) \neq a_i$$ for any $$i$$. This means that the cycle actually doesn't do anything to $$x$$. So $$x$$ is in fact fixed. Next, we apply $$\sigma$$ on it to get back $$x$$.
+Apply $$\sigma^{-1}$$ to get $$\sigma^{-1}(x) \neq a_i$$ for any $$i$$. This means that the cycle actually doesn't do anything to $$x$$. So $$x$$ is in fact fixed. So
+<div>
+	$$
+	\begin{align*}
+	\sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} (x) &= \sigma ( \sigma^{-1} (a_i)) \\
+	                                               &= x.
+
+	\end{align*}
+	$$
+</div>
+From Case 1 and Case 2, we see that $$\sigma \tau \sigma^{-1}$$ is the $$k$$-cycle $$(\sigma(a_1) \ \sigma(a_2) \ ...\ \sigma(a_k))$$
 <br>
 <br>
 <hr>
@@ -356,7 +371,7 @@ Suppose we have an element $$\tau = \tau_1 \tau_2 ... \tau_r \in S_n$$ where eac
 	\end{align*}
 	$$
 </div>
-So if we have a permutation $$\tau$$ that has a cycle decomposition and therefore a cycle type (cycle decomposition meaning that it can be decomposed into disjoint cycles). Then if we conjugate the permutation, the conjugate will also have exactly the same cycle type. So two facts
+So if we have a permutation $$\tau$$ that has a cycle decomposition and therefore a cycle type (cycle decomposition meaning that it can be decomposed into disjoint cycles). Then if we conjugate the permutation, the conjugate will also have exactly the same cycle type as $$\tau$$. So two facts
 <br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">

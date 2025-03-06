@@ -42,17 +42,23 @@ Observation: $$A' = \{(a,e_{b}) \ | \ a \in A \}$$ and $$B' = \{(e_a,b) \ | \ b 
 </ul>
 From this, we have the following proposition
 <!----------------------------------------------------------------------------->
-<div class="peachheaderdiv">
-Proposition
+<div class="yellowheaderdiv">
+Theorem (Recognition Theorem)
 </div>
-<div class="peachbodydiv">
+<div class="yellowbodydiv">
 Let \(G\) be a group and \(A, B \leq G\). If
 <ol>
 	<li>\(A\) and \(B\) are normal subgroups of \(G\).</li>
 	<li>\(A \cap B = \{e\}\)</li>
 	<li>\(AB = G\)</li>
 </ol>
-Then, there exists an isomorphism \(\phi: A \times B \rightarrow G\) by \((a,b) \rightarrow ab\).
+Then, \(A \times B\) is isomorphic to \(G\). The isomorphism is given by
+	$$
+	\begin{align*}
+	\phi: A \times B &\rightarrow G \\
+	 (a,b) &\rightarrow ab
+	\end{align*}
+	$$
 </div>
 <!----------------------------------------------------------------------------->
 <br>
@@ -255,6 +261,8 @@ Additionally, we have the subgroup $$c(G)$$ which is the image of $$G$$ under $$
 <br>
 <br>
 Since Inn$$(G)$$ is normal, we can then form the quotient group Out$$(G) = \text{Aut}/\text{Inn}(G)$$. This group is called the outer automorphism.
+<br>
+<br>
 <hr>
 <br>
 <!----------------------------------------------------------------------------->

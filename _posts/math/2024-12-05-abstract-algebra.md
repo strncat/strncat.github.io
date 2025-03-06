@@ -134,6 +134,20 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/09/math417-17-correspondence-theorem.html">
        Lecture 17: Correspondence Theorem
        </a></li>
+	   <!-------------->
+	   <!------18------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/10/math417-18-direct-groups-chinese-remainder.html">
+       Lecture 18: Groups and the Chinese Remainder Theorem
+       </a></li>
+	   <!-------------->
+	   <!------18------->
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/11/math417-19-direct-product-group.html">
+       Lecture 19: Direct Product Group
+       </a></li>
    </ol>
 <br>
 <br>

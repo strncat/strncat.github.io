@@ -61,9 +61,184 @@ What is this homomorphism $$\gamma$$? $$\gamma$$ will be a homomorphism from $$A
 	$$
 </div>
 $$\gamma$$ is a homomorphism of groups.
-
-
-
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Construction of Semi-direct Products</b></h4>
+We haven't said anything yet about how to actually construct $$G$$ from the groups $$A$$, $$N$$ and $$\gamma$$. The following will demonstrate this. (Important to note here that unlike the previous example, we don't need $$A$$ and $$N$$ to be subgroups of $$G$$. They are just groups!!!)
+<br>
+<div class="mintheaderdiv">
+Semi-direct Product Construction
+</div>
+<div class="mintbodydiv">
+Let \(A\) and \(N\) be groups and let
+	$$
+	\begin{align*}
+	 \gamma: A &\rightarrow \text{Aut}(N) \\
+	         a &\rightarrow \gamma_a
+	\end{align*}
+	$$
+be a homomorphism. Note here that not only \(\gamma\) is a homomorphism but also each \(\gamma_a\) is a homomorphism as well. Because of this, we will get that
+<ol>
+	<li>\(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) for \(a \in A, n_1, n_2 \in N\).</li>
+	<li>\(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\) for \(a_1, a_2 \in A, n \in N\).</li>
+	<li>\(\gamma_{e} = id, \gamma_{a^{-1}} = (\gamma_a)^{-1}\).</li>
+</ol>
+</div>
+<!----------------------------------------------------------------------------->
+<br>
+Based on these facts, we can now define
+<br>
+<!----------------------------------------------------------------------------->
+<div class="mintheaderdiv">
+Semi-direct Product
+</div>
+<div class="mintbodydiv">
+Let \(G = N \rtimes_{\gamma} A\) where the the product set is
+	$$
+	\begin{align*}
+	 G = N \times A = \{(n,a), n \in N, a \in A\}
+	\end{align*}
+	$$
+The operation is
+	$$
+	\begin{align*}
+	(n_1, a_1) \cdot (n_2, a_2) = (n_1 \cdot \gamma_{a_1}(n_2), a_1a_2)
+	\end{align*}
+	$$
+where \(n_1, n_2 \in N\) and \(a_1, a_2 \in A\).
+</div>
+<!----------------------------------------------------------------------------->
+<br>
+Recall that if this was a direct product, then the operation is $$(n_1,a_1) \cdot (n_2,a_2) = (n_1n_2, a_1a_2)$$ but here we have this application of $$\gamma_{a_1}$$ on $$n_2$$.
+<br>
+<br>
+<b>Proof</b>
+<br>
+We will show that $$G$$ is a group by verifying the group properties.
+<ol>
+    <!------------------------ASSOCIATIVITY--------------------------->
+	<li>\(G\) is associative. The left hand side is
+<div>
+	$$
+	\begin{align*}
+	((n_1,a_1) \cdot (n_2,a_2)) \cdot (n_3,a_3) &= (n_1 \gamma_{a_1}(n_2),a_1a_2) \cdot (n_3,a_3) \\
+	                                            &= (n_1 \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3),a_1a_2a_3).
+													\end{align*}
+	$$
+</div>	
+while the right hand side is
+<div>
+	$$
+	\begin{align*}
+	(n_1,a_1) \cdot ((n_2,a_2) \cdot (n_3,a_3)) &= (n_1,a_1) (n_1 \gamma_{a_2}(n_3),a_2a_3) \\
+	                                            &= (n_1, \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)),  a_1a_2a_3).
+	\end{align*}
+	$$
+</div>	
+	Recall the identities from the construction. Specifically, we saw that \(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) and \(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\). Using this we see that term from the right hand side will equal to
+<div>
+		$$
+		\begin{align*}
+	    \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)) &= \gamma_{a_1}(n_2) \gamma_{a_1}(\gamma_{a_2}(n_3)) \\
+		                                    &= \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3)
+		\end{align*}
+		$$
+</div>
+which is the same as the term in the left hand side.
+	</li>
+    <!------------------------IDENTITIY--------------------------->
+	<li>The identity element is \((e_N, e_A)\) (Exercise).</li>
+    <!------------------------INVERSE--------------------------->
+	<li>The inverse is \((n,a)^{-1} = (\gamma_{a^{-1}}(n^{-1}), a^{-1})\).</li>
+</ol>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
+Let $$N$$ and $$A$$ be any groups. Define the trivial homomorphism as
+<div>
+		$$
+		\begin{align*}
+	    \gamma_{tri}: A &\rightarrow \text{Aut}(N) \\
+		                \gamma_{tri}(a) &= id \quad \forall a \in A
+		\end{align*}
+		$$
+</div>
+Basically send any element to the identity function. Then, $$N \rtimes_{\gamma_{tri}} A = N \times A$$. To see this, apply the operation and you'll see that $$(a_1, a_2)(n_1, n_2) = (n_1 id(n_2), a_1a_2) = (n_1n_2, a_1a_2)$$.
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
+Let $$N = \mathbf{Z}_n$$ with the addition operation where $$n \geq 3$$ and let $$A = \mathbf{Z}_2$$. Define $$\gamma$$ be
+<div>
+		$$
+		\begin{align*}
+	    \gamma: \mathbf{Z}_2 &\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n)
+		\end{align*}
+		$$
+</div>
+As we remember from the previous lecture that $$\text{Aut}(\mathbf{Z}_n)$$ is the modular units (mod n). We don't have the trivial homomorphism. What can we do? We know that $$\mathbf{Z} = \{[0]_2, [1]_2\}$$. We know we have to send $$[0]$$ to the identity element $$[1]_n$$. For $$[1]_2$$, we need to send it to an element of $$\Phi(n)$$ which has order 2. As an example $$[-1]_n$$, has order 2 because $$(-1)^2 = 1$$. So
+<div>
+		$$
+		\begin{align*}
+	    \gamma: \mathbf{Z}_2 &\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \\
+		                 [0]_2  &\rightarrow [1]_n \\
+						 [1]_2	&\rightarrow [-1]_n.
+		\end{align*}
+		$$
+</div>
+So now we have constructed $$G = N \rtimes_{\gamma} A$$. This is a group of order $$2n$$. So it's isomorphic to the dihedral group $$D_n$$. We can replace $$N = \langle r \rangle$$ where $$o(r)=n$$ and $$A = \langle j \rangle$$. We can set $$\gamma$$ like before. So $$\gamma_{e_A} = id$$ and $$\gamma_j = (r^k \rightarrow r^{-k})$$.
+<br>
+<br>
+Remark: If you have other elements of order 2 in $$\text{Aut}(\mathbf{Z}_n) \cong \Phi(n)$$, then you can form "semi-dihedral groups". For example, take $$N = \mathbf{Z}_8$$, then Aut$$(N) = \Phi(8) = \{1,3,5,7\}$$. All the elements in this group is of order 2 except for 1. Therefore we can define
+<div>
+		$$
+		\begin{align*}
+	    \gamma' : A=\langle j \rangle &\rightarrow Aut(N) \cong \Phi(8) \\
+		                           j   &\rightarrow 3 \quad \text{ instead of -1}
+		\end{align*}
+		$$
+</div>
+So now we'll get a different semi-direct product. We'll get $$G' = N \rtimes_{\gamma'} A$$. $$|G'| = 16$$. It is not isomorphic to $$D_8$$. Also $$o(r) = 8$$ and $$o(j) = 2$$. But we have this new formula $$jr = r^3j$$. (Instead of $$jr = jr^{-1})$$. 
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Recognition Theorem for Semi-direct Product</b></h4>
+So now we can state the Recognition Theorem but for Semi-direct Product.
+<br>
+<div class="yellowheaderdiv">
+Theorem (Recognition Theorem)
+</div>
+<div class="yellowbodydiv">
+Let \(G\) be a group with \(A, N \leq G\). If
+<ol>
+	<li>\(N\) is a normal subgroups of \(G\).</li>
+	<li>\(A \cap N = \{e\}\)</li>
+	<li>\(NA = G\)</li>
+</ol>
+Then, \(A \rtimes_{\gamma} N\) is isomorphic to \(G\). The isomorphism is given by
+	$$
+	\begin{align*}
+	\gamma: A \rtimes_{\gamma} N &\rightarrow G \\
+	 (a,n) &\rightarrow an
+	\end{align*}
+	$$
+where \(\gamma\) is a homomorphism such that
+	$$
+	\begin{align*}
+	\gamma: A &\rightarrow \text{Aut}(G) \\
+	 y_a(n) &\rightarrow ana^{-1} \quad a \in A, a^{-1} \in N
+	\end{align*}
+	$$
+</div>
 <br>
 <br>
 <hr>

@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-14T19:41:22-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 21: Finite Abelian Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html" rel="alternate" type="text/html" title="Lecture 21: Finite Abelian Groups" /><published>2025-02-13T00:01:36-08:00</published><updated>2025-02-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html"><![CDATA[<p>For this lecture, we’re going to focus on finite abelian groups. Why is that? When we previously discussed classifying finite groups, we wanted to classify the groups of a certain finite order up to an isomorphism. We asked the question “what are the groups up to isomorphism that are of order 6 for example?” This is a hard question in general. However, if we restricted the domain to only finite abelian groups, it turns out that it is a much easier task to describe and classify the groups that are finite abelian up to isomorphism for any order. Though it will require a lot of hard work to prove these classifications. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-18T21:12:41-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Extra Proofs / Study Notes</title><link href="http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs.html" rel="alternate" type="text/html" title="Extra Proofs / Study Notes" /><published>2025-02-14T00:01:36-08:00</published><updated>2025-02-14T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs.html"><![CDATA[<h4><b>Example 1</b></h4>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Suppose \((x,y) \in G_1 \times G_2\) and that the order of the elements are \(|x| = r\) and \(|y| = s\). Then the order of \((x,y)\) is \(lcm(r,s)\)
+</div>
+<p><br />
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+Let \(l = lcm(r,s)\). Then, \(l = ra = sb\) for some \(r, b \in \mathbf{Z}\). Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	(x,y)^{l} &amp;= (x^l, y^l) = (x^{ra}, y^{sb}) = (e_1, e_2)
+	\end{align*}
+	$$
+</div>
+<p>From this we see that the order of \((x,y)\) must divide \(l\). If we let \(l' = |(x,y)|\), then  \(l' \ | \ l\). Now, observe that</p>
+<div>
+	$$
+	\begin{align*}
+	(x,y)^{l'} &amp;= (x^{l'}, y^{l'}) = (e_1, e_2)
+	\end{align*}
+	$$
+</div>
+<p>But since \(|x| = r\) and \(|y| = s\), then \(r \ | \ l'\) and \(s \ | \ l'\). But this means that \(lcm(r,s) = l \ | \ l'\). Since \(l' \ | \ l\) and \(l \ | \ l'\), then \(l = l'\) as we wanted to show.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+\(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\) if and only if \(gcd(m,n) = 1\)
+</div>
+<p><br />
+This says if you take the product of two cyclic groups, then their product is cyclic if and only if \(m\) and \(n\) are relatively prime.
+<br />
+<br />
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+\(\longrightarrow:\) Suppose \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). Suppose for the sake of contradiction that \(gcd(m,n) = d &gt; 1\). Now, take an arbitrary element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\). Add \((a,b)+...+(a,b)\) \(\frac{mn}{d}\) times. We will see that</p>
+<div>
+	$$
+	\begin{align*}
+	(a\frac{mn}{d},b\frac{mn}{d}) &amp;= (a\frac{n}{d}m,b\frac{m}{d}n) \\
+	                              &amp;= ([0]_m, [0]_n)
+	\end{align*}
+	$$
+</div>
+<p>Notice here that both \(\frac{n}{d}\) and \(\frac{m}{d}\) are whole numbers since \(d\) is a divisor of both \(m\) and \(n\). So the first entry is a multiple of \(m\) while the second entry is a multiple of \(n\). This implies that the order of \((a,b) \leq \frac{mn}{d} &lt; mn\). So the order of any element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\) is strictly less than \(mn\). This means that no element of \(\mathbf{Z}_m \times \mathbf{Z}_n\) can be a generator of the group. So \(\mathbf{Z}_m \times \mathbf{Z}_n\) is not cyclic. This is a contradiction because \(\mathbf{Z}_m \times \mathbf{Z}_n\) isomorphic to \(\mathbf{Z}_{mn}\) and so it is cyclic. 
+<br />
+<br />
+\(\longleftarrow:\) Now suppose that \(gcd(m,n) = 1\). We want to show that \(\mathbf{Z}_m \times \mathbf{Z}_n\) is isomorphic to \(\mathbf{Z}_{mn}\). Notice that the order of the element 1 has order \(m\) in \(\mathbf{Z}_m\) and the order of the element 1 has order \(n\) in \(\mathbf{Z}_n\). This tells us that the order of \((1,1) = lcm(m,n) \frac{mn}{gcd(m,n)} \frac{mn}{1} = mn\). So \((1,1)\) has order \(mn\) which means it generates the group. So it must be cyclic. So \(\mathbf{Z}_m \times \mathbf{Z}_n = \langle (1,1) \rangle\). We know all cyclic groups that have the same order are isomorphic. So \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 3</b></h4>
+<p>Let \(Q_8 = \{1, -1, i, i, j, -j, k, -k\}\) be a group. We have the identities \(i^2 = j^2 = k^2 = -1\). Note also that \(ij = k\) (clockwise direction), \(ji = -k\) (counter clockwise direction) and \(ijk = -1\).
+<br />
+TODO: Group diagram.
+<br />
+<br />
+There are three cyclic subgroups of order 4: \(\langle i \rangle\), \(\langle j \rangle\) and \(\langle k \rangle\). There is one cyclic group of order 2: \(\langle -1 \rangle\). Note that \(\langle i \rangle = \{1, i, -1, -i\}\). 
+<br />
+<br />
+Let’s find the cosets of \(\langle i \rangle\) in \(Q_8\).</p>
+<div>
+	$$
+	\begin{align*}
+	j\langle i \rangle &amp;= j\{1, i, -1, -i\} = \{j, -k, -j, k\} \\
+	\langle i \rangle j &amp;= \{1, i, -1, -i\}j = \{j, k, -j, -k\}
+	\end{align*}
+	$$
+</div>
+<p>Note that \(Q_8\) is generated by two elements \(\langle i, j \rangle\) (easy to check). Therefore, since \(j\langle i \rangle = \langle i \rangle j\) and we checked all the generators of the group, then \(\langle i \rangle\) is a normal subgroup.
+<br />
+<br />
+Let’s study the quotient group \(Q_8 / \langle i \rangle\). We know that it must contain two elements (By Lagrange’s Theorem). In fact \(Q_8 / \langle i \rangle = \{\langle i \rangle, j \langle i \rangle\}\).
+<br />
+<br />
+Recall, that we defined the multiplication of cosets by \((xN)(yN)=(xy)N\). Since we have two elements, observe that \(\langle i \rangle \langle i \rangle = \langle i \rangle\). Multiply \(j \langle i \rangle\) by \(\langle i \rangle\) is just \(j \langle i \rangle\). Remember that \(\langle i \rangle\) acts as the identity element/coset here. So the only interesting product is \((j\langle i \rangle) (j\langle i \rangle)\) [TODO: add a table]</p>
+<div>
+	$$
+	\begin{align*}
+	(j\langle i \rangle) (j\langle i \rangle) &amp;= j^2 \langle i \rangle = -\langle i \rangle = \langle i \rangle. 
+	\end{align*}
+	$$
+</div>
+<p>This multiplication table looks like the multiplication table of \(\mathbf{Z}_2\). In fact \(Q_8 / \langle i \rangle \cong \mathbf{Z}_2\)
+<br /> 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li><a href="https://www.youtube.com/watch?v=ako25Pghxa8">The order of an element in a direct group is the lcm of both elements orders</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Example 1 Proposition Suppose \((x,y) \in G_1 \times G_2\) and that the order of the elements are \(|x| = r\) and \(|y| = s\). Then the order of \((x,y)\) is \(lcm(r,s)\) Proof Let \(l = lcm(r,s)\). Then, \(l = ra = sb\) for some \(r, b \in \mathbf{Z}\). Observe that $$ \begin{align*} (x,y)^{l} &amp;= (x^l, y^l) = (x^{ra}, y^{sb}) = (e_1, e_2) \end{align*} $$ From this we see that the order of \((x,y)\) must divide \(l\). If we let \(l' = |(x,y)|\), then \(l' \ | \ l\). Now, observe that $$ \begin{align*} (x,y)^{l'} &amp;= (x^{l'}, y^{l'}) = (e_1, e_2) \end{align*} $$ But since \(|x| = r\) and \(|y| = s\), then \(r \ | \ l'\) and \(s \ | \ l'\). But this means that \(lcm(r,s) = l \ | \ l'\). Since \(l' \ | \ l\) and \(l \ | \ l'\), then \(l = l'\) as we wanted to show. Example 2 Proposition \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\) if and only if \(gcd(m,n) = 1\) This says if you take the product of two cyclic groups, then their product is cyclic if and only if \(m\) and \(n\) are relatively prime. Proof \(\longrightarrow:\) Suppose \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). Suppose for the sake of contradiction that \(gcd(m,n) = d &gt; 1\). Now, take an arbitrary element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\). Add \((a,b)+...+(a,b)\) \(\frac{mn}{d}\) times. We will see that $$ \begin{align*} (a\frac{mn}{d},b\frac{mn}{d}) &amp;= (a\frac{n}{d}m,b\frac{m}{d}n) \\ &amp;= ([0]_m, [0]_n) \end{align*} $$ Notice here that both \(\frac{n}{d}\) and \(\frac{m}{d}\) are whole numbers since \(d\) is a divisor of both \(m\) and \(n\). So the first entry is a multiple of \(m\) while the second entry is a multiple of \(n\). This implies that the order of \((a,b) \leq \frac{mn}{d} &lt; mn\). So the order of any element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\) is strictly less than \(mn\). This means that no element of \(\mathbf{Z}_m \times \mathbf{Z}_n\) can be a generator of the group. So \(\mathbf{Z}_m \times \mathbf{Z}_n\) is not cyclic. This is a contradiction because \(\mathbf{Z}_m \times \mathbf{Z}_n\) isomorphic to \(\mathbf{Z}_{mn}\) and so it is cyclic. \(\longleftarrow:\) Now suppose that \(gcd(m,n) = 1\). We want to show that \(\mathbf{Z}_m \times \mathbf{Z}_n\) is isomorphic to \(\mathbf{Z}_{mn}\). Notice that the order of the element 1 has order \(m\) in \(\mathbf{Z}_m\) and the order of the element 1 has order \(n\) in \(\mathbf{Z}_n\). This tells us that the order of \((1,1) = lcm(m,n) \frac{mn}{gcd(m,n)} \frac{mn}{1} = mn\). So \((1,1)\) has order \(mn\) which means it generates the group. So it must be cyclic. So \(\mathbf{Z}_m \times \mathbf{Z}_n = \langle (1,1) \rangle\). We know all cyclic groups that have the same order are isomorphic. So \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). Example 3 Let \(Q_8 = \{1, -1, i, i, j, -j, k, -k\}\) be a group. We have the identities \(i^2 = j^2 = k^2 = -1\). Note also that \(ij = k\) (clockwise direction), \(ji = -k\) (counter clockwise direction) and \(ijk = -1\). TODO: Group diagram. There are three cyclic subgroups of order 4: \(\langle i \rangle\), \(\langle j \rangle\) and \(\langle k \rangle\). There is one cyclic group of order 2: \(\langle -1 \rangle\). Note that \(\langle i \rangle = \{1, i, -1, -i\}\). Let’s find the cosets of \(\langle i \rangle\) in \(Q_8\). $$ \begin{align*} j\langle i \rangle &amp;= j\{1, i, -1, -i\} = \{j, -k, -j, k\} \\ \langle i \rangle j &amp;= \{1, i, -1, -i\}j = \{j, k, -j, -k\} \end{align*} $$ Note that \(Q_8\) is generated by two elements \(\langle i, j \rangle\) (easy to check). Therefore, since \(j\langle i \rangle = \langle i \rangle j\) and we checked all the generators of the group, then \(\langle i \rangle\) is a normal subgroup. Let’s study the quotient group \(Q_8 / \langle i \rangle\). We know that it must contain two elements (By Lagrange’s Theorem). In fact \(Q_8 / \langle i \rangle = \{\langle i \rangle, j \langle i \rangle\}\). Recall, that we defined the multiplication of cosets by \((xN)(yN)=(xy)N\). Since we have two elements, observe that \(\langle i \rangle \langle i \rangle = \langle i \rangle\). Multiply \(j \langle i \rangle\) by \(\langle i \rangle\) is just \(j \langle i \rangle\). Remember that \(\langle i \rangle\) acts as the identity element/coset here. So the only interesting product is \((j\langle i \rangle) (j\langle i \rangle)\) [TODO: add a table] $$ \begin{align*} (j\langle i \rangle) (j\langle i \rangle) &amp;= j^2 \langle i \rangle = -\langle i \rangle = \langle i \rangle. \end{align*} $$ This multiplication table looks like the multiplication table of \(\mathbf{Z}_2\). In fact \(Q_8 / \langle i \rangle \cong \mathbf{Z}_2\) References The order of an element in a direct group is the lcm of both elements orders]]></summary></entry><entry><title type="html">Lecture 21: Finite Abelian Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html" rel="alternate" type="text/html" title="Lecture 21: Finite Abelian Groups" /><published>2025-02-13T00:01:36-08:00</published><updated>2025-02-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html"><![CDATA[<p>For this lecture, we’re going to focus on finite abelian groups. Why is that? When we previously discussed classifying finite groups, we wanted to classify the groups of a certain finite order up to an isomorphism. We asked the question “what are the groups up to isomorphism that are of order 6 for example?” This is a hard question in general. However, if we restricted the domain to only finite abelian groups, it turns out that it is a much easier task to describe and classify the groups that are finite abelian up to isomorphism for any order. Though it will require a lot of hard work to prove these classifications. 
 <br />
 <br />
 We’ll start with this important fact: <br />
@@ -2862,391 +2974,4 @@ $$
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.4.14 Let \(H\) be subgroup of a group \(G\). \(gH = \{gh \ | \ h \in H\}\) is called a left coset of \(H\) in \(G\). \(Hg = \{hg \ | \ h \in H\}\) is called a right coset of \(H\) in \(G\). Examples Example 1: Let \(D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). where \(r^4 = e = j^2\) and \(jr = r^{-1}j\). Define the subgroup \(H = \langle j \rangle = \{e, j\}\). The left cosets are: $$ \begin{align*} eH &amp;= \{e, j\} = jH \\ rH &amp;= \{r, rj\} = rjH \\ r^2H &amp;= \{r^2, r^2j\} = r^2jH \\ r^3H &amp;= \{r^3, r^3j\} = r^3jH \\ \end{align*} $$ Notice here that none of the elements overlap between the sets so this gives us a way to partition the set \(G\) into four pairwise disjoint subsets (We’ll prove this next). The right cosets are $$ \begin{align*} He &amp;= \{e, j\} = Hj \\ Hr &amp;= \{r, jr\} = \{e, r^3j\} = Hr^3j \\ Hr^2 &amp;= \{r^2, r^2j\} = Hr^2j \\ Hr^3 &amp;= \{r^3, rj\} = Hrj \\ \end{align*} $$ Example 2: Let \(G = \mathbf{Z}\) (with addition) and take \(H = \mathbf{Z}n \leq G\) where \(n \geq 1\). The left coset is \(a + H = a + \mathbf{Z}n = \{a + kn \ | \ k \in \mathbf{Z}\}\) The left coset is \(H + a = \mathbf{Z}n + a\) which is the same as the right coset. This happens because the group is abelian! Another name for these cosets are the congruence class \([a]_n\). Cosets are Pairwise Disjoint Next we show why these subets must be pairwise disjoint. Proposition (2.5.4) Let \(H\) be a subgroup of a group \(G\). If \(X, Y \subseteq G\) are left \(H-\)cosets, then either \(X \cap Y = \emptyset\). \(X = Y\). Proof We’ll prove that not (1) implies (2) (to prove an or statement). Suppose that \(g \in X \cap Y\). We want to show that \(X = Y\). Since \(X\) and \(Y\) are left cosets, then we can write \(X = xH\) and \(Y = yH\) for some \(x, y \in G\). Since \(g \in X \cap Y\), then we can write \(g = xh_1 = yh_2\) for some \(h_1, h_2 \in H\). Observe now that $$ \begin{align*} x &amp;= gh_1^{-1} \\ &amp;= (yh_2)h_1^{-1} \\ &amp;= y(h_2h_1^{-1}) \end{align*} $$ Likewise $$ \begin{align*} y &amp;= gh_2^{-1} \\ &amp;= (xh_1)h_2^{-1} \\ &amp;= x(h_1h_2^{-1}) \end{align*} $$ Now, let \(xh \in xH\), then $$ \begin{align*} xh &amp;= (yh_2h_1^{-1})h \\ &amp;= y(h_2h_1^{-1}h) \end{align*} $$ But this implies that \(xh \in yH\). So \(xH \subseteq yH\). Likewise, let \(yh \in yH\), then $$ \begin{align*} yh &amp;= (xh_1h_2^{-1})h \\ &amp;= x(h_1h_2^{-1}h) \end{align*} $$ so \(yh \in xH\) and \(yH \subseteq xH\). Therefore \(xH = yH\). \(\blacksquare\) Based on this, we have the following proposition Proposition 2.5.3 Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be elements of \(G\). The following conditions are equivalent: \(a \in bH\). \(b \in aH\). \(aH = bH\). \(b^{-1}a \in H\). \(a^{-1}b \in H\). Proof (book) Suppose \((a)\) holds. Let \(a \in bH\). Then we can write \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\). For \((d)\) …. Lagrange Theorem Based on what we learned so far, we can now present the following important results Proposition Let \(H\) be a subgroup of a group \(G\). Then all left \(H-\)cosets and right \(H-\)cosets have the same cardinality as \(H\). This works well for infinite groups as well because all we need is a bijection to show they have the same cardinality. Proof We know the coset \(aH\) is constructed such that each element is appended on the left by \(a\). So naturally construct the following bijection $$ \begin{align*} H &amp;\rightarrow aH \\ h &amp;\rightarrow ah \end{align*} $$ This works. For any element in \(x \in aH\), the inverse is just \(a^{-1}x\). Likewise we can construct a bijection for the right coset as follows $$ \begin{align*} H &amp;\rightarrow Ha \\ h &amp;\rightarrow ha \end{align*} $$ This leads to Lagrange Theorem. Lagrange Theorem Let \(G\) be a finite group and let \(H\) be a subgroup of \(G\). Then \(|H|\) divides \(|G|\) and \(|G| / |H| = \) the number of left cosets of \(H\) in \(G =\) the number of right cosets of \(H\) in \(G\). Proof We know by the previous proposition that all cosets have the same cardinality as \(H\) itself. Moreover, we know that the collection of left cosets \(\{aH, a \in G\}\) partitions \(G\) into pairwise disjoint subsets. Therefore $$ \begin{align*} |G| &amp;= \sum|aH| \\ &amp;= \sum |H| \quad \text{(by the previous proposition)} \end{align*} $$ From this we see that \(|G| = m|H|\) as we wanted to show. \(\ \blacksquare\) This in turn leads to the following theorem: Order Theorem Let \(G\) be a finite group. Then for any \(g \in G\), \(o(g)\) divides \(|G|\). Proof [TODO] More Definitions in Cosets Definition The index of a subgroup \(H \leq G\) is the number of left \(H-\)cosets. We denote the index by \([G:H]\) which is index of \(H\) in \(G\). The index could be infinite but we only care when the index is finite. Using Lagrange’s Theorem also note that if \(G\) is finite, then \([G : H] = \frac{|G|}{|H|}\). Also note that \([G:H]\) can be finite even if \(G\) and \(H\) are infinte. Example: Let \(G = \mathbf{Z}, H = \mathbf{Z_n}\) where \(n &gt; 0\). Then the index of \(\mathbf{Z}_n\) inside \(\mathbf{Z}\) is the number of left cosets which is the number of congruent classes, \([\mathbf{Z}:\mathbf{Z}_n] = n\) We might ask why is the definition is in terms of the number of left cosets and not the right cosets. The answer is in the next proposition Proposition Let \(H\) be a subgroup of a group \(G\). There is a bijection between the collection of left cosets and the collection of right cosets. $$ \begin{align*} \{aH, a \in G\} \rightarrow \{Ha, a \in G\} \end{align*} $$ The actual bijection is to take all the elements in the left cosets, take their inverses. The collection of inverses will be the elements in the right cosets. Why is this true? If \(X = aH = \{aH \ | \ h \in H\}\), then \(X^{-1} = \{ (ah)^{-1} \ | \ h \in H \} = Ha^{-1}\). So why not use \(aH \rightarrow Ha\)? This might not be defined. Proposition Let \(H\) be a subgroup of a group \(G\). The following are equivalent \(H\) is a normal subgroup. Left \(H\)-cosets are the same as right \(H\)-cosets. Every left \(H\)-coset is contained in a right \(H\)-coset. Proof \((3) \rightarrow (1)\): Suppose every left \(H\)-coset is a subset of some right \(H\)-coset. Let \(a \in G\). We want to show that \(H\) is a normal subgroup. So we want to show that \(aHa^{-1} \subseteq H\). Given that every left coset in contained in a right coset, consider the left coset \(aH\). This coset is contained in some right coset. Since \(a \in aH\), then \(a\) must be in the right coset as well. We can claim that \(aH \subseteq Ha\). So for any \(h \in H\), \(ah = h'a\) for some \(h' \in H\). Observe that \(aha^{-1} = h'\) for some \(h' \in H\). In other words, \(aHa^{-1} \in H\) and \(H\) is normal. \(\ \blacksquare\) Applications Let’s look at some applications of the order theorem. Proposition If \(|G| = p\) where \(p\) is prime, then \(G\) is cyclic. Proof Let \(g \in G\). By the order theorem, the order of \(g\) must divide \(|G|\) which is a prime number. So \(o(g) \in \{1, p\}\). \(\{e\}\) is the only group with order 1 and \(|G| = p &gt; 1\) so we must have an element \(g \in G\) such that \(g \neq e\). So \(o(g) = p\). But we also said that the order of an element is also the size of the cyclic group generated by \(g\) so \(|\langle g \rangle| = p\). Therefore, we must have \(G = \langle g \rangle\). \(\ \blacksquare\) Proposition If \(|G| = 4\), then \(G\) is isomorphic to \(\mathbf{Z}_4\) or \(V\) the symmetries of the rectangle. Proof Let \(g \in G\). The order of \(g\) has to divide 4 by the order theorem so \(o(g) \in \{1,2,4\}\). If \(o(g) = 4\), then \(o(g) = 4\) and \(\langle g \rangle = G\) so \(G\) is cyclic and so it is isomorphic to \(\mathbf{Z}_4\). If \(o(g) \neq 4\). Then \(G\) must have 4 distinct elements so \(G = \{a, b, c, d\}\) none of the elements can have order 4. \(a, b, c\) can’t have order 1. So they must be of order 2 and their squares must be the identity. This gives us enough information fill out the multiplication table of this group as follows: \(e\) \(a\) \(b\) \(c\) \(e\) \(e\) \(a\) \(b\) \(c\) \(a\) \(a\) \(e\) \(c\) \(b\) \(b\) \(b\) \(c\) \(e\) \(a\) \(c\) \(c\) \(b\) \(a\) \(e\) Subgroups of \(D_5\) Let’s use Lagrange’s Theorem next. Specifically, let’s analyze the subgroups of the dihedral group \(D_5\). First, $$ \begin{align*} D_5 = \{e, r, r^2, r^3, r^4, j, rj, r^2j, r^3j, r^4,j\} \end{align*} $$ The first we want to do when finding its subgroups is find the order of each element in \(D_5\). We know \(|D_5| = 10\) so the orders of the elements must divide 10. We also know that each flip’s order is 2 (because we established previously that \(j^2 = e\)). We also established previously that \(r^5 = e\). The rest of the elements must have their order \(\in \{1,2,5,10\}\) by the Order Theorem. In fact $$ \begin{align*} \text{Order 1: }&amp;: e. \\ \text{Order 2: }&amp;: j, rj, r^2j, r^3j, r^4j. \\ \text{Order 5: }&amp;: r, r^2, r^3, r^4, r^5. \end{align*} $$ Now, any subgroup of \(G\) must have order dividing the order of \(G\) so they must divide 10 by Lagrange’s Theorem. So \(|H| \in \{1,2,5,10\}\). Note here that 2 and 5 are prime! so by the previous proposition, they must be cyclic. We list the subgroups as follows by their orders: $$ \begin{align*} \text{Order 1: }&amp;: \{e\}. \\ \text{Order 2: }&amp;: \langle j \rangle , \langle rj \rangle , \langle r^2j\rangle , \langle r^3j\rangle , \langle r^4j\rangle . \\ \text{Order 5: }&amp;: \langle r \rangle. \\ \text{Order 10: }&amp;: D_5. \\ \end{align*} $$ We can draw the subgroups as follows Notice that there is 1 group of order 5 while there are 5 groups of order 2. Subgroups of \(D_9\) We list the elements of \(D_9\) as follows $$ \begin{align*} D_9 = \{e, r, r^2, r^3, r^4, r^5, r^6, r^7, r^8, j, rj, r^2j, r^3j, r^4j, r^5j, r^6j, r^7j, r^8j\} \end{align*} $$ First, let’s find the order of each element knowing that the order of each flip is 2 and know that element must have an order that divides 18. [Side note from studying. Note that \(\langle r \rangle\) is a cyclic subgroup of order 9 and it has the elements \(r, r^2, r^3, ..., r^8\). Each element inside the subgroup must have order \(n / gcd(n,power)\) where n is the order of \(r\). So the order of \(r^3\) is \(9/gcd(9,3) = 3\). Remember that the order of an element depends on the operation of the group and it is the least power \(k\) such that \(g^k = e\).] $$ \begin{align*} \text{Order 1: }&amp;: e. \\ \text{Order 2: }&amp;: j, j, rj, r^2j, r^3j, r^4j, r^5j, r^6j, r^7j, r^8j. \\ \text{Order 3: }&amp;: r^3, r^6. \\ \text{Order 6: }&amp;: \\ \text{Order 9: }&amp;: r, r^2, r^4, r^5, r^7, r^8. \\ \end{align*} $$ For the subgroups, if the order was 2 or 3, then we know they must be cyclic. In this case, we know all the subgroups of order 2 (all the flips) are cyclic unique subgroups. For orders 3 and 6, they could be cyclic but they could also fail to be cyclic. Take order 3, first we check if there are elements of order 3 in the group. Yes, we have \(r^3\) and \(r^6\). Why we look for those? Because by definition of the order of an element, they will each generate a subgroup of order 3 (Recall from the subgroups lecture \(|\langle g \rangle| = o(g)\)). In fact, here \(r^3\) and \(r^6\) both generate the same subgroup.]]></summary></entry><entry><title type="html">Lecture 12: Homomorphism</title><link href="http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism.html" rel="alternate" type="text/html" title="Lecture 12: Homomorphism" /><published>2025-02-04T00:01:36-08:00</published><updated>2025-02-04T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/04/math417-12-homomorphism.html"><![CDATA[<p>While isomorphisms need to be bijections, Homomorphisms do not.</p>
-<div class="mintheaderdiv">
-Definition 2.4.1
-</div>
-<div class="mintbodydiv">
-A map between groups \(\varphi : G \rightarrow H\) is called a homomorphism if it preserves group multiplication, \(\varphi(g_1)(g_2) = \varphi(g_1)\varphi(g_2)\) for all \(g_1, g_2 \in G\). An endomorphism of \(G\) is a homomorphism \(\varphi: G \rightarrow G\).
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-So Given a homomorphism, if we find that it’s a bijection, then it is an isomorphism.
-<br />
-<br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Some Facts about Homomorphisms</b></h4>
-<!------------------------------------------------------------------------------>
-<div class="peachheaderdiv">
-Proposition 2.4.11
-</div>
-<div class="peachbodydiv">
-Let \(\varphi : G \rightarrow H\) and \(\psi : G \rightarrow H\) be homomorphisms of groups.
-<ol type="a">
-	<li>\(\varphi(e_G) = e_H\)</li>
-	<li>For each \(g \in G\), \(\varphi(g^{-1}) = (\varphi(g))^{-1}\)</li>
-</ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<b>Proof (Book)</b>
-<br />
-For any \(g \in G\).</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi(e_G)\varphi(g) &amp;= \varphi(e_Gg) \quad \text{(because $\varphi$ is a homomorphism)} \\
-	                 &amp;= \varphi(g)
-	\end{align*}
-	$$
-</div>
-<p>So \(\varphi(e_G)\) is an identity element in \(H\) but by the uniqueness of the identity element, then \(\varphi(e_G) = e_H\). Similarly, for any \(\in G\),</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi(g^{-1})\varphi(g) &amp;= \varphi(g^{-1}g) \quad \text{(because $\varphi$ is a homomorphism)} \\
-	                 &amp;= \varphi(e_G) \\
-					 &amp; = e_H
-	\end{align*}
-	$$
-</div>
-<p>And by the uniqueness of the inverse, \(\varphi(g^{-1}) = \varphi(g)^{-1}\). \(\ \blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>The Image of a Homomorphism</b></h4>
-<p>Given a homomorphism \(\varphi\) between two groups \(G\) and \(H\), the image of \(\varphi\) which is a subset of \(H\) is also a subgroup.
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-Given some homomorphism \(\varphi: G \rightarrow H\). The image of this function
-	$$
-	\begin{align*}
-	\varphi(G) = \{\varphi(g) \ : \ g \in G\}
-	\end{align*}
-	$$
-is a subgroup of \(H\).
-</div>
-<!------------------------------------------------------------------------------>
-<p><br />
-<b>Proof</b>
-<br />
-TODO
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>The Kernel of a Homomorphism</b></h4>
-<p>The kernel of a group is simply all the elements such that \(\varphi(g)=e\). 
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition 2.4.14
-</div>
-<div class="mintbodydiv">
-Let \(\varphi: G \rightarrow H\) be a homomorphism of groups. The kernel of the homomorphism \(\varphi\), denoted \(ker(\varphi)\), is \(\varphi^{-1}(e_H) = \{g \in G \ : \ \varphi(g) = e_H\}\).
-</div>
-<p><br />
-In fact, The kernel of a group \(K = ker \ \varphi\) is a subgroup of \(G\). 
-<br />
-<br />
-<b>Proof</b>
-<br />
-We will show this by showing that the kernel satisfies the subgroup properties:</p>
-<ol>
-	<li>We know by Proposition 2.4.11, that \(\varphi(e_G) = e_H\) so \(e_G \in K\).</li>
-	<li>Closed under product: For any \(a,b \in K\), \(\varphi(a)\varphi(b) = e_He_H = e_H \in K\)</li>
-	<li>Closed under inverses: For any \(a \in K\), \(\varphi(a^{-1}) = \varphi(a)^{-1} = e_H^{-1} = e_H\). Therefore,\(a^{-1} \in K\). \(\ \blacksquare\)</li>
-</ol>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Examples</b></h4>
-<p><b>Example 1</b>: Consider the following with the addition operation</p>
-<div>
-	$$
-	\begin{align*}
-	\pi \ : \ &amp;\mathbf{Z} \rightarrow \mathbf{Z}_n\\
-	          &amp;a \rightarrow [a]_n
-	\end{align*}
-	$$
-</div>
-<p>\(\pi\) is a homomorphism because \([a+b] = [a] + [b]\). Remember the rule is that \(\varphi(ab) = \varphi(a)\varphi(b)\) where the first operation comes from the first group while the second operation comes from the second group. Here, both groups have addition as their binary operation. 
-<br />
-<br />
-\(\pi\) is also surjective. Since for any element \(h \in \mathbf{Z}_n\), we have an element \(g \in \mathbf{Z}\) such that \(\pi(g) = [g]\). Moreover, we see that \(ker(\pi) = \mathbf{Z}n = \langle n \rangle\).
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-<b>Example 2</b>: Suppose \(g \in G\). Let</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi \ : \ &amp;\mathbf{Z} \rightarrow G\\
-	          &amp;k \rightarrow g^k
-	\end{align*}
-	$$
-</div>
-<p>We want to show that \(\varphi(ab) = \varphi(a)\varphi(b)\). But we know that \(\varphi(ab) = g^{a+b} =  g^ag^b = \varphi(a)\varphi(b)\). So \(\varphi\) is a homomorphism. 
-<br />
-<br />
-Note here that the image of \(\varphi\) is the subgroup generated by \(g\), \(\langle g \rangle\). What about the kernel of \(\varphi\)?</p>
-<div class="ediv">
-  $$
-  \begin{equation*}
-  ker(\varphi) = \begin{cases} 
-  \{0\} \quad &amp;\text{if } o(g) = \infty \\ 
-  \mathbf{Z}d \quad \quad &amp;\text{if } o(g) = d
-  \end{cases}
-  \end{equation*}
-  $$
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-<b>Example 3: </b>Consider the following</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi \ : \ &amp;D_n \rightarrow S_n\\
-	          &amp;V \rightarrow Sym(V)
-	\end{align*}
-	$$
-</div>
-<p>where \(V\) is the vertices of the polygon. In fact \(\varphi(D_n)\) is isomorphic to \(D_n\) and it is a subgroup of \(S_n\).<br />
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-<b>Example 4: </b>Consider the following</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi \ : \ &amp;S_n \rightarrow GL(\mathbf{R}^{x})\\
-	          &amp;\sigma \rightarrow P_{\sigma}
-	\end{align*}
-	$$
-</div>
-<p>where \(P_{\sigma}\) is the matrix associated with the permutation \(\sigma\). For example</p>
-<div>
-	$$
-	\begin{align*}
-	(1 \ 2 \ 3) \rightarrow 
-	\begin{pmatrix}
-	0 &amp; 0 &amp; 1 \\
-	1 &amp; 0 &amp; 0 \\
-	0 &amp; 1 &amp; 0
-	\end{pmatrix}
-	\end{align*}
-	$$
-</div>
-<!----------------------------------------------------------------------------->
-<p><b>Example 5: </b>Consider the following</p>
-<div>
-	$$
-	\begin{align*}
-	\psi \ : \ &amp;GL(\mathbf{R}^{x}) \rightarrow \mathbf{R}^{x}\\
-	          &amp;P \rightarrow \det(P)
-	\end{align*}
-	$$
-</div>
-<p>This is another homomorphism. In fact, The composition of \(\psi \circ \varphi\) is a homomorphism. That is</p>
-<div>
-	$$
-	\begin{align*}
-	\psi \circ \varphi \ : \ &amp;S_n \rightarrow \mathbf{R}^{x}\\
-	          &amp;\sigma \rightarrow \det(P_{\sigma})
-	\end{align*}
-	$$
-</div>
-<p>is a homomorphism. Fact: The composition of two homomorphism is a homomorphism.
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-<b>Example 6: </b>Consider \(V\) where \(V\) is a vector space. Now consider the group \((V, +)\) (throw the scalar multiplication away). This is an abelian group. Consider the linear map</p>
-<div>
-	$$
-	\begin{align*}
-	T \ : \ &amp;V \rightarrow W
-	\end{align*}
-	$$
-</div>
-<p>This is a homomorphism (recall that linear maps need to also to preserve scalar multiplication). Furthermore, \(ker T = \{v \in V \ | \ T(v) = 0\}\) (observe that the kernel is also the nullspace of \(T\)). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Normal Subgroups</b></h4>
-<p>It turns out that only a certain kind of subgroups could be kernels of homomorphism.
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-	A normal subgroup of \(G\) is a subgroup \(N \leq G\) such that \(gNg^{-1} = N\) for all \(g \in G\) where \(gNg^{-1} = \{gng^{-1} \ | \ n \in N\}\). 
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-This operation \(x \rightarrow gxg^{-1}\) is called the conjugation of \(x\) by \(g\). The definition says that if we conjeguate all the elements of \(N\) by a fixed element \(g \in G\), then we should get \(N\) back for every \(g\). 
-<br />
-<br />
-<!------------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-To show a subgroup \(N \leq G\) is normal, it suffies to show that \(gNg^{-1} \subseteq N\) for all \(g \in G\).
-</div>
-<p><br />
-That is, we just need to check that each \(gNg^{-1}\) is a subset of \(N\).
-<!------------------------------------------------------------------------------>
-<br />
-<br />
-<b>Proof</b>
-<br />
-Given that \(gNg^{-1} \subseteq N\). We want to show that this implies that \(N \subseteq gNg^{-1}\) which means that \(gNg^{-1} = N\) which is what is required by the definition.
-<br />
-<br />
-Let \(g \in G\) and \(n \in N\). Observe that</p>
-<div>
-	$$
-	\begin{align*}
-	n &amp;= (gg^{-1})n(gg^{-1}) \\
-	  &amp;= g(g^{-1}ng)g^{-1} \\
-	  &amp;= g(x)g^{-1}
-	\end{align*}
-	$$
-</div>
-<p>where \(x = g^{-1}ng\). If we show that \(gNg^{-1} \subseteq N\), then we need to show that for any \(n \in N\), this \(n\) can be written as \(n = g^{-1}ng = x\) which means that we want to show that \(x \in N\). But by the hypothesis</p>
-<div>
-	$$
-	\begin{align*}
-	 x &amp;= g^{-1}ng \\
-	   &amp;= g^{-1}n(g^{-1})^{-1} \\
-	   &amp;= ana^{-1} \quad \text{ (let $a = g^{-1}$ where $g^{-1} \in G$)}
-	\end{align*}
-	$$
-</div>
-<p>Since \(g^{-1}\) is just an arbitrary element in \(G\), then \(ana^{-1} \in N\) which is what we wanted to show. \(\ \blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Examples</b></h4>
-<p>Take \(D_3 = \{e, r, r^2, j, rj, r^2j\}\) where \(r^3 = e = j^2\) and \(jr = r^{-1}j\). This rule also implies \(jr^k = r^{-k}j\). Now suppose we have the subgroup generated by \(j\), \(H = \langle j \rangle = \{e, j\}\). Is this a normal subgroup?
-<br />
-<br />
-For every \(g \in G\), we want to show that \(gHg^{-1} \subseteq H\) so</p>
-<div>
-	$$
-	\begin{align*}
-	 eHe^{-1} &amp;= H. \\
-	 rHr^{-1} &amp;= \{rer^{-1}, rjr^{-1}\} = \{e, r^2j\} \neq H.
-	\end{align*}
-	$$
-</div>
-<p>So we stop here. This is not a normal subgroup. Does \(D_3\) have any normal subgroups? The trivial subgroups are normal subgroups. What about any non-trivial subgroups? It turns out that \(N = \langle r \rangle = \{e,r,r^2\}\) is normal in \(D_3\). We have to check all 6 cases</p>
-<div>
-	$$
-	\begin{align*}
-	 eNe^{-1} &amp;= N \\
-	 rNr^{-1} &amp;= N \\
-	 r^2Nr^{-2} &amp;= N \\
-	 jNr^{-1} &amp;= N \\
-	 rjN(rj)^{-1} &amp;= N \\
-	 r^2jN(r^2j)^{-1} &amp;= N.
-	\end{align*}
-	$$
-</div>
-<p>FACT: If \(G\) has some generating set like \(G = \langle g_1, ..., g_r \rangle\), then to check if \(H\) is normal, we just need to show that \(g_kHg_k^{-1}\) for each \(g_i\) in the generating set \(g_1, ... g_k\). So for \(D_3\), we know it is generated by \(\langle r, j \rangle\), so we can check those two.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Kernels are Normal Subgroups</b></h4>
-<p>Back to homomorphisms. It turns out that kernels of homomorphisms are normal subgroups.
-<br /></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(\varphi \ : \ G \rightarrow H\) is a homomorphism, then \(K = ker \varphi = \{g \in G \ | \ \varphi(g) = e\} \) is a normal subgroup.
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-We know that \(k\) is a subgroup of \(G\). We need to show that given \(g \in G\) and \(x \in K\) that \(gxg^{-1} \in K\). By definition, to check if any element is in the kernel, we need to apply the homomorphism and see if the result is the identity element. So</p>
-<div>
-	$$
-	\begin{align*}
-	 \varphi(gNg^{-1}) &amp;= \varphi(g)\varphi(x)\varphi(g)^{-1} \\
-					  &amp;= \varphi(g)e\varphi(g)^{-1} \\
-					  &amp;= \varphi(g)\varphi(g)^{-1} \\
-					  &amp;= e.
-	\end{align*}
-	$$
-</div>
-<p>From this, we see \(gKg^{-1} \subseteq K\) for all \(g \in G\). \(\blacksquare\)
-<br />
-<br />
-Note also that all subgroups of abelian groups are normal.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Injectivity of Homomorphisms</b></h4>
-<p>Another useful fact:
-<br /></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-Let \(\varphi \ : \ G \rightarrow H\) be a homomorphism, then \(\varphi\) is injective if and only if \(K = ker(\varphi) = \{e\} \).
-</div>
-<p><br />
-<!------------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-\(\Longrightarrow\): Suppose that \(\varphi\) is injective. This means that if \(\varphi(a) = \varphi(e) = e\), then \(a = e\). But this means that the only element where \(\varphi(a) = e\) is the identity element itself. [why must \(varphi(e)=e\)? I can’t remember, verify].
-<br />
-<br />
-\(\Longleftarrow\):Now suppose that \(K = ker(\varphi) = \{e\}\). We want to show that \(\varphi\) is injective. This means that for any elements \(a, b \in G\), if \(\varphi(a) = \varphi(b)\), then we must have \(a = b\). Let \(\varphi(a) = \varphi(b) = h \in H\). We want to show that \(a = b\). Observe that</p>
-<div>
-	$$
-	\begin{align*}
-	 \varphi(a^{-1}b) &amp;= \varphi(a)^{-1}\varphi(b) \\
-					  &amp;= h^{-1}h \\
-					  &amp;= e_H.
-	\end{align*}
-	$$
-</div>
-<p>Since \(\varphi(a^{-1}b) = e_H\), then this implies that \(a^{-1}b \in K\). But \(K\) has only a single element which is the identity. Then \(a^{-1}b = e\) which means that \(a = b\) as desired. \(\ \blacksquare\)
-<br />
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li>MATH417 by Charles Rezk</li>
-	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[While isomorphisms need to be bijections, Homomorphisms do not. Definition 2.4.1 A map between groups \(\varphi : G \rightarrow H\) is called a homomorphism if it preserves group multiplication, \(\varphi(g_1)(g_2) = \varphi(g_1)\varphi(g_2)\) for all \(g_1, g_2 \in G\). An endomorphism of \(G\) is a homomorphism \(\varphi: G \rightarrow G\). So Given a homomorphism, if we find that it’s a bijection, then it is an isomorphism. Some Facts about Homomorphisms Proposition 2.4.11 Let \(\varphi : G \rightarrow H\) and \(\psi : G \rightarrow H\) be homomorphisms of groups. \(\varphi(e_G) = e_H\) For each \(g \in G\), \(\varphi(g^{-1}) = (\varphi(g))^{-1}\) Proof (Book) For any \(g \in G\). $$ \begin{align*} \varphi(e_G)\varphi(g) &amp;= \varphi(e_Gg) \quad \text{(because $\varphi$ is a homomorphism)} \\ &amp;= \varphi(g) \end{align*} $$ So \(\varphi(e_G)\) is an identity element in \(H\) but by the uniqueness of the identity element, then \(\varphi(e_G) = e_H\). Similarly, for any \(\in G\), $$ \begin{align*} \varphi(g^{-1})\varphi(g) &amp;= \varphi(g^{-1}g) \quad \text{(because $\varphi$ is a homomorphism)} \\ &amp;= \varphi(e_G) \\ &amp; = e_H \end{align*} $$ And by the uniqueness of the inverse, \(\varphi(g^{-1}) = \varphi(g)^{-1}\). \(\ \blacksquare\) The Image of a Homomorphism Given a homomorphism \(\varphi\) between two groups \(G\) and \(H\), the image of \(\varphi\) which is a subset of \(H\) is also a subgroup. Proposition Given some homomorphism \(\varphi: G \rightarrow H\). The image of this function $$ \begin{align*} \varphi(G) = \{\varphi(g) \ : \ g \in G\} \end{align*} $$ is a subgroup of \(H\). Proof TODO The Kernel of a Homomorphism The kernel of a group is simply all the elements such that \(\varphi(g)=e\). Definition 2.4.14 Let \(\varphi: G \rightarrow H\) be a homomorphism of groups. The kernel of the homomorphism \(\varphi\), denoted \(ker(\varphi)\), is \(\varphi^{-1}(e_H) = \{g \in G \ : \ \varphi(g) = e_H\}\). In fact, The kernel of a group \(K = ker \ \varphi\) is a subgroup of \(G\). Proof We will show this by showing that the kernel satisfies the subgroup properties: We know by Proposition 2.4.11, that \(\varphi(e_G) = e_H\) so \(e_G \in K\). Closed under product: For any \(a,b \in K\), \(\varphi(a)\varphi(b) = e_He_H = e_H \in K\) Closed under inverses: For any \(a \in K\), \(\varphi(a^{-1}) = \varphi(a)^{-1} = e_H^{-1} = e_H\). Therefore,\(a^{-1} \in K\). \(\ \blacksquare\) Examples Example 1: Consider the following with the addition operation $$ \begin{align*} \pi \ : \ &amp;\mathbf{Z} \rightarrow \mathbf{Z}_n\\ &amp;a \rightarrow [a]_n \end{align*} $$ \(\pi\) is a homomorphism because \([a+b] = [a] + [b]\). Remember the rule is that \(\varphi(ab) = \varphi(a)\varphi(b)\) where the first operation comes from the first group while the second operation comes from the second group. Here, both groups have addition as their binary operation. \(\pi\) is also surjective. Since for any element \(h \in \mathbf{Z}_n\), we have an element \(g \in \mathbf{Z}\) such that \(\pi(g) = [g]\). Moreover, we see that \(ker(\pi) = \mathbf{Z}n = \langle n \rangle\). Example 2: Suppose \(g \in G\). Let $$ \begin{align*} \varphi \ : \ &amp;\mathbf{Z} \rightarrow G\\ &amp;k \rightarrow g^k \end{align*} $$ We want to show that \(\varphi(ab) = \varphi(a)\varphi(b)\). But we know that \(\varphi(ab) = g^{a+b} = g^ag^b = \varphi(a)\varphi(b)\). So \(\varphi\) is a homomorphism. Note here that the image of \(\varphi\) is the subgroup generated by \(g\), \(\langle g \rangle\). What about the kernel of \(\varphi\)? $$ \begin{equation*} ker(\varphi) = \begin{cases} \{0\} \quad &amp;\text{if } o(g) = \infty \\ \mathbf{Z}d \quad \quad &amp;\text{if } o(g) = d \end{cases} \end{equation*} $$ Example 3: Consider the following $$ \begin{align*} \varphi \ : \ &amp;D_n \rightarrow S_n\\ &amp;V \rightarrow Sym(V) \end{align*} $$ where \(V\) is the vertices of the polygon. In fact \(\varphi(D_n)\) is isomorphic to \(D_n\) and it is a subgroup of \(S_n\). Example 4: Consider the following $$ \begin{align*} \varphi \ : \ &amp;S_n \rightarrow GL(\mathbf{R}^{x})\\ &amp;\sigma \rightarrow P_{\sigma} \end{align*} $$ where \(P_{\sigma}\) is the matrix associated with the permutation \(\sigma\). For example $$ \begin{align*} (1 \ 2 \ 3) \rightarrow \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix} \end{align*} $$ Example 5: Consider the following $$ \begin{align*} \psi \ : \ &amp;GL(\mathbf{R}^{x}) \rightarrow \mathbf{R}^{x}\\ &amp;P \rightarrow \det(P) \end{align*} $$ This is another homomorphism. In fact, The composition of \(\psi \circ \varphi\) is a homomorphism. That is $$ \begin{align*} \psi \circ \varphi \ : \ &amp;S_n \rightarrow \mathbf{R}^{x}\\ &amp;\sigma \rightarrow \det(P_{\sigma}) \end{align*} $$ is a homomorphism. Fact: The composition of two homomorphism is a homomorphism. Example 6: Consider \(V\) where \(V\) is a vector space. Now consider the group \((V, +)\) (throw the scalar multiplication away). This is an abelian group. Consider the linear map $$ \begin{align*} T \ : \ &amp;V \rightarrow W \end{align*} $$ This is a homomorphism (recall that linear maps need to also to preserve scalar multiplication). Furthermore, \(ker T = \{v \in V \ | \ T(v) = 0\}\) (observe that the kernel is also the nullspace of \(T\)). Normal Subgroups It turns out that only a certain kind of subgroups could be kernels of homomorphism. Definition A normal subgroup of \(G\) is a subgroup \(N \leq G\) such that \(gNg^{-1} = N\) for all \(g \in G\) where \(gNg^{-1} = \{gng^{-1} \ | \ n \in N\}\). This operation \(x \rightarrow gxg^{-1}\) is called the conjugation of \(x\) by \(g\). The definition says that if we conjeguate all the elements of \(N\) by a fixed element \(g \in G\), then we should get \(N\) back for every \(g\). Proposition To show a subgroup \(N \leq G\) is normal, it suffies to show that \(gNg^{-1} \subseteq N\) for all \(g \in G\). That is, we just need to check that each \(gNg^{-1}\) is a subset of \(N\). Proof Given that \(gNg^{-1} \subseteq N\). We want to show that this implies that \(N \subseteq gNg^{-1}\) which means that \(gNg^{-1} = N\) which is what is required by the definition. Let \(g \in G\) and \(n \in N\). Observe that $$ \begin{align*} n &amp;= (gg^{-1})n(gg^{-1}) \\ &amp;= g(g^{-1}ng)g^{-1} \\ &amp;= g(x)g^{-1} \end{align*} $$ where \(x = g^{-1}ng\). If we show that \(gNg^{-1} \subseteq N\), then we need to show that for any \(n \in N\), this \(n\) can be written as \(n = g^{-1}ng = x\) which means that we want to show that \(x \in N\). But by the hypothesis $$ \begin{align*} x &amp;= g^{-1}ng \\ &amp;= g^{-1}n(g^{-1})^{-1} \\ &amp;= ana^{-1} \quad \text{ (let $a = g^{-1}$ where $g^{-1} \in G$)} \end{align*} $$ Since \(g^{-1}\) is just an arbitrary element in \(G\), then \(ana^{-1} \in N\) which is what we wanted to show. \(\ \blacksquare\) Examples Take \(D_3 = \{e, r, r^2, j, rj, r^2j\}\) where \(r^3 = e = j^2\) and \(jr = r^{-1}j\). This rule also implies \(jr^k = r^{-k}j\). Now suppose we have the subgroup generated by \(j\), \(H = \langle j \rangle = \{e, j\}\). Is this a normal subgroup? For every \(g \in G\), we want to show that \(gHg^{-1} \subseteq H\) so $$ \begin{align*} eHe^{-1} &amp;= H. \\ rHr^{-1} &amp;= \{rer^{-1}, rjr^{-1}\} = \{e, r^2j\} \neq H. \end{align*} $$ So we stop here. This is not a normal subgroup. Does \(D_3\) have any normal subgroups? The trivial subgroups are normal subgroups. What about any non-trivial subgroups? It turns out that \(N = \langle r \rangle = \{e,r,r^2\}\) is normal in \(D_3\). We have to check all 6 cases $$ \begin{align*} eNe^{-1} &amp;= N \\ rNr^{-1} &amp;= N \\ r^2Nr^{-2} &amp;= N \\ jNr^{-1} &amp;= N \\ rjN(rj)^{-1} &amp;= N \\ r^2jN(r^2j)^{-1} &amp;= N. \end{align*} $$ FACT: If \(G\) has some generating set like \(G = \langle g_1, ..., g_r \rangle\), then to check if \(H\) is normal, we just need to show that \(g_kHg_k^{-1}\) for each \(g_i\) in the generating set \(g_1, ... g_k\). So for \(D_3\), we know it is generated by \(\langle r, j \rangle\), so we can check those two. Kernels are Normal Subgroups Back to homomorphisms. It turns out that kernels of homomorphisms are normal subgroups. Proposition If \(\varphi \ : \ G \rightarrow H\) is a homomorphism, then \(K = ker \varphi = \{g \in G \ | \ \varphi(g) = e\} \) is a normal subgroup. Proof We know that \(k\) is a subgroup of \(G\). We need to show that given \(g \in G\) and \(x \in K\) that \(gxg^{-1} \in K\). By definition, to check if any element is in the kernel, we need to apply the homomorphism and see if the result is the identity element. So $$ \begin{align*} \varphi(gNg^{-1}) &amp;= \varphi(g)\varphi(x)\varphi(g)^{-1} \\ &amp;= \varphi(g)e\varphi(g)^{-1} \\ &amp;= \varphi(g)\varphi(g)^{-1} \\ &amp;= e. \end{align*} $$ From this, we see \(gKg^{-1} \subseteq K\) for all \(g \in G\). \(\blacksquare\) Note also that all subgroups of abelian groups are normal. Injectivity of Homomorphisms Another useful fact: Proposition Let \(\varphi \ : \ G \rightarrow H\) be a homomorphism, then \(\varphi\) is injective if and only if \(K = ker(\varphi) = \{e\} \). Proof \(\Longrightarrow\): Suppose that \(\varphi\) is injective. This means that if \(\varphi(a) = \varphi(e) = e\), then \(a = e\). But this means that the only element where \(\varphi(a) = e\) is the identity element itself. [why must \(varphi(e)=e\)? I can’t remember, verify]. \(\Longleftarrow\):Now suppose that \(K = ker(\varphi) = \{e\}\). We want to show that \(\varphi\) is injective. This means that for any elements \(a, b \in G\), if \(\varphi(a) = \varphi(b)\), then we must have \(a = b\). Let \(\varphi(a) = \varphi(b) = h \in H\). We want to show that \(a = b\). Observe that $$ \begin{align*} \varphi(a^{-1}b) &amp;= \varphi(a)^{-1}\varphi(b) \\ &amp;= h^{-1}h \\ &amp;= e_H. \end{align*} $$ Since \(\varphi(a^{-1}b) = e_H\), then this implies that \(a^{-1}b \in K\). But \(K\) has only a single element which is the identity. Then \(a^{-1}b = e\) which means that \(a = b\) as desired. \(\ \blacksquare\) References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.4.14 Let \(H\) be subgroup of a group \(G\). \(gH = \{gh \ | \ h \in H\}\) is called a left coset of \(H\) in \(G\). \(Hg = \{hg \ | \ h \in H\}\) is called a right coset of \(H\) in \(G\). Examples Example 1: Let \(D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). where \(r^4 = e = j^2\) and \(jr = r^{-1}j\). Define the subgroup \(H = \langle j \rangle = \{e, j\}\). The left cosets are: $$ \begin{align*} eH &amp;= \{e, j\} = jH \\ rH &amp;= \{r, rj\} = rjH \\ r^2H &amp;= \{r^2, r^2j\} = r^2jH \\ r^3H &amp;= \{r^3, r^3j\} = r^3jH \\ \end{align*} $$ Notice here that none of the elements overlap between the sets so this gives us a way to partition the set \(G\) into four pairwise disjoint subsets (We’ll prove this next). The right cosets are $$ \begin{align*} He &amp;= \{e, j\} = Hj \\ Hr &amp;= \{r, jr\} = \{e, r^3j\} = Hr^3j \\ Hr^2 &amp;= \{r^2, r^2j\} = Hr^2j \\ Hr^3 &amp;= \{r^3, rj\} = Hrj \\ \end{align*} $$ Example 2: Let \(G = \mathbf{Z}\) (with addition) and take \(H = \mathbf{Z}n \leq G\) where \(n \geq 1\). The left coset is \(a + H = a + \mathbf{Z}n = \{a + kn \ | \ k \in \mathbf{Z}\}\) The left coset is \(H + a = \mathbf{Z}n + a\) which is the same as the right coset. This happens because the group is abelian! Another name for these cosets are the congruence class \([a]_n\). Cosets are Pairwise Disjoint Next we show why these subets must be pairwise disjoint. Proposition (2.5.4) Let \(H\) be a subgroup of a group \(G\). If \(X, Y \subseteq G\) are left \(H-\)cosets, then either \(X \cap Y = \emptyset\). \(X = Y\). Proof We’ll prove that not (1) implies (2) (to prove an or statement). Suppose that \(g \in X \cap Y\). We want to show that \(X = Y\). Since \(X\) and \(Y\) are left cosets, then we can write \(X = xH\) and \(Y = yH\) for some \(x, y \in G\). Since \(g \in X \cap Y\), then we can write \(g = xh_1 = yh_2\) for some \(h_1, h_2 \in H\). Observe now that $$ \begin{align*} x &amp;= gh_1^{-1} \\ &amp;= (yh_2)h_1^{-1} \\ &amp;= y(h_2h_1^{-1}) \end{align*} $$ Likewise $$ \begin{align*} y &amp;= gh_2^{-1} \\ &amp;= (xh_1)h_2^{-1} \\ &amp;= x(h_1h_2^{-1}) \end{align*} $$ Now, let \(xh \in xH\), then $$ \begin{align*} xh &amp;= (yh_2h_1^{-1})h \\ &amp;= y(h_2h_1^{-1}h) \end{align*} $$ But this implies that \(xh \in yH\). So \(xH \subseteq yH\). Likewise, let \(yh \in yH\), then $$ \begin{align*} yh &amp;= (xh_1h_2^{-1})h \\ &amp;= x(h_1h_2^{-1}h) \end{align*} $$ so \(yh \in xH\) and \(yH \subseteq xH\). Therefore \(xH = yH\). \(\blacksquare\) Based on this, we have the following proposition Proposition 2.5.3 Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be elements of \(G\). The following conditions are equivalent: \(a \in bH\). \(b \in aH\). \(aH = bH\). \(b^{-1}a \in H\). \(a^{-1}b \in H\). Proof (book) Suppose \((a)\) holds. Let \(a \in bH\). Then we can write \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\). For \((d)\) …. Lagrange Theorem Based on what we learned so far, we can now present the following important results Proposition Let \(H\) be a subgroup of a group \(G\). Then all left \(H-\)cosets and right \(H-\)cosets have the same cardinality as \(H\). This works well for infinite groups as well because all we need is a bijection to show they have the same cardinality. Proof We know the coset \(aH\) is constructed such that each element is appended on the left by \(a\). So naturally construct the following bijection $$ \begin{align*} H &amp;\rightarrow aH \\ h &amp;\rightarrow ah \end{align*} $$ This works. For any element in \(x \in aH\), the inverse is just \(a^{-1}x\). Likewise we can construct a bijection for the right coset as follows $$ \begin{align*} H &amp;\rightarrow Ha \\ h &amp;\rightarrow ha \end{align*} $$ This leads to Lagrange Theorem. Lagrange Theorem Let \(G\) be a finite group and let \(H\) be a subgroup of \(G\). Then \(|H|\) divides \(|G|\) and \(|G| / |H| = \) the number of left cosets of \(H\) in \(G =\) the number of right cosets of \(H\) in \(G\). Proof We know by the previous proposition that all cosets have the same cardinality as \(H\) itself. Moreover, we know that the collection of left cosets \(\{aH, a \in G\}\) partitions \(G\) into pairwise disjoint subsets. Therefore $$ \begin{align*} |G| &amp;= \sum|aH| \\ &amp;= \sum |H| \quad \text{(by the previous proposition)} \end{align*} $$ From this we see that \(|G| = m|H|\) as we wanted to show. \(\ \blacksquare\) This in turn leads to the following theorem: Order Theorem Let \(G\) be a finite group. Then for any \(g \in G\), \(o(g)\) divides \(|G|\). Proof [TODO] More Definitions in Cosets Definition The index of a subgroup \(H \leq G\) is the number of left \(H-\)cosets. We denote the index by \([G:H]\) which is index of \(H\) in \(G\). The index could be infinite but we only care when the index is finite. Using Lagrange’s Theorem also note that if \(G\) is finite, then \([G : H] = \frac{|G|}{|H|}\). Also note that \([G:H]\) can be finite even if \(G\) and \(H\) are infinte. Example: Let \(G = \mathbf{Z}, H = \mathbf{Z_n}\) where \(n &gt; 0\). Then the index of \(\mathbf{Z}_n\) inside \(\mathbf{Z}\) is the number of left cosets which is the number of congruent classes, \([\mathbf{Z}:\mathbf{Z}_n] = n\) We might ask why is the definition is in terms of the number of left cosets and not the right cosets. The answer is in the next proposition Proposition Let \(H\) be a subgroup of a group \(G\). There is a bijection between the collection of left cosets and the collection of right cosets. $$ \begin{align*} \{aH, a \in G\} \rightarrow \{Ha, a \in G\} \end{align*} $$ The actual bijection is to take all the elements in the left cosets, take their inverses. The collection of inverses will be the elements in the right cosets. Why is this true? If \(X = aH = \{aH \ | \ h \in H\}\), then \(X^{-1} = \{ (ah)^{-1} \ | \ h \in H \} = Ha^{-1}\). So why not use \(aH \rightarrow Ha\)? This might not be defined. Proposition Let \(H\) be a subgroup of a group \(G\). The following are equivalent \(H\) is a normal subgroup. Left \(H\)-cosets are the same as right \(H\)-cosets. Every left \(H\)-coset is contained in a right \(H\)-coset. Proof \((3) \rightarrow (1)\): Suppose every left \(H\)-coset is a subset of some right \(H\)-coset. Let \(a \in G\). We want to show that \(H\) is a normal subgroup. So we want to show that \(aHa^{-1} \subseteq H\). Given that every left coset in contained in a right coset, consider the left coset \(aH\). This coset is contained in some right coset. Since \(a \in aH\), then \(a\) must be in the right coset as well. We can claim that \(aH \subseteq Ha\). So for any \(h \in H\), \(ah = h'a\) for some \(h' \in H\). Observe that \(aha^{-1} = h'\) for some \(h' \in H\). In other words, \(aHa^{-1} \in H\) and \(H\) is normal. \(\ \blacksquare\) Applications Let’s look at some applications of the order theorem. Proposition If \(|G| = p\) where \(p\) is prime, then \(G\) is cyclic. Proof Let \(g \in G\). By the order theorem, the order of \(g\) must divide \(|G|\) which is a prime number. So \(o(g) \in \{1, p\}\). \(\{e\}\) is the only group with order 1 and \(|G| = p &gt; 1\) so we must have an element \(g \in G\) such that \(g \neq e\). So \(o(g) = p\). But we also said that the order of an element is also the size of the cyclic group generated by \(g\) so \(|\langle g \rangle| = p\). Therefore, we must have \(G = \langle g \rangle\). \(\ \blacksquare\) Proposition If \(|G| = 4\), then \(G\) is isomorphic to \(\mathbf{Z}_4\) or \(V\) the symmetries of the rectangle. Proof Let \(g \in G\). The order of \(g\) has to divide 4 by the order theorem so \(o(g) \in \{1,2,4\}\). If \(o(g) = 4\), then \(o(g) = 4\) and \(\langle g \rangle = G\) so \(G\) is cyclic and so it is isomorphic to \(\mathbf{Z}_4\). If \(o(g) \neq 4\). Then \(G\) must have 4 distinct elements so \(G = \{a, b, c, d\}\) none of the elements can have order 4. \(a, b, c\) can’t have order 1. So they must be of order 2 and their squares must be the identity. This gives us enough information fill out the multiplication table of this group as follows: \(e\) \(a\) \(b\) \(c\) \(e\) \(e\) \(a\) \(b\) \(c\) \(a\) \(a\) \(e\) \(c\) \(b\) \(b\) \(b\) \(c\) \(e\) \(a\) \(c\) \(c\) \(b\) \(a\) \(e\) Subgroups of \(D_5\) Let’s use Lagrange’s Theorem next. Specifically, let’s analyze the subgroups of the dihedral group \(D_5\). First, $$ \begin{align*} D_5 = \{e, r, r^2, r^3, r^4, j, rj, r^2j, r^3j, r^4,j\} \end{align*} $$ The first we want to do when finding its subgroups is find the order of each element in \(D_5\). We know \(|D_5| = 10\) so the orders of the elements must divide 10. We also know that each flip’s order is 2 (because we established previously that \(j^2 = e\)). We also established previously that \(r^5 = e\). The rest of the elements must have their order \(\in \{1,2,5,10\}\) by the Order Theorem. In fact $$ \begin{align*} \text{Order 1: }&amp;: e. \\ \text{Order 2: }&amp;: j, rj, r^2j, r^3j, r^4j. \\ \text{Order 5: }&amp;: r, r^2, r^3, r^4, r^5. \end{align*} $$ Now, any subgroup of \(G\) must have order dividing the order of \(G\) so they must divide 10 by Lagrange’s Theorem. So \(|H| \in \{1,2,5,10\}\). Note here that 2 and 5 are prime! so by the previous proposition, they must be cyclic. We list the subgroups as follows by their orders: $$ \begin{align*} \text{Order 1: }&amp;: \{e\}. \\ \text{Order 2: }&amp;: \langle j \rangle , \langle rj \rangle , \langle r^2j\rangle , \langle r^3j\rangle , \langle r^4j\rangle . \\ \text{Order 5: }&amp;: \langle r \rangle. \\ \text{Order 10: }&amp;: D_5. \\ \end{align*} $$ We can draw the subgroups as follows Notice that there is 1 group of order 5 while there are 5 groups of order 2. Subgroups of \(D_9\) We list the elements of \(D_9\) as follows $$ \begin{align*} D_9 = \{e, r, r^2, r^3, r^4, r^5, r^6, r^7, r^8, j, rj, r^2j, r^3j, r^4j, r^5j, r^6j, r^7j, r^8j\} \end{align*} $$ First, let’s find the order of each element knowing that the order of each flip is 2 and know that element must have an order that divides 18. [Side note from studying. Note that \(\langle r \rangle\) is a cyclic subgroup of order 9 and it has the elements \(r, r^2, r^3, ..., r^8\). Each element inside the subgroup must have order \(n / gcd(n,power)\) where n is the order of \(r\). So the order of \(r^3\) is \(9/gcd(9,3) = 3\). Remember that the order of an element depends on the operation of the group and it is the least power \(k\) such that \(g^k = e\).] $$ \begin{align*} \text{Order 1: }&amp;: e. \\ \text{Order 2: }&amp;: j, j, rj, r^2j, r^3j, r^4j, r^5j, r^6j, r^7j, r^8j. \\ \text{Order 3: }&amp;: r^3, r^6. \\ \text{Order 6: }&amp;: \\ \text{Order 9: }&amp;: r, r^2, r^4, r^5, r^7, r^8. \\ \end{align*} $$ For the subgroups, if the order was 2 or 3, then we know they must be cyclic. In this case, we know all the subgroups of order 2 (all the flips) are cyclic unique subgroups. For orders 3 and 6, they could be cyclic but they could also fail to be cyclic. Take order 3, first we check if there are elements of order 3 in the group. Yes, we have \(r^3\) and \(r^6\). Why we look for those? Because by definition of the order of an element, they will each generate a subgroup of order 3 (Recall from the subgroups lecture \(|\langle g \rangle| = o(g)\)). In fact, here \(r^3\) and \(r^6\) both generate the same subgroup.]]></summary></entry></feed>

@@ -162,6 +162,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html">
        Lecture 21: Finite Abelian Groups
        </a></li>
+	   <!----------------->
+	   <!------EXTRA------>
+	   <!----------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/14/math417-extra-proofs.html">
+       Study Notes / Extra Proofs
+       </a></li>
    </ol>
 <br>
 <br>

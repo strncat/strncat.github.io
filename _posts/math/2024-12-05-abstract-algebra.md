@@ -167,7 +167,13 @@ mathjax: true
 	   <!----------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/14/math417-extra-proofs.html">
-       Study Notes / Extra Proofs
+       Study Notes: Extra Proofs ...
+       </a></li>
+       <li><a href="/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html">
+       Study Notes: Isomorphism Theorem Examples
+       </a></li>
+       <li><a href="/jekyll/update/2025/02/16/math417-extra-semidirect-products.html">
+       Study Notes: Semi-direct Products
        </a></li>
    </ol>
 <br>

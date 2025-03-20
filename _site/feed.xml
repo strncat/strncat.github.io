@@ -1,4 +1,560 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-19T10:26:07-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Extra Proofs / Study Notes</title><link href="http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs.html" rel="alternate" type="text/html" title="Extra Proofs / Study Notes" /><published>2025-02-14T00:01:36-08:00</published><updated>2025-02-14T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs.html"><![CDATA[<h4><b>Example 1</b></h4>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-19T21:14:40-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Study Notes: Semidirect Products</title><link href="http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products.html" rel="alternate" type="text/html" title="Study Notes: Semidirect Products" /><published>2025-02-16T00:01:36-08:00</published><updated>2025-02-16T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products.html"><![CDATA[<p>The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along.
+<br />
+<br />
+Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: H \times K &amp;\rightarrow G \\
+	              (h,k)  &amp;\rightarrow hk
+	\end{align*}
+	$$
+</div>
+<p>We want to show that \(\phi\) is a bijection. To do this, we’ll first show that \(\phi\) is injective. So given the elements \(h_1, h_2 \in H\) and \(k_1, k_2 \in K\) such that \(\phi(h_1,k_1) = \phi(h_2,k_2)\), we want to show that \((h_1,k_1) = (h_2,k_2)\). Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(h_1,k_1) &amp;= \phi(h_2,k_2) \\
+	h_1k_1 &amp;= h_2k_2 \\
+	(h_2)^{-1}h_1k_1 &amp;= k_2 \\
+	(h_2)^{-1}h_1k_1k_1^{-1} &amp;= k_2k_1^{-1} \\
+	(h_2)^{-1}h_1 &amp;= k_2k_1^{-1} \\
+	\end{align*}
+	$$
+</div>
+<p>Since \((h_2)^{-1}h_1 \in H\) and \(k_2k_1^{-1} \in K\) and \((h_2)^{-1}h_1 = k_2k_1^{-1}\), then this value must be in the intersection \(H \cap K\). But \(H \cap K = \{e\}\). Therefore, this must be the identity element and so</p>
+<div>
+	$$
+	\begin{align*}
+	(h_2)^{-1}h_1 &amp;= k_2k_1^{-1} = e
+	\end{align*}
+	$$
+</div>
+<p>But this just means that \((h_2)^{-1}h_1 = e\) and so \(h_1 = h_2\) and similarly \(k_1 = k_2\). Therefore \((h_1,k_1) = (h_2,k_2)\). So \(\phi\) is injective.
+<br />
+<br />
+Next, we want to show that \(\phi\) is surjective. Notice that \(Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G\). This just means that \(\phi\) is surjective since the codomain in \(G\). Therefore, \(\phi\) is a bijection. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>How to Make \(\phi\) a Homomorphism</b></h4>
+<p>Now, suppose that we’re also given that \(H\) is normal. We know that \(\phi: H \times G \rightarrow G\) is a bijection. We also know that \(G\) is a group but we never defined \(H \times K\) as a group. We just said it was a set. The question is can we make \(H \times K\) a group so that \(\phi\) isn’t just a bijection but also an isomorphism? (hmmm, this is a iff right?)
+<br />
+<br />
+We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is a homomorphism. To be a homomorphism we need to prove that</p>
+<div>
+	$$
+	\begin{align*}
+	\phi((h_1,k_1)(h_2,k_2)) = \phi((h_1,k_1))\phi((h_2,k_2))
+	\end{align*}
+	$$
+</div>
+<p>Notice that we have defined what the product will look like but we know that the right hand side is</p>
+<div>
+	$$
+	\begin{align*}
+	h_1k_1h_2k_2
+	\end{align*}
+	$$
+</div>
+<p>The goal is to write this product as a product of an element in \(H\) multiplied by an element from \(K\). This is exactly why we wanted or need \(H\) to be normal. So insert \(k_1^{-1}k_1\) as follows</p>
+<div>
+	$$
+	\begin{align*}
+	h_1k_1h_2k_2 &amp;= h_1k_1h_2 (k_1^{-1}k_1) k_2 \\
+	             &amp;= (h_1)(k_1h_2k_1^{-1}) (k_1k_2) \\
+	\end{align*}
+	$$
+</div>
+<p>Note here that the first two elements are in \(H\). \(h_1 \in H\) and \(k_1h_2k_1^{-1} \in H\) since \(H\) is normal. So we have exactly what we want. Why do we care? we want this because now we can write this as \(\phi\) of some \((h,k) \in H \times K\) where \(h = (h_1)(k_1h_2k_1^{-1})\) and \(k = (k_1k_2)\). So</p>
+<div>
+	$$
+	\begin{align*}
+	\phi((h_1,k_1)(h_2,k_2)) &amp;= \phi((h_1,k_1))\phi((h_2,k_2)) \\
+	                         &amp;= h_1k_1h_2k_2 \\
+							 &amp;= (h_1k_1h_2k_1^{-1}) (k_1k_2) \\
+	                         &amp;= \phi((h_1k_1h_2k_1^{-1}), k_1k_2)
+	\end{align*}
+	$$
+</div>
+
+<p>But remember that \(\phi\) is a bijection so it’s injective. So saying that \(\phi((h_1,k_1)(h_2,k_2)) = \phi((h_1k_1h_2k_1^{-1}), k_1k_2)\) implies that</p>
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) = (h_1k_1h_2k_1^{-1}, k_1k_2)
+	\end{align*}
+	$$
+</div>
+<p>This immediately gives us the required operation for \(G \times H\) to be a group. If we define this product above to be how we multiply elements in \(H \times K\), then \(\phi\) is a homomorphism and therefore, it is an isomorphism from \(G \times H \rightarrow G\). Since we already use \(G \times H\) to denote the direct product group, we use the notation \(G \rtimes K\) to denote this semidirect product group (internal semi direct product).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Outer Semidirect Product Group</b></h4>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li><a href="https://www.youtube.com/watch?v=Pat5Qsmrdaw">Semidirect Products</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along. Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map $$ \begin{align*} \phi: H \times K &amp;\rightarrow G \\ (h,k) &amp;\rightarrow hk \end{align*} $$ We want to show that \(\phi\) is a bijection. To do this, we’ll first show that \(\phi\) is injective. So given the elements \(h_1, h_2 \in H\) and \(k_1, k_2 \in K\) such that \(\phi(h_1,k_1) = \phi(h_2,k_2)\), we want to show that \((h_1,k_1) = (h_2,k_2)\). Observe that $$ \begin{align*} \phi(h_1,k_1) &amp;= \phi(h_2,k_2) \\ h_1k_1 &amp;= h_2k_2 \\ (h_2)^{-1}h_1k_1 &amp;= k_2 \\ (h_2)^{-1}h_1k_1k_1^{-1} &amp;= k_2k_1^{-1} \\ (h_2)^{-1}h_1 &amp;= k_2k_1^{-1} \\ \end{align*} $$ Since \((h_2)^{-1}h_1 \in H\) and \(k_2k_1^{-1} \in K\) and \((h_2)^{-1}h_1 = k_2k_1^{-1}\), then this value must be in the intersection \(H \cap K\). But \(H \cap K = \{e\}\). Therefore, this must be the identity element and so $$ \begin{align*} (h_2)^{-1}h_1 &amp;= k_2k_1^{-1} = e \end{align*} $$ But this just means that \((h_2)^{-1}h_1 = e\) and so \(h_1 = h_2\) and similarly \(k_1 = k_2\). Therefore \((h_1,k_1) = (h_2,k_2)\). So \(\phi\) is injective. Next, we want to show that \(\phi\) is surjective. Notice that \(Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G\). This just means that \(\phi\) is surjective since the codomain in \(G\). Therefore, \(\phi\) is a bijection. How to Make \(\phi\) a Homomorphism Now, suppose that we’re also given that \(H\) is normal. We know that \(\phi: H \times G \rightarrow G\) is a bijection. We also know that \(G\) is a group but we never defined \(H \times K\) as a group. We just said it was a set. The question is can we make \(H \times K\) a group so that \(\phi\) isn’t just a bijection but also an isomorphism? (hmmm, this is a iff right?) We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is a homomorphism. To be a homomorphism we need to prove that $$ \begin{align*} \phi((h_1,k_1)(h_2,k_2)) = \phi((h_1,k_1))\phi((h_2,k_2)) \end{align*} $$ Notice that we have defined what the product will look like but we know that the right hand side is $$ \begin{align*} h_1k_1h_2k_2 \end{align*} $$ The goal is to write this product as a product of an element in \(H\) multiplied by an element from \(K\). This is exactly why we wanted or need \(H\) to be normal. So insert \(k_1^{-1}k_1\) as follows $$ \begin{align*} h_1k_1h_2k_2 &amp;= h_1k_1h_2 (k_1^{-1}k_1) k_2 \\ &amp;= (h_1)(k_1h_2k_1^{-1}) (k_1k_2) \\ \end{align*} $$ Note here that the first two elements are in \(H\). \(h_1 \in H\) and \(k_1h_2k_1^{-1} \in H\) since \(H\) is normal. So we have exactly what we want. Why do we care? we want this because now we can write this as \(\phi\) of some \((h,k) \in H \times K\) where \(h = (h_1)(k_1h_2k_1^{-1})\) and \(k = (k_1k_2)\). So $$ \begin{align*} \phi((h_1,k_1)(h_2,k_2)) &amp;= \phi((h_1,k_1))\phi((h_2,k_2)) \\ &amp;= h_1k_1h_2k_2 \\ &amp;= (h_1k_1h_2k_1^{-1}) (k_1k_2) \\ &amp;= \phi((h_1k_1h_2k_1^{-1}), k_1k_2) \end{align*} $$]]></summary></entry><entry><title type="html">Study Notes: Isomorphism Theorem Examples</title><link href="http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html" rel="alternate" type="text/html" title="Study Notes: Isomorphism Theorem Examples" /><published>2025-02-15T00:01:36-08:00</published><updated>2025-02-15T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html"><![CDATA[<!----------------------------------------------------------------------------->
+<h4><b>Example 1</b></h4>
+<p>Let \(Q_8 = \{1, -1, i, i, j, -j, k, -k\}\) be a group. We have the identities:</p>
+<div>
+	$$
+	\begin{align*}
+	i^2 = j^2 = k^2 = -1, \quad ij = k, \quad ji = -k, \quad ijk = -1
+	\end{align*}
+	$$
+</div>
+<p><br />
+\(ij = k\) is going in a clockwise direction while \(ji = -k\) is going in a counter clockwise direction.
+TODO: Group diagram.
+<br />
+<br />
+There are three cyclic subgroups of order 4: \(\langle i \rangle\), \(\langle j \rangle\) and \(\langle k \rangle\). There is one cyclic group of order 2: \(\langle -1 \rangle\). Note that \(\langle i \rangle = \{1, i, -1, -i\}\). 
+<br />
+<br />
+Let’s find the cosets of \(\langle i \rangle\) in \(Q_8\).</p>
+<div>
+	$$
+	\begin{align*}
+	j\langle i \rangle &amp;= j\{1, i, -1, -i\} = \{j, -k, -j, k\} \\
+	\langle i \rangle j &amp;= \{1, i, -1, -i\}j = \{j, k, -j, -k\}
+	\end{align*}
+	$$
+</div>
+<p>Note that \(Q_8\) is generated by two elements \(\langle i, j \rangle\) (easy to check). Therefore, since \(j\langle i \rangle = \langle i \rangle j\) and we checked all the generators of the group, then \(\langle i \rangle\) is a normal subgroup.
+<br />
+<br />
+Let’s study the quotient group \(Q_8 / \langle i \rangle\). We know that it must contain two elements (By Lagrange’s Theorem).</p>
+<div>
+	$$
+	\begin{align*}
+	Q_8 / \langle i \rangle = \{\langle i \rangle, j \langle i \rangle\}
+	\end{align*}
+	$$
+</div>
+<p><br />
+<br />
+Recall, that we defined the multiplication of cosets by \((xN)(yN)=(xy)N\). Since we have two elements, observe that \(\langle i \rangle \langle i \rangle = \langle i \rangle\). Multiply \(j \langle i \rangle\) by \(\langle i \rangle\) is just \(j \langle i \rangle\). Remember that \(\langle i \rangle\) acts as the identity element/coset here. So the only interesting product is \((j\langle i \rangle) (j\langle i \rangle)\) [TODO: add a table]</p>
+<div>
+	$$
+	\begin{align*}
+	(j\langle i \rangle) (j\langle i \rangle) &amp;= j^2 \langle i \rangle = -\langle i \rangle = \langle i \rangle. 
+	\end{align*}
+	$$
+</div>
+<p>This multiplication table looks like the multiplication table of \(\mathbf{Z}_2\). In fact \(Q_8 / \langle i \rangle \cong \mathbf{Z}_2\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<p>Taking \(Q_8\) from before, let’s look at at the cyclic group generated by \(\langle -1 \rangle\).</p>
+<div>
+	$$
+	\begin{align*}
+	\langle -1 \rangle &amp;= \{-1, 1\} 
+	\end{align*}
+	$$
+</div>
+<p>\(\langle -1 \rangle\) is a normal subgroup (easy check, every element in the subgroup commutes with all elements in \(Q_8\)). So we now look at the quotient structure. (the cosets of \(\langle -1 \rangle\) in \(Q_8\))</p>
+<div>
+	$$
+	\begin{align*}
+	i \langle -1 \rangle &amp;= \{-i, i\} \\
+	j \langle -1 \rangle &amp;= \{-j, j\} \\
+	k \langle -1 \rangle &amp;= \{-k, k\} \\
+	Q_8 / \langle -1 \rangle &amp;= \{i \langle -1 \rangle , i \langle -1 \rangle, j \langle -1 \rangle, k \langle -1 \rangle \}
+	\end{align*}
+	$$
+</div>
+<p>Let’s calculate the order of each element. For example, \((i \langle -1 \rangle)^2 = -1\langle -1 \rangle = \langle -1 \rangle\). So \(o(i\langle -1 \rangle) = 2\). In fact, we also have \(o(j\langle -1 \rangle) = 2\) and \(o(k\langle -1 \rangle) = 2\). This isn’t cyclic so this group must be isomorphic to the non-cyclic group of order 4. So it’s isomorphic to \(\mathbf{Z}_2 \times \mathbf{Z}_2\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 3</b></h4>
+<p>Suppose that we are given</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: \mathbf{Z} &amp;\rightarrow \mathbf{Z}_n \\
+	                 &amp;\phi(m) = [m] = \{k \in \mathbf{Z} \ | \ k \equiv m (\bmod n)\}
+	\end{align*}
+	$$
+</div>
+<p>We want to show that \(\phi(m)\) is surjective. This is because for all \(0 \leq m \leq m - 1\), \(\phi(m) = [m]\) So we are able to hit every value of \(m\). It is also a homomorphism. since</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(m_1 + m_2) = [m_1 + m_2] = [m_1] + [m_2] = \phi(m_1) + \phi(m_2)
+	\end{align*}
+	$$
+</div>
+<p>The kernel of \(\phi\) is</p>
+<div>
+	$$
+	\begin{align*}
+	\ker(\phi) &amp;= \{ m \in \mathbf{Z} \ | \ [m] = [0]\} \\
+	           &amp;= \{0, \pm n, \pm 2n,....\} = n\mathbf{Z}
+	\end{align*}
+	$$
+</div>
+<p>So now we have \(\ker(\phi) = n\mathbf{Z}\). We know that it is normal. We also showed that \(\phi\) is a surjective homomorphism. Therefore, by the Isomorphism Theorem, \(\mathbf{Z}/n\mathbf{Z} \cong \mathbf{Z}_n\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 4</b></h4>
+<p>Next, let’s take</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: \mathbf{Z}_4 &amp;\rightarrow \mathbf{Z}_2 \\
+	        &amp;\phi([m]_4) = [m]_2 
+	\end{align*}
+	$$
+</div>
+<p>Here, it is not obvious this is well-defined. So let’s check that it is. Suppose that \([m_1]_4 = [m_2]_4\). We want to show that \(\phi([m_1]_4) = \phi([m_2]_4)\). Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	[m_1]_4 &amp;= [m_2]_4 \\
+	[m_1]_4 - [m_2]_4 &amp;= [0]_4 \\
+	[m_1 - m_2]_4 &amp;= [0]_4 \\
+	m_1-m_2 &amp;\equiv 0 \bmod 4
+	\end{align*}
+	$$
+</div>
+<p>This says that \(m_1 - m_2\) must be a multiple of 4 so \(m_1 - m_2 = 4k = 2(2k)\) for some \(k \in \mathbf{Z}\). So \(m_1 - m_2\) is also a multiple of 2. Therefore, \(m_1-m_2 \equiv 0 \bmod 2\) and so \([m_1]_2 = [m_2]_2\).
+<br />
+<br />
+\(\phi\) is also a homomorphism. since</p>
+<div>
+	$$
+	\begin{align*}
+	\phi([m_1]_4 + [m_2]_4) = \phi([m_1 + m_2]_4) = [m_1 + m_2]_2 = [m_1]_2 + [m_2]_2 = \phi(m_1) + \phi(m_2).
+	\end{align*}
+	$$
+</div>
+<p>Next we want to show that \(\phi\) is surjective. Notice that there are two values in the target domain. \([0]_2\) and \([1]_2\). Also note that \(\phi([0]_4) = [0]_2\) and \(\phi([1]_4) = [1]_2\) so it is surjective.
+<br />
+<br />
+The kernel of \(\phi\) is</p>
+<div>
+	$$
+	\begin{align*}
+	\ker(\phi) &amp;= \{ [m]_4 \in \mathbf{Z}_4 \ | \ \phi([m]_4) = [0]_2\} \\
+	           &amp;= \{ [m]_4 \in \mathbf{Z}_4 \ | \ [m]_2 = [0]_2\} \\
+			   &amp;= \{ [0]_4, [2]_4 \} = \langle [2]_4 \rangle = 2\mathbf{Z}_4 \\
+	\end{align*}
+	$$
+</div>
+<p>So now we have \(\ker(\phi) = \langle [2]_4 \rangle\). We know that it is normal. We also showed that \(\phi\) is a surjective homomorphism. Therefore, by the Isomorphism Theorem, \(\mathbf{Z}_4/\langle [2]_4 \rangle \cong \mathbf{Z}_2\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 5</b></h4>
+<p>Next, let’s take</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: \mathbf{Z}_6 &amp;\rightarrow \mathbf{Z}_{15}
+	\end{align*}
+	$$
+</div>
+<p>We need to figure out a homomorphism. First recall that for any element, \(|\phi(x)| \ | \ |x|\). Let’s list the order of the elements in \(\mathbf{Z}_{15}\). Notice here that \(\mathbf{Z}_{15}\) is a cyclic group (with addition) so the order of any element \(g + a\) is going to be \(\frac{15}{gcd(a,15)}\)</p>
+<div>
+	$$
+	\begin{align*}
+	&amp;o(1): [0]_{15} \\
+	&amp;o(3): [5]_{15}, [10]_{15} \\
+	&amp;o(5): [3]_{15}, [6]_{15}, [9]_{15}, [12]_{15} \\
+	&amp;o(15): [1]_{15}, [2]_{15}, [4]_{15}, [7]_{15}, [11]_{15}, [13]_{15}, [14]_{15} \\
+	\end{align*}
+	$$
+</div>
+<p>So now let’s pick \([1]_{6}\). It is a generator for \(\mathbf{Z}_{6}\). We know that \(\phi([1]_6)\) must divide the order of the element itself so \(|[1]_6| = 6\). So that tells us that \(|\phi([1]_6)|\) must be either 1,2,3 or 6. 2 and 6 are not possibilities so we don’t have any elements of that order in \(\mathbf{Z}_{15}\). So it’s either 1 or 3.
+<br />
+<br />
+Case 1: Suppose we pick some element of order 1. That means that \(\phi([1]_6) = 1\). This implies that \(\phi([1]_6) = [0]_{15}\). Since it’s a generator, then \(\ker(\phi) = \mathbf{Z}_6\). And \(Im(\phi) = \{[0]_{15}\}\). This gives us \(\mathbf{Z}_6/\mathbf{Z}_6 = \{[0]_{15}\} \leq \mathbf{Z}_{15}\). So it’s pretty boring.
+<br />
+<br />
+Case 2: Suppose we pick some element of order 3 so \(|\phi([1]_6)| = 3\). So let \(\phi([1]_6) = [5]_{15}\). Based on this, where will \([2]_6\) will go? Remember that we want \(\phi\) to be a homomorphism. This means that we want this to be true. That \(\phi([2]_6) = \phi([1 + 1]_6) = \phi([1]_6) + \phi([1]_6) = [5]_{15} + [5_{15} = [10]_{15}\). So we want to pick \([10]_{15}\) for \([2]_6\). Based on this, the elements will get mapped to</p>
+<div>
+	$$
+	\begin{align*}
+	[0]_6 &amp;\rightarrow [0]_{15} \\
+	[1]_6 &amp;\rightarrow [5]_{15} \\
+	[2]_6 &amp;\rightarrow [10]_{15} \\
+	[3]_6 &amp;\rightarrow [0]_{15} \\
+	[4]_6 &amp;\rightarrow [5]_{15} \\
+	[5]_6 &amp;\rightarrow [10]_{15}.
+	\end{align*}
+	$$
+</div>
+<p>So the image of our homomorphism is</p>
+<div>
+	$$
+	\begin{align*}
+	Im(\phi) = \{[0]_{15}, [5]_{15}, [10]_{15}\} = \langle [5]_{15} \rangle \cong \mathbf{Z}_3
+	\end{align*}
+	$$
+</div>
+<p>The last statement is because all cyclic groups of order 3 are isomorphic to \(\mathbf{Z}_3\). The kernel of \(\phi\) is</p>
+<div>
+	$$
+	\begin{align*}
+	\ker(\phi) &amp;= \{ [m]_6 \in \mathbf{Z}_6 \ | \ \phi([m]_6) = [0]_{15}\} \\
+			   &amp;= \{ [0]_6, [3]_{6} \} = \langle [3]_6 \rangle \cong \mathbf{Z}_2\\
+	\end{align*}
+	$$
+</div>
+<p>By the Isomorphism Theorem, \(\mathbf{Z}_{6}/\langle [3]_6 \rangle \cong \langle [5]_{15} \rangle \cong \mathbf{Z}_3\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 6</b></h4>
+<p>Next, let’s take</p>
+<div>
+	$$
+	\begin{align*}
+	D_n = \langle r,s \ | \ r^n = s^2 = e, rs = sr^{n-1} \rangle
+	\end{align*}
+	$$
+</div>
+<p>To define a homomorphism, we need these defining identities to hold on both sides. So let’s define</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: D_n &amp;\rightarrow \mathbf{Z}_2 \\
+	      r  &amp;\rightarrow 0 \quad \text{we don't to write $[0]_2$ since it's clear} \\
+		  s &amp;\rightarrow 1
+	\end{align*}
+	$$
+</div>
+<p>So now we need to verify that the three defining relations are satisfied. For example, we know that \(r^n = e\). So we want \(\phi(r^n) = \phi(e) = [0]\). But this is also</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(r^n) = \phi(rr...r) = \phi(r)+...\phi(r) = 0+...+0 = 0.
+	\end{align*}
+	$$
+</div>
+<p>Similarly, we have \(\phi(s^2) = \phi(e) = [0]\) and at the same time</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(s^2) = \phi(ss) = \phi(s)+\phi(s) = 1 + 1 = 0
+	\end{align*}
+	$$
+</div>
+<p>Finally, we have \(\phi(rs) = \phi(sr^{n-1})\). We can check both sides</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(rs) &amp;= \phi(r) + \phi(s) = 1 + 0 = 1 \\
+	\phi(sr^{n-1}) &amp;= \phi(s) + \phi(r) + ... + \phi(r) = 1 + 0 + ... + 0 = 1
+	\end{align*}
+	$$
+</div>
+<p>Next, we need to see that it is surjective but that’s trivial since we’re sending \(r\) to \(0\) and \(s\) to \(1\) so it’s definitely surjective. The image of \(\phi\) is \(\mathbf{Z}_2\). The kernel is also easy to see</p>
+<div>
+	$$
+	\begin{align*}
+	\ker(\phi) &amp;= \{ l \in D_n \ | \ \phi(l) = 0\} \\
+			   &amp;= \langle r \rangle \\
+	\end{align*}
+	$$
+</div>
+<p>This is because any rotation is sent to 0 and any reflection \(\phi(r^ks) = \phi(sr^{n-k} = 1\).<br />
+By the Isomorphism Theorem, \(D_n/\langle r \rangle \cong \mathbf{Z}_2\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 7</b></h4>
+<p>Let’s continue with the dihedral group and suppose we have</p>
+<div>
+	$$
+	\begin{align*}
+	D_n = \langle r,s \ | \ r^n = s^2 = e, rs = sr^{n-1} \rangle
+	\end{align*}
+	$$
+</div>
+<p>To define a homomorphism, we need these defining identities to hold on both sides. So let’s define</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: D_n &amp;\rightarrow \mathbf{Z}_n \\
+	      r  &amp;\rightarrow 1 \\
+		  s &amp;\rightarrow 0
+	\end{align*}
+	$$
+</div>
+<p>Is this a homomorphism? Let’s check the identity \(\phi(rs) = \phi(sr^{n-1})\). We can check both sides</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(rs) &amp;= \phi(r) + \phi(s) = 1 + 0 = 1 \\
+	\phi(sr^{n-1}) &amp;= \phi(s) + (\phi(r) + ... + \phi(r)) = 0 + n - 1 = n - 1.
+	\end{align*}
+	$$
+</div>
+<p>Note that \(1 \not\equiv n - 1 \bmod n\) unless \(n = 2\). So it’s not a homomorphism for any \(n &gt; 2\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 8</b></h4>
+<p>Let’s take another dihedral group example. Define</p>
+<div>
+	$$
+	\begin{align*}
+	D_{2n} = \langle r,s \ | \ r^{2n} = s^2 = e, rs = sr^{2n-1} \rangle
+	\end{align*}
+	$$
+</div>
+<p>And then define</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: D_{2n} &amp;\rightarrow \mathbf{Z}_2 \\
+	      r  &amp;\rightarrow 1 \\
+		  s &amp;\rightarrow 0
+	\end{align*}
+	$$
+</div>
+<p>We need to verify that the three defining relations are satisfied. For example, we know that \(r^{2n} = e\). So we want \(\phi(r^{2n}) = \phi(e) = [0]\). But this is also</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(r^{2n}) = 2n\phi(r) = [2n]_2 = 0.
+	\end{align*}
+	$$
+</div>
+<p>Similarly, we have \(\phi(s^2) = \phi(e) = [0]\) and at the same time</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(s^2) = \phi(ss) = \phi(s)+\phi(s) = 0
+	\end{align*}
+	$$
+</div>
+<p>Finally, we have \(\phi(rs) = \phi(sr^{n-1})\). We can check both sides</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(rs) &amp;= \phi(r) + \phi(s) = 1 + 0 = 1 \\
+	\phi(sr^{2n-1}) &amp;= 0 + 2n-1 = [2n-1]_2 = 1
+	\end{align*}
+	$$
+</div>
+<p>So \(\phi\) is a homomorphism. It is surjective since we hit both elements in the target. Next we’ll calculate the kernel.</p>
+<div>
+	$$
+	\begin{align*}
+	\ker(\phi) &amp;= \{ l \in D_n \ | \ \phi(l) = [0]_2\} \\
+	           &amp;= \{e, r^2, r^4 ... r^{2n-2}, s, sr^2 ... sr^{2n-2} \} \\
+			   &amp;= \langle s, r^2 \rangle \leq D_{2n}\\
+			   &amp;= \langle s, r^2 \ | \ s^2=(r^2)^{n} = e, r^2s = s(r^2)^{n-1} \rangle \cong D_n
+	\end{align*}
+	$$
+</div>
+<p>By the Isomorphism Theorem, \(D_{2n}/D_n \cong \mathbf{Z}_2\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 11</b></h4>
+<p>Suppose now we have the following map</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: D_{6} &amp;\rightarrow S_6 \\
+	      r  &amp;\rightarrow (1 \ 2 \ 3 \ 4 \ 5 \ 6) \\
+		  s &amp;\rightarrow (1 \ 6)(2 \ 5)(3 \ 4)
+	\end{align*}
+	$$
+</div>
+<p>This is easy to see if we draw a hexagon and label the vertices as follows</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/extra/1.png" width="40%" class="center" /></p>
+<p>So we can see that a reflection about the \(y\) axis is represented by the above map. So now we want to check if \(\phi\) defines a homomorphism. We do this by checking the defining relations in \(D_6\) So we want \(\phi(r^6) = \phi(e) = (1) = e_{S_6}\). But this is also</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(r^6) = (1 \ 2 \ 3 \ 4 \ 5 \ 6)^6 = e
+	\end{align*}
+	$$
+</div>
+<p>Similarly, we have \(\phi(s^2) = \phi(e) = [0]\) and it easy to check that we do get \(\phi(s^2) = e\). Finally, we have \(\phi(rs) = \phi(sr^{5})\). We can check both sides</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(rs) &amp;= (1 \ 2 \ 3 \ 4 \ 5 \ 6) (1 \ 6)(2 \ 5)(3 \ 4) = (1)(2 \ 6)(3 \ 5)(4) = (2 \ 6)(3 \ 5) \\
+	\phi(sr^{n-1}) &amp;= (1 \ 6)(2 \ 5)(3 \ 4) (1 \ 2 \ 3 \ 4 \ 5 \ 6)^5 \\
+	               &amp;= (1 \ 6)(2 \ 5)(3 \ 4) (1 \ 6 \ 5 \ 4 \ 3 \ 2) \quad \text{(we can count by 5)} \\
+				   &amp;= (1)(2 \ 6)(3 \ 5)(4) = (2 \ 6)(3 \ 5) 
+	\end{align*}
+	$$
+</div>
+<p>The image of \(\phi\) is going to be generating by \((1 \ 2 \ 3 \ 4 \ 5 \ 6)\) and \((1 \ 6)(2 \ 5)(3 \ 4)\)</p>
+<div>
+	$$
+	\begin{align*}
+	im(\phi) &amp;= \langle (1 \ 2 \ 3 \ 4 \ 5 \ 6), (1 \ 6)(2 \ 5)(3 \ 4) \rangle \\
+	\end{align*}
+	$$
+</div>
+<p>We claim that the kernel only contains the identity. Why? note that \(|r| = 6\) and the order of its image is \(|(1 \ 2 \ 3 \ 4 \ 5 \ 6)|\). This tells us</p>
+<div>
+	$$
+	\begin{align*}
+	\ker(\phi) &amp;= \{ l \in D_n \ | \ \phi(l) = 0\} \\
+			   &amp;= \langle r \rangle \\
+	\end{align*}
+	$$
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li><a href="https://www.youtube.com/watch?v=ako25Pghxa8">The order of an element in a direct group is the lcm of both elements orders</a></li>
+	<li><a href="https://www.youtube.com/watch?v=BE8lhcGfSiI&amp;list=PL22w63XsKjqwN7sHsEiy0yqkcjQfXAuVb&amp;index=12">Isomorphism Examples</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Example 1 Let \(Q_8 = \{1, -1, i, i, j, -j, k, -k\}\) be a group. We have the identities: $$ \begin{align*} i^2 = j^2 = k^2 = -1, \quad ij = k, \quad ji = -k, \quad ijk = -1 \end{align*} $$ \(ij = k\) is going in a clockwise direction while \(ji = -k\) is going in a counter clockwise direction. TODO: Group diagram. There are three cyclic subgroups of order 4: \(\langle i \rangle\), \(\langle j \rangle\) and \(\langle k \rangle\). There is one cyclic group of order 2: \(\langle -1 \rangle\). Note that \(\langle i \rangle = \{1, i, -1, -i\}\). Let’s find the cosets of \(\langle i \rangle\) in \(Q_8\). $$ \begin{align*} j\langle i \rangle &amp;= j\{1, i, -1, -i\} = \{j, -k, -j, k\} \\ \langle i \rangle j &amp;= \{1, i, -1, -i\}j = \{j, k, -j, -k\} \end{align*} $$ Note that \(Q_8\) is generated by two elements \(\langle i, j \rangle\) (easy to check). Therefore, since \(j\langle i \rangle = \langle i \rangle j\) and we checked all the generators of the group, then \(\langle i \rangle\) is a normal subgroup. Let’s study the quotient group \(Q_8 / \langle i \rangle\). We know that it must contain two elements (By Lagrange’s Theorem). $$ \begin{align*} Q_8 / \langle i \rangle = \{\langle i \rangle, j \langle i \rangle\} \end{align*} $$ Recall, that we defined the multiplication of cosets by \((xN)(yN)=(xy)N\). Since we have two elements, observe that \(\langle i \rangle \langle i \rangle = \langle i \rangle\). Multiply \(j \langle i \rangle\) by \(\langle i \rangle\) is just \(j \langle i \rangle\). Remember that \(\langle i \rangle\) acts as the identity element/coset here. So the only interesting product is \((j\langle i \rangle) (j\langle i \rangle)\) [TODO: add a table] $$ \begin{align*} (j\langle i \rangle) (j\langle i \rangle) &amp;= j^2 \langle i \rangle = -\langle i \rangle = \langle i \rangle. \end{align*} $$ This multiplication table looks like the multiplication table of \(\mathbf{Z}_2\). In fact \(Q_8 / \langle i \rangle \cong \mathbf{Z}_2\). Example 2 Taking \(Q_8\) from before, let’s look at at the cyclic group generated by \(\langle -1 \rangle\). $$ \begin{align*} \langle -1 \rangle &amp;= \{-1, 1\} \end{align*} $$ \(\langle -1 \rangle\) is a normal subgroup (easy check, every element in the subgroup commutes with all elements in \(Q_8\)). So we now look at the quotient structure. (the cosets of \(\langle -1 \rangle\) in \(Q_8\)) $$ \begin{align*} i \langle -1 \rangle &amp;= \{-i, i\} \\ j \langle -1 \rangle &amp;= \{-j, j\} \\ k \langle -1 \rangle &amp;= \{-k, k\} \\ Q_8 / \langle -1 \rangle &amp;= \{i \langle -1 \rangle , i \langle -1 \rangle, j \langle -1 \rangle, k \langle -1 \rangle \} \end{align*} $$ Let’s calculate the order of each element. For example, \((i \langle -1 \rangle)^2 = -1\langle -1 \rangle = \langle -1 \rangle\). So \(o(i\langle -1 \rangle) = 2\). In fact, we also have \(o(j\langle -1 \rangle) = 2\) and \(o(k\langle -1 \rangle) = 2\). This isn’t cyclic so this group must be isomorphic to the non-cyclic group of order 4. So it’s isomorphic to \(\mathbf{Z}_2 \times \mathbf{Z}_2\). Example 3 Suppose that we are given $$ \begin{align*} \phi: \mathbf{Z} &amp;\rightarrow \mathbf{Z}_n \\ &amp;\phi(m) = [m] = \{k \in \mathbf{Z} \ | \ k \equiv m (\bmod n)\} \end{align*} $$ We want to show that \(\phi(m)\) is surjective. This is because for all \(0 \leq m \leq m - 1\), \(\phi(m) = [m]\) So we are able to hit every value of \(m\). It is also a homomorphism. since $$ \begin{align*} \phi(m_1 + m_2) = [m_1 + m_2] = [m_1] + [m_2] = \phi(m_1) + \phi(m_2) \end{align*} $$ The kernel of \(\phi\) is $$ \begin{align*} \ker(\phi) &amp;= \{ m \in \mathbf{Z} \ | \ [m] = [0]\} \\ &amp;= \{0, \pm n, \pm 2n,....\} = n\mathbf{Z} \end{align*} $$ So now we have \(\ker(\phi) = n\mathbf{Z}\). We know that it is normal. We also showed that \(\phi\) is a surjective homomorphism. Therefore, by the Isomorphism Theorem, \(\mathbf{Z}/n\mathbf{Z} \cong \mathbf{Z}_n\). Example 4 Next, let’s take $$ \begin{align*} \phi: \mathbf{Z}_4 &amp;\rightarrow \mathbf{Z}_2 \\ &amp;\phi([m]_4) = [m]_2 \end{align*} $$ Here, it is not obvious this is well-defined. So let’s check that it is. Suppose that \([m_1]_4 = [m_2]_4\). We want to show that \(\phi([m_1]_4) = \phi([m_2]_4)\). Observe that $$ \begin{align*} [m_1]_4 &amp;= [m_2]_4 \\ [m_1]_4 - [m_2]_4 &amp;= [0]_4 \\ [m_1 - m_2]_4 &amp;= [0]_4 \\ m_1-m_2 &amp;\equiv 0 \bmod 4 \end{align*} $$ This says that \(m_1 - m_2\) must be a multiple of 4 so \(m_1 - m_2 = 4k = 2(2k)\) for some \(k \in \mathbf{Z}\). So \(m_1 - m_2\) is also a multiple of 2. Therefore, \(m_1-m_2 \equiv 0 \bmod 2\) and so \([m_1]_2 = [m_2]_2\). \(\phi\) is also a homomorphism. since $$ \begin{align*} \phi([m_1]_4 + [m_2]_4) = \phi([m_1 + m_2]_4) = [m_1 + m_2]_2 = [m_1]_2 + [m_2]_2 = \phi(m_1) + \phi(m_2). \end{align*} $$ Next we want to show that \(\phi\) is surjective. Notice that there are two values in the target domain. \([0]_2\) and \([1]_2\). Also note that \(\phi([0]_4) = [0]_2\) and \(\phi([1]_4) = [1]_2\) so it is surjective. The kernel of \(\phi\) is $$ \begin{align*} \ker(\phi) &amp;= \{ [m]_4 \in \mathbf{Z}_4 \ | \ \phi([m]_4) = [0]_2\} \\ &amp;= \{ [m]_4 \in \mathbf{Z}_4 \ | \ [m]_2 = [0]_2\} \\ &amp;= \{ [0]_4, [2]_4 \} = \langle [2]_4 \rangle = 2\mathbf{Z}_4 \\ \end{align*} $$ So now we have \(\ker(\phi) = \langle [2]_4 \rangle\). We know that it is normal. We also showed that \(\phi\) is a surjective homomorphism. Therefore, by the Isomorphism Theorem, \(\mathbf{Z}_4/\langle [2]_4 \rangle \cong \mathbf{Z}_2\). Example 5 Next, let’s take $$ \begin{align*} \phi: \mathbf{Z}_6 &amp;\rightarrow \mathbf{Z}_{15} \end{align*} $$ We need to figure out a homomorphism. First recall that for any element, \(|\phi(x)| \ | \ |x|\). Let’s list the order of the elements in \(\mathbf{Z}_{15}\). Notice here that \(\mathbf{Z}_{15}\) is a cyclic group (with addition) so the order of any element \(g + a\) is going to be \(\frac{15}{gcd(a,15)}\) $$ \begin{align*} &amp;o(1): [0]_{15} \\ &amp;o(3): [5]_{15}, [10]_{15} \\ &amp;o(5): [3]_{15}, [6]_{15}, [9]_{15}, [12]_{15} \\ &amp;o(15): [1]_{15}, [2]_{15}, [4]_{15}, [7]_{15}, [11]_{15}, [13]_{15}, [14]_{15} \\ \end{align*} $$ So now let’s pick \([1]_{6}\). It is a generator for \(\mathbf{Z}_{6}\). We know that \(\phi([1]_6)\) must divide the order of the element itself so \(|[1]_6| = 6\). So that tells us that \(|\phi([1]_6)|\) must be either 1,2,3 or 6. 2 and 6 are not possibilities so we don’t have any elements of that order in \(\mathbf{Z}_{15}\). So it’s either 1 or 3. Case 1: Suppose we pick some element of order 1. That means that \(\phi([1]_6) = 1\). This implies that \(\phi([1]_6) = [0]_{15}\). Since it’s a generator, then \(\ker(\phi) = \mathbf{Z}_6\). And \(Im(\phi) = \{[0]_{15}\}\). This gives us \(\mathbf{Z}_6/\mathbf{Z}_6 = \{[0]_{15}\} \leq \mathbf{Z}_{15}\). So it’s pretty boring. Case 2: Suppose we pick some element of order 3 so \(|\phi([1]_6)| = 3\). So let \(\phi([1]_6) = [5]_{15}\). Based on this, where will \([2]_6\) will go? Remember that we want \(\phi\) to be a homomorphism. This means that we want this to be true. That \(\phi([2]_6) = \phi([1 + 1]_6) = \phi([1]_6) + \phi([1]_6) = [5]_{15} + [5_{15} = [10]_{15}\). So we want to pick \([10]_{15}\) for \([2]_6\). Based on this, the elements will get mapped to $$ \begin{align*} [0]_6 &amp;\rightarrow [0]_{15} \\ [1]_6 &amp;\rightarrow [5]_{15} \\ [2]_6 &amp;\rightarrow [10]_{15} \\ [3]_6 &amp;\rightarrow [0]_{15} \\ [4]_6 &amp;\rightarrow [5]_{15} \\ [5]_6 &amp;\rightarrow [10]_{15}. \end{align*} $$ So the image of our homomorphism is $$ \begin{align*} Im(\phi) = \{[0]_{15}, [5]_{15}, [10]_{15}\} = \langle [5]_{15} \rangle \cong \mathbf{Z}_3 \end{align*} $$ The last statement is because all cyclic groups of order 3 are isomorphic to \(\mathbf{Z}_3\). The kernel of \(\phi\) is $$ \begin{align*} \ker(\phi) &amp;= \{ [m]_6 \in \mathbf{Z}_6 \ | \ \phi([m]_6) = [0]_{15}\} \\ &amp;= \{ [0]_6, [3]_{6} \} = \langle [3]_6 \rangle \cong \mathbf{Z}_2\\ \end{align*} $$ By the Isomorphism Theorem, \(\mathbf{Z}_{6}/\langle [3]_6 \rangle \cong \langle [5]_{15} \rangle \cong \mathbf{Z}_3\). Example 6 Next, let’s take $$ \begin{align*} D_n = \langle r,s \ | \ r^n = s^2 = e, rs = sr^{n-1} \rangle \end{align*} $$ To define a homomorphism, we need these defining identities to hold on both sides. So let’s define $$ \begin{align*} \phi: D_n &amp;\rightarrow \mathbf{Z}_2 \\ r &amp;\rightarrow 0 \quad \text{we don't to write $[0]_2$ since it's clear} \\ s &amp;\rightarrow 1 \end{align*} $$ So now we need to verify that the three defining relations are satisfied. For example, we know that \(r^n = e\). So we want \(\phi(r^n) = \phi(e) = [0]\). But this is also $$ \begin{align*} \phi(r^n) = \phi(rr...r) = \phi(r)+...\phi(r) = 0+...+0 = 0. \end{align*} $$ Similarly, we have \(\phi(s^2) = \phi(e) = [0]\) and at the same time $$ \begin{align*} \phi(s^2) = \phi(ss) = \phi(s)+\phi(s) = 1 + 1 = 0 \end{align*} $$ Finally, we have \(\phi(rs) = \phi(sr^{n-1})\). We can check both sides $$ \begin{align*} \phi(rs) &amp;= \phi(r) + \phi(s) = 1 + 0 = 1 \\ \phi(sr^{n-1}) &amp;= \phi(s) + \phi(r) + ... + \phi(r) = 1 + 0 + ... + 0 = 1 \end{align*} $$ Next, we need to see that it is surjective but that’s trivial since we’re sending \(r\) to \(0\) and \(s\) to \(1\) so it’s definitely surjective. The image of \(\phi\) is \(\mathbf{Z}_2\). The kernel is also easy to see $$ \begin{align*} \ker(\phi) &amp;= \{ l \in D_n \ | \ \phi(l) = 0\} \\ &amp;= \langle r \rangle \\ \end{align*} $$ This is because any rotation is sent to 0 and any reflection \(\phi(r^ks) = \phi(sr^{n-k} = 1\). By the Isomorphism Theorem, \(D_n/\langle r \rangle \cong \mathbf{Z}_2\). Example 7 Let’s continue with the dihedral group and suppose we have $$ \begin{align*} D_n = \langle r,s \ | \ r^n = s^2 = e, rs = sr^{n-1} \rangle \end{align*} $$ To define a homomorphism, we need these defining identities to hold on both sides. So let’s define $$ \begin{align*} \phi: D_n &amp;\rightarrow \mathbf{Z}_n \\ r &amp;\rightarrow 1 \\ s &amp;\rightarrow 0 \end{align*} $$ Is this a homomorphism? Let’s check the identity \(\phi(rs) = \phi(sr^{n-1})\). We can check both sides $$ \begin{align*} \phi(rs) &amp;= \phi(r) + \phi(s) = 1 + 0 = 1 \\ \phi(sr^{n-1}) &amp;= \phi(s) + (\phi(r) + ... + \phi(r)) = 0 + n - 1 = n - 1. \end{align*} $$ Note that \(1 \not\equiv n - 1 \bmod n\) unless \(n = 2\). So it’s not a homomorphism for any \(n &gt; 2\). Example 8 Let’s take another dihedral group example. Define $$ \begin{align*} D_{2n} = \langle r,s \ | \ r^{2n} = s^2 = e, rs = sr^{2n-1} \rangle \end{align*} $$ And then define $$ \begin{align*} \phi: D_{2n} &amp;\rightarrow \mathbf{Z}_2 \\ r &amp;\rightarrow 1 \\ s &amp;\rightarrow 0 \end{align*} $$ We need to verify that the three defining relations are satisfied. For example, we know that \(r^{2n} = e\). So we want \(\phi(r^{2n}) = \phi(e) = [0]\). But this is also $$ \begin{align*} \phi(r^{2n}) = 2n\phi(r) = [2n]_2 = 0. \end{align*} $$ Similarly, we have \(\phi(s^2) = \phi(e) = [0]\) and at the same time $$ \begin{align*} \phi(s^2) = \phi(ss) = \phi(s)+\phi(s) = 0 \end{align*} $$ Finally, we have \(\phi(rs) = \phi(sr^{n-1})\). We can check both sides $$ \begin{align*} \phi(rs) &amp;= \phi(r) + \phi(s) = 1 + 0 = 1 \\ \phi(sr^{2n-1}) &amp;= 0 + 2n-1 = [2n-1]_2 = 1 \end{align*} $$ So \(\phi\) is a homomorphism. It is surjective since we hit both elements in the target. Next we’ll calculate the kernel. $$ \begin{align*} \ker(\phi) &amp;= \{ l \in D_n \ | \ \phi(l) = [0]_2\} \\ &amp;= \{e, r^2, r^4 ... r^{2n-2}, s, sr^2 ... sr^{2n-2} \} \\ &amp;= \langle s, r^2 \rangle \leq D_{2n}\\ &amp;= \langle s, r^2 \ | \ s^2=(r^2)^{n} = e, r^2s = s(r^2)^{n-1} \rangle \cong D_n \end{align*} $$ By the Isomorphism Theorem, \(D_{2n}/D_n \cong \mathbf{Z}_2\). Example 11 Suppose now we have the following map $$ \begin{align*} \phi: D_{6} &amp;\rightarrow S_6 \\ r &amp;\rightarrow (1 \ 2 \ 3 \ 4 \ 5 \ 6) \\ s &amp;\rightarrow (1 \ 6)(2 \ 5)(3 \ 4) \end{align*} $$ This is easy to see if we draw a hexagon and label the vertices as follows So we can see that a reflection about the \(y\) axis is represented by the above map. So now we want to check if \(\phi\) defines a homomorphism. We do this by checking the defining relations in \(D_6\) So we want \(\phi(r^6) = \phi(e) = (1) = e_{S_6}\). But this is also $$ \begin{align*} \phi(r^6) = (1 \ 2 \ 3 \ 4 \ 5 \ 6)^6 = e \end{align*} $$ Similarly, we have \(\phi(s^2) = \phi(e) = [0]\) and it easy to check that we do get \(\phi(s^2) = e\). Finally, we have \(\phi(rs) = \phi(sr^{5})\). We can check both sides $$ \begin{align*} \phi(rs) &amp;= (1 \ 2 \ 3 \ 4 \ 5 \ 6) (1 \ 6)(2 \ 5)(3 \ 4) = (1)(2 \ 6)(3 \ 5)(4) = (2 \ 6)(3 \ 5) \\ \phi(sr^{n-1}) &amp;= (1 \ 6)(2 \ 5)(3 \ 4) (1 \ 2 \ 3 \ 4 \ 5 \ 6)^5 \\ &amp;= (1 \ 6)(2 \ 5)(3 \ 4) (1 \ 6 \ 5 \ 4 \ 3 \ 2) \quad \text{(we can count by 5)} \\ &amp;= (1)(2 \ 6)(3 \ 5)(4) = (2 \ 6)(3 \ 5) \end{align*} $$ The image of \(\phi\) is going to be generating by \((1 \ 2 \ 3 \ 4 \ 5 \ 6)\) and \((1 \ 6)(2 \ 5)(3 \ 4)\) $$ \begin{align*} im(\phi) &amp;= \langle (1 \ 2 \ 3 \ 4 \ 5 \ 6), (1 \ 6)(2 \ 5)(3 \ 4) \rangle \\ \end{align*} $$ We claim that the kernel only contains the identity. Why? note that \(|r| = 6\) and the order of its image is \(|(1 \ 2 \ 3 \ 4 \ 5 \ 6)|\). This tells us $$ \begin{align*} \ker(\phi) &amp;= \{ l \in D_n \ | \ \phi(l) = 0\} \\ &amp;= \langle r \rangle \\ \end{align*} $$ References The order of an element in a direct group is the lcm of both elements orders Isomorphism Examples]]></summary></entry><entry><title type="html">Study Notes: Extra Proofs …</title><link href="http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs.html" rel="alternate" type="text/html" title="Study Notes: Extra Proofs …" /><published>2025-02-14T00:01:36-08:00</published><updated>2025-02-14T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/14/math417-extra-proofs.html"><![CDATA[<h4><b>Example 1</b></h4>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition
@@ -67,241 +623,10 @@ This says if you take the product of two cyclic groups, then their product is cy
 
 <p><br />
 <!-----------------------------------------------------------------------------></p>
-<h4><b>Example 3</b></h4>
-<p>Let \(Q_8 = \{1, -1, i, i, j, -j, k, -k\}\) be a group. We have the identities:</p>
-<div>
-	$$
-	\begin{align*}
-	i^2 = j^2 = k^2 = -1, \quad ij = k, \quad ji = -k, \quad ijk = -1
-	\end{align*}
-	$$
-</div>
-<p><br />
-\(ij = k\) is going in a clockwise direction while \(ji = -k\) is going in a counter clockwise direction.
-TODO: Group diagram.
-<br />
-<br />
-There are three cyclic subgroups of order 4: \(\langle i \rangle\), \(\langle j \rangle\) and \(\langle k \rangle\). There is one cyclic group of order 2: \(\langle -1 \rangle\). Note that \(\langle i \rangle = \{1, i, -1, -i\}\). 
-<br />
-<br />
-Let’s find the cosets of \(\langle i \rangle\) in \(Q_8\).</p>
-<div>
-	$$
-	\begin{align*}
-	j\langle i \rangle &amp;= j\{1, i, -1, -i\} = \{j, -k, -j, k\} \\
-	\langle i \rangle j &amp;= \{1, i, -1, -i\}j = \{j, k, -j, -k\}
-	\end{align*}
-	$$
-</div>
-<p>Note that \(Q_8\) is generated by two elements \(\langle i, j \rangle\) (easy to check). Therefore, since \(j\langle i \rangle = \langle i \rangle j\) and we checked all the generators of the group, then \(\langle i \rangle\) is a normal subgroup.
-<br />
-<br />
-Let’s study the quotient group \(Q_8 / \langle i \rangle\). We know that it must contain two elements (By Lagrange’s Theorem).</p>
-<div>
-	$$
-	\begin{align*}
-	Q_8 / \langle i \rangle = \{\langle i \rangle, j \langle i \rangle\}
-	\end{align*}
-	$$
-</div>
-<p><br />
-<br />
-Recall, that we defined the multiplication of cosets by \((xN)(yN)=(xy)N\). Since we have two elements, observe that \(\langle i \rangle \langle i \rangle = \langle i \rangle\). Multiply \(j \langle i \rangle\) by \(\langle i \rangle\) is just \(j \langle i \rangle\). Remember that \(\langle i \rangle\) acts as the identity element/coset here. So the only interesting product is \((j\langle i \rangle) (j\langle i \rangle)\) [TODO: add a table]</p>
-<div>
-	$$
-	\begin{align*}
-	(j\langle i \rangle) (j\langle i \rangle) &amp;= j^2 \langle i \rangle = -\langle i \rangle = \langle i \rangle. 
-	\end{align*}
-	$$
-</div>
-<p>This multiplication table looks like the multiplication table of \(\mathbf{Z}_2\). In fact \(Q_8 / \langle i \rangle \cong \mathbf{Z}_2\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example 4</b></h4>
-<p>Taking \(Q_8\) from before, let’s look at at the cyclic group generated by \(\langle -1 \rangle\).</p>
-<div>
-	$$
-	\begin{align*}
-	\langle -1 \rangle &amp;= \{-1, 1\} 
-	\end{align*}
-	$$
-</div>
-<p>\(\langle -1 \rangle\) is a normal subgroup (easy check, every element in the subgroup commutes with all elements in \(Q_8\)). So we now look at the quotient structure. (the cosets of \(\langle -1 \rangle\) in \(Q_8\))</p>
-<div>
-	$$
-	\begin{align*}
-	i \langle -1 \rangle &amp;= \{-i, i\} \\
-	j \langle -1 \rangle &amp;= \{-j, j\} \\
-	k \langle -1 \rangle &amp;= \{-k, k\} \\
-	Q_8 / \langle -1 \rangle &amp;= \{i \langle -1 \rangle , i \langle -1 \rangle, j \langle -1 \rangle, k \langle -1 \rangle \}
-	\end{align*}
-	$$
-</div>
-<p>Let’s calculate the order of each element. For example, \((i \langle -1 \rangle)^2 = -1\langle -1 \rangle = \langle -1 \rangle\). So \(o(i\langle -1 \rangle) = 2\). In fact, we also have \(o(j\langle -1 \rangle) = 2\) and \(o(k\langle -1 \rangle) = 2\). This isn’t cyclic so this group must be isomorphic to the non-cyclic group of order 4. So it’s isomorphic to \(\mathbf{Z}_2 \times \mathbf{Z}_2\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example 5</b></h4>
-<p>Suppose that we are given</p>
-<div>
-	$$
-	\begin{align*}
-	\phi: \mathbf{Z} &amp;\rightarrow \mathbf{Z}_n \\
-	                 &amp;\phi(m) = [m] = \{k \in \mathbf{Z} \ | \ k \equiv m (\bmod n)\}
-	\end{align*}
-	$$
-</div>
-<p>We want to show that \(\phi(m)\) is surjective. This is because for all \(0 \leq m \leq m - 1\), \(\phi(m) = [m]\) So we are able to hit every value of \(m\). It is also a homomorphism. since</p>
-<div>
-	$$
-	\begin{align*}
-	\phi(m_1 + m_2) = [m_1 + m_2] = [m_1] + [m_2] = \phi(m_1) + \phi(m_2)
-	\end{align*}
-	$$
-</div>
-<p>The kernel of \(\phi\) is</p>
-<div>
-	$$
-	\begin{align*}
-	\ker(\phi) &amp;= \{ m \in \mathbf{Z} \ | \ [m] = [0]\} \\
-	           &amp;= \{0, \pm n, \pm 2n,....\} = n\mathbf{Z}
-	\end{align*}
-	$$
-</div>
-<p>So now we have \(\ker(\phi) = n\mathbf{Z}\). We know that it is normal. We also showed that \(\phi\) is a surjective homomorphism. Therefore, by the Isomorphism Theorem, \(\mathbf{Z}/n\mathbf{Z} \cong \mathbf{Z}_n\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example 6</b></h4>
-<p>Next, let’s take</p>
-<div>
-	$$
-	\begin{align*}
-	\phi: \mathbf{Z}_4 &amp;\rightarrow \mathbf{Z}_2 \\
-	        &amp;\phi([m]_4) = [m]_2 
-	\end{align*}
-	$$
-</div>
-<p>Here, it is not obvious this is well-defined. So let’s check that it is. Suppose that \([m_1]_4 = [m_2]_4\). We want to show that \(\phi([m_1]_4) = \phi([m_2]_4)\). Observe that</p>
-<div>
-	$$
-	\begin{align*}
-	[m_1]_4 &amp;= [m_2]_4 \\
-	[m_1]_4 - [m_2]_4 &amp;= [0]_4 \\
-	[m_1 - m_2]_4 &amp;= [0]_4 \\
-	m_1-m_2 &amp;\equiv 0 \bmod 4
-	\end{align*}
-	$$
-</div>
-<p>This says that \(m_1 - m_2\) must be a multiple of 4 so \(m_1 - m_2 = 4k = 2(2k)\) for some \(k \in \mathbf{Z}\). So \(m_1 - m_2\) is also a multiple of 2. Therefore, \(m_1-m_2 \equiv 0 \bmod 2\) and so \([m_1]_2 = [m_2]_2\).
-<br />
-<br />
-\(\phi\) is also a homomorphism. since</p>
-<div>
-	$$
-	\begin{align*}
-	\phi([m_1]_4 + [m_2]_4) = \phi([m_1 + m_2]_4) = [m_1 + m_2]_2 = [m_1]_2 + [m_2]_2 = \phi(m_1) + \phi(m_2).
-	\end{align*}
-	$$
-</div>
-<p>Next we want to show that \(\phi\) is surjective. Notice that there are two values in the target domain. \([0]_2\) and \([1]_2\). Also note that \(\phi([0]_4) = [0]_2\) and \(\phi([1]_4) = [1]_2\) so it is surjective.
-<br />
-<br />
-The kernel of \(\phi\) is</p>
-<div>
-	$$
-	\begin{align*}
-	\ker(\phi) &amp;= \{ [m]_4 \in \mathbf{Z}_4 \ | \ \phi([m]_4) = [0]_2\} \\
-	           &amp;= \{ [m]_4 \in \mathbf{Z}_4 \ | \ [m]_2 = [0]_2\} \\
-			   &amp;= \{ [0]_4, [2]_4 \} = \langle [2]_4 \rangle = 2\mathbf{Z}_4 \\
-	\end{align*}
-	$$
-</div>
-<p>So now we have \(\ker(\phi) = \langle [2]_4 \rangle\). We know that it is normal. We also showed that \(\phi\) is a surjective homomorphism. Therefore, by the Isomorphism Theorem, \(\mathbf{Z}_4/\langle [2]_4 \rangle \cong \mathbf{Z}_2\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example 7</b></h4>
-<p>Next, let’s take</p>
-<div>
-	$$
-	\begin{align*}
-	\phi: \mathbf{Z}_6 &amp;\rightarrow \mathbf{Z}_{15}
-	\end{align*}
-	$$
-</div>
-<p>We need to figure out a homomorphism. First recall that for any element, \(|\phi(x)| \ | \ |x|\). Let’s list the order of the elements in \(\mathbf{Z}_{15}\). Notice here that \(\mathbf{Z}_{15}\) is a cyclic group (with addition) so the order of any element \(g + a\) is going to be \(\frac{15}{gcd(a,15)}\)</p>
-<div>
-	$$
-	\begin{align*}
-	&amp;o(1): [0]_{15} \\
-	&amp;o(3): [5]_{15}, [10]_{15} \\
-	&amp;o(5): [3]_{15}, [6]_{15}, [9]_{15}, [12]_{15} \\
-	&amp;o(15): [1]_{15}, [2]_{15}, [4]_{15}, [7]_{15}, [11]_{15}, [13]_{15}, [14]_{15} \\
-	\end{align*}
-	$$
-</div>
-<p>So now let’s pick \([1]_{6}\). It is a generator for \(\mathbf{Z}_{6}\). We know that \(\phi([1]_6)\) must divide the order of the element itself so \(|[1]_6| = 6\). So that tells us that \(|\phi([1]_6)|\) must be either 1,2,3 or 6. 2 and 6 are not possibilities so we don’t have any elements of that order in \(\mathbf{Z}_{15}\). So it’s either 1 or 3.
-<br />
-<br />
-Case 1: Suppose we pick some element of order 1. That means that \(\phi([1]_6) = 1\). This implies that \(\phi([1]_6) = [0]_{15}\). Since it’s a generator, then \(\ker(\phi) = \mathbf{Z}_6\). And \(Im(\phi) = \{[0]_{15}\}\). This gives us \(\mathbf{Z}_6/\mathbf{Z}_6 = \{[0]_{15}\} \leq \mathbf{Z}_{15}\). So it’s pretty boring.
-<br />
-<br />
-Case 2: Suppose we pick some element of order 3 so \(|\phi([1]_6)| = 3\). So let \(\phi([1]_6) = [5]_{15}\). Based on this, where will \([2]_6\) will go? Remember that we want \(\phi\) to be a homomorphism. This means that we want this to be true. That \(\phi([2]_6) = \phi([1 + 1]_6) = \phi([1]_6) + \phi([1]_6) = [5]_{15} + [5_{15} = [10]_{15}\). So we want to pick \([10]_{15}\) for \([2]_6\). Based on this, the elements will get mapped to</p>
-<div>
-	$$
-	\begin{align*}
-	[0]_6 &amp;\rightarrow [0]_{15} \\
-	[1]_6 &amp;\rightarrow [5]_{15} \\
-	[2]_6 &amp;\rightarrow [10]_{15} \\
-	[3]_6 &amp;\rightarrow [0]_{15} \\
-	[4]_6 &amp;\rightarrow [5]_{15} \\
-	[5]_6 &amp;\rightarrow [10]_{15}.
-	\end{align*}
-	$$
-</div>
-<p>So the image of our homomorphism is</p>
-<div>
-	$$
-	\begin{align*}
-	Im(\phi) = \{[0]_{15}, [5]_{15}, [10]_{15}\} = \langle [5]_{15} \rangle \cong \mathbf{Z}_3
-	\end{align*}
-	$$
-</div>
-<p>The last statement is because all cyclic groups of order 3 are isomorphic to \(\mathbf{Z}_3\). The kernel of \(\phi\) is</p>
-<div>
-	$$
-	\begin{align*}
-	\ker(\phi) &amp;= \{ [m]_6 \in \mathbf{Z}_6 \ | \ \phi([m]_6) = [0]_{15}\} \\
-			   &amp;= \{ [0]_6, [3]_{6} \} = \langle [3]_6 \rangle \cong \mathbf{Z}_2\\
-	\end{align*}
-	$$
-</div>
-<p>By the Isomorphism Theorem, \(\mathbf{Z}_{6}/\langle [3]_6 \rangle \cong \langle [5]_{15} \rangle \cong \mathbf{Z}_3\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
 <h4><b>References</b></h4>
 <ul>
 	<li><a href="https://www.youtube.com/watch?v=ako25Pghxa8">The order of an element in a direct group is the lcm of both elements orders</a></li>
-	<li><a href="https://www.youtube.com/watch?v=BE8lhcGfSiI&amp;list=PL22w63XsKjqwN7sHsEiy0yqkcjQfXAuVb&amp;index=12">Isomorphism Examples</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Example 1 Proposition Suppose \((x,y) \in G_1 \times G_2\) and that the order of the elements are \(|x| = r\) and \(|y| = s\). Then the order of \((x,y)\) is \(lcm(r,s)\) Proof Let \(l = lcm(r,s)\). Then, \(l = ra = sb\) for some \(r, b \in \mathbf{Z}\). Observe that $$ \begin{align*} (x,y)^{l} &amp;= (x^l, y^l) = (x^{ra}, y^{sb}) = (e_1, e_2) \end{align*} $$ From this we see that the order of \((x,y)\) must divide \(l\). If we let \(l' = |(x,y)|\), then \(l' \ | \ l\). Now, observe that $$ \begin{align*} (x,y)^{l'} &amp;= (x^{l'}, y^{l'}) = (e_1, e_2) \end{align*} $$ But since \(|x| = r\) and \(|y| = s\), then \(r \ | \ l'\) and \(s \ | \ l'\). But this means that \(lcm(r,s) = l \ | \ l'\). Since \(l' \ | \ l\) and \(l \ | \ l'\), then \(l = l'\) as we wanted to show. Example 2 Proposition \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\) if and only if \(gcd(m,n) = 1\) This says if you take the product of two cyclic groups, then their product is cyclic if and only if \(m\) and \(n\) are relatively prime. Proof \(\longrightarrow:\) Suppose \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). Suppose for the sake of contradiction that \(gcd(m,n) = d &gt; 1\). Now, take an arbitrary element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\). Add \((a,b)+...+(a,b)\) \(\frac{mn}{d}\) times. We will see that $$ \begin{align*} (a\frac{mn}{d},b\frac{mn}{d}) &amp;= (a\frac{n}{d}m,b\frac{m}{d}n) \\ &amp;= ([0]_m, [0]_n) \end{align*} $$ Notice here that both \(\frac{n}{d}\) and \(\frac{m}{d}\) are whole numbers since \(d\) is a divisor of both \(m\) and \(n\). So the first entry is a multiple of \(m\) while the second entry is a multiple of \(n\). This implies that the order of \((a,b) \leq \frac{mn}{d} &lt; mn\). So the order of any element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\) is strictly less than \(mn\). This means that no element of \(\mathbf{Z}_m \times \mathbf{Z}_n\) can be a generator of the group. So \(\mathbf{Z}_m \times \mathbf{Z}_n\) is not cyclic. This is a contradiction because \(\mathbf{Z}_m \times \mathbf{Z}_n\) isomorphic to \(\mathbf{Z}_{mn}\) and so it is cyclic. \(\longleftarrow:\) Now suppose that \(gcd(m,n) = 1\). We want to show that \(\mathbf{Z}_m \times \mathbf{Z}_n\) is isomorphic to \(\mathbf{Z}_{mn}\). Notice that the order of the element 1 has order \(m\) in \(\mathbf{Z}_m\) and the order of the element 1 has order \(n\) in \(\mathbf{Z}_n\). This tells us that the order of \((1,1) = lcm(m,n) \frac{mn}{gcd(m,n)} \frac{mn}{1} = mn\). So \((1,1)\) has order \(mn\) which means it generates the group. So it must be cyclic. So \(\mathbf{Z}_m \times \mathbf{Z}_n = \langle (1,1) \rangle\). We know all cyclic groups that have the same order are isomorphic. So \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). Example 3 Let \(Q_8 = \{1, -1, i, i, j, -j, k, -k\}\) be a group. We have the identities: $$ \begin{align*} i^2 = j^2 = k^2 = -1, \quad ij = k, \quad ji = -k, \quad ijk = -1 \end{align*} $$ \(ij = k\) is going in a clockwise direction while \(ji = -k\) is going in a counter clockwise direction. TODO: Group diagram. There are three cyclic subgroups of order 4: \(\langle i \rangle\), \(\langle j \rangle\) and \(\langle k \rangle\). There is one cyclic group of order 2: \(\langle -1 \rangle\). Note that \(\langle i \rangle = \{1, i, -1, -i\}\). Let’s find the cosets of \(\langle i \rangle\) in \(Q_8\). $$ \begin{align*} j\langle i \rangle &amp;= j\{1, i, -1, -i\} = \{j, -k, -j, k\} \\ \langle i \rangle j &amp;= \{1, i, -1, -i\}j = \{j, k, -j, -k\} \end{align*} $$ Note that \(Q_8\) is generated by two elements \(\langle i, j \rangle\) (easy to check). Therefore, since \(j\langle i \rangle = \langle i \rangle j\) and we checked all the generators of the group, then \(\langle i \rangle\) is a normal subgroup. Let’s study the quotient group \(Q_8 / \langle i \rangle\). We know that it must contain two elements (By Lagrange’s Theorem). $$ \begin{align*} Q_8 / \langle i \rangle = \{\langle i \rangle, j \langle i \rangle\} \end{align*} $$ Recall, that we defined the multiplication of cosets by \((xN)(yN)=(xy)N\). Since we have two elements, observe that \(\langle i \rangle \langle i \rangle = \langle i \rangle\). Multiply \(j \langle i \rangle\) by \(\langle i \rangle\) is just \(j \langle i \rangle\). Remember that \(\langle i \rangle\) acts as the identity element/coset here. So the only interesting product is \((j\langle i \rangle) (j\langle i \rangle)\) [TODO: add a table] $$ \begin{align*} (j\langle i \rangle) (j\langle i \rangle) &amp;= j^2 \langle i \rangle = -\langle i \rangle = \langle i \rangle. \end{align*} $$ This multiplication table looks like the multiplication table of \(\mathbf{Z}_2\). In fact \(Q_8 / \langle i \rangle \cong \mathbf{Z}_2\). Example 4 Taking \(Q_8\) from before, let’s look at at the cyclic group generated by \(\langle -1 \rangle\). $$ \begin{align*} \langle -1 \rangle &amp;= \{-1, 1\} \end{align*} $$ \(\langle -1 \rangle\) is a normal subgroup (easy check, every element in the subgroup commutes with all elements in \(Q_8\)). So we now look at the quotient structure. (the cosets of \(\langle -1 \rangle\) in \(Q_8\)) $$ \begin{align*} i \langle -1 \rangle &amp;= \{-i, i\} \\ j \langle -1 \rangle &amp;= \{-j, j\} \\ k \langle -1 \rangle &amp;= \{-k, k\} \\ Q_8 / \langle -1 \rangle &amp;= \{i \langle -1 \rangle , i \langle -1 \rangle, j \langle -1 \rangle, k \langle -1 \rangle \} \end{align*} $$ Let’s calculate the order of each element. For example, \((i \langle -1 \rangle)^2 = -1\langle -1 \rangle = \langle -1 \rangle\). So \(o(i\langle -1 \rangle) = 2\). In fact, we also have \(o(j\langle -1 \rangle) = 2\) and \(o(k\langle -1 \rangle) = 2\). This isn’t cyclic so this group must be isomorphic to the non-cyclic group of order 4. So it’s isomorphic to \(\mathbf{Z}_2 \times \mathbf{Z}_2\). Example 5 Suppose that we are given $$ \begin{align*} \phi: \mathbf{Z} &amp;\rightarrow \mathbf{Z}_n \\ &amp;\phi(m) = [m] = \{k \in \mathbf{Z} \ | \ k \equiv m (\bmod n)\} \end{align*} $$ We want to show that \(\phi(m)\) is surjective. This is because for all \(0 \leq m \leq m - 1\), \(\phi(m) = [m]\) So we are able to hit every value of \(m\). It is also a homomorphism. since $$ \begin{align*} \phi(m_1 + m_2) = [m_1 + m_2] = [m_1] + [m_2] = \phi(m_1) + \phi(m_2) \end{align*} $$ The kernel of \(\phi\) is $$ \begin{align*} \ker(\phi) &amp;= \{ m \in \mathbf{Z} \ | \ [m] = [0]\} \\ &amp;= \{0, \pm n, \pm 2n,....\} = n\mathbf{Z} \end{align*} $$ So now we have \(\ker(\phi) = n\mathbf{Z}\). We know that it is normal. We also showed that \(\phi\) is a surjective homomorphism. Therefore, by the Isomorphism Theorem, \(\mathbf{Z}/n\mathbf{Z} \cong \mathbf{Z}_n\). Example 6 Next, let’s take $$ \begin{align*} \phi: \mathbf{Z}_4 &amp;\rightarrow \mathbf{Z}_2 \\ &amp;\phi([m]_4) = [m]_2 \end{align*} $$ Here, it is not obvious this is well-defined. So let’s check that it is. Suppose that \([m_1]_4 = [m_2]_4\). We want to show that \(\phi([m_1]_4) = \phi([m_2]_4)\). Observe that $$ \begin{align*} [m_1]_4 &amp;= [m_2]_4 \\ [m_1]_4 - [m_2]_4 &amp;= [0]_4 \\ [m_1 - m_2]_4 &amp;= [0]_4 \\ m_1-m_2 &amp;\equiv 0 \bmod 4 \end{align*} $$ This says that \(m_1 - m_2\) must be a multiple of 4 so \(m_1 - m_2 = 4k = 2(2k)\) for some \(k \in \mathbf{Z}\). So \(m_1 - m_2\) is also a multiple of 2. Therefore, \(m_1-m_2 \equiv 0 \bmod 2\) and so \([m_1]_2 = [m_2]_2\). \(\phi\) is also a homomorphism. since $$ \begin{align*} \phi([m_1]_4 + [m_2]_4) = \phi([m_1 + m_2]_4) = [m_1 + m_2]_2 = [m_1]_2 + [m_2]_2 = \phi(m_1) + \phi(m_2). \end{align*} $$ Next we want to show that \(\phi\) is surjective. Notice that there are two values in the target domain. \([0]_2\) and \([1]_2\). Also note that \(\phi([0]_4) = [0]_2\) and \(\phi([1]_4) = [1]_2\) so it is surjective. The kernel of \(\phi\) is $$ \begin{align*} \ker(\phi) &amp;= \{ [m]_4 \in \mathbf{Z}_4 \ | \ \phi([m]_4) = [0]_2\} \\ &amp;= \{ [m]_4 \in \mathbf{Z}_4 \ | \ [m]_2 = [0]_2\} \\ &amp;= \{ [0]_4, [2]_4 \} = \langle [2]_4 \rangle = 2\mathbf{Z}_4 \\ \end{align*} $$ So now we have \(\ker(\phi) = \langle [2]_4 \rangle\). We know that it is normal. We also showed that \(\phi\) is a surjective homomorphism. Therefore, by the Isomorphism Theorem, \(\mathbf{Z}_4/\langle [2]_4 \rangle \cong \mathbf{Z}_2\). Example 7 Next, let’s take $$ \begin{align*} \phi: \mathbf{Z}_6 &amp;\rightarrow \mathbf{Z}_{15} \end{align*} $$ We need to figure out a homomorphism. First recall that for any element, \(|\phi(x)| \ | \ |x|\). Let’s list the order of the elements in \(\mathbf{Z}_{15}\). Notice here that \(\mathbf{Z}_{15}\) is a cyclic group (with addition) so the order of any element \(g + a\) is going to be \(\frac{15}{gcd(a,15)}\) $$ \begin{align*} &amp;o(1): [0]_{15} \\ &amp;o(3): [5]_{15}, [10]_{15} \\ &amp;o(5): [3]_{15}, [6]_{15}, [9]_{15}, [12]_{15} \\ &amp;o(15): [1]_{15}, [2]_{15}, [4]_{15}, [7]_{15}, [11]_{15}, [13]_{15}, [14]_{15} \\ \end{align*} $$ So now let’s pick \([1]_{6}\). It is a generator for \(\mathbf{Z}_{6}\). We know that \(\phi([1]_6)\) must divide the order of the element itself so \(|[1]_6| = 6\). So that tells us that \(|\phi([1]_6)|\) must be either 1,2,3 or 6. 2 and 6 are not possibilities so we don’t have any elements of that order in \(\mathbf{Z}_{15}\). So it’s either 1 or 3. Case 1: Suppose we pick some element of order 1. That means that \(\phi([1]_6) = 1\). This implies that \(\phi([1]_6) = [0]_{15}\). Since it’s a generator, then \(\ker(\phi) = \mathbf{Z}_6\). And \(Im(\phi) = \{[0]_{15}\}\). This gives us \(\mathbf{Z}_6/\mathbf{Z}_6 = \{[0]_{15}\} \leq \mathbf{Z}_{15}\). So it’s pretty boring. Case 2: Suppose we pick some element of order 3 so \(|\phi([1]_6)| = 3\). So let \(\phi([1]_6) = [5]_{15}\). Based on this, where will \([2]_6\) will go? Remember that we want \(\phi\) to be a homomorphism. This means that we want this to be true. That \(\phi([2]_6) = \phi([1 + 1]_6) = \phi([1]_6) + \phi([1]_6) = [5]_{15} + [5_{15} = [10]_{15}\). So we want to pick \([10]_{15}\) for \([2]_6\). Based on this, the elements will get mapped to $$ \begin{align*} [0]_6 &amp;\rightarrow [0]_{15} \\ [1]_6 &amp;\rightarrow [5]_{15} \\ [2]_6 &amp;\rightarrow [10]_{15} \\ [3]_6 &amp;\rightarrow [0]_{15} \\ [4]_6 &amp;\rightarrow [5]_{15} \\ [5]_6 &amp;\rightarrow [10]_{15}. \end{align*} $$ So the image of our homomorphism is $$ \begin{align*} Im(\phi) = \{[0]_{15}, [5]_{15}, [10]_{15}\} = \langle [5]_{15} \rangle \cong \mathbf{Z}_3 \end{align*} $$ The last statement is because all cyclic groups of order 3 are isomorphic to \(\mathbf{Z}_3\). The kernel of \(\phi\) is $$ \begin{align*} \ker(\phi) &amp;= \{ [m]_6 \in \mathbf{Z}_6 \ | \ \phi([m]_6) = [0]_{15}\} \\ &amp;= \{ [0]_6, [3]_{6} \} = \langle [3]_6 \rangle \cong \mathbf{Z}_2\\ \end{align*} $$ By the Isomorphism Theorem, \(\mathbf{Z}_{6}/\langle [3]_6 \rangle \cong \langle [5]_{15} \rangle \cong \mathbf{Z}_3\). References The order of an element in a direct group is the lcm of both elements orders Isomorphism Examples]]></summary></entry><entry><title type="html">Lecture 21: Finite Abelian Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html" rel="alternate" type="text/html" title="Lecture 21: Finite Abelian Groups" /><published>2025-02-13T00:01:36-08:00</published><updated>2025-02-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html"><![CDATA[<p>For this lecture, we’re going to focus on finite abelian groups. Why is that? When we previously discussed classifying finite groups, we wanted to classify the groups of a certain finite order up to an isomorphism. We asked the question “what are the groups up to isomorphism that are of order 6 for example?” This is a hard question in general. However, if we restricted the domain to only finite abelian groups, it turns out that it is a much easier task to describe and classify the groups that are finite abelian up to isomorphism for any order. Though it will require a lot of hard work to prove these classifications. 
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Example 1 Proposition Suppose \((x,y) \in G_1 \times G_2\) and that the order of the elements are \(|x| = r\) and \(|y| = s\). Then the order of \((x,y)\) is \(lcm(r,s)\) Proof Let \(l = lcm(r,s)\). Then, \(l = ra = sb\) for some \(r, b \in \mathbf{Z}\). Observe that $$ \begin{align*} (x,y)^{l} &amp;= (x^l, y^l) = (x^{ra}, y^{sb}) = (e_1, e_2) \end{align*} $$ From this we see that the order of \((x,y)\) must divide \(l\). If we let \(l' = |(x,y)|\), then \(l' \ | \ l\). Now, observe that $$ \begin{align*} (x,y)^{l'} &amp;= (x^{l'}, y^{l'}) = (e_1, e_2) \end{align*} $$ But since \(|x| = r\) and \(|y| = s\), then \(r \ | \ l'\) and \(s \ | \ l'\). But this means that \(lcm(r,s) = l \ | \ l'\). Since \(l' \ | \ l\) and \(l \ | \ l'\), then \(l = l'\) as we wanted to show. Example 2 Proposition \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\) if and only if \(gcd(m,n) = 1\) This says if you take the product of two cyclic groups, then their product is cyclic if and only if \(m\) and \(n\) are relatively prime. Proof \(\longrightarrow:\) Suppose \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). Suppose for the sake of contradiction that \(gcd(m,n) = d &gt; 1\). Now, take an arbitrary element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\). Add \((a,b)+...+(a,b)\) \(\frac{mn}{d}\) times. We will see that $$ \begin{align*} (a\frac{mn}{d},b\frac{mn}{d}) &amp;= (a\frac{n}{d}m,b\frac{m}{d}n) \\ &amp;= ([0]_m, [0]_n) \end{align*} $$ Notice here that both \(\frac{n}{d}\) and \(\frac{m}{d}\) are whole numbers since \(d\) is a divisor of both \(m\) and \(n\). So the first entry is a multiple of \(m\) while the second entry is a multiple of \(n\). This implies that the order of \((a,b) \leq \frac{mn}{d} &lt; mn\). So the order of any element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\) is strictly less than \(mn\). This means that no element of \(\mathbf{Z}_m \times \mathbf{Z}_n\) can be a generator of the group. So \(\mathbf{Z}_m \times \mathbf{Z}_n\) is not cyclic. This is a contradiction because \(\mathbf{Z}_m \times \mathbf{Z}_n\) isomorphic to \(\mathbf{Z}_{mn}\) and so it is cyclic. \(\longleftarrow:\) Now suppose that \(gcd(m,n) = 1\). We want to show that \(\mathbf{Z}_m \times \mathbf{Z}_n\) is isomorphic to \(\mathbf{Z}_{mn}\). Notice that the order of the element 1 has order \(m\) in \(\mathbf{Z}_m\) and the order of the element 1 has order \(n\) in \(\mathbf{Z}_n\). This tells us that the order of \((1,1) = lcm(m,n) \frac{mn}{gcd(m,n)} \frac{mn}{1} = mn\). So \((1,1)\) has order \(mn\) which means it generates the group. So it must be cyclic. So \(\mathbf{Z}_m \times \mathbf{Z}_n = \langle (1,1) \rangle\). We know all cyclic groups that have the same order are isomorphic. So \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). References The order of an element in a direct group is the lcm of both elements orders]]></summary></entry><entry><title type="html">Lecture 21: Finite Abelian Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html" rel="alternate" type="text/html" title="Lecture 21: Finite Abelian Groups" /><published>2025-02-13T00:01:36-08:00</published><updated>2025-02-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html"><![CDATA[<p>For this lecture, we’re going to focus on finite abelian groups. Why is that? When we previously discussed classifying finite groups, we wanted to classify the groups of a certain finite order up to an isomorphism. We asked the question “what are the groups up to isomorphism that are of order 6 for example?” This is a hard question in general. However, if we restricted the domain to only finite abelian groups, it turns out that it is a much easier task to describe and classify the groups that are finite abelian up to isomorphism for any order. Though it will require a lot of hard work to prove these classifications. 
 <br />
 <br />
 We’ll start with this important fact: <br />
@@ -2522,647 +2847,4 @@ Based on this, \(H = \{e, (1 \ 2)\} \leq S_3\). \(H\) is not normal since it doe
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Let’s define the following relationship Definition Let \(G\) be a group and let \(H\) be a subgroup. For \(a, b \in G\), define \(a \sim_H b\) to mean $$ \begin{align*} b = ah \quad \text{ for some } h \in H \end{align*} $$ In other words, \(a \sim_H b\) if \(a^{-1}b \in H\). We claim that \(\sim_H\) is an equivalence relation. [Exercise: Prove it] The equivalence classes are the left cosets \(aH = \{ah \ | \ h \in H\}\). Now define \(G / H\) to be the collection of left \(H\)-cosets in \(G\) so \(G / H = \{ aH \ | \ a \in G\}\). Define the Quotient function as follows $$ \begin{align*} \pi \ : \ &amp;G \rightarrow G / H \\ &amp;\pi(g) = gH. \end{align*} $$ So \(\pi\) sends an element to the coset it is contained in. Of course we can do the same thing for right cosets. We need a different notation so we’ll use a backward slash for right cosets \(G \backslash H\). So \(G \backslash H = \{ Ha \ | \ a \in G\}\). The Quotient function is $$ \begin{align*} \pi' \ : \ &amp;G \rightarrow G \backslash H \\ &amp;\pi'(g) = Hg \end{align*} $$ Example Let \(G = \mathbf{Z}\) and let \(H = \mathbf{Z}n\) where \(n \geq 0\) (multiples of \(n\)). Then the set of left cosets is $$ \begin{align*} G / H &amp;= \{[a]_n \ | \ a \in \mathbf{Z}\} \\ &amp;= \mathbf{Z}_n \end{align*} $$ Side note: Why? so say \(H = \mathbf{Z}3\), then \(H = \{...,-6,-3,0,3,6,9,...\}\) and the left cosets are $$ \begin{align*} 0 + H, 1 + H, 2 + H, 3 + H, ... \end{align*} $$ For example $$ \begin{align*} 0 + H &amp;= \{...,-6,-3,0,3,6,9,...\} = [0]_3 \\ 1 + H &amp;= \{...,-5,-2,1,4,7,10,...\} = [1]_3 \\ 2 + H &amp;= \{...,-4,-1,2,5,8,11,...\} = [2]_3 \\ 3 + H &amp;= \{...,-3,0,3,6,9,12,...\} = 0 + H \\ 4 + H &amp;= \{...,-2,1,4,7,10,13,...\} = 1 + H \\ \end{align*} $$ From this we see that \(3H = 0H\), \(4H = 1H\) and so on. There are exactly 3 distinct left cosets. These three left cosets are exactly \(Z_3 = \{[0], [1], [2]\}\). So now we see that \(G / H = \mathbf{Z}_n\). This is a group. In fact \(\pi \ : \ \mathbf{Z} \rightarrow \mathbf{Z}/\mathbf{Z}n\) is a homomorphism. Quotient Function The question now is if we can do this in general. If we have a group \(G\) and a subgroup \(H \leq G\). We want to put a group structure on the set of left \(H\)-cosets, \(G / H\) such that \(\pi \ : \ G \rightarrow G / H\) is a homomorphism? This is called the “Quotient Group”. Also if we make that happen and \(\pi\) is a homomorphism. What would the kernel of \(\pi\) be? By definition: $$ \begin{align*} ker(\pi) &amp;= \{g \in G \ | \ \pi(g) = e_{G/H}\} \\ &amp;= \{g \in G \ | \ gH = e_{G/H}\} \quad \text{(By def, $\pi(a) = aH$)} \\ &amp;= \{g \in G \ | \ gH = \pi(e_G)\} \quad \text{($\pi$ is a homomorphism so $\pi(e_G) = e_{G/H}$)} \\ &amp;= \{g \in G \ | \ gH = eH\} \quad \text{(by def of $\pi$ again)} \\ &amp;= H. \end{align*} $$ But we also know that kernels are normal subgroups so this means that \(H\) must be a normal subgroup. So if we make \(\pi\) a homomorphism, then we’ll see that \(H\) is actually a normal subgroup. [Is this right?] Quotient Group Now suppose we have a group \(G\) and a normal subgroup \(N\). Define \(G/N\) to be the set of all left cosets of \(N\) so \(G/N = \{ aN \ | \ a \in G \}\). In fact since \(N\) is normal, the left cosets are the right cosets so we don’t need to say left or right in the definition. Let’s also define a group operation on the group \(G/N\). Definition Let \(G\) be a group and let \(N\) be a normal subgroup. Define the operation on \(G/N\) by $$ \begin{align*} aN \cdot bN = (ab)N \end{align*} $$ The goal is to show that \((G / N, \cdot)\) is a group. But first we need to show that the operation we defined is well-defined (We also want to show that this operation is a homomorphism later). So we need to show that if \(aN = a'N\) and \(bN = b'N\), then \((ab)N = (a'b')N\). Proof (well-defined) Since \(aN = a'N\), then \(a'\) is in the coset \(aN\) and we can write \(a' = an_1\) for some \(n_1 \in N\). Similarly, \(bN = b'N\) so we can write \(b' = bn_2\) for some \(n_2 \in N\). We want to show that \(a'b' = abn\) for some \(n \in N\). Now, $$ \begin{align*} a'b' &amp;= an_1bn_2 \\ &amp;= a(bb^{-1})n_1bn_2 \\ &amp;= (ab)(b^{-1}n_1bn_2) \end{align*} $$ So now we want to show that \(b^{-1}n_1bn_2 \in N\). We know that \(N\) is a normal subgroup. So if we conjugate \(n\) by \(b^{-1}\), then we know that \(b^{-1}nb \in N\) because \(N\) is normal. Moreover, \((b^{-1}nb)(n_2) \in N\) since \(N\) is a subgroup. \(\ \blacksquare\) Proof (\((G/N, \cdot)\) is a group) To show this, we need to verify the group properties Associative: We want to show that \((aN \cdot bN) \cdot cN = aN \cdot (bN \cdot cN)\) $$ \begin{align*} (aN \cdot bN) \cdot cN &amp;= abN \cdot cN \\ &amp;= (ab)cN \\ &amp;= a(bc)N \quad \text{(multiplication is associative)} \\ &amp;= aN \cdot (bN \cdot cN). \end{align*} $$ Identity: The identity element is \((eN)\) Inverses: We want to show that \((aN)^{-1}\) is an inverse of \(aN\). Therefore, \((G/N, \cdot)\) is a group. Proof (homomorphism) Next we want to show that \(\pi: G \rightarrow G/N\) is a homomorphism with kernel \(ker(\pi) = N\). Recall that \(\pi(a) = aN\). Example 1 Let \(G = D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). We established the identities \(r^4 = e = j^2\) and \(jr = r^{-1}j\). We first claim that \(N = \langle r^2 \rangle = \{e, r^2\}\) is a normal subgroup of \(G\). Why? For any \(g \in D_4\), we have \(g r^2 g^{-1} \in \langle r^2 \rangle\). Since \(N\) is normal, then we can form the quotient group \(G / N\) where $$ \begin{align*} G/N = D_4/N = \{eN, rN, jN, rjN\}. \end{align*} $$ Note that the other possibilities end up being the same as one of the four cosets above. For example \(r^2N = eN\) and \(r^3N = rN\). Note also that this matches Lagrange’s Theorem. By Lagrange, we expect to have \(|G|/|N|\) cosets. \(|G| = 8\) and \(|N| = 2\) so we indeed have 4 elements. Since \(D_4/N\) has 4 elements, then we expect this group to be isomorphic to either the cyclic group of order 4 or the non-cyclic one. How do we know? We can calculate the order of the elements in the group. If there is an element of order 4, then it’s cyclic. If there is not, then it can’t be cyclic. For example \((rN)^2 = r^2N = eN\). Why? \(r^2N\) is the coset $$ \begin{align*} \{r^2(e), r^2(r^2)\} = \{r^2, e\} = eN. \end{align*} $$ What about \((jN)^2\)? $$ \begin{align*} (jN)^2=j^2N = eN. \end{align*} $$ Next, \((rjN)^2 = (rj)^2N\) But \(rj\) is a flip so it’s square is \(e\) and so \((rjN)^2 = eN\). So every element’s square is the identity and no element has order 4. So it’s isomorphic to \(V\). Example 2 Now consider \(D_6 = \{e, r, r^2, r^3, r^4, r^5, j, rj, r^2j, r^3j, r^4j, r^5j\}\). Consider \(N = \langle r^3 \rangle = \{e, r^3\}\) which is a normal subgroup of \(D_6\). Why is it normal? Because if we conjugate it with any element from \(D_6\), we will get the same set $$ \begin{align*} r^k r^3 r^{-k} &amp;= r^3 \\ rj r^3 (rj)^{-1} &amp;= jr^{-1} r^3 r j^{-1} = r^3 \\ .... \end{align*} $$ This is actually because \(r^3g = gr^3\) for all \(g \in G\). This is a property of \(r^3\). (in this case \(r^3\) is called “central”). Moreover, \(G/N\) will have \(|G|/|H| = 6\) cosets. $$ \begin{align*} G/N = D_6 / \langle r^3 \rangle = \{eN, rN, r^2N, jN, rjN, r^2jN\} \end{align*} $$ As a reminder, because \(N\) is a normal subgroup, \(G/N\) is a group. It’s a group of order 6. There are two groups of order 6. The abelian cyclic one and \(D_3\) which is isomorphic to \(S_3\). To determine which one, we need to find the order of the elements. Any flip will have order two and so it turns out that \(jN, rjN, r^2jN\) all have order 2. \(eN\) has order 1. For the rest $$ \begin{align*} (rN)^3 = r^3N = \{(r^3)e, (r^3)r^3\} = \{e, r^3\} = eN. \end{align*} $$ In fact, \(r^2N\) has order 3 as well. So none of the elements have order 6 and so this group is not cyclic. It is in fact isomorphic to \(D_3\). Example 3 Now consider \(G = (\mathbf{R}, +)\) and \(H = (\mathbf{Z}, +)\). \(G\) is abelian. Therefore, all of its subgroups are normal and \(H\) is normal. Now let’s form the quotient group as follows $$ \begin{align*} G/H = \mathbf{R}/\mathbf{Z} = \{a + \mathbf{Z} \ | \ a \in \mathbf{R}\}. \end{align*} $$ \(a + \mathbf{Z} = [a] = \{a + n \ | \ n \in \mathbf{Z}\}\) is a \(\mathbf{Z}\) coset of \(a\). For example if \(a = \frac{1}{3}\), then $$ \begin{align*} \frac{1}{3} + \mathbf{Z} = \{...,-1 + \frac{1}{3}, 0 + \frac{1}{3}, 1 + \frac{1}{3}, ...\} \subseteq \mathbf{R} \end{align*} $$ \(G/H\) is a group under addition where \([a] + [b] = [a + b]\). This group is abelian. What is this group isomorphic to? Let \(T\) be the set of rotations around the \(z\) axis so \(T = \{r_{\theta} = Rot_{e_3}(\theta) \ | \ \theta \in \mathbf{R}\}\). This is a subgroup of \(SO(3)\). Note here that \(r_{\theta + 2\pi n} = r_{\theta}\). It turns out that \(\mathbf{R}/\mathbf{Z}\) is isomorphic to \(T\). The isomorphism is $$ \begin{align*} \mathbf{R}/\mathbf{Z} &amp;\rightarrow T \\ [x] &amp;\rightarrow r_{2\pi x} \end{align*} $$ Example 4 Let \(F\) be a field. (\(F = \mathbf{R}\) or \(\mathbf{C}\) or \(\mathbf{Z}p\), \(p\) is prime). Now let $$ \begin{align*} GL_n(F) = \{ A \in Mat_{n \times n}(F) \ | \ A^{-1} \text{ exists }\} \end{align*} $$ where the product is matrix multiplication. A normal subgroup here is $$ \begin{align*} H = \{cI, c \in F^{x}\} \quad \text{ (where } F^{x} = F - \{0\}). \end{align*} $$ Why is this a normal subgroup? because you can pull out scalars in matrix multiplication so \(A^{-1}cA = cA^{-1}A = cI\). We can form the quotient group $$ \begin{align*} GL_{n}(F) / H = PGL_n(F) \quad \quad \text{ (The Projective Linear Group) } \end{align*} $$ Symmetric Groups We want to know what the normal subgroups of symmetric groups are. In order to do so, we want to see what happens if we conjugate a permutation \(\tau\) with element so \(\sigma \tau \sigma^{-1}\)? In turns out in symmetric groups, there is a way to understand conjugation. We actually have a formula. This formula is called the cycle conjugation formula. Given \(\tau = (a_1 \ a_2 \ ... a_k) \in S_n\) where \(\tau\) is a permutation consisting of a \(k-\)cycle with \(a_1,a_2... \in \{1,2,....,n\}\). Then $$ \begin{align*} \sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} &amp;= (b_1 \ b_2 \ ... b_k) \quad \text{where } b_i = \sigma(a_i) \\ &amp;= (\sigma(a_1) \ \sigma(a_2) \ ...\ \sigma(a_k)) \end{align*} $$ So we actually get another \(k\) cycle. Proof We want to show that \(\sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} = (\sigma(a_1) \ \sigma(a_2) \ ... \ \sigma(a_k))\). We will compute the new permutation directly. Let \(x \in \{1,2,...,n\}\). It turns out that there are two cases. Case 1: \(x = \sigma(a_i)\): So now we’ll apply the permutation on \(x\). First we apply \(\sigma^{-1}\) but since \(x = \sigma(a_i)\), then we will just get \(a_i\). Next, we’ll apply the cycle and here we’ll get \(a_{i+1}\) since it’s a cycle. Lastly, we need to apply \(\sigma\). So we get \(\sigma(a_{i+1})\). (There is a subtlety here because \(a_{i+1}\) for \(i = k\), is \(i = 1\). To fix this, we’ll let \(a_{k+1} = 1\) or just have two cases). So in summary: $$ \begin{align*} \sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} (x) &amp;= \sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} (\sigma(a_i)) \\ &amp;= \sigma (a_1 \ a_2 \ ... \ a_k) (a_i) \\ &amp;= \begin{cases} a_{j+1} \quad &amp;\text{if } j \neq k \\ a_1 \quad \quad &amp;\text{if } j = k\end{cases}]]></summary></entry><entry><title type="html">Lecture 14: Lagrange’s Theorem, Order Theorem &amp;amp; Equivalence Relations</title><link href="http://localhost:4000/jekyll/update/2025/02/06/math417-14-lagrange-order-equivalence.html" rel="alternate" type="text/html" title="Lecture 14: Lagrange’s Theorem, Order Theorem &amp;amp; Equivalence Relations" /><published>2025-02-06T00:01:36-08:00</published><updated>2025-02-06T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/06/math417-14-lagrange-order-equivalence</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/06/math417-14-lagrange-order-equivalence.html"><![CDATA[<p>Last time, we studied <b>Lagrange’s Theorem</b> which stated that given a finite group \(G\) and a subgroup \(H\) of \(G\), then \(|H|\) divides \(|G|\). Moreover, \(|H| / |G|\) is the number of \(H-\) left cosets in \(G\). In fact, this number was defined to be the index of a group \([G : H]\). So</p>
-<div>
-$$
-\begin{align*}
-[G : H] = \frac{|H|}{|G|}.
-\end{align*}
-$$
-</div>
-<p>As a consequence, this led to the <b>Order Theorem</b> which stated that if \(G\) was a finite group, then for any \(g \in G\), \(o(g)\) divides \(|G|\). 
-<br />
-<br />
-But now as we see, both theorems are stated for finite groups \(G\) and we know from last lecture that the index of a group can be still defined even if \(G\) is infinite. So this led to the generalized version of Lagrange Theorem as follows:
-<!----------------------------------------------------------------------------->
-<br /></p>
-<div class="yellowheaderdiv">
-Generalized Lagrange Theorem
-</div>
-<div class="yellowbodydiv">
-Let \(G \geq H \geq K\). Then for any \([G: K] = [G : H] [H : K]\).
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-Note here that if \(K\) is the trivial subgroup so \(K = \{e\}\), then \([H:\{e\}] = |H|\). The cosets of the trivial subgroups have size 1 so we’re dividing \(H\) isto subsets of size 1 and therefore we get back the earlier Lagrange’s Theorem
-<br />
-<br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Suppose we have \(\mathbf{Z} \geq \mathbf{Z_3} \geq \mathbf{Z}_{12}\) where \(G = \mathbf{Z}\), \(H = \mathbf{Z}_{3}\) and \(K = \mathbf{Z}_{12}\). We know that \([\mathbf{Z} : \mathbf{Z}_{12}] = 12\) and \([\mathbf{Z} : \mathbf{Z}_{3}] = 3\) so</p>
-<div>
-$$
-\begin{align*}
-[\mathbf{Z} : \mathbf{Z}_{12}] = [\mathbf{Z} : \mathbf{Z}_{3}]  [\mathbf{Z}_{3} : \mathbf{Z}_{12}] \\
-12 = 3[\mathbf{Z}_{3} : \mathbf{Z}_{12}]
-\end{align*}
-$$
-</div>
-<p>From this we can deduce that the index of \(\mathbf{Z}_{12}\) inside \(\mathbf{Z}_3\) is 4.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Proof of Generalized Lagrange</b></h4>
-<p>\([H: K]\) is the number of left \(K\)-cosets inside \(H\). So \(aK \subseteq H\). Observe that for any \(aH\), the number of left \(K\)-cosets in \(aH\) is equal to \([H : K]\). Consider the bijection</p>
-<div>
-$$
-\begin{align*}
-H &amp;\rightarrow aH \\
-h &amp;\rightarrow ah
-\end{align*}
-$$
-</div>
-<p>Then \(hk\) under this bijection will be \(ahK\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). Consider:</p>
-<div>
-$$
-\begin{align*}
-H &amp;= \langle r^2, j \rangle = \{e, r^2, j, r^2j\} \\
-K &amp;= \langle r^2 \rangle = \{e, r^2\}
-\end{align*}
-$$
-</div>
-<p>Then the index \([G : H] = \frac{|H|}{|G|} = 2\) which is the number of \(H\)-left cosets in \(G\). Similarly, \([H : K] = 2\) which is the number of \(K-\) left cosets in \(H\). For example</p>
-<div>
-$$
-\begin{align*}
-eH &amp;= \{e, r^2, j, r^2j\} \ | \ eK = \{e, r^2\}, \ jK = \{j, r^2j\} \\
-rH &amp;= \{r, r^3, rj, r^3j\} \ | \ rK = \{r, r^3\}, \ rjK = \{rj, r^3\}.
-\end{align*}
-$$
-</div>
-<p>If you look at \(eH\), observe that it contains both \(K\)-cosets and if you look at \(rH\), you’ll see that it also contains both of the \(K\) cosets.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Order Theorem</b></h4>
-<p>Back to the Order Theorem. For example, for \(|G| = 12\), the order of the elements inside \(G\) are \(o(g) \in \{1,2,3,4,6,12\}\). The question is do we know if there must be a subgroup of order 6? 4? what about 2? For 2, if the order of the group is even, then we must have an element with order 2. To see why, we have the Even Order Theorem as follows:
-<!----------------------------------------------------------------------------->
-<br /></p>
-<div class="yellowheaderdiv">
-Even Order Theorem
-</div>
-<div class="yellowbodydiv">
-If \(|G| = n\) and \(n\) is even, then there exists a \(g \in G\) with \(o(g) = 2\).
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-<b>Proof</b>
-<br />
-Observe that if \(a \in G\), then \(a^2 = 2\) if and only if \(a^{-1} = a\). In this case, the order must either be 1 or 2 so \(o(a) \in \{1,2\}\). Now, let \(a \in G\). For each \(a\), produce a subset \(C\) such that \(C = \{a, a^{-1}\}\). This is a subset of \(G\) of order 1 or 2 depending on whether \(a = a^{-1}\). 
-<br />
-<br />
-Claim: For \(\{a, a^{-1}\}\) and \(C' = \{b, b^{-1}\}\). Either \(C = C'\) or \(C \cap C' = \emptyset\). Moreover</p>
-<div>
-$$
-\begin{align*}
-\bigcup_{a \in G} \{a, a^{-1}\} = G.
-\end{align*}
-$$
-</div>
-<p>The union of all these subsets is \(G\). So we get a partition of the set \(G\) into pairwise disjoint subsets of size 1 or 2. So \(n = |G| = r + 2s\). where \(r\) is the number of subsets \(\{a, a^{-1}\}\) of size 1 and \(s\) is the number of subsets \(\{a, a^{-1}\}\) of size \(2\). Notice here that \(r\) is counting all the elements such that each element is its own inverse. So \(r = |\{a \in G \ | \ a^2 = e\}|\). In fact, \(r\) is the number of elements in \(G\) of order 1 or 2. 
-<br />
-<br />
-So we showed that \(n = |G| = r + 2s\) but by assumption, \(n\) is even and since it’s even then 2 divides \(n\). So 2 must divide \(r + 2s\). Therefore, \(2\) must divide \(r\). So \(r\) is even. We also know that \(r\) is at least 1 because the identity element has order 1. Therefore, there must exist at least another element whose order is 2. So there exists a \(g \in G\) such that \(o(g) = 2\). \(\ \blacksquare\).
-<br />
-<br />
-There is a generalization of this theorem that we’ll prove later. But if \(p\) is prime and it divides \(|G|\), then there exists an element of order \(p\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Equivalence Relations</b></h4>
-<p>Review of equivalence relations</p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-A relation on a set \(X\) is a subset \(R \subseteq X \times X\). We write \(a \sim b\) for \((a,b) \in R\).
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-For example, let \(X = \mathbf{Z}\), then examples of relations are \(=, &gt;, \geq, \leq, &lt; ...\), “coprime”, \(\equiv \bmod n\) and so on.
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-A equivalence relation \(\sim\) on \(X\) is one such that
-<ol>
-	<li>Reflexive: \(a \sim a \ \forall a \in X\).</li>
-	<li>Symmetric: \(a \sim b \implies b \sim a \ \forall a, b \in X\).</li>
-	<li>Transitive: \(a \sim b, b \sim c \implies a \sim c \ \forall a, b, c \in X\).</li>
-</ol>
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-Given a set \(X\) with an equivalence relation \(\sim\), we have an equivalence class which is a subset of \(X\) of the form</p>
-<div>
-$$
-\begin{align*}
-[a] = \{b \in X \ | \ a \sim b\} \quad \text{ for some } a \in X
-\end{align*}
-$$
-</div>
-<p>Fact: Either \([a] = [b]\) or \([a] \cap [b] = \emptyset\) so \([a] = [b] \implies a \sim b\). 
-<br />
-<br />
-So this equivalence relations gives us a way to partition a given set \(X\) into pairwise disjoint nonempty subsets. In fact we have a bijection between the equivalence relation on \(X\) and the partitions of \(X\). What does this mean? It means that we can go either direction, if we have an equivalence relation, we can get a partition of \(X\) into subsets. And if we have a set of disjoint subsets that partitions \(X\), then we can get an equivalence relation from that. How? any two elements will be in the same equivalence class if they’re in the same subset. So we’re kind of talking about the same thing here. 
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-So now let \((X, \sim)\) be a set with equivalence relation. Define \(Y\) as the set of equivalence classes of \(\sim\). We sometimes denotes \(Y\) with \(X / \sim\) “quotient set of equivalence relation”. Define</p>
-<div>
-$$
-\begin{align*}
-\pi \ : \ &amp;X \rightarrow \\
-     &amp;\pi(a) = [a]
-\end{align*}
-$$
-</div>
-<p>\(\pi\) is quotient function. \(\pi\) is surjective. Every equivalence class, has an element \(a\) that is in the set \(X\) by definition. So now given \(\pi\), we can recover the equivalence relation.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li>MATH417 by Charles Rezk</li>
-	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Last time, we studied Lagrange’s Theorem which stated that given a finite group \(G\) and a subgroup \(H\) of \(G\), then \(|H|\) divides \(|G|\). Moreover, \(|H| / |G|\) is the number of \(H-\) left cosets in \(G\). In fact, this number was defined to be the index of a group \([G : H]\). So $$ \begin{align*} [G : H] = \frac{|H|}{|G|}. \end{align*} $$ As a consequence, this led to the Order Theorem which stated that if \(G\) was a finite group, then for any \(g \in G\), \(o(g)\) divides \(|G|\). But now as we see, both theorems are stated for finite groups \(G\) and we know from last lecture that the index of a group can be still defined even if \(G\) is infinite. So this led to the generalized version of Lagrange Theorem as follows: Generalized Lagrange Theorem Let \(G \geq H \geq K\). Then for any \([G: K] = [G : H] [H : K]\). Note here that if \(K\) is the trivial subgroup so \(K = \{e\}\), then \([H:\{e\}] = |H|\). The cosets of the trivial subgroups have size 1 so we’re dividing \(H\) isto subsets of size 1 and therefore we get back the earlier Lagrange’s Theorem Example Suppose we have \(\mathbf{Z} \geq \mathbf{Z_3} \geq \mathbf{Z}_{12}\) where \(G = \mathbf{Z}\), \(H = \mathbf{Z}_{3}\) and \(K = \mathbf{Z}_{12}\). We know that \([\mathbf{Z} : \mathbf{Z}_{12}] = 12\) and \([\mathbf{Z} : \mathbf{Z}_{3}] = 3\) so $$ \begin{align*} [\mathbf{Z} : \mathbf{Z}_{12}] = [\mathbf{Z} : \mathbf{Z}_{3}] [\mathbf{Z}_{3} : \mathbf{Z}_{12}] \\ 12 = 3[\mathbf{Z}_{3} : \mathbf{Z}_{12}] \end{align*} $$ From this we can deduce that the index of \(\mathbf{Z}_{12}\) inside \(\mathbf{Z}_3\) is 4. Proof of Generalized Lagrange \([H: K]\) is the number of left \(K\)-cosets inside \(H\). So \(aK \subseteq H\). Observe that for any \(aH\), the number of left \(K\)-cosets in \(aH\) is equal to \([H : K]\). Consider the bijection $$ \begin{align*} H &amp;\rightarrow aH \\ h &amp;\rightarrow ah \end{align*} $$ Then \(hk\) under this bijection will be \(ahK\). Example Let \(D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). Consider: $$ \begin{align*} H &amp;= \langle r^2, j \rangle = \{e, r^2, j, r^2j\} \\ K &amp;= \langle r^2 \rangle = \{e, r^2\} \end{align*} $$ Then the index \([G : H] = \frac{|H|}{|G|} = 2\) which is the number of \(H\)-left cosets in \(G\). Similarly, \([H : K] = 2\) which is the number of \(K-\) left cosets in \(H\). For example $$ \begin{align*} eH &amp;= \{e, r^2, j, r^2j\} \ | \ eK = \{e, r^2\}, \ jK = \{j, r^2j\} \\ rH &amp;= \{r, r^3, rj, r^3j\} \ | \ rK = \{r, r^3\}, \ rjK = \{rj, r^3\}. \end{align*} $$ If you look at \(eH\), observe that it contains both \(K\)-cosets and if you look at \(rH\), you’ll see that it also contains both of the \(K\) cosets. Order Theorem Back to the Order Theorem. For example, for \(|G| = 12\), the order of the elements inside \(G\) are \(o(g) \in \{1,2,3,4,6,12\}\). The question is do we know if there must be a subgroup of order 6? 4? what about 2? For 2, if the order of the group is even, then we must have an element with order 2. To see why, we have the Even Order Theorem as follows: Even Order Theorem If \(|G| = n\) and \(n\) is even, then there exists a \(g \in G\) with \(o(g) = 2\). Proof Observe that if \(a \in G\), then \(a^2 = 2\) if and only if \(a^{-1} = a\). In this case, the order must either be 1 or 2 so \(o(a) \in \{1,2\}\). Now, let \(a \in G\). For each \(a\), produce a subset \(C\) such that \(C = \{a, a^{-1}\}\). This is a subset of \(G\) of order 1 or 2 depending on whether \(a = a^{-1}\). Claim: For \(\{a, a^{-1}\}\) and \(C' = \{b, b^{-1}\}\). Either \(C = C'\) or \(C \cap C' = \emptyset\). Moreover $$ \begin{align*} \bigcup_{a \in G} \{a, a^{-1}\} = G. \end{align*} $$ The union of all these subsets is \(G\). So we get a partition of the set \(G\) into pairwise disjoint subsets of size 1 or 2. So \(n = |G| = r + 2s\). where \(r\) is the number of subsets \(\{a, a^{-1}\}\) of size 1 and \(s\) is the number of subsets \(\{a, a^{-1}\}\) of size \(2\). Notice here that \(r\) is counting all the elements such that each element is its own inverse. So \(r = |\{a \in G \ | \ a^2 = e\}|\). In fact, \(r\) is the number of elements in \(G\) of order 1 or 2. So we showed that \(n = |G| = r + 2s\) but by assumption, \(n\) is even and since it’s even then 2 divides \(n\). So 2 must divide \(r + 2s\). Therefore, \(2\) must divide \(r\). So \(r\) is even. We also know that \(r\) is at least 1 because the identity element has order 1. Therefore, there must exist at least another element whose order is 2. So there exists a \(g \in G\) such that \(o(g) = 2\). \(\ \blacksquare\). There is a generalization of this theorem that we’ll prove later. But if \(p\) is prime and it divides \(|G|\), then there exists an element of order \(p\). Equivalence Relations Review of equivalence relations Definition A relation on a set \(X\) is a subset \(R \subseteq X \times X\). We write \(a \sim b\) for \((a,b) \in R\). For example, let \(X = \mathbf{Z}\), then examples of relations are \(=, &gt;, \geq, \leq, &lt; ...\), “coprime”, \(\equiv \bmod n\) and so on. Definition A equivalence relation \(\sim\) on \(X\) is one such that Reflexive: \(a \sim a \ \forall a \in X\). Symmetric: \(a \sim b \implies b \sim a \ \forall a, b \in X\). Transitive: \(a \sim b, b \sim c \implies a \sim c \ \forall a, b, c \in X\). Given a set \(X\) with an equivalence relation \(\sim\), we have an equivalence class which is a subset of \(X\) of the form $$ \begin{align*} [a] = \{b \in X \ | \ a \sim b\} \quad \text{ for some } a \in X \end{align*} $$ Fact: Either \([a] = [b]\) or \([a] \cap [b] = \emptyset\) so \([a] = [b] \implies a \sim b\). So this equivalence relations gives us a way to partition a given set \(X\) into pairwise disjoint nonempty subsets. In fact we have a bijection between the equivalence relation on \(X\) and the partitions of \(X\). What does this mean? It means that we can go either direction, if we have an equivalence relation, we can get a partition of \(X\) into subsets. And if we have a set of disjoint subsets that partitions \(X\), then we can get an equivalence relation from that. How? any two elements will be in the same equivalence class if they’re in the same subset. So we’re kind of talking about the same thing here. So now let \((X, \sim)\) be a set with equivalence relation. Define \(Y\) as the set of equivalence classes of \(\sim\). We sometimes denotes \(Y\) with \(X / \sim\) “quotient set of equivalence relation”. Define $$ \begin{align*} \pi \ : \ &amp;X \rightarrow \\ &amp;\pi(a) = [a] \end{align*} $$ \(\pi\) is quotient function. \(\pi\) is surjective. Every equivalence class, has an element \(a\) that is in the set \(X\) by definition. So now given \(\pi\), we can recover the equivalence relation. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 13: Cosets</title><link href="http://localhost:4000/jekyll/update/2025/02/05/math417-13-cosets.html" rel="alternate" type="text/html" title="Lecture 13: Cosets" /><published>2025-02-05T00:01:36-08:00</published><updated>2025-02-05T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/05/math417-13-cosets</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/05/math417-13-cosets.html"><![CDATA[<div class="mintheaderdiv">
-Definition 2.4.14
-</div>
-<div class="mintbodydiv">
-Let \(H\) be subgroup of a group \(G\). <br />
-\(gH = \{gh \ | \ h \in H\}\) is called a left coset of \(H\) in \(G\). 
-<br />
-\(Hg = \{hg \ | \ h \in H\}\) is called a right coset of \(H\) in \(G\).
-</div>
-<p><br />
-<!------------------------------------------------------------------------></p>
-<h4><b>Examples</b></h4>
-<p>Example 1: Let \(D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). where \(r^4 = e = j^2\) and \(jr = r^{-1}j\).
-<br /> Define the subgroup \(H = \langle j \rangle = \{e, j\}\). The left cosets are:</p>
-<div>
-$$
-\begin{align*}
-eH &amp;= \{e, j\} = jH \\
-rH &amp;= \{r, rj\} = rjH \\
-r^2H &amp;= \{r^2, r^2j\} = r^2jH \\
-r^3H &amp;= \{r^3, r^3j\} = r^3jH \\
-\end{align*}
-$$
-</div>
-<p>Notice here that none of the elements overlap between the sets so this gives us a way to partition the set \(G\) into four pairwise disjoint subsets (We’ll prove this next). The right cosets are</p>
-<div>
-$$
-\begin{align*}
-He &amp;= \{e, j\} = Hj \\
-Hr &amp;= \{r, jr\} = \{e, r^3j\} = Hr^3j \\
-Hr^2 &amp;= \{r^2, r^2j\} = Hr^2j \\
-Hr^3 &amp;= \{r^3, rj\} = Hrj \\
-\end{align*}
-$$
-</div>
-<p>Example 2: Let \(G = \mathbf{Z}\) (with addition) and take \(H = \mathbf{Z}n \leq G\) where \(n \geq 1\). <br />
-The left coset is \(a + H = a + \mathbf{Z}n = \{a + kn \ | \ k \in \mathbf{Z}\}\) <br />
-The left coset is \(H + a = \mathbf{Z}n + a\) which is the same as the right coset. This happens because the group is abelian!<br />
-Another name for these cosets are the congruence class \([a]_n\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Cosets are Pairwise Disjoint</b></h4>
-<p>Next we show why these subets must be pairwise disjoint.
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition (2.5.4)
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of a group \(G\). If \(X, Y \subseteq G\) are left \(H-\)cosets, then either
-<ol>
-	<li>\(X \cap Y = \emptyset\).</li>
-	<li>\(X = Y\).</li>
-</ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-We’ll prove that not (1) implies (2) (to prove an or statement). <br />
-Suppose that \(g \in X \cap Y\). We want to show that \(X = Y\). Since \(X\) and \(Y\) are left cosets, then we can write \(X = xH\) and \(Y = yH\) for some \(x, y \in G\). Since \(g \in X \cap Y\), then we can write \(g = xh_1 = yh_2\) for some \(h_1, h_2 \in H\). Observe now that</p>
-<div>
-$$
-\begin{align*}
-x &amp;= gh_1^{-1} \\
-  &amp;= (yh_2)h_1^{-1} \\
-  &amp;= y(h_2h_1^{-1})
-\end{align*}
-$$
-</div>
-<p>Likewise</p>
-<div>
-$$
-\begin{align*}
-y &amp;= gh_2^{-1} \\
-  &amp;= (xh_1)h_2^{-1} \\
-  &amp;= x(h_1h_2^{-1})
-\end{align*}
-$$
-</div>
-<p>Now, let \(xh \in xH\), then</p>
-<div>
-$$
-\begin{align*}
-xh &amp;= (yh_2h_1^{-1})h \\
-   &amp;= y(h_2h_1^{-1}h)
-\end{align*}
-$$
-</div>
-<p>But this implies that \(xh \in yH\). So \(xH \subseteq yH\). Likewise, let \(yh \in yH\), then</p>
-<div>
-$$
-\begin{align*}
-yh &amp;= (xh_1h_2^{-1})h \\
-   &amp;= x(h_1h_2^{-1}h)
-\end{align*}
-$$
-</div>
-<p>so \(yh \in xH\) and \(yH \subseteq xH\). Therefore \(xH = yH\). \(\blacksquare\) 
-<br />
-<br />
-Based on this, we have the following proposition
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2.5.3
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be
-elements of \(G\). The following conditions are equivalent:
-<ol type="a">
-	<li>\(a \in bH\).</li>
-	<li>\(b \in aH\).</li>
-	<li>\(aH = bH\).</li>
-	<li>\(b^{-1}a \in H\).</li>
-	<li>\(a^{-1}b \in H\).</li>
-</ol>
-</div>
-<!------------------------------------------------------------------------>
-<p><br />
-<b>Proof (book)</b>
-<br />
-Suppose \((a)\) holds. Let \(a \in bH\). Then we can write \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). 
-<br />
-<br />
-For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\).
-<br />
-<br />
-For \((d)\) ….
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Lagrange Theorem</b></h4>
-<p>Based on what we learned so far, we can now present the following important results
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of a group \(G\). Then all left \(H-\)cosets and right \(H-\)cosets have the same cardinality as \(H\).
-</div>
-<p><br />
-This works well for infinite groups as well because all we need is a bijection to show they have the same cardinality.
-<br />
-<br />
-<!------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-We know the coset \(aH\) is constructed such that each element is appended on the left by \(a\). So naturally construct the following bijection</p>
-<div>
-$$
-\begin{align*}
-H &amp;\rightarrow aH \\
-h &amp;\rightarrow ah
-\end{align*}
-$$
-</div>
-<p>This works. For any element in \(x \in aH\), the inverse is just \(a^{-1}x\). Likewise we can construct a bijection for the right coset as follows</p>
-<div>
-$$
-\begin{align*}
-H &amp;\rightarrow Ha \\
-h &amp;\rightarrow ha
-\end{align*}
-$$
-</div>
-<p><br />
-This leads to Lagrange Theorem.
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lagrange Theorem
-</div>
-<div class="yellowbodydiv">
-Let \(G\) be a finite group and let \(H\) be a subgroup of \(G\). Then \(|H|\) divides \(|G|\) and \(|G| / |H| = \) the number of left cosets of \(H\) in \(G =\) the number of right cosets of \(H\) in \(G\).
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-We know by the previous proposition that all cosets have the same cardinality as \(H\) itself. Moreover, we know that the collection of left cosets \(\{aH, a \in G\}\) partitions \(G\) into pairwise disjoint subsets. Therefore</p>
-<div>
-$$
-\begin{align*}
-|G| &amp;= \sum|aH| \\
-    &amp;= \sum |H| \quad \text{(by the previous proposition)}
-\end{align*}
-$$
-</div>
-<p>From this we see that \(|G| = m|H|\) as we wanted to show. \(\ \blacksquare\)
-<br />
-<br />
-This in turn leads to the following theorem:
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Order Theorem
-</div>
-<div class="yellowbodydiv">
-Let \(G\) be a finite group. Then for any \(g \in G\), \(o(g)\) divides \(|G|\).
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-[TODO]
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>More Definitions in Cosets</b></h4>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-	The index of a subgroup \(H \leq G\) is the number of left \(H-\)cosets.
-	We denote the index by \([G:H]\) which is index of \(H\) in \(G\).
-</div>
-<p><br />
-The index could be infinite but we only care when the index is finite. 
-<br />
-Using Lagrange’s Theorem also note that if \(G\) is finite, then \([G : H] = \frac{|G|}{|H|}\). 
-<br />
-Also note that \([G:H]\) can be finite even if \(G\) and \(H\) are infinte.
-<br />
-<br />
-Example: Let \(G = \mathbf{Z}, H = \mathbf{Z_n}\) where \(n &gt; 0\). Then the index of \(\mathbf{Z}_n\) inside \(\mathbf{Z}\) is the number of left cosets which is the number of congruent classes, \([\mathbf{Z}:\mathbf{Z}_n] = n\)
-<br />
-<br />
-We might ask why is the definition is in terms of the number of left cosets and not the right cosets. The answer is in the next proposition
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of a group \(G\). There is a bijection between the collection of left cosets and the collection of right cosets.
-$$
-\begin{align*}
-\{aH, a \in G\} \rightarrow \{Ha, a \in G\}
-\end{align*}
-$$
-</div>
-<p><br />
-The actual bijection is to take all the elements in the left cosets, take their inverses. The collection of inverses will be the elements in the right cosets. Why is this true?
-<br />
-If \(X = aH = \{aH \ | \ h \in H\}\), then \(X^{-1} = \{ (ah)^{-1} \ | \ h \in H \} = Ha^{-1}\).
-<br />
-<br />
-So why not use \(aH \rightarrow Ha\)? This might not be defined.
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-Let \(H\) be a subgroup of a group \(G\). The following are equivalent
-<ol>
-	<li>\(H\) is a normal subgroup.</li>
-	<li>Left \(H\)-cosets are the same as right \(H\)-cosets.</li>
-	<li>Every left \(H\)-coset is contained in a right \(H\)-coset.</li>
-</ol>
-</div>
-<p><br />
-<!------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-\((3) \rightarrow (1)\):<br />
-Suppose every left \(H\)-coset is a subset of some right \(H\)-coset. Let \(a \in G\). We want to show that \(H\) is a normal subgroup. So we want to show that \(aHa^{-1} \subseteq H\). Given that every left coset in contained in a right coset, consider the left coset \(aH\). This coset is contained in some right coset. Since \(a \in aH\), then \(a\) must be in the right coset as well. We can claim that \(aH \subseteq Ha\). So for any \(h \in H\), \(ah = h'a\) for some \(h' \in H\). Observe that \(aha^{-1} = h'\) for some \(h' \in H\). In other words, \(aHa^{-1} \in H\) and \(H\) is normal. \(\ \blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Applications</b></h4>
-<p>Let’s look at some applications of the order theorem.
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(|G| = p\) where \(p\) is prime, then \(G\) is cyclic.
-</div>
-<p><br />
-<!------------------------------------------------------------------------>
-<b>Proof</b>
-<br />
-Let \(g \in G\). By the order theorem, the order of \(g\) must divide \(|G|\) which is a prime number. So \(o(g) \in \{1, p\}\). \(\{e\}\) is the only group with order 1 and \(|G| = p &gt; 1\) so we must have an element \(g \in G\) such that \(g \neq e\). So \(o(g) = p\). But we also said that the order of an element is also the size of the cyclic group generated by \(g\) so \(|\langle g \rangle| = p\). Therefore, we must have \(G = \langle g \rangle\). \(\ \blacksquare\)
-<br />
-<br />
-<!------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(|G| = 4\), then \(G\) is isomorphic to \(\mathbf{Z}_4\) or \(V\) the symmetries of the rectangle.
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-Let \(g \in G\). The order of \(g\) has to divide 4 by the order theorem so \(o(g) \in \{1,2,4\}\). If \(o(g) = 4\), then \(o(g) = 4\) and \(\langle g \rangle = G\) so \(G\) is cyclic and so it is isomorphic to \(\mathbf{Z}_4\). If \(o(g) \neq 4\). Then \(G\) must have 4 distinct elements so \(G = \{a, b, c, d\}\)  none of the elements can have order 4. \(a, b, c\) can’t have order 1. So they must be of order 2 and their squares must be the identity. This gives us enough information fill out the multiplication table of this group as follows:</p>
-<div>
-<table style="max-width: 500px; margin: 20px auto;">
-  <tr>
-    <td></td>
-    <td>\(e\)</td>
-    <td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-  </tr>
-  <tr>
-    <td>\(e\)</td>
-    <td>\(e\)</td>
-    <td>\(a\)</td>
-	<td>\(b\)</td>
-	<td>\(c\)</td>
-  </tr>
-  <tr>
-    <td>\(a\)</td>
-    <td>\(a\)</td>
-    <td>\(e\)</td>
-	<td>\(c\)</td>
-	<td>\(b\)</td>
-  </tr>
-  <tr>
-    <td>\(b\)</td>
-    <td>\(b\)</td>
-    <td>\(c\)</td>
-	<td>\(e\)</td>
-	<td>\(a\)</td>
-  </tr>
-  <tr>
-    <td>\(c\)</td>
-    <td>\(c\)</td>
-    <td>\(b\)</td>
-	<td>\(a\)</td>
-	<td>\(e\)</td>
-  </tr>
-</table>
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Subgroups of \(D_5\)</b></h4>
-<p>Let’s use Lagrange’s Theorem next. Specifically, let’s analyze the subgroups of the dihedral group \(D_5\). First,</p>
-<div>
-$$
-\begin{align*}
-D_5 = \{e, r, r^2, r^3, r^4, j, rj, r^2j, r^3j, r^4,j\}
-\end{align*}
-$$
-</div>
-<p>The first we want to do when finding its subgroups is find the order of each element in \(D_5\). We know \(|D_5| = 10\) so the orders of the elements must divide 10. We also know that each flip’s order is 2 (because we established previously that \(j^2 = e\)). We also established previously that \(r^5 = e\). The rest of the elements must have their order \(\in \{1,2,5,10\}\) by the Order Theorem. In fact</p>
-<div>
-$$
-\begin{align*}
-\text{Order 1: }&amp;: e. \\
-\text{Order 2: }&amp;: j, rj, r^2j, r^3j, r^4j. \\
-\text{Order 5: }&amp;: r, r^2, r^3, r^4, r^5.
-\end{align*}
-$$
-</div>
-<p>Now, any subgroup of \(G\) must have order dividing the order of \(G\) so they must divide 10 by Lagrange’s Theorem. So \(|H| \in \{1,2,5,10\}\). Note here that 2 and 5 are prime! so by the previous proposition, they must be cyclic. We list the subgroups as follows by their orders:</p>
-<div>
-$$
-\begin{align*}
-\text{Order 1: }&amp;: \{e\}. \\
-\text{Order 2: }&amp;: \langle j \rangle , \langle rj \rangle , \langle r^2j\rangle , \langle r^3j\rangle , \langle r^4j\rangle . \\
-\text{Order 5: }&amp;: \langle r \rangle. \\
-\text{Order 10: }&amp;: D_5. \\
-\end{align*}
-$$
-</div>
-<p>We can draw the subgroups as follows</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec13-cosets/d5.png" width="77%" class="center" /></p>
-<p>Notice that there is 1 group of order 5 while there are 5 groups of order 2.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Subgroups of \(D_9\)</b></h4>
-<p>We list the elements of \(D_9\) as follows</p>
-<div>
-$$
-\begin{align*}
-D_9 = \{e, r, r^2, r^3, r^4, r^5, r^6, r^7, r^8, j, rj, r^2j, r^3j, r^4j, r^5j, r^6j, r^7j, r^8j\}
-\end{align*}
-$$
-</div>
-<p>First, let’s find the order of each element knowing that the order of each flip is 2 and know that element must have an order that divides 18. [Side note from studying. Note that \(\langle r \rangle\) is a cyclic subgroup of order 9 and it has the elements \(r, r^2, r^3, ..., r^8\). Each element inside the subgroup must have order \(n / gcd(n,power)\) where n is the order of \(r\). So the order of \(r^3\) is \(9/gcd(9,3) = 3\). Remember that the order of an element depends on the operation of the group and it is the least power \(k\) such that \(g^k = e\).]</p>
-<div>
-$$
-\begin{align*}
-\text{Order 1: }&amp;: e. \\
-\text{Order 2: }&amp;: j, j, rj, r^2j, r^3j, r^4j, r^5j, r^6j, r^7j, r^8j. \\
-\text{Order 3: }&amp;: r^3, r^6. \\
-\text{Order 6: }&amp;: \\
-\text{Order 9: }&amp;: r, r^2, r^4, r^5, r^7, r^8. \\
-\end{align*}
-$$
-</div>
-<p>For the subgroups, if the order was 2 or 3, then we know they must be cyclic. In this case, we know all the subgroups of order 2 (all the flips) are cyclic unique subgroups. For orders 3 and 6, they could be cyclic but they could also fail to be cyclic. Take order 3, first we check if there are elements of order 3 in the group. Yes, we have \(r^3\) and \(r^6\). Why we look for those? Because by definition of the order of an element, they will each generate a subgroup of order 3 (Recall from the subgroups lecture \(|\langle g \rangle| = o(g)\)). In fact, here \(r^3\) and \(r^6\) both generate the same subgroup.</p>
-
-<div>
-$$
-\begin{align*}
-\text{Order 1: }&amp;: \{e\}. \\
-\text{Order 2: }&amp;: \langle j\rangle, \langle rj \rangle, \langle r^2j \rangle, \langle r^3j \rangle, \langle r^4j \rangle, \langle r^5j \rangle, \langle r^6j \rangle, \langle r^7j \rangle, \langle r^8j \rangle. \\
-\text{Order 3: }&amp;: \langle r^3 \rangle. \\
-\text{Order 6: }&amp;: ? \\
-\text{Order 18: }&amp;: D_9. \\
-\end{align*}
-$$
-</div>
-<p>What about order 6? Are there any elements of order 6? No, therefore, there aren’t cyclic groups of order 6. One thing we do know is that any element in that subgroup must have order dividing the order of the subgroup. So any element in it must divide 6 so the choices are \(\{1,2,3,6\}\). Here it’s trial and error. For example guessing \(\langle r^3, j \rangle\), we see that it consists of</p>
-<div>
-$$
-\begin{align*}
-\langle r^3, j \rangle = \{e, r^3, r^6, j, r^3j, r^6j\}.
-\end{align*}
-$$
-</div>
-<p>Notice here that \(jr^3 = r^6j\) by the identity \(jr^k = r^{-k}j\). Is there another group of order 6? Instead of \(j\), we can try another element of order 3:</p>
-<div>
-$$
-\begin{align*}
-\langle r^3, rj \rangle = \{e, r^3, r^6, rj, r^4j, r^7j\}.
-\end{align*}
-$$
-</div>
-<p>Overall, we’ll have the following subgroups. These lines indicate whether the subgroup is contained in another subgroup so \(\{e\}\) is contained in all of them. \(\langle r^3 \rangle\) is contained in \(\langle r^3, j \rangle\).</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec13-cosets/d9.png" width="90%" class="center" /></p>
-<p><br />
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li>MATH417 by Charles Rezk</li>
-	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Definition 2.4.14 Let \(H\) be subgroup of a group \(G\). \(gH = \{gh \ | \ h \in H\}\) is called a left coset of \(H\) in \(G\). \(Hg = \{hg \ | \ h \in H\}\) is called a right coset of \(H\) in \(G\). Examples Example 1: Let \(D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). where \(r^4 = e = j^2\) and \(jr = r^{-1}j\). Define the subgroup \(H = \langle j \rangle = \{e, j\}\). The left cosets are: $$ \begin{align*} eH &amp;= \{e, j\} = jH \\ rH &amp;= \{r, rj\} = rjH \\ r^2H &amp;= \{r^2, r^2j\} = r^2jH \\ r^3H &amp;= \{r^3, r^3j\} = r^3jH \\ \end{align*} $$ Notice here that none of the elements overlap between the sets so this gives us a way to partition the set \(G\) into four pairwise disjoint subsets (We’ll prove this next). The right cosets are $$ \begin{align*} He &amp;= \{e, j\} = Hj \\ Hr &amp;= \{r, jr\} = \{e, r^3j\} = Hr^3j \\ Hr^2 &amp;= \{r^2, r^2j\} = Hr^2j \\ Hr^3 &amp;= \{r^3, rj\} = Hrj \\ \end{align*} $$ Example 2: Let \(G = \mathbf{Z}\) (with addition) and take \(H = \mathbf{Z}n \leq G\) where \(n \geq 1\). The left coset is \(a + H = a + \mathbf{Z}n = \{a + kn \ | \ k \in \mathbf{Z}\}\) The left coset is \(H + a = \mathbf{Z}n + a\) which is the same as the right coset. This happens because the group is abelian! Another name for these cosets are the congruence class \([a]_n\). Cosets are Pairwise Disjoint Next we show why these subets must be pairwise disjoint. Proposition (2.5.4) Let \(H\) be a subgroup of a group \(G\). If \(X, Y \subseteq G\) are left \(H-\)cosets, then either \(X \cap Y = \emptyset\). \(X = Y\). Proof We’ll prove that not (1) implies (2) (to prove an or statement). Suppose that \(g \in X \cap Y\). We want to show that \(X = Y\). Since \(X\) and \(Y\) are left cosets, then we can write \(X = xH\) and \(Y = yH\) for some \(x, y \in G\). Since \(g \in X \cap Y\), then we can write \(g = xh_1 = yh_2\) for some \(h_1, h_2 \in H\). Observe now that $$ \begin{align*} x &amp;= gh_1^{-1} \\ &amp;= (yh_2)h_1^{-1} \\ &amp;= y(h_2h_1^{-1}) \end{align*} $$ Likewise $$ \begin{align*} y &amp;= gh_2^{-1} \\ &amp;= (xh_1)h_2^{-1} \\ &amp;= x(h_1h_2^{-1}) \end{align*} $$ Now, let \(xh \in xH\), then $$ \begin{align*} xh &amp;= (yh_2h_1^{-1})h \\ &amp;= y(h_2h_1^{-1}h) \end{align*} $$ But this implies that \(xh \in yH\). So \(xH \subseteq yH\). Likewise, let \(yh \in yH\), then $$ \begin{align*} yh &amp;= (xh_1h_2^{-1})h \\ &amp;= x(h_1h_2^{-1}h) \end{align*} $$ so \(yh \in xH\) and \(yH \subseteq xH\). Therefore \(xH = yH\). \(\blacksquare\) Based on this, we have the following proposition Proposition 2.5.3 Let \(H\) be a subgroup of a group \(G\), and let \(a\) and \(b\) be elements of \(G\). The following conditions are equivalent: \(a \in bH\). \(b \in aH\). \(aH = bH\). \(b^{-1}a \in H\). \(a^{-1}b \in H\). Proof (book) Suppose \((a)\) holds. Let \(a \in bH\). Then we can write \(a = bh\). Since \(H\) is a subgroup, then we know \(h^{-1} \in H\). So we can write \(b = ah^{-1}\). But \(ah^{-1}\) is in \(aH\) by the definition of a left coset which is what we wanted to show. With similar reason \((b)\) also implies \((a)\). For \((c)\), we want to show that \(aH \subseteq bH\) and \(bH \subseteq aH\). To show that \(bH \subseteq aH\), we want to show that for any arbitrary element \(x\) in \(bH\), that \(x\) is also in \(aH\). So consider any \(x \in bH\). By the definition of a coset, we can write \(x = bh\) for some \(h \in H\). Now suppose that \((b)\) holds and so we have \(b \in aH\). This means that we can write \(b = ah_1\) for some \(h_1 \in H\). But this means that we can write \(x = bh = ah_1h\). The product \(h_1h\) is in \(H\) because \(H\) is a subgroup. Furthermore, \(ah_1h\) must be in \(aH\) by the definition of a coset. Therefore, \(x = bh \in aH\) and so \(bH \subseteq aH\) as we wanted to show. Since \((b)\) also implies \((a)\) we can use a similar reasoning to show that \(aH \subseteq bH\). For \((d)\) …. Lagrange Theorem Based on what we learned so far, we can now present the following important results Proposition Let \(H\) be a subgroup of a group \(G\). Then all left \(H-\)cosets and right \(H-\)cosets have the same cardinality as \(H\). This works well for infinite groups as well because all we need is a bijection to show they have the same cardinality. Proof We know the coset \(aH\) is constructed such that each element is appended on the left by \(a\). So naturally construct the following bijection $$ \begin{align*} H &amp;\rightarrow aH \\ h &amp;\rightarrow ah \end{align*} $$ This works. For any element in \(x \in aH\), the inverse is just \(a^{-1}x\). Likewise we can construct a bijection for the right coset as follows $$ \begin{align*} H &amp;\rightarrow Ha \\ h &amp;\rightarrow ha \end{align*} $$ This leads to Lagrange Theorem. Lagrange Theorem Let \(G\) be a finite group and let \(H\) be a subgroup of \(G\). Then \(|H|\) divides \(|G|\) and \(|G| / |H| = \) the number of left cosets of \(H\) in \(G =\) the number of right cosets of \(H\) in \(G\). Proof We know by the previous proposition that all cosets have the same cardinality as \(H\) itself. Moreover, we know that the collection of left cosets \(\{aH, a \in G\}\) partitions \(G\) into pairwise disjoint subsets. Therefore $$ \begin{align*} |G| &amp;= \sum|aH| \\ &amp;= \sum |H| \quad \text{(by the previous proposition)} \end{align*} $$ From this we see that \(|G| = m|H|\) as we wanted to show. \(\ \blacksquare\) This in turn leads to the following theorem: Order Theorem Let \(G\) be a finite group. Then for any \(g \in G\), \(o(g)\) divides \(|G|\). Proof [TODO] More Definitions in Cosets Definition The index of a subgroup \(H \leq G\) is the number of left \(H-\)cosets. We denote the index by \([G:H]\) which is index of \(H\) in \(G\). The index could be infinite but we only care when the index is finite. Using Lagrange’s Theorem also note that if \(G\) is finite, then \([G : H] = \frac{|G|}{|H|}\). Also note that \([G:H]\) can be finite even if \(G\) and \(H\) are infinte. Example: Let \(G = \mathbf{Z}, H = \mathbf{Z_n}\) where \(n &gt; 0\). Then the index of \(\mathbf{Z}_n\) inside \(\mathbf{Z}\) is the number of left cosets which is the number of congruent classes, \([\mathbf{Z}:\mathbf{Z}_n] = n\) We might ask why is the definition is in terms of the number of left cosets and not the right cosets. The answer is in the next proposition Proposition Let \(H\) be a subgroup of a group \(G\). There is a bijection between the collection of left cosets and the collection of right cosets. $$ \begin{align*} \{aH, a \in G\} \rightarrow \{Ha, a \in G\} \end{align*} $$ The actual bijection is to take all the elements in the left cosets, take their inverses. The collection of inverses will be the elements in the right cosets. Why is this true? If \(X = aH = \{aH \ | \ h \in H\}\), then \(X^{-1} = \{ (ah)^{-1} \ | \ h \in H \} = Ha^{-1}\). So why not use \(aH \rightarrow Ha\)? This might not be defined. Proposition Let \(H\) be a subgroup of a group \(G\). The following are equivalent \(H\) is a normal subgroup. Left \(H\)-cosets are the same as right \(H\)-cosets. Every left \(H\)-coset is contained in a right \(H\)-coset. Proof \((3) \rightarrow (1)\): Suppose every left \(H\)-coset is a subset of some right \(H\)-coset. Let \(a \in G\). We want to show that \(H\) is a normal subgroup. So we want to show that \(aHa^{-1} \subseteq H\). Given that every left coset in contained in a right coset, consider the left coset \(aH\). This coset is contained in some right coset. Since \(a \in aH\), then \(a\) must be in the right coset as well. We can claim that \(aH \subseteq Ha\). So for any \(h \in H\), \(ah = h'a\) for some \(h' \in H\). Observe that \(aha^{-1} = h'\) for some \(h' \in H\). In other words, \(aHa^{-1} \in H\) and \(H\) is normal. \(\ \blacksquare\) Applications Let’s look at some applications of the order theorem. Proposition If \(|G| = p\) where \(p\) is prime, then \(G\) is cyclic. Proof Let \(g \in G\). By the order theorem, the order of \(g\) must divide \(|G|\) which is a prime number. So \(o(g) \in \{1, p\}\). \(\{e\}\) is the only group with order 1 and \(|G| = p &gt; 1\) so we must have an element \(g \in G\) such that \(g \neq e\). So \(o(g) = p\). But we also said that the order of an element is also the size of the cyclic group generated by \(g\) so \(|\langle g \rangle| = p\). Therefore, we must have \(G = \langle g \rangle\). \(\ \blacksquare\) Proposition If \(|G| = 4\), then \(G\) is isomorphic to \(\mathbf{Z}_4\) or \(V\) the symmetries of the rectangle. Proof Let \(g \in G\). The order of \(g\) has to divide 4 by the order theorem so \(o(g) \in \{1,2,4\}\). If \(o(g) = 4\), then \(o(g) = 4\) and \(\langle g \rangle = G\) so \(G\) is cyclic and so it is isomorphic to \(\mathbf{Z}_4\). If \(o(g) \neq 4\). Then \(G\) must have 4 distinct elements so \(G = \{a, b, c, d\}\) none of the elements can have order 4. \(a, b, c\) can’t have order 1. So they must be of order 2 and their squares must be the identity. This gives us enough information fill out the multiplication table of this group as follows: \(e\) \(a\) \(b\) \(c\) \(e\) \(e\) \(a\) \(b\) \(c\) \(a\) \(a\) \(e\) \(c\) \(b\) \(b\) \(b\) \(c\) \(e\) \(a\) \(c\) \(c\) \(b\) \(a\) \(e\) Subgroups of \(D_5\) Let’s use Lagrange’s Theorem next. Specifically, let’s analyze the subgroups of the dihedral group \(D_5\). First, $$ \begin{align*} D_5 = \{e, r, r^2, r^3, r^4, j, rj, r^2j, r^3j, r^4,j\} \end{align*} $$ The first we want to do when finding its subgroups is find the order of each element in \(D_5\). We know \(|D_5| = 10\) so the orders of the elements must divide 10. We also know that each flip’s order is 2 (because we established previously that \(j^2 = e\)). We also established previously that \(r^5 = e\). The rest of the elements must have their order \(\in \{1,2,5,10\}\) by the Order Theorem. In fact $$ \begin{align*} \text{Order 1: }&amp;: e. \\ \text{Order 2: }&amp;: j, rj, r^2j, r^3j, r^4j. \\ \text{Order 5: }&amp;: r, r^2, r^3, r^4, r^5. \end{align*} $$ Now, any subgroup of \(G\) must have order dividing the order of \(G\) so they must divide 10 by Lagrange’s Theorem. So \(|H| \in \{1,2,5,10\}\). Note here that 2 and 5 are prime! so by the previous proposition, they must be cyclic. We list the subgroups as follows by their orders: $$ \begin{align*} \text{Order 1: }&amp;: \{e\}. \\ \text{Order 2: }&amp;: \langle j \rangle , \langle rj \rangle , \langle r^2j\rangle , \langle r^3j\rangle , \langle r^4j\rangle . \\ \text{Order 5: }&amp;: \langle r \rangle. \\ \text{Order 10: }&amp;: D_5. \\ \end{align*} $$ We can draw the subgroups as follows Notice that there is 1 group of order 5 while there are 5 groups of order 2. Subgroups of \(D_9\) We list the elements of \(D_9\) as follows $$ \begin{align*} D_9 = \{e, r, r^2, r^3, r^4, r^5, r^6, r^7, r^8, j, rj, r^2j, r^3j, r^4j, r^5j, r^6j, r^7j, r^8j\} \end{align*} $$ First, let’s find the order of each element knowing that the order of each flip is 2 and know that element must have an order that divides 18. [Side note from studying. Note that \(\langle r \rangle\) is a cyclic subgroup of order 9 and it has the elements \(r, r^2, r^3, ..., r^8\). Each element inside the subgroup must have order \(n / gcd(n,power)\) where n is the order of \(r\). So the order of \(r^3\) is \(9/gcd(9,3) = 3\). Remember that the order of an element depends on the operation of the group and it is the least power \(k\) such that \(g^k = e\).] $$ \begin{align*} \text{Order 1: }&amp;: e. \\ \text{Order 2: }&amp;: j, j, rj, r^2j, r^3j, r^4j, r^5j, r^6j, r^7j, r^8j. \\ \text{Order 3: }&amp;: r^3, r^6. \\ \text{Order 6: }&amp;: \\ \text{Order 9: }&amp;: r, r^2, r^4, r^5, r^7, r^8. \\ \end{align*} $$ For the subgroups, if the order was 2 or 3, then we know they must be cyclic. In this case, we know all the subgroups of order 2 (all the flips) are cyclic unique subgroups. For orders 3 and 6, they could be cyclic but they could also fail to be cyclic. Take order 3, first we check if there are elements of order 3 in the group. Yes, we have \(r^3\) and \(r^6\). Why we look for those? Because by definition of the order of an element, they will each generate a subgroup of order 3 (Recall from the subgroups lecture \(|\langle g \rangle| = o(g)\)). In fact, here \(r^3\) and \(r^6\) both generate the same subgroup.]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Let’s define the following relationship Definition Let \(G\) be a group and let \(H\) be a subgroup. For \(a, b \in G\), define \(a \sim_H b\) to mean $$ \begin{align*} b = ah \quad \text{ for some } h \in H \end{align*} $$ In other words, \(a \sim_H b\) if \(a^{-1}b \in H\). We claim that \(\sim_H\) is an equivalence relation. [Exercise: Prove it] The equivalence classes are the left cosets \(aH = \{ah \ | \ h \in H\}\). Now define \(G / H\) to be the collection of left \(H\)-cosets in \(G\) so \(G / H = \{ aH \ | \ a \in G\}\). Define the Quotient function as follows $$ \begin{align*} \pi \ : \ &amp;G \rightarrow G / H \\ &amp;\pi(g) = gH. \end{align*} $$ So \(\pi\) sends an element to the coset it is contained in. Of course we can do the same thing for right cosets. We need a different notation so we’ll use a backward slash for right cosets \(G \backslash H\). So \(G \backslash H = \{ Ha \ | \ a \in G\}\). The Quotient function is $$ \begin{align*} \pi' \ : \ &amp;G \rightarrow G \backslash H \\ &amp;\pi'(g) = Hg \end{align*} $$ Example Let \(G = \mathbf{Z}\) and let \(H = \mathbf{Z}n\) where \(n \geq 0\) (multiples of \(n\)). Then the set of left cosets is $$ \begin{align*} G / H &amp;= \{[a]_n \ | \ a \in \mathbf{Z}\} \\ &amp;= \mathbf{Z}_n \end{align*} $$ Side note: Why? so say \(H = \mathbf{Z}3\), then \(H = \{...,-6,-3,0,3,6,9,...\}\) and the left cosets are $$ \begin{align*} 0 + H, 1 + H, 2 + H, 3 + H, ... \end{align*} $$ For example $$ \begin{align*} 0 + H &amp;= \{...,-6,-3,0,3,6,9,...\} = [0]_3 \\ 1 + H &amp;= \{...,-5,-2,1,4,7,10,...\} = [1]_3 \\ 2 + H &amp;= \{...,-4,-1,2,5,8,11,...\} = [2]_3 \\ 3 + H &amp;= \{...,-3,0,3,6,9,12,...\} = 0 + H \\ 4 + H &amp;= \{...,-2,1,4,7,10,13,...\} = 1 + H \\ \end{align*} $$ From this we see that \(3H = 0H\), \(4H = 1H\) and so on. There are exactly 3 distinct left cosets. These three left cosets are exactly \(Z_3 = \{[0], [1], [2]\}\). So now we see that \(G / H = \mathbf{Z}_n\). This is a group. In fact \(\pi \ : \ \mathbf{Z} \rightarrow \mathbf{Z}/\mathbf{Z}n\) is a homomorphism. Quotient Function The question now is if we can do this in general. If we have a group \(G\) and a subgroup \(H \leq G\). We want to put a group structure on the set of left \(H\)-cosets, \(G / H\) such that \(\pi \ : \ G \rightarrow G / H\) is a homomorphism? This is called the “Quotient Group”. Also if we make that happen and \(\pi\) is a homomorphism. What would the kernel of \(\pi\) be? By definition: $$ \begin{align*} ker(\pi) &amp;= \{g \in G \ | \ \pi(g) = e_{G/H}\} \\ &amp;= \{g \in G \ | \ gH = e_{G/H}\} \quad \text{(By def, $\pi(a) = aH$)} \\ &amp;= \{g \in G \ | \ gH = \pi(e_G)\} \quad \text{($\pi$ is a homomorphism so $\pi(e_G) = e_{G/H}$)} \\ &amp;= \{g \in G \ | \ gH = eH\} \quad \text{(by def of $\pi$ again)} \\ &amp;= H. \end{align*} $$ But we also know that kernels are normal subgroups so this means that \(H\) must be a normal subgroup. So if we make \(\pi\) a homomorphism, then we’ll see that \(H\) is actually a normal subgroup. [Is this right?] Quotient Group Now suppose we have a group \(G\) and a normal subgroup \(N\). Define \(G/N\) to be the set of all left cosets of \(N\) so \(G/N = \{ aN \ | \ a \in G \}\). In fact since \(N\) is normal, the left cosets are the right cosets so we don’t need to say left or right in the definition. Let’s also define a group operation on the group \(G/N\). Definition Let \(G\) be a group and let \(N\) be a normal subgroup. Define the operation on \(G/N\) by $$ \begin{align*} aN \cdot bN = (ab)N \end{align*} $$ The goal is to show that \((G / N, \cdot)\) is a group. But first we need to show that the operation we defined is well-defined (We also want to show that this operation is a homomorphism later). So we need to show that if \(aN = a'N\) and \(bN = b'N\), then \((ab)N = (a'b')N\). Proof (well-defined) Since \(aN = a'N\), then \(a'\) is in the coset \(aN\) and we can write \(a' = an_1\) for some \(n_1 \in N\). Similarly, \(bN = b'N\) so we can write \(b' = bn_2\) for some \(n_2 \in N\). We want to show that \(a'b' = abn\) for some \(n \in N\). Now, $$ \begin{align*} a'b' &amp;= an_1bn_2 \\ &amp;= a(bb^{-1})n_1bn_2 \\ &amp;= (ab)(b^{-1}n_1bn_2) \end{align*} $$ So now we want to show that \(b^{-1}n_1bn_2 \in N\). We know that \(N\) is a normal subgroup. So if we conjugate \(n\) by \(b^{-1}\), then we know that \(b^{-1}nb \in N\) because \(N\) is normal. Moreover, \((b^{-1}nb)(n_2) \in N\) since \(N\) is a subgroup. \(\ \blacksquare\) Proof (\((G/N, \cdot)\) is a group) To show this, we need to verify the group properties Associative: We want to show that \((aN \cdot bN) \cdot cN = aN \cdot (bN \cdot cN)\) $$ \begin{align*} (aN \cdot bN) \cdot cN &amp;= abN \cdot cN \\ &amp;= (ab)cN \\ &amp;= a(bc)N \quad \text{(multiplication is associative)} \\ &amp;= aN \cdot (bN \cdot cN). \end{align*} $$ Identity: The identity element is \((eN)\) Inverses: We want to show that \((aN)^{-1}\) is an inverse of \(aN\). Therefore, \((G/N, \cdot)\) is a group. Proof (homomorphism) Next we want to show that \(\pi: G \rightarrow G/N\) is a homomorphism with kernel \(ker(\pi) = N\). Recall that \(\pi(a) = aN\). Example 1 Let \(G = D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}\). We established the identities \(r^4 = e = j^2\) and \(jr = r^{-1}j\). We first claim that \(N = \langle r^2 \rangle = \{e, r^2\}\) is a normal subgroup of \(G\). Why? For any \(g \in D_4\), we have \(g r^2 g^{-1} \in \langle r^2 \rangle\). Since \(N\) is normal, then we can form the quotient group \(G / N\) where $$ \begin{align*} G/N = D_4/N = \{eN, rN, jN, rjN\}. \end{align*} $$ Note that the other possibilities end up being the same as one of the four cosets above. For example \(r^2N = eN\) and \(r^3N = rN\). Note also that this matches Lagrange’s Theorem. By Lagrange, we expect to have \(|G|/|N|\) cosets. \(|G| = 8\) and \(|N| = 2\) so we indeed have 4 elements. Since \(D_4/N\) has 4 elements, then we expect this group to be isomorphic to either the cyclic group of order 4 or the non-cyclic one. How do we know? We can calculate the order of the elements in the group. If there is an element of order 4, then it’s cyclic. If there is not, then it can’t be cyclic. For example \((rN)^2 = r^2N = eN\). Why? \(r^2N\) is the coset $$ \begin{align*} \{r^2(e), r^2(r^2)\} = \{r^2, e\} = eN. \end{align*} $$ What about \((jN)^2\)? $$ \begin{align*} (jN)^2=j^2N = eN. \end{align*} $$ Next, \((rjN)^2 = (rj)^2N\) But \(rj\) is a flip so it’s square is \(e\) and so \((rjN)^2 = eN\). So every element’s square is the identity and no element has order 4. So it’s isomorphic to \(V\). Example 2 Now consider \(D_6 = \{e, r, r^2, r^3, r^4, r^5, j, rj, r^2j, r^3j, r^4j, r^5j\}\). Consider \(N = \langle r^3 \rangle = \{e, r^3\}\) which is a normal subgroup of \(D_6\). Why is it normal? Because if we conjugate it with any element from \(D_6\), we will get the same set $$ \begin{align*} r^k r^3 r^{-k} &amp;= r^3 \\ rj r^3 (rj)^{-1} &amp;= jr^{-1} r^3 r j^{-1} = r^3 \\ .... \end{align*} $$ This is actually because \(r^3g = gr^3\) for all \(g \in G\). This is a property of \(r^3\). (in this case \(r^3\) is called “central”). Moreover, \(G/N\) will have \(|G|/|H| = 6\) cosets. $$ \begin{align*} G/N = D_6 / \langle r^3 \rangle = \{eN, rN, r^2N, jN, rjN, r^2jN\} \end{align*} $$ As a reminder, because \(N\) is a normal subgroup, \(G/N\) is a group. It’s a group of order 6. There are two groups of order 6. The abelian cyclic one and \(D_3\) which is isomorphic to \(S_3\). To determine which one, we need to find the order of the elements. Any flip will have order two and so it turns out that \(jN, rjN, r^2jN\) all have order 2. \(eN\) has order 1. For the rest $$ \begin{align*} (rN)^3 = r^3N = \{(r^3)e, (r^3)r^3\} = \{e, r^3\} = eN. \end{align*} $$ In fact, \(r^2N\) has order 3 as well. So none of the elements have order 6 and so this group is not cyclic. It is in fact isomorphic to \(D_3\). Example 3 Now consider \(G = (\mathbf{R}, +)\) and \(H = (\mathbf{Z}, +)\). \(G\) is abelian. Therefore, all of its subgroups are normal and \(H\) is normal. Now let’s form the quotient group as follows $$ \begin{align*} G/H = \mathbf{R}/\mathbf{Z} = \{a + \mathbf{Z} \ | \ a \in \mathbf{R}\}. \end{align*} $$ \(a + \mathbf{Z} = [a] = \{a + n \ | \ n \in \mathbf{Z}\}\) is a \(\mathbf{Z}\) coset of \(a\). For example if \(a = \frac{1}{3}\), then $$ \begin{align*} \frac{1}{3} + \mathbf{Z} = \{...,-1 + \frac{1}{3}, 0 + \frac{1}{3}, 1 + \frac{1}{3}, ...\} \subseteq \mathbf{R} \end{align*} $$ \(G/H\) is a group under addition where \([a] + [b] = [a + b]\). This group is abelian. What is this group isomorphic to? Let \(T\) be the set of rotations around the \(z\) axis so \(T = \{r_{\theta} = Rot_{e_3}(\theta) \ | \ \theta \in \mathbf{R}\}\). This is a subgroup of \(SO(3)\). Note here that \(r_{\theta + 2\pi n} = r_{\theta}\). It turns out that \(\mathbf{R}/\mathbf{Z}\) is isomorphic to \(T\). The isomorphism is $$ \begin{align*} \mathbf{R}/\mathbf{Z} &amp;\rightarrow T \\ [x] &amp;\rightarrow r_{2\pi x} \end{align*} $$ Example 4 Let \(F\) be a field. (\(F = \mathbf{R}\) or \(\mathbf{C}\) or \(\mathbf{Z}p\), \(p\) is prime). Now let $$ \begin{align*} GL_n(F) = \{ A \in Mat_{n \times n}(F) \ | \ A^{-1} \text{ exists }\} \end{align*} $$ where the product is matrix multiplication. A normal subgroup here is $$ \begin{align*} H = \{cI, c \in F^{x}\} \quad \text{ (where } F^{x} = F - \{0\}). \end{align*} $$ Why is this a normal subgroup? because you can pull out scalars in matrix multiplication so \(A^{-1}cA = cA^{-1}A = cI\). We can form the quotient group $$ \begin{align*} GL_{n}(F) / H = PGL_n(F) \quad \quad \text{ (The Projective Linear Group) } \end{align*} $$ Symmetric Groups We want to know what the normal subgroups of symmetric groups are. In order to do so, we want to see what happens if we conjugate a permutation \(\tau\) with element so \(\sigma \tau \sigma^{-1}\)? In turns out in symmetric groups, there is a way to understand conjugation. We actually have a formula. This formula is called the cycle conjugation formula. Given \(\tau = (a_1 \ a_2 \ ... a_k) \in S_n\) where \(\tau\) is a permutation consisting of a \(k-\)cycle with \(a_1,a_2... \in \{1,2,....,n\}\). Then $$ \begin{align*} \sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} &amp;= (b_1 \ b_2 \ ... b_k) \quad \text{where } b_i = \sigma(a_i) \\ &amp;= (\sigma(a_1) \ \sigma(a_2) \ ...\ \sigma(a_k)) \end{align*} $$ So we actually get another \(k\) cycle. Proof We want to show that \(\sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} = (\sigma(a_1) \ \sigma(a_2) \ ... \ \sigma(a_k))\). We will compute the new permutation directly. Let \(x \in \{1,2,...,n\}\). It turns out that there are two cases. Case 1: \(x = \sigma(a_i)\): So now we’ll apply the permutation on \(x\). First we apply \(\sigma^{-1}\) but since \(x = \sigma(a_i)\), then we will just get \(a_i\). Next, we’ll apply the cycle and here we’ll get \(a_{i+1}\) since it’s a cycle. Lastly, we need to apply \(\sigma\). So we get \(\sigma(a_{i+1})\). (There is a subtlety here because \(a_{i+1}\) for \(i = k\), is \(i = 1\). To fix this, we’ll let \(a_{k+1} = 1\) or just have two cases). So in summary: $$ \begin{align*} \sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} (x) &amp;= \sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} (\sigma(a_i)) \\ &amp;= \sigma (a_1 \ a_2 \ ... \ a_k) (a_i) \\ &amp;= \begin{cases} a_{j+1} \quad &amp;\text{if } j \neq k \\ a_1 \quad \quad &amp;\text{if } j = k\end{cases}]]></summary></entry></feed>

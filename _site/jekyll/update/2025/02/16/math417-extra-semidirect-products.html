@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Study Notes: Semidirect Products</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-02-16T00:01:36-08:00" itemprop="datePublished">Feb 16, 2025
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along.
+<br />
+<br />
+Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map</p>
+<div>
+	$$
+	\begin{align*}
+	\phi: H \times K &amp;\rightarrow G \\
+	              (h,k)  &amp;\rightarrow hk
+	\end{align*}
+	$$
+</div>
+<p>We want to show that \(\phi\) is a bijection. To do this, we’ll first show that \(\phi\) is injective. So given the elements \(h_1, h_2 \in H\) and \(k_1, k_2 \in K\) such that \(\phi(h_1,k_1) = \phi(h_2,k_2)\), we want to show that \((h_1,k_1) = (h_2,k_2)\). Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	\phi(h_1,k_1) &amp;= \phi(h_2,k_2) \\
+	h_1k_1 &amp;= h_2k_2 \\
+	(h_2)^{-1}h_1k_1 &amp;= k_2 \\
+	(h_2)^{-1}h_1k_1k_1^{-1} &amp;= k_2k_1^{-1} \\
+	(h_2)^{-1}h_1 &amp;= k_2k_1^{-1} \\
+	\end{align*}
+	$$
+</div>
+<p>Since \((h_2)^{-1}h_1 \in H\) and \(k_2k_1^{-1} \in K\) and \((h_2)^{-1}h_1 = k_2k_1^{-1}\), then this value must be in the intersection \(H \cap K\). But \(H \cap K = \{e\}\). Therefore, this must be the identity element and so</p>
+<div>
+	$$
+	\begin{align*}
+	(h_2)^{-1}h_1 &amp;= k_2k_1^{-1} = e
+	\end{align*}
+	$$
+</div>
+<p>But this just means that \((h_2)^{-1}h_1 = e\) and so \(h_1 = h_2\) and similarly \(k_1 = k_2\). Therefore \((h_1,k_1) = (h_2,k_2)\). So \(\phi\) is injective.
+<br />
+<br />
+Next, we want to show that \(\phi\) is surjective. Notice that \(Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G\). This just means that \(\phi\) is surjective since the codomain in \(G\). Therefore, \(\phi\) is a bijection. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>How to Make \(\phi\) a Homomorphism</b></h4>
+<p>Now, suppose that we’re also given that \(H\) is normal. We know that \(\phi: H \times G \rightarrow G\) is a bijection. We also know that \(G\) is a group but we never defined \(H \times K\) as a group. We just said it was a set. The question is can we make \(H \times K\) a group so that \(\phi\) isn’t just a bijection but also an isomorphism? (hmmm, this is a iff right?)
+<br />
+<br />
+We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is a homomorphism. To be a homomorphism we need to prove that</p>
+<div>
+	$$
+	\begin{align*}
+	\phi((h_1,k_1)(h_2,k_2)) = \phi((h_1,k_1))\phi((h_2,k_2))
+	\end{align*}
+	$$
+</div>
+<p>Notice that we have defined what the product will look like but we know that the right hand side is</p>
+<div>
+	$$
+	\begin{align*}
+	h_1k_1h_2k_2
+	\end{align*}
+	$$
+</div>
+<p>The goal is to write this product as a product of an element in \(H\) multiplied by an element from \(K\). This is exactly why we wanted or need \(H\) to be normal. So insert \(k_1^{-1}k_1\) as follows</p>
+<div>
+	$$
+	\begin{align*}
+	h_1k_1h_2k_2 &amp;= h_1k_1h_2 (k_1^{-1}k_1) k_2 \\
+	             &amp;= (h_1)(k_1h_2k_1^{-1}) (k_1k_2) \\
+	\end{align*}
+	$$
+</div>
+<p>Note here that the first two elements are in \(H\). \(h_1 \in H\) and \(k_1h_2k_1^{-1} \in H\) since \(H\) is normal. So we have exactly what we want. Why do we care? we want this because now we can write this as \(\phi\) of some \((h,k) \in H \times K\) where \(h = (h_1)(k_1h_2k_1^{-1})\) and \(k = (k_1k_2)\). So</p>
+<div>
+	$$
+	\begin{align*}
+	\phi((h_1,k_1)(h_2,k_2)) &amp;= \phi((h_1,k_1))\phi((h_2,k_2)) \\
+	                         &amp;= h_1k_1h_2k_2 \\
+							 &amp;= (h_1k_1h_2k_1^{-1}) (k_1k_2) \\
+	                         &amp;= \phi((h_1k_1h_2k_1^{-1}), k_1k_2)
+	\end{align*}
+	$$
+</div>
+
+<p>But remember that \(\phi\) is a bijection so it’s injective. So saying that \(\phi((h_1,k_1)(h_2,k_2)) = \phi((h_1k_1h_2k_1^{-1}), k_1k_2)\) implies that</p>
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) = (h_1k_1h_2k_1^{-1}, k_1k_2)
+	\end{align*}
+	$$
+</div>
+<p>This immediately gives us the required operation for \(G \times H\) to be a group. If we define this product above to be how we multiply elements in \(H \times K\), then \(\phi\) is a homomorphism and therefore, it is an isomorphism from \(G \times H \rightarrow G\). Since we already use \(G \times H\) to denote the direct product group, we use the notation \(G \rtimes K\) to denote this semidirect product group (internal semi direct product).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Outer Semidirect Product Group</b></h4>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li><a href="https://www.youtube.com/watch?v=Pat5Qsmrdaw">Semidirect Products</a></li>
+</ul>
+
+
+  </div>
+<!-- stupid ads<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2025/02/16/math417-extra-semidirect-products.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2025/02/16/math417-extra-semidirect-products; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+-->
+  <a class="u-url" href="/jekyll/update/2025/02/16/math417-extra-semidirect-products.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

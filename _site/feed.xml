@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-19T21:14:40-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Study Notes: Semidirect Products</title><link href="http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products.html" rel="alternate" type="text/html" title="Study Notes: Semidirect Products" /><published>2025-02-16T00:01:36-08:00</published><updated>2025-02-16T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products.html"><![CDATA[<p>The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-20T20:26:45-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Study Notes: Semidirect Products</title><link href="http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products.html" rel="alternate" type="text/html" title="Study Notes: Semidirect Products" /><published>2025-02-16T00:01:36-08:00</published><updated>2025-02-16T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products.html"><![CDATA[<p>The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along.
 <br />
-<br />
-Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map</p>
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Inner Semidirect Product Group</b></h4>
+<p>Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map</p>
 <div>
 	$$
 	\begin{align*}
@@ -52,7 +53,7 @@ We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is
 	\end{align*}
 	$$
 </div>
-<p>Notice that we have defined what the product will look like but we know that the right hand side is</p>
+<p>Notice that we have NOT defined what the product will look like but we know that the right hand side is</p>
 <div>
 	$$
 	\begin{align*}
@@ -97,7 +98,128 @@ We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is
 <p><br />
 <!-----------------------------------------------------------------------------></p>
 <h4><b>Outer Semidirect Product Group</b></h4>
-<p><br />
+<p>So now consider the groups \(H\) and \(K\). \(H\) and \(K\) are just two groups. They are not necessarily subgroups of \(G\). We want to find \(G\) such that \(G\) satisfies the following:</p>
+<ol>
+	<li>\(H_G\) is a normal subgroup of \(G\)</li>
+	<li>\(K_G\) is a subgroup of \(G\)</li>
+	<li>\(H_G \cap K = \{e\}\)</li>
+	<li>\(H_GK_G = G\)</li>
+</ol>
+<p>Note that \(H_G\) is a subgroup of \(G\) that is isomorphic to \(H\) so it might not be \(H\) but at least it’s isomorphic to \(H\). So our goal here is to take two groups and make a new group such that this new group \(G\) is isomorphic to their direct product \(H \times K\).
+<br />
+<br />
+So how can we make a group that satisfies these conditions? It’s important to remember that we don’t know anything about \(H\) or \(K\) and they might not be related. So we can’t just multiply \(hk\). We need a way to treat the elements of \(H\) and the elements of \(K\) separately. One way to do this is to use ordered pairs. What we can do is define the set of elements \(H \times K\) to be</p>
+<div>
+	$$
+	\begin{align*}
+	 H \times K = \{(h, k) \ | \ h \in H, k \in K\}
+	\end{align*}
+	$$
+</div>
+<p>This way, they stay separate. Additionally, this makes it easier to find the subgroups that we need. For example, we can define</p>
+<div>
+	$$
+	\begin{align*}
+	 H_G = H \times \{e_k\} &amp;= \{(h,e_K) \ | \ h \in H \} \quad \text{with the group product}\\
+	 (h_1, e_K)&amp;(h_2, e_K) = (h_1h_2, e_K)
+	\end{align*}
+	$$
+</div>
+<p>And similarly define \(K_G\) as</p>
+<div>
+	$$
+	\begin{align*}
+	 K_G = \{e_H\} \times K &amp;= \{(e_H, k) \ | \ h \in H \}  \quad \text{with the group product}\\
+	 (e_H, k_1)&amp;(e_H, k_2) = (e_H, k_1k_2)
+	\end{align*}
+	$$
+</div>
+<p>Using this construction, we can see that \(H_G \cap K_G = \{(e_H,e_K)\}\). Next, we want to show that \(H_GK_G = G\). By construction, \(H_GK_G = \{(h,e)(e,k)\}\). We defined \(G = H \times K\). What we want is have \(H_GK_G = G = H \times K\). In other words, we want</p>
+<div>
+	$$
+	\begin{align*}
+	 H_GK_G &amp;= \{(h,e)(e,k)\} = \{(h,k)\} = H \times K = G \\
+	\end{align*}
+	$$
+</div>
+<p>One way to do this is to define the group \(H \times K\)’s product to be</p>
+<div>
+	$$
+	\begin{align*}
+	(h,e)(e,k) = (h,k)
+	\end{align*}
+	$$
+</div>
+<p>This works and gives us the condition \(H_GK_G = G\). But this defines the product for these edge cases. What about the product of arbitrary elements \((h_1,k_1), (h_2,k_2) \in G = H \times K\).</p>
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) &amp;= (h_1, e)(e, k_1)(h_2, e)(e, k_2) \quad \text{(using the product we defined)} \\
+	                    &amp;=(h_1, e)(e, k_1)(h_2,e)[(e,k_1^{-1})(e,k_1)](e, k_2)
+	\end{align*}
+	$$
+</div>
+<p>Remember that we want \(H\) to be normal. So we’ll use the same trick from the inner product group in the first section and insert \((e,k_1^{-1})(e,k_1)\) in the middle. This means that \((e, k_1)(h_2,e)(e,k_1^{-1}) \in H\)
+<br />
+<br />
+Now recall that conjugation by a element in a group is an automorphism.</p>
+<div>
+	$$
+	\begin{align*}
+	   \gamma: G &amp;\rightarrow Aut(G) \\
+	   \gamma_g(x) &amp;\rightarrow gxg^{-1}
+	\end{align*}
+	$$
+</div>
+<p>What is \(\gamma_{gh}\)?</p>
+<div>
+	$$
+	\begin{align*}
+	   \gamma_{gh}(x) &amp;= ghx(gh)^{-1}  \\
+	                  &amp;= g(hxh^{-1})g^{-1} \\
+					  &amp;= g(\gamma_{h}(x))g^{-1} \\
+					  &amp;= \gamma_g(\gamma_h(x)) \\
+					  &amp;= \gamma_g \circ \gamma_h(x)
+	\end{align*}
+	$$
+</div>
+<p>So \(\gamma\) is a group homomorphism. So going back to the group \(H \times K\)</p>
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) &amp;=(h_1, e)[(e, k_1)(h_2,e)(e,k_1^{-1})](e,k_1)(e, k_2)
+	\end{align*}
+	$$
+</div>
+<p>We know that \(H_G\) is normal so if we conjugate any element in \(H_G\), the map will send it back to \(H_G\). So define the map</p>
+<div>
+	$$
+	\begin{align*}
+	   \gamma: K &amp;\rightarrow Aut(H) \\
+	   \gamma_k(x) &amp;\rightarrow khk^{-1}
+	\end{align*}
+	$$
+</div>
+<p>We can use this to write the product</p>
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) &amp;=(h_1, e)(\gamma_{k_1}(h_2),e)(e,k_1)(e, k_2)
+	\end{align*}
+	$$
+</div>
+<p>This \(\gamma\) just describes the conjugation of \(h_2\) by \(k_1\). And we already saw that this map is a homomorphism. Moreover, we can see the product above is now</p>
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) &amp;=(h_1, e)(\gamma_{k_1}(h_2),e)(e,k_1)(e, k_2) \\
+	                    &amp;=(h_1\gamma_{k_1}(h_2), e)(e, k_1k_2) \\
+						&amp;=(h_1\gamma_{k_1}(h_2), k_1k_2)
+	\end{align*}
+	$$
+</div>
+<p>Which is exactly why the semidirect product is defined that way!!!!!!!!!!
+<br />
 <br /></p>
 <hr />
 
@@ -106,7 +228,7 @@ We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is
 <h4><b>References</b></h4>
 <ul>
 	<li><a href="https://www.youtube.com/watch?v=Pat5Qsmrdaw">Semidirect Products</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along. Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map $$ \begin{align*} \phi: H \times K &amp;\rightarrow G \\ (h,k) &amp;\rightarrow hk \end{align*} $$ We want to show that \(\phi\) is a bijection. To do this, we’ll first show that \(\phi\) is injective. So given the elements \(h_1, h_2 \in H\) and \(k_1, k_2 \in K\) such that \(\phi(h_1,k_1) = \phi(h_2,k_2)\), we want to show that \((h_1,k_1) = (h_2,k_2)\). Observe that $$ \begin{align*} \phi(h_1,k_1) &amp;= \phi(h_2,k_2) \\ h_1k_1 &amp;= h_2k_2 \\ (h_2)^{-1}h_1k_1 &amp;= k_2 \\ (h_2)^{-1}h_1k_1k_1^{-1} &amp;= k_2k_1^{-1} \\ (h_2)^{-1}h_1 &amp;= k_2k_1^{-1} \\ \end{align*} $$ Since \((h_2)^{-1}h_1 \in H\) and \(k_2k_1^{-1} \in K\) and \((h_2)^{-1}h_1 = k_2k_1^{-1}\), then this value must be in the intersection \(H \cap K\). But \(H \cap K = \{e\}\). Therefore, this must be the identity element and so $$ \begin{align*} (h_2)^{-1}h_1 &amp;= k_2k_1^{-1} = e \end{align*} $$ But this just means that \((h_2)^{-1}h_1 = e\) and so \(h_1 = h_2\) and similarly \(k_1 = k_2\). Therefore \((h_1,k_1) = (h_2,k_2)\). So \(\phi\) is injective. Next, we want to show that \(\phi\) is surjective. Notice that \(Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G\). This just means that \(\phi\) is surjective since the codomain in \(G\). Therefore, \(\phi\) is a bijection. How to Make \(\phi\) a Homomorphism Now, suppose that we’re also given that \(H\) is normal. We know that \(\phi: H \times G \rightarrow G\) is a bijection. We also know that \(G\) is a group but we never defined \(H \times K\) as a group. We just said it was a set. The question is can we make \(H \times K\) a group so that \(\phi\) isn’t just a bijection but also an isomorphism? (hmmm, this is a iff right?) We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is a homomorphism. To be a homomorphism we need to prove that $$ \begin{align*} \phi((h_1,k_1)(h_2,k_2)) = \phi((h_1,k_1))\phi((h_2,k_2)) \end{align*} $$ Notice that we have defined what the product will look like but we know that the right hand side is $$ \begin{align*} h_1k_1h_2k_2 \end{align*} $$ The goal is to write this product as a product of an element in \(H\) multiplied by an element from \(K\). This is exactly why we wanted or need \(H\) to be normal. So insert \(k_1^{-1}k_1\) as follows $$ \begin{align*} h_1k_1h_2k_2 &amp;= h_1k_1h_2 (k_1^{-1}k_1) k_2 \\ &amp;= (h_1)(k_1h_2k_1^{-1}) (k_1k_2) \\ \end{align*} $$ Note here that the first two elements are in \(H\). \(h_1 \in H\) and \(k_1h_2k_1^{-1} \in H\) since \(H\) is normal. So we have exactly what we want. Why do we care? we want this because now we can write this as \(\phi\) of some \((h,k) \in H \times K\) where \(h = (h_1)(k_1h_2k_1^{-1})\) and \(k = (k_1k_2)\). So $$ \begin{align*} \phi((h_1,k_1)(h_2,k_2)) &amp;= \phi((h_1,k_1))\phi((h_2,k_2)) \\ &amp;= h_1k_1h_2k_2 \\ &amp;= (h_1k_1h_2k_1^{-1}) (k_1k_2) \\ &amp;= \phi((h_1k_1h_2k_1^{-1}), k_1k_2) \end{align*} $$]]></summary></entry><entry><title type="html">Study Notes: Isomorphism Theorem Examples</title><link href="http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html" rel="alternate" type="text/html" title="Study Notes: Isomorphism Theorem Examples" /><published>2025-02-15T00:01:36-08:00</published><updated>2025-02-15T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html"><![CDATA[<!----------------------------------------------------------------------------->
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along. Inner Semidirect Product Group Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map $$ \begin{align*} \phi: H \times K &amp;\rightarrow G \\ (h,k) &amp;\rightarrow hk \end{align*} $$ We want to show that \(\phi\) is a bijection. To do this, we’ll first show that \(\phi\) is injective. So given the elements \(h_1, h_2 \in H\) and \(k_1, k_2 \in K\) such that \(\phi(h_1,k_1) = \phi(h_2,k_2)\), we want to show that \((h_1,k_1) = (h_2,k_2)\). Observe that $$ \begin{align*} \phi(h_1,k_1) &amp;= \phi(h_2,k_2) \\ h_1k_1 &amp;= h_2k_2 \\ (h_2)^{-1}h_1k_1 &amp;= k_2 \\ (h_2)^{-1}h_1k_1k_1^{-1} &amp;= k_2k_1^{-1} \\ (h_2)^{-1}h_1 &amp;= k_2k_1^{-1} \\ \end{align*} $$ Since \((h_2)^{-1}h_1 \in H\) and \(k_2k_1^{-1} \in K\) and \((h_2)^{-1}h_1 = k_2k_1^{-1}\), then this value must be in the intersection \(H \cap K\). But \(H \cap K = \{e\}\). Therefore, this must be the identity element and so $$ \begin{align*} (h_2)^{-1}h_1 &amp;= k_2k_1^{-1} = e \end{align*} $$ But this just means that \((h_2)^{-1}h_1 = e\) and so \(h_1 = h_2\) and similarly \(k_1 = k_2\). Therefore \((h_1,k_1) = (h_2,k_2)\). So \(\phi\) is injective. Next, we want to show that \(\phi\) is surjective. Notice that \(Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G\). This just means that \(\phi\) is surjective since the codomain in \(G\). Therefore, \(\phi\) is a bijection. How to Make \(\phi\) a Homomorphism Now, suppose that we’re also given that \(H\) is normal. We know that \(\phi: H \times G \rightarrow G\) is a bijection. We also know that \(G\) is a group but we never defined \(H \times K\) as a group. We just said it was a set. The question is can we make \(H \times K\) a group so that \(\phi\) isn’t just a bijection but also an isomorphism? (hmmm, this is a iff right?) We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is a homomorphism. To be a homomorphism we need to prove that $$ \begin{align*} \phi((h_1,k_1)(h_2,k_2)) = \phi((h_1,k_1))\phi((h_2,k_2)) \end{align*} $$ Notice that we have NOT defined what the product will look like but we know that the right hand side is $$ \begin{align*} h_1k_1h_2k_2 \end{align*} $$ The goal is to write this product as a product of an element in \(H\) multiplied by an element from \(K\). This is exactly why we wanted or need \(H\) to be normal. So insert \(k_1^{-1}k_1\) as follows $$ \begin{align*} h_1k_1h_2k_2 &amp;= h_1k_1h_2 (k_1^{-1}k_1) k_2 \\ &amp;= (h_1)(k_1h_2k_1^{-1}) (k_1k_2) \\ \end{align*} $$ Note here that the first two elements are in \(H\). \(h_1 \in H\) and \(k_1h_2k_1^{-1} \in H\) since \(H\) is normal. So we have exactly what we want. Why do we care? we want this because now we can write this as \(\phi\) of some \((h,k) \in H \times K\) where \(h = (h_1)(k_1h_2k_1^{-1})\) and \(k = (k_1k_2)\). So $$ \begin{align*} \phi((h_1,k_1)(h_2,k_2)) &amp;= \phi((h_1,k_1))\phi((h_2,k_2)) \\ &amp;= h_1k_1h_2k_2 \\ &amp;= (h_1k_1h_2k_1^{-1}) (k_1k_2) \\ &amp;= \phi((h_1k_1h_2k_1^{-1}), k_1k_2) \end{align*} $$]]></summary></entry><entry><title type="html">Study Notes: Isomorphism Theorem Examples</title><link href="http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html" rel="alternate" type="text/html" title="Study Notes: Isomorphism Theorem Examples" /><published>2025-02-15T00:01:36-08:00</published><updated>2025-02-15T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html"><![CDATA[<!----------------------------------------------------------------------------->
 <h4><b>Example 1</b></h4>
 <p>Let \(Q_8 = \{1, -1, i, i, j, -j, k, -k\}\) be a group. We have the identities:</p>
 <div>

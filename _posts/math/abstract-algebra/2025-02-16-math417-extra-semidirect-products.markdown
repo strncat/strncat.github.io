@@ -7,7 +7,8 @@ mathjax: true
 ---
 The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along.
 <br>
-<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Inner Semidirect Product Group</b></h4>
 Suppose we're given two subgroups $$H, K \leq G$$. We also know that $$HK = G$$ and $$H \cap K = \{e\}$$ (in this case, we call $$H$$ and $$K$$ complements). Consider the map
 <div>
 	$$
@@ -58,7 +59,7 @@ We already know $$\phi$$ is a bijection so we only need to show that $$\phi$$ is
 	\end{align*}
 	$$
 </div>
-Notice that we have defined what the product will look like but we know that the right hand side is
+Notice that we have NOT defined what the product will look like but we know that the right hand side is
 <div>
 	$$
 	\begin{align*}
@@ -102,6 +103,127 @@ This immediately gives us the required operation for $$G \times H$$ to be a grou
 <br>
 <!----------------------------------------------------------------------------->
 <h4><b>Outer Semidirect Product Group</b></h4>
+So now consider the groups $$H$$ and $$K$$. $$H$$ and $$K$$ are just two groups. They are not necessarily subgroups of $$G$$. We want to find $$G$$ such that $$G$$ satisfies the following:
+<ol>
+	<li>\(H_G\) is a normal subgroup of \(G\)</li>
+	<li>\(K_G\) is a subgroup of \(G\)</li>
+	<li>\(H_G \cap K = \{e\}\)</li>
+	<li>\(H_GK_G = G\)</li>
+</ol>
+Note that $$H_G$$ is a subgroup of $$G$$ that is isomorphic to $$H$$ so it might not be $$H$$ but at least it's isomorphic to $$H$$. So our goal here is to take two groups and make a new group such that this new group $$G$$ is isomorphic to their direct product $$H \times K$$.
+<br>
+<br>
+So how can we make a group that satisfies these conditions? It's important to remember that we don't know anything about $$H$$ or $$K$$ and they might not be related. So we can't just multiply $$hk$$. We need a way to treat the elements of $$H$$ and the elements of $$K$$ separately. One way to do this is to use ordered pairs. What we can do is define the set of elements $$H \times K$$ to be 
+<div>
+	$$
+	\begin{align*}
+	 H \times K = \{(h, k) \ | \ h \in H, k \in K\}
+	\end{align*}
+	$$
+</div>
+This way, they stay separate. Additionally, this makes it easier to find the subgroups that we need. For example, we can define
+<div>
+	$$
+	\begin{align*}
+	 H_G = H \times \{e_k\} &= \{(h,e_K) \ | \ h \in H \} \quad \text{with the group product}\\
+	 (h_1, e_K)&(h_2, e_K) = (h_1h_2, e_K)
+	\end{align*}
+	$$
+</div>
+And similarly define $$K_G$$ as
+<div>
+	$$
+	\begin{align*}
+	 K_G = \{e_H\} \times K &= \{(e_H, k) \ | \ h \in H \}  \quad \text{with the group product}\\
+	 (e_H, k_1)&(e_H, k_2) = (e_H, k_1k_2)
+	\end{align*}
+	$$
+</div>
+Using this construction, we can see that $$H_G \cap K_G = \{(e_H,e_K)\}$$. Next, we want to show that $$H_GK_G = G$$. By construction, $$H_GK_G = \{(h,e)(e,k)\}$$. We defined $$G = H \times K$$. What we want is have $$H_GK_G = G = H \times K$$. In other words, we want 
+<div>
+	$$
+	\begin{align*}
+	 H_GK_G &= \{(h,e)(e,k)\} = \{(h,k)\} = H \times K = G \\
+	\end{align*}
+	$$
+</div>
+One way to do this is to define the group $$H \times K$$'s product to be
+<div>
+	$$
+	\begin{align*}
+	(h,e)(e,k) = (h,k)
+	\end{align*}
+	$$
+</div>
+This works and gives us the condition $$H_GK_G = G$$. But this defines the product for these edge cases. What about the product of arbitrary elements $$(h_1,k_1), (h_2,k_2) \in G = H \times K$$.
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) &= (h_1, e)(e, k_1)(h_2, e)(e, k_2) \quad \text{(using the product we defined)} \\
+	                    &=(h_1, e)(e, k_1)(h_2,e)[(e,k_1^{-1})(e,k_1)](e, k_2)
+	\end{align*}
+	$$
+</div>
+Remember that we want $$H$$ to be normal. So we'll use the same trick from the inner product group in the first section and insert $$(e,k_1^{-1})(e,k_1)$$ in the middle. This means that $$(e, k_1)(h_2,e)(e,k_1^{-1}) \in H$$
+<br>
+<br>
+Now recall that conjugation by a element in a group is an automorphism.
+<div>
+	$$
+	\begin{align*}
+	   \gamma: G &\rightarrow Aut(G) \\
+	   \gamma_g(x) &\rightarrow gxg^{-1}
+	\end{align*}
+	$$
+</div>
+What is $$\gamma_{gh}$$?
+<div>
+	$$
+	\begin{align*}
+	   \gamma_{gh}(x) &= ghx(gh)^{-1}  \\
+	                  &= g(hxh^{-1})g^{-1} \\
+					  &= g(\gamma_{h}(x))g^{-1} \\
+					  &= \gamma_g(\gamma_h(x)) \\
+					  &= \gamma_g \circ \gamma_h(x)
+	\end{align*}
+	$$
+</div>
+So $$\gamma$$ is a group homomorphism. So going back to the group $$H \times K$$
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) &=(h_1, e)[(e, k_1)(h_2,e)(e,k_1^{-1})](e,k_1)(e, k_2)
+	\end{align*}
+	$$
+</div>
+We know that $$H_G$$ is normal so if we conjugate any element in $$H_G$$, the map will send it back to $$H_G$$. So define the map
+<div>
+	$$
+	\begin{align*}
+	   \gamma: K &\rightarrow Aut(H) \\
+	   \gamma_k(x) &\rightarrow khk^{-1}
+	\end{align*}
+	$$
+</div>
+We can use this to write the product
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) &=(h_1, e)(\gamma_{k_1}(h_2),e)(e,k_1)(e, k_2)
+	\end{align*}
+	$$
+</div>
+This $$\gamma$$ just describes the conjugation of $$h_2$$ by $$k_1$$. And we already saw that this map is a homomorphism. Moreover, we can see the product above is now 
+<div>
+	$$
+	\begin{align*}
+	 (h_1,k_1)(h_2,k_2) &=(h_1, e)(\gamma_{k_1}(h_2),e)(e,k_1)(e, k_2) \\
+	                    &=(h_1\gamma_{k_1}(h_2), e)(e, k_1k_2) \\
+						&=(h_1\gamma_{k_1}(h_2), k_1k_2)
+	\end{align*}
+	$$
+</div>
+Which is exactly why the semidirect product is defined that way!!!!!!!!!!
 <br>
 <br>
 <hr>

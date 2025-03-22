@@ -347,7 +347,7 @@ We'll prove three important properties about the function $$\alpha_m(G)$$.
 Proposition 1
 </div>
 <div class="peachbodydiv">
-If \(G\) and \(H\) are finite groups and if \(G \cong H\), then by \(\alpha_m(G) = \alpha_m(H)\)
+If \(G\) and \(H\) are finite groups and if \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\)
 </div>
 <!----------------------------------------------------------------------------->
 <br>
@@ -466,7 +466,123 @@ $$G[m] \subseteq G[d]$$: We can also write $$d$$ as $$d = sm + tn$$ for some $$t
 So $$G[m] \subseteq G[d]$$. Therefore, $$G[m] = G[d]$$ and therefore $$\alpha_m(G) = \alpha_d(G)$$.
 <br>
 <br>
-Step (2): We will show that if $$d \ | \ n$$, then $$\alpha_d(\mathbf{Z}_n) = d$$. We can calculate this. We know $$\mathbf{Z}_n = \{[1]_n, [2]_n,...,[n]_n\}$$. If $$1 \leq k \leq n $$, then $$o([k]_n) = gcd(k,n)$$.
+Step (2): We will show that if $$d \ | \ n$$, then $$\alpha_d(\mathbf{Z}_n) = d$$. We can calculate this. We know 
+ <div>
+ 		$$
+ 		\begin{align*}
+ 		\mathbf{Z}_n = \{[1]_n, [2]_n,...,[n]_n\}
+ 		\end{align*}
+ 		$$
+ </div>
+If $$1 \leq k \leq n $$, then $$o([k]_n) = gcd(k,n)$$. (we proved this before). We can use this to show that
+ <div>
+ 		$$
+ 		\begin{align*}
+ 		\mathbf{Z}_n[d] = \{[e]_n, [2w]_n,...,[de]_n\}
+ 		\end{align*}
+ 		$$
+ </div>
+(Exercise). 
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Combining Everything</b></h4>
+So now we have three propositions about $$\alpha_m[G]$$
+<ol>
+	<li>If \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\)</li>
+	<li>If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\alpha_m(G) = \alpha_m(G_1) \cdot \alpha_m(G_2) \ \cdot \ ... \ \cdot \ \alpha_m(G_k)\)</li>
+	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 1\) (Corollary from proposition 3 since the gcd will be 1). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = min(p^l, p^r)\). Note here that the gcd of \(p^l, p^r\) is exactly their minimum.</li>
+</ol>
+We can see now how given a product of elementary divisors, we can compute $$\alpha_m$$ on each factor using the propositions above. However, we're not going to use exactly the function $$\alpha$$. We will instead define the following
+ <div>
+ 		$$
+ 		\begin{align*}
+ 		\beta_{q^l} &= \log_q \big\{ \frac{ \alpha_{q^l}(G)^2 }{ \alpha_{q^{l-1}}(G)\alpha_{q^{l+1}}(G) } \big\} \\
+		            &= 2\log_q \alpha_{q^l}(G) - \log_q \alpha_{q^{l-1}}(G) - \log_q \alpha_{q^{l+1}}(G)
+ 		\end{align*}
+ 		$$
+ </div>
+So now we have the following facts based on the definition of $$\beta$$
+<ol>
+ 	<li>If \(G \cong H\), then \(\beta_{q^l}(G) = \beta_{q^l}(H)\). This is clear since \(\beta\)'s definition is based on \(\alpha\)</li>
+ 	<li>If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\beta_{q^l}(G) = \sum_{i=1}^k \beta_{q^l}(G_i)\)</li>
+ 	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 0\). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = 1\) if \(l = r\) and it is 0 when \(l \neq r\).</li>
+</ol>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
+Suppose that $$G = \mathbf{Z}_{2^4} = \mathbf{Z}_{16}$$. Then
+<table style="max-width: 600px; margin: 20px auto;">
+	<tr>
+		<td>l</td>
+		<td>0</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td>6</td>
+		<td>7</td>
+		<td>8</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>\(2^l\)</td>
+		<td>1</td>
+		<td>2</td>
+		<td>4</td>
+		<td>8</td>
+		<td>16</td>
+		<td>32</td>
+		<td>64</td>
+		<td>128</td>
+		<td>256</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>\(\alpha_{2^l}\)</td>
+		<td>1</td>
+		<td>2</td>
+		<td>4</td>
+		<td>8</td>
+		<td>16</td>
+		<td>16</td>
+		<td>16</td>
+		<td>16</td>
+		<td>16</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>\(\log_2 \alpha_{2^l}(G)\)</td>
+		<td>0</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>4</td>
+		<td>4</td>
+		<td>4</td>
+		<td>4</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>\(\beta_{2^l}(G)\)</td>
+		<td>\</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0</td>
+		<td>1</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0</td>
+	</tr>
+</table>
+This here proves the uniqueness of elementary divisors. Why? if $$G$$ is isomorphic to two products of elementary divisors. The function $$\beta_{q^l}$$ gives us exactly the number of elementary divisors that are equal to $${q^l}$$ in the given product. $$\beta$$ is an isomorphism invariant. So if we're given different products, $$\beta$$ will give different numbers and the products can't be isomorphic.
 <br>
 <br>
 <hr>

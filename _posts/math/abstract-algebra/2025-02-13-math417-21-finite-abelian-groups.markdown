@@ -17,11 +17,11 @@ We'll start with this important fact: <br>
 		\end{align*}
 		$$
 </div>
-Question: How do you factor the trivial group? (you can think of it as a group with no factors). This can be problematic if we have multiple ways to factor this. Meaning that $$G$$ could be isomorphic in more than one way? Recall that the Chinese Remainder Theorem states that
+(Side Note: How do you factor the trivial group? (you can think of it as a group with no factors)). So this fact doesn't lead to a classification. This can be problematic if we have multiple ways to factor this. Meaning that $$G$$ could be isomorphic in more than one way? Recall that the Chinese Remainder Theorem states that
 <br>
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
-Theorem
+Theorem (CRT)
 </div>
 <div class="yellowbodydiv">
 if \(a = a_1a_2...,a_k\) where \(a_1,...,a_k\) are relatively prime and \(a_i \geq 1\). Then
@@ -33,8 +33,7 @@ if \(a = a_1a_2...,a_k\) where \(a_1,...,a_k\) are relatively prime and \(a_i \g
 </div>
 <br>
 <!----------------------------------------------------------------------------->
-For example, $$\mathbf{60} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{15} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{3} \times \mathbf{Z}_{5}$$.
-So how do we know? 
+For example, $$\mathbf{Z}_{60} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{15} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{3} \times \mathbf{Z}_{5}$$. But this doesn't help with classification. For example, if we're given some other product of cyclic groups, how do we know it's isomorphic to a given group? A classification means that we can look at two products of cyclic groups and then be able to know if they are isomorphic to each other or not.
 <br>
 <br>
 <hr>
@@ -44,27 +43,27 @@ So how do we know?
 As a start we have the following classification theorem
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
-Theorem
+Theorem (Elementary Divisors)
 </div>
 <div class="yellowbodydiv">
 Every finite abelian group \(G\) is isomorphic to a group of the following form
 	$$
 	\begin{align*}
-	G \cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} ...\times \mathbf{Z}_{p_k^{r_k}}
+	G \cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}}\times ...\times \mathbf{Z}_{p_k^{r_k}}
 	\end{align*}
 	$$
-where \(k \geq 0, r_1 \geq 1, p_1,p_2,...,p_k\) are primes.
+where \(k \geq 0, r_1 \geq 1, p_1,p_2,...,p_k\) are primes. (not necessarily distinct)
 <br>
 <br>
 Furthermore, the list \(p_1^{r_1}, p_2^{r_2}, ..., p_k^{r_k}\) of elementary divisors is unique up to re-ordering.
 </div>
 <!----------------------------------------------------------------------------->
 <br>
-So if $$G$$ is isomorphic to only one direct product of cyclic prime orders. This means that if $$G$$ is isomorphic to a direct products of prime orders and it's also isomorphic to another list of direct products of prime orders. Then, the prime numbers must be exactly the same up to re-ordering. 
+So $$G$$ is isomorphic to only one direct product of cyclic prime orders (up to re-ordering). This means that if $$G$$ is isomorphic to a direct products of prime orders and it's also isomorphic to another direct products of prime orders. Then, the prime numbers must be exactly the same up to re-ordering. 
 <br>
 <br>
 <!----------------------------------------------------------------------------->
-For example, if $$|G| = 24$$ and $$G$$ is abelian. 24 has the prime factorization $$24 = 2 \times 2 \times 2 \times 3$$. Thus, $$G$$ is isomorphic to one of the following
+Example. Suppose $$|G| = 24$$ and that $$G$$ is abelian. 24 has the prime factorization $$24 = 2 \times 2 \times 2 \times 3$$. Thus, $$G$$ is isomorphic to one of the following
 <ol>
 	<li>\(\mathbf{Z}_{2^{3}} \times \mathbf{Z}_{3^{1}}\). Note here that this group is cyclic by the Chinese Remainder Theorem since \(8\) and \(3\) are relatively prime.</li>
 	<li>\(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \)</li>
@@ -78,7 +77,7 @@ For example, if $$|G| = 24$$ and $$G$$ is abelian. 24 has the prime factorizatio
 We have another classification Theorem. 
 <br>
 <div class="yellowheaderdiv">
-Theorem
+Theorem (Invariant Factor Form)
 </div>
 <div class="yellowbodydiv">
 Every finite abelian group \(G\) is isomorphic to a group of the following form
@@ -89,35 +88,114 @@ Every finite abelian group \(G\) is isomorphic to a group of the following form
 	$$
 where \(s \geq 0, a_1 \geq 2\) and \(a_i \ | \ a_{i+1}\).
 <br>
-<br>
 Furthermore, the list \(a_1, a_2,...,a_s\) of "Invariant Factors" is unique.
 </div>
 <!----------------------------------------------------------------------------->
 <br>
-So if we look at the previous example, we can see that
+Note that we don't need to add up to re-ordering here since the condition $$a_i \ | \ a_{i+1}$$ forces it to be in one particular unique order.
+<br>
+<br>
+Example: If we take the same $$G$$ as before where $$|G|=24$$, then we $$G$$ is isomorphic to one of the following:
+<ol>
+	<li>\(\mathbf{Z}_{24}\).</li>
+	<li>\(\mathbf{Z}_{2} \times \mathbf{Z}_{12}\). Note how each factor divides the factor coming after it. </li>
+	<li>\(\mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\). Same here 2 divides 2 and then the next 2 divides 6</li>
+</ol>
+Notice how this theorem gave us three possibilities and the previous theorem gave us another three possibilities. In fact, there is a correspondance between the elementary divisors and the invariant factors.
 <ol>
 	<li>\(\mathbf{Z}_{2^{3}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{24}\).</li>
-	<li>\(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{12}\). Note how each factor divides the factor coming after it. </li>
-	<li>\(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\). Same here 2 divides 2 and then the next 2 divides 6</li>
+	<li>\(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{12}\). </li>
+	<li>\(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\).</li>
 </ol>
 <!----------------------------------------------------------------------------->
-Also note that if have the invariant factors decomposition, then we can easily convert back to the elementary divisor decomposition. For example, suppose that $$G$$ is finite abelian with invariant factors $$5,25,50,36000$$. Then
-<ol>
-	<li>\(5 = 5 \times 1, \quad \mathbf{Z}_5 \cong \mathbf{Z}_5\)</li>
-	<li>\(25 = 5^2, \quad \mathbf{Z}_5 \cong \mathbf{Z}_{5^2}\)</li>
-	<li>\(50 = 2^1 \times 5^2, \quad \mathbf{Z}_{50} \cong \mathbf{Z}_{2^1} \times \mathbf{Z}_{5^2}\)</li>
-	<li>\(36000 = 2^5 \times 3^2 \times 5^3, \quad \mathbf{Z}_{36000} \cong \mathbf{Z}_{2^5} \times \mathbf{Z}_{3^2} \times \mathbf{Z}_{5^3}\)</li>
-</ol>
-So $$G$$ is isomorphic to both
+We will prove both theorems later but the idea is that we're going to prove the existence of invariant factors first and then we're going to prove the uniqueness of the elementary divisors. This is enough because if we have an invariant factor decomposition, then we can always turn it into its elementary divisors decomposition. To see, we'll do an example next.
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
+Suppose $$G$$ is finite abelian with invariant factors: $$5,25,50,36000$$. So $$G$$ is isomorphic to
 <div>
-	$$
-	\begin{align*}
-	G &\cong \mathbf{Z}_{5} \times \mathbf{Z}_{25} \times \mathbf{Z}_{30} \times \mathbf{Z}_{36000} \\
-	  &\cong \mathbf{Z}_{2^6} \times \mathbf{Z}_{3^2} \times \mathbf{Z}_{5^8}
-	\end{align*}
-	$$
+		$$
+		\begin{align*}
+		G \cong \mathbf{Z}_{5} \times \mathbf{Z}_{25} \times \mathbf{Z}_{50} \times \mathbf{Z}_{36000}
+		\end{align*}
+		$$
 </div>
-We can also start with the elementary divisors and get the invariant factors from them. We do this by stacking the highest powers of divisors at the bottom. So in the following table. $$5^3$$ is the at the bottom of the column, then we have $$5^2$$ and then $$5^2$$ and so on. After stacking all the divisors, we can multiply the divisors in each row to get the actual list of invariant factors.
+Now, we can take each of these invariant factors and factor into primes.
+<table style="max-width: 350px; margin: 20px auto;">
+	<tr>
+		<td>5</td>
+		<td></td>
+		<td></td>
+		<td>\(5^1\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>25</td>
+		<td></td>
+		<td></td>
+		<td>\(5^2\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>50</td>
+		<td>\(2^1\)</td>
+		<td></td>
+		<td>\(5^2\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>36000</td>
+		<td>\(2^5\)</td>
+		<td>\(3^2\)</td>
+		<td>\(5^3\)</td>
+	</tr>
+</table>
+This in fact gives us the elementary divisors. How? Observe that
+<table style="max-width: 600px; margin: 20px auto;">
+	<tr>
+		<td>5</td>
+		<td></td>
+		<td></td>
+		<td>\(5^1\)</td>
+		<td>\(\mathbf{Z}_5 \cong \mathbf{Z}_5\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>25</td>
+		<td></td>
+		<td></td>
+		<td>\(5^2\)</td>
+		<td>\(\mathbf{Z}_{25} \cong \mathbf{Z}_{5^2}\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>50</td>
+		<td>\(2^1\)</td>
+		<td></td>
+		<td>\(5^2\)</td>
+		<td>\(\mathbf{Z}_{50} \cong \mathbf{Z}_{5^2} \times \mathbf{Z}_{2^1} \) (By CRT)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>36000</td>
+		<td>\(2^5\)</td>
+		<td>\(3^2\)</td>
+		<td>\(5^3\)</td>
+		<td>\(\mathbf{Z}_{36000} \cong \mathbf{Z}_{2^5} \times \mathbf{Z}_{3^2} \times \mathbf{Z}_{5^3}\) (By CRT)</td>
+	</tr>
+</table>
+The first column is the invariant factors while the next three are the elementary divisors. We can also start with the elementary divisors and then get the invariant factors from them. So suppose $$G$$ has elementary divisors:
+<div>
+		$$
+		\begin{align*}
+		2^1, 2^3, 3^2, 5^1, 5^2, 5^2, 5^3
+		\end{align*}
+		$$
+</div>
+We can recover the invariant factors by stacking the highest powers of divisors at the bottom. So in the following table. $$5^3$$ is the at the bottom of the column, then we have $$5^2$$ and then $$5^2$$ and so on. After stacking all the divisors, we can multiply the divisors in each row to get the actual list of invariant factors.
 <table style="max-width: 500px; margin: 20px auto;">
 	<tr>
 		<td>5</td>
@@ -147,6 +225,249 @@ We can also start with the elementary divisors and get the invariant factors fro
 		<td>\(5^3\)</td>
 	</tr>
 </table>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Elementary Divisor Classification Proof Plan</b></h4>
+We have two aspects. Existence and Uniqueness. We will show uniqueness first. We want to show if
+<div>
+		$$
+		\begin{align}
+		G &\cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} \times ... \times \mathbf{Z}_{p_k^{r_k}}, \quad \text{and} \\ 
+		G &\cong \mathbf{Z}_{q_1^{s_1}} \times \mathbf{Z}_{q_2^{s_2}} \times ... \times \mathbf{Z}_{q_l^{s_l}}, 
+		\end{align}
+		$$
+</div>
+then the lists $$p_1^{r_1},...,p_k^{r_k}$$ and $$q_1^{s_1},...,q_l^{s_l}$$ are the same up to reordering. So lists like $$2^1,3^3,3^3,5^4$$ and $$3^3,2^1,5^4,3^3$$ ar the same. But we know that if $$G$$ is isomorphic to both products, then both products are isomorphism to each other. So we really just want to show 
+<div>
+		$$
+		\begin{align*}
+		&\mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} \times ... \times \mathbf{Z}_{p_k^{r_k}}, \quad \text{and} \\ 
+		&\mathbf{Z}_{q_1^{s_1}} \times \mathbf{Z}_{q_2^{s_2}} \times ... \times \mathbf{Z}_{q_l^{s_l}}, 
+		\end{align*}
+		$$
+</div>
+and we don't have to worry about $$G$$. Now, we've seen before that if two groups are isomorphic, then the order of the elements in both groups must match up. We can't use this fact to prove that two groups are isomorphic (though it can give us a clue). However, we can use it to show that groups are not isomorphic. So if they the orders don't match up, then we can conclude that the given groups are not isomorphic. So the plan here is to count the orders of the elements in both of the products and if the numbers don't match up, then these products are different. Though, we're not going to use the order directly as the formula gets too complicated. We'll use something slightly different, defined as follows
+<br>
+<!----------------------------------------------------------------------------->
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Define the subset \(G[m]: \{g \in G \ | \ g^m = e \} = \{g \in G \ | \ o(g) \ | \ m  \text{ and } o(g) < \infty \}\)
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+Also define for finite groups
+<br>
+<!----------------------------------------------------------------------------->
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Define \(\alpha_m \rightarrow \mathbf{N}\) by \(\alpha_m(G) = |G[m]| \)
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+Note that $$G[m]$$ doesn't need to be a subgroup but if $$G$$ is abelian, then $$G[m] \leq G$$.
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
+Suppose we have $$G = \{0,1,2,3,4,5,7\}$$. Then, the orders of the elements are
+<table style="max-width: 500px; margin: 20px auto;">
+	<tr>
+		<td>m</td>
+		<td>0</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td>6</td>
+		<td>7</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>order</td>
+		<td>1</td>
+		<td>8</td>
+		<td>4</td>
+		<td>8</td>
+		<td>2</td>
+		<td>8</td>
+		<td>4</td>
+		<td>8</td>
+	</tr>
+</table>
+Let's now compute the number of elements in each $$\alpha_m(G)$$
+<table style="max-width: 600px; margin: 20px auto;">
+	<tr>
+		<td>m</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td>6</td>
+		<td>7</td>
+		<td>8</td>
+		<td>9</td>
+		<td>11</td>
+		<td>16</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>\(\alpha_m(G)\)</td>
+		<td>1</td>
+		<td>2</td>
+		<td>1</td>
+		<td>4</td>
+		<td>1</td>
+		<td>2</td>
+		<td>1</td>
+		<td>8</td>
+		<td>1</td>
+		<td>1</td>
+		<td>8</td>
+	</tr>
+</table>
+Note that $$\alpha_3(G) = 1$$ and that 3 and 8 are relatively prime. $$\alpha_6(G) = 2$$ because only 0 and 4 have orders that divide 6.
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Three Properties of \(\alpha_m(G)\)</b></h4>
+We'll prove three important properties about the function $$\alpha_m(G)$$.
+<br>
+<div class="peachheaderdiv">
+Proposition 1
+</div>
+<div class="peachbodydiv">
+If \(G\) and \(H\) are finite groups and if \(G \cong H\), then by \(\alpha_m(G) = \alpha_m(H)\)
+</div>
+<!----------------------------------------------------------------------------->
+<br>
+We say that $$\alpha_m$$ is an isomorphism invariant of finite groups. Recall that $$\alpha_m$$ is the number of elements that are the identity when raised to the power $$m$$. So this says if $$G$$ and $$H$$ isomorphic, then they'll have the same number of those elements. This makes sense since we know if they are isomorphic, then each group will have the same number of elements of each order. The orders must match.
+<br>
+<br>
+<b>Proof</b>
+<br>
+Let $$\phi: G \rightarrow H$$ be an isomorphism. We claim that $$\phi$$ restricts to a bijection $$G[m] \rightarrow H[m]$$. This would immediately apply that $$\alpha_m(G) = \alpha_m(H)$$.
+<br>
+<br>
+$$\phi$$ restricts to a function
+<div>
+		$$
+		\begin{align*}
+		G[m] \rightarrow H[m] \\
+		g \rightarrow \phi(g)
+		\end{align*}
+		$$
+</div>
+We want to show that if $$g \in G[m]$$, then $$\phi(g) \in H[m]$$. Suppose that $$g^m = e$$. Observe that 
+<div>
+		$$
+		\begin{align*}
+		\phi(g)^m &= \phi(g^m) \quad \text{(because $\phi$ is a homomorphism)} \\
+		          &= \phi(e_g) \quad \text{(by the assumption)} \\
+				  &= e_H
+		\end{align*}
+		$$
+</div>
+Therefore, $$\phi(g) \in H[m]$$. Now, since $$\phi$$ is an isomorphism, then the inverse function $$\phi^{-1}: H \rightarrow G$$ is also an isomorphism. We can use a similar argument to show that $$\phi^{-1}$$ restricts to a function
+<div>
+		$$
+		\begin{align*}
+		H[m] \rightarrow G[m]
+		x \rightarrow \phi^{-1}(x)
+		\end{align*}
+		$$
+</div>
+Therefore, the restricted function $$G[m] \rightarrow H[m]$$ is a bijection. $$\ \blacksquare$$
+<br>
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition 2
+</div>
+<div class="peachbodydiv">
+If \(G = G_1 \times G_2 \times ... \times G_k\) where \(G_i\) is a finite group, then 
+	$$
+	\begin{align*}
+	\alpha_m(G) = \alpha_m(G_1) \cdot \alpha_m(G_2) \ \cdot \ ... \ \cdot \ \alpha_m(G_k)
+	\end{align*}
+	$$
+</div>
+<!----------------------------------------------------------------------------->
+<br>
+<b>Proof</b>
+Since now we have a direct product, then 
+<div>
+		$$
+		\begin{align*}
+		G[m]: \{(g_1,g_2,...,g_k), g_i \in G_i \ | \ (g_1,g_2,...,g_k)^m = (e,e,...,e) \} 
+		\end{align*}
+		$$
+</div>
+But we know that multiplication in a direct product is component wise so $$(g_1,g_2,...,g_k)^m = (g_1^m,g_2^m,...,g_k^m)$$. This implies that $$g_1 \in G_1[m]$$ if $$g_1^m = e$$ and so on for each component. Therefore, we can write $$G[m] = G_1[m] \times ... \times G_k[m]$$. The size of this set is $$|G_1[m]| \times ... |G_k[m]|$$ which is what we wanted to show.
+<br>
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition 3
+</div>
+<div class="peachbodydiv">
+If \(G = \mathbf{Z}_n\) (G is cyclic) where \(n \geq 1\), then 
+	$$
+	\begin{align*}
+	\alpha_m(\mathbf{Z}_n) = d \quad \text{ where } d = gcd(m,n)
+	\end{align*}
+	$$
+</div>
+<!----------------------------------------------------------------------------->
+<br>
+So when the group is cyclic, then the number of elements which become the identity when raised to the power $$m$$ is exactly $$d$$ where $$d$$ is the gcd of $$m$$ and $$n = |G|$$.
+<br>
+<br>
+<b>Proof</b>
+<br>
+Step (1): We will show that if $$G$$ is a group (even if not cyclic) such that $$|G| = n$$, then $$\alpha_m(G) = \alpha_d(G)$$ where $$d = gcd(m,n)$$. In fact, not only do $$G[m]$$ and $$G[d]$$ have the same size, we will show that they are exactly the same subset so $$G[m] = G[d]$$. Recall that
+ <div>
+ 		$$
+ 		\begin{align*}
+ 		G[m]: \{g \in G \ | \ g^m = e \} \\
+		 G[d]: \{g \in G \ | \ g^d = e \} \\
+ 		\end{align*}
+ 		$$
+ </div>
+$$G[d] \subseteq G[m]$$:
+Since $$d = gcd(m,n)$$, then $$d \ | \ m$$ and $$m = ds$$ for some $$s \in \mathbf{Z}$$. Suppose that $$g^d = e$$, then
+ <div>
+ 		$$
+ 		\begin{align*}
+ 		g^m = g^{ds} = (g^d)^s = e^s = e.
+ 		\end{align*}
+ 		$$
+ </div>
+<br>
+<br>
+$$G[m] \subseteq G[d]$$: We can also write $$d$$ as $$d = sm + tn$$ for some $$t, n \in \mathbf{Z}$$. Since $$|G| = n$$, then we know that $$g^n = e$$ for any $$g \in G$$ by the order theorem. So suppose that $$g^m = e$$, then 
+ <div>
+ 		$$
+ 		\begin{align*}
+ 		g^d = g^{sm + tn} = g^{sm} g^{tn} = (g^m)^s (g^n)^t = e.
+ 		\end{align*}
+ 		$$
+ </div>
+So $$G[m] \subseteq G[d]$$. Therefore, $$G[m] = G[d]$$ and therefore $$\alpha_m(G) = \alpha_d(G)$$.
+<br>
+<br>
+Step (2): We will show that if $$d \ | \ n$$, then $$\alpha_d(\mathbf{Z}_n) = d$$. We can calculate this. We know $$\mathbf{Z}_n = \{[1]_n, [2]_n,...,[n]_n\}$$. If $$1 \leq k \leq n $$, then $$o([k]_n) = gcd(k,n)$$.
+<br>
 <br>
 <hr>
 <br>

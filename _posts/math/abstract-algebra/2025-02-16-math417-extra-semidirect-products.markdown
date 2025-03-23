@@ -229,9 +229,130 @@ Which is exactly why the semidirect product is defined that way!!!!!!!!!!
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
+<h4><b>Example</b></h4>
+Take $$D_{2n}$$. We need to find two subgroups that are complements in $$D_{2n}$$. The subgroups are $$\langle r \rangle$$ and $$\langle s \rangle$$ are complements in $$D_{2n}$$. To see why. 
+<ul>
+	<li>\(\langle r \rangle \langle s \rangle = D_{2n}\). Every element in \(D_{2n}\) can be written as \(r^ke \in \langle r \rangle\) or \(r^ks \in \langle s \rangle\). </li>
+	<li>\(\langle r \rangle \cap \langle s \rangle = \{e\}\). But we know that \(\langle s \rangle = \{s, e\}\) and we know that \(s \not\in \langle r \rangle\) so we're done.</li>
+</ul>
+So they are complements. The last condition we need is that one of the subgroups is normal. But we know that $$\langle r \rangle$$ is normal. (We've shown this before).
+<br>
+<br>
+Since we have all the conditions, then we can write 
+<div>
+	$$
+	\begin{align*}
+	D_{2n} \cong \langle r \rangle \rtimes_{\gamma} \langle s \rangle
+	\end{align*}
+	$$
+</div>
+The product will be
+<div>
+	$$
+	\begin{align*}
+	(r^a, h_1)(r^b, h_2) = (r^{a}(h_1r^bh_1^{-1}), h_1h_2)
+	\end{align*}
+	$$
+</div>
+Since we know how to multiply elements in the dihedral group, this gives us a complete description of the semidirect product. But we can further describe this multiplication more abstractly if we let
+<div>
+	$$
+	\begin{align*}
+    h_1r^bh_1^{-1} &=  \gamma_{h_1}(r^b)
+	\end{align*}
+	$$
+</div>
+This is the $$\gamma$$ in the semidirect product above. $$\gamma$$ tells us how to conjugate the elements. So if we define $$\gamma$$ for each of the elements in both subgroups, then this gives us a way to abstract the multiplication. Since we only have two elements in $$\langle s \rangle$$, then we can list what $$\gamma$$ does for each element
+<div>
+	$$
+	\begin{align*}
+     \gamma_{e}(r^b) &= er^be^{-1} = r^b. \\
+	 \gamma_{s}(r^b) &= sr^bs^{-1} = (r^{-b}s)s^{-1} = r^{-b}.
+	\end{align*}
+	$$
+</div>
+This gives up a complete description of the conjugation without ever talking about the actual multiplication. So now we can re-write the product as 
+<div>
+	$$
+	\begin{align*}
+    (r^a, h_1)(r^b, h_2) = (r^{a}\gamma_{h_1}(r^b), h_1h_2)
+	\end{align*}
+	$$
+</div>
+The big reason that we want to replace the conjugation with $$\gamma$$ though is we don't have elements multiplying between the two subgroups. This means that we can further abstract this with different groups that are isomorphic to the subgroups we have. In particular, we know that in $$D_{2n}$$, $$\langle r \rangle \cong \mathbf{Z}_n$$. The isomorphism is given by
+<div>
+	$$
+	\begin{align*}
+    \langle r \rangle &\rightarrow \mathbf{Z}_n \\
+	               r^k  &\rightarrow k 
+	\end{align*}
+	$$
+</div>
+Similarly $$\langle s \rangle \mathbf{Z}_2$$. The isomorphism is given by 
+<div>
+	$$
+	\begin{align*}
+    \langle s \rangle &\rightarrow \mathbf{Z}_2 \\
+	               e  &\rightarrow 0 \\
+				   s &\rightarrow 1
+	\end{align*}
+	$$
+</div>
+So now we can take the semidirect product that we have and replace $$\langle r \rangle$$ and $$\langle s \rangle$$ with their isomorphic groups $$\mathbf{Z}_n$$ and $$\mathbf{Z}_2$$. So we can re-write the semidirect product as
+<div>
+	$$
+	\begin{align*}
+	D_{2n} \cong \mathbf{Z}_n \rtimes_{\gamma} \mathbf{Z}_2
+	\end{align*}
+	$$
+</div>
+So now, the elements will no longer be $$(r^k, h)$$. Instead, they will be their images under the isomorphisms we designed. So instead of writing $$r^k$$, we will write its image $$k$$ and instead of writing $$e$$ or $$s$$, we will write 0 or 1. So
+<div>
+	$$
+	\begin{align*}
+	D_{2n} &\cong \mathbf{Z}_n \rtimes_{\gamma} \mathbf{Z}_2 \\
+	(r^k, h)    &\rightarrow          (a, x)
+	\end{align*}
+	$$
+</div>
+And the product will be
+<div>
+	$$
+	\begin{align*}
+	(r^a, h_1)(r^b, h_2) &= (r^{a}\gamma_{h_1}(r^b), h_1h_2) \\
+	               &\rightarrow \\
+   (a, x)(b, y) &= (a+\gamma_{x}(b), x+y)
+	\end{align*}
+	$$
+</div>
+Note here that the group operation is now addition! The last thing we need to do is define what this new $$\gamma$$ is. This will be easy since we can take the $$\gamma$$ we already defined and change it to 
+<div>
+	$$
+	\begin{align*}
+     \gamma_{0}(b) &= b. \\
+	 \gamma_{1}(b) &= -b.
+	\end{align*}
+	$$
+</div>
+To further see how this works, it's helpful to look at more examples of how the multiplication works in the older semidirect vs. the new one.
+<div>
+	$$
+	\begin{align*}
+	(r^4, e)(r^3, s) &= (r^4\gamma_{e}(r^3), se) = (r^4(r^3), s) = (r^7, s)  \\
+	               &\rightarrow \\
+   (4, 0)(3, 1) &= (4+\gamma_{0}(3), 0+1) = (7, 1)
+	\end{align*}
+	$$
+</div>
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
 <h4><b>References</b></h4>
 <ul>
-	<li><a href="https://www.youtube.com/watch?v=Pat5Qsmrdaw">Semidirect Products</a></li>
+	<li><a href="https://www.youtube.com/watch?v=Pat5Qsmrdaw">Semidirect Products Derivation</a></li>
+	<li><a href="https://www.youtube.com/watch?v=DvclxOaWbJM">Semidirect Products Example</a></li>
 </ul>
 
 

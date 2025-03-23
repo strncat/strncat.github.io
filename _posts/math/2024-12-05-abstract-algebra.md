@@ -160,7 +160,14 @@ mathjax: true
 	   <!-------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html">
-       Lecture 21: Finite Abelian Groups
+       Lecture 21/22: Finite Abelian Groups
+       </a></li>
+	   <!-------------->
+	   <!------21------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/17/math417-23-invariant-factor-decompositions.html">
+       Lecture 23: Invariant Factor Decompositions
        </a></li>
 	   <!----------------->
 	   <!------EXTRA------>

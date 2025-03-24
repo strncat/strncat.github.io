@@ -167,7 +167,7 @@ mathjax: true
 	   <!-------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/17/math417-23-invariant-factor-decompositions.html">
-       Lecture 23: Invariant Factor Decompositions
+       Lecture 23/24: Invariant Factor Decompositions
        </a></li>
 	   <!----------------->
 	   <!------EXTRA------>

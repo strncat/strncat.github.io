@@ -5,7 +5,7 @@ date:   2025-02-17 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-We previously proved the uniqueness of an elementary divisor decomposition. Today, we want to prove the existence of an elementary divisor decomposition. To do this, we will show instead the existence of the invariant factor decomposition. But when show this, it turns out that it implies something for a larger class of abelian groups which are the finitely generated abelian groups.
+We previously proved the uniqueness of an elementary divisor decomposition. Today, we want to prove the existence of the elementary divisor decomposition. To do this, we will show instead the existence of the invariant factor decomposition. But when we show this, it turns out that it implies something for a larger class than just finite abelian groups. It's going to imply this any finitely generated abelian groups.
 <br>
 <!----------------------------------------------------------------------------->
 <div class="mintheaderdiv">
@@ -22,6 +22,7 @@ Examples:
 <li>\(D_{\infty} = \langle r, j \rangle\)</li>
 <li>\((\mathbf{Q},+)\), the group of rational numbers with addition is not finitely generated.</li>
 </ul>
+We also have the following fact
 <br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
@@ -31,7 +32,506 @@ Proposition
 If \(G \cong H\), \(G\) is finitely generated if and only if \(H\) is finitely generated.
 </div>
 <!----------------------------------------------------------------------------->
-So being finitely generated is isomorphic invariant.
+<br>
+So being finitely generated is isomorphic invariant. What we want to prove is the following
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(G\) is finitely generated, abelian, then
+	$$
+	\begin{align*}
+	G \cong \mathbf{Z}/\mathbf{Z}_{d_1} \times \mathbf{Z}/\mathbf{Z}_{d_2} \times ... \times \mathbf{Z}/\mathbf{Z}_{d_k}  
+	\end{align*}
+	$$
+For some \(d_1,...,d_k \geq 0, k \geq 0, d_i \ | \ d_{i+1}\)
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+Example: Suppose $$G$$ has $$d_i = 1,3,12,12,720,0,0$$ Then
+<div>
+	$$
+	\begin{align*}
+	G &\cong \mathbf{Z}/\mathbf{Z}_{1} \times \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12}  \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z}/\mathbf{Z}_{0} \times \mathbf{Z}/\mathbf{Z}_{0} \\
+	&\cong  \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12}  \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z} \times \mathbf{Z}  \\
+	&\cong  \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12}  \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z}^2
+	\end{align*}
+	$$
+</div>
+When we prove this theorem, then for finite abelian groups, we won't have terms like $$\mathbf{Z}$$ since they are finite. So we will get exactly the invariant factor form out of this. So this proposition will essentially give us the existence of invariant factor decomposition. It will take this lecture and probably the next lecture
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Proving the Existence of Invariant Factor Decomposition Plan</b></h4>
+So now we want to describe the steps involved in this proof:
+
+<ol>
+	<!-------------------STEP 1--------------------->
+	<li> If \(G\) is finitely generated and abelian, then we will see that
+		<div>
+			$$
+			\begin{align*}
+			G &\cong \mathbf{Z}^m/N \text{ where } \mathbf{Z}^m = \mathbf{Z} \times ... \times \mathbf{Z}
+			\end{align*}
+			$$
+		</div>
+		In fact, what we will really show is that there exists a surjective homomorphism
+		<div>
+			$$
+			\begin{align*}
+			\phi: \mathbf{Z}^m \rightarrow G
+			\end{align*}
+			$$
+		</div>
+		Since we have a surjective homomorphism, we can then use the isomorphism theorem to conclude that 
+		<div>
+			$$
+			\begin{align*}
+			G \cong \mathbf{Z}^m / (N = ker(\phi))
+			\end{align*}
+			$$
+		</div>
+	</li>
+	<!-------------------STEP 2--------------------->
+	<li>We want to know something about the subgroup \(N\). So we will show that every subgroup of \(\mathbf{Z}^m\) is finitely generated (won't be easy) and abelian. As a consequence, we will get that there exists a surjective homomorphism
+	<div>
+		$$
+		\begin{align*}
+		\mathbf{Z}^n \xrightarrow{\rho} N \xrightarrow{i} \mathbf{Z}^m
+		\end{align*}
+		$$
+	</div>
+	From this we can form the composite homomorphism \(\alpha = i \circ \rho\) between \(\mathbf{Z}^n\) and \(\mathbf{Z}^m\).<br>
+	Notice above that the subgroup \(N\) must be the image of \(alpha\) so \(N = \alpha(\mathbf{Z}^n)\). So, now we can re-write what we have to be
+	<div>
+		$$
+		\begin{align*}
+		 G \cong \mathbf{Z}^m / \alpha(\mathbf{Z}^n)
+		\end{align*}
+		$$
+	</div>
+	For some homomorphism \(\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m\). We still don't know what \(\alpha\) is but now the question of understanding finitely generated abelian can be reduced to a question of understanding homomorphisms.
+	</li>
+	<!-------------------STEP 3--------------------->
+	<li>Every homomorphism \(\alpha: \mathbf{Z}^m \rightarrow \mathbf{Z}^n\) is of the form
+		<div>
+			$$
+			\begin{align*}
+			 L_A: \ &\mathbf{Z}^n \rightarrow \mathbf{Z}^m \\
+			      &L_A(x) = Ax
+			\end{align*}
+			$$
+		</div>
+	where \(A \in Mat_{m \times n}(\mathbf{Z})\) and \(x = [x_1 \ x_2 \ ... \ x_n]^T \in \mathbf{Z}_n, x_i \in \mathbf{Z} \).
+	<br>
+	So any homomorphism from \(\mathbf{Z}^n \rightarrow \mathbf{Z}^m\) can be written as a left multiplication by a matrix \(A\). So now we can write
+	<div>
+		$$
+		\begin{align*}
+		 G \cong \mathbf{Z}^m / L_A(\mathbf{Z}^n)
+		\end{align*}
+		$$
+	</div>
+	So we're reducing the problem to linear algebra over the integers.
+	</li>
+	<!-------------------STEP 4--------------------->
+	<li>Say \(P \in Mat_{n \times n}(\mathbf{Z})\) is integer invertible if \(P^{-1}\) exists and \(P^{-1} \in Mat_{n \times n}(\mathbf{Z}) \).<br> Then,
+			
+	if \(B = PAQ\), where \(P, Q\) are integer invertible, then
+	<div>
+		$$
+		\begin{align*}
+		 G \cong \mathbf{Z}^m / L_A(\mathbf{Z}^n) \cong \mathbf{Z}^m / L_B(\mathbf{Z}^n)
+		\end{align*}
+		$$
+	</div>
+	The goal is that if we didn't want \(A\) or \(A\) wasn't in the right form, we can put it in standard form (smith normal form) and use a matrix that we want.
+	</li>
+	<!-------------------STEP 5--------------------->
+	<li>A matrix \(D \in Mat_{m \times n}(\mathbf{Z})\) is a Smith normal form if
+	<div>
+		$$
+		\begin{align*}
+		D = 
+		\begin{pmatrix}
+		d_1 & 0 & \cdots & 0 & 0 \\
+		0 & d_2 & \ddots & \ddots & 0 \\
+		0 & \vdots & \ddots & \ddots & 0 \\
+		0 & 0 & 0 & d_s & 0 \\
+		\end{pmatrix}
+		\end{align*}
+		$$
+	</div>
+	where \(d_i \geq 0\) and \(d_i \ | \ d_{i+1}\). Since, it doesn't need to be a square matrix, then the last column(s) might just be zero. <br>
+	If we have this, then the claim is that
+	<div>
+		$$
+		\begin{align*}
+		\mathbf{Z}^m / L_D(\mathbf{Z}^n) \cong \mathbf{Z}/\mathbf{Z}_{d_1} \times \mathbf{Z}/\mathbf{Z}_{d_2} \times ... \times \mathbf{Z}/\mathbf{Z}_{d_s} \times \mathbf{Z}^{m-s}  
+		\end{align*}
+		$$
+	</div>
+	</li>
+	<!-------------------STEP 6--------------------->
+	<li>For every \(A \in Mat_{n \times n}(\mathbf{Z})\) there exists a integer invertible \(P, Q\), such that
+	\(D = PAQ\) is a Smith normal form. This implies that
+	<div>
+		$$
+		\begin{align*}
+		 G \cong \mathbf{Z}^m / L_A(\mathbf{Z}^n) \cong \mathbf{Z}^m / L_D(\mathbf{Z}^n)
+		\end{align*}
+		$$
+	</div>
+</li>
+</ol>
+So what we did here is that we turned the problem into a problem about quotients by the image of a homomorphism that looked liked a left multiplication by a matrix. And then we took this matrix and put it in a Smith normal form. This leads to the form we want.
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Using Addition instead of Multiplication for the Proof</b></h4>
+We have an abelian group $$G$$. The standard so far has been writing the group with multiplication but since we're going to turn to linear algebra, we're going to switch to addition.
+
+<table style="max-width: 300px; margin: 20px auto;">
+	<tr>
+		<td></td>
+		<td>multiplicative</td>
+		<td>additive</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td></td>
+		<td>\(ab\)</td>
+		<td>\(a+b\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td></td>
+		<td>\(e\)</td>
+		<td>\(0\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td></td>
+		<td>\(a^{-1}\)</td>
+		<td>\(-a\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>\(n \in \mathbf{Z}, a \in G\)</td>
+		<td>\(a^{n}\)</td>
+		<td>\(na\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>\(n_i \in \mathbf{Z}, a_i \in G\)</td>
+		<td>\(a^{n_1}_1a^{n_2}_2...a^{n_k}_k\)</td>
+		<td>\(n_1a_1 + n_2a_2 + ... + n_ka_k\)</td>
+	</tr>
+	<!------------------>
+	<tr>
+		<td>\(N \subseteq G\)</td>
+		<td>\(aN\)</td>
+		<td>\(a + N\)</td>
+	</tr>
+</table>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Proof Setup: Definitions</b></h4>
+Before starting with the proof, we need some setup, starting with this definition.
+<br>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+If \(G\) is an abelian group with addition. A subset \(S \subseteq G\) is linearly independent if \(\forall \ a_1,...,a_n \in S\) and \(\forall \ c_1,...,c_n \in \mathbf{Z}\), If 
+		$$
+		\begin{align*}
+		 c_1a_1 + ... + c_na_n = 0
+		\end{align*}
+		$$
+then, \(c_1 = ... =c_n = 0\).
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+In Vector Spaces, the $$c_i$$s are scalars.
+<br>
+<br>
+Example: Suppose $$S \subseteq G$$ and $$S = \{a\}$$. What does it mean for $$S$$ to be linearly independent? <br>
+From the definition, $$S$$ is linearly indenpendent if
+<div>
+	$$
+	\begin{align*}
+	\forall c \in \mathbf{Z}, \quad ca = 0
+	\end{align*}
+	$$
+</div>
+Then this implies that $$c = 0$$. So no matter what $$c$$ is if $$ca = 0$$ only implies that $$c = 0$$. So $$a$$ must have infinite order ($$o(a) = \infty$$). This isn't the same for subsets with more than 1 element. <br>
+We also have the notion of a basis
+<!----------------------------------------------------------------------------->
+<br>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+A basis \(B\) of \(G\) is a subset \(B \subseteq G\) which is linearly independent and generates \(G\)
+		$$
+		\begin{align*}
+		 G = \langle B \rangle = \mathbf{Z}B = \{ c_1x_1 + ... + c_nx_n \ | \ c_i \in \mathbf{Z}, x_i \in B \}
+		\end{align*}
+		$$
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+Example 1: $$\{1\}$$ is a basis for $$\mathbf{Z}$$
+<br>
+<br>
+Example 2: $$\mathbf{Z}_n$$ has no basis. Why? we can't have non-empty linear independent. Because if we have a non-empty subset with only element, this element will have infinite order.
+<br>
+<br>
+So unlike Vector Space, not every abelian group will have a basis
+<!----------------------------------------------------------------------------->
+<br>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+\(G\) is a free abelian group if it is abelian and there exists a basis.
+</div>
+<!----------------------------------------------------------------------------->
+<br>
+Example 1: $$G = Q^{\times}/\{\pm 1\}$$ with multiplication is a free abelian group. It has an infinite basis
+<div>
+	$$
+	\begin{align*}
+	B = \{\{\pm p\} \ | \ p \text{ is prime} \}
+	\end{align*}
+	$$
+</div>
+Because every non-zero rational can be written uniquely as a product of prime powers.
+<div>
+	$$
+	\begin{align*}
+	q = \pm p_1^{k_1}...p_r^{k_r} \quad \text{ where } k_i \in \mathbf{Z}
+	\end{align*}
+	$$
+</div>
+<br>
+Example 2: Suppose $$G = (\mathbf{Z}^n, +)$$. Let $$e_k = (0,0,..1,..,0,0)$$ be the standard basis vector where the $$k$$th entry is 1. Then the set 
+<div>
+	$$
+	\begin{align*}
+	B = \{e_1,e_2,...,e_n\}
+	\end{align*}
+	$$
+</div>
+is a basis for $$\mathbf{Z}^n$$. Any element in $$\mathbf{Z}^n$$ can be written a linear combination of the standard elements
+<div>
+	$$
+	\begin{align*}
+	(c_1,c_2,...,c_n) = c_1e_1+...+c_ne_n \quad \text{ where } c_i \in \mathbf{Z}
+	\end{align*}
+	$$
+</div>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Proof Setup: Propositions</b></h4>
+So we have the steps and we have the definitions that we need. We also need the following proposition
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(G\) is abelian and let \(a_1,...,a_n\) be a list of elements in \(G\). Then there exists a homomorphism 
+	$$
+	\begin{align*}
+	\phi: \mathbf{Z}^n &\longrightarrow G \\
+	 \phi(c_1,...,c_n)  &= c_1a_1 + ... + c_na_n \quad \text{ where } c_i \in \mathbf{Z}
+	\end{align*}
+	$$
+\(\phi\) is injective if and only if \(a_1,...a_n\) are linearly independent. <br>
+\(\phi\) is surjective if and only if \(a_1,...a_n\) generates \(G\). <br>
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+To show it's injective, we need to check the kernel of $$\phi$$. To show subjectivity, we need to check the image of $$\phi$$. [Exercise]. As a consequence we get the following corollary
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(G\) is a free abelian group with a basis \(B\) where \(|B| = n < \infty\), then \(G \cong \mathbf{Z}^n\).
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+Another consequence (the one we care about)
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(G\) is a finitely generated, there exists a surjective homomorphism \(\phi: \mathbf{Z}^n \longrightarrow G\).
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Subgroups of Finitely Generated Groups</b></h4>
+[Lecture 24]. So given a finitely generated group $$G = \langle a_1,...,a_n \rangle$$. We want to know is this property of being finitely generated inherited? Do subgroups and quotient groups of $$G$$ are also finitely generated? If we have a normal subgroup $$N$$. Is $$G/N$$ finitely generated? The answer is actually yes. In fact, can write $$G/N = \langle a_1N,...a_nN \rangle$$. So quotients of finitely generated groups are finitely generated as well. 
+<br>
+<br>
+One thing to note here is that one of these elements will turn out to be the identity element and since it's the identity, then we don't need to keep it in the generators list. So $$G/N = \langle a_1N_1,...a_{n-1}N \rangle$$. We can throw one of the elements out. (explain more?)
+<br>
+<br>
+A related question to this. If we have a subgroup $$H \leq G$$ where $$G$$ is finitely generated. Is $$H$$ finitely generated? The answer is actually no. It doesn't need to be. In fact, only if $$G$$ is finitely generated and abelian, then every subgroup $$H \leq G$$ is also finitely generated. We will prove this but to do so, we'll prove the following required lemma first.
+<br>
+<br>
+<!----------------------------------------------------------------------------->
+<div class="yellowheaderdiv">
+Lemma
+</div>
+<div class="yellowbodydiv">
+Let \(H\) be an (abelian) group and let \(N\) be a normal subgroup of \(H\) (\(N\) is always normal since \(H\) is abelian). If \(N\) and \(H/N\) are finitely generated, then \(H\) is finitely generated. 
+</div>
+<br>
+Note here that this lemma in fact works for all groups with a normal subgroup and not just abelian groups but right now we only care about the abelian case and it will also make the proof easier.
+<br>
+<br>
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br>
+Suppose $$N$$ is a normal subgroup of $$H$$ and suppose that both $$N$$ and $$H/N$$ are finitely generated. Then, we can write 
+<div>
+	$$
+	\begin{align*}
+	N &= \mathbf{Z}\{x_1,...,x_m\} \\
+	H/N &= \mathbf{Z}\{\bar{y_1},...,\bar{y_n}\}
+	\end{align*}
+	$$
+</div>
+Now, for each $$\bar{y_i}$$, pick $$y_i \in H$$ such that $$\bar{y_i} = y_i + N$$. So $$y_i$$ is the representative for this coset. Another way to think about this is to remember that we have the quotient homomorphism $$\pi$$ where 
+<div>
+	$$
+	\begin{align*}
+	\pi: H &\longrightarrow H/N \\
+	     \pi(y_i) &= \bar{y_i}
+	\end{align*}
+	$$
+</div>
+Given this, we claim that $$H$$ is generated by $$\mathbf{Z}\{x_1,...,x_m,y_1,...,y_n\}$$. So we're combining the elements of $$N$$ and all the representatives of the cosets. This gives us a generating set for $$H$$ itself. To see why it's true. Suppose that $$u \in H$$. The goal is to write $$u$$ in terms of the elements in our claim. Consider the image of $$u$$ under $$\pi$$. Its image is in the quotient group $$H/N$$ so we can write
+<div>
+	$$
+	\begin{align*}
+	v = \pi(u) = b_1\bar{y_1} + ... + b_n\bar{y_n} \in H/N \quad \text{ for some } b_i \in \mathbf{Z}
+	\end{align*}
+	$$
+</div>
+We can do this because the set $$\{\bar{y_1},...,\bar{y_n}\}$$ generates $$H/N$$. So we can write $$v$$ as a linear combination of the elements in the set like we did. Now define $$\hat{v}$$ to be an element in $$H$$. We can also write it 
+<div>
+	$$
+	\begin{align*}
+	\hat{v} = b_1y_1 + ... + b_ny_n \in H
+	\end{align*}
+	$$
+</div>
+We can do this because each $$y_i$$ is in $$H$$ and $$H$$ is closed so $$\hat{v}$$ is in $$H$$. 
+Observe that $$\pi(\hat{v}) = v$$ because we defined earlier that $$\pi(y_i) = \bar{y_i}$$. So now we have
+<div>
+	$$
+	\begin{align*}
+	\pi(u) &= v = \pi(\hat{v})
+	\end{align*}
+	$$
+</div>
+So now calculate $$\pi(u - \hat{v})$$, we will see that
+<div>
+	$$
+	\begin{align*}
+	\pi(u - \hat{v}) &= v - v = 0
+	\end{align*}
+	$$
+</div>
+This means that $$u - \hat{v}$$ is in the kernel of $$\pi$$ which means that $$u - \hat{v} \in N$$. But $$N$$ is finitely generated so we can express $$u - \hat{v}$$ in terms of the elements in $$N$$ so
+<div>
+	$$
+	\begin{align*}
+	u - \hat{v} = a_1x_1 + ... + a_nx_n \in N \text{ where } a_i \in \mathbf{Z} \\
+	u = (a_1x_1 + ... + a_nx_n) + (b_1y_1 + ... + b_ny_n)
+	\end{align*}
+	$$
+</div>
+So this says that any element in $$H$$ can be written interms of those factors which means that $$H$$ is finitely generated. $$\ \blacksquare$$
+<br>
+<br>
+Now we're ready to prove the main theorem
+<br>
+<!----------------------------------------------------------------------------->
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+If \(G\) is finitely generated and abelian, then every subgroup \(H \leq G\) is also finitely generated.
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br>
+Let $$G = \mathbf{Z}\{a_1,...,a_n\}$$ and $$H \leq G$$. We want to show that $$H$$ is finitely generated. We will show this by  induction on the size of generating set.
+<br>
+<br>
+Base Case: <br>
+If $$n = 0$$, then $$G = \mathbf{Z}\{\} = \{e\}$$. So $$G$$ is the trivial group. <br>
+If $$n = 1$$, then, $$G = \mathbf{Z}\{a\}$$. So $$G$$ is cyclic. Any subgroup of a cyclic group is cyclic. 
+<br>
+<br>
+Inductive Case: $$(n \geq 2)$$. Let $$a_n = a$$ in the generators list just to make it easy to read.<br>
+First, since $$G$$ is abelian, then all of $$G$$'s subgroups are normal. Consider the subgroup generated by the last element in the list of generators in $$G$$. So $$\mathbf{Z}\{a\}$$. This subgroup is normal. Now, consider the intersection of $$H$$ and $$\mathbf{Z}\{a\}$$. This is also a subgroup of both $$\mathbf{Z}\{a\}$$ and $$H$$ by the Diamond Isomorphism Theorem. In fact, we will get the following diagram.
+
+<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/1.png" width="35%" class="center"></p>
+
+Now, let the intersection $$H \cap \mathbf{Z}\{a\}$$ be $$N$$. We will take the quotient group $$H/N$$. Similarly, we have another quotient group $$H + \mathbf{Z}\{a\}/\mathbf{Z}\{a\}$$. These two quotient groups are isomorphic by the Diamond Isomorphism Theorem.
+
+<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/2.png" width="65%" class="center"></p>
+
+Next, take the quotient group $$G/\mathbf{Z}\{a\}$$. Notice here that $$H + \mathbf{Z}$$ is a subgroup of $$G$$ and that we're taking the quotient by the same subgroup $$\mathbf{Z}$$. Therefore, by the correspondance theorem, we will see that $$H + \mathbf{Z}\{a\}/\mathbf{Z}\{a\}$$ is a subgroup of $$G/\mathbf{Z}\{a\}$$. 
+
+<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/3.png" width="72%" class="center"></p>
+
+So now, observe that $$G$$ is generated by $$n$$ elements. The group $$G/\mathbf{Z}\{a\}$$ is generated by $$n-1$$ elements. Why? Recall that we said earlier that since the subgroup has one element $$a$$ from the generators, then this element will be come the identity element in the quotient group and we don't need to include it in the list of generators for the quotient group. 
+
+<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/4.png" width="72%" class="center"></p>
+
+Also note, that $$\mathbf{Z}\{a\}$$ is a subgroup generated by one element so it's cyclic and so it's finitely generated. Since the intersection $$N = \mathbf{Z}\{a\}$$ is a subgroup of $$\mathbf{Z}\{a\}$$, then it's also cyclic and finitely generated. 
+
+<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/5.png" width="77%" class="center"></p>
+
+We can now use the induction hypothesis to say that since $$G/\mathbf{Z}\{a\}$$ is generated by $$n-1$$ elements, then all its subgroups are also finitely generated. But this group is isomorphic to $$H/H \cap \mathbf{Z}\{a\} = H/N$$. So $$H/N$$ is also finitely generated.
+
+<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/6.png" width="77%" class="center"></p>
+
+Finally, we can use the lemma to say that since $$H/N$$ is finitely generated and since $$N$$ is finitely generated, then $$H$$ is finitely generated as we wanted to show. $$\ \blacksquare$$.
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>References</b></h4>
+
 <br>
 <br>
 <hr>

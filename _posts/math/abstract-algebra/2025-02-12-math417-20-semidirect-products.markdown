@@ -44,13 +44,17 @@ Let $$G = D_n$$ where $$n \geq 3$$ and $$|G| = 2n$$. Let
 	\end{align*}
 	$$
 </div>
-We know that $$N \cap A = \{e\}$$ and $$NA = G$$. We also know that $$\langle r \rangle$$ is a normal subgroup while $$\langle j \rangle$$ is not. Remember that $$\langle r \rangle$$ is normal since if we conjugate any rotation $$r^k$$ by any flip, then the result is still a rotation $$jr^kj^{-1} = r^{-k} \in N$$.
+We know that 
+<ol>
+	<li>\(N \cap A = \{e\}\)</li>
+	<li>\(NA = G\)</li>
+	<li>\(\langle r \rangle\) is a normal subgroup since conjugating \(r^k\) by any flip, the result is still a rotation.</li>
+</ol>
+So the only thing missing to be able to apply the recognition theorem is that $$A$$ is not normal. Despite this, we will show that we can still construct $$G = D_n$$ from the subgroups $$N$$, $$A$$ and third piece of information which is a homomorphism $$\gamma$$. In other words, $$G \cong N \rtimes_{\gamma} A$$. This product $$N \rtimes_{\gamma} A$$ is called the semi-direct product.
 <br>
 <br>
-So the only thing missing to be able to apply the recognition theorem is that $$A$$ is not normal. Despite this, we will show that we can still construct $$G = D_n$$ from the subgroups $$N$$, $$A$$ and third piece of information which is a homomorphism $$\gamma$$. In other words, $$G$$ is isomorphic to $$N \rtimes_{\gamma} A$$ or $$G \cong N \rtimes_{\gamma} A$$. This product $$N \rtimes_{\gamma} A$$ is called the semi-direct product.
-<br>
-<br>
-<b>What is this homomorphism $$\gamma$$</b>? $$\gamma$$ will be a homomorphism from $$A$$ to the group of automorphisms of $$N$$. $$A$$ contains two elements, $$A = \{e, j\}$$. We will send each element to an automorphism from the set $$\text{Aut}(N) = \text{Aut}(\langle r \rangle)$$. Specifically
+<b>What is this homomorphism $$\gamma$$</b>?<br>
+$$\gamma$$ will be a homomorphism from $$A$$ to the group of automorphisms of $$N$$. $$A$$ contains two elements, $$A = \{e, j\}$$. We will send each element to an automorphism from the set $$\text{Aut}(N) = \text{Aut}(\langle r \rangle)$$. Specifically
 <div>
 	$$
 	\begin{align*}
@@ -232,7 +236,7 @@ We can set $$\gamma$$ like we did before. So
 	\begin{align*}
 	\gamma: \langle j \rangle &\rightarrow \text{Aut}(\langle r \rangle) \\
 	\gamma_e &\rightarrow id \\
-	\gamma_j &\rightarrow ((r^k) = r^{-k}) \quad \text{(send $r^k$ to its inverse))}
+	\gamma_j &\rightarrow (r^k \rightarrow r^{-k}) \quad \text{(send $r^k$ to its inverse, similar to what we did to [1])}
 	\end{align*}
 	$$
 </div>

@@ -271,8 +271,8 @@ Let \(G\) be a group and let \(A, N \leq G\) be two subgroups. If
 Define \(\gamma\) as the homomorphism such that
 	$$
 	\begin{align*}
-	\gamma: A &\rightarrow \text{Aut}(G) \\
-	 y_a(n) &\rightarrow ana^{-1} \quad a \in A, a^{-1} \in N
+	\gamma: A &\rightarrow \text{Aut}(N) \\
+	 \gamma_a(n) &\rightarrow ana^{-1} \quad a \in A, a^{-1} \in A, n \in N
 	\end{align*}
 	$$
 Then, \(A \rtimes_{\gamma} N\) is isomorphic to \(G\). The isomorphism is given by

@@ -33,14 +33,14 @@ If \(G \cong H\), \(G\) is finitely generated if and only if \(H\) is finitely g
 </div>
 <!----------------------------------------------------------------------------->
 <br>
-So being finitely generated is isomorphic invariant. What we want to prove is the following
+So being finitely generated is isomorphism invariant. What we want to prove is the following
 <br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition
 </div>
 <div class="peachbodydiv">
-If \(G\) is finitely generated, abelian, then
+If \(G\) is finitely generated and abelian, then
 	$$
 	\begin{align*}
 	G \cong \mathbf{Z}/\mathbf{Z}_{d_1} \times \mathbf{Z}/\mathbf{Z}_{d_2} \times ... \times \mathbf{Z}/\mathbf{Z}_{d_k}  
@@ -60,13 +60,13 @@ Example: Suppose $$G$$ has $$d_i = 1,3,12,12,720,0,0$$ Then
 	\end{align*}
 	$$
 </div>
-When we prove this theorem, then for finite abelian groups, we won't have terms like $$\mathbf{Z}$$ since they are finite. So we will get exactly the invariant factor form out of this. So this proposition will essentially give us the existence of invariant factor decomposition. It will take this lecture and probably the next lecture
+For finite abelian groups, we won't have terms like $$\mathbf{Z}$$ since they are finite. So we will get exactly the invariant factor form out of this. So this proposition will essentially give us the existence of invariant factor decomposition. It will take this lecture and probably the next lecture to prove it.
 <br>
 <br>
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Proving the Existence of Invariant Factor Decomposition Plan</b></h4>
+<h4><b>The Existence of Invariant Factor Decomposition Proof Sketch</b></h4>
 So now we want to describe the steps involved in this proof:
 
 <ol>
@@ -79,7 +79,7 @@ So now we want to describe the steps involved in this proof:
 			\end{align*}
 			$$
 		</div>
-		In fact, what we will really show is that there exists a surjective homomorphism
+		In fact, what we will really show is that there exists a surjective homomorphism such that
 		<div>
 			$$
 			\begin{align*}
@@ -87,7 +87,7 @@ So now we want to describe the steps involved in this proof:
 			\end{align*}
 			$$
 		</div>
-		Since we have a surjective homomorphism, we can then use the isomorphism theorem to conclude that 
+		So now since we have a surjective homomorphism, we can then use the isomorphism theorem to conclude that 
 		<div>
 			$$
 			\begin{align*}
@@ -97,7 +97,7 @@ So now we want to describe the steps involved in this proof:
 		</div>
 	</li>
 	<!-------------------STEP 2--------------------->
-	<li>We want to know something about the subgroup \(N\). So we will show that every subgroup of \(\mathbf{Z}^m\) is finitely generated (won't be easy) and abelian. As a consequence, we will get that there exists a surjective homomorphism
+	<li>What is \(N\) going to be? To answer this, we want to study the subgroups of \(\mathbf{Z}^m\). We will show that every subgroup of \(\mathbf{Z}^m\) is finitely generated (won't be easy) and abelian. As a consequence, we will get that there exists a surjective homomorphism such that
 	<div>
 		$$
 		\begin{align*}
@@ -106,7 +106,7 @@ So now we want to describe the steps involved in this proof:
 		$$
 	</div>
 	From this we can form the composite homomorphism \(\alpha = i \circ \rho\) between \(\mathbf{Z}^n\) and \(\mathbf{Z}^m\).<br>
-	Notice above that the subgroup \(N\) must be the image of \(alpha\) so \(N = \alpha(\mathbf{Z}^n)\). So, now we can re-write what we have to be
+	Notice above that the subgroup \(N\) must be the image of \(\alpha\) so \(N = \alpha(\mathbf{Z}^n)\). So, now we can re-write what we have to be
 	<div>
 		$$
 		\begin{align*}
@@ -117,7 +117,7 @@ So now we want to describe the steps involved in this proof:
 	For some homomorphism \(\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m\). We still don't know what \(\alpha\) is but now the question of understanding finitely generated abelian can be reduced to a question of understanding homomorphisms.
 	</li>
 	<!-------------------STEP 3--------------------->
-	<li>Every homomorphism \(\alpha: \mathbf{Z}^m \rightarrow \mathbf{Z}^n\) is of the form
+	<li>Every homomorphism \(\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m\) is of the form
 		<div>
 			$$
 			\begin{align*}
@@ -126,7 +126,7 @@ So now we want to describe the steps involved in this proof:
 			\end{align*}
 			$$
 		</div>
-	where \(A \in Mat_{m \times n}(\mathbf{Z})\) and \(x = [x_1 \ x_2 \ ... \ x_n]^T \in \mathbf{Z}_n, x_i \in \mathbf{Z} \).
+	where \(A \in \text{Mat}_{m \times n}(\mathbf{Z})\) and \(x = [x_1 \ x_2 \ ... \ x_n]^T \in \mathbf{Z}_n, x_i \in \mathbf{Z} \).
 	<br>
 	So any homomorphism from \(\mathbf{Z}^n \rightarrow \mathbf{Z}^m\) can be written as a left multiplication by a matrix \(A\). So now we can write
 	<div>
@@ -139,7 +139,7 @@ So now we want to describe the steps involved in this proof:
 	So we're reducing the problem to linear algebra over the integers.
 	</li>
 	<!-------------------STEP 4--------------------->
-	<li>Say \(P \in Mat_{n \times n}(\mathbf{Z})\) is integer invertible if \(P^{-1}\) exists and \(P^{-1} \in Mat_{n \times n}(\mathbf{Z}) \).<br> Then,
+	<li>Say \(P \in \text{Mat}_{n \times n}(\mathbf{Z})\) is integer invertible if \(P^{-1}\) exists and \(P^{-1} \in Mat_{n \times n}(\mathbf{Z}) \).<br> Then,
 			
 	if \(B = PAQ\), where \(P, Q\) are integer invertible, then
 	<div>
@@ -152,7 +152,7 @@ So now we want to describe the steps involved in this proof:
 	The goal is that if we didn't want \(A\) or \(A\) wasn't in the right form, we can put it in standard form (smith normal form) and use a matrix that we want.
 	</li>
 	<!-------------------STEP 5--------------------->
-	<li>A matrix \(D \in Mat_{m \times n}(\mathbf{Z})\) is a Smith normal form if
+	<li>A matrix \(D \in \text{Mat}_{m \times n}(\mathbf{Z})\) is a Smith normal form if
 	<div>
 		$$
 		\begin{align*}
@@ -177,7 +177,7 @@ So now we want to describe the steps involved in this proof:
 	</div>
 	</li>
 	<!-------------------STEP 6--------------------->
-	<li>For every \(A \in Mat_{n \times n}(\mathbf{Z})\) there exists a integer invertible \(P, Q\), such that
+	<li>For every \(A \in \text{Mat}_{n \times n}(\mathbf{Z})\) there exists a integer invertible \(P, Q\), such that
 	\(D = PAQ\) is a Smith normal form. This implies that
 	<div>
 		$$
@@ -382,7 +382,7 @@ Another consequence (the one we care about)
 Proposition
 </div>
 <div class="peachbodydiv">
-If \(G\) is a finitely generated, there exists a surjective homomorphism \(\phi: \mathbf{Z}^n \longrightarrow G\).
+If \(G\) is a finitely generated and abelian, there exists a surjective homomorphism \(\phi: \mathbf{Z}^n \longrightarrow G\).
 </div>
 <br>
 <!----------------------------------------------------------------------------->
@@ -508,7 +508,7 @@ Now, let the intersection $$H \cap \mathbf{Z}\{a\}$$ be $$N$$. We will take the 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/2.png" width="65%" class="center"></p>
 
-Next, take the quotient group $$G/\mathbf{Z}\{a\}$$. Notice here that $$H + \mathbf{Z}$$ is a subgroup of $$G$$ and that we're taking the quotient by the same subgroup $$\mathbf{Z}$$. Therefore, by the correspondance theorem, we will see that $$H + \mathbf{Z}\{a\}/\mathbf{Z}\{a\}$$ is a subgroup of $$G/\mathbf{Z}\{a\}$$. 
+Next, take the quotient group $$G/\mathbf{Z}\{a\}$$. Notice here that $$H + \mathbf{Z}$$ is a subgroup of $$G$$ and that we're taking the quotient by the same subgroup $$\mathbf{Z}\{a\}$$. Therefore, by the correspondance theorem, we will see that $$H + \mathbf{Z}\{a\}/\mathbf{Z}\{a\}$$ is a subgroup of $$G/\mathbf{Z}\{a\}$$. 
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/3.png" width="72%" class="center"></p>
 
@@ -520,18 +520,166 @@ Also note, that $$\mathbf{Z}\{a\}$$ is a subgroup generated by one element so it
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/5.png" width="77%" class="center"></p>
 
-We can now use the induction hypothesis to say that since $$G/\mathbf{Z}\{a\}$$ is generated by $$n-1$$ elements, then all its subgroups are also finitely generated. But this group is isomorphic to $$H/H \cap \mathbf{Z}\{a\} = H/N$$. So $$H/N$$ is also finitely generated.
+We can now use the induction hypothesis to say that since $$G/\mathbf{Z}\{a\}$$ is generated by $$n-1$$ elements, then all its subgroups are also finitely generated. So $$H + \mathbf{Z}\{a\}/\mathbf{Z}\{a\}$$ is finitely generated. But this group is isomorphic to $$H/H \cap \mathbf{Z}\{a\} = H/N$$. So $$H/N$$ is also finitely generated.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/6.png" width="77%" class="center"></p>
 
-Finally, we can use the lemma to say that since $$H/N$$ is finitely generated and since $$N$$ is finitely generated, then $$H$$ is finitely generated as we wanted to show. $$\ \blacksquare$$.
+Finally, we can use the lemma to say that since $$H/N$$ is finitely generated and since $$N$$ is finitely generated, then $$H$$ is finitely generated as we wanted to show. $$\ \blacksquare$$
 <br>
 <br>
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
-
+<h4><b>Consequences</b></h4>
+So now, recall the proposition we introduced where if $$G$$ is finitely generated and abelian then there exists a surjective homomorphism $$\phi: \mathbf{Z}^n \rightarrow G$$. So by the isomorphism theorem, $$G$$ is isomorphic to $$\mathbf{Z}^m/N$$ where $$N$$ is the kernel of $$\phi$$ (normal subgroup of $$\mathbf{Z}^m)$$. 
+<br>
+<br>
+But we just proved above that the subgroup $$N$$ must also be finitely generated since $$\mathbf{Z}^m$$ is finitely generated and abelian. So there exists, some $$n \geq 0$$ such that $$\bar{\alpha}: \mathbf{Z}^n \rightarrow N$$ is a surjective homomorphism. (why?)
+<br>
+<br>
+So now consider the following
+<div>
+	$$
+	\begin{align*}
+	\mathbf{Z}^n \xrightarrow{\bar{\alpha}} N \xrightarrow{i} \mathbf{Z}^m 
+	\end{align*}
+	$$
+</div>
+Consider $$\alpha: i \circ \bar{\alpha}$$. We know that $$\alpha(\mathbf{Z}^n) = N$$. $$\alpha$$ is a homomorphism since it's the composition $$i \circ \bar{\alpha}$$. Therefore, the isomorphism $$G \cong \mathbf{Z}^m/N$$ can be written as $$G \cong \mathbf{Z}^m/\alpha(\mathbf{Z}^n)$$. 
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Studying the Homomorphism from \(\mathbf{Z^n}\) to \(\mathbf{Z^m}\)</b></h4>
+So now the goal is to show that $$\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ can be represented with a left multiplication by a matrix $$L_A$$. Observe that if we take any matrix $$A \in \text{Mat}_{m \times n}(\mathbf{Z})$$, we can define the following
+<div>
+	$$
+	\begin{align*}
+	L_A: \mathbf{Z}^n &\rightarrow \mathbf{Z}^m \\
+	       L_A(c_1,...,c_n) &= (\sum_{j=1}^n a_{1j}c_j, \sum_{j=1}^n a_{2j}c_j, ..., \sum_{j=1}^n a_{mj}c_j) \\
+		   L_A\big(\begin{pmatrix}c_1 \\ c_2 \\ \vdots \\ c_n \end{pmatrix}\big)
+		   &=
+		   A
+		   \begin{pmatrix}c_1 \\ c_2 \\ \vdots \\ c_n \end{pmatrix}
+		   \in
+		   \begin{pmatrix}d_1 \\ d_2 \\ \vdots \\ d_n \end{pmatrix} \in \mathbf{Z}^m
+	\end{align*}
+	$$
+</div>
+We claim that $$L_A$$ is a homomorphism. (We won't prove this). Basically, any homomorphism can be represented with a matrix. To find the matrix, all we need is to plug in the standard basis vectors into $$\alpha$$ to get the matrix $$A$$ (column vectors).
+<br>
+<br>
+Moreover, $$\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ is equal to $$L_A$$ for a unique $$A \in \text{Mat}_{m \times n}(\mathbf{Z})$$. Furthermore, if $$A \in \text{Mat}_{m \times n}(\mathbf{Z})$$ and $$B \in \text{Mat}_{m \times p}(\mathbf{Z})$$, then $$L_{AB} = L_A \circ L_B$$
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>The Homomorphism \(\alpha\)</b></h4>
+Suppose now that $$L_A: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ is an isomorphism. Then $$(L_A)^{-1}$$ is also an isomorphism. If we let $$L_B = (L_A)^{-1}$$, then
+<div>
+	$$
+	\begin{align*}
+	L_{BA} &= L_B \circ L_A = id_{\mathbf{Z}^n} \\
+	L_{AB} &= L_A \circ L_B = id_{\mathbf{Z}^m}
+	\end{align*}
+	$$
+</div>
+So $$AB = I$$ and $$BA = I$$. So by linear algebra (over the linear algebra), $$m = n$$. Therefore, we can't really have an isomorphism unless $$m = n$$.
+<br>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Smith Normal Form</b></h4>
+A matrix $$A$$ is in Smith normal form if
+<div>
+	$$
+	\begin{align*}
+	A = 
+	\begin{pmatrix}
+	d_1 & 0 & \cdots & 0 & 0 \\
+	0 & d_2 & \ddots & \ddots & 0 \\
+	0 & \vdots & \ddots & \ddots & 0 \\
+	0 & 0 & 0 & d_s & 0 \\
+	\end{pmatrix}
+	\end{align*}
+	$$
+</div>
+where $$d_i \ | \ d_{i+1}$$. Then
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(A = diag(d_1,...,d_s \in \text{Mat}_{m \times n}(\mathbf{Z})\). Then
+	$$
+	\begin{align*}
+	\mathbf{Z}^m/L_A(\mathbf{Z}^n) \cong \mathbf{Z}/\mathbf{Z}_{d_1} \times ... \times \mathbf{Z}/\mathbf{Z}_{d_s} \times \mathbf{Z}/\mathbf{Z}^{m-s} = G
+	\end{align*}
+	$$
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br>
+Let $$\phi$$ be defined as
+<div>
+	$$
+	\begin{align*}
+	\phi: \mathbf{Z}^m &\longrightarrow G\\
+	       (x_1,...x_s,x_{s+1},..,x_m) &= ([x_1]_{d_1}, ..., [x_s]_{d_s}, x_{s+1},...,x_m) \\
+	\end{align*}
+	$$
+</div>
+$$\phi$$ is surjective and $$\ker(\phi) = L_A(\mathbf{Z}^n)$$. This is because all the entries $$x_{s+1}...x_m$$ must be zero and the earlier entries must be divisible by $$d_i$$.
+<br>
+<br>
+<!----------------------------------------------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(B = PAQ\) where \(A, B \in \text{Mat}_{m \times n}(\mathbf{Z})\). Suppose that \(P,Q\) are integer invertible. Then
+	$$
+	\begin{align*}
+	\mathbf{Z}^m/L_A(\mathbf{Z}^n) \cong \mathbf{Z}^m/L_B(\mathbf{Z}^n)
+	\end{align*}
+	$$
+We say that \(A \sim B\) are equivalent.
+</div>
+<br>
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br>
+Let
+<div>
+$$
+	\begin{align*}
+	\pi_A: \mathbf{Z}^m &\rightarrow \mathbf{Z}^m/L_A(\mathbf{Z}^n) \\
+	\pi_B: \mathbf{Z}^m &\rightarrow \mathbf{Z}^m/L_B(\mathbf{Z}^n)
+	\end{align*}
+	$$
+</div>
+Then
+<p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/7.png" width="55%" class="center"></p>
+So the claim is that the kernel of this isomorphism is exactly $$L_B(\mathbf{Z}^n)$$. Why?
+<div>
+$$
+	\begin{align*}
+	z \in \ker(\phi) &\implies P_x^{-1} \in \ker(\pi_A) \\
+	                 &\implies P_x^{-1} \in Ay \text{ for some } y \in \mathbf{Z}^n \\
+					 &\implies P_x^{-1} \in AQz \text{ for some } z \in \mathbf{Z}^n, z = Q^{-1}y \\
+					 &\implies x \in PAQz \text{ for some } z \in \mathbf{Z}^n, z = Q^{-1}y \\
+	\end{align*}
+	$$
+</div>
+There are 30 minutes left of this proof ..... [TODO]
+<br>
+<br>
+<!----------------------------------------------------------------------------->
 <br>
 <br>
 <hr>

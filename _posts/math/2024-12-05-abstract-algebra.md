@@ -181,7 +181,7 @@ mathjax: true
 	   <!-------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/19/math417-26-orbits.html">
-       Lecture 26/27: Orbits
+       Lecture 26/27: Group Actions and Orbits
        </a></li>
 	   <!----------------->
 	   <!------EXTRA------>

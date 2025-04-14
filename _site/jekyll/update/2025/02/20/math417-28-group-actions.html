@@ -216,7 +216,7 @@ The centralizer of the identity is any element that commutes with the identity e
 	\end{align*}
 	$$
 </div>
-<p>This is because rotations around the same axis commute with each other. There is exception for all \(\pi = 180\) because in addition to all the arbitrary rotations around the same axis, we also get another set which is the 180 rotations around any vector such that \(u \cdot v = 0\).</p>
+<p>This is because rotations around the same axis commute with each other. There is exception for  \(\pi = 180\) because in addition to all the arbitrary rotations around the same axis, we also get another set which is the 180 rotations around any vector such that \(u \cdot v = 0\).</p>
 <div>
 	$$
 	\begin{align*}
@@ -224,7 +224,159 @@ The centralizer of the identity is any element that commutes with the identity e
 	\end{align*}
 	$$
 </div>
+<p>Study notes since I was confused here. The idea is that for any rotation in \(SO(3)\), we have a conjugation formula that states \(ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)\). This means that rotation about the axis \(u\) by \(\theta\) and then rotating by \(A\) is the same as rotating about the axis \(Au\) by the same angle. This tells us that two rotations in \(SO(3)\) are conjugate if it’s the same angle and if they can be related by some matrix \(A\). So now the questions is? given some unit vector \(u\)? and given a rotation around \(u\) by angle \(\theta\). Are we guaranteed to find another vector \(v\) such that \(ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)\)? The answer is yes for \(SO(3)\) specifically. For any two unit vectors \(u\) and \(v\), there exists an \(A\) such that \(Au = v\). Therefore, if we keep the same angle, then all the rotations by another other vector \(v\) around the same angle are in the same conjugacy class as the rotation around the original vector by \(\theta\).
+<br />
+<br /></p>
+<hr />
+
 <p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Symmetries of the Cube \(\leq SO(3)\)</b></h4>
+<p>As a reminder, we did this in the previous lecture</p>
+<div>
+<table style="margin: 20px auto;">
+  <tr>
+    <td>Axis (Cube)</td>
+	<td># of Axes</td>
+    <td>Angle of Rotation</td>
+	<td>Order of Symmetry</td>
+	<td># of Symmetries of This Type</td>
+    <td>Axis (Octahedron)</td>
+	<td>Cycle Type</td>
+  </tr>
+  <tr>
+    <td>Vertex/Vertex</td>
+	<td>4</td>
+    <td>\(\pm \frac{2\pi}{3}\)</td>
+    <td>3</td>
+	<td>8</td>
+	<td>Faces/Face</td>
+	<td>3-cycle</td>
+  </tr>
+  <tr>
+    <td>Edge/Edge</td>
+	<td>6</td>
+    <td>\(\frac{2\pi}{2}\)</td>
+    <td>2</td>
+	<td>6</td>
+	<td>Edge/Edge</td>
+	<td>2-cycle</td>
+  </tr>
+  <tr>
+    <td>Face/Face</td>
+	<td>3</td>
+    <td>\(\pm \frac{2\pi}{4}\)</td>
+    <td>4</td>
+	<td>6</td>
+    <td>Vertex/Vertex</td>
+	<td>4-cycle</td>
+  </tr>
+  <tr>
+    <td>Face/Face</td>
+	<td>3</td>
+    <td>\(\frac{2\pi}{2}\)</td>
+    <td>2</td>
+	<td>3</td>
+	<td></td>
+	<td>2+2</td>
+  </tr>
+  <tr>
+    <td>Identity Rotation</td>
+    <td></td>
+    <td></td>
+	<td>1</td>
+	<td>1</td>
+	<td></td>
+	<td>e</td>
+  </tr>
+</table>
+</div>
+<p>For example, for the diagonals between vertices. We have 4 diagonals but for each diagonal we could rotate by \(\frac{2\pi}{3}\) or \(-\frac{2\pi}{3}\). So we have 8 symmetries of that kind. We also have the axes that goes through opposite edges. Those have to be of 180 degrees rotations. We have 6 of them. Finally we have the ones that goes through the faces. We have two types of these. The quarter turns which can go \(\frac{\pi}{2}\) in either clockwise or counter clockwise and then we have the half turn rotations which are 180 degrees. Since we have 6 faces, then we have 3 axes. For the quarter turns, we have (2*3) symmetries and for the half turns, we have \(3\) symmetries.
+<br />
+<br />
+In fact, these are exactly the conjugacy classes of the cube (5 classes). But we said earlier that rotations with the same angle but different axis are all going to be in the same conjugacy class in \(SO(3)\). So why do we have for example, two classes that have rotations by 180 degrees here (look at the edge/edge and face/face). While they are conjugate in \(SO(3)\), they are not conjugate in \(G\) (cube). Reminder, the conjugation formula is</p>
+<div>
+	$$
+	\begin{align*}
+	ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)
+	\end{align*}
+	$$
+</div>
+<p>What we want is an \(A\) such that it sends \(u\) to \(Au\). We don’t have that in the cube.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Conjugacy Classes of \(\S_n\)</b></h4>
+<p>We have formula already for this</p>
+<div>
+	$$
+	\begin{align*}
+	g(a_1 \ a_2 \ ... \ g_k)g^{-1} = (g(a_1) \ g(a_2) \ ... \ g(a_k))
+	\end{align*}
+	$$
+</div>
+<p>So we get another \(k-\)cycle.
+<br />
+<br />
+Example: suppose $\sigma = (1 \ 2 \ 3)(4 \ 5)\(and we want to conjugate by\)g = (1 \ 5 \ 2 \ 4 \ 6)$$. Then</p>
+<div>
+	$$
+	\begin{align*}
+	g(1 \ 2 \ 3)(4 \ 5)g^{-1} &amp;= g(1 \ 2 \ 3)g^{-1 } \circ g(4 \ 5)g^{-1} \\
+	                          &amp;= (g(1) \ g(2) \ g(3)) \circ (g(4) \ g(5)) \\
+							  &amp;= (5 \ 4 \ 3)(6 \ 2)
+	\end{align*}
+	$$
+</div>
+<p>Observation: If we start with a product of disjoint cycles and we conjugate by some element, then we get the same exact cycle type (a product of the same cycle type). Conjugation preserves the cycle type. Conversely if we have two products of the same cycle type, we can find some \(g\) takes us from one one element to the other. This leads to the following fact</p>
+<div class="peachheaderdiv">
+Fact
+</div>
+<div class="peachbodydiv">
+The conjugacy class of an element \(g\) is all elements of the same cycle type of \(g\).
+</div>
+<p><br />
+For example, consider \(S_4\). Take the cycle type \((a \ b)\). There are \(\binom{4}{2} = 6\) choices for the two elements. We can arrange them in \(2!\) but we need to divide by 2 since \((a \ b) = (b \ a)\). Therefore, we have \(6 * 2! / 2 = 6\) distinct permutations. We can consider \((a \ b \ c)\) next. We have 4 choices for the elements but we need to multiply by \(3!\) and divide by 3 to get 8. For \((a \ b)(c \ d)\). We have \(binom{4}{2}\) for the first cycle but then we need to multiply by \(2!\) and divide by 2. So we get 6 elements. For the second cycle, we have \(\binom{2}{2}*2!/2 = 1\) element. But then we also need to divide by \(2\) since \((a \ b)(c \ d) = (c \ d)(a \ b)\). So the total is \(6 * 1 / 2 = 3\).
+<br /></p>
+<div>
+<table style="margin: 20px auto;">
+  <tr>
+    <td>Cycle</td>
+	<td>Number</td>
+    <td>Cycle Type</td>
+  </tr>
+  <tr>
+    <td>\((a \ b \ c)\)</td>
+	<td>8</td>
+    <td>\(3+1\)</td>
+  </tr>
+  <tr>
+    <td>\((a \ b)\)</td>
+	<td>6</td>
+    <td>\(2+1+1\)</td>
+  </tr>
+  <tr>
+    <td>\((a \ b \ c \ d)\)</td>
+	<td>6</td>
+    <td>\(4\)</td>
+  </tr>
+  <tr>
+    <td>\((a \ b)(c \ d)\)</td>
+	<td>3</td>
+    <td>\(2+2\)</td>
+  </tr>
+  <tr>
+    <td>Identity</td>
+    <td>1</td>
+    <td>\(1 + 1 + 1 + 1\)</td>
+  </tr>
+</table>
+</div>
+<p>In fact this group is isomorphic to the symmetry group of the cube that we did earlier.
+<br />
 <br /></p>
 <hr />
 

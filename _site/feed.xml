@@ -1,4 +1,209 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-13T10:38:46-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 28: Group Actions</title><link href="http://localhost:4000/jekyll/update/2025/02/20/math417-28-group-actions.html" rel="alternate" type="text/html" title="Lecture 28: Group Actions" /><published>2025-02-20T00:01:36-08:00</published><updated>2025-02-20T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/20/math417-28-group-actions</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/20/math417-28-group-actions.html"><![CDATA[<p>In the previous lecture, we introduced actions by a group \(G\) on a set \(X\) which we defined as a homomorphism from the group to a permutation group of the set \(X\).</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-14T16:18:53-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 29: Burnside Formula</title><link href="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html" rel="alternate" type="text/html" title="Lecture 29: Burnside Formula" /><published>2025-02-21T00:01:36-08:00</published><updated>2025-02-21T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html"><![CDATA[<p>Today we will discuss a formula for counting orbits calling the burnside formula. The book illustrates this with a necklace beads counting example. So how many necklaces are there with two orange, two blue beads? If we count naively, we have 4 slots. The two blue beads will go into two of the slots. So there are \(\binom{4}{2} = 6\) to do this. Then the orange beads will get the remaining two spots. So</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/1.png" width="90%" class="center" /></p>
+<div>
+$$
+\begin{align*}
+X = \{OOBB, OBOB, OBBO, BOBO, BOOB, BBOO\}
+\end{align*}
+$$
+</div>
+<p>But that’s not right. There are only 2 distinct elements. This in fact is the same as counting orbits of a group action. 2 here is the number of orbits of a group action. The group action is</p>
+<div>
+$$
+\begin{align*}
+G = \{ D_4 \}, |G| = 8 \quad \text{acts on } X = \text{ The set of linear arrangements where $|X|=6$}
+\end{align*}
+$$
+</div>
+<p>To see this, imagine the beads moving by 90 degrees (which is the rotation \(r\)) to get the next shape in the picture. The symmetries of the beads are the same as the symmetries of the dihedral group. We can also flip the necklace on the \(x\)-axis which is the same as the flip \(j \in D_4\). Now, the orbits of this action are as follows</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/2.png" width="90%" class="center" /></p>
+<div>
+$$
+\begin{align*}
+A &amp;= \{OOBB, OBBO, BOOB, BBOO\} \\
+B &amp;= \{OBOB, BOBO\}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<p>How many necklaces with 9 beads: 4 red, 3 white, 2 yellow? This isn’t an easy question. But there is an easier question which is counting the linear arrangements of the 9 beads with the colors we have. Let \(X\) be the set of linear arrangements of 9 beads with 4 red, 3 while, 2 yellow. If they were all of different colors, then there will be \(9!\) arrangements. But only have 3 colors so some of the beads are indistinguishable. Therefore, we have</p>
+<div>
+$$
+\begin{align*}
+|X| = \frac{9!}{4!3!2!} = 1260.
+\end{align*}
+$$
+</div>
+<p>So it’s impossible to physically see which arrangements will unique. We said earlier that this is equivalent to having an action by \(D_9\) on the set \(X\). So we just to count the orbits of this action with something called the burnside formula.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Burnside Formula</b></h4>
+<p>First, we need the following notation</p>
+<div class="mintheaderdiv">
+Action by \(G\) on \(X\)
+</div>
+<div class="mintbodydiv">
+Given \(g \in G\), let \(\text{Fix}(g) = \{x \in X \ | \ gx = x \} \subseteq X \) be the set of elements fixed by \(g\).
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+For example \(Fix(e) = X\). Now,
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Burnside Formula
+</div>
+<div class="peachbodydiv">
+If \(G\) acts on a set \(X\), and \(|G| &lt; \infty, |X| &lt; \infty\). Then, the number of orbits is
+$$
+\begin{align*}
+\frac{1}{|G|}\sum_{g \in G} |\text{Fix}(g)|
+\end{align*}
+$$
+</div>
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 1</b></h4>
+<p>Let’s apply the formula on Example 1. We had \(G = D_4 = \{e,r,r^2,j,rj,r^2j\}\) where \(|G| = 8\) and \(|X| = 6\). For example, take \(r\). We want to know the arrangements that are fixed by \(r\) (the rotation by 90 degrees). What does it mean for an arrangement to be fixed by \(r\). It means that the arrangement when rotated by 90 degrees, it will still be the same arrangement. Observe what happens to the following arrangement.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/3.png" width="55%" class="center" /></p>
+<p>This arrangement is not fixed by \(r\). In fact, all the beads have to have the same color for \(r\) to be able to fix them. So the fix set is zero for \(r\). Note here that \(r^{-1} = r^{3}\) will have the same result for the same reason.
+<br />
+<br />
+What about \(r^2\) so a rotation by 180 degrees. Observe what happens to the following arrangement</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/4.png" width="55%" class="center" /></p>
+<p>So the beads on the opposite sides have to have the same color for the arrangement to work. We have two arrangements exactly of this kind. So \(|Fix(r^2)| = 2\)
+<br />
+<br />
+What about \(j\)? Let \(j\) be the flip across the \(x\)-axis. Here, for the arrangement to be fixed, notice that the beads on the axis will not change. So we just need the top and bottom beads to have the same color. The number of arrangements with this condition is 2. In fact, \(r^2j\) (flip around the \(y\)-axis) will have the same number of arrangement fixed.
+<br />
+<br />
+\(rj\) is a flip around the axis \(x=y\). So the beads on either side of the following axis must have the same color just like following picture</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/5.png" width="25%" class="center" /></p>
+
+<p>In summary,</p>
+<table style="max-width: 400px; margin: 20px auto;">
+  <tr>
+    <td>\(g\)</td>
+    <td>\(|\text{Fix}(g)|\)</td>
+  </tr>
+  <tr>
+	<td>\(e\)</td>
+	<td>6</td>
+  </tr>
+  <tr>
+	<td>\(r, r^3\)</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>\(j, r^2j\)</td>
+	<td>2</td>
+  </tr>
+  <tr>
+	<td>\(rj, r^3j\)</td>
+	<td>2</td>
+  </tr>
+</table>
+<p>So now let’s apply the burnside formula</p>
+<div>
+$$
+\begin{align*}
+\text{number of orbits } &amp;= \frac{1}{|G|}\sum_{g \in G} |\text{Fix}(g)| \\
+                         &amp;= \frac{1}{8}(6+0+2+0+2+2+2+2) \\
+						 &amp;= \frac{16}{8} = 2.
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<p>Here, we had \(G = D_9 = \{e, r, r^2, ..., r^8, j, rj, ..., r^8j\}\). Recall that \(|X| = 1260\). Doing the same analysis</p>
+<ul>
+	<li>\(e\): This is just the entire group so \(|\text{Fix}(e)| = 1260\).</li>
+	<li>\(r\): Like before, we can't fix anything with a 90 degrees rotation. All the beads have to have the same color. This is the same for its inverse \(r^8\).</li>
+	<li>\(r^2\): Note that \(r^2\) has order 9 as well. No possible arrangements here as well. In fact, the same thing happens with \(r^4\) and its inverse \(r^5\).</li>
+	<li>\(r^3\): We have 9 beads. Here we need every third bead to match colors. So like in the following picture
+	<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/6.png" width="45%" class="center" /></p>
+	So vertices 1,4 and 7 have to have the same color. Vertices 2, 5 and 8 have to have the same color. Same for vertices 3, 6 and 9. But we recall that we have 4 red beads, 3 white beads, and 2 yellow beads.
+	</li>
+	<li>\(j\): A flip around the \(x\)-axis. So now there is a black bead fixed by the access itself and the remaining beads must match as follows
+	<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/7.png" width="45%" class="center" /></p>
+	We have 4 red beads, 3 white beads and 2 yellow. So the fixed bead must be a white bead. So now we have the remaining two whites. We need to put one white bead in one of the 4 slots (say in the bottom). We have 4 slots so 4 choices for the second white bead. Next, if we place the yellow bead, we'll have 3 slots available to choose from. Lastly, we have 2 red beads so they must go in the remaining slots. So 12 choices total.
+	</li>
+</ul>
+
+<p><br /></p>
+<table style="max-width: 400px; margin: 20px auto;">
+  <tr>
+    <td>\(g\)</td>
+    <td>\(|\text{Fix}(g)|\)</td>
+  </tr>
+  <tr>
+	<td>\(e\)</td>
+	<td>6</td>
+  </tr>
+  <tr>
+	<td>\(r, r^8\)</td>
+	<td>0</td>
+  </tr>
+  <tr>
+	<td>\(r^2, r^7\)</td>
+	<td>0</td>
+  </tr>
+  <tr>
+	<td>\(r^3, r^6\)</td>
+	<td>0</td>
+  </tr>
+  <tr>
+	<td>\(r^4, r^5\)</td>
+	<td>0</td>
+  </tr>
+  <!-------flips--------->
+  <tr>
+    <td>\(j, r^2j,...,r^8j\)</td>
+	<td>12</td>
+  </tr>
+</table>
+<p>So now let’s apply the burnside formula</p>
+<div>
+$$
+\begin{align*}
+\text{number of orbits } &amp;= \frac{1}{|G|}\sum_{g \in G} |\text{Fix}(g)| \\
+                         &amp;= \frac{1}{18}(1260+9(12)) \\
+						 &amp;= \frac{1374}{18} = 76.
+\end{align*}
+$$
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Proof of Burnside Formula</b></h4>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Today we will discuss a formula for counting orbits calling the burnside formula. The book illustrates this with a necklace beads counting example. So how many necklaces are there with two orange, two blue beads? If we count naively, we have 4 slots. The two blue beads will go into two of the slots. So there are \(\binom{4}{2} = 6\) to do this. Then the orange beads will get the remaining two spots. So $$ \begin{align*} X = \{OOBB, OBOB, OBBO, BOBO, BOOB, BBOO\} \end{align*} $$ But that’s not right. There are only 2 distinct elements. This in fact is the same as counting orbits of a group action. 2 here is the number of orbits of a group action. The group action is $$ \begin{align*} G = \{ D_4 \}, |G| = 8 \quad \text{acts on } X = \text{ The set of linear arrangements where $|X|=6$} \end{align*} $$ To see this, imagine the beads moving by 90 degrees (which is the rotation \(r\)) to get the next shape in the picture. The symmetries of the beads are the same as the symmetries of the dihedral group. We can also flip the necklace on the \(x\)-axis which is the same as the flip \(j \in D_4\). Now, the orbits of this action are as follows]]></summary></entry><entry><title type="html">Lecture 28: Group Actions</title><link href="http://localhost:4000/jekyll/update/2025/02/20/math417-28-group-actions.html" rel="alternate" type="text/html" title="Lecture 28: Group Actions" /><published>2025-02-20T00:01:36-08:00</published><updated>2025-02-20T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/20/math417-28-group-actions</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/20/math417-28-group-actions.html"><![CDATA[<p>In the previous lecture, we introduced actions by a group \(G\) on a set \(X\) which we defined as a homomorphism from the group to a permutation group of the set \(X\).</p>
 <div>
 $$
 \begin{align*}
@@ -174,7 +379,7 @@ The centralizer of the identity is any element that commutes with the identity e
 	\end{align*}
 	$$
 </div>
-<p>This is because rotations around the same axis commute with each other. There is exception for all \(\pi = 180\) because in addition to all the arbitrary rotations around the same axis, we also get another set which is the 180 rotations around any vector such that \(u \cdot v = 0\).</p>
+<p>This is because rotations around the same axis commute with each other. There is exception for  \(\pi = 180\) because in addition to all the arbitrary rotations around the same axis, we also get another set which is the 180 rotations around any vector such that \(u \cdot v = 0\).</p>
 <div>
 	$$
 	\begin{align*}
@@ -182,7 +387,159 @@ The centralizer of the identity is any element that commutes with the identity e
 	\end{align*}
 	$$
 </div>
+<p>Study notes since I was confused here. The idea is that for any rotation in \(SO(3)\), we have a conjugation formula that states \(ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)\). This means that rotation about the axis \(u\) by \(\theta\) and then rotating by \(A\) is the same as rotating about the axis \(Au\) by the same angle. This tells us that two rotations in \(SO(3)\) are conjugate if it’s the same angle and if they can be related by some matrix \(A\). So now the questions is? given some unit vector \(u\)? and given a rotation around \(u\) by angle \(\theta\). Are we guaranteed to find another vector \(v\) such that \(ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)\)? The answer is yes for \(SO(3)\) specifically. For any two unit vectors \(u\) and \(v\), there exists an \(A\) such that \(Au = v\). Therefore, if we keep the same angle, then all the rotations by another other vector \(v\) around the same angle are in the same conjugacy class as the rotation around the original vector by \(\theta\).
+<br />
+<br /></p>
+<hr />
+
 <p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Symmetries of the Cube \(\leq SO(3)\)</b></h4>
+<p>As a reminder, we did this in the previous lecture</p>
+<div>
+<table style="margin: 20px auto;">
+  <tr>
+    <td>Axis (Cube)</td>
+	<td># of Axes</td>
+    <td>Angle of Rotation</td>
+	<td>Order of Symmetry</td>
+	<td># of Symmetries of This Type</td>
+    <td>Axis (Octahedron)</td>
+	<td>Cycle Type</td>
+  </tr>
+  <tr>
+    <td>Vertex/Vertex</td>
+	<td>4</td>
+    <td>\(\pm \frac{2\pi}{3}\)</td>
+    <td>3</td>
+	<td>8</td>
+	<td>Faces/Face</td>
+	<td>3-cycle</td>
+  </tr>
+  <tr>
+    <td>Edge/Edge</td>
+	<td>6</td>
+    <td>\(\frac{2\pi}{2}\)</td>
+    <td>2</td>
+	<td>6</td>
+	<td>Edge/Edge</td>
+	<td>2-cycle</td>
+  </tr>
+  <tr>
+    <td>Face/Face</td>
+	<td>3</td>
+    <td>\(\pm \frac{2\pi}{4}\)</td>
+    <td>4</td>
+	<td>6</td>
+    <td>Vertex/Vertex</td>
+	<td>4-cycle</td>
+  </tr>
+  <tr>
+    <td>Face/Face</td>
+	<td>3</td>
+    <td>\(\frac{2\pi}{2}\)</td>
+    <td>2</td>
+	<td>3</td>
+	<td></td>
+	<td>2+2</td>
+  </tr>
+  <tr>
+    <td>Identity Rotation</td>
+    <td></td>
+    <td></td>
+	<td>1</td>
+	<td>1</td>
+	<td></td>
+	<td>e</td>
+  </tr>
+</table>
+</div>
+<p>For example, for the diagonals between vertices. We have 4 diagonals but for each diagonal we could rotate by \(\frac{2\pi}{3}\) or \(-\frac{2\pi}{3}\). So we have 8 symmetries of that kind. We also have the axes that goes through opposite edges. Those have to be of 180 degrees rotations. We have 6 of them. Finally we have the ones that goes through the faces. We have two types of these. The quarter turns which can go \(\frac{\pi}{2}\) in either clockwise or counter clockwise and then we have the half turn rotations which are 180 degrees. Since we have 6 faces, then we have 3 axes. For the quarter turns, we have (2*3) symmetries and for the half turns, we have \(3\) symmetries.
+<br />
+<br />
+In fact, these are exactly the conjugacy classes of the cube (5 classes). But we said earlier that rotations with the same angle but different axis are all going to be in the same conjugacy class in \(SO(3)\). So why do we have for example, two classes that have rotations by 180 degrees here (look at the edge/edge and face/face). While they are conjugate in \(SO(3)\), they are not conjugate in \(G\) (cube). Reminder, the conjugation formula is</p>
+<div>
+	$$
+	\begin{align*}
+	ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)
+	\end{align*}
+	$$
+</div>
+<p>What we want is an \(A\) such that it sends \(u\) to \(Au\). We don’t have that in the cube.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Conjugacy Classes of \(\S_n\)</b></h4>
+<p>We have formula already for this</p>
+<div>
+	$$
+	\begin{align*}
+	g(a_1 \ a_2 \ ... \ g_k)g^{-1} = (g(a_1) \ g(a_2) \ ... \ g(a_k))
+	\end{align*}
+	$$
+</div>
+<p>So we get another \(k-\)cycle.
+<br />
+<br />
+Example: suppose $\sigma = (1 \ 2 \ 3)(4 \ 5)\(and we want to conjugate by\)g = (1 \ 5 \ 2 \ 4 \ 6)$$. Then</p>
+<div>
+	$$
+	\begin{align*}
+	g(1 \ 2 \ 3)(4 \ 5)g^{-1} &amp;= g(1 \ 2 \ 3)g^{-1 } \circ g(4 \ 5)g^{-1} \\
+	                          &amp;= (g(1) \ g(2) \ g(3)) \circ (g(4) \ g(5)) \\
+							  &amp;= (5 \ 4 \ 3)(6 \ 2)
+	\end{align*}
+	$$
+</div>
+<p>Observation: If we start with a product of disjoint cycles and we conjugate by some element, then we get the same exact cycle type (a product of the same cycle type). Conjugation preserves the cycle type. Conversely if we have two products of the same cycle type, we can find some \(g\) takes us from one one element to the other. This leads to the following fact</p>
+<div class="peachheaderdiv">
+Fact
+</div>
+<div class="peachbodydiv">
+The conjugacy class of an element \(g\) is all elements of the same cycle type of \(g\).
+</div>
+<p><br />
+For example, consider \(S_4\). Take the cycle type \((a \ b)\). There are \(\binom{4}{2} = 6\) choices for the two elements. We can arrange them in \(2!\) but we need to divide by 2 since \((a \ b) = (b \ a)\). Therefore, we have \(6 * 2! / 2 = 6\) distinct permutations. We can consider \((a \ b \ c)\) next. We have 4 choices for the elements but we need to multiply by \(3!\) and divide by 3 to get 8. For \((a \ b)(c \ d)\). We have \(binom{4}{2}\) for the first cycle but then we need to multiply by \(2!\) and divide by 2. So we get 6 elements. For the second cycle, we have \(\binom{2}{2}*2!/2 = 1\) element. But then we also need to divide by \(2\) since \((a \ b)(c \ d) = (c \ d)(a \ b)\). So the total is \(6 * 1 / 2 = 3\).
+<br /></p>
+<div>
+<table style="margin: 20px auto;">
+  <tr>
+    <td>Cycle</td>
+	<td>Number</td>
+    <td>Cycle Type</td>
+  </tr>
+  <tr>
+    <td>\((a \ b \ c)\)</td>
+	<td>8</td>
+    <td>\(3+1\)</td>
+  </tr>
+  <tr>
+    <td>\((a \ b)\)</td>
+	<td>6</td>
+    <td>\(2+1+1\)</td>
+  </tr>
+  <tr>
+    <td>\((a \ b \ c \ d)\)</td>
+	<td>6</td>
+    <td>\(4\)</td>
+  </tr>
+  <tr>
+    <td>\((a \ b)(c \ d)\)</td>
+	<td>3</td>
+    <td>\(2+2\)</td>
+  </tr>
+  <tr>
+    <td>Identity</td>
+    <td>1</td>
+    <td>\(1 + 1 + 1 + 1\)</td>
+  </tr>
+</table>
+</div>
+<p>In fact this group is isomorphic to the symmetry group of the cube that we did earlier.
+<br />
 <br /></p>
 <hr />
 
@@ -3491,274 +3848,4 @@ Note here that this is NOT the same as the symmetries of the disk group. The sym
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Previously we introduced the direct product group and we observed if some certain conditions are met, then we get a direct product that is isomorphic to the group \(G\) itself. As a reminder Theorem (Recognition Theorem) Let \(G\) be a group and \(A, N \leq G\). If \(A\) and \(N\) are normal subgroups of \(G\). \(A \cap N = \{e\}\) \(AN = G\) Then, \(A \times N\) is isomorphic to \(G\). The isomorphism is given by $$ \begin{align*} \phi: A \times N &amp;\rightarrow G \\ (a,n) &amp;\rightarrow an \end{align*} $$ But now the question is what happens if not all of these conditions are satisfied. Suppose that \(N\) was the only normal subgroup. In this case, \(G\) is called a semi-direct product of \(N\) and \(A\). Example Let \(G = D_n\) where \(n \geq 3\) and \(|G| = 2n\). Let $$ \begin{align*} N &amp;= \langle r \rangle, \ o(r) = n \\ A &amp;= \langle j \rangle, \ o(j) = 2 \end{align*} $$ We know that \(N \cap A = \{e\}\) \(NA = G\) \(\langle r \rangle\) is a normal subgroup since conjugating \(r^k\) by any flip, the result is still a rotation. So the only thing missing to be able to apply the recognition theorem is that \(A\) is not normal. Despite this, we will show that we can still construct \(G = D_n\) from the subgroups \(N\), \(A\) and third piece of information which is a homomorphism \(\gamma\). In other words, \(G \cong N \rtimes_{\gamma} A\). This product \(N \rtimes_{\gamma} A\) is called the semi-direct product. What is this homomorphism \(\gamma\)? \(\gamma\) will be a homomorphism from \(A\) to the group of automorphisms of \(N\). \(A\) contains two elements, \(A = \{e, j\}\). We will send each element to an automorphism from the set \(\text{Aut}(N) = \text{Aut}(\langle r \rangle)\). Specifically $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma: \langle j \rangle &amp;\rightarrow \text{Aut}(\langle r \rangle) \\ e &amp;\rightarrow id \\ j &amp;\rightarrow \gamma_j, \quad \gamma_j(r^k) = r^{-k} \end{align*} $$ So the idea here is that we will be able to reconstruct the Dihedral group from this information. Construction of Semi-direct Products We haven’t said anything yet about how to actually construct \(G\) from the groups \(A\), \(N\) and \(\gamma\). The following will demonstrate this. (Important to note here that unlike the previous example, we don’t need \(A\) and \(N\) to be subgroups of \(G\). They are just groups!!!). We will first demonstrate what happens when \(\gamma\) and \(\gamma_a\) are homomorphisms. Semi-direct Product Construction Let \(A\) and \(N\) be groups and let $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ a &amp;\rightarrow \gamma_a \end{align*} $$ be a homomorphism. Note here that not only \(\gamma\) is a homomorphism but also each \(\gamma_a\) is a homomorphism as well. Because of this we will get \(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) for \(a \in A, n_1, n_2 \in N\). \(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\) for \(a_1, a_2 \in A, n \in N\). \(\gamma_{e} = id, \gamma_{a^{-1}} = (\gamma_a)^{-1}\). So now we will use these facts to state the semi-direct product definition. Semi-direct Product Use the construction above, we will get the group $$ \begin{align*} G = N \rtimes_{\gamma} A \end{align*} $$ where the the product set is $$ \begin{align*} G = N \times A = \{(n,a), n \in N, a \in A\} \end{align*} $$ The operation is $$ \begin{align*} (n_1, a_1) \cdot (n_2, a_2) = (n_1 \cdot \gamma_{a_1}(n_2), a_1a_2) \end{align*} $$ where \(n_1, n_2 \in N\) and \(a_1, a_2 \in A\). Note also that \(N \cong N' \leq G\) so \(N\) is isomorphic to some subgroup of \(G\). \(A\) is also isomorphic to some subgroup to \(A' \leq G\). Also note that if this was a direct product, then the operation is \((n_1,a_1) \cdot (n_2,a_2) = (n_1n_2, a_1a_2)\) but here we have this application of \(\gamma_{a_1}\) on \(n_2\). Proof We will show that \(G\) is a group by verifying the group properties. \(G\) is associative. The left hand side is $$ \begin{align*} ((n_1,a_1) \cdot (n_2,a_2)) \cdot (n_3,a_3) &amp;= (n_1 \gamma_{a_1}(n_2),a_1a_2) \cdot (n_3,a_3) \\ &amp;= (n_1 \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3),a_1a_2a_3). \end{align*} $$ while the right hand side is $$ \begin{align*} (n_1,a_1) \cdot ((n_2,a_2) \cdot (n_3,a_3)) &amp;= (n_1,a_1) (n_1 \gamma_{a_2}(n_3),a_2a_3) \\ &amp;= (n_1, \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)), a_1a_2a_3). \end{align*} $$ Recall the identities from the construction. Specifically, we saw that \(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) and \(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\). Using this we see that term from the right hand side will equal to $$ \begin{align*} \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)) &amp;= \gamma_{a_1}(n_2) \gamma_{a_1}(\gamma_{a_2}(n_3)) \\ &amp;= \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3) \end{align*} $$ which is the same as the term in the left hand side. The identity element is \((e_N, e_A)\) (Exercise). The inverse is \((n,a)^{-1} = (\gamma_{a^{-1}}(n^{-1}), a^{-1})\). Example 1 Let’s start with the trivial example. Let \(N\) and \(A\) be any groups. Define the trivial homomorphism as $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma_{a} &amp;= id \quad \forall a \in A \end{align*} $$ This is a constant function that’s always a homomorphism no matter what the source and targets are. Basically send any element to the identity function. Then $$ \begin{align*} N \rtimes_{\gamma} A = N \times A \end{align*} $$ To see this, apply the operation and you’ll see that \((a_1, a_2)(n_1, n_2) = (n_1 id(n_2), a_1a_2) = (n_1n_2, a_1a_2)\). Example 2 Let \(N = (\mathbf{Z}_n, +)\) where \(n \geq 3\) and let \(A = \mathbf{Z}_2 = \{[0]_2, [1]_2\}\). Define \(\gamma\) be $$ \begin{align*} \gamma: \mathbf{Z}_2 &amp;\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \end{align*} $$ We’ve seen before that \(\text{Aut}(\mathbf{Z}_n)\) is the modular units (mod n) group. How can we construct a homomorphism? We know that \(\mathbf{Z} = \{[0]_2, [1]_2\}\). We know we have to send \([0]_2\) to the identity element \([1]_n\). For \([1]_2\), we need to send it to an element of \(\Phi(n)\) of order 2. As an example, observe that \([-1]_n\) is of order 2 because \((-1)^2 = 1\). So $$ \begin{align*} \gamma: \mathbf{Z}_2 &amp;\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \\ [0]_2 &amp;\rightarrow [1]_n \\ [1]_2 &amp;\rightarrow [-1]_n. \end{align*} $$ So we can now form a semi-direct product. Let \(G = N \rtimes_{\gamma} A\). This is a group of order \(2n\). In fact, it’s isomorphic to the dihedral group \(D_n\). To see this, observe that we can replace \(N\) with \(N = \langle r \rangle\) and replace \(A\) with \(A = \langle j \rangle\). $$ \begin{align*} N &amp;= \langle r \rangle, \ o(r) = n \\ A &amp;= \langle j \rangle, \ o(j) = 2 \end{align*} $$ We can set \(\gamma\) like we did before. So $$ \begin{align*} \gamma: \langle j \rangle &amp;\rightarrow \text{Aut}(\langle r \rangle) \\ \gamma_e &amp;\rightarrow id \\ \gamma_j &amp;\rightarrow (r^k \rightarrow r^{-k}) \quad \text{(send $r^k$ to its inverse, similar to what we did to [1])} \end{align*} $$ Remark: If you have other elements of order 2 in \(\text{Aut}(\mathbf{Z}_n) \cong \Phi(n)\), then you can form “semi-dihedral groups”. For example, take \(N = \mathbf{Z}_8\), then Aut\((N) = \Phi(8) = \{1,3,5,7\}\). All the elements in this group is of order 2 except for 1. Therefore we can define $$ \begin{align*} \gamma' : A=\langle j \rangle &amp;\rightarrow Aut(N) \cong \Phi(8) \\ j &amp;\rightarrow 3 \quad \text{ (instead of -1 like before)} \end{align*} $$ So now we’ll get a different semi-direct product. We’ll get \(G' = N \rtimes_{\gamma'} A\). \(|G'| = 16\). It is not isomorphic to \(D_8\). Also \(o(r) = 8\) and \(o(j) = 2\). But we have this new formula \(jr = r^3j\). (Instead of \(jr = jr^{-1})\). Recognition Theorem for Semi-direct Product So now we can state the Recognition Theorem but for Semi-direct Product. Theorem (Recognition Theorem) Let \(G\) be a group and let \(A, N \leq G\) be two subgroups. If \(N\) is a normal subgroups of \(G\). \(A \cap N = \{e\}\) \(NA = G\) Define \(\gamma\) as the homomorphism such that $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma_a(n) &amp;\rightarrow ana^{-1} \quad a \in A, a^{-1} \in A, n \in N \end{align*} $$ Then, \(A \rtimes_{\gamma} N\) is isomorphic to \(G\). The isomorphism is given by $$ \begin{align*} \gamma: A \rtimes_{\gamma} N &amp;\rightarrow G \\ (a,n) &amp;\rightarrow an \end{align*} $$ Proof The idea of the proof is as follows. We are given that \(NA = G\). So we can write every element in \(G\) is a product of an element from \(N\) and an element from \(A\). Because we also have \(N \cap A = \{e\}\), then there is a unique way to write all of these products (proof?). So every \(g \in G\) can be written uniquely as a product \(g = na\) where \(n \in N\) and \(a \in A\). Now, take two different elements \(g_1 = n_1a_1\) and \(g_2 = n_2a_2\) where \(a_1,a_2 \in A\) and \(n_1n_2 \in N\). Multiply them $$ \begin{align*} g_1g_2 &amp;= (n_1a_1)(n_2a_2) \end{align*} $$ But we also know that \(g_1g_2 \in G\) so it can also be written uniquely as a product \(g_1g_2 = na\) where \(n \in N\) and \(a \in A\). So we want to solve the equation \((n_1a_1)(n_2a_2) = na\) to get an expression that looks like \(na\). The trick is as follows $$ \begin{align*} (n_1a_1)(n_2a_2) &amp;= n_1a_1n_2(a_1^{-1}a_1)a_2 \\ &amp;= (n_1)(a_1n_2a_1^{-1})(a_1a_2) \end{align*} $$ where \(n_1 \in N\), \(a_1n_2a_1^{-1} \in N\). \(a_1a_2 \in A\). So we can write \(n = n_1a_1n_2a_1^{-1}\) and \(a = a_1a_2\). But \(a_1n_2a_1^{-1}\) is just \(\gamma_{a_1}(n_2)\). This is exactly the product. we defined. Infinite Dihedral Group So we’re to construct a group by a semi direct group. Set $$ \begin{align*} N &amp;= \langle r \rangle \cong (\mathbf{Z}, +), \quad o(r)=\infty \\ A &amp;= \langle j \rangle \cong (\mathbf{Z}_2, +), \quad o(j)=2 \end{align*} $$ Define the homomorphism $$ \begin{align*} \gamma: A \rightarrow \text{Aut}(N) \cong \text{Aut}(\mathbf{Z}) = \{\pm 1\}, \quad o(\text{Aut}(\mathbf{Z}) = 2) \end{align*} $$ There are two automorphisms of \(N\). The identity function. The other automorphism is the inverse function (\(inv(r^k) = r^{-k}\)). Intuitively, \(r\) has to go to another generator that can generate the group. So it can go to itself or its inverse. So now the infinite is defined to be the semi direct product of \(N\) and \(A\) so $$ \begin{align*} D_{\infty} = N \rtimes_{\gamma} A \end{align*} $$ Note here that \(N\) is a subgroup of \(D_{\infty}\). Send \(r^k \in N\) to $$ \begin{align*} r^{k} \rightarrow (r^k, e) \end{align*} $$ And \(A\) is a subgroup of \(D_{\infty}\) so send \(j^l\) to $$ \begin{align*} j^{l} \rightarrow (j^l, e) \end{align*} $$ In fact \(D_{\infty} = \langle r, j \rangle\) with \(o(r) = \infty\) and \(o(j) = 2\). Also see that \(jrj^{-1} = r^{-1} \leftrightarrow jr = r^{-1}j\) Note here that this is NOT the same as the symmetries of the disk group. The symmetries of the disk is an uncountable group. Here we have integer powers of \(r\) while the symmetries of the disk can have any power, can rotate the disk by angle. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 19: Direct Product Group</title><link href="http://localhost:4000/jekyll/update/2025/02/11/math417-19-direct-product-group.html" rel="alternate" type="text/html" title="Lecture 19: Direct Product Group" /><published>2025-02-11T00:01:36-08:00</published><updated>2025-02-11T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/11/math417-19-direct-product-group</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/11/math417-19-direct-product-group.html"><![CDATA[<p>We introduced a way to create a new group from old groups last time. Restating this
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition: Direct Products
-</div>
-<div class="mintbodydiv">
-Suppose \(A\) and \(B\) are groups. Then the Direct Product:
-$$
-\begin{align*}
-G = A \times B = \{(a,b) \ | \ a \in A, b \in B\}
-\end{align*}
-$$
-With Operation:
-$$
-\begin{align*}
-(a_1, b_1) \cdot (a_2, b_2) = (a_1a_2, b_1b_2)
-\end{align*}
-$$
-is a group. The identity element \(e_{A \times B} = (a_G, b_H)\) and the inverse of \((a,b)\) is \((a^{-1},b^{-1})\).
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-Observation: \(A' = \{(a,e_{b}) \ | \ a \in A \}\) and \(B' = \{(e_a,b) \ | \ b \in B \}\) are subgroups of \(G\). Moreover, \(A'\) is isomorphic to \(A\) and \(B'\) is isomorphic to \(B\). We also note that</p>
-<ul>
-	<li>\(A'\) and \(B'\) are normal subgroups of \(G\). To see this, observe that for \((a, e) \in A'\) and \((x, y) \in G\)</li>
-	<div>
-		$$
-		\begin{align*}
-		(x, y)(a, e)(x, y)^{-1} =  (xax^{-1}, yey^{-1}) = (xax^{-1}, e) \in A'
-		\end{align*}
-		$$
-	</div>
-	<li>\(A' \cap B' = \{e_A, e_B\}\)</li>
-	<li>\(A'B' = \{xy \ | \ x \in A', y \in B'\} = G\)</li>
-</ul>
-<p>From this, we have the following proposition
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Theorem (Recognition Theorem)
-</div>
-<div class="yellowbodydiv">
-Let \(G\) be a group and \(A, B \leq G\). If
-<ol>
-	<li>\(A\) and \(B\) are normal subgroups of \(G\).</li>
-	<li>\(A \cap B = \{e\}\)</li>
-	<li>\(AB = G\)</li>
-</ol>
-Then, \(A \times B\) is isomorphic to \(G\). The isomorphism is given by
-	$$
-	\begin{align*}
-	\phi: A \times B &amp;\rightarrow G \\
-	 (a,b) &amp;\rightarrow ab
-	\end{align*}
-	$$
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-<b>Proof</b>
-<br />
-We need to show that \(\phi\) is a homomorphism and that it is surjective and injective. 
-<br />
-<br />
-Claim: If \(a \in A, b \in B\), then \(ab = ba\). Note that this doesn’t say anything about whether \(G\), \(A\) or \(B\) are abelian. 
-<br />
-Proof: To see this, observe that</p>
-<div>
-	$$
-	\begin{align*}
-	 aba^{-1}b^{-1} = e \implies ab = ba
-	\end{align*}
-	$$
-</div>
-<p>This is because we can just multiply by each element’s inverse on both sides. Now observe that \(aba^{-1}b^{-1} = (aba^{-1})b^{-1}\). We know that \(B\) is normal so \(aba^{-1} \in B\). \(b^{-1}\) is also in \(B\) since \(B\) is a subgroup. Therefore, \(aba^{-1}b^{-1} \in B\). Similarly, observe that that \(aba^{-1}b^{-1} = a(ba^{-1}b^{-1})\). \(A\) is normal so \(ba^{-1}b^{-1}\) is in \(A\). So \(aba^{-1}b^{-1} \in A\). So now we have \(aba^{-1}b^{-1} \in A\) and \(aba^{-1}b^{-1}\). This means that \(aba^{-1}b^{-1} \in A \cap B\). But \(A \cap B = \{e\}\) so \(aba^{-1}b^{-1} = e\) and therefore \(ab = ba\).
-<br />
-<br />
-Now, to show that \(\varphi\) is a homomorphism, we want to show that \(\varphi(a_1,b_1) \cdot (a_2,b_2)) = \varphi(a_1,b_1) \cdot \varphi(a_2,b_2)\). The left hand side is</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi(a_1,b_1) \cdot (a_2,b_2)) = \varphi((a_1a_2, b_1b_2)) = a_1a_2b_1b_2.
-	\end{align*}
-	$$
-</div>
-<p>while the right hand side is</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi(a_1,b_1) \cdot \varphi(a_2,b_2) &amp;= a_1b_1 \cdot a_2b_2 \\
-	                                        &amp;= a_1(b_1a_2)b_2 \\
-											&amp;= a_1(a_2b_1)b_2 \quad \text{(by the claim we proved)} \\
-											&amp;= a_1a_2b_1b_2.
-	\end{align*}
-	$$
-</div>
-<p>So \(\varphi\) is a homomorphism. Next, we show that \(\varphi\) is surjective. But this is true by property (3) since \(AB = G\). Finally, we want to show that \(\varphi\) is injective. This is equivalent to showing that \(\ker(\varphi) = \{e\}\). By definition,</p>
-<div>
-	$$
-	\begin{align*}
-	\ker(\varphi) = \{ (a,b) \in G \ | \ \varphi((a,b)) = ab = e \}
-	\end{align*}
-	$$
-</div>
-<p>So we need all the products such that \(a \in A\) and \(b \in B\) where \((a,b)=(e,e)\). So suppose \(a \in A\) and \(b \in B\) and \(ab = e\). The trick here is to move everything to the other side so that \(a = b^{-1}\). Here, \(a \in A\) and \(b^{-1} \in B\). But \(A \cap B = \{e\}\). So \(a = b = e\). So \(\ker(\varphi) = \{(e,e)\}\). From this we see that it is an isomorphism as we wanted to show.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(G = \mathbf{Z}_{12}\). Let \(A = \langle [3] \rangle = \{[0],[3],[6],[9]\}\). Let \(B = \langle [3] \rangle = \{[0],[4],[8]\}\) Both \(A\) and \(B\) are subgroups of \(\mathbf{Z}_{12}\). Check all three properties</p>
-<ul>
-	<li>Are they normal? Yes because \(A\) and \(B\) are abelian since \(\mathbf{Z}_{12}\) is abelian.</li>
-	<li>\(A \cap B = \{[0]\}\) since we listed the elements above.</li>
-	<li>The product subset is \(A+B = \{x+y \in A, y \in B\} = G\)</li>
-</ul>
-<p>Note here that we already know that \(\mathbf{Z}_3 \times \mathbf{Z}_4 \cong \mathbf{Z}_{12}\) by the Chinese Remainder Theorem.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Automorphism of a group \(G\)</b></h4>
-<p>An Automorphism of a group \(G\) is just an isomorphism from the group to itself. The identity map is the easiest example of an automorphism but there can be others.
-<br />
-<br />
-Example: Let \(V = \{e, a, b, c\}\) (The Klien 4-group)(\(\cong \mathbf{Z}_2 \times \mathbf{Z}_2)\). We know that \(a^2 = b^2 = c^2 = e\). The products are</p>
-<div>
-	$$
-	\begin{align*}
-	ab &amp;= ba = c \\
-	ac &amp;= ca = b \\
-	bc &amp;= cb = a
-	\end{align*}
-	$$
-</div>
-<p>Now define \(\varphi: V \rightarrow V\) such that \(\varphi(e) = e\), \(\varphi(a) = b\), \(\varphi(b) = b\), \(\varphi(c)=a\). \(\varphi\) is an automorphism. This is because</p>
-<ul>
-	<li>\(\varphi\) is both injective and surjective so it is a bijection.</li>
-	<li>\(\varphi\) is a homomorphism. We can check that \(\varphi(xy) = \varphi(x)\varphi(y)\)</li>
-</ul>
-<p>In fact, there are six automorphisms of \(V\). Note here that the six automorphisms are basically permutations on the set of elements. There are exactly 24 permutations on a set of 4 elements. But we also need to satisfy the homomorphism condition. This means that for example, it will need to send the identity element to the identity element. So now how many permutations are available if the identity element is fixed? There are 6 permutations. In this example, this is also the answer to the number of automorphisms. 
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-The collection of automorphisms is called \(\text{Aut}(G) = \{\varphi: G \rightarrow G \ | \ \varphi \text{ is an  automorphism}\}\). This is a subgroup of the permutation group \(Sym(G)\) as we saw. Also note here that since Aut\((G)\) is a subgroup, then \(|\text{Aut}(G)|\) must divide \(G\) if \(G\) is finite. 
-<br />
-<br />
-For example, we can see using the example above that Aut\((V)\) is isomorphic to \(S_3\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(G = \mathbf{Z}_n\) where \(n \geq 1\). Does this group have automorphisms other than the identity? <br />
-For example, let \(G = \mathbf{Z}_{15}\). Define the following function</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi: \mathbf{Z}_{15} &amp;\rightarrow \mathbf{Z}_{15} \\
-	            \varphi([x]) &amp;= [2x] = [2][x].
-	\end{align*}
-	$$
-</div>
-<p>The claim is that \(\varphi\) is an automorphism. It is a homomorphism because</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi([x]+[y]) &amp;= \varphi([2]([x]+[y])) \\
-	                 &amp;= \varphi([2][x]+[2][y]) \\
-	                 &amp;= \varphi([x]) + \varphi([y]).
-	\end{align*}
-	$$
-</div>
-<p>It is also a bijection. Note that we’re multiplying by \([2]\). In \(\mathbf{Z}_{15}\) (mod 15), \([2]\) has a multiplicate inverse since 2 and 15 are relatively prime. In fact, its multiplicative inverse is \([8]\) because \([2][8] = [16\%15] = [1]\). Therefore, to get the inverse, we just need to multiply by \([8]\).</p>
-<div>
-	$$
-	\begin{align*}
-	\varphi^{-1}([y]) = [8][y].
-	\end{align*}
-	$$
-</div>
-<p>Therefore, \(\varphi\) is a bijection. Thus, it is an automorphism. In fact, this generalizes to \(\mathbf{Z}_n\). Every modular unit mod n gives us an automorphism for \(\mathbf{Z}_n\). This is captured in the following proposition
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-\(\text{Aut}(G) \cong \Phi(n)\). The automorphism is given by
-	$$
-	\begin{align*}
-	[a] &amp;\rightarrow \gamma(a) \\
-	\gamma_{[a]}([x]) &amp;= [ax]
-	\end{align*}
-	$$
-</div>
-<p><br />
-Note here that \(\gamma(a)\) is a function. The isomorphism is between a group of functions and the modular unit \(a\). 
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-Suppose \(\varphi \in \text{Aut}(\mathbf{Z}_n)\). Let \([a] = \varphi([1])\). Then we can show that \(\varphi([x]) = [ax]\). 
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-Example: What about \(\mathbf{Z}\)? What are the automorphism? Aut\((\mathbf{Z}) = \{\pm 1\}\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>More Automorphisms</b></h4>
-<p>Some more definitions:
-<br /></p>
-<div class="mintheaderdiv">
-Definition (The "conjugation by \(g\)" function)
-</div>
-<div class="mintbodydiv">
-Given \(g \in G\), define \(c_g: G \rightarrow G\) by \(c_g(x) = gxg^{-1}\)
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-Some facts about this function:</p>
-<ul>
-	<li>\(c_g \in \text{Aut}(G)\). So \(c_g\) is an automorphism and it has an inverse \(c^{-1}_g\). Furthermore, if \(G\) is abelian, then \(c_g = id\) because \(gxg^{-1}\) will reduce to just \(x\) when \(G\) is abelian</li>
-</ul>
-<p>We can also define the function</p>
-<div>
-	$$
-	\begin{align*}
-	c: G &amp;\rightarrow \text{Aut}(G) \\
-	g &amp;\rightarrow c_g
-	\end{align*}
-	$$
-</div>
-<p>This function is a homomorphism. What does this mean? It means that conjugating by a product \(ab\) is the same as conjugating by \(a\) and then by \(b\). \(c_{ab} = c_a \circ c_b\).
-<br />
-<br />
-Since it’s a homomorphism, we can check its kernel. It’s kernel is as follows</p>
-<div>
-	$$
-	\begin{align*}
-	\ker(c) = \mathbf{Z}(G)
-	\end{align*}
-	$$
-</div>
-<p>Which is called the center of “G”.
-<br />
-<br />
-Additionally, we have the subgroup \(c(G)\) which is the image of \(G\) under \(c\). \(c(G)\) is a subgroup of Aut\((G)\). This subgroup is usually called \(Inn(G)\) (subgroup of inner automorphism). Fact: Inn\((G)\) is a normal subgroup of Aut\((G)\).
-<br />
-<br />
-Since Inn\((G)\) is normal, we can then form the quotient group Out\((G) = \text{Aut}/\text{Inn}(G)\). This group is called the outer automorphism.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li>MATH417 by Charles Rezk</li>
-	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We introduced a way to create a new group from old groups last time. Restating this Definition: Direct Products Suppose \(A\) and \(B\) are groups. Then the Direct Product: $$ \begin{align*} G = A \times B = \{(a,b) \ | \ a \in A, b \in B\} \end{align*} $$ With Operation: $$ \begin{align*} (a_1, b_1) \cdot (a_2, b_2) = (a_1a_2, b_1b_2) \end{align*} $$ is a group. The identity element \(e_{A \times B} = (a_G, b_H)\) and the inverse of \((a,b)\) is \((a^{-1},b^{-1})\). Observation: \(A' = \{(a,e_{b}) \ | \ a \in A \}\) and \(B' = \{(e_a,b) \ | \ b \in B \}\) are subgroups of \(G\). Moreover, \(A'\) is isomorphic to \(A\) and \(B'\) is isomorphic to \(B\). We also note that \(A'\) and \(B'\) are normal subgroups of \(G\). To see this, observe that for \((a, e) \in A'\) and \((x, y) \in G\) $$ \begin{align*} (x, y)(a, e)(x, y)^{-1} = (xax^{-1}, yey^{-1}) = (xax^{-1}, e) \in A' \end{align*} $$ \(A' \cap B' = \{e_A, e_B\}\) \(A'B' = \{xy \ | \ x \in A', y \in B'\} = G\) From this, we have the following proposition Theorem (Recognition Theorem) Let \(G\) be a group and \(A, B \leq G\). If \(A\) and \(B\) are normal subgroups of \(G\). \(A \cap B = \{e\}\) \(AB = G\) Then, \(A \times B\) is isomorphic to \(G\). The isomorphism is given by $$ \begin{align*} \phi: A \times B &amp;\rightarrow G \\ (a,b) &amp;\rightarrow ab \end{align*} $$ Proof We need to show that \(\phi\) is a homomorphism and that it is surjective and injective. Claim: If \(a \in A, b \in B\), then \(ab = ba\). Note that this doesn’t say anything about whether \(G\), \(A\) or \(B\) are abelian. Proof: To see this, observe that $$ \begin{align*} aba^{-1}b^{-1} = e \implies ab = ba \end{align*} $$ This is because we can just multiply by each element’s inverse on both sides. Now observe that \(aba^{-1}b^{-1} = (aba^{-1})b^{-1}\). We know that \(B\) is normal so \(aba^{-1} \in B\). \(b^{-1}\) is also in \(B\) since \(B\) is a subgroup. Therefore, \(aba^{-1}b^{-1} \in B\). Similarly, observe that that \(aba^{-1}b^{-1} = a(ba^{-1}b^{-1})\). \(A\) is normal so \(ba^{-1}b^{-1}\) is in \(A\). So \(aba^{-1}b^{-1} \in A\). So now we have \(aba^{-1}b^{-1} \in A\) and \(aba^{-1}b^{-1}\). This means that \(aba^{-1}b^{-1} \in A \cap B\). But \(A \cap B = \{e\}\) so \(aba^{-1}b^{-1} = e\) and therefore \(ab = ba\). Now, to show that \(\varphi\) is a homomorphism, we want to show that \(\varphi(a_1,b_1) \cdot (a_2,b_2)) = \varphi(a_1,b_1) \cdot \varphi(a_2,b_2)\). The left hand side is $$ \begin{align*} \varphi(a_1,b_1) \cdot (a_2,b_2)) = \varphi((a_1a_2, b_1b_2)) = a_1a_2b_1b_2. \end{align*} $$ while the right hand side is $$ \begin{align*} \varphi(a_1,b_1) \cdot \varphi(a_2,b_2) &amp;= a_1b_1 \cdot a_2b_2 \\ &amp;= a_1(b_1a_2)b_2 \\ &amp;= a_1(a_2b_1)b_2 \quad \text{(by the claim we proved)} \\ &amp;= a_1a_2b_1b_2. \end{align*} $$ So \(\varphi\) is a homomorphism. Next, we show that \(\varphi\) is surjective. But this is true by property (3) since \(AB = G\). Finally, we want to show that \(\varphi\) is injective. This is equivalent to showing that \(\ker(\varphi) = \{e\}\). By definition, $$ \begin{align*} \ker(\varphi) = \{ (a,b) \in G \ | \ \varphi((a,b)) = ab = e \} \end{align*} $$ So we need all the products such that \(a \in A\) and \(b \in B\) where \((a,b)=(e,e)\). So suppose \(a \in A\) and \(b \in B\) and \(ab = e\). The trick here is to move everything to the other side so that \(a = b^{-1}\). Here, \(a \in A\) and \(b^{-1} \in B\). But \(A \cap B = \{e\}\). So \(a = b = e\). So \(\ker(\varphi) = \{(e,e)\}\). From this we see that it is an isomorphism as we wanted to show. Example Let \(G = \mathbf{Z}_{12}\). Let \(A = \langle [3] \rangle = \{[0],[3],[6],[9]\}\). Let \(B = \langle [3] \rangle = \{[0],[4],[8]\}\) Both \(A\) and \(B\) are subgroups of \(\mathbf{Z}_{12}\). Check all three properties Are they normal? Yes because \(A\) and \(B\) are abelian since \(\mathbf{Z}_{12}\) is abelian. \(A \cap B = \{[0]\}\) since we listed the elements above. The product subset is \(A+B = \{x+y \in A, y \in B\} = G\) Note here that we already know that \(\mathbf{Z}_3 \times \mathbf{Z}_4 \cong \mathbf{Z}_{12}\) by the Chinese Remainder Theorem. Automorphism of a group \(G\) An Automorphism of a group \(G\) is just an isomorphism from the group to itself. The identity map is the easiest example of an automorphism but there can be others. Example: Let \(V = \{e, a, b, c\}\) (The Klien 4-group)(\(\cong \mathbf{Z}_2 \times \mathbf{Z}_2)\). We know that \(a^2 = b^2 = c^2 = e\). The products are $$ \begin{align*} ab &amp;= ba = c \\ ac &amp;= ca = b \\ bc &amp;= cb = a \end{align*} $$ Now define \(\varphi: V \rightarrow V\) such that \(\varphi(e) = e\), \(\varphi(a) = b\), \(\varphi(b) = b\), \(\varphi(c)=a\). \(\varphi\) is an automorphism. This is because \(\varphi\) is both injective and surjective so it is a bijection. \(\varphi\) is a homomorphism. We can check that \(\varphi(xy) = \varphi(x)\varphi(y)\) In fact, there are six automorphisms of \(V\). Note here that the six automorphisms are basically permutations on the set of elements. There are exactly 24 permutations on a set of 4 elements. But we also need to satisfy the homomorphism condition. This means that for example, it will need to send the identity element to the identity element. So now how many permutations are available if the identity element is fixed? There are 6 permutations. In this example, this is also the answer to the number of automorphisms. The collection of automorphisms is called \(\text{Aut}(G) = \{\varphi: G \rightarrow G \ | \ \varphi \text{ is an automorphism}\}\). This is a subgroup of the permutation group \(Sym(G)\) as we saw. Also note here that since Aut\((G)\) is a subgroup, then \(|\text{Aut}(G)|\) must divide \(G\) if \(G\) is finite. For example, we can see using the example above that Aut\((V)\) is isomorphic to \(S_3\). Example Let \(G = \mathbf{Z}_n\) where \(n \geq 1\). Does this group have automorphisms other than the identity? For example, let \(G = \mathbf{Z}_{15}\). Define the following function $$ \begin{align*} \varphi: \mathbf{Z}_{15} &amp;\rightarrow \mathbf{Z}_{15} \\ \varphi([x]) &amp;= [2x] = [2][x]. \end{align*} $$ The claim is that \(\varphi\) is an automorphism. It is a homomorphism because $$ \begin{align*} \varphi([x]+[y]) &amp;= \varphi([2]([x]+[y])) \\ &amp;= \varphi([2][x]+[2][y]) \\ &amp;= \varphi([x]) + \varphi([y]). \end{align*} $$ It is also a bijection. Note that we’re multiplying by \([2]\). In \(\mathbf{Z}_{15}\) (mod 15), \([2]\) has a multiplicate inverse since 2 and 15 are relatively prime. In fact, its multiplicative inverse is \([8]\) because \([2][8] = [16\%15] = [1]\). Therefore, to get the inverse, we just need to multiply by \([8]\). $$ \begin{align*} \varphi^{-1}([y]) = [8][y]. \end{align*} $$ Therefore, \(\varphi\) is a bijection. Thus, it is an automorphism. In fact, this generalizes to \(\mathbf{Z}_n\). Every modular unit mod n gives us an automorphism for \(\mathbf{Z}_n\). This is captured in the following proposition Proposition \(\text{Aut}(G) \cong \Phi(n)\). The automorphism is given by $$ \begin{align*} [a] &amp;\rightarrow \gamma(a) \\ \gamma_{[a]}([x]) &amp;= [ax] \end{align*} $$ Note here that \(\gamma(a)\) is a function. The isomorphism is between a group of functions and the modular unit \(a\). Proof Suppose \(\varphi \in \text{Aut}(\mathbf{Z}_n)\). Let \([a] = \varphi([1])\). Then we can show that \(\varphi([x]) = [ax]\). Example: What about \(\mathbf{Z}\)? What are the automorphism? Aut\((\mathbf{Z}) = \{\pm 1\}\) More Automorphisms Some more definitions: Definition (The "conjugation by \(g\)" function) Given \(g \in G\), define \(c_g: G \rightarrow G\) by \(c_g(x) = gxg^{-1}\) Some facts about this function: \(c_g \in \text{Aut}(G)\). So \(c_g\) is an automorphism and it has an inverse \(c^{-1}_g\). Furthermore, if \(G\) is abelian, then \(c_g = id\) because \(gxg^{-1}\) will reduce to just \(x\) when \(G\) is abelian We can also define the function $$ \begin{align*} c: G &amp;\rightarrow \text{Aut}(G) \\ g &amp;\rightarrow c_g \end{align*} $$ This function is a homomorphism. What does this mean? It means that conjugating by a product \(ab\) is the same as conjugating by \(a\) and then by \(b\). \(c_{ab} = c_a \circ c_b\). Since it’s a homomorphism, we can check its kernel. It’s kernel is as follows $$ \begin{align*} \ker(c) = \mathbf{Z}(G) \end{align*} $$ Which is called the center of “G”. Additionally, we have the subgroup \(c(G)\) which is the image of \(G\) under \(c\). \(c(G)\) is a subgroup of Aut\((G)\). This subgroup is usually called \(Inn(G)\) (subgroup of inner automorphism). Fact: Inn\((G)\) is a normal subgroup of Aut\((G)\). Since Inn\((G)\) is normal, we can then form the quotient group Out\((G) = \text{Aut}/\text{Inn}(G)\). This group is called the outer automorphism. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Previously we introduced the direct product group and we observed if some certain conditions are met, then we get a direct product that is isomorphic to the group \(G\) itself. As a reminder Theorem (Recognition Theorem) Let \(G\) be a group and \(A, N \leq G\). If \(A\) and \(N\) are normal subgroups of \(G\). \(A \cap N = \{e\}\) \(AN = G\) Then, \(A \times N\) is isomorphic to \(G\). The isomorphism is given by $$ \begin{align*} \phi: A \times N &amp;\rightarrow G \\ (a,n) &amp;\rightarrow an \end{align*} $$ But now the question is what happens if not all of these conditions are satisfied. Suppose that \(N\) was the only normal subgroup. In this case, \(G\) is called a semi-direct product of \(N\) and \(A\). Example Let \(G = D_n\) where \(n \geq 3\) and \(|G| = 2n\). Let $$ \begin{align*} N &amp;= \langle r \rangle, \ o(r) = n \\ A &amp;= \langle j \rangle, \ o(j) = 2 \end{align*} $$ We know that \(N \cap A = \{e\}\) \(NA = G\) \(\langle r \rangle\) is a normal subgroup since conjugating \(r^k\) by any flip, the result is still a rotation. So the only thing missing to be able to apply the recognition theorem is that \(A\) is not normal. Despite this, we will show that we can still construct \(G = D_n\) from the subgroups \(N\), \(A\) and third piece of information which is a homomorphism \(\gamma\). In other words, \(G \cong N \rtimes_{\gamma} A\). This product \(N \rtimes_{\gamma} A\) is called the semi-direct product. What is this homomorphism \(\gamma\)? \(\gamma\) will be a homomorphism from \(A\) to the group of automorphisms of \(N\). \(A\) contains two elements, \(A = \{e, j\}\). We will send each element to an automorphism from the set \(\text{Aut}(N) = \text{Aut}(\langle r \rangle)\). Specifically $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma: \langle j \rangle &amp;\rightarrow \text{Aut}(\langle r \rangle) \\ e &amp;\rightarrow id \\ j &amp;\rightarrow \gamma_j, \quad \gamma_j(r^k) = r^{-k} \end{align*} $$ So the idea here is that we will be able to reconstruct the Dihedral group from this information. Construction of Semi-direct Products We haven’t said anything yet about how to actually construct \(G\) from the groups \(A\), \(N\) and \(\gamma\). The following will demonstrate this. (Important to note here that unlike the previous example, we don’t need \(A\) and \(N\) to be subgroups of \(G\). They are just groups!!!). We will first demonstrate what happens when \(\gamma\) and \(\gamma_a\) are homomorphisms. Semi-direct Product Construction Let \(A\) and \(N\) be groups and let $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ a &amp;\rightarrow \gamma_a \end{align*} $$ be a homomorphism. Note here that not only \(\gamma\) is a homomorphism but also each \(\gamma_a\) is a homomorphism as well. Because of this we will get \(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) for \(a \in A, n_1, n_2 \in N\). \(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\) for \(a_1, a_2 \in A, n \in N\). \(\gamma_{e} = id, \gamma_{a^{-1}} = (\gamma_a)^{-1}\). So now we will use these facts to state the semi-direct product definition. Semi-direct Product Use the construction above, we will get the group $$ \begin{align*} G = N \rtimes_{\gamma} A \end{align*} $$ where the the product set is $$ \begin{align*} G = N \times A = \{(n,a), n \in N, a \in A\} \end{align*} $$ The operation is $$ \begin{align*} (n_1, a_1) \cdot (n_2, a_2) = (n_1 \cdot \gamma_{a_1}(n_2), a_1a_2) \end{align*} $$ where \(n_1, n_2 \in N\) and \(a_1, a_2 \in A\). Note also that \(N \cong N' \leq G\) so \(N\) is isomorphic to some subgroup of \(G\). \(A\) is also isomorphic to some subgroup to \(A' \leq G\). Also note that if this was a direct product, then the operation is \((n_1,a_1) \cdot (n_2,a_2) = (n_1n_2, a_1a_2)\) but here we have this application of \(\gamma_{a_1}\) on \(n_2\). Proof We will show that \(G\) is a group by verifying the group properties. \(G\) is associative. The left hand side is $$ \begin{align*} ((n_1,a_1) \cdot (n_2,a_2)) \cdot (n_3,a_3) &amp;= (n_1 \gamma_{a_1}(n_2),a_1a_2) \cdot (n_3,a_3) \\ &amp;= (n_1 \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3),a_1a_2a_3). \end{align*} $$ while the right hand side is $$ \begin{align*} (n_1,a_1) \cdot ((n_2,a_2) \cdot (n_3,a_3)) &amp;= (n_1,a_1) (n_1 \gamma_{a_2}(n_3),a_2a_3) \\ &amp;= (n_1, \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)), a_1a_2a_3). \end{align*} $$ Recall the identities from the construction. Specifically, we saw that \(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) and \(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\). Using this we see that term from the right hand side will equal to $$ \begin{align*} \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)) &amp;= \gamma_{a_1}(n_2) \gamma_{a_1}(\gamma_{a_2}(n_3)) \\ &amp;= \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3) \end{align*} $$ which is the same as the term in the left hand side. The identity element is \((e_N, e_A)\) (Exercise). The inverse is \((n,a)^{-1} = (\gamma_{a^{-1}}(n^{-1}), a^{-1})\). Example 1 Let’s start with the trivial example. Let \(N\) and \(A\) be any groups. Define the trivial homomorphism as $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma_{a} &amp;= id \quad \forall a \in A \end{align*} $$ This is a constant function that’s always a homomorphism no matter what the source and targets are. Basically send any element to the identity function. Then $$ \begin{align*} N \rtimes_{\gamma} A = N \times A \end{align*} $$ To see this, apply the operation and you’ll see that \((a_1, a_2)(n_1, n_2) = (n_1 id(n_2), a_1a_2) = (n_1n_2, a_1a_2)\). Example 2 Let \(N = (\mathbf{Z}_n, +)\) where \(n \geq 3\) and let \(A = \mathbf{Z}_2 = \{[0]_2, [1]_2\}\). Define \(\gamma\) be $$ \begin{align*} \gamma: \mathbf{Z}_2 &amp;\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \end{align*} $$ We’ve seen before that \(\text{Aut}(\mathbf{Z}_n)\) is the modular units (mod n) group. How can we construct a homomorphism? We know that \(\mathbf{Z} = \{[0]_2, [1]_2\}\). We know we have to send \([0]_2\) to the identity element \([1]_n\). For \([1]_2\), we need to send it to an element of \(\Phi(n)\) of order 2. As an example, observe that \([-1]_n\) is of order 2 because \((-1)^2 = 1\). So $$ \begin{align*} \gamma: \mathbf{Z}_2 &amp;\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \\ [0]_2 &amp;\rightarrow [1]_n \\ [1]_2 &amp;\rightarrow [-1]_n. \end{align*} $$ So we can now form a semi-direct product. Let \(G = N \rtimes_{\gamma} A\). This is a group of order \(2n\). In fact, it’s isomorphic to the dihedral group \(D_n\). To see this, observe that we can replace \(N\) with \(N = \langle r \rangle\) and replace \(A\) with \(A = \langle j \rangle\). $$ \begin{align*} N &amp;= \langle r \rangle, \ o(r) = n \\ A &amp;= \langle j \rangle, \ o(j) = 2 \end{align*} $$ We can set \(\gamma\) like we did before. So $$ \begin{align*} \gamma: \langle j \rangle &amp;\rightarrow \text{Aut}(\langle r \rangle) \\ \gamma_e &amp;\rightarrow id \\ \gamma_j &amp;\rightarrow (r^k \rightarrow r^{-k}) \quad \text{(send $r^k$ to its inverse, similar to what we did to [1])} \end{align*} $$ Remark: If you have other elements of order 2 in \(\text{Aut}(\mathbf{Z}_n) \cong \Phi(n)\), then you can form “semi-dihedral groups”. For example, take \(N = \mathbf{Z}_8\), then Aut\((N) = \Phi(8) = \{1,3,5,7\}\). All the elements in this group is of order 2 except for 1. Therefore we can define $$ \begin{align*} \gamma' : A=\langle j \rangle &amp;\rightarrow Aut(N) \cong \Phi(8) \\ j &amp;\rightarrow 3 \quad \text{ (instead of -1 like before)} \end{align*} $$ So now we’ll get a different semi-direct product. We’ll get \(G' = N \rtimes_{\gamma'} A\). \(|G'| = 16\). It is not isomorphic to \(D_8\). Also \(o(r) = 8\) and \(o(j) = 2\). But we have this new formula \(jr = r^3j\). (Instead of \(jr = jr^{-1})\). Recognition Theorem for Semi-direct Product So now we can state the Recognition Theorem but for Semi-direct Product. Theorem (Recognition Theorem) Let \(G\) be a group and let \(A, N \leq G\) be two subgroups. If \(N\) is a normal subgroups of \(G\). \(A \cap N = \{e\}\) \(NA = G\) Define \(\gamma\) as the homomorphism such that $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma_a(n) &amp;\rightarrow ana^{-1} \quad a \in A, a^{-1} \in A, n \in N \end{align*} $$ Then, \(A \rtimes_{\gamma} N\) is isomorphic to \(G\). The isomorphism is given by $$ \begin{align*} \gamma: A \rtimes_{\gamma} N &amp;\rightarrow G \\ (a,n) &amp;\rightarrow an \end{align*} $$ Proof The idea of the proof is as follows. We are given that \(NA = G\). So we can write every element in \(G\) is a product of an element from \(N\) and an element from \(A\). Because we also have \(N \cap A = \{e\}\), then there is a unique way to write all of these products (proof?). So every \(g \in G\) can be written uniquely as a product \(g = na\) where \(n \in N\) and \(a \in A\). Now, take two different elements \(g_1 = n_1a_1\) and \(g_2 = n_2a_2\) where \(a_1,a_2 \in A\) and \(n_1n_2 \in N\). Multiply them $$ \begin{align*} g_1g_2 &amp;= (n_1a_1)(n_2a_2) \end{align*} $$ But we also know that \(g_1g_2 \in G\) so it can also be written uniquely as a product \(g_1g_2 = na\) where \(n \in N\) and \(a \in A\). So we want to solve the equation \((n_1a_1)(n_2a_2) = na\) to get an expression that looks like \(na\). The trick is as follows $$ \begin{align*} (n_1a_1)(n_2a_2) &amp;= n_1a_1n_2(a_1^{-1}a_1)a_2 \\ &amp;= (n_1)(a_1n_2a_1^{-1})(a_1a_2) \end{align*} $$ where \(n_1 \in N\), \(a_1n_2a_1^{-1} \in N\). \(a_1a_2 \in A\). So we can write \(n = n_1a_1n_2a_1^{-1}\) and \(a = a_1a_2\). But \(a_1n_2a_1^{-1}\) is just \(\gamma_{a_1}(n_2)\). This is exactly the product. we defined. Infinite Dihedral Group So we’re to construct a group by a semi direct group. Set $$ \begin{align*} N &amp;= \langle r \rangle \cong (\mathbf{Z}, +), \quad o(r)=\infty \\ A &amp;= \langle j \rangle \cong (\mathbf{Z}_2, +), \quad o(j)=2 \end{align*} $$ Define the homomorphism $$ \begin{align*} \gamma: A \rightarrow \text{Aut}(N) \cong \text{Aut}(\mathbf{Z}) = \{\pm 1\}, \quad o(\text{Aut}(\mathbf{Z}) = 2) \end{align*} $$ There are two automorphisms of \(N\). The identity function. The other automorphism is the inverse function (\(inv(r^k) = r^{-k}\)). Intuitively, \(r\) has to go to another generator that can generate the group. So it can go to itself or its inverse. So now the infinite is defined to be the semi direct product of \(N\) and \(A\) so $$ \begin{align*} D_{\infty} = N \rtimes_{\gamma} A \end{align*} $$ Note here that \(N\) is a subgroup of \(D_{\infty}\). Send \(r^k \in N\) to $$ \begin{align*} r^{k} \rightarrow (r^k, e) \end{align*} $$ And \(A\) is a subgroup of \(D_{\infty}\) so send \(j^l\) to $$ \begin{align*} j^{l} \rightarrow (j^l, e) \end{align*} $$ In fact \(D_{\infty} = \langle r, j \rangle\) with \(o(r) = \infty\) and \(o(j) = 2\). Also see that \(jrj^{-1} = r^{-1} \leftrightarrow jr = r^{-1}j\) Note here that this is NOT the same as the symmetries of the disk group. The symmetries of the disk is an uncountable group. Here we have integer powers of \(r\) while the symmetries of the disk can have any power, can rotate the disk by angle. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry></feed>

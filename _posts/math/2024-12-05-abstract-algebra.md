@@ -127,6 +127,9 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/08/math417-16-theorems-homomorphism-and-isomorphism.html">
        Lecture 16: Theorems: Homomorphism and Isomorphism
        </a></li>
+       <li><a href="/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html">
+       Study Notes: Isomorphism Theorem Examples
+       </a></li>
 	   <!-------------->
 	   <!------17------>
 	   <!-------------->
@@ -153,7 +156,10 @@ mathjax: true
 	   <!-------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/12/math417-20-semidirect-products.html">
-       Lecture 20: Semidirect Products
+       Lecture 20: Semi-direct Products
+       </a></li>
+       <li><a href="/jekyll/update/2025/02/16/math417-extra-semidirect-products.html">
+       Study Notes: Semi-direct Products
        </a></li>
 	   <!-------------->
 	   <!----21/22----->
@@ -190,18 +196,19 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/20/math417-28-group-actions.html">
        Lecture 28: Group Actions
        </a></li>
+	   <!-------------->
+	   <!------28------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/21/math417-29-burnside-formula.html">
+       Lecture 29: Burnside Formula
+       </a></li>
 	   <!----------------->
 	   <!------EXTRA------>
 	   <!----------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/14/math417-extra-proofs.html">
        Study Notes: Extra Proofs ...
-       </a></li>
-       <li><a href="/jekyll/update/2025/02/15/math417-extra-isomorphism-examples.html">
-       Study Notes: Isomorphism Theorem Examples
-       </a></li>
-       <li><a href="/jekyll/update/2025/02/16/math417-extra-semidirect-products.html">
-       Study Notes: Semi-direct Products
        </a></li>
    </ol>
 <br>

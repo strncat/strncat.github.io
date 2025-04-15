@@ -156,7 +156,7 @@ Here, we had $$G = D_9 = \{e, r, r^2, ..., r^8, j, rj, ..., r^8j\}$$. Recall tha
   </tr>
   <tr>
 	<td>\(e\)</td>
-	<td>6</td>
+	<td>1260</td>
   </tr>
   <tr>
 	<td>\(r, r^8\)</td>
@@ -191,11 +191,97 @@ $$
 $$
 </div>
 <br>
-<br>
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
 <h4><b>Proof of Burnside Formula</b></h4>
+Let $$F = \{(g,x) \ | \ g \in G, x \in X, gx = x\}$$. (So we're writing it differently than before but it's the same. We're just counting any element that gets fixed by any $$g$$. So all of them). We're going to count this set in two different ways
+<ol>
+	<li>\(|F| = \sum_{g \in G} | x \in X \ | \ gx = x \} = \sum_{g \in G} |\text{Fix}(g)| \)</li>
+	<li>\(|F| = \sum_{x \in X} | g \in G \ | \ gx = X \} = \sum_{x \in X} |\text{Stab}(g)| \)</li>
+</ol>
+From this, observe that
+<div>
+$$
+\begin{align*}
+\frac{1}{|G|} \sum_{g \in G} |\text{Fix}(g)| &= \frac{1}{|G|} \sum_{x \in X} |\text{Stab}(g)| \\
+                                             &= \sum_{x \in X} \frac{|\text{Stab}(g)|}{|G|}.
+\end{align*}
+$$
+</div>
+By the Orbit-Stabilizer Theorem, $$|O(x)| = \frac{|G|}{\text{|Stab(x)}|}$$. Therefore
+<div>
+$$
+\begin{align*}
+\frac{1}{|G|} \sum_{g \in G} |\text{Fix}(g)| &= \frac{1}{|G|} \sum_{x \in X} |\text{Stab}(g)| \\
+                                             &= \sum_{x \in X} \frac{|\text{Stab}(g)|}{|G|} \\
+											 &= \sum_{x \in X} \frac{1}{|O(x)|} \\
+											 &= \sum_{\text{Orbits}} \sum_{x \in O} \frac{1}{|O|} \\
+											 &= \text{number of orbits}
+											 
+\end{align*}
+$$
+</div>
+<br>
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Example 3 (Variant of Example 2)</b></h4>
+Consider example 2 again. We had a fixed number of beads (4 red, 3 white, 2 yellow). Now, suppose that we don't have a constraint on the count for each color. We just want a necklace made of 3 colors and 9 beads. Then $$G = D_9$$ acts on $$X$$ which is the linear arrangements of beads of 3 colors. What is the size of $$X$$? The first bead can be any of the three colors, the second bead can be any of the three colors and so on. So 
+<div>
+$$
+\begin{align*}
+|X| = 3^9 = 19,683								 
+\end{align*}
+$$
+</div>
+
+Here, we had $$G = D_9 = \{e, r, r^2, ..., r^8, j, rj, ..., r^8j\}$$. Recall that $$|X| = 1260$$. Doing the same analysis
+<ul>
+	<li>\(e\): This is just the entire group so \(|\text{Fix}(e)| = 1260\).
+	</li>
+	<li>\(r\): Like before, we can't fix anything with a 90 degrees rotation. All the beads have to have the same color. This is the same for its inverse \(r^8\) and as well as \(r^2, r^4, r^5\).
+	</li>
+	<li>\(r^3\): We have 9 beads. Again we need every third bead to have the same color. We have three groups. Each group will need to be of the same color and it can be any color so 3 choices for every group. Therefore, we have \(3^3 = 27\) choices.
+	</li>
+	<li>\(j\): A flip around the \(x\)-axis. Like before, we had a bead fixed on the axis and 4 other groups of two beads each that needed to match colors. Each of these has a choice of 3 colors so \(3^5\) choices.
+	</li>
+</ul>
+
+<br>
+<table style="max-width: 400px; margin: 20px auto;">
+  <tr>
+    <td>\(g\)</td>
+    <td>\(|\text{Fix}(g)|\)</td>
+  </tr>
+  <tr>
+	<td>\(e\)</td>
+	<td>\(3^9\)</td>
+  </tr>
+  <tr>
+	<td>\(r, r^8, r^2, r^4, r^5\)</td>
+	<td>0</td>
+  </tr>
+  <tr>
+	<td>\(r^3, r^6\)</td>
+	<td>\(3^3 = 27\)</td>
+  </tr>
+  <!-------flips--------->
+  <tr>
+    <td>\(j, r^2j,...,r^8j\)</td>
+	<td>\(3^5\)</td>
+  </tr>
+</table>
+So now let's apply the burnside formula
+<div>
+$$
+\begin{align*}
+\text{number of orbits } &= \frac{1}{|G|}\sum_{g \in G} |\text{Fix}(g)| \\
+                         &= \frac{1}{18}(3^9 + 6*3 + 2*3^2 + 9*3^5) \\
+						 &= \frac{1374}{18} = 1219.
+\end{align*}
+$$
+</div>
 <br>
 <br>
 <hr>

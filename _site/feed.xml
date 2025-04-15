@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-14T16:18:53-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 29: Burnside Formula</title><link href="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html" rel="alternate" type="text/html" title="Lecture 29: Burnside Formula" /><published>2025-02-21T00:01:36-08:00</published><updated>2025-02-21T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html"><![CDATA[<p>Today we will discuss a formula for counting orbits calling the burnside formula. The book illustrates this with a necklace beads counting example. So how many necklaces are there with two orange, two blue beads? If we count naively, we have 4 slots. The two blue beads will go into two of the slots. So there are \(\binom{4}{2} = 6\) to do this. Then the orange beads will get the remaining two spots. So</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-14T20:23:08-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 29: Burnside Formula</title><link href="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html" rel="alternate" type="text/html" title="Lecture 29: Burnside Formula" /><published>2025-02-21T00:01:36-08:00</published><updated>2025-02-21T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html"><![CDATA[<p>Today we will discuss a formula for counting orbits calling the burnside formula. The book illustrates this with a necklace beads counting example. So how many necklaces are there with two orange, two blue beads? If we count naively, we have 4 slots. The two blue beads will go into two of the slots. So there are \(\binom{4}{2} = 6\) to do this. Then the orange beads will get the remaining two spots. So</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/1.png" width="90%" class="center" /></p>
 <div>
 $$
@@ -152,7 +152,7 @@ $$
   </tr>
   <tr>
 	<td>\(e\)</td>
-	<td>6</td>
+	<td>1260</td>
   </tr>
   <tr>
 	<td>\(r, r^8\)</td>
@@ -186,13 +186,100 @@ $$
 \end{align*}
 $$
 </div>
-<p><br />
-<br /></p>
+<p><br /></p>
 <hr />
 
 <p><br />
 <!-----------------------------------------------------------------------------></p>
 <h4><b>Proof of Burnside Formula</b></h4>
+<p>Let \(F = \{(g,x) \ | \ g \in G, x \in X, gx = x\}\). (So we’re writing it differently than before but it’s the same. We’re just counting any element that gets fixed by any \(g\). So all of them). We’re going to count this set in two different ways</p>
+<ol>
+	<li>\(|F| = \sum_{g \in G} | x \in X \ | \ gx = x \} = \sum_{g \in G} |\text{Fix}(g)| \)</li>
+	<li>\(|F| = \sum_{x \in X} | g \in G \ | \ gx = X \} = \sum_{x \in X} |\text{Stab}(g)| \)</li>
+</ol>
+<p>From this, observe that</p>
+<div>
+$$
+\begin{align*}
+\frac{1}{|G|} \sum_{g \in G} |\text{Fix}(g)| &amp;= \frac{1}{|G|} \sum_{x \in X} |\text{Stab}(g)| \\
+                                             &amp;= \sum_{x \in X} \frac{|\text{Stab}(g)|}{|G|}.
+\end{align*}
+$$
+</div>
+<p>By the Orbit-Stabilizer Theorem, \(|O(x)| = \frac{|G|}{\text{|Stab(x)}|}\). Therefore</p>
+<div>
+$$
+\begin{align*}
+\frac{1}{|G|} \sum_{g \in G} |\text{Fix}(g)| &amp;= \frac{1}{|G|} \sum_{x \in X} |\text{Stab}(g)| \\
+                                             &amp;= \sum_{x \in X} \frac{|\text{Stab}(g)|}{|G|} \\
+											 &amp;= \sum_{x \in X} \frac{1}{|O(x)|} \\
+											 &amp;= \sum_{\text{Orbits}} \sum_{x \in O} \frac{1}{|O|} \\
+											 &amp;= \text{number of orbits}
+											 
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Example 3 (Variant of Example 2)</b></h4>
+<p>Consider example 2 again. We had a fixed number of beads (4 red, 3 white, 2 yellow). Now, suppose that we don’t have a constraint on the count for each color. We just want a necklace made of 3 colors and 9 beads. Then \(G = D_9\) acts on \(X\) which is the linear arrangements of beads of 3 colors. What is the size of \(X\)? The first bead can be any of the three colors, the second bead can be any of the three colors and so on. So</p>
+<div>
+$$
+\begin{align*}
+|X| = 3^9 = 19,683								 
+\end{align*}
+$$
+</div>
+
+<p>Here, we had \(G = D_9 = \{e, r, r^2, ..., r^8, j, rj, ..., r^8j\}\). Recall that \(|X| = 1260\). Doing the same analysis</p>
+<ul>
+	<li>\(e\): This is just the entire group so \(|\text{Fix}(e)| = 1260\).
+	</li>
+	<li>\(r\): Like before, we can't fix anything with a 90 degrees rotation. All the beads have to have the same color. This is the same for its inverse \(r^8\) and as well as \(r^2, r^4, r^5\).
+	</li>
+	<li>\(r^3\): We have 9 beads. Again we need every third bead to have the same color. We have three groups. Each group will need to be of the same color and it can be any color so 3 choices for every group. Therefore, we have \(3^3 = 27\) choices.
+	</li>
+	<li>\(j\): A flip around the \(x\)-axis. Like before, we had a bead fixed on the axis and 4 other groups of two beads each that needed to match colors. Each of these has a choice of 3 colors so \(3^5\) choices.
+	</li>
+</ul>
+
+<p><br /></p>
+<table style="max-width: 400px; margin: 20px auto;">
+  <tr>
+    <td>\(g\)</td>
+    <td>\(|\text{Fix}(g)|\)</td>
+  </tr>
+  <tr>
+	<td>\(e\)</td>
+	<td>\(3^9\)</td>
+  </tr>
+  <tr>
+	<td>\(r, r^8, r^2, r^4, r^5\)</td>
+	<td>0</td>
+  </tr>
+  <tr>
+	<td>\(r^3, r^6\)</td>
+	<td>\(3^3 = 27\)</td>
+  </tr>
+  <!-------flips--------->
+  <tr>
+    <td>\(j, r^2j,...,r^8j\)</td>
+	<td>\(3^5\)</td>
+  </tr>
+</table>
+<p>So now let’s apply the burnside formula</p>
+<div>
+$$
+\begin{align*}
+\text{number of orbits } &amp;= \frac{1}{|G|}\sum_{g \in G} |\text{Fix}(g)| \\
+                         &amp;= \frac{1}{18}(3^9 + 6*3 + 2*3^2 + 9*3^5) \\
+						 &amp;= \frac{1374}{18} = 1219.
+\end{align*}
+$$
+</div>
 <p><br />
 <br /></p>
 <hr />

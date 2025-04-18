@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 32: Rings</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-02-24T00:01:36-08:00" itemprop="datePublished">Feb 24, 2025
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Let \(G\) be a group that acts on \(X\). Define
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+A Ring: \(R, +, \cdot\) is a \(R\)-set with \(+, \cdot\) operations on \(R\) such that
+<ul>
+	<li>\(R, +\) is an abelian group with \(0\) as the identity and \(-a\) as the inverse of \(a \in R\).</li>
+	<li>Multiplication is associative so \((ab)c = a(bc)\) for all \(a,b,c \in R\).</li>
+	<li>Distributive Law: \((a + b)c = (ac) + (bc)\) and \((a(b + c) = (ab) + (ac)\).</li>
+</ul>
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+Warning: we don’t know if \(a + b \cdot c\) should be \((a + b) \cdot c\) or \(a + (b \cdot c)\). The convention is to use the second (operator precedence).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>More Terminology</b></h4>
+<ul>
+	<li><b>Ring with identity</b>: This means a rin with a multiplicative identity since a ring always has an additive identity but not necessarily a multiplicative identity. This is a ring \(R\) such that \(\exists 1 \in R\) so that \(1a = a1 = a\) for all \(a \in R\).</li>
+	<!----->
+	<li><b>Commutative Ring</b>: A ring \(R\) such that \(ab = ba\) for all \(a, b \in R\).</li>
+	<!---->
+	<li>If \(R\) has a multiplicative identity, then \(a \in R\) is a unit if there exists a \(b\) in \(R\) such that \(ab = 1 = ba\). We call \(b\) an inverse of \(a\) and write \(b = a^{-1}\). (So a unit is an element with a multiplicative inverse)</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Basic Facts in a Ring</b></h4>
+<ol>
+	<li>\(a0 = 0 = 0a\) for all \(a \in R\). To show this, use the distributive law to see that
+		<div>
+		$$
+		\begin{align*}
+		0a = (0 + 0)a = 0a + 0a. 
+		\end{align*}
+		$$
+		</div>
+	But \(R\) is abelian with respect to addition so we can cancel \(0a\) from both sides to see that \(0 = 0a\).</li>
+	<!----->
+	<li>If \(1 \in R\), then \(-a = (-1)a\). So this says the additive inverse is -1 multiplied by \(a\). To see why, observe that
+		<div>
+		$$
+		\begin{align*}
+		(1 + (-1))a &amp;= 1a + (-1)a \\
+		     0a &amp;= 0.
+		\end{align*}
+		$$
+		</div>
+	  </li>
+	  <!----->
+	  <li>The multiplicative identity is unique if it exists.</li>
+	  <!----->
+	  <li>If \(1 \in R\) and \(a\) is unit in \(R\), then it has a unique inverse</li>
+	  <!----->
+	  <li>If \(1 \in R\), then define \((R^{\times},\cdot)\) as the set of units in \(R\) so \((R^{\times},\cdot) = \{\text{units }a \in R\}\). So this is set of the elements that have a multiplicative inverse. This set with the multiplication operation is a group. As a consequence, if \(a\) and \(b\) are units, then their product is in \(R^{\times}\). In fact, \((ab)^{-1} = b^{-1}a^{-1}\).</li>	  
+</ol>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>The Zero Ring</b></h4>
+<p>This is a ring \(R\) with element \(R = \{0\}\). \(0 + 0 = 0\) and \(0 \cdot 0 = 0\). This is a commutative ring with identity. The multiplicative identity is \(1 = 0\) in this ring. In fact, If \(R\) is a ring with 1, then \(1 = 0\) if and only if \(R = \{0\}\). Sometimes this ring is excluded from the definition of rings …
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Fields</b></h4>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+A Field is a commutative ring with 1 such that every nonzero element is a unit and \(1 \neq 0\).
+</div>
+<p><br />
+So we’re excluding the zero ring here.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<ul>
+	<li>\(\mathbf{Z}\) with addition and multiplication is a commutative ring with identity.</li>
+	<!----->
+	<li>\(\mathbf{Z}2 = \{2n \ | \ n \in \mathbf{Z}\}\) is a commutative ring but it doesn't have the identity \(1 \not\in \mathbf{Z}2\).</li>
+	<!---->
+	<li>\(\mathbf{Q}, \mathbf{R}, \mathbf{C}\) are all fields.</li>
+	<!---->
+	<li>For \(n \geq 1\), \(\mathbf{Z}_n\) is a commutative ring with \(1 = [1]_n\). It is a field if and only if \(n\) is a prime.</li>
+</ul>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>
+
+
+  </div>
+<!-- stupid ads<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2025/02/24/math417-32-rings.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2025/02/24/math417-32-rings; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+-->
+  <a class="u-url" href="/jekyll/update/2025/02/24/math417-32-rings.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

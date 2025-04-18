@@ -217,6 +217,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/23/math417-31-fixed-point-theorem-cauchy-theorem.html">
        Lecture 31: Fixed Point Theorem and Cauchy Theorem
        </a></li>
+	   <!-------------->
+	   <!------32------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/24/math417-32-rings.html">
+       Lecture 32: Rings
+       </a></li>
 	   <!----------------->
 	   <!------EXTRA------>
 	   <!----------------->

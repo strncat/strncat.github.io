@@ -197,11 +197,25 @@ mathjax: true
        Lecture 28: Group Actions
        </a></li>
 	   <!-------------->
-	   <!------28------>
+	   <!------29------>
 	   <!-------------->
 	   <br>
        <li><a href="/jekyll/update/2025/02/21/math417-29-burnside-formula.html">
        Lecture 29: Burnside Formula
+       </a></li>
+	   <!-------------->
+	   <!------30------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/22/math417-30-finite-subgroups.html">
+       Lecture 30: Finite Subgroups of \(SO(3)\)
+       </a></li>
+	   <!-------------->
+	   <!------31------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/23/math417-31-fixed-point-theorem-cauchy-theorem.html">
+       Lecture 31: Fixed Point Theorem and Cauchy Theorem
        </a></li>
 	   <!----------------->
 	   <!------EXTRA------>

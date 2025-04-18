@@ -1,4 +1,698 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-14T20:23:08-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 29: Burnside Formula</title><link href="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html" rel="alternate" type="text/html" title="Lecture 29: Burnside Formula" /><published>2025-02-21T00:01:36-08:00</published><updated>2025-02-21T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html"><![CDATA[<p>Today we will discuss a formula for counting orbits calling the burnside formula. The book illustrates this with a necklace beads counting example. So how many necklaces are there with two orange, two blue beads? If we count naively, we have 4 slots. The two blue beads will go into two of the slots. So there are \(\binom{4}{2} = 6\) to do this. Then the orange beads will get the remaining two spots. So</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-18T14:57:06-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 31: Fixed Point Theorem and Cauchy Theorem</title><link href="http://localhost:4000/jekyll/update/2025/02/23/math417-31-fixed-point-theorem-cauchy-theorem.html" rel="alternate" type="text/html" title="Lecture 31: Fixed Point Theorem and Cauchy Theorem" /><published>2025-02-23T00:01:36-08:00</published><updated>2025-02-23T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/23/math417-31-fixed-point-theorem-cauchy-theorem</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/23/math417-31-fixed-point-theorem-cauchy-theorem.html"><![CDATA[<p>Let \(G\) be a group that acts on \(X\). Define
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Define \(X^G = \{x \in X \ | \ gx = x \text{ for all } g \in G\} \subseteq X \). This set is called the Fixed Point set of the action. 
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+Compare this to the definition for any \(g \in G\), then.</p>
+<div>
+$$
+\begin{align*}
+\text{Fix}(g) = \{x \in X \ | \ gx = x\}
+\end{align*}
+$$
+</div>
+<p>So this is the set of elements fixed by \(g\) but what we defined above is the set of elements in \(X\) such that they’re always fixed by any \(g\). This means that we can re-write the definition to</p>
+<div>
+$$
+\begin{align*}
+X^G = \bigcap_{g \in G}\text{Fix}(g)
+\end{align*}
+$$
+</div>
+<!----------------------------------------------------------------------------->
+<p>We can also describe this set another way. Recall that an element \(x\) is fixed by every element \(g \in G\) if and only if its orbit contains only the element \(x\) itself. So now we can re-write the definition to be</p>
+<div>
+$$
+\begin{align*}
+X^G = \{x \in X \ | \ O(x) = \{x\} \}
+\end{align*}
+$$
+</div>
+<!----------------------------------------------------------------------------->
+<p>Recall now that \(\text{Stab}(x) = \{g \in G \ | \ gx = x\}\). So we can re-write this definition to say</p>
+<div>
+$$
+\begin{align*}
+X^G = \{x \in X \ | \ \text{Stab}(x) = G \}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Fixed Point Theorem</b></h4>
+<p>We’ll study one theorem about this. But first define
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Let \(p\) be a prime number. A \(p\)-group is a group of order \(p^k\) for some \(k \geq 1\).
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+For example \(\mathbf{Z}_{p^k}\) is a \(p\)-group. The cyclic group like \(\mathbf{Z}_{p^i} \times \mathbf{Z}_{p^j}\) is another \(p\)-group. Or the dihedral group \(D_{2^k}\) which has order \(2^{k+1}\) so this is a 2-group.
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+Let \(G\) be \(p\)-group which acts on a finite set \(X\). Then \(|X^G| \equiv |X| (\bmod p)\)
+</div>
+<!----------------------------------------------------------------------------->
+<p><br /></p>
+<p>Proof</p>
+<p>The idea is that since \(G\) acts on \(X\), then it partitions \(X\) into non-empty disjoint orbits. So we can write \(O_1,O_2,...O_r\) for the orbits of the action. Then</p>
+<div>
+$$
+\begin{align*}
+|X| = |O_1| + |O_2| + ... + |O_r|
+\end{align*}
+$$
+</div>
+<p>But we know that \(|G|=p^k\) and we also know that any orbit size must divide the group order. Therefore, \(|O_i| \in \{1,p,p^2,...p^k\}\). Break the orbits into two types. Let</p>
+<div>
+$$
+\begin{align*}
+O_1, O_2, ..., O_d
+\end{align*}
+$$
+</div>
+<p>be orbits of size 1 and let</p>
+<div>
+$$
+\begin{align*}
+O_{d+1}, O_{d+2}, ..., O_r
+\end{align*}
+$$
+</div>
+<p>be orbits of size \(r\). So now</p>
+<div>
+$$
+\begin{align*}
+|X| = (|O_1| + |O_2| + ... + |O_d|) + (|O_{d+1}| + |O_{d+2}| + ... + |O_{r}|)
+\end{align*}
+$$
+</div>
+<p>where \(|O_1| + |O_2| + ... + |O_d|=d\) and \(|O_{d+1}| + |O_{d+2}| + ... + |O_{r}|\) is divisible by \(p\) so it’s some multiple \(k\) of \(p\). More precisely, \(d\) is the number of elements that are in orbits of size 1. By definition, this is the fixed set of the action so \(|X^G| = d\). Therefore</p>
+<div>
+$$
+\begin{align*}
+|X| &amp;= d + kp \\
+|X| - d &amp;= kp \\
+\end{align*}
+$$
+</div>
+<p>Therefore,</p>
+<div>
+$$
+\begin{align*}
+|X| &amp;\equiv d (\bmod p) \\
+|X| &amp;\equiv |X^G| (\bmod p) 
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Application of the Fixed Point Theorem</b></h4>
+<p>Here are some application of this theorem
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Let \(G\) be \(p\)-group. Then the center of the group \(Z(G) = \{ g \in G \ | \ gh = hg \text{ for all } h \in H\}\) is non-trivial so \(Z(G) \neq \{e\}\).
+</div>
+<!----------------------------------------------------------------------------->
+<p><br /></p>
+<p>Proof</p>
+<p>Let \(G\) acts on \(X = G\) itself by conjugation. So we have \(c: G \rightarrow Sym(X)\). The fixed points of this action are</p>
+<div>
+$$
+\begin{align*}
+X^G &amp;= \{x \in X \ | \ gx = x \text{ for all } g \in G\} \\
+ &amp;= \{x \in X \ | \ c(g)(x) = x \text{ for all } g \in G\} \quad \text{(the action is the conjugation action)} \\
+&amp;= \{x \in X \ | gxg^{-1} = x \text{ for all } g \in G\} \\
+&amp;= \{x \in X \ | gx = xg \text{ for all } g \in G\} 
+\end{align*}
+$$
+</div>
+<p>So in the conjugation action, the fixed point set is the center of the set. By the previous theorem we know that</p>
+<div>
+$$
+\begin{align*}
+|X^G| &amp;\equiv |X| (\bmod p) \\
+|X^G| &amp;\equiv p^k (\bmod p) \quad \text{(order of $|G|$ is $p^k$)} \\
+|X^G| &amp;\equiv 0 (\bmod p)  \quad \text{because ($p^k \equiv 0 (\bmod p)$)}\\
+|Z(G)| &amp;\equiv 0 (\bmod p)  \quad \text{(we just showed this)}\\
+\end{align*}
+$$
+</div>
+<p>Therefore, \(Z(G) - 0 = pm\) for some \(m \in Z\). This means that \(p \ | \ Z(G)\). But \(Z(G)\) is a subgroup so it includes at least the identity element. So its size is at least 1. Therefore, \(|Z(G)| \geq p \geq 2\). So we must have at least one non-trivial element in the center. \(\ \blacksquare\)
+<br />
+<br />
+So again, \(p-\)groups will always have a non-trivial center. Next, we have a corollary of this
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Let \(p\) be a prime number. Then every group of order \(p^2\) is abelian.
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+Using this, we can now use the elementary divisor theorem to classify these groups. In fact, \(G\) of order (p^2) is isomorphic to either \(\mathbf{Z}_{p^2}\) or \(\mathbf{Z}_p \times \mathbf{Z}_p\). 
+<br />
+<br />
+<b>Proof</b>
+Let \(|G| = p^2\). By the proposition, \(Z(G)\) is not trivial. But we also know that it is a subgroup. So its order must divide the order of the group. So its order must either be \(p\) or \(p^2\). If the order is \(p^2\), then every element commute with every other element so \(G\) must be abelian. So we only have case which is when \(|Z(G)| = p\). Now, recall that \(Z(G)\) is a normal subgroup in \(G\). Therefore, we can form the quotient group \(G/Z(G)\). The order of this quotient group is \(p^2/p = p\). But we also know that every group of prime order is cyclic so \(G/Z(G)\) is cyclic. By Homework ?, if we have a group \(G\) where its quotient group mod its center is cyclic (\(G/Z(G)\)), then \(G\) is abelian. So \(G\) is abelian in this case too. \(\ \blacksquare\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>Cauchy Theorem</b></h4>
+<p>There is one more application of the fixed point theorem. 
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+Let \(G\) be a finite group. If \(p\) is a prime number that divides \(|G|\), then \(G\) must have element of order \(p\).
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+A special case of this is the even-order theorem. As a reminder, let’s revisit this proof in terms of group actions before proving the actual theorem. 
+<br />
+<br />
+<b>Proof (Even Order Theorem)</b>
+<br />
+Let \(|G| = n\) where \(n\) is even. Let \(C = \langle \varphi \rangle = \{e, \varphi\}\) be a cyclic group of order 2. Let \(C\) act on the set \(X = C\) which is the group itself. We know the identity elements acts as the identity function on \(X\). So we only have to define the action for \(\varphi\). So let’s define what \(\varphi(g)\) is for every element of the group. Let \(\varphi(g)\) be</p>
+<div>
+$$
+\begin{align*}
+\varphi(g) = g^{-1} \quad \text{for } g \in G
+\end{align*}
+$$
+</div>
+<p>This is in fact is a bijection. Note here, \(\varphi \circ \varphi = id\) so composing the action \(\varphi\) with itself gives us back the identity function. Now, \(C\) is a 2-group since its of order 2. So we can apply the fixed point theorem which states that</p>
+<div>
+$$
+\begin{align*}
+|X^C| &amp;\equiv |X| (\bmod 2) \\
+|X^C| &amp;\equiv 2 (\bmod 2) \quad \text{(We know $|X| = 2$)}\\
+|X^C| &amp;\equiv 0 (\bmod 2)
+\end{align*}
+$$
+</div>
+<p>So \(|X^C|\) must be even. \(X^C\) is the set of elements that are fixed by the action \(\varphi\) so</p>
+<div>
+$$
+\begin{align*}
+X^C &amp;= \{x \in X \ | \ \varphi(x) = x\} \\
+    &amp;= \{x \in X \ | \ x^{-1} = x\} \\
+	&amp;= \{x \in X \ | \ x^2 = e\}.
+\end{align*}
+$$
+</div>
+<p>So this group has an even number of elements and must at least include the identity element. Therefore, it must have at least one more non-trivial element of order 2. \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------->
+<b>Proof (Cauchy’s Theorem)</b>
+<br />
+Let \(G\) be a group of order \(n\). Suppose \(p\) is a prime number such that \(p \ | \ n\). Let \(C = \langle \varphi \rangle\) be a cyclic group of order \(p\). Let \(X\) be the set</p>
+<div>
+$$
+\begin{align*}
+X = \{(a_1,...,a_p) \in G^p \ | \ a_1,...a_p \in G, a_1a_2...a_p = e\}
+\end{align*}
+$$
+</div>
+<p>So it’s the set of all \(p\) tuples such that when we multiply any tuple’s elements, we get the identity. But we can re-write this as</p>
+<div>
+$$
+\begin{align*}
+a_p =  (a_1,a_2...a_{p-1})^{-1}
+\end{align*}
+$$
+</div>
+<p>So the last element \(a_p\) is the inverse of the previous elements all multiplied. So for any \(g\) to be in \(G^p\), we can pick \(p-1\) elements from \(G\) and then form the last element by taking their product and taking the inverse of that product. 
+<br />
+<br />
+What is \(|X|\)? we have \(n\) choices for the first \(p-1\) elements but only 1 choice for the last element. This implies that \(|X| = n^{p-1}\). Moreover, by assumption we know that \(p\) divides \(|G|=n\). So \(n = pk\) for some \(k\). So we can write \(|X| = (pk)^{p-1}\). But \(p\) is prime so it’s at least 2. Therefore, \(p\) must divide \(|X|\) as well.
+<br />
+<br />
+Now, let \(C\) act on \(X\). Define</p>
+<div>
+$$
+\begin{align*}
+\varphi \cdot (a_1,a_2,...,a_{p-1},a_p) = (a_p,a_1,...,a_{p-1})
+\end{align*}
+$$
+</div>
+<p>So the action permutes the elements cyclicly. We need to verify that the product is in \(X\). This means if we multiply the first \(p-1\) elements and take their inverse, we should get the last element. To show this notice that \((a_1,a_2,...,a_{p-1},a_p)\) is in \(X\) by assumption so we know that the product of the elements is \(e\). Now conjugate this product by \(a^{p}\) to see that</p>
+<div>
+$$
+\begin{align*}
+(a_1a_2...a_{p-1}a_p) &amp;= e \\
+a_p(a_1a_2...a_{p-1}a_p)a_p^{-1} &amp;= a_pea_p^{-1} \\
+a_pa_1a_2...a_{p-1} &amp;= e.
+\end{align*}
+$$
+</div>
+<p>So we can see that \(a_pa_1a_2...a_{p-1} \in X\) which is what we wanted to show. Additionally, if we apply \(\varphi\) \(p\) times, we will see that \(\varphi \circ \varphi \circ ... \varphi = id\) it will take us to the identity function or action. So this action or permutation has order \(p\). 
+<br />
+<br />
+So now we have \(|G| = n\) and \(|X| = n^{p-1}\). We know \(p\) divides both. We can apply the fixed point theorem but what is \(X^C\)? By definition, it’s the set of elements fixed by any \(g \in \langle \varphi \rangle\). But since \(\langle \varphi \rangle\) is cyclic, then if an element gets fixed by \(\varphi\), it get fixed by any power of \(\varphi\). Therefore</p>
+<div>
+$$
+\begin{align*}
+X^C &amp;= \{x \in X \ | \ \varphi(x) = x\} \\
+    &amp;= \{(a_1,...,a_p) \in G \ | \ a_1...a_p = e \text{ and } \varphi \cdot (a_1,...,a_p) = (a_1,...,a_p)\} \\
+    &amp;= \{(a_1,...,a_p) \in G \ | \ a_1...a_p = e \text{ and }  (a_p,a_1...,a_{p-1}) = (a_1,a_2...,a_p)\}.
+\end{align*}
+$$
+</div>
+<p>This last condition says that \(a_p=a_1\), \(a_1=a_2\), … \(a_{p-1}=a_p\). This means that all the elements are the same. So we can write \(X^C\) as</p>
+<div>
+$$
+\begin{align*}
+X^C &amp;= \{ (a,a...,a) \ | \ a \in G, aa...a = a^p = e\}.
+\end{align*}
+$$
+</div>
+<p>Therefore, the size of this set, is the number of elements in \(G\) which have order \(p\). So</p>
+<div>
+$$
+\begin{align*}
+|X^C| &amp;= |\{ a \in G \ | \ a^p = e\}|.
+\end{align*}
+$$
+</div>
+<p>We know \(e \in X^C\) since e\(e^p = e\). Moreover, by the Fixed Point Theorem,</p>
+<div>
+$$
+\begin{align*}
+|X^C| &amp;\equiv |X| (\bmod p) \\
+|X^C| &amp;\equiv 0 (\bmod p) \quad \text{(because $p \ | \ |X|$)}
+\end{align*}
+$$
+</div>
+<p>So \(|X^C|\) must be divisible by \(p\) and since \(|X^C| \geq 1\), then \(|X^C| \geq p\). But this means that \(G\) has at least one non-trivial element of order \(p\). \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Classification of Groups of Order 6</b></h4>
+<p>We’ve seen before \(\mathbf{Z}_6 \cong \mathbf{Z}_2 \times \mathbf{Z}_3\) and we’ve also seen \(D_3 \cong S_3\). 
+<br />
+<br />
+Suppose \(|G| = 6 = 2(3)\). These are prime factors, so we can use Cauchy’s Theorem twice to conclude that we must have an element of order 2 and another element of order 3. So let</p>
+<div>
+$$
+\begin{align*}
+A &amp;= \langle a \rangle \text{ where $|A| = 2$ } \\
+N &amp;= \langle 3 \rangle \text{ where $|N| = 3$}
+\end{align*}
+$$
+</div>
+<p>This implies that</p>
+<div>
+$$
+\begin{align*}
+[G:N] = \frac{|G|}{|N|} = \frac{6}{3} = 2.
+\end{align*}
+$$
+</div>
+<p>But we’ve seen in one of the homeworks, that this implies that \(N\) is normal. We also know the following facts</p>
+<ul>
+	<li>\(N \cap A = \{e\}\) since elements of \(N\) have order 1 or 3 and elements of \(A\) have orders 1 and 2</li>
+	<li>\(NA\) is a subgroup of \(G\) because one of the groups is normal by Corollary (26.4).</li>
+	<li>By the Diamond Isomorphism Theorem, \(A/A \cap N \cong NA/N\). But since \(A \cap N = \{e\}\). Then \(A \cong NA/N\). This means that \(|NA|/|N| = |A|\). So \(|NA| = |A||N| = 6\)</li>
+	<li>Since \(NA\) is a subgroup of size 6, then it's \(G\) so \(NA = G\)</li>
+</ul>
+<p>So we know 4 important things</p>
+<ul>
+	<li>\(A\) is a subgroup of \(G\).</li>
+	<li>\(N\) is a normal subgroup of \(G\).</li>
+	<li>\(G = NA\).</li>
+	<li>\(A \cap N = \{e\}\).</li>
+</ul>
+<p>These are the 4 conditions so we can apply the the recognization theorem to conclude that there exists a homomorphism \(\gamma: A \rightarrow \text{Aut}(N)\) such that there is an isomorphism of groups</p>
+<div>
+$$
+\begin{align*}
+N \rtimes_{\gamma} A \cong G
+\end{align*}
+$$
+</div>
+<p>\(A\) is of order 2 so it must be isomorphic to \(\mathbf{Z}_2\). \(N\) is of order 3 so it’s isomorphic to \(\mathbf{Z}_3\). We know that \(\text{Aut}(\mathbf{Z}_3) \cong \Phi(3)\) But \(\Phi(3)\) is of order 2 so it’s isomorphic to \(\mathbf{Z}_2\). So how many homomorphisms can we have from \(A\) to \(\text{Aut}(N)\) if both groups are cyclic of order 2? There are only two choices.</p>
+<ul>
+	<li>The trivial homomorphism gives us the product group \(\mathbf{Z}_2 \times \mathbf{Z}_3\)</li>
+	<li>The non-trivial homomorphism gives us the dihedral group \(D_3\).</li>
+</ul>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Study Notes on \(D_3\)</b></h4>
+<p>How does the non-trivial homomorphism gives us the dihedral group? how does this happen? We have</p>
+<ul>
+	<li>\(N = \langle n \rangle \cong \mathbf{Z}_3\) where \(n^3 = e\).</li>
+	<li>\(A = \langle a \rangle \cong \mathbf{Z}_2\) where \(a^2 = e\)</li>
+</ul>
+<p>Define</p>
+<div>
+	$$
+	\begin{align*}
+	\gamma: A &amp;\rightarrow \text{Aut}(\mathbf{Z}_3) \\
+	\gamma(a) &amp;= \alpha \text{ where } \alpha(n) = n^{-1} \\
+	\gamma(a)(n) &amp;= n^{-1}
+	\end{align*}
+	$$
+</div>
+<p>So the element \(a \in A\) acts on \(n \in N\) by inverting it. Observe that \(a^2 = e\) and \(\alpha^2 = (n^{-1})^{-1} = \text{id}\) so \(\gamma(\alpha^2) = \gamma(\alpha)^2\). So now multiplication in semi-direct groups is defined as</p>
+<div>
+	$$
+	\begin{align*}
+	(n^i, a^j)(n^k, a^l) = (n^i \cdot \gamma_{a^j}(n^k), a^{j}a^{j})
+	\end{align*}
+	$$
+</div>
+<p>\(a\) has order 2 so \(\gamma_{a^j}(n^k)\) is defined as</p>
+<ul>
+	<li>When \(j = 0\), then \(a^0 = 0\), then \(\gamma_{e} = id\).</li>
+	<li>When \(j = 1\), then \(a^1 = a\), then \(\gamma_{a} = \alpha\) where \(\alpha(n) = n^{-k}\).</li>
+</ul>
+<p>So now if we apply the semidirect product multiplication, using the homomorphism we defined, we will see that for any \(a\), that we get the relationship \(ana^{-1} = n^{-1}\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Classification of Groups of Order \(2p\)</b></h4>
+<p>where \(p\) is an odd prime. We know two groups \(\mathbf{Z}_{2p} =\mathbf{Z}_{2} \times \mathbf{Z}_{p}\) and \(D_p\). 
+<br />
+<br />
+Let \(|G| = 2p\). By Cauchy, \(2\) divides \(|G|\). Therefore, we have an element of order \(2\). From this, we get \(A = \langle a \rangle\) where \(|A| = 2\). We also have an element of order \(p\). From this we get \(N = \langle N \rangle\). Again, we will see that</p>
+<div>
+$$
+\begin{align*}
+[G:N] = \frac{|G|}{|N|} = \frac{2p}{p} = 2.
+\end{align*}
+$$
+</div>
+<p>Therefore \(N\) is normal. With a similar argument to the previous example. We will see that</p>
+<ul>
+	<li>\(A\) is a subgroup of \(G\).</li>
+	<li>\(N\) is a normal subgroup of \(G\).</li>
+	<li>\(G = NA\).</li>
+	<li>\(A \cap N = \{e\}\).</li>
+</ul>
+<p>So we can use the recognization theorem again to conclude that there exists a homomorphism \(\gamma: A \rightarrow \text{Aut}(N)\) such that there is an isomorphism of groups</p>
+<div>
+$$
+\begin{align*}
+N \rtimes_{\gamma} A \cong G
+\end{align*}
+$$
+</div>
+<p>\(A\) is of order 2 so it must be isomorphic to \(\mathbf{Z}_2\). \(N\) is of order \(p\) so it’s isomorphic to \(\mathbf{Z}_p\) (cyclic). We know that \(\text{Aut}(\mathbf{Z}_p) \cong \Phi(p)\) where \(\Phi(p)\) is of order \(p-1\). So how many homomorphisms can we have from \(A\) to \(\text{Aut}(N)\).</p>
+<ul>
+	<li>The trivial homomorphism gives us the product group \(\mathbf{Z}_2 \times \mathbf{Z}_p\)</li>
+	<li>The non-trivial homomorphism gives us the dihedral group \(D_p\).</li>
+</ul>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Classification of Groups of Order \(pq\)</b></h4>
+<p>\(p\) and \(q\) are distinct primes where \(p &gt; q\). So again we have \(|G|=pq\). By Cauchy, we have two cyclic subgroups such that</p>
+<div>
+$$
+\begin{align*}
+A &amp;= \langle a \rangle \text{ where $|A| = q$ } \\
+N &amp;= \langle b \rangle \text{ where $|N| = p$}
+\end{align*}
+$$
+</div>
+<p>This implies that</p>
+<div>
+$$
+\begin{align*}
+[G:N] = \frac{|G|}{|N|} = q.
+\end{align*}
+$$
+</div>
+<p>\(q\) is the smallest prime dividing the order of \(|G|\). By some homework assignment that said that if we have a subgroup of order “the smallest prime dividing the order”, then this subgroup is normal. So now again,</p>
+<ul>
+	<li>\(A\) is a subgroup of \(G\).</li>
+	<li>\(N\) is a normal subgroup of \(G\).</li>
+	<li>\(G = NA\).</li>
+	<li>\(A \cap N = \{e\}\) because \(p \neq q\).</li>
+</ul>
+<p>So we can use the recognization theorem AGAIN to conclude that there exists a homomorphism \(\gamma: A \rightarrow \text{Aut}(N)\) such that there is an isomorphism of groups</p>
+<div>
+$$
+\begin{align*}
+N \rtimes_{\gamma} A \cong G
+\end{align*}
+$$
+</div>
+<p>Where</p>
+<div>
+	$$
+	\begin{align*}
+	\gamma: A &amp;\rightarrow \text{Aut}(N) \\
+	\gamma: \mathbf{Z}_p &amp;\rightarrow \Phi(p)
+	\end{align*}
+	$$
+</div>
+<p>There are two cases:</p>
+<ul>
+	<li>\(q \ \not\mid \ (p-1)\): In this case, the generator of the group \(A\)'s \(q\)th power has to go to the identity because \(q\) doesn't divide \(p - 1\) which is the order of \(\Phi(p)\). The only possible \(\gamma\) is \(\gamma(a) = e\) so send everything to the identity and we get the direct product \(\mathbf{Z}_p \times \mathbf{Z}_q\).</li>
+	<li>\(q \ | \ (p-1)\): So we get the non-trivial homomorphism \(\gamma\). Because \(q \ (p-1)\) which is the order of \(\Phi(p-1)\), then by Cauchy there exists an element of order \(q\) in \(\Phi(p-1)\). So \(\mathbf{Z}_{pq}\) and another non abelian group.</li>
+</ul>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Let \(G\) be a group that acts on \(X\). Define Definition Define \(X^G = \{x \in X \ | \ gx = x \text{ for all } g \in G\} \subseteq X \). This set is called the Fixed Point set of the action. Compare this to the definition for any \(g \in G\), then. $$ \begin{align*} \text{Fix}(g) = \{x \in X \ | \ gx = x\} \end{align*} $$ So this is the set of elements fixed by \(g\) but what we defined above is the set of elements in \(X\) such that they’re always fixed by any \(g\). This means that we can re-write the definition to $$ \begin{align*} X^G = \bigcap_{g \in G}\text{Fix}(g) \end{align*} $$ We can also describe this set another way. Recall that an element \(x\) is fixed by every element \(g \in G\) if and only if its orbit contains only the element \(x\) itself. So now we can re-write the definition to be $$ \begin{align*} X^G = \{x \in X \ | \ O(x) = \{x\} \} \end{align*} $$ Recall now that \(\text{Stab}(x) = \{g \in G \ | \ gx = x\}\). So we can re-write this definition to say $$ \begin{align*} X^G = \{x \in X \ | \ \text{Stab}(x) = G \} \end{align*} $$ Fixed Point Theorem We’ll study one theorem about this. But first define Definition Let \(p\) be a prime number. A \(p\)-group is a group of order \(p^k\) for some \(k \geq 1\). For example \(\mathbf{Z}_{p^k}\) is a \(p\)-group. The cyclic group like \(\mathbf{Z}_{p^i} \times \mathbf{Z}_{p^j}\) is another \(p\)-group. Or the dihedral group \(D_{2^k}\) which has order \(2^{k+1}\) so this is a 2-group. Theorem Let \(G\) be \(p\)-group which acts on a finite set \(X\). Then \(|X^G| \equiv |X| (\bmod p)\) Proof The idea is that since \(G\) acts on \(X\), then it partitions \(X\) into non-empty disjoint orbits. So we can write \(O_1,O_2,...O_r\) for the orbits of the action. Then $$ \begin{align*} |X| = |O_1| + |O_2| + ... + |O_r| \end{align*} $$ But we know that \(|G|=p^k\) and we also know that any orbit size must divide the group order. Therefore, \(|O_i| \in \{1,p,p^2,...p^k\}\). Break the orbits into two types. Let $$ \begin{align*} O_1, O_2, ..., O_d \end{align*} $$ be orbits of size 1 and let $$ \begin{align*} O_{d+1}, O_{d+2}, ..., O_r \end{align*} $$ be orbits of size \(r\). So now $$ \begin{align*} |X| = (|O_1| + |O_2| + ... + |O_d|) + (|O_{d+1}| + |O_{d+2}| + ... + |O_{r}|) \end{align*} $$ where \(|O_1| + |O_2| + ... + |O_d|=d\) and \(|O_{d+1}| + |O_{d+2}| + ... + |O_{r}|\) is divisible by \(p\) so it’s some multiple \(k\) of \(p\). More precisely, \(d\) is the number of elements that are in orbits of size 1. By definition, this is the fixed set of the action so \(|X^G| = d\). Therefore $$ \begin{align*} |X| &amp;= d + kp \\ |X| - d &amp;= kp \\ \end{align*} $$ Therefore, $$ \begin{align*} |X| &amp;\equiv d (\bmod p) \\ |X| &amp;\equiv |X^G| (\bmod p) \end{align*} $$ Application of the Fixed Point Theorem Here are some application of this theorem Proposition Let \(G\) be \(p\)-group. Then the center of the group \(Z(G) = \{ g \in G \ | \ gh = hg \text{ for all } h \in H\}\) is non-trivial so \(Z(G) \neq \{e\}\). Proof Let \(G\) acts on \(X = G\) itself by conjugation. So we have \(c: G \rightarrow Sym(X)\). The fixed points of this action are $$ \begin{align*} X^G &amp;= \{x \in X \ | \ gx = x \text{ for all } g \in G\} \\ &amp;= \{x \in X \ | \ c(g)(x) = x \text{ for all } g \in G\} \quad \text{(the action is the conjugation action)} \\ &amp;= \{x \in X \ | gxg^{-1} = x \text{ for all } g \in G\} \\ &amp;= \{x \in X \ | gx = xg \text{ for all } g \in G\} \end{align*} $$ So in the conjugation action, the fixed point set is the center of the set. By the previous theorem we know that $$ \begin{align*} |X^G| &amp;\equiv |X| (\bmod p) \\ |X^G| &amp;\equiv p^k (\bmod p) \quad \text{(order of $|G|$ is $p^k$)} \\ |X^G| &amp;\equiv 0 (\bmod p) \quad \text{because ($p^k \equiv 0 (\bmod p)$)}\\ |Z(G)| &amp;\equiv 0 (\bmod p) \quad \text{(we just showed this)}\\ \end{align*} $$ Therefore, \(Z(G) - 0 = pm\) for some \(m \in Z\). This means that \(p \ | \ Z(G)\). But \(Z(G)\) is a subgroup so it includes at least the identity element. So its size is at least 1. Therefore, \(|Z(G)| \geq p \geq 2\). So we must have at least one non-trivial element in the center. \(\ \blacksquare\) So again, \(p-\)groups will always have a non-trivial center. Next, we have a corollary of this Proposition Let \(p\) be a prime number. Then every group of order \(p^2\) is abelian. Using this, we can now use the elementary divisor theorem to classify these groups. In fact, \(G\) of order (p^2) is isomorphic to either \(\mathbf{Z}_{p^2}\) or \(\mathbf{Z}_p \times \mathbf{Z}_p\). Proof Let \(|G| = p^2\). By the proposition, \(Z(G)\) is not trivial. But we also know that it is a subgroup. So its order must divide the order of the group. So its order must either be \(p\) or \(p^2\). If the order is \(p^2\), then every element commute with every other element so \(G\) must be abelian. So we only have case which is when \(|Z(G)| = p\). Now, recall that \(Z(G)\) is a normal subgroup in \(G\). Therefore, we can form the quotient group \(G/Z(G)\). The order of this quotient group is \(p^2/p = p\). But we also know that every group of prime order is cyclic so \(G/Z(G)\) is cyclic. By Homework ?, if we have a group \(G\) where its quotient group mod its center is cyclic (\(G/Z(G)\)), then \(G\) is abelian. So \(G\) is abelian in this case too. \(\ \blacksquare\). Cauchy Theorem There is one more application of the fixed point theorem. Theorem Let \(G\) be a finite group. If \(p\) is a prime number that divides \(|G|\), then \(G\) must have element of order \(p\). A special case of this is the even-order theorem. As a reminder, let’s revisit this proof in terms of group actions before proving the actual theorem. Proof (Even Order Theorem) Let \(|G| = n\) where \(n\) is even. Let \(C = \langle \varphi \rangle = \{e, \varphi\}\) be a cyclic group of order 2. Let \(C\) act on the set \(X = C\) which is the group itself. We know the identity elements acts as the identity function on \(X\). So we only have to define the action for \(\varphi\). So let’s define what \(\varphi(g)\) is for every element of the group. Let \(\varphi(g)\) be $$ \begin{align*} \varphi(g) = g^{-1} \quad \text{for } g \in G \end{align*} $$ This is in fact is a bijection. Note here, \(\varphi \circ \varphi = id\) so composing the action \(\varphi\) with itself gives us back the identity function. Now, \(C\) is a 2-group since its of order 2. So we can apply the fixed point theorem which states that $$ \begin{align*} |X^C| &amp;\equiv |X| (\bmod 2) \\ |X^C| &amp;\equiv 2 (\bmod 2) \quad \text{(We know $|X| = 2$)}\\ |X^C| &amp;\equiv 0 (\bmod 2) \end{align*} $$ So \(|X^C|\) must be even. \(X^C\) is the set of elements that are fixed by the action \(\varphi\) so $$ \begin{align*} X^C &amp;= \{x \in X \ | \ \varphi(x) = x\} \\ &amp;= \{x \in X \ | \ x^{-1} = x\} \\ &amp;= \{x \in X \ | \ x^2 = e\}. \end{align*} $$ So this group has an even number of elements and must at least include the identity element. Therefore, it must have at least one more non-trivial element of order 2. \(\ \blacksquare\) Proof (Cauchy’s Theorem) Let \(G\) be a group of order \(n\). Suppose \(p\) is a prime number such that \(p \ | \ n\). Let \(C = \langle \varphi \rangle\) be a cyclic group of order \(p\). Let \(X\) be the set $$ \begin{align*} X = \{(a_1,...,a_p) \in G^p \ | \ a_1,...a_p \in G, a_1a_2...a_p = e\} \end{align*} $$ So it’s the set of all \(p\) tuples such that when we multiply any tuple’s elements, we get the identity. But we can re-write this as $$ \begin{align*} a_p = (a_1,a_2...a_{p-1})^{-1} \end{align*} $$ So the last element \(a_p\) is the inverse of the previous elements all multiplied. So for any \(g\) to be in \(G^p\), we can pick \(p-1\) elements from \(G\) and then form the last element by taking their product and taking the inverse of that product. What is \(|X|\)? we have \(n\) choices for the first \(p-1\) elements but only 1 choice for the last element. This implies that \(|X| = n^{p-1}\). Moreover, by assumption we know that \(p\) divides \(|G|=n\). So \(n = pk\) for some \(k\). So we can write \(|X| = (pk)^{p-1}\). But \(p\) is prime so it’s at least 2. Therefore, \(p\) must divide \(|X|\) as well. Now, let \(C\) act on \(X\). Define $$ \begin{align*} \varphi \cdot (a_1,a_2,...,a_{p-1},a_p) = (a_p,a_1,...,a_{p-1}) \end{align*} $$ So the action permutes the elements cyclicly. We need to verify that the product is in \(X\). This means if we multiply the first \(p-1\) elements and take their inverse, we should get the last element. To show this notice that \((a_1,a_2,...,a_{p-1},a_p)\) is in \(X\) by assumption so we know that the product of the elements is \(e\). Now conjugate this product by \(a^{p}\) to see that $$ \begin{align*} (a_1a_2...a_{p-1}a_p) &amp;= e \\ a_p(a_1a_2...a_{p-1}a_p)a_p^{-1} &amp;= a_pea_p^{-1} \\ a_pa_1a_2...a_{p-1} &amp;= e. \end{align*} $$ So we can see that \(a_pa_1a_2...a_{p-1} \in X\) which is what we wanted to show. Additionally, if we apply \(\varphi\) \(p\) times, we will see that \(\varphi \circ \varphi \circ ... \varphi = id\) it will take us to the identity function or action. So this action or permutation has order \(p\). So now we have \(|G| = n\) and \(|X| = n^{p-1}\). We know \(p\) divides both. We can apply the fixed point theorem but what is \(X^C\)? By definition, it’s the set of elements fixed by any \(g \in \langle \varphi \rangle\). But since \(\langle \varphi \rangle\) is cyclic, then if an element gets fixed by \(\varphi\), it get fixed by any power of \(\varphi\). Therefore $$ \begin{align*} X^C &amp;= \{x \in X \ | \ \varphi(x) = x\} \\ &amp;= \{(a_1,...,a_p) \in G \ | \ a_1...a_p = e \text{ and } \varphi \cdot (a_1,...,a_p) = (a_1,...,a_p)\} \\ &amp;= \{(a_1,...,a_p) \in G \ | \ a_1...a_p = e \text{ and } (a_p,a_1...,a_{p-1}) = (a_1,a_2...,a_p)\}. \end{align*} $$ This last condition says that \(a_p=a_1\), \(a_1=a_2\), … \(a_{p-1}=a_p\). This means that all the elements are the same. So we can write \(X^C\) as $$ \begin{align*} X^C &amp;= \{ (a,a...,a) \ | \ a \in G, aa...a = a^p = e\}. \end{align*} $$ Therefore, the size of this set, is the number of elements in \(G\) which have order \(p\). So $$ \begin{align*} |X^C| &amp;= |\{ a \in G \ | \ a^p = e\}|. \end{align*} $$ We know \(e \in X^C\) since e\(e^p = e\). Moreover, by the Fixed Point Theorem, $$ \begin{align*} |X^C| &amp;\equiv |X| (\bmod p) \\ |X^C| &amp;\equiv 0 (\bmod p) \quad \text{(because $p \ | \ |X|$)} \end{align*} $$ So \(|X^C|\) must be divisible by \(p\) and since \(|X^C| \geq 1\), then \(|X^C| \geq p\). But this means that \(G\) has at least one non-trivial element of order \(p\). \(\ \blacksquare\) Classification of Groups of Order 6 We’ve seen before \(\mathbf{Z}_6 \cong \mathbf{Z}_2 \times \mathbf{Z}_3\) and we’ve also seen \(D_3 \cong S_3\). Suppose \(|G| = 6 = 2(3)\). These are prime factors, so we can use Cauchy’s Theorem twice to conclude that we must have an element of order 2 and another element of order 3. So let $$ \begin{align*} A &amp;= \langle a \rangle \text{ where $|A| = 2$ } \\ N &amp;= \langle 3 \rangle \text{ where $|N| = 3$} \end{align*} $$ This implies that $$ \begin{align*} [G:N] = \frac{|G|}{|N|} = \frac{6}{3} = 2. \end{align*} $$ But we’ve seen in one of the homeworks, that this implies that \(N\) is normal. We also know the following facts \(N \cap A = \{e\}\) since elements of \(N\) have order 1 or 3 and elements of \(A\) have orders 1 and 2 \(NA\) is a subgroup of \(G\) because one of the groups is normal by Corollary (26.4). By the Diamond Isomorphism Theorem, \(A/A \cap N \cong NA/N\). But since \(A \cap N = \{e\}\). Then \(A \cong NA/N\). This means that \(|NA|/|N| = |A|\). So \(|NA| = |A||N| = 6\) Since \(NA\) is a subgroup of size 6, then it's \(G\) so \(NA = G\) So we know 4 important things \(A\) is a subgroup of \(G\). \(N\) is a normal subgroup of \(G\). \(G = NA\). \(A \cap N = \{e\}\). These are the 4 conditions so we can apply the the recognization theorem to conclude that there exists a homomorphism \(\gamma: A \rightarrow \text{Aut}(N)\) such that there is an isomorphism of groups $$ \begin{align*} N \rtimes_{\gamma} A \cong G \end{align*} $$ \(A\) is of order 2 so it must be isomorphic to \(\mathbf{Z}_2\). \(N\) is of order 3 so it’s isomorphic to \(\mathbf{Z}_3\). We know that \(\text{Aut}(\mathbf{Z}_3) \cong \Phi(3)\) But \(\Phi(3)\) is of order 2 so it’s isomorphic to \(\mathbf{Z}_2\). So how many homomorphisms can we have from \(A\) to \(\text{Aut}(N)\) if both groups are cyclic of order 2? There are only two choices. The trivial homomorphism gives us the product group \(\mathbf{Z}_2 \times \mathbf{Z}_3\) The non-trivial homomorphism gives us the dihedral group \(D_3\). Study Notes on \(D_3\) How does the non-trivial homomorphism gives us the dihedral group? how does this happen? We have \(N = \langle n \rangle \cong \mathbf{Z}_3\) where \(n^3 = e\). \(A = \langle a \rangle \cong \mathbf{Z}_2\) where \(a^2 = e\) Define $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(\mathbf{Z}_3) \\ \gamma(a) &amp;= \alpha \text{ where } \alpha(n) = n^{-1} \\ \gamma(a)(n) &amp;= n^{-1} \end{align*} $$ So the element \(a \in A\) acts on \(n \in N\) by inverting it. Observe that \(a^2 = e\) and \(\alpha^2 = (n^{-1})^{-1} = \text{id}\) so \(\gamma(\alpha^2) = \gamma(\alpha)^2\). So now multiplication in semi-direct groups is defined as $$ \begin{align*} (n^i, a^j)(n^k, a^l) = (n^i \cdot \gamma_{a^j}(n^k), a^{j}a^{j}) \end{align*} $$ \(a\) has order 2 so \(\gamma_{a^j}(n^k)\) is defined as When \(j = 0\), then \(a^0 = 0\), then \(\gamma_{e} = id\). When \(j = 1\), then \(a^1 = a\), then \(\gamma_{a} = \alpha\) where \(\alpha(n) = n^{-k}\). So now if we apply the semidirect product multiplication, using the homomorphism we defined, we will see that for any \(a\), that we get the relationship \(ana^{-1} = n^{-1}\). Classification of Groups of Order \(2p\) where \(p\) is an odd prime. We know two groups \(\mathbf{Z}_{2p} =\mathbf{Z}_{2} \times \mathbf{Z}_{p}\) and \(D_p\). Let \(|G| = 2p\). By Cauchy, \(2\) divides \(|G|\). Therefore, we have an element of order \(2\). From this, we get \(A = \langle a \rangle\) where \(|A| = 2\). We also have an element of order \(p\). From this we get \(N = \langle N \rangle\). Again, we will see that $$ \begin{align*} [G:N] = \frac{|G|}{|N|} = \frac{2p}{p} = 2. \end{align*} $$ Therefore \(N\) is normal. With a similar argument to the previous example. We will see that \(A\) is a subgroup of \(G\). \(N\) is a normal subgroup of \(G\). \(G = NA\). \(A \cap N = \{e\}\). So we can use the recognization theorem again to conclude that there exists a homomorphism \(\gamma: A \rightarrow \text{Aut}(N)\) such that there is an isomorphism of groups $$ \begin{align*} N \rtimes_{\gamma} A \cong G \end{align*} $$ \(A\) is of order 2 so it must be isomorphic to \(\mathbf{Z}_2\). \(N\) is of order \(p\) so it’s isomorphic to \(\mathbf{Z}_p\) (cyclic). We know that \(\text{Aut}(\mathbf{Z}_p) \cong \Phi(p)\) where \(\Phi(p)\) is of order \(p-1\). So how many homomorphisms can we have from \(A\) to \(\text{Aut}(N)\). The trivial homomorphism gives us the product group \(\mathbf{Z}_2 \times \mathbf{Z}_p\) The non-trivial homomorphism gives us the dihedral group \(D_p\). Classification of Groups of Order \(pq\) \(p\) and \(q\) are distinct primes where \(p &gt; q\). So again we have \(|G|=pq\). By Cauchy, we have two cyclic subgroups such that $$ \begin{align*} A &amp;= \langle a \rangle \text{ where $|A| = q$ } \\ N &amp;= \langle b \rangle \text{ where $|N| = p$} \end{align*} $$ This implies that $$ \begin{align*} [G:N] = \frac{|G|}{|N|} = q. \end{align*} $$ \(q\) is the smallest prime dividing the order of \(|G|\). By some homework assignment that said that if we have a subgroup of order “the smallest prime dividing the order”, then this subgroup is normal. So now again, \(A\) is a subgroup of \(G\). \(N\) is a normal subgroup of \(G\). \(G = NA\). \(A \cap N = \{e\}\) because \(p \neq q\). So we can use the recognization theorem AGAIN to conclude that there exists a homomorphism \(\gamma: A \rightarrow \text{Aut}(N)\) such that there is an isomorphism of groups $$ \begin{align*} N \rtimes_{\gamma} A \cong G \end{align*} $$ Where $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma: \mathbf{Z}_p &amp;\rightarrow \Phi(p) \end{align*} $$ There are two cases: \(q \ \not\mid \ (p-1)\): In this case, the generator of the group \(A\)'s \(q\)th power has to go to the identity because \(q\) doesn't divide \(p - 1\) which is the order of \(\Phi(p)\). The only possible \(\gamma\) is \(\gamma(a) = e\) so send everything to the identity and we get the direct product \(\mathbf{Z}_p \times \mathbf{Z}_q\). \(q \ | \ (p-1)\): So we get the non-trivial homomorphism \(\gamma\). Because \(q \ (p-1)\) which is the order of \(\Phi(p-1)\), then by Cauchy there exists an element of order \(q\) in \(\Phi(p-1)\). So \(\mathbf{Z}_{pq}\) and another non abelian group. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 30: Finite Subgroups of SO(3)</title><link href="http://localhost:4000/jekyll/update/2025/02/22/math417-30-finite-subgroups.html" rel="alternate" type="text/html" title="Lecture 30: Finite Subgroups of SO(3)" /><published>2025-02-22T00:01:36-08:00</published><updated>2025-02-22T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/22/math417-30-finite-subgroups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/22/math417-30-finite-subgroups.html"><![CDATA[<p>Today, we’ll analyze finite subgroups of \(SO(3)\). Let’s describe the ones we already know about</p>
+<ul>
+	<li>The trivial subgroup \(\{I\}\).</li>
+	<!-------------------------------------->
+	<li>Subgroups that are cyclic so these subgroups are isomorphic to \(\mathbf{Z}_n\). For each \(n\), we have infinitely many subgroups. For example, there are infinitely many cyclic subgroups of order 3 in \(SO(3)\). Pick any axis and consider the rotation by angle \(\frac{2\pi}{3}\) around this axis. This makes a subgroup of order 3. So you can get a new subgroup for whatever axis you pick. Therefore, we have infinitely many. In fact, all these subgroups that are rotations by \(\frac{2\pi}{3}\) are conjugate (see the lecture before last. If we have a rotation by \(\theta\) around a unit vector \(v\) and we have the same rotation around another unit vector \(u\), then we change \(u\) to \(v\) by some rotation \(A \in SO(3)\).</li>
+	<!-------------------------------------->
+	<li>Subgroups isomorphic to the dihedral groups \(D_n\) where \(n \geq 2\). These are symmetries of a regular \(n-\)gon. Pick any \(n-\) and fix one of the vertices on the \(x-\)axis. The symmetries of the \(n-\) is a group isomorphic to \(D_n\).</li>
+	<!-------------------------------------->
+	<li>Symmetry group of the tetrahedron which is isomorphic to \(A_4\).</li>
+	<!-------------------------------------->
+	<li>Symmetry group of the cube/octahedron which is isomorphic to \(S_4\).</li>
+	<!-------------------------------------->
+	<li>Symmetry group of the icosahedron/dodecahedron which is isomorphic to \(A_5\).</li>
+</ul>
+<p>In fact we have the following theorem
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+Every finite subgroup of \(SO(3)\) is in the list above.
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+<b>Proof</b>
+<br />
+\(SO(3)\) acts on \(\mathbf{R}^3\) (we multiply a matrix in \(SO(3)\) by a vector in \(\mathbf{R}^3\)). So now suppose that \(G\) is a subgroup of \(SO(3)\). \(G\) acts on \(\mathbf{R}^3\). We’ll focus on the pole subset in \(\mathbf{R}^3\). What is a poll?
+<br />
+<br />
+A pole for \(G \subseteq SO(3)\) is a unit vector \((u) \in \mathbf{R}^3\) where \(\lVert u \rVert = 1\) such that \(|Stab_G(u)|\geq 2\).
+<br />
+<br />
+In other words, there exists an element \(g\) in \(\text{Stab}_G(u)\) other than the identity such that \(gu = u\). If \(g \neq I\), then \(g = Rot_u(\theta)\) where \(\theta\) is not a multiple of \(2\pi\). Recall, that a rotation in space only fixes vectors along the axis of rotation. But since we constrained this to unit vectors, then it will only fix the unit vector on the axis of rotation. So \(g\) fixes only \(\pm u\). As a consequence, poles come in pairs. If \(u\) is a pole, then \(-u\) is a pole too. So again, a pole is a unit vector in \(\mathbf{R}^3\) that gets fixed by some rotation in \(G\). In other words, \(u\) is a unit vector along the axis of some rotation in \(G\). As a consequence, every non-identity element in \(G\) can contribute 2 poles to the set of poles. If we let \(X\) to be the set of poles, then</p>
+<div>
+$$
+\begin{align*}
+|X| \leq 2(|G| - 1) \quad \text{(-1 for the identity)}
+\end{align*}
+$$
+</div>
+<p>So the set of poles \(X\) is the collection of unit vectors along the axes of rotations of elements in the group \(G\). \(G\) acts on the subset \(X \in \mathbf{R}^3\). For example, if \(g \in G\) and \(x \in X\), then we know that \(gx\) and \(g^{-1}x\) are both in \(X\). Why?
+<br />
+If \(x\) is a pole, we want to show that \(gx\) is a pole. Since \(x\) is a pole, then we know that \(|\text{Stab}_G(x)| \geq 2\). But we also know that \(\text{Stab}(gx) = g\text{Stab}(x)g^{-1}\) (By HW10, Problem 2). As a consequence, they both have the same size. Therefore, \(|\text{Stab}_G(gx)| \geq 2\). Therefore, \(gx\) is also a pole.
+<br />
+<br />
+Now, since \(G\) acts on the set of poles \(X\), then the set \(X\) decomposes have orbits \(O_1, O_2,...,O_k \subset X\) of the \(G\) action. In the following table, we’re going to list the orbits in decreasing order of their sizes so \(|O_1| \geq |O_2| ... \geq |O_k|\). We will also define \(c_i\) to be the size of the stabilizer in \(G\) of \(x\) for any \(x \in O_i\). Because elements in the same orbit have stabilizers of the same order. We also know that \(|O| = \frac{n}{c_i}\) by the orbits stabilizer theorem.</p>
+<ol>
+	<li>\(Z_n\): Cyclic groups are rotations around a single axis. We have 2 poles for each direction. The poles end up being in separate orbits. So each orbit is of size 1. So the corresponding stabilizer groups are the whole groups</li>
+	<!---------------------------------->
+	<li>\(D_m\): \(D_m\) is acting on the set of poles here where a pole is a unit vector such that there is a non-trivial element of \(D_m\) that fixes it. The rotations in \(D_m\) are rotations around the \(z-\)axis. The unit vector along the \(z-\)axis is fixed by all rotations in \(D_m\). So this unit vector \((0,0,1)\) must be in the set of poles and its stabilizer consists of all the rotations in \(D_m\). So it has size \(m\). By the orbits-stabilizer theorem, the size of the orbit is 2. We know it's 2 because \(-u\) is also a pole.
+	<br /><br />
+	For the reflections, we know from assignment 10 that they are in one orbit. For the flips, these are axes in the \(xy\) plane that we flip around. Each flip, will have two poles associated to them. They live in orbits each of size 2. Notice here that the orbits will be of size \(m\).</li>
+	<!---------------------------------->
+	<li>\(A_4\): For the regular polyhedra, we also have 3 orbits in each. For the tetrahedron, the orbits are of size 6 (midpoint of edges), 4 (centroid of faces) and 4 (vertex-vertex). We can divide by the $$|G|$$ to get the sizes for the stabilizer. Note here the the number of poles is basically the sum of the orbit sizes since the action breaks the set into disjoint orbits.</li>
+</ol>
+
+<table style="max-width: 400px; margin: 20px auto;">
+  <tr>
+    <td>Groups \(G\)</td>
+    <td>\(n = |G|\)</td>
+    <td>\(k = \) orbits</td>
+    <td>\(|O_1| \geq ... \geq |O_k|\)</td>
+    <td>\(c_i \leq ... \leq c_k\)</td>
+  </tr>
+  <tr>
+	<td>\(\{I\}\)</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td></td>
+  </tr>
+  <tr>
+	<td>\(\mathbf{Z}_n, n \geq 2\)</td>
+	<td>\(n\)</td>
+	<td>2</td>
+	<td>1,1</td>
+	<td>\(n,n\)</td>
+  </tr>
+  <tr>
+	<td>\(D_m, m \geq 2\)</td>
+	<td>\(2m\)</td>
+	<td>3</td>
+	<td>\(m,m,2\)</td>
+	<td>\(2,2,m\)</td>
+  </tr>
+  <tr>
+	<td>\(A_4\)</td>
+	<td>\(12\)</td>
+	<td>3</td>
+	<td>\(6,4,2\)</td>
+	<td>\(2,3,3\)</td>
+  </tr>
+  <tr>
+	<td>\(S_4\)</td>
+	<td>\(24\)</td>
+	<td>3</td>
+	<td>\(12,8,6\)</td>
+	<td>\(2,3,4\)</td>
+  </tr>
+  <tr>
+	<td>\(A_5\)</td>
+	<td>\(60\)</td>
+	<td>3</td>
+	<td>\(30,20,12\)</td>
+	<td>\(2,3,5\)</td>
+  </tr>
+<!-------------------->
+</table>
+<p>So now we want to know if there is another subgroup \(G\) missing from the table. Let’s use the burnside theorem. We have an action by \(G \leq SO(3)\) on the set of poles \(X\). We don’t know what \(G\) is. The burnside theorem says that number of orbits of this action is</p>
+<div>
+$$
+\begin{align*}
+\frac{1}{|G|}\sum_{g \in G} |\text{Fix}(g)|
+\end{align*}
+$$
+</div>
+<p>where \(\text{Fix}(g) = \{x \in X \ | \ gx = x \} \subseteq X\) is the set of elements fixed by \(g\). We’ve calculate the number of orbits in the above table. What about \(\text{Fix}(e)\)? It’s everything in \(X\) so</p>
+<div>
+$$
+\begin{align*}
+\text{Fix}(e) = |G| = |O_1| + |O_2| + ... + |O_k|
+\end{align*}
+$$
+</div>
+<p>What about any other element in \(G\)? It’s not the identity element so it’s a rotation around some axis. Therefore, it fixes two unit vectors along the axis \(\pm u\) where \(g = Rot_u(\theta)\). In particular, \(\text{Fix}(g) = 2\). So now let’s apply the formula to see that</p>
+<div>
+$$
+\begin{align*}
+k = \frac{1}{n}\big[ |O_1| + ... + |O_k|  + 2(n-1) \big]
+\end{align*}
+$$
+</div>
+<p>We can simplify this because we know that \(|O_i| = \frac{n}{c_i}\). Therefore</p>
+<div>
+$$
+\begin{align*}
+k &amp;= \frac{1}{n}\big[ \frac{n}{c_1} + ... + \frac{n}{c_k} + 2(n-1) \big] \\
+&amp;= c_1 + ... + c_k + 2 - \frac{2}{n}. 
+\end{align*}
+$$
+</div>
+<p>We know \(k \geq 0\). We know \(n \geq 1\). We also know that \(c_1,...,c_k\) are integers and they’re all greater than 2. Finally, \(c_i \ | \ n\) because each \(c_i\) is a subgroup. With these constraints, the only solutions are the rows in the table we constructed!!! the is the main step in classifying the finite subgroups in \(SO(3)\).
+<br />
+<br />
+So how do we solve it? For example, say we know we have two orbits each of size 1, so we have two poles. This means that they must be opposite to each other since poles come in pairs. Therefore, everything is rotation around a single axis. Therefore, it must be cyclic. 
+<br />
+<br />
+Step 1: We will show that we can only have 0, 2 or 3 orbits so \(k \in \{0,2,3\}\). Re-write the equations such that</p>
+<div>
+$$
+\begin{align*}
+k &amp;= \frac{1}{n}\big[ \frac{n}{c_1} + ... + \frac{n}{c_k} + 2(n-1) \big] \\
+&amp;= c_1 + ... + c_k + 2 - \frac{2}{n} \\
+ (1 - \frac{1}{c_i}) + ... + (1 - \frac{1}{c_k}) &amp;= 2 - \frac{2}{n}.
+\end{align*}
+$$
+</div>
+<p>The observation is that \(\frac{2}{n}\) can be between 0 and less than 2. The right hand side, each \(1 - \frac{1}{c}\) needs to be in \([\frac{1}{2},1)\). So \(k\) can’t be 1. If \(k = 4\), then the left hand side is greater than 2 but the right hand side must be less than 2. So \(k\) can’t be 4.
+<br />
+<br />
+Step 2: If \(k = 0\), this gives us \(n = 1\). That’s the trivial group.
+<br />
+<br />
+Step 3: Re-write the equation so that</p>
+<div>
+$$
+\begin{align*}
+\frac{2}{n} = \frac{1}{c_1} + \frac{1}{c_2}
+\end{align*}
+$$
+</div>
+<p>This shows …. [TODO .. I’m lost now]
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-----------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Today, we’ll analyze finite subgroups of \(SO(3)\). Let’s describe the ones we already know about The trivial subgroup \(\{I\}\). Subgroups that are cyclic so these subgroups are isomorphic to \(\mathbf{Z}_n\). For each \(n\), we have infinitely many subgroups. For example, there are infinitely many cyclic subgroups of order 3 in \(SO(3)\). Pick any axis and consider the rotation by angle \(\frac{2\pi}{3}\) around this axis. This makes a subgroup of order 3. So you can get a new subgroup for whatever axis you pick. Therefore, we have infinitely many. In fact, all these subgroups that are rotations by \(\frac{2\pi}{3}\) are conjugate (see the lecture before last. If we have a rotation by \(\theta\) around a unit vector \(v\) and we have the same rotation around another unit vector \(u\), then we change \(u\) to \(v\) by some rotation \(A \in SO(3)\). Subgroups isomorphic to the dihedral groups \(D_n\) where \(n \geq 2\). These are symmetries of a regular \(n-\)gon. Pick any \(n-\) and fix one of the vertices on the \(x-\)axis. The symmetries of the \(n-\) is a group isomorphic to \(D_n\). Symmetry group of the tetrahedron which is isomorphic to \(A_4\). Symmetry group of the cube/octahedron which is isomorphic to \(S_4\). Symmetry group of the icosahedron/dodecahedron which is isomorphic to \(A_5\). In fact we have the following theorem Theorem Every finite subgroup of \(SO(3)\) is in the list above. Proof \(SO(3)\) acts on \(\mathbf{R}^3\) (we multiply a matrix in \(SO(3)\) by a vector in \(\mathbf{R}^3\)). So now suppose that \(G\) is a subgroup of \(SO(3)\). \(G\) acts on \(\mathbf{R}^3\). We’ll focus on the pole subset in \(\mathbf{R}^3\). What is a poll? A pole for \(G \subseteq SO(3)\) is a unit vector \((u) \in \mathbf{R}^3\) where \(\lVert u \rVert = 1\) such that \(|Stab_G(u)|\geq 2\). In other words, there exists an element \(g\) in \(\text{Stab}_G(u)\) other than the identity such that \(gu = u\). If \(g \neq I\), then \(g = Rot_u(\theta)\) where \(\theta\) is not a multiple of \(2\pi\). Recall, that a rotation in space only fixes vectors along the axis of rotation. But since we constrained this to unit vectors, then it will only fix the unit vector on the axis of rotation. So \(g\) fixes only \(\pm u\). As a consequence, poles come in pairs. If \(u\) is a pole, then \(-u\) is a pole too. So again, a pole is a unit vector in \(\mathbf{R}^3\) that gets fixed by some rotation in \(G\). In other words, \(u\) is a unit vector along the axis of some rotation in \(G\). As a consequence, every non-identity element in \(G\) can contribute 2 poles to the set of poles. If we let \(X\) to be the set of poles, then $$ \begin{align*} |X| \leq 2(|G| - 1) \quad \text{(-1 for the identity)} \end{align*} $$ So the set of poles \(X\) is the collection of unit vectors along the axes of rotations of elements in the group \(G\). \(G\) acts on the subset \(X \in \mathbf{R}^3\). For example, if \(g \in G\) and \(x \in X\), then we know that \(gx\) and \(g^{-1}x\) are both in \(X\). Why? If \(x\) is a pole, we want to show that \(gx\) is a pole. Since \(x\) is a pole, then we know that \(|\text{Stab}_G(x)| \geq 2\). But we also know that \(\text{Stab}(gx) = g\text{Stab}(x)g^{-1}\) (By HW10, Problem 2). As a consequence, they both have the same size. Therefore, \(|\text{Stab}_G(gx)| \geq 2\). Therefore, \(gx\) is also a pole. Now, since \(G\) acts on the set of poles \(X\), then the set \(X\) decomposes have orbits \(O_1, O_2,...,O_k \subset X\) of the \(G\) action. In the following table, we’re going to list the orbits in decreasing order of their sizes so \(|O_1| \geq |O_2| ... \geq |O_k|\). We will also define \(c_i\) to be the size of the stabilizer in \(G\) of \(x\) for any \(x \in O_i\). Because elements in the same orbit have stabilizers of the same order. We also know that \(|O| = \frac{n}{c_i}\) by the orbits stabilizer theorem. \(Z_n\): Cyclic groups are rotations around a single axis. We have 2 poles for each direction. The poles end up being in separate orbits. So each orbit is of size 1. So the corresponding stabilizer groups are the whole groups \(D_m\): \(D_m\) is acting on the set of poles here where a pole is a unit vector such that there is a non-trivial element of \(D_m\) that fixes it. The rotations in \(D_m\) are rotations around the \(z-\)axis. The unit vector along the \(z-\)axis is fixed by all rotations in \(D_m\). So this unit vector \((0,0,1)\) must be in the set of poles and its stabilizer consists of all the rotations in \(D_m\). So it has size \(m\). By the orbits-stabilizer theorem, the size of the orbit is 2. We know it's 2 because \(-u\) is also a pole. For the reflections, we know from assignment 10 that they are in one orbit. For the flips, these are axes in the \(xy\) plane that we flip around. Each flip, will have two poles associated to them. They live in orbits each of size 2. Notice here that the orbits will be of size \(m\). \(A_4\): For the regular polyhedra, we also have 3 orbits in each. For the tetrahedron, the orbits are of size 6 (midpoint of edges), 4 (centroid of faces) and 4 (vertex-vertex). We can divide by the $$|G|$$ to get the sizes for the stabilizer. Note here the the number of poles is basically the sum of the orbit sizes since the action breaks the set into disjoint orbits.]]></summary></entry><entry><title type="html">Lecture 29: Burnside Formula</title><link href="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html" rel="alternate" type="text/html" title="Lecture 29: Burnside Formula" /><published>2025-02-21T00:01:36-08:00</published><updated>2025-02-21T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/21/math417-29-burnside-formula.html"><![CDATA[<p>Today we will discuss a formula for counting orbits calling the burnside formula. The book illustrates this with a necklace beads counting example. So how many necklaces are there with two orange, two blue beads? If we count naively, we have 4 slots. The two blue beads will go into two of the slots. So there are \(\binom{4}{2} = 6\) to do this. Then the orange beads will get the remaining two spots. So</p>
 <p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec29/1.png" width="90%" class="center" /></p>
 <div>
 $$
@@ -2971,968 +3665,4 @@ This says if you take the product of two cyclic groups, then their product is cy
 <h4><b>References</b></h4>
 <ul>
 	<li><a href="https://www.youtube.com/watch?v=ako25Pghxa8">The order of an element in a direct group is the lcm of both elements orders</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Example 1 Proposition Suppose \((x,y) \in G_1 \times G_2\) and that the order of the elements are \(|x| = r\) and \(|y| = s\). Then the order of \((x,y)\) is \(lcm(r,s)\) Proof Let \(l = lcm(r,s)\). Then, \(l = ra = sb\) for some \(r, b \in \mathbf{Z}\). Observe that $$ \begin{align*} (x,y)^{l} &amp;= (x^l, y^l) = (x^{ra}, y^{sb}) = (e_1, e_2) \end{align*} $$ From this we see that the order of \((x,y)\) must divide \(l\). If we let \(l' = |(x,y)|\), then \(l' \ | \ l\). Now, observe that $$ \begin{align*} (x,y)^{l'} &amp;= (x^{l'}, y^{l'}) = (e_1, e_2) \end{align*} $$ But since \(|x| = r\) and \(|y| = s\), then \(r \ | \ l'\) and \(s \ | \ l'\). But this means that \(lcm(r,s) = l \ | \ l'\). Since \(l' \ | \ l\) and \(l \ | \ l'\), then \(l = l'\) as we wanted to show. Example 2 Proposition \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\) if and only if \(gcd(m,n) = 1\) This says if you take the product of two cyclic groups, then their product is cyclic if and only if \(m\) and \(n\) are relatively prime. Proof \(\longrightarrow:\) Suppose \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). Suppose for the sake of contradiction that \(gcd(m,n) = d &gt; 1\). Now, take an arbitrary element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\). Add \((a,b)+...+(a,b)\) \(\frac{mn}{d}\) times. We will see that $$ \begin{align*} (a\frac{mn}{d},b\frac{mn}{d}) &amp;= (a\frac{n}{d}m,b\frac{m}{d}n) \\ &amp;= ([0]_m, [0]_n) \end{align*} $$ Notice here that both \(\frac{n}{d}\) and \(\frac{m}{d}\) are whole numbers since \(d\) is a divisor of both \(m\) and \(n\). So the first entry is a multiple of \(m\) while the second entry is a multiple of \(n\). This implies that the order of \((a,b) \leq \frac{mn}{d} &lt; mn\). So the order of any element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\) is strictly less than \(mn\). This means that no element of \(\mathbf{Z}_m \times \mathbf{Z}_n\) can be a generator of the group. So \(\mathbf{Z}_m \times \mathbf{Z}_n\) is not cyclic. This is a contradiction because \(\mathbf{Z}_m \times \mathbf{Z}_n\) isomorphic to \(\mathbf{Z}_{mn}\) and so it is cyclic. \(\longleftarrow:\) Now suppose that \(gcd(m,n) = 1\). We want to show that \(\mathbf{Z}_m \times \mathbf{Z}_n\) is isomorphic to \(\mathbf{Z}_{mn}\). Notice that the order of the element 1 has order \(m\) in \(\mathbf{Z}_m\) and the order of the element 1 has order \(n\) in \(\mathbf{Z}_n\). This tells us that the order of \((1,1) = lcm(m,n) \frac{mn}{gcd(m,n)} \frac{mn}{1} = mn\). So \((1,1)\) has order \(mn\) which means it generates the group. So it must be cyclic. So \(\mathbf{Z}_m \times \mathbf{Z}_n = \langle (1,1) \rangle\). We know all cyclic groups that have the same order are isomorphic. So \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). References The order of an element in a direct group is the lcm of both elements orders]]></summary></entry><entry><title type="html">Lecture 21: Finite Abelian Groups</title><link href="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html" rel="alternate" type="text/html" title="Lecture 21: Finite Abelian Groups" /><published>2025-02-13T00:01:36-08:00</published><updated>2025-02-13T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/13/math417-21-finite-abelian-groups.html"><![CDATA[<p>For this lecture, we’re going to focus on finite abelian groups. Why is that? When we previously discussed classifying finite groups, we wanted to classify the groups of a certain finite order up to an isomorphism. We asked the question “what are the groups up to isomorphism that are of order 6 for example?” This is a hard question in general. However, if we restricted the domain to only finite abelian groups, it turns out that it is a much easier task to describe and classify the groups that are finite abelian up to isomorphism for any order. Though it will require a lot of hard work to prove these classifications. 
-<br />
-<br />
-We’ll start with this important fact: <br />
-<b>Key Fact</b>: Every finite abelian group is isomorphic to a finite product of finite cyclic groups.</p>
-<div>
-		$$
-		\begin{align*}
-		G \cong \mathbf{Z}_{n_1} \times \mathbf{Z}_{n_2} \times ... \times \mathbf{Z}_{n_k}, \quad k \geq 0,n_1,...,n_k \geq 1
-		\end{align*}
-		$$
-</div>
-<p>(Side Note: How do you factor the trivial group? (you can think of it as a group with no factors)). So this fact doesn’t lead to a classification. This can be problematic if we have multiple ways to factor this. Meaning that \(G\) could be isomorphic in more than one way? Recall that the Chinese Remainder Theorem states that
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Theorem (CRT)
-</div>
-<div class="yellowbodydiv">
-if \(a = a_1a_2...,a_k\) where \(a_1,...,a_k\) are relatively prime and \(a_i \geq 1\). Then
-	$$
-	\begin{align*}
-	\mathbf{Z}_a \cong \mathbf{Z}_{a_1} \times ...\times \mathbf{Z}_{a_k}
-	\end{align*}
-	$$
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-For example, \(\mathbf{Z}_{60} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{15} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{3} \times \mathbf{Z}_{5}\). But this doesn’t help with classification. For example, if we’re given some other product of cyclic groups, how do we know it’s isomorphic to a given group? A classification means that we can look at two products of cyclic groups and then be able to know if they are isomorphic to each other or not.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Elementary Divisor Classification</b></h4>
-<p>As a start we have the following classification theorem
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Theorem (Elementary Divisors)
-</div>
-<div class="yellowbodydiv">
-Every finite abelian group \(G\) is isomorphic to a group of the following form
-	$$
-	\begin{align*}
-	G \cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}}\times ...\times \mathbf{Z}_{p_k^{r_k}}
-	\end{align*}
-	$$
-where \(k \geq 0, r_1 \geq 1, p_1,p_2,...,p_k\) are primes. (not necessarily distinct)
-<br />
-<br />
-Furthermore, the list \(p_1^{r_1}, p_2^{r_2}, ..., p_k^{r_k}\) of elementary divisors is unique up to re-ordering.
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-So \(G\) is isomorphic to only one direct product of cyclic prime orders (up to re-ordering). This means that if \(G\) is isomorphic to a direct products of prime orders and it’s also isomorphic to another direct products of prime orders. Then, the prime numbers must be exactly the same up to re-ordering. 
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-Example. Suppose \(|G| = 24\) and that \(G\) is abelian. 24 has the prime factorization \(24 = 2 \times 2 \times 2 \times 3\). Thus, \(G\) is isomorphic to one of the following</p>
-<ol>
-	<li>\(\mathbf{Z}_{2^{3}} \times \mathbf{Z}_{3^{1}}\). Note here that this group is cyclic by the Chinese Remainder Theorem since \(8\) and \(3\) are relatively prime.</li>
-	<li>\(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \)</li>
-	<li>\(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}}\)</li>
-</ol>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Invariant Factor Classification</b></h4>
-<p>We have another classification Theorem. 
-<br /></p>
-<div class="yellowheaderdiv">
-Theorem (Invariant Factor Form)
-</div>
-<div class="yellowbodydiv">
-Every finite abelian group \(G\) is isomorphic to a group of the following form
-	$$
-	\begin{align*}
-	G \cong \mathbf{Z}_{a_1} \times \mathbf{Z}_{a_2} ...\times \mathbf{Z}_{a_s}
-	\end{align*}
-	$$
-where \(s \geq 0, a_1 \geq 2\) and \(a_i \ | \ a_{i+1}\).
-<br />
-Furthermore, the list \(a_1, a_2,...,a_s\) of "Invariant Factors" is unique.
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-Note that we don’t need to add up to re-ordering here since the condition \(a_i \ | \ a_{i+1}\) forces it to be in one particular unique order.
-<br />
-<br />
-Example: If we take the same \(G\) as before where \(|G|=24\), then we \(G\) is isomorphic to one of the following:</p>
-<ol>
-	<li>\(\mathbf{Z}_{24}\).</li>
-	<li>\(\mathbf{Z}_{2} \times \mathbf{Z}_{12}\). Note how each factor divides the factor coming after it. </li>
-	<li>\(\mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\). Same here 2 divides 2 and then the next 2 divides 6</li>
-</ol>
-<p>Notice how this theorem gave us three possibilities and the previous theorem gave us another three possibilities. In fact, there is a correspondance between the elementary divisors and the invariant factors.</p>
-<ol>
-	<li>\(\mathbf{Z}_{2^{3}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{24}\).</li>
-	<li>\(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{12}\). </li>
-	<li>\(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\).</li>
-</ol>
-<!----------------------------------------------------------------------------->
-<p>We will prove both theorems later but the idea is that we’re going to prove the existence of invariant factors first and then we’re going to prove the uniqueness of the elementary divisors. This is enough because if we have an invariant factor decomposition, then we can always turn it into its elementary divisors decomposition. To see, we’ll do an example next.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Suppose \(G\) is finite abelian with invariant factors: \(5,25,50,36000\). So \(G\) is isomorphic to</p>
-<div>
-		$$
-		\begin{align*}
-		G \cong \mathbf{Z}_{5} \times \mathbf{Z}_{25} \times \mathbf{Z}_{50} \times \mathbf{Z}_{36000}
-		\end{align*}
-		$$
-</div>
-<p>Now, we can take each of these invariant factors and factor into primes.</p>
-<table style="max-width: 350px; margin: 20px auto;">
-	<tr>
-		<td>5</td>
-		<td></td>
-		<td></td>
-		<td>\(5^1\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>25</td>
-		<td></td>
-		<td></td>
-		<td>\(5^2\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>50</td>
-		<td>\(2^1\)</td>
-		<td></td>
-		<td>\(5^2\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>36000</td>
-		<td>\(2^5\)</td>
-		<td>\(3^2\)</td>
-		<td>\(5^3\)</td>
-	</tr>
-</table>
-<p>This in fact gives us the elementary divisors. How? Observe that</p>
-<table style="max-width: 600px; margin: 20px auto;">
-	<tr>
-		<td>5</td>
-		<td></td>
-		<td></td>
-		<td>\(5^1\)</td>
-		<td>\(\mathbf{Z}_5 \cong \mathbf{Z}_5\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>25</td>
-		<td></td>
-		<td></td>
-		<td>\(5^2\)</td>
-		<td>\(\mathbf{Z}_{25} \cong \mathbf{Z}_{5^2}\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>50</td>
-		<td>\(2^1\)</td>
-		<td></td>
-		<td>\(5^2\)</td>
-		<td>\(\mathbf{Z}_{50} \cong \mathbf{Z}_{5^2} \times \mathbf{Z}_{2^1} \) (By CRT)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>36000</td>
-		<td>\(2^5\)</td>
-		<td>\(3^2\)</td>
-		<td>\(5^3\)</td>
-		<td>\(\mathbf{Z}_{36000} \cong \mathbf{Z}_{2^5} \times \mathbf{Z}_{3^2} \times \mathbf{Z}_{5^3}\) (By CRT)</td>
-	</tr>
-</table>
-<p>The first column is the invariant factors while the next three are the elementary divisors. We can also start with the elementary divisors and then get the invariant factors from them. So suppose \(G\) has elementary divisors:</p>
-<div>
-		$$
-		\begin{align*}
-		2^1, 2^3, 3^2, 5^1, 5^2, 5^2, 5^3
-		\end{align*}
-		$$
-</div>
-<p>We can recover the invariant factors by stacking the highest powers of divisors at the bottom. So in the following table. \(5^3\) is the at the bottom of the column, then we have \(5^2\) and then \(5^2\) and so on. After stacking all the divisors, we can multiply the divisors in each row to get the actual list of invariant factors.</p>
-<table style="max-width: 500px; margin: 20px auto;">
-	<tr>
-		<td>5</td>
-		<td></td>
-		<td></td>
-		<td>\(5^1\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>25</td>
-		<td></td>
-		<td></td>
-		<td>\(5^2\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>50</td>
-		<td>\(2^1\)</td>
-		<td></td>
-		<td>\(5^2\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>36000</td>
-		<td>\(2^3\)</td>
-		<td>\(3^2\)</td>
-		<td>\(5^3\)</td>
-	</tr>
-</table>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Elementary Divisor Classification Proof Plan</b></h4>
-<p>We have two aspects. Existence and Uniqueness. We will show uniqueness first. We want to show if</p>
-<div>
-		$$
-		\begin{align}
-		G &amp;\cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} \times ... \times \mathbf{Z}_{p_k^{r_k}}, \quad \text{and} \\ 
-		G &amp;\cong \mathbf{Z}_{q_1^{s_1}} \times \mathbf{Z}_{q_2^{s_2}} \times ... \times \mathbf{Z}_{q_l^{s_l}}, 
-		\end{align}
-		$$
-</div>
-<p>then the lists \(p_1^{r_1},...,p_k^{r_k}\) and \(q_1^{s_1},...,q_l^{s_l}\) are the same up to reordering. So lists like \(2^1,3^3,3^3,5^4\) and \(3^3,2^1,5^4,3^3\) ar the same. But we know that if \(G\) is isomorphic to both products, then both products are isomorphism to each other. So we really just want to show</p>
-<div>
-		$$
-		\begin{align*}
-		&amp;\mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} \times ... \times \mathbf{Z}_{p_k^{r_k}}, \quad \text{and} \\ 
-		&amp;\mathbf{Z}_{q_1^{s_1}} \times \mathbf{Z}_{q_2^{s_2}} \times ... \times \mathbf{Z}_{q_l^{s_l}}, 
-		\end{align*}
-		$$
-</div>
-<p>and we don’t have to worry about \(G\). Now, we’ve seen before that if two groups are isomorphic, then the order of the elements in both groups must match up. We can’t use this fact to prove that two groups are isomorphic (though it can give us a clue). However, we can use it to show that groups are not isomorphic. So if they the orders don’t match up, then we can conclude that the given groups are not isomorphic. So the plan here is to count the orders of the elements in both of the products and if the numbers don’t match up, then these products are different. Though, we’re not going to use the order directly as the formula gets too complicated. We’ll use something slightly different, defined as follows
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-Define the subset \(G[m]: \{g \in G \ | \ g^m = e \} = \{g \in G \ | \ o(g) \ | \ m  \text{ and } o(g) &lt; \infty \}\)
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-Also define for finite groups
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-Define \(\alpha_m \rightarrow \mathbf{N}\) by \(\alpha_m(G) = |G[m]| \)
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-Note that \(G[m]\) doesn’t need to be a subgroup but if \(G\) is abelian, then \(G[m] \leq G\).
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Suppose we have \(G = \{0,1,2,3,4,5,7\}\). Then, the orders of the elements are</p>
-<table style="max-width: 500px; margin: 20px auto;">
-	<tr>
-		<td>m</td>
-		<td>0</td>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		<td>5</td>
-		<td>6</td>
-		<td>7</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>order</td>
-		<td>1</td>
-		<td>8</td>
-		<td>4</td>
-		<td>8</td>
-		<td>2</td>
-		<td>8</td>
-		<td>4</td>
-		<td>8</td>
-	</tr>
-</table>
-<p>Let’s now compute the number of elements in each \(\alpha_m(G)\)</p>
-<table style="max-width: 600px; margin: 20px auto;">
-	<tr>
-		<td>m</td>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		<td>5</td>
-		<td>6</td>
-		<td>7</td>
-		<td>8</td>
-		<td>9</td>
-		<td>11</td>
-		<td>16</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>\(\alpha_m(G)\)</td>
-		<td>1</td>
-		<td>2</td>
-		<td>1</td>
-		<td>4</td>
-		<td>1</td>
-		<td>2</td>
-		<td>1</td>
-		<td>8</td>
-		<td>1</td>
-		<td>1</td>
-		<td>8</td>
-	</tr>
-</table>
-<p>Note that \(\alpha_3(G) = 1\) and that 3 and 8 are relatively prime. \(\alpha_6(G) = 2\) because only 0 and 4 have orders that divide 6.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Three Properties of \(\alpha_m(G)\)</b></h4>
-<p>We’ll prove three important properties about the function \(\alpha_m(G)\).
-<br /></p>
-<div class="peachheaderdiv">
-Proposition 1
-</div>
-<div class="peachbodydiv">
-If \(G\) and \(H\) are finite groups and if \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\)
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-We say that \(\alpha_m\) is an isomorphism invariant of finite groups. Recall that \(\alpha_m\) is the number of elements that are the identity when raised to the power \(m\). So this says if \(G\) and \(H\) isomorphic, then they’ll have the same number of those elements. This makes sense since we know if they are isomorphic, then each group will have the same number of elements of each order. The orders must match.
-<br />
-<br />
-<b>Proof</b>
-<br />
-Let \(\phi: G \rightarrow H\) be an isomorphism. We claim that \(\phi\) restricts to a bijection \(G[m] \rightarrow H[m]\). This would immediately apply that \(\alpha_m(G) = \alpha_m(H)\).
-<br />
-<br />
-\(\phi\) restricts to a function</p>
-<div>
-		$$
-		\begin{align*}
-		G[m] \rightarrow H[m] \\
-		g \rightarrow \phi(g)
-		\end{align*}
-		$$
-</div>
-<p>We want to show that if \(g \in G[m]\), then \(\phi(g) \in H[m]\). Suppose that \(g^m = e\). Observe that</p>
-<div>
-		$$
-		\begin{align*}
-		\phi(g)^m &amp;= \phi(g^m) \quad \text{(because $\phi$ is a homomorphism)} \\
-		          &amp;= \phi(e_g) \quad \text{(by the assumption)} \\
-				  &amp;= e_H
-		\end{align*}
-		$$
-</div>
-<p>Therefore, \(\phi(g) \in H[m]\). Now, since \(\phi\) is an isomorphism, then the inverse function \(\phi^{-1}: H \rightarrow G\) is also an isomorphism. We can use a similar argument to show that \(\phi^{-1}\) restricts to a function</p>
-<div>
-		$$
-		\begin{align*}
-		H[m] \rightarrow G[m]
-		x \rightarrow \phi^{-1}(x)
-		\end{align*}
-		$$
-</div>
-<p>Therefore, the restricted function \(G[m] \rightarrow H[m]\) is a bijection. \(\ \blacksquare\)
-<br />
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 2
-</div>
-<div class="peachbodydiv">
-If \(G = G_1 \times G_2 \times ... \times G_k\) where \(G_i\) is a finite group, then 
-	$$
-	\begin{align*}
-	\alpha_m(G) = \alpha_m(G_1) \cdot \alpha_m(G_2) \ \cdot \ ... \ \cdot \ \alpha_m(G_k)
-	\end{align*}
-	$$
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-<b>Proof</b>
-Since now we have a direct product, then</p>
-<div>
-		$$
-		\begin{align*}
-		G[m]: \{(g_1,g_2,...,g_k), g_i \in G_i \ | \ (g_1,g_2,...,g_k)^m = (e,e,...,e) \} 
-		\end{align*}
-		$$
-</div>
-<p>But we know that multiplication in a direct product is component wise so \((g_1,g_2,...,g_k)^m = (g_1^m,g_2^m,...,g_k^m)\). This implies that \(g_1 \in G_1[m]\) if \(g_1^m = e\) and so on for each component. Therefore, we can write \(G[m] = G_1[m] \times ... \times G_k[m]\). The size of this set is \(|G_1[m]| \times ... |G_k[m]|\) which is what we wanted to show.
-<br />
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition 3
-</div>
-<div class="peachbodydiv">
-If \(G = \mathbf{Z}_n\) (G is cyclic) where \(n \geq 1\), then 
-	$$
-	\begin{align*}
-	\alpha_m(\mathbf{Z}_n) = d \quad \text{ where } d = gcd(m,n)
-	\end{align*}
-	$$
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-So when the group is cyclic, then the number of elements which become the identity when raised to the power \(m\) is exactly \(d\) where \(d\) is the gcd of \(m\) and \(n = |G|\).
-<br />
-<br />
-<b>Proof</b>
-<br />
-Step (1): We will show that if \(G\) is a group (even if not cyclic) such that \(|G| = n\), then \(\alpha_m(G) = \alpha_d(G)\) where \(d = gcd(m,n)\). In fact, not only do \(G[m]\) and \(G[d]\) have the same size, we will show that they are exactly the same subset so \(G[m] = G[d]\). Recall that</p>
-<div>
- 		$$
- 		\begin{align*}
- 		G[m]: \{g \in G \ | \ g^m = e \} \\
-		 G[d]: \{g \in G \ | \ g^d = e \} \\
- 		\end{align*}
- 		$$
- </div>
-<p>\(G[d] \subseteq G[m]\):
-Since \(d = gcd(m,n)\), then \(d \ | \ m\) and \(m = ds\) for some \(s \in \mathbf{Z}\). Suppose that \(g^d = e\), then</p>
-<div>
- 		$$
- 		\begin{align*}
- 		g^m = g^{ds} = (g^d)^s = e^s = e.
- 		\end{align*}
- 		$$
- </div>
-<p><br />
-<br />
-\(G[m] \subseteq G[d]\): We can also write \(d\) as \(d = sm + tn\) for some \(t, n \in \mathbf{Z}\). Since \(|G| = n\), then we know that \(g^n = e\) for any \(g \in G\) by the order theorem. So suppose that \(g^m = e\), then</p>
-<div>
- 		$$
- 		\begin{align*}
- 		g^d = g^{sm + tn} = g^{sm} g^{tn} = (g^m)^s (g^n)^t = e.
- 		\end{align*}
- 		$$
- </div>
-<p>So \(G[m] \subseteq G[d]\). Therefore, \(G[m] = G[d]\) and therefore \(\alpha_m(G) = \alpha_d(G)\).
-<br />
-<br />
-Step (2): We will show that if \(d \ | \ n\), then \(\alpha_d(\mathbf{Z}_n) = d\). We can calculate this. We know</p>
-<div>
- 		$$
- 		\begin{align*}
- 		\mathbf{Z}_n = \{[1]_n, [2]_n,...,[n]_n\}
- 		\end{align*}
- 		$$
- </div>
-<p>If \(1 \leq k \leq n\), then \(o([k]_n) = gcd(k,n)\). (we proved this before). We can use this to show that</p>
-<div>
- 		$$
- 		\begin{align*}
- 		\mathbf{Z}_n[d] = \{[e]_n, [2w]_n,...,[de]_n\}
- 		\end{align*}
- 		$$
- </div>
-<p>(Exercise). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Combining Everything</b></h4>
-<p>So now we have three propositions about \(\alpha_m[G]\)</p>
-<ol>
-	<li>If \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\)</li>
-	<li>If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\alpha_m(G) = \alpha_m(G_1) \cdot \alpha_m(G_2) \ \cdot \ ... \ \cdot \ \alpha_m(G_k)\)</li>
-	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 1\) (Corollary from proposition 3 since the gcd will be 1). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = min(p^l, p^r)\). Note here that the gcd of \(p^l, p^r\) is exactly their minimum.</li>
-</ol>
-<p>We can see now how given a product of elementary divisors, we can compute \(\alpha_m\) on each factor using the propositions above. However, we’re not going to use exactly the function \(\alpha\). We will instead define the following</p>
-<div>
- 		$$
- 		\begin{align*}
- 		\beta_{q^l} &amp;= \log_q \big\{ \frac{ \alpha_{q^l}(G)^2 }{ \alpha_{q^{l-1}}(G)\alpha_{q^{l+1}}(G) } \big\} \\
-		            &amp;= 2\log_q \alpha_{q^l}(G) - \log_q \alpha_{q^{l-1}}(G) - \log_q \alpha_{q^{l+1}}(G)
- 		\end{align*}
- 		$$
- </div>
-<p>So now we have the following facts based on the definition of \(\beta\)</p>
-<ol>
- 	<li>If \(G \cong H\), then \(\beta_{q^l}(G) = \beta_{q^l}(H)\). This is clear since \(\beta\)'s definition is based on \(\alpha\)</li>
- 	<li>If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\beta_{q^l}(G) = \sum_{i=1}^k \beta_{q^l}(G_i)\)</li>
- 	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 0\). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = 1\) if \(l = r\) and it is 0 when \(l \neq r\).</li>
-</ol>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Suppose that \(G = \mathbf{Z}_{2^4} = \mathbf{Z}_{16}\). Then</p>
-<table style="max-width: 600px; margin: 20px auto;">
-	<tr>
-		<td>l</td>
-		<td>0</td>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		<td>5</td>
-		<td>6</td>
-		<td>7</td>
-		<td>8</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>\(2^l\)</td>
-		<td>1</td>
-		<td>2</td>
-		<td>4</td>
-		<td>8</td>
-		<td>16</td>
-		<td>32</td>
-		<td>64</td>
-		<td>128</td>
-		<td>256</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>\(\alpha_{2^l}\)</td>
-		<td>1</td>
-		<td>2</td>
-		<td>4</td>
-		<td>8</td>
-		<td>16</td>
-		<td>16</td>
-		<td>16</td>
-		<td>16</td>
-		<td>16</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>\(\log_2 \alpha_{2^l}(G)\)</td>
-		<td>0</td>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		<td>4</td>
-		<td>4</td>
-		<td>4</td>
-		<td>4</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>\(\beta_{2^l}(G)\)</td>
-		<td>\</td>
-		<td>0</td>
-		<td>0</td>
-		<td>0</td>
-		<td>1</td>
-		<td>0</td>
-		<td>0</td>
-		<td>0</td>
-		<td>0</td>
-	</tr>
-</table>
-<p>This here proves the uniqueness of elementary divisors. Why? if \(G\) is isomorphic to two products of elementary divisors. The function \(\beta_{q^l}\) gives us exactly the number of elementary divisors that are equal to \({q^l}\) in the given product. \(\beta\) is an isomorphism invariant. So if we’re given different products, \(\beta\) will give different numbers and the products can’t be isomorphic.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li>MATH417 by Charles Rezk</li>
-	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[For this lecture, we’re going to focus on finite abelian groups. Why is that? When we previously discussed classifying finite groups, we wanted to classify the groups of a certain finite order up to an isomorphism. We asked the question “what are the groups up to isomorphism that are of order 6 for example?” This is a hard question in general. However, if we restricted the domain to only finite abelian groups, it turns out that it is a much easier task to describe and classify the groups that are finite abelian up to isomorphism for any order. Though it will require a lot of hard work to prove these classifications. We’ll start with this important fact: Key Fact: Every finite abelian group is isomorphic to a finite product of finite cyclic groups. $$ \begin{align*} G \cong \mathbf{Z}_{n_1} \times \mathbf{Z}_{n_2} \times ... \times \mathbf{Z}_{n_k}, \quad k \geq 0,n_1,...,n_k \geq 1 \end{align*} $$ (Side Note: How do you factor the trivial group? (you can think of it as a group with no factors)). So this fact doesn’t lead to a classification. This can be problematic if we have multiple ways to factor this. Meaning that \(G\) could be isomorphic in more than one way? Recall that the Chinese Remainder Theorem states that Theorem (CRT) if \(a = a_1a_2...,a_k\) where \(a_1,...,a_k\) are relatively prime and \(a_i \geq 1\). Then $$ \begin{align*} \mathbf{Z}_a \cong \mathbf{Z}_{a_1} \times ...\times \mathbf{Z}_{a_k} \end{align*} $$ For example, \(\mathbf{Z}_{60} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{15} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{3} \times \mathbf{Z}_{5}\). But this doesn’t help with classification. For example, if we’re given some other product of cyclic groups, how do we know it’s isomorphic to a given group? A classification means that we can look at two products of cyclic groups and then be able to know if they are isomorphic to each other or not. Elementary Divisor Classification As a start we have the following classification theorem Theorem (Elementary Divisors) Every finite abelian group \(G\) is isomorphic to a group of the following form $$ \begin{align*} G \cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}}\times ...\times \mathbf{Z}_{p_k^{r_k}} \end{align*} $$ where \(k \geq 0, r_1 \geq 1, p_1,p_2,...,p_k\) are primes. (not necessarily distinct) Furthermore, the list \(p_1^{r_1}, p_2^{r_2}, ..., p_k^{r_k}\) of elementary divisors is unique up to re-ordering. So \(G\) is isomorphic to only one direct product of cyclic prime orders (up to re-ordering). This means that if \(G\) is isomorphic to a direct products of prime orders and it’s also isomorphic to another direct products of prime orders. Then, the prime numbers must be exactly the same up to re-ordering. Example. Suppose \(|G| = 24\) and that \(G\) is abelian. 24 has the prime factorization \(24 = 2 \times 2 \times 2 \times 3\). Thus, \(G\) is isomorphic to one of the following \(\mathbf{Z}_{2^{3}} \times \mathbf{Z}_{3^{1}}\). Note here that this group is cyclic by the Chinese Remainder Theorem since \(8\) and \(3\) are relatively prime. \(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \) \(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}}\) Invariant Factor Classification We have another classification Theorem. Theorem (Invariant Factor Form) Every finite abelian group \(G\) is isomorphic to a group of the following form $$ \begin{align*} G \cong \mathbf{Z}_{a_1} \times \mathbf{Z}_{a_2} ...\times \mathbf{Z}_{a_s} \end{align*} $$ where \(s \geq 0, a_1 \geq 2\) and \(a_i \ | \ a_{i+1}\). Furthermore, the list \(a_1, a_2,...,a_s\) of "Invariant Factors" is unique. Note that we don’t need to add up to re-ordering here since the condition \(a_i \ | \ a_{i+1}\) forces it to be in one particular unique order. Example: If we take the same \(G\) as before where \(|G|=24\), then we \(G\) is isomorphic to one of the following: \(\mathbf{Z}_{24}\). \(\mathbf{Z}_{2} \times \mathbf{Z}_{12}\). Note how each factor divides the factor coming after it. \(\mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\). Same here 2 divides 2 and then the next 2 divides 6 Notice how this theorem gave us three possibilities and the previous theorem gave us another three possibilities. In fact, there is a correspondance between the elementary divisors and the invariant factors. \(\mathbf{Z}_{2^{3}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{24}\). \(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{12}\). \(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\). We will prove both theorems later but the idea is that we’re going to prove the existence of invariant factors first and then we’re going to prove the uniqueness of the elementary divisors. This is enough because if we have an invariant factor decomposition, then we can always turn it into its elementary divisors decomposition. To see, we’ll do an example next. Example Suppose \(G\) is finite abelian with invariant factors: \(5,25,50,36000\). So \(G\) is isomorphic to $$ \begin{align*} G \cong \mathbf{Z}_{5} \times \mathbf{Z}_{25} \times \mathbf{Z}_{50} \times \mathbf{Z}_{36000} \end{align*} $$ Now, we can take each of these invariant factors and factor into primes. 5 \(5^1\) 25 \(5^2\) 50 \(2^1\) \(5^2\) 36000 \(2^5\) \(3^2\) \(5^3\) This in fact gives us the elementary divisors. How? Observe that 5 \(5^1\) \(\mathbf{Z}_5 \cong \mathbf{Z}_5\) 25 \(5^2\) \(\mathbf{Z}_{25} \cong \mathbf{Z}_{5^2}\) 50 \(2^1\) \(5^2\) \(\mathbf{Z}_{50} \cong \mathbf{Z}_{5^2} \times \mathbf{Z}_{2^1} \) (By CRT) 36000 \(2^5\) \(3^2\) \(5^3\) \(\mathbf{Z}_{36000} \cong \mathbf{Z}_{2^5} \times \mathbf{Z}_{3^2} \times \mathbf{Z}_{5^3}\) (By CRT) The first column is the invariant factors while the next three are the elementary divisors. We can also start with the elementary divisors and then get the invariant factors from them. So suppose \(G\) has elementary divisors: $$ \begin{align*} 2^1, 2^3, 3^2, 5^1, 5^2, 5^2, 5^3 \end{align*} $$ We can recover the invariant factors by stacking the highest powers of divisors at the bottom. So in the following table. \(5^3\) is the at the bottom of the column, then we have \(5^2\) and then \(5^2\) and so on. After stacking all the divisors, we can multiply the divisors in each row to get the actual list of invariant factors. 5 \(5^1\) 25 \(5^2\) 50 \(2^1\) \(5^2\) 36000 \(2^3\) \(3^2\) \(5^3\) Elementary Divisor Classification Proof Plan We have two aspects. Existence and Uniqueness. We will show uniqueness first. We want to show if $$ \begin{align} G &amp;\cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} \times ... \times \mathbf{Z}_{p_k^{r_k}}, \quad \text{and} \\ G &amp;\cong \mathbf{Z}_{q_1^{s_1}} \times \mathbf{Z}_{q_2^{s_2}} \times ... \times \mathbf{Z}_{q_l^{s_l}}, \end{align} $$ then the lists \(p_1^{r_1},...,p_k^{r_k}\) and \(q_1^{s_1},...,q_l^{s_l}\) are the same up to reordering. So lists like \(2^1,3^3,3^3,5^4\) and \(3^3,2^1,5^4,3^3\) ar the same. But we know that if \(G\) is isomorphic to both products, then both products are isomorphism to each other. So we really just want to show $$ \begin{align*} &amp;\mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} \times ... \times \mathbf{Z}_{p_k^{r_k}}, \quad \text{and} \\ &amp;\mathbf{Z}_{q_1^{s_1}} \times \mathbf{Z}_{q_2^{s_2}} \times ... \times \mathbf{Z}_{q_l^{s_l}}, \end{align*} $$ and we don’t have to worry about \(G\). Now, we’ve seen before that if two groups are isomorphic, then the order of the elements in both groups must match up. We can’t use this fact to prove that two groups are isomorphic (though it can give us a clue). However, we can use it to show that groups are not isomorphic. So if they the orders don’t match up, then we can conclude that the given groups are not isomorphic. So the plan here is to count the orders of the elements in both of the products and if the numbers don’t match up, then these products are different. Though, we’re not going to use the order directly as the formula gets too complicated. We’ll use something slightly different, defined as follows Definition Define the subset \(G[m]: \{g \in G \ | \ g^m = e \} = \{g \in G \ | \ o(g) \ | \ m \text{ and } o(g) &lt; \infty \}\) Also define for finite groups Definition Define \(\alpha_m \rightarrow \mathbf{N}\) by \(\alpha_m(G) = |G[m]| \) Note that \(G[m]\) doesn’t need to be a subgroup but if \(G\) is abelian, then \(G[m] \leq G\). Example Suppose we have \(G = \{0,1,2,3,4,5,7\}\). Then, the orders of the elements are m 0 1 2 3 4 5 6 7 order 1 8 4 8 2 8 4 8 Let’s now compute the number of elements in each \(\alpha_m(G)\) m 1 2 3 4 5 6 7 8 9 11 16 \(\alpha_m(G)\) 1 2 1 4 1 2 1 8 1 1 8 Note that \(\alpha_3(G) = 1\) and that 3 and 8 are relatively prime. \(\alpha_6(G) = 2\) because only 0 and 4 have orders that divide 6. Three Properties of \(\alpha_m(G)\) We’ll prove three important properties about the function \(\alpha_m(G)\). Proposition 1 If \(G\) and \(H\) are finite groups and if \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\) We say that \(\alpha_m\) is an isomorphism invariant of finite groups. Recall that \(\alpha_m\) is the number of elements that are the identity when raised to the power \(m\). So this says if \(G\) and \(H\) isomorphic, then they’ll have the same number of those elements. This makes sense since we know if they are isomorphic, then each group will have the same number of elements of each order. The orders must match. Proof Let \(\phi: G \rightarrow H\) be an isomorphism. We claim that \(\phi\) restricts to a bijection \(G[m] \rightarrow H[m]\). This would immediately apply that \(\alpha_m(G) = \alpha_m(H)\). \(\phi\) restricts to a function $$ \begin{align*} G[m] \rightarrow H[m] \\ g \rightarrow \phi(g) \end{align*} $$ We want to show that if \(g \in G[m]\), then \(\phi(g) \in H[m]\). Suppose that \(g^m = e\). Observe that $$ \begin{align*} \phi(g)^m &amp;= \phi(g^m) \quad \text{(because $\phi$ is a homomorphism)} \\ &amp;= \phi(e_g) \quad \text{(by the assumption)} \\ &amp;= e_H \end{align*} $$ Therefore, \(\phi(g) \in H[m]\). Now, since \(\phi\) is an isomorphism, then the inverse function \(\phi^{-1}: H \rightarrow G\) is also an isomorphism. We can use a similar argument to show that \(\phi^{-1}\) restricts to a function $$ \begin{align*} H[m] \rightarrow G[m] x \rightarrow \phi^{-1}(x) \end{align*} $$ Therefore, the restricted function \(G[m] \rightarrow H[m]\) is a bijection. \(\ \blacksquare\) Proposition 2 If \(G = G_1 \times G_2 \times ... \times G_k\) where \(G_i\) is a finite group, then $$ \begin{align*} \alpha_m(G) = \alpha_m(G_1) \cdot \alpha_m(G_2) \ \cdot \ ... \ \cdot \ \alpha_m(G_k) \end{align*} $$ Proof Since now we have a direct product, then $$ \begin{align*} G[m]: \{(g_1,g_2,...,g_k), g_i \in G_i \ | \ (g_1,g_2,...,g_k)^m = (e,e,...,e) \} \end{align*} $$ But we know that multiplication in a direct product is component wise so \((g_1,g_2,...,g_k)^m = (g_1^m,g_2^m,...,g_k^m)\). This implies that \(g_1 \in G_1[m]\) if \(g_1^m = e\) and so on for each component. Therefore, we can write \(G[m] = G_1[m] \times ... \times G_k[m]\). The size of this set is \(|G_1[m]| \times ... |G_k[m]|\) which is what we wanted to show. Proposition 3 If \(G = \mathbf{Z}_n\) (G is cyclic) where \(n \geq 1\), then $$ \begin{align*} \alpha_m(\mathbf{Z}_n) = d \quad \text{ where } d = gcd(m,n) \end{align*} $$ So when the group is cyclic, then the number of elements which become the identity when raised to the power \(m\) is exactly \(d\) where \(d\) is the gcd of \(m\) and \(n = |G|\). Proof Step (1): We will show that if \(G\) is a group (even if not cyclic) such that \(|G| = n\), then \(\alpha_m(G) = \alpha_d(G)\) where \(d = gcd(m,n)\). In fact, not only do \(G[m]\) and \(G[d]\) have the same size, we will show that they are exactly the same subset so \(G[m] = G[d]\). Recall that $$ \begin{align*} G[m]: \{g \in G \ | \ g^m = e \} \\ G[d]: \{g \in G \ | \ g^d = e \} \\ \end{align*} $$ \(G[d] \subseteq G[m]\): Since \(d = gcd(m,n)\), then \(d \ | \ m\) and \(m = ds\) for some \(s \in \mathbf{Z}\). Suppose that \(g^d = e\), then $$ \begin{align*} g^m = g^{ds} = (g^d)^s = e^s = e. \end{align*} $$ \(G[m] \subseteq G[d]\): We can also write \(d\) as \(d = sm + tn\) for some \(t, n \in \mathbf{Z}\). Since \(|G| = n\), then we know that \(g^n = e\) for any \(g \in G\) by the order theorem. So suppose that \(g^m = e\), then $$ \begin{align*} g^d = g^{sm + tn} = g^{sm} g^{tn} = (g^m)^s (g^n)^t = e. \end{align*} $$ So \(G[m] \subseteq G[d]\). Therefore, \(G[m] = G[d]\) and therefore \(\alpha_m(G) = \alpha_d(G)\). Step (2): We will show that if \(d \ | \ n\), then \(\alpha_d(\mathbf{Z}_n) = d\). We can calculate this. We know $$ \begin{align*} \mathbf{Z}_n = \{[1]_n, [2]_n,...,[n]_n\} \end{align*} $$ If \(1 \leq k \leq n\), then \(o([k]_n) = gcd(k,n)\). (we proved this before). We can use this to show that $$ \begin{align*} \mathbf{Z}_n[d] = \{[e]_n, [2w]_n,...,[de]_n\} \end{align*} $$ (Exercise). Combining Everything So now we have three propositions about \(\alpha_m[G]\) If \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\) If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\alpha_m(G) = \alpha_m(G_1) \cdot \alpha_m(G_2) \ \cdot \ ... \ \cdot \ \alpha_m(G_k)\) If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 1\) (Corollary from proposition 3 since the gcd will be 1). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = min(p^l, p^r)\). Note here that the gcd of \(p^l, p^r\) is exactly their minimum. We can see now how given a product of elementary divisors, we can compute \(\alpha_m\) on each factor using the propositions above. However, we’re not going to use exactly the function \(\alpha\). We will instead define the following $$ \begin{align*} \beta_{q^l} &amp;= \log_q \big\{ \frac{ \alpha_{q^l}(G)^2 }{ \alpha_{q^{l-1}}(G)\alpha_{q^{l+1}}(G) } \big\} \\ &amp;= 2\log_q \alpha_{q^l}(G) - \log_q \alpha_{q^{l-1}}(G) - \log_q \alpha_{q^{l+1}}(G) \end{align*} $$ So now we have the following facts based on the definition of \(\beta\) If \(G \cong H\), then \(\beta_{q^l}(G) = \beta_{q^l}(H)\). This is clear since \(\beta\)'s definition is based on \(\alpha\) If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\beta_{q^l}(G) = \sum_{i=1}^k \beta_{q^l}(G_i)\) If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 0\). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = 1\) if \(l = r\) and it is 0 when \(l \neq r\). Example Suppose that \(G = \mathbf{Z}_{2^4} = \mathbf{Z}_{16}\). Then l 0 1 2 3 4 5 6 7 8 \(2^l\) 1 2 4 8 16 32 64 128 256 \(\alpha_{2^l}\) 1 2 4 8 16 16 16 16 16 \(\log_2 \alpha_{2^l}(G)\) 0 1 2 3 4 4 4 4 4 \(\beta_{2^l}(G)\) \ 0 0 0 1 0 0 0 0 This here proves the uniqueness of elementary divisors. Why? if \(G\) is isomorphic to two products of elementary divisors. The function \(\beta_{q^l}\) gives us exactly the number of elementary divisors that are equal to \({q^l}\) in the given product. \(\beta\) is an isomorphism invariant. So if we’re given different products, \(\beta\) will give different numbers and the products can’t be isomorphic. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 20: Semidirect Products</title><link href="http://localhost:4000/jekyll/update/2025/02/12/math417-20-semidirect-products.html" rel="alternate" type="text/html" title="Lecture 20: Semidirect Products" /><published>2025-02-12T00:01:36-08:00</published><updated>2025-02-12T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/12/math417-20-semidirect-products</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/12/math417-20-semidirect-products.html"><![CDATA[<p>Previously we introduced the direct product group and we observed if some certain conditions are met, then we get a direct product that is isomorphic to the group \(G\) itself. As a reminder
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Theorem (Recognition Theorem)
-</div>
-<div class="yellowbodydiv">
-Let \(G\) be a group and \(A, N \leq G\). If
-<ol>
-	<li>\(A\) and \(N\) are normal subgroups of \(G\).</li>
-	<li>\(A \cap N = \{e\}\)</li>
-	<li>\(AN = G\)</li>
-</ol>
-Then, \(A \times N\) is isomorphic to \(G\). The isomorphism is given by
-	$$
-	\begin{align*}
-	\phi: A \times N &amp;\rightarrow G \\
-	 (a,n) &amp;\rightarrow an
-	\end{align*}
-	$$
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-But now the question is what happens if not all of these conditions are satisfied. Suppose that \(N\) was the only normal subgroup. In this case, \(G\) is called a semi-direct product of \(N\) and \(A\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(G = D_n\) where \(n \geq 3\) and \(|G| = 2n\). Let</p>
-<div>
-	$$
-	\begin{align*}
-	N &amp;= \langle r \rangle, \ o(r) = n \\
-	A &amp;= \langle j \rangle, \ o(j) = 2
-	\end{align*}
-	$$
-</div>
-<p>We know that</p>
-<ol>
-	<li>\(N \cap A = \{e\}\)</li>
-	<li>\(NA = G\)</li>
-	<li>\(\langle r \rangle\) is a normal subgroup since conjugating \(r^k\) by any flip, the result is still a rotation.</li>
-</ol>
-<p>So the only thing missing to be able to apply the recognition theorem is that \(A\) is not normal. Despite this, we will show that we can still construct \(G = D_n\) from the subgroups \(N\), \(A\) and third piece of information which is a homomorphism \(\gamma\). In other words, \(G \cong N \rtimes_{\gamma} A\). This product \(N \rtimes_{\gamma} A\) is called the semi-direct product.
-<br />
-<br />
-<b>What is this homomorphism \(\gamma\)</b>?<br />
-\(\gamma\) will be a homomorphism from \(A\) to the group of automorphisms of \(N\). \(A\) contains two elements, \(A = \{e, j\}\). We will send each element to an automorphism from the set \(\text{Aut}(N) = \text{Aut}(\langle r \rangle)\). Specifically</p>
-<div>
-	$$
-	\begin{align*}
-	\gamma: A &amp;\rightarrow \text{Aut}(N) \\
-	\gamma: \langle j \rangle &amp;\rightarrow \text{Aut}(\langle r \rangle) \\
-	e &amp;\rightarrow id \\
-	j &amp;\rightarrow \gamma_j, \quad \gamma_j(r^k) = r^{-k}
-	\end{align*}
-	$$
-</div>
-<p>So the idea here is that we will be able to reconstruct the Dihedral group from this information.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Construction of Semi-direct Products</b></h4>
-<p>We haven’t said anything yet about how to actually construct \(G\) from the groups \(A\), \(N\) and \(\gamma\). The following will demonstrate this. (Important to note here that unlike the previous example, we don’t need \(A\) and \(N\) to be subgroups of \(G\). They are just groups!!!).
-<br />
-We will first demonstrate what happens when \(\gamma\) and \(\gamma_a\) are homomorphisms.
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Semi-direct Product Construction
-</div>
-<div class="mintbodydiv">
-Let \(A\) and \(N\) be groups and let
-	$$
-	\begin{align*}
-	 \gamma: A &amp;\rightarrow \text{Aut}(N) \\
-	         a &amp;\rightarrow \gamma_a
-	\end{align*}
-	$$
-be a homomorphism. Note here that not only \(\gamma\) is a homomorphism but also each \(\gamma_a\) is a homomorphism as well. Because of this we will get
-<ol>
-	<li>\(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) for \(a \in A, n_1, n_2 \in N\).</li>
-	<li>\(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\) for \(a_1, a_2 \in A, n \in N\).</li>
-	<li>\(\gamma_{e} = id, \gamma_{a^{-1}} = (\gamma_a)^{-1}\).</li>
-</ol>
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-So now we will use these facts to state the semi-direct product definition.
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Semi-direct Product
-</div>
-<div class="mintbodydiv">
-Use the construction above, we will get the group
-	$$
-	\begin{align*}
-	 G = N \rtimes_{\gamma} A
-	\end{align*}
-	$$
-where the the product set is
-	$$
-	\begin{align*}
-	 G = N \times A = \{(n,a), n \in N, a \in A\}
-	\end{align*}
-	$$
-The operation is
-	$$
-	\begin{align*}
-	(n_1, a_1) \cdot (n_2, a_2) = (n_1 \cdot \gamma_{a_1}(n_2), a_1a_2)
-	\end{align*}
-	$$
-where \(n_1, n_2 \in N\) and \(a_1, a_2 \in A\).
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-Note also that \(N \cong N' \leq G\) so \(N\) is isomorphic to some subgroup of \(G\). \(A\) is also isomorphic to some subgroup to \(A' \leq G\). 
-<!----------------------------------------------------------------------------->
-<br />
-<br />
-Also note that if this was a direct product, then the operation is \((n_1,a_1) \cdot (n_2,a_2) = (n_1n_2, a_1a_2)\) but here we have this application of \(\gamma_{a_1}\) on \(n_2\).
-<br />
-<br />
-<b>Proof</b>
-<br />
-We will show that \(G\) is a group by verifying the group properties.</p>
-<ol>
-    <!------------------------ASSOCIATIVITY--------------------------->
-	<li>\(G\) is associative. The left hand side is
-<div>
-	$$
-	\begin{align*}
-	((n_1,a_1) \cdot (n_2,a_2)) \cdot (n_3,a_3) &amp;= (n_1 \gamma_{a_1}(n_2),a_1a_2) \cdot (n_3,a_3) \\
-	                                            &amp;= (n_1 \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3),a_1a_2a_3).
-													\end{align*}
-	$$
-</div>	
-while the right hand side is
-<div>
-	$$
-	\begin{align*}
-	(n_1,a_1) \cdot ((n_2,a_2) \cdot (n_3,a_3)) &amp;= (n_1,a_1) (n_1 \gamma_{a_2}(n_3),a_2a_3) \\
-	                                            &amp;= (n_1, \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)),  a_1a_2a_3).
-	\end{align*}
-	$$
-</div>	
-	Recall the identities from the construction. Specifically, we saw that \(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) and \(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\). Using this we see that term from the right hand side will equal to
-<div>
-		$$
-		\begin{align*}
-	    \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)) &amp;= \gamma_{a_1}(n_2) \gamma_{a_1}(\gamma_{a_2}(n_3)) \\
-		                                    &amp;= \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3)
-		\end{align*}
-		$$
-</div>
-which is the same as the term in the left hand side.
-	</li>
-    <!------------------------IDENTITIY--------------------------->
-	<li>The identity element is \((e_N, e_A)\) (Exercise).</li>
-    <!------------------------INVERSE--------------------------->
-	<li>The inverse is \((n,a)^{-1} = (\gamma_{a^{-1}}(n^{-1}), a^{-1})\).</li>
-</ol>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example 1</b></h4>
-<p>Let’s start with the trivial example. Let \(N\) and \(A\) be any groups. Define the trivial homomorphism as</p>
-<div>
-		$$
-		\begin{align*}
-	    \gamma: A &amp;\rightarrow \text{Aut}(N) \\
-		                \gamma_{a} &amp;= id \quad \forall a \in A
-		\end{align*}
-		$$
-</div>
-<p>This is a constant function that’s always a homomorphism no matter what the source and targets are. Basically send any element to the identity function. Then</p>
-<div>
-		$$
-		\begin{align*}
-	    N \rtimes_{\gamma} A = N \times A
-		\end{align*}
-		$$
-</div>
-<p>To see this, apply the operation and you’ll see that \((a_1, a_2)(n_1, n_2) = (n_1 id(n_2), a_1a_2) = (n_1n_2, a_1a_2)\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example 2</b></h4>
-<p>Let \(N = (\mathbf{Z}_n, +)\) where \(n \geq 3\) and let \(A = \mathbf{Z}_2 = \{[0]_2, [1]_2\}\). 
-<br />
-Define \(\gamma\) be</p>
-<div>
-		$$
-		\begin{align*}
-	    \gamma: \mathbf{Z}_2 &amp;\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n)
-		\end{align*}
-		$$
-</div>
-<p>We’ve seen before that \(\text{Aut}(\mathbf{Z}_n)\) is the modular units (mod n) group. How can we construct a homomorphism? We know that \(\mathbf{Z} = \{[0]_2, [1]_2\}\). We know we have to send \([0]_2\) to the identity element \([1]_n\). For \([1]_2\), we need to send it to an element of \(\Phi(n)\) of order 2. As an example, observe that \([-1]_n\) is of order 2 because \((-1)^2 = 1\). So</p>
-<div>
-		$$
-		\begin{align*}
-	    \gamma: \mathbf{Z}_2 &amp;\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \\
-		                 [0]_2  &amp;\rightarrow [1]_n \\
-						 [1]_2	&amp;\rightarrow [-1]_n.
-		\end{align*}
-		$$
-</div>
-<p>So we can now form a semi-direct product. Let \(G = N \rtimes_{\gamma} A\). This is a group of order \(2n\). In fact, it’s isomorphic to the dihedral group \(D_n\). To see this, observe that we can replace \(N\) with \(N = \langle r \rangle\) and replace \(A\) with \(A = \langle j \rangle\).</p>
-<div>
-	$$
-	\begin{align*}
-	N &amp;= \langle r \rangle, \ o(r) = n \\
-	A &amp;= \langle j \rangle, \ o(j) = 2
-	\end{align*}
-	$$
-</div>
-<p>We can set \(\gamma\) like we did before. So</p>
-<div>
-	$$
-	\begin{align*}
-	\gamma: \langle j \rangle &amp;\rightarrow \text{Aut}(\langle r \rangle) \\
-	\gamma_e &amp;\rightarrow id \\
-	\gamma_j &amp;\rightarrow (r^k \rightarrow r^{-k}) \quad \text{(send $r^k$ to its inverse, similar to what we did to [1])}
-	\end{align*}
-	$$
-</div>
-<p>Remark: If you have other elements of order 2 in \(\text{Aut}(\mathbf{Z}_n) \cong \Phi(n)\), then you can form “semi-dihedral groups”. For example, take \(N = \mathbf{Z}_8\), then Aut\((N) = \Phi(8) = \{1,3,5,7\}\). All the elements in this group is of order 2 except for 1. Therefore we can define</p>
-<div>
-		$$
-		\begin{align*}
-	    \gamma' : A=\langle j \rangle &amp;\rightarrow Aut(N) \cong \Phi(8) \\
-		                           j   &amp;\rightarrow 3 \quad \text{ (instead of -1 like before)}
-		\end{align*}
-		$$
-</div>
-<p>So now we’ll get a different semi-direct product. We’ll get \(G' = N \rtimes_{\gamma'} A\). \(|G'| = 16\). It is not isomorphic to \(D_8\). Also \(o(r) = 8\) and \(o(j) = 2\). But we have this new formula \(jr = r^3j\). (Instead of \(jr = jr^{-1})\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Recognition Theorem for Semi-direct Product</b></h4>
-<p>So now we can state the Recognition Theorem but for Semi-direct Product.
-<br /></p>
-<div class="yellowheaderdiv">
-Theorem (Recognition Theorem)
-</div>
-<div class="yellowbodydiv">
-Let \(G\) be a group and let \(A, N \leq G\) be two subgroups. If
-<ol>
-	<li>\(N\) is a normal subgroups of \(G\).</li>
-	<li>\(A \cap N = \{e\}\)</li>
-	<li>\(NA = G\)</li>
-</ol>
-Define \(\gamma\) as the homomorphism such that
-	$$
-	\begin{align*}
-	\gamma: A &amp;\rightarrow \text{Aut}(N) \\
-	 \gamma_a(n) &amp;\rightarrow ana^{-1} \quad a \in A, a^{-1} \in A, n \in N
-	\end{align*}
-	$$
-Then, \(A \rtimes_{\gamma} N\) is isomorphic to \(G\). The isomorphism is given by
-		$$
-		\begin{align*}
-		\gamma: A \rtimes_{\gamma} N &amp;\rightarrow G \\
-		 (a,n) &amp;\rightarrow an
-		\end{align*}
-		$$
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-The idea of the proof is as follows. We are given that \(NA = G\). So we can write every element in \(G\) is a product of an element from \(N\) and an element from \(A\). Because we also have \(N \cap A = \{e\}\), then there is a unique way to write all of these products (proof?). So every \(g \in G\) can be written uniquely as a product \(g = na\) where \(n \in N\) and \(a \in A\). Now, take two different elements \(g_1 = n_1a_1\) and \(g_2 = n_2a_2\) where \(a_1,a_2 \in A\) and \(n_1n_2 \in N\). Multiply them</p>
-<div>
-		$$
-		\begin{align*}
-		g_1g_2 &amp;= (n_1a_1)(n_2a_2)
-		\end{align*}
-		$$
-</div>
-<p>But we also know that \(g_1g_2 \in G\) so it can also be written uniquely as a product \(g_1g_2 = na\) where \(n \in N\) and \(a \in A\). So we want to solve the equation \((n_1a_1)(n_2a_2) = na\) to get an expression that looks like \(na\). The trick is as follows</p>
-<div>
-		$$
-		\begin{align*}
-		(n_1a_1)(n_2a_2) &amp;= n_1a_1n_2(a_1^{-1}a_1)a_2 \\
-		                 &amp;= (n_1)(a_1n_2a_1^{-1})(a_1a_2)
-		\end{align*}
-		$$
-	where
-</div>
-<p>\(n_1 \in N\), \(a_1n_2a_1^{-1} \in N\). \(a_1a_2 \in A\). So we can write \(n = n_1a_1n_2a_1^{-1}\) and \(a = a_1a_2\). But \(a_1n_2a_1^{-1}\) is just \(\gamma_{a_1}(n_2)\). This is exactly the product. we defined.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Infinite Dihedral Group</b></h4>
-<p>So we’re to construct a group by a semi direct group. Set</p>
-<div>
-		$$
-		\begin{align*}
-		N &amp;= \langle r \rangle \cong (\mathbf{Z}, +), \quad o(r)=\infty \\
-		A &amp;= \langle j \rangle \cong (\mathbf{Z}_2, +), \quad o(j)=2
-		\end{align*}
-		$$
-</div>
-<p>Define the homomorphism</p>
-<div>
-		$$
-		\begin{align*}
-		\gamma: A \rightarrow \text{Aut}(N) \cong \text{Aut}(\mathbf{Z}) = \{\pm 1\}, \quad o(\text{Aut}(\mathbf{Z}) = 2)
-		\end{align*}
-		$$
-</div>
-<p>There are two automorphisms of \(N\). The identity function. The other automorphism is the inverse function (\(inv(r^k) = r^{-k}\)). Intuitively, \(r\) has to go to another generator that can generate the group. So it can go to itself or its inverse. So now the infinite is defined to be the semi direct product of \(N\) and \(A\) so</p>
-<div>
-		$$
-		\begin{align*}
-		D_{\infty} = N \rtimes_{\gamma} A
-		\end{align*}
-		$$
-</div>
-<p>Note here that \(N\) is a subgroup of \(D_{\infty}\). Send \(r^k \in N\) to</p>
-<div>
-		$$
-		\begin{align*}
-		r^{k} \rightarrow (r^k, e)
-		\end{align*}
-		$$
-</div>
-<p>And \(A\) is a subgroup of \(D_{\infty}\) so send \(j^l\) to</p>
-<div>
-		$$
-		\begin{align*}
-		j^{l} \rightarrow (j^l, e)
-		\end{align*}
-		$$
-</div>
-<p>In fact \(D_{\infty} = \langle r, j \rangle\) with \(o(r) = \infty\) and \(o(j) = 2\). Also see that \(jrj^{-1} = r^{-1} \leftrightarrow jr = r^{-1}j\)
-<br />
-<br />
-Note here that this is NOT the same as the symmetries of the disk group. The symmetries of the disk is an uncountable group. Here we have integer powers of \(r\) while the symmetries of the disk can have any power, can rotate the disk by angle.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li>MATH417 by Charles Rezk</li>
-	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Previously we introduced the direct product group and we observed if some certain conditions are met, then we get a direct product that is isomorphic to the group \(G\) itself. As a reminder Theorem (Recognition Theorem) Let \(G\) be a group and \(A, N \leq G\). If \(A\) and \(N\) are normal subgroups of \(G\). \(A \cap N = \{e\}\) \(AN = G\) Then, \(A \times N\) is isomorphic to \(G\). The isomorphism is given by $$ \begin{align*} \phi: A \times N &amp;\rightarrow G \\ (a,n) &amp;\rightarrow an \end{align*} $$ But now the question is what happens if not all of these conditions are satisfied. Suppose that \(N\) was the only normal subgroup. In this case, \(G\) is called a semi-direct product of \(N\) and \(A\). Example Let \(G = D_n\) where \(n \geq 3\) and \(|G| = 2n\). Let $$ \begin{align*} N &amp;= \langle r \rangle, \ o(r) = n \\ A &amp;= \langle j \rangle, \ o(j) = 2 \end{align*} $$ We know that \(N \cap A = \{e\}\) \(NA = G\) \(\langle r \rangle\) is a normal subgroup since conjugating \(r^k\) by any flip, the result is still a rotation. So the only thing missing to be able to apply the recognition theorem is that \(A\) is not normal. Despite this, we will show that we can still construct \(G = D_n\) from the subgroups \(N\), \(A\) and third piece of information which is a homomorphism \(\gamma\). In other words, \(G \cong N \rtimes_{\gamma} A\). This product \(N \rtimes_{\gamma} A\) is called the semi-direct product. What is this homomorphism \(\gamma\)? \(\gamma\) will be a homomorphism from \(A\) to the group of automorphisms of \(N\). \(A\) contains two elements, \(A = \{e, j\}\). We will send each element to an automorphism from the set \(\text{Aut}(N) = \text{Aut}(\langle r \rangle)\). Specifically $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma: \langle j \rangle &amp;\rightarrow \text{Aut}(\langle r \rangle) \\ e &amp;\rightarrow id \\ j &amp;\rightarrow \gamma_j, \quad \gamma_j(r^k) = r^{-k} \end{align*} $$ So the idea here is that we will be able to reconstruct the Dihedral group from this information. Construction of Semi-direct Products We haven’t said anything yet about how to actually construct \(G\) from the groups \(A\), \(N\) and \(\gamma\). The following will demonstrate this. (Important to note here that unlike the previous example, we don’t need \(A\) and \(N\) to be subgroups of \(G\). They are just groups!!!). We will first demonstrate what happens when \(\gamma\) and \(\gamma_a\) are homomorphisms. Semi-direct Product Construction Let \(A\) and \(N\) be groups and let $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ a &amp;\rightarrow \gamma_a \end{align*} $$ be a homomorphism. Note here that not only \(\gamma\) is a homomorphism but also each \(\gamma_a\) is a homomorphism as well. Because of this we will get \(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) for \(a \in A, n_1, n_2 \in N\). \(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\) for \(a_1, a_2 \in A, n \in N\). \(\gamma_{e} = id, \gamma_{a^{-1}} = (\gamma_a)^{-1}\). So now we will use these facts to state the semi-direct product definition. Semi-direct Product Use the construction above, we will get the group $$ \begin{align*} G = N \rtimes_{\gamma} A \end{align*} $$ where the the product set is $$ \begin{align*} G = N \times A = \{(n,a), n \in N, a \in A\} \end{align*} $$ The operation is $$ \begin{align*} (n_1, a_1) \cdot (n_2, a_2) = (n_1 \cdot \gamma_{a_1}(n_2), a_1a_2) \end{align*} $$ where \(n_1, n_2 \in N\) and \(a_1, a_2 \in A\). Note also that \(N \cong N' \leq G\) so \(N\) is isomorphic to some subgroup of \(G\). \(A\) is also isomorphic to some subgroup to \(A' \leq G\). Also note that if this was a direct product, then the operation is \((n_1,a_1) \cdot (n_2,a_2) = (n_1n_2, a_1a_2)\) but here we have this application of \(\gamma_{a_1}\) on \(n_2\). Proof We will show that \(G\) is a group by verifying the group properties. \(G\) is associative. The left hand side is $$ \begin{align*} ((n_1,a_1) \cdot (n_2,a_2)) \cdot (n_3,a_3) &amp;= (n_1 \gamma_{a_1}(n_2),a_1a_2) \cdot (n_3,a_3) \\ &amp;= (n_1 \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3),a_1a_2a_3). \end{align*} $$ while the right hand side is $$ \begin{align*} (n_1,a_1) \cdot ((n_2,a_2) \cdot (n_3,a_3)) &amp;= (n_1,a_1) (n_1 \gamma_{a_2}(n_3),a_2a_3) \\ &amp;= (n_1, \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)), a_1a_2a_3). \end{align*} $$ Recall the identities from the construction. Specifically, we saw that \(\gamma_a(n_1n_2) = \gamma_a(n_1) \cdot \gamma_a(n_2)\) and \(\gamma_{a_1a_2}(n) = \gamma_{a_1}(\gamma_{a_2}(n))\). Using this we see that term from the right hand side will equal to $$ \begin{align*} \gamma_{a_1}(n_2 \gamma_{a_2}(n_3)) &amp;= \gamma_{a_1}(n_2) \gamma_{a_1}(\gamma_{a_2}(n_3)) \\ &amp;= \gamma_{a_1}(n_2) \gamma_{a_1a_2}(n_3) \end{align*} $$ which is the same as the term in the left hand side. The identity element is \((e_N, e_A)\) (Exercise). The inverse is \((n,a)^{-1} = (\gamma_{a^{-1}}(n^{-1}), a^{-1})\). Example 1 Let’s start with the trivial example. Let \(N\) and \(A\) be any groups. Define the trivial homomorphism as $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma_{a} &amp;= id \quad \forall a \in A \end{align*} $$ This is a constant function that’s always a homomorphism no matter what the source and targets are. Basically send any element to the identity function. Then $$ \begin{align*} N \rtimes_{\gamma} A = N \times A \end{align*} $$ To see this, apply the operation and you’ll see that \((a_1, a_2)(n_1, n_2) = (n_1 id(n_2), a_1a_2) = (n_1n_2, a_1a_2)\). Example 2 Let \(N = (\mathbf{Z}_n, +)\) where \(n \geq 3\) and let \(A = \mathbf{Z}_2 = \{[0]_2, [1]_2\}\). Define \(\gamma\) be $$ \begin{align*} \gamma: \mathbf{Z}_2 &amp;\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \end{align*} $$ We’ve seen before that \(\text{Aut}(\mathbf{Z}_n)\) is the modular units (mod n) group. How can we construct a homomorphism? We know that \(\mathbf{Z} = \{[0]_2, [1]_2\}\). We know we have to send \([0]_2\) to the identity element \([1]_n\). For \([1]_2\), we need to send it to an element of \(\Phi(n)\) of order 2. As an example, observe that \([-1]_n\) is of order 2 because \((-1)^2 = 1\). So $$ \begin{align*} \gamma: \mathbf{Z}_2 &amp;\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \\ [0]_2 &amp;\rightarrow [1]_n \\ [1]_2 &amp;\rightarrow [-1]_n. \end{align*} $$ So we can now form a semi-direct product. Let \(G = N \rtimes_{\gamma} A\). This is a group of order \(2n\). In fact, it’s isomorphic to the dihedral group \(D_n\). To see this, observe that we can replace \(N\) with \(N = \langle r \rangle\) and replace \(A\) with \(A = \langle j \rangle\). $$ \begin{align*} N &amp;= \langle r \rangle, \ o(r) = n \\ A &amp;= \langle j \rangle, \ o(j) = 2 \end{align*} $$ We can set \(\gamma\) like we did before. So $$ \begin{align*} \gamma: \langle j \rangle &amp;\rightarrow \text{Aut}(\langle r \rangle) \\ \gamma_e &amp;\rightarrow id \\ \gamma_j &amp;\rightarrow (r^k \rightarrow r^{-k}) \quad \text{(send $r^k$ to its inverse, similar to what we did to [1])} \end{align*} $$ Remark: If you have other elements of order 2 in \(\text{Aut}(\mathbf{Z}_n) \cong \Phi(n)\), then you can form “semi-dihedral groups”. For example, take \(N = \mathbf{Z}_8\), then Aut\((N) = \Phi(8) = \{1,3,5,7\}\). All the elements in this group is of order 2 except for 1. Therefore we can define $$ \begin{align*} \gamma' : A=\langle j \rangle &amp;\rightarrow Aut(N) \cong \Phi(8) \\ j &amp;\rightarrow 3 \quad \text{ (instead of -1 like before)} \end{align*} $$ So now we’ll get a different semi-direct product. We’ll get \(G' = N \rtimes_{\gamma'} A\). \(|G'| = 16\). It is not isomorphic to \(D_8\). Also \(o(r) = 8\) and \(o(j) = 2\). But we have this new formula \(jr = r^3j\). (Instead of \(jr = jr^{-1})\). Recognition Theorem for Semi-direct Product So now we can state the Recognition Theorem but for Semi-direct Product. Theorem (Recognition Theorem) Let \(G\) be a group and let \(A, N \leq G\) be two subgroups. If \(N\) is a normal subgroups of \(G\). \(A \cap N = \{e\}\) \(NA = G\) Define \(\gamma\) as the homomorphism such that $$ \begin{align*} \gamma: A &amp;\rightarrow \text{Aut}(N) \\ \gamma_a(n) &amp;\rightarrow ana^{-1} \quad a \in A, a^{-1} \in A, n \in N \end{align*} $$ Then, \(A \rtimes_{\gamma} N\) is isomorphic to \(G\). The isomorphism is given by $$ \begin{align*} \gamma: A \rtimes_{\gamma} N &amp;\rightarrow G \\ (a,n) &amp;\rightarrow an \end{align*} $$ Proof The idea of the proof is as follows. We are given that \(NA = G\). So we can write every element in \(G\) is a product of an element from \(N\) and an element from \(A\). Because we also have \(N \cap A = \{e\}\), then there is a unique way to write all of these products (proof?). So every \(g \in G\) can be written uniquely as a product \(g = na\) where \(n \in N\) and \(a \in A\). Now, take two different elements \(g_1 = n_1a_1\) and \(g_2 = n_2a_2\) where \(a_1,a_2 \in A\) and \(n_1n_2 \in N\). Multiply them $$ \begin{align*} g_1g_2 &amp;= (n_1a_1)(n_2a_2) \end{align*} $$ But we also know that \(g_1g_2 \in G\) so it can also be written uniquely as a product \(g_1g_2 = na\) where \(n \in N\) and \(a \in A\). So we want to solve the equation \((n_1a_1)(n_2a_2) = na\) to get an expression that looks like \(na\). The trick is as follows $$ \begin{align*} (n_1a_1)(n_2a_2) &amp;= n_1a_1n_2(a_1^{-1}a_1)a_2 \\ &amp;= (n_1)(a_1n_2a_1^{-1})(a_1a_2) \end{align*} $$ where \(n_1 \in N\), \(a_1n_2a_1^{-1} \in N\). \(a_1a_2 \in A\). So we can write \(n = n_1a_1n_2a_1^{-1}\) and \(a = a_1a_2\). But \(a_1n_2a_1^{-1}\) is just \(\gamma_{a_1}(n_2)\). This is exactly the product. we defined. Infinite Dihedral Group So we’re to construct a group by a semi direct group. Set $$ \begin{align*} N &amp;= \langle r \rangle \cong (\mathbf{Z}, +), \quad o(r)=\infty \\ A &amp;= \langle j \rangle \cong (\mathbf{Z}_2, +), \quad o(j)=2 \end{align*} $$ Define the homomorphism $$ \begin{align*} \gamma: A \rightarrow \text{Aut}(N) \cong \text{Aut}(\mathbf{Z}) = \{\pm 1\}, \quad o(\text{Aut}(\mathbf{Z}) = 2) \end{align*} $$ There are two automorphisms of \(N\). The identity function. The other automorphism is the inverse function (\(inv(r^k) = r^{-k}\)). Intuitively, \(r\) has to go to another generator that can generate the group. So it can go to itself or its inverse. So now the infinite is defined to be the semi direct product of \(N\) and \(A\) so $$ \begin{align*} D_{\infty} = N \rtimes_{\gamma} A \end{align*} $$ Note here that \(N\) is a subgroup of \(D_{\infty}\). Send \(r^k \in N\) to $$ \begin{align*} r^{k} \rightarrow (r^k, e) \end{align*} $$ And \(A\) is a subgroup of \(D_{\infty}\) so send \(j^l\) to $$ \begin{align*} j^{l} \rightarrow (j^l, e) \end{align*} $$ In fact \(D_{\infty} = \langle r, j \rangle\) with \(o(r) = \infty\) and \(o(j) = 2\). Also see that \(jrj^{-1} = r^{-1} \leftrightarrow jr = r^{-1}j\) Note here that this is NOT the same as the symmetries of the disk group. The symmetries of the disk is an uncountable group. Here we have integer powers of \(r\) while the symmetries of the disk can have any power, can rotate the disk by angle. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Example 1 Proposition Suppose \((x,y) \in G_1 \times G_2\) and that the order of the elements are \(|x| = r\) and \(|y| = s\). Then the order of \((x,y)\) is \(lcm(r,s)\) Proof Let \(l = lcm(r,s)\). Then, \(l = ra = sb\) for some \(r, b \in \mathbf{Z}\). Observe that $$ \begin{align*} (x,y)^{l} &amp;= (x^l, y^l) = (x^{ra}, y^{sb}) = (e_1, e_2) \end{align*} $$ From this we see that the order of \((x,y)\) must divide \(l\). If we let \(l' = |(x,y)|\), then \(l' \ | \ l\). Now, observe that $$ \begin{align*} (x,y)^{l'} &amp;= (x^{l'}, y^{l'}) = (e_1, e_2) \end{align*} $$ But since \(|x| = r\) and \(|y| = s\), then \(r \ | \ l'\) and \(s \ | \ l'\). But this means that \(lcm(r,s) = l \ | \ l'\). Since \(l' \ | \ l\) and \(l \ | \ l'\), then \(l = l'\) as we wanted to show. Example 2 Proposition \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\) if and only if \(gcd(m,n) = 1\) This says if you take the product of two cyclic groups, then their product is cyclic if and only if \(m\) and \(n\) are relatively prime. Proof \(\longrightarrow:\) Suppose \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). Suppose for the sake of contradiction that \(gcd(m,n) = d &gt; 1\). Now, take an arbitrary element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\). Add \((a,b)+...+(a,b)\) \(\frac{mn}{d}\) times. We will see that $$ \begin{align*} (a\frac{mn}{d},b\frac{mn}{d}) &amp;= (a\frac{n}{d}m,b\frac{m}{d}n) \\ &amp;= ([0]_m, [0]_n) \end{align*} $$ Notice here that both \(\frac{n}{d}\) and \(\frac{m}{d}\) are whole numbers since \(d\) is a divisor of both \(m\) and \(n\). So the first entry is a multiple of \(m\) while the second entry is a multiple of \(n\). This implies that the order of \((a,b) \leq \frac{mn}{d} &lt; mn\). So the order of any element \((a,b) \in \mathbf{Z}_m \times \mathbf{Z}_n\) is strictly less than \(mn\). This means that no element of \(\mathbf{Z}_m \times \mathbf{Z}_n\) can be a generator of the group. So \(\mathbf{Z}_m \times \mathbf{Z}_n\) is not cyclic. This is a contradiction because \(\mathbf{Z}_m \times \mathbf{Z}_n\) isomorphic to \(\mathbf{Z}_{mn}\) and so it is cyclic. \(\longleftarrow:\) Now suppose that \(gcd(m,n) = 1\). We want to show that \(\mathbf{Z}_m \times \mathbf{Z}_n\) is isomorphic to \(\mathbf{Z}_{mn}\). Notice that the order of the element 1 has order \(m\) in \(\mathbf{Z}_m\) and the order of the element 1 has order \(n\) in \(\mathbf{Z}_n\). This tells us that the order of \((1,1) = lcm(m,n) \frac{mn}{gcd(m,n)} \frac{mn}{1} = mn\). So \((1,1)\) has order \(mn\) which means it generates the group. So it must be cyclic. So \(\mathbf{Z}_m \times \mathbf{Z}_n = \langle (1,1) \rangle\). We know all cyclic groups that have the same order are isomorphic. So \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\). References The order of an element in a direct group is the lcm of both elements orders]]></summary></entry></feed>

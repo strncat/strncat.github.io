@@ -224,6 +224,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/24/math417-32-rings.html">
        Lecture 32: Rings
        </a></li>
+	   <!-------------->
+	   <!------33------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/25/math417-33-polynomial-rings.html">
+       Lecture 33: Polynomial Rings
+       </a></li>
 	   <!----------------->
 	   <!------EXTRA------>
 	   <!----------------->

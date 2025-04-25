@@ -231,6 +231,20 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/25/math417-33-polynomial-rings.html">
        Lecture 33: Polynomial Rings
        </a></li>
+	   <!-------------->
+	   <!------34------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/26/math417-34-homomorphisms-rings.html">
+       Lecture 34: Homomorphisms of Rings and the Substitution Principle
+       </a></li>
+	   <!-------------->
+	   <!------35------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/27/math417-35-principle-ideal.html">
+       Lecture 35: Principle Ideal
+       </a></li>
 	   <!----------------->
 	   <!------EXTRA------>
 	   <!----------------->

@@ -1,4 +1,292 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-21T13:37:30-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 33: Polynomial Rings</title><link href="http://localhost:4000/jekyll/update/2025/02/25/math417-33-polynomial-rings.html" rel="alternate" type="text/html" title="Lecture 33: Polynomial Rings" /><published>2025-02-25T00:01:36-08:00</published><updated>2025-02-25T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/25/math417-33-polynomial-rings</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/25/math417-33-polynomial-rings.html"><![CDATA[<p>We’ve introduced rings last lecture and we said that rings can be commutative, contain a multiplicative identity or can also be a field. We saw the subset that includes elements with multiplicative inverses that’s also a group. This is the Units group or \(R^{\times}\) which contains an element in \(R\) such that it has a multiplication inverse. We also saw an example of a ring which is</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-25T07:05:01-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 35: Principal Ideal</title><link href="http://localhost:4000/jekyll/update/2025/02/27/math417-35-principal-ideal.html" rel="alternate" type="text/html" title="Lecture 35: Principal Ideal" /><published>2025-02-27T00:01:36-08:00</published><updated>2025-02-27T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/27/math417-35-principal-ideal</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/27/math417-35-principal-ideal.html"><![CDATA[<p>Last time we introduced the notion of an ideal in a ring. Stating it again
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Ideal
+</div>
+<div class="mintbodydiv">
+An ideal in \(R\) is a subset \(I \subseteq R\) such that
+<ol>
+	<li>\(I\) is a subgroup of the abelian group with addition \((R, +)\). So the ideal must have \(0 \in I\), closed under addition, additive inverses are in \(I\) as well.</li>
+	<li>If \(a \in I, r \in R\), then \(ra, ar \in I\) so it is also closed under multiplication.</li>
+</ol>
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+We said that usually we refer to this definition as the “Two sided ideal” since other variants can exists (left and right ideals).
+<br />
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(\{I_{\alpha}\) is a collection of ideals, then \(I = \bigcap_{\alpha} I_{\alpha}\) is an ideal. 
+</div>
+
+<p><br />
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Last time we introduced the notion of an ideal in a ring. Stating it again Definition: Ideal An ideal in \(R\) is a subset \(I \subseteq R\) such that \(I\) is a subgroup of the abelian group with addition \((R, +)\). So the ideal must have \(0 \in I\), closed under addition, additive inverses are in \(I\) as well. If \(a \in I, r \in R\), then \(ra, ar \in I\) so it is also closed under multiplication. We said that usually we refer to this definition as the “Two sided ideal” since other variants can exists (left and right ideals). Proposition If \(\{I_{\alpha}\) is a collection of ideals, then \(I = \bigcap_{\alpha} I_{\alpha}\) is an ideal.]]></summary></entry><entry><title type="html">Lecture 34: Homomorphisms of Rings and the Substitution Principle</title><link href="http://localhost:4000/jekyll/update/2025/02/26/math417-34-homomorphisms-rings.html" rel="alternate" type="text/html" title="Lecture 34: Homomorphisms of Rings and the Substitution Principle" /><published>2025-02-26T00:01:36-08:00</published><updated>2025-02-26T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/26/math417-34-homomorphisms-rings</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/26/math417-34-homomorphisms-rings.html"><![CDATA[<p>Last time we introduced polynomial rings. Given a commutative ring with 1, then \(R[x]\) is a commutative polynomial ring with 1 and coefficients in \(R\). Today, we will introduce a few more definitions
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Homomorphisms of Rings
+</div>
+<div class="mintbodydiv">
+Let \(R\) and \(S\) be rings. A homomorphism \(\varphi: R \rightarrow S\) is a function such that
+<ol>
+	<li>\(\varphi: (R_1, +) \rightarrow (S, +)\) is a homomorphism of groups (ie: \(\varphi(a + b) = \varphi(a) + \varphi(b)\)</li>
+	<li>\(\varphi(a,b) = \varphi(a)\varphi(b)\) for all \(a,b \in R\)</li>
+</ol>
+</div>
+<!--------------------------------------------------------------------------->
+<p><br />
+Remark: If \(R\) and \(S\) have a multiplication identity, \(\varphi\) can fail to take 1 to 1. So \(\varphi(1)\) could be something other than 1. Unlike for zero, where zero needs to go zero. This is because rings are required to have an additive inverses and because we have additive inverses, then zero will be mapped to zero. But we don’t necessarily have multiplicative inverses for all elements (that’s a field). So 1 won’t necessarily get mapped to 1. Based on this define
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Homomorphisms of Rings
+</div>
+<div class="mintbodydiv">
+Let \(R\) and \(S\) be rings. A unital homomorphism is a ring homomorphism such that also \(\varphi(1_R) = 1_S\)
+</div>
+<p><br /></p>
+<h4><b>Example 1</b></h4>
+<p>Let \(\pi: \mathbf{Z} \rightarrow \mathbf{Z}_n\) where \(\pi(a) = [a]_n\). Then \(\pi\) is a unital homomorphism of rings.
+<br />
+<br /></p>
+<h4><b>Example 2</b></h4>
+<p>If \(R\) is any ring with 1. Define \(\varphi \mathbf{Z} \rightarrow R\) by \(\varphi(n) = n1_R\). \(\varphi\) is a unital ring homomorphism. For example</p>
+<div>
+$$
+\begin{align*}
+\varphi(2) &amp;= 1_R + 1_R \\
+\varphi(3) &amp;= 1_R + 1_R + 1_R \\
+\varphi(2)\varphi(3) &amp;= (1_R + 1_R)(1_R + 1_R + 1_R) = \varphi(6).
+\end{align*}
+$$
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Isomorphism of Rings</b></h4>
+<p>More simple definitions:
+<br /></p>
+<div class="mintheaderdiv">
+Definition: Isomorphism of Rings
+</div>
+<div class="mintbodydiv">
+Let \(R\) and \(S\) be rings. An Isomorphism of rings is a homomorphism of rings which is also a bijection.
+</div>
+<p><br />
+Since an isomorphism is a bijection, this means that we have an inverse function \(\varphi^{-1}: S \rightarrow R\) that is also an isomorphism of rings
+<!------------------------------------------------------------------------->
+<br /></p>
+<div class="mintheaderdiv">
+Definition: Automorphism of Rings
+</div>
+<div class="mintbodydiv">
+Let \(R\) be a ring. An Automorphism \(\varphi: R \rightarrow R\) is an isomorphism of the ring to itself.
+</div>
+<p><br />
+<!------------------------------------------------------------------------->
+For example, take the set of matrices such that</p>
+<div>
+$$
+\begin{align*}
+S = \big\{ \begin{pmatrix} a &amp; -b \\ b &amp; a \end{pmatrix} \big\} 
+\subseteq \text{Mat}_{2\times 2}(\mathbf{R})
+\end{align*}
+$$
+</div>
+<p>with \(a, b \in \mathbf{R}\). \(S\) is a subring. We have an isomorphism of rings between \(S\) and the complex numbers as follows</p>
+<div>
+$$
+\begin{align*}
+\varphi: \mathbf{C} &amp;\rightarrow S \\
+         a + bi &amp;\rightarrow \begin{pmatrix} a &amp; -b \\ b &amp; a \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>Another example is \(\varphi: \mathbf{C} \rightarrow \mathbf{C}\) where \(\varphi(z) = \bar{z}\). So \(\varphi(a+bi) = a - bi\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Substitution Principle</b></h4>
+<p>The substitution principle is a method for constructing any ring homomorphism where the domain is a polynomial ring
+<!----------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition: Substitution Principle
+</div>
+<div class="peachbodydiv">
+Let \(R\) and \(S\) be commutative rings with identity. Given that
+<ol> 
+	<li>\(\varphi: R \rightarrow S\) is a unital homomorphism</li>
+	<li>\(c \in S\)</li>
+</ol>
+Then there exists a unique ring homomorphism
+$$
+\begin{align*}
+\varphi_c: R[x] \rightarrow S
+\end{align*}
+$$
+such that
+<ol> 
+	<li>\(\varphi_c(r) = \varphi(r)\)</li>
+	<li>\(\varphi_c(x) = c\)</li>
+</ol>
+Furthermore, if \(f = \sum_{k=0}^n a_kx^k \in R[x], a_k \in R\). Then
+$$
+\begin{align*}
+\varphi_c(f): \sum_{k=0}^n \varphi(a_k) c^k
+\end{align*}
+$$
+</div>
+<p><br />
+<!---------------------------------------------------------------------->
+This means given some unital homomorphism between the two rings. Then</p>
+<ul>
+<li>If we know how the homomorphism act on constant polynomials (so these are the elements in \(R\) which will be the constant polynomials in \(R[x]\)</li> 
+<li>And if we know how it acts on \(x\) (we're sending it to \(c\))</li>
+</ul>
+<p>Then we will get this new homomorphism \(\varphi_c\) and we will know how it acts on all the other polynomials using \(\varphi_c(f): \sum_{k=0}^n \varphi(a_k) c^k\).
+<br />
+<br />
+But now you might ask that it’s kind of like evaluating the polynomial at \(c\)?? This is true for a special case when \(\phi\) is the identity function. So when \(R = S\) and \(\phi:R \rightarrow R\) is just the identity. Then, given any \(c\), we will see that</p>
+<div>
+$$
+\begin{align*}
+\phi_c(f) = ev_c(f) = \sum_{k=0}^n a_k c^k \in R \quad \text{ev for evaluation}
+\end{align*}
+$$
+</div>
+<p>which is basically like plugging in \(c\) for \(x\) so \(f(c)\). However, this \(ev_c: R[x] \rightarrow R\) is actually a ring homomorphism. This ring homomorphism has the following properties.</p>
+<ol>
+	<li>\(ev_c(r) = r\) if \(r \in R \subseteq R(x)\)</li>
+	<li>\(ev_(f+g) = ev_c(f) + ev_c(g)\). This is equivalent to us doing \((f+g)(c) = f(c)+f(g)\)</li>
+	<li>\(ev_c(fg) = ev_c(f)ev_c(g)\). This is equivalent to us doing \((fg)(c) = f(c)g(c)\)</li>
+</ol>
+<p>So again, if we have a unital homomorphism and we have those two conditions where we know what it does to \(c\) and we know what it does to constant polynomials. Then that formula must work. It’s the only way. But then we need to check that this formula is actually a ring homomorphism (Excercise)
+<br />
+<br />
+Observation: \(R\) is a commutative ring with 1. Any polynomial \(f \in R[x]\) gives a function</p>
+<div>
+$$
+\begin{align*}
+func_c: R &amp;\rightarrow R \\
+c &amp;\rightarrow ev_c(f) = "f(c)"
+\end{align*}
+$$
+</div>
+<p>Warning: We can have \(f \neq g\) but \(func_f = func_g\)!.
+<br />
+Example 1: Let \(R = \mathbf{Z}_p\) where \(p\) is prime. Then</p>
+<div>
+$$
+\begin{align*}
+f &amp;= x \in \mathbf{Z}_p[x] \implies func_f = id: \mathbf{Z}_p \rightarrow \mathbf{Z}_p \\
+g &amp;= x^p \in \mathbf{R}_p[x] \implies func_g(c) = c^p: \mathbf{Z}_p \rightarrow \mathbf{Z}_p 
+\end{align*}
+$$
+</div>
+<p>These are two different polynomials but they are the same function because due to Fermat’s little theorem. \(c^p \equiv c (\bmod p)\) so \(c^p = c\) in \(\mathbf{Z}_p\).
+<br />
+<br />
+Example 2: Let \(h = g-f \in \mathbf{Z}_p\) so \(h = x^p - x\) and \(func_h = 0\) for any \(x \in \mathbf{Z}_p\). So any element in \(\mathbf{Z}_p\) is a root of \(h(x)\) and \(h(x)\) has at least \(p\) roots in \(\mathbf{Z}_p\). In otherwords, we have a polynomial where any element we input, we get zero and so we can’t distinguish it as a function from the zero function.</p>
+<ul>
+<li>So as a polynomial, $$h(x) = x - x^p$$ is not the zero polynomial. Its coefficients are not all zero. </li>
+<li>But as a function, it is the zero function. It evalutes to zero for any input in \(\mathbf{Z}_p\)</li>
+</ul>
+<p>This happens because we’re in \(\mathbf{Z}_p\). If we’re in an inifinite field, then when \(f \neq g\), we will always get \(func_g \neq func_f\). Also in general, polynomials give us functions but they are not exactly functions!
+<br />
+<br />
+Side study note: A polynomial belongs to the ring \(R[x]\). A function is a mapping from \(R\) to \(R\). It assigns to each input \(r\) in \(R\), another value \(f(r)\) in \(R\). The function lives in the set of functions from \(R\) to \(R\). If \(R\) is finite, two different polynomials in \(R[x]\) may define the same function! So \(x^2\) and \(x\), will define the same function from \(\mathbf{Z}_2 \rightarrow \mathbf{Z}_2\). If \(R\) was an infinite field, then each distinct polynmoial will give a distinct function.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Ideals</b></h4>
+<p>So far, we’ve seen groups, subgroups and normal subgroups. Normal subgroups were special since they show up as kernels of homomorphism and we can form quotient groups using them. 
+<br />
+<br />
+Similarly, we have rings and subrings. And we also have ideals. Ideals show up as kernels of ring homomorphisms similar to nomral groups. And we can also form quotient rings using them. 
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Ideal
+</div>
+<div class="mintbodydiv">
+An ideal in \(R\) is a subset \(I \subseteq R\) such that
+<ol>
+	<li>\(I\) is a subgroup of the abelian group with addition \((R, +)\). So the ideal must have \(0 \in I\), closed under addition, additive inverses are in \(I\) as well.</li>
+	<li>If \(a \in I, r \in R\), then \(ra, ar \in I\) so it is also closed under multiplication.</li>
+</ol>
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+So it’s not just a subring. It’s more special because of the closure under the product. Warning: This definition is also reffered as a “Two Sided Ideal”. Because we do have another variant where we only require half the second condition (left and right ideals).
+<br />
+<br />
+Example: In any ring \(R\), \(\{0\}\) and \(R\) are both ideas in \(R\). \(\{0\}\) is usually called the trivial ideal. \(R\) is called the unit ideal.
+<br />
+<br />
+Observation: If \(R\) is a ring with 1 and \(I \subseteq R\) is an ideal. Then, if \(1 \in I\), then \(I = R\). Why? The ideal must be closed under multiplication so if the ideal contains 1, then it contains every element in \(R\). 
+<br />
+<br />
+Observation: If \(I\) contains a unit \(a^x\), then \(I = R\). This is because if \(a \in I\), then \(a^{-1}a = 1 \in I\). so \(1 \in I\) and therefore, every element is in \(I\). So \(I = R\). 
+<br />
+<br />
+Example: If \(K\) is a field, then we have exactly two ideals \(K\) and \(\{0\}\). Because fields have only units in them. 
+<br />
+<br />
+Example: If \(K\) is a field and \(n \geq 1\), then \(S = \text{Mat}_{n \times n}(K)\) has two ideals: \(\{0\}\) and \(S\) (not trivial but not hard to prove).
+<br />
+<br />
+Example: If \(R = \mathbf{Z}\), the ideals in \mathbf{Z}\(all have form\){\mathbf{Z}_n = {an \ | \ a \in \mathbf{Z}}$$. 
+<br />
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+If \(\varphi: R \rightarrow S\) is a ring homomorphism. Its kernel is 
+$$
+\begin{align*}
+\ker(\varphi) = \{r \in R \ | \ \varphi(r) = 0\}
+\end{align*}
+$$
+</div>
+<p><br />
+Fact: \(\ker(\varphi)\) is an ideal in \(R\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Last time we introduced polynomial rings. Given a commutative ring with 1, then \(R[x]\) is a commutative polynomial ring with 1 and coefficients in \(R\). Today, we will introduce a few more definitions Definition: Homomorphisms of Rings Let \(R\) and \(S\) be rings. A homomorphism \(\varphi: R \rightarrow S\) is a function such that \(\varphi: (R_1, +) \rightarrow (S, +)\) is a homomorphism of groups (ie: \(\varphi(a + b) = \varphi(a) + \varphi(b)\) \(\varphi(a,b) = \varphi(a)\varphi(b)\) for all \(a,b \in R\) Remark: If \(R\) and \(S\) have a multiplication identity, \(\varphi\) can fail to take 1 to 1. So \(\varphi(1)\) could be something other than 1. Unlike for zero, where zero needs to go zero. This is because rings are required to have an additive inverses and because we have additive inverses, then zero will be mapped to zero. But we don’t necessarily have multiplicative inverses for all elements (that’s a field). So 1 won’t necessarily get mapped to 1. Based on this define Definition: Homomorphisms of Rings Let \(R\) and \(S\) be rings. A unital homomorphism is a ring homomorphism such that also \(\varphi(1_R) = 1_S\) Example 1 Let \(\pi: \mathbf{Z} \rightarrow \mathbf{Z}_n\) where \(\pi(a) = [a]_n\). Then \(\pi\) is a unital homomorphism of rings. Example 2 If \(R\) is any ring with 1. Define \(\varphi \mathbf{Z} \rightarrow R\) by \(\varphi(n) = n1_R\). \(\varphi\) is a unital ring homomorphism. For example $$ \begin{align*} \varphi(2) &amp;= 1_R + 1_R \\ \varphi(3) &amp;= 1_R + 1_R + 1_R \\ \varphi(2)\varphi(3) &amp;= (1_R + 1_R)(1_R + 1_R + 1_R) = \varphi(6). \end{align*} $$ Isomorphism of Rings More simple definitions: Definition: Isomorphism of Rings Let \(R\) and \(S\) be rings. An Isomorphism of rings is a homomorphism of rings which is also a bijection. Since an isomorphism is a bijection, this means that we have an inverse function \(\varphi^{-1}: S \rightarrow R\) that is also an isomorphism of rings Definition: Automorphism of Rings Let \(R\) be a ring. An Automorphism \(\varphi: R \rightarrow R\) is an isomorphism of the ring to itself. For example, take the set of matrices such that $$ \begin{align*} S = \big\{ \begin{pmatrix} a &amp; -b \\ b &amp; a \end{pmatrix} \big\} \subseteq \text{Mat}_{2\times 2}(\mathbf{R}) \end{align*} $$ with \(a, b \in \mathbf{R}\). \(S\) is a subring. We have an isomorphism of rings between \(S\) and the complex numbers as follows $$ \begin{align*} \varphi: \mathbf{C} &amp;\rightarrow S \\ a + bi &amp;\rightarrow \begin{pmatrix} a &amp; -b \\ b &amp; a \end{pmatrix} \end{align*} $$ Another example is \(\varphi: \mathbf{C} \rightarrow \mathbf{C}\) where \(\varphi(z) = \bar{z}\). So \(\varphi(a+bi) = a - bi\). Substitution Principle The substitution principle is a method for constructing any ring homomorphism where the domain is a polynomial ring Proposition: Substitution Principle Let \(R\) and \(S\) be commutative rings with identity. Given that \(\varphi: R \rightarrow S\) is a unital homomorphism \(c \in S\) Then there exists a unique ring homomorphism $$ \begin{align*} \varphi_c: R[x] \rightarrow S \end{align*} $$ such that \(\varphi_c(r) = \varphi(r)\) \(\varphi_c(x) = c\) Furthermore, if \(f = \sum_{k=0}^n a_kx^k \in R[x], a_k \in R\). Then $$ \begin{align*} \varphi_c(f): \sum_{k=0}^n \varphi(a_k) c^k \end{align*} $$ This means given some unital homomorphism between the two rings. Then If we know how the homomorphism act on constant polynomials (so these are the elements in \(R\) which will be the constant polynomials in \(R[x]\) And if we know how it acts on \(x\) (we're sending it to \(c\)) Then we will get this new homomorphism \(\varphi_c\) and we will know how it acts on all the other polynomials using \(\varphi_c(f): \sum_{k=0}^n \varphi(a_k) c^k\). But now you might ask that it’s kind of like evaluating the polynomial at \(c\)?? This is true for a special case when \(\phi\) is the identity function. So when \(R = S\) and \(\phi:R \rightarrow R\) is just the identity. Then, given any \(c\), we will see that $$ \begin{align*} \phi_c(f) = ev_c(f) = \sum_{k=0}^n a_k c^k \in R \quad \text{ev for evaluation} \end{align*} $$ which is basically like plugging in \(c\) for \(x\) so \(f(c)\). However, this \(ev_c: R[x] \rightarrow R\) is actually a ring homomorphism. This ring homomorphism has the following properties. \(ev_c(r) = r\) if \(r \in R \subseteq R(x)\) \(ev_(f+g) = ev_c(f) + ev_c(g)\). This is equivalent to us doing \((f+g)(c) = f(c)+f(g)\) \(ev_c(fg) = ev_c(f)ev_c(g)\). This is equivalent to us doing \((fg)(c) = f(c)g(c)\) So again, if we have a unital homomorphism and we have those two conditions where we know what it does to \(c\) and we know what it does to constant polynomials. Then that formula must work. It’s the only way. But then we need to check that this formula is actually a ring homomorphism (Excercise) Observation: \(R\) is a commutative ring with 1. Any polynomial \(f \in R[x]\) gives a function $$ \begin{align*} func_c: R &amp;\rightarrow R \\ c &amp;\rightarrow ev_c(f) = "f(c)" \end{align*} $$ Warning: We can have \(f \neq g\) but \(func_f = func_g\)!. Example 1: Let \(R = \mathbf{Z}_p\) where \(p\) is prime. Then $$ \begin{align*} f &amp;= x \in \mathbf{Z}_p[x] \implies func_f = id: \mathbf{Z}_p \rightarrow \mathbf{Z}_p \\ g &amp;= x^p \in \mathbf{R}_p[x] \implies func_g(c) = c^p: \mathbf{Z}_p \rightarrow \mathbf{Z}_p \end{align*} $$ These are two different polynomials but they are the same function because due to Fermat’s little theorem. \(c^p \equiv c (\bmod p)\) so \(c^p = c\) in \(\mathbf{Z}_p\). Example 2: Let \(h = g-f \in \mathbf{Z}_p\) so \(h = x^p - x\) and \(func_h = 0\) for any \(x \in \mathbf{Z}_p\). So any element in \(\mathbf{Z}_p\) is a root of \(h(x)\) and \(h(x)\) has at least \(p\) roots in \(\mathbf{Z}_p\). In otherwords, we have a polynomial where any element we input, we get zero and so we can’t distinguish it as a function from the zero function. So as a polynomial, $$h(x) = x - x^p$$ is not the zero polynomial. Its coefficients are not all zero. But as a function, it is the zero function. It evalutes to zero for any input in \(\mathbf{Z}_p\) This happens because we’re in \(\mathbf{Z}_p\). If we’re in an inifinite field, then when \(f \neq g\), we will always get \(func_g \neq func_f\). Also in general, polynomials give us functions but they are not exactly functions! Side study note: A polynomial belongs to the ring \(R[x]\). A function is a mapping from \(R\) to \(R\). It assigns to each input \(r\) in \(R\), another value \(f(r)\) in \(R\). The function lives in the set of functions from \(R\) to \(R\). If \(R\) is finite, two different polynomials in \(R[x]\) may define the same function! So \(x^2\) and \(x\), will define the same function from \(\mathbf{Z}_2 \rightarrow \mathbf{Z}_2\). If \(R\) was an infinite field, then each distinct polynmoial will give a distinct function. Ideals So far, we’ve seen groups, subgroups and normal subgroups. Normal subgroups were special since they show up as kernels of homomorphism and we can form quotient groups using them. Similarly, we have rings and subrings. And we also have ideals. Ideals show up as kernels of ring homomorphisms similar to nomral groups. And we can also form quotient rings using them. Definition: Ideal An ideal in \(R\) is a subset \(I \subseteq R\) such that \(I\) is a subgroup of the abelian group with addition \((R, +)\). So the ideal must have \(0 \in I\), closed under addition, additive inverses are in \(I\) as well. If \(a \in I, r \in R\), then \(ra, ar \in I\) so it is also closed under multiplication. So it’s not just a subring. It’s more special because of the closure under the product. Warning: This definition is also reffered as a “Two Sided Ideal”. Because we do have another variant where we only require half the second condition (left and right ideals). Example: In any ring \(R\), \(\{0\}\) and \(R\) are both ideas in \(R\). \(\{0\}\) is usually called the trivial ideal. \(R\) is called the unit ideal. Observation: If \(R\) is a ring with 1 and \(I \subseteq R\) is an ideal. Then, if \(1 \in I\), then \(I = R\). Why? The ideal must be closed under multiplication so if the ideal contains 1, then it contains every element in \(R\). Observation: If \(I\) contains a unit \(a^x\), then \(I = R\). This is because if \(a \in I\), then \(a^{-1}a = 1 \in I\). so \(1 \in I\) and therefore, every element is in \(I\). So \(I = R\). Example: If \(K\) is a field, then we have exactly two ideals \(K\) and \(\{0\}\). Because fields have only units in them. Example: If \(K\) is a field and \(n \geq 1\), then \(S = \text{Mat}_{n \times n}(K)\) has two ideals: \(\{0\}\) and \(S\) (not trivial but not hard to prove). Example: If \(R = \mathbf{Z}\), the ideals in \mathbf{Z}\(all have form\){\mathbf{Z}_n = {an \ | \ a \in \mathbf{Z}}$$. Definition If \(\varphi: R \rightarrow S\) is a ring homomorphism. Its kernel is $$ \begin{align*} \ker(\varphi) = \{r \in R \ | \ \varphi(r) = 0\} \end{align*} $$ Fact: \(\ker(\varphi)\) is an ideal in \(R\). References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry><entry><title type="html">Lecture 33: Polynomial Rings</title><link href="http://localhost:4000/jekyll/update/2025/02/25/math417-33-polynomial-rings.html" rel="alternate" type="text/html" title="Lecture 33: Polynomial Rings" /><published>2025-02-25T00:01:36-08:00</published><updated>2025-02-25T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/25/math417-33-polynomial-rings</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/25/math417-33-polynomial-rings.html"><![CDATA[<p>We’ve introduced rings last lecture and we said that rings can be commutative, contain a multiplicative identity or can also be a field. We saw the subset that includes elements with multiplicative inverses that’s also a group. This is the Units group or \(R^{\times}\) which contains an element in \(R\) such that it has a multiplication inverse. We also saw an example of a ring which is</p>
 <div>
 $$
 \begin{align*}
@@ -2592,1050 +2880,4 @@ The image of this homomorphism is exactly \(A_5\) and this homomorphism is also 
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A regular polyhedra is a three dimensional solid where the faces are congruent regular polygons and such that the same number of faces meet at each vertex. There are exactly 5 regular polyhedra described below:]]></summary></entry><entry><title type="html">Lecture 23: Invariant Factor Decompositions</title><link href="http://localhost:4000/jekyll/update/2025/02/17/math417-23-invariant-factor-decompositions.html" rel="alternate" type="text/html" title="Lecture 23: Invariant Factor Decompositions" /><published>2025-02-17T00:01:36-08:00</published><updated>2025-02-17T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/17/math417-23-invariant-factor-decompositions</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/17/math417-23-invariant-factor-decompositions.html"><![CDATA[<p>We previously proved the uniqueness of an elementary divisor decomposition. Today, we want to prove the existence of the elementary divisor decomposition. To do this, we will show instead the existence of the invariant factor decomposition. But when we show this, it turns out that it implies something for a larger class than just finite abelian groups. It’s going to imply this any finitely generated abelian groups.
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-A group \(G\) is finitely generated if \(G = \langle S \rangle\) where \(S\) is a finite subset of \(G\), \(S \subseteq G\) 
-</div>
-<p><br />
-Examples:</p>
-<ul>
-<li>For example, every cyclic is finitely generated by this definition (by a subset of one element). An example is \(\mathbf{Z}\). It is infinite but it is finitely generated by an element.</li> 
-<li>Every finite group \(G\) is finitely generated. \(G = \langle G \rangle\).</li>
-<li>\(D_{\infty} = \langle r, j \rangle\)</li>
-<li>\((\mathbf{Q},+)\), the group of rational numbers with addition is not finitely generated.</li>
-</ul>
-<p>We also have the following fact
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(G \cong H\), \(G\) is finitely generated if and only if \(H\) is finitely generated.
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-So being finitely generated is isomorphism invariant. What we want to prove is the following
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(G\) is finitely generated and abelian, then
-	$$
-	\begin{align*}
-	G \cong \mathbf{Z}/\mathbf{Z}_{d_1} \times \mathbf{Z}/\mathbf{Z}_{d_2} \times ... \times \mathbf{Z}/\mathbf{Z}_{d_k}  
-	\end{align*}
-	$$
-For some \(d_1,...,d_k \geq 0, k \geq 0, d_i \ | \ d_{i+1}\)
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-Example: Suppose \(G\) has \(d_i = 1,3,12,12,720,0,0\) Then</p>
-<div>
-	$$
-	\begin{align*}
-	G &amp;\cong \mathbf{Z}/\mathbf{Z}_{1} \times \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12}  \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z}/\mathbf{Z}_{0} \times \mathbf{Z}/\mathbf{Z}_{0} \\
-	&amp;\cong  \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12}  \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z} \times \mathbf{Z}  \\
-	&amp;\cong  \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12}  \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z}^2
-	\end{align*}
-	$$
-</div>
-<p>For finite abelian groups, we won’t have terms like \(\mathbf{Z}\) since they are finite. So we will get exactly the invariant factor form out of this. So this proposition will essentially give us the existence of invariant factor decomposition. It will take this lecture and probably the next lecture to prove it.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>The Existence of Invariant Factor Decomposition Proof Sketch</b></h4>
-<p>So now we want to describe the steps involved in this proof:</p>
-
-<ol>
-	<!-------------------STEP 1--------------------->
-	<li> If \(G\) is finitely generated and abelian, then we will see that
-		<div>
-			$$
-			\begin{align*}
-			G &amp;\cong \mathbf{Z}^m/N \text{ where } \mathbf{Z}^m = \mathbf{Z} \times ... \times \mathbf{Z}
-			\end{align*}
-			$$
-		</div>
-		In fact, what we will really show is that there exists a surjective homomorphism such that
-		<div>
-			$$
-			\begin{align*}
-			\phi: \mathbf{Z}^m \rightarrow G
-			\end{align*}
-			$$
-		</div>
-		So now since we have a surjective homomorphism, we can then use the isomorphism theorem to conclude that 
-		<div>
-			$$
-			\begin{align*}
-			G \cong \mathbf{Z}^m / (N = ker(\phi))
-			\end{align*}
-			$$
-		</div>
-	</li>
-	<!-------------------STEP 2--------------------->
-	<li>What is \(N\) going to be? To answer this, we want to study the subgroups of \(\mathbf{Z}^m\). We will show that every subgroup of \(\mathbf{Z}^m\) is finitely generated (won't be easy) and abelian. As a consequence, we will get that there exists a surjective homomorphism such that
-	<div>
-		$$
-		\begin{align*}
-		\mathbf{Z}^n \xrightarrow{\rho} N \xrightarrow{i} \mathbf{Z}^m
-		\end{align*}
-		$$
-	</div>
-	From this we can form the composite homomorphism \(\alpha = i \circ \rho\) between \(\mathbf{Z}^n\) and \(\mathbf{Z}^m\).<br />
-	Notice above that the subgroup \(N\) must be the image of \(\alpha\) so \(N = \alpha(\mathbf{Z}^n)\). So, now we can re-write what we have to be
-	<div>
-		$$
-		\begin{align*}
-		 G \cong \mathbf{Z}^m / \alpha(\mathbf{Z}^n)
-		\end{align*}
-		$$
-	</div>
-	For some homomorphism \(\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m\). We still don't know what \(\alpha\) is but now the question of understanding finitely generated abelian can be reduced to a question of understanding homomorphisms.
-	</li>
-	<!-------------------STEP 3--------------------->
-	<li>Every homomorphism \(\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m\) is of the form
-		<div>
-			$$
-			\begin{align*}
-			 L_A: \ &amp;\mathbf{Z}^n \rightarrow \mathbf{Z}^m \\
-			      &amp;L_A(x) = Ax
-			\end{align*}
-			$$
-		</div>
-	where \(A \in \text{Mat}_{m \times n}(\mathbf{Z})\) and \(x = [x_1 \ x_2 \ ... \ x_n]^T \in \mathbf{Z}_n, x_i \in \mathbf{Z} \).
-	<br />
-	So any homomorphism from \(\mathbf{Z}^n \rightarrow \mathbf{Z}^m\) can be written as a left multiplication by a matrix \(A\). So now we can write
-	<div>
-		$$
-		\begin{align*}
-		 G \cong \mathbf{Z}^m / L_A(\mathbf{Z}^n)
-		\end{align*}
-		$$
-	</div>
-	So we're reducing the problem to linear algebra over the integers.
-	</li>
-	<!-------------------STEP 4--------------------->
-	<li>Say \(P \in \text{Mat}_{n \times n}(\mathbf{Z})\) is integer invertible if \(P^{-1}\) exists and \(P^{-1} \in Mat_{n \times n}(\mathbf{Z}) \).<br /> Then,
-			
-	if \(B = PAQ\), where \(P, Q\) are integer invertible, then
-	<div>
-		$$
-		\begin{align*}
-		 G \cong \mathbf{Z}^m / L_A(\mathbf{Z}^n) \cong \mathbf{Z}^m / L_B(\mathbf{Z}^n)
-		\end{align*}
-		$$
-	</div>
-	The goal is that if we didn't want \(A\) or \(A\) wasn't in the right form, we can put it in standard form (smith normal form) and use a matrix that we want.
-	</li>
-	<!-------------------STEP 5--------------------->
-	<li>A matrix \(D \in \text{Mat}_{m \times n}(\mathbf{Z})\) is a Smith normal form if
-	<div>
-		$$
-		\begin{align*}
-		D = 
-		\begin{pmatrix}
-		d_1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\
-		0 &amp; d_2 &amp; \ddots &amp; \ddots &amp; 0 \\
-		0 &amp; \vdots &amp; \ddots &amp; \ddots &amp; 0 \\
-		0 &amp; 0 &amp; 0 &amp; d_s &amp; 0 \\
-		\end{pmatrix}
-		\end{align*}
-		$$
-	</div>
-	where \(d_i \geq 0\) and \(d_i \ | \ d_{i+1}\). Since, it doesn't need to be a square matrix, then the last column(s) might just be zero. <br />
-	If we have this, then the claim is that
-	<div>
-		$$
-		\begin{align*}
-		\mathbf{Z}^m / L_D(\mathbf{Z}^n) \cong \mathbf{Z}/\mathbf{Z}_{d_1} \times \mathbf{Z}/\mathbf{Z}_{d_2} \times ... \times \mathbf{Z}/\mathbf{Z}_{d_s} \times \mathbf{Z}^{m-s}  
-		\end{align*}
-		$$
-	</div>
-	</li>
-	<!-------------------STEP 6--------------------->
-	<li>For every \(A \in \text{Mat}_{n \times n}(\mathbf{Z})\) there exists a integer invertible \(P, Q\), such that
-	\(D = PAQ\) is a Smith normal form. This implies that
-	<div>
-		$$
-		\begin{align*}
-		 G \cong \mathbf{Z}^m / L_A(\mathbf{Z}^n) \cong \mathbf{Z}^m / L_D(\mathbf{Z}^n)
-		\end{align*}
-		$$
-	</div>
-</li>
-</ol>
-<p>So what we did here is that we turned the problem into a problem about quotients by the image of a homomorphism that looked liked a left multiplication by a matrix. And then we took this matrix and put it in a Smith normal form. This leads to the form we want.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Using Addition instead of Multiplication for the Proof</b></h4>
-<p>We have an abelian group \(G\). The standard so far has been writing the group with multiplication but since we’re going to turn to linear algebra, we’re going to switch to addition.</p>
-
-<table style="max-width: 300px; margin: 20px auto;">
-	<tr>
-		<td></td>
-		<td>multiplicative</td>
-		<td>additive</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td></td>
-		<td>\(ab\)</td>
-		<td>\(a+b\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td></td>
-		<td>\(e\)</td>
-		<td>\(0\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td></td>
-		<td>\(a^{-1}\)</td>
-		<td>\(-a\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>\(n \in \mathbf{Z}, a \in G\)</td>
-		<td>\(a^{n}\)</td>
-		<td>\(na\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>\(n_i \in \mathbf{Z}, a_i \in G\)</td>
-		<td>\(a^{n_1}_1a^{n_2}_2...a^{n_k}_k\)</td>
-		<td>\(n_1a_1 + n_2a_2 + ... + n_ka_k\)</td>
-	</tr>
-	<!------------------>
-	<tr>
-		<td>\(N \subseteq G\)</td>
-		<td>\(aN\)</td>
-		<td>\(a + N\)</td>
-	</tr>
-</table>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Proof Setup: Definitions</b></h4>
-<p>Before starting with the proof, we need some setup, starting with this definition.
-<br /></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-If \(G\) is an abelian group with addition. A subset \(S \subseteq G\) is linearly independent if \(\forall \ a_1,...,a_n \in S\) and \(\forall \ c_1,...,c_n \in \mathbf{Z}\), If 
-		$$
-		\begin{align*}
-		 c_1a_1 + ... + c_na_n = 0
-		\end{align*}
-		$$
-then, \(c_1 = ... =c_n = 0\).
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-In Vector Spaces, the \(c_i\)s are scalars.
-<br />
-<br />
-Example: Suppose \(S \subseteq G\) and \(S = \{a\}\). What does it mean for \(S\) to be linearly independent? <br />
-From the definition, \(S\) is linearly indenpendent if</p>
-<div>
-	$$
-	\begin{align*}
-	\forall c \in \mathbf{Z}, \quad ca = 0
-	\end{align*}
-	$$
-</div>
-<p>Then this implies that \(c = 0\). So no matter what \(c\) is if \(ca = 0\) only implies that \(c = 0\). So \(a\) must have infinite order (\(o(a) = \infty\)). This isn’t the same for subsets with more than 1 element. <br />
-We also have the notion of a basis
-<!----------------------------------------------------------------------------->
-<br /></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-A basis \(B\) of \(G\) is a subset \(B \subseteq G\) which is linearly independent and generates \(G\)
-		$$
-		\begin{align*}
-		 G = \langle B \rangle = \mathbf{Z}B = \{ c_1x_1 + ... + c_nx_n \ | \ c_i \in \mathbf{Z}, x_i \in B \}
-		\end{align*}
-		$$
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-Example 1: \(\{1\}\) is a basis for \(\mathbf{Z}\)
-<br />
-<br />
-Example 2: \(\mathbf{Z}_n\) has no basis. Why? we can’t have non-empty linear independent. Because if we have a non-empty subset with only element, this element will have infinite order.
-<br />
-<br />
-So unlike Vector Space, not every abelian group will have a basis
-<!----------------------------------------------------------------------------->
-<br /></p>
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
-\(G\) is a free abelian group if it is abelian and there exists a basis.
-</div>
-<!----------------------------------------------------------------------------->
-<p><br />
-Example 1: \(G = Q^{\times}/\{\pm 1\}\) with multiplication is a free abelian group. It has an infinite basis</p>
-<div>
-	$$
-	\begin{align*}
-	B = \{\{\pm p\} \ | \ p \text{ is prime} \}
-	\end{align*}
-	$$
-</div>
-<p>Because every non-zero rational can be written uniquely as a product of prime powers.</p>
-<div>
-	$$
-	\begin{align*}
-	q = \pm p_1^{k_1}...p_r^{k_r} \quad \text{ where } k_i \in \mathbf{Z}
-	\end{align*}
-	$$
-</div>
-<p><br />
-Example 2: Suppose \(G = (\mathbf{Z}^n, +)\). Let \(e_k = (0,0,..1,..,0,0)\) be the standard basis vector where the \(k\)th entry is 1. Then the set</p>
-<div>
-	$$
-	\begin{align*}
-	B = \{e_1,e_2,...,e_n\}
-	\end{align*}
-	$$
-</div>
-<p>is a basis for \(\mathbf{Z}^n\). Any element in \(\mathbf{Z}^n\) can be written a linear combination of the standard elements</p>
-<div>
-	$$
-	\begin{align*}
-	(c_1,c_2,...,c_n) = c_1e_1+...+c_ne_n \quad \text{ where } c_i \in \mathbf{Z}
-	\end{align*}
-	$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Proof Setup: Propositions</b></h4>
-<p>So we have the steps and we have the definitions that we need. We also need the following proposition
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(G\) is abelian and let \(a_1,...,a_n\) be a list of elements in \(G\). Then there exists a homomorphism 
-	$$
-	\begin{align*}
-	\phi: \mathbf{Z}^n &amp;\longrightarrow G \\
-	 \phi(c_1,...,c_n)  &amp;= c_1a_1 + ... + c_na_n \quad \text{ where } c_i \in \mathbf{Z}
-	\end{align*}
-	$$
-\(\phi\) is injective if and only if \(a_1,...a_n\) are linearly independent. <br />
-\(\phi\) is surjective if and only if \(a_1,...a_n\) generates \(G\). <br />
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-To show it’s injective, we need to check the kernel of \(\phi\). To show subjectivity, we need to check the image of \(\phi\). [Exercise]. As a consequence we get the following corollary
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(G\) is a free abelian group with a basis \(B\) where \(|B| = n &lt; \infty\), then \(G \cong \mathbf{Z}^n\).
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-Another consequence (the one we care about)
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(G\) is a finitely generated and abelian, there exists a surjective homomorphism \(\phi: \mathbf{Z}^n \longrightarrow G\).
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Subgroups of Finitely Generated Groups</b></h4>
-<p>[Lecture 24]. So given a finitely generated group \(G = \langle a_1,...,a_n \rangle\). We want to know is this property of being finitely generated inherited? Do subgroups and quotient groups of \(G\) are also finitely generated? If we have a normal subgroup \(N\). Is \(G/N\) finitely generated? The answer is actually yes. In fact, can write \(G/N = \langle a_1N,...a_nN \rangle\). So quotients of finitely generated groups are finitely generated as well. 
-<br />
-<br />
-One thing to note here is that one of these elements will turn out to be the identity element and since it’s the identity, then we don’t need to keep it in the generators list. So \(G/N = \langle a_1N_1,...a_{n-1}N \rangle\). We can throw one of the elements out. (explain more?)
-<br />
-<br />
-A related question to this. If we have a subgroup \(H \leq G\) where \(G\) is finitely generated. Is \(H\) finitely generated? The answer is actually no. It doesn’t need to be. In fact, only if \(G\) is finitely generated and abelian, then every subgroup \(H \leq G\) is also finitely generated. We will prove this but to do so, we’ll prove the following required lemma first.
-<br />
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Lemma
-</div>
-<div class="yellowbodydiv">
-Let \(H\) be an (abelian) group and let \(N\) be a normal subgroup of \(H\) (\(N\) is always normal since \(H\) is abelian). If \(N\) and \(H/N\) are finitely generated, then \(H\) is finitely generated. 
-</div>
-<p><br />
-Note here that this lemma in fact works for all groups with a normal subgroup and not just abelian groups but right now we only care about the abelian case and it will also make the proof easier.
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-Suppose \(N\) is a normal subgroup of \(H\) and suppose that both \(N\) and \(H/N\) are finitely generated. Then, we can write</p>
-<div>
-	$$
-	\begin{align*}
-	N &amp;= \mathbf{Z}\{x_1,...,x_m\} \\
-	H/N &amp;= \mathbf{Z}\{\bar{y_1},...,\bar{y_n}\}
-	\end{align*}
-	$$
-</div>
-<p>Now, for each \(\bar{y_i}\), pick \(y_i \in H\) such that \(\bar{y_i} = y_i + N\). So \(y_i\) is the representative for this coset. Another way to think about this is to remember that we have the quotient homomorphism \(\pi\) where</p>
-<div>
-	$$
-	\begin{align*}
-	\pi: H &amp;\longrightarrow H/N \\
-	     \pi(y_i) &amp;= \bar{y_i}
-	\end{align*}
-	$$
-</div>
-<p>Given this, we claim that \(H\) is generated by \(\mathbf{Z}\{x_1,...,x_m,y_1,...,y_n\}\). So we’re combining the elements of \(N\) and all the representatives of the cosets. This gives us a generating set for \(H\) itself. To see why it’s true. Suppose that \(u \in H\). The goal is to write \(u\) in terms of the elements in our claim. Consider the image of \(u\) under \(\pi\). Its image is in the quotient group \(H/N\) so we can write</p>
-<div>
-	$$
-	\begin{align*}
-	v = \pi(u) = b_1\bar{y_1} + ... + b_n\bar{y_n} \in H/N \quad \text{ for some } b_i \in \mathbf{Z}
-	\end{align*}
-	$$
-</div>
-<p>We can do this because the set \(\{\bar{y_1},...,\bar{y_n}\}\) generates \(H/N\). So we can write \(v\) as a linear combination of the elements in the set like we did. Now define \(\hat{v}\) to be an element in \(H\). We can also write it</p>
-<div>
-	$$
-	\begin{align*}
-	\hat{v} = b_1y_1 + ... + b_ny_n \in H
-	\end{align*}
-	$$
-</div>
-<p>We can do this because each \(y_i\) is in \(H\) and \(H\) is closed so \(\hat{v}\) is in \(H\). 
-Observe that \(\pi(\hat{v}) = v\) because we defined earlier that \(\pi(y_i) = \bar{y_i}\). So now we have</p>
-<div>
-	$$
-	\begin{align*}
-	\pi(u) &amp;= v = \pi(\hat{v})
-	\end{align*}
-	$$
-</div>
-<p>So now calculate \(\pi(u - \hat{v})\), we will see that</p>
-<div>
-	$$
-	\begin{align*}
-	\pi(u - \hat{v}) &amp;= v - v = 0
-	\end{align*}
-	$$
-</div>
-<p>This means that \(u - \hat{v}\) is in the kernel of \(\pi\) which means that \(u - \hat{v} \in N\). But \(N\) is finitely generated so we can express \(u - \hat{v}\) in terms of the elements in \(N\) so</p>
-<div>
-	$$
-	\begin{align*}
-	u - \hat{v} = a_1x_1 + ... + a_nx_n \in N \text{ where } a_i \in \mathbf{Z} \\
-	u = (a_1x_1 + ... + a_nx_n) + (b_1y_1 + ... + b_ny_n)
-	\end{align*}
-	$$
-</div>
-<p>So this says that any element in \(H\) can be written interms of those factors which means that \(H\) is finitely generated. \(\ \blacksquare\)
-<br />
-<br />
-Now we’re ready to prove the main theorem
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Theorem
-</div>
-<div class="yellowbodydiv">
-If \(G\) is finitely generated and abelian, then every subgroup \(H \leq G\) is also finitely generated.
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-Let \(G = \mathbf{Z}\{a_1,...,a_n\}\) and \(H \leq G\). We want to show that \(H\) is finitely generated. We will show this by  induction on the size of generating set.
-<br />
-<br />
-Base Case: <br />
-If \(n = 0\), then \(G = \mathbf{Z}\{\} = \{e\}\). So \(G\) is the trivial group. <br />
-If \(n = 1\), then, \(G = \mathbf{Z}\{a\}\). So \(G\) is cyclic. Any subgroup of a cyclic group is cyclic. 
-<br />
-<br />
-Inductive Case: \((n \geq 2)\). Let \(a_n = a\) in the generators list just to make it easy to read.<br />
-First, since \(G\) is abelian, then all of \(G\)’s subgroups are normal. Consider the subgroup generated by the last element in the list of generators in \(G\). So \(\mathbf{Z}\{a\}\). This subgroup is normal. Now, consider the intersection of \(H\) and \(\mathbf{Z}\{a\}\). This is also a subgroup of both \(\mathbf{Z}\{a\}\) and \(H\) by the Diamond Isomorphism Theorem. In fact, we will get the following diagram.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec24/1.png" width="35%" class="center" /></p>
-
-<p>Now, let the intersection \(H \cap \mathbf{Z}\{a\}\) be \(N\). We will take the quotient group \(H/N\). Similarly, we have another quotient group \(H + \mathbf{Z}\{a\}/\mathbf{Z}\{a\}\). These two quotient groups are isomorphic by the Diamond Isomorphism Theorem.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec24/2.png" width="65%" class="center" /></p>
-
-<p>Next, take the quotient group \(G/\mathbf{Z}\{a\}\). Notice here that \(H + \mathbf{Z}\) is a subgroup of \(G\) and that we’re taking the quotient by the same subgroup \(\mathbf{Z}\{a\}\). Therefore, by the correspondance theorem, we will see that \(H + \mathbf{Z}\{a\}/\mathbf{Z}\{a\}\) is a subgroup of \(G/\mathbf{Z}\{a\}\).</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec24/3.png" width="72%" class="center" /></p>
-
-<p>So now, observe that \(G\) is generated by \(n\) elements. The group \(G/\mathbf{Z}\{a\}\) is generated by \(n-1\) elements. Why? Recall that we said earlier that since the subgroup has one element \(a\) from the generators, then this element will be come the identity element in the quotient group and we don’t need to include it in the list of generators for the quotient group.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec24/4.png" width="72%" class="center" /></p>
-
-<p>Also note, that \(\mathbf{Z}\{a\}\) is a subgroup generated by one element so it’s cyclic and so it’s finitely generated. Since the intersection \(N = \mathbf{Z}\{a\}\) is a subgroup of \(\mathbf{Z}\{a\}\), then it’s also cyclic and finitely generated.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec24/5.png" width="77%" class="center" /></p>
-
-<p>We can now use the induction hypothesis to say that since \(G/\mathbf{Z}\{a\}\) is generated by \(n-1\) elements, then all its subgroups are also finitely generated. So \(H + \mathbf{Z}\{a\}/\mathbf{Z}\{a\}\) is finitely generated. But this group is isomorphic to \(H/H \cap \mathbf{Z}\{a\} = H/N\). So \(H/N\) is also finitely generated.</p>
-
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec24/6.png" width="77%" class="center" /></p>
-
-<p>Finally, we can use the lemma to say that since \(H/N\) is finitely generated and since \(N\) is finitely generated, then \(H\) is finitely generated as we wanted to show. \(\ \blacksquare\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Consequences</b></h4>
-<p>So now, recall the proposition we introduced where if \(G\) is finitely generated and abelian then there exists a surjective homomorphism \(\phi: \mathbf{Z}^n \rightarrow G\). So by the isomorphism theorem, \(G\) is isomorphic to \(\mathbf{Z}^m/N\) where \(N\) is the kernel of \(\phi\) (normal subgroup of \(\mathbf{Z}^m)\). 
-<br />
-<br />
-But we just proved above that the subgroup \(N\) must also be finitely generated since \(\mathbf{Z}^m\) is finitely generated and abelian. So there exists, some \(n \geq 0\) such that \(\bar{\alpha}: \mathbf{Z}^n \rightarrow N\) is a surjective homomorphism. (why?)
-<br />
-<br />
-So now consider the following</p>
-<div>
-	$$
-	\begin{align*}
-	\mathbf{Z}^n \xrightarrow{\bar{\alpha}} N \xrightarrow{i} \mathbf{Z}^m 
-	\end{align*}
-	$$
-</div>
-<p>Consider \(\alpha: i \circ \bar{\alpha}\). We know that \(\alpha(\mathbf{Z}^n) = N\). \(\alpha\) is a homomorphism since it’s the composition \(i \circ \bar{\alpha}\). Therefore, the isomorphism \(G \cong \mathbf{Z}^m/N\) can be written as \(G \cong \mathbf{Z}^m/\alpha(\mathbf{Z}^n)\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Studying the Homomorphism from \(\mathbf{Z^n}\) to \(\mathbf{Z^m}\)</b></h4>
-<p>So now the goal is to show that \(\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m\) can be represented with a left multiplication by a matrix \(L_A\). Observe that if we take any matrix \(A \in \text{Mat}_{m \times n}(\mathbf{Z})\), we can define the following</p>
-<div>
-	$$
-	\begin{align*}
-	L_A: \mathbf{Z}^n &amp;\rightarrow \mathbf{Z}^m \\
-	       L_A(c_1,...,c_n) &amp;= (\sum_{j=1}^n a_{1j}c_j, \sum_{j=1}^n a_{2j}c_j, ..., \sum_{j=1}^n a_{mj}c_j) \\
-		   L_A\big(\begin{pmatrix}c_1 \\ c_2 \\ \vdots \\ c_n \end{pmatrix}\big)
-		   &amp;=
-		   A
-		   \begin{pmatrix}c_1 \\ c_2 \\ \vdots \\ c_n \end{pmatrix}
-		   \in
-		   \begin{pmatrix}d_1 \\ d_2 \\ \vdots \\ d_n \end{pmatrix} \in \mathbf{Z}^m
-	\end{align*}
-	$$
-</div>
-<p>We claim that \(L_A\) is a homomorphism. (We won’t prove this). Basically, any homomorphism can be represented with a matrix. To find the matrix, all we need is to plug in the standard basis vectors into \(\alpha\) to get the matrix \(A\) (column vectors).
-<br />
-<br />
-Moreover, \(\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m\) is equal to \(L_A\) for a unique \(A \in \text{Mat}_{m \times n}(\mathbf{Z})\). Furthermore, if \(A \in \text{Mat}_{m \times n}(\mathbf{Z})\) and \(B \in \text{Mat}_{m \times p}(\mathbf{Z})\), then \(L_{AB} = L_A \circ L_B\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>The Homomorphism \(\alpha\)</b></h4>
-<p>Suppose now that \(L_A: \mathbf{Z}^n \rightarrow \mathbf{Z}^m\) is an isomorphism. Then \((L_A)^{-1}\) is also an isomorphism. If we let \(L_B = (L_A)^{-1}\), then</p>
-<div>
-	$$
-	\begin{align*}
-	L_{BA} &amp;= L_B \circ L_A = id_{\mathbf{Z}^n} \\
-	L_{AB} &amp;= L_A \circ L_B = id_{\mathbf{Z}^m}
-	\end{align*}
-	$$
-</div>
-<p>So \(AB = I\) and \(BA = I\). So by linear algebra (over the linear algebra), \(m = n\). Therefore, we can’t really have an isomorphism unless \(m = n\).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Smith Normal Form</b></h4>
-<p>A matrix \(A\) is in Smith normal form if</p>
-<div>
-	$$
-	\begin{align*}
-	A = 
-	\begin{pmatrix}
-	d_1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\
-	0 &amp; d_2 &amp; \ddots &amp; \ddots &amp; 0 \\
-	0 &amp; \vdots &amp; \ddots &amp; \ddots &amp; 0 \\
-	0 &amp; 0 &amp; 0 &amp; d_s &amp; 0 \\
-	\end{pmatrix}
-	\end{align*}
-	$$
-</div>
-<p>where \(d_i \ | \ d_{i+1}\). Then
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(A = diag(d_1,...,d_s \in \text{Mat}_{m \times n}(\mathbf{Z})\). Then
-	$$
-	\begin{align*}
-	\mathbf{Z}^m/L_A(\mathbf{Z}^n) \cong \mathbf{Z}/\mathbf{Z}_{d_1} \times ... \times \mathbf{Z}/\mathbf{Z}_{d_s} \times \mathbf{Z}/\mathbf{Z}^{m-s} = G
-	\end{align*}
-	$$
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-Let \(\phi\) be defined as</p>
-<div>
-	$$
-	\begin{align*}
-	\phi: \mathbf{Z}^m &amp;\longrightarrow G\\
-	       (x_1,...x_s,x_{s+1},..,x_m) &amp;= ([x_1]_{d_1}, ..., [x_s]_{d_s}, x_{s+1},...,x_m) \\
-	\end{align*}
-	$$
-</div>
-<p>\(\phi\) is surjective and \(\ker(\phi) = L_A(\mathbf{Z}^n)\). This is because all the entries \(x_{s+1}...x_m\) must be zero and the earlier entries must be divisible by \(d_i\).
-<br />
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
-If \(B = PAQ\) where \(A, B \in \text{Mat}_{m \times n}(\mathbf{Z})\). Suppose that \(P,Q\) are integer invertible. Then
-	$$
-	\begin{align*}
-	\mathbf{Z}^m/L_A(\mathbf{Z}^n) \cong \mathbf{Z}^m/L_B(\mathbf{Z}^n)
-	\end{align*}
-	$$
-We say that \(A \sim B\) are equivalent.
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-Let</p>
-<div>
-$$
-	\begin{align*}
-	\pi_A: \mathbf{Z}^m &amp;\rightarrow \mathbf{Z}^m/L_A(\mathbf{Z}^n) \\
-	\pi_B: \mathbf{Z}^m &amp;\rightarrow \mathbf{Z}^m/L_B(\mathbf{Z}^n)
-	\end{align*}
-	$$
-</div>
-<p>Then</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec24/7.png" width="55%" class="center" /></p>
-<p>So the claim is that the kernel of this isomorphism is exactly \(L_B(\mathbf{Z}^n)\). Why?</p>
-<div>
-$$
-	\begin{align*}
-	z \in \ker(\phi) &amp;\implies P_x^{-1} \in \ker(\pi_A) \\
-	                 &amp;\implies P_x^{-1} \in Ay \text{ for some } y \in \mathbf{Z}^n \\
-					 &amp;\implies P_x^{-1} \in AQz \text{ for some } z \in \mathbf{Z}^n, z = Q^{-1}y \\
-					 &amp;\implies x \in PAQz \text{ for some } z \in \mathbf{Z}^n, z = Q^{-1}y \\
-	\end{align*}
-	$$
-</div>
-<p>There are 30 minutes left of this proof ….. [TODO]
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li>MATH417 by Charles Rezk</li>
-	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We previously proved the uniqueness of an elementary divisor decomposition. Today, we want to prove the existence of the elementary divisor decomposition. To do this, we will show instead the existence of the invariant factor decomposition. But when we show this, it turns out that it implies something for a larger class than just finite abelian groups. It’s going to imply this any finitely generated abelian groups. Definition A group \(G\) is finitely generated if \(G = \langle S \rangle\) where \(S\) is a finite subset of \(G\), \(S \subseteq G\) Examples: For example, every cyclic is finitely generated by this definition (by a subset of one element). An example is \(\mathbf{Z}\). It is infinite but it is finitely generated by an element. Every finite group \(G\) is finitely generated. \(G = \langle G \rangle\). \(D_{\infty} = \langle r, j \rangle\) \((\mathbf{Q},+)\), the group of rational numbers with addition is not finitely generated. We also have the following fact Proposition If \(G \cong H\), \(G\) is finitely generated if and only if \(H\) is finitely generated. So being finitely generated is isomorphism invariant. What we want to prove is the following Proposition If \(G\) is finitely generated and abelian, then $$ \begin{align*} G \cong \mathbf{Z}/\mathbf{Z}_{d_1} \times \mathbf{Z}/\mathbf{Z}_{d_2} \times ... \times \mathbf{Z}/\mathbf{Z}_{d_k} \end{align*} $$ For some \(d_1,...,d_k \geq 0, k \geq 0, d_i \ | \ d_{i+1}\) Example: Suppose \(G\) has \(d_i = 1,3,12,12,720,0,0\) Then $$ \begin{align*} G &amp;\cong \mathbf{Z}/\mathbf{Z}_{1} \times \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z}/\mathbf{Z}_{0} \times \mathbf{Z}/\mathbf{Z}_{0} \\ &amp;\cong \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z} \times \mathbf{Z} \\ &amp;\cong \mathbf{Z}/\mathbf{Z}_{3} \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{12} \times \mathbf{Z}/\mathbf{Z}_{720} \times \mathbf{Z}^2 \end{align*} $$ For finite abelian groups, we won’t have terms like \(\mathbf{Z}\) since they are finite. So we will get exactly the invariant factor form out of this. So this proposition will essentially give us the existence of invariant factor decomposition. It will take this lecture and probably the next lecture to prove it. The Existence of Invariant Factor Decomposition Proof Sketch So now we want to describe the steps involved in this proof:]]></summary></entry><entry><title type="html">Study Notes: Semidirect Products</title><link href="http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products.html" rel="alternate" type="text/html" title="Study Notes: Semidirect Products" /><published>2025-02-16T00:01:36-08:00</published><updated>2025-02-16T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/16/math417-extra-semidirect-products.html"><![CDATA[<p>The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along.
-<br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Inner Semidirect Product Group</b></h4>
-<p>Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map</p>
-<div>
-	$$
-	\begin{align*}
-	\phi: H \times K &amp;\rightarrow G \\
-	              (h,k)  &amp;\rightarrow hk
-	\end{align*}
-	$$
-</div>
-<p>We want to show that \(\phi\) is a bijection. To do this, we’ll first show that \(\phi\) is injective. So given the elements \(h_1, h_2 \in H\) and \(k_1, k_2 \in K\) such that \(\phi(h_1,k_1) = \phi(h_2,k_2)\), we want to show that \((h_1,k_1) = (h_2,k_2)\). Observe that</p>
-<div>
-	$$
-	\begin{align*}
-	\phi(h_1,k_1) &amp;= \phi(h_2,k_2) \\
-	h_1k_1 &amp;= h_2k_2 \\
-	(h_2)^{-1}h_1k_1 &amp;= k_2 \\
-	(h_2)^{-1}h_1k_1k_1^{-1} &amp;= k_2k_1^{-1} \\
-	(h_2)^{-1}h_1 &amp;= k_2k_1^{-1} \\
-	\end{align*}
-	$$
-</div>
-<p>Since \((h_2)^{-1}h_1 \in H\) and \(k_2k_1^{-1} \in K\) and \((h_2)^{-1}h_1 = k_2k_1^{-1}\), then this value must be in the intersection \(H \cap K\). But \(H \cap K = \{e\}\). Therefore, this must be the identity element and so</p>
-<div>
-	$$
-	\begin{align*}
-	(h_2)^{-1}h_1 &amp;= k_2k_1^{-1} = e
-	\end{align*}
-	$$
-</div>
-<p>But this just means that \((h_2)^{-1}h_1 = e\) and so \(h_1 = h_2\) and similarly \(k_1 = k_2\). Therefore \((h_1,k_1) = (h_2,k_2)\). So \(\phi\) is injective.
-<br />
-<br />
-Next, we want to show that \(\phi\) is surjective. Notice that \(Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G\). This just means that \(\phi\) is surjective since the codomain in \(G\). Therefore, \(\phi\) is a bijection. 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>How to Make \(\phi\) a Homomorphism</b></h4>
-<p>Now, suppose that we’re also given that \(H\) is normal. We know that \(\phi: H \times G \rightarrow G\) is a bijection. We also know that \(G\) is a group but we never defined \(H \times K\) as a group. We just said it was a set. The question is can we make \(H \times K\) a group so that \(\phi\) isn’t just a bijection but also an isomorphism? (hmmm, this is a iff right?)
-<br />
-<br />
-We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is a homomorphism. To be a homomorphism we need to prove that</p>
-<div>
-	$$
-	\begin{align*}
-	\phi((h_1,k_1)(h_2,k_2)) = \phi((h_1,k_1))\phi((h_2,k_2))
-	\end{align*}
-	$$
-</div>
-<p>Notice that we have NOT defined what the product will look like but we know that the right hand side is</p>
-<div>
-	$$
-	\begin{align*}
-	h_1k_1h_2k_2
-	\end{align*}
-	$$
-</div>
-<p>The goal is to write this product as a product of an element in \(H\) multiplied by an element from \(K\). This is exactly why we wanted or need \(H\) to be normal. So insert \(k_1^{-1}k_1\) as follows</p>
-<div>
-	$$
-	\begin{align*}
-	h_1k_1h_2k_2 &amp;= h_1k_1h_2 (k_1^{-1}k_1) k_2 \\
-	             &amp;= (h_1)(k_1h_2k_1^{-1}) (k_1k_2) \\
-	\end{align*}
-	$$
-</div>
-<p>Note here that the first two elements are in \(H\). \(h_1 \in H\) and \(k_1h_2k_1^{-1} \in H\) since \(H\) is normal. So we have exactly what we want. Why do we care? we want this because now we can write this as \(\phi\) of some \((h,k) \in H \times K\) where \(h = (h_1)(k_1h_2k_1^{-1})\) and \(k = (k_1k_2)\). So</p>
-<div>
-	$$
-	\begin{align*}
-	\phi((h_1,k_1)(h_2,k_2)) &amp;= \phi((h_1,k_1))\phi((h_2,k_2)) \\
-	                         &amp;= h_1k_1h_2k_2 \\
-							 &amp;= (h_1k_1h_2k_1^{-1}) (k_1k_2) \\
-	                         &amp;= \phi((h_1k_1h_2k_1^{-1}), k_1k_2)
-	\end{align*}
-	$$
-</div>
-
-<p>But remember that \(\phi\) is a bijection so it’s injective. So saying that \(\phi((h_1,k_1)(h_2,k_2)) = \phi((h_1k_1h_2k_1^{-1}), k_1k_2)\) implies that</p>
-<div>
-	$$
-	\begin{align*}
-	 (h_1,k_1)(h_2,k_2) = (h_1k_1h_2k_1^{-1}, k_1k_2)
-	\end{align*}
-	$$
-</div>
-<p>This immediately gives us the required operation for \(G \times H\) to be a group. If we define this product above to be how we multiply elements in \(H \times K\), then \(\phi\) is a homomorphism and therefore, it is an isomorphism from \(G \times H \rightarrow G\). Since we already use \(G \times H\) to denote the direct product group, we use the notation \(G \rtimes K\) to denote this semidirect product group (internal semi direct product).
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Outer Semidirect Product Group</b></h4>
-<p>So now consider the groups \(H\) and \(K\). \(H\) and \(K\) are just two groups. They are not necessarily subgroups of \(G\). We want to find \(G\) such that \(G\) satisfies the following:</p>
-<ol>
-	<li>\(H_G\) is a normal subgroup of \(G\)</li>
-	<li>\(K_G\) is a subgroup of \(G\)</li>
-	<li>\(H_G \cap K = \{e\}\)</li>
-	<li>\(H_GK_G = G\)</li>
-</ol>
-<p>Note that \(H_G\) is a subgroup of \(G\) that is isomorphic to \(H\) so it might not be \(H\) but at least it’s isomorphic to \(H\). So our goal here is to take two groups and make a new group such that this new group \(G\) is isomorphic to their direct product \(H \times K\).
-<br />
-<br />
-So how can we make a group that satisfies these conditions? It’s important to remember that we don’t know anything about \(H\) or \(K\) and they might not be related. So we can’t just multiply \(hk\). We need a way to treat the elements of \(H\) and the elements of \(K\) separately. One way to do this is to use ordered pairs. What we can do is define the set of elements \(H \times K\) to be</p>
-<div>
-	$$
-	\begin{align*}
-	 H \times K = \{(h, k) \ | \ h \in H, k \in K\}
-	\end{align*}
-	$$
-</div>
-<p>This way, they stay separate. Additionally, this makes it easier to find the subgroups that we need. For example, we can define</p>
-<div>
-	$$
-	\begin{align*}
-	 H_G = H \times \{e_k\} &amp;= \{(h,e_K) \ | \ h \in H \} \quad \text{with the group product}\\
-	 (h_1, e_K)&amp;(h_2, e_K) = (h_1h_2, e_K)
-	\end{align*}
-	$$
-</div>
-<p>And similarly define \(K_G\) as</p>
-<div>
-	$$
-	\begin{align*}
-	 K_G = \{e_H\} \times K &amp;= \{(e_H, k) \ | \ h \in H \}  \quad \text{with the group product}\\
-	 (e_H, k_1)&amp;(e_H, k_2) = (e_H, k_1k_2)
-	\end{align*}
-	$$
-</div>
-<p>Using this construction, we can see that \(H_G \cap K_G = \{(e_H,e_K)\}\). Next, we want to show that \(H_GK_G = G\). By construction, \(H_GK_G = \{(h,e)(e,k)\}\). We defined \(G = H \times K\). What we want is have \(H_GK_G = G = H \times K\). In other words, we want</p>
-<div>
-	$$
-	\begin{align*}
-	 H_GK_G &amp;= \{(h,e)(e,k)\} = \{(h,k)\} = H \times K = G \\
-	\end{align*}
-	$$
-</div>
-<p>One way to do this is to define the group \(H \times K\)’s product to be</p>
-<div>
-	$$
-	\begin{align*}
-	(h,e)(e,k) = (h,k)
-	\end{align*}
-	$$
-</div>
-<p>This works and gives us the condition \(H_GK_G = G\). But this defines the product for these edge cases. What about the product of arbitrary elements \((h_1,k_1), (h_2,k_2) \in G = H \times K\).</p>
-<div>
-	$$
-	\begin{align*}
-	 (h_1,k_1)(h_2,k_2) &amp;= (h_1, e)(e, k_1)(h_2, e)(e, k_2) \quad \text{(using the product we defined)} \\
-	                    &amp;=(h_1, e)(e, k_1)(h_2,e)[(e,k_1^{-1})(e,k_1)](e, k_2)
-	\end{align*}
-	$$
-</div>
-<p>Remember that we want \(H\) to be normal. So we’ll use the same trick from the inner product group in the first section and insert \((e,k_1^{-1})(e,k_1)\) in the middle. This means that \((e, k_1)(h_2,e)(e,k_1^{-1}) \in H\)
-<br />
-<br />
-Now recall that conjugation by a element in a group is an automorphism.</p>
-<div>
-	$$
-	\begin{align*}
-	   \gamma: G &amp;\rightarrow Aut(G) \\
-	   \gamma_g(x) &amp;\rightarrow gxg^{-1}
-	\end{align*}
-	$$
-</div>
-<p>What is \(\gamma_{gh}\)?</p>
-<div>
-	$$
-	\begin{align*}
-	   \gamma_{gh}(x) &amp;= ghx(gh)^{-1}  \\
-	                  &amp;= g(hxh^{-1})g^{-1} \\
-					  &amp;= g(\gamma_{h}(x))g^{-1} \\
-					  &amp;= \gamma_g(\gamma_h(x)) \\
-					  &amp;= \gamma_g \circ \gamma_h(x)
-	\end{align*}
-	$$
-</div>
-<p>So \(\gamma\) is a group homomorphism. So going back to the group \(H \times K\)</p>
-<div>
-	$$
-	\begin{align*}
-	 (h_1,k_1)(h_2,k_2) &amp;=(h_1, e)[(e, k_1)(h_2,e)(e,k_1^{-1})](e,k_1)(e, k_2)
-	\end{align*}
-	$$
-</div>
-<p>We know that \(H_G\) is normal so if we conjugate any element in \(H_G\), the map will send it back to \(H_G\). So define the map</p>
-<div>
-	$$
-	\begin{align*}
-	   \gamma: K &amp;\rightarrow Aut(H) \\
-	   \gamma_k(x) &amp;\rightarrow khk^{-1}
-	\end{align*}
-	$$
-</div>
-<p>We can use this to write the product</p>
-<div>
-	$$
-	\begin{align*}
-	 (h_1,k_1)(h_2,k_2) &amp;=(h_1, e)(\gamma_{k_1}(h_2),e)(e,k_1)(e, k_2)
-	\end{align*}
-	$$
-</div>
-<p>This \(\gamma\) just describes the conjugation of \(h_2\) by \(k_1\). And we already saw that this map is a homomorphism. Moreover, we can see the product above is now</p>
-<div>
-	$$
-	\begin{align*}
-	 (h_1,k_1)(h_2,k_2) &amp;=(h_1, e)(\gamma_{k_1}(h_2),e)(e,k_1)(e, k_2) \\
-	                    &amp;=(h_1\gamma_{k_1}(h_2), e)(e, k_1k_2) \\
-						&amp;=(h_1\gamma_{k_1}(h_2), k_1k_2)
-	\end{align*}
-	$$
-</div>
-<p>Which is exactly why the semidirect product is defined that way!!!!!!!!!!
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Take \(D_{2n}\). We need to find two subgroups that are complements in \(D_{2n}\). The subgroups are \(\langle r \rangle\) and \(\langle s \rangle\) are complements in \(D_{2n}\). To see why.</p>
-<ul>
-	<li>\(\langle r \rangle \langle s \rangle = D_{2n}\). Every element in \(D_{2n}\) can be written as \(r^ke \in \langle r \rangle\) or \(r^ks \in \langle s \rangle\). </li>
-	<li>\(\langle r \rangle \cap \langle s \rangle = \{e\}\). But we know that \(\langle s \rangle = \{s, e\}\) and we know that \(s \not\in \langle r \rangle\) so we're done.</li>
-</ul>
-<p>So they are complements. The last condition we need is that one of the subgroups is normal. But we know that \(\langle r \rangle\) is normal. (We’ve shown this before).
-<br />
-<br />
-Since we have all the conditions, then we can write</p>
-<div>
-	$$
-	\begin{align*}
-	D_{2n} \cong \langle r \rangle \rtimes_{\gamma} \langle s \rangle
-	\end{align*}
-	$$
-</div>
-<p>The product will be</p>
-<div>
-	$$
-	\begin{align*}
-	(r^a, h_1)(r^b, h_2) = (r^{a}(h_1r^bh_1^{-1}), h_1h_2)
-	\end{align*}
-	$$
-</div>
-<p>Since we know how to multiply elements in the dihedral group, this gives us a complete description of the semidirect product. But we can further describe this multiplication more abstractly if we let</p>
-<div>
-	$$
-	\begin{align*}
-    h_1r^bh_1^{-1} &amp;=  \gamma_{h_1}(r^b)
-	\end{align*}
-	$$
-</div>
-<p>This is the \(\gamma\) in the semidirect product above. \(\gamma\) tells us how to conjugate the elements. So if we define \(\gamma\) for each of the elements in both subgroups, then this gives us a way to abstract the multiplication. Since we only have two elements in \(\langle s \rangle\), then we can list what \(\gamma\) does for each element</p>
-<div>
-	$$
-	\begin{align*}
-     \gamma_{e}(r^b) &amp;= er^be^{-1} = r^b. \\
-	 \gamma_{s}(r^b) &amp;= sr^bs^{-1} = (r^{-b}s)s^{-1} = r^{-b}.
-	\end{align*}
-	$$
-</div>
-<p>This gives up a complete description of the conjugation without ever talking about the actual multiplication. So now we can re-write the product as</p>
-<div>
-	$$
-	\begin{align*}
-    (r^a, h_1)(r^b, h_2) = (r^{a}\gamma_{h_1}(r^b), h_1h_2)
-	\end{align*}
-	$$
-</div>
-<p>The big reason that we want to replace the conjugation with \(\gamma\) though is we don’t have elements multiplying between the two subgroups. This means that we can further abstract this with different groups that are isomorphic to the subgroups we have. In particular, we know that in \(D_{2n}\), \(\langle r \rangle \cong \mathbf{Z}_n\). The isomorphism is given by</p>
-<div>
-	$$
-	\begin{align*}
-    \langle r \rangle &amp;\rightarrow \mathbf{Z}_n \\
-	               r^k  &amp;\rightarrow k 
-	\end{align*}
-	$$
-</div>
-<p>Similarly \(\langle s \rangle \mathbf{Z}_2\). The isomorphism is given by</p>
-<div>
-	$$
-	\begin{align*}
-    \langle s \rangle &amp;\rightarrow \mathbf{Z}_2 \\
-	               e  &amp;\rightarrow 0 \\
-				   s &amp;\rightarrow 1
-	\end{align*}
-	$$
-</div>
-<p>So now we can take the semidirect product that we have and replace \(\langle r \rangle\) and \(\langle s \rangle\) with their isomorphic groups \(\mathbf{Z}_n\) and \(\mathbf{Z}_2\). So we can re-write the semidirect product as</p>
-<div>
-	$$
-	\begin{align*}
-	D_{2n} \cong \mathbf{Z}_n \rtimes_{\gamma} \mathbf{Z}_2
-	\end{align*}
-	$$
-</div>
-<p>So now, the elements will no longer be \((r^k, h)\). Instead, they will be their images under the isomorphisms we designed. So instead of writing \(r^k\), we will write its image \(k\) and instead of writing \(e\) or \(s\), we will write 0 or 1. So</p>
-<div>
-	$$
-	\begin{align*}
-	D_{2n} &amp;\cong \mathbf{Z}_n \rtimes_{\gamma} \mathbf{Z}_2 \\
-	(r^k, h)    &amp;\rightarrow          (a, x)
-	\end{align*}
-	$$
-</div>
-<p>And the product will be</p>
-<div>
-	$$
-	\begin{align*}
-	(r^a, h_1)(r^b, h_2) &amp;= (r^{a}\gamma_{h_1}(r^b), h_1h_2) \\
-	               &amp;\rightarrow \\
-   (a, x)(b, y) &amp;= (a+\gamma_{x}(b), x+y)
-	\end{align*}
-	$$
-</div>
-<p>Note here that the group operation is now addition! The last thing we need to do is define what this new \(\gamma\) is. This will be easy since we can take the \(\gamma\) we already defined and change it to</p>
-<div>
-	$$
-	\begin{align*}
-     \gamma_{0}(b) &amp;= b. \\
-	 \gamma_{1}(b) &amp;= -b.
-	\end{align*}
-	$$
-</div>
-<p>To further see how this works, it’s helpful to look at more examples of how the multiplication works in the older semidirect vs. the new one.</p>
-<div>
-	$$
-	\begin{align*}
-	(r^4, e)(r^3, s) &amp;= (r^4\gamma_{e}(r^3), se) = (r^4(r^3), s) = (r^7, s)  \\
-	               &amp;\rightarrow \\
-   (4, 0)(3, 1) &amp;= (4+\gamma_{0}(3), 0+1) = (7, 1)
-	\end{align*}
-	$$
-</div>
-<p><br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li><a href="https://www.youtube.com/watch?v=Pat5Qsmrdaw">Semidirect Products Derivation</a></li>
-	<li><a href="https://www.youtube.com/watch?v=DvclxOaWbJM">Semidirect Products Example</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along. Inner Semidirect Product Group Suppose we’re given two subgroups \(H, K \leq G\). We also know that \(HK = G\) and \(H \cap K = \{e\}\) (in this case, we call \(H\) and \(K\) complements). Consider the map $$ \begin{align*} \phi: H \times K &amp;\rightarrow G \\ (h,k) &amp;\rightarrow hk \end{align*} $$ We want to show that \(\phi\) is a bijection. To do this, we’ll first show that \(\phi\) is injective. So given the elements \(h_1, h_2 \in H\) and \(k_1, k_2 \in K\) such that \(\phi(h_1,k_1) = \phi(h_2,k_2)\), we want to show that \((h_1,k_1) = (h_2,k_2)\). Observe that $$ \begin{align*} \phi(h_1,k_1) &amp;= \phi(h_2,k_2) \\ h_1k_1 &amp;= h_2k_2 \\ (h_2)^{-1}h_1k_1 &amp;= k_2 \\ (h_2)^{-1}h_1k_1k_1^{-1} &amp;= k_2k_1^{-1} \\ (h_2)^{-1}h_1 &amp;= k_2k_1^{-1} \\ \end{align*} $$ Since \((h_2)^{-1}h_1 \in H\) and \(k_2k_1^{-1} \in K\) and \((h_2)^{-1}h_1 = k_2k_1^{-1}\), then this value must be in the intersection \(H \cap K\). But \(H \cap K = \{e\}\). Therefore, this must be the identity element and so $$ \begin{align*} (h_2)^{-1}h_1 &amp;= k_2k_1^{-1} = e \end{align*} $$ But this just means that \((h_2)^{-1}h_1 = e\) and so \(h_1 = h_2\) and similarly \(k_1 = k_2\). Therefore \((h_1,k_1) = (h_2,k_2)\). So \(\phi\) is injective. Next, we want to show that \(\phi\) is surjective. Notice that \(Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G\). This just means that \(\phi\) is surjective since the codomain in \(G\). Therefore, \(\phi\) is a bijection. How to Make \(\phi\) a Homomorphism Now, suppose that we’re also given that \(H\) is normal. We know that \(\phi: H \times G \rightarrow G\) is a bijection. We also know that \(G\) is a group but we never defined \(H \times K\) as a group. We just said it was a set. The question is can we make \(H \times K\) a group so that \(\phi\) isn’t just a bijection but also an isomorphism? (hmmm, this is a iff right?) We already know \(\phi\) is a bijection so we only need to show that \(\phi\) is a homomorphism. To be a homomorphism we need to prove that $$ \begin{align*} \phi((h_1,k_1)(h_2,k_2)) = \phi((h_1,k_1))\phi((h_2,k_2)) \end{align*} $$ Notice that we have NOT defined what the product will look like but we know that the right hand side is $$ \begin{align*} h_1k_1h_2k_2 \end{align*} $$ The goal is to write this product as a product of an element in \(H\) multiplied by an element from \(K\). This is exactly why we wanted or need \(H\) to be normal. So insert \(k_1^{-1}k_1\) as follows $$ \begin{align*} h_1k_1h_2k_2 &amp;= h_1k_1h_2 (k_1^{-1}k_1) k_2 \\ &amp;= (h_1)(k_1h_2k_1^{-1}) (k_1k_2) \\ \end{align*} $$ Note here that the first two elements are in \(H\). \(h_1 \in H\) and \(k_1h_2k_1^{-1} \in H\) since \(H\) is normal. So we have exactly what we want. Why do we care? we want this because now we can write this as \(\phi\) of some \((h,k) \in H \times K\) where \(h = (h_1)(k_1h_2k_1^{-1})\) and \(k = (k_1k_2)\). So $$ \begin{align*} \phi((h_1,k_1)(h_2,k_2)) &amp;= \phi((h_1,k_1))\phi((h_2,k_2)) \\ &amp;= h_1k_1h_2k_2 \\ &amp;= (h_1k_1h_2k_1^{-1}) (k_1k_2) \\ &amp;= \phi((h_1k_1h_2k_1^{-1}), k_1k_2) \end{align*} $$]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A regular polyhedra is a three dimensional solid where the faces are congruent regular polygons and such that the same number of faces meet at each vertex. There are exactly 5 regular polyhedra described below:]]></summary></entry></feed>

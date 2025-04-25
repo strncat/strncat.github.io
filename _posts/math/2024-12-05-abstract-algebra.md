@@ -242,7 +242,7 @@ mathjax: true
 	   <!------35------>
 	   <!-------------->
 	   <br>
-       <li><a href="/jekyll/update/2025/02/27/math417-35-principle-ideal.html">
+       <li><a href="/jekyll/update/2025/02/27/math417-35-principal-ideal.html">
        Lecture 35: Principle Ideal
        </a></li>
 	   <!----------------->

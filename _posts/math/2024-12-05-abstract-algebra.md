@@ -245,6 +245,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/27/math417-35-principal-ideal.html">
        Lecture 35: Principle Ideal
        </a></li>
+	   <!-------------->
+	   <!------36------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/02/28/math417-36-ring-homomorphisms-isomorphisms.html">
+       Lecture 36: Homomorphism Theorem and Isomorphism Theorem
+       </a></li>
 	   <!----------------->
 	   <!------EXTRA------>
 	   <!----------------->

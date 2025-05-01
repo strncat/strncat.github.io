@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="nemo&apos;s notebook" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">nemo&#39;s notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+  
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Lecture 37: R-Domain</h1>
+    <!--
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-03-01T00:01:36-08:00" itemprop="datePublished">Mar 1, 2025
+      </time></p>
+     -->
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>We’ll start by defining Quotient Rings
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Domain
+</div>
+<div class="mintbodydiv">
+A domain \(R\) is a commutative ring with 1 such that
+<ol>
+	<li>\(1 \neq 0\).</li>
+	<li>If \(a,b \in R/\{0\}\), then \(ab \in R/\{0\}\). So non-zero elements multiply to non-zero elements. In other words, \(ab = 0\) then either \(a = 0\) or \(b = 0\).</li>
+</ol>
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+Fact: Every field is a domain. Other examples:</p>
+<ol>
+	<li>\(\mathbf{Z}\) and \(K[x]\) are domains.</li>
+	<li>The Gaussian integers are a domain \(\mathbf{Z}[i] = \{a + bi \in \mathbf{C} \ | \ a, b \in \mathbf{Z}\).</li>
+	<li>\(\mathbf{Z}_4\) is not a domain, \([2] \neq 0\) but \([2][2] = [4] = [0]]\).</li>
+	<li>\(\mathbf{Q}/(f_1f_2)\) where \(\deg(f_i) \geq 1\) is not a domain. (Exercise)</li>
+</ol>
+<p>Fact: If \(K\) is a field and \(R \subseteq K\) is a subring such that \(1_K \in R\), then \(R\) is a domain
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Every domain \(R\) is (isomorphic) a subring of a field \(F = \text{Frac}(R)\) (field of fraction)
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+So basically every domain can be enlarge to be a field.
+<br />
+<br />
+<b>Proof</b>
+<br />
+Let \(X = \{(a,b) \ | \ a, b \in R, b \neq 0\}\). Define a relation on \(X\):</p>
+<div>
+$$
+\begin{align*}
+(a,b) \sim (a',b') \quad \text{ iff } ab' = ba'
+\end{align*}
+$$
+</div>
+<p>We claim that this relation is an equivalence relation. (Exercise, hard to prove but use that \(R\) is a domain Side note: domains have cancellations so if \(ab = bc\) and \(a \neq 0\), then \(b = c\).)
+<br />
+<br />
+Since we have an equivalence relation on a set \(X\), then define \(F: X/\sim\) to be the set of equivalence classes. Write \([\frac{a}{b}] \in F\) for the equivalence class of \((a,b)\). Now, define</p>
+<div>
+$$
+\begin{align*}
+\big[\frac{a}{b}\big] + \big[\frac{a'}{b'}\big] &amp;= \big[\frac{ab'+ba'}{bb'}\big] \\
+\big[\frac{a}{b}\big]\big[\frac{a'}{b'}\big] &amp;= \big[\frac{aa'}{bb'}\big]
+\end{align*}
+$$
+</div>
+<p>Check that these operations are well defined and make \(F\) a field. Finally, define \(\varphi: R \rightarrow F\) by \(\varphi(a) = [\frac{a}{1}]\). Check that \(\varphi\) is an injective ring homomorphism.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<ol>
+	<li>Suppose \(R = \mathbf{Z}\), then \(\text{Frac}(\mathbf{Z}) \cong \mathbf{Q}\).</li>
+	<li>Suppose \(R = K[x]\) the ring of polynomials over a field. Then \(\text{Frac}(K[x]) = K[x]\) is the field of rational polynomials. elements in \(\text{Frac}(K[x]) = K[x]\) are of the form \(\frac{f}{g}\).</li>
+</ol>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Element Types</b></h4>
+<p>We want to discuss factorization in a domain but before doing so, we need to see the types of elements we can find in a domain.</p>
+<ol>
+	<li>Zero: the element zero is in \(R\).</li>
+	<li>Units: These are the elements that have a multiplicative inverse.</li>
+	<li>Reducible: If \(a \in R\), \(a \neq 0\) and \(a \not\in R^{\times}\) (not a unit), then there exists \(b,c \in R\) such that \(a = bc\). (\(b\) and \(b\) must both be non-units!)</li>
+	<li>Irreducible: Not a zero, not a unit and not reducible. This means \(a \in R\), \(a \not\in R^{\times}\) and if \(a = bc\), then either \(b \in R^{\times}\) or \(c \in R^{\times}\).</li>
+</ol>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<ol>
+	<li>\(R = \mathbf{Z}\)</li>
+	<ul>
+		<li>Units: \(\mathbf{Z}^{\times} = \{-1, +1\}\)</li>
+		<li>Reducible: \(\{\pm n, n \in \mathbf{N}, \text{composite}\}\)</li>
+		<li>Irreducible: These are the elements that don't factor so \(\{\pm p, p \in \mathbf{N}, \text{prime}\}\)</li>
+	</ul>
+	<!---------------Field----------------->
+	<li>\(R = K\) where \(K\) is a field</li>
+	<ul>
+		<li>\(0 \in K\)</li>
+		<li>Units: \(K^{\times} = K / \{0\}\)</li>
+		<li>Reducible: none.</li>
+		<li>Irreducible: none.</li>
+	</ul>
+	<!---------------Polynomial Rings----------------->
+	<li>\(R = K[x]\) where \(K\) is a field</li>
+	<ul>
+		<li>\(0 \in K[x]\)</li>
+		<li>Units: these are polynomials of degree 0 so \(K^{\times}\)</li>
+		<li>Reducible: polynomials that you can factor into smaller ones. \(f, \deg(f) \geq 1\) such that \(f = gh, 0 &lt; \deg(g), \deg(h) &lt; \deg(f)\)</li>
+		<li>Irreducible: polynomials that you can't factor. \(f, \deg(f) \geq 1\) such that there is no \(g,h, \deg(h), \deg(g) &lt; \deg(f)\) such that \(f = gh\)</li>
+	</ul>
+	<!------------ polynomials over the complex numbers ----------------->
+	<li>\(R = \mathbf{C}[x]\)</li>
+	<ul>
+		<li>\(0 \in C[x]\)</li>
+		<li>Units: \(C^{\times}\)</li>
+		<li>Reducible: \(f, \deg(f) \geq 2\)</li>
+		<li>Irreducible: \(f, \deg(f) = 1\)</li>
+	</ul>
+	<!--------- polynomials over the real numbers ------------->
+	<li>\(R = \mathbf{C}[x]\)</li>
+	<ul>
+		<li>\(0 \in R[x]\)</li>
+		<li>Units: \(R^{\times}\)</li>
+		<li>Irreducible: One form is \(ax + b, a \neq 0\) and another form is \(ax^2 + bx + c\) where \(a \neq 0, b^2 - 4ac &lt; 0\)</li>
+		<li>Reducible: The rest of polynomials are reducible</li>
+	</ul>
+</ol>
+<p>Warning: If we take a look at the polynomials over the rational numbers, we will find out that there are a lot more irreducible polynomials there. Note here that the ring of polynomials with rational coefficients is contained in the ring of polynomials with the real coefficients and that’s contained in the field of rational functions over \(\mathbf{R}\). In other words, \(\mathbf{Q}[x] \subseteq \mathbf{R}[x] \subseteq \mathbf{R}(x)\). Now, take \(x^p - 2\) where \(p \geq 2\), then \(x^p - 2\) is irreducible in \(Q[x]\), reducible in \(R[x]\). (The proof is not obvious). It is a unit in \(\mathbf{R}(x)\)! so it’s important to consider the context in which we’re in.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Norm Functions</b></h4>
+<p>Another Example is the Gaussian Integers: \(R = \mathbf{Z}[i] = \{a + bi \ | \ a, b \in \mathbf{Z}\} \subseteq \mathbf{C}\). So \(R\) is a subring of the complex numbers and it is a domain. Since it’s a domain, we want to categorize the elements in it. But to do so, we need another tool defined as follows
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Norm Functions
+</div>
+<div class="mintbodydiv">
+The norm of \(a + bi\) is defined to be \(N(a + bi)  = a^2 + b^2 = (a + bi)(a - bi) = \lVert a + bi \rVert^2 \)
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+So this is a function defined on the complex numbers and therefore defined on the Gaussian integers. Some properties:</p>
+<ol>
+	<li>If \(z \in \mathbf{Z}[i], N(z) \in \mathbf{Z}_{\geq 0}\)</li>
+	<li>\(N(z) = 0\) if and only if \(z = 0\)</li>
+	<li>If \(z, w \in \mathbf{Z}[i], N(zw) = N(z)N(w)\)</li>
+	<li>If \(z \in \mathbf{Z}[i]\), then \(z \in \mathbf{Z}[i]^{\times}\) if and only if \(N(z) = 1\)</li>
+</ol>
+<p>Proof of (4):
+<br />
+If \(z \in \mathbf{Z}[i]^{\times}\), then \(z\) is a unit and \(zz^{-1} = 1\). We know that \(z^{-1} \in \mathbf{Z}[i]\) so \(z^{-1}\) is a Gaussian integer. So</p>
+<div>
+$$
+\begin{align*}
+1 = N(1) = N(z)N(z^{-1})
+\end{align*}
+$$
+</div>
+<p>But \(N(z)\) and \(N(z^{-1})\) are positive integers by (1). Therefore \(N(z) = N(z^{-1}) = 1\). 
+<br />
+<br />
+For the other direction when \(N(z) = 1\). Write \(z = a + bi\) where \(a, b \in \mathbf{Z}\). By definition</p>
+<div>
+$$
+\begin{align*}
+1 = N(z) = N(a + bi) = (a + bi)(a - bi)
+\end{align*}
+$$
+</div>
+<p>Therefore, \((a + bi)^{-1} = (a - bi)\). 
+<br />
+<br />
+In fact the units are just \(\mathbf{Z}^{-1}[i] = \{ \pm 1, \pm i\}\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 1</b></h4>
+<p>Example: \(2 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). So 2 is also a Gaussian integer since \(\mathbf{Z}\) is a subring of the Gaussian integers. \(2\) is a prime number so it’s irreducible as an integer. However, is it reducible as a Gaussian integer? Observe that</p>
+<div>
+$$
+\begin{align*}
+2 = (1 + i)(1 - i)
+\end{align*}
+$$
+</div>
+<p>So it’s definitely reducible as a Gaussian integer.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<p>Example: Take \(1 + i \in \mathbf{Z}[i]\). Is it reducible or irreducible in \(\mathbf{Z}[i]\)? It is in fact irreducible. We know this because \(N(1 + i) = 2\) and if there were factors \(1 + i = zw\), then</p>
+<div>
+$$
+\begin{align*}
+N(1 + i) = N(z)N(w) = 2
+\end{align*}
+$$
+</div>
+<p>But the norm is a non-negative integer. So the only way to make this work is that either \(N(z) = 1\) or \(N(w) = 1\) so one of the factors is a unit. Thus, by definition, \(z\) is irreducible. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Associate Elements</b></h4>
+<p>Next, we have this definition for when two elements are associate when one element is a product of some unit times the other element.
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+\(a, b \in R\) are the <b>same up-to-units</b> or <b>associate</b> (we write \(a \sim b\)) if there exists an element \(u \in R^{\times}\) such that \(b = ua\).
+</div>
+<p><br />
+<!----------------------------------------------------------------------------->
+This is in fact an equivalence relation (Exercise)
+<br />
+<br />
+Example: In \(\mathbf{Z}\), associate classes are \(\{0\}\), \(\{\pm n\}, n &gt; 0\). Another example is \(K[x]\), \(f \sim g\) if \(g = fc\) for some \(c \in K/\{0\}\). 
+<br />
+<br />
+Fact: If two elements are associate, then they are of the same type!
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 3</b></h4>
+<p>\(3 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible? It is irreducible in \(\mathbf{Z}\) since it is prime. In \(\mathbf{Z}[i]\), we know that \(N(3) = N(3 + 0i) = 9\). Suppose it was reducible. This means that there exists \(z,w \in \mathbf{Z}[i]\)</p>
+<div>
+$$
+\begin{align*}
+9 = N(3) = N(z)N(w)
+\end{align*}
+$$
+</div>
+<p>To be reducible, neither \(z\) or \(w\) can be units so they can’t have a norm of 1. Therefore, we must have \(N(z) = N(w) = 3\). This a contradiction since we don’t have any Gaussian integers with norm 3 (square root of 3 from the origin).</p>
+<div>
+$$
+\begin{align*}
+N(a + bi) = a^2 + b^2, \quad a^2, b^2 \in \{0,1,4,9,16,...\}
+\end{align*}
+$$
+</div>
+<p>So it’s not possible to construct an element of the form \(a + bi\) in \(\mathbf{Z}[i]\) such that \(a^2 + b^2 = 3\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 4</b></h4>
+<p>\(4 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible? It is reducible in \(\mathbf{Z}\). In \(\mathbf{Z}[i]\), we know that \(4 = (2)(2)\) and \(2\) is not a unit in \(\mathbf{Z}[i]\). Not just that but we also saw that \(2\) can be factored using the previous example \(2 = (1 + i)(1 - i)\). Furthermore, we also have another way too to factor 4. Below are some of the ways</p>
+<div>
+$$
+\begin{align*}
+4 = 2(2) = (1 + i)^2(1 - i)^2 = -(1 + i)^4
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 5</b></h4>
+<p>\(5 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible in \(\mathbf{Z}[i]\)? It is reducible because</p>
+<div>
+$$
+\begin{align*}
+5 = (2 + i)(2 - i)
+\end{align*}
+$$
+</div>
+<p>The factors themselves \((2+i)\) and \((2-i)\) are irreducible since the the norm \(N(2 + i) = 5\). Also note that \((2+i)\) and \((2-i)\) are not associate. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>When is \(p\) reducible in \(\mathbf{Z}[i]\)?</b></h4>
+<p>We went through a few examples of doing this calculation but in fact we do have a proposition about this as follows
+<br /></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(p \in \mathbf{N}\) is a prime number, then \(p\) is reducible in \(\mathbf{Z}[i]\) if and only if \(p = a^2 + b^2\) for some \(a,b \in \mathbf{Z}\)
+</div>
+<p><br />
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+\(\Leftarrow:\) Suppose that \(p = a^2 + b^2\). Then we can write</p>
+<div>
+$$
+\begin{align*}
+p = (a - bi)(a + bi)
+\end{align*}
+$$
+</div>
+<p>Recall that \(N(a + bi) = a^2 + b^2\) but that means \(N(a + bi) = p\) and \(p\) is prime so it’s not 1. So neither (a + bi) or (a - bi) is a unit. Therefore, \(p\) is reducible. 
+<br />
+<br />
+\(\Rightarrow:\) Suppose that \(p\) is reducible so \(p = zw\). Therefore,</p>
+<div>
+$$
+\begin{align*}
+N(p) = N(z)N(w) = p^2 \quad (\text{since } p \in \mathbf{Z}, N(p)=p^2)
+\end{align*}
+$$
+</div>
+<p>But \(p\) is prime and so we must have \(N(z)=N(w)=p\). This means that there exists some \(a, b\) such that \(z = a + bi\) where \(N(z) = p\). This means</p>
+<div>
+$$
+\begin{align*}
+N(z) = a^2 + b^2 = p.
+\end{align*}
+$$
+</div>
+<p>So \(p = a^2 + b^2\) as we wanted to show. \(\ \blacksquare\)
+<b>
+<br /></b></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<p>The proof shows that for a prime to be a sum of squares is related to whether it factors as a Gaussian integer</p>
+
+<div>
+<table style="max-width: 700px; margin: 20px auto;">
+  <tr>
+    <td>Reducible in \(Z[i]\)</td>
+	<td>Irreducible in \(Z[i]\)</td>
+  </tr>
+  <tr>
+    <td>\(2 = 1^2 + 1^2\)</td>
+	<td>3</td>
+  </tr>
+  <tr>
+    <td>\(5 = 2^2 + 1^2\)</td>
+	<td>7</td>
+  </tr>
+  <tr>
+    <td>\(13 = 3^2 + 2^2\)</td>
+	<td>11</td>
+  </tr>
+  <tr>
+    <td>\(17 = 4^2 + 2^2\)</td>
+	<td>19</td>
+  </tr>
+  <tr>
+    <td>\(29 = 5^2 + 2^2\)</td>
+	<td>23</td>
+  </tr>
+  <tr>
+    <td>\(37 = 6^2 + 1^2\)</td>
+	<td>31</td>
+  </tr>
+</table>
+</div>
+<p>Notice the pattern here. The left prime numbers are congruent to 1 mod 4 while the right prime numbers are congruent to -1 mod 4.</p>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>
+
+
+  </div>
+<!-- stupid ads<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = /jekyll/update/2025/03/01/math417-37-r-domains.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier =  /jekyll/update/2025/03/01/math417-37-r-domains; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://strncat-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+-->
+  <a class="u-url" href="/jekyll/update/2025/03/01/math417-37-r-domains.html" hidden></a>
+</article>
+		 
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nemo&#39;s notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nemo&#39;s notebook</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>personal study notes</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+
+	
+  </body>
+
+</html>

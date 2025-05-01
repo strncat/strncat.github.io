@@ -1,4 +1,394 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-27T20:21:42-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 36: Homomorphism Theorem and Isomorphism Theorem</title><link href="http://localhost:4000/jekyll/update/2025/02/28/math417-36-ring-homomorphisms-isomorphisms.html" rel="alternate" type="text/html" title="Lecture 36: Homomorphism Theorem and Isomorphism Theorem" /><published>2025-02-28T00:01:36-08:00</published><updated>2025-02-28T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/28/math417-36-ring-homomorphisms-isomorphisms</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/28/math417-36-ring-homomorphisms-isomorphisms.html"><![CDATA[<p>We’ll start by defining Quotient Rings
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-30T18:04:28-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">nemo’s notebook</title><subtitle>personal study notes</subtitle><entry><title type="html">Lecture 37: R-Domain</title><link href="http://localhost:4000/jekyll/update/2025/03/01/math417-37-r-domains.html" rel="alternate" type="text/html" title="Lecture 37: R-Domain" /><published>2025-03-01T00:01:36-08:00</published><updated>2025-03-01T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/03/01/math417-37-r-domains</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/03/01/math417-37-r-domains.html"><![CDATA[<p>We’ll start by defining Quotient Rings
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Domain
+</div>
+<div class="mintbodydiv">
+A domain \(R\) is a commutative ring with 1 such that
+<ol>
+	<li>\(1 \neq 0\).</li>
+	<li>If \(a,b \in R/\{0\}\), then \(ab \in R/\{0\}\). So non-zero elements multiply to non-zero elements. In other words, \(ab = 0\) then either \(a = 0\) or \(b = 0\).</li>
+</ol>
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+Fact: Every field is a domain. Other examples:</p>
+<ol>
+	<li>\(\mathbf{Z}\) and \(K[x]\) are domains.</li>
+	<li>The Gaussian integers are a domain \(\mathbf{Z}[i] = \{a + bi \in \mathbf{C} \ | \ a, b \in \mathbf{Z}\).</li>
+	<li>\(\mathbf{Z}_4\) is not a domain, \([2] \neq 0\) but \([2][2] = [4] = [0]]\).</li>
+	<li>\(\mathbf{Q}/(f_1f_2)\) where \(\deg(f_i) \geq 1\) is not a domain. (Exercise)</li>
+</ol>
+<p>Fact: If \(K\) is a field and \(R \subseteq K\) is a subring such that \(1_K \in R\), then \(R\) is a domain
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Every domain \(R\) is (isomorphic) a subring of a field \(F = \text{Frac}(R)\) (field of fraction)
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+So basically every domain can be enlarge to be a field.
+<br />
+<br />
+<b>Proof</b>
+<br />
+Let \(X = \{(a,b) \ | \ a, b \in R, b \neq 0\}\). Define a relation on \(X\):</p>
+<div>
+$$
+\begin{align*}
+(a,b) \sim (a',b') \quad \text{ iff } ab' = ba'
+\end{align*}
+$$
+</div>
+<p>We claim that this relation is an equivalence relation. (Exercise, hard to prove but use that \(R\) is a domain Side note: domains have cancellations so if \(ab = bc\) and \(a \neq 0\), then \(b = c\).)
+<br />
+<br />
+Since we have an equivalence relation on a set \(X\), then define \(F: X/\sim\) to be the set of equivalence classes. Write \([\frac{a}{b}] \in F\) for the equivalence class of \((a,b)\). Now, define</p>
+<div>
+$$
+\begin{align*}
+\big[\frac{a}{b}\big] + \big[\frac{a'}{b'}\big] &amp;= \big[\frac{ab'+ba'}{bb'}\big] \\
+\big[\frac{a}{b}\big]\big[\frac{a'}{b'}\big] &amp;= \big[\frac{aa'}{bb'}\big]
+\end{align*}
+$$
+</div>
+<p>Check that these operations are well defined and make \(F\) a field. Finally, define \(\varphi: R \rightarrow F\) by \(\varphi(a) = [\frac{a}{1}]\). Check that \(\varphi\) is an injective ring homomorphism.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<ol>
+	<li>Suppose \(R = \mathbf{Z}\), then \(\text{Frac}(\mathbf{Z}) \cong \mathbf{Q}\).</li>
+	<li>Suppose \(R = K[x]\) the ring of polynomials over a field. Then \(\text{Frac}(K[x]) = K[x]\) is the field of rational polynomials. elements in \(\text{Frac}(K[x]) = K[x]\) are of the form \(\frac{f}{g}\).</li>
+</ol>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Element Types</b></h4>
+<p>We want to discuss factorization in a domain but before doing so, we need to see the types of elements we can find in a domain.</p>
+<ol>
+	<li>Zero: the element zero is in \(R\).</li>
+	<li>Units: These are the elements that have a multiplicative inverse.</li>
+	<li>Reducible: If \(a \in R\), \(a \neq 0\) and \(a \not\in R^{\times}\) (not a unit), then there exists \(b,c \in R\) such that \(a = bc\). (\(b\) and \(b\) must both be non-units!)</li>
+	<li>Irreducible: Not a zero, not a unit and not reducible. This means \(a \in R\), \(a \not\in R^{\times}\) and if \(a = bc\), then either \(b \in R^{\times}\) or \(c \in R^{\times}\).</li>
+</ol>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<ol>
+	<li>\(R = \mathbf{Z}\)</li>
+	<ul>
+		<li>Units: \(\mathbf{Z}^{\times} = \{-1, +1\}\)</li>
+		<li>Reducible: \(\{\pm n, n \in \mathbf{N}, \text{composite}\}\)</li>
+		<li>Irreducible: These are the elements that don't factor so \(\{\pm p, p \in \mathbf{N}, \text{prime}\}\)</li>
+	</ul>
+	<!---------------Field----------------->
+	<li>\(R = K\) where \(K\) is a field</li>
+	<ul>
+		<li>\(0 \in K\)</li>
+		<li>Units: \(K^{\times} = K / \{0\}\)</li>
+		<li>Reducible: none.</li>
+		<li>Irreducible: none.</li>
+	</ul>
+	<!---------------Polynomial Rings----------------->
+	<li>\(R = K[x]\) where \(K\) is a field</li>
+	<ul>
+		<li>\(0 \in K[x]\)</li>
+		<li>Units: these are polynomials of degree 0 so \(K^{\times}\)</li>
+		<li>Reducible: polynomials that you can factor into smaller ones. \(f, \deg(f) \geq 1\) such that \(f = gh, 0 &lt; \deg(g), \deg(h) &lt; \deg(f)\)</li>
+		<li>Irreducible: polynomials that you can't factor. \(f, \deg(f) \geq 1\) such that there is no \(g,h, \deg(h), \deg(g) &lt; \deg(f)\) such that \(f = gh\)</li>
+	</ul>
+	<!------------ polynomials over the complex numbers ----------------->
+	<li>\(R = \mathbf{C}[x]\)</li>
+	<ul>
+		<li>\(0 \in C[x]\)</li>
+		<li>Units: \(C^{\times}\)</li>
+		<li>Reducible: \(f, \deg(f) \geq 2\)</li>
+		<li>Irreducible: \(f, \deg(f) = 1\)</li>
+	</ul>
+	<!--------- polynomials over the real numbers ------------->
+	<li>\(R = \mathbf{C}[x]\)</li>
+	<ul>
+		<li>\(0 \in R[x]\)</li>
+		<li>Units: \(R^{\times}\)</li>
+		<li>Irreducible: One form is \(ax + b, a \neq 0\) and another form is \(ax^2 + bx + c\) where \(a \neq 0, b^2 - 4ac &lt; 0\)</li>
+		<li>Reducible: The rest of polynomials are reducible</li>
+	</ul>
+</ol>
+<p>Warning: If we take a look at the polynomials over the rational numbers, we will find out that there are a lot more irreducible polynomials there. Note here that the ring of polynomials with rational coefficients is contained in the ring of polynomials with the real coefficients and that’s contained in the field of rational functions over \(\mathbf{R}\). In other words, \(\mathbf{Q}[x] \subseteq \mathbf{R}[x] \subseteq \mathbf{R}(x)\). Now, take \(x^p - 2\) where \(p \geq 2\), then \(x^p - 2\) is irreducible in \(Q[x]\), reducible in \(R[x]\). (The proof is not obvious). It is a unit in \(\mathbf{R}(x)\)! so it’s important to consider the context in which we’re in.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Norm Functions</b></h4>
+<p>Another Example is the Gaussian Integers: \(R = \mathbf{Z}[i] = \{a + bi \ | \ a, b \in \mathbf{Z}\} \subseteq \mathbf{C}\). So \(R\) is a subring of the complex numbers and it is a domain. Since it’s a domain, we want to categorize the elements in it. But to do so, we need another tool defined as follows
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Norm Functions
+</div>
+<div class="mintbodydiv">
+The norm of \(a + bi\) is defined to be \(N(a + bi)  = a^2 + b^2 = (a + bi)(a - bi) = \lVert a + bi \rVert^2 \)
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+So this is a function defined on the complex numbers and therefore defined on the Gaussian integers. Some properties:</p>
+<ol>
+	<li>If \(z \in \mathbf{Z}[i], N(z) \in \mathbf{Z}_{\geq 0}\)</li>
+	<li>\(N(z) = 0\) if and only if \(z = 0\)</li>
+	<li>If \(z, w \in \mathbf{Z}[i], N(zw) = N(z)N(w)\)</li>
+	<li>If \(z \in \mathbf{Z}[i]\), then \(z \in \mathbf{Z}[i]^{\times}\) if and only if \(N(z) = 1\)</li>
+</ol>
+<p>Proof of (4):
+<br />
+If \(z \in \mathbf{Z}[i]^{\times}\), then \(z\) is a unit and \(zz^{-1} = 1\). We know that \(z^{-1} \in \mathbf{Z}[i]\) so \(z^{-1}\) is a Gaussian integer. So</p>
+<div>
+$$
+\begin{align*}
+1 = N(1) = N(z)N(z^{-1})
+\end{align*}
+$$
+</div>
+<p>But \(N(z)\) and \(N(z^{-1})\) are positive integers by (1). Therefore \(N(z) = N(z^{-1}) = 1\). 
+<br />
+<br />
+For the other direction when \(N(z) = 1\). Write \(z = a + bi\) where \(a, b \in \mathbf{Z}\). By definition</p>
+<div>
+$$
+\begin{align*}
+1 = N(z) = N(a + bi) = (a + bi)(a - bi)
+\end{align*}
+$$
+</div>
+<p>Therefore, \((a + bi)^{-1} = (a - bi)\). 
+<br />
+<br />
+In fact the units are just \(\mathbf{Z}^{-1}[i] = \{ \pm 1, \pm i\}\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 1</b></h4>
+<p>Example: \(2 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). So 2 is also a Gaussian integer since \(\mathbf{Z}\) is a subring of the Gaussian integers. \(2\) is a prime number so it’s irreducible as an integer. However, is it reducible as a Gaussian integer? Observe that</p>
+<div>
+$$
+\begin{align*}
+2 = (1 + i)(1 - i)
+\end{align*}
+$$
+</div>
+<p>So it’s definitely reducible as a Gaussian integer.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 2</b></h4>
+<p>Example: Take \(1 + i \in \mathbf{Z}[i]\). Is it reducible or irreducible in \(\mathbf{Z}[i]\)? It is in fact irreducible. We know this because \(N(1 + i) = 2\) and if there were factors \(1 + i = zw\), then</p>
+<div>
+$$
+\begin{align*}
+N(1 + i) = N(z)N(w) = 2
+\end{align*}
+$$
+</div>
+<p>But the norm is a non-negative integer. So the only way to make this work is that either \(N(z) = 1\) or \(N(w) = 1\) so one of the factors is a unit. Thus, by definition, \(z\) is irreducible. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Associate Elements</b></h4>
+<p>Next, we have this definition for when two elements are associate when one element is a product of some unit times the other element.
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+\(a, b \in R\) are the <b>same up-to-units</b> or <b>associate</b> (we write \(a \sim b\)) if there exists an element \(u \in R^{\times}\) such that \(b = ua\).
+</div>
+<p><br />
+<!----------------------------------------------------------------------------->
+This is in fact an equivalence relation (Exercise)
+<br />
+<br />
+Example: In \(\mathbf{Z}\), associate classes are \(\{0\}\), \(\{\pm n\}, n &gt; 0\). Another example is \(K[x]\), \(f \sim g\) if \(g = fc\) for some \(c \in K/\{0\}\). 
+<br />
+<br />
+Fact: If two elements are associate, then they are of the same type!
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 3</b></h4>
+<p>\(3 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible? It is irreducible in \(\mathbf{Z}\) since it is prime. In \(\mathbf{Z}[i]\), we know that \(N(3) = N(3 + 0i) = 9\). Suppose it was reducible. This means that there exists \(z,w \in \mathbf{Z}[i]\)</p>
+<div>
+$$
+\begin{align*}
+9 = N(3) = N(z)N(w)
+\end{align*}
+$$
+</div>
+<p>To be reducible, neither \(z\) or \(w\) can be units so they can’t have a norm of 1. Therefore, we must have \(N(z) = N(w) = 3\). This a contradiction since we don’t have any Gaussian integers with norm 3 (square root of 3 from the origin).</p>
+<div>
+$$
+\begin{align*}
+N(a + bi) = a^2 + b^2, \quad a^2, b^2 \in \{0,1,4,9,16,...\}
+\end{align*}
+$$
+</div>
+<p>So it’s not possible to construct an element of the form \(a + bi\) in \(\mathbf{Z}[i]\) such that \(a^2 + b^2 = 3\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 4</b></h4>
+<p>\(4 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible? It is reducible in \(\mathbf{Z}\). In \(\mathbf{Z}[i]\), we know that \(4 = (2)(2)\) and \(2\) is not a unit in \(\mathbf{Z}[i]\). Not just that but we also saw that \(2\) can be factored using the previous example \(2 = (1 + i)(1 - i)\). Furthermore, we also have another way too to factor 4. Below are some of the ways</p>
+<div>
+$$
+\begin{align*}
+4 = 2(2) = (1 + i)^2(1 - i)^2 = -(1 + i)^4
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 5</b></h4>
+<p>\(5 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible in \(\mathbf{Z}[i]\)? It is reducible because</p>
+<div>
+$$
+\begin{align*}
+5 = (2 + i)(2 - i)
+\end{align*}
+$$
+</div>
+<p>The factors themselves \((2+i)\) and \((2-i)\) are irreducible since the the norm \(N(2 + i) = 5\). Also note that \((2+i)\) and \((2-i)\) are not associate. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>When is \(p\) reducible in \(\mathbf{Z}[i]\)?</b></h4>
+<p>We went through a few examples of doing this calculation but in fact we do have a proposition about this as follows
+<br /></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(p \in \mathbf{N}\) is a prime number, then \(p\) is reducible in \(\mathbf{Z}[i]\) if and only if \(p = a^2 + b^2\) for some \(a,b \in \mathbf{Z}\)
+</div>
+<p><br />
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+\(\Leftarrow:\) Suppose that \(p = a^2 + b^2\). Then we can write</p>
+<div>
+$$
+\begin{align*}
+p = (a - bi)(a + bi)
+\end{align*}
+$$
+</div>
+<p>Recall that \(N(a + bi) = a^2 + b^2\) but that means \(N(a + bi) = p\) and \(p\) is prime so it’s not 1. So neither (a + bi) or (a - bi) is a unit. Therefore, \(p\) is reducible. 
+<br />
+<br />
+\(\Rightarrow:\) Suppose that \(p\) is reducible so \(p = zw\). Therefore,</p>
+<div>
+$$
+\begin{align*}
+N(p) = N(z)N(w) = p^2 \quad (\text{since } p \in \mathbf{Z}, N(p)=p^2)
+\end{align*}
+$$
+</div>
+<p>But \(p\) is prime and so we must have \(N(z)=N(w)=p\). This means that there exists some \(a, b\) such that \(z = a + bi\) where \(N(z) = p\). This means</p>
+<div>
+$$
+\begin{align*}
+N(z) = a^2 + b^2 = p.
+\end{align*}
+$$
+</div>
+<p>So \(p = a^2 + b^2\) as we wanted to show. \(\ \blacksquare\)
+<b>
+<br /></b></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>Examples</b></h4>
+<p>The proof shows that for a prime to be a sum of squares is related to whether it factors as a Gaussian integer</p>
+
+<div>
+<table style="max-width: 700px; margin: 20px auto;">
+  <tr>
+    <td>Reducible in \(Z[i]\)</td>
+	<td>Irreducible in \(Z[i]\)</td>
+  </tr>
+  <tr>
+    <td>\(2 = 1^2 + 1^2\)</td>
+	<td>3</td>
+  </tr>
+  <tr>
+    <td>\(5 = 2^2 + 1^2\)</td>
+	<td>7</td>
+  </tr>
+  <tr>
+    <td>\(13 = 3^2 + 2^2\)</td>
+	<td>11</td>
+  </tr>
+  <tr>
+    <td>\(17 = 4^2 + 2^2\)</td>
+	<td>19</td>
+  </tr>
+  <tr>
+    <td>\(29 = 5^2 + 2^2\)</td>
+	<td>23</td>
+  </tr>
+  <tr>
+    <td>\(37 = 6^2 + 1^2\)</td>
+	<td>31</td>
+  </tr>
+</table>
+</div>
+<p>Notice the pattern here. The left prime numbers are congruent to 1 mod 4 while the right prime numbers are congruent to -1 mod 4.</p>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h4><b>References</b></h4>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[We’ll start by defining Quotient Rings Definition: Domain A domain \(R\) is a commutative ring with 1 such that \(1 \neq 0\). If \(a,b \in R/\{0\}\), then \(ab \in R/\{0\}\). So non-zero elements multiply to non-zero elements. In other words, \(ab = 0\) then either \(a = 0\) or \(b = 0\). Fact: Every field is a domain. Other examples: \(\mathbf{Z}\) and \(K[x]\) are domains. The Gaussian integers are a domain \(\mathbf{Z}[i] = \{a + bi \in \mathbf{C} \ | \ a, b \in \mathbf{Z}\). \(\mathbf{Z}_4\) is not a domain, \([2] \neq 0\) but \([2][2] = [4] = [0]]\). \(\mathbf{Q}/(f_1f_2)\) where \(\deg(f_i) \geq 1\) is not a domain. (Exercise) Fact: If \(K\) is a field and \(R \subseteq K\) is a subring such that \(1_K \in R\), then \(R\) is a domain Proposition Every domain \(R\) is (isomorphic) a subring of a field \(F = \text{Frac}(R)\) (field of fraction) So basically every domain can be enlarge to be a field. Proof Let \(X = \{(a,b) \ | \ a, b \in R, b \neq 0\}\). Define a relation on \(X\): $$ \begin{align*} (a,b) \sim (a',b') \quad \text{ iff } ab' = ba' \end{align*} $$ We claim that this relation is an equivalence relation. (Exercise, hard to prove but use that \(R\) is a domain Side note: domains have cancellations so if \(ab = bc\) and \(a \neq 0\), then \(b = c\).) Since we have an equivalence relation on a set \(X\), then define \(F: X/\sim\) to be the set of equivalence classes. Write \([\frac{a}{b}] \in F\) for the equivalence class of \((a,b)\). Now, define $$ \begin{align*} \big[\frac{a}{b}\big] + \big[\frac{a'}{b'}\big] &amp;= \big[\frac{ab'+ba'}{bb'}\big] \\ \big[\frac{a}{b}\big]\big[\frac{a'}{b'}\big] &amp;= \big[\frac{aa'}{bb'}\big] \end{align*} $$ Check that these operations are well defined and make \(F\) a field. Finally, define \(\varphi: R \rightarrow F\) by \(\varphi(a) = [\frac{a}{1}]\). Check that \(\varphi\) is an injective ring homomorphism. Examples Suppose \(R = \mathbf{Z}\), then \(\text{Frac}(\mathbf{Z}) \cong \mathbf{Q}\). Suppose \(R = K[x]\) the ring of polynomials over a field. Then \(\text{Frac}(K[x]) = K[x]\) is the field of rational polynomials. elements in \(\text{Frac}(K[x]) = K[x]\) are of the form \(\frac{f}{g}\). Element Types We want to discuss factorization in a domain but before doing so, we need to see the types of elements we can find in a domain. Zero: the element zero is in \(R\). Units: These are the elements that have a multiplicative inverse. Reducible: If \(a \in R\), \(a \neq 0\) and \(a \not\in R^{\times}\) (not a unit), then there exists \(b,c \in R\) such that \(a = bc\). (\(b\) and \(b\) must both be non-units!) Irreducible: Not a zero, not a unit and not reducible. This means \(a \in R\), \(a \not\in R^{\times}\) and if \(a = bc\), then either \(b \in R^{\times}\) or \(c \in R^{\times}\). Examples \(R = \mathbf{Z}\) Units: \(\mathbf{Z}^{\times} = \{-1, +1\}\) Reducible: \(\{\pm n, n \in \mathbf{N}, \text{composite}\}\) Irreducible: These are the elements that don't factor so \(\{\pm p, p \in \mathbf{N}, \text{prime}\}\) \(R = K\) where \(K\) is a field \(0 \in K\) Units: \(K^{\times} = K / \{0\}\) Reducible: none. Irreducible: none. \(R = K[x]\) where \(K\) is a field \(0 \in K[x]\) Units: these are polynomials of degree 0 so \(K^{\times}\) Reducible: polynomials that you can factor into smaller ones. \(f, \deg(f) \geq 1\) such that \(f = gh, 0 &lt; \deg(g), \deg(h) &lt; \deg(f)\) Irreducible: polynomials that you can't factor. \(f, \deg(f) \geq 1\) such that there is no \(g,h, \deg(h), \deg(g) &lt; \deg(f)\) such that \(f = gh\) \(R = \mathbf{C}[x]\) \(0 \in C[x]\) Units: \(C^{\times}\) Reducible: \(f, \deg(f) \geq 2\) Irreducible: \(f, \deg(f) = 1\) \(R = \mathbf{C}[x]\) \(0 \in R[x]\) Units: \(R^{\times}\) Irreducible: One form is \(ax + b, a \neq 0\) and another form is \(ax^2 + bx + c\) where \(a \neq 0, b^2 - 4ac &lt; 0\) Reducible: The rest of polynomials are reducible Warning: If we take a look at the polynomials over the rational numbers, we will find out that there are a lot more irreducible polynomials there. Note here that the ring of polynomials with rational coefficients is contained in the ring of polynomials with the real coefficients and that’s contained in the field of rational functions over \(\mathbf{R}\). In other words, \(\mathbf{Q}[x] \subseteq \mathbf{R}[x] \subseteq \mathbf{R}(x)\). Now, take \(x^p - 2\) where \(p \geq 2\), then \(x^p - 2\) is irreducible in \(Q[x]\), reducible in \(R[x]\). (The proof is not obvious). It is a unit in \(\mathbf{R}(x)\)! so it’s important to consider the context in which we’re in. Norm Functions Another Example is the Gaussian Integers: \(R = \mathbf{Z}[i] = \{a + bi \ | \ a, b \in \mathbf{Z}\} \subseteq \mathbf{C}\). So \(R\) is a subring of the complex numbers and it is a domain. Since it’s a domain, we want to categorize the elements in it. But to do so, we need another tool defined as follows Definition: Norm Functions The norm of \(a + bi\) is defined to be \(N(a + bi) = a^2 + b^2 = (a + bi)(a - bi) = \lVert a + bi \rVert^2 \) So this is a function defined on the complex numbers and therefore defined on the Gaussian integers. Some properties: If \(z \in \mathbf{Z}[i], N(z) \in \mathbf{Z}_{\geq 0}\) \(N(z) = 0\) if and only if \(z = 0\) If \(z, w \in \mathbf{Z}[i], N(zw) = N(z)N(w)\) If \(z \in \mathbf{Z}[i]\), then \(z \in \mathbf{Z}[i]^{\times}\) if and only if \(N(z) = 1\) Proof of (4): If \(z \in \mathbf{Z}[i]^{\times}\), then \(z\) is a unit and \(zz^{-1} = 1\). We know that \(z^{-1} \in \mathbf{Z}[i]\) so \(z^{-1}\) is a Gaussian integer. So $$ \begin{align*} 1 = N(1) = N(z)N(z^{-1}) \end{align*} $$ But \(N(z)\) and \(N(z^{-1})\) are positive integers by (1). Therefore \(N(z) = N(z^{-1}) = 1\). For the other direction when \(N(z) = 1\). Write \(z = a + bi\) where \(a, b \in \mathbf{Z}\). By definition $$ \begin{align*} 1 = N(z) = N(a + bi) = (a + bi)(a - bi) \end{align*} $$ Therefore, \((a + bi)^{-1} = (a - bi)\). In fact the units are just \(\mathbf{Z}^{-1}[i] = \{ \pm 1, \pm i\}\). Example 1 Example: \(2 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). So 2 is also a Gaussian integer since \(\mathbf{Z}\) is a subring of the Gaussian integers. \(2\) is a prime number so it’s irreducible as an integer. However, is it reducible as a Gaussian integer? Observe that $$ \begin{align*} 2 = (1 + i)(1 - i) \end{align*} $$ So it’s definitely reducible as a Gaussian integer. Example 2 Example: Take \(1 + i \in \mathbf{Z}[i]\). Is it reducible or irreducible in \(\mathbf{Z}[i]\)? It is in fact irreducible. We know this because \(N(1 + i) = 2\) and if there were factors \(1 + i = zw\), then $$ \begin{align*} N(1 + i) = N(z)N(w) = 2 \end{align*} $$ But the norm is a non-negative integer. So the only way to make this work is that either \(N(z) = 1\) or \(N(w) = 1\) so one of the factors is a unit. Thus, by definition, \(z\) is irreducible. Associate Elements Next, we have this definition for when two elements are associate when one element is a product of some unit times the other element. Definition \(a, b \in R\) are the same up-to-units or associate (we write \(a \sim b\)) if there exists an element \(u \in R^{\times}\) such that \(b = ua\). This is in fact an equivalence relation (Exercise) Example: In \(\mathbf{Z}\), associate classes are \(\{0\}\), \(\{\pm n\}, n &gt; 0\). Another example is \(K[x]\), \(f \sim g\) if \(g = fc\) for some \(c \in K/\{0\}\). Fact: If two elements are associate, then they are of the same type! Example 3 \(3 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible? It is irreducible in \(\mathbf{Z}\) since it is prime. In \(\mathbf{Z}[i]\), we know that \(N(3) = N(3 + 0i) = 9\). Suppose it was reducible. This means that there exists \(z,w \in \mathbf{Z}[i]\) $$ \begin{align*} 9 = N(3) = N(z)N(w) \end{align*} $$ To be reducible, neither \(z\) or \(w\) can be units so they can’t have a norm of 1. Therefore, we must have \(N(z) = N(w) = 3\). This a contradiction since we don’t have any Gaussian integers with norm 3 (square root of 3 from the origin). $$ \begin{align*} N(a + bi) = a^2 + b^2, \quad a^2, b^2 \in \{0,1,4,9,16,...\} \end{align*} $$ So it’s not possible to construct an element of the form \(a + bi\) in \(\mathbf{Z}[i]\) such that \(a^2 + b^2 = 3\). Example 4 \(4 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible? It is reducible in \(\mathbf{Z}\). In \(\mathbf{Z}[i]\), we know that \(4 = (2)(2)\) and \(2\) is not a unit in \(\mathbf{Z}[i]\). Not just that but we also saw that \(2\) can be factored using the previous example \(2 = (1 + i)(1 - i)\). Furthermore, we also have another way too to factor 4. Below are some of the ways $$ \begin{align*} 4 = 2(2) = (1 + i)^2(1 - i)^2 = -(1 + i)^4 \end{align*} $$ Example 5 \(5 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible in \(\mathbf{Z}[i]\)? It is reducible because $$ \begin{align*} 5 = (2 + i)(2 - i) \end{align*} $$ The factors themselves \((2+i)\) and \((2-i)\) are irreducible since the the norm \(N(2 + i) = 5\). Also note that \((2+i)\) and \((2-i)\) are not associate. When is \(p\) reducible in \(\mathbf{Z}[i]\)? We went through a few examples of doing this calculation but in fact we do have a proposition about this as follows Proposition If \(p \in \mathbf{N}\) is a prime number, then \(p\) is reducible in \(\mathbf{Z}[i]\) if and only if \(p = a^2 + b^2\) for some \(a,b \in \mathbf{Z}\) Proof \(\Leftarrow:\) Suppose that \(p = a^2 + b^2\). Then we can write $$ \begin{align*} p = (a - bi)(a + bi) \end{align*} $$ Recall that \(N(a + bi) = a^2 + b^2\) but that means \(N(a + bi) = p\) and \(p\) is prime so it’s not 1. So neither (a + bi) or (a - bi) is a unit. Therefore, \(p\) is reducible. \(\Rightarrow:\) Suppose that \(p\) is reducible so \(p = zw\). Therefore, $$ \begin{align*} N(p) = N(z)N(w) = p^2 \quad (\text{since } p \in \mathbf{Z}, N(p)=p^2) \end{align*} $$ But \(p\) is prime and so we must have \(N(z)=N(w)=p\). This means that there exists some \(a, b\) such that \(z = a + bi\) where \(N(z) = p\). This means $$ \begin{align*} N(z) = a^2 + b^2 = p. \end{align*} $$ So \(p = a^2 + b^2\) as we wanted to show. \(\ \blacksquare\) Examples The proof shows that for a prime to be a sum of squares is related to whether it factors as a Gaussian integer]]></summary></entry><entry><title type="html">Lecture 36: Homomorphism Theorem and Isomorphism Theorem</title><link href="http://localhost:4000/jekyll/update/2025/02/28/math417-36-ring-homomorphisms-isomorphisms.html" rel="alternate" type="text/html" title="Lecture 36: Homomorphism Theorem and Isomorphism Theorem" /><published>2025-02-28T00:01:36-08:00</published><updated>2025-02-28T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/28/math417-36-ring-homomorphisms-isomorphisms</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/28/math417-36-ring-homomorphisms-isomorphisms.html"><![CDATA[<p>We’ll start by defining Quotient Rings
 <br />
 <!-----------------------------------------------------------------------------></p>
 <div class="mintheaderdiv">
@@ -209,8 +599,8 @@ $$
 </div>
 <p><br />
 <!-------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Let \(R = \mathbf{Q}[x]\) and \(S = \mathbf{R}\). Since we want to build a homomorphism from a polynomial ring, then we should always think of the substitution principle. Recall that the substitution principle says that there is a unique homomorphism with the property that it take polynomials to wherever we decide to take constant polynomials too and wherever it takes \(x\) to. So define the following homomorphism based on the rules</p>
+<h4><b>Example 1</b></h4>
+<p>Let \(R = \mathbf{Q}[x]\) and \(S = \mathbf{R}\). Since we want to build a homomorphism from a polynomial ring, then we should always think of the substitution principle. Recall that the substitution principle says that given that we have a homomorphism (in this case let this homomorphism be the identity function), then we can create the following evaluation homomorphism</p>
 <div>
 $$
 \begin{align*}
@@ -293,19 +683,50 @@ $$
 
 <p><br />
 <!-------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Now consider the map from \(\mathbf{R}[x]\) to \(\mathbf{C}\) but restricted to the real numbers only (so constant polynomials of degree 0 only) So \(\varphi|_{\mathbf{R} = id_{\mathbf{R}}\) and let \(\varphi(x) = i\).</p>
+<h4><b>Example 2</b></h4>
+<p>Suppose we have a homomorphism which is just the identity function \(id\) from \(\mathbf{R} \rightarrow \mathbf{R}\). Based on this create the evaluation homomorphism</p>
 <div>
 $$
 \begin{align*}
 \varphi: \mathbf{R}[x] &amp;\rightarrow \mathbf{C} \\ 
 \varphi(a) &amp;\rightarrow a \\
+\varphi(x) &amp;\rightarrow i
 \end{align*}
 $$
 </div>
+<p>This homomorphism is in fact surjective. The kernel of this homomorphism is generated by \((x^2+1)\). Therefore,</p>
+<div>
+$$
+\begin{align*}
+\mathbf{R}[x]/(x^2+1) \cong \mathbf{C}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
 <p><br />
-<br />
-<br /></p>
+<!-------------------------------------------------------------------------></p>
+<h4><b>Example 3</b></h4>
+<p>This take, let’s take the rational numbers instead so</p>
+<div>
+$$
+\begin{align*}
+\varphi: \mathbf{Q}[x] &amp;\rightarrow \mathbf{R} \\ 
+\varphi(a) &amp;\rightarrow a \\
+\varphi(x) &amp;\rightarrow \sqrt[3]{2}
+\end{align*}
+$$
+</div>
+<p>The kernel of this homomorphism is generated by \((x^3-2)\). The image of this homomorphism is a subset of \(\mathbf{R}\).</p>
+<div>
+$$
+\begin{align*}
+\mathbf{Q}[x]/(x^3-2) \cong \varphi(\mathbf{Q}[x]) \subseteq \mathbf{R}
+\end{align*}
+$$
+</div>
+<p><br /></p>
 <hr />
 
 <p><br />
@@ -2665,453 +3086,4 @@ For example, consider \(S_4\). Take the cycle type \((a \ b)\). There are \(\bin
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In the previous lecture, we introduced actions by a group \(G\) on a set \(X\) which we defined as a homomorphism from the group to a permutation group of the set \(X\). $$ \begin{align*} \varphi: G &amp;\rightarrow Sym(X) \\ gx &amp;= \phi(g)(x) \end{align*} $$ The set \(X\) that gets acted on, gets partitioned into orbits. An orbit is $$ \begin{align*} O(x) = \{ gx \ | \ g \in G \} \end{align*} $$ We also saw that for each element in the set \(X\) that \(G\) acted on, we have a stabilizer. A stabilizer of an element \(x\) is the set of elements in \(G\) that fix \(x\) so $$ \begin{align*} \text{Stab}(x) = \{ g \in G \ | \ gx = x \} \end{align*} $$ Note here that \(\text{Stab}(x)\) is a subgroup of \(G\). Finally, there are a number of relationships between orbits and stabilizer but the most important one is the orbits/stabilizer theorem which gives a bijection between the orbit of an element and the index of its stabilizer group $$ \begin{align*} |O(x)| = [G: \text{Stab}(x)] \end{align*} $$ We’ve also discussed a few other things like calling an action transitive if there is only one orbit. Conjugation by \(G\) on \(X = G\) The next thing we talked about was the conjugation action when the set \(G\) acted on was the set \(G\) itself. This was defined as $$ \begin{align*} c: G &amp;\rightarrow Aut(G) \leq Sym(G) \\ c(g)(x) &amp;= gxg^{-1} \end{align*} $$ We defined this action last lecture from \(G\) to \(Sym(G)\) but in fact, \(c\) is a homomorphism from \(G\) to \(Aut(G)\). \(Aut(G)\) is a subgroup of \(Sym(G)\). The conjugation action is the one that’s really useful for understanding things about a group \(G\). The orbits of the conjugation action are called conjugacy classes. $$ \begin{align*} Cl(x) = \{gxg^{-1} \ | \ g \in G\}. \end{align*} $$ We also studied centralizers and these are the centralizers of the action. So $$ \begin{align*} \text{Cent}(x) &amp;= \{g \in G \ | \ gxg^{-1} = x\} \\ &amp;= \{g \in G \ | \ gx= xg\} . \end{align*} $$ In other words, the centralizers are those elements that commute with the element \(x\). Using the orbit/stabilizer theorem $$ \begin{align*} |Cl(x)| &amp;= [G: \text{Cent}(x)] \end{align*} $$ Additionally, the kernel of \(c\) is what we call the center \(c\). It’s the collection of elements that commute with every other element in the group. So $$ \begin{align*} Ker(c) = Z(G) &amp;= \{g \in G \ | \ gh = hg \ \forall h \in G \} \\ &amp;= \bigcap_{x \in G} \text{Cent}(x) \end{align*} $$ Examples What is the conjugacy class of the identity? It’s always \(Cl(e) = \{e\}\). This means that the conjugation action is never transitive unless we’re acting on the trivial group. Since if \(G\) contains other elements, then they’ll be in a different orbit. Now, suppose that \(b \in Z(G)\). So \(b\) commutes with every other element in \(G\). What is the conjugacy class of \(b\). It is \(Cl(b) = \{b\}\). Why? since \(b\) commutes with every element \(g\) in \(G\), then \(Cl(b) = \{gbg^{-1} \ | \ g \in G\}\) but $$ \begin{align*} gbg^{-1} = gg^{-1}b = b \end{align*} $$ So \(Cl\) contains only \(b\). So if you’re in the center, then the conjugacy class contains only you. The other way direction is true. If \(Cl(g) = \{g\}\), \(g \in Z(G)\). Consequence: If \(G\) is abelian, then \(Z(G) = G\) and every conjugacy class in \(G\) in its own class. So \(Cl(g) = \{g\}\) for all \(g \in G\). What about the stabilizer or Center\((g)\)? It’s also all of \(G\). Conjugacy Classes in \(SO(3)\) Let \(G = SO(3) = \{Rot_u(\theta)\}\) where \(u\) is a unit vector. \(Rot_u(\theta)\) is a rotation by angle \(\theta\) around the unit vector \(u\). Recall $$ \begin{align*} Rot_u(\theta + 2\pi n) &amp;= Rot_u(\theta), n \in \mathbf{Z} \\ Rot_{-u}(\theta) &amp;= Rot_{u}(-\theta) \\ Rot_{u}(0) &amp;= I \end{align*} $$]]></summary></entry><entry><title type="html">Lecture 26/27: Group Actions and Orbits</title><link href="http://localhost:4000/jekyll/update/2025/02/19/math417-26-orbits.html" rel="alternate" type="text/html" title="Lecture 26/27: Group Actions and Orbits" /><published>2025-02-19T00:01:36-08:00</published><updated>2025-02-19T00:01:36-08:00</updated><id>http://localhost:4000/jekyll/update/2025/02/19/math417-26-orbits</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/02/19/math417-26-orbits.html"><![CDATA[<div class="mintheaderdiv">
-Group Actions
-</div>
-<div class="mintbodydiv">
-A group action by a group \(G\) on a set \(X\) is a homomorphism
-$$
-\begin{align*}
-\varphi: G \rightarrow Sym(X)
-\end{align*}
-$$
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-Note here that for every element in the group \(G\) and every element in the set \(X\), we get a function \(\phi(g)\). This function is from \(x \rightarrow X\). Because it is a function, then we can plug in a value \(x\) such that \(\phi(g)(x) \in X\). Moreover,</p>
-<div>
-$$
-\begin{align*}
-\varphi(e)(x) &amp;= x \quad \text{ because $\varphi(e)$ is the identity function } \\
-\varphi(g_1g_2)(x) &amp;= (\varphi(g_1)\varphi(g_2))(x) \quad \text{because $\phi$ is a homomorphism} \\ 
-                &amp;= \varphi(g_1)\big(\varphi(g_2)(x)\big)
-\end{align*}
-$$
-</div>
-<p>Additionally, these identities force \(\varphi(g^{-1}) = \varphi(g)^{-1}\) which means that \(\varphi(g)\) is a bijection.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Alternate Notation</b></h4>
-<p>Given \(g \in G\) and \(x \in X\), write \(gx\) for \(\varphi(g)(x)\). So now we get a function</p>
-<div>
-$$
-\begin{align*}
-G \times X &amp;\rightarrow X \\
-(g,x) &amp;\rightarrow gx = \varphi(g)(x)
-\end{align*}
-$$
-</div>
-<p>Re-writing the previous identities with the new notation:</p>
-<div>
-$$
-\begin{align*}
-ex &amp;= x \quad \forall x \in X \\
-(g_1g_2)x &amp;= g_1(g_2x) \quad \forall g_1,g_2 \in G, x \in X
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Tautological action by \(G = Sym(X)\) on X. What is this function?</p>
-<div>
-$$
-\begin{align*}
-\varphi: Sym(x) \xrightarrow{\text{identity function}} Sym(x)
-\end{align*}
-$$
-</div>
-<p>This just gives us \(\varphi(g)=g\). This is exactly what we use when we work with permutations. A permutation is a function from \(X\) to itself. So for \(g \in G\) and \(x \in X\), we apply it like \(g(x) = gx\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Suppose \(G = SO(3)\) which acts on \(X = \mathbf{R}^3\). The action rule is given by</p>
-<div>
-$$
-\begin{align*}
-G \times X &amp;\rightarrow X \\
-A,x &amp;\rightarrow Ax
-\end{align*}
-$$
-</div>
-<p>We’re defining a homomorphism</p>
-<div>
-$$
-\begin{align*}
-SO(3) &amp;\rightarrow Sym(\mathbf{R}^3) \\
-\varphi(A)(x) &amp;= Ax
-\end{align*}
-$$
-</div>
-<p>\(Sym(\mathbf{R}^3)\) is the group of all bijection maps from \(\mathbf{R}^3\) to itself. The map \(\varphi\) takes a matrix \(A \in SO(3)\) and produces the following function</p>
-<div>
-$$
-\begin{align*}
-\varphi(A): \mathbf{R}^3 &amp;\rightarrow \mathbf{R}^3 \\
-x &amp;\rightarrow Ax
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Orbits</b></h4>
-<p>Next, we’ll define something called an orbit of action by \(G\) on \(X\).</p>
-<div class="mintheaderdiv">
-Orbit of Action by \(G\) on \(X\) 
-</div>
-<div class="mintbodydiv">
-An Orbit is a subset of \(X\) of the form 
-$$
-\begin{align*}
-O(x) = \{gx \ | \ g \in G\}, \quad \text{for some } x \in X
-\end{align*}
-$$
-</div>
-<p><br />
-Fact: orbits are equivalence classes of an equivalence relation on \(X\). So \(x \sim y\) if and only if there is some \(g \in G\) such that \(gx = y\). So, \(O(x)O(y) = \emptyset\) or \(O(x) = O(y)\). Therefore, orbits partition \(X\) into pairwise disjoint and nonempty subsets. One more fact: We action is called transitive if there is only one orbit so \(O(x) = X\). 
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Stabilizers</b></h4>
-<p>One more defintion.</p>
-<div class="mintheaderdiv">
-Stabilizer
-</div>
-<div class="mintbodydiv">
-For each \(x \in X\)
-$$
-\begin{align*}
-\text{Stab}(x) = \text{Stab}_G(y) = \{g \in \ | \ gx = x\}
-\end{align*}
-$$
-These are the set of elements of \(G\) that "fix" x.
-</div>
-<p><br />
-Some facts:</p>
-<ul>
-	<li>\(\text{Stab}(x) \leq G\)</li>
-	<li>If \(x, y \in X\) and these elements are related such that for some \(g \in G\), we have \(y = gx\), then \(\text{Stab}(y) = g\text{Stab}(x)g^{-1}\). So if \(x\) and \(y\) are in the same orbit, then their stabilizer subgroups are conjugate.</li>
-</ul>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Kernel of Action</b></h4>
-<p>What is the kernel of a group action? By definition, the kernel contains all the elements in \(g\) such that \(\varphi(x)\) is the identity transformation</p>
-<div>
-$$
-\begin{align*}
-\ker(\varphi) = \{g \in G \ | \ gx = x \quad \text{for all } x \in X\}
-\end{align*}
-$$
-</div>
-<p>Of course this looks exactly like the definition of a stabilizer that we just did. So,</p>
-<div>
-$$
-\begin{align*}
-\ker(\varphi) = \bigcap_{x \in X} \text{Stab}(x) \unlhd G
-\end{align*}
-$$
-</div>
-<p>We say that the action is faithful if \(\ker(\varphi) = \{e\}\). This is is the same as saying the homomorphism \(G \rightarrow Sym(x)\) is injective.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example 1</b></h4>
-<p>Suppose \(G = D_n\) which acts on \(X = \{v_0,v_1,...,v_{n-1}\}\). The action rule is given by the homomorphism</p>
-<div>
-$$
-\begin{align*}
-\phi: D_n &amp;\rightarrow Sym(X) = S_n
-\end{align*}
-$$
-</div>
-<p>For example. Suppose \(G = D_3 = \{e, r, r^2, j, rj, r^2j\}\) with \(V = \{v_0, v_1, v_2\}\).</p>
-<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec27/triangle.png" width="45%" class="center" /></p>
-<p>Given this setup. What are the orbits of the action? Pick one vertex like \(v_0\). What is the orbit of \(v_0\)? If we start with \(v_0\), then we can reach every other vertex so</p>
-<div>
-$$
-\begin{align*}
-rv_0 &amp;= v_1 \\
-rv_1 &amp;= r^2v_0 = v_2
-\end{align*}
-$$
-</div>
-<p>So the orbit of \(v_0\) is \(O(v_0) = \{v_0, v_1, v_2\}\). So there is only one orbit and in this case the action is transitive. What about the stabilizers? these are the set of elements of \(G\) that fix \(x\). For example, if we take \(v_0\), then we know that \(e\) fixes \(x\) so it’s in the set. Is there any other element such that if we hit \(x\) with it, we get \(x\) back? Notice that \(j\) does that since \(v_0\) is on the flip axis. We can do the same calculation for \(v_1\) and \(v_2\) to see that</p>
-<div>
-$$
-\begin{align*}
-\text{Stab}(v_0) &amp;= \{e,j\} \\
-\text{Stab}(v_1) &amp;= \{e,r^2j\} \\
-\text{Stab}(v_2) &amp;= \{e, rj\}
-\end{align*}
-$$
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example 2</b></h4>
-<p>Let’s take another example. Suppose that \(G = SO(3)\) and \(X = \mathbf{R}^3\). Take the action given by the homomorphism</p>
-<div>
-$$
-\begin{align*}
-SO(3) &amp;\rightarrow Sym(\mathbf{R}^3) \\
-A,x &amp;= Ax
-\end{align*}
-$$
-</div>
-<p>What is the orbit of \(v\)? Take a unit vector and compute its orbit under the action of \(SO(3)\). We elements do we get when we rotate this vector by any rotation in \(SO(3)\)? What vector do we get? We get another unit vector. In fact, given a vector with norm \(\lVert R \rVert = R\), we will get</p>
-<div>
-$$
-\begin{align*}
-O(v) = \{x \in \mathbf{R}^3 \ | \ \lVert x \rVert = R \}
-\end{align*}
-$$
-</div>
-<p>We get the set of vectors in \(\mathbf{R}^3\) with length \(R\). So a sphere of radius \(R\) centered at the origin. (Except for the zero vector where its orbit is 0 so \(O(0) = \{0\}\)). 
-<br />
-<br />
-What about the stabilizers? If \(v\) is the zero vector, that’s easy because it’s all of \(SO(3)\). Any matrix \(A\) satisfies \(A0 = 0\). But for non-zero vectors, its the rotations of any angle around an axis through \(v\).</p>
-<div>
-$$
-\begin{align*}
-\text{Stab}(0) &amp;= SO(3) \\
-\text{Stab}(v) &amp;= \{Rot_u(O), O \in \mathbf{R}\}, \quad u = v/\lVert v \rVert
-\end{align*}
-$$
-</div>
-<p>Is this a faithful? Is there any matrix \(A\) that fixes every vector \(v\) besides \(I\)? No, in fact, the kernel has only the identity matrix.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Orbit Stabilizer Theorem</b></h4>
-<div class="yellowheaderdiv">
-Orbit Stabilizer Theorem
-</div>
-<div class="yellowbodydiv">
-Let \(G\) be a group that acts on \(X\). If \(x \in X\), then there is a bijection
-$$
-\begin{align*}
-G/H &amp;\rightarrow O(x), \quad \text{where } H = \text{Stab}(x) \\
-\end{align*}
-$$
-\(G/H\) is the set \(\{gH\}\) of left \(H\)-cosets.
-</div>
-<p><br />
-<!----------------------------------------------------------------------------->
-A consequence of this theorem is a formula for the size of the orbit</p>
-<div>
-$$
-\begin{align*}
-|O(x)| = [G: \text{Stab}(x)]
-\end{align*}
-$$
-</div>
-<p>This is useful when the group is finite. So when it’s finite, then \(|O(x)| = \frac{|G|}{\text{Stab}(x)}|\). So the size of any orbit has to divide the order of the group.
-<br />
-<br />
-<!----------------------------------------------------------------------------->
-<b>Proof</b>
-<br />
-We need to give a bijection. Consider the formula that takes a left coset \(gH\) to what you get when you apply the action on \(x\).</p>
-<div>
-$$
-\begin{align*}
-\alpha: G/H &amp;\rightarrow O(x) \\
-        \alpha(gH) &amp;= gx
-\end{align*}
-$$
-</div>
-<p>Step 1 involves showing that this is well defined. So given that \(gH = g'H\), then \(gx = g'x\). The reason why they would be equal is that \(H\) is simply the stabilizer \(\text{Stab}(x)\). Step 2 is showing that this is indeed a bijection.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Actions by \(G\) on \(X = G\)</b></h4>
-<p>Suppose you have a group \(G\). What will happen if it acts on its own set. So</p>
-<div>
-$$
-\begin{align*}
-\varphi: G &amp;\rightarrow Sym(G)
-\end{align*}
-$$
-</div>
-<p>There several of these. For example, we have the Left Regular Action. This is given by the homomorphism</p>
-<div>
-	$$
-	\begin{align*}
-	\lambda: G &amp;\rightarrow Sym(G) \\
-	\lambda(g)(x) &amp;= gx, \quad g,x \in G
-	\end{align*}
-	$$
-</div>
-<p>What are the orbits of this action? For example, the orbit of \(e\) is everything</p>
-<div>
-	$$
-	\begin{align*}
-	O(e) = \{\lambda(g)(e), g \in G\} = \{ge, g \in G\} = G = X
-	\end{align*}
-	$$
-</div>
-<p>What about the stabilizers?</p>
-<div>
-$$
-\begin{align*}
-\text{Stab}(x) = \{g \in G \ | \ gx = x \} = \{e\}
-\end{align*}
-$$
-</div>
-<p>A consequence of this is that the kernel of the action is, \(\ker(\lambda) = \{e\}\). Therefore, we have a faithful action. This actually led to the next big theorem which is Cayley’s Theorem
-<br />
-<!-----------------------------------------------------------------------------></p>
-<div class="yellowheaderdiv">
-Cayley's Theorem
-</div>
-<div class="yellowbodydiv">
-Every finite group \(G\) is isomorphic to a subgroup of some symmetric group \(S_m\)
-</div>
-<p><br />
-<b>Proof</b>
-<br />
-Use the left regular action \(\lambda: G \rightarrow Sym(G) \cong S_n\). This is a faithful action which means that this action is injective. Therefore, \(G\) is isomorphic to the image subgroup which is \(Sym_n\)
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Right Regular and Conjugate Actions</b></h4>
-<p>We also have a Right Regular Action (though we won’t use it)</p>
-<div>
-	$$
-	\begin{align*}
-	\rho: G &amp;\rightarrow Sym(G) \\
-	\rho(g)(x) &amp;= xg^{-1}, \quad g,x \in G
-	\end{align*}
-	$$
-</div>
-<p>And the Conjugate Action</p>
-<div>
-	$$
-	\begin{align*}
-	c: G &amp;\rightarrow Sym(G) \\
-	c(g)(x) &amp;= gxg^{-1}
-	\end{align*}
-	$$
-</div>
-<p>This is an action \(c(g_1) \circ c(g_2) = c(g_1g_2)\). The orbits of the conjugation action are called conjugacy classes. For example, if we have \(x \in X \in G\), then the conjugacy class of \(x\) is. It is a subset of the group \(G\)</p>
-<div>
-	$$
-	\begin{align*}
-	Cl(x) = \{gxg^{-1} \ | \ g \in G\}.
-	\end{align*}
-	$$
-</div>
-<p>For the stabilizers, if we have \(x \in X = G\), then</p>
-<div>
-	$$
-	\begin{align*}
-	\text{Cent}(x) &amp;= \{g \in G \ | \ gxg^{-1} = x \} \\
-	        &amp;= \{g \in G \ | \ gx = xg \}
-	\end{align*}
-	$$
-</div>
-<p>The kernel</p>
-<div>
-	$$
-	\begin{align*}
-	Ker(c) = Z(G) &amp;= \{g \in G \ | \ gx = xg \ \forall x \in G \} \\
-	              &amp;= \bigcap_{x \in G} \text{Cent}(x)
-	\end{align*}
-	$$
-</div>
-<p>We actually do a relavent Theorem here
-<br /></p>
-<div class="yellowheaderdiv">
-Orbits/Stabilizers
-</div>
-<div class="yellowbodydiv">
-When \(G\) is finite, then \(|Cl(x)| = \frac{|G|}{|\text{Cent}(x)|}\)
-</div>
-<p><br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>Example</b></h4>
-<p>Suppose \(G = D_3 = \{e, r, r^2, j, rj, r^2j\}\). We want to compute the orbits which are now the conjugacy classes for each element. For example, the orbit/conjugacy class of the identity is just the identity, since conjugating the identity by any element in \(g\) gives us the identity back.</p>
-<div>
-$$
-\begin{align*}
-geg^{-1} &amp;= e \quad \forall g \in G, \quad Cl(e) = \{e\} 
-\end{align*}
-$$
-</div>
-<p>For \(r\) we we can try conjugating by every element of \(g\) but we will see that we will always get \(r\) and \(r^2\) back.</p>
-<div>
-$$
-\begin{align*}
-rrr^{-1} &amp;= r \\
-jrj^{-1} &amp;= r^{-1} = r^2
-\end{align*}
-$$
-</div>
-<p>Therefore, \(Cl(r) = \{r, r^2\}\). Finally, let’s find the conjugacy class of \(j\)</p>
-<div>
-$$
-\begin{align*}
-rjr^{-1} &amp;= rrj = r^2j \\
-jjj &amp;= j \\
-rjj(rj)^{-1} &amp;= rjr^{-1} = rrj = r^2j \\
-...
-\end{align*}
-$$
-</div>
-<p>We’ll get \(Cl(j) = \{j, rj, r^2j\}\). Now, we can do the stabilizers. The stabilizer of \(e\) is any element that \(e\) fixes so it’s all of \(G\). What about \(r\)?</p>
-<ul>
-	<li> By the previous theorem, \(|Cl(x)| = \frac{|G|}{|\text{Cent}(x)|}\). Since \(|Cl(r)|=2\), then we must have three elements in the centralizer. </li>
-	<li> We also know that the centralizer is a subgroup. So we must have the identity and not just that but we must have the element itself since it commutes with itself. But the subgroup is closed so it must have any product</li>
-</ul>
-<p>Therefore, \(\text{Cent}(r) = \{e,r,r^2\}\). Similarly, \(\text{Cent}(j) = \{e,j\}\). What if we take another element that’s in the same orbit like \(rj\). We will see that \(\text{Cent}(rj) = \{e, rj\}\). 
-<br />
-<br />
-In fact, all the dihedral odd groups will look similar to what we found above for \(D_3\). The even groups however are slightly different. \(D_4\) for example has an interesting element which is \(r^2\). It is interesting because it commutes with every other element in \(G\). Therefore, in \(D_4\), the center of the group is \(Z(D_4) = \{e, r^2\}\).  When \(n\) is odd, \(Z(D)\) contains the identity only.
-<br />
-<br /></p>
-<hr />
-
-<p><br />
-<!-----------------------------------------------------------------------------></p>
-<h4><b>References</b></h4>
-<ul>
-	<li>MATH417 by Charles Rezk</li>
-	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Group Actions A group action by a group \(G\) on a set \(X\) is a homomorphism $$ \begin{align*} \varphi: G \rightarrow Sym(X) \end{align*} $$ Note here that for every element in the group \(G\) and every element in the set \(X\), we get a function \(\phi(g)\). This function is from \(x \rightarrow X\). Because it is a function, then we can plug in a value \(x\) such that \(\phi(g)(x) \in X\). Moreover, $$ \begin{align*} \varphi(e)(x) &amp;= x \quad \text{ because $\varphi(e)$ is the identity function } \\ \varphi(g_1g_2)(x) &amp;= (\varphi(g_1)\varphi(g_2))(x) \quad \text{because $\phi$ is a homomorphism} \\ &amp;= \varphi(g_1)\big(\varphi(g_2)(x)\big) \end{align*} $$ Additionally, these identities force \(\varphi(g^{-1}) = \varphi(g)^{-1}\) which means that \(\varphi(g)\) is a bijection. Alternate Notation Given \(g \in G\) and \(x \in X\), write \(gx\) for \(\varphi(g)(x)\). So now we get a function $$ \begin{align*} G \times X &amp;\rightarrow X \\ (g,x) &amp;\rightarrow gx = \varphi(g)(x) \end{align*} $$ Re-writing the previous identities with the new notation: $$ \begin{align*} ex &amp;= x \quad \forall x \in X \\ (g_1g_2)x &amp;= g_1(g_2x) \quad \forall g_1,g_2 \in G, x \in X \end{align*} $$ Example Tautological action by \(G = Sym(X)\) on X. What is this function? $$ \begin{align*} \varphi: Sym(x) \xrightarrow{\text{identity function}} Sym(x) \end{align*} $$ This just gives us \(\varphi(g)=g\). This is exactly what we use when we work with permutations. A permutation is a function from \(X\) to itself. So for \(g \in G\) and \(x \in X\), we apply it like \(g(x) = gx\). Example Suppose \(G = SO(3)\) which acts on \(X = \mathbf{R}^3\). The action rule is given by $$ \begin{align*} G \times X &amp;\rightarrow X \\ A,x &amp;\rightarrow Ax \end{align*} $$ We’re defining a homomorphism $$ \begin{align*} SO(3) &amp;\rightarrow Sym(\mathbf{R}^3) \\ \varphi(A)(x) &amp;= Ax \end{align*} $$ \(Sym(\mathbf{R}^3)\) is the group of all bijection maps from \(\mathbf{R}^3\) to itself. The map \(\varphi\) takes a matrix \(A \in SO(3)\) and produces the following function $$ \begin{align*} \varphi(A): \mathbf{R}^3 &amp;\rightarrow \mathbf{R}^3 \\ x &amp;\rightarrow Ax \end{align*} $$ Orbits Next, we’ll define something called an orbit of action by \(G\) on \(X\). Orbit of Action by \(G\) on \(X\) An Orbit is a subset of \(X\) of the form $$ \begin{align*} O(x) = \{gx \ | \ g \in G\}, \quad \text{for some } x \in X \end{align*} $$ Fact: orbits are equivalence classes of an equivalence relation on \(X\). So \(x \sim y\) if and only if there is some \(g \in G\) such that \(gx = y\). So, \(O(x)O(y) = \emptyset\) or \(O(x) = O(y)\). Therefore, orbits partition \(X\) into pairwise disjoint and nonempty subsets. One more fact: We action is called transitive if there is only one orbit so \(O(x) = X\). Stabilizers One more defintion. Stabilizer For each \(x \in X\) $$ \begin{align*} \text{Stab}(x) = \text{Stab}_G(y) = \{g \in \ | \ gx = x\} \end{align*} $$ These are the set of elements of \(G\) that "fix" x. Some facts: \(\text{Stab}(x) \leq G\) If \(x, y \in X\) and these elements are related such that for some \(g \in G\), we have \(y = gx\), then \(\text{Stab}(y) = g\text{Stab}(x)g^{-1}\). So if \(x\) and \(y\) are in the same orbit, then their stabilizer subgroups are conjugate. Kernel of Action What is the kernel of a group action? By definition, the kernel contains all the elements in \(g\) such that \(\varphi(x)\) is the identity transformation $$ \begin{align*} \ker(\varphi) = \{g \in G \ | \ gx = x \quad \text{for all } x \in X\} \end{align*} $$ Of course this looks exactly like the definition of a stabilizer that we just did. So, $$ \begin{align*} \ker(\varphi) = \bigcap_{x \in X} \text{Stab}(x) \unlhd G \end{align*} $$ We say that the action is faithful if \(\ker(\varphi) = \{e\}\). This is is the same as saying the homomorphism \(G \rightarrow Sym(x)\) is injective. Example 1 Suppose \(G = D_n\) which acts on \(X = \{v_0,v_1,...,v_{n-1}\}\). The action rule is given by the homomorphism $$ \begin{align*} \phi: D_n &amp;\rightarrow Sym(X) = S_n \end{align*} $$ For example. Suppose \(G = D_3 = \{e, r, r^2, j, rj, r^2j\}\) with \(V = \{v_0, v_1, v_2\}\). Given this setup. What are the orbits of the action? Pick one vertex like \(v_0\). What is the orbit of \(v_0\)? If we start with \(v_0\), then we can reach every other vertex so $$ \begin{align*} rv_0 &amp;= v_1 \\ rv_1 &amp;= r^2v_0 = v_2 \end{align*} $$ So the orbit of \(v_0\) is \(O(v_0) = \{v_0, v_1, v_2\}\). So there is only one orbit and in this case the action is transitive. What about the stabilizers? these are the set of elements of \(G\) that fix \(x\). For example, if we take \(v_0\), then we know that \(e\) fixes \(x\) so it’s in the set. Is there any other element such that if we hit \(x\) with it, we get \(x\) back? Notice that \(j\) does that since \(v_0\) is on the flip axis. We can do the same calculation for \(v_1\) and \(v_2\) to see that $$ \begin{align*} \text{Stab}(v_0) &amp;= \{e,j\} \\ \text{Stab}(v_1) &amp;= \{e,r^2j\} \\ \text{Stab}(v_2) &amp;= \{e, rj\} \end{align*} $$ Example 2 Let’s take another example. Suppose that \(G = SO(3)\) and \(X = \mathbf{R}^3\). Take the action given by the homomorphism $$ \begin{align*} SO(3) &amp;\rightarrow Sym(\mathbf{R}^3) \\ A,x &amp;= Ax \end{align*} $$ What is the orbit of \(v\)? Take a unit vector and compute its orbit under the action of \(SO(3)\). We elements do we get when we rotate this vector by any rotation in \(SO(3)\)? What vector do we get? We get another unit vector. In fact, given a vector with norm \(\lVert R \rVert = R\), we will get $$ \begin{align*} O(v) = \{x \in \mathbf{R}^3 \ | \ \lVert x \rVert = R \} \end{align*} $$ We get the set of vectors in \(\mathbf{R}^3\) with length \(R\). So a sphere of radius \(R\) centered at the origin. (Except for the zero vector where its orbit is 0 so \(O(0) = \{0\}\)). What about the stabilizers? If \(v\) is the zero vector, that’s easy because it’s all of \(SO(3)\). Any matrix \(A\) satisfies \(A0 = 0\). But for non-zero vectors, its the rotations of any angle around an axis through \(v\). $$ \begin{align*} \text{Stab}(0) &amp;= SO(3) \\ \text{Stab}(v) &amp;= \{Rot_u(O), O \in \mathbf{R}\}, \quad u = v/\lVert v \rVert \end{align*} $$ Is this a faithful? Is there any matrix \(A\) that fixes every vector \(v\) besides \(I\)? No, in fact, the kernel has only the identity matrix. Orbit Stabilizer Theorem Orbit Stabilizer Theorem Let \(G\) be a group that acts on \(X\). If \(x \in X\), then there is a bijection $$ \begin{align*} G/H &amp;\rightarrow O(x), \quad \text{where } H = \text{Stab}(x) \\ \end{align*} $$ \(G/H\) is the set \(\{gH\}\) of left \(H\)-cosets. A consequence of this theorem is a formula for the size of the orbit $$ \begin{align*} |O(x)| = [G: \text{Stab}(x)] \end{align*} $$ This is useful when the group is finite. So when it’s finite, then \(|O(x)| = \frac{|G|}{\text{Stab}(x)}|\). So the size of any orbit has to divide the order of the group. Proof We need to give a bijection. Consider the formula that takes a left coset \(gH\) to what you get when you apply the action on \(x\). $$ \begin{align*} \alpha: G/H &amp;\rightarrow O(x) \\ \alpha(gH) &amp;= gx \end{align*} $$ Step 1 involves showing that this is well defined. So given that \(gH = g'H\), then \(gx = g'x\). The reason why they would be equal is that \(H\) is simply the stabilizer \(\text{Stab}(x)\). Step 2 is showing that this is indeed a bijection. Actions by \(G\) on \(X = G\) Suppose you have a group \(G\). What will happen if it acts on its own set. So $$ \begin{align*} \varphi: G &amp;\rightarrow Sym(G) \end{align*} $$ There several of these. For example, we have the Left Regular Action. This is given by the homomorphism $$ \begin{align*} \lambda: G &amp;\rightarrow Sym(G) \\ \lambda(g)(x) &amp;= gx, \quad g,x \in G \end{align*} $$ What are the orbits of this action? For example, the orbit of \(e\) is everything $$ \begin{align*} O(e) = \{\lambda(g)(e), g \in G\} = \{ge, g \in G\} = G = X \end{align*} $$ What about the stabilizers? $$ \begin{align*} \text{Stab}(x) = \{g \in G \ | \ gx = x \} = \{e\} \end{align*} $$ A consequence of this is that the kernel of the action is, \(\ker(\lambda) = \{e\}\). Therefore, we have a faithful action. This actually led to the next big theorem which is Cayley’s Theorem Cayley's Theorem Every finite group \(G\) is isomorphic to a subgroup of some symmetric group \(S_m\) Proof Use the left regular action \(\lambda: G \rightarrow Sym(G) \cong S_n\). This is a faithful action which means that this action is injective. Therefore, \(G\) is isomorphic to the image subgroup which is \(Sym_n\) Right Regular and Conjugate Actions We also have a Right Regular Action (though we won’t use it) $$ \begin{align*} \rho: G &amp;\rightarrow Sym(G) \\ \rho(g)(x) &amp;= xg^{-1}, \quad g,x \in G \end{align*} $$ And the Conjugate Action $$ \begin{align*} c: G &amp;\rightarrow Sym(G) \\ c(g)(x) &amp;= gxg^{-1} \end{align*} $$ This is an action \(c(g_1) \circ c(g_2) = c(g_1g_2)\). The orbits of the conjugation action are called conjugacy classes. For example, if we have \(x \in X \in G\), then the conjugacy class of \(x\) is. It is a subset of the group \(G\) $$ \begin{align*} Cl(x) = \{gxg^{-1} \ | \ g \in G\}. \end{align*} $$ For the stabilizers, if we have \(x \in X = G\), then $$ \begin{align*} \text{Cent}(x) &amp;= \{g \in G \ | \ gxg^{-1} = x \} \\ &amp;= \{g \in G \ | \ gx = xg \} \end{align*} $$ The kernel $$ \begin{align*} Ker(c) = Z(G) &amp;= \{g \in G \ | \ gx = xg \ \forall x \in G \} \\ &amp;= \bigcap_{x \in G} \text{Cent}(x) \end{align*} $$ We actually do a relavent Theorem here Orbits/Stabilizers When \(G\) is finite, then \(|Cl(x)| = \frac{|G|}{|\text{Cent}(x)|}\) Example Suppose \(G = D_3 = \{e, r, r^2, j, rj, r^2j\}\). We want to compute the orbits which are now the conjugacy classes for each element. For example, the orbit/conjugacy class of the identity is just the identity, since conjugating the identity by any element in \(g\) gives us the identity back. $$ \begin{align*} geg^{-1} &amp;= e \quad \forall g \in G, \quad Cl(e) = \{e\} \end{align*} $$ For \(r\) we we can try conjugating by every element of \(g\) but we will see that we will always get \(r\) and \(r^2\) back. $$ \begin{align*} rrr^{-1} &amp;= r \\ jrj^{-1} &amp;= r^{-1} = r^2 \end{align*} $$ Therefore, \(Cl(r) = \{r, r^2\}\). Finally, let’s find the conjugacy class of \(j\) $$ \begin{align*} rjr^{-1} &amp;= rrj = r^2j \\ jjj &amp;= j \\ rjj(rj)^{-1} &amp;= rjr^{-1} = rrj = r^2j \\ ... \end{align*} $$ We’ll get \(Cl(j) = \{j, rj, r^2j\}\). Now, we can do the stabilizers. The stabilizer of \(e\) is any element that \(e\) fixes so it’s all of \(G\). What about \(r\)? By the previous theorem, \(|Cl(x)| = \frac{|G|}{|\text{Cent}(x)|}\). Since \(|Cl(r)|=2\), then we must have three elements in the centralizer. We also know that the centralizer is a subgroup. So we must have the identity and not just that but we must have the element itself since it commutes with itself. But the subgroup is closed so it must have any product Therefore, \(\text{Cent}(r) = \{e,r,r^2\}\). Similarly, \(\text{Cent}(j) = \{e,j\}\). What if we take another element that’s in the same orbit like \(rj\). We will see that \(\text{Cent}(rj) = \{e, rj\}\). In fact, all the dihedral odd groups will look similar to what we found above for \(D_3\). The even groups however are slightly different. \(D_4\) for example has an interesting element which is \(r^2\). It is interesting because it commutes with every other element in \(G\). Therefore, in \(D_4\), the center of the group is \(Z(D_4) = \{e, r^2\}\). When \(n\) is odd, \(Z(D)\) contains the identity only. References MATH417 by Charles Rezk Algebra: Abstract and Concrete by Frederick M. Goodman]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In the previous lecture, we introduced actions by a group \(G\) on a set \(X\) which we defined as a homomorphism from the group to a permutation group of the set \(X\). $$ \begin{align*} \varphi: G &amp;\rightarrow Sym(X) \\ gx &amp;= \phi(g)(x) \end{align*} $$ The set \(X\) that gets acted on, gets partitioned into orbits. An orbit is $$ \begin{align*} O(x) = \{ gx \ | \ g \in G \} \end{align*} $$ We also saw that for each element in the set \(X\) that \(G\) acted on, we have a stabilizer. A stabilizer of an element \(x\) is the set of elements in \(G\) that fix \(x\) so $$ \begin{align*} \text{Stab}(x) = \{ g \in G \ | \ gx = x \} \end{align*} $$ Note here that \(\text{Stab}(x)\) is a subgroup of \(G\). Finally, there are a number of relationships between orbits and stabilizer but the most important one is the orbits/stabilizer theorem which gives a bijection between the orbit of an element and the index of its stabilizer group $$ \begin{align*} |O(x)| = [G: \text{Stab}(x)] \end{align*} $$ We’ve also discussed a few other things like calling an action transitive if there is only one orbit. Conjugation by \(G\) on \(X = G\) The next thing we talked about was the conjugation action when the set \(G\) acted on was the set \(G\) itself. This was defined as $$ \begin{align*} c: G &amp;\rightarrow Aut(G) \leq Sym(G) \\ c(g)(x) &amp;= gxg^{-1} \end{align*} $$ We defined this action last lecture from \(G\) to \(Sym(G)\) but in fact, \(c\) is a homomorphism from \(G\) to \(Aut(G)\). \(Aut(G)\) is a subgroup of \(Sym(G)\). The conjugation action is the one that’s really useful for understanding things about a group \(G\). The orbits of the conjugation action are called conjugacy classes. $$ \begin{align*} Cl(x) = \{gxg^{-1} \ | \ g \in G\}. \end{align*} $$ We also studied centralizers and these are the centralizers of the action. So $$ \begin{align*} \text{Cent}(x) &amp;= \{g \in G \ | \ gxg^{-1} = x\} \\ &amp;= \{g \in G \ | \ gx= xg\} . \end{align*} $$ In other words, the centralizers are those elements that commute with the element \(x\). Using the orbit/stabilizer theorem $$ \begin{align*} |Cl(x)| &amp;= [G: \text{Cent}(x)] \end{align*} $$ Additionally, the kernel of \(c\) is what we call the center \(c\). It’s the collection of elements that commute with every other element in the group. So $$ \begin{align*} Ker(c) = Z(G) &amp;= \{g \in G \ | \ gh = hg \ \forall h \in G \} \\ &amp;= \bigcap_{x \in G} \text{Cent}(x) \end{align*} $$ Examples What is the conjugacy class of the identity? It’s always \(Cl(e) = \{e\}\). This means that the conjugation action is never transitive unless we’re acting on the trivial group. Since if \(G\) contains other elements, then they’ll be in a different orbit. Now, suppose that \(b \in Z(G)\). So \(b\) commutes with every other element in \(G\). What is the conjugacy class of \(b\). It is \(Cl(b) = \{b\}\). Why? since \(b\) commutes with every element \(g\) in \(G\), then \(Cl(b) = \{gbg^{-1} \ | \ g \in G\}\) but $$ \begin{align*} gbg^{-1} = gg^{-1}b = b \end{align*} $$ So \(Cl\) contains only \(b\). So if you’re in the center, then the conjugacy class contains only you. The other way direction is true. If \(Cl(g) = \{g\}\), \(g \in Z(G)\). Consequence: If \(G\) is abelian, then \(Z(G) = G\) and every conjugacy class in \(G\) in its own class. So \(Cl(g) = \{g\}\) for all \(g \in G\). What about the stabilizer or Center\((g)\)? It’s also all of \(G\). Conjugacy Classes in \(SO(3)\) Let \(G = SO(3) = \{Rot_u(\theta)\}\) where \(u\) is a unit vector. \(Rot_u(\theta)\) is a rotation by angle \(\theta\) around the unit vector \(u\). Recall $$ \begin{align*} Rot_u(\theta + 2\pi n) &amp;= Rot_u(\theta), n \in \mathbf{Z} \\ Rot_{-u}(\theta) &amp;= Rot_{u}(-\theta) \\ Rot_{u}(0) &amp;= I \end{align*} $$]]></summary></entry></feed>

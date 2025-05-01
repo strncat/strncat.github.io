@@ -252,6 +252,13 @@ mathjax: true
        <li><a href="/jekyll/update/2025/02/28/math417-36-ring-homomorphisms-isomorphisms.html">
        Lecture 36: Homomorphism Theorem and Isomorphism Theorem
        </a></li>
+	   <!-------------->
+	   <!------37------>
+	   <!-------------->
+	   <br>
+       <li><a href="/jekyll/update/2025/03/01/math417-37-r-domains.html">
+       Lecture 37: \(R\)-Domains
+       </a></li>
 	   <!----------------->
 	   <!------EXTRA------>
 	   <!----------------->

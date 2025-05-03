@@ -42,6 +42,7 @@ If \(p = 4n + 1\) is a prime number, then there exists some \(m \in \mathbf{Z}\)
 <!--------------------------------------->
 <br>
 <b>Proof</b>
+<br>
 We want to show that $$p \ | \ m^2 + 1$$. In other words, there exists a $$k$$ such that $$kp = m^2 + 1$$. This is equivalent to 
 <div>
 $$
@@ -120,6 +121,96 @@ p = N(u) = (a + bi)(a - bi) = a^2 + b^2
 $$
 </div>
 So $$p$$ can be written as a sum of squares which is what we wanted to show. $$\ \blacksquare$$.
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------->
+<h4><b>Generalizing Fermat's Theorem</b></h4>
+[Lecture 40] So far we know that if $$p$$ is prime, then $$p = a^2 + b^2$$ for some $$a,b \in \mathbf{Z}$$ if and only if $$p = 2$$ or $$p \equiv 1 \bmod 4$$. It's also not a sum of squares when $$p \equiv -1 \bmod 4$$. 
+<br>
+<br>
+So now we want to generalize this so $$p$$ doesn't need to be a prime number. To do this, consider the following set
+<div>
+$$
+\begin{align*}
+S = \{m = a^2 + b^2, a, b \in \mathbf{Z}\}
+\end{align*}
+$$
+</div>
+This set is exactly the image of the norm function where
+<div>
+$$
+\begin{align*}
+N: \mathbf{Z}[i] &\rightarrow \mathbf{Z} \\
+N(a + bi) &= (a + bi)(a - bi) = a^2 + b^2
+\end{align*}
+$$
+</div>
+Note that this function is multiplicative. Therefore, this set is closed under multiplication. So for any $$m,n \in S$$, we have $$mn \in S$$. In particular, we know that $$0,1 \in S$$. That $$2 \in S$$ and we know that if $$p$$ is prime and $$p \equiv 1 (\bmod 4)$$, then $$p$$ is also in $$S$$. But if $$p \equiv -1 (\bmod 4)$$, then we know that $$p \not\in S$$. However, $$p^2 \in S$$. This leads to the following theorem
+<br>
+<br>
+<!--------------------------------------->
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+The set \(S\) includes the following
+	$$
+	\begin{align*}
+	S = \{0\} \cup \{m = p_1^{k_1} ... p_r^{k_r}\}
+	\end{align*}
+	$$
+where  \(r \geq 0\) and \(p_1,...p_r\) are distinct primes such that if \( p_i \equiv -1 (\bmod 4) \), then \(2 \ | \ k_i\) (so the exponent is even)
+</div>
+<!--------------------------------------->
+<br>
+For example $$2 \cdot 3^2 \cdot 5 \in S$$ since 3 is raised to an even power.
+<br>
+<br>
+<b>Sketch of Proof</b>
+<br>
+$$\{0\} \cup \{m = p_1^{k_1} ... p_r^{k_r}\} \subseteq S$$: Easy part
+<br>
+<br>
+$$S \subseteq \{0\} \cup \{m = p_1^{k_1} ... p_r^{k_r}\}$$: We want to show that if we have an element that can be written as a sum of squares, then it can have a prime factorization with the conditions in the theorem. The proof for this is an induction on $$m = a^2 + b^2$$. We will show that 
+<ol>
+	<li>if (\(p = 2\) or \(p \equiv 1 (\bmod 4)\)) and if \(p \ | \ m\), then \(m/p \in S\). </li>
+	<li>if \(p \equiv -1 (\bmod 4)\) and \(p \ | \ m\), then \(p^2 \ | \ m\) and \(m/p^2 \in S\) </li>
+</ol>
+So suppose that $$m = a^2 + b^2$$ and $$p$$ is a prime such that $$p \equiv -1 (\bmod 4)$$ such that $$p \ | \ m$$. We know $$m=a^2 + b^2 \in \mathbf{Z}[i]$$, so we can factor $$m$$ into $$m = (a + bi)(a - bi)$$. Last lecture we showed that $$p \equiv -1 (\bmod 4)$$, then $$p$$ is irreducible in the Gaussian integers. This implies $$p$$ is prime since $$\mathbf{Z}[i]$$ is a PID. Since $$p$$ is prime, then it must divide one of the factors. So $$p \ | \ (a + bi)$$ or $$p \ | \ (a - bi)$$. Suppose that $$p \ | \ (a + bi)$$. Since this is a gaussian integer, then $$p$$ must divide both of the coefficients. So $$p \ | \ a$$ and $$p \ | \ b$$. So $$a = pa'$$ and $$b = pb'$$. Then
+<div>
+$$
+\begin{align*}
+m &= a^2 + b^2 \\
+ &= (pa')^2 + (pb')^2 \\
+ &= p^2(a'^2 + b'^2)
+\end{align*}
+$$
+</div>
+Therefore, $$p^2 \ | \ m$$ and the remaining product is a sum of two squares so it's in $$S$$.
+<br>
+<br>
+<hr>
+<br>
+<!------------------------------------------------------------------------->
+<h4><b>Irreducible Elements of the Gaussian Integers</b></h4>
+Recall that $$R = \mathbf{Z}[i]$$ is a PID and since it's a PID, then it's a UFD. So every element has a factorization into irreducible unique up to units. As a reminder, we only have 4 units, $$R^{\times} = \{ \pm 1, \pm i\}$$. So in this case, what are the irreducibles of the Gaussian integers? As an example, we just showed that if $$p$$ is prime and if $$p \equiv 1 (\bmod 4)$$, then $$p$$ is irreducible in $$\mathbf{Z}[i]$$. Before answering this question, we need the following proposition
+<br>
+<!--------------------------------------->
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(u\) is irreducible in \(R\), let \(I = Ru \cap \mathbf{Z}\). Then \(I = \mathbf{Z}p\), where \(p\) is some prime number. Furthermore, \(N(u) \in \{p, p^2\}\). 
+</div>
+<!--------------------------------------->
+<br>
+<b>Proof</b>
+<br>
+
+
+
 <br>
 <br>
 <hr>

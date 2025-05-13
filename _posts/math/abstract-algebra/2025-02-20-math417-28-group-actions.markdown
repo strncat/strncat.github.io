@@ -140,16 +140,18 @@ How do we conjugate elements in this group? Recall from lecture 2? that if $$A \
 So if we conjugate the rotation by matrix $$A$$, we get another rotation but now it's about the axis $$Au$$ instead of $$u$$. This is the conjugation formula for elements in $$SO(3)$$.
 <br>
 <br>
-So now, what are the conjugacy classes of $$SO(3)$$
+So now, what are the conjugacy classes of $$SO(3)$$? The general formula is that given a rotation around some unit vector $$u$$, then the conjugacy class of this rotation is
 <div>
 	$$
 	\begin{align*}
 	Cl(Rot_u(\theta)) &= \{A Rot_u(\theta)A^{-1} \ | \ A \in SO(3)\} \\
-	                  &= \{A Rot_{Au}(\theta) \ | \ A \in SO(3)\} \\
+	                  &= \{Rot_{Au}(\theta) \ | \ A \in SO(3)\} \\
 	\end{align*}
 	$$
 </div>
-For example. Take the identity mattress. What is the conjugacy class of the identity element?
+So the conjugacy class of $$Rot_u(\theta)$$ is any rotation around the same angle but we can change this unit vector into another $$Au$$ for some rotation $$A \in SO(3)$$. Let's break this down further to see what happens if $$\theta = 0$$ and if $$\theta \neq 0$$. 
+<ol>
+<li> For example, what is the conjugacy class of the rotation around a unit vector \(u\) by \(\theta = 0\). This is in fact is the identity matrix because \(Rot_u(0) = I\). So
 <div>
 	$$
 	\begin{align*}
@@ -157,21 +159,30 @@ For example. Take the identity mattress. What is the conjugacy class of the iden
 	\end{align*}
 	$$
 </div>
-What about a non-identity matrix? so $$\theta$$ is not zero. Fix a unit vector in space. What vectors do we get if we act on it by $$A$$? Suppose we limit $$\theta$$ to $$(0, 2\pi)$$. Then
+</li>
+<li>
+	Suppose now that we fix a unit vector in space. The angle this time is not zero so \(\theta \neq 0\). What vectors do we get if we act on it by \(A\)? If we rotate a unit vector in space, then most definitely, we'll just get another unit vector after the rotation. Suppose we limit \(\theta\) to \((0, 2\pi)\). Then
 <div>
 	$$
 	\begin{align*}
-	Cl(Rot_u(0)) = \{Rot_v(\theta), v \in \mathbf{R}, \lVert v \rVert = 1 \}
+	Cl(Rot_u(\theta)) = \{Rot_v(\theta), v \in \mathbf{R}, \lVert v \rVert = 1 \}
 	\end{align*}
 	$$
 </div>
-This means that we get all the rotations with the same $$\theta$$ but the axis is changing to a different unit vector. 
+This means that we get all the rotations with the same \(\theta\) but the axis is changing to a different unit vector. So if we rotate by 120 degrees around \(u\), this rotation is conjugate to rotating around \(v\) by 120 degrees.
+</li>
+</ol>
+Note: Both $$Rot_u(\theta)$$ and $$Rot_u(-\theta)$$ are also the same conjugacy class. For example, $$Rot_{e_3}(-120)$$ and $$Rot_{e_3}(-120)$$ are in the same conjugacy class. We are rotating by 120 degrees around the same unit vector but one is clockwise and the other is counterclockwise. This is also because of the rule above where $$Rot_{e_3}(120) = Rot_{-e_3}(120)$$. So we can move the sign from the angle to the vector we're rotating against. So now we're back in the case where we're rotating by the same angle but two different unit vectors that we can relate through some matrix $$A \in SO(3)$$. The exception is 180 degrees because $$Rot_u(\pi) = Rot_u(-\pi)$$. So it's only one rotation when $$\theta = \pi$$.
 <br>
 <br>
-Note: Both $$Rot_u(\theta)$$ and $$Rot_u(-\theta)$$ are in the same conjugacy class. For example, $$Rot_{e_3}(-120) = Rot_{-e_3}(120)$$. The exception is 180 degrees because $$Rot_u(\pi) = Rot_u(-\pi)$$. [Side note: Given two rotations $$Rot_{u_1}(\theta)$$ and $$Rot_{u_2}(\theta)$$ that have the same angle but different axes. They are in the same conjugacy class if $$u_1$$ can be rotated into $$u_2$$ by an element in $$SO(3)$$].
+<hr>
+<br>
+<!----------------------------------------------------------------------------->
+<h4><b>Centralizers in \(SO(3)\)</b></h4>
+What about the centralizers in $$SO(3)$$? The centralizer of the identity is any element that commutes with the identity element. So it's easy to see that $$\text{Cent}(x) = SO(3)$$. 
 <br>
 <br>
-The centralizer of the identity is any element that commutes with the identity element. So it's easy to see that $$\text{Cent}(x) = SO(3)$$. What about the centralizer of $$Rot_u(\theta)$$ where $$\theta \in (0,2\pi)$$. We're looking for elements such that $$ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)$$. 
+What about the centralizer of $$Rot_u(\theta)$$ where $$\theta \in (0,2\pi)$$ (any angle). We're looking for elements such that $$ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)$$. 
 <div>
 	$$
 	\begin{align*}
@@ -179,7 +190,10 @@ The centralizer of the identity is any element that commutes with the identity e
 	\end{align*}
 	$$
 </div>
-This is because rotations around the same axis commute with each other. There is exception for  $$\pi = 180$$ because in addition to all the arbitrary rotations around the same axis, we also get another set which is the 180 rotations around any vector such that $$u \cdot v = 0$$. 
+The centralizer contains any rotation around the same unit vector but with any different angle. Why? This is because rotations around the same axis commute with each other. 
+<br>
+<br>
+There is exception for  $$\pi = 180$$ because in addition to all the arbitrary rotations around the same axis, we also get another set which is the 180 rotations around any vector such that $$u \cdot v = 0$$. 
 <div>
 	$$
 	\begin{align*}
@@ -270,7 +284,7 @@ What we want is an $$A$$ such that it sends $$u$$ to $$Au$$. We don't have that 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Conjugacy Classes of \(\S_n\)</b></h4>
+<h4><b>Conjugacy Classes of \(S_n\)</b></h4>
 We have formula already for this 
 <div>
 	$$
@@ -282,7 +296,7 @@ We have formula already for this
 So we get another $$k-$$cycle.
 <br>
 <br>
-Example: suppose $\sigma = (1 \ 2 \ 3)(4 \ 5)$$ and we want to conjugate by $$g = (1 \ 5 \ 2 \ 4 \ 6)$$. Then
+Example: suppose $$\sigma = (1 \ 2 \ 3)(4 \ 5)$$ and we want to conjugate by $$g = (1 \ 5 \ 2 \ 4 \ 6)$$. Then
 <div>
 	$$
 	\begin{align*}

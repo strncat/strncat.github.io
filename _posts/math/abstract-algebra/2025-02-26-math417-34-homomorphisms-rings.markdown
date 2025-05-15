@@ -217,7 +217,7 @@ Example: In any ring $$R$$, $$\{0\}$$ and $$R$$ are both ideas in $$R$$. $$\{0\}
 Observation: If $$R$$ is a ring with 1 and $$I \subseteq R$$ is an ideal. Then, if $$1 \in I$$, then $$I = R$$. Why? The ideal must be closed under multiplication so if the ideal contains 1, then it contains every element in $$R$$. 
 <br>
 <br>
-Observation: If $$I$$ contains a unit $$a^x$$, then $$I = R$$. This is because if $$a \in I$$, then $$a^{-1}a = 1 \in I$$. so $$1 \in I$$ and therefore, every element is in $$I$$. So $$I = R$$. 
+Observation: If $$I$$ contains a unit $$u$$, then $$I = R$$. This is because if $$u \in I$$, then $$u^{-1}u = 1 \in I$$. so $$1 \in I$$ and therefore, every element is in $$I$$. So $$I = R$$. 
 <br>
 <br>
 Example: If $$K$$ is a field, then we have exactly two ideals $$K$$ and $$\{0\}$$. Because fields have only units in them. 
@@ -226,7 +226,7 @@ Example: If $$K$$ is a field, then we have exactly two ideals $$K$$ and $$\{0\}$
 Example: If $$K$$ is a field and $$n \geq 1$$, then $$S = \text{Mat}_{n \times n}(K)$$ has two ideals: $$\{0\}$$ and $$S$$ (not trivial but not hard to prove).
 <br>
 <br>
-Example: If $$R = \mathbf{Z}$$, the ideals in \mathbf{Z}$$ all have form $$\{\mathbf{Z}_n = \{an \ | \ a \in \mathbf{Z}\}$$. 
+Example: If $$R = \mathbf{Z}$$, the ideals in $$\mathbf{Z}$$ all have form $$\{\mathbf{Z}_n = \{an \ | \ a \in \mathbf{Z}\}$$. 
 <br>
 <br>
 <!----------------------------------------------------------------------------->

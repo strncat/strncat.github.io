@@ -9,7 +9,6 @@ mathjax: true
 <h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Constructing Rays</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/ray-tracing/00-rays.png" width="50%" class="center"></p>
@@ -23,19 +22,16 @@ $$
 </div>
 where $A$ is the aperture and $P$ is the pixel location. The ray is defined by $t \in [0, \infty]$. But for the figure above, what we care about is the first intersection where $t \geq 1$ since that's what's inside the viewing frustum.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Parallelization</h3>
 - Scanline rendering is a per triangle operation but ray tracing here is a per pixel operation so it's easy to parallelize it. For scanline rendering, the parallelization is done for each triangle.
 - It's easier to parallelize ray tracing on the CPU rathar than the GPU and it's easier to parallelize scanline rendering on the GPU rather than the CPU.
 - Memory coherency is important when distributing rays to threads/processors. We need to assign spatially neighboring rays to the same core. These rays will tend to intersect the same objects and therefore access the same memory.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Ray-Triangle Intersection</h3>
 - The main operation in scanline rendering is to know if a pixel is inside a triangle in screen space fast. The main operation in ray tracing is figuring out if the ray intersect triangles in the virtual world fast (world space). 
 - In scanline rendering, we had to figure out how to calculate the barycentric coordinates fast (we saw many ways to do this and saw how they must all be between 0 and 1 and sum to 1, not to be outside the triangle for example) in order to determine if a pixel is inside a triangle. In ray tracing, now we have a triangle that we want to test in world space. Moreover, if we intersect a triangle, we still want to test and see if there are other triangles that we can intersect and are closer.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Three Options for Ray-Triangle Intersection</h3>
@@ -45,7 +41,6 @@ How do we speed up ray-triangle intersection? There are three options.
 	- Project this triangle to 2D since we don't need the 3rd coordinate. We know the point is on the same plane as the triangle. How do we do this? By merely dropping a coordinate. Which coordinate? We want to drop the coordinate with the largest component in the triangle's normal. This is because we want to the triangle with the maximal area in order to avoid errors. Once done, we can use the same "inside triangle" test from scanline rendering.
 	- Another option is directly do the point in triangle test in 3 dimensions. This isn't hard to do. We just need to compute the normals differently and then do our check to see if the point is on the inside of all three rays.
 - The third option to forget ray-plane intersection and directly compute the ray-triangle directly. This is similar to how ray tracing works for non-triangle geometry
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Option 1: Ray-Plane Intersection</h3>
@@ -65,9 +60,7 @@ $$
 </div>
 Before plugging this $t$ back, we need to check that $t \in [1, t_{far}]$. If it's not, then we just ignore this intersection. Now now take this $t$ value and plug it back into the ray equation to get the actual intersection point. This intersection is also ignored if we can find another intersection with a lower $t$ value.
 <br>
-<br>
 Now we can drop the coordinate with the largest component in $N$ and then apply the scanline rendering test to test if a point is inside a triangle. We've discussed multiple ways to do this in the previous post.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Option 2: 3D Point Insdie a 3D Triangle</h3>
@@ -83,7 +76,6 @@ n = (p_0 - p_2) - \big((p_0-p_2) \cdot \frac{e}{\left\lVert e \right\rVert_2}\bi
 $$
 </div>
 $R_0$ is interior to $e$ when $(R_0 - p_0) \cdot n < 0$. We can compute the normal for the other two edges and then test if $R_0$ is interior to all three edges to determine if it's inside the triangle. So pretty much the same as the 2D. Computing the normal is different. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Option 3: Direct Ray-Triangle Intersection</h3>
@@ -139,7 +131,6 @@ In these cases, we will ignore this intersection.
 <br>
 So as long as the ray has a tiny tilt, the matrix will be invertible and we can get a solution. This unique solution is inside the triangle if $\beta_1, \beta_2 \in [0,1]$ and $\beta_1 + \beta_2 \leq 1$. Morever, this intersection will be ingnored if we find another intersection with a lower $t$ value.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Cramer's Rule</h3>
 We can solve the system of linear equations by using Cramer's rule.
@@ -149,11 +140,9 @@ We can solve the system of linear equations by using Cramer's rule.
 - Compute $\beta_1 = \Delta_{\beta_1}/\Delta$ where $\Delta_{\beta_1} = det(\begin{bmatrix}A-p_0 v A-P\end{bmatrix})$. if $\beta_1 \notin [0,1]$, this isn't a valid intersection for us.
 - Compute $\beta_2 = \Delta_{\beta_2}/\Delta$ where $\Delta_{\beta_2} = \begin{bmatrix}u A-p_0 A-P\end{bmatrix}$ if $\beta_2 \notin [0,1]$, quit.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Ray-Object Intersections</h3>
 We can apply the same technique to see if our ray hits any object. We don't need this geometry to be turned into triangles like in the scanline rendering method. The general process is to try and write a function for the geometry. For example an implicit surface function. In this case, we know a point $p$ hits the surface if $f(p) = 0$. so now we just solve for $t$ in $f(R(t)) = 0$. We'll study the ray-sphere intersection next.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Ray-Sphere Intersection</h3>
@@ -171,7 +160,6 @@ $$
 - if the square root is positive then we have solutions, we'll choose the first one that hits the ray.
 - If zero, there is one solution at the tangent.
 - If negative, no solutions.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Transformed Objects</h3>
@@ -196,10 +184,6 @@ $$
 <!------------------------------------------------------------------------------------>
 <h3>Code Acceleration: Bounding boxes</h3>
 ... TODO ... kd-trees, octrees, etc
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Normals</h3>
@@ -222,7 +206,6 @@ This tells us how well the normal to the object surface is aligned to the light 
 - If they're prependicular so the light is just missing the object, then the product is 0.
 - This should be scaled down to $max(0, cos(\theta))$ to prune surfaces facing away from the light.
 <br>
-<br>
 Let $(k_r,k_g,k_b)$ be the <b>reflection coefficients</b> which should tell us the amount of the light that should bounce off the triangle and go into the camera. For example, if we store (1,0,0) at all the vertices of the triangle. This just means that blue light will bounce off to the camera). Then we'll calculate the pixel of the color using
 <div>
 $$
@@ -236,15 +219,12 @@ where:
 - $max(0,cos(\theta))$ tells you much to scale it down with since it's based on the tilting of the normal of the triangle.
 - $(k_r,k_g,k_b)$ are the reflection coefficients.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Ambient vs. Diffuse Shading</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/ray-tracing/05-diffuse-shading.png" width="50%" class="center"></p>
 This figure summarizes what happens if we just use the $cos(\theta)$ above. 
 - Ambient: colors a pixel when its ray intersects the object.
 - Diffuse Shading: takes into account how far the unit normal is titled away from the incoming light.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Computing Unit Normals</h3>
@@ -277,7 +257,6 @@ Note that $Mu \cdot \hat{N} = u^TM^TM^{-T}\hat{N} = u^T \hat{N} = 0$.
 Also $M^{-T}\hat{N}$ needs to be normalized to make it unit length.
 DO NOT use $M \hat{N}$ as the world space normal. It doesn't work.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Shadows</h3>
 We want to reduce the incoming light intesity $I$ when photons are blocked by other objects. Shadow rays determine whether photons from a light source are able to hit a point. A <b>shadow ray</b> then is cast from the intersection point $R_{\text{int}}$ in the direction of the light $-\hat{L}$ ($L$ from last time is the direction of light from the source of the light to the intersection point so $-L$ goes toward the light source). Therefore we will have:
@@ -292,7 +271,6 @@ with $t \in [0, t_{\text{light}}]$. Three things to note
 - Not finding any intersections means that the light is not blocked by anything. Otherwise, the point is shadowed and the light source is not used to color the pixel. 
 - We will need a shadow ray for each light source in the scene. 
 - We will also use some low intensity ambient shading to color points that are completely shadows.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Spurious Self-Occlusion</h3>
@@ -311,40 +289,10 @@ $$
 </div>
 note here that the light direction is modified a little bit since we changed the start point.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

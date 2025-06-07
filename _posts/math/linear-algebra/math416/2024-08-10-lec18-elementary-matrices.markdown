@@ -13,7 +13,6 @@ Recall three types of elementary row operations
 </ul>
 Now that we've studied matrix multiplication we can state the fact that performing an elementary row operation on $$A \in M_{2 \times 2}$$ can actually be described using matrix multiplication.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Elementary Matrices</h3>
 <div class="bdiv">
@@ -50,7 +49,6 @@ E_3 &=
 $$
 </div>
 This leads to the next theorem
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -110,7 +108,6 @@ Corollary
 </div>
 Proof: apply the elementary row operation by multiplying by $$E(\mathcal{R})$$ and then apply the inverse again by multiplying by $$E(\mathcal{R}^{-1})$$. The result is the identity matrix. In other words, $$E(\mathcal{R})E(\mathcal{R}^{-1}) = I_n$$. 
 <br>
-<br>
 <div class="purdiv">
 Theorem
 </div>
@@ -124,7 +121,6 @@ Theorem
 	\(A \in M_{m \times n}\) is invertible if and only iff there is a finite set of elementary matrices \(E_1,...,E_k \in M_{n \times n}\) such that \(E_k...E_2E_1A = I_n\).  \((A \ | \ I_n)\).
 </div>
 Note here that from the expression above we can see that $$A^{-1} = E_k...E_1$$ and $$A = E_1^{-1}E_2^{-1}...E^{-1}_{k-1}E^{-1}_{k}$$
-<br>
 <br>
 <div class="purdiv">
 Corollary
@@ -151,7 +147,6 @@ Proposition
 If \(B \in M_{n \times n}\) is invertible, then rank(\(BA\)) = rank(\(A\)).
 </div>
 So multiplication by $$B$$ doesn't change the rank.
-<br>
 <br>
 Proof: <br>
 By definition $$rank(BA)$$ is the rank of the linear map $$L_{BA}$$. But the rank of a linear map is the dimension of its range and so
@@ -184,7 +179,6 @@ $$
 </div>
 But this internal set is the range of the linear map $$L_A$$, $$R(L_A)$$. So what we want to show is that applying $$L_B$$ doesn't change the dinemsion of $$(R(L_A))$$ or multiplying by the matrix $$B$$ above, doesn't change anything about the dimension of the internal set.
 <br>
-<br> 
 The idea is simple but subtle. We know that $$L_B$$ is a map from $$\mathbb{R}^m$$ to $$\mathbb{R}^m$$. But here, $$L_B$$ is not acting on $$\mathbb{R}^m$$ but rather $$R(L_A)$$ (the internal set)$$. The range of $$L_A$$ is a subset of $$\mathbb{R}^m$$. So define the map
 <div>
 $$
@@ -203,7 +197,6 @@ $$
 $$
 </div>
 But we know that $$\dim(R(L_A))$$ is the rank of $$A$$. and $$\dim(L_B(R(L_A))$$ is the rank of $$L_{BA}$$ so $$rank(A) = rank(BA) \ \blacksquare$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>The Rank of a Matrix</h3>
@@ -226,7 +219,6 @@ Corollary
 	$$
 </div>
 Why do we want RREF? because it's easy to read off and we can easily figure out the dimension easily from seeing a matrix in its RREF.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
@@ -270,7 +262,6 @@ $$
 </div>
 In other words, the columns span the range. Here, we see that we have 3 non-zero columns and they are linearly independent. so $$rank(A) = \dim(R(L_A)) = 3$$. This works here but it's not generally true!! we're missing something ... so let's clarify with another example
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 What is the range of the following matrix?
@@ -289,11 +280,9 @@ $$
 </div>
 It's still true that the range of this is still spanned by the columns (always true). But the rank of $$A$$ in general is the number of columns with leading entries in $$REF$$ of $$A$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Nullity and The Dimension Theorem</h3>
 So we know that $$\text{nullity}(A) = \dim(N(A))$$. We found a basis for the null space of $$A$$ by solving $$Ax = 0$$ and finding all the solutions and then writing a set that spans that solution set. From the basis we knew the dimension of the null space. Specifically when we solved $$Ax = 0$$, it was the number of columns without leading entries. So we can write $$\text{nullity}(A) = \dim(N(A)) = $$ # of columns without leading entries.
-<br>
 <br>
 So now if we put together the number of columns without leading entries (nullity of $$A$$) and the number of columns with leading entries (rank of $$A$$), then we get $$n$$. This is basically the dimension theorem.
 <hr>

@@ -77,14 +77,11 @@ Let's apply the formula on Example 1. We had $$G = D_4 = \{e,r,r^2,j,rj,r^2j\}$$
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec29/3.png" width="55%" class="center"></p>
 This arrangement is not fixed by $$r$$. In fact, all the beads have to have the same color for $$r$$ to be able to fix them. So the fix set is zero for $$r$$. Note here that $$r^{-1} = r^{3}$$ will have the same result for the same reason.
 <br>
-<br>
 What about $$r^2$$ so a rotation by 180 degrees. Observe what happens to the following arrangement
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec29/4.png" width="55%" class="center"></p>
 So the beads on the opposite sides have to have the same color for the arrangement to work. We have two arrangements exactly of this kind. So $$|Fix(r^2)| = 2$$
 <br>
-<br>
 What about $$j$$? Let $$j$$ be the flip across the $$x$$-axis. Here, for the arrangement to be fixed, notice that the beads on the axis will not change. So we just need the top and bottom beads to have the same color. The number of arrangements with this condition is 2. In fact, $$r^2j$$ (flip around the $$y$$-axis) will have the same number of arrangement fixed.
-<br>
 <br>
 $$rj$$ is a flip around the axis $$x=y$$. So the beads on either side of the following axis must have the same color just like following picture
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec29/5.png" width="25%" class="center"></p>

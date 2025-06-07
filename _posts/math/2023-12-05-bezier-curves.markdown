@@ -37,7 +37,6 @@ $$
 </div>
 This is called a quadratic Bezier curve and it generates a nice smooth curve!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Cubic Bezier Curve</h3>
 We don't have to stop at the quadratic Bezier curve. Let's add a third point and again interpolate between the second and third point
@@ -71,7 +70,6 @@ P &= P_0(-t^3 + 3t^2 - 3t + 1) \\
 $$
 </div>
 This is the Bernstein form of the Bezier curve. This form is so interesting in that at the beginning when $t=0$, It's just $P_0$ as you move along the weights will get adjusted but they will all add up to 1 at any point until you reach the end when $t=1$ and we're at 100% of $P_3$. This weighted sum is also called a convex combination.
-<br>
 <br>
 But there is yet another form which re-arranges the points around the $t$ coefficients
 <div>

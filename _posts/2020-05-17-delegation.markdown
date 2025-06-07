@@ -7,14 +7,11 @@ mathjax: true
 ---
 The definition that made most sense was from <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaDesignPatterns/CocoaDesignPatterns.html">developer.apple.com</a>. "Delegation is a mechanism by which a host object embeds a weak reference to another object (its delegate) and periodically sends messages to the delegate when it requires its input for a task." 
 <br>
-<br>
 For example, <i>NSWindow</i> has a weak reference to its delegate object, <i>delegate</i>, which conforms to the protocol <i>NSWindowDelegate</i>. <i>NSWindowDelegate</i> defines a set of optional methods that the delegate can implement to respond to various messages sent by the window object. Since the methods are optional, <i>NSWindow</i> will check if its delegate implemented them by calling respondToSelector. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Motivation</h3>
 Why delegation? why can't we use inheritance instead? Delegation reduces coupling between classes. There is no need for our object to subclass <i>NSWindow</i> in order to define additional behavior. We just become a delegate of <i>NSWindow</i> to receive all the critical messages we're interested in and then define our own custom behaviors on top of it.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
@@ -72,19 +69,4 @@ class HostViewController: UIViewController {
 - <a href="https://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns (Book)</a>
 - <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaDesignPatterns/CocoaDesignPatterns.html">Cocoa Design Patterns (Apple Docs)</a>
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

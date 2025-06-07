@@ -54,7 +54,6 @@ The next thing we talked about was the conjugation action when the set $$G$$ act
 </div>
 We defined this action last lecture from $$G$$ to $$Sym(G)$$ but in fact, $$c$$ is a homomorphism from $$G$$ to $$Aut(G)$$. $$Aut(G)$$ is a subgroup of $$Sym(G)$$. The conjugation action is the one that's really useful for understanding things about a group $$G$$. 
 <br>
-<br>
 The <b>orbits</b> of the conjugation action are called <b>conjugacy classes. 
 <div>
 	$$
@@ -95,7 +94,6 @@ Additionally, the kernel of $$c$$ is what we call the center $$c$$. It's the col
 <h3>Examples</h3>
 What is the conjugacy class of the identity? It's always $$Cl(e) = \{e\}$$. This means that the conjugation action is never transitive unless we're acting on the trivial group. Since if $$G$$ contains other elements, then they'll be in a different orbit.
 <br>
-<br>
 Now, suppose that $$b \in Z(G)$$. So $$b$$ commutes with every other element in $$G$$. What is the conjugacy class of $$b$$. It is $$Cl(b) = \{b\}$$. Why? since $$b$$ commutes with every element $$g$$ in $$G$$, then $$Cl(b) = \{gbg^{-1} \ | \ g \in G\}$$ but
 <div>
 	$$
@@ -105,7 +103,6 @@ Now, suppose that $$b \in Z(G)$$. So $$b$$ commutes with every other element in 
 	$$
 </div>
 So $$Cl$$ contains only $$b$$. So if you're in the center, then the conjugacy class contains only you. The other way direction is true. If $$Cl(g) = \{g\}$$, $$g \in Z(G)$$. 
-<br>
 <br>
 Consequence: If $$G$$ is abelian, then $$Z(G) = G$$ and every conjugacy class in $$G$$ in its own class. So $$Cl(g) = \{g\}$$ for all $$g \in G$$. What about the stabilizer or Center$$(g)$$? It's also all of $$G$$.
 <hr>
@@ -133,7 +130,6 @@ How do we conjugate elements in this group? Recall from lecture 2? that if $$A \
 	$$
 </div>
 So if we conjugate the rotation by matrix $$A$$, we get another rotation but now it's about the axis $$Au$$ instead of $$u$$. This is the conjugation formula for elements in $$SO(3)$$.
-<br>
 <br>
 So now, what are the conjugacy classes of $$SO(3)$$? The general formula is that given a rotation around some unit vector $$u$$, then the conjugacy class of this rotation is
 <div>
@@ -174,7 +170,6 @@ Note: Both $$Rot_u(\theta)$$ and $$Rot_u(-\theta)$$ are also the same conjugacy 
 <h3>Centralizers in \(SO(3)\)</h3>
 What about the centralizers in $$SO(3)$$? The centralizer of the identity is any element that commutes with the identity element. So it's easy to see that $$\text{Cent}(x) = SO(3)$$. 
 <br>
-<br>
 What about the centralizer of $$Rot_u(\theta)$$ where $$\theta \in (0,2\pi)$$ (any angle). We're looking for elements such that $$ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)$$. 
 <div>
 	$$
@@ -184,7 +179,6 @@ What about the centralizer of $$Rot_u(\theta)$$ where $$\theta \in (0,2\pi)$$ (a
 	$$
 </div>
 The centralizer contains any rotation around the same unit vector but with any different angle. Why? This is because rotations around the same axis commute with each other. 
-<br>
 <br>
 There is exception for  $$\pi = 180$$ because in addition to all the arbitrary rotations around the same axis, we also get another set which is the 180 rotations around any vector such that $$u \cdot v = 0$$. 
 <div>
@@ -260,7 +254,6 @@ As a reminder, we did this in the previous lecture
 </div>
 For example, for the diagonals between vertices. We have 4 diagonals but for each diagonal we could rotate by $$\frac{2\pi}{3}$$ or $$-\frac{2\pi}{3}$$. So we have 8 symmetries of that kind. We also have the axes that goes through opposite edges. Those have to be of 180 degrees rotations. We have 6 of them. Finally we have the ones that goes through the faces. We have two types of these. The quarter turns which can go $$\frac{\pi}{2}$$ in either clockwise or counter clockwise and then we have the half turn rotations which are 180 degrees. Since we have 6 faces, then we have 3 axes. For the quarter turns, we have (2*3) symmetries and for the half turns, we have $$3$$ symmetries.
 <br>
-<br>
 In fact, these are exactly the conjugacy classes of the cube (5 classes). But we said earlier that rotations with the same angle but different axis are all going to be in the same conjugacy class in $$SO(3)$$. So why do we have for example, two classes that have rotations by 180 degrees here (look at the edge/edge and face/face). While they are conjugate in $$SO(3)$$, they are not conjugate in $$G$$ (cube). Reminder, the conjugation formula is
 <div>
 	$$
@@ -283,7 +276,6 @@ We have formula already for this
 	$$
 </div>
 So we get another $$k-$$cycle.
-<br>
 <br>
 Example: suppose $$\sigma = (1 \ 2 \ 3)(4 \ 5)$$ and we want to conjugate by $$g = (1 \ 5 \ 2 \ 4 \ 6)$$. Then
 <div>

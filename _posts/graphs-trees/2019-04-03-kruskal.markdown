@@ -39,7 +39,6 @@ mathjax: true
 </svg>
 Let $$G=(V,E)$$ be undirected, weighted graph with $$V$$ vertices and $$E$$ edges. A minimum spanning tree is a tree that connects all the vertices in $$V$$ of minimal cost. Kruskal's algorithm is a greedy algorithm. We always take the cheapest edge from the graph that won't create a cycle. In other words, Kruskal is maintaining a bunch of forests at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Algorithm (slow version)</h3>
 The simplest way to implement Kruskal is to sort the edges according to their weights in $$O(E\log(E))$$ time and then loop through the edges to pick the cheapest ones that don't create a cycle. We can check for cycles in $$O(E+V)$$. So this algorithm ends up being really slow. 
@@ -137,7 +136,6 @@ Why does this algorithm find a minimum spanning tree? Before we can answer that,
 Case 1: $$\{u,v\}$$ is in $$T$$, then we're done. <br>
 Case 2: $$\{u,v\}$$ is not in $$T$$. By the definition of MST, adding $$\{u,v\}$$ will create a cycle in $$T$$. Since the sets resulting from the cut must be non-empty. This means that we must have an edge that crosses the cut in $$T$$. Let that edge be $$\{x,y\}$$. Consider replacing $$\{u,v\}$$ with $$\{x,y\}$$ to produce the new tree $$T'$$. $$T$$ is still an MST since we deleted $$\{x,y\}$$. $$T'$$ has also a cost of at most the cost of $$T$$ since \{u,v\} is a light edge. Therefore, $$T'$$ is an MST which includes both $$\{u,v\}$$ and $$S$$ which is what we wanted to show. $$\blacksquare$$
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Kruska's Proof of Correctness</h3>
 
@@ -149,12 +147,9 @@ Case 2: $$\{u,v\}$$ is not in $$T$$. By the definition of MST, adding $$\{u,v\}$
 
 <b>Base Case: </b> After adding the 0'th edge, there exists an MST with the edges added so far.
 <br>
-<br>
 <b>Inductive Step:</b> Suppose the inductive hypothesis holds for $$t$$. Let $$S$$ be the set containing the edges added so far and so there is an MST extending them by the inductive hypothesis. Kruskal adds the next edge that combines some trees $$T_1$$ and $$T_2$$ from $$S$$. Consider the cut $$T_1$$ and $$V-T_1$$. This cut respects $$S$$. By the Lemma above, that edge is safe to add. Therefore, there is still an MST extending the new set of edges.
 <br>
-<br>
 <b>Conclusion:</b> After adding the $$n-1$$'st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the $$n-1$$ edges we have is an MST.$$\blacksquare$$
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Running Time</h3>
@@ -164,11 +159,9 @@ We then have $$n$$ calls to makeSet, $$2m$$ calls to find and $$n$$ calls to uni
 <br><br>
 Therefore, the total time is just $$O(m\log(n))$$ which is similar to Prim if we use a Red Black Tree and closer to $$O(m)$$ if we use radixSort.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Implementation</h3>
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/minimum-spanning-trees/kruskal.cpp">Source Code</a>
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>References</h3>

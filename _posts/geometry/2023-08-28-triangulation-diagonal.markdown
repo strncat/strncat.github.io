@@ -13,12 +13,10 @@ So now that we know that every polygon $$p$$ has a triangulation, how are we goi
 </ul>
 How can we verify the above conditions? In this post, we'll develop procedures to verify these two conditions.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Condition 1: Intersection of the diagonal \(d\) with the boundary of \(p\)</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-1.png" width="60%" class="center"></p>
 So given a diagonal candidate $$d$$ with end points $$a$$ and $$b$$, how do we go about testing its intersection with the boundary of $$p$$. The boundary consists of the edges of the polygon. The diagonal is incident to at most 4 of these edges. If we keep this case separately and focus on the rest of edges, then we simply want to know if this candidate doesn't intersect ANY of these edges besides the special 4. In other words, for all other edges that are not incident to $$a$$ or $$b$$, their intersection with $$d=ab$$ is empty.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Segment Intersection</h3>
@@ -90,7 +88,6 @@ bool diagonalie(tVertex *a, tVertex *b) {
 {% endhighlight %}
 Next we will study condition 2 which will handle both testing to see if $$d$$ is internal and testing the special edges that we didn't consider this round.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Condition 2: \(d\) is an internal diagonal (and more) </h3>
 Suppose that $$d$$ indeed doesn't intersect the boundary (minus the special edges). $$d$$ has two vertices $$a$$ and $$b$$. We will perform the following test on both vertices but just for demonstration, let's choose vertex $$a$$. Suppose that vertex $$a$$ is a convex vertex (this can be determined by checking if $$a$$ is on the (left or on) of the line that goes through $$\overline{aa_0}$$). Let's consider the following cases:
@@ -133,13 +130,9 @@ bool is_diagonal(tVertex *a, tVertex *b) {
    return in_cone(a, b) && in_cone(b, a) && diagonalie(a, b);
 }
 {% endhighlight %}
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
 <br>
-<br>
-
 

@@ -16,7 +16,6 @@ $$
 </div>
 Then we studied the Isomorphism Theorem which requires additionally that the homomorphism $$\varphi:G \rightarrow H$$ to be surjective as well as $$N = \ker(\varphi)$$. Then, this will then get us an isomorphism $$\varphi': G/N \rightarrow H$$.
 <br>
-<br>
 The Correspondence Theorem relates the subgroups of the quotient group $$G/N$$ to the subgroups of $$G$$ that contain $$N$$. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec17/1.png" width="80%" class="center"></p>
 The theorem claims that there is a bijection or a bijective correspondance between the two groups. 
@@ -43,7 +42,6 @@ $$
 $$
 </div>
 Also Recall the the pre-image of $$B$$ is $$\pi^{-1}(B) = \{g \in G \ | \ \pi(g) \in B\}$$ which we showed previously to be a subgroup of $$G$$.
-<br>
 <br>
 Additionally, the theorem also claims that the normal subgroups of $$G/N$$ correspond to the normal subgroups in $$G$$ containing $$N$$. 
 <hr>
@@ -73,7 +71,6 @@ $$
 $$
 </div>
 In general, we will have exactly two cosets. Again $$\mathbb{Z}/\mathbb{Z}2$$ partitions $$\mathbb{Z}$$ into two cosets. The coset of the even numbers and the coset of the odd numbers.
-<br>
 <br>
 Now, we want to take their pre-image. Here the possible subsets in $$\mathbb{Z}_2$$ are $$[0]_2$$ and $$[1]_2$$. BUT, the subgroups of $$\mathbb{Z}_2$$ are only $$\{[0]\}$$ and $$\mathbb{Z}_2$$. $$[1]$$ is NOT a subgroup. So $$B = \{\{[0]\}, \mathbb{Z}_2\}$$ in
 <div>
@@ -195,7 +192,6 @@ $$
 </div>
 We can observe that $$AB$$ is not a subgroup of $$G$$ because it is not closed. Another reason is that the order of $$AB$$ is 4 while the group size $$|S_3| = 6$$ and 4 doesn't divide 6. $$BA$$ is also not a subgroup since it has 4 elements. This leads to the next proposition.
 <br>
-<br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition
@@ -216,7 +212,6 @@ $$
 $$
 </div> 
 But this shows that $$(b')^{-1}(a')^{-1} \in BA$$. This implies that $$AB \subseteq BA$$. Now, suppose that $$x \in BA$$. So $$x = ba$$ where $$b \in B$$ and $$a \in A$$. Write $$ba = (eb)(ae)$$. We know that $$eb \in AB$$ and $$ea \in AB$$, so $$(eb)(ae)$$ must be in $$AB$$ since $$AB$$ is a subgroup. So $$BA \subseteq AB$$. This proves that $$AB = BA$$ as we wanted to show.
-<br>
 <br>
 $$\Leftarrow:$$ Now suppose that $$AB = BA$$. We want to show that $$AB$$ is a subgroup of $$G$$.
 <ol>

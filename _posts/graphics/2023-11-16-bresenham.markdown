@@ -33,7 +33,6 @@ void draw_line(x1, y1, x2, y2) {
 }
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Integers Only!</h3>
 The above procedure works really well but we don't want floats. We want integers only. What can we do to avoid calculating the slope $$m$$. In every iteration, notice that we're adding $$m$$ to $$\epsilon$$ and then directly comparing it again the threshold $$0.5$$. Let's expand the terms and see where we can go.
@@ -89,11 +88,9 @@ void draw_line(x1, y1, x2, y2) {
 }
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Generalizing The Algorithm</h3>
 So far we have code that works for the first octant ONLY! where the slope is positive and is less than 1. How do we handle the other cases? We're going to handle the case when the $$\Delta x$$ is still larger in magnitude than $$\Delta y$$.
-<br>
 <br>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/bresenham/fourth-octant.png" width="60%" class="center"></p>
 Let's start with the fourth octant. Here $$|m| < 1$$ but $$x_1$$ is greater than $$x_2$$. This shouldn't be too bad right? While we draw we're going to decrement $$x$$ in each iteration (instead of incrementing). This can be easily done if we introduce a variable xstep and make it equal to -1 whenever $$x_1 > x_2$$. Additionally, we will need to flip the sign of $$\Delta x$$ to be positive again. This way the slope is positive and we can use the same exact code for the first octant.
@@ -102,7 +99,6 @@ For the fifth octant. This time $$\Delta y$$ is negative so we want to flip that
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/bresenham/fifth-octant.png" width="50%" class="center"></p>
 What about the eigth octant? The magnitude of the slope is still between 0 and 1. But now we have both $$\Delta x$$ and $$\Delta y$$ negative. We just need to flip these! along with making $$xstep$$ and $$ystep$$ both be -1.
 <br>
-<br>
 Next, we'll handle all the remaining octants where the magnitude of the slope is greater than 1. Here we have more steps in $$y$$ than in $$x$$. So we need instead to move in the $$y$$ direction while keeping the error term to track the error in $$x$$ instead of $$y$$. So the same exact code still but we just need to swap $$x$$ and $$y$$! of course we will still need to adjust value of xstep and ystep similar to the above cases that we discussed.
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
@@ -110,29 +106,4 @@ Next, we'll handle all the remaining octants where the magnitude of the slope is
 <br>
 <a href="https://www.youtube.com/watch?v=y_SPO_b-WXk&t=604s">Bresenham's Line Algorithm</a>
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

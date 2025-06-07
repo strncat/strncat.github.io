@@ -7,7 +7,6 @@ mathjax: true
 ---
 Per the problem description, a palindromic number reads the same both ways. The largest palindrome made from the product of two $$2$$-digit numbers is $$9009 = 91 \times 99$$. The goal of this problem is to find the largest palindrome made from the product of two $$3$$-digit numbers.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Solution</h3>
 To check that a given number $$n$$ is a palindrome, we will reverse the number and check if the $$n$$ is equal to its reverse.
@@ -44,15 +43,11 @@ Calling this to find the largest palindrome is then trivial.
 printf("%d\n", largestPalindrome(999999));
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0004-largest-palindrome-product.cpp">here</a>.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=3">Project Euler - 03</a>
 <br>
-<br>
-
 

@@ -9,7 +9,6 @@ mathjax: true
 <h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Photon Tracing</h3>
 Photons come out of the light and then bounce around. One idea for rendering an image is to just follow every photon around and see where it goes. Some will bounce and hit an object like a chair and then get absorbed so they're gone. Some will go through the camera aperture and hit the film and this is when we can see their contribution. So basically:
@@ -21,33 +20,24 @@ Photons come out of the light and then bounce around. One idea for rendering an 
 
 Issues:
 - Most of these photons will not hit the tree so it's impractical/efficient.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>(Backward) Path Tracing</h3>
 The solution to the photon tracing problem is to send only a subset of photons. One idea is to start at the film and go backwards (just like a ray tracer). But there is an issue here is that if we go backward and then hit an object. We still don't know where the photon could come from. It could come from any direction on the hemisphere. (Similar to the BRDF, we had many incoming directions and one outgoing direction to the viewer/pixel)
 <br>
-<br>
 So now from the hemisphere, send like 100 rays/photons (sampling). So for each ray follow it along its path. If it hits an object, then again we'll need to send another 100 photon rays all over again. We continue this until eventually, some ray will hit the light source. Once we're here at the light then we know the exact path that started at the light and ended up at the film.
-<br>
 <br>
 The problem with the above solution is the potential exponential growth. For example, most of the time the light sources are not really facing the camera or the eye directly. They're pointing away but providing enough lighting everywhere. This immediately indicates that we're going to send many photons that will bounce over and over again until we hit the actual light source.
 <br>
-<br>
 The ray tracer that we discussed was doing this with <b>important sampling</b>. We send a ray until it intersects an object. And then instead of sending photon rays in all directions on the hemisphere, we send one ray directly to the light source because we just assume that there will be a lot of photons in this direction. Why? because the ray that will hit a chair for example before hitting the light source will not contain as many photons. Many of these photons will get absorbed by the chair while the ray hitting the light source with no obstructions will have the most photons. So in the first ray tracer that we did, we just picked the most important ray (direct illumination) and forget about all the others since their contribution will be much smaller.
-<br>
 <br>
 In the recursive ray tracing lecture, we added more rays. We looked at the reflected and transmitted rays. A shiny object will bounce a lot more photons in the reflected direction rather than the other directions. The transmitted and reflected rays are still grouped here under directed illumination or <b>important sampling</b> even though they're not direct rays. They're important enough!
 <br>
-<br>
 To summarize, a ray tracer does direct illumination with the shadow rays and some indirect illumination with the transmitted and reflected rays. The downside with ray tracing is that we're missing lots of other light.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Bidirectional Ray Tracing</h3>
 This approach combines both Photon Tracing and Ray Tracing. So not just the backward tracing in ray tracing but also the forward path in photon tracing. 
-<br>
 <br>
 So how do we do it?
 
@@ -63,9 +53,7 @@ So how do we do it?
 
 It's important to note that we're still going to use the ray tracer to do important sampling (shadow rays, reflected rays and transmitted rays). We need this because if we don't have enough photons, the picture won't look good. So still do the important sampling and then use the photon mapping for the secondary indirect lighting. 
 <br>
-<br>
 Light maps are great for soft shadows, color bleeding and can generate other interesting effects too. (TODO: Prism example)
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>The Equation of Light Revisited</h3>
@@ -109,7 +97,6 @@ l(u) = e(u) + \int l(v) k(u,v)dv
 $$
 </div>
 One additional note here is that we're still simplifying the light here because we're assuming that we're in a vacuum, while in reality there are particles in the air that scatter these photons. So technically, we should be putting a sphere around points not just on objects but on every point in the space!
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Discretization of the integral equation</h3>
@@ -159,7 +146,6 @@ $$
 - K^2E means it bounced twice (global illumination  (indirect lighting)).
 - K^3E means it bounced three times (global illumination  (indirect lighting)) and so on.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Tractability</h3>
 
@@ -173,7 +159,6 @@ Issues with the power series:
 
 So this isn't possible. How to fix this?
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Addressing Tractability</h3>
 Idea: Separate the diffuse and specular contribution.
@@ -185,9 +170,6 @@ Diffuse:
 
 Specular:
 - Compute (view dependent) specular illumination on the fly as the camera moves using phong shading or any other model. 
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Radiosity and Albedo</h3>
@@ -261,7 +243,6 @@ $$
 </div>
 .... SO MUCH TO DO HERE ....
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Understanding the Form Factor</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/global-illumination/00-form-factor.png" width="80%" class="center"></p>
@@ -275,8 +256,6 @@ d\omega = \frac{dA\cos\theta}{r^2} = \frac{dA\cos\theta}{\left\lVert x - x' \rig
 $$
 </div>
 Project the result downwards onto the circular base of the hemisphere which multiplies by $\cos \theta_i$.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
@@ -284,29 +263,4 @@ Project the result downwards onto the circular base of the hemisphere which mult
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -8,11 +8,9 @@ mathjax: true
 <img src="{{ site.url }}/assets/mincut/1.png" width="100%">
 Let $$G=(V,E)$$ be an undirected graph with $$V$$ vertices and $$E$$ edges. A cut in $$G$$ is a partition of $$V$$ into two non-empty sets of vertices $$A$$ and $$B$$. The <b>size</b> of the cut is the number of edges with one end point in $$A$$ and another in $$B$$. A <b>global minimum cut</b> is a cut of minimum size.
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>Karger's Algorithm</h3>
 Karger's algorithm starts with picking an edge $$(u,v)$$ in $$G$$ uniformly at random. It then <b>contracts</b> this edge by creating a new node $$w$$ that combines both $$u$$ and $$v$$. All the edges in $$G$$ with an end point equal to either $$u$$ and $$v$$ now point to $$w$$ instead. Also, any edge between $$u$$ and $$v$$ is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in $$G$$. 
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>Karger's Algorithm Pseudocode</h3>
@@ -59,7 +57,6 @@ We will end up with a global minimum cut of size 2 instead which is not correct 
 <h3>Probability of Success</h3>
 Suppose we have a graph $$G=(E,V)$$ with $$n$$ nodes and $$m$$ edges. Suppose the cut $$(A,B)$$ is a global minimum cut is of size $$k$$. Also, let $$F$$ to be the set of $$k$$ edges in the cut $$(A,B)$$. So $$F$$ has the edges that have one end point in $$A$$ and the other end point in $$B$$.
 <br>
-<br>
 The probability that the contraction algorithm succeeds is the probability that we don't make any mistake in the $$n-2$$ iterations of the algorithm. Suppose we let $$S_i$$ to be the event that we don't make a mistake in step $$i$$ or generally succeed in step $$i$$. We want to calculate the following probability:
 <div center>
 $$
@@ -95,9 +92,7 @@ We will use $$k$$ to find an upper bound on $$|E|$$. We know that the global min
 
 Proof: Suppose not, then there exists some node $$u$$ such that $$degree(u) < k$$. Pick the minimum cut such that $$A = \{u\}$$ and $$B = V - \{u\}$$. The cut $$(A,B)$$ is a global minimum cut of size less than $$k$$ which is a contradiction. $$\blacksquare$$
 <br>
-<br>
 Based on this, we can conclude that $$|E| \geq \frac{1}{2}kn$$. ($$\frac{1}{2}$$ because $$G$$ is undirected).
-<br>
 <br>
 So now we have:
 <div center>
@@ -198,17 +193,13 @@ $$
 <h3>Running Time</h3>
 Suppose we have $$n$$ nodes and $$m$$ edges. In the naive implementation, we contract $$n-2$$ edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take $$O(n)$$ time. Therefore, the total running time is $$O(n^2)$$. There are other faster implementations with union-find data structure that reduce the running time to $$O(m * \alpha(n))$$. (TODO: More on this?)
 <br>
-<br>
 Given that we can get a high success probability if we run Krager's algorithm for $$O(\log(n)n^2)$$. The total running time is therefore $$O(n^4\log(n))$$!
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>Karger - Stein</h3>
 Can we do better than $$O(n^4\log(n))$$ and still maintain a high success probability? Krager and Stein published an improved result that's much faster! 
 <br>
-<br>
 Observe when running Krager's algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set $$F$$) gets higher with every iteration. Therefore, we should really just run karger once in the first few iterations and then repeat Karger for the remaining nodes. 
-<br>
 <br>
 This is what Karger-Stein's algorithm is doing. We contract edges until we get $$n/\sqrt{2}$$ vertices. We then make copies of the graph and independently contract the edges again for each graph until we get to $$n/\sqrt{2}/\sqrt{2}$$. We then return the minimum of both cuts. We repeat this process again until we reach 4 vertices and simply find the minimum cut by brute force. This is illustrated in the below graph:
 <img src="{{ site.url }}/assets/mincut/stein.png" width="100%">
@@ -237,7 +228,6 @@ T(n) = 2T(n/\sqrt{2}) + O(n^2)
 $$
 </div>
 And therefore, the running time is $$O(n^2\log(n))$$ by the master theorem.
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>Karger - Stein Probability of Success</h3>
@@ -288,7 +278,6 @@ The claim is that $$p_d \geq \frac{1}{d+1}$$. To see this, we need to prove this
 <br>
 For the base case, the probability of finding a path of surviving edges when the height is 0 is 1. We also see that $$p_0 \geq \frac{1}{0+1} = 1$$ as we wanted to show.
 <br>
-<br>
 For the inductive hypothesis, suppose it holds for $$d-1$$ and so $$p_{d-1} \geq \frac{1}{d}$$. We will prove that it holds for $$d$$. 
 <div>
 $$
@@ -302,9 +291,7 @@ $$
 </div>
 Side Note: I don't know how I would come up with replacing $$1/d^2$$ with $$1/d(d+1)$$.
 <br>
-<br>
 Finally since the root of the tree has depth $$2\log(n)$$, then we know that the probability of success is at least $$\frac{1}{2\log(n)+1}$$.
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>Karger - Stein Improved Success Rate</h3>
@@ -326,21 +313,4 @@ class notes from following:
 3. http://web.stanford.edu/class/archive/cs/cs161/cs161.1172/CS161Lecture16.pdf
 4. Algorithm Design (BEST BOOK)
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

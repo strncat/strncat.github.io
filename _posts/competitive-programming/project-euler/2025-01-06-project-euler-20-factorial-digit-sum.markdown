@@ -85,11 +85,8 @@ for (int i = N-1; i >= 0; i--) {
 printf("sum = %d\n, ", sum);
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=20">Project Euler - 20</a>
 <br>
-<br>
-
 

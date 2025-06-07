@@ -15,7 +15,6 @@ $$
 </div>
 How can we approach this?
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Vertical Asymptotes</h3>
 The first step is finding the asymptotes. For the vertical asymptote, we want to find what makes the denominator equal to zero. The function is already in a simple form (otherwise we'd need to simplify it first (why? because the factors that cancel with the numerator will be holes in the graph rather than asymptotes)). We can then just solve,

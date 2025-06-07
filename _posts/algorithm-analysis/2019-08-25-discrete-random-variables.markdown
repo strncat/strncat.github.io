@@ -56,7 +56,6 @@ $$
 <h3>Binomial Random Variable</h3>
 If we on the other hand have $$n$$ independent trials of Bernoulli random variables with a probability of success $$p$$, then we can use a binomial random variable to represent the number of successes in $$n$$ trials. For example, if we are flipping a coin with probability of getting heads (success) equals to $$p$$, then we can define a binomial random variable $$X$$ to represent the number of heads in $$n$$ trials. 
 <br>
-<br>
 Therefore, $$R_X = \{0,1,...,n\}$$ and the PMF of $$X$$ is:
 <div center>
 $$
@@ -225,14 +224,4 @@ $$
 My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/<br>
 First Course in Probability by Sheldon Ross.
 <br>
-<br>
-
-
-
-
-
-
-
-
-
 

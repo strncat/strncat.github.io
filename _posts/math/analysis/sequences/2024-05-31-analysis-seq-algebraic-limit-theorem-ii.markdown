@@ -18,7 +18,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Problem Discussion</h3>
 We'll follow a similar approach to proving (i) in <a href="https://strncat.github.io/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">here</a> For (ii) we want to show that $$\lim (a_n + b_n) = a + b$$. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
@@ -93,7 +92,6 @@ $$
 $$
 </div>
 as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

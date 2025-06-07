@@ -7,12 +7,10 @@ mathjax: true
 ---
 These are notes I took while watching the series <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">The Essence of Linear Algebra by 3Blue1Brown</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Transformations</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-transformations/01.png" width="60%" class="center"></p>
 So what does transformation mean? A transformation takes a vector as an input and outputs another vector so it's just a function. So why didn't we call it a function? This is because the word transformation suggests movement. We're imagining that this input vector is moving over to the output vector. Of course, when transforming vectors, it is much nicer to use the trick from last time where we think of the vector as the point where its tip sits on. This way it is easier to visualize transforming many vectors all at once.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Linear Transformations</h3>
@@ -86,16 +84,12 @@ and now we can re-arrange the matrix position to put it on the left of the vecto
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-transformations/07.png" width="100%" class="center"></p>
 And this is way more fun than just memorizing how matrix multiplication works. These matrix columns are just the transformed versions of your basis vectors and the resulting vector is just a linear combinations of these two vectors. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>More Example Transformations</h3>
 TODO: Rotations and Shear. (the video shows really beautiful animation for the examples)
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br>
-<br>
-
 

@@ -23,7 +23,6 @@ The text file originally had plain text that was converted (each byte) to ASCII 
 </div>
 For this problem, we are told that the password or key consists of three lower case characters and if the password is shorter than the message, then the key is cyclically repeated throughout the message. So if the key was $$abc$$, then for the above text, we'll do $$36 \oplus a$$, $$22 \oplus b$$, $$80 \oplus c$$, $$0 \oplus a$$, and so on.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Solution</h3>
 I only did the brute force solution which worked and it was pretty fast. It was a pain to figure out which characters were allowed. I did this in $$c++$$ and the code to read the input and put it in a vector is the following
@@ -85,11 +84,8 @@ printf("sum = %d\n", sum);
 <!------------------------------------------------------------------------------------>
 The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0059-xor-decryption.cpp">here</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=55">Project Euler - 55</a>
 <br>
-<br>
-
 

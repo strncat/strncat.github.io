@@ -15,7 +15,6 @@ $$
 </div>
 As a consequence, this led to the <b>Order Theorem</b> which stated that if $$G$$ was a finite group, then for any $$g \in G$$, $$o(g)$$ divides $$|G|$$. 
 <br>
-<br>
 But now as we see, both theorems are stated for finite groups $$G$$ and we know from last lecture that the index of a group can be still defined even if $$G$$ is infinite. So this led to the generalized version of Lagrange Theorem as follows:
 <!----------------------------------------------------------------------------->
 <br>
@@ -26,7 +25,6 @@ Generalized Lagrange Theorem
 Let \(G \geq H \geq K\). Then for any \([G: K] = [G : H] [H : K]\).
 </div>
 Note here that if $$K$$ is the trivial subgroup so $$K = \{e\}$$, then $$[H:\{e\}] = |H|$$. The cosets of the trivial subgroups have size 1 so we're dividing $$H$$ isto subsets of size 1 and therefore we get back the earlier Lagrange's Theorem
-<br>
 <br>
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
@@ -94,7 +92,6 @@ If \(|G| = n\) and \(n\) is even, then there exists a \(g \in G\) with \(o(g) = 
 <br>
 Observe that if $$a \in G$$, then $$a^2 = 2$$ if and only if $$a^{-1} = a$$. In this case, the order must either be 1 or 2 so $$o(a) \in \{1,2\}$$. Now, let $$a \in G$$. For each $$a$$, produce a subset $$C$$ such that $$C = \{a, a^{-1}\}$$. This is a subset of $$G$$ of order 1 or 2 depending on whether $$a = a^{-1}$$. 
 <br>
-<br>
 Claim: For $$\{a, a^{-1}\}$$ and $$C' = \{b, b^{-1}\}$$. Either $$C = C'$$ or $$C \cap C' = \emptyset$$. Moreover
 <div>
 $$
@@ -105,9 +102,7 @@ $$
 </div>
 The union of all these subsets is $$G$$. So we get a partition of the set $$G$$ into pairwise disjoint subsets of size 1 or 2. So $$n = |G| = r + 2s$$. where $$r$$ is the number of subsets $$\{a, a^{-1}\}$$ of size 1 and $$s$$ is the number of subsets $$\{a, a^{-1}\}$$ of size $$2$$. Notice here that $$r$$ is counting all the elements such that each element is its own inverse. So $$r = |\{a \in G \ | \ a^2 = e\}|$$. In fact, $$r$$ is the number of elements in $$G$$ of order 1 or 2. 
 <br>
-<br>
 So we showed that $$n = |G| = r + 2s$$ but by assumption, $$n$$ is even and since it's even then 2 divides $$n$$. So 2 must divide $$r + 2s$$. Therefore, $$2$$ must divide $$r$$. So $$r$$ is even. We also know that $$r$$ is at least 1 because the identity element has order 1. Therefore, there must exist at least another element whose order is 2. So there exists a $$g \in G$$ such that $$o(g) = 2$$. $$\ \blacksquare$$.
-<br>
 <br>
 There is a generalization of this theorem that we'll prove later. But if $$p$$ is prime and it divides $$|G|$$, then there exists an element of order $$p$$.
 <hr>
@@ -145,9 +140,7 @@ $$
 </div>
 Fact: Either $$[a] = [b]$$ or $$[a] \cap [b] = \emptyset$$ so $$[a] = [b] \implies a \sim b$$. 
 <br>
-<br>
 So this equivalence relations gives us a way to partition a given set $$X$$ into pairwise disjoint nonempty subsets. In fact we have a bijection between the equivalence relation on $$X$$ and the partitions of $$X$$. What does this mean? It means that we can go either direction, if we have an equivalence relation, we can get a partition of $$X$$ into subsets. And if we have a set of disjoint subsets that partitions $$X$$, then we can get an equivalence relation from that. How? any two elements will be in the same equivalence class if they're in the same subset. So we're kind of talking about the same thing here. 
-<br>
 <br>
 <!----------------------------------------------------------------------------->
 So now let $$(X, \sim)$$ be a set with equivalence relation. Define $$Y$$ as the set of equivalence classes of $$\sim$$. We sometimes denotes $$Y$$ with $$X / \sim$$ "quotient set of equivalence relation". Define

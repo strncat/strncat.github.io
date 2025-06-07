@@ -14,7 +14,6 @@ But why invent another data structure? Let's take a look at sorted arrays. We ca
 <br><br>
 The binary search tree property is really great at allowing us to insert/search and delete in just $$O(h)$$ time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be $$O(\log(n))$$ where is $$n$$ is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>In Order Walk</h3>
 Another great property of binary search trees is that an in order walk of the tree results in getting all the keys sorted. 
@@ -29,7 +28,6 @@ void in_order_walk(tree *t) {
 {% endhighlight %}
 <!---------------------->
 Proving that it takes $$O(n)$$ time to perform the in order walk is such a great way to practice the substitution method. (TODO: add proof)
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Search</h3>

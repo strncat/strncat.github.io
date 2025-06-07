@@ -15,7 +15,6 @@ mathjax: true
 </div>
 converges.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof:</h3>
 Let $$(b_n)$$ be a sequence such that $$b_n \geq 0$$ for all $$n \in \mathbb{N}$$. For the backward direction, suppose $$\sum_{n=1}^{\infty} 2^nb_{2^n}$$ converges. Let $$(t_m)$$ be the sequence of partial sums with $$t_m$$ defined as
@@ -27,7 +26,6 @@ t_m = b_1 + 2b_2 + 4b_4 + 8b_8 + ... + 2^mb_{2^m}.
 $$
 </div>
 Since $$\sum_{n=1}^{\infty} 2^nb_{2^n}$$ converges, then we know that $$(t_m)$$ converges. By <a href="https://strncat.github.io/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html">theorem 2.3.2</a> we know that every convergent sequence is bounded and so $$(t_m)$$ must be bounded as well. So there exists some $$M > 0$$ such that $$|t_m| \leq M$$ for all $$m \in \mathbb{N}$$. But since $$t_m \geq 0$$, then we can just write $$t_m \leq M$$.
-<br>
 <br>
 Now, to prove that $$\sum_{n=1}^{\infty} b_n$$ converges, we need to show that the sequence of partial sums converges. Let $$(s_k)$$ be the sequence of partial sums with $$s_k$$ defined as
 <div>
@@ -58,9 +56,7 @@ $$
 </div>
 From this we see that $$s_k \leq t_k \leq M$$, and the sequence $$(s_k)$$ is bounded. Therefore, by the <a href="https://strncat.github.io/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">Montone Convergence Theorem</a>, we can conclude that $$\sum_{n=1}^{\infty} b_n$$ converges.
 <br>
-<br>
 For the forward direction, we'll prove the contrapositive of the statement and so suppose that $$\sum_{n=1}^{\infty} 2^nb_{2^n}$$ diverges, we will prove that $$\sum_{n=1}^{\infty} b_n$$ diverges as well. Because $$\sum_{n=1}^{\infty} 2^nb_{2^n}$$ diverges, then the sequence of partial sums $$(t_m)$$ also diverges. But we also know that $$(t_m)$$ is increasing and that $$b_n \geq 0$$ for all $$n \in \mathbb{N}$$. So this means that $$(t_m)$$ must be unbounded (If it was bounded, then it will converge and we assumed that it doesn't).
-<br>
 <br>
 Consider now the series $$\sum_{n=1}^{\infty} b_n$$ and its sequence of partial sums $$(s_k)$$. Fix $$k$$ and pick $$m$$ such that $$2^m \leq k \leq 2^{m+1}$$. From this, we can see that $$s_k \geq s_{2^m}$$ since $$(s_k)$$ is an increasing sequence. Expand $$s_{2^m}$$ to see that
 <div>
@@ -76,7 +72,6 @@ $$
 </div>
 From this we see that $$s_k \geq s_{2^m} \geq \frac{1}{2}b_1 + \frac{1}{2}t_m$$. But we already concluded $$(t_m)$$ is unbounded and therefore, $$(s_k)$$ is unbounded. By the <a href="https://strncat.github.io/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">Montone Convergence Theorem</a>, we know a sequence converges if it's bounded and monotone. Since we $$(s_k)$$ is monotone but unbounded then it diverges as we wanted to show. 
  $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

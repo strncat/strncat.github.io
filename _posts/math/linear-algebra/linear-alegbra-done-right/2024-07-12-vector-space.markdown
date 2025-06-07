@@ -12,8 +12,7 @@ Lots of definitions and notations are presented in <a href="https://linear.axler
 </div>
 <div class="ybdiv">
   A <i>vector space</i> is a set \(V\) along with an addition on \(V\) and a scalar multiplication on \(V\) such that the following properties hold.
-  <br>
-  <br>
+<br>
   <b>commutativity</b><br>
   \(u + v = v + u\) for all \(u, v \in V\).<br>
   <b>associativity</b><br>
@@ -28,7 +27,6 @@ Lots of definitions and notations are presented in <a href="https://linear.axler
   \(a(u + v) = au + av\) and \((a + b)v = av + bv\) for all \(u, v \in V\) and for all \(a, b \in \mathbf{F}\).<br>
 </div>
 Seeing this definition for the first time, I immediately was thinking that this is very similar to the definition of a Field except for the scalar multiplication here instead of the normal multiplication in a field. I also saw this discussion <a href=" https://math.stackexchange.com/questions/969720/what-is-the-main-difference-between-a-vector-space-and-a-field">here</a> which is also interesting. Still not sure though what the point is of a vector space ... too early to tell.
-<br>
 <br>
 <div class="ydiv">
   1.24 notation: \(\mathbf{F}^S\)
@@ -54,14 +52,11 @@ Seeing this definition for the first time, I immediately was thinking that this 
 </div>
 This is something that also threw me off. The example in the book defines $$S$$ as the interval $$[0,1]$$ and $$F = R$$ and so $$R^{[0,1]}$$ is the set of all functions from $$[0,1]$$ to $$R$$ or in other words, the set of real-valued functions on $$[0,1]$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>The Vector Space \(\mathbf{F}^S\)</h3>
 $$\mathbf{F}^S$$ is another example of a vector space over $$\mathbf{F}$$ along with the operations of addition and scalar multiplication defined previously above. Moreever, let the function 0 defined as $$0(x) = 0$$ be the additive identity for all $$x \in S$$. For the additive inverse, let $$-f: S \rightarrow \mathbf{F}$$ be defined as $$(-f)(x) = -f(x)$$ be the additive inverse of $$f$$ for all $$x \in S$$.
 <br>
-<br>
 What's more interesting is to know that $$F^{n}$$ (which is what we usually see) is a special case of the vector space $$\mathbf{F}^S$$. [Why? TODO. I didn't get the explanation in the book]
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4>Additional Vector Space Results</h4>
@@ -82,7 +77,6 @@ $$
 </div>
 The first equality holds because 0 is an additive identity. The second equality comes from the fact that addition must be commutative and lastly the last equality holds because 0' is an additive identity. Therefore, $$0 = 0'$$ which is a contradiction and the additive identity must be unique. $$\blacksquare$$
 <br>
-<br>
 <div class="bdiv">
   1.27 unique additive inverse
 </div>
@@ -99,7 +93,6 @@ w = w + 0 = w + (v + w') = (w + v) + w' = 0 + w' = w'.
 $$
 </div>
 The first equality holds because 0 is the additive identity. The second equality holds because $$v + w' = 0$$ since $$w'$$ is an additive inverse. The third equality holds because addition is associative and finally $$w + v = $$ since $$w$$ is also an additive inverse. Since $$w = w'$$, we can conclude that $$V$$ must have a unique additive inverse. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h4>References:</h4>

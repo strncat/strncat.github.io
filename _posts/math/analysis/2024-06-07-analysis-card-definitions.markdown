@@ -17,7 +17,6 @@ mathjax: true
 </div>
 This can also be written as $$\displaystyle \lim_{n\to\infty}a_n = a$$. What is this saying? After a certain number of terms, say after $$N$$, all the points in the sequence will converge to a real number $$a$$. Defining these points with $$|a_n - a| \leq \epsilon$$ is explained in the next definition.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Countable Sets</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">

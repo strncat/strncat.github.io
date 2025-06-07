@@ -17,7 +17,6 @@ For this problem, a Lychrel number is a number that never forms a palindrome thr
 </div>
 So in three iterations we have arrived at a palindrome so $$349$$ is not a lychrel number. The goal of this problem is to find the number of lychrel numbers under $$10000$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Solution</h3>
 The solution in python is extremely simple but since I stuck to $$c++$$ which was a massive pain for this problem since it deals with big integers. Not even an unsigned long long will be enough here! In main, we will want to convert each num to be represented by a vector and then check if the array represents a lychrel number.
@@ -109,11 +108,8 @@ void reverse_significant_digits(std::vector<int>& num, std::vector<int>& reverse
 <!------------------------------------------------------------------------------------>
 The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0055-lychrel-numbers.cpp">here</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=55">Project Euler - 55</a>
 <br>
-<br>
-
 

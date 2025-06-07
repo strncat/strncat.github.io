@@ -35,9 +35,7 @@ Exercise 1: $$S^{\perp}$$ is a subspace of $$V$$.
 <br>
 Exercise 2: If $$S$$ is a subspace, then $$S \cap S^{\perp} = \{0\}$$.
 <br>
-<br>
 How to use these orthogonal complements? We have the following theorem
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -124,7 +122,6 @@ $$
 </div>
 It also has a special geometric interpretation. It is the closest vector to $$x$$ in $$W$$.
 <br>
-<br>
 <div class="purdiv">
 Theorem 2
 </div>
@@ -137,7 +134,6 @@ $$
 $$
 </div>
 <b>Proof</b>
-<br>
 <br>
 It's easier to square things since we don't have deal with squareroots so
 <div>
@@ -211,7 +207,6 @@ $$
 </div>
 Note here that $$Ax_0$$ is unique but $$x_0$$ is not. Such an $$x_0$$ is called a least squares approximate solution to $$Ax = b$$. So how do we find $$x_0$$? We can just compute $$proj_{Col(A)}(b)$$ directly by finding an orthonormal basis for $$Col(A)$$ using Gram Schmidt but it is an intensive process. It turns out there is a alternative way to find this vector. Formally we have the following theorem
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem 3
@@ -241,7 +236,6 @@ $$
 $$
 </div>
 Note here that the inner product on the left is the inner product of $$W$$ but the one on the right is the inner product of $$V$$. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
@@ -333,7 +327,6 @@ $$
 </div>
 This is great but we still need another result before we are ready to prove theorem 3.
 <br>
-<br>
 <div class="purdiv">
 Lemma 2
 </div>
@@ -364,7 +357,6 @@ $$
 </div>
 From these two equations, $$n=n$$, we want to prove that $$\text{rank}(A^*A) = \text{rank}(A)$$. Therefore, it suffices to show that $$N(A) = N(A^*A)$$.
 <br>
-<br>
 To show that $$N(A) = N(A^*A)$$, we want to show that $$N(A) \subseteq N(A^*A)$$ and $$N(A^*A) \subseteq N(A)$$. But it should be clear that $$N(A) \subseteq N(A^*A)$$. Why? because $$A^*Ax = 0$$ implies that $$Ax = 0$$. Next, we will show that $$N(A^*A) \subseteq N(A)$$. So suppose that $$x \in N(A^*A)$$, then this implies that  
 <div>
 $$
@@ -392,7 +384,6 @@ Ax_0 = \text{proj}_{Col(A)}b \ \Longleftrightarrow \ x_0 = (A^tA)^{-1}A^tb
 $$
 </div>
 Which is what theorem 3 is asserting. The solution is unique and given by the above formula. One thing we immediately see is that $$\text{rank}(A) = n$$ implies $$\text{rank}(A^tA) = n$$ by lemma 2. This implies means that $$A^tA$$ is invertible.
-<br>
 <br>
 We also know that $$\text{proj}_{Col(A)}b$$ is the unique vector $$w$$ from theorem 1. In theorem 1, we asserted that every vector $$x$$ (here it is $$b$$) can be decomposed into two components $$w \in W$$ and $$z \in W^{\perp}$$ such that $$b = w + z$$. Here we have $$w = \text{proj}_{Col(A)}b = Ax_0$$ but $$b - w = z$$ so $$z = b -  Ax_0$$ and we want $$z$$ to be orthogonal to the column space of $$A$$ or $$(Col(A))$$.
 <div>

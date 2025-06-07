@@ -34,13 +34,10 @@ $$
 \end{align*}
 $$
 </div>
-
-<br>
 <br>
 $$\Leftarrow$$: Assume that $$(a_n) \rightarrow x$$ where $$a_n \in A$$ and $$a_n \neq x$$. Let $$V_{\epsilon}$$ be arbitrary. We want to prove that there some element from $$(a_n)$$ in that neighborhood $$V_{\epsilon}$$. But since $$(a_n) \rightarrow x$$, then we know that there exists an $$N \in \mathbb{N}$$ such that if $$n \geq N$$, we must have $$|a_n - x| \leq \epsilon$$. Therefore, for any $$n \geq N$$, we know that we have $$a_n \in V_{\epsilon}$$. 
 
 $$\blacksquare$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

@@ -60,8 +60,6 @@ So far we've proven $$\angle ACE = \angle ABD = \alpha$$ and $$\angle BCE = \ang
 <br>
 <b>Thoughts:</b> -
 <br>
-
-<br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>

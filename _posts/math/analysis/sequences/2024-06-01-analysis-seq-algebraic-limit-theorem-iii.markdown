@@ -18,7 +18,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Problem Discussion</h3>
 We'll follow a similar approach to proving (i) and (ii) in <a href="https://strncat.github.io/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">here</a> and <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">here</a> For (iii) we want to show that $$\lim (a_nb_n) = ab$$. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
@@ -120,7 +119,6 @@ $$
 $$
 </div>
 as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

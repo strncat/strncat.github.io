@@ -32,7 +32,6 @@ Let \(R\) and \(S\) be rings. A unital homomorphism is a ring homomorphism such 
 <h3>Example 1</h3>
 Let $$\pi: \mathbb{Z} \rightarrow \mathbb{Z}_n$$ where $$\pi(a) = [a]_n$$. Then $$\pi$$ is a unital homomorphism of rings.
 <br>
-<br>
 <h3>Example 2</h3>
 If $$R$$ is any ring with 1. Define $$\varphi \mathbb{Z} \rightarrow R$$ by $$\varphi(n) = n1_R$$. $$\varphi$$ is a unital ring homomorphism. For example
 <div>
@@ -126,7 +125,6 @@ This means given some unital homomorphism between the two rings. Then
 </ul>
 Then we will get this new homomorphism $$\varphi_c$$ and we will know how it acts on all the other polynomials using $$\varphi_c(f): \sum_{k=0}^n \varphi(a_k) c^k$$.
 <br>
-<br>
 But now you might ask that it's kind of like evaluating the polynomial at $$c$$?? This is true for a special case when $$\phi$$ is the identity function. So when $$R = S$$ and $$\phi:R \rightarrow R$$ is just the identity. Then, given any $$c$$, we will see that
 <div>
 $$
@@ -142,7 +140,6 @@ which is basically like plugging in $$c$$ for $$x$$ so $$f(c)$$. However, this $
 	<li>\(ev_c(fg) = ev_c(f)ev_c(g)\). This is equivalent to us doing \((fg)(c) = f(c)g(c)\)</li>
 </ol>
 So again, if we have a unital homomorphism and we have those two conditions where we know what it does to $$c$$ and we know what it does to constant polynomials. Then that formula must work. It's the only way. But then we need to check that this formula is actually a ring homomorphism (Excercise)
-<br>
 <br>
 Observation: $$R$$ is a commutative ring with 1. Any polynomial $$f \in R[x]$$ gives a function 
 <div>
@@ -166,7 +163,6 @@ $$
 </div>
 These are two different polynomials but they are the same function because due to Fermat's little theorem. $$c^p \equiv c (\bmod p)$$ so $$c^p = c$$ in $$\mathbb{Z}_p$$.
 <br>
-<br>
 Example 2: Let $$h = g-f \in \mathbb{Z}_p$$ so $$h = x^p - x$$ and $$func_h = 0$$ for any $$x \in \mathbb{Z}_p$$. So any element in $$\mathbb{Z}_p$$ is a root of $$h(x)$$ and $$h(x)$$ has at least $$p$$ roots in $$\mathbb{Z}_p$$. In otherwords, we have a polynomial where any element we input, we get zero and so we can't distinguish it as a function from the zero function. 
 <ul>
 <li>So as a polynomial, $$h(x) = x - x^p$$ is not the zero polynomial. Its coefficients are not all zero. </li>
@@ -174,14 +170,12 @@ Example 2: Let $$h = g-f \in \mathbb{Z}_p$$ so $$h = x^p - x$$ and $$func_h = 0$
 </ul>
 This happens because we're in $$\mathbb{Z}_p$$. If we're in an inifinite field, then when $$f \neq g$$, we will always get $$func_g \neq func_f$$. Also in general, polynomials give us functions but they are not exactly functions!
 <br>
-<br>
 Side study note: A polynomial belongs to the ring $$R[x]$$. A function is a mapping from $$R$$ to $$R$$. It assigns to each input $$r$$ in $$R$$, another value $$f(r)$$ in $$R$$. The function lives in the set of functions from $$R$$ to $$R$$. If $$R$$ is finite, two different polynomials in $$R[x]$$ may define the same function! So $$x^2$$ and $$x$$, will define the same function from $$\mathbb{Z}_2 \rightarrow \mathbb{Z}_2$$. If $$R$$ was an infinite field, then each distinct polynmoial will give a distinct function.
 <hr>
 
 <!------------------------------------------------------------------------->
 <h3>Ideals</h3>
 So far, we've seen groups, subgroups and normal subgroups. Normal subgroups were special since they show up as kernels of homomorphism and we can form quotient groups using them. 
-<br>
 <br>
 Similarly, we have rings and subrings. And we also have ideals. Ideals show up as kernels of ring homomorphisms similar to nomral groups. And we can also form quotient rings using them. 
 <br>
@@ -198,24 +192,17 @@ An ideal in \(R\) is a subset \(I \subseteq R\) such that
 </div>
 So it's not just a subring. It's more special because of the closure under the product. Warning: This definition is also reffered as a "Two Sided Ideal". Because we do have another variant where we only require half the second condition (left and right ideals).
 <br>
-<br>
 Example: In any ring $$R$$, $$\{0\}$$ and $$R$$ are both ideas in $$R$$. $$\{0\}$$ is usually called the trivial ideal. $$R$$ is called the unit ideal.
-<br>
 <br>
 Observation: If $$R$$ is a ring with 1 and $$I \subseteq R$$ is an ideal. Then, if $$1 \in I$$, then $$I = R$$. Why? The ideal must be closed under multiplication so if the ideal contains 1, then it contains every element in $$R$$. 
 <br>
-<br>
 Observation: If $$I$$ contains a unit $$u$$, then $$I = R$$. This is because if $$u \in I$$, then $$u^{-1}u = 1 \in I$$. so $$1 \in I$$ and therefore, every element is in $$I$$. So $$I = R$$. 
-<br>
 <br>
 Example: If $$K$$ is a field, then we have exactly two ideals $$K$$ and $$\{0\}$$. Because fields have only units in them. 
 <br>
-<br>
 Example: If $$K$$ is a field and $$n \geq 1$$, then $$S = \text{Mat}_{n \times n}(K)$$ has two ideals: $$\{0\}$$ and $$S$$ (not trivial but not hard to prove).
 <br>
-<br>
 Example: If $$R = \mathbb{Z}$$, the ideals in $$\mathbb{Z}$$ all have form $$\{\mathbb{Z}_n = \{an \ | \ a \in \mathbb{Z}\}$$. 
-<br>
 <br>
 <!----------------------------------------------------------------------------->
 <div class="mintheaderdiv">

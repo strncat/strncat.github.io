@@ -8,21 +8,17 @@ mathjax: true
 ![my photo]({{ site.url }}/assets/rmq/rmq-array.png)
 Given an array $$A$$ and two indices $$i \leq j$$ that are not known in advance. The RMQ problem solves the problem of finding the minimum element in the range $$A[i],A[i+1],...,A[j-1],A[j]$$.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Definitions</h3>
 Let $$\langle p(n), q(n)\rangle$$ be the complexity of an algorithm with preprocessing time $$p(n)$$ and query time $$q(n)$$.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Algorithm 1: no preprocessing</h3>
 The simplest approach is to not do any kind of preprocessing on the input and just compute the minimum for each query. Therefore, we will have $$\langle p(n), q(n)\rangle = \langle O(1), O(n)\rangle$$.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Algorithm 2: precompute all ranges</h3>
 We compute the minimum element for all possible ranges. There are $$O(n^2)$$ possible ranges. We need $O(n)$ time to compute the minimum in each range so the total time preprocessing time is $$p(n) = O(n^3)$$ and therefore, we have $$\langle p(n), q(n)\rangle = \langle O(n^3), O(1)\rangle$$.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Algorithm 3: precompute all ranges with dynamic programming</h3>
@@ -44,7 +40,6 @@ for (int i = 1; i < n; i++) {
 {% endhighlight %}
 Therefore, $$p(n) = O(n^2)$$ and we have $$\langle p(n), q(n)\rangle = \langle O(n^2), O(1)\rangle$$.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Algorithm 4: block decomposition</h3>
 ![my photo]({{ site.url }}/assets/rmq/rmq-block.png)
@@ -63,7 +58,6 @@ Therefore, $$q(n) = O(b + (n/b))$$:
 
 <i>What is the optimal block size?</i><br>
 We can take the derivative of $$b + n/b$$ to find the value that minimizes $$b$$. This value is $$b = \sqrt{n}$$. Therefore, the query time is $$q(n) = O(b + (n/b)) = O(\sqrt{n} + (n/\sqrt{n})) = O(\sqrt{n})$$.
-<br>
 <br>
 Finally we will have $$\langle p(n), q(n)\rangle = \langle O(n), O(\sqrt{n})\rangle$$.
 
@@ -118,7 +112,6 @@ So for the array above we will have the following minimums:
 
 Each Entry, $$M[i,j]$$ represents the minimum for the range $$\{i,i+2^j\}$$. Since we're computing $$n\log(n)$$ ranges, therefore, this table has size $$O(nlogn)$$. We can further use dynamic programmnig to fill this table out. 
 <br>
-<br>
 <i>Dyanmic Programming</i>
 <br>
 Notice that any region can be divided into two regions. The intuition is that since we're computing the minimum for ranges that are powers of 2, then any region of size $$2^k$$ can be divided into two regions of size $$2^{k-1}$$ which we compute first. In the example below, we want to find the minimum for the gray range that starts at $$i$$ and of size $$2^j$$. To do so, we divide the range into the blue and yellow regions, each of size $$2^{j-1}$$. The blue region is just $$M[i,j-1]$$ and the yellow region is just $$M[i+2^{j-1},j-1]$$
@@ -159,7 +152,6 @@ void preprocess_sparse(int *a, int n, int M[MAX][LOGMAX]) { // O(nlog(n))
 <i>Preprocessing Time:</i><br>
 Notice that for each index, we're computing $$\log{n}$$ ranges. Therefore, the total preprocessing time $$p(n) = O(n\log(n))$$.
 <br>
-<br>
 <i>Query Time:</i><br>
 ![my photo]({{ site.url }}/assets/rmq/rmq-sparse-query.png)
 <br>
@@ -191,18 +183,13 @@ void test_sparse(int *a, int n) {
 <br>
 Finally we will have $$\langle p(n), q(n)\rangle = \langle O(n\log(n)), O(1)\rangle$$.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Implementation</h3>
 https://github.com/strncat/algorithms-and-data-structures/blob/master/rmq/rmq.cpp
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>References</h3>
 1. CS166 Lecture Slides http://web.stanford.edu/class/cs166/lectures/00/Small00.pdf
 2. Fischer, Johannes and Heun, Volker. Theoretical and Practical Improvements on the RMQ-Problem, with Applications to LCA and LCE
 <br>
-<br>
-
-
 

@@ -61,7 +61,6 @@ Now set $$N = \max\{N_1, N_2\}$$. We know that the set of terms $$\{a_1, a_2, ..
 
 as we wanted to show. $$\blacksquare$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>

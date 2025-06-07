@@ -37,11 +37,8 @@ for (int i = 0; i < N; i++) {
 printf("sum = %d\n", sum);
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=16">Project Euler - 16</a>
 <br>
-<br>
-
 

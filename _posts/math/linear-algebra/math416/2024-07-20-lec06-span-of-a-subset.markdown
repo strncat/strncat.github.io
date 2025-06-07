@@ -100,7 +100,6 @@ $$
 </div>
 This is the $$xz$$-plane in $$\mathbb{R}^3$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem (part of 1.5 in the book)
@@ -159,7 +158,6 @@ From (a), (b), (c), we can conclude that $$Span(S)$$ is a subspace of $$V$$.
 <!------------------------------------------------------------------------------------>
 <h3>Example 7</h3>
 Is $$x^3 - 3x + 5$$ in $$Span(\{x^3 + 2x^2 - x + 1, x^3 + 3x^2 - 1\})$$?
-<br>
 <br>
 For $$x^3 - 3x + 5$$ to be in the span, this means that $$x^3 - 3x + 5$$ can be written as a linear combinations of what's inside the set. In other words, there exists $$a_1, a_2 \in \mathbb{R}$$ such that
 <div>
@@ -221,7 +219,6 @@ $$
 $$
 </div>
 This tells us that there is a solution so the answer is yes, we can write it $$x^3 -3x + 5$$ is in the span above. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">

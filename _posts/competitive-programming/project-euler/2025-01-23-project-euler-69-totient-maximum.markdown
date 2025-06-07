@@ -75,9 +75,7 @@ printf("max n = %d\n", n);
 {% endhighlight %}
 I added one small optimization which didn't do much and feels unnecessary to skip prime numbers since based on the formula, the solution will never be a prime number.
 <br>
-<br>
 The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0069-totient-maximum">here</a>.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>More Advanced Solution?</h3>
@@ -92,11 +90,8 @@ while the brute force solution is great (good to practice writing all of these m
 is maximized when we have the most distinct prime numbers. So instead we can generate all prime numbers with sieve and then multiply them until we hit the limit $$1,000,000$$.
 <br>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=69">Project Euler - 69</a>
 <br>
-<br>
-
 

@@ -239,7 +239,6 @@ Example: ($$\mathbb{R}^2, \langle x,y \rangle = x_1y_1 + x_2y_2$$) is an inner p
 <h3>The Norm of a Vector</h3>
 For the rest of the lecture, we're going to assume that we have a fixed inner product on $$V$$. 
 <br>
-<br>
 <div class="bdiv">
 Definition
 </div>
@@ -253,7 +252,6 @@ Let \(V, \langle \ , \ \rangle\) be an inner product space. The length (or norm)
 </div>
 <br>
 Example $$V = \mathbb{C}^0([0,1])$$, Let $$\Vert f \Vert: (\int_0^1 f(t)^2 dt)^{1/2}$$. This is also called the $$L^2$$-norm.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
@@ -306,10 +304,8 @@ $$
 </div>
 But we want to prove this in general so:
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Proof (c)</b>:
-<br>
 <br>
 If $$y = \bar{0}_V$$, then the inequality is true and we are done. So assume that $$y \neq \bar{0}_V$$. If we multiply both sides by $$\frac{1}{\Vert y \Vert}$$ which is a scalar, then this scalar can be factored out by property 1. Therefore, we can scale $$y$$ by whatever factor we want and so let's just assume that $$y$$ has length 1 ($$\Vert y \Vert = 1$$). So it suffies to show that
 <div> 

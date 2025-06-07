@@ -18,7 +18,6 @@ Let $$A$$ and $$B$$ be sets and let $$A + B$$ be the set defined above. We want 
 </ul>
 From these two inequalities we will then conclude that $$\sup A+B = \sup A + \sup B$$.
 <br>
-<br>
 To prove that $$\sup A+B \leq \sup A + \sup B$$, let $$a$$ be an arbitrary element in $$A$$. Then we must have,
 <div>
 $$
@@ -101,7 +100,6 @@ $$
 </div>
 as required. This concludes the second part of the proof. Therefore, $$\sup A + \sup B \leq \sup (A + B)$$ as required.
 $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Additional Notes:</h3>

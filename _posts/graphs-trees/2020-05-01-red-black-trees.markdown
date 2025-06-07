@@ -10,7 +10,6 @@ We previously discussed binary search trees and how the binary search tree prope
 <br><br>
 A red-black tree is a binary search tree that is balanced. By only adding one extra bit to store the color of the node (red or black) and some restrictions on how to insert and delete nodes, we can have a balanced binary search tree that guarantees the height to be $$O(\log(n))$$. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Red-black tree specifications</h3>
 A red-black tree must satisfy the following properties:
@@ -19,7 +18,6 @@ A red-black tree must satisfy the following properties:
 - Every leaf node is black.
 - If a node is red, then its children are black.
 - The number of black nodes must be the same across all simple paths from any node to a leaf node.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Why are red-black trees balanced?</h3>
@@ -33,7 +31,6 @@ Looking at the figure below, we see in the first figure we have $$bh(root)=3$$ a
 <img src="{{ site.url }}/assets/trees/red-black-trees/internal-nodes.png" width="100%">
 
 Proof: By Induction on the height of $$x$$. For the base case, consider when the height is 0, then we know that $$x$$ is NIL. Therefore, $$2^{bh(x)} - 1 = 1 - 1 = 0$$. For the inductive step, suppose $$x$$ has some positive height > 0 and has two internal children (why 2?). Each child must have either $$bh(x)-1$$ or $$bh(x)$$ black height depending on its color. If $$x$$ was red, then both children must be black and the black height of both children is  $$bh(x)$$. If $$x$$ was black, then both its children must have black height $$bh(x)-1$$. Since the height of both children is less than $$x$$, then we can apply the inductive hypothesis and conclude that each child must have at least $$2^{bh(x)-1}-1$$ internal nodes. Therefore, $$x$$ has at least $$1 + 2^{bh(x)-1} - 1 + 2^{bh(x)-1} - 1 = 2^{bh(x)} -1 $$ internal nodes which completes the proof. $$\blacksquare$$ 
-<br>
 <br>
 To prove that the height of the tree is at most $$O(\log(n))$$, . The next thing we want to use is the fact that every red node in a red-black tree must have black children. Therefore, half the nodes on any path must be black. Therefore, if the height of the tree is $$h$$ then we must have $$bh(root) \geq h/2$$. Using what we proved earlier, we see that
 <div center>
@@ -53,7 +50,6 @@ $$
 <h3>Rotations</h3>
 Operations on red-black trees such as insert and delete modify the tree such that we might violate the red-black tree properties. To restore these properties we perform an essential operation called a rotation. Rotations maintain the binary search property. More on rotations are 
 <a href="https://strncat.github.io/jekyll/update/2019/05/02/binary-tree-rotation.html">here</a>.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Insert</h3>
@@ -88,21 +84,17 @@ void Tree::insert(int d) {
 {% endhighlight %}
 Also note that we color the node red by default. Red nodes allow for some room in the definition of a "balanced tree". We still be okay. If the parent of the node is black, then all is fine. However if we choose to color it black then we immediately violate the property that the number of black nodes must be the same across all simple paths. 
 <br>
-<br>
 In general, there are two main violations that could happen. This could be our very first node which the root and the root must be black. The parent of the node might be red and red nodes are not allowed to have red children.
 
 TODO: EACH CASE :)
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Delete</h3>
 TODO
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Implementation</h3>
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp">Source Code</a>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>

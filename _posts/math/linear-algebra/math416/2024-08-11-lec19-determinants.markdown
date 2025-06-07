@@ -37,8 +37,7 @@ $$
 	Consider, the matrix \(A \in M_{n \times n}\). When we apply \(A\) on each vector in the standard basis, we get \(Ae_1, Ae_2, ...\).
 	<br>
 	\(L_A([0,1]^n\) is the parallelepiped determined by \(\{Ae_1, Ae_2, ...,Ae_n\}\) and \(volume(L_A([0,1]^n)) = |det(A)|\).
-	<br>
-	<br>
+<br>
 	<li>The determinant map is not linear except for \(n = 1\). (It is linear in the rows of \(A\))</li>
 	<li>\(\det(AB) = \det(A)\det(B)\).</li>
 </ol>
@@ -47,7 +46,6 @@ $$
 <!------------------------------------------------------------------------------------>
 <h3>Definition of the Determinant</h3>
 The definition of the $$\det: M_{n \times n} \rightarrow \mathbb{R}$$ is inductive on $$n$$.
-<br>
 <br>
 <!-------------------n=1------------------->
 For $$n = 1$$: 
@@ -119,7 +117,6 @@ $$
 $$
 </div>
 Define $$\tilde{A_{ij}}$$ as the $$(n-1)\times(n-1)$$ matrix obtained from $$A$$ by deleting its $$i$$th row and $$j$$th column.
-<br>
 <br>
 For example
 <div>
@@ -215,7 +212,6 @@ $$
 <br>
 We have two cases. The $$r$$th row is 1 or the $$r$$th row is some other row other than 1. Why? because the current definition of the determinant that we have right now is "favoring" the first row. So we want to split the cases around this.
 <br>
-<br>
 Case 1 ($$r = 1$$): 
 <br>
 Suppose the matrices differ in the first row where the first row of $$A$$ is some linear combination of the first row in $$B$$ and the first row in $$C$$. We know that
@@ -257,7 +253,6 @@ $$
 Case 2 ($$r > 1$$): By Induction on $$n$$
 <br>
 Base Case: When $$n = 1$$, the determinat is linear.
-<br>
 <br>
 Inductive Step: Suppose it is true for $$n - 1$$. Then,
 <div>
@@ -322,7 +317,6 @@ $$
 The proof of this lemma is in the textbook (page 214). (TODO: check). So now we'll do the proof for the theorem.
 <!------------------------------------------------------------------------------------>
 <br>
-<br>
 <b>Proof (Using the Lemma)</b>
 <br>
 Given $$A$$. Let $$B_j$$ be the matrix equal to $$A$$ with the $$r$$th row replaced by $$e_j$$. By the technical lemma,
@@ -334,7 +328,6 @@ $$
 $$
 </div>
 (<i>Note this is this the same expression as the technical lemma. It's just that the matrix here is called $$B_j$$ and in the technical lemma it is $$B$$. Moreover, $$\det(\tilde{(B_{j})_{rj}})$$ says take the matrix $$B_j$$ and remove the row $$r$$ and column $$j$$ to compute that determinant)</i> 
-<br>
 <br>
 So now, since we're computing the determinant by removing the row $$r$$ and column $$j$$, this determinant should the same exact determinant as $$\det(\tilde{A_{rj}})$$ since they only differ in row $$r$$ and column $$j$$. Therefore, we replace it with $$\det(\tilde{A_{rj}})$$ in
 <div>
@@ -357,7 +350,6 @@ $$
 as we wanted to show. $$\blacksquare$$
 <!------------------------------------------------------------------------------------>
 <br>
-<br>
 This gives the following corollary
 <br>
 <div class="purdiv">
@@ -378,7 +370,6 @@ If \(A\) has two identical rows, then \(\det A = 0\).
 <b>Proof</b>
 <br>
 By induction on $$n$$. 
-<br>
 <br>
 Base Case: $$n = 2$$.
 <div>

@@ -83,9 +83,7 @@ $$
 </div>
 What is the limit of this matrix?? This often exists and is easy to describe.
 <br>
-<br>
 Exercise: $$A^d$$ is also a transition matrix!
-<br>
 <br>
 What we want to know is what this limit is so we're going to spend some time studying the properties of this transition matrix.
 <br>
@@ -114,19 +112,14 @@ Suppose for some \(d \geq 1, A^d\) has all positive entries. Then
 </div>
 $$c$$ is saying that just knowing the eigenvector corresponding to eigenvalue 1, we can predict the future. No matter what initial probability vector we're given, we know as $$k$$ approaches infinity, $$A^k$$ is just $$\begin{pmatrix} \bar{u} & \bar{u} & ... & \bar{u} \end{pmatrix}$$ and the product of this matrix with any probability vector is just $$\bar{u}$$!
 <br>
-<br>
 <!-------------------------------------------1----------------------------------------->
 <b>Proof</b>
 <br>
-<br>
 We're going to prove these statements in several parts.
-<br>
 <br>
 <b>1 is an eigenvalue of $$A$$:</b>
 <br>
-<br>
 FACT: $$A$$ and $$A^t$$ has the same eigenvalues. Why? This is because $$\det(B) = \det(B^t)$$ which means that $$\det(A - tI_n) = \det(A^t - tI_n)$$. We will use this fact to prove what we want.
-<br>
 <br>
 Consider $$A^t$$. We know that the rows now add to 1 (in $$A$$, the columns add to 1). Let $$\bar{v} = \begin{pmatrix} 1 & \cdots & 1 \end{pmatrix}^t$$. Now,
 <div> 
@@ -144,7 +137,6 @@ The last step is true because we know in $$A^t$$, the sum of each row adds to 1.
 <!---------------------------------------2--------------------------------------------->
 <br>
 <b>If $$\lambda$$ is an eigenvalue of $$A$$, then $$|\lambda| \leq 1$$:</b>
-<br>
 <br>
 Since $$\lambda$$ is an eigenvalue of $$A$$, then $$\lambda$$ is an eigenvalue of $$A^t$$. By definition this means
 <div> 
@@ -194,7 +186,6 @@ As required.
 <!---------------------------------------2--------------------------------------------->
 <br>
 <b>If $$A_{ij} > 0$$ for all $$i,j$$, then $$\dim E_1 = 1$$ and $$\lambda \neq 1 \implies |\lambda| < 1$$:</b>
-<br>
 <br>
 Suppose $$|\lambda| = 1$$ and $$A^tv = \lambda v$$ for $$v \neq \bar{0}$$. It suffies to show that 
 <div> 
@@ -246,7 +237,6 @@ $$
 where \(\bar{u}\) is a probability vector and \(A\bar{u} = \bar{u}\)
 </div>
 <b>Proof</b>
-<br>
 <br>
 We will assume the statements we proved in the previous theorem. So 1 is an eigenvalue, $$\dim(E_1)=1$$ and any other $$\lambda$$ has $$|\lambda| < 1$$. On top of this, now we can also assume that $$A$$ is diagonalizable. This means we can write $$A$$ as
 <div> 
@@ -328,7 +318,6 @@ AL &= \begin{pmatrix} Al_1 & \cdots & Al_n \end{pmatrix} \\
 $$
 </div>
 From this we see that $$Al_1 = l_1, Al_2 = l_2,...$$. So each column vector $$l_j$$ is in fact an eigenvector of $$A$$ with eigenvalue 1. But we also know that the eigenspace of $$\lambda=1$$ is one-dimensional so all of the eigenvectors $$l_1,...,l_n$$ must be in $$E_{\lambda_1}$$. Therefore, $$l_j = c_j\bar{u}$$ for some $$c_j$$. 
-<br>
 <br>
 We also know that the sum of entries of $$l_j$$ is 1. Similarly the sum of entries in $$\bar{u}$$ is also 1. So if both sides had vectors where the sum of entries is 1, then $$c_j$$ must be 1 so $$l_j = \bar{u}$$ and we can write
 <div> 

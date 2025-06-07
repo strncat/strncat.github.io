@@ -49,7 +49,6 @@ The base case of the recursion is reaching an array of size 1 ($first < last$ is
 
 <img src="{{ site.url }}/assets/randomized/quicksort/7.png" width="100%">
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Partition</h3>
 
@@ -58,7 +57,6 @@ The most critical or the only thing we really do in Quicksort is partitioning th
 <img src="{{ site.url }}/assets/randomized/quicksort/p1.png" width="100%">
 
 We will also keep track of an index, $i$, to iterate through the array. At each iteration, we will compare the element at index $i$ with the the pivot. The trick to partition is keeping track of another index, $$write{\_}index$$. Whenever we see an element that is less than the pivot, we swap it with the element at $$write{\_}index$$ and increment $$write{\_}index$$. The intuition here is that we want all the elements less than the pivot to be stored below $$write{\_}index$$. 
-<br>
 <br>
 Initially, $i=0$ and $$write {\_} index =0$$. We compare $array[i=0]=6$ to the pivot, 3. Since 6 is not smaller, we just increment $i$.
 
@@ -108,11 +106,9 @@ int partition(int *a, int first, int last, int n) {
 {% endhighlight %}
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/sorting/quick-sort.c">Quicksort in C</a>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Correctness of partition</h3>
 The proof is done with a standard loop invariant. For partition above, we want to establish the following invariant:
-<br>
 <br>
 For any index $k$ in the array:
 - If $$write{\_}index \leq k \leq i$$, then $array[k] \leq array[pivot]$. (Remember we've already said any element below $$write{\_}index$$ is less than the pivot).
@@ -122,7 +118,6 @@ For any index $k$ in the array:
 
 <br>
 Proof is in CLRS ;)
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Worst-case running time analysis</h3>
@@ -137,7 +132,6 @@ $$
 </div>
 This recurrence has the solution $T(n)=O(n^2)$ which is the worst-case running time of quicksort. Intuitively, if we always choose either the smallest or the largest index as a pivot, then we will be making $$O(n)$$ calls to partition. Partition takes linear time and so the total running time will be $O(n^2)$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Best running time analysis</h3>
 How good can quicksort be? Suppose that the pivot is always chosen to be the middle element in the array. Then our recurrence would look like the following,
@@ -149,7 +143,6 @@ T(n) &= 2T(n/2) + O(n).
 $$
 </div>
 By the master theorem, the solution is $T(n) = O(n\log(n))$. Intuitively, if we always partition the array around the middle element, we will need to make $O(\log(n))$ calls to partition and therefore, we get $O(n\log(n))$ as the overall runtime.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Expected running time analysis</h3>
@@ -246,7 +239,4 @@ Thus, the expected running time of quick sort is $O(n\log(n))$ when the elements
 - CLRS Chapter 7
 - <a href="http://web.stanford.edu/class/cs161/Lectures/Lecture5/Lecture5-compressed.pdf">CS161 Stanford</a>
 <br>
-<br>
-
-
 

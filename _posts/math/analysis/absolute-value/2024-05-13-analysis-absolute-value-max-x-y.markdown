@@ -10,7 +10,6 @@ mathjax: true
 </div>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
-<br>
 <h3>Proof:</h3>
 Suppose $$x$$ and $$y$$ are two real numbers. Consider the following cases
 <ul>
@@ -38,7 +37,6 @@ $$
 </div>
 Which is also true since we assumed that \(x > y\).
 $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

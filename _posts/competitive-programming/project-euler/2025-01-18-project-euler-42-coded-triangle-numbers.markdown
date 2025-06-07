@@ -23,7 +23,6 @@ The first 10 triangle numbers are therefore
 </div>
 We are given a list of words in a file. A word's alphabetical score is calculated by summing each letter's alphabetical position. So for example, SKY's alphabetical score is $$19+11+25 = 55$$. This is also the 10th term in the triangle sequence above. So SKY is a triangle word. The goal of this problem is to find the number of triangle words in the file.
 <br>
-<br>
 Similar to <a href="">Problem 22</a>, the first thing we want to do is read the file we're given and add the words in an array. We can do this with
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}freopen("0022_names.txt" , "r" , stdin);
@@ -77,11 +76,8 @@ printf("triangle terms count = %d\n", count);
 {% endhighlight %}
 <!------------------------------------------------------------------------------------>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=42">Project Euler - 42</a>
 <br>
-<br>
-
 

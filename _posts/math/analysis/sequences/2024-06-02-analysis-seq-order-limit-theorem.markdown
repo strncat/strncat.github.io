@@ -37,11 +37,9 @@ But this contradicts the assumption that $$a_n \geq 0$$ for all $$n \in \mathbb{
 Write $$a_n \leq b_n$$ as $$b_n - a_n \geq 0$$. Since we have both $$\lim a_n = a$$ and $$\lim b_n = a$$, then by <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">the algebraic limit theorem</a>, This limit will converge to $$b - a$$. By part (i), since $$b_n - a_n \geq 0$$, then $$b-a \geq 0$$ and so $$a \leq b$$ as required. 
 $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof (iii)</h3>
 TODO
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

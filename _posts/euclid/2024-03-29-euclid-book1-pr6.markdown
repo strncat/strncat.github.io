@@ -32,8 +32,6 @@ But angle $$\angle ACB$$ equals to the sum of angles $$\angle ACD$$ and $$\angle
 <br>
 <b>Thoughts:</b> -
 <br>
-
-<br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>

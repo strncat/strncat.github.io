@@ -9,11 +9,9 @@ mathjax: true
 <h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Overview</h3>
 The barycentric coordinates are heavily used to graphics. We typically work with triangles and so when we're about to color a pixel we interpolate the values in the three vertices of the triangle to come up with the right color for the pixel. This applies to many other information stored at the vertices like reflectivity, transparency and so on. To define barycentric coordinates, we 'll start by studying the parametrized function form of a line segment next.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Parametrized Functions for Line Segments</h3>
@@ -36,7 +34,6 @@ y(t) = (1-t)y_1 + ty_2.
 $$
 </div>
 This $$t$$ ranges from 0 to 1 and can be seen as the fraction of the way from $$x_1$$ to $$x_2$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Barycentric Weights for Line Segments</h3>
@@ -72,7 +69,6 @@ $$
 so again the alphas are the barycentric weights. and this whole process is called the barycentric interpolation.
 Note where $$\alpha_0$$ and $$\alpha_1$$ are on the line. We did as a convention. We could switch if we need to but it will make the next topic easier this way.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Barycentric Weights for Triangles (1st Approach: Geometric)</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/triangles/03-triangle-barycentric.png" width="50%" class="center"></p>
@@ -97,15 +93,9 @@ $$
 </div>
 So using the cross product, we can compute all these areas to derive the barycentric coordinates.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Barycentric Weights for Triangles (2nd Approach: Algebraic)</h3>
 TODO
-
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Barycentric Weights for Triangles (3rd Approach)</h3>
@@ -127,7 +117,6 @@ $$
 </div>
 where $$\alpha_0 = \beta_1$$, $$alpha_1 = \beta_2$$ and $$\alpha_2 = 1 - \beta_1 - \beta_2$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Find the color and z' value at a pixel</h3>
 To see an example, let's say we want to find the $$z'$$ of a pixel. we know the $$z'$$ value for each vertex of the triangle. What do we do now? We just figure out the barycenteric weights and multiply the weights by the $$z'$$ values of each vertex of the triangle in,
@@ -140,11 +129,8 @@ $$
 </div>
 Similarly we can interpolate the color of the pixel. Multiply the color of the vertices by their the barycentric weight to find the exact color of the pixel.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
 <br>
-<br>
-
 

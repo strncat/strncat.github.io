@@ -124,9 +124,7 @@ $$
 </div>
 At some point when we get to $$x^4$$, we know by Lagrange, that the order of the element will be 6. This group is in fact isomorphic to $$\mathbb{Z}_2 \times \mathbb{Z}_3 \cong \mathbb{Z}_6$$.
 <br>
-<br>
 Why was this example different? why was this one cyclic. Because 2 and 3 are prime numbers. $$a$$ has order $$2$$ and $$b$$ is of order $$3$$. To get to the identity element, we will need a power that is the least common multiple which is 6.
-<br>
 <br>
 We can formalize this idea in the next proposition
 <br>
@@ -194,7 +192,6 @@ $$
 </div>
 Why? Recall that we defined a homomorphism $$\gamma$$ from $$\mathbb{Z}$$ to $$\mathbb{Z}_a \times \mathbb{Z}_b$$. Its kernel $$K = \mathbb{Z}m$$. By the Homomorphism Theorem, we get another homomorphism from the quotient group $$\mathbb{Z}/K$$ to the same target group $$\mathbb{Z}_a \times \mathbb{Z}_b$$. Also recall that since $$\ker(\gamma) = K = \mathbb{Z}m$$, then the new homomorphism is also injective.
 <br>
-<br>
 When will the homomorphism be surjective? Since it's injective, then it suffices that to show that $$|\mathbb{Z}_m| = |\mathbb{Z}_a \times \mathbb{Z}_b|$$. So when will they have the same size?
 <br>
 <!----------------------------------------------------------------------------->
@@ -257,7 +254,6 @@ For example: $$\mathbb{Z}_{240} = \mathbb{Z}_{16} \times \mathbb{Z}_3 \times \ma
 <h3>The Multiplicative Group</h3>
 Recall $$\mathbb{Z}_n$$ is not just a group but a ring with two operations addition and multiplication. Inside this ring, we can focus on the elements that have a multiplicative inverse and form $$\Phi(n) = \{u \in \mathbb{Z}_n \ | $$ u has a multiplicative inverse $$\} \subseteq \mathbb{Z}_n$$. $$(\Phi(n),\cdot)$$ is a group with the multiplication operation. This group is also abelian and is called "modular units". It is not a subgroup of $$\mathbb{Z}_n$$.
 <br>
-<br>
 It turns out that we can use the Chinese Remainder Theorem to decompose $$\Phi(n)$$, the modular units group. Before listing the theorem recall that if $$x \in \mathbb{Z}$$. Then $$[x]_n \in \Phi(n)$$ if and only if $$gcd(x,n)=1$$. 
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
@@ -293,7 +289,6 @@ $$
 $$
 </div>
 where $$u_1, u_2 \in \mathbb{Z}_a$$ and $$v_1,v_2 \in \mathbb{Z}_b$$. The two operations (addition and multiplication) make $$R = \mathbb{Z}_a \times \mathbb{Z}_b$$ a ring. We have two claims:
-<br>
 <br>
 Claim 1: $$\gamma(xy) = ([xy]_a, [xy]_b)$$
 <br>

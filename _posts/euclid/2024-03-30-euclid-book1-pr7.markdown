@@ -43,8 +43,6 @@ Similarly, the angle $$\angle ADC$$ is the sum of angles $$\angle ADB$$ and $$\a
 <br>
 <b>Thoughts:</b> -
 <br>
-
-<br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>

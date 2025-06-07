@@ -10,29 +10,23 @@ mathjax: true
 </div>
 An isolated point always belongs to the set $$A$$ unlike a limit point where it's not necessarily an element of the set!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (Definition 3.2.7) A set \(F \subseteq \mathbb{R}\) is closed if it contains its limit points.
 </div>
 Proof: <a href="https://strncat.github.io/jekyll/update/2024/06/26/analysis-sets-closed-contains-limit-points.html">here</a>.
 <br>
-<br>
 Example 1: $$\mathbb{Z}$$. Why? The complement of a closed set is open. The complement of $$\mathbb{Z}$$ is the union of all the open intervals $$\{...\cup ... (0,1)\cup(1,2)\cup...\}$$. But we know that the union of a collection of open sets is open. Therefore, $$\mathbb{Z}$$ is closed. And why was it not open? Because the definition of an open set requires an entire neighborhood around each element entirely contained in $$\mathbb{Z}$$ but here if you take any integer, the neighborhood around the integer will contain rationals and irrationals. 
-<br>
 <br>
 Example 2: $$\{\frac{1}{n}: n \in \mathbb{N}\} \cup \{0\}$$. This set is not open since we won't be able to find a neighborhood around each element where it's entirely contained in the set. This set is closed since it contains the only limit point which is 0.
 <br>
-<br>
 Example 3: $$\{\mathbb{R}\} \cup \{0\}$$. This set is open since we can find a neighborhood around each element contained in $$\mathbb{R}$$. This set is also closed since it contains all of its limit points!
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (Theorem 3.2.8) A set \(F \subseteq \mathbb{R}\) is closed if and only if every Cauchy sequence contained in \(F\) has a limit that is also an element of \(F\).
 </div>
 Proof: TODO.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

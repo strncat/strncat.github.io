@@ -49,11 +49,8 @@ int main(int argc, const char * argv[]) {
 }
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=34">Project Euler - 34</a>
 <br>
-<br>
-
 

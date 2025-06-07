@@ -17,7 +17,6 @@ A $$0$$ to $$9$$ pandigital number (which also appeared in problems 32, 38 and 4
 </ul>
 The goal of this problem to find the sum of all $$0$$ to $$9$$ pandigital numbers with this property.
 <br>
-<br>
 Solution: There exits $$10! = 3,628,800$$ $$0$$ to $$9$$ pandigital numbers. We'll generate them with std::next_permutation and check the above conditions one by one.
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
@@ -81,14 +80,10 @@ while (std::next_permutation(d.begin(), d.end()));
 Even though the brute force solution works, we can come up with a better constant time solution after carefully analyzing the conditions and realizing that the digits can be restricted to a much smaller set of numbers. This is because we're overlapping the digits we're testing for every condition. 
 <br>
 [TODO]
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=41">Project Euler - 41</a>
 <a href="https://en.wikipedia.org/wiki/Divisibility_rule">Divisibility Rules</a>
 <br>
-<br>
-
 

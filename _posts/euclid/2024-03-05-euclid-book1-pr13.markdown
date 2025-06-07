@@ -55,7 +55,6 @@ Finally, we can see from both equations that angles $$\angle ABC$$ and $$\angle 
 <b>Thoughts:</b>
 Even though it looked extremely straight forward, I definitely spent a lot of time repeating the angles over and over again in my head.
 <br>
-<br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>

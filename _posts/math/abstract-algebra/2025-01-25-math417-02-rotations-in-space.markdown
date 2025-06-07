@@ -43,11 +43,9 @@ $$
 </div>
 We can further check that this product satisfies the three axioms of a group.
 <br>
-<br>
 <!------------------------------------------------------------------------>
 <h3>Example</h3>
 Let $$F$$ be a field (for example $$\mathbb{R}$$ or $$\mathbb{C}$$). Let $$Mat_{n \times n}(F)$$ be the set of matrices with entries in $$F$$. Then define $$GL_n(F)$$ (General Linear Group) as a subset of $$A \in M_{n \times n}(F)$$ where $$A$$ is an invertible matrix.  
-<br>
 <br>
 The set $$GL_n(F)$$ equipped with matrix multiplication is a group. It satisfies the three axioms
 <ol type="a">
@@ -78,7 +76,6 @@ The rotation matrix has some properties
 	<li>\(\text{Rot}(\alpha + 2\pi n) = \text{Rot}(\alpha)\) where \(n \in \mathbb{Z}\).</li>
 </ol>
 From this we see that the collection of rotation matrices forms a group with matrix multiplication.
-<br>
 <br>
 <!------------------------------------------------------------------------>
 <h3>Rotations in Space</h3>
@@ -172,9 +169,7 @@ $$
 <h3>Rotations in Space</h3>
 From last lecture, we saw the symmetries of the square. These symmetries can be represented with rotation matrices. We have the identity rotation $$I$$. We can also define the rotation around the axis coming through the centroid of the face ($$z-$$axis in the lecture) as $$R = \text{Rot}_{e_3}(\frac{\pi}{2})$$. Therefore, $$R^2 = \text{Rot}_{e_3}(\pi)$$ and $$R^3 = \text{Rot}_{e_3}(\frac{3\pi}{2})$$.
 <br>
-<br>
 What about the $$180$$ degrees rotation around the $$x-axis$$ labeled as $$a$$ from last time? We can define it as $$A = \text{Rot}_{e_1}(\pi)$$. Similarly, $$B = \text{Rot}_{e_2}(\pi)$$, $$C = \text{Rot}_{\frac{e_1 - e_2}{\sqrt{2}}}(\pi)$$ and $$D = \text{Rot}_{\frac{e_1 + e_2}{\sqrt{2}}}(\pi)$$
-<br>
 <br>
 Rotations in space have also the following properties / identities
 <ol type="a">
@@ -186,7 +181,6 @@ Rotations in space have also the following properties / identities
 	<li>\(\text{Rot}_u(\alpha)Rot_u(\beta) = Rot_u(\alpha + \beta)\).</li>
 </ol>
 But why is the last statement true? To figure it out, we need to introduce another definition
-<br>
 <br>
 <!------------------------------------------------------------------------>
 <div class="mintheaderdiv">
@@ -223,7 +217,6 @@ Observation: $$A, B \in SO(n)$$ implies that $$AB \in SO(n)$$. To show that this
 <br>
 Also observe that the identity matrix is in $$SO(n)$$ and that for any $$A \in SO(n)$$, $$A^{-1} = A^{T} \in SO(n)$$. Therefore $$SO(n)$$ is a group with matrix multiplication.
 <br>
-<br>
 So now we know that the collection of special orthogonal matrices is a group. Therefore, if the proposition we introduced earlier holds (where we said that $$A \in Mat_{3 \times 3}(\mathbb{R})$$ is a rotation matrix if and only if it is special orthogonal), then we can also conclude that the product of two rotation matrices is also a rotation matrix. So let's sketch the proof of the proposition
 <hr>
 
@@ -243,7 +236,6 @@ $$
 $$
 </div>
 The verification that the determinat is 1 is also the same. So now what's left is to show that $$\text{Rot}_{e_3}(\theta)$$ is in $$SO(3)$$. We can verify this because we know the exact matrix of $$\text{Rot}_{e_3}(\theta)$$ so we can computationally verify that it is a special orthogonal matrix. Finally, since $$P \in O(n)$$ and we just showed that $$\text{Rot}_{e_3}(\theta) \in SO(3)$$, then $$P\text{Rot}_{e_3}(\theta)P^{T}$$ is in $$SO(3)$$ as we wanted to show.
-<br>
 <br>
 $$\Leftarrow$$ ($$A \in SO(3) \implies A = \text{Rot}_u(\theta)$$):
 <br>

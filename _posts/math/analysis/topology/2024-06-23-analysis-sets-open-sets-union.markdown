@@ -12,9 +12,7 @@ mathjax: true
 <h3>Proof</h3>
 Let $$\{O_{}: \lambda \in \Lambda\}$$ be a collection of open sets and let $$O = \bigcup_{\lambda \in \Lambda}O_{\lambda}$$. Let $$a$$ be an arbitrary element of $$O$$. To show that $$O$$ is open, we need to produce an $$\epsilon$$-neighborhood of $$a$$ that is contained in $$O$$. Since $$a \in O$$, then $$a$$ must be in at least one particular set $$O_{\lambda'}$$. But we know that $$O_{\lambda'}$$ is open and so there must exists a neighborhood $$V_{\epsilon}(a) \subseteq O_{\lambda'}$$. But since $$O_{\lambda'} \subseteq O$$, then $$V_{\epsilon}(a) \subseteq O$$ as we wanted to show.
 <br>
-<br>
 For (ii), let $$\{O_1, O_2, ..., O_N\}$$ be a finite collection of open sets. We know that $$a \in \bigcap_{k=1}^{N} O_k$$. This means that there exists  $$V_{\epsilon_k}(a) \subseteq O_{k}$$. But since this is an intersection, the trick is to take the smallest one and therefore let $$\epsilon = min\{\epsilon_1, \epsilon_2, ..., \epsilon_N\}$$. Since $$V_{\epsilon}(a)$$ is the smallest one now, then we know $$V_{\epsilon}(a) \subseteq V_{\epsilon_k}(a)$$ for all $$k$$ and so $$V_{\epsilon}(a) \subseteq \bigcap_{k=1}^{N} O_k$$ as we wanted to show. $$\blacksquare$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

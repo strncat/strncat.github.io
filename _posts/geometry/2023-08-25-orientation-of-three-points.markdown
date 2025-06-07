@@ -107,6 +107,4 @@ Another way to think about this is imagine that $$pq$$ and $$pr$$ are vectors in
 <br>
 <a href="https://mediaspace.illinois.edu/media/t/1_ai5zh5fy/194088303">Jeff Erickson's CS498</a>
 <br>
-<br>
-
 

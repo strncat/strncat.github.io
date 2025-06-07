@@ -7,7 +7,6 @@ mathjax: true
 ---
 Suppose we have the array $$a = [1,2,3,4]$$ that represents a permutation and we would like to generate the next permutation lexicographically. How can we do this?
 <br>
-<br>
 If we were to generate the next one manually, then we'd want the next smallest number. That it, if 1234 is the smallest number, we'd want the next possible increment which is 1243. Therefore, we'd swap 3 and 4 to get
 {% highlight c++ %}
 [1,2,4,3]
@@ -59,8 +58,6 @@ Now we can see that $$a_i = 3$$ and $$a_{i+1} = 4$$. But searching for a smaller
 {% highlight c++ %}
 [2,4,3,1]
 {% endhighlight %}
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Putting Things Together</h3>

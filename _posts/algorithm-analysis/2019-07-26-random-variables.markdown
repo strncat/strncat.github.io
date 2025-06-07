@@ -8,21 +8,17 @@ mathjax: true
 <h3>What is a Random Variable?</h3>
 A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some <b>function of the outcome</b>. 
 <br>
-<br>
 <b>Example 1:</b>
 <br> 
 Suppose we're interested in <i>counting</i> the number of heads in $$5$$ trials of flipping a coin. We can define a random variable $$Y$$ to represent the number of heads in 5 trials. Using $$Y$$, we can now refer to the probability of seeing two heads in 5 trials as $$P(Y=2)$$. This is much simpler that listing the exact outcomes that we're interested in. ($$\{H,H,T,T,T\},\{H,T,H,T,T\},...\}$$).
-<br>
 <br>
 <b>Example 2:</b>
 <br> 
 Suppose we roll two dice and we're interested in the sum of the two dice. We define a random variable $$X$$ to be the sum of two dice (function of outcomes). We can now refer to the probability that the sum of the dice is 7 as $$P(X=7)$$. This is much simpler that saying that we want the probability of seeing any of these outcomes: $$(3,4),(4,3),(2,5),(5,2),(1,6),(6,1)$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Discrete Random Variables</h3>
 If our random variable takes on countable values $$x_1, x_2, x_3,...,x_n$$, we call it a discrete random variable. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Probability Mass Function</h3>
@@ -54,7 +50,6 @@ $$
 $$
 </div>
 We can also refer to $$p_X(k)$$ as just $$p(k)$$ if the random variable is clear from the context. 
-<br>
 <br>
 <b>Example 2:</b>
 <br> 
@@ -91,7 +86,6 @@ $$
 </div>
 In other words, the expected value is a weighted average of the value of the random variable (values weighted by their probabilities).
 <br>
-<br>
 <b>Example 4:</b>
 <br> 
 Suppose we roll two dice again from example 2 and 3. Define a random variable $$X$$ to be to the sum of the two dice. We can use our PMF from the previous section to compute the expected value as
@@ -119,13 +113,11 @@ $$
 </div>
 PROOF?
 <br>
-<br>
 <b>Example 5:</b>
 <br> 
 Suppose we roll a die and define $$X$$ to be the value on the die. Define a new random variable $$Y$$ to be $$X^2$$. What is $$E[Y]$$?<br>
 <br>
 Using the above, $$E[Y] = E[X^2] = \sum_i (k_i^2)p(k_i) = 1/6*(1+4+9+16+25+36) \approx 15.167$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Linearity of Expectation</h3>
@@ -175,14 +167,11 @@ $$
 <h3>Example 8: St. Petersburg Paradox</h3>
 A fair coin comes up heads with $$p = 0.5$$. We flip the coin until we see the first tails. We will then win $$2^n$$ dollars where $$n$$ is the number of heads seen before the first tail. How much would you pay to play?
 <br>
-<br>
 Let's define the following random variables: <br>
 Let $$Y$$ be the number of "heads" before the the first "tails".<br>
 Let $$W$$ be a random variable representing our winnings. $$W = 2^Y$$. 
 <br>
-<br>
 What is the probability of seeing $$i$$ heads before seeing the first tail on the $$i+1$$th trial? $$P(Y = i) = (1/2) * (1/2) * ... = (1/2)^{i+1}$$. This is because  we stop at the $$i+1$$ flip which is a tail. Each outcome has a probability equals to $$1/2$$.
-<br>
 <br>
 What is the expected value of our winnings?<br>
 <div center>

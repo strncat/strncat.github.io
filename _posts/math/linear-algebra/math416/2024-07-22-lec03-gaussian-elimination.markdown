@@ -7,7 +7,6 @@ mathjax: true
 ---
 Gaussian Elimination consists of two passes. The forward pass is used to put the augmented matrix of linear equations into a Row Echelon Form. At this point, it will be clear if this system is inconsistent or has infinitely many solutions. The second stage of the algorithm is to do a backward pass on the augmented matrix to put it into a Reduced Row Echelon Form.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 Suppose we have the following augmented matrix:
@@ -59,7 +58,6 @@ $$
 $$
 </div>
 We repeat this process until we have no more rows. At the end of this process, the matrix will be in Row Echelon Form. Notice here that this system is inconsistent because we have a leading entry in the very last column. 
-<br>
 <br>
 The next phase of the algorithm is a backward pass to put the matrix in Reduced Row Echelon Form by making the leading entries 1 and zeroing out the non-leading entries in each column. We want to do this phase from right to left. For the last row, we need to multiply row 3 by 1/2 to make it 1.
 <div>
@@ -200,7 +198,6 @@ $$
 $$
 </div>
 We have the leading entries 1 and -1. We're in Row Echelon Form. We can describe the solution set now. but first we want to put it in Reduced Row Echelon Form. so we'll do the backward pass.
-<br>
 <br>
 We'll go right to left in the backward pass, making leading entries 1 and zeroing out the remaining entries in those columns. The first leading entry we'll work on is -1 in row 2. We'll make it a 1 by multiplying row 2 by -1 so $$R_2 \rightarrow -R_2$$. 
 <div>

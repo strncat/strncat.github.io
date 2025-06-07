@@ -31,7 +31,6 @@ By the triangle inequality, we know that
 </div>
 Therefore, $$|a_{m+1} + a_{m+2} + ... + a_{n}| < \epsilon$$ and so by the Cauchy criterion for series, $$\sum_{n=1}^{\infty}a_n$$ also converges.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>

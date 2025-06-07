@@ -9,7 +9,6 @@ mathjax: true
 <h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Overview</h3>
 So we casted rays from the camera until they hit some object and then again we casted shadow rays that go from the object until they hit a light to determine if they're obstructed by another object and we didn't need recursion in either case. But now for reflection and transmission (refraction), we're going to need recursion. So two parts: The first part comes when we a shadow ray is cast to each light source and the total contribution from all light is accumulated using:
@@ -41,7 +40,6 @@ $$
 </div>
 Note that we don't multiply directly the reflection or the transmission by the color.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Scaling Coefficients</h3>
 To make nice pictures, we're going to add extra scale factors that modify the light contribution. So let
@@ -62,7 +60,6 @@ $$
 <h3>Reflection and Transmission Rays vs Shadow Rays</h3>
 Similar to how we construct rays for shadow rays we're going to construct a reflection ray and then let it intersect with the scene geometry. We will store the resulting color in $$L_\{\text{reflect}}$$ and $$L_\{\text{transmit}}$$. The difference is that for shadow rays, we'll immediately multiply the light intensity by the material color and the scale factor. For reflected and transmitted rays, we're not going to get the color directly. The color will depend on the color computed from the geometry that their rays intersect. These intersection points might additionally cast more rays to find the color which is computed via shadow rays, ambient, diffuse, additional reflection and transmission rays. This means that we need to terminate at some point because this process can go on forever.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Ray Tree Example</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/08-tree.png" width="70%" class="center"></p>
@@ -70,12 +67,10 @@ Suppose we have the above figure. We cast a camera/eye ray $$I$$ until it hit th
 0. It will cast a shadow ray to every light point and it will sum all these colors together. That's the diffuse term. If it's obstructed by all lights, then we'll only add an ambient color.
 1. Next, we'll figure out if the object we intersected is reflective. Also, we'll ask if the object is transparent. In each case, we'll recursively call our ray tracer to send rays $$T_1$$ and $$R_1$$. So go to step 0 for each ray. Once we have a result back. Now we'll apply the scale $$k_r$$ or $$1 - k_r$$ depending if it's transmitted or reflected. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Termination</h3>
 So it can't go on forever. We need some limits depending on the hardware. ...
 When we don't have enough colors like in the case of rendering a house of mirrors or bubbles that don't inherently have color, we don't have difuse or ambient and we're 100% relying on the light intensity. here we do need to end choosing arbitrary values to make the picture look good (realistic colors).
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Reflected Ray</h3>
@@ -145,9 +140,6 @@ R_{\text{reflect}} = R(t_{\text{int}}) +  \epsilon\hat{N} + D_{\text{reflect}}t.
 $$
 </div>
 Need to be careful that the new starting point isn’t inside (or too close to) any other geometry
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Transmission</h3>
@@ -162,8 +154,6 @@ $$
 $$
 </div>
 Where $$\theta_1, \theta_2$$ are the incoming/outgoing angles, $$v_1,v_2$$ are the phase velocities, $$n_1,n_2$$ are the indices of refraction.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Transmitted Ray</h3>
@@ -206,7 +196,6 @@ $$
 - doesn't matter if $$n^1$$ or $$n^2$$ is bigger. 
 - we need to add an epsilon to avoid self intersection (but this time in the negative direction)
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Total Internal Reflection</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/03-internal-reflection.png" width="50%" class="center"></p>
@@ -236,9 +225,6 @@ This occurs when $$n_1 < n_2$$.
 
 - The amount of transmission vs. reflection decreases as the viewing angle goes from perpendicular (overhead) view to parallel (grazing) view. 
 Parallel -> more reflection. Perpendicular -> more transmission and less reflection. 
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Fresnel Equations</h3>
@@ -292,16 +278,9 @@ $$
 - Conductors: (of electricity e.g. metal) mostly reflect light (low absorption, no transmission). The mount reflected doesn't change with the viewing angle.
 - So $$k_r$$ can be approximated as a constant (independent of viewing direction) for conductors.
 - In contrast, $$k_r$$ varies significantly with viewing angle for dielectrics (e.g. glass, water).
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Curved Surfaces</h3>
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Attenuation</h3>
@@ -314,9 +293,6 @@ Example:
 - Deeper water attenuates all the red light and looks bluish-green
 - Even deeper water attenuates all the green light too, and looks dark blue
 - Eventually all the light attenuates, and the color ranges from blackish-blue to black
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Beer's Law</h3>
@@ -347,8 +323,6 @@ x is the distance. A bigger C would mean more light goes away. So c is bigger fo
 
 How to apply beer's law:
 Instead of just $$I$$, have an $$I_R$$, $$I_G$$, $$I_B$$ for each color.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Atmospheric Refraction</h3>
@@ -359,52 +333,14 @@ Instead of just $$I$$, have an $$I_R$$, $$I_G$$, $$I_B$$ for each color.
 bends away from the hot air.
 
 to do this in a ray tracer. divide the air into layers and keep bending the light.
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Iridescence</h3>
 - wave feature of light (constructure and destructive interference). 
-
-
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <a href="https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm"> PBR </a>
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -7,7 +7,6 @@ mathjax: true
 ---
 Suppose we have two line segments $\overline{ab}$ and $\overline{cd}$. How can we determine their intersection? We previously developed a method to determine the existence of the intersection without having to compute the actual intersection point. We did this using the orientation test by basically testing if $c$ and $d$ are on opposite sides of the line that goes through  $\overline{ab}$ and then again if $a$ and $b$ are on opposite sides of the line that goes through $\overline{cd}$. This was neat and we avoided having to deal with floating point values. But what if we wanted to find the actual intersection point, if any?
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Parametric Representation</h3>
 Let $\vec{A} = b - a$ and let $\vec{B} = d - c$. A point on the line that goes through $\overline{ab}$ can be represented using 
@@ -54,11 +53,8 @@ while (hull_candidate != first_convex_hull_point)
 {% endhighlight %}
 Source Code <a href="?">TODO</a>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://jeffe.cs.illinois.edu/teaching/compgeom/schedule.html">CS 498: Computational Geometry</a>
 <br>
-<br>
-
 

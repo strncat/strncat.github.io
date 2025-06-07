@@ -120,7 +120,6 @@ $$
 <h3>The Unit Circle</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/cheat-sheet/unit-circle-wikipedia.svg.png" width="77%" class="center"></p>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>
 <ul>

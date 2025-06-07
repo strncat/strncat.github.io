@@ -62,7 +62,6 @@ Then, \(A \times B\) is isomorphic to \(G\). The isomorphism is given by
 <br>
 We need to show that $$\phi$$ is a homomorphism and that it is surjective and injective. 
 <br>
-<br>
 Claim: If $$a \in A, b \in B$$, then $$ab = ba$$. Note that this doesn't say anything about whether $$G$$, $$A$$ or $$B$$ are abelian. 
 <br>
 Proof: To see this, observe that
@@ -74,7 +73,6 @@ Proof: To see this, observe that
 	$$
 </div>
 This is because we can just multiply by each element's inverse on both sides. Now observe that $$aba^{-1}b^{-1} = (aba^{-1})b^{-1}$$. We know that $$B$$ is normal so $$aba^{-1} \in B$$. $$b^{-1}$$ is also in $$B$$ since $$B$$ is a subgroup. Therefore, $$aba^{-1}b^{-1} \in B$$. Similarly, observe that that $$aba^{-1}b^{-1} = a(ba^{-1}b^{-1})$$. $$A$$ is normal so $$ba^{-1}b^{-1}$$ is in $$A$$. So $$aba^{-1}b^{-1} \in A$$. So now we have $$aba^{-1}b^{-1} \in A$$ and $$aba^{-1}b^{-1}$$. This means that $$aba^{-1}b^{-1} \in A \cap B$$. But $$A \cap B = \{e\}$$ so $$aba^{-1}b^{-1} = e$$ and therefore $$ab = ba$$.
-<br>
 <br>
 Now, to show that $$\varphi$$ is a homomorphism, we want to show that $$\varphi(a_1,b_1) \cdot (a_2,b_2)) = \varphi(a_1,b_1) \cdot \varphi(a_2,b_2)$$. The left hand side is
 <div>
@@ -121,7 +119,6 @@ Note here that we already know that $$\mathbb{Z}_3 \times \mathbb{Z}_4 \cong \ma
 <h3>Automorphism of a group \(G\)</h3>
 An Automorphism of a group $$G$$ is just an isomorphism from the group to itself. The identity map is the easiest example of an automorphism but there can be others.
 <br>
-<br>
 Example: Let $$V = \{e, a, b, c\}$$ (The Klien 4-group)($$\cong \mathbb{Z}_2 \times \mathbb{Z}_2)$$. We know that $$a^2 = b^2 = c^2 = e$$. The products are
 <div>
 	$$
@@ -139,10 +136,8 @@ Now define $$\varphi: V \rightarrow V$$ such that $$\varphi(e) = e$$, $$\varphi(
 </ul>
 In fact, there are six automorphisms of $$V$$. Note here that the six automorphisms are basically permutations on the set of elements. There are exactly 24 permutations on a set of 4 elements. But we also need to satisfy the homomorphism condition. This means that for example, it will need to send the identity element to the identity element. So now how many permutations are available if the identity element is fixed? There are 6 permutations. In this example, this is also the answer to the number of automorphisms. 
 <br>
-<br>
 <!----------------------------------------------------------------------------->
 The collection of automorphisms is called $$\text{Aut}(G) = \{\varphi: G \rightarrow G \ | \ \varphi \text{ is an  automorphism}\}$$. This is a subgroup of the permutation group $$Sym(G)$$ as we saw. Also note here that since Aut$$(G)$$ is a subgroup, then $$|\text{Aut}(G)|$$ must divide $$G$$ if $$G$$ is finite. 
-<br>
 <br>
 For example, we can see using the example above that Aut$$(V)$$ is isomorphic to $$S_3$$. 
 <hr>
@@ -194,12 +189,10 @@ Proposition
 </div>
 Note here that $$\gamma(a)$$ is a function. The isomorphism is between a group of functions and the modular unit $$a$$. 
 <br>
-<br>
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>
 Suppose $$\varphi \in \text{Aut}(\mathbb{Z}_n)$$. Let $$[a] = \varphi([1])$$. Then we can show that $$\varphi([x]) = [ax]$$. 
-<br>
 <br>
 <!----------------------------------------------------------------------------->
 Example: What about $$\mathbb{Z}$$? What are the automorphism? Aut$$(\mathbb{Z}) = \{\pm 1\}$$
@@ -230,7 +223,6 @@ We can also define the function
 </div>
 This function is a homomorphism. What does this mean? It means that conjugating by a product $$ab$$ is the same as conjugating by $$a$$ and then by $$b$$. $$c_{ab} = c_a \circ c_b$$.
 <br>
-<br>
 Since it's a homomorphism, we can check its kernel. It's kernel is as follows
 <div>
 	$$
@@ -241,9 +233,7 @@ Since it's a homomorphism, we can check its kernel. It's kernel is as follows
 </div>
 Which is called the center of "G".
 <br>
-<br>
 Additionally, we have the subgroup $$c(G)$$ which is the image of $$G$$ under $$c$$. $$c(G)$$ is a subgroup of Aut$$(G)$$. This subgroup is usually called $$Inn(G)$$ (subgroup of inner automorphism). Fact: Inn$$(G)$$ is a normal subgroup of Aut$$(G)$$.
-<br>
 <br>
 Since Inn$$(G)$$ is normal, we can then form the quotient group Out$$(G) = \text{Aut}/\text{Inn}(G)$$. This group is called the outer automorphism.
 <hr>

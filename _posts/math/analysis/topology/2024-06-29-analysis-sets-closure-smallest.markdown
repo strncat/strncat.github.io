@@ -22,7 +22,6 @@ $$
 </div>
 From this we can conclude that $$z$$ is an element of $$V_{\epsilon}(x)$$. But $$z$$ is an element of $$A$$. So this means that $$z$$ is an element of $$V_{\epsilon}(x) \cap A$$. Next, we want to show that $$x \neq z$$. If we do that, then this means that $$x$$ is a limit point of $$A$$ which will imply that $$x$$ is a limit point of $$L$$. So, 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>

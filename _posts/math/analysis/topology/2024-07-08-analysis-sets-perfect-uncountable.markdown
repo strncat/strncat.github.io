@@ -28,7 +28,6 @@ $$
 </div>
 and $$x$$ is not on the list $$\{x_1, x_2, ...\}$$.
 <br>
-<br>
 Let $$I_1=[a_1, b_1]$$ be a closed interval in $$P$$ that contains $$x_1$$ such that $$x_1 \neq a_1$$ and $$x_1 \neq b_1$$ so $$x_1$$ is an interior point. We know that $$P$$ is a perfect set. Therefore $$x_1$$ is not isolated and so it's a limit point. This means that there exists an element $$y_2$$ in the interior of $$I_1$$ (why? because by definition, every $$\epsilon$$-neighborhood $$V_{\epsilon}(x)$$ of $$x_1$$ must intersect $$P$$ at some point other than $$x_1$$). So now construct a closed interval $$I_2$$ centered around $$y_2$$ such that $$I_2 \subseteq I_1$$ but $$x_1 \notin I_2$$. In other words, set
 <div>
 $$
@@ -69,7 +68,6 @@ $$
 $$
 </div>
 is not empty. But we also know that each $$K_n$$ is a subset of $$P$$ and $$x_n \notin K_{n+1}$$. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

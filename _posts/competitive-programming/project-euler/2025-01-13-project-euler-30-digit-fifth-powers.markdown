@@ -42,11 +42,8 @@ for (int n = 2; n <= 295245; n++) {
 printf("%d\n", total_sum);
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=30">Project Euler - 30</a>
 <br>
-<br>
-
 

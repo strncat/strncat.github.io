@@ -17,7 +17,6 @@ A map \(T\) from a vector space \(V\) to a vector space \(W\), \(T: V \rightarro
 </div>
 Remark: The two conditions can be combined together and so $$T: V \rightarrow W$$ is linear above if and only if $$T(v_1 + cv_2) = T(v_1) + cT(v_2)$$ for all $$v_1, v_2 \in V$$ and $$c \in \mathbb{R}$$.
 <br>
-<br>
 Proof: 
 <br>
 $$\Rightarrow$$: Assume $$T$$ is linear. Then,
@@ -97,7 +96,6 @@ For $$V, W$$, the map
 	$$
 </div>
 is linear.
-<br>
 <br>
 We need to verify that it is linear by verifying $$T(v_1 + cv_2) = T(v_1) + cT(v_2)$$. This is easy because for any vectors $$v_1, v_2$$,
 <div>
@@ -216,9 +214,7 @@ For $$a < b$$, define the map
 </div>
 ($$C^0$$ is the set of continuous functions on $$\mathbb{R})$$). 
 <br>
-<br>
 Recall the dimension of $$\mathbb{R}$$ is 1 and the dimension of $$C^0$$ is infinte because the set of all polynomials (which has dimension infinity) is a subset of the set of continuous functions. Therefore, the set of continuous function has dimension infinity as well. This mapping goes from an infinite dimensional space to a finite dimensional space.
-<br>
 <br>
 To prove that this mapping in linear, we notice that
 <div>

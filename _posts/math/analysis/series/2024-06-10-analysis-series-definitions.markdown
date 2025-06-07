@@ -22,7 +22,6 @@ Here is another definition that I found online:
 </div>
 I've also seen that a series is simply a <i>sum</i> while a sequence is a <i>list</i>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Convergence of a Series</h3>
 When does a given series converge?
@@ -90,14 +89,12 @@ The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) con
 </div>
 For more about its convergence see <a href="https://strncat.github.io/jekyll/update/2024/02/05/analysis-series-geometric.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>(2.7.8) Definition: Absolute Convergence</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   If \(\sum_{n=1}^{\infty} |a_n|\) converges, then we say that the original series \(\sum_{n=1}^{\infty} a_n\) <i>converges absolutely</i>. If on the other hand, the series \(\sum_{n=1}^{\infty} |a_n|\) does not converge, then we say that the original series \(\sum_{n=1}^{\infty} a_n\) <i>converges conditionally</i>. 
 </div>
 As an example $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$$ converges conditionally while $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n^2}$$ converges absolutely. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>(2.7.9) Definition: Rearrangement</h3>

@@ -7,7 +7,6 @@ mathjax: true
 ---
 This is a classic dynamic programming problem with tons of tutorials on the web for it. My study notes on it are documented in <a href="https://strncat.github.io/jekyll/update/2020/05/10/coin-change.html">here</a>. To summarize, we are given an amount $$m$$ and a set of $$c$$ coins where $$c = \{c_1, c_2,...,c_n\}$$. Note here that by coins we mean the distinct coin values, keeping in mind that we do have an unlimited number of coins for each of these distinct values. We want to find the number of ways to make change for amount $$m$$ using the coins from $$c$$. 
 <br>
-<br>
 From the <a href="https://strncat.github.io/jekyll/update/2020/05/10/coin-change.html">link</a> above, fix a coin $$c_i$$ from the set, then the number of ways to make change is the sum of
 <ul>
 	<li>The number of ways to make change for the amount \(m\) minus the value of the coin \(c_i\). So in this case we are using the coin \(c_i\).</li> 
@@ -58,11 +57,8 @@ for (int c = 1; c < C; c++) {
 printf("%d\n", table[8][200]);
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=31">Project Euler - 31</a>
 <br>
-<br>
-
 

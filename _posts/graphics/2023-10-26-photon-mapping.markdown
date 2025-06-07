@@ -9,27 +9,21 @@ mathjax: true
 <h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Overview</h3>
 In the global illumination lecture we talked about bidirectional ray tracing. It combined both photon tracing (forward) and ray tracking (backward). We said that we will emit photons from the light, bathe these objects in light in order to create a light map. We will then use  this light map when we ray trace the scene to estimate the indirect light instead of just relying on the ambient term.
 <br>
-<br>
 We then discussed the fact that the lighting equation can be used to described any point in any direction and we discovered that it is an implicit equation that can fit into a well known category (Fredholm Integral Equation) and this allowed us to discretize it which wasn't tractable so we had to rely on radiosity and albedo from computer vision which led to a more tractable form. But today we will instead use Monte Carlo.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Photon Maps</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/photon-mapping/photons.png" width="60%" class="center"></p>
 To create a photon map, we'll emit photons from light sources and bounce around the scene. In the figure above, we have a number photons photons where each photon is storing the incoming light direction with the strength just like regular lights. If we want to know the pixel color at a point for example (the $L$ viewing direction in the picture), we'll sum over the light from all the photons nearby and sum over all of these just like regular lights. Note that we'll still be doing the important sampling and handle direct light with shadow rays and sum this amount as well. We could use a photon map for all lighting but it will require a ton of photons so it's easier to still do the direct lighting with shadow rays.
 <br>
-<br>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/photon-mapping/01-create-photon.png" width="50%" class="center"></p>
 To create a light map, we will emit a photon like the figure until it intersects something. If we hit direct light, then we ignore it. If it's not then we have two choices assuming it doesn't get absorbed (see the two arrows in the figure). So now we need to decide if this photon will get absorbed. If it does, then it's gone and we don't care. If it bounces, then we'll need to determine the probability of it being specul![Screenshot 2023 10 28 At 10.07.45 AM](../../../../../../Desktop/Screenshot%202023-10-28%20at%2010.07.45 AM.png)ar vs diffuse. Roll some dice and decide! but it has to be one or the other.
 <br>
-<br>
 Next, if this photon hits say a camera and bounces, then that's two bounces! we'll bounce it until hits an object and then store the value in the photon map. We'll take the point of intersection, the incoming light direction and store both in the photon map. This photon might bounce again and if it hits another object, we'll store that intersection along with the incoming light direction in the map again (another entry for the same photon). Notice here that one we choose diffuse, we are stuck here unlike if we get specular, then we'll have two choices again.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Tractability</h3>
@@ -40,8 +34,6 @@ Another way to solve this is using Monte Carlo integration. Instead of discretiz
 functions that generate pseudo random sequences.
 
 Monte Carlo Integration: No curse of dimensionality. Scales to higher dimensions. The purely diffuse lighting assumption is not needed.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example of Monte Carlo Integration</h3>
@@ -53,13 +45,10 @@ For Newton-Cotes, we'll inscribe triangles inside te circle. Find the sum of the
 
 For Monte Carlo, construct a square with side length 4 containing the circle. Generate $N$ points in the square. Color the points inside the circle blue. Since $\frac{A_{circle}}{A_{box}} = \frac{pi}{16}$, then we can approximate $pi$ ~ 16 \frac{N_{blue}}{N_{blue}+N_{red}}$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/photon-mapping/03-monte-carlo.png" width="50%" class="center"></p>
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Monte Carlo Methods</h3>
 Random (pseudo-random) numbers generate sample points that are multiplied by some element size (length, area, volume). Basically each point in enclosed in some sample area size are if we're working in 2D. They might overlap but that's find. The error decreases by $1/\sqrt{N}$ where $N$ is the number of samples.  Monte Carlo is good for higher dimensions while Newton-Cote is much better in 1/2/3D.
-<br>
 <br>
 1D example. Consider solving,
 <div>
@@ -80,11 +69,9 @@ $$
 </div>
 This is a simple averaging of all the sample results.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Important Sampling</h3>
 Sometimes we want to cheat with what samples we want to pick. If we have a function that is flat in some range and not flat in some other range, we'd want to pick samples from the non-flat range. For example, suppose $f(x)$ is only non-zero in $[a_1, b_1] \subset [a,b]$ so that $\int_a^b f(x)dx = \int_{a_1}^{b_1} f(x)dx$. In this case, if $X_i \notin [a_1, b_1]$ doesn't contribute to the integral.
-<br>
 <br>
 In general, the probability distribution $p(x)$ should prefer samples from areas with higher contribution to the integral (important sampling). Given a $p(x)$ with $\int_a^b p(x)dx = 1$, the Monte Carlo estimate is:
 <div>
@@ -107,12 +94,9 @@ $$
 <h3>Photon Emission</h3>
 Photon Strength: We'll choose some number of photons and divide them amongst the lights (based on relative power). Photons all have the same power but brighter lights will just have more photons. 
 <br>
-<br>
 Photon Position: For point lights, all photons are emitted from a single point. For area lights, we'll randomly select a point on the surface to emit the photon from. We'll divide the rectangular light into a uniform 2D grid and emit a set of photons from each grid cell (randomly choosing the position within the cell).
 <br>
-<br>
 Emission Direction: Randomly choose a direction on a sphere, a hemisphere or a subset of the sphere (for point lights). In some cases like the sun, a large number of photons would miss the scene entirely so ignore these photons (don't emit them) and restrict the light to a sub-light and so on.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Light Map</h3>
@@ -128,8 +112,6 @@ Emission Direction: Randomly choose a direction on a sphere, a hemisphere or a s
 - We will use a pre-determined maximum number of bounces before we terminate.
 
 - Typically photon maps are stored in an octree or kd-tree structure. 
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Separating Diffuse/Specular</h3>
@@ -141,29 +123,15 @@ It's more convenient to store diffuse and specular lighting separately. So when 
 - We will use two light maps
 (1) Caustic Maps: stores the photons that have had specular bounces only.
 (2) Indirect Lighting Map: store the photons that have had at least one diffuse bounce.
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Gathering Radiance</h3>
 - Trace rays from the camera and intersect with objects and use shadow rays for direct lighting.
 - Estimate radiance contribution to the ray from caustics and indirect lighting using the respective light maps: use the N closest photons to the point of intersection (with the aid of the acceleration structure (octree or kdtree))
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Color</h3>
 - 3 photon maps one for each color. Objects of certain color better absorb photons of differing colors so this gives color bleeding and related effects.
-
-
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
@@ -171,29 +139,4 @@ It's more convenient to store diffuse and specular lighting separately. So when 
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

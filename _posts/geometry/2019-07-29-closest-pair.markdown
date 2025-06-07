@@ -7,13 +7,11 @@ mathjax: true
 ---
 Suppose we are given a list of $$n$$ two dimensional points $$\{\{x_1,y_1\},\{x_2,y_2\},...\{x_n,y_n\}\}$$ and we want to find the closest pair of points in the list. By closest we mean they are the closest in terms of their euclidean distance. One naive approach would be to simply iterate over all possible pairs and find out the closest pair. This algorithm has a running time of $$O(n^2)$$ since we have $$O(n^2)$$ possible pairs. What else can we do?
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Divide and Conquer</h3>
 The brilliant algorithm we're about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be $$P_x$$. We will also sort the points by their y-coordinate and let that array be $$P_y$$. We will be using $$P_y$$ later in the algorithm.
 <img src="{{ site.url }}/assets/closest/1.png" width="100%">
 Given $$P_x$$. We can start by applying the following divide and conquer idea. Repeatedly divide $$P_x$$ into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
-<br>
 <br>
 <img src="{{ site.url }}/assets/closest/2.png" width="100%">
 
@@ -61,14 +59,11 @@ $$
 </div>
 The $$c$$ constant depends on the work we're doing in each level. We first create the four arrays $$left_x$$, $$left_y$$, $$right_x$$ and $$right_y$$. This takes $$O(n)$$ time. We then find the split pair. If we find the split pair in $$O(n^2)$$ then $$c = 2$$ and by the master theorem, the total runtime is $$O(n^2)$$. This defeats the purpose since the naive solution runs in $$O(n^2)$$. We also know that we initially sorted the array in $$O(n\log(n))$$ so the final runtime is at least $$O(n\log(n))$$. So roughly we know that we need to find the split pair really fast in $$O(n)$$ to have $$c = 1$$ and therefore, keeping our runtime at $$O(n\log(n))$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Sorting $P_x$ by the x-coordinate and the y-coordinate $O(n)$ time</h3>
 So we're claiming that we're sorting once only and then somehow we're are repeatedly passing the two halfs of the $$P_x$$ sorted by the x-coordinate and by the y-coordinate. How?! For sorting by the x-coordinate, we simply split $$P_x$$ in half by calculating the median in $$O(1)$$ time and then iterating over $$P_x$$ to split the array into $$left_x$$ and $$right_x$$. That takes $$O(n)$$ time where $$n$$ is the current size of $$P_x$$. 
 <br>
-<br>
 Now that we have both $$left_x$$ and $$right_x$$. We want to create two arrays $$left_y$$ which is $$left_x$$ but sorted by the y-coordinate. We also want $$right_y$$ which is $$right_x$$ sorted by the y-coordinate. How do we do this in just $$O(n)$$ time? This is when we will use $$P_y$$! We will iterate over $$P_y$$ and if we see an element with an x-coordinate below or equal to the median then this element belongs to $$left_y$$ otherwise it belongs to $$right_y$$. Remember that $$P_y$$ is just $$P_x$$ but sorted by the y-coordinate. We are also assuming for the sake of simplicity that the points are distinct. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Finding the split pair in $$O(n)$$ time </h3>
@@ -78,8 +73,6 @@ Let's assume that the minimum pair is not a left pair or a right pair and it is 
 Let $$p=(x_1,y_1)$$ and $$q=(x_2,y_2)$$ be the split pair points we're trying to find where $$p$$ is in the left half and $$q$$ is in the right half. We claim the following:
 + Both $$p$$ and $$q$$ are in $$M$$.
 + At most 6 points are between $$p$$ and $$q$$ in M.
-<br>
-
 <br>
 So, assuming the above is correct (we'll prove it formally), we now have a constant number of pairs to look at. Basically, for each point, we will look at 7 points and therefore, we only have $$7n$$ pairs and so we can find the split pair in only $$O(n)$$ time!
 <hr>
@@ -103,7 +96,6 @@ This says that $$p$$ and $$q$$ must differ by less than $$\delta$$ in both their
 
 Let's move to the second claim. why must we have 6 points only between $$p$$ and $$q$$?
 <br>
-<br>
 Proof:
 <br>
 Without the loss of generality, assume that $$q$$ has the lower y-coordinate. We do know that both $$p$$'s x and y coordinates differ by less than $$\delta$$ from $$q$$'s x and y coordinates respectively. What do we know about the points between $$p$$ and $$q$$ in $$M$$?
@@ -123,31 +115,4 @@ We claim that each box has only 1 point. Proof: Suppose it doesn't and some box 
 <h3>References</h3>
 These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

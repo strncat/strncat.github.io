@@ -34,7 +34,6 @@ We will prove this using the nested interval property by defining the following 
 A few facts about these intervals. First, In each interval above, the start point is less than or equal to the end point. This is because when $$n$$ is even, $$a_n$$ is negative and so $$a_1 - a_2 \leq a_1$$. Similarly $$a_1 - a_2 + a_3 - a_4 \leq a_1 - a_2 + a_3$$ because $$a_4$$ is negative. Second, 
 we defined them in a way such that the length of each of these intervals is exactly $$a_{n+1}$$. For example ($$a1 - (a_1 - a_2) = a_2$$). And finally, we defined them in a way such that $$I_1 \supseteq I_2 \supseteq I_3 ... \supseteq I_n$$. This will allow us to use the nested interval property in order to come up with a candidate that the series will converge to. These intervals can be written compactly using the terms from the sequence of partial sums.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>
 Let $$(a_n)$$ be a sequence satisfying the conditions above. To prove that $$\sum_{n=1}^{\infty} (-1)^{n+1}a_n$$ converges, we need to prove that the sequence of partial sums converges. Let $$(s_n)$$ be the partial sum sequence where $$s_n$$ is defined as
@@ -87,7 +86,6 @@ But we also know that the sequence $$(a_n)$$ converges to 0. This means that for
   $$
 </div>
 as we wanted to show. $$\blacksquare$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

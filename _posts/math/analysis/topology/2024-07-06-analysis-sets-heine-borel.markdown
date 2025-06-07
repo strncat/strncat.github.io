@@ -17,9 +17,7 @@ mathjax: true
 <h3>Proof</h3>
 We proved that (i) and (ii) are equivalent in <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for \(K\) has a finite subcover. We'll show that \(K\) is bounded and closed. 
 <br>
-<br>
 To show that $$K$$ is bounded, construct an open cover for $$K$$ by defining $$O_x$$ to be an open interval of radius 1 around each element of $$x \in K$$ so that $$O_x = V_1(x)$$. The open cover is defined then as $$\{O_x: x \in K\}$$. Since we assume that (iii) is true, then this means there exists a finite subcover $$\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}$$ that contains $$K$$. Since the subcover is a finite collection of bounded sets, then $$K$$ must be bounded as well.
-<br>
 <br>
 To show that $$K$$ is closed, suppose that $$(y_n)$$ is a Cauchy sequence contained in $$K$$ such that $$(y_n) \rightarrow y$$. We need to show that $$y \in K$$ since a closed set must contain all of its limit points. To show this, suppose for the sake of contradiction that $$y \notin K$$. This means that for all $$x \in K$$, $$x$$ is some positive distance away from $$y$$. So construct an open cover by taking $$O_x$$ to be an interval of radius $$|x-y|/2$$ around each element. Since we assumed (iii) is true, then there exists a finite subcover $$\{O_{x_1}, O_{x_2}, O_{x_3}, ...O_{x_n}\}$$ such that it contains $$K$$. But this is impossible. To see why, set 
 <div>
@@ -39,10 +37,8 @@ $$
 </div>
 This means that the finite cover doesn't actually contain all of $$K$$ and therefore this is a contradiction and we must have $$y \in K$$ as required to show that $$K$$ is closed.
 <br>
-<br>
 Next, we need to assume (ii) and prove (iii). So suppose that $$K$$ is closed and bounded. We will prove that for every open cover of $$K$$, there exists a finite subcover. [TODO]
  $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

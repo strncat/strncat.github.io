@@ -91,5 +91,4 @@ typedef std::unordered_map<const key,key,hash,std::equal_to<key>> tuple_map;
 tuple_map parent;
 {% endhighlight %}
 <br>
-<br>
 

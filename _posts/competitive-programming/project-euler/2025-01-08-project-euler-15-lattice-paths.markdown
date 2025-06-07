@@ -77,6 +77,4 @@ printf("reach(21,21) in %llu steps\n", ways[21][21]);
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=16">Project Euler - 16</a>
 <br>
-<br>
-
 

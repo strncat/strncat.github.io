@@ -38,11 +38,8 @@ void sieve() {
 <br>
 This isn't the best solution to this problem. One solution I've seen is tokenizing this string on "0" because any product that involves zero will not be the maximum product and you are better off starting at the position right after 0. So now you have $$n$$ substrings with no zeros. You can now multiply the first 13 digits and then in each subsequent iteration, you will either have to reset the product since you've arrived at a new substring or you will need to multiply by the new number and divide by the first very digit (sliding window kind of algorithm).
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=7">Project Euler - 07</a>
 <br>
-<br>
-
 

@@ -17,7 +17,6 @@ Alternatively, it is the the number of integers $$k$$ in the range $$1 \leq k \l
 <h3>Example</h3>
 Take $$n = 9$$. The numbers $$1,2,4,5,7$$ and $$8$$ are relatively prime to $$9$$ while $$3,6$$ and $$9$$ are not. Therefore $$\phi(9) = 6$$. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Computing Euler Totient's Function</h3>
 One formula that computes Euler's Totient's function is the following

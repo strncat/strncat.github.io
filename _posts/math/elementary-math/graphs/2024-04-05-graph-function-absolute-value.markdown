@@ -51,7 +51,6 @@ So now that we have the new vertex at $$(-4,-5)$$. We can choose points before a
 <h3>Transforming the simplest function</h3>
 We can also approach this in a different way. We know the simplest absolute value function is just $$\lvert x \rvert$$ and we know we want to graph $$2 \lvert x + 4 \rvert - 5$$. So let's trasform $$\lvert x \rvert$$ to $$2 \lvert x + 4 \rvert - 5$$. 
 <br>
-<br>
 Starting with $$\lvert x \rvert$$, we know the vertex is at $$(0,0)$$. We also know that we have the points $$(1,1)$$ and $$(-1,1)$$ that satisfy the function. Next, we'll apply the following transformations to transform the points to satisfy the new function instead.
 
 <ul>

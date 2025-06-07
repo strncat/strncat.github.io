@@ -16,7 +16,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 For the definitions of series, and what it means to for a series to converge, see <a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">this</a>.
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br> 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
@@ -45,7 +44,6 @@ $$
 $$
 </div>
 From this we can conclude that $$\lim (a_n) = 0$$ as required. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

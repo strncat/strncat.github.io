@@ -7,7 +7,6 @@ mathjax: true
 ---
 This one is pretty straightforward. The singleton design pattern is used whenever there is a class where only one object is allowed to exist at any time. <i>UIApplication</i> is one example that uses this pattern.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 It is pretty straightforward as well to make a class with only one instance of itself. One way to do it is to create a static variable to hold the object and declare init to be private.
@@ -25,18 +24,4 @@ public class Singleton {
 - <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaDesignPatterns/CocoaDesignPatterns.html">Cocoa Design Patterns (Apple Docs)</a>
 - <a href="https://www.raywenderlich.com/1941154-fundamental-ios-design-patterns/lessons/18">Fundamental iOS Design Patterns</a>
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
 

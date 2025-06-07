@@ -7,7 +7,6 @@ mathjax: true
 ---
 Last time we learned that a matrix $$A$$ is diagonalizable if $$A$$ has $$n$$ linearly independent eigenvectors. In other words if we can form a basis consisting of eigenvectors $$\beta = \{v_1,...,v_n\}$$. 
 <br>
-<br>
 In that case, we will see that the matrix representative of $$L_A$$ with respect to basis $$\beta$$ is a diagonal matrix where the diagonal entries are those eigenvalues corresponding to the eigenvectors
 <div> 
 $$
@@ -101,15 +100,11 @@ $$
 </div>
 In other words, can completely factorize the polynomial?
 <br>
-<br>
 Example 1: $$t^2 + 1$$ doesn't split over $$\mathbb{R}$$. It does however split over $$\mathbb{C} as (t - i)(t + i)$$.
-<br>
 <br>
 Example 2: $$t^2 - 2t + 1 = (t - 1)(t - 1)$$ splits over $$\mathbb{R}$$.
 <br>
-<br>
 So now what does splitting have to do with diagonalizability? The following theorem explains this
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -137,9 +132,7 @@ $$
 </div>
 This means that if $$A$$ and $$B$$ are similar, then they have the same eigenvalues.
 <br>
-<br>
 <b>Proof:</b>
-<br>
 <br>
 Observe that
 <div>
@@ -242,7 +235,6 @@ The geometric multiplicity of \(\lambda\) is \(\dim(E_{\lambda})\).
 </div>
 For the same example above. The geometric multiplicity of $$\lambda = 1$$ is 1 because the nullspace is spanned by one vector.
 <br>
-<br>
 Given these definitions we can now introduce the following theorem.
 <br>
 <!------------------------------------------------------------------------------------>
@@ -256,7 +248,6 @@ Geometric multiplicity of \(\lambda \leq\) the algebraic multiplicity of \(\lamb
 <b>Proof</b>
 <br>
 Let $$\lambda$$ be an eigenvalue of $$A \in M_{n \times n}$$ and let the geometric multiplicity of $$\lambda$$ be $$k$$. Now the goal is to relate the characteristic polynomial of $$\lambda$$ to the dimension of $$E_{\lambda}$$. By definition, we know that $$\dim(E_{\lambda})$$ is $$k$$. (definition above)
-<br>
 <br>
 Let $$\{v_1,...,v_k\}$$ be a basis for $$E_{\lambda}$$. We know that $$\dim(E_{\lambda})=k$$. We also know that $$k \leq n$$ so extend this basis to a basis for $$\mathbb{R}^n$$ so 
 <div>
@@ -345,7 +336,6 @@ Theorem (5.8(a))
 </div>
 <b>Proof</b>
 <br>
-<br>
 $$\Rightarrow:$$
 Suppose that $$A$$ is diagonalizable. This means that we have a basis $$\beta = \{v_1,...,v_n\}$$ consisting entirely of eigenvectors. Now we need to prove that $$a$$ and $$b$$ both hold. Last time we proved that $$a$$ holds. This means that the characteristic polynomial splits over $$R$$ and so 
 <div> 
@@ -356,7 +346,6 @@ $$
 $$
 </div>
 where $$\sum_{j=1}^{k} m_j = n$$. Now, given $$\lambda_j$$, let $$k_j$$ be the geometric multiplicity of $$\lambda_j$$. We know by definition that $$k_j = \dim(E_{\lambda_j})$$. The goal is to prove that $$k_j = \dim(E_{\lambda_j}) = m_j$$. 
-<br>
 <br>
 Last time we proved that the geometric multiplicity is always less than or equal to the algebraic multiplicity of any $$\lambda$$. Therefore, we have $$k_j \leq m_j$$. Moreover, each of the eigenvectors in $$\beta$$ must belong to one of our eigenspaces so let $$l_j = num(\{v_i \in \beta \ | \ v_i \in E_{\lambda_j}\})$$. That is $$l_j$$ is the number of eigenvectors in $$\beta$$ that belong to the eigenspace $$E_{\lambda_j}$$. But we only have $$n$$ eigenvectors in $$\beta$$, therefore,
 <div> 
@@ -384,7 +373,6 @@ $$
 </div>
 Therefore, $$k_j = m_j$$ for $$j = 1,2,...,k$$. 
 <br>
-<br>
 $$\Leftarrow:$$ We're given (a) and (b). One way to prove that $$A$$ is diagonalizable is by constructing a basis of eigenvectors. So let $$\beta_j$$ be a basis for $$E_{\lambda_j}$$. Set $$\beta = \beta_1 \cup \beta_2 \cup ... \cup \beta_k$$. By the homework, $$\beta$$ is linearly independent and by construction, it consists of eigenvectors. It remains to show that the number of vectors in $$\beta$$ is $$n$$. But from (b), we know that
 <div> 
 $$
@@ -402,7 +390,6 @@ $$
 $$
 </div>
 So $$\beta$$ is the desired basis and $$A$$ must be diagonalizable. $$ \ \blacksquare$$
-<br>
 <br>
 One final note here: we've developed several tests including the above one to test matrices for diagonalizability. What about general linear transformations $$T: V \rightarrow V$$? well we can find the matrix representable of $$T$$ with respect to  basis $$\gamma$$ so $$[T]_{\gamma}^{\gamma}$$. Check if this matrix is diagonalizable for any basis $$\gamma$$.
 <hr>

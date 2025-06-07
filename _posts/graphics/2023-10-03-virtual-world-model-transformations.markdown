@@ -9,14 +9,12 @@ mathjax: true
 <h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
-<br>
 Our goal is to mimic human vision in a virtual world. We do this by:
 - Creating a virtual camera and placing it somewhere to point at something. 
 - Putting a film that contains pixels with RGB values between 0 and 255 into the camera.
 - Placing some objects in the world. (geometric modeling, transformations, texture mapping).
 - Putting lights in the scene.
 - And Finally taking the picture. The light will bounce around the room hitting the objects and back hitting the camera onto the virtual film.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Rotations</h3>
@@ -44,7 +42,6 @@ sin(\theta) & cos(\theta) & 0 \\
 $$
 </div>
 All standard stuff but the cool part was the next topic which is proving that these rotations preserve line segments and angels!
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Rotations Preserve Line Segments</h3>
@@ -80,7 +77,6 @@ $$
 
 so the distance is preserved.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Rotations Preserve Angels</h3>
 Consider two line segments $$u$$ and $$v$$. The claim is that the angel between two is preserved after $$u$$ and $$v$$ are rotated. \\
@@ -105,11 +101,9 @@ $$
 </div>
 So the angel between $$u$$ and $$v$$ is the same as the angle between $$Ru$$ and $$Rv$$. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Rotations Preserve Shape</h3>
 TODO
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Scaling (Resizing)</h3>
@@ -126,7 +120,6 @@ s_1 & 0 & 0 \\
 $$
 </div>
 if $$s_1 = s_2 = s_3 = s$$, then the object is just getting scaled. In that case, distances between line segments increase/decrease  by a factor of $$s$$ and the angles between line segments are preserved. (Similar Proof to the Rotation Proof)
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Homogenous Coordinates</h3>
@@ -146,7 +139,6 @@ $$
 </div>
 for any $$w \neq 0$$.
 -  We typically convert points to homogenous coordinates by setting $$w = 1$$ for points and $$w = 0$$ for vectors to deal with translations while vectors have $$w = 0$$. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Order Matters!</h3>
@@ -256,8 +248,4 @@ $$
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
 <br>
-<br>
-
-
-
 

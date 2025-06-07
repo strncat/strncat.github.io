@@ -10,7 +10,6 @@ mathjax: true
 </div>
 - Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color:#DAF5F4; padding: 20px 20px 7px 20px;">
 <h3>Expectation</h3>

@@ -18,7 +18,6 @@ mathjax: true
 <h3>Proof</h3>
 The goal of the proof is to produce a sequence that is eventually part of each of these sets and the limit of this sequence is included in every set which means that the intersection is not empty. Now, for each $$n \in \mathbb{N}$$, pick $$x_n \in K_n$$. Since the compact sets are nested, then the sequence $$(x_n)$$ is contained in $$K_1$$. By the definition of a compact set, $$(x_n)$$ has a convergent subsequence $$(x_{n_k})$$ whose limit $$x_{n_k} \rightarrow x$$ is an element of $$K_1$$. But it's not just part of $$K_1$$, it is also part of every $$K_n$$. (why? we know the whole sequence is in $$K_1$$, the rest of the sequence except for the first element is in $$K_2$$, the sequence except for the first two elements is in $$K_3$$ and so on. The remaining sets will contain most of the sequence except for the first few terms and eventually converge to $$x$$). Now, given a particular $$n_0 \in \mathbb{N}$$, then in $$K_{n_0}$$, we will get the terms starting at $$n \geq n_0$$ from the sequence $$(x_n)$$. So take these terms to form a subsequence $$(x_{n_k})$$ contained completely in $$K_{n_0}$$. This subsequence converges to $$x$$ and $$x \in K_{n_0}$$. Since $$n_0$$ was arbitrary, then $$x \in \bigcap_{n=1}^{\infty} K_n$$ and we're done. $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>

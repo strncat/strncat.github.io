@@ -10,7 +10,6 @@ The heap data structure is an array $$A$$ that can be viewed as an almost comple
 <br><br>
 Because the heap is based on a complete binary tree, the height of a heap of $$n$$ elements is $$\Theta(\log(n))$$. As a reminder, the height of a node is the longest path down from the node to a leaf and the height of the tree is the height of the root of the tree. This observation is crucial in proving that many operations on heaps run in $$O(\log(n))$$ time.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Finding the Parent, Left and Right Children</h3>
 Given an element $$A[i]$$. Its parent is located at $$A[\lfloor i/2 \rfloor]$$. For example the parent of 2 (index 7) is $$A[\lfloor 7/2 \rfloor]=A[3]=11$$. The left child is $$A[2*i]$$ and the right child is $$A[2*i+1]$$. For example the right child of 13 (index 2) is $$A[2*2 + 1] = A[5] = 3$$.
@@ -42,7 +41,6 @@ If this is a min-heap then,
 
 The heap property is crucial. Because of it, we know that the root of the heap must be the smallest or the largest element in the heap and therefore, extracting the minimum or the maximum depending on the heap type can be done in constant time!
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Maintaining the Max-Heap Property</h3>
 Suppose we have an element $$A[i]$$ that is smaller than its children. This is a violation of the max-heap property, how do we fix this? First we will assume that both children of $$A[i]$$ maintain the heap property. We know in constant time that the children are $$A[2*i]$$ and $$A[2*i+1]$$. We can then swap $$A[i]$$ with the larger of the two children. Finally, we recursively call the function on the larger child we just swapped at $$A[i]$$. Let's look at a simple implementation:
@@ -71,7 +69,6 @@ void max_heapify(int i) {
 }
 {% endhighlight %}
 How long does max_heapify take? Well, in the worst case, we will go down all the way to a leaf and so the runtime is $$O(h)$$ which is $$O(log(n))$$.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Building a Max Heap</h3>
@@ -124,18 +121,14 @@ Why should we believe that build_max_heap works? This is going to be exactly wha
 <b>Initialization</b>:
 Before the first iteration that starts at $$A[\lfloor n/2 \rfloor]$$, the nodes $$A[\lfloor n/2 \rfloor + 1], A[\lfloor n/2 \rfloor + 2],...A[n]$$ are leaf nodes and therefore each node is a root of a max-heap.
 <br>
-<br>
 <b>Maintenance</b>: (so the gist here is that max_heapify will maintain that node $$i$$ follows the heap property because indices $$2*i, 2*i+1$$ are higher than $$i$$ and therefore already maintain the heap property).
 <br>
 At each iteration, we call max-heapify on the node $$A[i]$$. The children of node $$A[i]$$ are $$A[2*i]$$ and $$A[2*i+1]$$. Since they both have a higher index than $$i$$ then this means that both of these nodes are already roots of max-heaps by the loop invariant. Recall that max_heapify requires that the children maintain the heap property. Also we know that max_heapify maintains the heap property for any nodes to follow $$i+1, i+2, ..., n$$. Therefore, when we decrement $$i$$, the loop invariant will be established before the next iteration.
 <br>
-<br>
 <b>Termination</b>:
 At termination when $$i=0$$, we know by the loop invariant that the nodes $$1, 2,...,n$$ are all roots of max-heaps, specifically node $$1$$ which is the root of the final max heap we have. So we are done.
 <br>
-<br>
 I would obviously recommend looking at CLRS's way unless I'm in a rush and this is easily accessible on my phone. 
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Running Time</h3>
@@ -188,7 +181,6 @@ $$
 </div>
 and we're done!
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Heapsort</h3>
 <br>
@@ -197,23 +189,4 @@ TODO
 <h3>References</h3>
 These are my study notes / summary on chapter 6 in CLRS.
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

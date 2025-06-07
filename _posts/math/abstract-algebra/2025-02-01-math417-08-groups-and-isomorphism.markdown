@@ -19,7 +19,6 @@ Additionally, a group is commutative/abelian if \(ab = ba, \forall a, b \in G.\)
 </div>
 <!---------------------------------------------------------------------->
 <br>
-<br>
 In addition to groups, we also have
 <ul> 
 <li>Monoids which satisfy \((1)\) and \((2)\). </li>
@@ -60,7 +59,6 @@ If we let $$x = e'$$ and let $$y = e$$, then
 </div>
 From this we see that $$e = e'$$ as desired. $$\ \blacksquare$$
 <br>
-<br>
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition
@@ -81,7 +79,6 @@ Let $$a \in G$$ and suppose for the sake of contradiction that $$a$$ has two inv
 </div>
 Therefore, $$c = b$$ which is a contradiction so the inverse must be unique. $$\ \blacksquare$$
 <br>
-<br>
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition (2.1.2)
@@ -90,7 +87,6 @@ Proposition (2.1.2)
 Let \(G\) be a group and let \(a, b \in G\). If \(ab = e\), then \(a = b^{-1}\). Likewise, if \(ba = e\), then \(b = a^{-1}\).
 </div>
 By definition, $$b$$ an inverse of $$a$$ if $$ab = ba = e$$ so it's an inverse on both sides. This proposition proposes that checking only one side is enough. That is if $$ab = e$$, then $$a = b^{-1}$$ and $$b$$ is the inverse. So what we want to show here is that given $$ba = e$$, then $$b$$ is the inverse of $$a$$. We don't check the other side. One side is enough to imply the other.
-<br>
 <br>
 <!---------------------------------------------------------------------->
 <b>Proof</b>
@@ -120,7 +116,6 @@ The right hand side is
 	$$
 </div>
 So $$b = a^{-1}$$ and therefore, $$ba = a^{-1}a = e$$. 
-<br>
 <br>
 <!---------------------------------------------------------------------->
 <b>Proof (Book)</b>
@@ -152,7 +147,6 @@ Let \(g\) be an element of a group \(G\). We have \(g = (g^{-1})^{-1}\)
 <b>Proof</b>
 <br>
 We know $$gg^{-1} = e$$. By (2.1.2) $$g = (g^{-1})^{-1}$$. $$\ \blacksquare$$
-<br>
 <br>
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
@@ -199,8 +193,6 @@ Similarly,
 </div>
 So $$L_{a^{-1}}$$ and $$L_a$$ are inverse maps so both are bijective. $$\ \blacksquare$$
 <br>
-<br>
-
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Corollary 2.1.6
@@ -212,9 +204,6 @@ Let \(G\) be a group and let \(a\) and \(b\) be elements of \(G\). The equation 
 <br>
 For $$ax = b$$ to have a solution. The map $$L_a$$ needs to be onto or surjective. For the solution to be unique, the map needs to be one to one or injective. Similarly for $$xa = b$$ to have a solution, we want $$R_a$$ to be a bijective. Since we proved earlier that $$L_a$$ and $$R_a$$ are bijections, then both equations have unique solutions. $$\ \blacksquare$$
 <br>
-<br>
-
-
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Corollary 2.1.7 (Cancellation)
@@ -226,8 +215,6 @@ Suppose \(a, x, y\) are elements of a group \(G\). If \(ax = ay\), then \(x = y\
 <br>
 Suppose $$ax = ay$$. We know that $$L_a(x) = ax$$ is one to one. So for any elements $$x, y \in G$$, $$ax = ay$$ must imply that $$x = y$$ by definition of a one to one or injective map. A similar arguments shows that if $$xa = ya$$ must imply that $$x = y$$ by the injectivity of $$R_a$$. $$\ \blacksquare$$
 <br>
-<br>
-
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Corollary 2.1.8
@@ -382,7 +369,6 @@ Inductive Case: Suppose the inductive hypothesis is true for $$n$$. That is $$(a
 <h3>Isomorphism</h3>
 One thing that we want to do is to compare two groups. For example take $$(\mathbb{Z}_4, +)$$, the symmetries of the rectangle, $$(\phi(5), \cdot)$$ and $$(\phi(8), \cdot)$$. These are all groups with exactly 4 elements. To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
 <br>
-<br>
 <!---------------------------------------------------------------------->
 <div class="mintheaderdiv">
 Definition 2.1.13
@@ -399,7 +385,6 @@ where the first multiplication is in \(G\) while the second is in \(H\).<br>
 </div>
 <br>
 We write $$H \approx G$$ for $$G$$ is isomorphic to $$H$$.
-<br>
 <br>
 An an example consider the group of symmetries of the equilateral triangle $$D_3$$ and the group $$S_3$$ (permutations of $$\{1,2,3\}$$). Both groups contain exactly 6 elements. They turn out to be isomorphic. Observe here that if we assign the vertices $$A$$ to $$1$$, $$B$$ to $$2$$ and $$C$$ to $$3$$, then the rotation $$a$$ flips the vertices $$B$$ and $$C$$. This is exactly the same as the permutation $$(2 \ 3)$$. Similarly, if you think about the rotation $$r$$, you'll notice that $$r$$ permutes the vertices in the exact way as the permutation $$(1 \ 2 \ 3)$$. In fact, all permutations. Another example is the $$b$$ rotation. This rotation fixes $$b$$ and rotates $$a$$ and $$c$$. This is also the same as the permutation $$(1 \ 3)$$. We can map the rest of the symmetries as follows
 <div>
@@ -476,7 +461,6 @@ Therefore $$\varphi^{-1}$$ is an isomorphism as desired. $$\ \blacksquare$$.
 <h3>Groups of Small Order</h3>
 The order of a group is the number of elements in it. Formally,
 <br>
-<br>
 <!---------------------------------------------------------------------->
 <div class="mintheaderdiv">
 Definition 2.1.10
@@ -508,7 +492,6 @@ If \(G \approx H\), then \(G\) is abelian if and only if \(H\) is abelian.
 <br>
 Suppose that $$\phi: G \rightarrow H$$ is an isomorphism. Furthermore, let $$a, b \in G$$ and $$a', b' \in H$$ such that $$\phi^{-1}(a') = a$$ and $$\phi^{-1}(b') = b'$$. We will prove both directions of the statement.
 <br>
-<br>
 $$\Rightarrow$$: Suppose that $$G$$ is abelian. We will show that $$H$$ is abelian. Observe that
 <div>
 	$$
@@ -520,7 +503,6 @@ $$\Rightarrow$$: Suppose that $$G$$ is abelian. We will show that $$H$$ is abeli
 </div>
 But we know that $$G$$ is abelian and so $$ab = ba$$ so $$\phi(ab) = \phi(ba)$$ and therefore we must have $$a'b' = b'a'$$.
 <br>
-<br>
 $$\Leftarrow$$: Now suppose that $$H$$ is abelian. Then,
 <div>
 	$$
@@ -531,7 +513,6 @@ $$\Leftarrow$$: Now suppose that $$H$$ is abelian. Then,
 	$$
 </div>
 We know that $$a'b' = b'a'$$ because $$H$$ is abelian. But since $$\phi$$ is injective, this implies that $$ab = ba$$. (remember injective means that $$f(a)=f(b) \implies a = b$$). $$\ \blacksquare$$
-<br>
 <br>
 Note that for this direction, we could've instead relied on $$\phi^{-1}$$ being an isomorphism itself. and so observe that
 <div>
@@ -568,7 +549,6 @@ Since $$\phi$$ is an isomorphism, then we know that for each $$h \in H$$, there 
 	$$
 </div>
 So $$\phi(e_G)$$ is an identity element. But since the identity element is unique, then $$\phi(e_G) = \phi(e_H)$$.
-<br>
 <br>
 To show that $$\phi(g^{-1}) = \phi(g)^{-1}$$, see that
 <div>

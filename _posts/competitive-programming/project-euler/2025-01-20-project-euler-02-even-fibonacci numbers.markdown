@@ -44,11 +44,8 @@ int main(int argc, const char * argv[]) {
 <!------------------------------------------------------------------------------------>
 The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0002-even-fibonacci-numbers.cpp">here</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=2">Project Euler - 02</a>
 <br>
-<br>
-
 

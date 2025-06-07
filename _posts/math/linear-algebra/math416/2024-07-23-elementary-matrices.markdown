@@ -68,8 +68,6 @@ Elementary matrices are invertible, and the inverse of an elementary matrix is a
 </div>
 <b>Proof:</b>
 Let $$E$$ be an elementary $$n \times n$$ matrix. We know that that $$E$$ was obtained by some elementary row operation on $$I_n$$. We can reverse the steps used to transform $$I_n$$ to obtain $$E$$ in order to get back $$I_n$$. To get $$I_n$$ back, we had to use the same type of elementary row operation. By the previous theorem (3.1), this elementary row operation can be done using an elementary matrix $$\bar{E}$$ such that $$\bar{E}E = I_n$$. Therefore, $$E$$ is invertible and $$E^{-1} = \bar{E}$$ (By 2.4 Exercise 10!). $$\blacksquare$$
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References:</h3>

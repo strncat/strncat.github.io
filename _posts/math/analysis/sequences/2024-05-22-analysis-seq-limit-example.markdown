@@ -12,7 +12,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 <br>
 For the "show the limit" template, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Problem Discussion</h3>
 We want to prove that $$\lim\big(\frac{n+1}{n}\big) = 1$$. To do so we need to find $$N \in \mathbb{N}$$ such that for any $$\epsilon > 0$$, we have
@@ -24,7 +23,6 @@ $$
 $$
 </div>
 This inequality is implying that the terms in the sequence are going to fall within the neighborhood of $$1$$ ($$V_\epsilon(1)$$) for some value $$n \geq N$$. In other words, all the terms starting at $$n \geq N$$ will be within a radius of $$\epsilon$$ around $$1$$.
-<br>
 <br>
 To find $$N$$, we just need to solve the inequality for $$n$$,
 <div>

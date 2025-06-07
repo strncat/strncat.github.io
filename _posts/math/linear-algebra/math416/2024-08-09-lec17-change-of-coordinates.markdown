@@ -7,7 +7,6 @@ mathjax: true
 ---
 Given a vector space $$V$$ with two finite basis $$\beta$$ and $$\beta'$$. For $$v \in V$$, what is the relationship between $$[v]_{\beta}$$ and $$[v]_{\beta'}$$?
 <br>
-<br>
 Starting with $$[v]_{\beta'}$$, we want to derive an expression for $$[v]_{\beta}$$. We can write
 <div>
 $$
@@ -18,7 +17,6 @@ $$
 $$
 </div>
 In the first line we just re-wrote the vector so now the identity map is applied on $$v$$ which doesn't change $$v$$. 
-<br>
 <br>
 By theorem 2.14, we can re-write this line by first computing the matrix representative of the identity transformation that changes coordinates from $$\beta$$ to $$\beta'$$. We get this matrix by taking the vectors in $$\beta$$, applying the identity transformation which does nothing and then re-writing these vectors with respect to $$\beta'$$. These vectors will be the columns of the matrix. 
 <hr>
@@ -160,9 +158,7 @@ $$
 </div>
 This is going to be really hard to multiply. Can we simplify this computation?
 <br>
-<br>
 So what is $$A^2$$ really? It's the matrix representative of the composition $$[L_A \circ L_A]$$. In fact if we go back to just $$[L_A]_{\beta}$$. This is the matrix representative of this map with respect to the standard basis so $$[L_A]_{\beta} = A$$. The idea then is to find another basis such that the matrix representation of the map with respect to that basis is easier to multiply. So the plan is to find $$\beta'$$ such that $$[L_A]_{\beta'}^{\beta'}$$ is easier to multiply.
-<br>
 <br>
 Note that for $$v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, v_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}$$, we'll find that
 <div>
@@ -199,15 +195,11 @@ The trick here was to find $$v_1$$ and $$v_2$$ which isn't yet obvious yet but w
 <h3>Example: Matrix Representation of Orthogonal Projection</h3>
 Let $$W = Span\{(1,-1,0), (0,1,-1)\}$$. $$W$$ is a subspace of $$\mathbb{R}^3$$ (It is a plane in $$\mathbb{R}^3$$). 
 <br>
-<br>
 Let $$T: \mathbb{R}^3 \rightarrow \mathbb{R}^3$$ be the orthogonal projection onto $$W$$. Because we're projecting onto $$W$$ and both $$w_1$$ and $$w_2$$ are part of this plane, then we know that $$T(w_1) = w_1$$ and $$T(w_2) = w_2$$. 
-<br>
 <br>
 What we want is to find a matrix expression for this project $$[T]_{\beta}^{\beta}$$ where $$\beta$$ is the standard basis so $$\beta = \{(1,0,0),(0,1,0),(0,0,1)\}$$.
 <br>
-<br>
 To find this matrix, it is easier to find $$\beta'$$ so that $$[T]_{\beta'}^{\beta'}$$ is easily understood and use with the tools that we have. We can then use a change of basis formula to convert between the $$[T]_{\beta'}$$ and $$[T]_{\beta}$$.
-<br>
 <br>
 What is a candidate for $$\beta'$$, something that makes the matrix expression simple? well when $$T$$ acts on $$w_1$$ and $$w_2$$, it doesn't change them. But we still need one more vector. What should we choose for $$w_3$$? One candidate is the orthogonal vector to the place $$W$$ which will mean that its projection is going to be zero. How do we find it? We can take the cross product of $$w_1$$ and $$w_2$$. $$w_3 = w_1 \times w_2 = (1,1,1)$$ and $$T(w_3) = (0,0,0)$$.  
 <div>
@@ -219,7 +211,6 @@ $$
 $$
 </div>
 Again we derived these by writing $$T(w_1)$$ as a linear combination of the basis vectors $$\beta'=\{w_1,w_2,w_3\}$$. So $$[T(w_1)]_{\beta'} = 1(w_1) + 0(w_2) + 0(w_3)$$. and so the coordinate vector is $$(1,0,0)$$. Similarly $$[T(w_2)]_{\beta'} = 0(w_1) + 1(w_2) + 0(w_3)$$ and so on.
-<br>
 <br>
 But this is $$T$$ with respect to $$\beta'$$ and we want $$T$$ with respect to $$\beta$$. So now we need to use the change of basis formula to get what we want. So 
 <div>

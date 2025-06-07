@@ -27,16 +27,13 @@ The trick to graphing these functions to always remember that we always have the
 <h3>The Domain and Range</h3>
 It's important to know the domain and range to help see what the functions would look like. The domain here is any real number so $$(-\infty, \infty)$$. What about the range? We can never reach any number that is zero or below so the range can be written as $$(0, \infty)$$. This also means that $$y=0$$ is a horizontal asymptote. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Vertical Asymptotes</h3>
 The domain is all the real numbers so we don't have any domain issues and so we won't have any vertical asymptotes.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Horizontal Asymptotes</h3>
 so I know intuitively that for $$a^x$$ for example, the graph never reaches 0 no matter what $$x$$ values we plug in. This means that $$y=0$$ is a horizontal asymptote. I've also seen tutorials define the asymptote of exponential functions of the form $$f(x)=ca^{x+b}+d$$ to be $$d$$. Either way? it's kind of clear? or maybe now?
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>$$e^x$$</h3>
@@ -47,7 +44,6 @@ $$e^x$$ comes up frequently but is there anything special about graphing it? not
 <h3>Vertical Shift</h3>
 What happens if we're about to graph a function like $$3^x - 2$$. Notice here that we have a $$-2$$. This is a vertical shift that will shift be the whole graph of the function down two units (green curve moved down 2 units from the original blue curve). Note that the horizontal asymptote is also going to shift to -2.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/exponential/3.png" width="70%" class="center"></p>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Horizontal Shift</h3>
@@ -73,7 +69,6 @@ f(x) = -3^x + 1.
 $$
 </div>
 We can see here that we have a negative sign in front of the exponential. $$(- (3^x))$$. This negative sign will reflect the whole curve around its horizontal asymptote which is $$y=1$$ in this example. To graph this function, let's start by graphing the original function $$3^x$$ with the known two points $$(0,1)$$ and $$(1,3)$$ as well as the horizontal asymptote at $$y=0$$.
-<br>
 <br>
 Next,
 <ul>

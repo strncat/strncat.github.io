@@ -122,11 +122,8 @@ Finally, we can just call the above method for all prime numbers under 1 million
     printf("sum = %d\n", sum);
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=37">Project Euler - 37</a>
 <br>
-<br>
-
 

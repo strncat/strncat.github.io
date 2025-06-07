@@ -20,9 +20,7 @@ In other words, \(a \sim_H b\) if \(a^{-1}b \in H\).
 </div>
 We claim that $$\sim_H$$ is an equivalence relation. [Exercise: Prove it]
 <br>
-<br>
 The equivalence classes are the left cosets $$aH = \{ah \ | \ h \in H\}$$. 
-<br>
 <br>
 Now define $$G / H$$ to be the collection of left $$H$$-cosets in $$G$$ so $$G / H = \{ aH \ | \ a \in G\}$$. Define the Quotient function as follows
 <div>
@@ -77,14 +75,12 @@ $$
 </div>
 From this we see that $$3H = 0H$$, $$4H = 1H$$ and so on. There are exactly 3 distinct left cosets. These three left cosets are exactly $$Z_3 = \{[0], [1], [2]\}$$.
 <br>
-<br>
 So now we see that $$G / H = \mathbb{Z}_n$$. This is a group. In fact $$\pi \ : \ \mathbb{Z} \rightarrow \mathbb{Z}/\mathbb{Z}n$$ is a homomorphism.
 <hr>
 
 <!----------------------------------------------------------------------------->
 <h3>Quotient Function</h3>
 The question now is if we can do this in general. If we have a group $$G$$ and a subgroup $$H \leq G$$. We want to put a group structure on the set of left $$H$$-cosets, $$G / H$$ such that $$\pi \ : \ G \rightarrow G / H$$ is a homomorphism? This is called the "Quotient Group".
-<br>
 <br>
 Also if we make that happen and $$\pi$$ is a homomorphism. What would the kernel of $$\pi$$ be? By definition:
 <div>
@@ -117,7 +113,6 @@ $$
 </div>
 The goal is to show that $$(G / N, \cdot)$$ is a group. But first we need to show that the operation we defined is well-defined (We also want to show that this operation is a homomorphism later). So we need to show that if $$aN = a'N$$ and $$bN = b'N$$, then $$(ab)N = (a'b')N$$.
 <br>
-<br>
 <b>Proof (well-defined)</b>
 <br>
 Since $$aN = a'N$$, then $$a'$$ is in the coset $$aN$$ and we can write $$a' = an_1$$ for some $$n_1 \in N$$. Similarly, $$bN = b'N$$ so we can write $$b' = bn_2$$ for some $$n_2 \in N$$. We want to show that $$a'b' = abn$$ for some $$n \in N$$. Now,
@@ -132,7 +127,6 @@ $$
 </div>
 So now we want to show that $$b^{-1}n_1bn_2 \in N$$. We know that $$N$$ is a normal subgroup. So if we conjugate $$n$$ by $$b^{-1}$$, then we know that $$b^{-1}nb \in N$$ because $$N$$ is normal. Moreover, $$(b^{-1}nb)(n_2) \in N$$ since $$N$$ is a subgroup. $$\ \blacksquare$$
 <!----------------------------------------------------------------------------->
-<br>
 <br>
 <b>Proof ($$(G/N, \cdot)$$ is a group)</b>
 <br>
@@ -156,7 +150,6 @@ To show this, we need to verify the group properties
 Therefore, $$(G/N, \cdot)$$ is a group.
 <!----------------------------------------------------------------------------->
 <br>
-<br>
 <b>Proof (homomorphism)</b>
 <br>
 Next we want to show that $$\pi: G \rightarrow G/N$$ is a homomorphism with kernel $$ker(\pi) = N$$. Recall that $$\pi(a) = aN$$. 
@@ -165,7 +158,6 @@ Next we want to show that $$\pi: G \rightarrow G/N$$ is a homomorphism with kern
 <!----------------------------------------------------------------------------->
 <h3>Example 1</h3>
 Let $$G = D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}$$. We established the identities $$r^4 = e = j^2$$ and $$jr = r^{-1}j$$. We first claim that $$N = \langle r^2 \rangle = \{e, r^2\}$$ is a normal subgroup of $$G$$. Why? For any $$g \in D_4$$, we have $$g r^2 g^{-1} \in \langle r^2 \rangle$$.
-<br>
 <br>
 Since $$N$$ is normal, then we can form the quotient group $$G / N$$ where
 <div>
@@ -176,7 +168,6 @@ Since $$N$$ is normal, then we can form the quotient group $$G / N$$ where
 	$$
 </div>
 Note that the other possibilities end up being the same as one of the four cosets above. For example $$r^2N = eN$$ and $$r^3N = rN$$. Note also that this matches Lagrange's Theorem. By Lagrange, we expect to have $$|G|/|N|$$ cosets. $$|G| = 8$$ and $$|N| = 2$$ so we indeed have 4 elements.
-<br>
 <br>
 Since $$D_4/N$$ has 4 elements, then we expect this group to be isomorphic to either the cyclic group of order 4 or the non-cyclic one. How do we know? We can calculate the order of the elements in the group. If there is an element of order 4, then it's cyclic. If there is not, then it can't be cyclic. For example $$(rN)^2 = r^2N = eN$$. Why? $$r^2N$$ is the coset 
 <div>
@@ -248,7 +239,6 @@ $$a + \mathbb{Z} = [a] = \{a + n \ | \ n \in \mathbb{Z}\}$$ is a $$\mathbb{Z}$$ 
 </div>
 $$G/H$$ is a group under addition where $$[a] + [b] = [a + b]$$. This group is abelian. What is this group isomorphic to? 
 <br>
-<br>
 Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = Rot_{e_3}(\theta) \ | \ \theta \in \mathbb{R}\}$$. This is a subgroup of $$SO(3)$$. Note here that $$r_{\theta + 2\pi n} = r_{\theta}$$. It turns out that $$\mathbb{R}/\mathbb{Z}$$ is isomorphic to $$T$$. The isomorphism is
 <div>
 	$$
@@ -293,7 +283,6 @@ We can form the quotient group
 <h3>Symmetric Groups</h3>
 We want to know what the normal subgroups of symmetric groups are. In order to do so, we want to see what happens if we conjugate a permutation $$\tau$$ with element so $$\sigma \tau \sigma^{-1}$$?
 <br>
-<br>
 In turns out in symmetric groups, there is a way to understand conjugation. We actually have a formula. This formula is called the <b>cycle conjugation formula</b>. Given $$\tau = (a_1 \ a_2 \ ... a_k) \in S_n$$ where $$\tau$$ is a permutation consisting of a $$k-$$cycle with $$a_1,a_2... \in \{1,2,....,n\}$$. Then 
 <div>
 	$$
@@ -305,12 +294,10 @@ In turns out in symmetric groups, there is a way to understand conjugation. We a
 </div>
 So we actually get another $$k$$ cycle.
 <br>
-<br>
 <b>Proof</b>
 <br>
 We want to show that 
 $$\sigma (a_1 \ a_2 \ ... \ a_k) \sigma^{-1} = (\sigma(a_1) \ \sigma(a_2) \ ... \ \sigma(a_k))$$. We will compute the new permutation directly. Let $$x \in \{1,2,...,n\}$$. It turns out that there are two cases.
-<br>
 <br>
 Case 1: $$x = \sigma(a_i)$$:<br>
 So now we'll apply the permutation on $$x$$. First we apply $$\sigma^{-1}$$ but since $$x = \sigma(a_i)$$, then we will just get $$a_i$$. Next, we'll apply the cycle and here we'll get $$a_{i+1}$$ since it's a cycle. Lastly, we need to apply $$\sigma$$. So we get $$\sigma(a_{i+1})$$. (There is a subtlety here because $$a_{i+1}$$ for $$i = k$$, is $$i = 1$$. To fix this, we'll let $$a_{k+1} = 1$$ or just have two cases). So in summary:
@@ -401,9 +388,7 @@ Notice that for the other elements 3. We don't care where it goes as long it goe
 <h3>Example 2</h3>
 Let $$G = S_3$$ and $$N = \{e, (1 \ 2 \ 3), (1 \ 3\ 2)\} \leq S_3$$.
 <br>
-<br>
 Observation: A subgroup $$H \leq S_n$$ is normal if and only if whenever $$g \in H$$, then so is every element with the same cycle type as $$g$$. 
-<br>
 <br>
 Based on this, $$H = \{e, (1 \ 2)\} \leq S_3$$. $$H$$ is not normal since it doesn't have all the elements of the same cycle type. Other normal subgroups of $$S_n$$ are $$\{e\}$$, $$A_n = ker(sgn)$$ even permutations. And if $$n = 4$$, $$K = \{e, (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4),(2 \ 3)\}$$.
 <hr>

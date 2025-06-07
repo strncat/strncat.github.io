@@ -70,7 +70,6 @@ $$
 </div>
 This means that $$x \in I_n$$ for any $$n \in \mathbb{N}$$. Therefore, $$x \in \bigcap_{n=1}^{\infty} I_n$$ and so the intersection is not empty as we wanted to show. $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>
 <ul>

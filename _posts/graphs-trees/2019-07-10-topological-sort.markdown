@@ -7,7 +7,6 @@ mathjax: true
 ---
 Let $$G = (V, E)$$ be a directed acyclic graph consisting of $$V$$ vertices and $$E$$ edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices $$u \in V$$ and $$v \in V$$, if $$(u,v) \in E$$, then $$u$$ must come before $$v$$ in the ordering. For example, we might have some dependency graph of classes and their prerequisites and we want to find an ordering of the classes such that if class $$a$$ is a prerequisite to class $$b$$, then $$a$$ comes before $$b$$ in the sorted list.
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>Revisiting Depth First Search</h3>
 Believe or not, topological sort is just a depth first search with a minor tweak! In depth first search, we start by visiting some node and marking its start time. We then visit its children and run depth first search again on the children and their descendants. Only after we're done processing all the neighbors, we mark the node's finishing time. This means that once we mark a node finished, then it's impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node itself! (we'll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we're done processing them onto a stack. When there are no longer unvisited nodes, we will end up with the sorted vertices as required.
@@ -44,7 +43,6 @@ Next we will start from $$c$$ and visit $$b$$ and mark both their start and fini
 
 Notice how if we ordered the nodes by their finishing times ($$a, c, b, f, e, d$$) descendingly then we'll have a valid ordering of the nodes. 
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>Correctness Proof</h3>
 The first time I saw topological sort I didn't believe it. It seemed strange to just be able to sort the vertices by just doing a depth first search. What do we need to show to prove that topological sort works? what is the intuition here? Let's think about this. We need to prove that for any two vertices $$a, b \in V$$, if there is an edge from $$a$$ to be $$b$$, then $$a$$ will come before $$b$$ in the sorted output. 
@@ -65,7 +63,6 @@ To do so, we will use a theorem called the <b>Parenthesis Theorem</b> from CLRS 
 
 Proof: TODO!
 <br>
-<br>
 Now we are ready to prove our earlier claim. 
 
 <b>Let $$$$G = (V,E)$$$$ be a directed acyclic graph. For any two vertices $$a, b \in V$$, if $$(a,b) \in E$$, then $$a$$.finish > $$b$$.finish.</b>
@@ -80,7 +77,6 @@ Let's consider the depth first tree generated after running depth first search a
 + the intervals [a.start, a.finish] and [b.start, b.finish] are disjoint and neither $$a$$ or $$b$$ is a descendant of the other in the depth-first forest. In this case, we claim that we must have explored $$b$$ first before $$a$$. Because if we have explored $$a$$ first then we would have explored $$b$$ since $$(a,b) \in E$$ and so we must have $$b.finish < a.finish$$ as required. Beautiful isn't it?
 
 We conclude from all three cases that we must have $$b.finish < a.finish$$. $$\blacksquare$$ 
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Implementation</h3>
@@ -119,10 +115,8 @@ void topological_sort(graph& g) {
 <h3>Running Time</h3>
 It is just DFS! so the total time is $$O(V+E)$$.
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>References</h3>
 Stanford CS161 <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
-<br>
 <br>
 

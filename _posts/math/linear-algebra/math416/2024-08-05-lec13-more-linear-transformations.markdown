@@ -34,7 +34,6 @@ We will show that any linear map $$T: V \rightarrow W$$ between finite dimension
 </div>
 are examples of linear transformations with finite dimensional vector spaces that can be represented by a matrix. But in order to show this, we will start with expressing vectors uniquely relative a basis in a vector space.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Coordinate Expression for a vector</h3>
 Recall that if $$\beta$$ is a basis for $$V$$, then for any $$v \in V$$, $$v$$ can be expressed uniquely as an element of $$Span(\beta)$$. We proved this previously for any vector space whether infinite or finite dimensional. But if the basis is finite ($$\beta = \{v_1, ... , v_n\}$$), then for every $$v \in V$$, $$v$$ can be expressed uniquely in the form,
@@ -266,7 +265,6 @@ $$
 </div>
 (Note: We earlier said that any linear transformation between finite dimensional vector spaces can be represented by a matrix. $$L_A$$ is a linear transformation. So what is the matrix representation of it? The claim is that as long as you use the standard basis for $$\mathbb{R}^n$$ and $$\mathbb{R}^m$$, then the representation is just $$A$$ itself!)
 <br>
-<br>
 Proof: $$\beta$$ is the standard basis of $$\mathbb{R}^n$$ so $$\beta = \{e_1,...,e_n\}$$ where 
 $$e_1 = \begin{pmatrix}
 1 & 0 & ... & 0
@@ -290,7 +288,6 @@ $$
 $$
 </div>
 So far, we've taken a linear transformation from a vector space $$V$$ to another $$W$$ and represented it with a matrix $$[T]_{\beta}^{\gamma}$$. Above, we can also take a matrix $$A$$ and turn it into a linear map $$L_A$$ and if we do so with the standard bases $$\mathbb{R}^n$$ and $$\mathbb{R}^m$$, we can recover the matrix $$A$$. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Linear Transformation as a Matrix Multiplication</h3>
@@ -348,7 +345,6 @@ a_n \\
 $$
 </div>
 This is exactly what we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>

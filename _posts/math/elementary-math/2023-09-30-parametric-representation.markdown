@@ -73,7 +73,6 @@ $$
 </div>
 So really, it's like we're interpolating between the two points. This notation is also nicer since the two points appear once each!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

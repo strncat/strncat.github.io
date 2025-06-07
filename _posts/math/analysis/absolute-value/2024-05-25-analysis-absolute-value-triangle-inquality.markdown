@@ -36,7 +36,6 @@ as required. $$\blacksquare$$
 <br>
 (1) I was unable to add the proof link inside the math formula but for the proof of $$|a| \geq a$$, see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">see here</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>
 <ul>

@@ -86,7 +86,6 @@ So this a point is a vertex if and only if, rotating this point by $$A$$ is also
 <h3>The Symmetry Group of the Tetrahedron</h3>
 Let's study the specific symmetry group of the Tetrahedron. Notice that if we draw a line from any vertex through the centroid of the opposite face, we get an axis where we can rotate around. We have two possible rotations here. Going one third clockwise and one third of full rotation counter clockwise. So $$2\pi / 3$$ in either direction. Each of these have order 3. Moreover, there are 4 possible axes of this type since we have 4 different vertices.
 <br>
-<br>
 The next possible rotational symmetry is the one that goes through a mid point of an edge to another midpoint of another edge. It's a 180 degrees symmetry. So its order is 2 and we have 3 such possible axes. 
 <div>
 <table style="max-width: 700px; margin: 20px auto;">
@@ -147,9 +146,7 @@ The kernel of this homomorphism is just the identity symmetry. If you think abou
 <h3>The Symmetry Group of the Cube</h3>
 Next, we want to explore the symmetries of the cube. The first symmetry that we can construct is the symmetry around the axis that goes between two opposite vertices. We have 8 vertices total. Therefore, there are 4 pairs of those vertices. So 4 axes total. A rotation is one third of a full spin, so the angle is $$2\pi/3$$. Since we have two choices for the angle, then the number of total rotations is $$2*4 = 8$$ total rotations.
 <br>
-<br>
 The next symmetry is the symmetry around the axis connecting the midpoints of two opposite edges. We have 12 edges. So we have 6 pairs of opposite edges. The angle is exactly 180 degrees. So we have exactly 6 symmetries
-<br>
 <br>
 The next symmetry is the symmetry around the axis connecting the centroid of two faces. We can rotate by a 90 degrees either clockwise or counter clockwise. There are 6 faces so 3 opposite pairs of faces. There are 2 rotations for each pair so a total of 6 symmetries. But we can also rotate by 180 degrees. So therefore we have another 3 rotations here.
 <div>
@@ -211,7 +208,6 @@ The next symmetry is the symmetry around the axis connecting the centroid of two
 </table>
 </div>
 So we have exactly 24 symmetries just like we expected (twice the number of edges). What group is this isomorphic to? It turns out to be isomorphic to $$S_4$$. Previously we have 4 vertices so it was easy to see or construct the homomorphism. But now we have 8 vertices so it's not exactly clear. We want to construct a homomorphism from $$G$$ to $$S_4$$. So we need to find function from $$G$$ to $$Sym(\text{4 things in a cube})$$. What will the 4 things be? The easiest choice is the diagonals. We have 4 different diagonals between every pair of opposite vertices. The symmetry of the cube permutes the 4 diagonals.
-<br>
 <br>
 So next we want $$\phi$$ to not just be a homomorphism. We want it to be an isomorphism. Each group has exactly 24 elements. So if we should that $$\phi$$ is injective, then that suffies to conclude that it's an isomorphism. In order to do that, we just need to figure out what each of these symmetries do. So
 <ul>
@@ -301,7 +297,6 @@ So there are 60 total symmetries matching the rule (edges * 2). Note here that a
 	$$
 </div>
 Take the 30 edges and divide them into groups of 6 edges each. Each edge has 5 other friends. One friend is the opposite edge that's parallel to it. And there are 4 other perpendicular edges to it. So everything in group of 6 is either parallel or perpendicular. 
-<br>
 <br>
 The image of this homomorphism is exactly $$A_5$$ and this homomorphism is also injective. From these two facts, we can conclude that $$G \rightarrow A_5$$. To show this, we simply determine the cycle type like we did before in the above table (last column). This is really hard to visualize actually. But you want to see what happens to the group of edge friends when we rotate around each of the axes in the above table. For example, for the face to face axis, all the friends get cyclically rotated. So it's a 5-cycle.
 <br>

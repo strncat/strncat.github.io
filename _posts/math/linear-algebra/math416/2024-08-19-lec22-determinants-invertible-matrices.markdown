@@ -89,7 +89,6 @@ Theorem
 <br>
 $$\Rightarrow$$: Suppose $$A$$ and $$B$$ are invertible. Then, $$(AB)^{-1} = B^{-1}A^{-1}$$.
 <br>
-<br>
 $$\Leftarrow$$: Suppose that $$AB$$ is invertible. This implies
 
 <ul style="list-style: none;">
@@ -108,7 +107,6 @@ $$\Leftarrow$$: Suppose that $$AB$$ is invertible. This implies
 
 <!------------------------------------------------------------------------------------>
 Finally we're readying to prove the main theorem:
-<br>
 <br>
 <div class="purdiv">
 Theorem
@@ -212,7 +210,6 @@ x_ = \frac{\det(M_k)}{\det(A)},
 $$
 </div>
 where $$M_k$$ is obtained from $$A$$ by replacing the $$k$$th column by $$\bar{b}$$. This allows to solve for a particular component of the solution without having to solve for everything. It also allows us to analyze the dependence on $$A$$ and $$\bar{b}$$. Why is this true?
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Proof:</b>

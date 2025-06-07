@@ -11,9 +11,7 @@ Given an array $$A$$, the Cartersian tree, $$C(A)$$, is defined as follows: <br>
 1. If $$A = \emptyset$$, then $$C(A) = \emptyset$$, the empty tree. <br>
 2. If $$A \neq \emptyset$$, then let $$min$$ be the minimum element in $$A$$ and let $$i$$ be the index of $$min$$. Fix the root of the Cartesian tree to be $$min$$ and let $$\text{left}(A) = \{x_j \in A \ \ | \ \ j < i\}$$ be the points on the left of $$i$$ and $$\text{right}(A) = \{x_j \in A \ \ | \ \ j > i\}$$ be the points on the right of $$i$$. Let the root's left child be the cartesian tree of the left points, $$C(\text{left}(A))$$. and the root's right child be the cartesian tree of the right points,  $$C(\text{right}(A))$$.
 <br>
-<br>
 Notice that the Cartersian trees obey the <b>min-heap property</b> and also an in-order traversal of the Cartersian tree, results in the original array. <br>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Naive Algorithm</h3>
@@ -36,7 +34,6 @@ Given the above array, we construct the following cartersian tree:
 2. Next, we recursively create the left and right cartersian trees. We pick 13 as the minimum on the left subarray [13, 23, 19]. and we pick 11 as the minimum in the right subarray [29, 11, 31, 37, 17]. We repeat the process until we run out of elements.
 
 ![my photo]({{ site.url }}/assets/cartesian/2.png)
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>O(n) Algorithm</h3>
@@ -152,11 +149,9 @@ This results in the following tree
 <h3>Proof of Correctness</h3>
 ???
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Implementation:</h3>
 https://github.com/strncat/algorithms-and-data-structures/blob/master/rmq/catersian-trees.cpp
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>

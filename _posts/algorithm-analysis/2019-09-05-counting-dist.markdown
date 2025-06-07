@@ -32,7 +32,6 @@ The strings are indistinguishable. We want to distribute them among the buckets 
 ![my photo]({{ site.url }}/assets/counting/0b.png)
 To simplify the problem, let's pretend that they are distinguishable and instead of buckets we'll use dividers to separate the strings into different buckets. This way the first set of strings are in bucket 1, the second set after the first divider are in bucket 2 and so on. We'll use colors to distinguish them. We will only need $n-1$ dividers to create $n$ groups.
 <br>
-<br>
 To visualize this, suppose $n=4$ and $k=5$. In the below figure, we have $\{s_1,s_2\}$ in the first bucket. $\{s_3\}$ in the second bucket. $\{s_4,s_5\}$ in the third bucket. The forth bucket is empty.
 ![my photo]({{ site.url }}/assets/counting/1.png)
 How many possible permutions are there? We have $n-1$ dividers and $k$ strings so
@@ -55,7 +54,6 @@ $$
 </div>
 Note that solution can be applied to other interesting examples like finding the number of integer solutions to $x_1+x_2+...+x_k=n$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>(4) k indistinguishable strings and n distinguishable buckets with at most 1 string in each bucket</h3>
 In case (2), we saw that the number of ways to put $k$ distinguishable strings into $n$ distinguishable buckets with at most 1 string in each bucket is $\binom{n}{k} * k!$. In this case, the strings are indistinguishable so we don't care about the order of strings and so we divide by $k!$. The final answer therefore is simply
@@ -70,18 +68,4 @@ $$
 <h3>References</h3>
 - Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
 

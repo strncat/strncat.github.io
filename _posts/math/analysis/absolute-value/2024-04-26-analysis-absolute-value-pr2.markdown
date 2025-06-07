@@ -19,7 +19,6 @@ We have two cases:
 This was a little hard as well but I need to remember that \(x\) is negative so \(-x\) is positive.
 $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>
 <ul>

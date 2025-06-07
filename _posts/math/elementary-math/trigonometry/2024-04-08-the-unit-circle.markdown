@@ -32,14 +32,12 @@ So now we know that if we fix $$\theta$$, whatever right triangle we come up wit
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/unit-circle/2.png" width="65%" class="center"></p>
 Next, Let's make the hypotenuse of this triangle be the radius of a circle. This circle is a called a unit circle since the radius is 1. Notice here that the arc length formed by $$\theta$$ is now exactly the value of $$\theta$$. Another neat thing. This comes from the fact that the arc length is $$\theta$$ multiplied by the radius but we know the radius is 1 and so the arc length is just the value of $$\theta$$.
 <br>
-<br>
 Also, note that the coordinates of that point at the end of the arc is just $$(b,c)$$ which can also be written as ($$\sin(\theta)$$, $$\cos(\theta)$$). Very cool!
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/unit-circle/3.png" width="73%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>The Unit Circle Expanded</h3>
 So now we know that the coordinates $$(x,y)$$ on the unit circle are exactly the trigonometric functions $$(sin(\theta), cos(\theta))$$. We also know that $$\sin(\theta)$$ represents the relationship between the opposite side and the hypotenuse. We chose to work with the unit circle because it's easy to compute these trigonometric functions when the radius is 1 and no matter what radius we choose, these trigonometric functions will be exactly the same so why not just pick a radius that's easy. 
-<br>
 <br>
 Since we often work with right triangles and need to calculate these trigonometric functions, often you'll see them pre-computed for a bunch of famous angles. The following is taken from Wikipedia where it shows some of these famous angles and their precomputed coordinates/trigonometric functions.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/unit-circle/unit-circle-wikipedia.svg.png" width="73%" class="center"></p>

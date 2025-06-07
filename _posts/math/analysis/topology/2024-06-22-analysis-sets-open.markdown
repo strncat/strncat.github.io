@@ -24,7 +24,6 @@ Based on the previous defintion, we can now define what it means for a set to be
 <!--<p style="text-align:center;"><img src="{{ site.url }}/assets/math/real-analysis/cantor-set-1.png" width="80%" class="center"></p>-->
 What does this mean? Consider the set $$(c,d)=\{x \in \mathbb{R}, c < x < d\}$$. $$(c,d)$$ is an open set. To see why, let $$x \in (c,d)$$ be arbitrary. Set $$\epsilon = \min\{x - c, d - x\}$$, then from this we see that $$V_{\epsilon}(a) \subseteq (c,d)$$. For example if you take $$(1,2)$$ and pick $$x$$ to be 1.7, we will then set $$\epsilon$$ to be 0.3 which is what we need since $$1.7\pm \epsilon$$ will always be 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>

@@ -20,7 +20,6 @@ $$
 </div>
 Each set above is open. Note here that we have to have an infinite collection of these sets. Any finite subset will not contain all of $$(0,4)$$.
 <br>
-<br>
 An open cover of $$[0,4]$$ is the following
 <div>
 $$
@@ -31,7 +30,6 @@ $$
 </div>
 Note here that we had to add two extra sets to cover both end points. This illustrates the difference between what we need to cover an open interval versus a a closed interval.
 <br>
-<br>
 What about a <b>finite subcover</b> of the following open cover of $$(0,4)$$
 <div>
 $$
@@ -41,7 +39,6 @@ $$
 $$
 </div>
 Is it possible to get a finite cover that covers $$(0,4)$$? No, in this case no matter what collection we choose, we'll always be missing an element from the interval $$(0,4)$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

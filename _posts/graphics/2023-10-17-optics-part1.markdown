@@ -9,7 +9,6 @@ mathjax: true
 <h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Overview</h3>
 So now the focus will be on formalizing why the $\cos(\theta)$ matters. To do this, we'll study two important things about light. How does light leave the light source and how does it hit an object?
@@ -32,7 +31,6 @@ $$
 </div>
 This time, $A$ is the area of the surface on the sphere. The surface area of a sphere is $4\pi r^2$ so a sphere has $4\pi$ steradians$$. We want to know how many photons in this cone are coming out. This will tell us how much light power is coming out. Note here that if the cone gets bigger, the amount of photons is not changing. The photons are just spreading farther. At any cross section of that cone, we'll have the same amount of photons.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>(1) Radiant Intensity from a Light Source</h3>
 How does light leave a light source? The radiant intensity from a light source is
@@ -44,7 +42,6 @@ I(\omega) = \frac{d\phi}{d\omega}.
 $$
 </div>
 $\phi$ is the light source power (in watts = joules per second) or the amount of photons. $\omega$ is a solid angle from the previous section. So this is photons per solid angle. The intensity is stronger when a lot of photos are coming out of that cone. So again, we don't measure or care about the amount photons coming out of the light. We instead measure the photons per solid angle ($\omega$). This is what matters.
-<br>
 <br>
 For isotropic light sources, we have the same amount of photos going out in each direction, So we don't depend on omega anymore. $I$ is just a constant. So we can just bring the $I$ out below and take the integral to find $\phi$. We know from the previous section that the sphere has $4\pi$ steradians and so we'll end up with,
 <div>
@@ -61,10 +58,6 @@ $$
 </div>
 So if we know the power in watts of the light source ($\phi$), then we can divide it by $4 \pi$ to get $I$ (the radiant intensity). However for anistrophic light source, the intensity will vary. We have different amount of photons going in different directions so the intensity $I$ varies across the light as a function of $\omega$.
 <br>
-<br>
-
-
-
 <!------------------------------------------------------------------------------------>
 <h3>(2) Irradiance onto a Surface</h3>
 So this is how the light leaves the light source. Now we'll switch to surfaces! How does light hit an object? For lights, it's like a point throwing out light. For surfaces, it's some flat object with area catching this light. So instead of radiance intensity, we'll define irradiance for surfaces,
@@ -99,7 +92,6 @@ So basically, irradiance decreases as you tilt the surface since less photons hi
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/optics/02-tilted.png" width="40%" class="center"></p>
 Why does the math still work out? It turns out that the angle in the above picure between the normal and the surface is the SAME angle that we computed above. So now what we can do is take the dot product of the light and the normal to get that SAME $\theta$ that measure how much "fewer" photons we're going to get with the tilt! THIS IS SO FREAKING AMAZING!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Solid Angle vs. Cross Sectional Area</h3>
 So now we'll tie (1) radiance and (2) Irradiance together. 
@@ -122,7 +114,6 @@ d\omega &= \frac{dA_{\text{on the sphere surface}}}{r^2} \\
 $$
 </div>
 So what did we do here? We wrote an equation that compares the area of the object that the light is hitting to the steradians on the surface of the sphere where the light is leaving the light source from. This relationship is defined now by $r^2$ and $\cos(\theta)$. More tilt, means less light and more distance means also less light. This also implies the conservation of light energy. The amount leaving the cone, is captured by the area. To summarize, now we related the the amount of photons leaving the light to area of the surface we're trying to shade.the solid angle varies with the distance and the tilt angle
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Area Lights</h3>
@@ -147,9 +138,7 @@ $$
 </div>
 This theta is the light theta. As you tilt the light source, you will get fewer photons just like when we titled the surface earlier. But this theta is the light source theta. So to summarize, we have two $\theta$s. One will affect how much light is coming out and one affects how much light is getting captured.
 <br>
-<br>
 Remember this is not a point. It's an area. So now this area can be tilted and the tilt angle is this new light theta that we're seeing for the first time in this slide.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
@@ -157,32 +146,4 @@ Remember this is not a point. It's an area. So now this area can be tilted and t
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
 <br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

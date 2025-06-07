@@ -32,7 +32,6 @@ Warning: We want to think of $$3 + 4x + 17x^2 + 0x^3 = 3 + 4x + 17x^2$$. So if t
 <br>
 We really identify an $$f \in R[x]$$ with an infinite sequence $$(a_k)_{k \geq 0} = (a_0,a_1,a_2,...)$$ where each $$a_i \in R$$ and because this polynomial is finite and we want an infinite sequence, we'll say that there exists an $$n$$ such that $$a_i = 0$$ for all $$i > n$$. So after some point $$n$$, all the terms will be zero after.
 <br>
-<br>
 The claim is that $$R[x]$$ is a commutative ring with 1. So we need to define multiplication and addition. Therefore, let $$ f = \sum_i a_ix^i, g = \sum_j b_jx^j$$ where $$a_i,b_j \in R$$. Then
 <div>
 $$
@@ -45,7 +44,6 @@ $$
 <!--------------------------------------------------------------------------->
 The identity element is an example of a constant polynomial. A constant polynomial is $$f \in R[i]$$ where $$f = \sum_ka_k x^k$$ such that $$a_k = 0$$ for all $$k \geq 1$$ So $$f = a_0$$.
 <br>
-<br>
 Let $$C \subseteq R[i]$$ be the subset of constant. Then $$C$$ is a subring. Define a bijection from
 <div>
 $$
@@ -57,9 +55,7 @@ $$
 </div>
 This bijection is in fact an isomorphism of rings between $$R$$ and $$C$$. 
 <br>
-<br>
 Convention: We identify an element $$a$$ in the original ring $$R$$ with the corresponding constant polynomial in $$R[x]$$. So we can think of $$R$$ as a subring of $$R[x]$$. 
-<br>
 <br>
 Remark: In a similar way, we can form $$R[x,y]$$ or $$R[x_1,...,x_n]$$ (polynomial ring of several variables). In fact, $$R[x,y] = (R[x])[y]$$.
 <hr>
@@ -143,7 +139,6 @@ $$
 </div>
 The proposition says the degree of $$fg$$ should be $$1+1=2$$ but here so the degree of $$f^2$$ is zero. So we're failing here because we're not working in a field. Note that this shows that $$f \in \mathbf{Z_4}[x]^{\times}$$ is a unit and it's multiplicative inverse is itself.  Here is a consequence of the proposition:
 <br>
-<br>
 <!------------------------------------------------------------------------>
 <div class="peachheaderdiv">
 Corollary
@@ -154,7 +149,6 @@ If \(K\) is a field, then the units in the polynomial ring \(K[x]\) are exactly 
 <!------------------------------------------------------------------------>
 <br>
 So if $$K$$ is a field, then all the units in the ring $$K[x]$$ will be the nonzero constant polynomials. Those units are called $$K[x]^{\times}$$. They form the multiplicative group of the ring $$K[x]$$. Reminder: $$K$$ is a field so every element except zero has a multiplicative inverse. $$K^{\times}$$ is not a field, it is a group $$(K^{\times},\cdot)$$ that excludes zero so every single element has a multiplicative inverse. 
-<br>
 <br>
 <b>Proof</b>
 <br>
@@ -225,10 +219,8 @@ $$
 </div>
 Therefore, $$\deg(p') < m$$. 
 <br>
-<br>
 To prove the proposition, we use induction on $$m = \deg(p)$$. <br>
 If $$m < n = \deg(d)$$, let $$q = 0, r = p$$ so that $$p = 0d + r$$. Therefore, $$\deg(r) = \deg(p) < n$$. 
-<br>
 <br>
 If $$m \geq n$$, use induction. I can write $$p = (cx^k)d + p'$$ where $$\deg(p') < m$$. By induction, there exists a $$q'$$ such that $$q'd + r$$ where $$\deg(r) < n$$ so 
 <div>

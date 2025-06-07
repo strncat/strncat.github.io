@@ -19,7 +19,6 @@ By the definition of the absolute value function we have two cases:
 This second case definitely made me pause. By definition $$|x| = -x$$. But $$x$$ is negative. This means that $$-x$$ is positive so $$|x|$$ is positive!
 $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>
 <ul>

@@ -10,7 +10,6 @@ mathjax: true
 </div>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
-<br>
 <h3>Proof:</h3>
 Let $$A$$ and $$B$$ be nonempty sets such that $$A \cup B = \mathbb{R}$$. Since for all \(a \in A\) and \(b \in B\), we have \(a < b\), 
 
@@ -32,7 +31,6 @@ $$
 We're also given 
 
 $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

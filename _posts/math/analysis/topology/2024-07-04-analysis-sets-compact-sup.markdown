@@ -15,7 +15,6 @@ Suppose $$K$$ is compact and nonempty. This means that $$K$$ is closed and bound
 
  $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>

@@ -7,7 +7,6 @@ mathjax: true
 ---
 Suppose we want to ship oranges from NYC to SF. We have different routes of different capacities. The total number of oranges entering some city $$a$$ must be equal to the number of the oranges leaving $$a$$. In other words, cities can't withhold oranges. We want to find the maximum number of oranges we can ship to SF. This is just one example where we would use a flow network to solve the problem.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Flow Networks</h3>
 <img src="{{ site.url }}/assets/flow/1.png" width="100%">
@@ -17,7 +16,6 @@ A flow network $$G=(V,E)$$ is a directed graph where <br>
 - If we have edge $$(u,v) \in E$$ then we must have $$(u,v) \not\in E$$. <br>
 - For any vertex $$v \in V$$, $$(v,v) \not\in E$$. <br>
 - $$G$$ is connected and so $$|E| \geq |V| - 1$$.$$$$
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>What is Flow?</h3>
@@ -44,7 +42,6 @@ $$
 </div>
 In other words, the total flow coming into $$u$$ is equal to the total flow leaving $$u$$. Nodes don't withhold flow.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Flow Value</h3>
 Let $$|f|$$ be the value of the flow defined as
@@ -57,11 +54,9 @@ $$
 </div>
 In other words, the flow value is the total flow coming out of the source minus the total flow coming into the source. Notice how the flow value is a natural upper bound on the maximum flow we can push from $$s$$ to $$t$$. Algorithm Design uses the notation $$v(f)$$ instead of $$|f|$$.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>The Maximum Flow Problem</h3>
 In the maximum-flow problem we are given a flow network $$G$$ with a source vertex $$s$$ and a sink vertex $$t$$ and we are asked to find a flow of maximum value. In the above graph, the current flow is 15. Is this a maximum flow and how can we find a maximum flow in $$G$$?
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>A Greedy Idea</h3>
@@ -72,7 +67,6 @@ We'll apply the strategy above by pushing as much as we can starting from $$s$$.
 This flow is not optimal. In order to find the optimal flow we need to have a way to reduce the amount we're pushing on $$(a,b)$$ and then push more instead on $$(s,b)$$ and $$(a,t)$$.
 <img src="{{ site.url }}/assets/flow/fix3.png" width="100%">
 How do we implement the idea of removing flow from one part and adding it to another part in the graph? That's what residual graphs are for! Residual graphs provide a way for us to increment or decrement flow in the original flow. Next, we'll define formally what residual graphs are.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Residual Graphs</h3>
@@ -92,7 +86,6 @@ $$
 This is the most confusing definition I've come across in CLRS. Algorithm Design however makes it super clear. The intution is that for every edge in $$G$$, we want to create two edges. 
 - A <b>forward edge</b> to signify that we can still push more flow on this edge. So the capacity on the forward edge is $$c(u,v)-f(u,v)$$. 
 - A <b>backward edge</b> to signify that we can decrease the flow on this edge by pushing back flow. So the capacity on the backward edge is naturally $$f(u,v)$$.
-<br>
 <br>
 In summary, the <b>residual network</b> of $$G$$ induced by $$f$$ is $$G_f=(V,E_f)$$ where 
 <div center>
@@ -120,7 +113,6 @@ Suppose now we take $$G$$ and $$G_f$$ from the previous example and suppose we f
 <img src="{{ site.url }}/assets/flow/aug.png" width="100%">
 The claim is that this new flow in $$G_f$$, call it $$f^{\prime}$$ is actually a flow in $$G$$. Moreover this new flow will result in an increased flow value in $$G$$! How is this even possible? To prove this we need to formalize this idea of adding the flow in the residual graph to $$G$$ itself.
 <br>
-<br>
 Formally, CLRS defines a new function, <b> the augmentation of flow </b>$$f$$ by $$f^{\prime}$$ to be a function from $$V \times V$$ to $$R$$ defined by
 <div center>
 $$
@@ -141,7 +133,6 @@ $$
 $$
 </div>
 And this is how we augment the flow on $$(a,t)$$ ($$f(a,t)$$) by the flow in $$G_f$$ ($$f'(a,t) - f'(t,a)$$).
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Augmenting Flow</h3>
@@ -177,7 +168,6 @@ $$
 </div>
 This concludes that the new flow that resulted from combining both flows is a valid flow in $$G$$! But is this flow better that $$|f|$$? We want to prove that $$|f^{\prime}|>0$$. To do so, we'll define augmenting paths next. 
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Augmenting Paths</h3>
 An augmenting path is a simple path $$p$$ from $$s$$ to $$t$$ in the residual graph $$G_f$$. Define its residual capacity or bottleneck (Algorithm Design) as follow:
@@ -204,9 +194,7 @@ $$
 Based on this definition, we see that $$f_p$$ is a flow in $$G_f$$ with value 
 $$|f_p| = c_f(p)$$ and $$c_f(p) > 0$$. Therefore, $$|f \uparrow f_p| =  |f| + |f_p| > |f|$$. 
 <br>
-<br>
 So far we formalized the idea of augmenting flow in $$G$$ by flow in $$G_f$$. We proved that this flow is a valid flow. We also introduced the idea of augmenting paths used to create flow in the residual graph and therefore, additional flow in $$G$$. We also proved that this new flow is also a larger flow than the original flow in $$G$$. What's left is to see how we can find augmenting paths and increase flow in action!
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Augmenting Flow with New Flow in The Residual Graph </h3>
@@ -229,7 +217,6 @@ To see an example, consider again the same shaded path we found in the previous 
 <img src="{{ site.url }}/assets/flow/aug.png" width="100%">
 Let's now add this flow back in $$G$$. In this example, we see that $$(s,b)$$ is a forward edge (blue). Therefore, we increment $$(s,b)$$ in $$G$$ by 5. Next, we see that $$(b,a)$$ is a backward edge and so we decrement $$(a,b)$$ in $$G$$ by 5. Similarly $$(a,t)$$ is a forward edge and so we decrement it in $$G$$ by 5. Let's at $$G$$ after augmenting $$p$$.
 <br>
-<br>
 Now, let's see what the new flow looks like in $$G$$ after calling the above method. This flow has a higher value of $$20$$ than the orignal flow!
 <img src="{{ site.url }}/assets/flow/aug2.png" width="100%">
 <br>
@@ -251,14 +238,11 @@ void Ford-Fulkerson(graph g) {
 {% endhighlight %}
 But do we ever terminate? and how do we know we have the optimal flow when we terminate?
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Cuts in Flow Networks</h3>
 In the Ford-Fulkerson's method above, we see that we exit the while loop only when there are no augmenting paths available. So if the Ford-Fulkerson's method does in fact generate a maximum flow, then it must be that a flow is maximum when we don't any more augmenting paths. How do we prove this?
 <br>
-<br>
 We need to explore yet another concept. A <b>cut</b> $$(S,T)$$ of a flow network $$G=(V,E)$$ is a partition of $$V$$ into $$S$$ and $$T = V - S$$ such that $$s \in S$$ and $$t \in T$$. Let $$f$$ be a flow in $$G$$.
-<br>
 <br>
 The <b>net flow</b> $$f(S,T)$$ across the cut $$(S,T)$$ is
 <div center>
@@ -280,21 +264,16 @@ Suppose we have the following flow with the following cut where $$S = \{s, b\}$$
 <img src="{{ site.url }}/assets/flow/cut.png" width="100%">
 Lastly, define a <b>minimum cut</b> of a network to be a cut whose capacity is minimum over all cuts.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Cuts and Flow</h3>
 We first want to establish that the flow we generate is a flow of maximum value. In order to do so, we need to prove smaller results that we will use in the main proof in the next section. Let's prove the following:
 <br>
-<br>
 Suppose $$f$$ is a flow in $$G$$ and let $$(S,T)$$ be any cut in $$G$$ then the net flow across $$(S,T)$$ is $$f(S,T)=|f|$$.
-<br>
 <br>
 <b>Proof</b><br>
 The proof isn't too bad really. It starts with the definition of the value of the flow and adds the following: $$\sum_{v \in V}f(u,v)-\sum_{v \in V}f(v,u) = 0$$ for all $$v \in V-\{s,t\}$$ which is true because of the conservation law. It also uses the fact that $$S \cap T = \emptyset$$ to further break the summations into smaller ones. Eventually we will arrive at $$f(S,T)$$. (TODO: it's long but maybe add it later)
 <br>
-<br>
 The next thing CLRS proves is that the value of any flow $$f$$ in a flow network $$G$$ is bounded from above by the capacity of any cut of $$G$$.
-<br>
 <br>
 <b>Proof</b><br>
 This one is extremely short because it uses what we proved above.
@@ -316,28 +295,21 @@ If $$f$$ is a flow in $$G=(V,E)$$ with source $$s$$ and sink $$t$$ then the foll
 (2) The residual network $$G_f$$ contains no augmenting paths. <br>
 (3) $$|f|=c(S,T)$$ for some cut $$(S,T)$$ of $$G$$.
 <br>
-<br>
 <b>Proof</b><br>
 We have several directions: <br>
 $$ 1 \rightarrow 2 $$:<br>
 Let the maximum flow in $$G$$ be $$f$$ and for the sake of contradiction, suppose that there exists some augmenting path $$p$$ in $$G_f$$. Let $$f_p$$ be the flow in $$G_f$$ as we defined previously. We proved earlier that $$|f \uparrow f_p| =  |f| + |f_p| > |f|$$. Therefore, the new flow founded by augmenting $$f$$ by $$f_p$$ is strictly greater than $$|f|$$. This is a contradiction since we assumed $$|f|$$ is of maximum value.
 <br>
-<br>
 $$ 2 \rightarrow 3 $$:<br>
 This part is sneaky. Suppose we don't have augmenting paths in $$G_f$$. This means that we don't have a path from $$s$$ to $$t$$ in $$G_f$$. Based on this, define $$S = \{u \in V: $$ there exists a path from $$s$$ to $$v$$ $$\}$$ and let $$T = V - S$$. We know $$s \in S$$ and $$t \not\in S$$. Therefore, the partition $$(S,T)$$ is a cut. 
 <br>
-<br>
 Now for any vertices $$u \in S$$ and $$v \in T$$. There are two cases:
-<br>
 <br>
 Case 1: If $$(u,v) \in E$$, then we must have $$f(u,v) = c(u,v)$$. This is because if $$f(u,v) \leq c(u,v)$$ then this means that $$(u,v) \in E_f$$ (Remember "capacity-flow > 0" in $$G$$ creates forward edges in $$G_f$$). Therefore, $$v$$ must be in $$S$$ and this can't be by assumption.
 <br>
-<br>
 Case 2: If $$(v,u) \in E$$, then we must have $$f(v,u) = 0$$. This is because if $$f(v,u) > 0$$ then we must have $$(u,v) \in E_f$$ (Remember flow in $$G$$ creates backward edges in $$G_f$$). Therefore, $$v$$ must be in $$S$$ and this can't be by assumption.
 <br>
-<br>
 Case 3: If $$(v,u) \not\in E$$ and $$(u,v) \not\in E$$ then $$f(u,v) = f(v,u) = 0$$.
-<br>
 <br>
 Therefore, combing everything and utilizing the fact that $$|f| = f(S,T)$$:
 <div center>
@@ -353,7 +325,6 @@ $$
 $$ 3 \rightarrow 1 $$:<br>
 We established previously that $$|f| \leq c(S,T)$$ for any cut $$(S,T)$$ in $$G$$. Therefore, if $$|f| = c(S,T)$$ for some cut $$(S,T)$$ in $$G$$ then it must be that $$f$$ is a flow of maximum value. 
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Does Ford-Fulkerson Terminate?</h3>
 An essential component in the proof that Ford-Fulkerson terminates is the assumption that the capacities in $$G$$ are integers otherwise we might not converge to the optimal flow in $$G$$. So given that we integer capacities, we need to prove three components:
@@ -364,9 +335,7 @@ An essential component in the proof that Ford-Fulkerson terminates is the assump
 
 Given a flow network $$G$$ and its residual network $$G_f$$. For (1) given an augmenting path, we know that the bottleneck value or the residual capacity is just the minimum value of all the edge capacities on $$p$$ in $$G_f$$. Therefore, the new flow must have an integer value.
 <br>
-<br>
 For (2), we defined formally the augmentation of $$f$$ by $$f^{\prime}$$ and we proved that for any augmenting path and flow $$f_p$$, we must have $$|f| + |f_p| > |f|$$.
-<br>
 <br>
 For (3), we can simply use the upper bound from the definition of the value of flow itself. Recall that
 <div center>
@@ -379,22 +348,18 @@ $$
 </div>
 We can therefore, let $$C = \sum_{v \in V}f(s,v)$$ and so $$|f| \leq C$$. Along with (1) and (2), we can conclude that Ford-Fulkerson must terminate in at most $$C$$ iterations. 
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Running Time</h3>
 We know that $$G$$ is connected and so finding an augmenting path using a depth first search or a breadth first search will run in $$O(E + V) = O(E)$$ time. Updating the augmenting path in each iteration costs $$O(E)$$ time. How many times do we loop? Given that the capacities are integers and depending on the maximum value of flow, $$|f^*|$$, the total running time is $$O(E \ |f^*|)$$.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Edmonds-Karp</h3>
 One way to improve Ford-Fulkerson is by smartly choosing the augmenting path in each iteration. Edmonds-Karp chooses the shortest path from $$s$$ to $$t$$ where each edge has unit weight. Edmonds-Karp runs in $$O(VE^2)$$ time. Why?
 <br>
-<br>
 TODO
 <!---------------------------------------------------------------------------------------->
 <h3>References</h3>
 These are my study notes covering chapter 26 in CLRS and chapter 7 in Algorithm Design.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Introduction</h3>

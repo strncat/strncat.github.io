@@ -8,14 +8,12 @@ mathjax: true
 <img src="{{ site.url }}/assets/graphs/euler/euler.png" width="100%">
 Let $$G=(V,E)$$ be a connected undirected a graph. An <b>Eulerian path</b> is a path in a graph that traverses each edge exactly once and an <b>Eulerian tour, circuit or cycle</b> is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to <a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_Königsberg">this Wikipedia article</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>When do we have an Eulerian tour?</h3>
 
 | Let $$G=(V,E)$$ be a connected undirected graph. $$G$$ has an Eulerian tour if and only if every vertex in $$G$$ has an even degree. |
 
 In the left figure above, it's impossible to have an Eulerian tour since not every node has an even degree. However, the right figure has an Eulerian cycle and every node is of even degree.
-<br>
 <br>
 <i>Proof:</i>
 Let $$G=(V,E)$$ be an undirected graph. We'll prove both directions below,
@@ -25,7 +23,6 @@ $$(\Rightarrow)$$: Since $$G$$ has an Eulerian cycle, we must traverse at least 
 $$(\Leftarrow)$$: Start traversing at an arbitrary vertex $$v$$. Since all the vertices are of even degree and $$G$$ is connected, then we are guaranteed to return to $$v$$ and we cannot get stuck at any other vertex. Let $$u$$ be any other vertex than $$v$$. Suppose we get stuck at $$u$$. We claim that it is impossible, since $$v$$ and the node we get stuck at will both be of odd degree and this is a contradiction to our assumption of all nodes having even degrees. After we return, we would have constructed a cycle in $$G$$, call it $$C$$. if every edge in $$G$$ was in $$C$$, then we are done. Otherwise, we must have some vertices in $$C$$ that still have edges which were not traversed because $$G$$ is connected. Choose a vertex and start traversing the remaining edges. We are again guaranteed to return to the same vertex because of the even degree property. 
 <img src="{{ site.url }}/assets/graphs/euler/proof.png" width="100%">
 We can combine both cycles to form a bigger cycle. We can then repeat the same steps until no edges are left in $$G$$. We are able to find all cycles and merge them since $$G$$ is connected. Therefore, the cycle must be an Eulerian cycle as we wanted to show.  
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Implementation</h3>
@@ -56,7 +53,6 @@ while (!stack.empty()) {
 }
 {% endhighlight %}
 The best way to proceed with this algorithm is with an example.
-<br>
 <br>
 We initially push any node of choice on "stack", we pick $$a$$. We then pop a node from the stack and set the current node to $$a$$. We then proceed to traverse the cycle starting at $$a$$. We do so by selecting one of its unvisited edges. We pick the edge $$a-b$$ and mark it as used. We then push $$a$$ on "stack". We switch the current node to the other end of the edge which is $$b$$. We traverse an unvisited edge incident to $$b$$. This time it's $$b-f$$.
 <img src="{{ site.url }}/assets/graphs/euler/1.png" width="100%">
@@ -91,12 +87,10 @@ Similar to the undirected case. Let $$G=(V,E)$$ be a strongly connected graph. A
 <i>Proof:</i>
 TODO
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Practice Problems</h3>
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=508">10054 - The Necklace</a> 
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=53">117 - The Postal Worker Rings Once</a>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>

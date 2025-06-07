@@ -121,11 +121,8 @@ void sieve() {
 <!------------------------------------------------------------------------------------>
 The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0050-consecutive-prime-sum.cpp">here</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=50">Project Euler - 50</a>
 <br>
-<br>
-
 

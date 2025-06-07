@@ -90,7 +90,6 @@ $$
 </div>
 Suppose that $$H \in V$$ such that $$|H(t)| = 1$$. For real numbers, we have only two functions 1 and -1 but for complex numbers, we have many of these functions. For example $$H(t) = e^{ih(t)}$$.
 <br>
-<br>
 Now we're going to use this function to define an isometry. Specifically, 
 <div>
 $$
@@ -140,7 +139,6 @@ Suppose
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
-<br>
 Let $$\beta = \{v_1,...,v_n\}$$ be an orthonormal basis consisting of eigenvectors of $$S$$ (this is possible because $$S$$ is self adjoint). So $$S(v_j) = \lambda_j v_j$$ for $$j = 1,...,n$$. Then
 <div>
 $$
@@ -158,7 +156,6 @@ $$v_j$$ is a basis vector so it's not zero. Therefore, we must have $$\lambda_j 
 <!------------------------------------------------------------------------------------>
 <h3>Proof of Theorem</h3>
 We're ready to prove the theorem. 
-<br>
 <br>
 $$(a) \implies (b):$$<br>
 We're given that $$T$$ is an isometry so we know by definition that $$T$$ preserves the inner product so $$\langle T(x), T(y) \rangle = \langle x, y \rangle$$. We want to show that $$TT^* = T^*T$$. We first observe that $$T^*T$$ is also self-adjoint (which means it's diagonalizable). To see this, see that the adjoint of $$(T^*T)$$ is $$(T^*T)^* = T^*(T^*)^* = T^*T$$. Since $$T^*T$$ is self-adjoint, then we can add to it any multiple of the identity map and the new map is still self adjoint (proof is in last lecture?). So $$T^*T - I_V$$ is self adjoint. Now observe
@@ -185,7 +182,6 @@ $$
 </div> 
 And we are done.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 $$(b) \implies (c):$$<br>
 Let $$\beta = \{v_1,...,v_n\}$$ be an orthonormal basis where $$\langle v_i, v_j \rangle = \delta_{ij}$$. We know $$T(\beta) = \{T(v_1),...,T(v_n)\}$$. We need to show that $$T(\beta)$$ is an orthonormal basis which means that $$\langle T(v_i), T(v_j) \rangle = \delta_{ij}$$. Now observe
@@ -202,12 +198,10 @@ $$
 <!------------------------------------------------------------------------------------>
 $$(c) \implies (d):$$ This is trivial since $$c$$ is a stronger statement
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 $$(d) \implies (e):$$ 
 <br>
 We need to show that if there is some orthonormal basis that can be taken to another orthonormal basis, then this means that $$T$$ preserves all lengths.
-<br>
 <br>
 Let $$\beta = \{v_1,...,v_n\}$$ be an orthonormal basis with $$T(\beta) = \{T(v_1),...,T(v_n)\} = \{w_1, ..., w_n\}$$ also an orthonormal basis where $$\langle v_i, v_j \rangle = \delta_{ij} = \langle w_i, w_j \rangle$$. All these assumptions are by (d). Now we know to prove that $$\Vert T(x) \Vert = \Vert x \Vert$$ for any $$x \in V$$. Observe that
 <div>
@@ -232,7 +226,6 @@ $$
 $$
 </div>
 In fact if we had started with $$\Vert T(x) \Vert^2$$, we would arrive at the same result $$\sum_{i} |a_i|^2$$. So we're done.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 $$(e) \implies (a):$$ <br>

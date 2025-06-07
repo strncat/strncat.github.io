@@ -10,7 +10,6 @@ Let $$G=(V,E)$$ be a graph with $$V$$ vertices and $$E$$ edges. A strongly conne
 <br><br>
 The goal of Kosaraju's algorithm is to find all the strongly connected components in $$G$$.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Algorithm</h3>
 Kosaraju's algorithm is shockingly simple. We simply run two passes of depth first search on $$G$$. Here is a sketch of what the algorithm is all about,
@@ -21,7 +20,6 @@ Kosaraju's algorithm is shockingly simple. We simply run two passes of depth fir
 The connected components in step 3 are the strongly connected components (SCCs))
 {% endhighlight %}
 Since all we're doing is a depth first search, the running time is astonishingly $$O(n+m)$$. The following is a full implementation of Kosaraju hosted on <a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/connected-components/strongly-connected-components-directed-kosaraju.cpp">Github.</a>
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Example</h3>
@@ -43,15 +41,12 @@ We next visit $$a$$, $$f$$ and $$b$$ and that's our second strongly connected co
 We finally visit $$d$$ and $$e$$ and that's our third and final strongly connected component as expected.
 <img src="{{ site.url }}/assets/graphs/scc/9.png" width="100%">
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Correctness Proof</h3>
 Why does this algorithm find the SCCs? To show why it beautifully works, we'll breakdown the proof into proving a small claim followed by two lemmas that will be used in the correctness proof. 
 <br>
-<br>
 <h3>Claim: Let \(G\) be a graph. Let \(u\) and \(v\) be vertices in \(G\). If \(u\) and \(v\) are mutually reachable and \(v\) and \(w\) are mutually reachable then \(u\) and \(w\) are mutually reachable </h3>
 <i>Proof:</i> We can construct a path from $$u$$ to $$w$$ by first going from $$u$$ to $$v$$ since they are mutually reachable and then going from $$v$$ to $$w$$ for the same reason. We can construct the reversed path from going from $$w$$ to $$v$$ since they are mutually reachable and then going from $$v$$ to $$u$$. Therefore, $$u$$ and $$w$$ are mutually reachable. $$\blacksquare$$ 
-<br>
 <br>
 <br>
 <h3> Lemma 1: The SCC graph is a directed acyclic graph (DAG) </h3>
@@ -61,22 +56,18 @@ Why does this algorithm find the SCCs? To show why it beautifully works, we'll b
 Since $$A$$ and $$B$$ participate in some cycle, then there must be some vertices $$x$$ and $$y$$ in $$A$$ and $$B$$ respectively, such that $$x$$ and $$y$$ are mutually reachable. Since $$A$$ is a strongly connected component then $$x$$ is mutually reachable from every other vertex in $$A$$. Similarly, $$y$$ is mutually reachable from every other vertex in $$B$$. By the earlier claim, this means that every vertex in $$A$$ must be mutually reachable from every other vertex in $$B$$. Therefore, the vertices in $$A$$ and $$B$$ must be in the same strongly connected component and so the SCC graph must be a DAG. $$\blacksquare$$
 <br>
 <br>
-<br>
 Before introducing the next lemma, let $$G$$ be a graph and let $$A$$ be a strongly connected component. We will denote $$A.finish$$ as the maximum finish time of all the vertices in $$A$$.
 <h3> Lemma 2: In the SCC DAG, if there is an edge from component \(A\) to component \(B\) then \(A.finish > B.finish\) </h3>
 <i>Proof:</i> There are two cases:
 <img src="{{ site.url }}/assets/graphs/scc/case1.png" width="100%">
 Case 1: We reached $$A$$ before $$B$$ in our first depth first search pass: Let $$x$$ have the largest finishing time in $$A$$ and $$y$$ have the largest finish time in $$B$$. Let $$z$$ be the first node discovered in $$A$$, then we will reach $$A$$ and discover $$z$$, then at some point we will reach $$B$$ and discover $$y$$. This means that $$y$$ is a descendant of $$z$$. By the parentheses theorem (<a href="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html">used in proving topological sort here</a>), this means that $$z$$ has a larger finish time. Since $$x$$ has the largest finish time in $$A$$, then $$x.finish > y.finish$$ and since $$y$$ has the largest finishing time in $$B$$, then we have $$A.finish > B.finish$$, as required.
 <br>
-<br>
 Case 2: We reached $$B$$ before $$A$$ in our first depth first search: Since we assumed that there is an edge from $$A$$ to $$B$$ then by Lemma 1, then we must not have an edge from $$B$$ to $$A$$ (otherwise we're not a DAG!). Therefore, we will explore $$B$$ completely first and then $$A$$ will be explored at a later stage. This means that $$A.finish > B.finish$$, as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <br>
 <h3> Corollary 1: In the SCC DAG, if there is an edge from component \(B\) to component \(A\) in the <i>reversed</i> graph, then \(A.finish > B.finish\) </h3>
 <br>
 We can now combine the previous results to prove the following theorem:
-<br>
 <br>
 <h3>Theorem: Kosaraju's algorithm correctly finds the strongly connected components</h3>
 <i>Proof:</i> <br>
@@ -89,19 +80,15 @@ forest are the $$t$$ SCCs with the largest finish times. Moreover, what’s left
 
 <b>Inductive Step:</b> Assume by the inductive hypothesis that the first $$t$$ trees are the last-finishing SCCs, and the remaining SCCs form a DAG. 
 <br>
-<br>
 Now, consider the $$t+1$$st tree produced and let $$x$$ be the root of the tree. Let $$x$$'s SCC be $$A$$. We know that $$A.finish$$ must be greater than the finish time of any remaining SSC. This is due to the fact that we chose $$x$$ because it was the vertex with the largest finishing time from the remaining vertices. Moreover, we are guaranteed to not have any edges from $$A$$ to any remaining SSCs and this is due to Corollary 1. (if there was an edge to some component $$C$$, then $$C.finish > A.finish$$ which is a contradiction since $$A$$ has the largest finish time)
-<br>
 <br>
 Therefore, we will only discover the vertices in $$A$$ from $$x$$. So the $$t+1$$st tree is the SCC with the (t+1)st biggest finish time. Also the remaining SCCs still form a DAG, since removing an SSC won't create a cycle.
 
 <b>Conclusion:</b> The second (reversed) DFS forest contains all the SCCs as its trees. $$\blacksquare$$
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Practice Problems</h3>
 <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2499">11504 - Dominos (Almost Kosaraju but not quite)</a>
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>References</h3>

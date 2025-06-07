@@ -44,7 +44,6 @@ $$
 </div>
 But now $$q^2$$ is even since it's a multiple of 2! Since $$p^2$$ is even and $$q^2$$ is also even then they must have at least 2 as a common factor. But we said earlier that $$p^2/q^2$$ is in its simplest form. Therefore, this is a contradiction and $$\sqrt{2}$$ can not be a rational number!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>
 <ul>

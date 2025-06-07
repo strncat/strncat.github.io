@@ -48,7 +48,6 @@ We know that
 </ol>
 So the only thing missing to be able to apply the recognition theorem is that $$A$$ is not normal. Despite this, we will show that we can still construct $$G = D_n$$ from the subgroups $$N$$, $$A$$ and third piece of information which is a homomorphism $$\gamma$$. In other words, $$G \cong N \rtimes_{\gamma} A$$. This product $$N \rtimes_{\gamma} A$$ is called the semi-direct product.
 <br>
-<br>
 <b>What is this homomorphism $$\gamma$$</b>?<br>
 $$\gamma$$ will be a homomorphism from $$A$$ to the group of automorphisms of $$N$$. $$A$$ contains two elements, $$A = \{e, j\}$$. We will send each element to an automorphism from the set $$\text{Aut}(N) = \text{Aut}(\langle r \rangle)$$. Specifically
 <div>
@@ -119,9 +118,7 @@ where \(n_1, n_2 \in N\) and \(a_1, a_2 \in A\).
 Note also that $$N \cong N' \leq G$$ so $$N$$ is isomorphic to some subgroup of $$G$$. $$A$$ is also isomorphic to some subgroup to $$A' \leq G$$. 
 <!----------------------------------------------------------------------------->
 <br>
-<br>
 Also note that if this was a direct product, then the operation is $$(n_1,a_1) \cdot (n_2,a_2) = (n_1n_2, a_1a_2)$$ but here we have this application of $$\gamma_{a_1}$$ on $$n_2$$.
-<br>
 <br>
 <b>Proof</b>
 <br>
@@ -336,7 +333,6 @@ And $$A$$ is a subgroup of $$D_{\infty}$$ so send $$j^l$$ to
 		$$
 </div>
 In fact $$D_{\infty} = \langle r, j \rangle$$ with $$o(r) = \infty$$ and $$o(j) = 2$$. Also see that $$jrj^{-1} = r^{-1} \leftrightarrow jr = r^{-1}j$$
-<br>
 <br>
 Note here that this is NOT the same as the symmetries of the disk group. The symmetries of the disk is an uncountable group. Here we have integer powers of $$r$$ while the symmetries of the disk can have any power, can rotate the disk by angle.
 <hr>

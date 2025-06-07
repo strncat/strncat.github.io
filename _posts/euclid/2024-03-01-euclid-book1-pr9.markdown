@@ -41,8 +41,6 @@ To see this, notice that in the triangles $$ABD$$ and $$ACD$$, $$AB = AC$$ and $
 <br>
 <b>Thoughts:</b> -
 <br>
-
-<br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>

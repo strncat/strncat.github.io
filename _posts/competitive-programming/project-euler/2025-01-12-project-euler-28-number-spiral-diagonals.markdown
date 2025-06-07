@@ -49,6 +49,4 @@ Of course my naive solution was too basic and it seems that there is a closed fo
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=27">Project Euler - 27</a>
 <br>
-<br>
-
 

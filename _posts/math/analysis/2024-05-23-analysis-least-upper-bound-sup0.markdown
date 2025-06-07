@@ -10,7 +10,6 @@ mathjax: true
 </div>
 For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 <br>
-<br>
 <h3>Proof:</h3>
 Let $$A = \{x \in \mathbb{R}: x < 0\}$$. We will use <a href="https://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a> to prove that $$\sup(A) = 0$$. First, 0 is an upper bound of the set $$A$$ since by definition the set $$A$$ is the set of real numbers less than 0. Next, we need to prove that there exists an element $$a \in A$$ such that for every choice of $$\epsilon > 0$$, we have
 <div>
@@ -35,7 +34,6 @@ $$
 </div>
 Therefore, setting $$a = -\epsilon/2$$ has the property that $$a \in A$$ and also that $$a > 0 - \epsilon$$ for any choice of $$\epsilon > 0$$ which proves that $$\sup(A) = 0$$ as required by <a href="https://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a>. 
 $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

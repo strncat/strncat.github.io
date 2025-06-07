@@ -12,9 +12,7 @@ mathjax: true
 <h3>Examples</h3>
 Closed intervals are perfect sets except for the singleton sets $$[a,a]$$.
 <br>
-<br>
 The Cantor set is also a perfect set. This is because $$C = \bigcap_{n=0}^{\infty} C_n$$ where each $$C_n$$ is a finite union of closed intervals and we know. By theorem 3.2.14 which states that the union of a finite collection of closed sets is closed, this means that $$C_n$$ is closed and so $$C$$ is closed as well. What about isolated points? Let $$x \in C$$ be arbitrary. To show that it's not isolated, we need to show that it's a limit point. This mean that there is some sequence $$(x_n)$$ such that $$(x_n) \rightarrow x$$ and $$x$$ is not a term in the sequence. (Exercise 3.4.3 will contain the rest of this proof: TODO).
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

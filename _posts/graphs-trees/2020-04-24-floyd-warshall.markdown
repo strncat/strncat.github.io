@@ -7,7 +7,6 @@ mathjax: true
 ---
 Let $$G=(V,E)$$ be a directed weighted graph with $$V$$ vertices and $$E$$ edges. Floyd-Warshall's algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don't have negative-weight cycles in the $G$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Optimal Substructure</h3>
 Let $$V = \{1,2,3,...,n\}$$ and consider a subset $$S = \{1,2,3,...,k\}$$ such that $$S \subseteq V$$ for some $$k$$. Let $$i$$ and $$j$$ be two vertices in $$V$$. Now, consider all the paths from $$i$$ to $$j$$ whose intermediate vertices are in $$S$$. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let $$p$$ be a shortest path among the paths from $$i$$ to $$j$$ that are drawn from $$S$$. 
@@ -64,12 +63,10 @@ void floyd_warshall(int n) { // O(n^3)
 Also,
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/floyd-warshall.cpp">Full Code</a>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Practice Problems</h3>
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=508">567 - Risk</a> 
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=762">821 - Page Hopping</a>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>

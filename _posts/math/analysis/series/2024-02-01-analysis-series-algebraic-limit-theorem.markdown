@@ -20,7 +20,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 For the definitions of series, and what it means to for a series to converge, see <a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">this</a>.
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br> 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
@@ -42,9 +41,7 @@ $$
 </div>
 converges to $$A$$. Since $$\lim s_m = A$$, then by <a href="https://strncat.github.io/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">Algebraic Limit Theorem for Sequences</a>, we have $$\lim c s_m = c A$$ as required. 
 <br>
-<br>
 To prove (ii), we are given that $$\sum_{k=1}^{\infty} a_k = A$$ which means that the sequence of partial sums converges to $$A$$ or $$\lim s_m = A$$. Similarly, $$\lim t_m = B$$ where $$(t_m)$$ is the sequence of partial sums for the series $$\sum_{k=1}^{\infty} b_k$$. Since $$\lim s_m = A$$ and $$\lim t_m = B$$, then by the Algebraic Limit Theorem, we can conclude that $$\lim s_m + t_m = A + B$$. This implies that the series $$\sum_{k=1}^{\infty} (a_k + b_k) = A + B$$ by definition. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

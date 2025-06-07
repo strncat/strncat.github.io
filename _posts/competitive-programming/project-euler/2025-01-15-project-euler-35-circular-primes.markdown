@@ -35,7 +35,6 @@ void sieve() {
 <!------------------------------------------------------------------------------------>
 The next thing we want to do is to generate all possible rotations of a given a number. To do so, consider the number $$p=197$$. The umber of digits in 197 is $$n = 3$$ so we have a total of 3 rotations (197, 719, 971). to generate these, iterate 3 times where in each iteration, extract and remove the last digit and then multiply it by $$10^{n-1}$$ and add it back again to $$p$$. In this example, the last digit is 7. We will then add $$7 \times (10^{n-1}) = 7 \times 100 = 700$$ to $$19$$ to get $$719$$.
 <br>
-<br>
 Another example is 1793. We will extract 3 and remove it by dividing by 10 to get 179. We then will add $$3 \times 1000 = 3000$$ to $$179$$ to get $$3179$$ which is the next rotation of $$1793$$. In the next iteration, we will again extract $$9$$ and add $$9000$$ to $$317$$ to generate the next rotation $$9317$$. At any point of time during these iterations, if a rotation happens to be non-prime, then we exit and return false in
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
@@ -77,11 +76,8 @@ sieve();
 printf("total count = %d\n", count);
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=35">Project Euler - 35</a>
 <br>
-<br>
-
 

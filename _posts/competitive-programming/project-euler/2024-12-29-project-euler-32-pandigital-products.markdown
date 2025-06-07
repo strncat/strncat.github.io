@@ -7,9 +7,7 @@ mathjax: true
 ---
 We want to find all products such that the multiplicand/multiplier/product cover all the digits $$1$$ to $$9$$ exactly once. We call the product "$$1$$ through $$9$$ pandigital". For example, $$7254 = 39 \times 186$$ is $$1$$ through $$9$$ pandigital because each digit from $$1$$ to $$9$$ appears exactly once.
 <br>
-<br>
 Observe that we must have 9 digits total split between the product, multiplicand and multiplier. Also observe that $$100 * 100 = 10000$$ so the product of the smallest three digit numbers has 5 digits and therefore we have 11 digits total. This immediately tells us that either the multiplicand or the multiplier must have 2 or fewer digits. If the multiplicand had 2 or fewer digits, what is the maximum number of digits of the multiplier? If we had one digit, then $$1 * 9999 = 9999$$, this gives us exactly 9 digits for the product. So the multiplier can at most have 4 digits.
-<br>
 <br>
 To find if a given number is pandigital, there are multiple ways to do it. One way is to keep track of the digits we've seen so far across the multiplicand, multiplier and product and see if we can exactly get 9 digits. Another way is to use a c$$++$$ set.
 {% highlight c++ %}
@@ -60,11 +58,8 @@ printf("sum = %d\n", sum);
 <!------------------------------------------------------------------------------------>
 This runs in 0.002568 seconds on my M1 mac.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=32">Project Euler - 32</a>
 <br>
-<br>
-
 

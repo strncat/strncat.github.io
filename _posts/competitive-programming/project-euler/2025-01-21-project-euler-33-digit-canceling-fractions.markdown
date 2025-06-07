@@ -75,11 +75,8 @@ printf("denominator = %d\n", denominator/gcd);
 <!------------------------------------------------------------------------------------>
 The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0033-digit-canceling-fractions.cpp">here</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=33">Project Euler - 33</a>
 <br>
-<br>
-
 

@@ -10,7 +10,6 @@ mathjax: true
 </div>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
-<br>
 <h3>Proof:</h3>
 Let $$A$$ be a set with an upper bound $$a$$. The least upper bound of $$A$$ is less than or equal to any other upper bound by the definition of the least upper bound so,
 <div>
@@ -30,7 +29,6 @@ $$
 </div>
 From the two inqualities we just established, we can conclude that $$\sup A$$ must equal to $$a$$ as required.
 $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

@@ -40,14 +40,12 @@ Since $$(h_2)^{-1}h_1 \in H$$ and $$k_2k_1^{-1} \in K$$ and $$(h_2)^{-1}h_1 = k_
 </div>
 But this just means that $$(h_2)^{-1}h_1 = e$$ and so $$h_1 = h_2$$ and similarly $$k_1 = k_2$$. Therefore $$(h_1,k_1) = (h_2,k_2)$$. So $$\phi$$ is injective.
 <br>
-<br>
 Next, we want to show that $$\phi$$ is surjective. Notice that $$Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G$$. This just means that $$\phi$$ is surjective since the codomain in $$G$$. Therefore, $$\phi$$ is a bijection. 
 <hr>
 
 <!----------------------------------------------------------------------------->
 <h3>How to Make \(\phi\) a Homomorphism</h3>
 Now, suppose that we're also given that $$H$$ is normal. We know that $$\phi: H \times G \rightarrow G$$ is a bijection. We also know that $$G$$ is a group but we never defined $$H \times K$$ as a group. We just said it was a set. The question is can we make $$H \times K$$ a group so that $$\phi$$ isn't just a bijection but also an isomorphism? (hmmm, this is a iff right?)
-<br>
 <br>
 We already know $$\phi$$ is a bijection so we only need to show that $$\phi$$ is a homomorphism. To be a homomorphism we need to prove that
 <div>
@@ -108,7 +106,6 @@ So now consider the groups $$H$$ and $$K$$. $$H$$ and $$K$$ are just two groups.
 </ol>
 Note that $$H_G$$ is a subgroup of $$G$$ that is isomorphic to $$H$$ so it might not be $$H$$ but at least it's isomorphic to $$H$$. So our goal here is to take two groups and make a new group such that this new group $$G$$ is isomorphic to their direct product $$H \times K$$.
 <br>
-<br>
 So how can we make a group that satisfies these conditions? It's important to remember that we don't know anything about $$H$$ or $$K$$ and they might not be related. So we can't just multiply $$hk$$. We need a way to treat the elements of $$H$$ and the elements of $$K$$ separately. One way to do this is to use ordered pairs. What we can do is define the set of elements $$H \times K$$ to be 
 <div>
 	$$
@@ -161,7 +158,6 @@ This works and gives us the condition $$H_GK_G = G$$. But this defines the produ
 	$$
 </div>
 Remember that we want $$H$$ to be normal. So we'll use the same trick from the inner product group in the first section and insert $$(e,k_1^{-1})(e,k_1)$$ in the middle. This means that $$(e, k_1)(h_2,e)(e,k_1^{-1}) \in H$$
-<br>
 <br>
 Now recall that conjugation by a element in a group is an automorphism.
 <div>
@@ -230,7 +226,6 @@ Take $$D_{2n}$$. We need to find two subgroups that are complements in $$D_{2n}$
 	<li>\(\langle r \rangle \cap \langle s \rangle = \{e\}\). But we know that \(\langle s \rangle = \{s, e\}\) and we know that \(s \not\in \langle r \rangle\) so we're done.</li>
 </ul>
 So they are complements. The last condition we need is that one of the subgroups is normal. But we know that $$\langle r \rangle$$ is normal. (We've shown this before).
-<br>
 <br>
 Since we have all the conditions, then we can write 
 <div>

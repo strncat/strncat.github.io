@@ -15,7 +15,6 @@ $$
 </div>
 Writing $$w$$ as a linear combinations above requires solving the above system of linear equations with $$k$$ variables $$(x_1, x_2,...,x_k)$$. If there is a solution to the system, then we know $$w$$ can be written as a linear combination of the elements of $$S$$ and it belongs to the span of $$S$$. If the system doesn't have a solution, then this means that $$w$$ can't be written as a linear combination of the elements and so $$w$$ doesn't belong to the span of $$S$$.
 <br>
-<br> 
 But this question can be reversed meaning we can answer this question in terms of the span of a matrix. So if we're given a linear system of equations with matrix $$A$$,
 <div>
 $$
@@ -31,7 +30,6 @@ a_{m1} & a_{m2} & ... & a_{mn}
 $$
 </div>
 If we view this matrix as a collection of $$n-$$column vectors in $$R^m$$ instead. The span of these vectors is a subspace of $$\mathbb{R}^m$$. We call this subspace the <b>Column Space of $$A$$ $$(Col(A))$$</b>.
-<br>
 <br>
 <div class="bdiv">
 Definition
@@ -89,7 +87,6 @@ This product is in the column space of \(A\) because it is a linear combinations
 </div>
 Note that this product or operations works if the vector has as many entries as the columns of $$A$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 The following matrix has three column vectors in $$\mathbb{R}^2$$. The product below is a linear combination of the columns of the matrix.
@@ -144,7 +141,6 @@ A\bar{x} = \bar{b}
 $$
 </div>
 is equivalent to the linear system with augmented matrix $$(A\bar{b})$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Test</h3>
@@ -230,7 +226,6 @@ This is a linear system of equations with augmented matrix
 </div>
 $$A\bar{x} = \bar{b}$$ is consistent if and only if $$\bar{b} \in Col(A)$$. This again means that answering the question of whether $$\bar{b}$$ is in the span of columns of $$A$$ is the same as answering if the system has a solution.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Linear Dependence and Linear Independence</h3>
 Suppose $$W$$ is a subspace of $$V$$. We know that spans are subspaces but is $$W$$ a span of some elements? or what is the smallest number $$k$$ such that $$W$$ can be written as
@@ -263,7 +258,6 @@ Note here that <b>not</b> linearly dependent is equivalent to <b>linearly indepe
 </div>
 is true only when $$a_1 = 0, a_2 = 0, ... a_k = 0$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 0</h3>
 Consider $$\{\bar{0}\}$$. This set is linearly dependent because we can choose a scalar $$a_1 \neq 0$$ such that $$a_1\bar{0} = \bar{0}$$.
@@ -272,7 +266,6 @@ Consider $$\{\bar{0}\}$$. This set is linearly dependent because we can choose a
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 Given a vector $$u$$ such that $$u \neq \{\bar{0}\}$$, then $$\{u\}$$ is linearly independent.
-<br>
 <br>
 Proof: We need to prove that $$au = \bar{0}$$ only if $$a = 0$$. Now suppose that $$au = \bar{0}$$. We have two cases. Case one is when $$a = 0$$ and we're done. Case two is when $$a \neq 0$$. If $$a \neq 0$$, then 
 <div>
@@ -289,7 +282,6 @@ But we know that $$u \neq \bar{0}$$. Therefore $$a$$ must be zero and we're done
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 Given a vector $$u_1, u_2$$, prove that $$\{u_1, u_2\}$$ is linearly dependent if and only if one vector is a scalar multiple of the other.
-<br>
 <br>
 Proof: For the forward direction, suppose that $$\{u_1, u_2\}$$ is linearly dependent. This means that there are scalars \(a_1, a_2\) not all zero such that
 <div>
@@ -333,7 +325,6 @@ Determine the set of the following vectors:
 </div>
 is linearly dependent.
 <br>
-<br>
 The set of vectors is linearly independent $$a_1u_1 + a_2u_2 + a_3u_3 = \bar{0}$$ implies that $$a_1=0, a_2=0$$ and $$a_3=0$$. So,
 <div>
 	$$
@@ -355,7 +346,6 @@ This is equivalent to solving the following system:
 	$$
 </div>
 $$\{u_1, u_2, u_3\}$$ is linearly independent if and only if this system has the trivial solution $$(0,0,0)$$. $$(0,0,0)$$ will always be a solution. It's why it is called the trivial solution. So the question now is how do we know from the REF matrix, whether we have the $$(0,0,0)$$ solution or a non-zero solution?
-<br>
 <br>
 If the matrix has no column without a leading entry (besides last) then we have a unique solution and the set is linearly independent. If the matrix has a column (besides the last) with no leading entry then we have infinitely many solutions (so not just the zero vector) and the set is linearly dependent. So we want to make sure that all columns have leading entries.
 <div>
@@ -388,9 +378,7 @@ The third column has no leading entry so there are infinitely many solutions bes
 <h3>Example 4</h3>
 Consider $$\{ \sin(x), \cos(x)\} \in F(\mathbb{R})$$. Is this set linearly dependent or independant?
 <br>
-<br>
 From the definition if $$\sin(x)$$ was a non-zero scalar multiple of $$cos(x)$$, in other words $$\sin(x) = a\cos(x)$$ for some non-zero scalar $$a$$, then they are linearly dependent. But two functions are equal when they take the same value at every point.
-<br>
 <br>
 Suppose we choose the point $$x = 0$$, then we know that $$\sin(0) = 0$$ but $$a\cos(0)=a$$. Therefore, these functions are not equal and so the set is linearly independent.
 <hr>
@@ -464,15 +452,11 @@ Now, given a vector $$\bar{u} = a_1u_1 + ... + a_{j}u_{j} + ... + a_ku_k$$ in $$
 </div>
 From this we see that given a vector in $$Span(\{u_1,...,u_j,...,u_k\})$$, it is also in $$Span(\{u_1,...\hat{u_j},...,u_k\})$$. For the other direction, it's trivial. If we have a vector $$\bar{u} = a_1u_1 + ... + 0u_{j} + ... + a_ku_k$$, then it is in $$Span(\{u_1,...,u_j,...,u_k\})$$. Therefore, the two spans are equal.
 <br>
-<br>
 But now, if $$\{u_1,...,u_{j-1},u_{j+1},...,u_k\}$$ is linearly independent, we then stop. Otherwise we find another $$u_j$$ to throw out. This process will stop since we started with a finite number of vectors.
-<br>
 <br>
 Remark: To find $$u_j$$, we start with $$u_1$$ and ask/settle the question (Q1) can you $$u_1$$ as linear combinations of $$u_2, ... ,u_k$$. If the answer is yes set $$u_j = u_1$$. If the answer is No, then ask (Q2) can $$u_2$$ be written as a linear combination of $$u_1, ... , u_k$$?
 <br>
-<br>
 Conclusion: we can refine a finite subset $$\{u_1,...,u_k\}$$ to obtain a linearly independent subset $$\{u_{i1},...,u_{il}\}$$ with the same span.
-<br>
 <br>
 The rest of this lecture covered the definition of what a basis is and some other small result. I decided to move these to lecture 9 since lecture 9 covered basis in depth.
 <hr>

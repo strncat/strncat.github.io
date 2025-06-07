@@ -7,7 +7,6 @@ mathjax: true
 ---
 These are notes I took while watching the series <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">The Essence of Linear Algebra by 3Blue1Brown</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Introduction</h3>
 It is easy to compute the dot product numerically. We just multiply the x-coordinate of both vectors followed by multiplying the y-coordinate of the vector and so on. We then add all the terms together. Here is an example:
@@ -36,11 +35,9 @@ The dot product has also a nice geometric meaning shown below. The dot product $
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/dot-product/01.png" width="80%" class="center"></p>
 So to summarize, if both vectors are pointing in the same direction, then generally the dot product will be positive, if they're perpendicular to each other, the product is zero and if they're pointing in the opposite direction of each other then the product is negative. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Order Doesn't Matter</h3>
 Even though in $$v \cdot w$$ we're projecting $$w$$ onto $$v$$ (taking the length of the projected $$w$$ and multiply it by the length of $$v$$) and in $$w \cdot v$$, we project $$v$$ onto $$w$$ (taking the length of the projected $$v$$ and multiply it by the length of $$w$$), we still get the same result which is kind of unexpected. Why doesn't the order matter?
-<br>
 <br>
 One way to think about this is suppose we let $$v$$ and $$w$$ have the same length. In this case, you can see that whether we project $$v$$ on $$w$$ or $$w$$ on $$v$$, we'll end up with the same exact dot product. Suppose now that we scale only one of them by 2 for example. So $$w$$ and $$2v$$. If we calculate $$v \cdot w$$, we project $$w$$ onto $$v$$ and we multiply this projected $$w$$ length by the length of $$v$$ which is now twice it's original length and we will have,
 <div>
@@ -52,14 +49,11 @@ $$
 </div>
 This happens because scaling $$v$$ by whatever value won't change the length of the projected $$w$$ vector onto $$v$$. Now suppose, we're projecting $$2v$$ onto $$w$$ instead. This time, the length of the projection is the thing that will get scaled instead. $$2v$$ is getting projected onto $$w$$ and again, this length won't change by getting projected onto $$w$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>More Intuition</h3>
 We've described the numerical way to calculate a dot product and then the geometric interpretation. But why would these things be related at all? How can multiplying these coordinates and then adding them together be related to projecting vectors onto each other?
 <br>
-<br>
 To understand this, Let's start by considerings linear transformations from high dimensions into one-dimension (the number line). We know linear transformations means that parallel lines stay parallel and evenly spaced (formally, $$(L(v+w) = L(v) + L(w), L(cv) = cL(v)))$$). So when we take a line of evenly spaced dots, A linear transformation will keep these dots evenly spaced. We also know that a linear transformation is completely determined by where it takes $$\widehat{i}$$ and $$\widehat{j}$$. 
-<br>
 <br>
 Now suppose that $$v = (4, 3)$$. We can re-write this vector as a linear combination of its basis vectors $$4 \widehat{i} + 3\widehat{j}$$,
 
@@ -90,7 +84,6 @@ $$
 $$
 </div>
 This looks very familiar to how we compute a dot product essentially! The only difference is that the 1x2 matrix is usually written as a 2x1 vector instead! 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>1x2 Matrics and 2x1 Vectors</h3>
@@ -138,7 +131,6 @@ $$
 This is why taking the dot product with a unit vector can be interpreted as projecting a vector into the span of that unit vector and taking the length. 
 [pic maybe?]
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>?</h3>
 What about non-unit vectors? for example, scale $$v$$ by 3 to get $$[3u_x, 3u_y]$$. This means that $$\widehat{i}$$ and $$\widehat{j}$$ will land at $$3u_x$$ and $$3u_y$$. More generally, this means that the new matrix $$[3u_x,3u_y]$$ can be interpreted as projecting any vector onto the numbers line and multiplying where it lands by 3. This is why the dot product with a non-unit vector can be interpreted as first projecting onto that vector and then scaling up the length of that projection by the length of the vector. 
@@ -150,30 +142,13 @@ So we had a 2d transformation from from 2d space to the numbers line. because th
 
 this is utterly beautiful. This is an example of duality. Duality is a natural but surprising correspondence between two types of mathematical thing. Here, the dual of the vector is the linear transformation that it encodes. And the dual of a linear transformation from space to one dimension, is a certain vector in that space.
 to summarize, the dot product is a very useful geometric tool for understanding projections and for testing whether vectors tend to point in the same direction but on a deeper level dotting two vectors is a way to translate one of them into the world of transformations. 
-
-
-
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>?</h3>
 What about non-unit vectors? for example, scale $$v = [u_x, u_y]$$ by 3. 
-
-
-
-
-
-
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br>
-<br>
-
 

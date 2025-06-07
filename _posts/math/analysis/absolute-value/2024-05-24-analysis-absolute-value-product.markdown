@@ -26,7 +26,6 @@ Without the loss of generality suppose that \(a \geq 0\) and \(b < 0\). Since \(
 And we're done!
 $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>
 <ul>

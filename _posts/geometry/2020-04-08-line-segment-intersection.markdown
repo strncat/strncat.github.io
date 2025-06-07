@@ -21,7 +21,6 @@ $$
 </div>
 where $$0 \leq \alpha \leq 1$$. $$p_1$$ and $$p_2$$ are the end points of the line segment.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Straddling</h3>
 The algorithm CLRS presents is based on the idea of checking whether each line segment <b>straddles</b> the line containing the other line segment.
@@ -95,13 +94,10 @@ Next, we need to determine if the point $$p_1$$ falls between the segment $$\ove
 <h3>Practice Problems</h3>
 - <a href="https://onlinejudge.org/external/113/11343.pdf">11343 Isolated Segments</a>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 CLRS Chapter 33
 <br>
 <a href="https://sites.math.rutgers.edu/~ajl213/CLRS/Ch33.pdf">Cross Product Proof</a>
 <br>
-<br>
-
 

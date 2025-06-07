@@ -50,7 +50,6 @@ $$
 </div>
 In general, if $$\{v_1,...,v_k\}$$ is orthonormal, then $$ \langle v_i, v_j \rangle = \delta_{ij} $$. The next theorem tells us why orthonormal sets are useful.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem (Corollary 1 of Theorem 6.3 in the book)
@@ -65,10 +64,8 @@ $$
 </div>
 So we don't need to solve a system of linear equations to figure out the coefficients if $$y$$ written with respect to $$S$$. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>:
-<br>
 <br>
 We know that $$y \in span(S)$$ Therefore, we can write $$y$$ as 
 <div>
@@ -100,7 +97,6 @@ $$
 <!------------------------------------------------------------------------------------>
 What about orthogonal subsets, can we say anything about them? Yes!
 <br>
-<br>
 <div class="purdiv">
 Corollary 1 (Theorem 6.3 in the book)
 </div>
@@ -113,7 +109,6 @@ y = \sum_{j=1}^k \frac{\langle y, v_j \rangle}{\Vert v_j \Vert^2 } v_j
 $$
 </div>
 <b>Proof</b>:
-<br>
 <br>
 If $$S = \{v_1,...,v_k\}$$ is orthogonal. We can turn this set into an orthonormal set by normalizing the set so
 <div>
@@ -167,7 +162,6 @@ If \(V\) is finite dimensional inner product space, then it has an orthonormal b
 <br>
 This will follow from the procedure we will study next ...
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Gram-Schmidt Process</h3>
 <div class="purdiv">
@@ -188,9 +182,7 @@ Then \(\{u_1,...,u_k\}\) is orthonormal and has same span as \(\{w_1,...,w_k\}\)
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
-<br>
 The basic idea of the proof (by induction) is that given $$\{w_1,...,w_k\}$$ is linearly independent and given than $$\{u_1, u_2\}$$ is orthonormal with the same span as $$\{w_1, w_2\}$$, we want $$u_3$$ such that $$\{u_1, u_2, u_3\}$$ is orthonormal and $$span(\{u_1, u_2, u_3\}) = span(\{w_1,w_2,w_3\})$$
-<br>
 <br>
 To show that the two spans are the same, it suffices to show that $$w_3 \in span(\{u_1, u_2, u_3\})$$. In this case, we know by the theorem above what the coefficients should be:
 <div>
@@ -307,7 +299,6 @@ $$
 $$
 </div>
 Yes it is true but this is an infinite sum that converges to a number that is the absolute value of $$t$$. This is basically the beginning of studying Fourier Analysis where any sufficiently nice function can be written as an infinite sum of sines and cosines. 
-<br>
 <br>
 But one thing we know here is that $$S$$ is not a basis for $$C^0[-1,1]$$. $$|t| \neq $$ finite set of elements of $$S$$.
 <hr>

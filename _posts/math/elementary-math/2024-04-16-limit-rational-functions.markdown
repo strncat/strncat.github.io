@@ -31,7 +31,6 @@ $$
 </div>
 This is such as easy way to clearly see where the limit is going. But why do we not divide by the highest power of the numerator for example? This is because if we have something $$5x^2 / x + 3$$ then dividing by $$x^2$$ will give us $$5 / 1/x + 3$$. The denominator is now reaching 0! and that is not helpful as it makes the whole thing undefined.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Suppose we want to find what this function approaches as $$x$$ approaches $$infinity$$:

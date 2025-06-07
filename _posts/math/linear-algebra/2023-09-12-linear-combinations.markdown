@@ -7,7 +7,6 @@ mathjax: true
 ---
 These are notes I took while watching the series <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">The Essence of Linear Algebra by 3Blue1Brown</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Vector Coordinates</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-combinations/vector-3.png" width="60%" class="center"></p>
@@ -36,26 +35,20 @@ Now, if we change both scalars at the same time, then the resulting set is the s
 <h3>Vectors vs. Points</h3>
 Grant said that it gets too crowded thinking about a collection of vectors sitting on a line or all vectors in a plane. So it is common to think of each of these vectors as a point that sits exactly at the tip of each vector where it's tail is at the origin. So for example previously, we said that the span of two vectors that sit line up is the set of all vectors whose tip sit on that line. But now with the point notation, we can just think of the line itself. In general, it is easier to refer to a collection of vectors by the points that sit at their tips and just think of these points.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Span of Two Vectors in 3D Space</h3>
 What does the span of two 3d vectors look like? It is a plane cutting through the origin as you would expect. Their span is the set of all possible vectors whose tip sit on that plane. And what happens if we add a third vector? Then we're back to having three possibilites, the span can be the whole 3D space. If two of the vectors are linearly dependent, then the span is a plane. If all three vectors sit on each other so all of them are linearly dependent, then their span is the line that goes through the origin. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Linear Independence</h3>
 Formally when two vectors in 2D space sit on top of each other and their span isn't the whole 2D space, these vectors are called <b>linearly dependent</b> vectors, meaning that one vector can expressed as a <b>linear combination</b> of the other vector. On the other hand, if each vector adds another dimension to the span, then they're called <b>linearly independent</b>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Basis of a Vector Space</h3>
 Also formally, the <b>basis</b> of a vector space is a set of <b>linearly independent</b> vectors that <b>span</b> the full space.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br>
-<br>
-
 

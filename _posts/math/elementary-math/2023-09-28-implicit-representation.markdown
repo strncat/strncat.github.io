@@ -8,8 +8,6 @@ mathjax: true
 <!------------------------------------------------------------------------------------>
 <h3>The Implicit Representation</h3>
 In the implicit form of representing some geometry we specify the relationship between the points such that for some point $$(x,y)$$, if $$f(x,y)=0$$, then this point is on our shape (line, circle, etc). This makes it easy to describe shapes. We can get a pretty compact form. It also makes it super easy to check whether a point belong to our shape or if it doesn't. Other queries like distance to the surface can also be easy. The downside of this is that we don't have a way to list all the points directly that satisfy our shape (Explicit Representation) and it's very difficult to describe complex shapes with implicit representations.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>The implicit Representation of a Line</h3>
@@ -63,12 +61,10 @@ $$
 </div>
 This just means that the points $$p$$ on the circle are those with a distance $$r$$ from the center of the circle at $$c$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Other Implicit Forms</h3>
 There are many other implicit representations in graphics. Algebraic Surfaces, Constructive Solid Geometry, Level Set Methods, Blobby Surfaces, Fractals and more.
 <!------------------------------------------------------------------------------------>
-<br>
 <br>
 <h3>References</h3>
 <ul>

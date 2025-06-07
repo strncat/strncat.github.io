@@ -8,12 +8,9 @@ mathjax: true
 <h3>Introduction</h3>
 Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we've used in high school. As an example, we have Fields. It's a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers $$\mathbb{R}$$ or the field of complex numbers $$\mathbb{C}$$. We also have the field of rational numbers $$\mathbb{Q}$$. Or $$\mathbb{Z}_p$$ which is a finite field of integers modulo some prime $$p$$. It is finite with $$p$$ elements.
 <br>
-<br>
 Another example of important structures are Rings. Here we have the operations addition, subtraction and multiplication. The first example of a ring is $$\mathbb{Z}$$. Another example of a ring is a polynomial ring in one variable over $$\mathbb{R}$$, $$\mathbb{R}[x]$$. The set of all square matrices. $$M_{n \times n}(\mathbb{R})$$ is also another example. This example is non-commutative.  
 <br>
-<br>
 Another structure is a Group. It is a set with one operation usually called "multiplication". One example is the set of real numbers with just addition. Another example is $$(\mathbb{R}^{x})$$ (the set of real numbers with zero removed, $$\mathbb{R} - \{0\}$$ along with multiplication. $$GL(n,\mathbb{R})$$, the set of invertible matrices with multiplication is another example of a Group. This is an example of a non-abelian or non-commutative group.
-<br>
 <br>
 One additional structure that comes up is a Monoid. These are sets with one operation but you don't have to have inverses like Groups. So $$\mathbb{R}$$ with multiplication is not a group because it includes zero and zero doesn't have an inverse but this set is a Monoid. 
 <hr>
@@ -55,7 +52,6 @@ $$
 <h3>Can We Compose Symmetries?</h3>
 
 Can we compose symmetries? Yes, in fact we'll equip the group above with the operation compose. This means that for any $$x, y \in G$$, $$xy$$ means that we need to apply the rotation $$y$$ first and then apply the rotation $$x$$. Since we have $$6$$ elements in $$G$$, then we have $$36$$ ways of composing these elements. 
-<br>
 <br>
 For example composing $$r_1$$ with $$r_1$$ again results in the rotation $$r_2$$ so $$r_1r_1 = r_2$$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec01/01-6.png" width="70%" class="center"></p>
@@ -137,9 +133,7 @@ So far so good. What about composing the flips around the axes? For example comp
 
 Note here that when did the second flip, we still rotated through the $$b$$ access which now goes through vertex $$C$$ instead. Physically the axis will still be in the same position. So we see above doing two flips $$a$$, then around $$b$$ is equivalent to applying two rotations so $$ba = r^2$$. 
 <br>
-<br>
 What about two flips of the same type? What happens if you apply $$a$$ and then again flip it around that same access? We'll get the identity rotation since we just go back to the same exact orientation. Applying this same logic on the rest of flips, we can fill that forth quadrant of the table which are all about compositions of flips.
-<br>
 <br>
 <!------------------------------------------------------------------------>
 <div>

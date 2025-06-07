@@ -20,7 +20,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 For the definitions of series, and what it means to for a series to converge, see <a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">this</a>.
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br> 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
@@ -42,7 +41,6 @@ a_{m+1} + a_{m+2} + ... + a_n \leq b_{m+1} + b_{m+2} + ... + b_n &< \epsilon \\
 $$
 </div>
 From this we can see that $$|a_{m+1} + a_{m+2} + ... + a_n| < \epsilon$$ which means that the series $$\sum_{n=1}^{\infty} a_n$$ must converge by the Cauchy criterion for series. For (ii), note that it is the contrapositive of (i). $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

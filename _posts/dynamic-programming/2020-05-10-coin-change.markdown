@@ -10,7 +10,6 @@ Suppose we're given a bill of value $$n=5$$. We're also given unlimited amount o
 <img src="{{ site.url }}/assets/dynamic-programming/coin-change/change.png" width="100%">
 How can we design an algorithm to solve this problem?
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>Method 1</h3>
 One way to count the number of ways to make change is to iterate through the coins and use each coin as a  starting point:
@@ -55,7 +54,6 @@ long make_change_recursive_alt(std::vector<int>& coins, int index, int amount) {
 }
 {% endhighlight %}
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>Method 2</h3>
 Another way to think about this problem is to divide the solutions into two sets. Fix a coin of choice, $$c$$, and then divide the set of solutions into solutions that use the coin $$c$$ and solutions that don't use $$c$$. For amount 4 and coin "2", we have 1 way that doesn't use coin "2" and 2 different ways that does use it.
@@ -88,7 +86,6 @@ long make_change_recursive(std::vector<int>& coins, int n, int amount) {
 {% endhighlight %}
 
 However, for $$n$$ coins, this solution still takes $$O(2^n)$$ time and is not efficient.
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>Method 3: Dynamic Programming</h3>
@@ -186,7 +183,6 @@ void make_change_2d(std::vector<int>& coins, std::vector<std::vector<int>>& dp) 
 {% endhighlight %}
 For amount $$n$$ and $$m$$ coins, The runtime is $$O(nm)$$.
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>Method 4: Optimized Dynamic Programming</h3>
 The previous method is great and optimal. We could however reduce the storage requirement from 2D to only 1D. If you pay attention to the recursive structure, you'll see that each row only depends on the previous row. So what we could do is just over write the current row onto the previous row until we reach the final answer in the last row. 
@@ -201,7 +197,6 @@ void make_change_1d(std::vector<int>& coins, std::vector<int>& dp) {
     }
 }
 {% endhighlight %}
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>Proof of Correctness</h3>
@@ -221,14 +216,8 @@ We will prove our claim by contradiction. Suppose that $$K[W] - v_k$$ is not an 
 <h3>Practice Problems</h3>
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2078">11137 - Ingenuous Cubrency</a> 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 - (Method 2) <a href="https://www.geeksforgeeks.org/coin-change-dp-7/">GeeksforGeeks</a> 
 <br>
-<br>
-
-
-
-
 

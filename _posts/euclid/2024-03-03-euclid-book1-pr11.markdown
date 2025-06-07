@@ -48,7 +48,6 @@ Recall that <a href="https://strncat.github.io/jekyll/update/2024/03/19/euclid-b
 <br>
 <b>Thoughts:</b> -
 <br>
-<br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>

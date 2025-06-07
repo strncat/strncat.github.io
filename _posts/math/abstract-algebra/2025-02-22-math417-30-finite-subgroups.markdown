@@ -32,9 +32,7 @@ Every finite subgroup of \(SO(3)\) is in the list above.
 <br>
 $$SO(3)$$ acts on $$\mathbb{R}^3$$ (we multiply a matrix in $$SO(3)$$ by a vector in $$\mathbb{R}^3$$). So now suppose that $$G$$ is a subgroup of $$SO(3)$$. $$G$$ acts on $$\mathbb{R}^3$$. We'll focus on the pole subset in $$\mathbb{R}^3$$. What is a poll?
 <br>
-<br>
 A pole for $$G \subseteq SO(3)$$ is a unit vector $$(u) \in \mathbb{R}^3$$ where $$\lVert u \rVert = 1$$ such that $$|Stab_G(u)|\geq 2$$.
-<br>
 <br>
 In other words, there exists an element $$g$$ in $$\text{Stab}_G(u)$$ other than the identity such that $$gu = u$$. If $$g \neq I$$, then $$g = Rot_u(\theta)$$ where $$\theta$$ is not a multiple of $$2\pi$$. Recall, that a rotation in space only fixes vectors along the axis of rotation. But since we constrained this to unit vectors, then it will only fix the unit vector on the axis of rotation. So $$g$$ fixes only $$\pm u$$. As a consequence, poles come in pairs. If $$u$$ is a pole, then $$-u$$ is a pole too. So again, a pole is a unit vector in $$\mathbb{R}^3$$ that gets fixed by some rotation in $$G$$. In other words, $$u$$ is a unit vector along the axis of some rotation in $$G$$. As a consequence, every non-identity element in $$G$$ can contribute 2 poles to the set of poles. If we let $$X$$ to be the set of poles, then
 <div>
@@ -47,7 +45,6 @@ $$
 So the set of poles $$X$$ is the collection of unit vectors along the axes of rotations of elements in the group $$G$$. $$G$$ acts on the subset $$X \in \mathbb{R}^3$$. For example, if $$g \in G$$ and $$x \in X$$, then we know that $$gx$$ and $$g^{-1}x$$ are both in $$X$$. Why?
 <br>
 If $$x$$ is a pole, we want to show that $$gx$$ is a pole. Since $$x$$ is a pole, then we know that $$|\text{Stab}_G(x)| \geq 2$$. But we also know that $$\text{Stab}(gx) = g\text{Stab}(x)g^{-1}$$ (By HW10, Problem 2). As a consequence, they both have the same size. Therefore, $$|\text{Stab}_G(gx)| \geq 2$$. Therefore, $$gx$$ is also a pole.
-<br>
 <br>
 Now, since $$G$$ acts on the set of poles $$X$$, then the set $$X$$ decomposes have orbits $$O_1, O_2,...,O_k \subset X$$ of the $$G$$ action. In the following table, we're going to list the orbits in decreasing order of their sizes so $$|O_1| \geq |O_2| ... \geq |O_k|$$. We will also define $$c_i$$ to be the size of the stabilizer in $$G$$ of $$x$$ for any $$x \in O_i$$. Because elements in the same orbit have stabilizers of the same order. We also know that $$|O| = \frac{n}{c_i}$$ by the orbits stabilizer theorem.  
 <ol>
@@ -147,9 +144,7 @@ $$
 </div>
 We know $$k \geq 0$$. We know $$n \geq 1$$. We also know that $$c_1,...,c_k$$ are integers and they're all greater than 2. Finally, $$c_i \ | \ n$$ because each $$c_i$$ is a subgroup. With these constraints, the only solutions are the rows in the table we constructed!!! the is the main step in classifying the finite subgroups in $$SO(3)$$.
 <br>
-<br>
 So how do we solve it? For example, say we know we have two orbits each of size 1, so we have two poles. This means that they must be opposite to each other since poles come in pairs. Therefore, everything is rotation around a single axis. Therefore, it must be cyclic. 
-<br>
 <br>
 Step 1: We will show that we can only have 0, 2 or 3 orbits so $$k \in \{0,2,3\}$$. Re-write the equations such that 
 <div>
@@ -163,9 +158,7 @@ $$
 </div>
 The observation is that $$\frac{2}{n}$$ can be between 0 and less than 2. The right hand side, each $$1 - \frac{1}{c}$$ needs to be in $$[\frac{1}{2},1)$$. So $$k$$ can't be 1. If $$k = 4$$, then the left hand side is greater than 2 but the right hand side must be less than 2. So $$k$$ can't be 4.
 <br>
-<br>
 Step 2: If $$k = 0$$, this gives us $$n = 1$$. That's the trivial group.
-<br>
 <br>
 Step 3: Re-write the equation so that
 <div>

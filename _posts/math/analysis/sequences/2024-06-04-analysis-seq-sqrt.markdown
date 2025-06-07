@@ -12,7 +12,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Problem Discussion</h3>
 We'll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">here</a>. We want to show that $$\lim (\sqrt{x_n}) = x$$. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
@@ -117,7 +116,6 @@ $$
 $$
 </div>
 as required. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

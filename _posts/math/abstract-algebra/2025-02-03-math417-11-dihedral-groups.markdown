@@ -13,7 +13,6 @@ The Dihedral group is the group of rotational symmetries of a regular n-gon in \
 </div>
 Before discussing the Dihedral group, we will discuss the symmetries of the disk. Why? if you inscribe a regular polygon inside a circle, observe that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So it's helpful to start there.
 <br>
-<br>
 <!------------------------------------------------------------------------------>
 <h3>Symmetries of the Disk</h3>
 Let $$D \leq SO(3)$$ be the rotational symmetries of the unit disk: $$\{(x,y,0) \ | \ x^2 + y^2 = 1 \}$$. There are two types of rotations in $$D$$. A rotation $$g$$ around the $$z-$$axis so the $$z-$$axis remains fixed and we're spinning the disk around it. Here $$g(e_3) = e_3$$. The other type is when we flip the disk so the $$z-$$axis is now reversed. Here $$g(e_3) = -e_3$$.
@@ -21,7 +20,6 @@ Let $$D \leq SO(3)$$ be the rotational symmetries of the unit disk: $$\{(x,y,0) 
 <!------------------------------------------------------------------------------>
 <h3>Rotations Around the \(z-\)axis</h3>
 A rotation around an arbitrary angle which is $$r_{\theta} = Rot_{e_3}(\theta)$$. It is always a symmetry around the unit disk. Note here that $$r_0=e$$ and if we rotate by more than $$2\pi$$, then it's a rotation we've seen before. So $$r_{\theta + 2\pi n} = r_{\theta}$$ so we need to specify $$r_{\theta}$$ where $$\theta \in [0, 2\pi)]$$. Note also that $$r_{\theta}^{-1} = r_{-\theta}$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------>
 <h3>Rotations Around the a Line in the \(xy-\)axis (Flips)</h3>
@@ -36,7 +34,6 @@ The rotation vector can written as
 	$$
 </div>
 This vector spans a line $$l_{\theta} = \mathbb{R}u_{\theta}$$. This line is in the $$xy$$ plane that goes through the vector $$u$$. Note here that adding another rotation of $$\pi$$ will not change the line so $$j_{\theta + \pi n} = j_{\theta}$$. However, the vector $$u_{\theta}$$ though will face the other direction after adding $$\pi$$ and so $$u_{\theta+\pi} = -u_{\theta}$$. Moreover, $$j^2_{\theta} = e$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------>
 <h3>Multiplication of Rotations and Flips</h3>

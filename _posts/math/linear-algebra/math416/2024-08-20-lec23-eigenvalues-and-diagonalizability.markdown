@@ -65,7 +65,6 @@ Questions 1: Does such a basis exist?
 <br>
 Question 2: If it exists, how can we compute it?
 <br>
-<br>
 Suppose we have a basis $$\beta = \{v_1,...,v_n\}$$ such that
 <div>
 $$
@@ -205,7 +204,6 @@ Lemma
 </div>
 <b>Proof:</b>
 <br>
-<br>
 Suppose $$v$$ is an eigenvector of \(A\). By definition this means that $$Av = \lambda v$$. We can re-write this as,
 <div>
 $$
@@ -234,7 +232,6 @@ A =
 $$
 </div>
 with eigenvalue 1.
-<br>
 <br>
 By the lemma, we want all vectors in the null space of $$A - \lambda I_n$$. 
 <div>
@@ -308,7 +305,6 @@ Theorem 5.2
 </div>
 <b>Proof:</b>
 <br>
-<br>
 $$\lambda$$ is an eigenvalue is equivalent to
 <div>
 $$
@@ -324,7 +320,6 @@ $$
 </div>
 So we see now that we have the necessary and sufficient conditions for $$\lambda$$ to be an eigenvalue of $$A$$. So what's next? $$A$$ is given to us in this equation but we need a $$\lambda$$ that would make the equation $$\det(A - \lambda I_n)$$ equal to zero. Let's look at the following definition
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
 Definition
@@ -334,9 +329,7 @@ Definition
 </div>
 What is this saying? we can interpret the right hand side as a function. We're given $$A$$. We know the identity matrix. So the unknown is $$t$$. So inside the determinant, we'll have a matrix with entries that depend on $$A$$ and $$t$$. We know the determinant is a map / inductive formula. So this expression when expanded as a whole is some number that depends on it. In fact it shouldn't be surprising that $$f(t)$$ is a polynomial of degree $$n$$ (FACT). 
 <br>
-<br>
 Based on this, we can rephrase the previous theorem as the following corollary,
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -368,7 +361,6 @@ A =
 \end{pmatrix}.
 \end{align*}
 $$
-<br>
 <br>
 Let's write the characteristic polynomial and find its roots so
 <div>

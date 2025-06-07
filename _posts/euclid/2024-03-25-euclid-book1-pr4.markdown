@@ -7,7 +7,6 @@ mathjax: true
 ---
 Note: I was using Oliver Byrne's book when I studied this proof. Axiom 10 doesn't seem to exist in the original book
 <br>
-<br>
 <b>Proposition 4</b>: Proposition 4: "IF two triangles have two sides of the one respectively equal to two sides of the other, and the angles contained by those equal sides also equal; then their bases or their sides  are also equal: and the remaining and their remaining angles opposite to equal sides are respectively equal: and the triangles are equal in every respect."
 <br>
 Basically, given two triangles where two of the sides are equal and the angles contained between the two sides in each triangle are also equal, then the two triangles are equal in every other respect meaning that the third side is also equal and the remaining two angles are equal as well.
@@ -23,7 +22,6 @@ Now, place the vertex $$A$$ onto the vertex $$D$$. First, because the angles are
 Since the vertices $$B$$ and $$E$$ coincide with each other and the vertices $$C$$ and $$F$$ coincide with each other, then the side $$BC = EF$$. If that's not the case, then the straight lines connecting $$E$$ and $$F$$ and $$B$$ and $$C$$ will include a space but axiom 10 states that two straight lines cannot include a space. In other words, there is only one straight line between two points and therefore $$BC = EF$$.
 <br><br>
 So now that we have all vertices coinciding with each other and all three sides coinciding with each other we can conclude that the two triangles coincide with each other and so they are equal in all respects due to axiom 8 (magnitudes which coincide with one another or exactly fill the same space, are equal). 
-<br>
 <br>
 <hr>
 <!----------------------------------------------------------------------->

@@ -16,11 +16,8 @@ for (int i = 1; i < 1000000; i++) {
 <br>
 I think the point of the exercise is to implement this on our own or come up with a much faster method. I was more interested in seeing how next permutation is implemented or the idea behind it. I wrote about it <a href="https://strncat.github.io/jekyll/update/2024/12/02/next-permutation.html">here</a> and used my own implementation to solve the problem. The next step is to come up with a faster algorithm to do this!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=24">Project Euler - 24</a>
 <br>
-<br>
-
 

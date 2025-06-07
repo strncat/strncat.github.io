@@ -46,7 +46,6 @@ Proposition
 </div>
 This says if you take the product of two cyclic groups, then their product is cyclic if and only if $$m$$ and $$n$$ are relatively prime.
 <br>
-<br>
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>
@@ -60,7 +59,6 @@ $$\longrightarrow:$$ Suppose $$\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}
 	$$
 </div>
 Notice here that both $$\frac{n}{d}$$ and $$\frac{m}{d}$$ are whole numbers since $$d$$ is a divisor of both $$m$$ and $$n$$. So the first entry is a multiple of $$m$$ while the second entry is a multiple of $$n$$. This implies that the order of $$(a,b) \leq \frac{mn}{d} < mn$$. So the order of any element $$(a,b) \in \mathbb{Z}_m \times \mathbb{Z}_n$$ is strictly less than $$mn$$. This means that no element of $$\mathbb{Z}_m \times \mathbb{Z}_n$$ can be a generator of the group. So $$\mathbb{Z}_m \times \mathbb{Z}_n$$ is not cyclic. This is a contradiction because $$\mathbb{Z}_m \times \mathbb{Z}_n$$ isomorphic to $$\mathbb{Z}_{mn}$$ and so it is cyclic. 
-<br>
 <br>
 $$\longleftarrow:$$ Now suppose that $$gcd(m,n) = 1$$. We want to show that $$\mathbb{Z}_m \times \mathbb{Z}_n$$ is isomorphic to $$\mathbb{Z}_{mn}$$. Notice that the order of the element 1 has order $$m$$ in $$\mathbb{Z}_m$$ and the order of the element 1 has order $$n$$ in $$\mathbb{Z}_n$$. This tells us that the order of $$(1,1) = lcm(m,n) \frac{mn}{gcd(m,n)} \frac{mn}{1} = mn$$. So $$(1,1)$$ has order $$mn$$ which means it generates the group. So it must be cyclic. So $$\mathbb{Z}_m \times \mathbb{Z}_n = \langle (1,1) \rangle$$. We know all cyclic groups that have the same order are isomorphic. So $$\mathbb{Z}_m \times \mathbb{Z}_n \cong \mathbb{Z}_{mn}$$.
 <hr>

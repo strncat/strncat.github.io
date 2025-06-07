@@ -14,11 +14,9 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 For the definitions related to correspondence, cardinality and countable sets, see <a href="https://strncat.github.io/jekyll/update/2024/06/07/analysis-card-definitions.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof Discussion</h3>
 We're going to show that $$\mathbb{Q}$$ is countable by establishing that both $$\mathbb{N}$$ and $$\mathbb{Q}$$ have the same cardinality. To do so, we're going to establish correspondance between the two sets meaning that we're going to prove that there exists some mapping that is both one-to-one and onto between the two sets. For the second statement, this will be a proof by contradiction.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>
@@ -35,7 +33,6 @@ For example $$A_2 = \{\frac{1}{1}, \frac{-1}{1}\}$$ and $$A_3 = \{\frac{1}{2}, \
 
 to see how it's onto. Consider any rational number $$\frac{p}{q}$$ in its lowest form. We know that this number will appear in the set $$A_{p+q}$$ by defintion. This number is 
 $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

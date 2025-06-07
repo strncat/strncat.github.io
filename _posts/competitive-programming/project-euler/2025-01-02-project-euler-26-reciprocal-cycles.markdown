@@ -15,7 +15,6 @@ In order to find the longest cycle, we first need to find a way to compute the l
 </div>
 But what if the cycle is of length 300? We can't just multiply the numerator by a huge number all at once. Luckily, we can simulate this long division one step at a time, multiplying the remainder each time by 10 and dividing by 7. So the single division above will be broken into the following steps:
 <br>
-<br>
 Step 1:
 Multiply 1 by $$10$$ and divide to get $$10 / 7 = 1$$ with remainder 3.
 <br>
@@ -37,12 +36,9 @@ Multiply 5 by $$10$$ and divide to get $$50 / 7 = 7$$ with remainder 1.
 Step 7:
 Multiply 1 by $$10$$ and divide to get $$10 / 7 = 1$$ with remainder 3.
 <br>
-<br>
 At this point, we have a reminder that we've seen before. We know what we'll see exactly in step 8 and we know this will repeat for the next 6 steps. So we can stop here and declare that the cycle length is exactly 6.
 <br>
-<br>
 We can simulate this simple long division for all the integers below 1000 to see what integer $$d$$ has the longest cycle. We can easily do this with some hash table (unordered_map in c++ for example) to keep track of the remainders we've seen so far. Since we're only checking for up to 1000, we can also put a limit on how many steps in long division we're willing to do. Playing around with this, it doesn't seem like any integers below 1000 will have a cycle longer than 1000 digits. So the following is enough to solve this problem
-<br>
 <br>
 {% highlight c++ %}
 int long_division(int number) {
@@ -62,11 +58,9 @@ int long_division(int number) {
 }
 {% endhighlight %}
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Other Ideas</h3>
 So far we have a solution that is fast and acceptable but is there more to this? Take a look at the longest cycle for all numbers up to 1000 and observe that when d = 7, 1/d has d-1=6 digits, when d = 17, 1/d has d-1=16 digits. Furthermore, when d = 19, 1/d has 19-1=18 digits. Same for 1/23 which has 23-1=22 digits. All of these are prime numbers. But when we take d = 11, 1/11 has only two digits in its cycle. So what's special about 7, 17, 19, 23 ...? It turns out these special primes have a special name. These special primes are <a href="https://strncat.github.io/jekyll/update/2025/01/05/reptend-prime.html">Full Reptend Primes</a>.
-<br>
 <br>
 Since for any full reptend prime $$p$$, the the cycle length is $$p - 1$$, then a potenial idea is just finding the maximum full reptend prime less than 1000. In fact, the maximum full reptend prime less than 1000 is 983. But does this mean that any other number between 983 and 999 won't have more digits in its decimal expansion? I don't know the answer to this question.
 <hr>
@@ -78,6 +72,4 @@ Since for any full reptend prime $$p$$, the the cycle length is $$p - 1$$, then 
 <li><a href="https://en.wikipedia.org/wiki/Reciprocals_of_primes">Wikipedia: Reciprocals of Primes</a></li>
 </ol>
 <br>
-<br>
-
 

@@ -18,7 +18,6 @@ Let \(A \in M_{n \times n}\). If we perform the following row operations
 </div>
 We will only need to use Theorem 1 and Corollary 2 from last lecture to prove this result!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
@@ -70,7 +69,6 @@ det(A) &= -\det(B)
 Which is what we wanted to show. $$\blacksquare$$
 <!------------------------------------------------------------------------------------>
 <br>
-<br>
 <div class="bdiv">
 Definition
 </div>
@@ -94,7 +92,6 @@ $$
 <b>Proof</b>
 <br>
 For upper triangular matrices, by induction on $$n$$.
-<br>
 <br>
 Base Case: $$n = 2$$
 <div>
@@ -159,7 +156,6 @@ $$A = \begin{pmatrix}
 	1 & 0 & 2 \\
 	2 & 1 & 1
 	\end{pmatrix}$$.
-<br>
 <br>
 To use the theorem, we'll put $$A$$ in REF. 
 <div>

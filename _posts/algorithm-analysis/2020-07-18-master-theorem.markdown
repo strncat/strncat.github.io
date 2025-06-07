@@ -7,7 +7,6 @@ mathjax: true
 ---
 In this note, I want to revisit the master theorem along with its proof outline as I've learned it in CS161 at Stanford (Professor Mary Wootters).
 <br>
-<br>
 <h3>The Master Theorem</h3>
 Let $$T(n) = aT(\frac{n}{b})+O(n^d)$$ be a recurrence where $$a \geq 1$$ and $$b \geq 1$$. Then,
 <div center>
@@ -26,7 +25,6 @@ If this recurrence represents the running time of an algorithm then,
 - $$b$$ is the factor by which the input is decreasing at each level of the recursion. 
 - $$n^d$$ is the total time needed to create the subproblems and combine their solutions. 
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>Example</h3>
 We can apply the master theorem on many recurrences. For example, if we're given,
@@ -39,11 +37,9 @@ $$
 </div>
 We can quickly see that we have $$a = 4$$, $$b = 2$$ and $$d = 1$$. Therefore, $$a > b^d$$ and so by using the master theorem, we can see that $$T(n) = O(n^{\log_2(4)}) = O(n^2)$$.
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>Intuition</h3>
 Why do we have 3 cases and what's the intuition behind each case? To see this, we discuss three examples, one for each case, starting with case 2.
-<br>
 <br>
 <b>Case 2:</b>
 <div center>
@@ -128,9 +124,7 @@ $$
 </div>
 We will assume that $$T(1) = 1$$ for simplicity. To solve the recurrence, we will use the recursion tree method similar exactly to what we did for <a href="https://strncat.github.io/jekyll/update/2019/07/18/merge-sort-analysis.html">Mergesort</a>. Let's build the same table that we built for Mergesort to calculate the amount of work done per each level of recursion and get the following,
 <br>
-<br>
 <img src="{{ site.url }}/assets/analysis/master-theorem/summary.png" width="100%">
-<br>
 <br>
 All we need to do now is to sum the amount of work done for all the levels in the table. We see that, 
 <div center>

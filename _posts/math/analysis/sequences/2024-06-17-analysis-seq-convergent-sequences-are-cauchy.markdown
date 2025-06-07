@@ -14,7 +14,6 @@ For the absolute value function definition and other properties see <a href="htt
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>, for subsequences see <a href="https://strncat.github.io/jekyll/update/2024/02/10/analysis-seq-subsequences.html">this</a>.
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br> 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Discussion:</h3>
@@ -36,7 +35,6 @@ If we start with $$|a_m - a_n|$$ then we can use the trick of adding and subtrac
 	$$
 </div>
 Our goal is to bound the term to be less than $$\epsilon$$ and now we have $$|a_m - l|$$ and $$|l - a_n|$$. But we already know that the sequence $$(a_n)$$ is convergent so we can have $$|a_n - l|$$ be less than any $$\epsilon$$ we like as long as $$n > N$$. Here we can see that choosing $$\epsilon/2$$ will get us to $$\epsilon$$ like we want to.
-<br> 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof:</h3>
@@ -75,7 +73,6 @@ But now we know that $$(a_n)$$ converges to $$l$$. We have already established t
 	$$
 </div>
 From this we see that $$(a_n)$$ is a Cauchy sequence as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

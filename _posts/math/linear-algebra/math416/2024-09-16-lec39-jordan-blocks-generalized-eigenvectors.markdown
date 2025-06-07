@@ -64,7 +64,6 @@ $$
 </div>
 What can we say about these objects?
 <br>
-<br>
 <div class="purdiv">
 Theorem 2.1
 </div>
@@ -76,7 +75,6 @@ Theorem 2.1
 </ol>
 </div>
 <b>Proof</b>
-<br>
 <br>
 Re-write $$\gamma$$ as
 <div>
@@ -107,7 +105,6 @@ $$
 </div>
 This means that $$T$$ maps $$v_i$$ to a linear combination of $$v_i$$'s again (which are in $$\gamma$$). This implies that $$T(v_j) \in \text{span}(\gamma) \quad \forall j=1,...,p$$. This means that $$T(W) \subseteq W$$. Therefore, $$W$$ is $$T$$-invariant and (b) holds.
 <br>
-<br>
 We can also write the matrix representative of $$T$$ with respect to $$W$$
 <div>
 $$
@@ -124,7 +121,6 @@ $$
 $$
 </div>
 From this we see that $$(c)$$ holds. 
-<br>
 <br>
 So now we only need to prove $$(a)$$. We need to build a basis of each $$K_{\lambda}$$ out of cycles. To show this we need the next two results
 <br>
@@ -165,7 +161,6 @@ Let $$A = \begin{pmatrix}
 \end{pmatrix}
 $$. Put $$A$$ in JCF if possible. Here $$T$$ is $$L_A: \mathbb{R}^3 \rightarrow \mathbb{R}^3$$. 
 <br>
-<br>
 We first need to check if the characteristic polynomial splits.
 <div>
 $$
@@ -176,9 +171,7 @@ $$
 </div>
 So the characteristic polynomial splits. (In fact $$\lambda_1$$ has algebraic multiplicity 1 and $$\lambda_2$$ has algebraic multiplicity 2).
 <br>
-<br>
 We know the general form of the Jordan Canonical Basis where $$\beta = \beta_1 \cup ... \cup \beta_m$$ where $$\beta_j = \gamma_1^j \cup \gamma_2^j \cup ... \cup \gamma_1^{k_j}$$, a collection of disjoint cycles. So let's build these pieces starting with the first eigenvalue as follows
-<br>
 <br>
 $$\lambda_1 = 3$$: The algebraic multiplicity of $$\lambda_1$$ is 1. This implies that the generalized eigenspace $$K_{\lambda_1} = E_{\lambda_1}$$ why is that? The dimension of the generalized eigenspace is equal to the algebraic multiplicity so its dimension is 1. But we know that $$E_{\lambda_1}$$ has a non-zero dimension and that it sits inside $$K_{\lambda_1}$$. Therefore $$K_{\lambda_1} = E_{\lambda_1}$$. What about the cycles of this generalized eigenspace? the length of the cycle is ($$p=1$$). So all we need to do is find the nullspace of this eigenspace.
 <div>

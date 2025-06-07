@@ -16,10 +16,8 @@ We are given that $$d(n)$$ is the sum of proper divisors of $$n$$ (So $$n$$ itse
 </div>
 Since $$d(220) = 284$$ and $$d(284) = 220$$, then 284 and 220 are amicable numbers.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 The problem wants us to find the sum of all amicable numbers under 10000.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 It should be obvious that the first thing we need to do is to have a table where each entry $$i$$ is the sum of proper divisors of $$i$$ for all $$i < 10000$$. We can do this right at the beginning with:
@@ -62,11 +60,8 @@ for (int i = 1; i <= N; i++) {
 {% endhighlight %}
 The reason why we mark a number as amicable is because we don't want double count. So if we marked 220 and 284 as amicable. Then on the iteration where $$i = 284$$, we'll just skip this number.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=21">Project Euler - 21</a>
 <br>
-<br>
-
 

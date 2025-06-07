@@ -12,7 +12,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Problem Discussion</h3>
 We'll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that $$\lim (y_n) = l$$. So we want to find $$N \geq n$$ such that for any $$\epsilon > 0$$,
@@ -74,7 +73,6 @@ $$
 </div>
 Combining both inequalities will get us what we want! let's expand on this in the formal proof.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
 To show that $$\lim(y_n) = l$$, let $$\epsilon > 0$$ be arbitrary. We want to prove that there exists some $$n \geq N$$ such that,
@@ -131,7 +129,6 @@ l - \epsilon < y_n < l + \epsilon \\
 $$
 </div>
 From this we can conclude that for any $$\epsilon > 0$$ there exists an $$N \geq n$$ such that $$|y_n - l| < \epsilon$$. Therefore, $$\lim y_n = l$$ as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

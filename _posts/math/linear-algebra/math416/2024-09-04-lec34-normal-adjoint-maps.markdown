@@ -20,12 +20,9 @@ $$
 </div>
 Here are some additional facts
 <br>
-<br>
 Fact 1: $$T^*$$ is unique if it exists
 <br>
-<br>
 Fact 2: In infinite dimensions $$T^*$$ need not exist.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
@@ -139,7 +136,6 @@ Theorem 2
 Suppose \(T: V \rightarrow V\) and \(T^*: V \rightarrow V\) with \(\beta\) an orthonormal basis. If \(V\) admits an orthonormal basis consisting of eigenvectors of \(T\), then \(T\) is normal.
 </div>
 Remark: The converse isn't too. Example 2 shows this. (But what about theorem 6.16 in the book??)
-<br>
 <br>
 <b>Proof</b>
 <br>
@@ -288,7 +284,6 @@ $$
 </div>
 Note here that self adjoint implies that $$T$$ is normal. The converse is not true (rotation matrix is an example)
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 Let $$A \in M_{n \times n}(\mathbb{R})$$ and $$A_{ij} = A_{ji} \ \forall i,j$$, then A ($$L_A$$) is self-adjoint.
@@ -306,7 +301,6 @@ T = \text{proj}_W \ : \ V &\rightarrow V \\
 $$
 </div>
 So if you take a vector $$x \in V$$, we know we can decompose it into two vectors $$w \in W$$ and $$z \in W^{\perp}$$. This map just produces the part that is in $$W$$. We claim that $$\text{proj}_W$$ is self-adjoint.
-<br>
 <br>
 <b>Proof</b>
 <br>
@@ -347,9 +341,7 @@ as we wanted to show. $$\blacksquare$$
 <h3>Self-adjoint Maps are Diagonalizable</h3>
 Today's goal is to prove that self adjoint maps are diagonalizable. Note here that when a matrix $$A$$ is symmetric where $$A_{ij} = A_{ji}$$, then $$A$$ is self-adjoint. This implies $$A$$ is diagonalizable and so  $$\det(A - tI_n)$$ splits which is really useful to know!
 <br>
-<br>
 Question: What is the diagonal form of the projection map $$\text{proj}_W$$? because eigenvectors get mapped to a multiple of themselves, the projection of the vector is either all in $$W$$ or all in $$Z$$ and you get zero from the projection. Therefore, we notice here that the eigenvalues are 0s and 1s.
-<br>
 <br>
 Proving that self adjoint maps are diagonalizable, requires a few things along the way so we will next prove the results that we need in order to prove that they're diagonalizable.
 <hr>
@@ -390,11 +382,9 @@ as we wanted to show. $$\blacksquare$$
 <h3>Do Self-adjoint Maps have Eigenvalues?</h3>
 So eigenvalues are real but are there eigenvalues?
 <br>
-<br>
 If $$V$$ is a vector space over $$\mathbb{C}$$, then $$T: V \rightarrow V$$ always has eigenvalues. It doesn't matter if $$T$$ is self-adjoint or not. The characteristic polynomial $$\det([T]_{\beta}^{\beta} - tI_n)$$ with complex entries always splits! (fact from algebra). 
 <br>
 What if $$V$$ was over $$\mathbb{R}?$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -404,7 +394,6 @@ Theorem 2
 If \(T: V \rightarrow V\) where \(V\) is over \(\mathbb{R}\) is self-adjoint, then \(T\) has at least one eigenvalue.
 </div>
 An example is the rotation matrix. It is normal but not self-adjoint and it doesn't have real eigenvalues.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
@@ -445,7 +434,6 @@ If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(
 <br>
 We're given that we have one at least one real eigenvalue but we want to prove that we have an orthonormal basis of eigenvectors. Having one eigenvalue gives us a base case. So let's do this by Induction on $$\dim V = n$$.
 <br>
-<br>
 Base Case: $$n = 1$$: we have a map from $$\mathbf{F}$$ to $$\mathbf{F}$$. A linear map is just multiplying by a scalar.
 <div>
 $$
@@ -457,16 +445,12 @@ $$
 </div>
 This map is self-adjoint. Every value of $$a$$ is an eigenvalue since it produces a multiple of $$x$$ as long as it's not zero. Therefore, just choose any $$a \neq 0$$. The orthonormal basis will then be $$\{\frac{x_0}{|x_0|}\}$$
 <br>
-<br>
 Inductive Case: Assume this is true for $$n$$. <br>
 Let $$T: V \rightarrow V$$ with $$\dim(V)=n$$, be self-adjoint. 
 <br>
-<br>
 By theorem 2, $$T$$ has a real eigenvalue $$\lambda_1$$ and so $$T(v_1) = \lambda_1 v_1$$. Assume $$v_1$$ has length 1 (We can normalize otherwise). So now at this point we have our first vector in the orthonormal basis $$\beta$$. How do we get our second vector?
 <br>
-<br>
 We know that the second vector must be orthogonal to the first vector. This means that it lies in the orthogonal complement of of where $$v_1$$ lies. So Set $$W = \{ v_1 \}^{\perp}$$. $$W$$ has dimension $$n-1$$ because we took away a dimension. But we can't yet apply the inductive hypothesis on $$W$$ because we need a self-adjoint map on $$W$$. What could this map be?
-<br>
 <br>
 We know the eigenvectors in the basis $$\beta$$ need to be eigenvectors of $$T$$ so this map has to be related to $$T$$? So the hope is that $$T$$ restricts to a map on $$W$$. This happens as we know if $$W$$ is $$T$$ invariant. For that to happen, we need to show that $$T(W) \subseteq W$$. 
 <br><br>
@@ -495,7 +479,6 @@ $$
 </div>
 So now we can apply the inductive hypothesis to conclude that $$W$$ has an orthonormal basis, $$\beta_W = \{v_2,...,v_n\}$$ consisting of eigenvectors of $$T_W$$. But we know that eigenvectors of a restriction are also eigenvectors of $$T$$ itself. so $$\beta = \{v_1,v_2,...,v_n\}$$ and we are done. $$\ \blacksquare$$
 <!------------------------------------------------------------------------------------>
-<br>
 <br>
 <div class="purdiv">
 Corollary

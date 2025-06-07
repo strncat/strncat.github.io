@@ -21,7 +21,6 @@ Note here that $$b$$ doesn't need to be $$A$$. A set like $$\{1,2\}$$ can have a
 <br><br>
 Questions: What if we don't find such a $$b$$? can we conclude that the set is infinite?
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Least Upper and Greater Lower Bounds</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
@@ -31,14 +30,12 @@ The least upper bound is also called the supremum of the set $$A$$ or $$\sup A$$
 <br><br>
 Questions: since $$s$$ must be an upper bound, does it mean that the set $$A$$ is a bounded set?
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Minimum and Maximum</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   A real number \(a_0\) is a maximum of the set \(A\) if \(a_0\) is an element of \(A\) and \(a_0 \geq a\) for all \(a \in A\). Similarly a real number \(a_1\) is a minimum \(a_1\) is a minimum of the set \(A\) if \(a_1 \in A\) and \(a_1 \leq a\) for all \(a \in A\).
 </div>
 It's definitely clear here that the maximum and minimum must be elements of the set itself unlike the upper and lower bounds.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References:</h3>

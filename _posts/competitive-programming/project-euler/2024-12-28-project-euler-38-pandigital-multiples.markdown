@@ -20,7 +20,6 @@ $$
 <!------------------------------------------------------------------------------------>
 Concatenating all the products, we get $$918273645$$. This product is $$1$$ to $$9$$ pandigital by definition. The goal of this problem is to find the largest $$1$$ to $$9$$ pandigital product formed by concatenating the products of an integer $$k$$ with $$(1,2,3,4,...n)$$ where $$n > 1$$. In the above example, $$k = 9$$ and $$n = 5$$.
 <br>
-<br>
 Suppose now that we're given an integer $$k$$ with $$d$$ digits. Observe that if $$d = 1$$, then in order to have 9 digits total in the final string produced by concatenating the products of $$k$$ with $$(1,2,...,n)$$, we need at most 9 products total so $$n \leq 9$$. Moreover, if $$d = 2$$, then $$n$$ can at most be 4, since each product will contain a minimum of two digits. Adding a fifth product means that we will exceed 9 digits which makes the entire thing not pandigital. For $$d = 3$$, then we'll only need 3 products. In all cases, we can see that we at most need 9 products total. Based on this, I implemented this in the most naive way where given an integer $$k$$, I will multiply $$k$$ by the range $$(1,...,9)$$ but exiting at any point where we either see a digit repeating twice (not pandigital) or if we reached the pandigital state.
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
@@ -73,11 +72,8 @@ printf("\n");
 <!------------------------------------------------------------------------------------>
 This runs in 0.000032 seconds on my M1 mac.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=32">Project Euler - 32</a>
 <br>
-<br>
-
 

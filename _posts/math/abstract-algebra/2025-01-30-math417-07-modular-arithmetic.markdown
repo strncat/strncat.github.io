@@ -20,7 +20,6 @@ if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(
 </div>
 Example: $$(1 \bmod 7) = (8 \bmod 7) = 1$$. Therefore, $$1 \equiv_7 8$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------>
 <div class="mintheaderdiv">
 Definition
@@ -44,7 +43,6 @@ $$[2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....$$
 <h3>The Remainder Function</h3>
 Another important definition that we need is the following
 <br>
-<br>
 <div class="mintheaderdiv">
 Definition
 </div>
@@ -59,7 +57,6 @@ It's important to note that the remainder is in the same congruence class as $$a
 <!------------------------------------------------------------------------>
 <h3>Properties of Congruence</h3>
 Congruence is an equivalence relation. The following properties show this.
-<br>
 <br>
 <!------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
@@ -78,10 +75,8 @@ Lemma (Book 1.7.2)
 <br>
 For $$(a)$$, $$a - a = 0$$ is divisible by $$n$$. For $$(b)$$, if $$a - b$$ is divisible by $$n$$, then $$b - a$$ is also divisible by $$n$$ and vice versa. For $$(c)$$, if $$a - b$$ is divisible by $$n$$ and $$b - c$$ is divisible by $$4n$$, then $$(a - b) + (b - c) = a - c$$ is also divisible by $$n$$. $$ \ \blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------>
 Based on these properties, we have the following proposition
-<br>
 <br>
 <!------------------------------------------------------------------------------>
 <div class="yellowheaderdiv">
@@ -107,16 +102,13 @@ $$[a]_n \subseteq [b]_n$$: Let $$c \in \mathbb{Z}$$. If $$c \equiv a \bmod n$$, 
 <br>
 $$[b]_n \subseteq [a]_n$$: If $$c \equiv b \bmod n$$, then $$c \equiv a \bmod n$$ and so $$[a] = [b]$$ as required.
 <br>
-<br>
 $$(b) \implies (c)$$:
 <br>
 By definition, $$\text{rem}_n(x)$$ is the unique element of $$[x]$$ that lies inside $$\{0,1,...,n-1\}$$. So if $$[a]_n=[b]_n$$, then it must be the same element.
 <br>
-<br>
 $$(c) \implies (d)$$:
 <br>
 $$(d)$$ is an immediate application of $$(c)$$
-<br>
 <br>
 $$(d) \implies (a)$$:
 Suppose that $$[a]_n \cap [b]_n \neq \emptyset$$. Let $$c \in [a]_n \cap [b]_n$$. Then $$a \equiv c \bmod n$$ and $$b \equiv c \bmod n$$. But this implies that $$a \equiv b \bmod n$$. $$\ \blacksquare$$
@@ -143,7 +135,6 @@ $$
 <br>
 [TODO]
 <br>
-<br>
 <!------------------------------------------------------------------------------>
 We can now use these modular arithmetic properties to define algebraic structures on a set.
 <br>
@@ -163,7 +154,6 @@ Definition
 <!------------------------------------------------------------------------------>
 So now we can use the operations we defined previously to turn this set into a commutative ring.
 <br>
-<br>
 <div class="mintheaderdiv">
 Definition
 </div>
@@ -178,9 +168,7 @@ Define operations \(+\), \(\cdot\) on \(\mathbb{Z}_n\) by
 </div>
 $$(\mathbb{Z}_n,+,\cdot)$$ is commutative ring with identity while $$(\mathbb{Z}_n,\cdot)$$ is a commutative monoid. $$[1]$$ is the identity element.
 <br>
-<br>
 Only some elements $$[a] \in \mathbb{Z}_n$$ have a multiplicative inverse. (such that $$[a][b] = [1] = [b][a]$$). The question is when do we have a multiplicative inverse? The answer is in the following proposition.
-<br>
 <br>
 <!------------------------------------------------------------------------------>
 <div class="peachheaderdiv">
@@ -230,9 +218,7 @@ Theorem (Binomial Theorem)
 <br>
 Use Pascal's Identity: $$\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}$$... TODO
 <br>
-<br>
 As a consequence of the binomial theorem, we have the next proposition
-<br>
 <br>
 <!------------------------------------------------------------------------------>
 <div class="peachheaderdiv">
@@ -248,7 +234,6 @@ Let \(p\) be prime. For all \(a, b \in \mathbb{Z}\):
 </div>
 <br>
 First observe that $$(a+b)^5 = a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5$$. So those middle terms all have coefficients divisible by 5. Therefore, they'll go away if we apply mod $$5$$. This happens when $$p$$ is prime.
-<br>
 <br>
 <!------------------------------------------------------------------------------>
 <b>Proof</b>
@@ -274,14 +259,12 @@ What we need to show is that $$\binom{p}{k} \equiv 0 \bmod p$$ if $$0 < k < p$$.
 $$p! = p(p-1)...1$$. So $$p \ | \ p!$$. But $$p! = \binom{p}{k} k! (p-k)!$$ so $$p$$ divides this whole product. Since $$p$$ is prime, then $$p$$ must divide one of the factors. Now observe that $$p$$ can't divide $$k!$$ since $$k < p$$. $$p$$ doesn't divide $$(p - k)!$$ either since $$p - k < p$$. Therefore, $$p$$ must divide $$\binom{p}{k}$$ as desired. $$\ \blacksquare$$. 
 <!------------------------------------------------------------------------------>
 <br>
-<br>
 A consequence of this proof is Fermat's Little Theorem
 <hr>
 
 <!------------------------------------------------------------------------>
 <h3>Fermat's Little Theorem</h3>
 Next, we will prove Fermat's Little Theorem.
-<br>
 <br>
 <!------------------------------------------------------------------------------>
 <div class="yellowheaderdiv">
@@ -300,7 +283,6 @@ Theorem
 By Induction on \(a\) for \(a \geq 1\).
 <br>
 Base Case (\(a = 1\)): \(1^p \equiv 1 \bmod p\) and so we're done.
-<br>
 <br>
 Inductive Case (\(a > 1\)): 
 Assume it is true for \(a\). We will show that it is true for \(a+1\). 
@@ -324,7 +306,6 @@ By Induction on \(a\) for \(a < 0\).
 <br>
 Base Case (\(a = -1\)):  We need to show that \((-1)^p \equiv -1 \bmod p\). \(p\) is prime so we have two cases. If \(p = 2\), then \((-1)^2 = 1 = -1 \bmod 2\). If \(p\) is odd, then \((-1)^p = -1\).
 <br>
-<br>
 Inductive Case (\(a < -1\)): We want to show that \(a^p \equiv a\) implies \((a - 1)^p = a - 1\).
 </div>
 <!------------------------------------------------------------------------>
@@ -336,7 +317,6 @@ We are given that $$a \nmid p$$. From part (1), we know that $$a^p \equiv a \bmo
 <!------------------------------------------------------------------------>
 <h3>Two-Prime Fermat</h3>
 There is a more generalized version of Fermat's Little Theorem. We will use Fermat's theorem to prove it.
-<br>
 <br>
 <div class="yellowheaderdiv">
 Theorem
@@ -363,7 +343,6 @@ We know that $$h \equiv 1 \bmod m$$ so $$h = 1 + tm$$ for some $$t \in \mathbb{Z
 </div>
 Therefore, want to show that $$pq$$ divides $$a(a^{tm} - 1)$$. Lecture 5 Proposition (Corollary 1.6.17 in the book) states that if $$a$$ and $$b$$ are relatively prime, $$a \ | \ n$$ and $$b \ | \ n$$, $$ab \ | \ n$$. We're given that $$p$$ and $$q$$ are distinct primes so they are relatively prime. So the goal is to prove that $$p$$ divides $$a(a^{tm} - 1)$$ and $$q$$ divides $$a(a^{tm} - 1)$$ to conclude that the product $$pq$$ divides $$a(a^{tm} - 1)$$.
 <br>
-<br>
 To start, we want to show that $$p \ | \ a(a^{tm} - 1)$$. But since $$p$$ is prime, then it will have to divide $$a$$ or $$a^{tm} - 1$$. So we need to show that either $$p \ | \ a$$ or $$p \ | \ a^{tm} - 1$$. So suppose that $$p \nmid a$$. We claim that $$p \ | \ a^{tm} - 1$$. Recall that $$m = lcm(p-1, q-1)$$. So $$m$$ is a multiple of $$p-1$$ and we can write $$m = (p - 1)s$$ for some $$s \in \mathbb{N}$$. So now we can write $$a^{tm}$$ as follows
 <div>
 	$$
@@ -389,14 +368,11 @@ This implies that $$a^{tm} - 1$$ must be divisible by $$p$$ as we wanted to show
 <h3>RSA Cryptosystem</h3>
 This encryption method is based on the two prime fermat theorem. It is widely used to encrypt many of the transactions that happen on the internet.
 <br>
-<br>
 Symmetric Encryption:
 We have some plain text ($$x \in \mathbb{Z}_n$$) that we want to encrypt. We have a function that takes a key ($$e \in \mathbb{Z}$$) to encrypt the plain text and turn it to encrypted text ($$y \in \mathbb{Z}_n$$). To decrypt it back, we have to use the same key again to turn it to plain text. The flaw in this method is that the encryption and decryption keys are the same and will need to be shared somehow. That's why we have an alternative:
 <br>
-<br>
 Asymmetric Encryption:
 This is the same proces except that now we have a decryption key $$(d \in \mathbb{Z})$$. So now we have a pair of keys $$(e, d)$$. You will broadcast $$e$$ so that anyone can encrypt a message and send it to you, but you are the only with the decryption key. The goal here is to design the pair such that one one can deduce $$d$$ from $$e$$. So how to design such a pair?
-<br>
 <br>
 One way to implement this idea is the following (RSA):
 <ol>

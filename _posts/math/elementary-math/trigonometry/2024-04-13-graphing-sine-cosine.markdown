@@ -16,11 +16,9 @@ $$
 </div>
 Let's study each coefficient and figure out what it does to the original graph and how it transforms it.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>What Values Do We Plot?</h3>
 Before deciding on the values, we need to understand that both sine and cosine repeat their values at regular intervals or periods. The period of $$\sin(x)$$ and $$\cos(x)$$ is exactly $$2\pi$$. So the sine or cosine wave will just repeat every $$2\pi$$. This means we can just focus on plotting one single entire wave and then just repeat the rest.
-<br>
 <br>
 What $$x$$ values do we pick in the period $$[0,2\pi]$$? For both sine and cosine, we typically choose the 5 critical value where we're crossing the $$x$$ axis ($$x$$ intercept) or where we have a maximum or a minimum. For both sine and cosine, This happens at $$0, \pi/2, \pi, 2\pi/3$$ and $$2\pi$$. Sine has 3 zeros at $$0$$, $$\pi$$ and $$2\pi$$. Cosine has two zeros at $$\pi/2$$ and $$3\pi/2$$. If we're graphing $$\sin(x)$$, then we'll have the following table,
 <table>
@@ -90,7 +88,6 @@ With the new amplitude, we'll take the original $$y$$ values and just multiply t
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/graphs/1.png" width="80%" class="center"></p>
 and we're done.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Period</h3>
 We know both $$\sin(x)$$ and $$\cos(x)$$ have a period of $$2\pi$$. Suppose we want to graph the following function,
@@ -102,7 +99,6 @@ $$
 $$
 </div>
 To find the period we divide $$2\pi$$ by $$2$$ so the new period is now $$\pi$$ instead of $$2\pi$$. Why do we divide? This value 2 that is multiplied by $$x$$ is squeezing our sine wave. If it was 0.5, then this will be a stretching factor and our period will stretch to become $$4\pi$$. 
-<br>
 <br>
 The easiest way to graph this new function is to take the new period $$\pi$$ and divide it into 5 sections. We can do so by dividing the period by 4 to figure out the distance between each section. Divide $$\pi$$ by 4 to get $$\pi/4$$. So now the first critical value will happen at 0. The next one will happen at $$0+\pi/4$$. The one after will happen at $$0+\pi/4+\pi/4 = \pi/2$$ and so on until we reach the fifth critical value at exactly $$\pi$$.
 <table>
@@ -192,7 +188,6 @@ $$
 $$
 </div>
 What does this $$-\pi/2$$ do? 
-<br>
 <br>
 First of all, we know the period is $$2\pi/2 = \pi$$ from the last section and we know the $$x$$ values of the new period will be,
 <table>

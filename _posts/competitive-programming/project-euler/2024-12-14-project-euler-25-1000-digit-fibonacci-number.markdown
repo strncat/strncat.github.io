@@ -45,11 +45,8 @@ for (int k = 0; k < 5000; k++) {
 {% endhighlight %}
 One small optimization I can think of is to avoid copying sum into f2 and f2 into f1 and instead use pointers to these arrays to just figure out which two arrays to sum.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=25">Project Euler - 25</a>
 <br>
-<br>
-
 

@@ -34,7 +34,6 @@ If we are able to prove these two then we can conclude that binary search is cor
 <h3>Preconditions and Postconditions</h3>
 In addition to loop invariants, we also need to describe the preconditions of binary search. Preconditions are just assertions that must be true at the beginning of our function. In our case, <b>our precondition is that the array is sorted in an ascending order</b>. If the array is not sorted, then we don't guarantee anything about the outcome.
 <br>
-<br>
 In addition to preconditions, we also need to describe our postconditions. Given that we met the preconditions, our loop invariant is correct and our algorithm terminates, our <b>post condition is that we return -1 if the key is not in the array or return the index of the key in the array</b>.
 <hr>
 <!----------------------------------------------------------------------------------->
@@ -59,15 +58,11 @@ Before the first iteration we know that $$first = 1$$ and $$last = n-1$$ and so 
 <h3>Maintenance</h3>
 Suppose the invariant holds before iteration $$i$$ and that if our key is in $$a$$ then for some index where $$a[index] = key$$ we have $$first \leq index \leq last$$. Let's look at iteration $$i+1$$. We first calculate the mid point in the range $$[first, last]$$. Based on this, we have three cases: 
 <br>
-<br>
 (1) $$a[m] == key$$. We therefore, return $$m$$ and we are done. 
-<br>
 <br>
 (2) $$a[m] > key$$. Our algorithm in this case searches the new range $$[first, m-1]$$. We know that $$first \leq index$$ by the inductive hypothesis and so we only need to prove that $$index \leq m-1$$. Since $$a[m] > key$$ and since the array is sorted then it must be that $$index < m$$ is true otherwise $$a[index]$$ comes after $$a[m]$$ which indicates that $$a$$ is not sorted.
 <br>
-<br>
 (3) $$a[m] > key$$. Our algorithm will then search the new range $$[m+1, last]$$. We can use a similar argument to (2) to prove that $$index \in [m+1, last]$$.
-<br>
 <br>
 From (1), (2), (3) we conclude that the invariant holds before iteration $$i+1$$. 
 <hr>
@@ -79,7 +74,6 @@ Suppose we know we terminate (proof next), then by the loop invariant ... [TODO]
 <h3>Does Binary Search Terminate?</h3>
 Will we terminate? we need to prove that if the search range is $$[first_i, last_i]$$ in iteration $$i$$ and the search range in iteration $$i+1$$ is $$[first_{i+1}, last_{i+1}]$$ then it must be that $$last_{i+1} - first_{i+1} < last_{i} - first_{i}$$. To do so we can use a similar approach to the one we used to prove our maintenance step. We know there are three cases, in each case we can prove that the new range is shrinking.
 <br>
-<br>
 Suppose $$m$$ is the midpoint in $$[first_i, last_i]$$. There are three cases:
 
 - $$a[m] == key$$. We therefore, return $$m$$ and we are done (binary search terminates).
@@ -88,11 +82,9 @@ Suppose $$m$$ is the midpoint in $$[first_i, last_i]$$. There are three cases:
 
 From the three cases we conclude that binary search must terminate. 
 <br>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>References</h3>
 These are my study notes from <a href="https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844">CLRS</a>.
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 

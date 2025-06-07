@@ -8,12 +8,10 @@ mathjax: true
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-0.png" width="60%" class="center"></p>
 Suppose we have an art gallery represented by a simple polygon $$P$$ with $$n$$ vertices. What is the minimum number of fixed guards needed to guard the gallery where each guard has a full visibility range of $$2\pi$$. How do we know if a given point is in the range of visiblity of a given guard? We say that if we were given points $$x$$ and $$y$$, then $$x$$ is visible from $$y$$ if $$xy \in P$$ where $$P$$ is a given polygon and $$x, y \in P$$. So if you connect the guard to a point with a line segment and all of that line segment is in $$P$$, then the point is visible to the guard.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Simple Polygons</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-2.png" width="60%" class="center"></p>
 To start we first define a <b>line segment</b> as a closed subset of a line contained between points $$a$$ and $$b$$ called its end points. A <b>simple polygon</b> is a closed curve consisting of a finite collection of line segments that doesn't intersect itself. This means that the intersection of each pair of adjacent segments is only the vertex shared between them and such that non-adjacent segments do not intersect. In the figure above, the intersection of $$e_i$$ and $$e_{i+1}$$ is only $$v_i$$ and none of non-adjacent segments intersect.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Diagonals in Polygons</h3>
@@ -24,12 +22,10 @@ A <b>Diagonal</b> is a line segment between two of the polygon's vertices $$a$$ 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-7.png" width="90%" class="center"></p>		
 Two diagonals are <b>non-crossing</b> if their intersection is a subset of their endpoints. aka they share no interior points. In the left figure above, the green diagonals intersect only at their end points (if any) so they're non-crossing while in the right figure, the red diagonals are not non-crossing since they intersect at an interior point that is not an end point of either diagonal.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Triangulation</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-8.png" width="50%" class="center"></p>
 There is one more definition that we will need for the proof later. If we add as many non-crossing diagonals as possible to a polygon, then the interior is partitioned into triangles. Such a partition is called a <b>triangulation</b> of a polygon. Why? This is a whole other topic an another post will be dedicated on this.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formalizing the Art Gallery Problem</h3>
@@ -64,7 +60,6 @@ $$
 
 Is $$G(n)$$ finite for all $$n$$? and can it be expressed with a simple formula?
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Small Values of \(n\)</h3>
 
@@ -88,7 +83,6 @@ For polygons of 5 vertices (pentagons) can be divided into:
 <h3>Fisk's Theorem</h3>
 Fisk established that every Polygon with $$n$$ vertices will need at least $$\lfloor n/3 \rfloor$$ guards. In this section, we will outline the proof.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof Outline</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-3.png" width="90%" class="center"></p>
@@ -100,14 +94,10 @@ The second step is to prove that the resulting graph is 3-colored. Recall that A
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-5.png" width="60%" class="center"></p>
 The third step of the proof is the observation that placing the guards at all the vertices assigned one color guarantees visibility coverage of the polygon. Let pink, green and yellow be the colors used in the 3-coloring of the graph. Each triangle must have each of the three colors at its three corners. This means that every triangle has a yellow (arbitrary chosen color) node and so every triangle has one guard and thus covered. We know that the collection of triangles completely cover the polygon and so this means that the whole polygon is covered.
 <br>
-<br>
 The forth step is the application of the pigeonhole principle. Recall that the pigeonhole principle states that If $$n$$ objects are placed into $$k$$ polygons and $$n > k$$, then at least one hole must contain no more than $$n/k$$ objects. We established that we only needed 3 colors to color the triangulated graph $$G$$. Now, let the $$n$$ vertices of the triangulation graph be the holes and the colors of the graph ($$k=3$$) be the pigeons. Since $$n$$ is an integer, then one of the color must be used no more than $$n/3$$ times.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
 <br>
-<br>
-
 

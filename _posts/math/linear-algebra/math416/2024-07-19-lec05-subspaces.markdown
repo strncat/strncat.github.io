@@ -40,11 +40,9 @@ Similarly, scalar multiplication also preserves $$L_m$$. So $$L_m$$ seems to inh
 <h3>Example 1: \([0, 1]\)</h3>
 Let $$W = [0, 1] \subset \mathbb{R}$$. It is not closed under addition. For example, for $$w_1 = 1$$ and $$w_2 = 1$$, $$w_1 + w_2 \notin \mathbb{R}$$. It is not closed under scalar multiplication either. $$\bar{0} \in [0,1]$$. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 2: \(\mathbb{Z}\)</h3>
 $$\bar{0} \in \mathbb{Z}$$. It is closed under addition. But it is not closed under scalar multiplication because we defined scalar multiplication as $$\{c(x, y) = (cx, cy) | c \in \mathbb{R}\}$$. (Remember that the vector spaces we're defining are over $$\mathbb{R}$$).
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Subspaces are Vector Spaces</h3>
@@ -57,15 +55,12 @@ $$\bar{0} \in \mathbb{Z}$$. It is closed under addition. But it is not closed un
 <b>Proof:</b>
 Let $$V$$ be a vector space and $$W \subset V$$. Since $$V$$ is a vector space, then we know it satisfies conditions (1)-(8) of vector spaces. We also know that $$W$$ satisfies properties (a)-(c) since it's a subspace of $$V$$. To verify that $$W$$ is a vector space, we need to show that it satisfies conditions (1)-(8) of vector spaces.
 <br>
-<br>
 Conditions (1)-(2) and (5)-(8) are inherited from $$V$$. For condition (3), we need a $$\bar{0}$$. But we already we know that there exists a zero element since it's property (1) in the subspaces definition. For property (4), we need to prove that for each $$w \in W$$, there exists a $$z \in W$$ such that $$w + z = \bar{0}$$. But we know there is a $$u \in V$$ such that $$w + u = \bar{0}$$ since $$V$$ is a vector space. We also know that $$u = (-1)w$$ (In the previous lecture we proved that $$u$$ is unique). But $$u=(-1)w$$ must also be in $$W$$ since $$W$$ is closed under scalar multiplication.
 Therefore $$W$$ is a vector space as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
 Show that $$W = \{(t_1 + t_2, t_1 - t_2, t_1) | t_1, t_2 \in \mathbb{R}\}$$ is a vector space.
-<br>
 <br>
 Proof: $$W$$ is a subset of $$\mathbb{R}^3$$ so by the previous theorem, it suffices to show that $$W$$ is a subspace of $$\mathbb{R}^3$$. For condition one, set $$t_1$$ and $$t_2$$ to 0 to get $$\bar{0} = (0,0,0) \in W$$. For any $$w \in W$$, we see that $$w + \bar{0} = w + (0,0,0) = w$$ as required. For condition 2, let $$w_1, w_2 \in W$$. 
 <div>
@@ -88,11 +83,9 @@ $$
 </div>
 This is also clearly in $$W$$, Therefore, we can conclude that $$W$$ is a vector space. $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Are Solution Sets Vector Spaces?</h3>
 From the previous example, $$W$$ has the form of a solution set of a linear system so does this mean that every solution set is a vector space? The answer is no. Consider $$W' = \{t_1 + t_2, t_1 - t_2, t_1 + 1\}$$. $$W'$$ is not a subspace of $$\mathbb{R}^3$$. We don't have a zero vector $$\bar{0}$$ in $$W$$. To show that, we need to prove that there isn't a solution for the system $$\{t_1 + t_2, t_1 - t_2, t_1 + 1\}$$ where $$t_1+t_2 = 0$$, $$t_1 - t_2 = 0$$ and $$t_1 + 1 = 0$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 4: Polynomials of Degree at Most \(k\)</h3>
@@ -115,11 +108,9 @@ $$
 </div>
 This is also in $$P_k$$ which means that $$P_k$$ is closed under scalar multiplication. Therefore, $$P_k$$ is a subspace of $$P_{k+1}$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 4: Continuous Functions</h3>
 The claim is that $$C^0(\mathbb{R})$$ is a subspace of $$F(\mathbb{R})$$. For the zero vector, $$\bar{0}(x) = 0$$ is a continuous function so it belongs to $$C^0(\mathbb{R})$$. For condition 2, if $$f$$ and $$g$$ are continuous then we know that $$f+g$$ is also continuous (from calculus, needs to be proved). For condition 3, a scalar multiplied by $$f$$ is also continuous. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 5: Continuous Functions</h3>
@@ -169,7 +160,6 @@ Since both matrices are symmetric. But this implies that \(A+B = (A+B)^t\).
 </li>
 <li>For any \(c \in \mathbb{R}\) and \(s_1 \in S\), \(cS\) is a symmetric matrix and therefore it is in \(S\). So (\(S\) is closed under scalar multiplication).</li>
 </ol>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References:</h3>

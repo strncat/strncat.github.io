@@ -15,7 +15,6 @@ Any integer greater than one, can represented uniquely as the product of prime n
 </div>
 In other words, the prime factors of $$13195$$ are $$5, 7, 13$$ and $$29$$. The goal of this problem is to find the largest prime factor of the number $$600851475143$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Solution</h3>
 There are lots of tutorials out there that cover implementing prime factorization. The simplest one is to divide by 2 and collect these prime factors first. Then we'll check against all the other odd factors up to the square root of $$n$$. While it appears that we're checking if $$9$$ is a factor, we will never add $$9$$ since we have checked $$3$$ before checking against $$9$$. The following code implements this.
@@ -60,11 +59,8 @@ printf("%llu\n", largest_factor);
 <!------------------------------------------------------------------------------------>
 The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0003-largest-prime-factor.cpp">here</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=3">Project Euler - 03</a>
 <br>
-<br>
-
 

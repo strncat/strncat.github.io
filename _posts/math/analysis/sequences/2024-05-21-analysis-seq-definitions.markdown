@@ -17,7 +17,6 @@ mathjax: true
 </div>
 This can also be written as $$\displaystyle \lim_{n\to\infty}a_n = a$$. What is this saying? After a certain number of terms, say after $$N$$, all the points in the sequence will converge to a real number $$a$$. Defining these points with $$|a_n - a| \leq \epsilon$$ is explained in the next definition.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Epsilon Neighborhood of \(a\)</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
@@ -33,7 +32,6 @@ This can also be written as $$\displaystyle \lim_{n\to\infty}a_n = a$$. What is 
 </div>
 $$V_{\epsilon}(a)$$ is an interval around $$a$$ consisting of all the points whose distance from $$a$$ is less than $$\epsilon$$. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Convergence of a Sequence: (Topological Version)</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
@@ -41,14 +39,12 @@ $$V_{\epsilon}(a)$$ is an interval around $$a$$ consisting of all the points who
 </div>
 One note here as mentioned in the book. This value of $$N$$ will really depend on the value of $$\epsilon$$ we choose. If we choose a small $$\epsilon$$, then we expect $$N$$ to be larger.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Uniqueness of Limits</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
 	The limit of a sequence, when it exists must be unique.
 </div>
 This will certainly require a proof!
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Divergence</h3>
@@ -63,14 +59,12 @@ This will certainly require a proof!
 </div>
 For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/03/analysis-seq-bounded.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>[2.3.2] Convergent Sequences</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Every convergent sequence is bounded.
 </div>
 For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html">this</a>.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Increasing, Decreasing and Monotone Sequences</h3>
@@ -84,7 +78,6 @@ For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/12/an
   If a sequence is monotone and bounded, then it converges.
 </div>
 For the proof see <a href="https://strncat.github.io/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">this</a>.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>[2.6.1] Definition: Cauchy Sequences</h3>

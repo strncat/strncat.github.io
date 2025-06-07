@@ -33,7 +33,6 @@ $$
 </div>
 splits but doesn't satisfy $$(b)$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Jordan Canonical Form</h3>
 Based on the previous observation. It turns out there is a nice form that we can put $$T$$ into in order to achieve $$(a)$$ and $$(b)$$
@@ -107,7 +106,6 @@ $$
 </div>
 You can think of this matrix as more of a generalization of a diagonal matrix.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Examples</h3>
 The following are examples of matrix in Jordan Canonical Form
@@ -140,7 +138,6 @@ Note here that the characteristic polynomial of both $$A$$ and $$B$$ is $$(1-t)^
 <h3>Computing Powers of Matrices in JFC</h3>
 It turns out that we can write a formula for powers of matrices in JFC. It is not as easy as taking the power of a diagonal matrix but at least have a formula.
 <br>
-<br>
 Fact 1:
 <div>
 $$
@@ -164,7 +161,6 @@ $$
 </div>
 Note here that the third entry in the first row for example is $$\frac{k(k-1)}{2!}\lambda^{k-1}$$
 <br>
-<br> 
 Fact 2: If $$A$$ is in Jordan Canonical form, then the power of the matrix is as follows
 <div>
 $$
@@ -268,9 +264,7 @@ for some integer \(p > 0\)
 </div>
 Observation: When $$p$$ is the smallest integer for which $$(T - \lambda I_V)^p(x) = \bar{0}_V$$, then $$y = (T - \lambda I_V)^{p-1}(x)$$ is an eigenvector. 
 <br>
-<br>
 So now we know that the basis we want to build will consists of generalized eigenvectors. These generalized eigenvectors belongs to subspaces we define next
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
@@ -295,9 +289,7 @@ Theorem 1.1
 </div>
 <b>Proof</b>
 <br>
-<br>
 (a) We need to show three things. $$K_{\lambda}$$ contains $$E_{\lambda}$$. This is clearly true by definition and $$E_{\lambda} \subseteq K_{\lambda}$$. 
-<br>
 <br>
 Next we need to show that $$K_{\lambda}$$ is a subspace. This means we need to show that it contains the zero vector and it is closed under scalar multiplication and addition. $$(T - \lambda I_V)(\bar{0}_V) = \bar{0}_V$$ so $$\bar{0}_V \in K_{\lambda}$$. Now consider $$x, y \in K_{\lambda}$$ and $$c \in \mathbf{F}$$, we need to show that $$x + cy \in K_{\lambda}$$. Since $$x$$ and $$y$$ are in $$K_{\lambda}$$, then
 <div>
@@ -360,7 +352,6 @@ $$
 </div>
 We know that $$K_{\lambda}$$ is $$T$$-invariant so $$T(x) \in K_{\lambda}$$. What about $$\mu x$$? This is just a multiply of $$x$$ and since $$K_{\lambda}$$ is a subspace then we know that $$\mu x \in K_{\lambda}$$. Therefore the addition of the two terms is also in $$K_{\lambda}$$ since $$K_{\lambda}$$ is a subspace. So this tells us that the target we want to consider is $$K_{\lambda}$$.
 <br>
-<br>
 So now we want to prove that this map $$T - \mu I_V: K_{\lambda} \rightarrow K_{\lambda}$$ is one to one. One way to show this is to prove that the nullspace of this map is trivial. This means that the solution to   
 <div>
 $$
@@ -370,7 +361,6 @@ $$
 $$
 </div>
 is the trivial solution where $$x = \bar{0}_V$$. Suppose for the sake of contradiction that this isn't true and $$x \neq \bar{0}_V$$ but $$(T - \mu I_V)(x) = \bar{0}_V$$. 
-<br>
 <br>
 However, we know that $$x \in K_{\lambda}$$ so it must be killed by some power of the operator so let $$p$$ be the smallest integer such that 
 <div>
@@ -446,7 +436,6 @@ Let \(\beta_j\) be a basis for \(K_{\lambda_j}\). Then
 </ol>
 </div>
 <b>Proof</b>
-<br>
 <br>
 (a): Assume for the sake of contradiction that $$\beta_i \cap \beta_j \neq \emptyset$$. Then there exists $$x \in \beta_i \cap \beta_j$$. We know that $$\beta_i \cap \beta_j \subseteq K_{\lambda_i} \cap K_{\lambda_j}$$. Since $$i \neq j$$, then $$\lambda_i \neq \lambda_j$$. Therefore by Theorem 1.1(b), the restriction of $$(T - \lambda_i I_V)$$ to $$K_{\lambda_j}$$ is 1-1. 
 <div>

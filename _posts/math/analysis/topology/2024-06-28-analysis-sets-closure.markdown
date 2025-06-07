@@ -20,7 +20,6 @@ $$
 </div> 
 So this means that $$1/n$$ is not a limit point and is an isolated point instead. The only limit point of $$A$$ is in fact 0 and so $$\overline{A} = A \cup \{0\}$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>
 <ul>

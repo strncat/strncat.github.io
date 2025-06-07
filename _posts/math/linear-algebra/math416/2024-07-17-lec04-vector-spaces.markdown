@@ -23,7 +23,6 @@ mathjax: true
 </div>
 For property (4), we don't call it $$-v$$ yet because we didn't prove yet if it's unique.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1: \(\mathbb{R}\)</h3>
 $$\mathbb{R}$$ is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties are true.
@@ -179,7 +178,6 @@ $$
 </div>
 Therefore $$u = v$$ as we wanted to show. $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
   Theorem
@@ -199,7 +197,6 @@ $$
 $$
 </div>
 Therefore, $$\bar{0} = \bar{0}'$$ which is a contradiction and the zero vector must be unique. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -222,7 +219,6 @@ w &= w + 0  \quad \text{By property 3}\\
 $$
 </div>
 Since $$w = w'$$, we can conclude that $$w$$ is a unique additive inverse. $$\blacksquare$$
-<br>
 <br>
 Two additional implications mentioned in the class is that $$w = (-1)v$$ and $$0v = \bar{0}$$.
 <hr>

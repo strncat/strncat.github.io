@@ -49,7 +49,6 @@ But when a straight line is set up on another straight line makes the adjacent a
 <br><br>
 (2) When they said the other side of the line, does this mean that D needs to be on the side that C is not on? Is this required for the proof to work?
 <br>
-<br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>

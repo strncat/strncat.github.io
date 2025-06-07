@@ -35,8 +35,6 @@ Therefore, we can conclude by <a href="https://strncat.github.io/jekyll/update/2
 <br>
 <b>Thoughts:</b> pretty straight forward proof!
 <br>
-
-<br>
 <hr>
 <!----------------------------------------------------------------------->
 <br>

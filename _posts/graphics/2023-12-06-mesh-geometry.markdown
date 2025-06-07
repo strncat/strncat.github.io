@@ -24,7 +24,6 @@ $$
 Note here that we can have the same set of vertices represent two different mesh topologies. so take this square for example. We can represent it with the two triangles or the other two triangles. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/curves/01-secondline.png" width="60%" class="center"></p>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Mesh Representation</h3>
 2D manifolds are surfaces such that when cut with a small sphere, it will always yields a disk or half a disk on the boundary. Manifolds have some important properties like
@@ -32,8 +31,6 @@ Note here that we can have the same set of vertices represent two different mesh
 - an edge connects two vertices only.
 - a face consists of a ring edges and vertices.
 - ....
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>

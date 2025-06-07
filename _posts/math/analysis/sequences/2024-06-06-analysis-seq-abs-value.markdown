@@ -12,7 +12,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Problem Discussion</h3>
 We'll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that $$\lim (x_n) = 0$$. So we want to find $$n \geq N$$ such that for any $$\epsilon > 0$$,
@@ -36,7 +35,6 @@ $$
 </div>
 and this is exactly what we wanted to prove. we're done!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
 To show that $$\lim(x_n) = 0$$, let $$\epsilon > 0$$ be arbitrary. We want to prove that there exists some $$N \in \mathbb{N}$$ such that when $$n \geq N$$, we'll have
@@ -59,7 +57,6 @@ $$
 $$
 </div>
 From this we can conclude that $$(x_n)$$ converges to 0 as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Alternative Proof (Squeeze Theorem)</h3>
@@ -89,7 +86,6 @@ $$
 $$
 </div>
 By the <a href="https://strncat.github.io/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html">sequenze theorem for sequences</a>, we can conclude that $$(x_n)$$ converges to 0 as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

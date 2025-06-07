@@ -7,7 +7,6 @@ mathjax: true
 ---
 An $$n$$-digit pandigital number (which also appeared in problem 32 and problem 38) is a number where the digits $$1$$ to $$n$$ appear exactly once. For example $$52143$$ is a $$5$$-digit pandigital number. The goal of this problem is to find the largest $$n$$-digit pandigital that is also a prime number!
 <br>
-<br>
 Solution: Let's consider the pandigital numbers ordered by the number of digits
 <ul>
 <li>The \(9\)-digit pandigital number is always a permutation of the digits \(1\) through \(9\). So the sum of the digits is always \(1+2+3+4+5+6+7+8+9 = 45\). But 45 is divisible by 3 according to the divisibility rules<a href="https://en.wikipedia.org/wiki/Divisibility_rule">here</a>. Therefore, it can't be a prime number and we don't have to consider these numbers.</li>
@@ -66,12 +65,9 @@ printf("max pandigital prime is %ld\n", max);
 <br>
 This runs in 0.066298 seconds on my M1 mac.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=41">Project Euler - 41</a>
 <a href="https://en.wikipedia.org/wiki/Divisibility_rule">Divisibility Rules</a>
 <br>
-<br>
-
 

@@ -7,9 +7,7 @@ mathjax: true
 ---
 In this problem, we are given a list of names. The goal is to find the sum of all the name scores in the list. What is a name score? A name score is calculated by multiplying its alphabetical score by its alphabetical position in the list. A name's alphabetical score is calculated by summing each letter's alphabetical position. 
 <br>
-<br>
 For example, the name "COLIN"'s alphabetical score is $$3 + 15 + 12 + 9 + 14 = 53$$. "COLIN"'s alphabetical position is 938 after all the names in the list are sorted. Therefore, "COLIN"'s name score is $$53 * 938 = 49714$$.
-<br>
 <br>
 Solution: This was pretty straightforward. The first thing we want to do is read the file we're given. We can do this with
 <!------------------------------------------------------------------------------------>
@@ -60,13 +58,9 @@ for (int i = 0; i < names.size(); i++) {
 }
 printf("score sum = %lld\n", sum);
 {% endhighlight %}
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=22">Project Euler - 22</a>
 <br>
-<br>
-
 

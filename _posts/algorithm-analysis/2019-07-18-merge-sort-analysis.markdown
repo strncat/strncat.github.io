@@ -21,7 +21,6 @@ MergeSort(A, first, last) {
 <h3>Recursion Tree Method</h3>
 How long does MergeSort take? How many operations are we performing? Let's look at what MergeSort is doing at each level of of the recursion tree. We will first go all way down splitting the array and calling <i>MergeSort</i> on each half until we reach the base case. And then we will go all way up calling <i>Merge</i> in every level until the final <i>Merge</i> call which combines the two sorted halfs of the array.
 <br>
-<br>
 <i>Level 0:</i>
 <br>
 At the top level, we have the whole input, array $$A$$ of size $$n$$. We will recursively call MergeSort on each half of the $$A$$.
@@ -42,7 +41,6 @@ At the $$t$$'th level, we will have $$2^t$$ calls to MergeSort. Each of the arra
 <br>
 When do we stop dividing/recursively calling MergeSort? Our base case happens when $$first == last$$. This means that we stop the recursion when each call has an array of size 1. How many times do we divide $$n$$ by 2 (we're dividing the array into two halfs at each step) to reach 1? This is precisely what logs give us. $$log_d(n)$$ is the number of times that we divide $$n$$ by $$d$$ to reach 1. Therefore, at the $$log_2(n)$$ level, each array will be of size 1 1 and this is when stop calling MergeSort again. After this step, we will start calling Merge now to combine everything together!
 <img src="{{ site.url }}/assets/merge/5.png" width="100%">
-<br>
 <br>
 Now let's climb up the recursion tree. <i>Merge</i> merges two sorted arrays with $$cn$$ operations where $$n$$ is the size of the array and $$c$$ is a positive constant. To see why it's linear, below is what merge is exactly doing
 {% highlight c++ %}
@@ -70,20 +68,16 @@ void merge(int a[], int first, int last, int mid) {
 We know that each array is of size 1 and so there is nothing to do here besides just returning from <i>MergeSort</i>. (Refer to the pseudocode and note (if first < last)). So at this level, we precisely doing $$n$$ operations. 
 <br>
 <br>
-<br>
 <i>Level $$t$$:</i>
 <img src="{{ site.url }}/assets/merge/4.png" width="100%">
 At the $$t$$'th level, we have $$2^t$$ arrays. Each of these arrays is of size $$n/2^t$$. We will perform $$n/2^t * c$$ operations per call. Summing everything, we have $$2^t * n/2^t * c = cn$$ operations. 
 <br>
-<br>
 So at each level we're doing at most $$cn$$ operations.
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>Summary</h3>
 Let's now summarize everything in a nice table:
 <img src="{{ site.url }}/assets/merge/final.png" width="100%">
-<br>
 <br>
 What about the total number of operations for all levels? In other words, what is the running time of merge sort? We have $$log(n)+1$$ total levels and in each level we're doing $$cn$$ operations, therefore MergeSort performs $$cn(\log(n)+1)$$ operations.
 <br><br>
@@ -108,7 +102,6 @@ $$
 $$
 </div>
 This is certainly true for all $$n \geq 2$$ and so we are done.
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>The Substitution Method</h3>

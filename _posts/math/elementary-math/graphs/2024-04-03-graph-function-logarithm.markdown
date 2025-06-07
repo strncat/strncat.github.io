@@ -7,7 +7,6 @@ mathjax: true
 ---
 Suppose we want to graph the function $$4\log_2(x-3)+1$$. How can we approach this?
 <br>
-<br>
 We can first simplify the problem by studying the function $$f(x) = log_2(x)$$. We know that its domain is all $$x$$ values where $$x \geq 0$$. We can also see here that as $$x$$ approaches $$-\infty$$, the function $$f$$ approaches 0 but never really reaches there. There isn't a value of $$x$$ that would make $$\log_2(x)$$ be zero. Therefore $$f$$ has a vertical asymptote at $$x = 0$$. This asymptote plus a few other points that we can plug in like $$f(1) = 0$$ and $$f(2) = 1$$ can help us graph $$f$$ below.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/logarithmic/0.png" width="60%" class="center"></p>
 

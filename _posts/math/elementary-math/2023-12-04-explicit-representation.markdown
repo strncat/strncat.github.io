@@ -8,8 +8,6 @@ mathjax: true
 <!------------------------------------------------------------------------------------>
 <h3>The Explicit Representation</h3>
 In the explicit representation, we have a list of points representing the shape. It often includes the normals as well. We can easily represent whatever shape we like. It is much easier to describe a complex shape with a list of points than trying to find an implicit form. One of the most popular explicit representation is the polygon mesh where we store the vertices and the polygons (triangles or quads) that the vertices make up.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
@@ -21,7 +19,6 @@ triangles:
 
 <br>
 <!------------------------------------------------------------------------------------>
-<br>
 <br>
 <h3>References</h3>
 <ul>

@@ -7,7 +7,6 @@ mathjax: true
 ---
 Rotating a tree is an essential step in the process of balancing binary search trees (Red-Black trees and AVL trees). What makes rotations a special and important tool is that they maintain the binary search property.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Left Rotations</h3>
 Given a subtree with root $$x$$ that has a right subtree $$y$$. A left rotation makes $$y$$ the new root of the subtree and $$x$$ its left subtree. $$y$$'s left subtree $$b$$ will be $$x$$'s right subtree. The subtrees $a$ and $c$ remain the same.
@@ -51,7 +50,6 @@ Given a subtree with root $$x$$ that has a right subtree $$y$$. A left rotation 
 	<polygon fill="black" stroke-width="1" points="156.933,111.2 165.165,106.592 156.398,101.781"/>
 </svg>
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Correctness Proof</h3>
 We want to prove the following:
@@ -60,7 +58,6 @@ We want to prove the following:
 
 <i>Proof:</i><br>
 Let $$T$$ be a binary search tree and let the right subtree above be in $$T$$. Let $$T'$$ be the tree resulted after $$T$$ has been left rotated at $$x$$. We want to prove $$T'$$ is a binary search tree. To do so, we need to prove that each node is maintaining the BST property. First, since $$y$$ is a right child of $$x$$ then we know that $$x.key \leq y.key$$. After the rotation is done, $$x$$ is a left child of $$y$$ maintaining the BST property. Similarly, in T, $$b$$ is a left child of $$y$$, so this means that $$b.key \leq y.key$$ and since the $$b$$ in the right subtree of $$x$$, we also know that $$b.key \geq x.key$$. After the rotation is done, we see that in $$T'$$, $$b$$ is a right child of $$x$$ maintaining the BST property since $$b.key \geq x.key$$ and $$b.key \leq y.key$$. Finally we see that $$a.key \leq x.key$$ and $$x.key \leq y.key$$ in $$T$$ and so so $$a$$ is still maintaining the BST property in $$T'$$. Similarly, $$c.key \geq y.key$$ and $$y.key \geq x.key$$ in $$T$$ and so $$c$$ is still maintaining the BST property in $$T'$$.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Implementation</h3>
@@ -170,11 +167,9 @@ void right_rotate(Node *root, Node *x) {
 <h3>Running Time</h3>
 Since we're performing a constant number of link changes then the runtime is $$O(1)$$.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Implementation</h3>
 https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>References</h3>

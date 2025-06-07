@@ -7,18 +7,15 @@ mathjax: true
 ---
 Problems with greedy solutions might have really simple and straight forward solutions however, they are really hard to reason about. This is why greedy algorithms are generally taught toward the end of an algorithms class. One classic problem with a greedy solution is the activity selection problem. In this problem, we are given a list of activities, each with a start time, $$t_i$$, and a finish time, $$f_i$$, and we would like to pick a set of activities such that the total number of activities is maximized with the constraint that no two activities can overlap.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Greedy Solution</h3>
 As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activity with the earliest finish time at each step until we run out of activities.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Example</h3>
 Suppose we have the following activities:
 ![my photo]({{ site.url }}/assets/activities.png)
 Based on our strategy, we will pick $$A1$$ first. We will skip $$A2$$ since it violates the condition of not having overlapped activities. We will then go on to pick $$A3$$, $$A5$$ and $$A6$$.
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>Implementation</h3>
@@ -46,9 +43,7 @@ std::vector<activity> select_maximum_activities(std::vector<activity> activities
 <h3>Correctness Proof</h3>
 This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So, each decision we make doesn't affect our ability of reaching out an optimal solution.
 <br>
-<br>
 This should sound very familiar. We have a base case where we start with an empty set of activities and then we want to prove that each selection we make doesn't rule out an optimal solution. What proof method should we use? of course, Induction.
-<br>
 <br>
 <i>Proof By Induction:</i><br>
 <b>Inductive Hypothesis: </b> After adding the $$t$$'th activity, there is an optimal solution that extends our current solution.
@@ -69,17 +64,12 @@ We claim that $$T$$ is allowed and optimal. First, we know that $$a_j$$ has a sm
 <b>Conclusion:</b>
 After adding the last activity, we will have an optimal solution that extends our current choices. Our current choices or solution is the only solution that extends the current solution and therefore, our current solution is optimal. $$\blacksquare$$
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Running Time</h3>
 If we need to sort the activities, then it will be $$O(n\log(n))$$. If it's sorted, then we're only doing a linear scan of activities and therefore, the running time is $$O(n)$$. 
-<br>
 <br>
 <!---------------------------------------------------------------------------------------->
 <h3>References</h3>
 <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br>
-<br>
-
-
 

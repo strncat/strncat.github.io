@@ -9,7 +9,6 @@ mathjax: true
 <h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Why Triangles?</h3>
 So why do we chose to render with triangles? So many benefits. Here are some:
@@ -26,7 +25,6 @@ So why do we chose to render with triangles? So many benefits. Here are some:
 
 5. With triangles, we have barycentric coordinates. We can use them to interpolate and color the triangle from the inside to whatever we want.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Rasterization</h3>
 So far we saw: 
@@ -35,7 +33,6 @@ So far we saw:
 3. So now, we need to find all the pixels inside this 2D screen space triangles and color them!
 
 Step (3) is the Rasterization step where we find the pixels and color them. It's expensive to find the pixels if we go and try every single pixel to test. There are mechanism to avoid testing all possible pixels. One technique is the bounding box technique where we limit the number of pixels to test to the bounding box of each triangle. Next we will need to test whether a pixel is inside a triangle (color it) or outside a triangle (don't color). How do we do this? First we will need to study the implicit equation for a line.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Implicit Equation for a line</h3>
@@ -51,7 +48,6 @@ This normal is the "rightward" normal with respect to the ray direction. This is
 3. If $$(p - p_0) \cdot n < 0$$, then $$p$$ is on the left side of the line with direction $$p_1-p_0$$ (so going from $$p_0$$ to $$p_1$$). (clockwise).
 
 IF we're in 3D space, it will be very similar, points on top (where the normal is) and the points below the plane (opposite direction). This division of which area is exterior or interior is convention. We chose it the area where the normal is to be the exterior and the other area to be the interior.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>2D Points Inside a 2D Triangle</h3>
@@ -70,28 +66,21 @@ So suppose we have the points $$v_0, v_1, v_2$$. By convention the edges are: $$
 
 This leads us to stress out the fact that vertex ordering matters: backward facing triangles are not rendered since no points are to the left of all three rays and to re-iterate: A point $$p$$ is considered inside a 2D triangle when it is interior (to left of all) all 3 rays. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Overlapping Triangles</h3>
 When one object is in front of another, two triangles can aim to color the same pixel. We know that the screen space projection computes $$z' = n + f - (fn/z)$$ for occlusion/transparency so color each pixel using the triangle that has the smallest $$z'$$ at that pixel! The problem here is that we do know the $$z'$$ for each vertex of every triangle but what we want is the $$z'$$ for the exact pixel that we're trying to color. For this reason we need to interpolate the vertices using the <a href="https://strncat.github.io/jekyll/update/2023/10/05/barycentric-coordinates.html"> barycentric Coordinates</a>) to find the $$z'$$ for that exact pixel. One other reason for doing this (instead of just picking one triangle over the other), is that these two triangles might intersect so you don't want to choose one or the other. We want to the color the correct portion. 
 <br>
-<br>
 So we need to interpolate $$z'$$ values from triangle vertices to the pixel locations. in order to do this, we use "screen space barycentric weight interpolation". How do we do this? There is a proper way and an improper way of calculating these barycentric weights.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Perspective Projection: Recap</h3>
 So far we're given a triangle $$p_0,p_1,p_2$$ and then we project it into screen screen to get $$p_0',p_1',p_2'$$ where the x-coordinate of each point is $$x_i' = hx_i/z_i$$ and the y-coordinate is $$y_i'=hy_i/z_i$$ for each vertex. 
 <br>
-<br>
 After the projection, we're given a pixel at location $$p'$$ in screen space and we want to compute the color of the pixel. The triangle with the smallest $$z'$$ is used to shade the pixel. In order to find $$z'$$, we said that we need to compute the barycentric weights for the triangle we're given, so $$p' = \alpha_0'p_0' + \alpha_1'p_1' + \alpha_2'p_2'$$ but this actually doesn't work and $$p'$$ can't be interpolated this way (unless the original triangle had the same z value for all three vertices). The reason why it doesn't work is because when we project this triangle, we divide by $$z$$ and it deforms this triangle if it wasn't flat. 
-<br>
 <br>
 To solve this, we have to do this calculation the right way. We'll study the algebraic explanation and we'll do the geometric one later in Texture Mapping. So what we want is to find if the current triangle I'm rendering has a z value which bigger or smaller than some other triangle. 
 <br>
-<br>
 The ray tracer won't have a problem. It sends a ray. The ray intersects the triangle in the virtual world at some location $$p$$. We interpolate and we get the correct $$z$$ value. That works. But for $$p'$$ that doesn't work. The triangle is distorted. This interpolated z' doesn't correspond to what's in the virtual world. WHAT WE NEED is linear interpolation in world space NOT in the screen space. "The barycentric weights for the interior of a screen space triangle do not correspondingly describe the interior of its corresponding world space triangle".
-<br>
 <br>
 LOTS of CRAZY DERIVATION ... TODO. 
 but the summary is that the correct barycentric weights OF THE TRIANGLE IN WOLRD SPACE ARE:
@@ -106,11 +95,9 @@ $$
 </div>
 We can use this to compute $$z = \alpha_0z_0 + \alpha_1z_1 + \alpha_2z_2$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Depth</h3>
 For the pixel color, texture mapping and some other stuff we need to get the correct barycentric weights of the triangle in world space and not screen space (last section) BUT for the depth buffer we actually don't need to do that!
-<br>
 <br>
 So we know from the last section how to compute the correct barycentric coordinates in world space such as,
 <div>
@@ -146,13 +133,10 @@ $$
 ......TODO.....
 We did all of this to prove that we can still compare $$z'$$ to find which triangle comes first. Even if the $$z'$$ values are deformed, we can still compare them to determine the ordering of the triangles. This is important since there will be a ton of triangles and we only we want to process the relavent ones. Once we get rid of the triangles that don't matter, we now have to calculate the correct barycentric coordinates in world space to correctly interpolate the right colors.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
 <br>
-<br>
-
 

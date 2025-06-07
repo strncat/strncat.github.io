@@ -40,11 +40,9 @@ mathjax: true
 </svg>
 Given a graph $$G=(E,V)$$ and a source node $$s$$. Dijkstra finds the shortest weighted path from $$s$$ to every other node in the graph. The graph however needs to only have non-negative edge weights. In the above graph the shortest path between nodes $$s$$ and $$t$$ is $$s \rightarrow a \rightarrow b \rightarrow t$$. Dikstra is extremely fast. It can run in amortized time $$O(n\log(n) + m)$$ if we implement Dijkstra with a fiponacci heap. 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 How does Dijkstra work? Using the above example, we maintain a set of <i>not-sure</i> nodes $$\{a, b, c, t, s\}$$. We let $$d[v]$$ be the current distance from $$s$$ to $$v$$. Initially we let $$d[v] = \infty$$ for any node in <i>not-sure</i> and $$d[s] = 0$$ for the source node only.
-<br>
 <br>
 In the first iteration of Dijkstra, we extract the node with the minimum distance in the <i>not-sure</i> list. This node is $$s$$. We then update the distance of each neighbor based on the following,
 <div center>
@@ -115,7 +113,6 @@ while there are not-sure nodes {
 {% endhighlight %}
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/dijkstra/dijkstra.cpp">Full Implementation on Github</a>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof of Correctness</h3>
 Why does Dijkstra work? We need to prove two important claims in order to prove that Dijkstra is correct.
@@ -172,7 +169,6 @@ $$$$ d[z] = d(s,z) \leq d(s,u) \leq d[u] $$$$ <br>
 </div>
 This is because we assumed $$z$$ has a correct estimate and we also know that $$d(s,z) \leq d(s,u)$$ because first, sub-paths of shortest paths are shortest paths (can be proved by contradiction). Second, the distance from $$z$$ to $$u$$ is non-negative because all edges have non-negative weights and therefore $$d(s,z) \leq d(s,u)$$. The last part $$d(s,u) \leq d[u]$$ follows from claim 1!
 <br>
-<br>
 So now, we have $$d[z] \leq d[u]$$. There are two cases: <br>
 Case 1: If $$d[z] = d[u]$$. In this case, since we assumed $$z$$ has a correct estimate then $$u$$ must have a correct estimate and we're done! <br>
 Case 2: If $$d[z] < d[u]$$. In this case, since $$u$$ was the smallest not-sure node, then $$z$$ must be sure. Otherwise we would have picked $$z$$ as the smallest not-sure node. Since $$z$$ is sure then we must have updated $$z$$'s neighbors. In particular, we know that $$z'$$ comes after $$z$$ so,
@@ -190,7 +186,6 @@ This means that $$z'$$ has a correct estimate. This is a contradiction because w
 
 <b>Conclusion:</b> 
 After the last node is marked sure, we have $$d[v] = d(s,v)$$ for all $$v$$ in $$V$$, as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Running Time</h3>
@@ -229,15 +224,12 @@ Notice here, if the graph is dense, meaning that $$m=O(n^2)$$, then this is wors
 	- UpdateKey will run in $$O(1)$$, amortized time.<br>
 Therefore, the total time will be $$O(n\log(n) + m)$$, amortized time.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Handling Negative Weights</h3>
 TODO!!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="http://web.stanford.edu/class/cs161/schedule.html">CS161 Stanford</a>
-<br>
 <br>
 

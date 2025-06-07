@@ -19,7 +19,6 @@ $$
 </div>
 FACT: The set of linear transformations $$\mathcal{L}(V, W)$$ is a vector space. We can think of this as a way to get a new vector space from two vector spaces $$W$$ and $$V$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>The Composition of Linear Transformations</h3>
 <div class="bdiv">
@@ -67,12 +66,9 @@ $$
 <h3>The Matrix of Linear Composition</h3>
 Suppose now that $$X$$, $$Y$$ and $$Z$$ are finite dimensional with fixed bases $$\alpha = \{x_1,...,x_n\}, \beta = \{y_1,...,y_m\}$$ and $$\gamma = \{z_1,...,z_n\}$$.
 <br>
-<br>
 How are $$[S]_{\alpha}^{\beta}, [T]_{\beta}^{\gamma}$$ and $$[T \circ S]_{\alpha}^{\gamma}$$ related?
 <br>
-<br>
 To answer this question, we need to define matrix multiplication.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Matrix Multiplication</h3>
@@ -214,7 +210,6 @@ f &\rightarrow \int_0^x f(t)dt
 $$
 </div>
 For standard bases $$\beta = \{1,x,x^2, x^3\}$$ of $$P_3$$ and $$\gamma = \{1, x, x^2\}$$ of $$P_2$$. 
-<br>
 <br>
 Extra notes: As a reminder, to find the matrix representative of of $$T_d$$, we first apply the transformation on the vectors of $$\beta$$.
 <div>

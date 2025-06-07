@@ -7,7 +7,6 @@ mathjax: true
 ---
 For this lecture, we're going to focus on finite abelian groups. Why is that? When we previously discussed classifying finite groups, we wanted to classify the groups of a certain finite order up to an isomorphism. We asked the question "what are the groups up to isomorphism that are of order 6 for example?" This is a hard question in general. However, if we restricted the domain to only finite abelian groups, it turns out that it is a much easier task to describe and classify the groups that are finite abelian up to isomorphism for any order. Though it will require a lot of hard work to prove these classifications. 
 <br>
-<br>
 We'll start with this important fact: <br>
 <b>Key Fact</b>: Every finite abelian group is isomorphic to a finite product of finite cyclic groups.
 <div>
@@ -51,11 +50,9 @@ Every finite abelian group \(G\) is isomorphic to a group of the following form
 	$$
 where \(k \geq 0, r_1 \geq 1, p_1,p_2,...,p_k\) are primes. (not necessarily distinct)
 <br>
-<br>
 Furthermore, the list \(p_1^{r_1}, p_2^{r_2}, ..., p_k^{r_k}\) of elementary divisors is unique up to re-ordering.
 </div>
 So $$G$$ is isomorphic to only one direct product of cyclic prime orders (up to re-ordering). This means that if $$G$$ is isomorphic to a direct products of prime orders and it's also isomorphic to another direct products of prime orders. Then, the prime numbers must be exactly the same up to re-ordering. 
-<br>
 <br>
 <!----------------------------------------------------------------------------->
 Example. Suppose $$|G| = 24$$ and that $$G$$ is abelian. 24 has the prime factorization $$24 = 2 \times 2 \times 2 \times 3$$. Thus, $$G$$ is isomorphic to one of the following
@@ -85,7 +82,6 @@ where \(s \geq 0, a_1 \geq 2\) and \(a_i \ | \ a_{i+1}\).
 Furthermore, the list \(a_1, a_2,...,a_s\) of "Invariant Factors" is unique.
 </div>
 Note that we don't need to add up to re-ordering here since the condition $$a_i \ | \ a_{i+1}$$ forces it to be in one particular unique order.
-<br>
 <br>
 Example: If we take the same $$G$$ as before where $$|G|=24$$, then we $$G$$ is isomorphic to one of the following:
 <ol>
@@ -335,11 +331,9 @@ If \(G\) and \(H\) are finite groups and if \(G \cong H\), then \(\alpha_m(G) = 
 </div>
 We say that $$\alpha_m$$ is an isomorphism invariant of finite groups. Recall that $$\alpha_m$$ is the number of elements that are the identity when raised to the power $$m$$. So this says if $$G$$ and $$H$$ isomorphic, then they'll have the same number of those elements. This makes sense since we know if they are isomorphic, then each group will have the same number of elements of each order. The orders must match.
 <br>
-<br>
 <b>Proof</b>
 <br>
 Let $$\phi: G \rightarrow H$$ be an isomorphism. We claim that $$\phi$$ restricts to a bijection $$G[m] \rightarrow H[m]$$. This would immediately apply that $$\alpha_m(G) = \alpha_m(H)$$.
-<br>
 <br>
 $$\phi$$ restricts to a function
 <div>
@@ -371,7 +365,6 @@ Therefore, $$\phi(g) \in H[m]$$. Now, since $$\phi$$ is an isomorphism, then the
 </div>
 Therefore, the restricted function $$G[m] \rightarrow H[m]$$ is a bijection. $$\ \blacksquare$$
 <br>
-<br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition 2
@@ -395,7 +388,6 @@ Since now we have a direct product, then
 </div>
 But we know that multiplication in a direct product is component wise so $$(g_1,g_2,...,g_k)^m = (g_1^m,g_2^m,...,g_k^m)$$. This implies that $$g_1 \in G_1[m]$$ if $$g_1^m = e$$ and so on for each component. Therefore, we can write $$G[m] = G_1[m] \times ... \times G_k[m]$$. The size of this set is $$|G_1[m]| \times ... |G_k[m]|$$ which is what we wanted to show.
 <br>
-<br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition 3
@@ -409,7 +401,6 @@ If \(G = \mathbb{Z}_n\) (G is cyclic) where \(n \geq 1\), then
 	$$
 </div>
 So when the group is cyclic, then the number of elements which become the identity when raised to the power $$m$$ is exactly $$d$$ where $$d$$ is the gcd of $$m$$ and $$n = |G|$$.
-<br>
 <br>
 <b>Proof</b>
 <br>
@@ -441,7 +432,6 @@ $$G[m] \subseteq G[d]$$: We can also write $$d$$ as $$d = sm + tn$$ for some $$t
  		$$
  </div>
 So $$G[m] \subseteq G[d]$$. Therefore, $$G[m] = G[d]$$ and therefore $$\alpha_m(G) = \alpha_d(G)$$.
-<br>
 <br>
 Step (2): We will show that if $$d \ | \ n$$, then $$\alpha_d(\mathbb{Z}_n) = d$$. We can calculate this. We know 
  <div>

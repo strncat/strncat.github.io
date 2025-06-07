@@ -159,7 +159,6 @@ $$
 </div>
 Therefore, $$Z(G) - 0 = pm$$ for some $$m \in Z$$. This means that $$p \ | \ Z(G)$$. But $$Z(G)$$ is a subgroup so it includes at least the identity element. So its size is at least 1. Therefore, $$|Z(G)| \geq p \geq 2$$. So we must have at least one non-trivial element in the center. $$ \ \blacksquare$$
 <br>
-<br>
 So again, $$p-$$groups will always have a non-trivial center. Next, we have a corollary of this
 <br>
 <!----------------------------------------------------------------------------->
@@ -171,10 +170,8 @@ Let \(p\) be a prime number. Then every group of order \(p^2\) is abelian.
 </div>
 Using this, we can now use the elementary divisor theorem to classify these groups. In fact, $$G$$ of order \(p^2\) is isomorphic to either $$\mathbb{Z}_{p^2}$$ or $$\mathbb{Z}_p \times \mathbb{Z}_p$$. 
 <br>
-<br>
 <b>Proof</b>
 Let $$|G| = p^2$$. By the proposition, $$Z(G)$$ is not trivial. But we also know that it is a subgroup. So its order must divide the order of the group. So its order must either be $$p$$ or $$p^2$$. If the order is $$p^2$$, then every element commute with every other element so $$G$$ must be abelian. 
-<br>
 <br>
 When $$|Z(G)| = p$$, recall that $$Z(G)$$ is a normal subgroup in $$G$$. Therefore, we can form the quotient group $$G/Z(G)$$. The order of this quotient group is $$p^2/p = p$$. But we also know that every group of prime order is cyclic so $$G/Z(G)$$ is cyclic (any group of prime order is cyclic). By Homework 8, if we have a group $$G$$ where its quotient group mod its center is cyclic ($$G/Z(G)$$), then $$G$$ is abelian. So $$G$$ is abelian in this case too. $$\ \blacksquare$$. 
 <hr>
@@ -191,7 +188,6 @@ Theorem
 Let \(G\) be a finite group. If \(p\) is a prime number that divides \(|G|\), then \(G\) must have element of order \(p\).
 </div>
 A special case of this is the even-order theorem. As a reminder, let's revisit this proof in terms of group actions before proving the actual theorem. 
-<br>
 <br>
 <b>Proof (Even Order Theorem)</b>
 <br>
@@ -247,9 +243,7 @@ $$
 </div>
 So the last element $$a_p$$ is the inverse of the previous elements all multiplied. So for any $$g$$ to be in $$G^p$$, we can pick $$p-1$$ elements from $$G$$ and then form the last element by taking their product and taking the inverse of that product. 
 <br>
-<br>
 What is $$|X|$$? we have $$n$$ choices for the first $$p-1$$ elements but only 1 choice for the last element. This implies that $$|X| = n^{p-1}$$. Moreover, by assumption we know that $$p$$ divides $$|G|=n$$. So $$n = pk$$ for some $$k$$. So we can write $$|X| = (pk)^{p-1}$$. But $$p$$ is prime so it's at least 2. Therefore, $$p$$ must divide $$|X|$$ as well.
-<br>
 <br>
 Now, let $$C$$ act on $$X$$. Define
 <div>
@@ -270,7 +264,6 @@ a_pa_1a_2...a_{p-1} &= e.
 $$
 </div>
 So we can see that $$a_pa_1a_2...a_{p-1} \in X$$ which is what we wanted to show. Additionally, if we apply $$\varphi$$ $$p$$ times, we will see that $$\varphi \circ \varphi \circ ... \varphi = id$$ it will take us to the identity function or action. So this action or permutation has order $$p$$. 
-<br>
 <br>
 So now we have $$|G| = n$$ and $$|X| = n^{p-1}$$. We know $$p$$ divides both. We can apply the fixed point theorem but what is $$X^C$$? By definition, it's the set of elements fixed by any $$g \in \langle \varphi \rangle$$. But since $$\langle \varphi \rangle$$ is cyclic, then if an element gets fixed by $$\varphi$$, it get fixed by any power of $$\varphi$$. Therefore
 <div>
@@ -313,7 +306,6 @@ So $$|X^C|$$ must be divisible by $$p$$ and since $$|X^C| \geq 1$$, then $$|X^C|
 <!------------------------------------------------------------------------->
 <h3>Classification of Groups of Order 6</h3>
 We've seen before $$\mathbb{Z}_6 \cong \mathbb{Z}_2 \times \mathbb{Z}_3$$ and we've also seen $$D_3 \cong S_3$$. 
-<br>
 <br>
 Suppose $$|G| = 6 = 2(3)$$. These are prime factors, so we can use Cauchy's Theorem twice to conclude that we must have an element of order 2 and another element of order 3. So let 
 <div>
@@ -397,7 +389,6 @@ So now if we apply the semidirect product multiplication, using the homomorphism
 <!------------------------------------------------------------------------->
 <h3>Classification of Groups of Order \(2p\)</h3>
 where $$p$$ is an odd prime. We know two groups $$\mathbb{Z}_{2p} =\mathbb{Z}_{2} \times \mathbb{Z}_{p}$$ and $$D_p$$. 
-<br>
 <br>
 Let $$|G| = 2p$$. By Cauchy, $$2$$ divides $$|G|$$. Therefore, we have an element of order $$2$$. From this, we get $$A = \langle a \rangle$$ where $$|A| = 2$$. We also have an element of order $$p$$. From this we get $$N = \langle N \rangle$$. Again, we will see that
 <div>

@@ -14,7 +14,6 @@ For the absolute value function definition and other properties see <a href="htt
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br> 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof:</h3>
@@ -68,7 +67,6 @@ $$
 $$
 </div>
 Notice here that we have both $$x_n < \frac{a+b}{2}$$ and $$x_n > \frac{a+b}{2}$$ and that's not possible. Therefore the limit must be unique if it exists. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

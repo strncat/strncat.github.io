@@ -7,7 +7,6 @@ mathjax: true
 ---
 In this problem, we are given a right triangle with sides $$a, b$$ and $$c$$. We are also given the perimeter of this triangle $$p$$. Given only this, there are multiple solutions to what the side lengths $$\{a,b,c\}$$ could be. For example for $$p = 120$$, there are exactly three solutions $$\{20,48,52\},\{24,45,51\},\{30,40,50\}$$. The goal of this problem is finding $$p$$ such that we have the maximum number of solutions.
 <br>
-<br>
 Solution: One fact that we know is that the sum of any two sides in a triangle must be greater than the length of the third side. So for any side, its length can at most be $$\frac{p}{2} - 1$$. So when we're searching for solutions, we can immediately limit the search to that range for any side. Additionally, this is a right triangle, so pick $$c$$ to be the hypotenuse. So overall, we have the following equations
 <div>
 	$$
@@ -40,7 +39,6 @@ We can now plug in this into the second equation:
 	$$
 </div>
 Once caveat here is that we want to only accept if $$c$$ is an integer. To test this, we can multiply $$c$$ by $$2(p-a)$$ and check if it's equal to $$a^2 + (p - a)^2$$. 
-<br>
 <br>
 For a concrete example, suppose that $$p = 120$$ and suppose we picked $$a$$ to be 20. Then
 <div>
@@ -110,11 +108,8 @@ printf("max = %d, max_p = %d\n", max, max_p);
 Running this takes 0.000241 seconds on my M1 mac.
 <!------------------------------------------------------------------------------------>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=39">Project Euler - 39</a>
 <br>
-<br>
-
 

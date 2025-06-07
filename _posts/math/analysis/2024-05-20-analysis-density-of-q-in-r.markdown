@@ -12,7 +12,6 @@ mathjax: true
 For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">this</a>
 <br>
-<br>
 <h3>Proof:</h3>
 Let $$a$$ and $$b$$ be real numbers with with $$a < b$$. We will produce $$q = \frac{m}{n} \in \mathbb{Q}$$ where $$m \in \mathbb{Z}$$ and $$n \in \mathbb{N}$$ such that
 <div>
@@ -70,9 +69,7 @@ $$
 From this we see that this choice of $$m$$ indeed satisfies $$an < m < bn$$ as required.
 $$\blacksquare$$
 <br>
-<br>
 Notes: So in a sense $$Q$$ must be dense since we have a rational number between no matter what two real numbers are given.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

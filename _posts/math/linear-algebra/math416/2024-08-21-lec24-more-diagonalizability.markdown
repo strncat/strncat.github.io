@@ -73,7 +73,6 @@ A =
 $$
 If possible.
 <br>
-<br>
 Following the above plan:
 <ol>
 	<!-----------------1------------------>
@@ -250,7 +249,6 @@ Remarks:
 <br>
 Remark 1: We knew $$B$$ already. We knew what it would look like since the diagonal entries should be the eigenvalues. 
 <br>
-<br>
 Remark 2: We can solve for $$A$$ to get this really nice factorization.
 <div>
 $$
@@ -273,7 +271,6 @@ $$
 <h3>Eigenvectors of distinct eigenvalues are Linearly Independent</h3>
 Question: is the strategy of combining bases of various eigenspaces $$E_{\lambda}$$'s to form larger linearly independent subsets always work or useful?
 <br>
-<br>
 The answer is yes and is demonstrated by the next lemma,
 <br>
 <div class="purdiv">
@@ -283,7 +280,6 @@ Lemma
 Suppose \(\lambda_1, \lambda_2\) are distinct eigenvalues of \(A\). If \(w \neq \bar{0}\) is in \(E_{\lambda_2}\), then it is not in \(E_{\lambda_1}\).
 </div>
 <b>Proof:</b>
-<br>
 <br>
 Let $$\beta = \{v_1,...,v_k\}$$ be a basis of $$E_{\lambda_1}$$ consisting of eigenvectors. Suppose for the sake of contradiction that $$w \neq 0 \in E_{\lambda_1}$$ for some $$w\in E_{\lambda_2}$$. Since $$w$$ is in the eigenspace of $$\lambda_1$$, this means that $$w$$ is in the span of of the basis $$\beta$$ by the definition of a basis. Therefore, we can write $$w$$ can be written as a linear combination of the vectors in $$\beta$$ for some unique scalars $$a_1, a_2, ...,a_k$$. (unique because it's a basis)
 <div>
@@ -297,7 +293,6 @@ w &= \frac{\lambda_1}{\lambda_2} a_1v_1 + ... + \frac{\lambda_1}{\lambda_2} a_k 
 $$
 </div>
 But since $$a_1,...,a_k$$ are unique scalars then we must have $$\lambda_1 = \lambda_2$$. But this is a contradiction since $$\lambda_1 \neq \lambda_2. \ \blacksquare$$
-<br>
 <br>
 This lemma implies that the eigenvectors corresponding to distinct eigenvalues always form linearly independent sets when combined. The following corollary states exactly this.
 <br>

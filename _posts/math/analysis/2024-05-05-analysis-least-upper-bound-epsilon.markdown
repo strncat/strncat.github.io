@@ -10,7 +10,6 @@ mathjax: true
 </div>
 What is this statement saying? It's important to review the definitions in <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">here</a>. Keep these on the side while working on this proof. For a set $$A$$ with an upper bound $$s$$, $$s$$ can be qualified as the least upper bound if and only if "any number smaller than $$s$$ is not an upper bound". In other words, for $$s$$ to be the least upper bound, then no matter how tiny $$\epsilon$$ is, $$s - \epsilon$$ will get disqualified from being an upper bound because we're guaranteed to find an element in $$A$$ that is greater than $$s - \epsilon$$. So we can't make $$s$$ any smaller without losing its status of being an upper bound.
 <br>
-<br>
 <h3>Proof:</h3>
 We'll prove both directions of the statement.
 <ul>
@@ -34,11 +33,9 @@ $$
 </div>
 So \(s - \epsilon\) can not be an upper bound. Since it can not be an upper bound, then there must be an element \(a \in A\) such that \(a > s - \epsilon\). This completes the proof in the right direction.
 <br>
-<br>
 	<li>\((\Leftarrow)\) If it's the case that for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) such that \(s - \epsilon < a\) then \(s = \sup A\).</li>
 To prove that \(s = \sup A\), we need to verify the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">two conditions</a> of the least upper bound. We are given that \(s\) is an upper bound for \(A\) so condition one is satisfied. For condition two, let \(\epsilon\) be chosen arbitrarily. We are given that there will always be an element \(a \in A\) such that \(s - \epsilon < a\). This means that for any \(epsilon\), \(s - \epsilon\) is not an upper bound. So for any number less than \(s\), it is impossible for it to be an upper bound. This is precisely condition two  of the least upper bound. Therefore, \(s\) is the least upper bound and we're done. \(\blacksquare\)
 </ul>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

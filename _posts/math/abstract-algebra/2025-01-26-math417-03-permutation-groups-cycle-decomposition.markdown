@@ -22,7 +22,6 @@ $$Sym(X)$$ equipped with the composition of functions operation is a group. To s
 </ul>
 This group is often denoted by the <b>Permutation Group</b> or more often the <b>Symmetric Group</b>.
 <br>
-<br>
 The standard example for the case of finite sets is the standard set $$X = \{1,2,...,n\}$$. The symmetric group has a special name called $$S_n$$,
 <div>
 $$
@@ -86,7 +85,6 @@ In this permutation, we have a cycle of length $$2$$ For the second permutation
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec03/2.png" width="20%" class="center"></p>
 we have a cycle of length $$3$$. 
 <br>
-<br>
 To describe a cycle, we can use <b>cycle notation</b> which is defined as follows
 <br>
 <div class="mintheaderdiv">
@@ -103,7 +101,6 @@ Let \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) where \(a_1,...,a_k \in X\)
 	$$
 </div>
 So we can write the first permutation with cycle notation as $$(2,4)$$ only since by definition for the other elements $$\sigma(x)=x$$, while the second permutation can be written as $$(1,4,3)$$. 
-<br>
 <br>
 What about the following example?
 <div>
@@ -140,14 +137,12 @@ Every non-id element in \(Sym(X)\) where \(X\) is finite can be written as a pro
 </div>
 Suppose we have $$\sigma = (1 \quad 3)(2 \quad 7 \quad 8)(4 \quad 5 \quad 6)(9) \in S_9$$. Any of the cycles in this notation are pairwise disjoint. We have 3 disjoint cycles where $$9$$ is fixed.
 <br>
-<br>
 The proof for this theorem is in the class notes.
 <hr>
 
 <!------------------------------------------------------------------------>
 <h3>Cycle Type</h3>
 We can classify permutations of a finite set into groups corresponding to the number of cycles of various lengths in their cycle decomposition.
-<br>
 <br>
 For example for $$S_2$$, we have two elements and so we have two permutations
 <table style="max-width: 500px; margin: 20px auto;">
@@ -213,7 +208,6 @@ Suppose we have a group \((G, \cdot)\) and let \(a \in G\). The order of \(a\) i
 <br>
 For example let $$\sigma = (1 \quad 2 \quad 3 \quad 4) \in S_5$$ The order of $$\sigma$$, $$\text{order}(\sigma)$$ is $$4$$. This is because it will take $$\sigma^4$$ will finally get us back to the identity permutation. In fact that the order of a $$k-$$cycle is $$k$$.
 <br>
-<br>
 What about $$\tau =  (1 \quad 2)(3 \quad 4 \quad 5)$$? $$\text{order}(\tau) = 6$$ because we have to iterate the operation $$6$$ times to get to the identity element. Specifically, we have two disjoint cycles and since they are disjoint, then they operate independently. So we need to find $$n$$ such that both of the cycles will return to the identity permutation
 <div>
 $$
@@ -224,7 +218,6 @@ $$
 $$
 </div>
 This $$n$$ must be then the least common multiple of $$2$$ and $$3$$ which is $$6$$.
-<br>
 <br>
 What about $$\nu =  (1 \quad 2)(2 \quad 3 \quad 4)$$? Note here that the two cycles are not disjoint. It's not clear here what it would be so drawing this permutation might make this very obvious. 
 
@@ -246,7 +239,6 @@ Every permutation of a finite set is equal to some product of transpositions (a 
 <!------------------------------------------------------------------------>
 For example we can write $$(1 \quad 2 \quad 3 \quad 4)$$ as $$(1 \quad 2)(2 \quad 3)(3 \quad 4)$$. 
 <br>
-<br>
 Next, we have the following proposition
 <br>
 <!------------------------------------------------------------------------>
@@ -259,7 +251,6 @@ If \(\sigma\) is a permutation of a finite set and if \(\sigma = \tau_1\tau_2...
 <!------------------------------------------------------------------------>
 <br>
 Because of this we can classify permutations as even or odd. We also get the fact that composing two even permutations is another even permutations and composing an even permutation with an odd permutation is an odd permutation.
-<br>
 <br>
 <!------------------------------------------------------------------------>
 <b>Proof</b> (there is an alternative proof in the notes)
@@ -297,7 +288,6 @@ e_{\sigma(1)} & e_{\sigma(2)} & ... & e_{\sigma(n)}
 $$
 </div>
 where $$e_{\sigma(k)}$$ is the standard column vector $$e_k$$ permuted according to $$\sigma(k)$$. 
-<br>
 <br>
 The permutation matrix $$A_{\sigma}$$ is useful in that left multiplication by $$A_{\sigma}$$ permutes the subset $$\{e_1,...,e_n\} \in \mathbb{R}^n$$ according to $$\sigma$$. So
 <div>

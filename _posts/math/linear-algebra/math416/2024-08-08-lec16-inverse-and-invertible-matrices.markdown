@@ -15,7 +15,6 @@ $$
 </div>
 Question: For what $$A \in M_{m \times n}$$ does the map $$L_A$$ have an inverse?
 <br>
-<br>
 By Corollary from last lecture (If $$\dim(V)=n$$ and $$T$$ is invertible, then $$\dim(W)=\dim(V)=n$$), we require $$n = m$$. So now we'll restrict our question to only the following map:
 <div>
 $$
@@ -66,7 +65,6 @@ $$
 </div>
 Remark: The inverse of $$A$$ is unique if it exists.
 <br>
-<br>
 <b>Proof:</b> 
 <br>
 Suppose $$BA = I_n = AB$$ and $$CA = I_n = AC$$. We need to show that $$C = B$$. To do this, 
@@ -101,12 +99,9 @@ So now given a matrix $$A$$, how do we know that it's invertible? Previously, we
 <h3>Matrix Representation for an Inverse Linear Transformation</h3>
 We know that linear maps between finite dimensional vector spaces have matrix representations. So now we know to relate these the matrix representation of these maps to their inverse matrices.
 <br>
-<br>
 Suppose $$T: V \rightarrow W$$ is linear. Let $$\beta$$ be a finite basis for $$V$$ and $$\gamma$$ be a finite basis for $$W$$. 
 <br>
-<br>
 We know that $$T$$ has a matrix representative from $$\beta$$ to $$\gamma$$, $$[T]_{\beta}^{\gamma}$$. Therefore, the inverse of $$T$$ will have a matrix representative instead from $$\gamma$$ to $$\beta$$, $$[T]_{\gamma}^{\beta}$$. We want to know what the relationship is between these two matrices. We claim the following:
-<br>
 <br>
 <div class="purdiv">
 Theorem (2.18, part b)
@@ -137,9 +132,7 @@ $$
 <h3>Matrix Representation for an Inverse Linear Transformation</h3>
 If $$A$$ is invertible, how do you find an its inverse?
 <br>
-<br>
 We need $$B$$ such that $$AB = I_n$$
-<br>
 <br>
 We can think of $$AB$$ as multiplying the columns of $$B$$ by $$A$$ and so
 <div>

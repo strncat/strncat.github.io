@@ -24,7 +24,6 @@ Every vector space has a basis.
 </div>
 Proof in 1.7.
 <br>
-<br>
 <div class="purdiv">
 Theorem 1.8
 </div>
@@ -63,7 +62,6 @@ We also know that $$\beta$$ is linearly independent. So for the linear combinati
 	$$
 </div>
 This is exactly the first representation of $$u$$ which is a contradiction and so $$u$$ can only be uniquely expressed in terms of the elements of $$\beta$$.
-<br>
 <br>
 <b>Note here</b> that up to this point, this was all covered in lecture 8 but I moved it here.
 <hr>
@@ -108,7 +106,6 @@ The vector space of all polynomials ($$P$$). The standard basis is $$\beta = \{1
 <h3>Example 5</h3>
 $$\mathcal{F}(\mathbb{R})$$ has a basis ... hard to describe but it exists!
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem 1.9
@@ -118,9 +115,7 @@ If \(V\) has a finite generating set, then \(V\) has a finite basis.
 </div>
 Proof: This follows from the Refinement Theorem. If $$\{u_1,...,u_k\}$$ is a finite generating set, then we can find a subset $$\{u_{i1},...,u_{il}\}$$ which is linearly independent and has span $$Span(\{u_{i1},...,u_{ij}\}) = V$$.
 <br>
-<br>
 Study notes: <a href="https://strncat.github.io/jekyll/update/2024/07/30/1-6-theorem-1.9.html">Here</a> is another proof from the book.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -130,7 +125,6 @@ Theorem 1.10 (Replacement Theorem)
 Suppose \(\mathcal{S} = \{s_1,...,s_n\}\) generates \(V\). If \(\ \mathcal{U} = \{u_1,...,u_k\}\) is a linearly independent subset of \(V\), then \(k \leq n\) and there is a subset \(\mathcal{T} \subset \mathcal{S}\) of size \(n-k\) such that \(Span(\mathcal{U} \cup \mathcal{T}) = V\).
 </div>
 Notes: So here, $$\mathcal{U}$$ is a linearly independent subset of $$V$$. But this doesn't mean that it's a basis because it might need some additional vectors added to it. If we know another set $$S$$ that generates $$V$$, then there is a subset $$\mathcal{T} \subset \mathcal{S}$$ such that the span of both $$\mathcal{T}$$ and $$\mathcal{U}$$ will generate $$V$$.
-<br>
 <br>
 <b>Proof</b>: By induction on $$k$$.
 <br>
@@ -142,7 +136,6 @@ Inductive Step: Assume that the theorem is true for $$j$$. We need to show that 
 	<li>There exists a subset \(\mathcal{T}_{j+1} \subset \mathcal{S}\) of size \(n - (j+1)\) such that \(Span(\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1}) = V\).</li>
 </ul>
 Throw the $$j+1$$th element away. So now we have $$\mathcal{U}_j = \{u_1,...,u_j\}$$ which is linearly independent (Theorem: If $$S_1 \subseteq S_2$$ and $$S_2$$ is linearly independent then, $$S_1$$ must be linearly independent). 
-<br>
 <br>
 By the inductive hypothesis, we know that
 <ul>
@@ -168,7 +161,6 @@ Note here that $$b_1,...b_{n-j}$$ can't be all zeros (because because otherwise,
 </div>
 as desired. Now, we need to satisfy the second condition and find a subset of size $$n-(j+1)$$ elements such that the span of $$\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1}$$ generates $$V$$. We can't choose the subset $$\mathcal{T}_{j}$$ since it has $$n-j$$ elements and we need $$n-j-1$$ elements. So the strategy is to remove one element from $$\mathcal{T}_{j}$$. (the last element $$w_{n-j}$$)
 <br>
-<br>
 Since we said earlier that $$b_{n-j}$$ is not zero along with the inductive hypothesis, $$u_{j+1} = a_1u_1 + ... + a_{j}u_{j}+b_1w_1+...+b_{n-j}w_{n-j}$$, we can re-write this as,
 <div>
 	$$
@@ -186,7 +178,6 @@ basically as a linear combination of the other elements from the inductive hypot
 	$$
 </div>
 So remove $$w_{n-j}$$ and let $$\mathcal{T}_{j+1} = w_1,...,w_{n-j-1}$$. 
-<br>
 <br>
 The last thing to prove is that ($$Span(\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1})) = V$$. We will do this in two steps. 
 <br>
@@ -223,7 +214,6 @@ Therefore using step 1 and step 2, we can conclude that
 </div>
 But we know that $$Span(\{u_1,...u_{j},w_1,...,w_{n-j}\}) = V$$ from the inductive hypothesis. Therefore, $$Span(\{u_1,...,u_{j+1},w_1,...,w_{n-j-1}\})$$ also generates $$V$$ and so $$Span(\mathcal{U}_{j+1} \cup \mathcal{T}_{j+1}) = V$$. $$\blacksquare$$
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem (Corollary 1 in the book)
@@ -232,7 +222,6 @@ Theorem (Corollary 1 in the book)
 If \(V\) has a finite basis, then any basis of \(V\) has the same number of elements.
 </div>
 Proof: Let $$\beta$$ be a finite basis with $$n$$ elements. Let $$\bar{\beta}$$ be another basis. We claim that $$\bar{\beta}$$ is finite. Suppose for the sake of contradiction that it wasn't, then $$\bar{\beta}$$ contains a set $$\bar{U}$$ that contains at least $$n+1$$ linearly independent vectors. Apply the Replacement Theorem with $$\mathcal{S} = \beta, \mathcal{U} = \bar{U}$$. This means that if the number of elements in $$\bar{U}$$ is $$k$$ then $$k$$ must be less than the number of elements in $$S$$. But $$S$$ has $$n$$ elements and so $$n+1 \leq n$$ is a contradiction. Therefore, $$\bar{beta}$$ must be finite.
-<br>
 <br>
 To prove that it must have size $$n$$, apply the Replacement Theorem again with $$(\mathcal{S} = \beta, \mathcal{U} = \bar{\beta})$$. We know the size of $$\bar{\beta}$$ must be less than or equal to $$n$$, 
 <div>
@@ -251,7 +240,6 @@ But if we apply the replacement theorem with $$(\mathcal{S} = \bar{\beta}, \math
 	$$
 </div>
 From these two inequalities, we must have $$\bar{\beta} = n$$. $$\blacksquare$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
@@ -281,9 +269,7 @@ Let \(W\) be a subspace of \(V\). If \(V\) is finite dimensional, then \(\dim W 
 Proof:
 Let $$W$$ be a subspace of $$V$$. We're given that $$V$$ is finite dimensional. Let $$\dim V = n$$. Let $$\beta_V = \{u_1, ..., u_n\}$$ be a basis for $$V$$. The goal is to find a basis for $$W$$ that has fewer elements than the basis of $$V$$. (Note here that the strategy should not be modifying the basis for $$V$$ since we don't know if these vectors are even in $$W$$. Instead we need to use another tool which is the replacement theorem.)
 <br>
-<br>
 To find a basis for $$W$$, we need a subset of $$W$$ that is linearly independent and also generates $$W$$. Let $$\mathcal{U} = \{w_1, ..., w_k\} \subseteq W$$ be a linearly independent. Because $$\beta_V$$ generates $$V$$ and $$\mathcal{U}$$ is a linearly independent subset of $$V$$, we can use the Replacement Theorem by setting $$\mathcal{S} = \beta_V$$ and $$U = \mathcal{U}$$. This gives us the assertion that $$k \leq n$$. (Note here that we don't need to use the other result that the theorem asserts. We just need the assertion about the size).
-<br>
 <br>
 With this observation ($$k \leq n$$), we will construct a basis for $$W$$ recursively keeping the set linearly independent in the process,
 <ul>

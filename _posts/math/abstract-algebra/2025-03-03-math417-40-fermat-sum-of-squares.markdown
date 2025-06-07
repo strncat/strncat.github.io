@@ -7,7 +7,6 @@ mathjax: true
 ---
 Question: For which integer $$m \in \mathbb{Z}$$, can we write $$m$$ as the sum of squares of two integers so $$m = a^2 + b^2$$ for some $$a, b \in \mathbb{Z}$$?
 <br>
-<br>
 We know that this is closely related to the Gaussian integers. Recall that $$a^2 + b^2 = N(a + bi)$$ where $$a + bi \in \mathbb{Z}[i]$$. So sums of squares appear as norms of Gaussian integers.
 <div>
 $$
@@ -17,7 +16,6 @@ $$
 $$
 </div>
 The norm function is not a homomorphism of rings but it's a multiplicative function (meaning it only satisfies $$N(xy) =N(x)N(y)$$). So this subset of $$\mathbb{Z}$$ is closed under multiplication. So for example, $$5 = 2^2 + 1^1$$ and $$17 = 4^2 + 1^1$$. Therefore, we expect that $$5*17 = 85$$ is also a sum of squares. In fact $$85 = 9^2 + 2^2$$. 
-<br>
 <br>
 It turns out that when $$m$$ in $$m = a^2 + b^2$$ is prime, then we have a solution using the following theorem
 <br>
@@ -67,7 +65,6 @@ $$
 </div>
 In other words, an element whose square is -1 in the field $$\mathbb{Z}_p$$. Since both of the elements are non-zero, then this is also in $$\mathbb{Z}_p^{\times}$$ (the units) which is the same as the group $$\Phi(p)$$ (the multiplicative group). 
 <br>
-<br>
 In assignment 6, we showed two results
 <ol>
 	<li>We also showed that if \(p\) is an odd prime, then there is also a unique element \(a \in \mathbb{Z}_p^{\times}\) such that \(o(a) = 2\). In this case though, we know the element has to be \(-1\) since \(-1^2 = 1\). </li>
@@ -84,7 +81,6 @@ $$
 which is what we wanted to show. $$\ \blacksquare$$.
 <!--------------------------------------->
 <br>
-<br>
 We also need this next proposition <br>
 <!--------------------------------------->
 <div class="peachheaderdiv">
@@ -97,7 +93,6 @@ If \(p = 4n + 1\) is a prime number, then \(p\) is reducible \(\mathbb{Z}[i]\)
 <b>Proof</b>
 <br>
 Suppose for the sake of contradiction that it wasn't. So it has to be irreducible. By the lemma we just proved, $$p \ | \ m^2 + 1$$. But now since $$\mathbb{Z}[i]$$ is a PID and $$p$$ is irreducible, then $$p$$ is also prime (PID implies that irreducible is also prime). Since $$p$$ is prime, then it must divide either $$m^2+1$$. But $$m^2+1 = (m + i)(m - i)$$ in $$\mathbb{Z}[i]$$. So $$p$$ must divide either $$(m+i)$$ or $$(m-i)$$. But this is impossible (because if $$p$$ divides $$m+i$$ then $$m + i = p(a + bi) = pa + pbi$$. This implies that $$m = pa$$ and $$1 = pb$$. But this $$1 = pb$$ is impossible since $$p$$ is prime). Therefore, $$p$$ must be reducible. $$\ \blacksquare$$
-<br>
 <br>
 <b>Proof (Fermat)</b>
 <br>
@@ -124,7 +119,6 @@ So $$p$$ can be written as a sum of squares which is what we wanted to show. $$\
 <!------------------------------------------------------------------------->
 [Lecture 40] So far we know that if $$p$$ is prime, then $$p = a^2 + b^2$$ for some $$a,b \in \mathbb{Z}$$ if and only if $$p = 2$$ or $$p \equiv 1 \bmod 4$$. It's also not a sum of squares when $$p \equiv -1 \bmod 4$$. 
 <br>
-<br>
 So now we want to generalize this so $$p$$ doesn't need to be a prime number. To do this, consider the following set
 <div>
 $$
@@ -144,7 +138,6 @@ $$
 </div>
 Note that this function is multiplicative. Therefore, this set is closed under multiplication. So for any $$m,n \in S$$, we have $$mn \in S$$. In particular, we know that $$0,1 \in S$$. That $$2 \in S$$ and we know that if $$p$$ is prime and $$p \equiv 1 (\bmod 4)$$, then $$p$$ is also in $$S$$. But if $$p \equiv -1 (\bmod 4)$$, then we know that $$p \not\in S$$. However, $$p^2 \in S$$. This leads to the following theorem
 <br>
-<br>
 <!--------------------------------------->
 <div class="yellowheaderdiv">
 Theorem
@@ -162,11 +155,9 @@ where  \(r \geq 0\) and \(p_1,...p_r\) are distinct primes such that if \( p_i \
 <br>
 For example $$2 \cdot 3^2 \cdot 5 \in S$$ since 3 is raised to an even power.
 <br>
-<br>
 <b>Sketch of Proof</b>
 <br>
 $$\{0\} \cup \{m = p_1^{k_1} ... p_r^{k_r}\} \subseteq S$$: Easy part
-<br>
 <br>
 $$S \subseteq \{0\} \cup \{m = p_1^{k_1} ... p_r^{k_r}\}$$: We want to show that if we have an element that can be written as a sum of squares, then it can have a prime factorization with the conditions in the theorem. The proof for this is an induction on $$m = a^2 + b^2$$. We will show that 
 <ol>
@@ -201,23 +192,17 @@ If \(u\) is irreducible in \(R\), let \(I = Ru \cap \mathbb{Z}\). Then \(I = \ma
 <br>
 So if we have an irreducible element in the Gaussian integers $$u$$, we want to ask what ordinary prime numbers does it divide? The answer is that it divides one specific prime number. So $$p$$ is the only prime divisible by $$u$$. In other words, the intersection of $$\mathbb{Z}$$ and $$Ru$$ is $$I = \mathbb{Z}_p$$ which is the set of multiples of $$p$$. We say that "$$u$$ lies over $$p$$".
 <br>
-<br>
 Example: $$1+i$$ is irreducible (we showed that its norm is 2). It divides $$2$$ so $$1 + i$$ lies over $$2$$. 3 is irreducible in $$\mathbb{Z}[i]$$ and only divides $$3$$. $$2 \pm i$$ only divides 5 (recall that they are not associates unlike $$1 \pm i$$). $$3 \pm 2 i$$ divides $$13$$ and so on.
-<br>
 <br>
 <b>Proof</b>
 <br>
 Suppose $$u$$ is irreducible. Consider the ideal generated by $$u$$. Observe that $$Ru \cap \mathbb{Z} = I$$ is an ideal in $$\mathbb{Z}$$ (Exercise: show this). Moreover, $$\mathbb{Z}$$ is a PID. so $$I$$ is a principle ideal and is generated by some element $$p \in \mathbb{Z}_{\geq 0}$$ so $$I = \mathbb{Z}p$$. 
 <br>
-<br>
 Suppose that $$u = a + bi$$. It's non-zero since $$u$$ is irreducible. Therefore, $$0 \neq u\bar{u} = N(u) = a^2 + b^2 \in I$$. So $$I \neq \{0\}$$ and $$p > 0$$. We claim that $$p \neq 1$$. This is because 1 can't be in $$I$$ since then, $$Ru = R$$ and $$u$$ is a unit and that's a contradiction. 
-<br>
 <br>
 We also claim that $$p$$ is a prime number. To show this, we need to show that if $$p \ | \ ab$$ then either $$p \ | \ a$$ or $$p \ | \ b$$. Observe that $$p$$ is actually a multiple of $$u$$ since $$Ru \cap \mathbb{Z} = I = \mathbb{Z}p$$. So we can write $$p = uv$$ for some $$v \in \mathbb{Z}[i]$$. This implies that $$u \ | \ ab$$. But you $$u$$ is irreducible so it's prime in $$\mathbb{Z}[i]$$ so $$u$$ divides $$a$$ or $$b$$. This shows that $$a \in Ru$$ or $$b \in Ru$$. But $$a$$ and $$b$$ are integers so in fact $$b \in Ru \cap \mathbb{Z} = \mathbb{Z}p$$ or $$a \in Ru \cap \mathbb{Z} = \mathbb{Z}p$$. This means that $$a \ | \ p$$ or $$b \ | \ p$$ so $$p$$ is a prime number.
 <br>
-<br>
 Since $$p = uv$$ where $$v \in R$$, then $$N(p) = N(u)N(v)$$. $$u$$ is a not a unit so $$N(u) \neq 1$$. So $$N(u) \in \{p, p^2\}$$. $$\ \blacksquare$$ 
-<br>
 <br>
 (So if we want to find the prime that lies over $$u$$, we just compute its norm). 
 <hr>

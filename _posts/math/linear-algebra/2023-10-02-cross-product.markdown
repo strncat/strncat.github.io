@@ -7,13 +7,11 @@ mathjax: true
 ---
 These are notes I took while watching the series <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">The Essence of Linear Algebra by 3Blue1Brown</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Introduction</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/corssproduct/00.png" width="70%" class="center"></p>
 
 The cross product of two vectors $v$ and $w$ is the area of the parallelogram that they span out. This cross product can be negative however and again we depend here on the orientation. If v was on the right of w then the cross product is positive. On the other hand, if $v$ was on the left, then the product is negative. To easily remember this, think of $\widehat{i}$ and $\widehat{j}$. if you take the cross product in order, $\widehat{i} \times \widehat{j}$ (meaning that $\widehat{i}$ is on the right of \widehat{j}$), then the product is positive. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Computing the Cross Product</h3>
@@ -46,11 +44,9 @@ $$
 </div>
 Notice that we had $v$ first in the matrix but in the above figure we see that $v$ is now on the left of $w$ and so the area is negative as we expect.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Three Dimensions</h3>
 But .... this isn't really a cross product. A cross product produces a new vector. In three dimensions, we will take two vectors and their cross product will be a new vector. Take two vectors and consider the parallelogram that they span. Suppose now that this area is 2.5. The new vector that we get from the cross product is a vector whose direction is perpendicular$$ to that parallelogram and its length is equal to the area of the parallelogram which is 2.5. Which perpendicular direction? We use the right hand rule. Put the forefinger of your right hand in the direction of $v$ and stick out the middle finger in the direction of $w$. Then where the thumb is pointing is the direction of the cross product. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Computing the Cross Product in Three Dimensions</h3>
@@ -71,8 +67,6 @@ det ()
 $$
 </div>
 Students are often told that the new vector is the linear combination of these basis vectors above whose length is the area of the parallelogram and whose direction is followed from applying the right hand rule. But this isn't notational and putting the basis vectors there isn't random. To understand where this comes from. 
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Computing the Cross Product in Three Dimensions</h3>
@@ -106,6 +100,4 @@ So what's up with adding $\widehat{i}$, $\widehat{j}$ and $\widehat{k}$ as a col
 <h3>References</h3>
 <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br>
-<br>
-
 

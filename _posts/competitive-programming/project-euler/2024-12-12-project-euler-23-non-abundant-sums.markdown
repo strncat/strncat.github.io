@@ -7,12 +7,9 @@ mathjax: true
 ---
 An abundant number $$n$$ is a number for which the sum of its proper divisors is greater than $$n$$.
 <br>
-<br>
 We're given that any number greater than 28123 can be expressed as a sum of two abundant numbers.
 <br>
-<br>
 We want to find the sum of all numbers that can't be expressed as a the sum of two abundant numbers. So we can limit ourselves to checking the numbers below the limit 28123.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Finding If a Number is Abundant</h3>
@@ -39,7 +36,6 @@ We can find if a number is an abundant number by simply summing the proper divis
 <!------------------------------------------------------------------------------------>
 <h3>Finding If a Number is a Sum of Two Abundant Numbers</h3>
 The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer $$n$$ and an abundant number $$i$$, we check if $$n - i$$ is abundant. If $$n - i$$ is abundant, then $$n$$ can be a written as a sum of two abundant numbers.
-<br>
 <br>
 To implement this, we then need two lists:
 <ul>
@@ -85,11 +81,8 @@ printf("time spent = %f\n", time_spent);
 
 For this solution, the time spent was 0.032616 so well below 1 second.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=23">Project Euler - 23</a>
 <br>
-<br>
-
 

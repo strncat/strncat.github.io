@@ -33,7 +33,6 @@ This expression simplifies to
 </div>
 We'll demonstrate how to calculate each one of these with an example
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Suppose we want to calculate the last two digits of $$4^7$$. If we do this all at once by raising 4 to the power of 7 then, $$4^7 = 16384$$ and the last two digits are 84. To do this with modular exponentiation, we'll multiply the base each iteration with 4 and we'll do exactly 7 iterations to get the final result. The base starts at 1 in the first iteration.
@@ -52,7 +51,6 @@ Suppose we want to calculate the last two digits of $$4^7$$. If we do this all a
 </div>
 We can see that we've arrived at the same exact answer. This process is called modular exponentiation. We do it when the powers are extremely large.
 <br>
-<br>
 Using the above method we can then find the solution with just
 <!------------------------------------------------------------------------------------>
 {% highlight c++ %}
@@ -70,11 +68,8 @@ printf("%lld\n", sum % mod_value);
 {% endhighlight %}
 <br>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://projecteuler.net/problem=48">Project Euler - 48</a>
 <br>
-<br>
-
 

@@ -10,7 +10,6 @@ mathjax: true
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/conv-0.png" width="100%" class="center"></p>
 A set of points $$S$$ is <b>convex</b> if for any two points $$p$$ and $$q$$ in $$S$$, the line segment connecting these two points is also in $$S$$ ($$\overline{pq} \subseteq S$$). A convex polygon is a polygon that is the boundary of a convex set. The left figure is a convex polygon while the right figure is not per our definition.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Convex Hull</h3>
 Given a set of points $$S$$, the <b>convex hull</b> of $$S$$ is the smallest <b>convex</b> set that contains all the points in $$S$$. This naturally implies that if we take the intersection of all convex sets of $$S$$, then the result will be the convex hull of $$S$$.
@@ -33,7 +32,6 @@ $$$$
 <h3>Finding the Convex Hull</h3>
 Finding the convex hull is a classic computatioal geometry problem and many algorithms have been developed to solve it. Next, we discuss one of the simplest algorithms that is used to find the convex hull of a set of points.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Jarvis's March (Gift Wrapping Algorithm)</h3>
 Jarvis's March is similar to Selection Sort. In each iteration of Selection Sort, we pick the smallest element in the array and then move it to the front. Once we're done, we'll have a sorted array. In Jarvis's algorithm, the smallest element in each iteration is the vertex that is furthest to the right from the last vertex that was added to the convex hull. There are two main steps.
@@ -47,8 +45,6 @@ Jarvis's March is similar to Selection Sort. In each iteration of Selection Sort
 <h3>1. Pick the Left Most Vertex</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-1.png" width="60%" class="center"></p>
 Initially, we will pick a vertex that we know will be in the hull. We can pick the left most vertex or the bottom most vertex or any vertex where all the points will be on one side (half plane). Let's pick the left most vertex and let it be $$p_0$$.
-
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>2. Pick the Next Vertex in the Convex Hull</h3>
@@ -107,16 +103,12 @@ while (p != first_point_on_hull) {
 When do we terminate? We terminate when the next vertex that we want to add to the convex hull is actually the first vertex that we added to the hull. Once we get to this point, then we terminate and return the convex hull points.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/convex-hull/step-4.png" width="65%" class="center"></p>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Running Time</h3>
 How fast is Jarvis's March? The inner loop goes over $$O(n)$$ vertices. The outerloop really depends on the size of the convex hull. If we have $$h$$ points in the hull, then the running time is $$O(h)$$. Therefore, the overall running time is $$O(hn)$$.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://jeffe.cs.illinois.edu/teaching/compgeom/schedule.html">CS 498: Computational Geometry</a>
 <br>
-<br>
-
 

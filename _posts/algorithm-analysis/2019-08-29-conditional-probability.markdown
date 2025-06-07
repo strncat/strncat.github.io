@@ -11,7 +11,6 @@ mathjax: true
 (1) My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/<br>
 (2) First Course in Probability by Sheldon Ross.
 <br>
-<br>
 <!---------------------------------------------------------------------------------------->
 <div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
 <b>Conditional Probability</b>
@@ -63,7 +62,6 @@ $$
 <br>
 Suppose we have an urn with 8 red balls and 4 white balls. What is the probability of choosing two balls that are both red (without replacement). (Source: A First Course in Probability)
 <br>
-<br>
 Let $$E_1$$ to be the event that the first ball is red. <br>
 Let $$E_2$$ to be the event that the second ball is red. <br>
 <div center>
@@ -95,11 +93,9 @@ $$
 </div>
 The law of total probability says that the probability of event $$E$$ is now a weighted average of the conditional probability of $$E$$ given event $$F_1$$ plus the conditional probability of $$E$$ given event $$F_2$$ and so on. Note that these events $$F_i$$ must be mutually exclusive. Moreover, $$\sum_iP(F_i) = 1$$. 
 <br>
-<br>
 <b>Example:</b>
 <br>
 Suppose 25% of students are juniors. Suppose now that if a student is a junior then the probability of being a CS major is 30%, while if a student is not a junior then the probability of being a CS major is 20%. What is the probability of being a CS major? (Class Example)
-<br>
 <br>
 Let $$CS$$ to be the event that a student is a CS major. <br>
 Let $$J$$ to be the event that a student is a junior. <br>
@@ -136,11 +132,9 @@ $$
 <br>
 A test is 98% effective at detecting HIV. The test has a false positive rate of 1%. 0.5% of the US population has HIV. What is the probability that you have HIV given that you tested positive? (class example)
 <br>
-<br>
 Let $$E$$ be that you test positive for HIV with the test<br>
 Let $$F$$ be that you actually have HIV. <br>
 We want to find $$P(F|E)$$?
-<br>
 <br>
 First, the probability that the test is positive given that you actually have HIV is 0.98 (true positive). In terms of $$E$$ and $$F$$, this is $$P(E|F)=0.98$$. Similarly, the probability that we get a false positive is 0.01. In terms of $$E$$ and $$F$$, this probability is $$P(E|F^c)$$, 
 
@@ -159,22 +153,17 @@ $$
 </div>
 Suppose we have 3 doors. Behind one of the three doors a prize. We choose a door. The host then opens one of the remaining doors that reveals nothing. We are now given the chance to switch our door with the remaining door. Do we switch?
 <br>
-<br>
 We want to compare $$P(win)$$ vs $$P(win|switch)$$. We know that if stick with our door, $$P(win)=1/3$$.
-<br>
 <br>
 Suppose without the loss of generality that we picked door $$A$$. What is the probability that we win given that we switched? Let's consider what happens if we switch in each case. 
 <br><br>
 Let $$A, B$$ and $$C$$ be the events that the prize is behind each door respectively. All three doors are equally likely and so each door has a probability of $$1/3$$. Moreover, these events are mutually exlusive since the prize can be behind exactly one door. Also the probability of these events sum up to 1. 
 <br>
-<br>
 Prize behind door $$A$$:<br>
 In this case the host will open either door $$B$$ or $$C$$. We will switch and lose. So, $$P(win | \text {switch to B/C}) = 0$$.
 <br>
-<br>
 Prize behind door $$B$$:<br>
 In this case the host will open door $$C$$. We switch and we win! $$P(win| \text {switch to C})=1$$.
-<br>
 <br>
 Prize behind door $$C$$:<br>
 In this case the host will open door $$B$$. We switch and we win! $$P(win| \text {switch to B})=1$$.

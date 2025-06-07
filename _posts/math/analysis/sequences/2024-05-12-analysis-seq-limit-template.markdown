@@ -10,11 +10,9 @@ mathjax: true
 </div>
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Problem Discussion</h3>
 So for the above limit, the claim is that it converges to 0. From the definitions page above, the limit of a sequence converges to $$a$$ if we can find some number $$N$$ such that no matter what $$\epsilon$$ we choose, the inequality $$|a_n - a| < \epsilon$$ will always hold. This inequality is saying that the terms in the sequence are going to fall within the neighborhood of $$a$$ ($$V_\epsilon(a)$$) for some value $$n \geq N$$. In other words, all the terms starting at $$n \geq N$$ will be within a radius of $$\epsilon$$ around $$a$$.
-<br>
 <br>
 So for the above limit, we want to find $$N$$ such that the terms of the sequence will be in the interval $$(0-\epsilon, 0+\epsilon)$$. To get a feel for what this $$N$$ would look like, we can test for some values of $$\epsilon$$. Suppose we set $$\epsilon$$ to be $$1/10$$. Then we want
 <div>
@@ -58,7 +56,6 @@ There is a pretty nice template for showing that the limit of some sequence $$(a
 	<li>Show that \(N\) works by assuming that \(n \geq N\) and then derving \(|a_n - a| \leq \epsilon\)</li>
 </ol>
 Next we're going to copy this template and fill out the necessary details for the specific problem given above.
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>

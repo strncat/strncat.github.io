@@ -57,7 +57,6 @@ $$
 </div>
 So it's well defined as we wanted to show. $$\blacksquare$$
 <br>
-<br>
 (2) Next, we want to show that it is a homomorphism. To see that observe that
 <div>
 $$
@@ -77,7 +76,6 @@ $$
 $$
 </div>
 And so we're done. $$\blacksquare$$
-<br>
 <br>
 (3) Finally, we need to prove the conclusions of the theorem. The second statements claims that $$\phi'(G/N) = \phi(G)$$. But this is true by how we defined $$\varphi'$$. For the first statement which claims that $$ker(\varphi') = K/N = \{aN \ | \ aN \subseteq K\}$$. First, we know that by the definition of the kernel that
 <div>
@@ -109,7 +107,6 @@ $$
 Unlike before, now \(\phi'(G/N) = H\) and the kernel \(ker(\varphi') = \{eN\}\) (the trivial coset of \(N\)).
 </div>
 So we have the same conditions as before except that $$N = K$$ and the $$\phi$$ is surjective. So we can apply the homomorphism theorem from before and we'll get the same results as before. That is, a homomorphism $$\phi'$$. But now since $$\phi$$ is surjective and its image is the same as the image of $$\phi'$$, then $$\phi'$$ is also surjective. 
-<br>
 <br>
 Moreover, its kernel per the homomorphism theorem is $$\{aN \ | \ aN \subseteq K\}$$ (collection of all cosets of $$N$$ that are contained in $$K$$). But now $$N = K$$. There is only one coset of $$N$$ contained in $$N$$ which is the trivial coset $$eN$$. so $$ker(\phi') = \{eN\}$$. This implies that $$\phi'$$ is injective. So $$\phi'$$ is now a bijection which means that it's an isomorphism. 
 <hr>
@@ -162,9 +159,7 @@ The Isomorphism Theorem tells us that $$GL_n(\mathbf{F})/SL_n(\mathbf{F})$$ is i
 <h3>Example 3</h3>
 We're going to show that $$S_4 / N \approx S_3$$. 
 <br>
-<br>
 To do this, we're going to produce a homomorphism from $$S_4$$ to $$S_3$$. But $$S_3$$ is isomorphic to $$Sym(X)$$ where $$X$$ has 3 elements.
-<br>
 <br>
 $$S_4$$ is the set of permutations of a 4 element set. There is a trick that we can use to construct interesting homomorphisms out of a permutation group which is to find structures on the set that we're permuting. For example define $$X$$ to be the set of partitions of $$\{1, 2, 3, 4\}$$ into two disjoint subsets of 2 each. So
 <div>
@@ -202,7 +197,6 @@ S_3 &= 14|23 \xrightarrow{g} 24|31 = 13|24 = S_2.
 $$
 </div>
 So for the first example, we're given $$12|34$$. We'll look up where each element goes in $$g$$. For example 1 goes to 2, 2 goes to 3, 3 goes 1 and 4 stays fixed. So that's exactly what we get which is $$S_3$$.
-<br>
 <br>
 So the permutation $$g$$ sends $$S_1$$ to $$S_3$$, $$S_2$$ to $$S_1$$ and $$S_3$$ to $$S_2$$.
 <div>

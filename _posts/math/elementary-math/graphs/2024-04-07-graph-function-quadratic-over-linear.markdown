@@ -15,7 +15,6 @@ $$
 </div>
 How can we approach this?
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Vertical Asymptotes</h3>
 The first step is finding the asymptotes. For the vertical asymptote, we want to find what makes the denominator equal to zero. none of the factors of the numerator will be $$(x+1)$$ so we don't need to worry about simplifying further since nothing will cancel out. We can then just solve,

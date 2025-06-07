@@ -131,7 +131,6 @@ $$
 </div>
 has no inverse! (it is onto but not 1-1). Not one-to-one since the derivative of any constant function is 0.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 This leads us to the following theorem:
 <div class="purdiv">
@@ -146,7 +145,6 @@ Let \(T: V \rightarrow W\) be linear.
 </ul>
 </div>
 The third property is not obvious and requires a proof.
-<br>
 <br>
 <b>Proof:</b> Let $$T: V \rightarrow W$$ be a linear map with inverse $$T^{-1}: W \rightarrow V$$. We want to show that $$T^{-1}$$ is linear. To do this, we need to show that 
 <div>
@@ -169,7 +167,6 @@ T^{-1}(w_1 + cw_2) &= T^{-1}(T(v_1) + cT(v_2)) \\
 $$
 </div>
 Therefore, $$T^{-1}$$ is linear. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -232,7 +229,6 @@ $$
 </div>
 But $$T$$ is 1-1 and so this implies that $$a_1v_1 + ... + a_nv_n$$ must be $$\bar{0}_V$$. Therefore, we must have $$a_1=0,...,a_n=0$$ as required.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Corollary
@@ -247,9 +243,7 @@ $$
 </div>
 (Study Notes:) This is really important. $$T$$ is invertible and $$V$$ having dimension $$n$$ means that $$W$$ has dimension $$n$$. Also $$T$$ is one-to-one and onto. Later we'll learn if both $$V$$ and $$W$$ have the same dimension and $$T$$ is one-to-one, then this is sufficient to conclude that $$T$$ is invertible. (next lecture).
 <br>
-<br>
 I also went through the proof in the book for this corollary. See <a href="https://strncat.github.io/jekyll/update/2024/08/13/lec15-corollary-2.17.html">This</a>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Isomorphism</h3>
@@ -307,9 +301,7 @@ If \(V\) is finite dimensional, then \(W\) is isomorphic to \(V\) if and only if
 <br>
 $$\Rightarrow$$: If $$W$$ is isomorphic to $$T$$, then there exists an isomorphism map $$T$$. $$T$$ is onto and one-to-one because it is invertible. Therefore, $$\dim(W) = \dim(V)$$ by the corollary we stated earlier.
 <br>
-<br>
 $$\Leftarrow$$: Suppose that $$\dim V = \dim W$$. We want to show that they are isomorphic. This means that there exists some invertible map from one to the other. So let $$\beta = \{v_1,...,v_n\}$$ be a basis for $$V$$ and $$\alpha = \{w_1, ...,w_n\}$$ be a basis for $$W$$.
-<br>
 <br>
 Define the map $$T: W \rightarrow V$$ by $$[T]_{\alpha}^{\beta} = I_n$$. This $$T$$ works. Why? This $$T$$ satisfies:
 <div>

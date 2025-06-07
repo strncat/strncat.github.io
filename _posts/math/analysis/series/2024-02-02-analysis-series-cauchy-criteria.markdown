@@ -21,7 +21,6 @@ For the definitions of sequences and what it means to for a sequence to converge
 For the definitions of series, and what it means to for a series to converge, see <a href="https://strncat.github.io/jekyll/update/2024/06/10/analysis-series-definitions.html">this</a>.
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br> 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
@@ -59,7 +58,6 @@ $$
 $$
 </div>
 This term $$| a_{m+1} + a_{m+2} + ... + a_{n} |$$ is equivalent to $$|S_n - S_m|$$ and so $$|S_n - S_m| \leq \epsilon$$. This means that the sequence of partial sums $$(S_m)$$ is a Cauchy sequence by definition. Therefore, by the <a href="https://strncat.github.io/jekyll/update/2024/06/18/analysis-seq-cauchy-critertion.html">Cauchy criterion for sequences</a>, $$(S_m)$$ converges as we wanted to show. $$\blacksquare$$
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>References:</b>

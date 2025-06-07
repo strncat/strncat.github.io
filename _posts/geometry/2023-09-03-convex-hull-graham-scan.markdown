@@ -8,11 +8,9 @@ mathjax: true
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-1.png" width="60%" class="center"></p>
 A set of points $$S$$ is convex if for any two points $$a \in S$$ and $$b \in S$$, then the line segment connecting these two points is also in $$S$$ ($$\overline{ab} \subseteq S$$). The convex hull of $$S$$ is the smallest convex set that contains all the points in $$S$$. In the previous post we discussed Jarvis's algorithm which picked an initial vertex and added it to the convex hull and then iterated over the remaining vertices. In each iteration, we picked and added to the hull the furthest to the right vertex relative to the last added vertex to the hull. The running time of Jarvis' March is $$O(nh)$$ where $$n$$ is the size of the given set of points and $$h$$ is the size of the convex hull. In this post, we will learn a faster algorithm that runs in time $$O(n\log n)$$.
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Graham's Scan</h3>
 Given a set of points $$S$$ of size $$n$$, the idea is to pick a point $$p_0$$ from the set that is known to be in the convex hull and then sort the remaining points by their angle anti-clockwise relative to $$p_0$$. Graham gave a linear-time algorithm to find vertex that is interior to the hull but this isn't needed at all since we can just pick the lowest or left most vertex and know that all the remaining vertices will be on one side of the line that goes through the point. After picking an initial point, the algorithm will sort the remaining points anti-clockwise around the initial point by their angle. The core of the algorithm then is to use a stack to maintain the convex hull. We'll iterate over the vertices keeping the invariant that for any three consecutive vertices on the stack $$p$$, $$q$$ and $$r$$, the point $$r$$ is on the left of the line that goes through the segment $$\overline{pq}$$. In other words, the angle at $$q$$ is a convex angle and not a reflex one. In the next few sections we'll study each step through an example. 
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Step 1: Pick the Left Most Point</h3>
@@ -35,7 +33,6 @@ In the implementation, we do something like this
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-4.png" width="60%" class="center"></p>
 Next we will sort the points by their angle (anti-clockwise) around $$(1,1)$$. What does this mean? We're not changing where the points are. We're just changing the order in which we will process these points. What we want is to traverse the points in an anti-clockwise direction around $$(1,1)$$. So we want to start with the point that is furthest to the right from $$(1,1)$$ (remember that this is the left most point and there won't be points anymore on the left). Therefore, if you imagine $$(1,1)$$ connected with line segments to each of the remaining points, then what we want is to sort these by the angles they make around $$(1,1)$$.
 <br>
-<br>
 How do we sort by their angels? We will use the famous orientation test we've studied in (<a href="https://strncat.github.io/jekyll/update/2023/08/25/orientation-of-three-points.html">Orientation of Three Points</a>). To recap, Suppose we're given three ordered points $$p, q, r$$, then the expression (derived from slopes) $$(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$$ is
 <ul>
     <li>Greater than zero when the slope of \(pq\) is smaller than the slope of \(pr\) and so the ordered points \(p, q\) and \(r\) are in anti-clockwise orientation and \(r\) is on the left of the line \(pq\)</li>
@@ -43,7 +40,6 @@ How do we sort by their angels? We will use the famous orientation test we've st
     <li>Less than zero when the slope of \(pq\) is greater than the slop of \(pr\) and so the ordered points \(p, q\) and \(r\) in a counter clockwise orientation and \(r\) is on the left of the line \(pq\)</li>
 </ul>
 This means that if we take the points $$(1,1), (7,0)$$ and $$(4,2)$$ and we want to know if $$(4,2)$$ comes before $$(7,0)$$ in the sorted order, then we'll ask the question: "Is $$(4,2)$$ on the left of the line that goes through $$(1,1)$$ and $$(7,0)$$ ? if the answer is yes then $$(4,2)$$ should instead come after $$(7,0)$$. Evaluating the expression for $$p=(1,1), q=(7,2)$$ and $$r=(4,2)$$, we see that $$$$(7-1)*(2-1) - (4-1)*(0-1) = 6 - (-3) > 0$$$$. Therefore, then we know that $$(4,2)$$ is on the left and in the sorted order, $$(7,0)$$ must come first. 
-<br>
 <br>
 How do we break ties? One example would be to choose the closest point between the two based on their distances to "left_most". The final output will be the following (sorted points from $$a$$ to $$f$$).
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-4-sorted.png" width="60%" class="center"></p>
@@ -137,7 +133,6 @@ One possible implementation is the following
 <h3>Collinear Points</h3>
 What do we do with the collinear points? It depends. If we don't care about collinear points and don't want to output them, then instead of using "strict_right" above, we will use "right" to disallow collinear points from getting added to the stack. If we care and want to output all collinear points, then we'll need to do some additional processing. I really struggled with understanding this myself so let's show this with an example. 
 <br>
-<br>
 Suppose we are given the following points. We know per the algorithm we designed that no points are going to be located either on the left of "left_most" nor directly beneath it and this is because we break ties with picking the lowest y-coordinate.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/col-1.png" width="120%" class="center"></p>
@@ -164,11 +159,9 @@ while (i >= 0 && collinear(left_most, points[i], points.back())) {
 reverse(points.begin()+i+1, points.end());
 {% endhighlight %} 
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Full Implementation</h3>
 Source Code <a href="https://github.com/strncat/competitive-programming/blob/master/uva/computational-geometry/convex-hull/11626-convex-hull.cpp">11626 - Convex Hull</a>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Practice Problems</h3>

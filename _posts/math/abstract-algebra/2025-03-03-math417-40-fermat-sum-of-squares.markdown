@@ -243,7 +243,7 @@ Every irreducible \(u \in R = \mathbb{Z}[i]\) is the same up to units to exactly
 	<li>To factor \(z = 3 + 9i\) into irreducibles, \(N(z) = 3^2 + 9^2 = 90 = 2 \cdot 3^2 \cdot 5\). The norm is a multiplicative function, so the norms of each factor will multiply to \( 2 \cdot 3^2 \cdot 5\). Since we only have 3 of them, then the only possible irreducible factors are \(1 + i, 2 \pm i, 3\). In fact, \(1+i\) must be a factor since it's the only one with norm equals 2. \(3\) has to be a factor since it's the only one with norm 3. We don't know which of \(2 + i\) or \(2 - i\) is factor but we can check and we will get \(2 - i\).
 	</li>
 	<!-------------->
-	<li> Take \(R = \mathbb{Z}[\omega] = \{a + b\omega, a,b \in \mathbb{Z}\} \subseteq \mathbf{C}\). Using \(w^2 = -1 -w\), we know it's a subring. Additionally, we can show that this is a PID and therefore it's a UFD. (the categorization here are prime numbers modulo 3 instead of 4 in the Gaussian integers)
+	<li> Take \(R = \mathbb{Z}[\omega] = \{a + b\omega, a,b \in \mathbb{Z}\} \subseteq \mathbb{C}\). Using \(w^2 = -1 -w\), we know it's a subring. Additionally, we can show that this is a PID and therefore it's a UFD. (the categorization here are prime numbers modulo 3 instead of 4 in the Gaussian integers)
 	</li>
 </ul>
 <hr>

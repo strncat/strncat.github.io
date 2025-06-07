@@ -29,7 +29,7 @@ Fact 2: In infinite dimensions $$T^*$$ need not exist.
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
-$$A \in M_{m \times n}(\mathbf{F})$$ with $$\mathbf{F} = \mathbb{R}$$ or $$\mathbf{C}$$
+$$A \in M_{m \times n}(\mathbf{F})$$ with $$\mathbf{F} = \mathbb{R}$$ or $$\mathbb{C}$$
 <div>
 $$
 \begin{align*}
@@ -360,7 +360,7 @@ Proving that self adjoint maps are diagonalizable, requires a few things along t
 Theorem 1
 </div>
 <div class="purbdiv">
-If \(T: V \rightarrow V\) where \(V\) is over \(\mathbf{C}\) is self-adjoint, then all eigenvalues are real.
+If \(T: V \rightarrow V\) where \(V\) is over \(\mathbb{C}\) is self-adjoint, then all eigenvalues are real.
 </div>
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
@@ -391,7 +391,7 @@ as we wanted to show. $$\blacksquare$$
 So eigenvalues are real but are there eigenvalues?
 <br>
 <br>
-If $$V$$ is a vector space over $$\mathbf{C}$$, then $$T: V \rightarrow V$$ always has eigenvalues. It doesn't matter if $$T$$ is self-adjoint or not. The characteristic polynomial $$\det([T]_{\beta}^{\beta} - tI_n)$$ with complex entries always splits! (fact from algebra). 
+If $$V$$ is a vector space over $$\mathbb{C}$$, then $$T: V \rightarrow V$$ always has eigenvalues. It doesn't matter if $$T$$ is self-adjoint or not. The characteristic polynomial $$\det([T]_{\beta}^{\beta} - tI_n)$$ with complex entries always splits! (fact from algebra). 
 <br>
 What if $$V$$ was over $$\mathbb{R}?$$
 <br>
@@ -419,11 +419,11 @@ A = [T]^{\beta}_{\beta} &= [T^*]^{\beta}_{\beta} \quad \text{(Because $$T$$ is s
 \end{align*}
 $$
 </div>
-So $$A$$ is symmetric. The idea is to apply theorem 1 which states that if $$V$$ is over $$\mathbf{C}$$, then we have real eigenvalues. So consider the following map
+So $$A$$ is symmetric. The idea is to apply theorem 1 which states that if $$V$$ is over $$\mathbb{C}$$, then we have real eigenvalues. So consider the following map
 <div>
 $$
 \begin{align*}
-L_A \ : \ &\mathbf{C}^n \rightarrow \mathbf{C}^n \\
+L_A \ : \ &\mathbb{C}^n \rightarrow \mathbb{C}^n \\
           & z \rightarrow Az
 \end{align*}
 $$

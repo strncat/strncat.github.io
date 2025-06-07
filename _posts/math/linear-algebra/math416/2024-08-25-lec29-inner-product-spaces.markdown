@@ -5,11 +5,11 @@ date:   2024-08-25 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Let $$V$$ be. vector space over $$\mathbf{F} = \mathbb{R}$$ or $$\mathbf{C}$$. 
+Let $$V$$ be. vector space over $$\mathbf{F} = \mathbb{R}$$ or $$\mathbb{C}$$. 
 <div> 
 $$
 \begin{align*}
-\mathbf{C} = \{ z=a+ib \ | \ a, b \in \mathbb{R} \}
+\mathbb{C} = \{ z=a+ib \ | \ a, b \in \mathbb{R} \}
 \end{align*}
 $$
 </div>
@@ -29,7 +29,7 @@ Definition
 An inner product \(\langle \ , \ \rangle\) on a vector \(V\) is a map
 $$
 \begin{align*}
-\langle \ , \ \rangle : \ &V \times V \rightarrow \mathbf{F} = \mathbb{R} \text{ or } \mathbf{C} \\
+\langle \ , \ \rangle : \ &V \times V \rightarrow \mathbf{F} = \mathbb{R} \text{ or } \mathbb{C} \\
 &(x, y) \rightarrow \langle x , y \rangle
 \end{align*}
 $$
@@ -110,7 +110,7 @@ $$
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 5</h3>
-Define $$V = \mathbf{C}$$ over $$\mathbf{C}$$ where
+Define $$V = \mathbb{C}$$ over $$\mathbb{C}$$ where
 <div> 
 $$
 \begin{align*}
@@ -123,7 +123,7 @@ Note here that if we defined the product as $$\langle z_1, z_2 \rangle = z_1z_2$
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 6: Frobenius Inner Product</h3>
-Define $$V = \mathbf{C}^0([0,1]) = \{f: [0,1] \rightarrow \mathbb{R} \ | \ f \text{ continuous}\}$$ 
+Define $$V = \mathbb{C}^0([0,1]) = \{f: [0,1] \rightarrow \mathbb{R} \ | \ f \text{ continuous}\}$$ 
 <div> 
 $$
 \begin{align*}
@@ -252,7 +252,7 @@ Let \(V, \langle \ , \ \rangle\) be an inner product space. The length (or norm)
 		$$
 </div>
 <br>
-Example $$V = \mathbf{C}^0([0,1])$$, Let $$\Vert f \Vert: (\int_0^1 f(t)^2 dt)^{1/2}$$. This is also called the $$L^2$$-norm.
+Example $$V = \mathbb{C}^0([0,1])$$, Let $$\Vert f \Vert: (\int_0^1 f(t)^2 dt)^{1/2}$$. This is also called the $$L^2$$-norm.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

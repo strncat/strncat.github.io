@@ -15,11 +15,11 @@ Theorem (5.8(a))
 <div class="purbdiv">
 \(T\) is diagonalizable if and only if
 <ul style="list-style-type:lower-alpha">
-	<li>The characteristic polynomial splits over its field \(\mathbb{R}\) or \(\mathbf{C}\)</li>
+	<li>The characteristic polynomial splits over its field \(\mathbb{R}\) or \(\mathbb{C}\)</li>
 	<li>For each eigenvalue of \(T\), its geometric multiplicity (\(\dim(E_{\lambda})\)) = algebraic multiplicity</li>
 </ul>
 </div>
-We mentioned last time too that if $$V$$ is over $$\mathbf{C}$$, the the characteristic polynomial always splits. Note also that you can have $$(a)$$ but not $$(b)$$. For example
+We mentioned last time too that if $$V$$ is over $$\mathbb{C}$$, the the characteristic polynomial always splits. Note also that you can have $$(a)$$ but not $$(b)$$. For example
 <div>
 $$
 \begin{align*}

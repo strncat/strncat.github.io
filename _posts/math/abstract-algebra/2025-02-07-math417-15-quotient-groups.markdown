@@ -262,7 +262,7 @@ Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = 
 
 <!----------------------------------------------------------------------------->
 <h3>Example 4</h3>
-Let $$F$$ be a field. ($$F = \mathbb{R}$$ or $$\mathbf{C}$$ or $$\mathbb{Z}p$$, $$p$$ is prime). Now let 
+Let $$F$$ be a field. ($$F = \mathbb{R}$$ or $$\mathbb{C}$$ or $$\mathbb{Z}p$$, $$p$$ is prime). Now let 
 <div>
 	$$
 	\begin{align*}

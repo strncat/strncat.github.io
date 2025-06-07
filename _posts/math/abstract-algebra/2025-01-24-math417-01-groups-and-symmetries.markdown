@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <h3>Introduction</h3>
-Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we've used in high school. As an example, we have Fields. It's a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers $$\mathbb{R}$$ or the field of complex numbers $$\mathbf{C}$$. We also have the field of rational numbers $$\mathbb{Q}$$. Or $$\mathbb{Z}_p$$ which is a finite field of integers modulo some prime $$p$$. It is finite with $$p$$ elements.
+Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we've used in high school. As an example, we have Fields. It's a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers $$\mathbb{R}$$ or the field of complex numbers $$\mathbb{C}$$. We also have the field of rational numbers $$\mathbb{Q}$$. Or $$\mathbb{Z}_p$$ which is a finite field of integers modulo some prime $$p$$. It is finite with $$p$$ elements.
 <br>
 <br>
 Another example of important structures are Rings. Here we have the operations addition, subtraction and multiplication. The first example of a ring is $$\mathbb{Z}$$. Another example of a ring is a polynomial ring in one variable over $$\mathbb{R}$$, $$\mathbb{R}[x]$$. The set of all square matrices. $$M_{n \times n}(\mathbb{R})$$ is also another example. This example is non-commutative.  

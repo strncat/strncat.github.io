@@ -248,7 +248,7 @@ Note here that the inner product on the left is the inner product of $$W$$ but t
 Definition
 </div>
 <div class="bbdiv">
-For \(A \in M_{m \times n}(\mathbf(F)), \ \) \(\mathbf{F} = \mathbb{R}\) or \(\mathbf{C}\)
+For \(A \in M_{m \times n}(\mathbf(F)), \ \) \(\mathbf{F} = \mathbb{R}\) or \(\mathbb{C}\)
 Set \(A^* = (\bar{A})^t\)
 </div>
 <!------------------------------------------------------------------------------------>
@@ -276,7 +276,7 @@ Now we are ready to prove the first result that we need to prove the theorem we 
 Lemma 1
 </div>
 <div class="purbdiv">
-\(A \in M_{m \times n}(\mathbf{F})\), \(\mathbf{F} = \mathbb{R}\) or \(\mathbf{C}\) 
+\(A \in M_{m \times n}(\mathbf{F})\), \(\mathbf{F} = \mathbb{R}\) or \(\mathbb{C}\) 
 $$
 \begin{align*}
 L_A: \ \mathbf{F}^n \rightarrow  \mathbf{F}^m

@@ -79,12 +79,12 @@ with $$a, b \in \mathbb{R}$$. $$S$$ is a subring. We have an isomorphism of ring
 <div>
 $$
 \begin{align*}
-\varphi: \mathbf{C} &\rightarrow S \\
+\varphi: \mathbb{C} &\rightarrow S \\
          a + bi &\rightarrow \begin{pmatrix} a & -b \\ b & a \end{pmatrix}
 \end{align*}
 $$
 </div>
-Another example is $$\varphi: \mathbf{C} \rightarrow \mathbf{C}$$ where $$\varphi(z) = \bar{z}$$. So $$\varphi(a+bi) = a - bi$$. 
+Another example is $$\varphi: \mathbb{C} \rightarrow \mathbb{C}$$ where $$\varphi(z) = \bar{z}$$. So $$\varphi(a+bi) = a - bi$$. 
 <hr>
 
 <!------------------------------------------------------------------------->

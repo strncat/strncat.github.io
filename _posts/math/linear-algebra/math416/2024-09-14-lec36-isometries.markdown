@@ -20,7 +20,7 @@ $$
 </div>
 <!------------------------------------------------------------------------------------>
 For example, in $$\mathbb{R}^3$$, this means that isometries preserve lengths and angles. <br>
-When $$V$$ is over $$\mathbf{C}$$, an isometry is sometimes called unitary while if $$V$$ is over $$\mathbb{R}$$, $$T$$ is called orthogonal.
+When $$V$$ is over $$\mathbb{C}$$, an isometry is sometimes called unitary while if $$V$$ is over $$\mathbb{R}$$, $$T$$ is called orthogonal.
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 Let $$T = L_A$$ where
@@ -82,7 +82,7 @@ Let
 <div>
 $$
 \begin{align*}
-V &= C^0([0,1]), \mathbf{C}) \\
+V &= C^0([0,1]), \mathbb{C}) \\
   &= \{ F(t) = f(t) + ig(t) \ | \ f, g \in C^0([0,1)]\} \\
 \langle F, G \rangle &= \int_0^1 F(t)\overline{G(t)} dt
 \end{align*}

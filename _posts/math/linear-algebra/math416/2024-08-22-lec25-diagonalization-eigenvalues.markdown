@@ -102,7 +102,7 @@ $$
 In other words, can completely factorize the polynomial?
 <br>
 <br>
-Example 1: $$t^2 + 1$$ doesn't split over $$\mathbb{R}$$. It does however split over $$\mathbf{C} as (t - i)(t + i)$$.
+Example 1: $$t^2 + 1$$ doesn't split over $$\mathbb{R}$$. It does however split over $$\mathbb{C} as (t - i)(t + i)$$.
 <br>
 <br>
 Example 2: $$t^2 - 2t + 1 = (t - 1)(t - 1)$$ splits over $$\mathbb{R}$$.

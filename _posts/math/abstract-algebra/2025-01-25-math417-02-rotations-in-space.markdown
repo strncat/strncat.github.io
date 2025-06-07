@@ -46,7 +46,7 @@ We can further check that this product satisfies the three axioms of a group.
 <br>
 <!------------------------------------------------------------------------>
 <h3>Example</h3>
-Let $$F$$ be a field (for example $$\mathbb{R}$$ or $$\mathbf{C}$$). Let $$Mat_{n \times n}(F)$$ be the set of matrices with entries in $$F$$. Then define $$GL_n(F)$$ (General Linear Group) as a subset of $$A \in M_{n \times n}(F)$$ where $$A$$ is an invertible matrix.  
+Let $$F$$ be a field (for example $$\mathbb{R}$$ or $$\mathbb{C}$$). Let $$Mat_{n \times n}(F)$$ be the set of matrices with entries in $$F$$. Then define $$GL_n(F)$$ (General Linear Group) as a subset of $$A \in M_{n \times n}(F)$$ where $$A$$ is an invertible matrix.  
 <br>
 <br>
 The set $$GL_n(F)$$ equipped with matrix multiplication is a group. It satisfies the three axioms

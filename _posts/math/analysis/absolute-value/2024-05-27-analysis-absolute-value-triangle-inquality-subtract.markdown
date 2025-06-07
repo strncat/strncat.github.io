@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>\(|a - c| \leq |a - b|+|b - c|\) holds for all real numbers \(a\), \(b\) and \(c\).</b>
 </div>
-<br>
 This is in a way saying that the distance between $$a$$ and $$c$$ is less than or equal to the distance from $$a$$ to $$b$$ and then from $$b$$ to $$c$$.
 <h3>Proof:</h3>
 Let $$a$$, $$b$$ and $$c$$ be real numbers. Let $$x = a-b$$ and $$y = b-c$$. Using the triangle inquality we know that

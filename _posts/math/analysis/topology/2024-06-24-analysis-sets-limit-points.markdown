@@ -8,13 +8,11 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (3.2.4) A point \(x\) is a limit point of a set \(A\) if every \(\epsilon\)-neighborhood \(V_{\epsilon}(x)\) of \(x\) intersects the set \(A\) at some point other than \(x\).
 </div>
-<br>
 So for any $$\epsilon > 0$$, whenever we take the intersection of this neighborhood of $$x$$ with the set $$A$$, we 'll find points close to $$x$$ but not $$x$$ itself. $$x$$ is also called a cluster point or an accumulation point. The next theorem makes it a little easier to understand. In fact it's equivalent to the definition above and we'll prove this.
 <!------------------------------------------------------------------------------------>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (3.2.5) A point \(x\) is a limit point of a set \(A\) if and only if \(x = \lim a_n\) for some sequence \(a_n\) contained in \(A\) satisfying \(a_n \neq x\) for all \(n \in \mathbf{N}\).
 </div>
-<br>
 So "$$x$$ is a limit point of $$A$$" means that $$x$$ is the limit of a sequence in $$A$$. The only thing we don't want is to have any term of that sequence be $$x$$ itself. The reason for this is then every member of the set could potentially be a limit point since we can create the sequence $$\{x,x,x,x,x,...\}$$ and we don't want that.
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>

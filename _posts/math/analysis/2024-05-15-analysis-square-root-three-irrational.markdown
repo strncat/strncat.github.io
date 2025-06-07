@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>\(\sqrt{3}\) is an irrational number.</b>
 </div>
-<br>
 <h3>Proof:</h3>
 Suppose it is a rational number and let $$\sqrt{3} = \frac{p}{q}$$ where $$p$$ and $$q$$ are integers and $$q$$ is not zero. Furthermore, assume that the fraction is in its simplist form. Now we can square each side and simplify
 <div>

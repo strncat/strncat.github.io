@@ -87,7 +87,6 @@ a_{mn}
 \end{align*}
 This product is in the column space of \(A\) because it is a linear combinations of the columns of \(A\).
 </div>
-<br>
 Note that this product or operations works if the vector has as many entries as the columns of $$A$$.
 <br>
 <br>
@@ -132,7 +131,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>An Observation</h3>
 Given $$\bar{b} \in \mathbf{R}^m$$ and viewing the $$\bar{x}$$ as a variable, the equation
@@ -255,7 +253,6 @@ A subset \( \{u_1, u_2, u_3,...\} \subset V\) is <b>linearly dependent</b> if th
 	\end{align*}
 	$$
 </div>
-<br>
 Note here that <b>not</b> linearly dependent is equivalent to <b>linearly independent</b>. In particular the set $$\{u_1, u_2, u_3,...\}$$ is linearly independent if and only if
 <div>
 	$$
@@ -404,7 +401,6 @@ Theorem
 <div class="purbdiv">
 If \( \{u_1,...,u_k\} \subset V\) is linearly dependent, then there exists one \(u_j\) can be expressed as a linear combination of the others.
 </div>
-<br>
 Proof:
 Suppose the set $$\{u_1,...,u_k\} \subset V$$ is linearly dependent. This means that for some (not all zero) scalars $$a_1,...,a_k$$, we must have
 <div>
@@ -438,7 +434,6 @@ Suppose \( \{u_1,...,u_k\} \subset V\) is linearly dependent. There is a subset 
 	\end{align*}
 	$$
 </div>
-<br>
 Proof:
 Suppose the set $$\{u_1,...,u_k\} \subset V$$ is linearly dependent. By the previous theorem, there exists some $$j$$ where $$u_j$$ is a linear combination of the other vectors in the set. So,
 <div>

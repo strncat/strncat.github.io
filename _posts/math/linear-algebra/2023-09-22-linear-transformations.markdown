@@ -71,7 +71,6 @@ $$$$
 \end{align*}
 $$$$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Representing the transformation with a Matrix</h3>
 So from the above we saw how a two dimensional linear transformation is completely described by four numbers. The two coordinates for where $$\widehat{i}$$ lands and the two coordinates for where $$\widehat{j}$$ lands and this is pretty cool! Here is a cooler thing. We can package these coordinates into a two-by-two grid of numbers (a Matrix!)

@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Prove that a closed interval \([c,d] = \{c \leq x \leq d\}\) is a closed set.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>
 Let $$[c,d] = \{c \leq x \leq d\}$$ be a closed interval. To prove that it's a closed set, we need to prove that $$[c,d]$$ contains all of its limit points so let $$x$$ be an arbitrary limit point. By the definition of a limit point, we know that there must exist a sequence $$(x_n)$$ such that $$(x_n) \rightarrow x$$. We need to show that $$x \in [c,d]$$. 

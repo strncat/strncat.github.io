@@ -64,7 +64,6 @@ T \circ T^* = T^* \circ T
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 Let $$A \in M_{n \times n}(\mathbf{F})$$ is normal if $$AA^* = A^*A$$
@@ -139,7 +138,6 @@ Theorem 2
 <div class="purbdiv">
 Suppose \(T: V \rightarrow V\) and \(T^*: V \rightarrow V\) with \(\beta\) an orthonormal basis. If \(V\) admits an orthonormal basis consisting of eigenvectors of \(T\), then \(T\) is normal.
 </div>
-<br>
 Remark: The converse isn't too. Example 2 shows this. (But what about theorem 6.16 in the book??)
 <br>
 <br>
@@ -216,7 +214,6 @@ Suppose \(T: V \rightarrow V\) is normal. Then
 	<li>Suppose \(T(v_1) = \lambda_1v_1\) and \(T(v_2) = \lambda_2v_2\) where \(\lambda_1 \neq \lambda_2\) Then \(\langle v_1, v_2 \rangle = 0\)</li>
 </ol>
 </div>
-<br>
 <b>Proof</b>
 <br>
 For (a), notice that
@@ -289,7 +286,6 @@ T^* = T
 \end{align*}
 $$
 </div>
-<br>
 Note here that self adjoint implies that $$T$$ is normal. The converse is not true (rotation matrix is an example)
 <br>
 <br>
@@ -366,7 +362,6 @@ Theorem 1
 <div class="purbdiv">
 If \(T: V \rightarrow V\) where \(V\) is over \(\mathbf{C}\) is self-adjoint, then all eigenvalues are real.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
@@ -408,7 +403,6 @@ Theorem 2
 <div class="purbdiv">
 If \(T: V \rightarrow V\) where \(V\) is over \(\mathbf{R}\) is self-adjoint, then \(T\) has at least one eigenvalue.
 </div>
-<br>
 An example is the rotation matrix. It is normal but not self-adjoint and it doesn't have real eigenvalues.
 <br>
 <br>
@@ -447,7 +441,6 @@ Theorem 3
 <div class="purbdiv">
 If \(T: V \rightarrow V\) is self-adjoint, then there is an orthonormal basis \(\beta\) of \(V\) consisting of eigenvectors of \(T\)
 </div>
-<br>
 <b>Proof</b>
 <br>
 We're given that we have one at least one real eigenvalue but we want to prove that we have an orthonormal basis of eigenvectors. Having one eigenvalue gives us a base case. So let's do this by Induction on $$\dim V = n$$.

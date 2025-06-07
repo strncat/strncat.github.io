@@ -11,7 +11,6 @@ Definition
 <div class="mintbodydiv">
 The Dihedral group is the group of rotational symmetries of a regular n-gon in \(\mathbf{R}^3\). It is a subgroup of the special orthogonal matrices, \(SO(3)\).
 </div>
-<br>
 Before discussing the Dihedral group, we will discuss the symmetries of the disk. Why? if you inscribe a regular polygon inside a circle, observe that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So it's helpful to start there.
 <br>
 <br>

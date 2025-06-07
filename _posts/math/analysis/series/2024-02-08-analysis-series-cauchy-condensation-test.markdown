@@ -13,7 +13,6 @@ mathjax: true
   \end{align*}
   $$
 </div>
-<br>
 converges.
 <br>
 <br>

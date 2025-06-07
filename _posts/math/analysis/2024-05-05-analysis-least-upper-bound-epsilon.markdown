@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>[Lemma 1.3.8] Assume \(s \in \mathbf{R}\) is an upper bound for a set \(A \subseteq \mathbf{R}\). Then \(s = \sup A\) if and only if, for every choice of \(\epsilon > 0\), there exists an element \(a \in A\) satisfying \(s - \epsilon < a\).</b>
 </div>
-<br>
 What is this statement saying? It's important to review the definitions in <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">here</a>. Keep these on the side while working on this proof. For a set $$A$$ with an upper bound $$s$$, $$s$$ can be qualified as the least upper bound if and only if "any number smaller than $$s$$ is not an upper bound". In other words, for $$s$$ to be the least upper bound, then no matter how tiny $$\epsilon$$ is, $$s - \epsilon$$ will get disqualified from being an upper bound because we're guaranteed to find an element in $$A$$ that is greater than $$s - \epsilon$$. So we can't make $$s$$ any smaller without losing its status of being an upper bound.
 <br>
 <br>

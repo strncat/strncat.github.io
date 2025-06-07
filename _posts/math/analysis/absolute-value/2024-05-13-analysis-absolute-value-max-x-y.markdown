@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>For two real numbers \(x\) and \(y\), prove that \(\max(x,y) = \frac{1}{2}(x+y+|x - y|)\).</b>
 </div>
-<br>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <br>

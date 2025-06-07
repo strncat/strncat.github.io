@@ -79,7 +79,6 @@ F_X(k) = F(k) = \sum_{\text{ all } i \leq k} p(i)
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Expectation</h3>
 The expectation or expected value of a random variable $$X$$ is defined as:
@@ -106,7 +105,6 @@ E[X] &= 2*\frac{1}{36} + 3*\frac{2}{36} + 4*\frac{3}{36} + 5*\frac{4}{36} + 6*\f
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Expectation of a function of a random variable</h3>
@@ -173,7 +171,6 @@ E[X_1 + X_2] = E[X_1] + E[X_2] = 7
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 8: St. Petersburg Paradox</h3>
 A fair coin comes up heads with $$p = 0.5$$. We flip the coin until we see the first tails. We will then win $$2^n$$ dollars where $$n$$ is the number of heads seen before the first tail. How much would you pay to play?
@@ -197,7 +194,6 @@ E[W] = E[2^Y] &= \sum_i 2^i P(Y=i) =  \sum_i 2^i p(i) \\
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 9: Roulette</h3>
 Consider an even money bet (betting "Red" in Roulette). $$p=18/38$$ you win $$Y$$ dollars, otherwise $$1-p$$ you lose $$Y$$ dollars. Consider the following strategy:

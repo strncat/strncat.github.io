@@ -11,7 +11,6 @@ Definition
 <div class="mintbodydiv">
 Given an integer \(n\). Euler's totient function is a function that counts the positive integers up to \(n\) that are relatively prime to \(n\). It is denoted with \(\phi(n)\).
 </div>
-<br>
 Alternatively, it is the the number of integers $$k$$ in the range $$1 \leq k \leq n$$ for which $$gcd(n,k)=1$$. 
 <br>
 <!------------------------------------------------------------------------------------>
@@ -38,7 +37,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Multiplicative Function</h3>
 Euler's Totient's function is a multiplicative function. This means that if $$m$$ and $$n$$ are relatively prime, then $$\phi(mn) = \phi(m)(n)$$ which makes sense since they won't share any prime divisors. 

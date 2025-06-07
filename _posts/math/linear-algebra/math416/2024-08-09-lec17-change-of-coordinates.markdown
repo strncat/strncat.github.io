@@ -107,7 +107,6 @@ Theorem
     \end{align*}
 	$$
 </div>
-<br>
 Proof: To prove that a matrix is an inverse of another matrix, we need to show that their product is the identity matrix so
 <div>
 $$
@@ -149,7 +148,6 @@ Definition
 <div class="bbdiv">
 	\(A, B \in M_{2 \times 2}\) are similar if \(\exists Q \in M_{2 \times 2}\) such that \(B = Q^{-1}AQ\)
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Let $$A =  \begin{pmatrix} 6 & 2 \\2 & 6 \end{pmatrix} $$ and consider the map $$L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2$$. Suppose we want to compute $$L_A^k = L_A \circ L_A \circ ... \circ L_A$$ ($$k$$ times)? If we try this the naive way

@@ -12,7 +12,6 @@ mathjax: true
 	    <li>If \(\sum_{n=1}^{\infty} a_n\) diverges, then \(\sum_{n=1}^{\infty} b_n\) diverges.</li>
 	  </ol>
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
 <br>

@@ -16,7 +16,6 @@ mathjax: true
 		  $$
     is called a <i>subsequence</i> of \((a_n)\) and is denoted by \((a_{nk})\), where \(k \in \mathbf{N}\) indexes the subsequence.
 </div>
-<br>
 It's important to note that the order of the terms in the subsequence is the same as the original sequence and repetitions are not allowed. For example if $$(a_n) = (1,2,3,4,5,6,.....)$$, then $$(2,4,6,..)$$ is a valid subsequence while $$(4, 6, 2...)$$ is not. $$(2,2,2,2)$$ is not either.
 <br>
 <br>
@@ -31,7 +30,6 @@ The imposed the order on the subscripts $$n_1 < n_2 < n_3 < ...$$ just stresses 
 <div style="background-color: #E0FBE2; padding: 15px 15px 15px 15px; border:1px solid black;">
   Subsequences of a convergent sequence converge to the same limit as the original sequence.
 </div>
-<br>
 For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">this</a>.
 <br>
 <br>

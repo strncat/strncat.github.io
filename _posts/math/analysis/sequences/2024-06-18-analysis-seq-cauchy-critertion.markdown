@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Cauchy Criterion (2.6.4)] A sequence converges if and only if it is a Cauchy sequence.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
 <br>

@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
 <b>References</b>
 </div>
-<br>
 (1) My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/<br>
 (2) First Course in Probability by Sheldon Ross.
 <br>
@@ -40,12 +39,10 @@ P(E|F) = \frac{|EF|}{|F|} = \frac{|EF|/|S|}{|F|/|S|} = \frac{p(EF)}{p(F)}
 \end{align*}
 $$
 </div>
-<br>
 <!---------------------------------------------------------------------------------------->
 <div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
 <b>Chain Rule</b>
 </div>
-<br>
 From the conditional probability law, we can derive the chain rule!
 <div center>
 $$
@@ -62,7 +59,6 @@ P(E_1E_2...E_n) = P(E_1)P(E_2|E_1)...P(E_n|E_1E_2...E_{n-1})
 \end{align*}
 $$
 </div>
-<br>
 <b>Example:</b>
 <br>
 Suppose we have an urn with 8 red balls and 4 white balls. What is the probability of choosing two balls that are both red (without replacement). (Source: A First Course in Probability)
@@ -77,12 +73,10 @@ P(E_1E_2) = P(E_1)P(E_2|E_1) = \frac{8}{12}\frac{7}{11} = \frac{14}{33}
 \end{align*}
 $$
 </div>
-<br>
 <!---------------------------------------------------------------------------------------->
 <div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
 <b>Law of Total Probability</b>
 </div>
-<br>
 <div center>
 $$
 \begin{align*}
@@ -117,12 +111,10 @@ P(CS) &= P(CS | J)P(J) + P(CS | J^c)P(J^c) \\
 \end{align*}
 $$
 </div>
-<br>
 <!---------------------------------------------------------------------------------------->
 <div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
 <b>Bayes' Theorem</b>
 </div>
-<br>
 Common Form:
 <div center>
 $$
@@ -139,7 +131,6 @@ P(F|E) &= \frac{P(E|F)P(F)}{P(E|F)P(F) + P(E|F^c)P(F^c)}
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <b>Example:</b>
 <br>
@@ -162,12 +153,10 @@ P(F|E) &= \frac{P(E|F)P(F)}{P(E|F)P(F) + P(E|F^c)P(F^c)} \\
 \end{align*}
 $$
 </div>
-<br>
 <!---------------------------------------------------------------------------------------->
 <div style="background-color:#E0E0F8; padding: 7px 7px 7px 20px;">
 <b>The Monty Hall Problem</b>
 </div>
-<br>
 Suppose we have 3 doors. Behind one of the three doors a prize. We choose a door. The host then opens one of the remaining doors that reveals nothing. We are now given the chance to switch our door with the remaining door. Do we switch?
 <br>
 <br>

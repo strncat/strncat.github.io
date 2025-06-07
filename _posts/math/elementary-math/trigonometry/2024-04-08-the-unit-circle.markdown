@@ -25,7 +25,6 @@ $$
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>The Unit Circle</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/unit-circle/1.png" width="70%" class="center"></p>

@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>If \(p^2\) is even, then \(p\) is even.</b>
 </div>
-<br>
 <h3>Proof:</h3>
 Suppose $$p^2$$ is even and $$p$$ is not. Since $$p$$ is odd, let $$p = 2k+1$$ where $$k$$ is an integer. Now, square $$p$$ so that we have,
 <div>

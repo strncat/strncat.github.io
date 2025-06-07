@@ -192,7 +192,6 @@ Proposition
 	\end{align*}
 	$$
 </div>
-<br>
 Note here that $$\gamma(a)$$ is a function. The isomorphism is between a group of functions and the modular unit $$a$$. 
 <br>
 <br>

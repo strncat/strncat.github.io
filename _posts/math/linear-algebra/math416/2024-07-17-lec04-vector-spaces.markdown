@@ -21,7 +21,6 @@ mathjax: true
       <li>\((a + b)v = av + bv\) for all \(u, v \in V\) and for all \(a, b \in \mathbf{F}\)</li>
 </ol>
 </div>
-<br>
 For property (4), we don't call it $$-v$$ yet because we didn't prove yet if it's unique.
 <br>
 <br>
@@ -118,7 +117,6 @@ $$
 $$
 the degree of \(f\) is the largest \(k\) such that \(x^k\) appears in \(f\) with \(a_k \neq 0\).
 </div>
-<br>
 Let $$P_n = \{$$ polynomials $$f(x)$$ of degree at most $$n\}$$.<br>
 Define the addition operation as follows,
 <div>
@@ -148,7 +146,6 @@ Question: why did we define the polynomials to have at most $$n$$ and not just $
 <div class="purbdiv">
   Let \(u, v, w\) be elements of a vector space \(V\). if \(u + w = v + w\), then \(u = v\).
 </div>
-<br>
 <b>Proof:</b>
 Let $$V$$ be a vector space and $$u, v, w$$ be elements in $$V$$. By property (4) there is a $$z \in V$$ such that
 <div>
@@ -190,7 +187,6 @@ Therefore $$u = v$$ as we wanted to show. $$\blacksquare$$
 <div class="purbdiv">
   The zero vector in a vector space is unique.
 </div>
-<br>
 <b>Proof:</b>
 Suppose $$V$$ is a vector space. Now suppose for the sake of contradiction that $$\bar{0}$$ and $$\bar{0}'$$ are additive inverses of $$V$$ where $$\bar{0} \neq \bar{0}'$$. This means that
 <div>
@@ -212,7 +208,6 @@ Therefore, $$\bar{0} = \bar{0}'$$ which is a contradiction and the zero vector m
 <div class="purbdiv">
    For all \(v \in V\), there exists a \(w \in V\) such that \(v + w = \bar{0}\). This \(w\) is unique. We call \(w = -v\).
 </div>
-<br>
 <b>Proof:</b> 
 Suppose $$V$$ is a vector space. Let $$v \in V$$. Suppose for the sake of contradiction that $$w$$ is not unique and there exists two additive inverses $$w$$ and $$w'$$ such that $$w \neq w'$$. Then
 <div>
@@ -269,7 +264,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 The claim is that property 4 can't be true. Let $$v = (0,0)$$. There is no $$(a_1, a_2) \in \mathbf{R}^2$$ such that 
 $$v + (a_1, a_2) = \bar{0}$$. To see this, 
 <div>

@@ -17,7 +17,6 @@ $$
 $$
 for \(k = p - 1\) and not \(k\) less than that. In other words, the multiplicative order of \(10\) modulo \(p\) is \(p-1\).
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Recall that the <a href="">multiplicative order</a> of $$a$$ when $$a$$ is coprime to $$n$$, is the smallest $$k$$ such that $$a^k \equiv 1 \mod n$$. Here set $$n = p$$ and $$a = 10$$, the multiplicative order of $$10$$ modulo $$p$$ is then the smallest $$k$$ for which $$10^k \equiv 1 \mod p$$.

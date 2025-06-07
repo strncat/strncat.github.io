@@ -18,7 +18,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 For example, in $$\mathbf{R}^3$$, this means that isometries preserve lengths and angles. <br>
 When $$V$$ is over $$\mathbf{C}$$, an isometry is sometimes called unitary while if $$V$$ is over $$\mathbf{R}$$, $$T$$ is called orthogonal.
@@ -138,7 +137,6 @@ Lemma
 Suppose 
 \(S:V \rightarrow V\) is self-adjoint. If \(\langle S(x), x \rangle = 0\) for all \(x \in V\), then \(S = T_{0_V}\) (the zero map)
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>

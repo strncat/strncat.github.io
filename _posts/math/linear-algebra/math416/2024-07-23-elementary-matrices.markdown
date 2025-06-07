@@ -17,7 +17,6 @@ Let \(A\) be an \(m \times n\) matrix. Any one of the following three operations
 <li> adding any scalar multiple of a row of \(A\) to another row.</li>
 </ol>
 </div>
-<br>
 What's more interesting is the next definition:
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
@@ -26,7 +25,6 @@ Definition
 <div class="bbdiv">
 An \(n \times n\) elementary matrix is a matrix obtained by performing an elementary operation on \(I_n\). The elementary matrix is said to be of type 1, 2 or 3. according to whether the elementary operation performed on \(I_n\) is a type 1, 2 or 3 operation respectively.
 </div>
-<br>
 What does the definition above mean? If we interchange the first two rows of $$I_3$$, then this will produce the elementary matrix:
 <div>
 $$
@@ -48,7 +46,6 @@ Theorem 3.1
 <div class="purbdiv">
 Let \(A \in M_{m \times n}(F)\), and suppose that \(B\) is obtained from \(A\) by performing an elementary row operation. Then there exists an \(m \times n\) elementary matrix \(E\) such that \(B = EA\). In fact, \(E\) is obtained from \(I_m\) by performing the same elementary row operation as that which was performed on \(A\) to obtain \(B\). Conversely, if \(E\) is an elementary \(m \times m\) matrix, then \(EA\) is the matrix obtained from \(A\) by performing the same elementary row operation as that which produces \(E\) from \(I_m\).
 </div>
-<br>
 This confirms what we said earlier. If we have a matrix $$A$$ and we want to interchange the first two rows then we can first generate the matrix $$E$$ from $$I_m$$ by interchanging the first two rows:
 <div>
 $$
@@ -69,7 +66,6 @@ Theorem 3.2
 <div class="purbdiv">
 Elementary matrices are invertible, and the inverse of an elementary matrix is an elementary matrix of the same type.
 </div>
-<br>
 <b>Proof:</b>
 Let $$E$$ be an elementary $$n \times n$$ matrix. We know that that $$E$$ was obtained by some elementary row operation on $$I_n$$. We can reverse the steps used to transform $$I_n$$ to obtain $$E$$ in order to get back $$I_n$$. To get $$I_n$$ back, we had to use the same type of elementary row operation. By the previous theorem (3.1), this elementary row operation can be done using an elementary matrix $$\bar{E}$$ such that $$\bar{E}E = I_n$$. Therefore, $$E$$ is invertible and $$E^{-1} = \bar{E}$$ (By 2.4 Exercise 10!). $$\blacksquare$$
 

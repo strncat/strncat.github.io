@@ -106,7 +106,6 @@ Definition
 <div class="mintbodydiv">
 An orthogonal matrix is a square matrix \(P \in Mat_{n \times n}(\mathbf{R})\) such that \(P^{T}P = I\) or \(P^{-1} = P^{T}\).
 </div>
-<br>
 Equivalently the columns of $$P$$ are an orthonormal basis of $$\mathbf{R}^n$$ and the rows of $$P$$ are also orthonormal basis of $$\mathbf{R}^n$$. Based on this, we have a useful formula where if we're given $$u \in \mathbf{R}^3$$ such that $$\lVert u \rVert = 1$$, $$\theta \in \mathbf{R}$$ and $$P$$ an orthogonal matrix, then $$P \text{Rot}_u(\theta) P^{-1}$$ is actually a rotation matrix around the vector $$Pu$$. So
 <div>
 $$
@@ -169,7 +168,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------>
 <h3>Rotations in Space</h3>
 From last lecture, we saw the symmetries of the square. These symmetries can be represented with rotation matrices. We have the identity rotation $$I$$. We can also define the rotation around the axis coming through the centroid of the face ($$z-$$axis in the lecture) as $$R = \text{Rot}_{e_3}(\frac{\pi}{2})$$. Therefore, $$R^2 = \text{Rot}_{e_3}(\pi)$$ and $$R^3 = \text{Rot}_{e_3}(\frac{3\pi}{2})$$.
@@ -201,7 +199,6 @@ A special orthogonal matrix is an \(A \in Mat_{n \times n}(\mathbf{R})\) such th
 	<li>\(\det(A) = \pm 1\). (This is as a result of the fact that \(det(A^{-1}) = \frac{1}{\det(A)}\) and that \(\det(A) = \det(A^T)\)</li> 
 </ol>
 </div>
-<br>
 And now we have the following proposition
 <!------------------------------------------------------------------------>
 <div class="peachheaderdiv">
@@ -210,7 +207,6 @@ Proposition
 <div class="peachbodydiv">
 \(A \in Mat_{3 \times 3}(\mathbf{R})\) is a rotation matrix if and only if it is special orthogonal.
 </div>
-<br>
 We denote these matrices special matrices with
 <div>
 $$

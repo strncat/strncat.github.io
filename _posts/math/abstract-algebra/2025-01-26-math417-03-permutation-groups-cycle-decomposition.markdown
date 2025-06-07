@@ -102,7 +102,6 @@ Let \(\sigma = (a_1 \quad a_2 \quad ... \quad a_k)\) where \(a_1,...,a_k \in X\)
 	\end{align*}
 	$$
 </div>
-<br>
 So we can write the first permutation with cycle notation as $$(2,4)$$ only since by definition for the other elements $$\sigma(x)=x$$, while the second permutation can be written as $$(1,4,3)$$. 
 <br>
 <br>
@@ -139,7 +138,6 @@ Theorem
 <div class="yellowbodydiv">
 Every non-id element in \(Sym(X)\) where \(X\) is finite can be written as a product of pairwise disjoint cycles (of length \(\geq 2\) uniquely up to re-ordering.
 </div>
-<br>
 Suppose we have $$\sigma = (1 \quad 3)(2 \quad 7 \quad 8)(4 \quad 5 \quad 6)(9) \in S_9$$. Any of the cycles in this notation are pairwise disjoint. We have 3 disjoint cycles where $$9$$ is fixed.
 <br>
 <br>
@@ -245,7 +243,6 @@ Proposition
 <div class="peachbodydiv">
 Every permutation of a finite set is equal to some product of transpositions (a transposition is  2-cycle) not necessarily disjoint.
 </div>
-<br>
 <!------------------------------------------------------------------------>
 For example we can write $$(1 \quad 2 \quad 3 \quad 4)$$ as $$(1 \quad 2)(2 \quad 3)(3 \quad 4)$$. 
 <br>

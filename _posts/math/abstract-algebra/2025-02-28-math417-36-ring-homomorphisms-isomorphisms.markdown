@@ -194,7 +194,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------->
 <h3>Example 1</h3>
 Let $$R = \mathbf{Q}[x]$$ and $$S = \mathbf{R}$$. Since we want to build a homomorphism from a polynomial ring, then we should always think of the substitution principle. Recall that the substitution principle says that given that we have a homomorphism (in this case let this homomorphism be the identity function), then we can create the following evaluation homomorphism

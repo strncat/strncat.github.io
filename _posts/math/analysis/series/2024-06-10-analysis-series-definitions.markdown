@@ -16,12 +16,10 @@ A sequence is defined in the book as a function whose domain in $$\mathbf{N}$$ (
   \end{align*}
   $$
 </div>
-<br>
 Here is another definition that I found online:
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   A Series is a function from the set of infinite sequences to the set of numbers.
 </div>
-<br>
 I've also seen that a series is simply a <i>sum</i> while a sequence is a <i>list</i>.
 <br>
 <br>
@@ -43,7 +41,6 @@ We define the corresponding sequence of partial sums \((s_m)\) by
   $$
 and say that the series \(\sum_{n=1}^{\infty} b_n\) converges to \(B\) if the sequence \((s_m)\) converges to \(B\). In this case, we write \(\sum_{n=1}^{\infty} b_n = B\)
 </div>
-<br>
 What is this even saying? Suppose for a concrete example we're given the series
 <div>
     $$
@@ -63,7 +60,6 @@ We want to know if this sum converges to something. How do determine that? The i
     \end{align*}
     $$
 </div>
-<br>
 And the sequence of partial sum $$(s_m)$$ is
 <div>
     $$
@@ -82,7 +78,6 @@ The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) con
   $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>(2.7.5) Definition: The Geometric Series</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
@@ -93,7 +88,6 @@ The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) con
   \end{align*}
   $$
 </div>
-<br>
 For more about its convergence see <a href="https://strncat.github.io/jekyll/update/2024/02/05/analysis-series-geometric.html">this</a>.
 <br>
 <br>
@@ -102,7 +96,6 @@ For more about its convergence see <a href="https://strncat.github.io/jekyll/upd
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   If \(\sum_{n=1}^{\infty} |a_n|\) converges, then we say that the original series \(\sum_{n=1}^{\infty} a_n\) <i>converges absolutely</i>. If on the other hand, the series \(\sum_{n=1}^{\infty} |a_n|\) does not converge, then we say that the original series \(\sum_{n=1}^{\infty} a_n\) <i>converges conditionally</i>. 
 </div>
-<br>
 As an example $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$$ converges conditionally while $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n^2}$$ converges absolutely. 
 <br>
 <br>
@@ -112,13 +105,11 @@ As an example $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$$ converges conditional
   Let \(\sum_{n=1}^{\infty} a_n\) be a series, A series \(\sum_{n=1}^{\infty} b_n\) is called a rearrangement of \(\sum_{n=1}^{\infty} a_n\) if there exists a one-to-one, onto function \(\mathbf{N} \rightarrow \mathbf{N}\) such that \(b_{f(n)} = a_n\) for all \(n \in \mathbf{N}\). 
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>(2.7.10) Theorem: Rearrangement</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   If a series converges absolutely, then any rearrangement of this series converges to the same limit.
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>References:</h3>

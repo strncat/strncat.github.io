@@ -22,7 +22,6 @@ Definition
 <div class="bbdiv">
 An \(m \times n\) elementary matrix obtained from \(I_n\) by performing an elementary row operation of type I, II or III.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Applying the three types of elementary row operations results in the following matrices
@@ -67,7 +66,6 @@ Theorem
 	is equal to the matrix obtained from \(A\) by performing \(\mathcal{R}\).
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Let's apply the elementary matrices on the following given matrix
@@ -94,7 +92,6 @@ E_3
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>RREF by Matrix Multiplication</h3>
 Since we can perform elementary row operations by matrix multiplication, then we can possibly see how we can put a matrix in reduced row echelon by multiplication. But first, there is an observation
@@ -111,7 +108,6 @@ Corollary
     \end{align*}
 	$$
 </div>
-<br>
 Proof: apply the elementary row operation by multiplying by $$E(\mathcal{R})$$ and then apply the inverse again by multiplying by $$E(\mathcal{R}^{-1})$$. The result is the identity matrix. In other words, $$E(\mathcal{R})E(\mathcal{R}^{-1}) = I_n$$. 
 <br>
 <br>
@@ -121,14 +117,12 @@ Theorem
 <div class="purbdiv">
 	For every \(A \in M_{m \times n}\), there is a finite set of elementary matrices \(E_1,...,E_k \in M_{m \times n}\) such that \(E_k ... E_2E_1\) is in RREF.  
 </div>
-<br>
 <div class="purdiv">
 Theorem
 </div>
 <div class="purbdiv">
 	\(A \in M_{m \times n}\) is invertible if and only iff there is a finite set of elementary matrices \(E_1,...,E_k \in M_{n \times n}\) such that \(E_k...E_2E_1A = I_n\).  \((A \ | \ I_n)\).
 </div>
-<br>
 Note here that from the expression above we can see that $$A^{-1} = E_k...E_1$$ and $$A = E_1^{-1}E_2^{-1}...E^{-1}_{k-1}E^{-1}_{k}$$
 <br>
 <br>
@@ -138,7 +132,6 @@ Corollary
 <div class="purbdiv">
 	\(A\) is invertible if and only iff it can be written as a product of elementary matrices.
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>The Rank of a Matrix</h3>
@@ -150,7 +143,6 @@ Definition
 <div class="bbdiv">
 	The rank of \(A \in M_{n \times n}\), \(rank(A)\) is the rank of \(L_A: \mathbf{R}^m \rightarrow \mathbf{R}^n\).
 </div>
-<br>
 This definition is kind of awkward and instead we want to find an expression for rank($$A$$) in terms of $$A$$ itself and not have to rely on $$L_A$$. To figure this out, we need the following result
 <div class="purdiv">
 Proposition
@@ -158,7 +150,6 @@ Proposition
 <div class="purbdiv">
 If \(B \in M_{n \times n}\) is invertible, then rank(\(BA\)) = rank(\(A\)).
 </div>
-<br>
 So multiplication by $$B$$ doesn't change the rank.
 <br>
 <br>
@@ -223,7 +214,6 @@ Corollary
 <div class="purbdiv">
 	Elementary row operations don't change rank.
 </div>
-<br>
 and
 <div class="purdiv">
 Corollary
@@ -235,7 +225,6 @@ Corollary
     \end{align*}
 	$$
 </div>
-<br>
 Why do we want RREF? because it's easy to read off and we can easily figure out the dimension easily from seeing a matrix in its RREF.
 <br>
 <br>

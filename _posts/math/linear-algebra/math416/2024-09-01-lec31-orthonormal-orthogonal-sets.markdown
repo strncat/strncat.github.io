@@ -15,7 +15,6 @@ Definition
 	<li>\(S \subset V\) is orthonormal if it is orthogonal and for each \(x \in S, \Vert x \Vert = 1\)</li>
 </ul>
 </div>
-<br>
 Remark: $$x \in V$$ is a unit vector if $$\Vert x \Vert = 1$$. If $$x \neq \bar{0}_V$$, then $$\frac{x}{\Vert x \Vert}$$ is a unit vector. This process is normalization.
 <hr>
 
@@ -64,7 +63,6 @@ y = \sum_{j=1}^k \langle y, v_j \rangle v_j
 \end{align*}
 $$
 </div>
-<br>
 So we don't need to solve a system of linear equations to figure out the coefficients if $$y$$ written with respect to $$S$$. 
 <br>
 <br>
@@ -99,7 +97,6 @@ y = \sum_{j=1}^k \langle y, v_j \rangle v_j. \quad \blacksquare
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 What about orthogonal subsets, can we say anything about them? Yes!
 <br>
@@ -143,7 +140,6 @@ Corollary 2
 If \(S = \{v_1,...,v_k\} \subseteq V\) is orthogonal and \(\bar{0} \notin S\), then \(S\) is linearly independent. 
 </div>
 <br>
-<br>
 <b>Proof:</b>
 To see that it's linearly independent, then the only solution to the equation
 <div>
@@ -161,7 +157,6 @@ is the trivial solution. But by corollary 1, if $$\bar{0}_V \in span(S)$$, then 
 	\end{align*}
 	$$
 </div>
-<br>
 <!--------------------------------------------------------------------------------->
 <div class="purdiv">
 Theorem
@@ -169,7 +164,6 @@ Theorem
 <div class="purbdiv">
 If \(V\) is finite dimensional inner product space, then it has an orthonormal basis.
 </div>
-<br>
 <br>
 This will follow from the procedure we will study next ...
 <br>
@@ -191,7 +185,6 @@ Let \(\{w_1,...,w_k\}\) be a linearly independent subset of \(V\). Set
 	$$
 Then \(\{u_1,...,u_k\}\) is orthonormal and has same span as \(\{w_1,...,w_k\}\).
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
@@ -276,7 +269,6 @@ Definition
 <div class="bbdiv">
 Let \(S \subseteq V\) be an (possibly infinite) orthonormal subset. The scalars \(\langle x, u\rangle\) for \(u \in S\) are called the Fourier coefficients of \(x\) with respect to \(S\).
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 <div> 

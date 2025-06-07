@@ -64,7 +64,6 @@ BA = I_n = AB
 \end{align*}
 $$
 </div>
-<br>
 Remark: The inverse of $$A$$ is unique if it exists.
 <br>
 <br>
@@ -120,7 +119,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <b>Proof:</b>
 <br>
 To see this, let's multiply both matrices to verify that we get the identity matrix. By theorem 2.11 (lecture 14), we know that multiplying these matrices is the same as the composition of the two matrices.

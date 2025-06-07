@@ -31,7 +31,6 @@ if \(a = a_1a_2...,a_k\) where \(a_1,...,a_k\) are relatively prime and \(a_i \g
 	\end{align*}
 	$$
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 For example, $$\mathbf{Z}_{60} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{15} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{3} \times \mathbf{Z}_{5}$$. But this doesn't help with classification. For example, if we're given some other product of cyclic groups, how do we know it's isomorphic to a given group? A classification means that we can look at two products of cyclic groups and then be able to know if they are isomorphic to each other or not.
 <hr>
@@ -247,7 +246,6 @@ Definition
 <div class="mintbodydiv">
 Define the subset \(G[m]: \{g \in G \ | \ g^m = e \} = \{g \in G \ | \ o(g) \ | \ m  \text{ and } o(g) < \infty \}\)
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 Also define for finite groups
 <br>
@@ -258,7 +256,6 @@ Definition
 <div class="mintbodydiv">
 Define \(\alpha_m \rightarrow \mathbf{N}\) by \(\alpha_m(G) = |G[m]| \)
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 Note that $$G[m]$$ doesn't need to be a subgroup but if $$G$$ is abelian, then $$G[m] \leq G$$.
 <hr>
@@ -434,7 +431,6 @@ Since $$d = gcd(m,n)$$, then $$d \ | \ m$$ and $$m = ds$$ for some $$s \in \math
  		\end{align*}
  		$$
  </div>
-<br>
 <br>
 $$G[m] \subseteq G[d]$$: We can also write $$d$$ as $$d = sm + tn$$ for some $$t, n \in \mathbf{Z}$$. Since $$|G| = n$$, then we know that $$g^n = e$$ for any $$g \in G$$ by the order theorem. So suppose that $$g^m = e$$, then 
  <div>

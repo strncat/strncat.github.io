@@ -13,7 +13,6 @@ Definition
 <div class="bbdiv">
 \(A \in M_{n \times n}\) is diagonal if all entries off diagonal are 0. \(A_{ij} = 0\) if \(i \neq j\).
 </div>
-<br>
 All computations involving diagonal matrices are simple. If $$A, B$$ are diagonal, then 
 <div>
 $$
@@ -59,7 +58,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 Two questions arises from this definition:
 <br>
@@ -79,7 +77,6 @@ $$
 \end{pmatrix}
 $$
 </div>
-<br>
 This is equivalent to
 <ul style="list-style: none;">
 	<li> \(\leftrightarrow\) This matrix above by defintion is 
@@ -177,7 +174,6 @@ Definition
 <div class="bbdiv">
 \(A \in M_{n \times n}\) is diagonalizable if \(L_A\) is diagonalizable.
 </div>
-<br>
 This is equivalent to "There is a $$Q \in M_{n \times n}$$ such that $$Q^{-1}AQ$$ is diagonal".
 <br>
 <!------------------------------------------------------------------------------------>
@@ -298,7 +294,6 @@ E_{\lambda} &= N(A - \lambda I_n) \\
 \end{align*}
 $$
 </div>
-<br>
 [TODO: What is the difference between the eigenspace and the nullspace?]
 <hr>
 
@@ -311,7 +306,6 @@ Theorem 5.2
 <div class="purbdiv">
 \(\lambda\) is an eigenvalue of \(A\) if and only if \(\det(A - \lambda I_n) = 0\).
 </div>
-<br>
 <b>Proof:</b>
 <br>
 <br>
@@ -328,7 +322,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 So we see now that we have the necessary and sufficient conditions for $$\lambda$$ to be an eigenvalue of $$A$$. So what's next? $$A$$ is given to us in this equation but we need a $$\lambda$$ that would make the equation $$\det(A - \lambda I_n)$$ equal to zero. Let's look at the following definition
 <br>
 <br>
@@ -339,7 +332,6 @@ Definition
 <div class="bbdiv">
 \(f(t) = \det(A - tI_n)\) is the characteristic polynomial of \(A\).
 </div>
-<br>
 What is this saying? we can interpret the right hand side as a function. We're given $$A$$. We know the identity matrix. So the unknown is $$t$$. So inside the determinant, we'll have a matrix with entries that depend on $$A$$ and $$t$$. We know the determinant is a map / inductive formula. So this expression when expanded as a whole is some number that depends on it. In fact it shouldn't be surprising that $$f(t)$$ is a polynomial of degree $$n$$ (FACT). 
 <br>
 <br>
@@ -353,7 +345,6 @@ Corollary 1
 <div class="purbdiv">
 \(\lambda\) is an eigenvalue of \(A\) if and only if \(f(t) = \det(A - \lambda I_n) = 0\).
 </div>
-<br>
 So eigenvalues are the roots of this polynomial so it's not always easy to do. How many roots? We know the degree of $$f(t)$$ is at most $$n$$. Therefore,
 <br>
 <div class="purdiv">
@@ -362,7 +353,6 @@ Corollary 2 (Theorem 5.3(b))
 <div class="purbdiv">
 \(A\) has at most \(n\) eigenvalues.
 </div>
-<br>
 So we know at least that there can only be $$n$$ roots/eigenvalues at most.
 <hr>
 

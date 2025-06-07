@@ -71,7 +71,6 @@ T(n) &= \sum_{t=0}^{\log(n)} \frac{n}{2^t} \\
 $$
 </div>
 <br>
-<br>
 <b>Case 3:</b>
 <div center>
 $$
@@ -97,7 +96,6 @@ T(n) &= n\sum_{t=0}^{\log(n)} 2^t \\
 $$
 </div>
 <br>
-<br>
 <b>Case 1:</b>
 <div center>
 $$
@@ -116,7 +114,6 @@ T(n) &= \sum_{t=0}^{\log(n)} 2^t\frac{n}{2^t} = n\sum_{t=0}^{\log(n)} 1 = n\log(
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <!----------------------------------------------------------------------------------->
 <h3>Proof Outline</h3>
@@ -157,7 +154,6 @@ T(n) &= cn^d \sum_{t=0}^{\log_b(n)} (\frac{b^d}{b^d})^t \\
 \end{align*}
 $$
 </div>
-<br>
 <b>Case 2:</b> $$a < b^d$$
 <div center>
 $$
@@ -183,7 +179,6 @@ T(n) &= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\
 \end{align*}
 $$
 </div>
-<br>
 <b>Case 3:</b> $$a > b^d$$
 <div center>
 $$
@@ -217,7 +212,6 @@ T(n) &= cn^d \sum_{t=0}^{\log_b(n)} (\frac{a}{b^d})^t \\
 \end{align*}
 $$
 </div>
-<br>
 <!----------------------------------------------------------------------------------->
 <h3>References</h3>
 - <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>

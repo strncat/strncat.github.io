@@ -268,7 +268,6 @@ Then, \(A \rtimes_{\gamma} N\) is isomorphic to \(G\). The isomorphism is given 
 		\end{align*}
 		$$
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>

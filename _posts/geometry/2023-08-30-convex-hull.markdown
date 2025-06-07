@@ -29,7 +29,6 @@ conv(S) = \text{ Intersection of all "half planes" containing $$S$$ }
 \end{align*}
 $$$$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Finding the Convex Hull</h3>
 Finding the convex hull is a classic computatioal geometry problem and many algorithms have been developed to solve it. Next, we discuss one of the simplest algorithms that is used to find the convex hull of a set of points.

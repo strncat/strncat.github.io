@@ -193,7 +193,6 @@ M * R(t_{int})
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Code Acceleration: Bounding boxes</h3>
 ... TODO ... kd-trees, octrees, etc
@@ -259,7 +258,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Normals in World Space vs. Object Space</h3>

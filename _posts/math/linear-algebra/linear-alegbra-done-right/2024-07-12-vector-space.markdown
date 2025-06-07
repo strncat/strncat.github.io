@@ -27,7 +27,6 @@ Lots of definitions and notations are presented in <a href="https://linear.axler
   <b>distributive properties</b><br>
   \(a(u + v) = au + av\) and \((a + b)v = av + bv\) for all \(u, v \in V\) and for all \(a, b \in \mathbf{F}\).<br>
 </div>
-<br>
 Seeing this definition for the first time, I immediately was thinking that this is very similar to the definition of a Field except for the scalar multiplication here instead of the normal multiplication in a field. I also saw this discussion <a href=" https://math.stackexchange.com/questions/969720/what-is-the-main-difference-between-a-vector-space-and-a-field">here</a> which is also interesting. Still not sure though what the point is of a vector space ... too early to tell.
 <br>
 <br>
@@ -53,7 +52,6 @@ Seeing this definition for the first time, I immediately was thinking that this 
   </li>
   </ul>
 </div>
-<br>
 This is something that also threw me off. The example in the book defines $$S$$ as the interval $$[0,1]$$ and $$F = R$$ and so $$R^{[0,1]}$$ is the set of all functions from $$[0,1]$$ to $$R$$ or in other words, the set of real-valued functions on $$[0,1]$$.
 <br>
 <br>
@@ -73,7 +71,6 @@ What's more interesting is to know that $$F^{n}$$ (which is what we usually see)
 <div class="bbdiv">
   A vector space has a unique additive identity.
 </div>
-<br>
 <b>Proof:</b>
 Suppose $$V$$ is a vector space. Now suppose for the sake of contradiction that 0 and 0' are additive inverses of $$V$$ where $$0 \neq 0'$$. This means that
 <div>
@@ -92,7 +89,6 @@ The first equality holds because 0 is an additive identity. The second equality 
 <div class="bbdiv">
   Every element in a vector space has a unique additive inverse.
 </div>
-<br>
 <b>Proof:</b> 
 Suppose $$V$$ is a vector space. Let $$v \in V$$. Suppose for the sake of contradiction that $$v$$ has two additive inverses $$w$$ and $$w'$$ such that $$w \neq w'$$. Then
 <div>

@@ -58,7 +58,6 @@ $$
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Reflection and Transmission Rays vs Shadow Rays</h3>
 Similar to how we construct rays for shadow rays we're going to construct a reflection ray and then let it intersect with the scene geometry. We will store the resulting color in $$L_\{\text{reflect}}$$ and $$L_\{\text{transmit}}$$. The difference is that for shadow rays, we'll immediately multiply the light intensity by the material color and the scale factor. For reflected and transmitted rays, we're not going to get the color directly. The color will depend on the color computed from the geometry that their rays intersect. These intersection points might additionally cast more rays to find the color which is computed via shadow rays, ambient, diffuse, additional reflection and transmission rays. This means that we need to terminate at some point because this process can go on forever.
@@ -130,7 +129,6 @@ R_{\text{reflect}} = R(t_{\text{int}}) + D_{\text{reflect}}t.
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Spurious Self-Occlusion</h3>
@@ -277,7 +275,6 @@ T = 1 - R
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Schlick's Approximation</h3>
 - Approximate reflection via:
@@ -289,7 +286,6 @@ R_0 = \big(\frac{n_1 - n_2}{n_1 + n_2}\big)^2
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Conductors vs Dielectrics</h3>

@@ -52,7 +52,6 @@ Var(X) = E[X^2] - (E[X])^2 = 1^2(p) + 0^2(1-p) - p^2 = p - p^2 = p(1-p)
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Binomial Random Variable</h3>
 If we on the other hand have $$n$$ independent trials of Bernoulli random variables with a probability of success $$p$$, then we can use a binomial random variable to represent the number of successes in $$n$$ trials. For example, if we are flipping a coin with probability of getting heads (success) equals to $$p$$, then we can define a binomial random variable $$X$$ to represent the number of heads in $$n$$ trials. 
@@ -114,7 +113,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Poisson Random Variable</h3>
 Consider a duration of time where events occur at an average rate of $$\lambda$$. Let $$X$$ be the number of occurrences in a unit of time. We have $$R_X = \{0,1,...,n\}$$. The PMF of $$X$$ is:
@@ -125,7 +123,6 @@ p(k) = P(X = k) = \frac{\lambda^k}{k!}e^{-\lambda}
 \end{align*}
 $$
 </div>
-<br>
 <b> Example 1: </b><br>
 Given a web server, suppose that the server load averages 2 hits per second. Let $$X$$ be the number of hits received in a second. What is $$P(X=5)?$$
 <br>
@@ -136,7 +133,6 @@ P(X = 5) = \frac{\lambda^5}{5!}e^{-2} \approx 0.0361
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Binomial and Poisson Random Variables</h3>
 A Poisson random variable can also be used to approximate a binomial random variable if $$n$$ is very large and $$p$$ is small so that $$np$$ is moderate. Let $$\lambda = E[X] = np$$ which is the average number of successes you see in $$n$$ trials. Then we will have
@@ -158,7 +154,6 @@ P(X = k) &\approx \frac{\lambda^k}{k!}e^{-\lambda}
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Expected Value and Variance of a Poisson Random Variable</h3>
 Both the expected value and variance of a Poisson random variable is $$\lambda$$. Intuitively, we know Poisson approximates a binomial random variable when $$n$$ is large and $$p$$ is small with $$\lambda = np$$. We also know that the expected value of a binomial random variable is $$E[X] = np$$.  Therefore, the expected value of a Poisson random variable should be $$\lambda$$. Similarly, to compute the variance, we know the binomial random variable variance is $$np(1-p)$$ and so $$\lambda(1-p)$$ when $$p$$ is very small is also $$\lambda$$.
@@ -206,7 +201,6 @@ F_X(k) = P(X \leq k) &= 1 - P(X > k) \quad \text{ (first success happens after k
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Negative Binomial Random Variable</h3>
 $$X$$ is the number of independent trials until the $$r$$th success.

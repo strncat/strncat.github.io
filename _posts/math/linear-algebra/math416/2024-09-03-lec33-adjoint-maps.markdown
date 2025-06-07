@@ -17,7 +17,6 @@ S^{\perp} = \{x \in V \ | \ \langle x, y \rangle = 0 \quad \forall y \in S\}
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 Suppose $$S = \{(0,0,1)\} \subset \mathbf{R}^3$$. The orthogonal complement to $$S$$ is any element $$x$$ in $$\mathbf{R}^3$$ such that for any element $$y \in S$$, the inner product $$\langle x, y \rangle$$ must be zero.
@@ -123,7 +122,6 @@ proj_W(x) = w
 \end{align*}
 $$
 </div>
-<br>
 It also has a special geometric interpretation. It is the closest vector to $$x$$ in $$W$$.
 <br>
 <br>
@@ -138,7 +136,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <b>Proof</b>
 <br>
 <br>
@@ -227,7 +224,6 @@ x_0 = (A^tA)^{-1}A^tb
 \end{align*}
 $$
 </div>
-<br>
 But why is this true? to be able to prove this theorem we need a few other definitions and lemmas first. 
 <hr>
 
@@ -244,7 +240,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 Note here that the inner product on the left is the inner product of $$W$$ but the one on the right is the inner product of $$V$$. 
 <br>
 <br>
@@ -256,7 +251,6 @@ Definition
 For \(A \in M_{m \times n}(\mathbf(F)), \ \) \(\mathbf{F} = \mathbf{R}\) or \(\mathbf{C}\)
 Set \(A^* = (\bar{A})^t\)
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 The matrix
@@ -296,7 +290,6 @@ L_{A^*}: \ \mathbf{F}^m \rightarrow  \mathbf{F}^n
 $$
 In other words, \((L_A)^* = L_{A^*}\)
 </div>
-<br>
 <b>Proof</b>
 <br>
 In $$\mathbf{F}^n$$, we're going to re-write the standard inner product as
@@ -351,7 +344,6 @@ rank(A^*A) = rank(A)
 \end{align*}
 $$
 </div>
-<br>
 <b>Proof</b>
 <br>
 The dimension theorem implies that 

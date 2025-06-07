@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (2.7.3) If the series \(\sum_{n=1}^{\infty} a_n\) converges then \((a_n) \rightarrow 0\).
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
 <br>

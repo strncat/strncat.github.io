@@ -9,7 +9,6 @@ mathjax: true
   <b>[The Archimedean Principle]. If \(a\) and \(b\) are real numbers with with \(a > 0\), then there exists a natural number \(n\) such that \(na > b\).<br>
 	  In particular, for any \(\epsilon > 0\) there exits \(n \in \mathbf{N}\) such that \(\frac{1}{n} < \epsilon\).</b>
 </div>
-<br>
 From what I understand so far (beginner in real analysis) that we're trying to prove that \(N\) is unbounded. Why are we trying to prove it in this form? and why? I'm not sure yet.
 <br>
 For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.

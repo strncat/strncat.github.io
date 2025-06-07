@@ -102,7 +102,6 @@ E_f = \{(u,v) \in V \times V : c_f(u,v) > 0\}
 \end{align*}
 $$
 </div>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>Residual Graphs (Example)</h3>
 Let's create a residual graph for the flow below:
@@ -309,7 +308,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!---------------------------------------------------------------------------------------->
 <h3>The Max-Flow Min-Cut Theorem</h3>
 FINALLY, we are ready to prove the <b>max-flow min-cut theorem</b> below: <br>
@@ -352,7 +350,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 $$ 3 \rightarrow 1 $$:<br>
 We established previously that $$|f| \leq c(S,T)$$ for any cut $$(S,T)$$ in $$G$$. Therefore, if $$|f| = c(S,T)$$ for some cut $$(S,T)$$ in $$G$$ then it must be that $$f$$ is a flow of maximum value. 
 <br>

@@ -71,7 +71,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 <h3>Example 1</h3>
 Let's apply the formula on Example 1. We had $$G = D_4 = \{e,r,r^2,j,rj,r^2j\}$$ where $$|G| = 8$$ and $$|X| = 6$$. For example, take $$r$$. We want to know the arrangements that are fixed by $$r$$ (the rotation by 90 degrees). What does it mean for an arrangement to be fixed by $$r$$. It means that the arrangement when rotated by 90 degrees, it will still be the same arrangement. Observe what happens to the following arrangement.

@@ -9,7 +9,6 @@ This is just alternative proof that uses <a href="https://strncat.github.io/jeky
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>Given sets A and B, define the set \(A + B = \{a + b : a \in A \text{ and } b \in B\}\). Prove that \(\sup A + B = \sup A + \sup B \)</b>
 </div>
-<br>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <h3>Proof:</h3>

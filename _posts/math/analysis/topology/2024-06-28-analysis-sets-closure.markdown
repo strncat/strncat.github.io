@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (Definition 3.2.11) Given a set \(A \subseteq \mathbf{R}\), let \(L\) be the set of all limit points of \(A\). The closure of \(A\) is defined to be \(\overline{A} = A \cup L\)
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Let $$A$$ be $$\{1/n: n \in \mathbf{N}\}$$. We know that a point $$x=1/n$$ is a limit point of a set $$A$$ if every $$\epsilon$$-neighborhood $$V_{\epsilon}(1/n)$$ of $$1/n$$ intersects $$A$$ at some point other than $$x$$. Set $$\epsilon = 1/n - 1/(n + 1)$$. Then

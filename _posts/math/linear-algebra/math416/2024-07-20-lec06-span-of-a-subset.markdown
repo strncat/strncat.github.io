@@ -17,7 +17,6 @@ a_1u_1 + a_2u_2 + ... + a_ku_k, \quad \text{where $a_1, a_2, ... a_k \in \mathbf
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 $$(4,3) \in \mathbf{R}^2$$. This vector can be written as
@@ -49,7 +48,6 @@ Span(S) = \{a_1u_1 + a_2u_2 + ... + a_ku_k \quad|\quad a_1, a_2, ... a_k \in \ma
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
 Let $$S = \{\bar{0}\}$$, then $$Span(S) = \{\bar{0}\}.$$
@@ -110,7 +108,6 @@ Theorem (part of 1.5 in the book)
 <div class="purbdiv">
 For any nonempty subset \(S \subset V\), \(Span(S)\) is a subspace of \(V\).
 </div>
-<br>
 Proof: Let $$S \subset V$$ where $$V$$ is a vector space. By definition we know that $$Span(S)$$
 <div>
 $$
@@ -233,7 +230,6 @@ Definition
 <div class="bbdiv">
 \(S \subset V\) generates \(V\) if \(Span(S)=V\).
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 8</h3>
 The set $$\{(1,0),(0,1)\}$$ generates $$\mathbf{R}^2$$.

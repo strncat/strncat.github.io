@@ -9,7 +9,6 @@ mathjax: true
   <b>[Density of \(\mathbf{Q}\) in \(\mathbf{R}\)] For every two real numbers \(a\) and \(b\) with \(a < b\), there exists a rational number \(r\) satisfying \(a < r < b\).</b>
 </div>
 <br>
-<br>
 For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">this</a>
 <br>

@@ -17,7 +17,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Properties of the determinant</h3>
 <ol>
@@ -190,14 +189,12 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <div class="purdiv">
 Theorem
 </div>
 <div class="purbdiv">
 \(\det(A)\) is linear in rows of \(A\).
 </div>
-<br>
 What does this mean? Suppose we have three matrices $$A, B$$ and $$C$$ in $$M_{n \times n}$$ which are equal in all rows but the $$r$$th row. And suppose that for the $$r$$th row that $$a_r = b_r + kc_r$$. 
 <div>
 $$
@@ -290,7 +287,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem
@@ -303,7 +299,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 The proof for this theorem requires the following lemma
 <br>
 <!------------------------------------------------------------------------------------>
@@ -324,7 +319,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 The proof of this lemma is in the textbook (page 214). (TODO: check). So now we'll do the proof for the theorem.
 <!------------------------------------------------------------------------------------>
 <br>
@@ -372,7 +366,6 @@ Corollary 1
 <div class="purbdiv">
 If \(A\) has a row of all zeros, then \(\det A = 0\).
 </div>
-<br>
 This is all fine but unfortunately, it doesn't still solve the problem of the computation of the determinant taking too long to compute. Since a matrix at random will likely not have a row of all zeros. We still have another corollary
 <!------------------------------------------------------------------------------------>
 <br>
@@ -382,7 +375,6 @@ Corollary 2
 <div class="purbdiv">
 If \(A\) has two identical rows, then \(\det A = 0\).
 </div>
-<br>
 <b>Proof</b>
 <br>
 By induction on $$n$$. 

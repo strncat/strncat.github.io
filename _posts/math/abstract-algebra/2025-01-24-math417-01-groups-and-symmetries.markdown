@@ -131,7 +131,6 @@ In fact since $$r_1r_1 = r_2$$ and $$r_1r_2 = e$$, we'll change the notation to 
   </tr>
 </table>
 </div>
-<br>
 So far so good. What about composing the flips around the axes? For example composing $$a$$ with $$b$$. What would that do? For starters, note that each flip is a $$180$$ degrees flip. So if you compose ANY two flips, we'll be back to the same face we started with. This means that any two flips will be equivalent to $$e, r$$ or $$r^2$$. For example, if we apply $$a$$ and then apply $$b$$, we'll get
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec01/01-8.png" width="90%" class="center"></p>
@@ -210,7 +209,6 @@ What about two flips of the same type? What happens if you apply $$a$$ and then 
   </tr>
 </table>
 </div>
-<br>
 <!------------------------------------------------------------------------>
 <h3>Second and Third Quadrants</h3>
 What about applying a rotation $$r$$ followed by a flip $$a$$? What is $$ar$$? We apply a rotation so we move $$120$$ degrees anti-clockwise and then we do an $$a$$ flip which is now going to be through the $$C$$ vertex. The triangle will now be faced down which is equivalent to applying a single flip. Comparing the vertices in the original triangle and the outcome, we see that $$B$$ is fixed while $$A$$ and $$C$$ have switched. This means that this is a flip around the $$b$$ access.
@@ -441,7 +439,6 @@ G = \{e, r, r^2, r^3, a, b, c, d\}
 \end{align*}
 $$
 </div>
-<br>
 What about the cube? How many symmetries does it have? it has 24 symmetries!
 <hr>
 

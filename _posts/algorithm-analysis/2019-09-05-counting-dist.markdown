@@ -66,7 +66,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 - Personal study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/

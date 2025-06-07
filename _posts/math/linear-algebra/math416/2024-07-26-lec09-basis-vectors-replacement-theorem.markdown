@@ -16,14 +16,12 @@ Definition
 		<li>\(Span(B) = V\). (\(B\) generates \(V\))</li>
 	</ol>
 </div>
-<br>
 <div class="purdiv">
 Theorem
 </div>
 <div class="purbdiv">
 Every vector space has a basis.
 </div>
-<br>
 Proof in 1.7.
 <br>
 <br>
@@ -33,7 +31,6 @@ Theorem 1.8
 <div class="purbdiv">
 If \(\beta \subset V\) is a basis then every \(u \in V\) can be expressed in a unique way as an element of \(Span(\beta)\).
 </div>
-<br>
 Proof: Let $$u \in V$$. Let $$\beta \subset V$$ be a basis for $$V$$. We can express $$u$$ as
 <div>
 	$$
@@ -119,7 +116,6 @@ Theorem 1.9
 <div class="purbdiv">
 If \(V\) has a finite generating set, then \(V\) has a finite basis.
 </div>
-<br>
 Proof: This follows from the Refinement Theorem. If $$\{u_1,...,u_k\}$$ is a finite generating set, then we can find a subset $$\{u_{i1},...,u_{il}\}$$ which is linearly independent and has span $$Span(\{u_{i1},...,u_{ij}\}) = V$$.
 <br>
 <br>
@@ -133,7 +129,6 @@ Theorem 1.10 (Replacement Theorem)
 <div class="purbdiv">
 Suppose \(\mathcal{S} = \{s_1,...,s_n\}\) generates \(V\). If \(\ \mathcal{U} = \{u_1,...,u_k\}\) is a linearly independent subset of \(V\), then \(k \leq n\) and there is a subset \(\mathcal{T} \subset \mathcal{S}\) of size \(n-k\) such that \(Span(\mathcal{U} \cup \mathcal{T}) = V\).
 </div>
-<br>
 Notes: So here, $$\mathcal{U}$$ is a linearly independent subset of $$V$$. But this doesn't mean that it's a basis because it might need some additional vectors added to it. If we know another set $$S$$ that generates $$V$$, then there is a subset $$\mathcal{T} \subset \mathcal{S}$$ such that the span of both $$\mathcal{T}$$ and $$\mathcal{U}$$ will generate $$V$$.
 <br>
 <br>
@@ -236,7 +231,6 @@ Theorem (Corollary 1 in the book)
 <div class="purbdiv">
 If \(V\) has a finite basis, then any basis of \(V\) has the same number of elements.
 </div>
-<br>
 Proof: Let $$\beta$$ be a finite basis with $$n$$ elements. Let $$\bar{\beta}$$ be another basis. We claim that $$\bar{\beta}$$ is finite. Suppose for the sake of contradiction that it wasn't, then $$\bar{\beta}$$ contains a set $$\bar{U}$$ that contains at least $$n+1$$ linearly independent vectors. Apply the Replacement Theorem with $$\mathcal{S} = \beta, \mathcal{U} = \bar{U}$$. This means that if the number of elements in $$\bar{U}$$ is $$k$$ then $$k$$ must be less than the number of elements in $$S$$. But $$S$$ has $$n$$ elements and so $$n+1 \leq n$$ is a contradiction. Therefore, $$\bar{beta}$$ must be finite.
 <br>
 <br>
@@ -266,7 +260,6 @@ Definition
 <div class="bbdiv">
 \(V\) is finite dimensional if it has a finite basis. The number of elements in any basis for \(V\) is the dimension of \(V\). Otherwise we say \(V\) is infinite dimensional.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Examples</h3>
 <ul>
@@ -285,7 +278,6 @@ Theorem 1.11
 <div class="purbdiv">
 Let \(W\) be a subspace of \(V\). If \(V\) is finite dimensional, then \(\dim W \leq \dim V\), with \(\dim W = \dim V\) if and only if \(W = V\).
 </div>
-<br>
 Proof:
 Let $$W$$ be a subspace of $$V$$. We're given that $$V$$ is finite dimensional. Let $$\dim V = n$$. Let $$\beta_V = \{u_1, ..., u_n\}$$ be a basis for $$V$$. The goal is to find a basis for $$W$$ that has fewer elements than the basis of $$V$$. (Note here that the strategy should not be modifying the basis for $$V$$ since we don't know if these vectors are even in $$W$$. Instead we need to use another tool which is the replacement theorem.)
 <br>

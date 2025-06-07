@@ -15,7 +15,6 @@ mathjax: true
   \end{align*}
   $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>The Partial Sum Sequence</h3>
 To know anything about whether this series converges or diverges, we look at its partial sum sequence $$(s_m)$$ where $$s_m$$ is
@@ -44,7 +43,6 @@ to simplify the partial sum sequence into
   \end{align*}
   $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Convergence</h3>
 When $$r = 1$$ and $$a \neq 0$$, we have
@@ -71,7 +69,6 @@ We know $$(r^m)$$ convergences to zero (<a href="http://127.0.0.1:4000/jekyll/up
   \end{align*}
   $$
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <b>Other Definitions and Properties</b>

@@ -108,7 +108,6 @@ $$
 $$
 Unlike before, now \(\phi'(G/N) = H\) and the kernel \(ker(\varphi') = \{eN\}\) (the trivial coset of \(N\)).
 </div>
-<br>
 So we have the same conditions as before except that $$N = K$$ and the $$\phi$$ is surjective. So we can apply the homomorphism theorem from before and we'll get the same results as before. That is, a homomorphism $$\phi'$$. But now since $$\phi$$ is surjective and its image is the same as the image of $$\phi'$$, then $$\phi'$$ is also surjective. 
 <br>
 <br>

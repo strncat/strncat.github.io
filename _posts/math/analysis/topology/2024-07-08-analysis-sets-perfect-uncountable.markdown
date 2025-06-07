@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (Theorem 3.4.3) A nonempty perfect set is uncountable.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>
 If $$P$$ is perfect and nonempty, then it must be infinite because otherwise it would consist only of isolated points. Suppose for the sake of contradiction that $$P$$ is countable. This means we can write

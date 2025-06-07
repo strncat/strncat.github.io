@@ -96,7 +96,6 @@ P &= [1 t t^2 t^3][ 1 0 0 0]
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Bezier Curves of Higher Degrees</h3>
 We can keep adding more and more control points to form the curve that we want but as we add more points, it gets more expensive to calculate and also harder to manipulate as moving a single control point affects the entire curve. For this reason, instead of adding more degrees, we instead connect these bezier curves together to form a Bezier Spline!

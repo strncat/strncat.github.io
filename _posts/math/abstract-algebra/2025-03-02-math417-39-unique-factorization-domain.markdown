@@ -38,7 +38,6 @@ A domain \(R\) is such that every non-zero and non-unit can be a factored as a p
 	<li>Uniqueness: If \(a = p_1p_2,...p_m = q_1q_2...q_n\), where \(p_i,q_j\) are irreducible, then \(m = n\) and there exists \(\sigma \in S_n\) such that \(q_k = p_{\sigma(k)}u_k\) for some \(u_k \in R^{\times}, \ \forall k = 1,...,n\). So these sequences are the same up to unit and re-ordering</li>
 </ol>
 </div>
-<br>
 Example: $$R = \mathbf{Z}$$ is a UFD.
 <hr>
 

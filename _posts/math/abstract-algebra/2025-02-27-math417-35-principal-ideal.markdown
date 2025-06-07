@@ -28,7 +28,6 @@ Proposition
 <div class="peachbodydiv">
 If \(\{I_{\alpha}\}\) is a collection of ideals, then \(I = \bigcap_{\alpha} I_{\alpha}\) is an ideal. 
 </div>
-<br>
 As a consequence of this, we have the following defintion
 <br>
 <!----------------------------------------------------------------------------->
@@ -100,7 +99,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 Note that if $$R$$ is a commutative ring with identity then
 <div>
 $$

@@ -13,7 +13,6 @@ mathjax: true
   \end{align*}
   $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
 <br>

@@ -15,7 +15,6 @@ Let $$Q_8 = \{1, -1, i, i, j, -j, k, -k\}$$ be a group. We have the identities:
 	\end{align*}
 	$$
 </div>
-<br>
 $$ij = k$$ is going in a clockwise direction while $$ji = -k$$ is going in a counter clockwise direction.
 TODO: Group diagram.
 <br>
@@ -43,7 +42,6 @@ Let's study the quotient group $$Q_8 / \langle i \rangle$$. We know that it must
 	\end{align*}
 	$$
 </div>
-<br>
 <br>
 Recall, that we defined the multiplication of cosets by $$(xN)(yN)=(xy)N$$. Since we have two elements, observe that $$\langle i \rangle \langle i \rangle = \langle i \rangle$$. Multiply $$j \langle i \rangle$$ by $$\langle i \rangle$$ is just $$j \langle i \rangle$$. Remember that $$\langle i \rangle$$ acts as the identity element/coset here. So the only interesting product is $$(j\langle i \rangle) (j\langle i \rangle)$$ [TODO: add a table]
 <div>

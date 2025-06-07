@@ -36,7 +36,6 @@ Similarly, scalar multiplication also preserves $$L_m$$. So $$L_m$$ seems to inh
       <li>For any \(c \in \mathbf{R}\) and \(w \in W\), \(cw \in W\). (\(W\) is closed under scalar multiplication).</li>
 </ol>
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1: \([0, 1]\)</h3>
 Let $$W = [0, 1] \subset \mathbf{R}$$. It is not closed under addition. For example, for $$w_1 = 1$$ and $$w_2 = 1$$, $$w_1 + w_2 \notin \mathbf{R}$$. It is not closed under scalar multiplication either. $$\bar{0} \in [0,1]$$. 
@@ -55,7 +54,6 @@ $$\bar{0} \in \mathbf{Z}$$. It is closed under addition. But it is not closed un
 <div class="purbdiv">
   If \(W \subset V\) is a subspace and \(V\) is a vector space, then \(W\) is a vector space with the operations are inherited from \(V\).
 </div>
-<br>
 <b>Proof:</b>
 Let $$V$$ be a vector space and $$W \subset V$$. Since $$V$$ is a vector space, then we know it satisfies conditions (1)-(8) of vector spaces. We also know that $$W$$ satisfies properties (a)-(c) since it's a subspace of $$V$$. To verify that $$W$$ is a vector space, we need to show that it satisfies conditions (1)-(8) of vector spaces.
 <br>
@@ -155,7 +153,6 @@ $$
 <div class="bbdiv">
   \(A \in M_{n \times n}\) is symmetric if \(A = A^t\).
 </div>
-<br>
 We can show that the set of symmetric matrices in $$M_{n \times n}$$ is a subspace. Let the set of symmetric matrices in $$M_{n \times n}$$ be $$S$$. To show that $$S$$ is a subspace, we'll verify the three conditions
 <ol style="list-style-type:lower-alpha">
 <li>\(\bar{0} = \begin{bmatrix} 0... &... 0 \\ 0... &... 0 \end{bmatrix}^t\) is symmetric and therefore it is in \(S\)</li>

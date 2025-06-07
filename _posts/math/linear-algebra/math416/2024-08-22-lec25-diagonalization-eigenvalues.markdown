@@ -118,7 +118,6 @@ Theorem 1 (5.6)
 <div class="purbdiv">
 If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\)
 </div>
-<br>
 Note that the the converse is false. If the characteristic polynomial splits over $$\mathbf{R}$$, it doesn't necessarily means that $$A$$ is diagonalizable. (See example 2 above)
 <hr>
 
@@ -136,7 +135,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 This means that if $$A$$ and $$B$$ are similar, then they have the same eigenvalues.
 <br>
 <br>
@@ -254,7 +252,6 @@ Theorem 2 (5.7)
 <div class="purbdiv">
 Geometric multiplicity of \(\lambda \leq\) the algebraic multiplicity of \(\lambda\).
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
@@ -346,7 +343,6 @@ Theorem (5.8(a))
 	<li>For each eigenvalue \(\lambda\), geometric multiplicity = algebraic multiplicity</li>
 </ul>
 </div>
-<br>
 <b>Proof</b>
 <br>
 <br>

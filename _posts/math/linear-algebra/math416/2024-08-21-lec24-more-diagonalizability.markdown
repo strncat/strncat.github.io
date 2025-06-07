@@ -282,7 +282,6 @@ Lemma
 <div class="purbdiv">
 Suppose \(\lambda_1, \lambda_2\) are distinct eigenvalues of \(A\). If \(w \neq \bar{0}\) is in \(E_{\lambda_2}\), then it is not in \(E_{\lambda_1}\).
 </div>
-<br>
 <b>Proof:</b>
 <br>
 <br>
@@ -308,7 +307,6 @@ Corollary
 <div class="purbdiv">
 If \(\lambda_1 \neq \lambda_2\) and \(\beta_1, \beta_2\) are basis for \(E_{\lambda_1}\) and \(E_{\lambda_2}\) respectively, then \(\beta_1 \cup \beta_2\) is linearly independent. 
 </div>
-<br>
 This means that we didn't need to do step 3 from our algorithm to check that our eigenvectors are linearly independent. They will be! The proof for the corollary is a homework question!
 <hr>
 

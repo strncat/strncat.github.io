@@ -10,7 +10,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
 	A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
 </div>
-<br>
 <h4>Proof:</h4>
 Assume $$(x_n)$$ converges to some limit $$l$$. This means that for any $$\epsilon$$, there must exist some natural number $$N$$ such that if $$n \geq N$$, then $$x_n$$ will be in the interval $$(l -\epsilon, l + \epsilon)$$. Since we're searching for any bound, we can set $$\epsilon$$ to any value like 1. Also, whether $$l$$ is positive or negative, we can conclude that for all $$n \geq N$$ that
 <div>

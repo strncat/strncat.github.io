@@ -60,7 +60,6 @@ Theorem (a)
 <div class="purbdiv">
 \(A\) is invertible if and only if it can be written as a product of elementary matrices.
 </div>
-<br>
 <b>Proof:</b>
 <br>
 $$A$$ is invertible is equivalent to 
@@ -85,7 +84,6 @@ Theorem
 <div class="purbdiv">
 \(A, B\) are invertible if and only if \(AB\) is invertible.
 </div>
-<br>
 <br>
 <b>Proof:</b>
 <br>
@@ -123,7 +121,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <b>Proof:</b>
 <br>
@@ -267,7 +264,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem
@@ -281,7 +277,6 @@ Suppose \(F: M_{n \times n} \rightarrow \mathbf{R}\) such that
 </ol>
 Then \(F = det\)
 </div>
-<br>
 Any map with those three properties has to be the determinant!
 <hr>
 <br>

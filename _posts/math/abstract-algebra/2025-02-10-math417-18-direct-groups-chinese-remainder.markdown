@@ -59,7 +59,6 @@ Proposition
 <div class="peachbodydiv">
 Let \(G\) and \(H\) be groups. Then the size of \(G \times H\) is \(|G \times H| = |G||H|\).
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition
@@ -103,7 +102,6 @@ $$
 $$
 is a group.
 </div>
-<br>
 <h3>Example</h3>
 Let's take the previous example but slightly modify it so that $$G = \langle a \rangle$$ where $$o(a) = 2$$ and $$H = \langle b \rangle$$ with $$o(b) = 3$$. So now we're get 6 elements instead in the group
 <div>
@@ -150,7 +148,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>
@@ -213,7 +210,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 Fact: the reverse, if $$gcd(a,b) > 1$$, then $$\mathbf{Z}_a \times \mathbf{Z}_b \not\cong \mathbf{Z}_{ab}$$.
 <hr>
 
@@ -276,7 +272,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>

@@ -55,7 +55,6 @@ S \circ T = I_V \text{ and } T \circ S = I_W
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 <div>
@@ -146,7 +145,6 @@ Let \(T: V \rightarrow W\) be linear.
 	<li>\(T^{-1}\) is linear. (Theorem 2.17 in the book)</li>
 </ul>
 </div>
-<br>
 The third property is not obvious and requires a proof.
 <br>
 <br>
@@ -180,7 +178,6 @@ Theorem
 <div class="purbdiv">
 Suppose \(T: V \rightarrow W\) be linear and invertible. If \(\beta\) is a basis for \(V\), then \(T(\beta)\) is a basis for \(W\).
 </div>
-<br>
 Proof (in the case where $$V$$ and $$W$$ are finite dimensional spaces):<br>
 Let $$T: V \rightarrow W$$ be a linear and invertible map and suppose that $$\dim(V)=n$$. Choose a basis $$\beta = \{v_1, ..., v_n\}$$ for $$V$$. Consider the set of images,
 <div>
@@ -248,7 +245,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 (Study Notes:) This is really important. $$T$$ is invertible and $$V$$ having dimension $$n$$ means that $$W$$ has dimension $$n$$. Also $$T$$ is one-to-one and onto. Later we'll learn if both $$V$$ and $$W$$ have the same dimension and $$T$$ is one-to-one, then this is sufficient to conclude that $$T$$ is invertible. (next lecture).
 <br>
 <br>
@@ -263,7 +259,6 @@ Definition
 <div class="bbdiv">
 \(V\) and \(W\) are isomorphic if there is an invertible linear map \(T: V \rightarrow W\). Such a map \(T\) is called isomorphism.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 4</h3>
 $$\mathbf{R}^3$$ and $$P_2$$ are isomorphic. To see this, we need an invertible map from one to the other. The maps
@@ -308,7 +303,6 @@ Theorem
 <div class="purbdiv">
 If \(V\) is finite dimensional, then \(W\) is isomorphic to \(V\) if and only if \(\dim W = \dim V\).
 </div>
-<br>
 <b>Proof: </b>
 <br>
 $$\Rightarrow$$: If $$W$$ is isomorphic to $$T$$, then there exists an isomorphism map $$T$$. $$T$$ is onto and one-to-one because it is invertible. Therefore, $$\dim(W) = \dim(V)$$ by the corollary we stated earlier.

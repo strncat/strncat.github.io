@@ -19,7 +19,6 @@ Theorem (5.8(a))
 	<li>For each eigenvalue of \(T\), its geometric multiplicity (\(\dim(E_{\lambda})\)) = algebraic multiplicity</li>
 </ul>
 </div>
-<br>
 We mentioned last time too that if $$V$$ is over $$\mathbf{C}$$, the the characteristic polynomial always splits. Note also that you can have $$(a)$$ but not $$(b)$$. For example
 <div>
 $$
@@ -45,7 +44,6 @@ Theorem (JCF)
 <div class="purbdiv">
 Suppose \(V\) is finite dimensional. If the characteristic polynomial of \(T: V \rightarrow V\) splits, then there is a basis \(\beta\) of \(V\) such that \([T]_{\beta}^{\beta}\) is in Jordan Canonical form.
 </div>
-<br>
 But what is a Jordan Canonical form? We first define a Jordan Block as follows
 <br>
 <!------------------------------------------------------------------------------------>
@@ -107,7 +105,6 @@ A_1 & 0 & \cdots & 0 \\
 \end{align*}
 $$
 </div>
-<br>
 You can think of this matrix as more of a generalization of a diagonal matrix.
 <br>
 <br>
@@ -296,7 +293,6 @@ Theorem 1.1
 	<li>For \(\mu \neq \lambda\), the restriction of \(T - \mu I_V\) to \(K_{\lambda}\) is one-to-one.</li>
 </ol>
 </div>
-<br>
 <b>Proof</b>
 <br>
 <br>
@@ -420,7 +416,6 @@ K_{\lambda} = N((T - \lambda I_V)^m)
 \end{align*}
 $$
 </div>
-<br>
 This makes finding a basis for $$K_{\lambda}$$ simple because it's just a matter of finding the nullspace like we did before by putting the matrix in echelon form. What's next? We want these generalized eigenvectors to span $$V$$ since we want a basis. The following theorem confirms it.
 <br>
 <!------------------------------------------------------------------------------------>
@@ -436,7 +431,6 @@ x = v_1 + ... + v_k
 $$
 In other words, \(\text{span}(K_{\lambda_1} \cup ... \cup K_{\lambda_k}) = V\)
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 The next thing that we need is obviously knowing that these generalized eigenvectors are linearly independent. Once we get that we can construct the basis that we want.
 <br>

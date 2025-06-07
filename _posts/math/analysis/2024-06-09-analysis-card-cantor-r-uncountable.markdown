@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>The open interval \((0,1) = \{x \in \mathbf{R}: 0 < x < 1\}\) is uncountable.</b>
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Notes</h3>
 Cantor published this proof in 1874! It's one of the most beautiful proofs I have ever seen.

@@ -34,7 +34,6 @@ C = [0,1] \backslash \left[ \left(\frac{1}{3},\frac{2}{3}\right) \cup \left(\fra
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>How Big is \(C\)?</h3>
 One thing we know from drawing a few iterations is that the end points seem to always be included in $$C$$. For example 0 and 1 are part of $$C_0$$ and then they continue to be part of every new iteration. This doesn't help much. The easier path to knowing how big $$C$$ is is to figure out the size of what's taken out of $$C$$? It's easier because we know what we remove from $$C$$ in every iteration. So let's see what this amounts to.

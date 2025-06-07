@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (Definition 3.2.6) A point \(a \in A\) is an isolated point of \(A\) if it is not a limit point of \(A\).
 </div>
-<br>
 An isolated point always belongs to the set $$A$$ unlike a limit point where it's not necessarily an element of the set!
 <br>
 <br>
@@ -16,7 +15,6 @@ An isolated point always belongs to the set $$A$$ unlike a limit point where it'
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (Definition 3.2.7) A set \(F \subseteq \mathbf{R}\) is closed if it contains its limit points.
 </div>
-<br>
 Proof: <a href="https://strncat.github.io/jekyll/update/2024/06/26/analysis-sets-closed-contains-limit-points.html">here</a>.
 <br>
 <br>
@@ -33,7 +31,6 @@ Example 3: $$\{\mathbf{R}\} \cup \{0\}$$. This set is open since we can find a n
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (Theorem 3.2.8) A set \(F \subseteq \mathbf{R}\) is closed if and only if every Cauchy sequence contained in \(F\) has a limit that is also an element of \(F\).
 </div>
-<br>
 Proof: TODO.
 <br>
 <br>

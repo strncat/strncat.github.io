@@ -11,7 +11,6 @@ mathjax: true
 <div class="ybdiv">
   A subset \(U\) of \(V\) is called a <i>subspace</i> of \(V\) if \(U\) is also a vector space with the same additive identity, addition and scalar multiplication as on \(V\).
 </div>
-<br>
 Next are the conditions that we must verify to prove that a subset is a subspace.
 <br>
 <div class="bdiv">
@@ -26,7 +25,6 @@ Next are the conditions that we must verify to prove that a subset is a subspace
   <b>closed under multiplication</b><br>
   \(a \in \mathbf{F} and u \in U implies au \in U\).
 </div>
-<br>
 This is something that also threw me off. The example in the book defines $$S$$ as the interval $$[0,1]$$ and $$F = R$$ and so $$R^{[0,1]}$$ is the set of all functions from $$[0,1]$$ to $$R$$ or in other words, the set of real-valued functions on $$[0,1]$$.
 <br>
 <br>
@@ -46,7 +44,6 @@ What's more interesting is to know that $$F^{n}$$ (which is what we usually see)
 <div class="bbdiv">
   A vector space has a unique additive identity.
 </div>
-<br>
 <b>Proof:</b>
 Suppose $$V$$ is a vector space. Now suppose for the sake of contradiction that 0 and 0' are additive inverses of $$V$$ where $$0 \neq 0'$$. This means that
 <div>
@@ -65,7 +62,6 @@ The first equality holds because 0 is an additive identity. The second equality 
 <div class="bbdiv">
   Every element in a vector space has a unique additive inverse.
 </div>
-<br>
 <b>Proof:</b> 
 Suppose $$V$$ is a vector space. Let $$v \in V$$. Suppose for the sake of contradiction that $$v$$ has two additive inverses $$w$$ and $$w'$$ such that $$w \neq w'$$. Then
 <div>

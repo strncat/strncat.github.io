@@ -143,7 +143,6 @@ L = (I - K)^{-1}E = (I + K + K^2 + ...)E
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Power Series</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/global-illumination/00-power-series.png" width="80%" class="center"></p>
@@ -225,7 +224,6 @@ p(x) = BRDF(x) \int \cos \theta_o d\omega_o = \pi BRDF(x)
 \end{align*}
 $$
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>(Purly Diffuse) Lighting Equation</h3>

@@ -125,7 +125,6 @@ Correspondence Theorem
 <div class="yellowbodydiv">
 Let \(\varphi: G \rightarrow H\) is a surjective homomorphism and \(N = \ker(\phi)\). Then, there is a bijection correspondance between the subgroups of \(H\) and the subgroups of \(G\) which contain \(N\).
 </div>
-<br>
 Recall that by the Isomorphism Theorem, that $$H \approx G/N$$. By the previous Correspondance Theorem, we showed that subgroups of $$G/N$$ correspond to subgroups of $$G$$ containing $$N$$. So we'll have this picture
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec17/3.png" width="100%" class="center"></p>
 So we have $$H \approx G/N$$ by the Isomorphism Theorem and then we have the second part of the picture by the Correspondance Theorem.
@@ -147,7 +146,6 @@ $$
 $$
 So this homomorphism takes the \(N\) coset of \(x\) to the \(K\) coset of \(x\). From this, we get an isomorphism between \((G/N) / (K/N)\) and \(G/K\) so \((G/N) / (K/N) \approx G/K\) where \(\ker(\varphi) = K/N\).
 </div>
-<br>
 Note here that the kernel $$K/N$$ is a subgroup of $$G/N$$. The kernel consists of all the cosets in $$G/N$$ such that if we apply the homomorphism, we get the identity coset in $$G/K$$. In fact (show this (Exercise))
 <div>
 	$$
@@ -205,7 +203,6 @@ Proposition
 <div class="peachbodydiv">
 If \(A, B \leq G\), then \(AB\) is a subgroup if and only if \(AB = BA\).
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>
@@ -244,7 +241,6 @@ If \(A, N \leq G\) where \(N\) is normal, then
 	<li>\(A/N \approx A/A \cap N\).</li>
 </ol>
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec17/4.png" width="100%" class="center"></p>
 Proof in lecture notes along with an example that we will need for the next homework.

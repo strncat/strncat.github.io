@@ -15,7 +15,6 @@ A map \(T\) from a vector space \(V\) to a vector space \(W\), \(T: V \rightarro
 	<li>\(T(cv_1) = cT(v_1)\)</li>
 </ol>
 </div>
-<br>
 Remark: The two conditions can be combined together and so $$T: V \rightarrow W$$ is linear above if and only if $$T(v_1 + cv_2) = T(v_1) + cT(v_2)$$ for all $$v_1, v_2 \in V$$ and $$c \in \mathbf{R}$$.
 <br>
 <br>
@@ -74,7 +73,6 @@ Another way to do this is the following
 	\end{align*}
 	$$
 </div>
-<br>
 Remark 2: Suppose we have a linear transformation $$T: V \rightarrow W$$
 <div>
 	$$
@@ -84,7 +82,6 @@ Remark 2: Suppose we have a linear transformation $$T: V \rightarrow W$$
 	\end{align*}
 	$$
 </div>
-<br>
 This is crucial because this says that the image of a linear combination with coefficients $$a_1, ... a_k$$ is again a linear combination in the new vector space with coefficients $$a_1,...a_k$$ except that it's a linear combination of the image of the original vectors.
 <hr>
 

@@ -89,13 +89,11 @@ Iteration $$i = 1$$. We look at $$A[1] = 8$$. We have $$D[1]=1$$ and so the subs
 $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
 $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
 </div>
-<br>
 Iteration $$i = 2$$. We look at $$A[2] = 1$$. We have $$D[2]=1$$ and so the subsequence is just $$\{1\}$$. Can 1 extend any previous subsequences? We need to look at $$j = 0$$ and $$j = 1$$. It turns out that 1 will not be able to extend either subsequence.
 <div center>
 $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$
 $$D = [1, 2, 1, 1, 1, 1, 1, 1, 1]$$
 </div>
-<br>
 We continue doing so until we reach the end and we have:
 <div center>
 $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$

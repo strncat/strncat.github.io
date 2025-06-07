@@ -8,7 +8,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>If \(A\) and \(B\) are nonempty and bounded sets of real numbers such that \(A \subseteq B\) then \(\inf B \leq \inf A \leq \sup A \leq \sup B\).</b>
 </div>
-<br>
 For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 <br>
 <br>

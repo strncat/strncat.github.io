@@ -66,7 +66,6 @@ a_n
 	$$
 is the coordinate expression for \(v\) with respect to \(\beta\).
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Let $$V = \mathbf{R}^2, v = (2,1), \beta = \{(1,0), (0,1)\}$$ and $$\beta' = \{(1,1), (1,-1)\}$$.
@@ -165,7 +164,6 @@ Definition
 	\end{align*}
 	$$
 </div>
-<br>
 Remark: The column vectors of $$T$$ are the images of the basis vectors $$\beta$$ written with respect to $$\gamma$$.
 <div>
 	$$
@@ -247,7 +245,6 @@ So the final matrix is
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem 2.15(a)
@@ -267,7 +264,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 (Note: We earlier said that any linear transformation between finite dimensional vector spaces can be represented by a matrix. $$L_A$$ is a linear transformation. So what is the matrix representation of it? The claim is that as long as you use the standard basis for $$\mathbf{R}^n$$ and $$\mathbf{R}^m$$, then the representation is just $$A$$ itself!)
 <br>
 <br>
@@ -293,7 +289,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 So far, we've taken a linear transformation from a vector space $$V$$ to another $$W$$ and represented it with a matrix $$[T]_{\beta}^{\gamma}$$. Above, we can also take a matrix $$A$$ and turn it into a linear map $$L_A$$ and if we do so with the standard bases $$\mathbf{R}^n$$ and $$\mathbf{R}^m$$, we can recover the matrix $$A$$. 
 <br>
 <br>
@@ -312,7 +307,6 @@ $$
 $$
 \(T\) acts like matrix multiplication.
 </div>
-<br>
 Proof: Let $$\beta=\{v_1,...,v_n\}$$, $$\gamma=\{w_1,...,w_m\}$$. We can write $$v$$ below as a linear combination of the basis vectors in $$\beta$$. We can then apply $$T$$ which is linear.
 <div>
 $$

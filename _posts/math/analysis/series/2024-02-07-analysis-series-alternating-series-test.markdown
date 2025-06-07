@@ -15,7 +15,6 @@ mathjax: true
 	  </ol>
   Then, the alternating series \(\sum_{n=1}^{\infty} (-1)^{n+1}a_n\) converges.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Discussion</h3>
 We will prove this using the nested interval property by defining the following intervals

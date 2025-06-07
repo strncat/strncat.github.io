@@ -112,7 +112,6 @@ Suppose for some \(d \geq 1, A^d\) has all positive entries. Then
 	</li>
 </ul>
 </div>
-<br>
 $$c$$ is saying that just knowing the eigenvector corresponding to eigenvalue 1, we can predict the future. No matter what initial probability vector we're given, we know as $$k$$ approaches infinity, $$A^k$$ is just $$\begin{pmatrix} \bar{u} & \bar{u} & ... & \bar{u} \end{pmatrix}$$ and the product of this matrix with any probability vector is just $$\bar{u}$$!
 <br>
 <br>

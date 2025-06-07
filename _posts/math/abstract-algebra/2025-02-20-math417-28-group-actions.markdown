@@ -302,7 +302,6 @@ Fact
 <div class="peachbodydiv">
 The conjugacy class of an element \(g\) is all elements of the same cycle type of \(g\).
 </div>
-<br>
 For example, consider $$S_4$$. Take the cycle type $$(a \ b)$$. There are $$\binom{4}{2} = 6$$ choices for the two elements. We can arrange them in $$2!$$ but we need to divide by 2 since $$(a \ b) = (b \ a)$$. Therefore, we have $$6 * 2! / 2 = 6$$ distinct permutations. We can consider $$(a \ b \ c)$$ next. We have 4 choices for the elements but we need to multiply by $$3!$$ and divide by 3 to get 8. For $$(a \ b)(c \ d)$$. We have $$binom{4}{2}$$ for the first cycle but then we need to multiply by $$2!$$ and divide by 2. So we get 6 elements. For the second cycle, we have $$\binom{2}{2}*2!/2 = 1$$ element. But then we also need to divide by $$2$$ since $$(a \ b)(c \ d) = (c \ d)(a \ b)$$. So the total is $$6 * 1 / 2 = 3$$.
 <br>
 <div>

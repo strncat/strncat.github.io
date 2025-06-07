@@ -59,7 +59,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>(3) Perspective Transformation</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/virtual-world/04-prespective.png" width="60%" class="center"></p>
@@ -213,7 +212,6 @@ z \\
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>

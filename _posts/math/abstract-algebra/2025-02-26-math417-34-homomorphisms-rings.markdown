@@ -29,7 +29,6 @@ Definition: Homomorphisms of Rings
 <div class="mintbodydiv">
 Let \(R\) and \(S\) be rings. A unital homomorphism is a ring homomorphism such that also \(\varphi(1_R) = 1_S\)
 </div>
-<br>
 <h3>Example 1</h3>
 Let $$\pi: \mathbf{Z} \rightarrow \mathbf{Z}_n$$ where $$\pi(a) = [a]_n$$. Then $$\pi$$ is a unital homomorphism of rings.
 <br>
@@ -57,7 +56,6 @@ Definition: Isomorphism of Rings
 <div class="mintbodydiv">
 Let \(R\) and \(S\) be rings. An Isomorphism of rings is a homomorphism of rings which is also a bijection.
 </div>
-<br>
 Since an isomorphism is a bijection, this means that we have an inverse function $$\varphi^{-1}: S \rightarrow R$$ that is also an isomorphism of rings
 <!------------------------------------------------------------------------->
 <br>
@@ -67,7 +65,6 @@ Definition: Automorphism of Rings
 <div class="mintbodydiv">
 Let \(R\) be a ring. An Automorphism \(\varphi: R \rightarrow R\) is an isomorphism of the ring to itself.
 </div>
-<br>
 <!------------------------------------------------------------------------->
 For example, take the set of matrices such that 
 <div>
@@ -121,7 +118,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!---------------------------------------------------------------------->
 This means given some unital homomorphism between the two rings. Then
 <ul>
@@ -233,7 +229,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 Fact: $$\ker(\varphi)$$ is an ideal in $$R$$. 
 <hr>
 

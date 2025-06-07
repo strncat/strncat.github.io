@@ -16,7 +16,6 @@ Let \(A \in M_{n \times n}\). If we perform the following row operations
 	<li>\(A \xrightarrow{R_i \rightarrow R_i + cR_j} B \), then \(\det(B) = -\det(A)\)</li>	
 </ol>
 </div>
-<br>
 We will only need to use Theorem 1 and Corollary 2 from last lecture to prove this result!
 <br>
 <br>
@@ -78,7 +77,6 @@ Definition
 <div class="bbdiv">
 \(A \in M_{n \times n }\) is upper(lower) triangular if all entries below (above) diagonal are zero.
 </div>
-<br>
 For example any $$n \times n$$ matrix in REF is upper triangular. One reason why the Upper/Lower triangular matrices are interesting is the following theorem.
 <br>
 <!------------------------------------------------------------------------------------>
@@ -238,7 +236,6 @@ This operation will not further change the value of the determinant. So now we c
 	\end{align*}
 	$$
 </div>
-<br>
 <!-------------------------------------------------------------------------->
 <h3>Comparisons</h3>
 Computing $$\det(A)$$ for $$A \in M_{n \times n}$$ using the inductive formula is roughly $$n!$$ operations. Using row operations, it is roughly $$n^3$$ operations.

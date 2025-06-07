@@ -22,7 +22,6 @@ The range (image) of \(T\) is
 	\end{align*}
 	$$
 </div>
-<br>
 Notes: So the null space is any vector that the transformation turns it into the zero vector. The range just like the definition is the set of the images of all the vectors in $$V$$. If all the vectors have an image, then the range is equal to the codomain and that's when the transformation is onto.
 <br>
 <!------------------------------------------------------------------------------------>
@@ -40,7 +39,6 @@ Theorem 2.1
 <div class="purbdiv">
 If \( \ T: V \rightarrow W\) is linear then \(N(T)\) is a subspace of \(V\) and \(R(T)\) is a subspace of \(W\).
 </div>
-<br>
 Proof:
 <br>
 We need to verify the three subspaces properties. To prove that $$R(T)$$ is a subspace:
@@ -86,7 +84,6 @@ If \( \ T: V \rightarrow W\) is linear and \(V\) is finite dimensional, then
 		\end{align*}
 		$$
 </div>
-<br>
 We know that $$N(T)$$ is a subspace of $$V$$. This means that $$\dim(N(T)) \leq \dim(V)$$. This theorem tells us that the difference $$\dim(V) - \dim(N(T))$$ is the dimension of $$R(T)$$. Even if $$W$$ is an infinite dimensional space, we know from linearity, it is finite dimensional. Typically, $$\dim(R(T))$$ is called the rank of $$T$$ and $$\dim(N(T))$$ is called the nullity of $$T$$.
 <br>
 <br>
@@ -223,7 +220,6 @@ Definition
 	\end{align*}
 	$$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
 Definition
@@ -236,7 +232,6 @@ Definition
 	\end{align*}
 	$$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem
@@ -244,7 +239,6 @@ Theorem
 <div class="purbdiv">
 If \(T: V \rightarrow W\) is linear, then \(T\) is 1-1 if and only if \(N(T)=\{\bar{0}_V\}\)
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
 Theorem
@@ -257,7 +251,6 @@ Let \(T: V \rightarrow W\) be a linear map between vector spaces of the same fin
 	<li> \(rank(T) = \dim(V)\). </li>
 </ul>
 </div>
-<br>
 Note here that $$rank(T) = \dim(R(T))$$.
 <hr>
 

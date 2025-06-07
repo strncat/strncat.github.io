@@ -12,7 +12,6 @@ Theorem 2.17 (Corollary)
 <div class="purbdiv">
 If \(T: V \rightarrow W\) is invertible, then \(V\) is finite dimensional if and only if \(W\) is finite dimensional. In this case \(\dim V = \dim W\)
 </div>
-<br>
 Proof:
 <br>
 <br>

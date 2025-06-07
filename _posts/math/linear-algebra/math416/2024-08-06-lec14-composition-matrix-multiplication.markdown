@@ -17,7 +17,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 FACT: The set of linear transformations $$\mathcal{L}(V, W)$$ is a vector space. We can think of this as a way to get a new vector space from two vector spaces $$W$$ and $$V$$.
 <br>
 <br>
@@ -35,7 +34,6 @@ x &\rightarrow T(S(x))
 \end{align*}
 $$
 </div>
-<br>
 Next, we will show that the composition of two linear transformations is also linear!
 <br>
 <div class="purdiv">
@@ -44,7 +42,6 @@ Theorem
 <div class="purbdiv">
 \(T \circ S: X \rightarrow Z\) is linear (\(T \circ S \in \mathcal{L}(X, Z))\) 
 </div>
-<br>
 Proof: We want to show that
 <div>
 $$
@@ -97,7 +94,6 @@ AB &= A \begin{pmatrix} | &  & | \\ \bar{b}_1 & ... & \bar{b}_p \\ | &  & |  \en
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 <div>
@@ -151,7 +147,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 In other words, the composition of the linear transformations $$S$$ and $$T$$ is equal to the matrix multiplication of the two matrices representing these linear transformations.
 <br>
 <h3>Proof</h3>
@@ -311,7 +306,6 @@ Theorem
 	<li>Not commutative. In general \(AB \neq BA\)</li>
 </ol>
 </div>
-<br>
 <b>Proof (b):</b>
 <br> 
 As a reminder we know that $$(AB)_{ij} = \sum_{k=1}^n A_{ik}B_{kj}$$. We also know that $$B+C$$ is just summing the matching coordinates from each matrix, $$B_{ij} + C_{ij}$$. Now, expand $$A(B+C)$$.

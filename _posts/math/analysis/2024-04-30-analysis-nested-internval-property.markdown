@@ -16,7 +16,6 @@ mathjax: true
 </div>
 has a nonempty intersection; that is, \(\bigcap_{n=1}^{\infty} I_n \neq \emptyset.\)
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 <br>

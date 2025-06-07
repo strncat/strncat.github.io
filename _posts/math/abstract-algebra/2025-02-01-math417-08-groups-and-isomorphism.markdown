@@ -38,7 +38,6 @@ Proposition
 <div class="peachbodydiv">
 The identity element is unique.
 </div>
-<br>
 <b>Proof</b>
 <br>
 Let $$e$$ and $$e'$$ be identity elements. Then by definition for any $$x, y \in G$$
@@ -69,7 +68,6 @@ Proposition
 <div class="peachbodydiv">
 Inverses in a group are unique.
 </div>
-<br>
 <!---------------------------------------------------------------------->
 <b>Proof</b>
 <br>
@@ -91,7 +89,6 @@ Proposition (2.1.2)
 <div class="peachbodydiv">
 Let \(G\) be a group and let \(a, b \in G\). If \(ab = e\), then \(a = b^{-1}\). Likewise, if \(ba = e\), then \(b = a^{-1}\).
 </div>
-<br>
 By definition, $$b$$ an inverse of $$a$$ if $$ab = ba = e$$ so it's an inverse on both sides. This proposition proposes that checking only one side is enough. That is if $$ab = e$$, then $$a = b^{-1}$$ and $$b$$ is the inverse. So what we want to show here is that given $$ba = e$$, then $$b$$ is the inverse of $$a$$. We don't check the other side. One side is enough to imply the other.
 <br>
 <br>
@@ -145,7 +142,6 @@ Suppose now that $$gh = e$$, then
 	$$
 </div>
 <br>
-<br>
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Corollary 2.1.3
@@ -153,7 +149,6 @@ Corollary 2.1.3
 <div class="peachbodydiv">
 Let \(g\) be an element of a group \(G\). We have \(g = (g^{-1})^{-1}\)
 </div>
-<br>
 <b>Proof</b>
 <br>
 We know $$gg^{-1} = e$$. By (2.1.2) $$g = (g^{-1})^{-1}$$. $$\ \blacksquare$$
@@ -166,7 +161,6 @@ Proposition 2.1.4
 <div class="peachbodydiv">
 Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{-1}\)
 </div>
-<br>
 <b>Proof</b>
 <br>
 Notice that $$(ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e$$. Therefore, $$(ab)^{-1} = b^{-1}a^{-1}$$.
@@ -214,7 +208,6 @@ Corollary 2.1.6
 <div class="peachbodydiv">
 Let \(G\) be a group and let \(a\) and \(b\) be elements of \(G\). The equation \(ax = b\) has a unique solution \(x\) in \(G\). and likewise the equation \(xa = b\) has a unique solution in \(G\).
 </div>
-<br>
 <b>Proof</b>
 <br>
 For $$ax = b$$ to have a solution. The map $$L_a$$ needs to be onto or surjective. For the solution to be unique, the map needs to be one to one or injective. Similarly for $$xa = b$$ to have a solution, we want $$R_a$$ to be a bijective. Since we proved earlier that $$L_a$$ and $$R_a$$ are bijections, then both equations have unique solutions. $$\ \blacksquare$$
@@ -229,7 +222,6 @@ Corollary 2.1.7 (Cancellation)
 <div class="peachbodydiv">
 Suppose \(a, x, y\) are elements of a group \(G\). If \(ax = ay\), then \(x = y\). Similarly, if \(xa = ya\), then \(x = y\).
 </div>
-<br>
 <b>Proof</b>
 <br>
 Suppose $$ax = ay$$. We know that $$L_a(x) = ax$$ is one to one. So for any elements $$x, y \in G$$, $$ax = ay$$ must imply that $$x = y$$ by definition of a one to one or injective map. A similar arguments shows that if $$xa = ya$$ must imply that $$x = y$$ by the injectivity of $$R_a$$. $$\ \blacksquare$$
@@ -243,7 +235,6 @@ Corollary 2.1.8
 <div class="peachbodydiv">
 If \(G\) is a finite group, each row and each column of the multiplication table of \(G\) contains each element of \(G\) exactly once.
 </div>
-<br>
 <b>Proof (book)</b>
 <br>
 A row in the multiplication table can be represented by a left multiplication map $$G \rightarrow G$$ if you fix the element multiplied on the left. We know the left multiplication map is a bijection. Therefore every element/result must be unique and each element of $$G$$ must show up in the row. Similarly, each column can be represented by a right multiplication map. The map is a bijection and so each element must be unique and shown exactly once. (TODO clean up this proof)
@@ -352,7 +343,6 @@ Proposition
 	\end{align*}
 	$$
 </div>
-<br>
 <b>Proof (1)</b>
 <br>
 By induction on $$n$$. <br>
@@ -369,7 +359,6 @@ Inductive Case: Suppose the inductive hypothesis is true for $$n$$. That is $$a^
 	\end{align*}
 	$$
 </div>
-<br>
 <b>Proof (2)</b>
 By induction on $$n$$. <br>
 Base Case $$(n = 1)$$: $$(a^{m})^1 = a^{m}$$.
@@ -409,7 +398,6 @@ where the first multiplication is in \(G\) while the second is in \(H\).<br>
  The map \(\varphi\) is called an isomorphism.
 </div>
 <br>
-<br>
 We write $$H \approx G$$ for $$G$$ is isomorphic to $$H$$.
 <br>
 <br>
@@ -446,7 +434,6 @@ An an example consider the group of symmetries of the equilateral triangle $$D_3
   </tr>
 </table>
 </div>
-<br>
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition
@@ -454,7 +441,6 @@ Proposition
 <div class="peachbodydiv">
 	If \(\varphi:G \rightarrow H\) is an isomorphism, then \(\varphi^{-1}: G \rightarrow H\) is also an isomorphism.
 </div>
-<br>
 <b>Proof</b>
 <br>
 Let $$a', b' \in H$$. We want to show that 
@@ -499,7 +485,6 @@ Definition 2.1.10
 The order of a group is its size or cardinality. We will denote the order of a group \(G\) by \(|G|\).
 </div>
 <br>
-<br>
 One interesting thing to do is to classify all groups of a given finite order. If we do that for small sizes, we get
 <!--------------------------------------------------------------------->
 <ol>
@@ -519,7 +504,6 @@ Proposition
 <div class="peachbodydiv">
 If \(G \approx H\), then \(G\) is abelian if and only if \(H\) is abelian.
 </div>
-<br>
 <b>Proof (Lecture Notes)</b>
 <br>
 Suppose that $$\phi: G \rightarrow H$$ is an isomorphism. Furthermore, let $$a, b \in G$$ and $$a', b' \in H$$ such that $$\phi^{-1}(a') = a$$ and $$\phi^{-1}(b') = b'$$. We will prove both directions of the statement.
@@ -570,7 +554,6 @@ Proposition 2.1.18
 <div class="peachbodydiv">
 If \(\phi : G \rightarrow H\) is an isomorphism, then \(\phi(e_G) = e_H\), and for each \(g \in G\), \(\phi(g^{-1}) = \phi(g)^{-1}\)
 </div>
-<br>
 <b>Proof</b>
 <br>
 Since $$\phi$$ is an isomorphism, then we know that for each $$h \in H$$, there is a $$g \in G$$ such that $$\phi(g) = h$$. Therefore,

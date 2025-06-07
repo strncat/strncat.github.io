@@ -41,7 +41,6 @@ such that
 	<li>\(\langle x, x \rangle > 0 \text{ if } x \neq \bar{0}\)</li>
 </ol>
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 The simplest example is $$V = \mathbf{R}^1$$ (vector space over $$\mathbf{R}$$) where
@@ -233,7 +232,6 @@ Definition
 An inner product space is a vector space is a vector space \(V\) with a fixed inner product.
 </div>
 <br>
-<br>
 Example: ($$\mathbf{R}^2, \langle x,y \rangle = x_1y_1 + x_2y_2$$) is an inner product space different from $$(\mathbf{R}^2, \langle x,y \rangle = 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2)$$
 <hr>
 
@@ -254,7 +252,6 @@ Let \(V, \langle \ , \ \rangle\) be an inner product space. The length (or norm)
 		$$
 </div>
 <br>
-<br>
 Example $$V = \mathbf{C}^0([0,1])$$, Let $$\Vert f \Vert: (\int_0^1 f(t)^2 dt)^{1/2}$$. This is also called the $$L^2$$-norm.
 <br>
 <br>
@@ -266,7 +263,6 @@ Definition
 The distance between \(x, y\) in \(V\) is \(\Vert x - y \Vert\)
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <div class="bdiv">
 Definition
@@ -274,7 +270,6 @@ Definition
 <div class="bbdiv">
 The sphere of radius \(r\) and center \(x \in V\) is \(\{y \in V \ | \ \Vert x - y \Vert = r \}\)
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 <div class="purdiv">
@@ -290,7 +285,6 @@ For any \(x, y \in V\) and \(c \in \mathbf{F}\)
 	
 </ol>
 </div>
-<br>
 <br>
 <!------------------------------------------------------------------------------------>
 The proof for (a) and (b) follow easily. For (c). The motivation is from $$\mathbf{R}^2$$ with the standard inner product. 
@@ -341,7 +335,6 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <b>Proof (d)</b>
 <br>

@@ -18,7 +18,6 @@ a \equiv b \bmod n \quad \text{or} \quad a \equiv_n b
 $$
 if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbf{Z}\) such that \(a - b = tn\)
 </div>
-<br>
 Example: $$(1 \bmod 7) = (8 \bmod 7) = 1$$. Therefore, $$1 \equiv_7 8$$.
 <br>
 <br>
@@ -36,7 +35,6 @@ $$
 $$
 The set \([a]\) is called the residue class or congruence class of \(a\) modulo \(n\).
 </div>
-<br>
 Example: $$[2]_6 = \{2 + 6y \ | \ y \in \mathbf{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}$$
 <br>
 $$[2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....$$
@@ -75,7 +73,6 @@ Lemma (Book 1.7.2)
 	<li>Transitive: For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \bmod n\) and \(b \equiv c \bmod n\), then \(a \equiv c \bmod n\).</li>
 </ol>
 </div>
-<br>
 <!------------------------------------------------------------------------------>
 <b>Proof (book)</b>
 <br>
@@ -99,7 +96,6 @@ For \(a, b \in \mathbf{Z}\), the following are equivalent:
 	<li>\([a]_n \cap [b]_n \neq \emptyset\).</li>
 </ol>
 </div>
-<br>
 <!------------------------------------------------------------------------------>
 <b>Proof (Book):</b>
 <br>
@@ -142,7 +138,6 @@ ab &\equiv a'b' \bmod n
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
@@ -165,7 +160,6 @@ Definition
 	$$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------>
 So now we can use the operations we defined previously to turn this set into a commutative ring.
 <br>
@@ -182,7 +176,6 @@ Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by
 	\end{align*}
 	$$
 </div>
-<br>
 $$(\mathbf{Z}_n,+,\cdot)$$ is commutative ring with identity while $$(\mathbf{Z}_n,\cdot)$$ is a commutative monoid. $$[1]$$ is the identity element.
 <br>
 <br>
@@ -196,7 +189,6 @@ Proposition
 <div class="peachbodydiv">
 Let \(n \geq 1, a \in \mathbf{Z}\). Then \([a]\) has a multiplicative inverse in \(\mathbf{Z}\) if and only if \(gcd(a,n) = 1\).
 </div>
-<br>
 <!------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
@@ -210,7 +202,6 @@ ar + ns = 1 &\Longleftrightarrow ar = 1 + (-s)n \quad \text{ (so $ar$ and 1 diff
 \end{align*}
 $$
 </div>
-<br>
 <!------------------------------------------------------------------------------>
 We will use $$\phi(n) = \{x \in \mathbf{Z}_n \ | \ x \text{ has a multiplicative inverse}\} \in \mathbf{Z}_n$$. 
 <br>
@@ -235,7 +226,6 @@ Theorem (Binomial Theorem)
 	$$
 	where \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\) for \(a \leq k \leq n\)
 </div>
-<br>
 <b>Proof</b>
 <br>
 Use Pascal's Identity: $$\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}$$... TODO
@@ -256,7 +246,6 @@ Let \(p\) be prime. For all \(a, b \in \mathbf{Z}\):
 	\end{align*}
 	$$
 </div>
-<br>
 <br>
 First observe that $$(a+b)^5 = a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5$$. So those middle terms all have coefficients divisible by 5. Therefore, they'll go away if we apply mod $$5$$. This happens when $$p$$ is prime.
 <br>
@@ -338,7 +327,6 @@ Base Case (\(a = -1\)):  We need to show that \((-1)^p \equiv -1 \bmod p\). \(p\
 <br>
 Inductive Case (\(a < -1\)): We want to show that \(a^p \equiv a\) implies \((a - 1)^p = a - 1\).
 </div>
-<br>
 <!------------------------------------------------------------------------>
 <b>Proof of (2)</b>
 <br>

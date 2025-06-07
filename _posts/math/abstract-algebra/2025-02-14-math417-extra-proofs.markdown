@@ -13,7 +13,6 @@ Proposition
 <div class="peachbodydiv">
 Suppose \((x,y) \in G_1 \times G_2\) and that the order of the elements are \(|x| = r\) and \(|y| = s\). Then the order of \((x,y)\) is \(lcm(r,s)\)
 </div>
-<br>
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>
@@ -45,7 +44,6 @@ Proposition
 <div class="peachbodydiv">
 \(\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}\) if and only if \(gcd(m,n) = 1\)
 </div>
-<br>
 This says if you take the product of two cyclic groups, then their product is cyclic if and only if $$m$$ and $$n$$ are relatively prime.
 <br>
 <br>

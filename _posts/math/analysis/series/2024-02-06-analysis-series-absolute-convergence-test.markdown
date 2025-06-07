@@ -10,7 +10,6 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   If the series \(\sum_{n=1}^{\infty}|a_n|\) converges, then \(\sum_{n=1}^{\infty} a_n\) converges as well.
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>
 Given the series $$\sum_{n=1}^{\infty}|a_n|$$ converges, we know that for any $$\epsilon > 0$$, there must exist a number $$N \in \mathbf{N}$$ such that whenever $$n > m \geq N$$,

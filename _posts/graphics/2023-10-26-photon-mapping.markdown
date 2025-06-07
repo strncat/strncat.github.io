@@ -103,7 +103,6 @@ F_N &= (b -a) \frac{\sum_{i=1}^N f(X_i)}{N}
 $$
 </div>
 <br>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Photon Emission</h3>
 Photon Strength: We'll choose some number of photons and divide them amongst the lights (based on relative power). Photons all have the same power but brighter lights will just have more photons. 

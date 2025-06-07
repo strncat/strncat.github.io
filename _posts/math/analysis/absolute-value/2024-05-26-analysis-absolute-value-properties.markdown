@@ -17,20 +17,17 @@ Some definitions worth keeping in mind while studying for the next of proofs.
   \end{equation*}
   $$
 </div>
-<br>
 <!------------------------------------------------------------------------------------>
 <h3>Properties</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \(x \in \mathbf{R}\), \(|x| \geq 0\).
 </div>
-<br>
 For the proof, see <a href="https://strncat.github.io/jekyll/update/2024/04/25/analysis-absolute-value-pr1.html">this</a>. 
 <br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \(x \in \mathbf{R}\), \(-|x| \leq x \leq |x|\).
 </div>
-<br>
 For the proof, see <a href="https://strncat.github.io/jekyll/update/2024/04/26/analysis-absolute-value-pr2.html">this</a>. 
 <br>
 <!------------------------------------------------------------------------------------>

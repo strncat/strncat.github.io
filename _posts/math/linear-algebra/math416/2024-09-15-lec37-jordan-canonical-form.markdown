@@ -69,8 +69,6 @@ $$
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 So they're almost diagonal but not really. For example, for a $$2 \times 2$$ and $$3 \times 3$$ matrices, a Jordan block looks like
 <div>
 $$
@@ -271,8 +269,6 @@ $$
 $$
 for some integer \(p > 0\)
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 Observation: When $$p$$ is the smallest integer for which $$(T - \lambda I_V)^p(x) = \bar{0}_V$$, then $$y = (T - \lambda I_V)^{p-1}(x)$$ is an eigenvector. 
 <br>
 <br>
@@ -291,8 +287,6 @@ K_{\lambda} = \{x \in V : (T - \lambda I_V)^p(x) = \bar{0}_V \text{ for some } p
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 <div class="purdiv">
 Theorem 1.1
 </div>
@@ -457,8 +451,6 @@ Let \(\beta_j\) be a basis for \(K_{\lambda_j}\). Then
 	<li>\(\dim(K_{\lambda_j}) = \) algebraic multiplicity of \(\lambda_j \) </li>
 </ol>
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 <b>Proof</b>
 <br>
 <br>

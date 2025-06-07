@@ -54,8 +54,6 @@ $$
 <br>
 If \(\{u_1,...,u_k\}\) is an orthonormal basis for \(W\), then \(w = \langle x, u_1 \rangle + ... + \langle x, u_k \rangle u_k\)
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 (TODO: Add pic)
 <br>
 <b>Proof</b>
@@ -125,8 +123,6 @@ proj_W(x) = w
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 <br>
 It also has a special geometric interpretation. It is the closest vector to $$x$$ in $$W$$.
 <br>
@@ -300,8 +296,6 @@ L_{A^*}: \ \mathbf{F}^m \rightarrow  \mathbf{F}^n
 $$
 In other words, \((L_A)^* = L_{A^*}\)
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 <br>
 <b>Proof</b>
 <br>
@@ -344,8 +338,6 @@ $$
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 This is great but we still need another result before we are ready to prove theorem 3.
 <br>
 <br>

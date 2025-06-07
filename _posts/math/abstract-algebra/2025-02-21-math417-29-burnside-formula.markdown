@@ -57,8 +57,6 @@ Action by \(G\) on \(X\)
 <div class="mintbodydiv">
 Given \(g \in G\), let \(\text{Fix}(g) = \{x \in X \ | \ gx = x \} \subseteq X \) be the set of elements fixed by \(g\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 For example $$Fix(e) = X$$. Now,
 <br>
 <!----------------------------------------------------------------------------->

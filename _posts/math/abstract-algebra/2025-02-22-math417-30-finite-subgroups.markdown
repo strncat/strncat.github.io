@@ -28,8 +28,6 @@ Theorem
 <div class="yellowbodydiv">
 Every finite subgroup of \(SO(3)\) is in the list above.
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <b>Proof</b>
 <br>
 $$SO(3)$$ acts on $$\mathbf{R}^3$$ (we multiply a matrix in $$SO(3)$$ by a vector in $$\mathbf{R}^3$$). So now suppose that $$G$$ is a subgroup of $$SO(3)$$. $$G$$ acts on $$\mathbf{R}^3$$. We'll focus on the pole subset in $$\mathbf{R}^3$$. What is a poll?

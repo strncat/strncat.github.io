@@ -25,8 +25,6 @@ $$
 $$
 is a group. The identity element \(e_{G \times H} = (e_G, e_H)\) and the inverse of \((g,h)\) is \((g^{-1},h^{-1})\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 You can verify that this is indeed a group (Exercise).
 <hr>
 
@@ -69,8 +67,6 @@ Proposition
 <div class="peachbodydiv">
 Let \(G_1 \cong G_2\) and \(H_1 \cong H_2\) be groups. Then \(G_1 \times H_1 \cong G_2 \times H_2\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <b>Proof</b>
 <br>
 To show that two groups are isomorphic, we need to provide an isomorphism between the two groups. Since we know that $$G_1$$ and $$G_2$$ are isomorphic, then let $$\alpha : G_1 \rightarrow G_2$$ be an isomorphism. Similarly, since $$H_1$$ and $$H_2$$ are isomorphic, then let $$\beta : H_1 \rightarrow H_2$$ be an isomorphism. Then we claim that
@@ -258,8 +254,6 @@ $$
 $$
 where \(m = a_1a_2....a_r\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 For example: $$\mathbf{Z}_{240} = \mathbf{Z}_{16} \times \mathbf{Z}_3 \times \mathbf{Z}_5$$
 <hr>
 

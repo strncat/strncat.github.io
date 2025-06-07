@@ -55,8 +55,6 @@ where \(k \geq 0, r_1 \geq 1, p_1,p_2,...,p_k\) are primes. (not necessarily dis
 <br>
 Furthermore, the list \(p_1^{r_1}, p_2^{r_2}, ..., p_k^{r_k}\) of elementary divisors is unique up to re-ordering.
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 So $$G$$ is isomorphic to only one direct product of cyclic prime orders (up to re-ordering). This means that if $$G$$ is isomorphic to a direct products of prime orders and it's also isomorphic to another direct products of prime orders. Then, the prime numbers must be exactly the same up to re-ordering. 
 <br>
 <br>
@@ -87,8 +85,6 @@ where \(s \geq 0, a_1 \geq 2\) and \(a_i \ | \ a_{i+1}\).
 <br>
 Furthermore, the list \(a_1, a_2,...,a_s\) of "Invariant Factors" is unique.
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Note that we don't need to add up to re-ordering here since the condition $$a_i \ | \ a_{i+1}$$ forces it to be in one particular unique order.
 <br>
 <br>
@@ -340,8 +336,6 @@ Proposition 1
 <div class="peachbodydiv">
 If \(G\) and \(H\) are finite groups and if \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\)
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 We say that $$\alpha_m$$ is an isomorphism invariant of finite groups. Recall that $$\alpha_m$$ is the number of elements that are the identity when raised to the power $$m$$. So this says if $$G$$ and $$H$$ isomorphic, then they'll have the same number of those elements. This makes sense since we know if they are isomorphic, then each group will have the same number of elements of each order. The orders must match.
 <br>
 <br>
@@ -393,8 +387,6 @@ If \(G = G_1 \times G_2 \times ... \times G_k\) where \(G_i\) is a finite group,
 	\end{align*}
 	$$
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <b>Proof</b>
 Since now we have a direct product, then 
 <div>
@@ -419,8 +411,6 @@ If \(G = \mathbf{Z}_n\) (G is cyclic) where \(n \geq 1\), then
 	\end{align*}
 	$$
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 So when the group is cyclic, then the number of elements which become the identity when raised to the power $$m$$ is exactly $$d$$ where $$d$$ is the gcd of $$m$$ and $$n = |G|$$.
 <br>
 <br>

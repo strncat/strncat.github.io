@@ -200,8 +200,6 @@ An ideal in \(R\) is a subset \(I \subseteq R\) such that
 	<li>If \(a \in I, r \in R\), then \(ra, ar \in I\) so it is also closed under multiplication.</li>
 </ol>
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 So it's not just a subring. It's more special because of the closure under the product. Warning: This definition is also reffered as a "Two Sided Ideal". Because we do have another variant where we only require half the second condition (left and right ideals).
 <br>
 <br>

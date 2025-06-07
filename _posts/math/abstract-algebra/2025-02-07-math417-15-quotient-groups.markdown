@@ -18,8 +18,6 @@ b = ah \quad \text{ for some } h \in H
 $$
 In other words, \(a \sim_H b\) if \(a^{-1}b \in H\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 We claim that $$\sim_H$$ is an equivalence relation. [Exercise: Prove it]
 <br>
 <br>
@@ -117,8 +115,6 @@ aN \cdot bN = (ab)N
 \end{align*}
 $$
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 The goal is to show that $$(G / N, \cdot)$$ is a group. But first we need to show that the operation we defined is well-defined (We also want to show that this operation is a homomorphism later). So we need to show that if $$aN = a'N$$ and $$bN = b'N$$, then $$(ab)N = (a'b')N$$.
 <br>
 <br>
@@ -363,8 +359,6 @@ Fact
 <div class="peachbodydiv">
 \(\forall \ \sigma, \tau \in S_n\), \(\tau\) and \(\sigma \tau \sigma^{-1}\) have the same cycle type.
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Fact

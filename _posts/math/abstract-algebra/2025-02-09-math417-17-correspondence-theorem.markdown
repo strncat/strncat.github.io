@@ -33,8 +33,6 @@ B \leq G/N \longrightarrow \pi^{-1}B
 \end{align*}
 $$
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Recall that we defined the quotient homomorphism to be 
 <div>
 $$
@@ -174,8 +172,6 @@ BA &= \{ba \ | \ b \in B, a \in A \} \subseteq G.
 \end{align*}
 $$
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 If $$A$$ and $$B$$ are subgroups of $$G$$, then we can have $$AB \neq BA$$. We can also have $$AB$$ and $$BA$$ not be subgroups themselves.
 <hr>
 

@@ -31,8 +31,6 @@ Proposition
 <div class="peachbodydiv">
 If \(G \cong H\), \(G\) is finitely generated if and only if \(H\) is finitely generated.
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 So being finitely generated is isomorphism invariant. What we want to prove is the following
 <br>
 <!----------------------------------------------------------------------------->
@@ -300,8 +298,6 @@ Definition
 <div class="mintbodydiv">
 \(G\) is a free abelian group if it is abelian and there exists a basis.
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Example 1: $$G = Q^{\times}/\{\pm 1\}$$ with multiplication is a free abelian group. It has an infinite basis
 <div>
 	$$

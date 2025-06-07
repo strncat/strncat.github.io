@@ -73,8 +73,6 @@ Given some homomorphism \(\varphi: G \rightarrow H\). The image of this function
 	$$
 is a subgroup of \(H\).
 </div>
-<!------------------------------------------------------------------------------>
-<br>
 <b>Proof</b>
 <br>
 TODO

@@ -24,8 +24,6 @@ be the set of all \(I\)-cosets in \(R\) with operations:
 	<li>Multiplication: \((a + I) + (b + I) = (ab) + I\).</li>
 </ol>
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Note that there are other notations used for $$I + a$$. One notation is $$[a]$$ or $$\bar{a}$$.
 <br>
 <br>
@@ -111,8 +109,6 @@ Proposition
 <div class="peachbodydiv">
 Every element in \(S\) has the form \(r + I\) for some unique \(r \in K[x]\) such that \(\deg(r) < n\). 
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <b>Proof</b>
 <br>
 Use division with remainder. If $$g + I \in S$$ where $$g \in K[x]$$, then there exists unique $$q, r \in K[x]$$ such that $$g = qf + r$$ where $$\deg(r) < n = \deg(f)$$. This means we can write $$g - r = qf$$. We know that $$qf \in I$$ since it's a multiple of $$f$$. Since $$g - r = qf$$, then $$g-r$$ is also in $$I$$. This implies that $$g$$ and $$r$$ are in the same $$I$$-coset. Therefore $$g+I = r+I$$. $$\blacksquare$$.

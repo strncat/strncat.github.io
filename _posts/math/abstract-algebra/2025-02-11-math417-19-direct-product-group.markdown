@@ -25,8 +25,6 @@ $$
 $$
 is a group. The identity element \(e_{A \times B} = (a_G, b_H)\) and the inverse of \((a,b)\) is \((a^{-1},b^{-1})\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Observation: $$A' = \{(a,e_{b}) \ | \ a \in A \}$$ and $$B' = \{(e_a,b) \ | \ b \in B \}$$ are subgroups of $$G$$. Moreover, $$A'$$ is isomorphic to $$A$$ and $$B'$$ is isomorphic to $$B$$. We also note that 
 <ul>
 	<li>\(A'\) and \(B'\) are normal subgroups of \(G\). To see this, observe that for \((a, e) \in A'\) and \((x, y) \in G\)</li>
@@ -60,8 +58,6 @@ Then, \(A \times B\) is isomorphic to \(G\). The isomorphism is given by
 	\end{align*}
 	$$
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <b>Proof</b>
 <br>
 We need to show that $$\phi$$ is a homomorphism and that it is surjective and injective. 
@@ -220,8 +216,6 @@ Definition (The "conjugation by \(g\)" function)
 <div class="mintbodydiv">
 Given \(g \in G\), define \(c_g: G \rightarrow G\) by \(c_g(x) = gxg^{-1}\)
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Some facts about this function:
 <ul>
 	<li>\(c_g \in \text{Aut}(G)\). So \(c_g\) is an automorphism and it has an inverse \(c^{-1}_g\). Furthermore, if \(G\) is abelian, then \(c_g = id\) because \(gxg^{-1}\) will reduce to just \(x\) when \(G\) is abelian</li>

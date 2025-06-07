@@ -18,8 +18,6 @@ a \equiv b \bmod n \quad \text{or} \quad a \equiv_n b
 $$
 if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbf{Z}\) such that \(a - b = tn\)
 </div>
-<!------------------------------------------------------------------------------>
-<br>
 <br>
 Example: $$(1 \bmod 7) = (8 \bmod 7) = 1$$. Therefore, $$1 \equiv_7 8$$.
 <br>
@@ -38,8 +36,6 @@ $$
 $$
 The set \([a]\) is called the residue class or congruence class of \(a\) modulo \(n\).
 </div>
-<!------------------------------------------------------------------------------>
-<br>
 <br>
 Example: $$[2]_6 = \{2 + 6y \ | \ y \in \mathbf{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}$$
 <br>
@@ -59,8 +55,6 @@ Definition
 	<br>
 	\(rem_n(a) = r\) is the unique remainder of \(a \div n\) such that \(0 \leq r < n\) and \(a = qn + r\) for some \(q \in \mathbf{Z}\). Note that \(a - r\) is divisible by \(n\) or \(a \equiv_n r\).
 </div>
-<!------------------------------------------------------------------------------>
-<br>
 It's important to note that the remainder is in the same congruence class as $$a$$. In fact $$[a]_n \cap \{0,...n-1\} = \{r\}$$. Usually the remainder $$r$$ is the standard/canonical name for the congruence class. So for example, we usually don't write $$[602]_6$$ but write $$[2]_6$$. But we don't have to put it in canonical form.
 <hr>
 
@@ -311,8 +305,6 @@ Theorem
 		<li>If \(p \nmid a\), then \(a^{p-1} \equiv 1 \bmod p\)</li>
 	</ol>
 </div>
-<!------------------------------------------------------------------------------>
-<br>
 <b>Proof of (1)</b>
 <br>
 <div class="proofdiv">
@@ -370,8 +362,6 @@ Theorem
 	$$
 If \(a \in \mathbf{Z}\), \(h \in \mathbf{N}\) such that \(h \equiv 1 \bmod m\), then \(a^h \equiv a \bmod n\)
 </div>
-<!------------------------------------------------------------------------------>
-<br>
 <b>Proof</b>
 <br>
 We know that $$h \equiv 1 \bmod m$$ so $$h = 1 + tm$$ for some $$t \in \mathbf{Z}$$. We want to show that $$a^h \equiv a \bmod n$$. In other words, we want to show that $$n \ | \ a^h - a$$ which means that $$pq \ | \ a^h - a$$. We can write $$a^h - a$$ as follows

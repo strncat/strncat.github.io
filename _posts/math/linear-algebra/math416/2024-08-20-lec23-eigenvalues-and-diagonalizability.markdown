@@ -135,8 +135,6 @@ T(v) = \lambda v
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 And the $$\lambda$$'s are called,
 <br>
 <div class="bdiv">
@@ -145,8 +143,6 @@ Definition
 <div class="bbdiv">
 \(\lambda \in \mathbf{R}\) is an eigenvalue of \(\ T \in V \rightarrow V\) if \(\exists v \neq \bar{0}_V\) such that \(T(v) = \lambda v\).
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 We can now restate the previous theorem as the following,
 <br>
 <div class="purdiv">
@@ -155,8 +151,6 @@ Theorem
 <div class="purbdiv">
 \(T \in V \rightarrow V\) is diagonalizable if and only if there is a basis \(\beta = \{v_1,...,v_n\}\) consisting of eigenvectors.
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 As we've seen before, finding a basis $$\beta$$ where
 <div>
 $$
@@ -193,8 +187,6 @@ Definition
 <div class="bbdiv">
 An eigenvector of \(A \in M_{n \times n}\) is a \(v \neq \bar{0} \in \mathbf{R}^n\) such that \(Av = \lambda v\).
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 and finally,
 <br>
 <div class="bdiv">
@@ -215,8 +207,6 @@ Lemma
 <div class="purbdiv">
 \(v \in \mathbf{R}^n\) is an eigenvector of \(A\) with eigenvalue \(\lambda\) if and only if \(v \in N(A - \lambda I_n)\).
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 <b>Proof:</b>
 <br>
 <br>

@@ -26,8 +26,6 @@ ker(\varphi') &= K/N = \{aN \ | aN \subseteq K\} \unlhd G/N \\
 \end{align*}
 $$
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 In a picture, once we have the requirement $$N \subseteq K$$ where $$K = ker(\phi)$$, then we get this homomorphism $$\varphi'$$ between $$H$$ and $$G/N$$. This new homomorphism $$\phi'$$ is unique.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec16/1.png" width="90%" class="center"></p>

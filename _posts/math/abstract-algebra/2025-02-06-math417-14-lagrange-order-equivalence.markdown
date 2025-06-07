@@ -25,8 +25,6 @@ Generalized Lagrange Theorem
 <div class="yellowbodydiv">
 Let \(G \geq H \geq K\). Then for any \([G: K] = [G : H] [H : K]\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Note here that if $$K$$ is the trivial subgroup so $$K = \{e\}$$, then $$[H:\{e\}] = |H|$$. The cosets of the trivial subgroups have size 1 so we're dividing $$H$$ isto subsets of size 1 and therefore we get back the earlier Lagrange's Theorem
 <br>
 <br>
@@ -92,8 +90,6 @@ Even Order Theorem
 <div class="yellowbodydiv">
 If \(|G| = n\) and \(n\) is even, then there exists a \(g \in G\) with \(o(g) = 2\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <b>Proof</b>
 <br>
 Observe that if $$a \in G$$, then $$a^2 = 2$$ if and only if $$a^{-1} = a$$. In this case, the order must either be 1 or 2 so $$o(a) \in \{1,2\}$$. Now, let $$a \in G$$. For each $$a$$, produce a subset $$C$$ such that $$C = \{a, a^{-1}\}$$. This is a subset of $$G$$ of order 1 or 2 depending on whether $$a = a^{-1}$$. 
@@ -125,8 +121,6 @@ Definition
 <div class="mintbodydiv">
 A relation on a set \(X\) is a subset \(R \subseteq X \times X\). We write \(a \sim b\) for \((a,b) \in R\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 For example, let $$X = \mathbf{Z}$$, then examples of relations are $$=, >, \geq, \leq, < ...$$, "coprime", $$\equiv \bmod n$$ and so on.
 <br>
 <!----------------------------------------------------------------------------->
@@ -141,8 +135,6 @@ A equivalence relation \(\sim\) on \(X\) is one such that
 	<li>Transitive: \(a \sim b, b \sim c \implies a \sim c \ \forall a, b, c \in X\).</li>
 </ol>
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Given a set $$X$$ with an equivalence relation $$\sim$$, we have an equivalence class which is a subset of $$X$$ of the form
 <div>
 $$

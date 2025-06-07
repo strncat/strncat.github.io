@@ -129,8 +129,6 @@ The following are equivalent
 	<li>\(\Vert T(x) \Vert = \Vert x \Vert \ \forall x \in V \). So \(T\) preserves lengths.</li>
 </ol>
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 Why is $$(e)$$ true? to see why, we need the following lemma
 <br>
 <div class="purdiv">

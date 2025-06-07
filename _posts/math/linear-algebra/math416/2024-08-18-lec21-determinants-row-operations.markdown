@@ -93,8 +93,6 @@ $$
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 <b>Proof</b>
 <br>
 For upper triangular matrices, by induction on $$n$$.

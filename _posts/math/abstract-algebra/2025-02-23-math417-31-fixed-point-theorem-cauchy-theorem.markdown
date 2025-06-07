@@ -14,8 +14,6 @@ Definition
 <div class="mintbodydiv">
 Define \(X^G = \{x \in X \ | \ gx = x \text{ for all } g \in G\} \subseteq X \). This set is called the Fixed Point set of the action. 
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Compare this to the definition for any $$g \in G$$, then. 
 <div>
 $$
@@ -63,8 +61,6 @@ Definition
 <div class="mintbodydiv">
 Let \(p\) be a prime number. A \(p\)-group is a group of order \(p^k\) for some \(k \geq 1\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 For example $$\mathbf{Z}_{p^k}$$ is a $$p$$-group. The cyclic group like $$\mathbf{Z}_{p^i} \times \mathbf{Z}_{p^j}$$ is another $$p$$-group. Or the dihedral group $$D_{2^k}$$ which has order $$2^{k+1}$$ so this is a 2-group.
 <br>
 <!----------------------------------------------------------------------------->
@@ -74,8 +70,6 @@ Theorem
 <div class="yellowbodydiv">
 Let \(G\) be \(p\)-group which acts on a finite set \(X\). Then \(|X^G| \equiv |X| (\bmod p)\)
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <p>Proof</p>
 The idea is that since $$G$$ acts on $$X$$, then it partitions $$X$$ into non-empty disjoint orbits. So we can write $$O_1,O_2,...O_r$$ for the orbits of the action. Then
 <div>
@@ -140,8 +134,6 @@ Proposition
 <div class="peachbodydiv">
 Let \(G\) be \(p\)-group. Then the center of the group \(Z(G) = \{ g \in G \ | \ gh = hg \text{ for all } h \in H\}\) is non-trivial so \(Z(G) \neq \{e\}\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 <p>Proof</p>
 Let $$G$$ acts on $$X = G$$ itself by conjugation. So we have $$c: G \rightarrow Sym(X)$$. The fixed points of this action are
 <div>
@@ -177,8 +169,6 @@ Proposition
 <div class="peachbodydiv">
 Let \(p\) be a prime number. Then every group of order \(p^2\) is abelian.
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Using this, we can now use the elementary divisor theorem to classify these groups. In fact, $$G$$ of order \(p^2\) is isomorphic to either $$\mathbf{Z}_{p^2}$$ or $$\mathbf{Z}_p \times \mathbf{Z}_p$$. 
 <br>
 <br>
@@ -200,8 +190,6 @@ Theorem
 <div class="yellowbodydiv">
 Let \(G\) be a finite group. If \(p\) is a prime number that divides \(|G|\), then \(G\) must have element of order \(p\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 A special case of this is the even-order theorem. As a reminder, let's revisit this proof in terms of group actions before proving the actual theorem. 
 <br>
 <br>

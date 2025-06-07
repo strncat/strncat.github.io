@@ -18,8 +18,6 @@ $$
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 Here are some additional facts
 <br>
 <br>
@@ -55,8 +53,6 @@ $$
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 <div class="bdiv">
 Definition
 </div>
@@ -220,8 +216,6 @@ Suppose \(T: V \rightarrow V\) is normal. Then
 	<li>Suppose \(T(v_1) = \lambda_1v_1\) and \(T(v_2) = \lambda_2v_2\) where \(\lambda_1 \neq \lambda_2\) Then \(\langle v_1, v_2 \rangle = 0\)</li>
 </ol>
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 <br>
 <b>Proof</b>
 <br>

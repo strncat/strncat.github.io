@@ -99,8 +99,6 @@ f(t) = c(t-a_1)(t - a_2)...(t-a_k)
 \end{align*}
 $$
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 In other words, can completely factorize the polynomial?
 <br>
 <br>
@@ -229,8 +227,6 @@ Definition
 <div class="bbdiv">
 The algebraic multiplicity of \(\lambda\) is the number of times \(\lambda - t\) divides \(\det(A - tI_n)\).
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 An an example if $$
 A =  
 \begin{pmatrix} 
@@ -246,8 +242,6 @@ Definition
 <div class="bbdiv">
 The geometric multiplicity of \(\lambda\) is \(\dim(E_{\lambda})\).
 </div>
-<!------------------------------------------------------------------------------------>
-<br>
 For the same example above. The geometric multiplicity of $$\lambda = 1$$ is 1 because the nullspace is spanned by one vector.
 <br>
 <br>

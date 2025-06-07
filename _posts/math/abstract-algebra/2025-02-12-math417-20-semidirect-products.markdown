@@ -26,8 +26,6 @@ Then, \(A \times N\) is isomorphic to \(G\). The isomorphism is given by
 	\end{align*}
 	$$
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 But now the question is what happens if not all of these conditions are satisfied. Suppose that $$N$$ was the only normal subgroup. In this case, $$G$$ is called a semi-direct product of $$N$$ and $$A$$.
 <hr>
 
@@ -91,8 +89,6 @@ be a homomorphism. Note here that not only \(\gamma\) is a homomorphism but also
 	<li>\(\gamma_{e} = id, \gamma_{a^{-1}} = (\gamma_a)^{-1}\).</li>
 </ol>
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 So now we will use these facts to state the semi-direct product definition.
 <br>
 <!----------------------------------------------------------------------------->
@@ -120,8 +116,6 @@ The operation is
 	$$
 where \(n_1, n_2 \in N\) and \(a_1, a_2 \in A\).
 </div>
-<!----------------------------------------------------------------------------->
-<br>
 Note also that $$N \cong N' \leq G$$ so $$N$$ is isomorphic to some subgroup of $$G$$. $$A$$ is also isomorphic to some subgroup to $$A' \leq G$$. 
 <!----------------------------------------------------------------------------->
 <br>

@@ -29,7 +29,6 @@ Theorem (Fermat)
 If \(p \in \mathbf{N}\) is a prime number, then \(p = a^2 + b^2\) for some \(a, b \in \mathbf{Z}\) if and only if either \(p = 2\) or \(p \equiv 1 (\bmod 4)\)  
 </div>
 <!--------------------------------------->
-<br>
 We already know that $$2 = 1^2 + 1^2$$ and we also know that if $$p \equiv -1 (\bmod 4)$$, then $$p$$ is not a sum of two squares. Because $$\bmod 4$$, a square of a number is congruent to either 0 or 1. So the sum will not be 3 which is the same as $$-1 \bmod 4$$. So the remaining case is when $$p \equiv 1 (\bmod 4)$$, we want to show that $$p$$ is a sum of two squares. To show this we'll present the following lemma first.
 <br>
 <!--------------------------------------->
@@ -40,7 +39,6 @@ Lemma (Lagrange)
 If \(p = 4n + 1\) is a prime number, then there exists some \(m \in \mathbf{Z}\) such that \(p \ | \ m^2 + 1\)  
 </div>
 <!--------------------------------------->
-<br>
 <b>Proof</b>
 <br>
 We want to show that $$p \ | \ m^2 + 1$$. In other words, there exists a $$k$$ such that $$kp = m^2 + 1$$. This is equivalent to 
@@ -96,7 +94,6 @@ Proposition
 If \(p = 4n + 1\) is a prime number, then \(p\) is reducible \(\mathbf{Z}[i]\)  
 </div>
 <!--------------------------------------->
-<br>
 <b>Proof</b>
 <br>
 Suppose for the sake of contradiction that it wasn't. So it has to be irreducible. By the lemma we just proved, $$p \ | \ m^2 + 1$$. But now since $$\mathbf{Z}[i]$$ is a PID and $$p$$ is irreducible, then $$p$$ is also prime (PID implies that irreducible is also prime). Since $$p$$ is prime, then it must divide either $$m^2+1$$. But $$m^2+1 = (m + i)(m - i)$$ in $$\mathbf{Z}[i]$$. So $$p$$ must divide either $$(m+i)$$ or $$(m-i)$$. But this is impossible (because if $$p$$ divides $$m+i$$ then $$m + i = p(a + bi) = pa + pbi$$. This implies that $$m = pa$$ and $$1 = pb$$. But this $$1 = pb$$ is impossible since $$p$$ is prime). Therefore, $$p$$ must be reducible. $$\ \blacksquare$$
@@ -121,12 +118,10 @@ p = N(u) = (a + bi)(a - bi) = a^2 + b^2
 $$
 </div>
 So $$p$$ can be written as a sum of squares which is what we wanted to show. $$\ \blacksquare$$.
-<br>
-<br>
 <hr>
-<br>
 <!------------------------------------------------------------------------->
-<h4><b>Generalizing Fermat's Theorem</b></h4>
+<h3><b>Generalizing Fermat's Theorem</b></h3>
+<!------------------------------------------------------------------------->
 [Lecture 40] So far we know that if $$p$$ is prime, then $$p = a^2 + b^2$$ for some $$a,b \in \mathbf{Z}$$ if and only if $$p = 2$$ or $$p \equiv 1 \bmod 4$$. It's also not a sum of squares when $$p \equiv -1 \bmod 4$$. 
 <br>
 <br>
@@ -189,12 +184,10 @@ m &= a^2 + b^2 \\
 $$
 </div>
 Therefore, $$p^2 \ | \ m$$ and the remaining product is a sum of two squares so it's in $$S$$.
-<br>
-<br>
 <hr>
-<br>
 <!------------------------------------------------------------------------->
-<h4><b>Irreducible Elements of the Gaussian Integers</b></h4>
+<h3><b>Irreducible Elements of the Gaussian Integers</b></h3>
+<!------------------------------------------------------------------------->
 Recall that $$R = \mathbf{Z}[i]$$ is a PID and since it's a PID, then it's a UFD. So every element has a factorization into irreducible unique up to units. As a reminder, we only have 4 units, $$R^{\times} = \{ \pm 1, \pm i\}$$. So in this case, what are the irreducibles of the Gaussian integers? As an example, we just showed that if $$p$$ is prime and if $$p \equiv 1 (\bmod 4)$$, then $$p$$ is irreducible in $$\mathbf{Z}[i]$$. Before answering this question, we need the following proposition
 <br>
 <!--------------------------------------->
@@ -227,12 +220,9 @@ Since $$p = uv$$ where $$v \in R$$, then $$N(p) = N(u)N(v)$$. $$u$$ is a not a u
 <br>
 <br>
 (So if we want to find the prime that lies over $$u$$, we just compute its norm). 
-<br>
-<br>
 <hr>
-<br>
 <!------------------------------------------------------------------------->
-<h4><b>Classification of Irreducibles Theorem</b></h4>
+<h3><b>Classification of Irreducibles Theorem</b></h3>
 We finally can now state the theorem that classifies irreducibles as follows
 <br>
 <!--------------------------------------->
@@ -248,7 +238,6 @@ Every irreducible \(u \in R = \mathbf{Z}[i]\) is the same up to units to exactly
 </ol>
 </div>
 <!--------------------------------------->
-<br>
 <h4><b>Examples</b></h4>
 <ul>
 	<li>To factor \(z = 3 + 9i\) into irreducibles, \(N(z) = 3^2 + 9^2 = 90 = 2 \cdot 3^2 \cdot 5\). The norm is a multiplicative function, so the norms of each factor will multiply to \( 2 \cdot 3^2 \cdot 5\). Since we only have 3 of them, then the only possible irreducible factors are \(1 + i, 2 \pm i, 3\). In fact, \(1+i\) must be a factor since it's the only one with norm equals 2. \(3\) has to be a factor since it's the only one with norm 3. We don't know which of \(2 + i\) or \(2 - i\) is factor but we can check and we will get \(2 - i\).
@@ -257,11 +246,9 @@ Every irreducible \(u \in R = \mathbf{Z}[i]\) is the same up to units to exactly
 	<li> Take \(R = \mathbf{Z}[\omega] = \{a + b\omega, a,b \in \mathbf{Z}\} \subseteq \mathbf{C}\). Using \(w^2 = -1 -w\), we know it's a subring. Additionally, we can show that this is a PID and therefore it's a UFD. (the categorization here are prime numbers modulo 3 instead of 4 in the Gaussian integers)
 	</li>
 </ul>
-<br>
 <hr>
-<br>
 <!------------------------------------------------------------------------->
-<h4><b>Final Thoughts</b></h4>
+<h3><b>Final Thoughts</b></h3>
 Returning to the counter example where $$R = \mathbf{Z}[\sqrt{-5}] = \{ a + b\sqrt{-5}, a,b \in \mathbf{Z} \} \subseteq \mathbf{Z}$$. This is not a UFD and not a PID because we had no unique factorization. In fact 6 had two different factorizations of irreducibles 
 <div>
 $$
@@ -276,12 +263,9 @@ It turns out that we can fix this and this is where the notion of an ideal was i
 	<li>Let \(3 \sim QQ'\) so that \(1 - \sqrt{-5} \sim PQ'\)</li>
 	<li>\(6 \sim P^2QQ'\)</li>
 </ul>
-<br>
-<br>
 <hr>
-<br>
 <!------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3><b>References</b></h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

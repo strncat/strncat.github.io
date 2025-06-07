@@ -191,9 +191,8 @@ A_1^k & 0 & \cdots & 0 \\
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Proof of JCF Theorem</h3>
 So now we see that matrices in JCF are useful and we have enough motivation to prove the theorem above which again states that if the characteristic polynomial splits, then there is a basis such that $$[T]^{\beta}_{\beta}$$ is in JFC! To prove it, let $$\beta = \{v_1, ..., v_n\}$$ of $$V$$. We this basis to be such that

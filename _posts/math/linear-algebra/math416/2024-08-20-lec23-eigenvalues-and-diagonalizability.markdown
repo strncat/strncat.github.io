@@ -374,9 +374,8 @@ Corollary 2 (Theorem 5.3(b))
 </div>
 <br>
 So we know at least that there can only be $$n$$ roots/eigenvalues at most.
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Find the eigenvalues of

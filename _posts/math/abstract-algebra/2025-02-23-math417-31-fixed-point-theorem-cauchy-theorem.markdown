@@ -50,9 +50,8 @@ X^G = \{x \in X \ | \ \text{Stab}(x) = G \}
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Fixed Point Theorem</h3>
 We'll study one theorem about this. But first define
@@ -128,9 +127,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Application of the Fixed Point Theorem</h3>
 Here are some application of this theorem
@@ -373,9 +371,8 @@ $$A$$ is of order 2 so it must be isomorphic to $$\mathbf{Z}_2$$. $$N$$ is of or
 	<li>The trivial homomorphism gives us the product group \(\mathbf{Z}_2 \times \mathbf{Z}_3\)</li>
 	<li>The non-trivial homomorphism gives us the dihedral group \(D_3\).</li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Study Notes on \(D_3\)</h3>
 How does the non-trivial homomorphism gives us the dihedral group? how does this happen? We have 

@@ -75,9 +75,8 @@ y_2
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 Let 
@@ -112,9 +111,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Equivalent Conditions for Isometry</h3>
 What can we say about Isometries? What does being an Isometry imply?
@@ -261,9 +259,8 @@ Im\langle x, y \rangle &= -\frac{1}{2}(\Vert ix + y\Vert^2 - \Vert x\Vert^2 - \V
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Isometries Are Rare</h3>
 From research, we know that Isometries are actually rare. One fact is that $$T$$ is an isometry of $$\mathbf{R}^2$$ if and only if 

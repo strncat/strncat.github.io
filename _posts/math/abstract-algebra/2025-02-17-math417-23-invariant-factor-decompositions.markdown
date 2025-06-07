@@ -236,9 +236,8 @@ We have an abelian group $$G$$. The standard so far has been writing the group w
 		<td>\(a + N\)</td>
 	</tr>
 </table>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Proof Setup: Definitions</h3>
 Before starting with the proof, we need some setup, starting with this definition.
@@ -336,9 +335,8 @@ is a basis for $$\mathbf{Z}^n$$. Any element in $$\mathbf{Z}^n$$ can be written 
 	\end{align*}
 	$$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Proof Setup: Propositions</h3>
 So we have the steps and we have the definitions that we need. We also need the following proposition

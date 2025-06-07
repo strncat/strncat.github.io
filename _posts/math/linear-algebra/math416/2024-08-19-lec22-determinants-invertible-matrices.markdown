@@ -49,9 +49,8 @@ It is clear that none of these row operations will lead the determinant to be 0.
 <li>\(\leftrightarrow REF\) of \(A\) has \(n\) leading entries</li>
 <li>\(\leftrightarrow A\) is invertible</li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 Next, we want to prove a general theorem that states that $$\det(AB) = \det(A)\det(B)$$ but in order to do so, we'll need a couple of theorems. The first theorem is from <a href="https://strncat.github.io/jekyll/update/2024/08/10/lec18-elementary-matrices.html"> lecture 18</a>. We stated a corollary without a proof but now we'll call it theorem (a) and prove it.
 <!------------------------------------------------------------------------------------>
@@ -75,9 +74,8 @@ $$A$$ is invertible is equivalent to
 
 <li>\(\leftrightarrow\) These elementary matrices are invertible and they are themselves elementary matrices. So \(A = E_1^{'}...E_k^{'}\) and \(A\) is invertible. \(\blacksquare\)</li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 Next, we'll state the second theorem that we will need
 <br>
@@ -108,9 +106,8 @@ $$\Leftarrow$$: Suppose that $$AB$$ is invertible. This implies
 
 <Li>\(\rightarrow B, A\) are invertible. \(\blacksquare\) </li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 Finally we're readying to prove the main theorem:
 <br>

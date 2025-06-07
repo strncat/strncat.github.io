@@ -33,9 +33,8 @@ B &= \{OBOB, BOBO\}
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 2</h3>
 How many necklaces with 9 beads: 4 red, 3 white, 2 yellow? This isn't an easy question. But there is an easier question which is counting the linear arrangements of the 9 beads with the colors we have. Let $$X$$ be the set of linear arrangements of 9 beads with 4 red, 3 while, 2 yellow. If they were all of different colors, then there will be $$9!$$ arrangements. But only have 3 colors so some of the beads are indistinguishable. Therefore, we have
@@ -126,9 +125,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 2</h3>
 Here, we had $$G = D_9 = \{e, r, r^2, ..., r^8, j, rj, ..., r^8j\}$$. Recall that $$|X| = 1260$$. Doing the same analysis
@@ -188,9 +186,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Proof of Burnside Formula</h3>
 Let $$F = \{(g,x) \ | \ g \in G, x \in X, gx = x\}$$. (So we're writing it differently than before but it's the same. We're just counting any element that gets fixed by any $$g$$. So all of them). We're going to count this set in two different ways
@@ -220,9 +217,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 3 (Variant of Example 2)</h3>
 Consider example 2 again. We had a fixed number of beads (4 red, 3 white, 2 yellow). Now, suppose that we don't have a constraint on the count for each color. We just want a necklace made of 3 colors and 9 beads. Then $$G = D_9$$ acts on $$X$$ which is the linear arrangements of beads of 3 colors. What is the size of $$X$$? The first bead can be any of the three colors, the second bead can be any of the three colors and so on. So 

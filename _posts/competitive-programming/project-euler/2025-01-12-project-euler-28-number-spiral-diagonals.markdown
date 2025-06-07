@@ -38,9 +38,8 @@ total_sum += sum_quadrant(3, 10); // Bottom Right Diagonal
 total_sum += sum_quadrant(5, 12); // Bottom Left Diagonal
 printf("%ld\n", total_sum + 1);
 {% endhighlight %}
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Closed Formula</h3>
 Of course my naive solution was too basic and it seems that there is a closed formula for this ... I have yet to do it! [TODO]

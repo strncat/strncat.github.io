@@ -96,9 +96,8 @@ So now given a matrix $$A$$, how do we know that it's invertible? Previously, we
 	<li>\(\Leftrightarrow \{\bar{x} \ | \ A\bar{x} = \bar{0} = \{\bar{0}\}\}\). This is just the null space. We can check/settle this by putting the matrix in a row echelon form!</li>
 	<li>\(\Leftrightarrow\) a REF of \(A\) has leading entries in each column.</li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Matrix Representation for an Inverse Linear Transformation</h3>
 We know that linear maps between finite dimensional vector spaces have matrix representations. So now we know to relate these the matrix representation of these maps to their inverse matrices.
@@ -134,9 +133,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Matrix Representation for an Inverse Linear Transformation</h3>
 If $$A$$ is invertible, how do you find an its inverse?
@@ -223,9 +221,8 @@ From this we see that $$A$$ is invertible and its inverse is $$
 \frac{3}{2} & -\frac{1}{2}
 \end{pmatrix}
 $$
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Special Rule for 2 by 2 Matrices</h3>
 In fact, any 2 by 2 matrix $$\begin{pmatrix}

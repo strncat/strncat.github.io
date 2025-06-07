@@ -67,9 +67,8 @@ Example. Suppose $$|G| = 24$$ and that $$G$$ is abelian. 24 has the prime factor
 	<li>\(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \)</li>
 	<li>\(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}}\)</li>
 </ol>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Invariant Factor Classification</h3>
 We have another classification Theorem. 
@@ -221,9 +220,8 @@ We can recover the invariant factors by stacking the highest powers of divisors 
 		<td>\(5^3\)</td>
 	</tr>
 </table>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Elementary Divisor Classification Proof Plan</h3>
 We have two aspects. Existence and Uniqueness. We will show uniqueness first. We want to show if
@@ -267,9 +265,8 @@ Define \(\alpha_m \rightarrow \mathbf{N}\) by \(\alpha_m(G) = |G[m]| \)
 <br>
 <!----------------------------------------------------------------------------->
 Note that $$G[m]$$ doesn't need to be a subgroup but if $$G$$ is abelian, then $$G[m] \leq G$$.
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Suppose we have $$G = \{0,1,2,3,4,5,7\}$$. Then, the orders of the elements are
@@ -502,9 +499,8 @@ So now we have the following facts based on the definition of $$\beta$$
  	<li>If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\beta_{q^l}(G) = \sum_{i=1}^k \beta_{q^l}(G_i)\)</li>
  	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 0\). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = 1\) if \(l = r\) and it is 0 when \(l \neq r\).</li>
 </ol>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Suppose that $$G = \mathbf{Z}_{2^4} = \mathbf{Z}_{16}$$. Then

@@ -43,9 +43,8 @@ $$
 	<li>The determinant map is not linear except for \(n = 1\). (It is linear in the rows of \(A\))</li>
 	<li>\(\det(AB) = \det(A)\det(B)\).</li>
 </ol>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Definition of the Determinant</h3>
 The definition of the $$\det: M_{n \times n} \rightarrow \mathbf{R}$$ is inductive on $$n$$.
@@ -159,9 +158,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Compute the determinant for 

@@ -59,9 +59,8 @@ This map satisfies the inner product properties. Notice that
 	<li>\(\langle x, y \rangle = \overline{\langle y, x \rangle} = yx = xy\). </li>
 	<li>\(\langle x, x \rangle > 0 \text{ if } x \neq \bar{0}\)</li>
 </ol>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 We can also define this inner product
@@ -108,9 +107,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 5</h3>
 Define $$V = \mathbf{C}$$ over $$\mathbf{C}$$ where
@@ -144,9 +142,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 7</h3>
 Define $$V = M_{n \times n}(\mathbf{R})$$ 

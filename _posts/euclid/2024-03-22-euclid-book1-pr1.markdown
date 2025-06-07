@@ -6,9 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 <b>Proposition 1</b>: To construct an equilateral triangle on a given finite straight line.
-<br>
 <hr>
-<br>
+
 <b>Proof.</b>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr1/1.png" width="40%" class="center"></p>
 Let the finit straight line be $$AB$$ above. By <a href="https://strncat.github.io/jekyll/update/2024/03/20/euclid-book1-postulates.html">postulate 3</a>, describe a cricle with center $$A$$.

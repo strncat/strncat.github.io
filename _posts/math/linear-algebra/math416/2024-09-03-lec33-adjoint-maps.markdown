@@ -166,9 +166,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Projection as a Map</h3>
 In general we can think of the projection onto $$W$$ as a map. 
@@ -396,9 +395,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Theorem 3 Proof</h3>
 We're going to set $$\mathbf{F} = \mathbf{R}$$. Therefore, $$A^* = A^t$$. We are given that rank$$(A)=n$$. We want to show that

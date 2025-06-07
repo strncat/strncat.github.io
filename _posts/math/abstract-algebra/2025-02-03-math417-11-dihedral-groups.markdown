@@ -86,9 +86,8 @@ To describe the group structure, we want to see what happens if we perform two r
 		</div>
 	</li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------>
 <h3>Elements of \(D\)</h3>
 Based on the previous list, we can now list precisely the elements of \(D\). We have 
@@ -103,9 +102,8 @@ In addition to the multiplication table based on the previous discussion.
 	<li>\(j_{\alpha}r_{\beta} = j_{\alpha-\frac{\beta}{2}}\)</li>
 	<li>\(j_{\alpha}j_{\beta} = r_{2(\alpha-\beta)}\)</li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------>
 <h3>Alternative Description of \(D\)</h3>
 Another description is that let $$j = j_{0}$$. Then, $$j_{\theta} = r_{2\theta}j$$. So every element of $$D$$ can be written uniquely in one of the following two forms.
@@ -122,9 +120,8 @@ where
 	<li>\(jr_{\theta} = r_{\theta}^{-1}j\). (TODO: Show this using the previous rules)</li>
 </ul>
 This is a complete description of $$D$$.
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------>
 <h3>Dihedral Groups</h3>
 Fix $$n \geq 3$$. Let $$V = \{u_{\frac{2\pi}{n}k}, k = 0,...,n-1\}$$ be the vertices of a regular $$n-$$gon. Note that $$D_n \leq D \leq SO(3)$$. Now, the group $$D_n$$ will include specifically the symmetries of the disk that take the vertices of the polygon to themselves or another vertex in the polygon. In $$D_n$$, 

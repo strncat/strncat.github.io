@@ -67,9 +67,8 @@ A regular polyhedra is a three dimensional solid where the faces are congruent r
   </tr>
 </table>
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Symmetry Groups</h3>
 The reason we introduced these regular polyhedra is because we want to study their symmetry groups. So now, given a Polyhedron, we have a set $$V$$ of vertices (with the center of mass at 0). Define, the symmetry group $$G$$ of the polyhedron as
@@ -222,9 +221,8 @@ So next we want $$\phi$$ to not just be a homomorphism. We want it to be an isom
 	<!-------------------------------->
 	<li>Face/Face Symmetry (Quarter Turn): When we do a quarter turn here, all the diagonals get switched cyclicly so this is  a 4-cycle. </li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>The Symmetry Group of the Dodecahedron</h3>
 Next, we'll do the symmetry group of the Dodecahedron

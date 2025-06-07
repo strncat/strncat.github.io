@@ -84,9 +84,8 @@ T \circ S (x,y) &= T(S(x, y)) = T(-y, x) = (x, y)
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 Suppose we have the following vector spaces:
@@ -286,9 +285,8 @@ U : \ &\mathbf{R}^3 \rightarrow P_2  \\
 $$
 </div>
 are both isomorphisms.
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 5</h3>
 <div>
@@ -300,9 +298,8 @@ U : \ &P \rightarrow \hat{P}  \\
 $$
 </div>
 is an isomorphism and so $$P$$ and $$\hat{P}$$ are isomorphic.
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Criterion for Isomorphic Finite Dimensional Vector Spaces</h3>
 <div class="purdiv">
@@ -337,9 +334,8 @@ T(w) &= T(a_1w_1 + ... + a_nw_n) \\
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

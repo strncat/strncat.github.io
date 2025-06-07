@@ -37,9 +37,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 The standard basis $$\beta = \{e_1, e_2, ..., e_n \}$$ of $$\mathbf{R}^n$$ is an orthonormal subset. For every distinct two vectors in $$\beta$$, their inner product is zero. Moreover, for any vector $$e_i \in \beta$$, $$\langle e_i, e_i \rangle = 1$$. In general,
@@ -226,9 +225,8 @@ But we know we want $$u_3$$ to be a unit vector. So we can just divide by the le
 	\end{align*}
 	$$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
 Find an orthonormal basis for $$P_2 \in C^0([-1, 1])$$. equipped with 
@@ -268,9 +266,8 @@ And finally $$u_3$$
 	\end{align*}
 	$$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Fourier coefficients</h3>
 The coefficients with respect to an orthonormal spanning set that we studied last time have a special name:

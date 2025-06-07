@@ -49,9 +49,8 @@ G = \{e, r_1, r_2, a, b, c\}
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Can We Compose Symmetries?</h3>
 
@@ -344,9 +343,8 @@ c(x,y,z) &= ra(x,y,z)
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Symmetries of the Rectangle</h3>
 How many symmetries does the rectangle have?

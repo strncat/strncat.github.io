@@ -168,9 +168,8 @@ which is the same as the term in the left hand side.
     <!------------------------INVERSE--------------------------->
 	<li>The inverse is \((n,a)^{-1} = (\gamma_{a^{-1}}(n^{-1}), a^{-1})\).</li>
 </ol>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 1</h3>
 Let's start with the trivial example. Let $$N$$ and $$A$$ be any groups. Define the trivial homomorphism as

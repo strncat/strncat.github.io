@@ -6,9 +6,8 @@ categories: jekyll update
 mathjax: true
 ---
 <b>Proposition 2</b>: "From a given point, to draw a straight line equal to a given finite straight line". In other words, given a point $$A$$ and another finite straight line $$CB$$, draw a line equal to $$CB$$ at $$A$$.
-<br>
 <hr>
-<br>
+
 <b>Proof.</b><br>
 Let the given point be $$A$$ and the given finite line be $$CB$$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/1.png" width="40%" class="center"></p>

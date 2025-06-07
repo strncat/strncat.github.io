@@ -64,9 +64,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>The Matrix of Linear Composition</h3>
 Suppose now that $$X$$, $$Y$$ and $$Z$$ are finite dimensional with fixed bases $$\alpha = \{x_1,...,x_n\}, \beta = \{y_1,...,y_m\}$$ and $$\gamma = \{z_1,...,z_n\}$$.
@@ -136,9 +135,8 @@ AB &=
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Matrix Composition Using Matrix Multiplication</h3>
 Now that we defined matrix multiplication, we are ready to answer the question of how $$[S]_{\alpha}^{\beta}, [T]_{\beta}^{\gamma}$$ and $$[T \circ S]_{\alpha}^{\gamma}$$ related.
@@ -299,9 +297,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Matrix Multiplication Properties</h3>
 <div class="purdiv">
@@ -330,9 +327,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

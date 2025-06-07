@@ -89,9 +89,8 @@ Additionally, the kernel of $$c$$ is what we call the center $$c$$. It's the col
 	\end{align*}
 	$$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Examples</h3>
 What is the conjugacy class of the identity? It's always $$Cl(e) = \{e\}$$. This means that the conjugation action is never transitive unless we're acting on the trivial group. Since if $$G$$ contains other elements, then they'll be in a different orbit.

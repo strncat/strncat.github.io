@@ -26,9 +26,8 @@ In addition to groups, we also have
 <li>Semi-groups which satisfy \((1)\).</li>
 <li>Magma \(G, \cdot\) with no additional properties. </li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!---------------------------------------------------------------------->
 <h3>Basic Properties of Groups</h3>
 In the next few propositions, we'll prove that the identity element in a group is unique and similarly the inverses are unique.
@@ -560,10 +559,8 @@ Note that for this direction, we could've instead relied on $$\phi^{-1}$$ being 
 	$$
 </div>
 $$H$$ is abelian so $$a'b' = b'a'$$ so $$\phi^{-1}(a'b') = \phi^{-1}(b'a')$$ and thus $$ab = ba$$.
-<br>
 <hr>
 
-<br>
 <!---------------------------------------------------------------------->
 Extra Notes from the book: Two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
 <br>

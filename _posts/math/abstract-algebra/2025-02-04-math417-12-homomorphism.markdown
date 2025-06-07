@@ -102,9 +102,8 @@ We will show this by showing that the kernel satisfies the subgroup properties:
 	<li>Closed under product: For any \(a,b \in K\), \(\varphi(a)\varphi(b) = e_He_H = e_H \in K\)</li>
 	<li>Closed under inverses: For any \(a \in K\), \(\varphi(a^{-1}) = \varphi(a)^{-1} = e_H^{-1} = e_H\). Therefore,\(a^{-1} \in K\). \(\ \blacksquare\)</li>
 </ol>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Examples</h3>
 <b>Example 1</b>: Consider the following with the addition operation

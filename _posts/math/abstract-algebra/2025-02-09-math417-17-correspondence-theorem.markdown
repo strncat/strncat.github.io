@@ -158,9 +158,8 @@ Note here that the kernel $$K/N$$ is a subgroup of $$G/N$$. The kernel consists 
 	\end{align*}
 	$$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Product Subsets</h3>
 <div class="mintheaderdiv">
@@ -232,9 +231,8 @@ $$\Leftarrow:$$ Now suppose that $$AB = BA$$. We want to show that $$AB$$ is a s
 	<li>\(x, y \in AB\) implies that \(xy \in AB\). Suppose that \(a,a' \in A\) and \(b,b' \in B\). Then \(aba'b' = a(ba')b'\). \(ba' \in AB = BA\) by the hypothesis. So we can re-write \(ba'\) as \(a''b''\) for some \(a'' \in A\) and \(b'' \in B\). So now \(a(ba')b' = aa''b''b \in AB\)</li>
 	<li>For Any \(x \in AB\), \(x^{-1} \in AB\). If \(x \in AB\), then \(x \in BA\) by the hypothesis. So write \(x = ba\) so \(x^{-1} = a^{-1}b^{-1}\). This means that \(x^{-1} \in AB\).</li>
 </ol>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Diamond Isomorphism Theorem</h3>
 <!----------------------------------------------------------------------------->

@@ -122,9 +122,8 @@ If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\ma
 </div>
 <br>
 Note that the the converse is false. If the characteristic polynomial splits over $$\mathbf{R}$$, it doesn't necessarily means that $$A$$ is diagonalizable. (See example 2 above)
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Eigenvalues of Similar Matrices</h3>
 Before going into the proof of theorem 1 above, the following proposition will be useful
@@ -218,9 +217,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Algebraic and Geometric Multiplicities of Eigenvalues</h3>
 There is another condition for diagonalizability but we need a few more definitions.
@@ -449,9 +447,8 @@ D^k =
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

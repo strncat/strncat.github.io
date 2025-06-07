@@ -39,9 +39,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Normal Linear Maps</h3>
 The goal of today is use this notion of adjoint maps to define more classes of linear maps which will be useful. Though we're going to restrict the maps to maps from a finite dimensional inner product space $$V$$ to $$V$$ with $$\beta$$ being an orthonormal basis. Therefore, in this setting, we will always have an adjoint map.
@@ -107,9 +106,8 @@ AA^* = \begin{pmatrix}
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
 Suppose that $$A^* = - A$$, then
@@ -133,9 +131,8 @@ A \in M_{n \times n}(\mathbf{R})
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>A Sufficient Condition for Normal Linear Maps</h3>
 Next, we will describe a sufficient condition for an operator to be normal which will be useful later!
@@ -205,9 +202,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Properties of Normal Linear Maps</h3>
 So now that we have a sufficient condition to identify normal maps. Let's study their properties.

@@ -44,9 +44,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Let $$G = \mathbf{Z}$$ and let $$H = \mathbf{Z}n$$ where $$n \geq 0$$ (multiples of $$n$$). Then the set of left cosets is
@@ -373,9 +372,8 @@ Fact
 <div class="peachbodydiv">
 If \(\tau, \tau' \in S_n\) have the same cycle type. Then \(\tau' = \sigma \tau \sigma^{-1}\) for some \(\sigma \in S_n\). 
 </div>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 1</h3>
 For example, let $$\sigma = (1 \ 3 \ 4 \ 7 \ 2 \ 5) \in S_9$$ and let $$\tau = (2 \ 9)(1 \ 8 \ 7)$$. If we conjugate $$\tau$$ with $$\sigma$$, then we know by the previous fact that the cycle type will remain the same. This means that we will get a 3-cycle followed by a 2-cycle $$(a_1 \ a_2 \ a_3)(a_4 \ a_5)$$. Furthermore, to figure out these new numbers. We just apply sigma on $$\tau$$, meaning that we permute the elements in $$\tau$$ according to $$\sigma$$. For example, $$\sigma$$ sends 2 to 5. so we'll replace 2 with 5 in $$\tau$$. $$\sigma$$ doesn't do anything to 6 so it just stays and so on.

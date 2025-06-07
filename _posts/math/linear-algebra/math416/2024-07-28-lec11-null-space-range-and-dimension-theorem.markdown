@@ -127,9 +127,8 @@ From this we see that,
 	\end{align*}
 	$$
 </div>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Proof:</h3>
 Let $$T: V \rightarrow W$$ be a linear transformation and $$V$$ be finite dimensional. Let $$\dim(V) = n$$. Let $$\dim(N(T)) = k$$. We know that $$N(T)$$ is a subspace of $$V$$. Therefore, $$k \leq n$$ (Theorem 1.11). Since $$\dim(N(T)) = k$$, this means that any basis of the null space will have $$k$$ elements. So let $$\beta_N = \{u_1,...,u_k\}$$ be a basis for $$N(T)$$.

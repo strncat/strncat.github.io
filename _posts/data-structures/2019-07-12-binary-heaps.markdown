@@ -142,9 +142,8 @@ I would obviously recommend looking at CLRS's way unless I'm in a rush and this 
 The most exciting question is how long does it take to build a max heap? We know that max_heapify takes $$O(\log(n))$$ time for each node. We also know that we at most have $$O(n)$$ iterations. This means that building a max heap will run in $$O(n\log(n))$$. But we derive a much tighter bound than this by observing that:
 <br><br>
 (1) Binary heaps with $$n$$ nodes have height $$\lfloor \log(n) \rfloor$$. <br>
-(2) At any height $$i$$, we have at most $$\lceil \frac{n}{2^{i+1}} \rceil$$ nodes. <br>
-<hr>
-<br>
+(2) At any height $$i$$, we have at most $$\lceil \frac{n}{2^{i+1}} \rceil$$ nodes. <hr>
+
 Aside: What does (2) mean? Suppose we have a binary heap with $$n=7$$ just like the tree below:
 <img src="{{ site.url }}/assets/heaps/2.png" width="100%">
 The number of nodes at height 0 (leaves) is $$\lceil \frac{n}{2^{i+1}} \rceil = \lceil \frac{7}{2^{0+1}} \rceil = \lceil 3.5 \rceil = 4$$ <br>
@@ -152,9 +151,8 @@ The number of nodes at height 1 is $$\lceil \frac{7}{2^{2}} \rceil= 2$$ <br>
 The number of nodes at height 2 (root) is $$\lceil \frac{7}{2^{3}} \rceil= 1$$ <br>
 <b>Formal Proof:</b><br>
 TODO
-<br>
 <hr>
-<br>
+
 We can now sum the work we're doing at each level which is just the height of the level multipled by the number of nodes in that level. We do that for each level in the tree, from the 0th level to the $$\lfloor \log(n) \rfloor$$'s level:
 
 <div center>

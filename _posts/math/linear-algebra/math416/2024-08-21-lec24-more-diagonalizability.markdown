@@ -57,9 +57,8 @@ This is great and gives up the following plan to diagonalize $$A$$:
 	<li>Determine if these bases combine to form a basis \(\beta\) for \(\mathbf{R}^n\)</li>
 	<li>Compute \(Q, Q^{-1}\) etc.</li>
 </ol>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Diagonalize $$

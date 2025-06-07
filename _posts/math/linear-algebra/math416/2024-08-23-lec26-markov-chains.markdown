@@ -64,9 +64,8 @@ $$
 Here \(A_{ij} \geq 0\) and \(\sum_{i=1}^nA_{ij} = 1\). So \(A_{12} = 0.02\) is the probability of moving from state 1 (city) to the state 2 (suburb).
 </li>
 </ul>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>The Limit of a Markov Matrix</h3>
 

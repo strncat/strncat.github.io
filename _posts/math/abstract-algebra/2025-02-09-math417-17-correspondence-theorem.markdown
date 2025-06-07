@@ -48,10 +48,8 @@ Also Recall the the pre-image of $$B$$ is $$\pi^{-1}(B) = \{g \in G \ | \ \pi(g)
 <br>
 <br>
 Additionally, the theorem also claims that the normal subgroups of $$G/N$$ correspond to the normal subgroups in $$G$$ containing $$N$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Let $$G = \mathbf{Z}$$ and $$N = \mathbf{Z}6$$ (multiples of 6). Therefore $$G/N = \mathbf{Z}/\mathbf{Z}6 = \mathbf{Z}_6$$. Here is a breakdown of the subgroups of $$\mathbf{Z}$$. Within all of these subgroups you'll see the $$\mathbf{Z}6$$. The subgroups in the red outline will correspond to the subgroups of $$\mathbf{Z}/\mathbf{Z}6 = \mathbf{Z}_6$$ on the left side.
@@ -100,10 +98,8 @@ $$
 $$
 </div>
 So we see here that there is a bijective correspondance between $$\{[0]\}$$ which is a subgroup of $$\mathbf{Z}/\mathbf{Z}2 = \mathbf{Z}_2$$ and $$\mathbf{Z}2$$ which is a subgroup of $$\mathbf{Z}$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Proof of the Correspondence Theorem</h3>
 So again, we want to show that there is a bijection between the subgroup $$d$$ of the quotient group $$G/N$$ and the subgroup of $$G$$ which contain $$N$$
@@ -119,10 +115,8 @@ So now we need to check two things:
 	<li>If \(A \leq G\), then \(\pi^{-1}(\pi(A)) = A\).</li>
 </ul>
 Remark: If we don't know that $$A$$ contains $$N$$, then if $$A \leq G$$, we can show that $$\pi(\pi(A)) = AN = \{an \ | \ a, n \in N\} $$
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>General Correspondance Theorem</h3>
 There is a more general correspondance theorem (the way it is listed in the book) which says
@@ -137,10 +131,8 @@ Let \(\varphi: G \rightarrow H\) is a surjective homomorphism and \(N = \ker(\ph
 Recall that by the Isomorphism Theorem, that $$H \approx G/N$$. By the previous Correspondance Theorem, we showed that subgroups of $$G/N$$ correspond to subgroups of $$G$$ containing $$N$$. So we'll have this picture
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec17/3.png" width="100%" class="center"></p>
 So we have $$H \approx G/N$$ by the Isomorphism Theorem and then we have the second part of the picture by the Correspondance Theorem.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Factorization Theorem</h3>
 <!----------------------------------------------------------------------------->
@@ -186,10 +178,8 @@ $$
 <!----------------------------------------------------------------------------->
 <br>
 If $$A$$ and $$B$$ are subgroups of $$G$$, then we can have $$AB \neq BA$$. We can also have $$AB$$ and $$BA$$ not be subgroups themselves.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Suppose $$G = S_3$$. Then
@@ -264,10 +254,8 @@ If \(A, N \leq G\) where \(N\) is normal, then
 <!----------------------------------------------------------------------------->
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec17/4.png" width="100%" class="center"></p>
 Proof in lecture notes along with an example that we will need for the next homework.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

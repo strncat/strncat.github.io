@@ -21,10 +21,8 @@ In the first line we just re-wrote the vector so now the identity map is applied
 <br>
 <br>
 By theorem 2.14, we can re-write this line by first computing the matrix representative of the identity transformation that changes coordinates from $$\beta$$ to $$\beta'$$. We get this matrix by taking the vectors in $$\beta$$, applying the identity transformation which does nothing and then re-writing these vectors with respect to $$\beta'$$. These vectors will be the columns of the matrix. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Let $$V = P_1$$, $$\beta = \{1, x\}$$ and $$\beta' = \{1+x, 1-x\}$$. Then to compute the matrix $$[I_V]_{\beta}^{\beta'}$$, we want to apply the map on the basis $$\beta$$ and then write these relative to the basis $$\beta'$$ (meaning for each vector, find its coordinates when written as a linear combination of the vectors of the basis $$\beta'$$).
@@ -285,10 +283,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

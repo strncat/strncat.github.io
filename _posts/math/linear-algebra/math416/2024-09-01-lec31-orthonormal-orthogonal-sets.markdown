@@ -17,10 +17,8 @@ Definition
 </div>
 <br>
 Remark: $$x \in V$$ is a unit vector if $$\Vert x \Vert = 1$$. If $$x \neq \bar{0}_V$$, then $$\frac{x}{\Vert x \Vert}$$ is a unit vector. This process is normalization.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 <div> 
@@ -325,10 +323,8 @@ Yes it is true but this is an infinite sum that converges to a number that is th
 <br>
 <br>
 But one thing we know here is that $$S$$ is not a basis for $$C^0[-1,1]$$. $$|t| \neq $$ finite set of elements of $$S$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

@@ -189,10 +189,8 @@ Let $$|G| = p^2$$. By the proposition, $$Z(G)$$ is not trivial. But we also know
 <br>
 <br>
 When $$|Z(G)| = p$$, recall that $$Z(G)$$ is a normal subgroup in $$G$$. Therefore, we can form the quotient group $$G/Z(G)$$. The order of this quotient group is $$p^2/p = p$$. But we also know that every group of prime order is cyclic so $$G/Z(G)$$ is cyclic (any group of prime order is cyclic). By Homework 8, if we have a group $$G$$ where its quotient group mod its center is cyclic ($$G/Z(G)$$), then $$G$$ is abelian. So $$G$$ is abelian in this case too. $$\ \blacksquare$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Cauchy Theorem</h3>
 There is one more application of the fixed point theorem. 
@@ -240,10 +238,8 @@ X^C &= \{x \in X \ | \ \varphi(x) = x\} \\
 $$
 </div>
 So this group has an even number of elements and must at least include the identity element. Therefore, it must have at least one more non-trivial element of order 2. $$\ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <b>Proof (Cauchy's Theorem)</b>
 <br>
@@ -326,10 +322,8 @@ $$
 $$
 </div>
 So $$|X^C|$$ must be divisible by $$p$$ and since $$|X^C| \geq 1$$, then $$|X^C| \geq p$$. But this means that $$G$$ has at least one non-trivial element of order $$p$$. $$\ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Classification of Groups of Order 6</h3>
 We've seen before $$\mathbf{Z}_6 \cong \mathbf{Z}_2 \times \mathbf{Z}_3$$ and we've also seen $$D_3 \cong S_3$$. 
@@ -413,10 +407,8 @@ $$a$$ has order 2 so $$\gamma_{a^j}(n^k)$$ is defined as
 	<li>When \(j = 1\), then \(a^1 = a\), then \(\gamma_{a} = \alpha\) where \(\alpha(n) = n^{-k}\).</li>
 </ul>
 So now if we apply the semidirect product multiplication, using the homomorphism we defined, we will see that for any $$a$$, that we get the relationship $$ana^{-1} = n^{-1}$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Classification of Groups of Order \(2p\)</h3>
 where $$p$$ is an odd prime. We know two groups $$\mathbf{Z}_{2p} =\mathbf{Z}_{2} \times \mathbf{Z}_{p}$$ and $$D_p$$. 
@@ -450,10 +442,8 @@ $$A$$ is of order 2 so it must be isomorphic to $$\mathbf{Z}_2$$. $$N$$ is of or
 	<li>The trivial homomorphism gives us the product group \(\mathbf{Z}_2 \times \mathbf{Z}_p\)</li>
 	<li>The non-trivial homomorphism gives us the dihedral group \(D_p\).</li>
 </ul>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Classification of Groups of Order \(pq\)</h3>
 $$p$$ and $$q$$ are distinct primes where $$p > q$$. So again we have $$|G|=pq$$. By Cauchy, we have two cyclic subgroups such that
@@ -502,10 +492,8 @@ There are two cases:
 	<li>\(q \ \not\mid \ (p-1)\): In this case, the generator of the group \(A\)'s \(q\)th power has to go to the identity because \(q\) doesn't divide \(p - 1\) which is the order of \(\Phi(p)\). The only possible \(\gamma\) is \(\gamma(a) = e\) so send everything to the identity and we get the direct product \(\mathbf{Z}_p \times \mathbf{Z}_q\).</li>
 	<li>\(q \ | \ (p-1)\): So we get the non-trivial homomorphism \(\gamma\). Because \(q \ (p-1)\) which is the order of \(\Phi(p-1)\), then by Cauchy there exists an element of order \(q\) in \(\Phi(p-1)\). So \(\mathbf{Z}_{pq}\) and another non abelian group.</li>
 </ul>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

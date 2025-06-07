@@ -28,10 +28,8 @@ For property (4), we don't call it $$-v$$ yet because we didn't prove yet if it'
 <!------------------------------------------------------------------------------------>
 <h3>Example 1: \(\mathbf{R}\)</h3>
 $$\mathbf{R}$$ is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties are true.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2: A Set of Matrices</h3>
 The set of $$m$$ by $$n$$ matrices ($$M_{m \times n}$$) equipped with component wise addition such that
@@ -73,10 +71,8 @@ c
 $$
 </div>
 is a vector space.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 3: Sets of Functions</h3>
 let $$S$$ be a nonempty set. For example $$S = \mathbf{R}$$, or $$S = \{\pi, \pi^2\}$$, $$S = \{$$atoms in the universe$$\}$$. Basically any non-empty set. 
@@ -85,10 +81,8 @@ Now consider $$F(S) = \{f: S \rightarrow \mathbf{R}\}$$, the set of all function
 Define addition as $$(f+g)(s) = f(s) + g(s)$$ for all $$s \in S$$. So addition of functions works as addition of their values and produces a real number which is what we want. Define scalar multiplication as $$cf(s) =c(f(s))$$ for all $$s \in S$$. 
 <br><br>
 $$F(S)$$ is a vector space. It satisfies all 8 conditions. For example. The zero vector in this space is $$\bar{0}(s) = 0$$ for all $$s \in S$$. Note also that $$C^1(\mathbf{R})$$ (the functions where with continues derivatives) is a subset of $$C^0(\mathbf{R})$$ (the set of continuous functions) which is a subset of $$F(S)$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 4: The Set of all Sequences</h3>
 Consider the set of all natural numbers $$\mathbf{N}$$ and the set of functions $$F(\mathbf{N}) = \{\sigma: \mathbf{N} \rightarrow \mathbf{R}$$. $$\sigma$$ is a function that takes a natural number and assigns it a real number. But
@@ -108,10 +102,8 @@ $$
 $$
 </div>
 Let $$V = \{$$ sequences $$\{a_n\}$$ is a vector space. Define the addition of two sequences as $$\{a_n\} + \{b_n\} = \{a_n + b_n\}$$. Adding the terms one by one. Define scalar multiplication as $$c\{a_n\} = \{ca_n\}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 5: The Set of Polynomials</h3>
 <div class="bdiv">
@@ -146,10 +138,8 @@ $$
 </div>
 $$P_n$$ is a vector space. The zero vector is the function $$f\bar{0} = 0 = 0x^n + .... + 0$$.
 Question: why did we define the polynomials to have at most $$n$$ and not just $$n$$? because take $$(X^5 + 1)$$ and $$(-x^5 + 9)$$. The addition of these two will generate a 0 and so we have to say at most.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Additional Vector Space Results</h3>
 <div class="purdiv">
@@ -240,10 +230,8 @@ Since $$w = w'$$, we can conclude that $$w$$ is a unique additive inverse. $$\bl
 <br>
 <br>
 Two additional implications mentioned in the class is that $$w = (-1)v$$ and $$0v = \bar{0}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 6: A Non Example</h3>
 Consider the set $$\mathbf{R}^2$$ equipped with a different set of operations. Let's define addition as
@@ -292,10 +280,8 @@ $$
 $$
 </div>
 so it can never be equal to (0, 1).
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References:</h3>
 <ul>

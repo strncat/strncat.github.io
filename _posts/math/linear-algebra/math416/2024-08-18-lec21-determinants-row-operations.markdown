@@ -153,10 +153,8 @@ $$
 $$
 </div>
 As we wanted to show. $$\blacksquare$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Compute the determinant for 
@@ -246,10 +244,8 @@ This operation will not further change the value of the determinant. So now we c
 <!-------------------------------------------------------------------------->
 <h3>Comparisons</h3>
 Computing $$\det(A)$$ for $$A \in M_{n \times n}$$ using the inductive formula is roughly $$n!$$ operations. Using row operations, it is roughly $$n^3$$ operations.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

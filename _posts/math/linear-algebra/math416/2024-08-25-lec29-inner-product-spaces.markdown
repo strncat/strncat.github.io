@@ -73,10 +73,8 @@ $$
 $$
 </div>
 which also satisfies the inner product properties (TODO)
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 3: Dot Product</h3>
 Another example is $$V = \mathbf{R}^n$$ over $$\mathbf{R}$$ where
@@ -88,10 +86,8 @@ $$
 $$
 </div>
 which is commonly known as the dot product.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 4</h3>
 Another example is $$V = \mathbf{R}^2$$ over $$\mathbf{R}$$ where
@@ -126,10 +122,8 @@ $$
 $$
 </div>
 Note here that if we defined the product as $$\langle z_1, z_2 \rangle = z_1z_2$$. This will fail to satisfy the inner product conditions.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 6: Frobenius Inner Product</h3>
 Define $$V = \mathbf{C}^0([0,1]) = \{f: [0,1] \rightarrow \mathbf{R} \ | \ f \text{ continuous}\}$$ 
@@ -229,10 +223,8 @@ Does this map satisfy the inner product conditions?
 	</li>
 </ol>
 In fact, $$tr(B^tA) = \sum_{ij} A_{ij}B_{ij}$$. the definition of $$tr(B^tA)$$ is for square matrices while the definition $$\sum_{ij} A_{ij}B_{ij}$$ works for any matrices. This works for an inner product on matrices.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Inner Product Spaces</h3>
 So far, we've seen that inner products are not unique. We can define many inner products on a given vector space. So we have the following definition to fix a specific inner product on a vector space
@@ -246,10 +238,8 @@ An inner product space is a vector space is a vector space \(V\) with a fixed in
 <br>
 <br>
 Example: ($$\mathbf{R}^2, \langle x,y \rangle = x_1y_1 + x_2y_2$$) is an inner product space different from $$(\mathbf{R}^2, \langle x,y \rangle = 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2)$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>The Norm of a Vector</h3>
 For the rest of the lecture, we're going to assume that we have a fixed inner product on $$V$$. 
@@ -374,10 +364,8 @@ $$
 
 
 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

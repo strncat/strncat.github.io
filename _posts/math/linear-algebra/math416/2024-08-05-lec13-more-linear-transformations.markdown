@@ -130,10 +130,8 @@ So we can think of $$[\quad]_{\beta'}$$ as a map:
 $$
 </div>
 The idea is that each basis $$\beta$$ of $$V$$ with dimension $$\dim V = n$$ gives a map that identifies $$V$$ with $$\mathbf{R}^n$$. This map is linear, 1-1 and onto. "Bijective Correspondance"
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Matrix Representation of linear transformations</h3>
 Consider now $$T: V \rightarrow W$$ linear and both $$V$$ and $$W$$ are finite dimensional.
@@ -393,10 +391,8 @@ Suppose we have the function $$f(x) = 3x^3 + 4x + 5$$ in $$P_3$$. We can express
 $$
 </div>
 This gives us the coefficients vector with respect to the basis $$\gamma$$. This means that the function will be $$4 + 9x^2$$ which is exactly what we would get if manually applied the transformation on $$f(x)$$ to get $$f'(x)$$ but now instead we have a matrix to do this.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

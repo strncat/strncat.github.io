@@ -39,10 +39,8 @@ $$
 $$
 </div>
 We've also discussed a few other things like calling an action transitive if there is only one orbit.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Conjugation by \(G\) on \(X = G\)</h3>
 The next thing we talked about was the conjugation action when the set $$G$$ acted on was the set $$G$$ itself. This was defined as 
@@ -111,10 +109,8 @@ So $$Cl$$ contains only $$b$$. So if you're in the center, then the conjugacy cl
 <br>
 <br>
 Consequence: If $$G$$ is abelian, then $$Z(G) = G$$ and every conjugacy class in $$G$$ in its own class. So $$Cl(g) = \{g\}$$ for all $$g \in G$$. What about the stabilizer or Center$$(g)$$? It's also all of $$G$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Conjugacy Classes in \(SO(3)\)</h3>
 Let $$G = SO(3) = \{Rot_u(\theta)\}$$ where $$u$$ is a unit vector. $$Rot_u(\theta)$$ is a rotation by angle $$\theta$$ around the unit vector $$u$$. Recall
@@ -173,10 +169,8 @@ This means that we get all the rotations with the same \(\theta\) but the axis i
 </li>
 </ol>
 Note: Both $$Rot_u(\theta)$$ and $$Rot_u(-\theta)$$ are also the same conjugacy class. For example, $$Rot_{e_3}(-120)$$ and $$Rot_{e_3}(-120)$$ are in the same conjugacy class. We are rotating by 120 degrees around the same unit vector but one is clockwise and the other is counterclockwise. This is also because of the rule above where $$Rot_{e_3}(120) = Rot_{-e_3}(120)$$. So we can move the sign from the angle to the vector we're rotating against. So now we're back in the case where we're rotating by the same angle but two different unit vectors that we can relate through some matrix $$A \in SO(3)$$. The exception is 180 degrees because $$Rot_u(\pi) = Rot_u(-\pi)$$. So it's only one rotation when $$\theta = \pi$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Centralizers in \(SO(3)\)</h3>
 What about the centralizers in $$SO(3)$$? The centralizer of the identity is any element that commutes with the identity element. So it's easy to see that $$\text{Cent}(x) = SO(3)$$. 
@@ -202,10 +196,8 @@ There is exception for  $$\pi = 180$$ because in addition to all the arbitrary r
 	$$
 </div>
 Study notes since I was confused here. The idea is that for any rotation in $$SO(3)$$, we have a conjugation formula that states $$ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)$$. This means that rotation about the axis $$u$$ by $$\theta$$ and then rotating by $$A$$ is the same as rotating about the axis $$Au$$ by the same angle. This tells us that two rotations in $$SO(3)$$ are conjugate if it's the same angle and if they can be related by some matrix $$A$$. So now the questions is? given some unit vector $$u$$? and given a rotation around $$u$$ by angle $$\theta$$. Are we guaranteed to find another vector $$v$$ such that $$ARot_u(\theta)A^{-1} = Rot_{Au}(\theta)$$? The answer is yes for $$SO(3)$$ specifically. For any two unit vectors $$u$$ and $$v$$, there exists an $$A$$ such that $$Au = v$$. Therefore, if we keep the same angle, then all the rotations by another other vector $$v$$ around the same angle are in the same conjugacy class as the rotation around the original vector by $$\theta$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Symmetries of the Cube \(\leq SO(3)\)</h3>
 As a reminder, we did this in the previous lecture
@@ -279,10 +271,8 @@ In fact, these are exactly the conjugacy classes of the cube (5 classes). But we
 	$$
 </div>
 What we want is an $$A$$ such that it sends $$u$$ to $$Au$$. We don't have that in the cube.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Conjugacy Classes of \(S_n\)</h3>
 We have formula already for this 
@@ -351,10 +341,8 @@ For example, consider $$S_4$$. Take the cycle type $$(a \ b)$$. There are $$\bin
 </table>
 </div>
 In fact this group is isomorphic to the symmetry group of the cube that we did earlier.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

@@ -270,10 +270,8 @@ is true only when $$a_1 = 0, a_2 = 0, ... a_k = 0$$.
 <!------------------------------------------------------------------------------------>
 <h3>Example 0</h3>
 Consider $$\{\bar{0}\}$$. This set is linearly dependent because we can choose a scalar $$a_1 \neq 0$$ such that $$a_1\bar{0} = \bar{0}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 Given a vector $$u$$ such that $$u \neq \{\bar{0}\}$$, then $$\{u\}$$ is linearly independent.
@@ -289,10 +287,8 @@ Proof: We need to prove that $$au = \bar{0}$$ only if $$a = 0$$. Now suppose tha
 	$$
 </div>
 But we know that $$u \neq \bar{0}$$. Therefore $$a$$ must be zero and we're done.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 Given a vector $$u_1, u_2$$, prove that $$\{u_1, u_2\}$$ is linearly dependent if and only if one vector is a scalar multiple of the other.
@@ -326,10 +322,8 @@ For the backward direction, suppose that one vector can be written as a scalar m
 	$$
 </div>
 From this we see that there are scalars $$a_1 = 1$$ and $$a_2 = -c$$, not all zero such that $$a_1u_1 + a_2u_2 = \bar{0}$$ which means that they are linearly dependent as we wanted to show.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
 Determine the set of the following vectors:
@@ -391,10 +385,8 @@ This will eventually be
 	$$
 </div>
 The third column has no leading entry so there are infinitely many solutions besides the zero solution this set is linearly dependent.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 4</h3>
 Consider $$\{ \sin(x), \cos(x)\} \in F(\mathbf{R})$$. Is this set linearly dependent or independant?
@@ -404,10 +396,8 @@ From the definition if $$\sin(x)$$ was a non-zero scalar multiple of $$cos(x)$$,
 <br>
 <br>
 Suppose we choose the point $$x = 0$$, then we know that $$\sin(0) = 0$$ but $$a\cos(0)=a$$. Therefore, these functions are not equal and so the set is linearly independent.
-<br>
-<br>
 <hr>
-<br>
+
 <div class="purdiv">
 Theorem
 </div>
@@ -490,10 +480,8 @@ Conclusion: we can refine a finite subset $$\{u_1,...,u_k\}$$ to obtain a linear
 <br>
 <br>
 The rest of this lecture covered the definition of what a basis is and some other small result. I decided to move these to lecture 9 since lecture 9 covered basis in depth.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References:</h3>
 <ul>

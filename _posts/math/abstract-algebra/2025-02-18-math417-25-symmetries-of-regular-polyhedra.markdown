@@ -81,10 +81,8 @@ The reason we introduced these regular polyhedra is because we want to study the
 	$$
 </div>
 So this a point is a vertex if and only if, rotating this point by $$A$$ is also a vertex. It should be clear that $$G$$ is a subgroup of $$SO(3)$$. For example, how many rotational symmetries does the cube have? It is twice the number of edges for all of them. In fact, the symmetry group of the octahedron and the cube are isomorphic to each other because the two solids are duel of each other. Similarly, the symmetry group of dodecahedron is isomorphic to the symmetry group of the icosahedron. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>The Symmetry Group of the Tetrahedron</h3>
 Let's study the specific symmetry group of the Tetrahedron. Notice that if we draw a line from any vertex through the centroid of the opposite face, we get an axis where we can rotate around. We have two possible rotations here. Going one third clockwise and one third of full rotation counter clockwise. So $$2\pi / 3$$ in either direction. Each of these have order 3. Moreover, there are 4 possible axes of this type since we have 4 different vertices.
@@ -144,10 +142,8 @@ So we have exactly 12 symmetries of the tetrahedron. This group is isomorphic to
 	$$
 </div>
 The kernel of this homomorphism is just the identity symmetry. If you think about it, what symmetry corresponds to the identity permutation? it's just the identity symmetry so the kernel is the trivial kernel. How do we find the actual permutations that get mapped to the symmetries in the above table. Well, the first kind where the axis is from a vertex to the centroid of a face is equivalent to a permutation that leaves one vertex fixed. Thus, we get all the 3-cycle type permutations. For the other edge to edge axis kind of symmetry, notice here that each pair of vertices switch, therefore, we have to include the 2+2 cycle type permutations. Therefore, the the permutations we have are the 2+2 and the 3-cycle permutations. There are 12 of those and in fact, this is the subgroup $$A_4$$. Since the kernel of $$\phi$$ is the trivial subgroup, then $$G \cong A_4$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>The Symmetry Group of the Cube</h3>
 Next, we want to explore the symmetries of the cube. The first symmetry that we can construct is the symmetry around the axis that goes between two opposite vertices. We have 8 vertices total. Therefore, there are 4 pairs of those vertices. So 4 axes total. A rotation is one third of a full spin, so the angle is $$2\pi/3$$. Since we have two choices for the angle, then the number of total rotations is $$2*4 = 8$$ total rotations.
@@ -311,10 +307,8 @@ Take the 30 edges and divide them into groups of 6 edges each. Each edge has 5 o
 <br>
 The image of this homomorphism is exactly $$A_5$$ and this homomorphism is also injective. From these two facts, we can conclude that $$G \rightarrow A_5$$. To show this, we simply determine the cycle type like we did before in the above table (last column). This is really hard to visualize actually. But you want to see what happens to the group of edge friends when we rotate around each of the axes in the above table. For example, for the face to face axis, all the friends get cyclically rotated. So it's a 5-cycle.
 <br>
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

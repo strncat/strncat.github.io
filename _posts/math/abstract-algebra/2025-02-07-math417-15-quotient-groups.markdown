@@ -82,10 +82,8 @@ From this we see that $$3H = 0H$$, $$4H = 1H$$ and so on. There are exactly 3 di
 <br>
 <br>
 So now we see that $$G / H = \mathbf{Z}_n$$. This is a group. In fact $$\pi \ : \ \mathbf{Z} \rightarrow \mathbf{Z}/\mathbf{Z}n$$ is a homomorphism.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Quotient Function</h3>
 The question now is if we can do this in general. If we have a group $$G$$ and a subgroup $$H \leq G$$. We want to put a group structure on the set of left $$H$$-cosets, $$G / H$$ such that $$\pi \ : \ G \rightarrow G / H$$ is a homomorphism? This is called the "Quotient Group".
@@ -104,10 +102,8 @@ ker(\pi) &= \{g \in G \ | \ \pi(g) = e_{G/H}\} \\
 $$
 </div>
 But we also know that kernels are normal subgroups so this means that $$H$$ must be a normal subgroup. So if we make $$\pi$$ a homomorphism, then we'll see that $$H$$ is actually a normal subgroup. [Is this right?]
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Quotient Group</h3>
 Now suppose we have a group $$G$$ and a normal subgroup $$N$$. Define $$G/N$$ to be the set of all left cosets of $$N$$ so $$G/N = \{ aN \ | \ a \in G \}$$. In fact since $$N$$ is normal, the left cosets are the right cosets so we don't need to say left or right in the definition. Let's also define a group operation on the group $$G/N$$. 
@@ -169,10 +165,8 @@ Therefore, $$(G/N, \cdot)$$ is a group.
 <b>Proof (homomorphism)</b>
 <br>
 Next we want to show that $$\pi: G \rightarrow G/N$$ is a homomorphism with kernel $$ker(\pi) = N$$. Recall that $$\pi(a) = aN$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 1</h3>
 Let $$G = D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}$$. We established the identities $$r^4 = e = j^2$$ and $$jr = r^{-1}j$$. We first claim that $$N = \langle r^2 \rangle = \{e, r^2\}$$ is a normal subgroup of $$G$$. Why? For any $$g \in D_4$$, we have $$g r^2 g^{-1} \in \langle r^2 \rangle$$.
@@ -206,10 +200,8 @@ What about $$(jN)^2$$?
 	$$
 </div>
 Next, $$(rjN)^2 = (rj)^2N$$ But $$rj$$ is a flip so it's square is $$e$$ and so $$(rjN)^2 = eN$$. So every element's square is the identity and no element has order 4. So it's isomorphic to $$V$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 2</h3>
 Now consider $$D_6 = \{e, r, r^2, r^3, r^4, r^5, j, rj, r^2j, r^3j, r^4j, r^5j\}$$. Consider $$N = \langle r^3 \rangle = \{e, r^3\}$$ which is a normal subgroup of $$D_6$$. Why is it normal? Because if we conjugate it with any element from $$D_6$$, we will get the same set
@@ -239,10 +231,8 @@ As a reminder, because $$N$$ is a normal subgroup, $$G/N$$ is a group. It's a gr
 	$$
 </div>
 In fact, $$r^2N$$ has order 3 as well. So none of the elements have order 6 and so this group is not cyclic. It is in fact isomorphic to $$D_3$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 3</h3>
 Now consider $$G = (\mathbf{R}, +)$$ and $$H = (\mathbf{Z}, +)$$. $$G$$ is abelian. Therefore, all of its subgroups are normal and $$H$$ is normal. Now let's form the quotient group as follows
@@ -273,10 +263,8 @@ Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = 
 	\end{align*}
 	$$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 4</h3>
 Let $$F$$ be a field. ($$F = \mathbf{R}$$ or $$\mathbf{C}$$ or $$\mathbf{Z}p$$, $$p$$ is prime). Now let 
@@ -304,10 +292,8 @@ We can form the quotient group
 	\end{align*}
 	$$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Symmetric Groups</h3>
 We want to know what the normal subgroups of symmetric groups are. In order to do so, we want to see what happens if we conjugate a permutation $$\tau$$ with element so $$\sigma \tau \sigma^{-1}$$?
@@ -355,10 +341,8 @@ Apply $$\sigma^{-1}$$ to get $$\sigma^{-1}(x) \neq a_i$$ for any $$i$$. This mea
 	$$
 </div>
 From Case 1 and Case 2, we see that $$\sigma \tau \sigma^{-1}$$ is the $$k$$-cycle $$(\sigma(a_1) \ \sigma(a_2) \ ...\ \sigma(a_k))$$
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Cycle Conjugation Formula Application</h3>
 Suppose we have an element $$\tau = \tau_1 \tau_2 ... \tau_r \in S_n$$ where each $$\tau_i$$ is a cycle. Now suppose we have another element $$\sigma$$. Then
@@ -419,10 +403,8 @@ We can also ask, given $$\tau$$ and given $$\tau' = (5 \ 6)(3 \ 8 \ 2)$$. How ca
 	$$
 </div>
 Notice that for the other elements 3. We don't care where it goes as long it goes somewhere. As a reminder, $$\sigma$$ is not unique and there could be many $$\sigma$$'s such that $$\tau = \sigma \tau \sigma^{-1}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 2</h3>
 Let $$G = S_3$$ and $$N = \{e, (1 \ 2 \ 3), (1 \ 3\ 2)\} \leq S_3$$.
@@ -432,10 +414,8 @@ Observation: A subgroup $$H \leq S_n$$ is normal if and only if whenever $$g \in
 <br>
 <br>
 Based on this, $$H = \{e, (1 \ 2)\} \leq S_3$$. $$H$$ is not normal since it doesn't have all the elements of the same cycle type. Other normal subgroups of $$S_n$$ are $$\{e\}$$, $$A_n = ker(sgn)$$ even permutations. And if $$n = 4$$, $$K = \{e, (1 \ 2)(3 \ 4), (1 \ 3)(2 \ 4), (1 \ 4),(2 \ 3)\}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

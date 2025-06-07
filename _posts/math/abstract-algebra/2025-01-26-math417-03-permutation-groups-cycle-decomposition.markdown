@@ -32,10 +32,8 @@ S_n = Sym(\{1,2,...,n\})
 $$
 </div>
 The size of $$S_n$$ is $$|S_n| = n!$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Two Line Notation</h3>
 Let $$\rho, \psi \in S_4$$, then we'll write
@@ -63,10 +61,8 @@ shows that $$\psi(1) = 4$$, $$\psi(2) = 2$$, $$\psi(3) = 1$$ and $$\psi(4) = 3$$
 	$$
 </div>
 so $$\rho\psi(1) = 2$$, $$\rho\psi(2) = 4$$, $$\rho\psi(3) = 1$$ and $$\rho\psi(4) = 3$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Cycle Notation</h3>
 We can decompose the cycles in each permutation above. For example for the first permutation
@@ -148,10 +144,8 @@ Suppose we have $$\sigma = (1 \quad 3)(2 \quad 7 \quad 8)(4 \quad 5 \quad 6)(9) 
 <br>
 <br>
 The proof for this theorem is in the class notes.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Cycle Type</h3>
 We can classify permutations of a finite set into groups corresponding to the number of cycles of various lengths in their cycle decomposition.
@@ -239,10 +233,8 @@ What about $$\nu =  (1 \quad 2)(2 \quad 3 \quad 4)$$? Note here that the two cyc
 [TODO:PIC]
 
 From this we see that $$\text{order}(\nu) = 4$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Parity of a Permutation</h3>
 The second concept that we want to talk about is the parity of a permutation but first we'll start with the following proposition.
@@ -340,10 +332,8 @@ So now define: $$sgn(\sigma) = \det(A_{\sigma})$$ where $$sgn: S_n \rightarrow \
 	<li>\(sgn(\sigma \circ \tau) = sgn(\sigma)sgn(\tau)\). This follows from the product property of the determinant. \(\det(AB) = \det(A)\det(B)\).</li>
 	<li>If \(\tau\) is a transposition, then \(sgn(\tau) = -1\). This also follows from the fact that interchanging any two columns from a matrix results in switching the sign of the determinant.</li>
 </ol>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

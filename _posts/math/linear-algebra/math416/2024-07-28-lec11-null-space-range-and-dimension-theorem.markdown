@@ -260,10 +260,8 @@ Let \(T: V \rightarrow W\) be a linear map between vector spaces of the same fin
 </div>
 <br>
 Note here that $$rank(T) = \dim(R(T))$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

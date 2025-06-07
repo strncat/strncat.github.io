@@ -108,10 +108,8 @@ w - \tilde{w} = z - \tilde{z} = \bar{0}_V
 $$
 </div>
 But $$w,\tilde{w} \in W$$ and $$z, \tilde{z} \in Z$$ and since $$W \cap W^{\perp} = \bar{0}_V$$, then $$w = \tilde{w}$$ and $$z = \tilde{z}$$. $$\ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Projection of \(x\) onto \(W\)</h3>
 The $$w$$ vector we found in the last theorem has a special name. It is the projection of $$x$$ onto the subspace $$W$$.
@@ -191,10 +189,8 @@ w = \sum_{j = 1}^{k} \langle x, u_j \rangle u_j
 $$
 </div>
 This formula tells us that the projection is linear in $$x$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Least Squares</h3>
 We're going to use the projection in studying systems of linear equations that are inconsistent. So consider the system of equations 
@@ -238,10 +234,8 @@ $$
 </div>
 <br>
 But why is this true? to be able to prove this theorem we need a few other definitions and lemmas first. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Adjoint Linear Maps</h3>
 <div class="bdiv">
@@ -430,10 +424,8 @@ Ax_0 = \text{proj}_{Col(A)}b \ &\Longleftrightarrow \ \langle b - Ax_0, Ax \rang
 \end{align*}
 $$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

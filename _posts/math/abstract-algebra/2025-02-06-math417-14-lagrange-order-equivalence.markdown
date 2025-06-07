@@ -42,10 +42,8 @@ $$
 $$
 </div>
 From this we can deduce that the index of $$\mathbf{Z}_{12}$$ inside $$\mathbf{Z}_3$$ is 4.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Proof of Generalized Lagrange</h3>
 $$[H: K]$$ is the number of left $$K$$-cosets inside $$H$$. So $$aK \subseteq H$$. Observe that for any $$aH$$, the number of left $$K$$-cosets in $$aH$$ is equal to $$[H : K]$$. Consider the bijection
@@ -58,10 +56,8 @@ h &\rightarrow ah
 $$
 </div>
 Then $$hk$$ under this bijection will be $$ahK$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Let $$D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}$$. Consider:
@@ -83,10 +79,8 @@ rH &= \{r, r^3, rj, r^3j\} \ | \ rK = \{r, r^3\}, \ rjK = \{rj, r^3\}.
 $$
 </div>
 If you look at $$eH$$, observe that it contains both $$K$$-cosets and if you look at $$rH$$, you'll see that it also contains both of the $$K$$ cosets.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Order Theorem</h3>
 Back to the Order Theorem. For example, for $$|G| = 12$$, the order of the elements inside $$G$$ are $$o(g) \in \{1,2,3,4,6,12\}$$. The question is do we know if there must be a subgroup of order 6? 4? what about 2? For 2, if the order of the group is even, then we must have an element with order 2. To see why, we have the Even Order Theorem as follows:
@@ -120,10 +114,8 @@ So we showed that $$n = |G| = r + 2s$$ but by assumption, $$n$$ is even and sinc
 <br>
 <br>
 There is a generalization of this theorem that we'll prove later. But if $$p$$ is prime and it divides $$|G|$$, then there exists an element of order $$p$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Equivalence Relations</h3>
 Review of equivalence relations
@@ -176,10 +168,8 @@ $$
 $$
 </div>
 $$\pi$$ is quotient function. $$\pi$$ is surjective. Every equivalence class, has an element $$a$$ that is in the set $$X$$ by definition. So now given $$\pi$$, we can recover the equivalence relation.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

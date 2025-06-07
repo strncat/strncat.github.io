@@ -39,10 +39,8 @@ I: \ &V \rightarrow V \\
 $$
 </div>
 If we compute its matrix representative, we will see that $$[I_V]_{\beta}^{\beta} = I_n$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Inverse Linear Transformation</h3>
 Next we define the inverse of a linear transformation

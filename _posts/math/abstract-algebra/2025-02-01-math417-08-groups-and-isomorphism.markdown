@@ -171,10 +171,8 @@ Let \(G\) be a group and let \(a,b \in G\). Then We have \((ab)^{-1} = b^{-1}a^{
 <b>Proof</b>
 <br>
 Notice that $$(ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(ea^{-1}) = aa^{-1} = e$$. Therefore, $$(ab)^{-1} = b^{-1}a^{-1}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!---------------------------------------------------------------------->
 <h3>The Left and Right Multiplication Maps</h3>
 
@@ -250,10 +248,8 @@ If \(G\) is a finite group, each row and each column of the multiplication table
 <b>Proof (book)</b>
 <br>
 A row in the multiplication table can be represented by a left multiplication map $$G \rightarrow G$$ if you fix the element multiplied on the left. We know the left multiplication map is a bijection. Therefore every element/result must be unique and each element of $$G$$ must show up in the row. Similarly, each column can be represented by a right multiplication map. The map is a bijection and so each element must be unique and shown exactly once. (TODO clean up this proof)
-<br>
-<br>
 <hr>
-<br>
+
 <!--------------------------------------------------------------------->
 <h3>Associativity in Groups</h3>
 We know by definition that the product is associative so for all $$a, b, c \in G$$, we have $$(ab)c = a(bc)$$. What about the product of 4 or more elements? is it associative? For example, there are five ways to group four elements
@@ -322,10 +318,8 @@ Inductive Case: Suppose this is true for all $$1 \leq r \leq n$$ where a unique 
 	$$
 </div>
 are defined since we have at most $$n-1$$ elements. ... [TODO]
-<br>
-<br>
 <hr>
-<br>
+
 <!--------------------------------------------------------------------->
 <h3>General Powers</h3>
 Now, we turn into defining powers of an element in a group
@@ -394,10 +388,8 @@ Inductive Case: Suppose the inductive hypothesis is true for $$n$$. That is $$(a
 	$$
 </div>
 
-<br>
-<br>
 <hr>
-<br>
+
 <!---------------------------------------------------------------------->
 <h3>Isomorphism</h3>
 One thing that we want to do is to compare two groups. For example take $$(\mathbf{Z}_4, +)$$, the symmetries of the rectangle, $$(\phi(5), \cdot)$$ and $$(\phi(8), \cdot)$$. These are all groups with exactly 4 elements. To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
@@ -493,10 +485,8 @@ The right hand side is clearly just $$a'b'$$. $$\varphi$$ is an isomorphism so t
 	$$
 </div>
 Therefore $$\varphi^{-1}$$ is an isomorphism as desired. $$\ \blacksquare$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!---------------------------------------------------------------------->
 <h3>Groups of Small Order</h3>
 The order of a group is the number of elements in it. Formally,
@@ -571,10 +561,8 @@ Note that for this direction, we could've instead relied on $$\phi^{-1}$$ being 
 </div>
 $$H$$ is abelian so $$a'b' = b'a'$$ so $$\phi^{-1}(a'b') = \phi^{-1}(b'a')$$ and thus $$ab = ba$$.
 <br>
-<br>
-<br>
 <hr>
-<br>
+
 <br>
 <!---------------------------------------------------------------------->
 Extra Notes from the book: Two groups are isomorphic means that the multiplication tables match up. In fact, not only that but the identity elements and inverses of elements match up as well. The following propositions state these facts.
@@ -613,10 +601,8 @@ To show that $$\phi(g^{-1}) = \phi(g)^{-1}$$, see that
 	$$
 </div>
 So $$\phi(g)$$ is the inverse of $$\phi(g^{-1})$$ or in other words $$\phi(g)^{-1} = \phi(g^{-1})$$ as we wanted to show. $$\ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!---------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

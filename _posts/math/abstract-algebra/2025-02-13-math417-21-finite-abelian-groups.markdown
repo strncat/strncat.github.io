@@ -34,10 +34,8 @@ if \(a = a_1a_2...,a_k\) where \(a_1,...,a_k\) are relatively prime and \(a_i \g
 <br>
 <!----------------------------------------------------------------------------->
 For example, $$\mathbf{Z}_{60} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{15} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{3} \times \mathbf{Z}_{5}$$. But this doesn't help with classification. For example, if we're given some other product of cyclic groups, how do we know it's isomorphic to a given group? A classification means that we can look at two products of cyclic groups and then be able to know if they are isomorphic to each other or not.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Elementary Divisor Classification</h3>
 As a start we have the following classification theorem
@@ -109,10 +107,8 @@ Notice how this theorem gave us three possibilities and the previous theorem gav
 </ol>
 <!----------------------------------------------------------------------------->
 We will prove both theorems later but the idea is that we're going to prove the existence of invariant factors first and then we're going to prove the uniqueness of the elementary divisors. This is enough because if we have an invariant factor decomposition, then we can always turn it into its elementary divisors decomposition. To see, we'll do an example next.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Suppose $$G$$ is finite abelian with invariant factors: $$5,25,50,36000$$. So $$G$$ is isomorphic to
@@ -335,10 +331,8 @@ Let's now compute the number of elements in each $$\alpha_m(G)$$
 	</tr>
 </table>
 Note that $$\alpha_3(G) = 1$$ and that 3 and 8 are relatively prime. $$\alpha_6(G) = 2$$ because only 0 and 4 have orders that divide 6.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Three Properties of \(\alpha_m(G)\)</h3>
 We'll prove three important properties about the function $$\alpha_m(G)$$.
@@ -483,10 +477,8 @@ If $$1 \leq k \leq n $$, then $$o([k]_n) = gcd(k,n)$$. (we proved this before). 
  		$$
  </div>
 (Exercise). 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Combining Everything</h3>
 So now we have three propositions about $$\alpha_m[G]$$
@@ -583,10 +575,8 @@ Suppose that $$G = \mathbf{Z}_{2^4} = \mathbf{Z}_{16}$$. Then
 	</tr>
 </table>
 This here proves the uniqueness of elementary divisors. Why? if $$G$$ is isomorphic to two products of elementary divisors. The function $$\beta_{q^l}$$ gives us exactly the number of elementary divisors that are equal to $${q^l}$$ in the given product. $$\beta$$ is an isomorphism invariant. So if we're given different products, $$\beta$$ will give different numbers and the products can't be isomorphic.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

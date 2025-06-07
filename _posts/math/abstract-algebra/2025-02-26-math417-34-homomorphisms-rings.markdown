@@ -45,10 +45,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Isomorphism of Rings</h3>
 More simple definitions:
@@ -90,10 +88,8 @@ $$
 $$
 </div>
 Another example is $$\varphi: \mathbf{C} \rightarrow \mathbf{C}$$ where $$\varphi(z) = \bar{z}$$. So $$\varphi(a+bi) = a - bi$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Substitution Principle</h3>
 The substitution principle is a method for constructing any ring homomorphism where the domain is a polynomial ring
@@ -184,10 +180,8 @@ This happens because we're in $$\mathbf{Z}_p$$. If we're in an inifinite field, 
 <br>
 <br>
 Side study note: A polynomial belongs to the ring $$R[x]$$. A function is a mapping from $$R$$ to $$R$$. It assigns to each input $$r$$ in $$R$$, another value $$f(r)$$ in $$R$$. The function lives in the set of functions from $$R$$ to $$R$$. If $$R$$ is finite, two different polynomials in $$R[x]$$ may define the same function! So $$x^2$$ and $$x$$, will define the same function from $$\mathbf{Z}_2 \rightarrow \mathbf{Z}_2$$. If $$R$$ was an infinite field, then each distinct polynmoial will give a distinct function.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Ideals</h3>
 So far, we've seen groups, subgroups and normal subgroups. Normal subgroups were special since they show up as kernels of homomorphism and we can form quotient groups using them. 
@@ -243,10 +237,8 @@ $$
 </div>
 <br>
 Fact: $$\ker(\varphi)$$ is an ideal in $$R$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

@@ -95,10 +95,8 @@ $$
 $$
 </div>
 This defines a rotation around the $$z-$$axis by angle $$\theta$$ counter clockwise viewed from the head of the vector $$e_3$$ where $$e_3 = (0,0,1)$$. But what if we wanted to rotate around a different vector? let $$u \in \mathbf{R}^3$$ such that $$\lVert {u} \rVert = 1$$ and let $$\text{Rot}_u(\theta)$$ be a rotation matrix around the axis through $$u$$ by angle $$\theta$$ counterclockwise when viewed from the head of $$u$$. How do we compute such a matrix?
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>How Do you Compute The Rotation Matrix?</h3>
 Recall from Linear Algebra that
@@ -126,10 +124,8 @@ $$
 $$
 </div>
 So we're taking the standard rotation around the $$z$$-axis or $$e_3$$ and changing the basis from the standard vectors $$e_1, e_2, e_3$$ to $$u_1, u_2, u_3$$ so now the rotation is actually around $$u_3$$ instead.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Example</h3>
 So now suppose we want to rotate around $$\frac{(e_1 + e_2)}{\sqrt{2}}$$ (which is a unit vector) by $$\theta = \frac{\pi}{3}$$. Then, we'll need two more orthonormal vectors in addition to $$\frac{(e_1 + e_2)}{\sqrt{2}}$$ to construct an orthonormal basis. We can use Gram-Schmidt to come up with the following orthonormal vectors and set them to be the column vectors of $$P$$ as follows
@@ -233,10 +229,8 @@ Also observe that the identity matrix is in $$SO(n)$$ and that for any $$A \in S
 <br>
 <br>
 So now we know that the collection of special orthogonal matrices is a group. Therefore, if the proposition we introduced earlier holds (where we said that $$A \in Mat_{3 \times 3}(\mathbf{R})$$ is a rotation matrix if and only if it is special orthogonal), then we can also conclude that the product of two rotation matrices is also a rotation matrix. So let's sketch the proof of the proposition
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
@@ -280,10 +274,8 @@ c & d & 0 \\
 $$
 </div>
 By an algebraic argument we can show that $$a = d = \cos\theta$$ and $$c = -b = \sin\theta$$. So $$B$$ must be $$\text{Rot}_{e_3}$$. Therefore, $$A = P\text{Rot}_{e_3}P^{T}$$....
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

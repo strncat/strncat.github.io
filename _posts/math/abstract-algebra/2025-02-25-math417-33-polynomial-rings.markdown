@@ -62,10 +62,8 @@ Convention: We identify an element $$a$$ in the original ring $$R$$ with the cor
 <br>
 <br>
 Remark: In a similar way, we can form $$R[x,y]$$ or $$R[x_1,...,x_n]$$ (polynomial ring of several variables). In fact, $$R[x,y] = (R[x])[y]$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------->
 <h3>The Degree of a Polynomial</h3>
 We now want to focus on a special case of a polynomial ring where the coefficient ring is actually a field. So let $$R = K$$ be a field and let 
@@ -93,17 +91,13 @@ f = \sum_{k=0}^{n} a_kx^k \in K[x]
 $$
 </div>
 Then, we only know that $$\deg(f) \leq n$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>The Degree of the Zero Polynomial</h3>
 If $$f$$ is a constant polynomial, what is the degree of $$f$$? We defined the degree as the largest $$n$$ such that $$a_n \neq 0$$. In a constant polynomial, all the terms are zero except for $$a_0$$. If the constant is non-zero, then the degree is zero. But if the polynomial is zero itself so $$f = 0$$, then now all the coefficients $$a_i$$'s are zero so in this case the degree is undefined but we're going to let the degree in this case be $$-\infty$$. So deg$$(f)=0$$ if and only if $$f = 0$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>The Degree of a Polynomial when the Coefficient Ring is a Field</h3>
 Next, we're going to prove a proposition where we will see why we needed the coefficient ring to be a field.
@@ -137,10 +131,8 @@ fg &= a_0b_0 + (a_1b_0+a_0b_1)x + ... + (a_ma_n)x^{m+n} \\
 $$
 </div>
 and if $$a_m \neq 0$$ and $$b_n \neq 0$$, then $$a_mb_n \neq 0$$. This is because $$K$$ is a field so if $$a,b \in K$$ and $$a \neq 0$$, $$b \neq 0$$, then $$ab \neq 0$$. (because $$K^{\times} = K\{0\}$$). 
-<br>
-<br>
 <hr>
-<br>
+
 Non-example: Take $$R = \mathbf{Z}_4 = \{0,1,2,3\}$$. $$\mathbf{Z}_4$$ is not a field since element 2 doesn't have an inverse in $$\mathbf{Z}_4$$. Note that only elements 1 and 3 have inverses. ($$3*3 = 1$$ and $$1*1 = 1$$ in $$\mathbf{Z}_4$$. Now consider $$\mathbf{Z}_4[x]$$ and let $$f = 1 + 2x \in \mathbf{Z}_4[x]$$. Observe that
 <div>
 $$
@@ -179,10 +171,8 @@ $$
 $$
 </div>
 But the only solution is that $$\deg(f) = \deg(g) = 0$$. So the units always have to be constant.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Division Algorithm for \(K[x]\)</h3>
 <!------------------------------------------------------------------------>
@@ -249,10 +239,8 @@ p &= (cx^k + p')d + r.
 $$
 </div>
 [TODO: This proof is unclear and a mess ... ]
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

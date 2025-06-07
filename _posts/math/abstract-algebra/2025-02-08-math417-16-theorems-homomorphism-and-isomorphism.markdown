@@ -33,10 +33,8 @@ In a picture, once we have the requirement $$N \subseteq K$$ where $$K = ker(\ph
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec16/1.png" width="90%" class="center"></p>
 
 In short, we're following a recipe to construct a homomorphism. Given a homomorphism $$\varphi \ : \ G \rightarrow H$$ and a normal subgroup $$N$$ that is a subset of $$ker(\varphi) = K$$ (which means that $$\varphi(N) = \{e\}$$ since every element in the kernel is sent to the identity). THEN, we get another homomorphism $$\varphi$$ from $$G/N$$ to $$H$$. The homomorphism is given by $$\varphi'(aN) = \varphi(a)$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Proof</h3>
 (1) First we need to check that $$\varphi'$$ is well defined. This means that want to show that if $$aN = bN$$ (in $$G/N$$), then $$\varphi'(a) = \varphi'(b)$$ which is $$\varphi(a) = \varphi(b)$$ in $$H$$ by how we defined $$\varphi'$$ above. Re-write $$aN = bN$$ as
@@ -94,10 +92,8 @@ $$
 $$
 </div>
 Notice now that $$N$$ is a subgroup of $$K$$. This means that any coset of $$N$$ will be contained in the corresponding coset of $$K$$ so $$aN \subseteq aK$$. But here it is the trivial coset so $$aK = eK = K$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Isomorphism Theorem</h3>
 <div class="yellowheaderdiv">
@@ -119,10 +115,8 @@ So we have the same conditions as before except that $$N = K$$ and the $$\phi$$ 
 <br>
 <br>
 Moreover, its kernel per the homomorphism theorem is $$\{aN \ | \ aN \subseteq K\}$$ (collection of all cosets of $$N$$ that are contained in $$K$$). But now $$N = K$$. There is only one coset of $$N$$ contained in $$N$$ which is the trivial coset $$eN$$. so $$ker(\phi') = \{eN\}$$. This implies that $$\phi'$$ is injective. So $$\phi'$$ is now a bijection which means that it's an isomorphism. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 1</h3>
 <ul>
@@ -142,10 +136,8 @@ $$
 $$
 </div>
 Reminder: $$\mathbf{Z}/\mathbf{Z}n = \mathbf{Z}_n$$
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 2</h3>
 <ul>
@@ -167,10 +159,8 @@ The determinant of this matrix is \(a\). So this homomorphism is surjective.
 <li>The kernel of \(\phi\) is the set of invertible matrices such that their determinant is the identity matrix. \(ker(\phi) = \{A \in GL_n(F) \ | \ \det(a) = 1\}\). This set is called the special linear group or \(SL_n(\mathbf{F})\) In fact it is a normal subgroup of \(GL_n(F)\).</li>
 </ul>
 The Isomorphism Theorem tells us that $$GL_n(\mathbf{F})/SL_n(\mathbf{F})$$ is isomorphic to  $$\mathbf{F}^{x}$$
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 3</h3>
 We're going to show that $$S_4 / N \approx S_3$$. 
@@ -308,10 +298,8 @@ So here are some claims about $$\varphi$$
 	<li>In fact \(K = \{e, (1 \ 2)(3 \ 4), (1 \ 4)(2 \ 3), (1 \ 3)(2 \ 4)\} \)</li>
 </ul>
 Notice here that we first proved that $$|K| = 4$$ before finding the elements in $$K$$. It's just easier to verify that some element is in the kernel rather than finding the elements first.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 4</h3>
 Suppose that $$n \geq 3$$. Let $$D_{2n}$$ be the symmetries of regular $$2n$$-gon (even number of vertices.)<br> 
@@ -334,10 +322,8 @@ $$
 $$
 </div>
 The kernel of this homomorphism is a normal subgroup of $$D_6$$ and by the Isomorphism Theorem, the quotient group $$D_6/K$$ is isomorphic to $$S_3$$. How big is $$K$$? $$D_6$$ has 12 elements and $$S_3$$ has 6 elements. So $$K$$ must have $$2$$ elements. The kernel is $$\{e, r^3\}$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

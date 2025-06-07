@@ -21,10 +21,8 @@ From this, we should that if an element is prime, then it must be irreducible bu
 <br>
 <br>
 We also defined a PID which is a principle ideal domain. a domain $$R$$ is a PID if every ideal is principle in $$R$$. An example of a PID is $$\mathbf{Z}$$, $$\mathbf{Z}[i]$$, $$K$$ and $$K[x]$$ where $$K$$ is a field. Domains that were not PIDs were $$K[x,y], \mathbf{Z}[x], \mathbf{Z}[\sqrt{-5}]$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Unique Factorization Domain (UFD)</h3>
 We have a new defintion for a domain that has a unique factorization property
@@ -42,10 +40,8 @@ A domain \(R\) is such that every non-zero and non-unit can be a factored as a p
 </div>
 <br>
 Example: $$R = \mathbf{Z}$$ is a UFD.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>Every PID is a UFD</h3>
 Next, we will show that every principle domain is actually a unique factorization domain
@@ -125,10 +121,8 @@ This is a factorization of an element that has $$m-1$$ $$p$$ factors and $$n - 1
 <br>
 <br>
 Note: We will apply this to an example involving the Gaussian integers next lecture.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

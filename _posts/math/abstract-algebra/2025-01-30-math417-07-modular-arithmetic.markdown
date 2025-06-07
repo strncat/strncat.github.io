@@ -44,10 +44,8 @@ The set \([a]\) is called the residue class or congruence class of \(a\) modulo 
 Example: $$[2]_6 = \{2 + 6y \ | \ y \in \mathbf{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}$$
 <br>
 $$[2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>The Remainder Function</h3>
 Another important definition that we need is the following
@@ -64,10 +62,8 @@ Definition
 <!------------------------------------------------------------------------------>
 <br>
 It's important to note that the remainder is in the same congruence class as $$a$$. In fact $$[a]_n \cap \{0,...n-1\} = \{r\}$$. Usually the remainder $$r$$ is the standard/canonical name for the congruence class. So for example, we usually don't write $$[602]_6$$ but write $$[2]_6$$. But we don't have to put it in canonical form.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Properties of Congruence</h3>
 Congruence is an equivalence relation. The following properties show this.
@@ -134,10 +130,8 @@ $$(d)$$ is an immediate application of $$(c)$$
 <br>
 $$(d) \implies (a)$$:
 Suppose that $$[a]_n \cap [b]_n \neq \emptyset$$. Let $$c \in [a]_n \cap [b]_n$$. Then $$a \equiv c \bmod n$$ and $$b \equiv c \bmod n$$. But this implies that $$a \equiv b \bmod n$$. $$\ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Modular Arithmetic</h3>
 The following lemma establishes how modular arithmetic is done.
@@ -227,10 +221,8 @@ $$
 We will use $$\phi(n) = \{x \in \mathbf{Z}_n \ | \ x \text{ has a multiplicative inverse}\} \in \mathbf{Z}_n$$. 
 <br>
 $$(\phi(n))$$ is a commutative group.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Binomial Theorem</h3>
 <br>
@@ -301,10 +293,8 @@ $$p! = p(p-1)...1$$. So $$p \ | \ p!$$. But $$p! = \binom{p}{k} k! (p-k)!$$ so $
 <br>
 <br>
 A consequence of this proof is Fermat's Little Theorem
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Fermat's Little Theorem</h3>
 Next, we will prove Fermat's Little Theorem.
@@ -361,10 +351,8 @@ Inductive Case (\(a < -1\)): We want to show that \(a^p \equiv a\) implies \((a 
 <b>Proof of (2)</b>
 <br>
 We are given that $$a \nmid p$$. From part (1), we know that $$a^p \equiv a \bmod p$$. So $$p \ | \ a^p - a = a(a^{p-1} - 1)$$. But since $$p$$ is prime and since it doesn't divide $$p$$, then it must divide $$a^{p-1} - 1$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Two-Prime Fermat</h3>
 There is a more generalized version of Fermat's Little Theorem. We will use Fermat's theorem to prove it.
@@ -417,10 +405,8 @@ Since we assumed that $$p \nmid a$$. Then we can use Fermat's Little Theorem (pa
 	$$
 </div>
 This implies that $$a^{tm} - 1$$ must be divisible by $$p$$ as we wanted to show. So $$p$$ divides the product $$a(a^{tm} - 1)$$. With a similar argument, we can show this for $$q$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>RSA Cryptosystem</h3>
 This encryption method is based on the two prime fermat theorem. It is widely used to encrypt many of the transactions that happen on the internet.
@@ -450,10 +436,8 @@ So now, you take the plain test $$x$$ and raise it to the $$e$$th power. $$x^e$$
 	$$
 </div>
 This is Two-prime Fermat.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

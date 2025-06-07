@@ -61,10 +61,8 @@ Example: Suppose $$G$$ has $$d_i = 1,3,12,12,720,0,0$$ Then
 	$$
 </div>
 For finite abelian groups, we won't have terms like $$\mathbf{Z}$$ since they are finite. So we will get exactly the invariant factor form out of this. So this proposition will essentially give us the existence of invariant factor decomposition. It will take this lecture and probably the next lecture to prove it.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>The Existence of Invariant Factor Decomposition Proof Sketch</h3>
 So now we want to describe the steps involved in this proof:
@@ -189,10 +187,8 @@ So now we want to describe the steps involved in this proof:
 </li>
 </ol>
 So what we did here is that we turned the problem into a problem about quotients by the image of a homomorphism that looked liked a left multiplication by a matrix. And then we took this matrix and put it in a Smith normal form. This leads to the form we want.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Using Addition instead of Multiplication for the Proof</h3>
 We have an abelian group $$G$$. The standard so far has been writing the group with multiplication but since we're going to turn to linear algebra, we're going to switch to addition.
@@ -386,10 +382,8 @@ If \(G\) is a finitely generated and abelian, there exists a surjective homomorp
 </div>
 <br>
 <!----------------------------------------------------------------------------->
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Subgroups of Finitely Generated Groups</h3>
 [Lecture 24]. So given a finitely generated group $$G = \langle a_1,...,a_n \rangle$$. We want to know is this property of being finitely generated inherited? Do subgroups and quotient groups of $$G$$ are also finitely generated? If we have a normal subgroup $$N$$. Is $$G/N$$ finitely generated? The answer is actually yes. In fact, can write $$G/N = \langle a_1N,...a_nN \rangle$$. So quotients of finitely generated groups are finitely generated as well. 
@@ -525,10 +519,8 @@ We can now use the induction hypothesis to say that since $$G/\mathbf{Z}\{a\}$$ 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec24/6.png" width="77%" class="center"></p>
 
 Finally, we can use the lemma to say that since $$H/N$$ is finitely generated and since $$N$$ is finitely generated, then $$H$$ is finitely generated as we wanted to show. $$\ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Consequences</h3>
 So now, recall the proposition we introduced where if $$G$$ is finitely generated and abelian then there exists a surjective homomorphism $$\phi: \mathbf{Z}^n \rightarrow G$$. So by the isomorphism theorem, $$G$$ is isomorphic to $$\mathbf{Z}^m/N$$ where $$N$$ is the kernel of $$\phi$$ (normal subgroup of $$\mathbf{Z}^m)$$. 
@@ -546,10 +538,8 @@ So now consider the following
 	$$
 </div>
 Consider $$\alpha: i \circ \bar{\alpha}$$. We know that $$\alpha(\mathbf{Z}^n) = N$$. $$\alpha$$ is a homomorphism since it's the composition $$i \circ \bar{\alpha}$$. Therefore, the isomorphism $$G \cong \mathbf{Z}^m/N$$ can be written as $$G \cong \mathbf{Z}^m/\alpha(\mathbf{Z}^n)$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Studying the Homomorphism from \(\mathbf{Z^n}\) to \(\mathbf{Z^m}\)</h3>
 So now the goal is to show that $$\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ can be represented with a left multiplication by a matrix $$L_A$$. Observe that if we take any matrix $$A \in \text{Mat}_{m \times n}(\mathbf{Z})$$, we can define the following
@@ -571,10 +561,8 @@ We claim that $$L_A$$ is a homomorphism. (We won't prove this). Basically, any h
 <br>
 <br>
 Moreover, $$\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ is equal to $$L_A$$ for a unique $$A \in \text{Mat}_{m \times n}(\mathbf{Z})$$. Furthermore, if $$A \in \text{Mat}_{m \times n}(\mathbf{Z})$$ and $$B \in \text{Mat}_{m \times p}(\mathbf{Z})$$, then $$L_{AB} = L_A \circ L_B$$
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>The Homomorphism \(\alpha\)</h3>
 Suppose now that $$L_A: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ is an isomorphism. Then $$(L_A)^{-1}$$ is also an isomorphism. If we let $$L_B = (L_A)^{-1}$$, then
@@ -587,10 +575,8 @@ Suppose now that $$L_A: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ is an isomorphis
 	$$
 </div>
 So $$AB = I$$ and $$BA = I$$. So by linear algebra (over the linear algebra), $$m = n$$. Therefore, we can't really have an isomorphism unless $$m = n$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Smith Normal Form</h3>
 A matrix $$A$$ is in Smith normal form if
@@ -680,10 +666,8 @@ There are 30 minutes left of this proof ..... [TODO]
 <br>
 <br>
 <!----------------------------------------------------------------------------->
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

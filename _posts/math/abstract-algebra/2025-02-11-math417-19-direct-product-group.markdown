@@ -108,10 +108,8 @@ So $$\varphi$$ is a homomorphism. Next, we show that $$\varphi$$ is surjective. 
 	$$
 </div>
 So we need all the products such that $$a \in A$$ and $$b \in B$$ where $$(a,b)=(e,e)$$. So suppose $$a \in A$$ and $$b \in B$$ and $$ab = e$$. The trick here is to move everything to the other side so that $$a = b^{-1}$$. Here, $$a \in A$$ and $$b^{-1} \in B$$. But $$A \cap B = \{e\}$$. So $$a = b = e$$. So $$\ker(\varphi) = \{(e,e)\}$$. From this we see that it is an isomorphism as we wanted to show.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Let $$G = \mathbf{Z}_{12}$$. Let $$A = \langle [3] \rangle = \{[0],[3],[6],[9]\}$$. Let $$B = \langle [3] \rangle = \{[0],[4],[8]\}$$ Both $$A$$ and $$B$$ are subgroups of $$\mathbf{Z}_{12}$$. Check all three properties
@@ -121,10 +119,8 @@ Let $$G = \mathbf{Z}_{12}$$. Let $$A = \langle [3] \rangle = \{[0],[3],[6],[9]\}
 	<li>The product subset is \(A+B = \{x+y \in A, y \in B\} = G\)</li>
 </ul>
 Note here that we already know that $$\mathbf{Z}_3 \times \mathbf{Z}_4 \cong \mathbf{Z}_{12}$$ by the Chinese Remainder Theorem.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Automorphism of a group \(G\)</h3>
 An Automorphism of a group $$G$$ is just an isomorphism from the group to itself. The identity map is the easiest example of an automorphism but there can be others.
@@ -153,10 +149,8 @@ The collection of automorphisms is called $$\text{Aut}(G) = \{\varphi: G \righta
 <br>
 <br>
 For example, we can see using the example above that Aut$$(V)$$ is isomorphic to $$S_3$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Let $$G = \mathbf{Z}_n$$ where $$n \geq 1$$. Does this group have automorphisms other than the identity? <br>
@@ -214,10 +208,8 @@ Suppose $$\varphi \in \text{Aut}(\mathbf{Z}_n)$$. Let $$[a] = \varphi([1])$$. Th
 <br>
 <!----------------------------------------------------------------------------->
 Example: What about $$\mathbf{Z}$$? What are the automorphism? Aut$$(\mathbf{Z}) = \{\pm 1\}$$
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>More Automorphisms</h3>
 Some more definitions:
@@ -261,10 +253,8 @@ Additionally, we have the subgroup $$c(G)$$ which is the image of $$G$$ under $$
 <br>
 <br>
 Since Inn$$(G)$$ is normal, we can then form the quotient group Out$$(G) = \text{Aut}/\text{Inn}(G)$$. This group is called the outer automorphism.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

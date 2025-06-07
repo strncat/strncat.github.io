@@ -86,10 +86,8 @@ Remark 2: Suppose we have a linear transformation $$T: V \rightarrow W$$
 </div>
 <br>
 This is crucial because this says that the image of a linear combination with coefficients $$a_1, ... a_k$$ is again a linear combination in the new vector space with coefficients $$a_1,...a_k$$ except that it's a linear combination of the image of the original vectors.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 For $$V, W$$, the map
@@ -122,10 +120,8 @@ Moreover, we also have
 	$$
 </div>
 The two sides are equal and so $$T_0$$ is linear.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 The map 
@@ -138,10 +134,8 @@ The map
 	$$
 </div>
 is linear as well.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
 The map 
@@ -172,10 +166,8 @@ Moreover, notice that
 	$$
 </div>
 Both sides are equal and so the transformation is linear.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 4</h3>
 The map 
@@ -197,10 +189,8 @@ is linear. Note here that the map
 	$$
 </div>
 is different because the domain and codomain are different here! this is crucial. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 6</h3>
 Let $$A \in M_{m \times n}$$. The map 
@@ -214,10 +204,8 @@ Let $$A \in M_{m \times n}$$. The map
 </div>
 
 is linear. Remember here $$A\bar{x}$$ are the linear combinations of the column vectors of $$A$$ with the coefficients being the entries of $$\bar{x}$$. The crucial thing here is that if $$V$$ and $$W$$ are both finite dimensional, then the map can be represented with this kind of transformation (matrix). 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 6</h3>
 For $$a < b$$, define the map 

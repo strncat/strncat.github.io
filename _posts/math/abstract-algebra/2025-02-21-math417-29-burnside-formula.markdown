@@ -47,10 +47,8 @@ $$
 $$
 </div>
 So it's impossible to physically see which arrangements will unique. We said earlier that this is equivalent to having an action by $$D_9$$ on the set $$X$$. So we just to count the orbits of this action with something called the burnside formula.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Burnside Formula</h3>
 First, we need the following notation
@@ -282,10 +280,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

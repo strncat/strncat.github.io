@@ -16,10 +16,8 @@ Another structure is a Group. It is a set with one operation usually called "mul
 <br>
 <br>
 One additional structure that comes up is a Monoid. These are sets with one operation but you don't have to have inverses like Groups. So $$\mathbf{R}$$ with multiplication is not a group because it includes zero and zero doesn't have an inverse but this set is a Monoid. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Groups and Symmetries</h3>
 
@@ -289,10 +287,8 @@ What about applying a rotation $$r$$ followed by a flip $$a$$? What is $$ar$$? W
 </table>
 </div>
 We notice that each row has each rotation appearing exactly once and it's the same for each column. Notice also that composition is not commutative above. So $$ar \neq ra$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Matrix Representation of Symmetries</h3>
 We can actually represent these symmetries by matrices. For example, the following matrix will represent a $$120$$ degrees rotation around the $$z-$$ axis
@@ -414,10 +410,8 @@ One thing to notice here that for any rotation in $$G$$, if you apply it twice, 
   </tr>
 </table>
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>Symmetries of the Square</h3>
 What about the symmetries of the square? There are eight of them. First we consider the axis coming through the centroid of the face toward us. There are three rotations around this axis.
@@ -451,10 +445,8 @@ $$
 </div>
 <br>
 What about the cube? How many symmetries does it have? it has 24 symmetries!
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

@@ -230,10 +230,8 @@ So these inequalities are equalities. $$A_{jk}v_j$$ all have the same sign.
 [TODO continue this proof .. I'm lost now]
 <br>
 Instead of proving (c), we will prove a slightly weaker theorem where we will assume that $$A$$ is diagonalizable next!
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Diagonalizable Transition Matrix</h3>
 
@@ -345,10 +343,8 @@ $$
 $$
 </div>
 Additionally since $$\l_j$$ is a probability vector, then we also know that $$\bar{u}$$ is a probability vector.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Continuing the same example from before where 
@@ -405,10 +401,8 @@ $$
 $$
 </div>
 $$\frac{1}{6}$$ corresponds to state 1 and $$\frac{5}{6}$$ correspond to state 2.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

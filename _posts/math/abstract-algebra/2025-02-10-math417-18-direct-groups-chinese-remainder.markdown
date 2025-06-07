@@ -28,10 +28,8 @@ is a group. The identity element \(e_{G \times H} = (e_G, e_H)\) and the inverse
 <!----------------------------------------------------------------------------->
 <br>
 You can verify that this is indeed a group (Exercise).
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Let $$G = \langle a \rangle$$ where $$o(a) = 2$$ and $$H = \langle b \rangle$$ with $$o(b) = 2$$. Then
@@ -52,10 +50,8 @@ $$
 $$
 </div>
 From this we see that each element is of order 2 since $$G \times H$$ is isomorphic to $$V$$ (The Klien 4-group which is isomorphic to $$\mathbf{Z}_2 \times \mathbf{Z}_2$$).
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Properties of Direct Product Groups</h3>
 These are some facts about direct product groups
@@ -87,10 +83,8 @@ $$
 $$
 </div>
 is an isomorphism. [TODO ... verify]
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Generalizing Direct Products</h3>
 We can generalize the definition of direct products to say
@@ -192,10 +186,8 @@ $$
 $$
 </div>
 where $$m = lcm(a,b) = \frac{ab}{gcd(a,b)}$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>A New Homomorphism</h3>
 As a consequence of this, we will get an injective homomorphism from the quotient group $$\mathbf{Z}/\mathbf{Z}m$$ which is $$\mathbf{Z}_m$$ to $$\mathbf{Z}_a \times \mathbf{Z}_b$$ as follows
@@ -227,10 +219,8 @@ $$
 </div>
 <br>
 Fact: the reverse, if $$gcd(a,b) > 1$$, then $$\mathbf{Z}_a \times \mathbf{Z}_b \not\cong \mathbf{Z}_{ab}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Chinese Remainder Theorem</h3>
 The previous theorem is in fact the Chinese Remainder Theorem but the Chinese Remainder Theorem is stated in terms of modular arithmetic.
@@ -271,10 +261,8 @@ where \(m = a_1a_2....a_r\).
 <!----------------------------------------------------------------------------->
 <br>
 For example: $$\mathbf{Z}_{240} = \mathbf{Z}_{16} \times \mathbf{Z}_3 \times \mathbf{Z}_5$$
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>The Multiplicative Group</h3>
 Recall $$\mathbf{Z}_n$$ is not just a group but a ring with two operations addition and multiplication. Inside this ring, we can focus on the elements that have a multiplicative inverse and form $$\Phi(n) = \{u \in \mathbf{Z}_n \ | $$ u has a multiplicative inverse $$\} \subseteq \mathbf{Z}_n$$. $$(\Phi(n),\cdot)$$ is a group with the multiplication operation. This group is also abelian and is called "modular units". It is not a subgroup of $$\mathbf{Z}_n$$.
@@ -354,10 +342,8 @@ $$
 \end{align*}
 $$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

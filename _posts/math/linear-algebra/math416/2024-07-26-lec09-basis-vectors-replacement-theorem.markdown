@@ -69,10 +69,8 @@ This is exactly the first representation of $$u$$ which is a contradiction and s
 <br>
 <br>
 <b>Note here</b> that up to this point, this was all covered in lecture 8 but I moved it here.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 In $$\mathbf{R}^n$$, let
@@ -84,17 +82,13 @@ In $$\mathbf{R}^n$$, let
 	$$
 </div>
 $$\beta = \{e_1,e_2,...,e_n\}$$ is the standard basis of $$\mathbf{R}^n$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 In the vector space of polynomials of degree at most $$n$$ ($$P_n$$), the standard basis is $$\beta = \{1, x, x^2, ..., x^n\}$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
 Recall the space of all sequences, $$V = \{\{a_n\}\}$$ where $$\{a_n\}$$ is a sequence. Let $$e_j$$ be the sequence
@@ -106,17 +100,13 @@ Recall the space of all sequences, $$V = \{\{a_n\}\}$$ where $$\{a_n\}$$ is a se
 	$$
 </div>
 Where the $$j$$th term is the term 1 above. Then, the standard basis is $$\beta = \{e_1, e_2, ....\}$$. This basis has infinitely many terms unlike the previous two examples.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 4</h3>
 The vector space of all polynomials ($$P$$). The standard basis is $$\beta = \{1, x, x^2, x^3, ...\}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 5</h3>
 $$\mathcal{F}(\mathbf{R})$$ has a basis ... hard to describe but it exists!
@@ -311,10 +301,8 @@ With this observation ($$k \leq n$$), we will construct a basis for $$W$$ recurs
 	<li> Otherwise, choose \(w_2\) not in \(Span(\{w_1\})\)). Note here that \(\{w_1, w_2\}\) is a linearly independent set by construction.</li>
 </ul>
 We repeat this process, if the span is equal to $$W$$, we stop. Otherwise we add a new vector if it's not in the span of the current constructed set. This process will stop at some set $$\{w_1,...,w_k\}$$ such that $$W = Span(\{w_1,...,w_k\})$$. We know this set is linearly independent and that $$W = Span(\{w_1,...,w_k\})$$ by construction. Therefore, it's a basis for $$W$$ and so $$\dim W = k$$. By the Replacement Theorem we discussed previously we know that $$k \leq n$$ and so $$\dim W \leq \dim V$$. $$\blacksquare$$ 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References:</h3>
 <ul>

@@ -29,10 +29,8 @@ Then, \(A \times N\) is isomorphic to \(G\). The isomorphism is given by
 <!----------------------------------------------------------------------------->
 <br>
 But now the question is what happens if not all of these conditions are satisfied. Suppose that $$N$$ was the only normal subgroup. In this case, $$G$$ is called a semi-direct product of $$N$$ and $$A$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Let $$G = D_n$$ where $$n \geq 3$$ and $$|G| = 2n$$. Let
@@ -66,10 +64,8 @@ $$\gamma$$ will be a homomorphism from $$A$$ to the group of automorphisms of $$
 	$$
 </div>
 So the idea here is that we will be able to reconstruct the Dihedral group from this information.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Construction of Semi-direct Products</h3>
 We haven't said anything yet about how to actually construct $$G$$ from the groups $$A$$, $$N$$ and $$\gamma$$. The following will demonstrate this. (Important to note here that unlike the previous example, we don't need $$A$$ and $$N$$ to be subgroups of $$G$$. They are just groups!!!).
@@ -195,10 +191,8 @@ This is a constant function that's always a homomorphism no matter what the sour
 		$$
 </div>
 To see this, apply the operation and you'll see that $$(a_1, a_2)(n_1, n_2) = (n_1 id(n_2), a_1a_2) = (n_1n_2, a_1a_2)$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 2</h3>
 Let $$N = (\mathbf{Z}_n, +)$$ where $$n \geq 3$$ and let $$A = \mathbf{Z}_2 = \{[0]_2, [1]_2\}$$. 
@@ -250,10 +244,8 @@ Remark: If you have other elements of order 2 in $$\text{Aut}(\mathbf{Z}_n) \con
 		$$
 </div>
 So now we'll get a different semi-direct product. We'll get $$G' = N \rtimes_{\gamma'} A$$. $$|G'| = 16$$. It is not isomorphic to $$D_8$$. Also $$o(r) = 8$$ and $$o(j) = 2$$. But we have this new formula $$jr = r^3j$$. (Instead of $$jr = jr^{-1})$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Recognition Theorem for Semi-direct Product</h3>
 So now we can state the Recognition Theorem but for Semi-direct Product.
@@ -306,10 +298,8 @@ But we also know that $$g_1g_2 \in G$$ so it can also be written uniquely as a p
 	where
 </div>
 $$n_1 \in N$$, $$a_1n_2a_1^{-1} \in N$$. $$a_1a_2 \in A$$. So we can write $$n = n_1a_1n_2a_1^{-1}$$ and $$a = a_1a_2$$. But $$a_1n_2a_1^{-1}$$ is just $$\gamma_{a_1}(n_2)$$. This is exactly the product. we defined.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Infinite Dihedral Group</h3>
 So we're to construct a group by a semi direct group. Set 
@@ -357,10 +347,8 @@ In fact $$D_{\infty} = \langle r, j \rangle$$ with $$o(r) = \infty$$ and $$o(j) 
 <br>
 <br>
 Note here that this is NOT the same as the symmetries of the disk group. The symmetries of the disk is an uncountable group. Here we have integer powers of $$r$$ while the symmetries of the disk can have any power, can rotate the disk by angle.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

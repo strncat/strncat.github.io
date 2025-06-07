@@ -424,10 +424,8 @@ But $$\det(\tilde{A_{rj}})$$ is 0 since $$\tilde{A_{rj}}$$ has two identical row
 	$$
 </div>
 As we wanted to show. $$\blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

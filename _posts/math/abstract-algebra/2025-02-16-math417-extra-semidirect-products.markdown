@@ -42,10 +42,8 @@ But this just means that $$(h_2)^{-1}h_1 = e$$ and so $$h_1 = h_2$$ and similarl
 <br>
 <br>
 Next, we want to show that $$\phi$$ is surjective. Notice that $$Im(\phi) = \{hk \ | \ h \in H, k \in K\} = HK = G$$. This just means that $$\phi$$ is surjective since the codomain in $$G$$. Therefore, $$\phi$$ is a bijection. 
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>How to Make \(\phi\) a Homomorphism</h3>
 Now, suppose that we're also given that $$H$$ is normal. We know that $$\phi: H \times G \rightarrow G$$ is a bijection. We also know that $$G$$ is a group but we never defined $$H \times K$$ as a group. We just said it was a set. The question is can we make $$H \times K$$ a group so that $$\phi$$ isn't just a bijection but also an isomorphism? (hmmm, this is a iff right?)
@@ -97,10 +95,8 @@ But remember that $$\phi$$ is a bijection so it's injective. So saying that $$\p
 	$$
 </div>
 This immediately gives us the required operation for $$G \times H$$ to be a group. If we define this product above to be how we multiply elements in $$H \times K$$, then $$\phi$$ is a homomorphism and therefore, it is an isomorphism from $$G \times H \rightarrow G$$. Since we already use $$G \times H$$ to denote the direct product group, we use the notation $$G \rtimes K$$ to denote this semidirect product group (internal semi direct product).
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Outer Semidirect Product Group</h3>
 So now consider the groups $$H$$ and $$K$$. $$H$$ and $$K$$ are just two groups. They are not necessarily subgroups of $$G$$. We want to find $$G$$ such that $$G$$ satisfies the following:
@@ -224,10 +220,8 @@ This $$\gamma$$ just describes the conjugation of $$h_2$$ by $$k_1$$. And we alr
 	$$
 </div>
 Which is exactly why the semidirect product is defined that way!!!!!!!!!!
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
 Take $$D_{2n}$$. We need to find two subgroups that are complements in $$D_{2n}$$. The subgroups are $$\langle r \rangle$$ and $$\langle s \rangle$$ are complements in $$D_{2n}$$. To see why. 
@@ -344,10 +338,8 @@ To further see how this works, it's helpful to look at more examples of how the 
 	\end{align*}
 	$$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

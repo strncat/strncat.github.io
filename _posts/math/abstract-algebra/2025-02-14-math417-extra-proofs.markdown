@@ -34,10 +34,8 @@ From this we see that the order of $$(x,y)$$ must divide $$l$$. If we let $$l' =
 	$$
 </div>
 But since $$|x| = r$$ and $$|y| = s$$, then $$r \ | \ l'$$ and $$s \ | \ l'$$. But this means that $$lcm(r,s) = l \ | \ l'$$. Since $$l' \ | \ l$$ and $$l \ | \ l'$$, then $$l = l'$$ as we wanted to show.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>Example 2</h3>
 <!----------------------------------------------------------------------------->
@@ -67,10 +65,8 @@ Notice here that both $$\frac{n}{d}$$ and $$\frac{m}{d}$$ are whole numbers sinc
 <br>
 <br>
 $$\longleftarrow:$$ Now suppose that $$gcd(m,n) = 1$$. We want to show that $$\mathbf{Z}_m \times \mathbf{Z}_n$$ is isomorphic to $$\mathbf{Z}_{mn}$$. Notice that the order of the element 1 has order $$m$$ in $$\mathbf{Z}_m$$ and the order of the element 1 has order $$n$$ in $$\mathbf{Z}_n$$. This tells us that the order of $$(1,1) = lcm(m,n) \frac{mn}{gcd(m,n)} \frac{mn}{1} = mn$$. So $$(1,1)$$ has order $$mn$$ which means it generates the group. So it must be cyclic. So $$\mathbf{Z}_m \times \mathbf{Z}_n = \langle (1,1) \rangle$$. We know all cyclic groups that have the same order are isomorphic. So $$\mathbf{Z}_m \times \mathbf{Z}_n \cong \mathbf{Z}_{mn}$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!----------------------------------------------------------------------------->
 <h3>References</h3>
 <ul>

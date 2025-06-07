@@ -69,10 +69,8 @@ So far we have a solution that is fast and acceptable but is there more to this?
 <br>
 <br>
 Since for any full reptend prime $$p$$, the the cycle length is $$p - 1$$, then a potenial idea is just finding the maximum full reptend prime less than 1000. In fact, the maximum full reptend prime less than 1000 is 983. But does this mean that any other number between 983 and 999 won't have more digits in its decimal expansion? I don't know the answer to this question.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ol>

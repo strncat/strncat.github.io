@@ -282,10 +282,8 @@ $$
 $$
 </div>
 But we know that $$\lambda_1 \neq \lambda_2$$. Therefore, we must have that $$\langle v_1, v_2 \rangle = 0$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Self-Adjoint Maps</h3>
 Next we will study another special class of adjoint maps called self adjoint maps defined below
@@ -308,10 +306,8 @@ Note here that self adjoint implies that $$T$$ is normal. The converse is not tr
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 Let $$A \in M_{n \times n}(\mathbf{R})$$ and $$A_{ij} = A_{ji} \ \forall i,j$$, then A ($$L_A$$) is self-adjoint.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 Suppose that $$V$$ is a finite dimensional inner product space where $$W \subseteq V$$ is a subspace.
@@ -359,10 +355,8 @@ $$
 $$
 </div>
 as we wanted to show. $$\blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Self-adjoint Maps are Diagonalizable</h3>
 Today's goal is to prove that self adjoint maps are diagonalizable. Note here that when a matrix $$A$$ is symmetric where $$A_{ij} = A_{ji}$$, then $$A$$ is self-adjoint. This implies $$A$$ is diagonalizable and so  $$\det(A - tI_n)$$ splits which is really useful to know!
@@ -372,10 +366,8 @@ Question: What is the diagonal form of the projection map $$\text{proj}_W$$? bec
 <br>
 <br>
 Proving that self adjoint maps are diagonalizable, requires a few things along the way so we will next prove the results that we need in order to prove that they're diagonalizable.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Eigenvalues of Self-adjoint Maps</h3>
 <div class="purdiv">
@@ -407,10 +399,8 @@ $$
 $$
 </div>
 as we wanted to show. $$\blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Do Self-adjoint Maps have Eigenvalues?</h3>
 So eigenvalues are real but are there eigenvalues?
@@ -455,10 +445,8 @@ L_A \ : \ &\mathbf{C}^n \rightarrow \mathbf{C}^n \\
 $$
 </div>
 We know that $$L_A$$ is self adjoint so $$(L_A)^* = L_{A^*} = L_{A^t} = L_A$$. So this map is self-adjoint over the complex field. By the fundamental theorem of algebra or (the fact above), the characteristic polynomial always splits and so $$L_A$$ has an eigenvalue. By theorem 1, this eigenvalue must be real. Therefore, $$\det([T]_{\beta}^{\beta} - tI_n) = 0$$ has a real root. $$\ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Eigenvectors of a Self-adjoint Map</h3>
 What can we say about the eigenvectors of a linear self-adjoint map? 
@@ -532,10 +520,8 @@ Corollary
 <div class="purbdiv">
 \(T\) is diagonalizable.
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

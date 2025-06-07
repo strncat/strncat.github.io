@@ -83,10 +83,8 @@ E_{\lambda_1} = N(B - 1I_n) = N \left(
 $$
 </div>
 So we don't have enough linearly independent vectors in $$\beta$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Is There a Better Diagonalization Test?</h3>
 Today, we will refine our answer to the question "Is $$A$$ diagonalizable?"
@@ -170,10 +168,8 @@ $$
 $$
 </div>
 Note here that in step 2, $$QtI_nQ^{-1} = tQQ^{-1} = tI_n  $$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Proof of Theorem 1 (5.6)</h3>
 Suppose that $$A$$ is diagonalizable. This means that there exists a basis $$\beta$$ such that 
@@ -342,10 +338,8 @@ $$
 $$
 </div>
 Why is this true? The top left section just consists of $$\lambda - t$$ entries on the diagonal while the rest is zero. Hence, the algebraic multiplicity of $$\lambda$$ is at least $$k$$. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>A More Refined Test for Diagonalizability</h3>
 We're finally ready to present the more refined test for diagonalizability. 
@@ -423,10 +417,8 @@ So $$\beta$$ is the desired basis and $$A$$ must be diagonalizable. $$ \ \blacks
 <br>
 <br>
 One final note here: we've developed several tests including the above one to test matrices for diagonalizability. What about general linear transformations $$T: V \rightarrow V$$? well we can find the matrix representable of $$T$$ with respect to  basis $$\gamma$$ so $$[T]_{\gamma}^{\gamma}$$. Check if this matrix is diagonalizable for any basis $$\gamma$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Computing \(A^k\)</h3>
 If $$A$$ is diagonalizable, then

@@ -176,10 +176,8 @@ A & | & e_1 & ... & e_n
 $$
 </div>
 We then put this matrix in row reduced echelon form to get $$(RREF(A) | B)$$. Because we have $$n$$ entries, then if $$RREF(A) = I_n$$, then $$B = A^{-1}$$. If $$RREF(A) \neq I_n$$, then $$A$$ is not invertible.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Let $$A = \begin{pmatrix}
@@ -282,10 +280,8 @@ $$
 $$
 </div>
 And so this will be the inverse. We still need to settle the case when $$a = 0$$. (Exercise)
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

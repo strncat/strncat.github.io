@@ -37,10 +37,8 @@ $$
 $$
 </div>
 So the multiplicative order of 10 modulo 7 is 6 which is $$7-1$$. So 7 is a full reptend prime.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

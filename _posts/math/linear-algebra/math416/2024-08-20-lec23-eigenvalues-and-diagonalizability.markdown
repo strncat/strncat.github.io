@@ -39,10 +39,8 @@ $$
 $$
 </div>
 This leads to the question of whether we can transform any matrix to a diagonal matrix so we can perform these computations easily. In the next definition we formalize this.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>When is \(A\) Diagonalizable?</h3>
 <div class="purdiv">
@@ -120,10 +118,8 @@ $$
 	</li>
 </ul>
 The left hand side is a family of linear maps parameterized by $$\lambda$$. The solution to this is the set of all the non-zero vectors $$v$$ of the nullspace. We don't care about the zero solution since we want to build a basis.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Eigenvectors and Eigenvalues of a Linear Transformation</h3>
 So now we've seen that finding such a basis boils down to finding all vectors such that $$T(v) = \lambda v$$. These vectors are called eigenvectors. More formally,
@@ -175,10 +171,8 @@ $$
 $$
 </div>
 is equivalent to find the set of eigenvectors that satisfy $$T(v) = \lambda v$$. This is all great. But now instead of looking at general linear maps that satisfy these conditions, let's turn our focus on matrices.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Eigenvectors and Eigenvalues of Matrices</h3>
 When is a matrix diagonalizable? and what are the eigenvectors and eigenvalues of a given matrix $$A$$?
@@ -209,10 +203,8 @@ Definition
 <div class="bbdiv">
 \(\lambda \in \mathbf{R}\) is an eigenvalue of \(A \in M_{n \times n}\) if \(\exists v \neq \bar{0}_V\) such that \(Av = \lambda v\).
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Finding the Eigenvectors</h3>
 Okay now that we've narrowed down the discussion to matrices, how do we actually find these eigenvectors of $$A$$? Set the nullspace of $$A$$ to $$N(A) = N(L_A)$$. Next we will need the following lemma
@@ -238,10 +230,8 @@ Av - \lambda I_n v &= \bar{0}
 $$
 </div>
 But this precisely means that $$v \in N(A - \lambda I_n). \ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Find all the eigen values of
@@ -302,10 +292,8 @@ $$
 $$
 </div>
 This is easy because we are given the eigenvalue. But typically, we also need to find the eigenvalues too!
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Eigenspace</h3>
 <div class="bdiv">
@@ -322,10 +310,8 @@ $$
 </div>
 <br>
 [TODO: What is the difference between the eigenspace and the nullspace?]
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Finding the Eigenvalues</h3>
 Again, if we're given an eigenvalue, then finding the eigenspace or eigenvectors is easy and simple. We're just solving a system of linear equations like we did for finding the nullspace. The question is how can we find the eigenvalues? for this we need the following theorem
@@ -421,10 +407,8 @@ t^2 &= -1 \\
 $$
 </div>
 This polynomial has no real roots! and so the matrix $$A$$ has no eigenvalues.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

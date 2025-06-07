@@ -139,10 +139,8 @@ B =
 $$
 </div>
 Note here that the characteristic polynomial of both $$A$$ and $$B$$ is $$(1-t)^3(2-t)^2$$.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Computing Powers of Matrices in JFC</h3>
 It turns out that we can write a formula for powers of matrices in JFC. It is not as easy as taking the power of a diagonal matrix but at least have a formula.
@@ -412,10 +410,8 @@ $$
 $$
 </div>
 So we've shown that $$y$$ is an eigenvector for an eigenvalue $$\mu$$. So $$y \neq \bar{0}_V$$ and $$y \in E_{\mu}$$. But we also see that $$y \in E_{\lambda}$$. However $$\lambda \neq \mu$$. So $$y \in E_{\mu} \cap E_{\lambda}$$. So this is a contradiction. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Finding the Generalized Eigenvectors</h3>
 So to remind ourselves, the goal of this whole process is to find a basis consisting of generalized eigenvectors. The next theorem makes it practically easier to find them.
@@ -486,10 +482,8 @@ $$
 $$
 </div>
 So we won't get a zero no matter since the map is 1-1. But $$x$$ is also in $$K_{\lambda_i}$$. This implies that $$ x \not\in K_{\lambda_i}$$. This is a contradiction. So the intersection is empty as we wanted to show.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

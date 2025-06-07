@@ -82,10 +82,8 @@ Let $$p=(x_1,y_1)$$ and $$q=(x_2,y_2)$$ be the split pair points we're trying to
 
 <br>
 So, assuming the above is correct (we'll prove it formally), we now have a constant number of pairs to look at. Basically, for each point, we will look at 7 points and therefore, we only have $$7n$$ pairs and so we can find the split pair in only $$O(n)$$ time!
-<br>
-<br>
 <hr>
-<br>
+
 But why why why the above is the correct? let's look at the first claim.
 <br><br>
 Proof:<br>
@@ -101,10 +99,8 @@ $$
 $$
 </div>
 This says that $$p$$ and $$q$$ must differ by less than $$\delta$$ in both their $$x$$ and $$y$$ coordinates!! So $$|x_2-x_1| < \delta$$. We also know that $$p$$ and $$q$$ are a split pair and so by definition we have $$x_1 \leq \bar{x}$$ and $$x_2 > \bar{x}$$. Therefore, we must have $$x_1 \geq \bar{x} - \delta$$ and $$x_2 \leq \bar{x} + \delta$$. Finally, since $$M$$ is defined to include all points such that the x-coordinate satisfies $$\bar{x} - \delta \leq x \leq \bar{x} + \delta$$ then $$p$$ and $$q$$ are in $$M$$ and thererfore, we will find them. $$\blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 Let's move to the second claim. why must we have 6 points only between $$p$$ and $$q$$?
 <br>
 <br>

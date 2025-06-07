@@ -268,10 +268,8 @@ Q^{-1}
 \end{align*}
 $$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Eigenvectors of distinct eigenvalues are Linearly Independent</h3>
 Question: is the strategy of combining bases of various eigenspaces $$E_{\lambda}$$'s to form larger linearly independent subsets always work or useful?
@@ -313,10 +311,8 @@ If \(\lambda_1 \neq \lambda_2\) and \(\beta_1, \beta_2\) are basis for \(E_{\lam
 </div>
 <br>
 This means that we didn't need to do step 3 from our algorithm to check that our eigenvectors are linearly independent. They will be! The proof for the corollary is a homework question!
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Is Every Matrix Diagonalizable?</h3>
 The answer is no! For some matrices, we won't be able to find $$n$$ linearly independent eigenvectors. One test that we did last time is to check the characteristic polynomial's roots or in other words, solve $$\det(A - tI_2) = 0$$.
@@ -334,10 +330,8 @@ $$
 $$
 </div>
 This polynomial has no real roots and so we don't have eigenvalues. Is the only test? No, we will develop a better test for this.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

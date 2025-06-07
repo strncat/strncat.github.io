@@ -25,10 +25,8 @@ Now describe another circle with center $$D$$ and radius $$DE$$ (postulate 3).
 Extend the line DA until it intersects the circle at $$F$$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/euclid/pr2/8.png" width="55%" class="center"></p>
 The claim is that $$AF = BC$$ which is what we want. To see this, we know that $$DF=DE$$ by <a href="https://strncat.github.io/jekyll/update/2024/03/19/euclid-book1-definitions.html">definition 15</a>. We know that $$DA = DB$$ by construction. Therefore, $$BE = AF$$ by <a href="https://strncat.github.io/jekyll/update/2024/03/21/euclid-book1-common-notions.html">common notion 3</a>. But $$CB = BE$$ by definition 15 and so $$CB = AF$$ (common notion 3) as required. 
-<br>
-<br>
 <hr>
-<br>
+
 <b>References:</b>
 <ul>
 <li><a href="https://www.amazon.com/dp/B09ZYVSSTP/ref=sspa_dk_detail_0?psc=1&pd_rd_i=B09ZYVSSTP&pd_rd_w=c4vZJ&content-id=amzn1.sym.f734d1a2-0bf9-4a26-ad34-2e1b969a5a75&pf_rd_p=f734d1a2-0bf9-4a26-ad34-2e1b969a5a75&pf_rd_r=WK3ER8B42S7VAPMGWWPZ&pd_rd_wg=8i8vz&pd_rd_r=789c12b3-868b-4990-85da-a643782719d6&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw">Oliver Byrne's Elements of Euclid</a></li>

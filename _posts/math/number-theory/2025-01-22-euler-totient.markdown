@@ -42,10 +42,8 @@ $$
 <!------------------------------------------------------------------------------------>
 <h3>Multiplicative Function</h3>
 Euler's Totient's function is a multiplicative function. This means that if $$m$$ and $$n$$ are relatively prime, then $$\phi(mn) = \phi(m)(n)$$ which makes sense since they won't share any prime divisors. 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

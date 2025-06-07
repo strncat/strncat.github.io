@@ -307,10 +307,8 @@ So we know that $$\text{nullity}(A) = \dim(N(A))$$. We found a basis for the nul
 <br>
 <br>
 So now if we put together the number of columns without leading entries (nullity of $$A$$) and the number of columns with leading entries (rank of $$A$$), then we get $$n$$. This is basically the dimension theorem.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

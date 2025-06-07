@@ -159,10 +159,8 @@ $$
 $$
 </div> 
 $$v_j$$ is a basis vector so it's not zero. Therefore, we must have $$\lambda_j = 0$$ for $$j = 1,...,n$$. This implies that $$S$$ is the zero map because all the eigenvalues are zero but we have a basis of eigenvectors. So every vector $$x$$ can be written as a linear combination of the basis vectors and when we apply $$S$$, we get a linear combination of $$\lambda_j v_j$$ where all the $$\lambda_j$$'s are zero so $$S$$ must be the zero vector.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Proof of Theorem</h3>
 We're ready to prove the theorem. 
@@ -290,10 +288,8 @@ $$
 So these are the only possibilities for isometries for $$\mathbf{R}^2$$.
 
 
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

@@ -98,10 +98,8 @@ $$
 $$
 </div>
 Now this matrix is in Reduced Row Echelon Form.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
 Find all the solutions to the following system
@@ -151,10 +149,8 @@ $$
 $$
 </div>
 Here we should know that that since there is a leading entry in the last column then this system is inconsistent and the system has no solutions and so we're done.
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
 Find all the solutions to the following system

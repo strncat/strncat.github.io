@@ -50,10 +50,8 @@ $$
 $$W = span\{(1,0)\}$$ is $$T$$-invariant
 <br>
 $$W = span\{(1,1)\}$$ is not $$T$$-invariant
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>The Characteristic Polynomial of Invariant Subspaces</h3>
 So what is the point of invariant subspaces? It helps us break off pieces of our map. What does that mean? If $$T: V \rightarrow V$$ and $$W$$ is $$T$$-invariant, then the restriction of $$T$$ to $$W$$, $$T_W$$ satisfies $$T_W: W \rightarrow W$$. So now have a smaller set instead of the entire vector space $$V$$. The following theorem describes the relationship between the characteristic polynomial of $$T:V \rightarrow V$$ and the characteristic polynomial of $$T: W \rightarrow W$$. 
@@ -128,10 +126,8 @@ $$
 $$
 </div>
 From this we see that the characteristic polynomial of $$[T]^{\beta_W}_{\beta_W}$$ divides the characteristic polynomial of $$[T]_{\beta}^{\beta} \ \blacksquare$$
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>T-cyclic Subspaces</h3>
 Since $$T$$-invariant subspaces are useful, the question is can we produce them? Is there a tool or mechanism to find them? We start with the following definition
@@ -306,10 +302,8 @@ t^2
 \end{align*}
 $$
 </div>
-<br>
-<br>
 <hr>
-<br>
+
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

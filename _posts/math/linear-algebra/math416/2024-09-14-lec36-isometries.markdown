@@ -23,7 +23,7 @@ $$
 For example, in $$\mathbf{R}^3$$, this means that isometries preserve lengths and angles. <br>
 When $$V$$ is over $$\mathbf{C}$$, an isometry is sometimes called unitary while if $$V$$ is over $$\mathbf{R}$$, $$T$$ is called orthogonal.
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 Let $$T = L_A$$ where
 <div>
 $$
@@ -79,7 +79,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Let 
 <div>
 $$
@@ -116,7 +116,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Equivalent Conditions for Isometry</b></h4>
+<h3>Equivalent Conditions for Isometry</h3>
 What can we say about Isometries? What does being an Isometry imply?
 <div class="purdiv">
 Theorem
@@ -164,7 +164,7 @@ $$v_j$$ is a basis vector so it's not zero. Therefore, we must have $$\lambda_j 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof of Theorem</b></h4>
+<h3>Proof of Theorem</h3>
 We're ready to prove the theorem. 
 <br>
 <br>
@@ -267,7 +267,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Isometries Are Rare</b></h4>
+<h3>Isometries Are Rare</h3>
 From research, we know that Isometries are actually rare. One fact is that $$T$$ is an isometry of $$\mathbf{R}^2$$ if and only if 
 <div>
 $$
@@ -295,7 +295,7 @@ So these are the only possibilities for isometries for $$\mathbf{R}^2$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

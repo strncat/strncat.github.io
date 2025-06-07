@@ -5,7 +5,7 @@ date:   2024-08-06 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>The Vector Space of Linear Transformations</b></h4>
+<h3>The Vector Space of Linear Transformations</h3>
 <div class="bdiv">
 Definition
 </div>
@@ -22,7 +22,7 @@ FACT: The set of linear transformations $$\mathcal{L}(V, W)$$ is a vector space.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Composition of Linear Transformations</b></h4>
+<h3>The Composition of Linear Transformations</h3>
 <div class="bdiv">
 Definition
 </div>
@@ -68,7 +68,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Matrix of Linear Composition</b></h4>
+<h3>The Matrix of Linear Composition</h3>
 Suppose now that $$X$$, $$Y$$ and $$Z$$ are finite dimensional with fixed bases $$\alpha = \{x_1,...,x_n\}, \beta = \{y_1,...,y_m\}$$ and $$\gamma = \{z_1,...,z_n\}$$.
 <br>
 <br>
@@ -79,7 +79,7 @@ To answer this question, we need to define matrix multiplication.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Matrix Multiplication</b></h4>
+<h3>Matrix Multiplication</h3>
 <div class="bdiv">
 Definition
 </div>
@@ -100,7 +100,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 <div>
 $$
 \begin{align*}
@@ -140,7 +140,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Matrix Composition Using Matrix Multiplication</b></h4>
+<h3>Matrix Composition Using Matrix Multiplication</h3>
 Now that we defined matrix multiplication, we are ready to answer the question of how $$[S]_{\alpha}^{\beta}, [T]_{\beta}^{\gamma}$$ and $$[T \circ S]_{\alpha}^{\gamma}$$ related.
 <div class="purdiv">
 Theorem 2.11
@@ -156,7 +156,7 @@ $$
 <br>
 In other words, the composition of the linear transformations $$S$$ and $$T$$ is equal to the matrix multiplication of the two matrices representing these linear transformations.
 <br>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Fix the basis $$\alpha$$ such that $$\alpha = \{x_1,...,x_n\}$$. Then,
 <div>
 $$
@@ -172,7 +172,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 <div>
 $$
 \begin{align*}
@@ -201,7 +201,7 @@ In particular, this shows that these maps are equal $$L_B \circ L_A = L_{BA}$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let 
 <div>
 $$
@@ -303,7 +303,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Matrix Multiplication Properties</b></h4>
+<h3>Matrix Multiplication Properties</h3>
 <div class="purdiv">
 Theorem
 </div>
@@ -334,7 +334,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

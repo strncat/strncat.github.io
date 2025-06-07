@@ -1,0 +1,53 @@
+I"î<p>My first solution was just to sum the numbers across the diagonals after breaking them into 4 parts.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/project-euler/28/1.png" width="90%" class="center" /></p>
+<p>We can come up with a formula for the yellow cells for example by observing that the difference between the cells follow a pattern.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/project-euler/28/2.png" width="80%" class="center" /></p>
+<p>You can see above that the difference between the cells keeps increasing by 8 each time we move up. Similarly, we can find that the other 3 parts follow a similar pattern. For example, we can see that the difference between the cells below also increases by 8. The only difference between the green cells and the yellow cells is that the initial difference here is 9 while it was 7 for the yellow cells.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/project-euler/28/3.png" width="80%" class="center" /></p>
+<p>Similarly, the difference between the blue cells also increase by 8 but the initial difference is 3 here.</p>
+<p style="text-align:center;"><img src="http://localhost:4000/assets/competitive-programming/project-euler/28/4.png" width="80%" class="center" /></p>
+<p>So we can come up with the following function that takes the initial cell value and the initial difference and then returns the total sum. Since the grid is \(1001 \times 10001\), then each quadrant will contain 500 cells.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">sum_quadrant</span><span class="p">(</span><span class="kt">int</span> <span class="n">cell</span><span class="p">,</span> <span class="kt">int</span> <span class="n">diff</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">add</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">500</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">cell</span><span class="p">;</span> <span class="c1">// add the cell value</span>
+        <span class="n">cell</span> <span class="o">+=</span> <span class="n">diff</span><span class="p">;</span> <span class="c1">// cell value will increase by the diff</span>
+        <span class="n">diff</span> <span class="o">+=</span> <span class="n">add</span><span class="p">;</span> <span class="c1">// the diff will increase by 8 each iteration</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+We now can use the above method to print the total.
+<br />
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">long</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">total_sum</span> <span class="o">+=</span> <span class="n">sum_quadrant</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span> <span class="c1">// Top Left Diagonal</span>
+<span class="n">total_sum</span> <span class="o">+=</span> <span class="n">sum_quadrant</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// Top Right Diagonal</span>
+<span class="n">total_sum</span> <span class="o">+=</span> <span class="n">sum_quadrant</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// Bottom Right Diagonal</span>
+<span class="n">total_sum</span> <span class="o">+=</span> <span class="n">sum_quadrant</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span> <span class="c1">// Bottom Left Diagonal</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%ld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">total_sum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span></code></pre></figure>
+
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Closed Formula&lt;/b&gt;&lt;/h4&gt;
+Of course my naive solution was too basic and it seems that there is a closed formula for this ... I have yet to do it! [TODO]
+<br />
+<br />
+<hr />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>References&lt;/b&gt;&lt;/h4&gt;
+<a href="https://projecteuler.net/problem=27">Project Euler - 27</a>
+<br />
+<br />
+
+
+</h3></h3>
+:ET

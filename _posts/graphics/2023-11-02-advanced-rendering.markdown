@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Motion Blur</b></h4>
+<h3>Motion Blur</h3>
 What causes motion blue? When the camera shutter (which limits the amount of light that hits the sensor) is open while an object is moving, the light coming in is hitting many different spots causing a streak. One fix is to have the shutter open and close extremely fast (although we don't get enough light here).
 <br>
 <br>
@@ -29,7 +29,7 @@ place the object into its time $t_{ray}$ location given by the transform $F(t_{r
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Depth of Field</b></h4>
+<h3>Depth of Field</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/advanced-rendering/focal-length.png" width="80%" class="center"></p>
 Given some camera lens, the focal length is the distance it takes for a lens to bring parallel rays into focus (see above figure). To focus on an object you want to place 
 
@@ -55,7 +55,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

@@ -16,7 +16,7 @@ $$
 and we want to find its inverse along with its domain and range. 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding The Inverse</b></h4>
+<h3>Finding The Inverse</h3>
 To find the inverse, we just need to following simple steps. First replace $$f(x)$$ with $$y$$.
 <div>
 $$
@@ -64,7 +64,7 @@ $$
 Which is what we wanted! We can also try the other direction but let's just not do it now.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Domain</b></h4>
+<h3>The Domain</h3>
 The domain of the inverse of $$f$$ is simply all real numbers except for anything that makes the denominator 0. Recall that the inverse function was,
 <div>
 $$
@@ -76,7 +76,7 @@ $$
 The denominator is zero when $$8 - 7x = 0$$. This means this happens when $$x = \frac{8}{7}$$. So in other words, the domain is $$(-\infty, \frac{8}{7}) \cup (\frac{8}{7}, \infty)$$. 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Range</b></h4>
+<h3>The Range</h3>
 The range of the inverse of $$f$$ is simply the range of our original function $$f$$. Recall that the function was,
 <div>
 $$

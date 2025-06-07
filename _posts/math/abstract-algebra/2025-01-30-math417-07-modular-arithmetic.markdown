@@ -49,7 +49,7 @@ $$[2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....$$
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>The Remainder Function</b></h4>
+<h3>The Remainder Function</h3>
 Another important definition that we need is the following
 <br>
 <br>
@@ -69,7 +69,7 @@ It's important to note that the remainder is in the same congruence class as $$a
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Properties of Congruence</b></h4>
+<h3>Properties of Congruence</h3>
 Congruence is an equivalence relation. The following properties show this.
 <br>
 <br>
@@ -139,7 +139,7 @@ Suppose that $$[a]_n \cap [b]_n \neq \emptyset$$. Let $$c \in [a]_n \cap [b]_n$$
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Modular Arithmetic</b></h4>
+<h3>Modular Arithmetic</h3>
 The following lemma establishes how modular arithmetic is done.
 <br>
 <div class="yellowheaderdiv">
@@ -232,7 +232,7 @@ $$(\phi(n))$$ is a commutative group.
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Binomial Theorem</b></h4>
+<h3>Binomial Theorem</h3>
 <br>
 Next we have the binomial theorem which we need to prove a proposition which will then lead to Fermat's Little Theorem.
 <br>
@@ -306,7 +306,7 @@ A consequence of this proof is Fermat's Little Theorem
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Fermat's Little Theorem</b></h4>
+<h3>Fermat's Little Theorem</h3>
 Next, we will prove Fermat's Little Theorem.
 <br>
 <br>
@@ -366,7 +366,7 @@ We are given that $$a \nmid p$$. From part (1), we know that $$a^p \equiv a \bmo
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Two-Prime Fermat</b></h4>
+<h3>Two-Prime Fermat</h3>
 There is a more generalized version of Fermat's Little Theorem. We will use Fermat's theorem to prove it.
 <br>
 <br>
@@ -422,7 +422,7 @@ This implies that $$a^{tm} - 1$$ must be divisible by $$p$$ as we wanted to show
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>RSA Cryptosystem</b></h4>
+<h3>RSA Cryptosystem</h3>
 This encryption method is based on the two prime fermat theorem. It is widely used to encrypt many of the transactions that happen on the internet.
 <br>
 <br>
@@ -455,7 +455,7 @@ This is Two-prime Fermat.
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

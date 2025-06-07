@@ -67,7 +67,7 @@ Remark: In a similar way, we can form $$R[x,y]$$ or $$R[x_1,...,x_n]$$ (polynomi
 <hr>
 <br>
 <!----------------------------------------------------------------------->
-<h4><b>The Degree of a Polynomial</b></h4>
+<h3>The Degree of a Polynomial</h3>
 We now want to focus on a special case of a polynomial ring where the coefficient ring is actually a field. So let $$R = K$$ be a field and let 
 <div>
 $$
@@ -98,14 +98,14 @@ Then, we only know that $$\deg(f) \leq n$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>The Degree of the Zero Polynomial</b></h4>
+<h3>The Degree of the Zero Polynomial</h3>
 If $$f$$ is a constant polynomial, what is the degree of $$f$$? We defined the degree as the largest $$n$$ such that $$a_n \neq 0$$. In a constant polynomial, all the terms are zero except for $$a_0$$. If the constant is non-zero, then the degree is zero. But if the polynomial is zero itself so $$f = 0$$, then now all the coefficients $$a_i$$'s are zero so in this case the degree is undefined but we're going to let the degree in this case be $$-\infty$$. So deg$$(f)=0$$ if and only if $$f = 0$$. 
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>The Degree of a Polynomial when the Coefficient Ring is a Field</b></h4>
+<h3>The Degree of a Polynomial when the Coefficient Ring is a Field</h3>
 Next, we're going to prove a proposition where we will see why we needed the coefficient ring to be a field.
 <br>
 <!------------------------------------------------------------------------>
@@ -184,7 +184,7 @@ But the only solution is that $$\deg(f) = \deg(g) = 0$$. So the units always hav
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Division Algorithm for \(K[x]\)</b></h4>
+<h3>Division Algorithm for \(K[x]\)</h3>
 <!------------------------------------------------------------------------>
 <div class="peachheaderdiv">
 Proposition
@@ -254,7 +254,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

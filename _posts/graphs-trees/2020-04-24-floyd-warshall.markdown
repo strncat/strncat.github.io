@@ -9,7 +9,7 @@ Let $$G=(V,E)$$ be a directed weighted graph with $$V$$ vertices and $$E$$ edges
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Optimal Substructure</b></h4>
+<h3>Optimal Substructure</h3>
 Let $$V = \{1,2,3,...,n\}$$ and consider a subset $$S = \{1,2,3,...,k\}$$ such that $$S \subseteq V$$ for some $$k$$. Let $$i$$ and $$j$$ be two vertices in $$V$$. Now, consider all the paths from $$i$$ to $$j$$ whose intermediate vertices are in $$S$$. Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let $$p$$ be a shortest path among the paths from $$i$$ to $$j$$ that are drawn from $$S$$. 
 <img src="{{ site.url }}/assets/graphs/floyd-warshall/path.png" width="100%">
 This is where it gets interesting. There are two cases here. Either $$k$$ is on $$p$$ or it's not.
@@ -28,7 +28,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Simple Implementation</b></h4>
+<h3>Simple Implementation</h3>
 {% highlight c++ %}
 void floyd_warshall(int n) { // O(n^3)
     // the shortest path between i and j contains some internal nodes (none repeated, simple path)
@@ -67,13 +67,13 @@ Also,
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Practice Problems</b></h4>
+<h3>Practice Problems</h3>
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=508">567 - Risk</a> 
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=762">821 - Page Hopping</a>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 CLRS
 
 

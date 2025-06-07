@@ -19,7 +19,7 @@ void quicksort(int *a, int first, int last, int n) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 
 Here, we have an unsorted array of 6 elements.
 
@@ -51,7 +51,7 @@ The base case of the recursion is reaching an array of size 1 ($first < last$ is
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Partition</b></h4>
+<h3>Partition</h3>
 
 The most critical or the only thing we really do in Quicksort is partitioning the array around a chosen pivot. There isn't anything cuter than partition. The implementation trick to partition is to move the pivot to the end of the array. So, for the above example, we will swap 3 and 4 and set the pivot to be the last index of the array.
 
@@ -85,7 +85,7 @@ The write_index is now our real pivot that we want to return to quicksort.
 <img src="{{ site.url }}/assets/randomized/quicksort/p7.png" width="100%">
 
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 int partition(int *a, int first, int last, int n) {
     srand(time(NULL));
@@ -110,7 +110,7 @@ int partition(int *a, int first, int last, int n) {
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Correctness of partition</b></h4>
+<h3>Correctness of partition</h3>
 The proof is done with a standard loop invariant. For partition above, we want to establish the following invariant:
 <br>
 <br>
@@ -125,7 +125,7 @@ Proof is in CLRS ;)
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Worst-case running time analysis</b></h4>
+<h3>Worst-case running time analysis</h3>
 What's the worst possible input to quicksort? Suppose we always pick the pivot to be the largest or the smallest element in the array. Then, we will have two subproblems, one of size $n-1$ elements and the other of size $0$. We know partition runs in linear time. If $T(n)$ was the total time it takes to run quicksort then,
 <div center>
 $$
@@ -139,7 +139,7 @@ This recurrence has the solution $T(n)=O(n^2)$ which is the worst-case running t
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Best running time analysis</b></h4>
+<h3>Best running time analysis</h3>
 How good can quicksort be? Suppose that the pivot is always chosen to be the middle element in the array. Then our recurrence would look like the following,
 <div center>
 $$
@@ -152,7 +152,7 @@ By the master theorem, the solution is $T(n) = O(n\log(n))$. Intuitively, if we 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Expected running time analysis</b></h4>
+<h3>Expected running time analysis</h3>
 This analysis depends on the important idea that quicksort is dominated by the number of comparisons it makes while partitioning the array (proof in CLRS). Moreover, 
 
 | for any given pair of elements, $x$ and $y$. We know that $x$ and $y$ are compared at most once during quicksort. |
@@ -242,7 +242,7 @@ $$
 </div>
 Thus, the expected running time of quick sort is $O(n\log(n))$ when the elements are distinct. 
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 - CLRS Chapter 7
 - <a href="http://web.stanford.edu/class/cs161/Lectures/Lecture5/Lecture5-compressed.pdf">CS161 Stanford</a>
 <br>

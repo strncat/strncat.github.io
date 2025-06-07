@@ -16,7 +16,7 @@ The first few terms of the fibonacci sequence are
 The goal of this problem is finding the sum of the even-valued terms where the maximum term that we need to consider is at most 4 million.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 One thing to note immediately is that we're going to exceed 4 million just with the 35th term! So the simplest solution that just implements the fibonacci recurrence (below) will work. 
 {% highlight c++ %}
 #define N 35 // the 35th term exceeds 4 million
@@ -46,7 +46,7 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=2">Project Euler - 02</a>
 <br>
 <br>

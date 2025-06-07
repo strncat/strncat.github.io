@@ -9,7 +9,7 @@ Suppose we have two line segments $\overline{ab}$ and $\overline{cd}$. How can w
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Parametric Representation</b></h4>
+<h3>Parametric Representation</h3>
 Let $\vec{A} = b - a$ and let $\vec{B} = d - c$. A point on the line that goes through $\overline{ab}$ can be represented using 
 <div>
 $$
@@ -49,7 +49,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b></b></h4>
+<h3></h3>
 {% highlight c++ %}
 while (hull_candidate != first_convex_hull_point)
 {% endhighlight %}
@@ -57,7 +57,7 @@ Source Code <a href="?">TODO</a>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://jeffe.cs.illinois.edu/teaching/compgeom/schedule.html">CS 498: Computational Geometry</a>
 <br>
 <br>

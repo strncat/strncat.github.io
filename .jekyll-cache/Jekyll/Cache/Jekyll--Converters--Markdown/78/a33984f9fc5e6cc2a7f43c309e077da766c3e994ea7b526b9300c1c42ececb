@@ -1,0 +1,78 @@
+I"�$<p>A 1 to 9 pandigital number (which also appeared in problem 32) is a number where the digits \(1\) to \(9\) appear exactly once. In this problem consider the following products</p>
+<div>
+$$
+\begin{align*}
+9 \times 1 &amp;= 9 \\
+9 \times 2 &amp;= 18 \\
+9 \times 3 &amp;= 27 \\
+9 \times 4 &amp;= 36 \\
+9 \times 5 &amp;= 45 \\
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p>Concatenating all the products, we get \(918273645\). This product is \(1\) to \(9\) pandigital by definition. The goal of this problem is to find the largest \(1\) to \(9\) pandigital product formed by concatenating the products of an integer \(k\) with \((1,2,3,4,...n)\) where \(n &gt; 1\). In the above example, \(k = 9\) and \(n = 5\).
+<br />
+<br />
+Suppose now that we’re given an integer \(k\) with \(d\) digits. Observe that if \(d = 1\), then in order to have 9 digits total in the final string produced by concatenating the products of \(k\) with \((1,2,...,n)\), we need at most 9 products total so \(n \leq 9\). Moreover, if \(d = 2\), then \(n\) can at most be 4, since each product will contain a minimum of two digits. Adding a fifth product means that we will exceed 9 digits which makes the entire thing not pandigital. For \(d = 3\), then we’ll only need 3 products. In all cases, we can see that we at most need 9 products total. Based on this, I implemented this in the most naive way where given an integer \(k\), I will multiply \(k\) by the range \((1,...,9)\) but exiting at any point where we either see a digit repeating twice (not pandigital) or if we reached the pandigital state.
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="nf">is_pandigital</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">digits</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="c1">// In each iteration, we will multiply k by a value from the range (1,...,n).</span>
+    <span class="c1">// Since we only have 9 digits, we won't ever need more than 9 products.</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+        <span class="c1">// (1) count the digits of this product and exit any time we see a repeated digit</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">product</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">product</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="n">digits</span><span class="p">[</span><span class="n">remainder</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">product</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">digits</span><span class="p">[</span><span class="n">remainder</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// no need to test further since we have a repeated digit</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// (2) before checking the next product, check if we reached the pandigital state</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="n">digits</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// we are a pandigital number, let's exit</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// we failed but we should not reach this state with the above checks</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p>How many integers do we need to test? First of all, observe that \(k\) can’t have more than 4 digits. With 5 digits, we’ll never get a pandigital product since with one product, we’ll get 5 digits but with two we’ll get 10 digits. So we can just test up to 9999. Second of all, observe that \(k\) must start with a 9 since we’re searching for the largest pandigital product. So we can search starting from 9999 and exit as soon as we see a pandigital product!</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_pandigital</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">max</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">max</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// count the digits in max</span>
+    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">temp</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"largest pandigital number is "</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="o">/</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">max</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p>This runs in 0.000032 seconds on my M1 mac.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References&lt;/h3&gt;
+<a href="https://projecteuler.net/problem=32">Project Euler - 32</a>
+<br />
+<br />
+
+
+</b></h4>
+:ET

@@ -9,13 +9,13 @@ These are notes I took while watching the series <a href="https://www.youtube.co
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Transformations</b></h4>
+<h3>Transformations</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-transformations/01.png" width="60%" class="center"></p>
 So what does transformation mean? A transformation takes a vector as an input and outputs another vector so it's just a function. So why didn't we call it a function? This is because the word transformation suggests movement. We're imagining that this input vector is moving over to the output vector. Of course, when transforming vectors, it is much nicer to use the trick from last time where we think of the vector as the point where its tip sits on. This way it is easier to visualize transforming many vectors all at once.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Linear Transformations</b></h4>
+<h3>Linear Transformations</h3>
 Transformations can be pretty complex but Linear Algebra is restricted to only linear transformations. Visually speaking a transformation is linear if it has two properties:
 <ul>
 	<li>All lines must remain lines without getting curved.</li>
@@ -23,7 +23,7 @@ Transformations can be pretty complex but Linear Algebra is restricted to only l
 </ul>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Describing Linear Transformations Numerically</b></h4>
+<h3>Describing Linear Transformations Numerically</h3>
 How do we describe a linear transformation? It turns out that all we need to do is to record where the basis vectors will land and then everything else will just follow. Why is this? From the previous post, we know can write any vector as a linear combination of the basis vector of the vector space. Suppose $$v = \begin{bmatrix}3 & -2\end{bmatrix}$$, then we know that we can write $$v$$ in terms of $$\widehat{i}$$ and $$\widehat{j}$$ as shown below.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-transformations/02.png" width="45%" class="center"></p>
 Writing this again, we have
@@ -73,7 +73,7 @@ $$$$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Representing the transformation with a Matrix</b></h4>
+<h3>Representing the transformation with a Matrix</h3>
 So from the above we saw how a two dimensional linear transformation is completely described by four numbers. The two coordinates for where $$\widehat{i}$$ lands and the two coordinates for where $$\widehat{j}$$ lands and this is pretty cool! Here is a cooler thing. We can package these coordinates into a two-by-two grid of numbers (a Matrix!)
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/linear-transformations/04.png" width="40%" class="center"></p>
 The first column will be where $$\widehat{i}$$ landed and the second column will be where $$\widehat{j}$$ landed. So now when we apply the transformation to some vector $$v=(x,y)$$, what do we get?
@@ -89,12 +89,12 @@ And this is way more fun than just memorizing how matrix multiplication works. T
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>More Example Transformations</b></h4>
+<h3>More Example Transformations</h3>
 TODO: Rotations and Shear. (the video shows really beautiful animation for the examples)
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br>
 <br>

@@ -17,7 +17,7 @@ How can we approach this?
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Vertical Asymptotes</b></h4>
+<h3>Vertical Asymptotes</h3>
 The first step is finding the asymptotes. For the vertical asymptote, we want to find what makes the denominator equal to zero. none of the factors of the numerator will be $$(x+1)$$ so we don't need to worry about simplifying further since nothing will cancel out. We can then just solve,
 <div>
 $$
@@ -31,7 +31,7 @@ So $$x = -1$$ will be our vertical asymptote.
 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Horizontal Asymptotes</b></h4>
+<h3>Horizontal Asymptotes</h3>
 Next, we need to find the horizontal asymptote. Let's revise the three cases we did before. Suppose we have the function 
 <div>
 $$
@@ -49,12 +49,12 @@ Then,
 Here, $$m = n + 1$$, therefore, we don't have a horizontal asymptote and in fact we have a slanted one.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Slanted Asymptotes</b></h4>
+<h3>Slanted Asymptotes</h3>
 To find the slanted asymptote, we divide $$x^2 - x - 1$$ by $$x + 1$$. We'll get $$x-2$$ plus $$\frac{1}{x+1}$$. We don't care about the remainder since as $$x$$ get large numerically (whether negative or positive), this term will be zero. The slanted asymptote therefore will happen at $$x - 2$$. 
 <div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Plotting points for each section of the graph</b></h4>
+<h3>Plotting points for each section of the graph</h3>
 After graphing the asymptotes, we'll have the following graph,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/quadratic-over-linear/0.png" width="70%" class="center"></p>
 

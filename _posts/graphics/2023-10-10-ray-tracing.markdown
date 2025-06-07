@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Constructing Rays</b></h4>
+<h3>Constructing Rays</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/ray-tracing/00-rays.png" width="50%" class="center"></p>
 For each pixel, we create a ray. Its first intersection is used to determine the color of the pixel. The ray can be written as, 
 <div>
@@ -25,20 +25,20 @@ where $A$ is the aperture and $P$ is the pixel location. The ray is defined by $
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Parallelization</b></h4>
+<h3>Parallelization</h3>
 - Scanline rendering is a per triangle operation but ray tracing here is a per pixel operation so it's easy to parallelize it. For scanline rendering, the parallelization is done for each triangle.
 - It's easier to parallelize ray tracing on the CPU rathar than the GPU and it's easier to parallelize scanline rendering on the GPU rather than the CPU.
 - Memory coherency is important when distributing rays to threads/processors. We need to assign spatially neighboring rays to the same core. These rays will tend to intersect the same objects and therefore access the same memory.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Ray-Triangle Intersection</b></h4>
+<h3>Ray-Triangle Intersection</h3>
 - The main operation in scanline rendering is to know if a pixel is inside a triangle in screen space fast. The main operation in ray tracing is figuring out if the ray intersect triangles in the virtual world fast (world space). 
 - In scanline rendering, we had to figure out how to calculate the barycentric coordinates fast (we saw many ways to do this and saw how they must all be between 0 and 1 and sum to 1, not to be outside the triangle for example) in order to determine if a pixel is inside a triangle. In ray tracing, now we have a triangle that we want to test in world space. Moreover, if we intersect a triangle, we still want to test and see if there are other triangles that we can intersect and are closer.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Three Options for Ray-Triangle Intersection</b></h4>
+<h3>Three Options for Ray-Triangle Intersection</h3>
 How do we speed up ray-triangle intersection? There are three options. 
 
 - One main idea to speed up the intersection here is that triangles are planar so we can do a ray-plane intersection to determine quickly if the pixel itersects the plane. If it does, then now we know the point is on the plane. Next we need to determine if this point is inside the triangle. Two ways to do this.
@@ -48,7 +48,7 @@ How do we speed up ray-triangle intersection? There are three options.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Option 1: Ray-Plane Intersection</b></h4>
+<h3>Option 1: Ray-Plane Intersection</h3>
 Given a ray and a plane. How can we determine if the ray intersects the plane? 
 - A plane is defined by a point $p_0$ and a normal direction $N$ (easily computed by the cross product of two edges).
 - A point $p$ is on the plane if $(p - p_0) \cdot N = 0$. Therefore, if we want to find if a ray $R(t)$ intersects this plane then we need to find $t$ where $(R(t) - p_0) \cdot N = 0$ for some $t \geq 0$.
@@ -70,7 +70,7 @@ Now we can drop the coordinate with the largest component in $N$ and then apply 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Option 2: 3D Point Insdie a 3D Triangle</b></h4>
+<h3>Option 2: 3D Point Insdie a 3D Triangle</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/ray-tracing/01-triangle.png" width="50%" class="center"></p>
 Instead of dropping a coordinate (projecting), we want to directly test if a 3D point is inside a 3D triangle. Given the $t$ value that we computed and after plugging it in $R(t_int) = R_0$, we get this intersection point $R_0$.
 <br><br>
@@ -86,7 +86,7 @@ $R_0$ is interior to $e$ when $(R_0 - p_0) \cdot n < 0$. We can compute the norm
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Option 3: Direct Ray-Triangle Intersection</b></h4>
+<h3>Option 3: Direct Ray-Triangle Intersection</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/ray-tracing/02-basis.png" width="50%" class="center"></p>
 Instead of doing the ray-plane intersection first, we can directly test if a ray intersects a triangle. We can compute the edge vectors
 <div>
@@ -141,7 +141,7 @@ So as long as the ray has a tiny tilt, the matrix will be invertible and we can 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Cramer's Rule</b></h4>
+<h3>Cramer's Rule</h3>
 We can solve the system of linear equations by using Cramer's rule.
 
 - Find the determinant of the matrix $\Delta = det(\begin{bmatrix}u & v & A - P\end{bmatrix})$. If it's non-zero, then we have a solution.
@@ -151,12 +151,12 @@ We can solve the system of linear equations by using Cramer's rule.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Ray-Object Intersections</b></h4>
+<h3>Ray-Object Intersections</h3>
 We can apply the same technique to see if our ray hits any object. We don't need this geometry to be turned into triangles like in the scanline rendering method. The general process is to try and write a function for the geometry. For example an implicit surface function. In this case, we know a point $p$ hits the surface if $f(p) = 0$. so now we just solve for $t$ in $f(R(t)) = 0$. We'll study the ray-sphere intersection next.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Ray-Sphere Intersection</b></h4>
+<h3>Ray-Sphere Intersection</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/ray-tracing/03-sphere.png" width="50%" class="center"></p>
 A point is on a sphere with radius $r$ and center $C$ if $\left\lVert p-C \right\rVert_2 = r$. So now we substitute the ray equation $R(t) = A + (P - A)t$ in for $p$ and solve it. 
 <div>
@@ -174,7 +174,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Transformed Objects</b></h4>
+<h3>Transformed Objects</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/ray-tracing/04-object-space.png" width="50%" class="center"></p>
 One optimization that is done to make testing faster to take the ray back to object space and perform the hit testing there. We know the geomtry is in object space (doesn't leave the amazon box) and we know that we're only applying this one matrix transform $M$ to place it in world space. The idea is to take the ray back to object space by applying the inverse of the transform on the ray so 
 <div>
@@ -195,7 +195,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Code Acceleration: Bounding boxes</b></h4>
+<h3>Code Acceleration: Bounding boxes</h3>
 ... TODO ... kd-trees, octrees, etc
 
 
@@ -203,7 +203,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Normals</b></h4>
+<h3>Normals</h3>
 Objects titled towards the light are bombarded with more photos than those titled away from the light. In order to know which parts of the objects will be dimmer or brighter, we have to know how the surface of this object is aligned with the light source. How do we do this? Using Normals. 
 
 - We already know the point of intersection that we computed $R(t_{\text{int}})$. The surface normal at this point can be used to approximate a plane tangent to the surface. So in a ray tracer whenever we compute the point of intersection, we always have to compute the normal along with it at this point.
@@ -239,7 +239,7 @@ where:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Ambient vs. Diffuse Shading</b></h4>
+<h3>Ambient vs. Diffuse Shading</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/ray-tracing/05-diffuse-shading.png" width="50%" class="center"></p>
 This figure summarizes what happens if we just use the $cos(\theta)$ above. 
 - Ambient: colors a pixel when its ray intersects the object.
@@ -248,7 +248,7 @@ This figure summarizes what happens if we just use the $cos(\theta)$ above.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Computing Unit Normals</b></h4>
+<h3>Computing Unit Normals</h3>
 - The unit normal to a plane is used in the plane's definition and is readily accessible. 
 - The unit normal to a triangle can be computed by normalizing the cross product of two edges. Be careful with the edges ordering to ensure that the normal points outwards from the object.
 - For other objects, we need to provide a function that returns an outward unit normal for any point of intersection. For example, for a sphere that has intersection point $R_{\text{int}}$,
@@ -262,7 +262,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Normals in World Space vs. Object Space</b></h4>
+<h3>Normals in World Space vs. Object Space</h3>
 If we decide to do the intersection test in object space rather than world space by transforming the ray to place it in the amazon box and find this intersection point along with the normal, then this normal needs to be transformed back into world space along with the point.
 - Let $u$ and $v$ be edge vectors of a triangle in object space.
 - let $Mu$ and Mv be the world space corresponding vectors.
@@ -281,7 +281,7 @@ DO NOT use $M \hat{N}$ as the world space normal. It doesn't work.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Shadows</b></h4>
+<h3>Shadows</h3>
 We want to reduce the incoming light intesity $I$ when photons are blocked by other objects. Shadow rays determine whether photons from a light source are able to hit a point. A <b>shadow ray</b> then is cast from the intersection point $R_{\text{int}}$ in the direction of the light $-\hat{L}$ ($L$ from last time is the direction of light from the source of the light to the intersection point so $-L$ goes toward the light source). Therefore we will have:
 <div>
 $$
@@ -297,7 +297,7 @@ with $t \in [0, t_{\text{light}}]$. Three things to note
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Spurious Self-Occlusion</b></h4>
+<h3>Spurious Self-Occlusion</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/01-spurious-a.png" width="50%" class="center"></p>
 So you cast shadow rays. Some will hit the light and get colored brighter. Some will actually hit the sphere itself (say a point toward the back in the picture) and in this case, they won't be colored by this light source since they're occluded and that's fine. Sometimes though (left figure), you cast a shadow ray expecting to hit the light but instead, you find yourself hitting the object itself. Why? If you start $t=0$ and because of numerical precision errors and how close you are to the object, you might get a point that intersects the object so now you're occluded. The solution is starting from some $\epsilon$ instead of 0 to guarantee that this is happen and this works most of the time except for when for example the shadow ray is flat so even with $\epsilon$, we're still grazing the object seen below:
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/01-spurious-b.png" width="50%" class="center"></p>
@@ -315,7 +315,7 @@ note here that the light direction is modified a little bit since we changed the
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

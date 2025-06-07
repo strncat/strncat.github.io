@@ -44,7 +44,7 @@ We've also discussed a few other things like calling an action transitive if the
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Conjugation by \(G\) on \(X = G\)</b></h4>
+<h3>Conjugation by \(G\) on \(X = G\)</h3>
 The next thing we talked about was the conjugation action when the set $$G$$ acted on was the set $$G$$ itself. This was defined as 
 <div>
 	$$
@@ -95,7 +95,7 @@ Additionally, the kernel of $$c$$ is what we call the center $$c$$. It's the col
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Examples</b></h4>
+<h3>Examples</h3>
 What is the conjugacy class of the identity? It's always $$Cl(e) = \{e\}$$. This means that the conjugation action is never transitive unless we're acting on the trivial group. Since if $$G$$ contains other elements, then they'll be in a different orbit.
 <br>
 <br>
@@ -116,7 +116,7 @@ Consequence: If $$G$$ is abelian, then $$Z(G) = G$$ and every conjugacy class in
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Conjugacy Classes in \(SO(3)\)</b></h4>
+<h3>Conjugacy Classes in \(SO(3)\)</h3>
 Let $$G = SO(3) = \{Rot_u(\theta)\}$$ where $$u$$ is a unit vector. $$Rot_u(\theta)$$ is a rotation by angle $$\theta$$ around the unit vector $$u$$. Recall
 <div>
 	$$
@@ -178,7 +178,7 @@ Note: Both $$Rot_u(\theta)$$ and $$Rot_u(-\theta)$$ are also the same conjugacy 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Centralizers in \(SO(3)\)</b></h4>
+<h3>Centralizers in \(SO(3)\)</h3>
 What about the centralizers in $$SO(3)$$? The centralizer of the identity is any element that commutes with the identity element. So it's easy to see that $$\text{Cent}(x) = SO(3)$$. 
 <br>
 <br>
@@ -207,7 +207,7 @@ Study notes since I was confused here. The idea is that for any rotation in $$SO
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Symmetries of the Cube \(\leq SO(3)\)</b></h4>
+<h3>Symmetries of the Cube \(\leq SO(3)\)</h3>
 As a reminder, we did this in the previous lecture
 <div>
 <table style="margin: 20px auto;">
@@ -284,7 +284,7 @@ What we want is an $$A$$ such that it sends $$u$$ to $$Au$$. We don't have that 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Conjugacy Classes of \(S_n\)</b></h4>
+<h3>Conjugacy Classes of \(S_n\)</h3>
 We have formula already for this 
 <div>
 	$$
@@ -356,7 +356,7 @@ In fact this group is isomorphic to the symmetry group of the cube that we did e
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

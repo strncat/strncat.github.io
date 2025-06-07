@@ -18,7 +18,7 @@ To re-iterate from the <a href="https://strncat.github.io/jekyll/update/2024/04/
 </ul>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the Slanted Asymptote</b></h4>		
+<h3>Finding the Slanted Asymptote</h3>		
 For example, suppose we have the function,
 <div>
 $$
@@ -43,13 +43,13 @@ However find the slope isn't enough because we need to find the equation of the 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the \(y\) Intercept of the Slanted Asymptote</b></h4>
+<h3>Finding the \(y\) Intercept of the Slanted Asymptote</h3>
 We'll divide the numerator by the denominator (see video for how it's done). The divison will result in $$3x + 3$$ and some remainder. We won't care about the remainder since as we approach infinity, the remainder will approach zero. So the equation of the slanted asymptote will just be $$3x + 3$$ and this is exactly the slanted asymptote we're looking for. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/slanted-asymptotes/1.png" width="80%" class="center"></p>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Can you cross a slanted asymptote</b></h4>
+<h3>Can you cross a slanted asymptote</h3>
 yes. we can definitely cross a slanted asymptote especially when it's still early. The horizontal and slanted asymptotes show their effects more as $$x$$ gets really large (whether toward positive or negative infinity).
 <br>
 <br>

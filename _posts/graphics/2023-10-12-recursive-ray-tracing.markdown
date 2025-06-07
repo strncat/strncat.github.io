@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Overview</b></h4>
+<h3>Overview</h3>
 So we casted rays from the camera until they hit some object and then again we casted shadow rays that go from the object until they hit a light to determine if they're obstructed by another object and we didn't need recursion in either case. But now for reflection and transmission (refraction), we're going to need recursion. So two parts: The first part comes when we a shadow ray is cast to each light source and the total contribution from all light is accumulated using:
 <div>
 $$
@@ -43,7 +43,7 @@ Note that we don't multiply directly the reflection or the transmission by the c
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Scaling Coefficients</b></h4>
+<h3>Scaling Coefficients</h3>
 To make nice pictures, we're going to add extra scale factors that modify the light contribution. So let
 - $$k_d$$ be the diffuse light scaling factor
 - $$k_a$$ be the ambient light scaling factor
@@ -60,12 +60,12 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Reflection and Transmission Rays vs Shadow Rays</b></h4>
+<h3>Reflection and Transmission Rays vs Shadow Rays</h3>
 Similar to how we construct rays for shadow rays we're going to construct a reflection ray and then let it intersect with the scene geometry. We will store the resulting color in $$L_\{\text{reflect}}$$ and $$L_\{\text{transmit}}$$. The difference is that for shadow rays, we'll immediately multiply the light intensity by the material color and the scale factor. For reflected and transmitted rays, we're not going to get the color directly. The color will depend on the color computed from the geometry that their rays intersect. These intersection points might additionally cast more rays to find the color which is computed via shadow rays, ambient, diffuse, additional reflection and transmission rays. This means that we need to terminate at some point because this process can go on forever.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Ray Tree Example</b></h4>
+<h3>Ray Tree Example</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/08-tree.png" width="70%" class="center"></p>
 Suppose we have the above figure. We cast a camera/eye ray $$I$$ until it hit the intersection point at the circle above. Now:
 0. It will cast a shadow ray to every light point and it will sum all these colors together. That's the diffuse term. If it's obstructed by all lights, then we'll only add an ambient color.
@@ -73,13 +73,13 @@ Suppose we have the above figure. We cast a camera/eye ray $$I$$ until it hit th
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Termination</b></h4>
+<h3>Termination</h3>
 So it can't go on forever. We need some limits depending on the hardware. ...
 When we don't have enough colors like in the case of rendering a house of mirrors or bubbles that don't inherently have color, we don't have difuse or ambient and we're 100% relying on the light intensity. here we do need to end choosing arbitrary values to make the picture look good (realistic colors).
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Reflected Ray</b></h4>
+<h3>Reflected Ray</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/00-reflected.png" width="40%" class="center"></p>
 Given an incoming ray with origin $$A$$, direction $$D$$ and an outward unit normal $$\hat{N}$$. (remember the ray and the normal both define a plane)
 <div>
@@ -133,7 +133,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Spurious Self-Occlusion</b></h4>
+<h3>Spurious Self-Occlusion</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/01-spurious-d.png" width="40%" class="center"></p>
 We're going to have the same problem here like we did with the shadow ray. Same solution. Perturb the starting point of the reflected ray to $$R(t_{\text{int}}) + \epsilon\hat{N}$$. HOWEVER, we don't modify the ray direction (unlike shadow rays). This is because there isn't a light source to point at.
 
@@ -152,7 +152,7 @@ Need to be careful that the new starting point isn’t inside (or too close to) 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Transmission</b></h4>
+<h3>Transmission</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/02-transmission-a.png" width="50%" class="center"></p>
 
 Transmission is more complicated than reflection. The angles here are different because of the phase velocities. Based on Snell's law we can written their relationship as,
@@ -168,7 +168,7 @@ Where $$\theta_1, \theta_2$$ are the incoming/outgoing angles, $$v_1,v_2$$ are t
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Transmitted Ray</b></h4>
+<h3>Transmitted Ray</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/02-transmission.png" width="50%" class="center"></p>
 So now we need to send a transmitted ray. How do we do it? 
 - We have our original ray, $$R(t) = A + Dt$$.
@@ -210,7 +210,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Total Internal Reflection</b></h4>
+<h3>Total Internal Reflection</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/03-internal-reflection.png" width="50%" class="center"></p>
 
 What happens above is that usually when $$\theta_2 < theta2_max$$, we'll have some reflected direction and some transmitted drection. But once you pass this critical $$\theta_{max}$$, we won't see a transmitted ray any more. This also only happens when light goes from a higher index of refraction to lower index of refraction (water to air), no light is transmitted.
@@ -243,7 +243,7 @@ Parallel -> more reflection. Perpendicular -> more transmission and less reflect
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Fresnel Equations</b></h4>
+<h3>Fresnel Equations</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/06-reflection-transmission.png" width="50%" class="center"></p>
 - The proportion of reflection gradually increases as the viewing angle goes from perpendicular (coincident with the normal) to parallel (orthogonal to the normal)
 
@@ -279,7 +279,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Schlick's Approximation</b></h4>
+<h3>Schlick's Approximation</h3>
 - Approximate reflection via:
 <div>
 $$
@@ -292,7 +292,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Conductors vs Dielectrics</b></h4>
+<h3>Conductors vs Dielectrics</h3>
 - Conductors: (of electricity e.g. metal) mostly reflect light (low absorption, no transmission). The mount reflected doesn't change with the viewing angle.
 - So $$k_r$$ can be approximated as a constant (independent of viewing direction) for conductors.
 - In contrast, $$k_r$$ varies significantly with viewing angle for dielectrics (e.g. glass, water).
@@ -301,14 +301,14 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Curved Surfaces</b></h4>
+<h3>Curved Surfaces</h3>
 
 
 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Attenuation</b></h4>
+<h3>Attenuation</h3>
 - Light is absorbed and scattered as it travels through material
 - This attenuates the amount of light traveling along a straight line
 - The amount of attenuation depends on the distance traveled (through the material)
@@ -323,7 +323,7 @@ Example:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Beer's Law</b></h4>
+<h3>Beer's Law</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/recursive-ray-tracing/07-beer.png" width="50%" class="center"></p>
 - For homogeneous media, attenuation can be approximated by Beer’s Law
 - Light with intensity $$I$$ is attenuated over a distance $$x$$ via the Ordinary Differential Equation
@@ -355,7 +355,7 @@ Instead of just $$I$$, have an $$I_R$$, $$I_G$$, $$I_B$$ for each color.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Atmospheric Refraction</b></h4>
+<h3>Atmospheric Refraction</h3>
 
 - Light continuously bends (following a curved path) as it passes through varying temperature gases (with varying density)
 - The density variations cause similar variations in the index of refraction
@@ -369,7 +369,7 @@ to do this in a ray tracer. divide the air into layers and keep bending the ligh
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Iridescence</b></h4>
+<h3>Iridescence</h3>
 - wave feature of light (constructure and destructive interference). 
 
 
@@ -379,7 +379,7 @@ to do this in a ray tracer. divide the air into layers and keep bending the ligh
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <a href="https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm"> PBR </a>
 <br>

@@ -31,7 +31,7 @@ Note here that if $$K$$ is the trivial subgroup so $$K = \{e\}$$, then $$[H:\{e\
 <br>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose we have $$\mathbf{Z} \geq \mathbf{Z_3} \geq \mathbf{Z}_{12}$$ where $$G = \mathbf{Z}$$, $$H = \mathbf{Z}_{3}$$ and $$K = \mathbf{Z}_{12}$$. We know that $$[\mathbf{Z} : \mathbf{Z}_{12}] = 12$$ and $$[\mathbf{Z} : \mathbf{Z}_{3}] = 3$$ so 
 <div>
 $$
@@ -47,7 +47,7 @@ From this we can deduce that the index of $$\mathbf{Z}_{12}$$ inside $$\mathbf{Z
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Proof of Generalized Lagrange</b></h4>
+<h3>Proof of Generalized Lagrange</h3>
 $$[H: K]$$ is the number of left $$K$$-cosets inside $$H$$. So $$aK \subseteq H$$. Observe that for any $$aH$$, the number of left $$K$$-cosets in $$aH$$ is equal to $$[H : K]$$. Consider the bijection
 <div>
 $$
@@ -63,7 +63,7 @@ Then $$hk$$ under this bijection will be $$ahK$$.
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}$$. Consider:
 <div>
 $$
@@ -88,7 +88,7 @@ If you look at $$eH$$, observe that it contains both $$K$$-cosets and if you loo
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Order Theorem</b></h4>
+<h3>Order Theorem</h3>
 Back to the Order Theorem. For example, for $$|G| = 12$$, the order of the elements inside $$G$$ are $$o(g) \in \{1,2,3,4,6,12\}$$. The question is do we know if there must be a subgroup of order 6? 4? what about 2? For 2, if the order of the group is even, then we must have an element with order 2. To see why, we have the Even Order Theorem as follows:
 <!----------------------------------------------------------------------------->
 <br>
@@ -125,7 +125,7 @@ There is a generalization of this theorem that we'll prove later. But if $$p$$ i
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Equivalence Relations</b></h4>
+<h3>Equivalence Relations</h3>
 Review of equivalence relations
 <div class="mintheaderdiv">
 Definition
@@ -181,7 +181,7 @@ $$\pi$$ is quotient function. $$\pi$$ is surjective. Every equivalence class, ha
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

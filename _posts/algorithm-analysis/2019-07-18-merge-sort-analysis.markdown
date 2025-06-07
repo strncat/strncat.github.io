@@ -18,7 +18,7 @@ MergeSort(A, first, last) {
 {% endhighlight %}
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Recursion Tree Method</b></h4>
+<h3>Recursion Tree Method</h3>
 How long does MergeSort take? How many operations are we performing? Let's look at what MergeSort is doing at each level of of the recursion tree. We will first go all way down splitting the array and calling <i>MergeSort</i> on each half until we reach the base case. And then we will go all way up calling <i>Merge</i> in every level until the final <i>Merge</i> call which combines the two sorted halfs of the array.
 <br>
 <br>
@@ -80,7 +80,7 @@ So at each level we're doing at most $$cn$$ operations.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Summary</b></h4>
+<h3>Summary</h3>
 Let's now summarize everything in a nice table:
 <img src="{{ site.url }}/assets/merge/final.png" width="100%">
 <br>
@@ -111,7 +111,7 @@ This is certainly true for all $$n \geq 2$$ and so we are done.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>The Substitution Method</b></h4>
+<h3>The Substitution Method</h3>
 TODO
 
 <!--Now let's take a step back and forget about the recursion tree. Also assume that we don't know the master theorem. We know that MergeSort divides the input into halfs and performs $$cn$$ operations in Merge. Therefore, we have the following recurrence:
@@ -140,7 +140,7 @@ $$
 
 -->
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 - <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 - CLRS
 

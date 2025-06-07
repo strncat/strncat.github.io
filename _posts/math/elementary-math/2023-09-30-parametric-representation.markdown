@@ -6,13 +6,13 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Introduction</b></h4>
+<h3>Introduction</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/parametric/00.png" width="70%" class="center"></p>
 We've already seen the implicit representation in the previous post. This time, we will focus on the parametric representation. The parametric representation describes the line or curve using one or more new variables. This variable is commonly denoted as "t". For example, we might want to describe a curve with a specific start point, an end point and furthermore we might a want a general independent parameter that once we specify, then we get back a point $$(x,y)$$ on the curve. More importantly, some curves can be represented with the explicit representations because we can't describe $$y$$ as a function of $$x$$! See this for example. $$x=1.5$$ has two possible $$y$$ values!
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/parametric/01.png" width="50%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose we're given this line in its implicit form,
 <div>
 $$
@@ -75,7 +75,7 @@ So really, it's like we're interpolating between the two points. This notation i
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>
 <a href="https://www.youtube.com/watch?v=6jjLSkp0Y7I&list=PLplnkTzzqsZTfYh4UbhLGpI5kGd5oW_Hh&index=10&t=535s">Intro to Graphics 09 - Curves (Part 1) by Cem Yuksel</a>

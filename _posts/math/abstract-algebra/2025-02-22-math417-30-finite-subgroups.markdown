@@ -183,7 +183,7 @@ This shows .... [TODO .. I'm lost now]
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

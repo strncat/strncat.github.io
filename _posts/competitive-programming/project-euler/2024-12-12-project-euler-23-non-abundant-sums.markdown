@@ -15,7 +15,7 @@ We want to find the sum of all numbers that can't be expressed as a the sum of t
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding If a Number is Abundant</b></h4>
+<h3>Finding If a Number is Abundant</h3>
 We can find if a number is an abundant number by simply summing the proper divisors and seeing if the sum exceeds $$n$$
 {% highlight c++ %} bool is_abundant(int n) {
     //printf("n = %d\n", n);
@@ -37,7 +37,7 @@ We can find if a number is an abundant number by simply summing the proper divis
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding If a Number is a Sum of Two Abundant Numbers</b></h4>
+<h3>Finding If a Number is a Sum of Two Abundant Numbers</h3>
 The naive way to do this is by having two loops and checking all possible sums. A better way to do is given an integer $$n$$ and an abundant number $$i$$, we check if $$n - i$$ is abundant. If $$n - i$$ is abundant, then $$n$$ can be a written as a sum of two abundant numbers.
 <br>
 <br>
@@ -87,7 +87,7 @@ For this solution, the time spent was 0.032616 so well below 1 second.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=23">Project Euler - 23</a>
 <br>
 <br>

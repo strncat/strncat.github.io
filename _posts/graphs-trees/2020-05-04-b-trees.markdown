@@ -10,12 +10,12 @@ B-trees are balanced search trees. While red-black trees are also balanced searc
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Motivation</b></h4>
+<h3>Motivation</h3>
 But why do we need a large branching factor? The motivation behind this idea has to do with minimizing disk I/O operations. Data on disk can be read in <i>pages</i> and so if each node's size is a whole page in which we pack a lot of keys in, we can then minimize the number of read operations. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Specifications</b></h4>
+<h3>Specifications</h3>
 - Let $$x$$ be an internal node and let $$n$$ be the number of keys stored at $$x$$. $$x$$ must have $$n+1$$ children. Furthermore, the keys are stored in non-decreasing order. Leaf nodes on the other hand have no children. No restrictions on the number of children of the root. 
 
 - The minimum degree of a b-tree is an integer, $$t$$ such that $$t \geq 2$$. Every node besides the root must have between $$t-1$$ and $$2t-1$$ keys. This also implies that it must have at least $$t$$ children and at most $$2t$$ children. If the tree is not empty, the root must be at least have 1 key.
@@ -24,7 +24,7 @@ But why do we need a large branching factor? The motivation behind this idea has
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Why are B-trees balanced?</b></h4>
+<h3>Why are B-trees balanced?</h3>
 To see why B-trees are balanced, we will prove that the maximum height of a b-tree of degree $$t$$ with $$n$$ keys is $$O(\log_t(n))$$. 
 <br>
 <br>
@@ -44,7 +44,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Search</b></h4>
+<h3>Search</h3>
 Similar to searching in a binary tree, we descend down the tree and select the right branch based on the key value. In $$B$$-trees, each node has has $$n$$ keys and so this means that we have $$n+1$$ children or branches. We need to compare our key with these $$n$$ keys to find the right child/branch to descend into.
 <img src="{{ site.url }}/assets/trees/b-trees/search.png" width="100%">
 <br>
@@ -73,7 +73,7 @@ search(x, k) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>How long does Search take?</b></h4>
+<h3>How long does Search take?</h3>
 Note that in the above method, we were using a linear search to find the right key. For a tree of degree $$t$$, each node can have at most $$2t-1$$ keys. So this search takes $$O(t)$$ time. Since the tree height is $$O(log_t(n))$$ then the total cost is $$O(t\log_t(n))$$.
 <br>
 <br>
@@ -81,17 +81,17 @@ Suppose we instead use <i>binary search</i> to find the key. This means that eac
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Insert</b></h4>
+<h3>Insert</h3>
 TODO
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Delete</b></h4>
+<h3>Delete</h3>
 TODO
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 - CLRS
 - <a href="http://web.stanford.edu/class/cs166/lectures/05/Small05.pdf">Stanford CS166</a>
 

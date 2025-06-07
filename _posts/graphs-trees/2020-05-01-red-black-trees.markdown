@@ -12,7 +12,7 @@ A red-black tree is a binary search tree that is balanced. By only adding one ex
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Red-black tree specifications</b></h4>
+<h3>Red-black tree specifications</h3>
 A red-black tree must satisfy the following properties:
 - Every node is either red or black.
 - The root is black.
@@ -22,7 +22,7 @@ A red-black tree must satisfy the following properties:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Why are red-black trees balanced?</b></h4>
+<h3>Why are red-black trees balanced?</h3>
 Why do the above properties guarantee anything about the tree being balanced? Intuitively, just restricting the number of black nodes to be the same across all simple paths means that we will have a balanced tree. The red nodes are there to give us some buffer. We could have extra "red" nodes but not a lot in order to keep the height at $$O(\log(n))$$. 
 <br><br>
 To show a formal proof, we first need to define the black height of a node. Let $$bh(x)$$ be the <b>black height</b> of a node. $$bh(x)$$ is number of black nodes from a node $$x$$ to a leaf but <i>not including $$x$$ itself</i>. In the above tree, we see that the black height of the root is 2 as every simple path includes exactly 2 black nodes. To show that the height is at most $$O(\log(n))$$, we want to prove somehow that we have "enough" internal nodes at every node such that the height can't exceed $$O(\log(n))$$. Formally, we'll prove 
@@ -50,13 +50,13 @@ $$
 
 
 <!------------------------------------------------------------------------------------>
-<h4><b>Rotations</b></h4>
+<h3>Rotations</h3>
 Operations on red-black trees such as insert and delete modify the tree such that we might violate the red-black tree properties. To restore these properties we perform an essential operation called a rotation. Rotations maintain the binary search property. More on rotations are 
 <a href="https://strncat.github.io/jekyll/update/2019/05/02/binary-tree-rotation.html">here</a>.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Insert</b></h4>
+<h3>Insert</h3>
 Just like <a href="https://strncat.github.io/jekyll/update/2020/04/28/binary-search-trees.html">inserting a node into a binary search tree</a>, we just find an appropriate place to insert it such that we don't violate the binary search property. Since all leaf nodes must be black, we create a special dummy node and color it black. We call it SNIL, just to differentiate it from NIL (dumb?).  
 <!---------------------->
 {% highlight c++ %}
@@ -95,17 +95,17 @@ TODO: EACH CASE :)
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Delete</b></h4>
+<h3>Delete</h3>
 TODO
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp">Source Code</a>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 CLRS
 
 

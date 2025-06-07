@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition: Series</b></h4>
+<h3>Definition: Series</h3>
 A sequence is defined in the book as a function whose domain in $$\mathbf{N}$$ (see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>). A series is defined as follows:
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \((b_n)\) be a sequence. A <i>infinite series</i> is a formal expression of the form
@@ -26,7 +26,7 @@ I've also seen that a series is simply a <i>sum</i> while a sequence is a <i>lis
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition: Convergence of a Series</b></h4>
+<h3>Definition: Convergence of a Series</h3>
 When does a given series converge?
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \((b_n)\) be a sequence and let the infinite series be of the form
@@ -84,7 +84,7 @@ The idea is to see if this sequence (the sequence of partial sums $$(s_m)$$) con
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(2.7.5) Definition: The Geometric Series</b></h4>
+<h3>(2.7.5) Definition: The Geometric Series</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   A series is called geometric if it is of the form
   $$
@@ -98,7 +98,7 @@ For more about its convergence see <a href="https://strncat.github.io/jekyll/upd
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(2.7.8) Definition: Absolute Convergence</b></h4>
+<h3>(2.7.8) Definition: Absolute Convergence</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   If \(\sum_{n=1}^{\infty} |a_n|\) converges, then we say that the original series \(\sum_{n=1}^{\infty} a_n\) <i>converges absolutely</i>. If on the other hand, the series \(\sum_{n=1}^{\infty} |a_n|\) does not converge, then we say that the original series \(\sum_{n=1}^{\infty} a_n\) <i>converges conditionally</i>. 
 </div>
@@ -107,21 +107,21 @@ As an example $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$$ converges conditional
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(2.7.9) Definition: Rearrangement</b></h4>
+<h3>(2.7.9) Definition: Rearrangement</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \(\sum_{n=1}^{\infty} a_n\) be a series, A series \(\sum_{n=1}^{\infty} b_n\) is called a rearrangement of \(\sum_{n=1}^{\infty} a_n\) if there exists a one-to-one, onto function \(\mathbf{N} \rightarrow \mathbf{N}\) such that \(b_{f(n)} = a_n\) for all \(n \in \mathbf{N}\). 
 </div>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(2.7.10) Theorem: Rearrangement</b></h4>
+<h3>(2.7.10) Theorem: Rearrangement</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   If a series converges absolutely, then any rearrangement of this series converges to the same limit.
 </div>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 <li><a href="https://www.youtube.com/watch?v=-YcQu_rZYSE">Math of Wrath Youtube Channel</a></li>

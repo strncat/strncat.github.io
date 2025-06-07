@@ -15,7 +15,7 @@ $$
 </div>
 To do this, we'll need to relate a few quantities that are bigger and smaller than $$\sin(x)/x$$. Let's start:
 <!------------------------------------------------------------------------------------>
-<h4><b>The Area of the Triangle $$ABC$$</b></h4>
+<h3>The Area of the Triangle $$ABC$$</h3>
 Suppose we have the following triangle $$ABC$$ inside the unit circle.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/calculus/limit-sin-x/0.png" width="60%" class="center"></p>
 We know the area of a triangle is,
@@ -42,7 +42,7 @@ $$
 </div>
 
 <!------------------------------------------------------------------------------------>
-<h4><b>The Area of the Sector $$ABC$$</b></h4>
+<h3>The Area of the Sector $$ABC$$</h3>
 Now we want to calculate the area of the following shaded sector,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/calculus/limit-sin-x/1.png" width="60%" class="center"></p>
 The area of the sector is 
@@ -55,7 +55,7 @@ sector &= \frac{1}{2}r\theta
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Area of the Triangle $$ABD$$</b></h4>
+<h3>The Area of the Triangle $$ABD$$</h3>
 The last area we're interested in is the area of the biggest (extended) triangle,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/calculus/limit-sin-x/2.png" width="65%" class="center"></p>
 Again, we know the area of a triangle is 
@@ -87,7 +87,7 @@ a &= \frac{1}{2}(1)(\tan(x)) \\
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the Limit</b></h4>
+<h3>Finding the Limit</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/calculus/limit-sin-x/2.png" width="65%" class="center"></p>
 Looking back at the areas of the triangles and sector, we know that the area of the biggest triangle must be greater than the area of the sector and the area of the sector is greater than the area of the smaller triangle (proof?). Using this we can write the following inequality,
 <div>

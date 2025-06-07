@@ -12,12 +12,12 @@ For example, <i>NSWindow</i> has a weak reference to its delegate object, <i>del
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Motivation</b></h4>
+<h3>Motivation</h3>
 Why delegation? why can't we use inheritance instead? Delegation reduces coupling between classes. There is no need for our object to subclass <i>NSWindow</i> in order to define additional behavior. We just become a delegate of <i>NSWindow</i> to receive all the critical messages we're interested in and then define our own custom behaviors on top of it.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 This is an extremely simple example to see how delegation might work. Suppose we have a view with a simple button. When the button is pressed, we move to another view. In the first view controller we have the following:
 {% highlight c++ %}
 class ViewController: UIViewController, SubViewControllerDelegate {
@@ -67,7 +67,7 @@ class HostViewController: UIViewController {
 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 - <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612">Design Patterns</a>
 - <a href="https://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns (Book)</a>
 - <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaDesignPatterns/CocoaDesignPatterns.html">Cocoa Design Patterns (Apple Docs)</a>

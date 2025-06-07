@@ -17,7 +17,7 @@ There are a couple of ways to approach this but it's good to keep in mind what t
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/absolute-value/0.png" width="80%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the New Vertex</b></h4>
+<h3>Finding the New Vertex</h3>
 If you take a look at the graph of $$\lvert x \rvert$$, you'll notice that all we need to know is really the vertex of that $$v$$ shape in the graph we want to plot. Once we figure out this new vertex, then we can just choose a point on each side of the new vertex and draw straight lines. To find the new vertex, we'll take a look at the standard form which is
 <div>
 $$
@@ -48,7 +48,7 @@ So now that we have the new vertex at $$(-4,-5)$$. We can choose points before a
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/absolute-value/1.png" width="60%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Transforming the simplest function</b></h4>
+<h3>Transforming the simplest function</h3>
 We can also approach this in a different way. We know the simplest absolute value function is just $$\lvert x \rvert$$ and we know we want to graph $$2 \lvert x + 4 \rvert - 5$$. So let's trasform $$\lvert x \rvert$$ to $$2 \lvert x + 4 \rvert - 5$$. 
 <br>
 <br>

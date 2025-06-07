@@ -9,7 +9,7 @@ Per the problem description, a palindromic number reads the same both ways. The 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 To check that a given number $$n$$ is a palindrome, we will reverse the number and check if the $$n$$ is equal to its reverse.
 {% highlight c++ %}
 int isPalindrome(int n) {
@@ -50,7 +50,7 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=3">Project Euler - 03</a>
 <br>
 <br>

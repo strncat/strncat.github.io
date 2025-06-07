@@ -74,7 +74,7 @@ This is exactly the first representation of $$u$$ which is a contradiction and s
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 In $$\mathbf{R}^n$$, let
 <div>
 	$$
@@ -89,14 +89,14 @@ $$\beta = \{e_1,e_2,...,e_n\}$$ is the standard basis of $$\mathbf{R}^n$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 In the vector space of polynomials of degree at most $$n$$ ($$P_n$$), the standard basis is $$\beta = \{1, x, x^2, ..., x^n\}$$. 
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 Recall the space of all sequences, $$V = \{\{a_n\}\}$$ where $$\{a_n\}$$ is a sequence. Let $$e_j$$ be the sequence
 <div>
 	$$
@@ -111,14 +111,14 @@ Where the $$j$$th term is the term 1 above. Then, the standard basis is $$\beta 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 4</b></h4>
+<h3>Example 4</h3>
 The vector space of all polynomials ($$P$$). The standard basis is $$\beta = \{1, x, x^2, x^3, ...\}$$.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 5</b></h4>
+<h3>Example 5</h3>
 $$\mathcal{F}(\mathbf{R})$$ has a basis ... hard to describe but it exists!
 <br>
 <br>
@@ -278,7 +278,7 @@ Definition
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Examples</b></h4>
+<h3>Examples</h3>
 <ul>
 <li>\(\dim(\mathbf{R}^n) = n\) </li>
 <li> \(\dim(M_{m \times n}) = mn\) </li>
@@ -316,7 +316,7 @@ We repeat this process, if the span is equal to $$W$$, we stop. Otherwise we add
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

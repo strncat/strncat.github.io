@@ -10,7 +10,7 @@ mathjax: true
 </div>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>. 
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$a$$ and $$b$$ be real numbers. Expand $$(|a| + |b|)^2$$ to see
 <div>
 $$

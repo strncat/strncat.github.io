@@ -9,19 +9,19 @@ Problems with greedy solutions might have really simple and straight forward sol
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Greedy Solution</b></h4>
+<h3>Greedy Solution</h3>
 As we said earlier, typically greedy solutions are super straight forward and easy. For the activity selection problem, one approach that works is to simply select the activity with the earliest finish time at each step until we run out of activities.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose we have the following activities:
 ![my photo]({{ site.url }}/assets/activities.png)
 Based on our strategy, we will pick $$A1$$ first. We will skip $$A2$$ since it violates the condition of not having overlapped activities. We will then go on to pick $$A3$$, $$A5$$ and $$A6$$.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 typedef struct activity {
     int start_time;
@@ -43,7 +43,7 @@ std::vector<activity> select_maximum_activities(std::vector<activity> activities
 {% endhighlight %}
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Correctness Proof</b></h4>
+<h3>Correctness Proof</h3>
 This is the most interesting part of any greedy algorithm! why does it work? To prove the correctness of greedy algorithms, we want to prove that as we select activities, we are <b> not ruling out </b> the optimal solution. So, each decision we make doesn't affect our ability of reaching out an optimal solution.
 <br>
 <br>
@@ -71,12 +71,12 @@ After adding the last activity, we will have an optimal solution that extends ou
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 If we need to sort the activities, then it will be $$O(n\log(n))$$. If it's sorted, then we're only doing a linear scan of activities and therefore, the running time is $$O(n)$$. 
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br>
 <br>

@@ -5,7 +5,7 @@ date:   2024-08-07 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>Identity matrix and Kronecker delta</b></h4>
+<h3>Identity matrix and Kronecker delta</h3>
 <div>
 $$
 \begin{align*}
@@ -44,7 +44,7 @@ If we compute its matrix representative, we will see that $$[I_V]_{\beta}^{\beta
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Inverse Linear Transformation</b></h4>
+<h3>Inverse Linear Transformation</h3>
 Next we define the inverse of a linear transformation
 <div class="bdiv">
 Definition
@@ -59,7 +59,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 <div>
 $$
 \begin{align*}
@@ -90,7 +90,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Suppose we have the following vector spaces:
 <div>
 $$
@@ -123,7 +123,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 The following linear transformation
 <div>
 $$
@@ -259,7 +259,7 @@ I also went through the proof in the book for this corollary. See <a href="https
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Isomorphism</b></h4>
+<h3>Isomorphism</h3>
 <div class="bdiv">
 Definition
 </div>
@@ -268,7 +268,7 @@ Definition
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 4</b></h4>
+<h3>Example 4</h3>
 $$\mathbf{R}^3$$ and $$P_2$$ are isomorphic. To see this, we need an invertible map from one to the other. The maps
 <div>
 $$
@@ -292,7 +292,7 @@ are both isomorphisms.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 5</b></h4>
+<h3>Example 5</h3>
 <div>
 $$
 \begin{align*}
@@ -306,7 +306,7 @@ is an isomorphism and so $$P$$ and $$\hat{P}$$ are isomorphic.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Criterion for Isomorphic Finite Dimensional Vector Spaces</b></h4>
+<h3>Criterion for Isomorphic Finite Dimensional Vector Spaces</h3>
 <div class="purdiv">
 Theorem
 </div>
@@ -343,7 +343,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

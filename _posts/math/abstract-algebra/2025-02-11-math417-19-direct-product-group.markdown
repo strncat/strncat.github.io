@@ -113,7 +113,7 @@ So we need all the products such that $$a \in A$$ and $$b \in B$$ where $$(a,b)=
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$G = \mathbf{Z}_{12}$$. Let $$A = \langle [3] \rangle = \{[0],[3],[6],[9]\}$$. Let $$B = \langle [3] \rangle = \{[0],[4],[8]\}$$ Both $$A$$ and $$B$$ are subgroups of $$\mathbf{Z}_{12}$$. Check all three properties
 <ul>
 	<li>Are they normal? Yes because \(A\) and \(B\) are abelian since \(\mathbf{Z}_{12}\) is abelian.</li>
@@ -126,7 +126,7 @@ Note here that we already know that $$\mathbf{Z}_3 \times \mathbf{Z}_4 \cong \ma
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Automorphism of a group \(G\)</b></h4>
+<h3>Automorphism of a group \(G\)</h3>
 An Automorphism of a group $$G$$ is just an isomorphism from the group to itself. The identity map is the easiest example of an automorphism but there can be others.
 <br>
 <br>
@@ -158,7 +158,7 @@ For example, we can see using the example above that Aut$$(V)$$ is isomorphic to
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$G = \mathbf{Z}_n$$ where $$n \geq 1$$. Does this group have automorphisms other than the identity? <br>
 For example, let $$G = \mathbf{Z}_{15}$$. Define the following function
 <div>
@@ -219,7 +219,7 @@ Example: What about $$\mathbf{Z}$$? What are the automorphism? Aut$$(\mathbf{Z})
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>More Automorphisms</b></h4>
+<h3>More Automorphisms</h3>
 Some more definitions:
 <br>
 <div class="mintheaderdiv">
@@ -266,7 +266,7 @@ Since Inn$$(G)$$ is normal, we can then form the quotient group Out$$(G) = \text
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

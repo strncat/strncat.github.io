@@ -12,7 +12,7 @@ mathjax: true
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A$$ and $$B$$ be sets and let $$s = \sup A$$ and $$t = \sup B$$. Since $$s$$ is a least upper bound for $$A$$, than for any other bound $$x$$, we must have $$x \geq s$$. For any element $$a \in A$$, we also have $$s \geq a$$ so  
 <div>
 $$

@@ -38,17 +38,17 @@ Similarly, scalar multiplication also preserves $$L_m$$. So $$L_m$$ seems to inh
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1: \([0, 1]\)</b></h4>
+<h3>Example 1: \([0, 1]\)</h3>
 Let $$W = [0, 1] \subset \mathbf{R}$$. It is not closed under addition. For example, for $$w_1 = 1$$ and $$w_2 = 1$$, $$w_1 + w_2 \notin \mathbf{R}$$. It is not closed under scalar multiplication either. $$\bar{0} \in [0,1]$$. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2: \(\mathbf{Z}\)</b></h4>
+<h3>Example 2: \(\mathbf{Z}\)</h3>
 $$\bar{0} \in \mathbf{Z}$$. It is closed under addition. But it is not closed under scalar multiplication because we defined scalar multiplication as $$\{c(x, y) = (cx, cy) | c \in \mathbf{R}\}$$. (Remember that the vector spaces we're defining are over $$\mathbf{R}$$).
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Subspaces are Vector Spaces</b></h4>
+<h3>Subspaces are Vector Spaces</h3>
 <div class="purdiv">
   Theorem
 </div>
@@ -65,7 +65,7 @@ Therefore $$W$$ is a vector space as we wanted to show. $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 Show that $$W = \{(t_1 + t_2, t_1 - t_2, t_1) | t_1, t_2 \in \mathbf{R}\}$$ is a vector space.
 <br>
 <br>
@@ -92,12 +92,12 @@ This is also clearly in $$W$$, Therefore, we can conclude that $$W$$ is a vector
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Are Solution Sets Vector Spaces?</b></h4>
+<h3>Are Solution Sets Vector Spaces?</h3>
 From the previous example, $$W$$ has the form of a solution set of a linear system so does this mean that every solution set is a vector space? The answer is no. Consider $$W' = \{t_1 + t_2, t_1 - t_2, t_1 + 1\}$$. $$W'$$ is not a subspace of $$\mathbf{R}^3$$. We don't have a zero vector $$\bar{0}$$ in $$W$$. To show that, we need to prove that there isn't a solution for the system $$\{t_1 + t_2, t_1 - t_2, t_1 + 1\}$$ where $$t_1+t_2 = 0$$, $$t_1 - t_2 = 0$$ and $$t_1 + 1 = 0$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 4: Polynomials of Degree at Most \(k\)</b></h4>
+<h3>Example 4: Polynomials of Degree at Most \(k\)</h3>
 Consider $$P_k$$ which is the set of all polynomials of degree at most $$k$$. $$P_k$$ is a subspace of $$P_{k+1}$$. To show this, we know that $$P_{k+1}$$ is a vector space so now we just need to prove the three conditions of subspaces. The zero polynomial is in $$P_k$$. For condition 2, if we take any two polynomials in $$k$$, then
 <div>
 $$
@@ -119,12 +119,12 @@ This is also in $$P_k$$ which means that $$P_k$$ is closed under scalar multipli
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 4: Continuous Functions</b></h4>
+<h3>Example 4: Continuous Functions</h3>
 The claim is that $$C^0(\mathbf{R})$$ is a subspace of $$F(\mathbf{R})$$. For the zero vector, $$\bar{0}(x) = 0$$ is a continuous function so it belongs to $$C^0(\mathbf{R})$$. For condition 2, if $$f$$ and $$g$$ are continuous then we know that $$f+g$$ is also continuous (from calculus, needs to be proved). For condition 3, a scalar multiplied by $$f$$ is also continuous. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 5: Continuous Functions</b></h4>
+<h3>Example 5: Continuous Functions</h3>
 Consider the map transpose: $$M_{m \times n} \rightarrow M_{n \times m}$$.
 <div>
 $$
@@ -175,7 +175,7 @@ Since both matrices are symmetric. But this implies that \(A+B = (A+B)^t\).
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

@@ -79,7 +79,7 @@ printf("total count = %d\n", count);
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=35">Project Euler - 35</a>
 <br>
 <br>

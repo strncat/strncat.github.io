@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Motivation</b></h4>
+<h3>Motivation</h3>
 <div class="bdiv">
 Definition
 </div>
@@ -44,7 +44,7 @@ This leads to the question of whether we can transform any matrix to a diagonal 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>When is \(A\) Diagonalizable?</b></h4>
+<h3>When is \(A\) Diagonalizable?</h3>
 <div class="purdiv">
 Theorem
 </div>
@@ -125,7 +125,7 @@ The left hand side is a family of linear maps parameterized by $$\lambda$$. The 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Eigenvectors and Eigenvalues of a Linear Transformation</b></h4>
+<h3>Eigenvectors and Eigenvalues of a Linear Transformation</h3>
 So now we've seen that finding such a basis boils down to finding all vectors such that $$T(v) = \lambda v$$. These vectors are called eigenvectors. More formally,
 
 <div class="bdiv">
@@ -180,7 +180,7 @@ is equivalent to find the set of eigenvectors that satisfy $$T(v) = \lambda v$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Eigenvectors and Eigenvalues of Matrices</b></h4>
+<h3>Eigenvectors and Eigenvalues of Matrices</h3>
 When is a matrix diagonalizable? and what are the eigenvectors and eigenvalues of a given matrix $$A$$?
 <br>
 <div class="bdiv">
@@ -214,7 +214,7 @@ Definition
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the Eigenvectors</b></h4>
+<h3>Finding the Eigenvectors</h3>
 Okay now that we've narrowed down the discussion to matrices, how do we actually find these eigenvectors of $$A$$? Set the nullspace of $$A$$ to $$N(A) = N(L_A)$$. Next we will need the following lemma
 <br>
 <div class="purdiv">
@@ -243,7 +243,7 @@ But this precisely means that $$v \in N(A - \lambda I_n). \ \blacksquare$$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Find all the eigen values of
 <div>
 $$
@@ -307,7 +307,7 @@ This is easy because we are given the eigenvalue. But typically, we also need to
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Eigenspace</b></h4>
+<h3>Eigenspace</h3>
 <div class="bdiv">
 Definition
 </div>
@@ -327,7 +327,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the Eigenvalues</b></h4>
+<h3>Finding the Eigenvalues</h3>
 Again, if we're given an eigenvalue, then finding the eigenspace or eigenvectors is easy and simple. We're just solving a system of linear equations like we did for finding the nullspace. The question is how can we find the eigenvalues? for this we need the following theorem
 <div class="purdiv">
 Theorem 5.2
@@ -392,7 +392,7 @@ So we know at least that there can only be $$n$$ roots/eigenvalues at most.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Find the eigenvalues of
 $$
 \begin{align*}
@@ -426,7 +426,7 @@ This polynomial has no real roots! and so the matrix $$A$$ has no eigenvalues.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

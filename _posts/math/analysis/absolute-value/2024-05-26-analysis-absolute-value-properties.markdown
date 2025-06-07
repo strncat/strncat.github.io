@@ -8,7 +8,7 @@ mathjax: true
 Some definitions worth keeping in mind while studying for the next of proofs.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Absolute Value Function</b></h4>
+<h3>The Absolute Value Function</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \(x \in \mathbf{R}\), then the absolute value of \(x\) is denoted \(|x|\) and is given by
   $$
@@ -19,7 +19,7 @@ Some definitions worth keeping in mind while studying for the next of proofs.
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Properties</b></h4>
+<h3>Properties</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \(x \in \mathbf{R}\), \(|x| \geq 0\).
 </div>

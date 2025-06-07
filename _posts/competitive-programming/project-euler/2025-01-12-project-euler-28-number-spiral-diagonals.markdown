@@ -42,14 +42,14 @@ printf("%ld\n", total_sum + 1);
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Closed Formula</b></h4>
+<h3>Closed Formula</h3>
 Of course my naive solution was too basic and it seems that there is a closed formula for this ... I have yet to do it! [TODO]
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=27">Project Euler - 27</a>
 <br>
 <br>

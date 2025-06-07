@@ -15,7 +15,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Problem Discussion</b></h4>
+<h3>Problem Discussion</h3>
 We'll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">here</a>. We want to show that $$\lim (\sqrt{x_n}) = x$$. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
 <div>
 $$
@@ -60,7 +60,7 @@ $$
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 To show that $$\lim(\sqrt{x_n}) = \sqrt{x}$$, let $$\epsilon > 0$$ be arbitrary. We want to prove that there exists some $$n \geq N$$ such that,
 <div>
 $$

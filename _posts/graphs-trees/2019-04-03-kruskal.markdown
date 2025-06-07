@@ -41,7 +41,7 @@ Let $$G=(V,E)$$ be undirected, weighted graph with $$V$$ vertices and $$E$$ edge
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Algorithm (slow version)</b></h4>
+<h3>Algorithm (slow version)</h3>
 The simplest way to implement Kruskal is to sort the edges according to their weights in $$O(E\log(E))$$ time and then loop through the edges to pick the cheapest ones that don't create a cycle. We can check for cycles in $$O(E+V)$$. So this algorithm ends up being really slow. 
 {% highlight c++ %}
 E = Sort the edges by non-decreasing weight.
@@ -55,7 +55,7 @@ return MST
 {% endhighlight %}
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Algorithm (fast version)</b></h4>
+<h3>Algorithm (fast version)</h3>
 There is a much better way to implement Kruskal and boost its run time than the above method. The key to the faster version is using a special data structure call union-find. Union-find supports the following operations,
 - makeSet(u): creates a set $$\{u\}$$
 - find(u): returns the set that $$u$$ is in.
@@ -79,7 +79,7 @@ return MST
 {% endhighlight %}
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 In the above graph, we initialize the following forests $$\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}$$. We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: $$\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}$$
 <br><br>
 <i>Iteration 0</i><br>
@@ -122,7 +122,7 @@ At the end of the algorithm, the minimum spanning tree is the following tree:
 </svg>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Proof of Correctness (Preliminarily)</b></h4>
+<h3>Proof of Correctness (Preliminarily)</h3>
 Why does this algorithm find a minimum spanning tree? Before we can answer that, let's define some terms and prove a lemma that will be useful in the main proof. Let $$G=(V,E)$$ be the graph below and let $$S$$ be the set of yellow edges in $$G$$.  
 
 ![my photo]({{ site.url }}/assets/cut.png)
@@ -139,7 +139,7 @@ Case 2: $$\{u,v\}$$ is not in $$T$$. By the definition of MST, adding $$\{u,v\}$
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Kruska's Proof of Correctness</b></h4>
+<h3>Kruska's Proof of Correctness</h3>
 
 | Theorem: Kruskal will correctly find a minimum spanning tree |
 
@@ -157,7 +157,7 @@ Case 2: $$\{u,v\}$$ is not in $$T$$. By the definition of MST, adding $$\{u,v\}$
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 Assume we have $$n$$ vertices and $$m$$ edges. First of all, sorting the edges will take time $$O(m\log(m)) = m\log(n^2) = O(m\log(n))$$. If radixSort can be utilized then we can do this step in time $$O(m)$$. 
 <br><br>
 We then have $$n$$ calls to makeSet, $$2m$$ calls to find and $$n$$ calls to union. These operations run in amortized time $$O(\alpha(n))$$ where $$\alpha(n)$$ is the inverse Ackerman function and $$\alpha(n) \leq 4$$ provided that $$n$$ is smaller than the number of atoms in the universe.
@@ -166,12 +166,12 @@ Therefore, the total time is just $$O(m\log(n))$$ which is similar to Prim if we
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/minimum-spanning-trees/kruskal.cpp">Source Code</a>
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 - CS161 @ Stanford (With Mary Wootters)
 - CLRS
 <br>

@@ -90,7 +90,7 @@ From the three cases we conclude that binary search must terminate.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 These are my study notes from <a href="https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844">CLRS</a>.
 <br>
 <br>

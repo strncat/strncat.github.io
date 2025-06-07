@@ -34,7 +34,7 @@ But now the question is what happens if not all of these conditions are satisfie
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$G = D_n$$ where $$n \geq 3$$ and $$|G| = 2n$$. Let
 <div>
 	$$
@@ -71,7 +71,7 @@ So the idea here is that we will be able to reconstruct the Dihedral group from 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Construction of Semi-direct Products</b></h4>
+<h3>Construction of Semi-direct Products</h3>
 We haven't said anything yet about how to actually construct $$G$$ from the groups $$A$$, $$N$$ and $$\gamma$$. The following will demonstrate this. (Important to note here that unlike the previous example, we don't need $$A$$ and $$N$$ to be subgroups of $$G$$. They are just groups!!!).
 <br>
 We will first demonstrate what happens when $$\gamma$$ and $$\gamma_a$$ are homomorphisms.
@@ -176,7 +176,7 @@ which is the same as the term in the left hand side.
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 Let's start with the trivial example. Let $$N$$ and $$A$$ be any groups. Define the trivial homomorphism as
 <div>
 		$$
@@ -200,7 +200,7 @@ To see this, apply the operation and you'll see that $$(a_1, a_2)(n_1, n_2) = (n
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Let $$N = (\mathbf{Z}_n, +)$$ where $$n \geq 3$$ and let $$A = \mathbf{Z}_2 = \{[0]_2, [1]_2\}$$. 
 <br>
 Define $$\gamma$$ be
@@ -255,7 +255,7 @@ So now we'll get a different semi-direct product. We'll get $$G' = N \rtimes_{\g
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Recognition Theorem for Semi-direct Product</b></h4>
+<h3>Recognition Theorem for Semi-direct Product</h3>
 So now we can state the Recognition Theorem but for Semi-direct Product.
 <br>
 <div class="yellowheaderdiv">
@@ -311,7 +311,7 @@ $$n_1 \in N$$, $$a_1n_2a_1^{-1} \in N$$. $$a_1a_2 \in A$$. So we can write $$n =
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Infinite Dihedral Group</b></h4>
+<h3>Infinite Dihedral Group</h3>
 So we're to construct a group by a semi direct group. Set 
 <div>
 		$$
@@ -362,7 +362,7 @@ Note here that this is NOT the same as the symmetries of the disk group. The sym
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

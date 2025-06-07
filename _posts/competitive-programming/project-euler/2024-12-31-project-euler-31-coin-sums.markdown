@@ -60,7 +60,7 @@ printf("%d\n", table[8][200]);
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=31">Project Euler - 31</a>
 <br>
 <br>

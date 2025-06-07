@@ -66,7 +66,7 @@ For finite abelian groups, we won't have terms like $$\mathbf{Z}$$ since they ar
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>The Existence of Invariant Factor Decomposition Proof Sketch</b></h4>
+<h3>The Existence of Invariant Factor Decomposition Proof Sketch</h3>
 So now we want to describe the steps involved in this proof:
 
 <ol>
@@ -194,7 +194,7 @@ So what we did here is that we turned the problem into a problem about quotients
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Using Addition instead of Multiplication for the Proof</b></h4>
+<h3>Using Addition instead of Multiplication for the Proof</h3>
 We have an abelian group $$G$$. The standard so far has been writing the group with multiplication but since we're going to turn to linear algebra, we're going to switch to addition.
 
 <table style="max-width: 300px; margin: 20px auto;">
@@ -244,7 +244,7 @@ We have an abelian group $$G$$. The standard so far has been writing the group w
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Proof Setup: Definitions</b></h4>
+<h3>Proof Setup: Definitions</h3>
 Before starting with the proof, we need some setup, starting with this definition.
 <br>
 <div class="mintheaderdiv">
@@ -344,7 +344,7 @@ is a basis for $$\mathbf{Z}^n$$. Any element in $$\mathbf{Z}^n$$ can be written 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Proof Setup: Propositions</b></h4>
+<h3>Proof Setup: Propositions</h3>
 So we have the steps and we have the definitions that we need. We also need the following proposition
 <br>
 <!----------------------------------------------------------------------------->
@@ -391,7 +391,7 @@ If \(G\) is a finitely generated and abelian, there exists a surjective homomorp
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Subgroups of Finitely Generated Groups</b></h4>
+<h3>Subgroups of Finitely Generated Groups</h3>
 [Lecture 24]. So given a finitely generated group $$G = \langle a_1,...,a_n \rangle$$. We want to know is this property of being finitely generated inherited? Do subgroups and quotient groups of $$G$$ are also finitely generated? If we have a normal subgroup $$N$$. Is $$G/N$$ finitely generated? The answer is actually yes. In fact, can write $$G/N = \langle a_1N,...a_nN \rangle$$. So quotients of finitely generated groups are finitely generated as well. 
 <br>
 <br>
@@ -530,7 +530,7 @@ Finally, we can use the lemma to say that since $$H/N$$ is finitely generated an
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Consequences</b></h4>
+<h3>Consequences</h3>
 So now, recall the proposition we introduced where if $$G$$ is finitely generated and abelian then there exists a surjective homomorphism $$\phi: \mathbf{Z}^n \rightarrow G$$. So by the isomorphism theorem, $$G$$ is isomorphic to $$\mathbf{Z}^m/N$$ where $$N$$ is the kernel of $$\phi$$ (normal subgroup of $$\mathbf{Z}^m)$$. 
 <br>
 <br>
@@ -551,7 +551,7 @@ Consider $$\alpha: i \circ \bar{\alpha}$$. We know that $$\alpha(\mathbf{Z}^n) =
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Studying the Homomorphism from \(\mathbf{Z^n}\) to \(\mathbf{Z^m}\)</b></h4>
+<h3>Studying the Homomorphism from \(\mathbf{Z^n}\) to \(\mathbf{Z^m}\)</h3>
 So now the goal is to show that $$\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ can be represented with a left multiplication by a matrix $$L_A$$. Observe that if we take any matrix $$A \in \text{Mat}_{m \times n}(\mathbf{Z})$$, we can define the following
 <div>
 	$$
@@ -576,7 +576,7 @@ Moreover, $$\alpha: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ is equal to $$L_A$$ 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>The Homomorphism \(\alpha\)</b></h4>
+<h3>The Homomorphism \(\alpha\)</h3>
 Suppose now that $$L_A: \mathbf{Z}^n \rightarrow \mathbf{Z}^m$$ is an isomorphism. Then $$(L_A)^{-1}$$ is also an isomorphism. If we let $$L_B = (L_A)^{-1}$$, then
 <div>
 	$$
@@ -592,7 +592,7 @@ So $$AB = I$$ and $$BA = I$$. So by linear algebra (over the linear algebra), $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Smith Normal Form</b></h4>
+<h3>Smith Normal Form</h3>
 A matrix $$A$$ is in Smith normal form if
 <div>
 	$$
@@ -685,7 +685,7 @@ There are 30 minutes left of this proof ..... [TODO]
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

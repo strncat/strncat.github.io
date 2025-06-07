@@ -33,7 +33,7 @@ This is such as easy way to clearly see where the limit is going. But why do we 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose we want to find what this function approaches as $$x$$ approaches $$infinity$$:
 <div>
 $$
@@ -61,7 +61,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Another Example</b></h4>
+<h3>Another Example</h3>
 <div>
 $$
 \begin{align*}
@@ -82,7 +82,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>One More Example</b></h4>
+<h3>One More Example</h3>
 <div>
 $$
 \begin{align*}

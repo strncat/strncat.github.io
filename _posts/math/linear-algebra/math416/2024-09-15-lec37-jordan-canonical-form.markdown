@@ -7,7 +7,7 @@ mathjax: true
 ---
 Last time we proved that If $$T: V \rightarrow V$$ is self-adjoint, then there is an orthonormal basis $$\beta$$ of $$V$$ consisting of eigenvectors of $$T$$. This therefore lead to the conclusion that $$T$$ is diagonalizable.
 <!------------------------------------------------------------------------------------>
-<h4><b>A Test For Diagonalizability</b></h4>
+<h3>A Test For Diagonalizability</h3>
 We studied previously a few ways a linear operator can be tested for diagonalizability. From lecture 25,
 <div class="purdiv">
 Theorem (5.8(a))
@@ -36,7 +36,7 @@ splits but doesn't satisfy $$(b)$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Jordan Canonical Form</b></h4>
+<h3>Jordan Canonical Form</h3>
 Based on the previous observation. It turns out there is a nice form that we can put $$T$$ into in order to achieve $$(a)$$ and $$(b)$$
 <br>
 <div class="purdiv">
@@ -114,7 +114,7 @@ You can think of this matrix as more of a generalization of a diagonal matrix.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Examples</b></h4>
+<h3>Examples</h3>
 The following are examples of matrix in Jordan Canonical Form
 <div>
 $$
@@ -144,7 +144,7 @@ Note here that the characteristic polynomial of both $$A$$ and $$B$$ is $$(1-t)^
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Computing Powers of Matrices in JFC</b></h4>
+<h3>Computing Powers of Matrices in JFC</h3>
 It turns out that we can write a formula for powers of matrices in JFC. It is not as easy as taking the power of a diagonal matrix but at least have a formula.
 <br>
 <br>
@@ -197,7 +197,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof of JCF Theorem</b></h4>
+<h3>Proof of JCF Theorem</h3>
 So now we see that matrices in JCF are useful and we have enough motivation to prove the theorem above which again states that if the characteristic polynomial splits, then there is a basis such that $$[T]^{\beta}_{\beta}$$ is in JFC! To prove it, let $$\beta = \{v_1, ..., v_n\}$$ of $$V$$. We this basis to be such that
 <div>
 $$
@@ -417,7 +417,7 @@ So we've shown that $$y$$ is an eigenvector for an eigenvalue $$\mu$$. So $$y \n
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the Generalized Eigenvectors</b></h4>
+<h3>Finding the Generalized Eigenvectors</h3>
 So to remind ourselves, the goal of this whole process is to find a basis consisting of generalized eigenvectors. The next theorem makes it practically easier to find them.
 <br>
 <div class="purdiv">
@@ -491,7 +491,7 @@ So we won't get a zero no matter since the map is 1-1. But $$x$$ is also in $$K_
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

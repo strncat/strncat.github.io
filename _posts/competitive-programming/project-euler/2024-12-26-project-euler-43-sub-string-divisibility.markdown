@@ -77,7 +77,7 @@ while (std::next_permutation(d.begin(), d.end()));
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>More Advanced Analysis</b></h4>
+<h3>More Advanced Analysis</h3>
 Even though the brute force solution works, we can come up with a better constant time solution after carefully analyzing the conditions and realizing that the digits can be restricted to a much smaller set of numbers. This is because we're overlapping the digits we're testing for every condition. 
 <br>
 [TODO]
@@ -85,7 +85,7 @@ Even though the brute force solution works, we can come up with a better constan
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=41">Project Euler - 41</a>
 <a href="https://en.wikipedia.org/wiki/Divisibility_rule">Divisibility Rules</a>
 <br>

@@ -9,22 +9,22 @@ The Knapsack problem is a classic dynamic programming problem. In this problem, 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Unbounded Knapsack</b></h4>
+<h3>Unbounded Knapsack</h3>
 Let's focus now on the unbounded knapsack problem and let's start with an example. Suppose we have an unbounded number of tacos, each of weight 2 and value 4. We also have burritos each of weight 6 and value 17. Suppose now that we have a knapsack of size, $$W=14$$. The optimal solution is to pack 2 burritos and 1 taco which will give an optimal value of $$2*17+1*4=38$$. 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>A Greedy Approach</b></h4>
+<h3>A Greedy Approach</h3>
 The first thought that comes to mind is to try a greedy approach. Perhaps there is some way to pick the items at each step until the knapsack is filled? One simple greedy strategy is to always pick the item with the best value/weight ratio. In the above example, we'll pick 2 burritos of value $$2*17=34$$ which is not an optimal value.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Complete Search</b></h4>
+<h3>Complete Search</h3>
 We can also try a complete search of every possible combination of items. We can simulate this by inserting $$\lceil W/x_i \rceil$$ copies of item $$x_i$$ to a new list of items. If we originally had $$n$$ items, we could potentially insert $$O(n^2)$$ items in the new list. We can now iterate through the list and for each item in the list, we can either select the item to be in the knapsack or not. Therefore, the running time will be $$O(2^{n^2})$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Dynamic Programming</b></h4>
+<h3>Dynamic Programming</h3>
 As we saw above, greedy doesn't work and exhaustive search takes exponential time. It turns out we can do much better with dynamic programming. To use dynamic programming we need to find an optimal substructure. An optimal substructure means that the solution to the problem will contain within it solutions to smaller subproblems. It turns out we have a beautiful optimal substructure for the Knapsack problem.
 <br>
 <br>
@@ -40,7 +40,7 @@ In other words, suppose we have unlimited copies of the following $$n$$ items, $
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 typedef struct item {
     int w;
@@ -80,7 +80,7 @@ int unbounded_knapsack(std::vector<item> &bag, int W) {
 {% endhighlight %}
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Proof of Correctness</b></h4>
+<h3>Proof of Correctness</h3>
 <i>Proof:</i> <br>
 Suppose that we have a knapsack of size $$W$$ and suppose that we have unbounded copies of $$n$$ items available to us. Now suppose that we know the optimal value to the knapsack is $$K[W]$$ and that the optimal solution contains one copy of item $$x_k$$ for some natural number $$k$$. We claim that $$K[W] - v_k$$ is an optimal value for a knapsack of size $$W - x_k$$. That is, $$K[W - x_k] = K[W] - v_k$$.
 <br><br>
@@ -88,22 +88,22 @@ We will prove our claim by contradiction. Suppose that $$K[W] - v_k$$ is not an 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 Assume we have $$n$$ items and the knapsack is of size $$W$$. The runtime is $$O(nW)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>0/1 Knapsack</b></h4>
+<h3>0/1 Knapsack</h3>
 Let's focus now on the 0/1 knapsack problem and let's start with an example. Suppose we have a taco of weight 3 and value 10. We also a burrito of weight 6 and value 14 and a enchilada of weight 5 and value 11. Suppose now that we have a knapsack of size, $$W=9$$. The optimal solution is to pack a taco and an enchilada for a total value of 27.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Complete Search</b></h4>
+<h3>Complete Search</h3>
 A greedy approach won't work similar to the unbounded knapsack. We can instead do an exhaustive search. We can check every possible combination of the items we have. We will have 2 choices for each item. We either select the item or we don't. Therefore, we have $$2^n$$ possible subsets to check and the running time is $$O(2^n)$$. 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Dynamic Programming</b></h4>
+<h3>Dynamic Programming</h3>
 Unfortunately we can't use the same recursive substructure in the unbounded knapsack above. In this problem, we need to also keep track of which items are available at each step since some might have been taken. So if the smaller subproblem is using an item $$x$$, the larger problem must know not to re-take it which is a violation to the constraint of having one copy only per item.
 <br>
 <br>
@@ -130,12 +130,12 @@ With the base case of $$K[x,0]=0$$ and $$K[0,y]=0$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Proof of Correctness</b></h4>
+<h3>Proof of Correctness</h3>
 The proof is very similar to the structure of our earlier proof to the unbounded knapsack problem. If we can have a better solution to the subproblem then we can have even a better solution to the optimal solution to the larger problem which is a contradiction. I might write it later?.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 int knapsack_01(std::vector<item> &bag, int W) {
     int K[100][100] = {0};
@@ -172,7 +172,7 @@ Source Code <a href="https://github.com/strncat/algorithms-and-data-structures/b
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 - <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br>
 <br>

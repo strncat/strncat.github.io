@@ -160,7 +160,7 @@ Each \(K_{\lambda}\) has a basis consisting of disjoint cycles.
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The JCF Proof</b></h4>
+<h3>The JCF Proof</h3>
 Theorems 1.1 to 2.3 combined prove the JCF Theorem! To see how. Let $$\lambda_1,...,\lambda_k$$ be the disjoint eigenvalues of $$T$$. For $$\lambda_j$$ find a basis $$\beta_j$$ of $$K_{\lambda_j}$$ consisting of disjoint cycles (Theorem 2.3).
 <br>
 By Theorem 1.4, $$\beta = \beta_1 \cup ... \cup \beta_k$$ is a basis of $$V$$. And by Theorem 2.1, $$[T]_{\beta}^{\beta}$$ is in JCF.
@@ -169,7 +169,7 @@ By Theorem 1.4, $$\beta = \beta_1 \cup ... \cup \beta_k$$ is a basis of $$V$$. A
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$A = \begin{pmatrix}
 3 & 1 & -2 \\
 -1 & 0 & 5 \\
@@ -362,7 +362,7 @@ The diagonal elements are the eigenvalues. What about other non-zero elements? T
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Determining the Jordan Block for an Eigenvalue</b></h4>
+<h3>Determining the Jordan Block for an Eigenvalue</h3>
 But can we get to the end JCF form without having to compute all of these cycles?
 <br>
 <div class="purdiv">
@@ -401,7 +401,7 @@ Observation:
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

@@ -20,7 +20,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 Let $$(a_n)$$ be a sequence. We want to prove for any $$\epsilon > 0$$, there exists an $$N \in \mathbf{N}$$ such that  
 <div>
 $$

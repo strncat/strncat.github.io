@@ -16,7 +16,7 @@ Notice that the Cartersian trees obey the <b>min-heap property</b> and also an i
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Naive Algorithm</b></h4>
+<h3>Naive Algorithm</h3>
 The following basic algorithm is very similar to QuickSort. The runtime depends on how the minimum evenly splits the array $$A$$. The expected-case runtime would be $$O(n\log(n))$$ and the worst-case runtime would be $$O(n^2)$$. 
 {% highlight c++ %}
 cartesian_tree(A) {
@@ -30,7 +30,7 @@ cartesian_tree(A) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Given the above array, we construct the following cartersian tree:
 1. 7 is the minimum element and so everything before 7 is the left child of 7 and everything after 7 is the right child of 7.
 2. Next, we recursively create the left and right cartersian trees. We pick 13 as the minimum on the left subarray [13, 23, 19]. and we pick 11 as the minimum in the right subarray [29, 11, 31, 37, 17]. We repeat the process until we run out of elements.
@@ -39,7 +39,7 @@ Given the above array, we construct the following cartersian tree:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>O(n) Algorithm</b></h4>
+<h3>O(n) Algorithm</h3>
 The previous algorithm is not fast enough. Given an array $$A$$ of length $$n$$. A key insight is that given the cartesian tree for $$A[1...i]$$, the cartesian tree for $$A[1...i+1]$$ can be constructed by observing that the element $$A[i+1]$$ must be right most node in the right most path in the tree because we know that an inorder traversal of the tree must give back the original array $$A$$. Basically $$A[i+1]$$ should be the last visited node in the in-order traversal of $$A[1...i+1]$$.
 <br><br>
 Therefore, maintain a stack of the right most path in the tree. While the stack is not empty, we repeatedly check if the top element is greater than our current element $$A[i]$$. If $$A[i]$$ has a higher value, we stop. Now we do two things: <br>
@@ -73,7 +73,7 @@ for (i = 0 .. n-1) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Assume that we are creating a cartesian tree for the array above. 
 <br>
 (1) We first look at $$A[0]=13$$.
@@ -149,17 +149,17 @@ This results in the following tree
 ![my photo]({{ site.url }}/assets/cartesian/cartesian-08t.png)
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof of Correctness</b></h4>
+<h3>Proof of Correctness</h3>
 ???
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation:</b></h4>
+<h3>Implementation:</h3>
 https://github.com/strncat/algorithms-and-data-structures/blob/master/rmq/catersian-trees.cpp
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 1. Jean Vuillemin. 1980. A unifying look at data structures. Commun. ACM 23, 4 (April 1980), 229-239. DOI=http://dx.doi.org.stanford.idm.oclc.org/10.1145/358841.358852
 2. CS166 Lecture Notes http://web.stanford.edu/class/cs166/lectures/01/Slides01.pdf
 <br>

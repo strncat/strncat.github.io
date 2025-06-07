@@ -15,7 +15,7 @@ From what I understand so far (beginner in real analysis) that we're trying to p
 For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 <br>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$a$$ and $$b$$ be real numbers with with $$a > 0$$. We want to show that there exists a natural number $$n$$ such that $$na > b$$. This is equivalent to proving that $$n > a/b$$ since $$a\b$$ is a number still in $$\mathbf{R}$$. Let $$x = a/b$$. We'll prove that given a real number $$x$$, there exists some natural number $$n$$ such that $$n > x$$. 
 <br>
 <br>

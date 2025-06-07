@@ -17,7 +17,7 @@ So for any $$\epsilon > 0$$, whenever we take the intersection of this neighborh
 <br>
 So "$$x$$ is a limit point of $$A$$" means that $$x$$ is the limit of a sequence in $$A$$. The only thing we don't want is to have any term of that sequence be $$x$$ itself. The reason for this is then every member of the set could potentially be a limit point since we can create the sequence $$\{x,x,x,x,x,...\}$$ and we don't want that.
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 $$\Rightarrow$$: Assume that $$x$$ is a limit point of $$A$$ and so for every $$\epsilon > 0$$, the intersection of $$V_{\epsilon}(x)$$ with the set $$A$$ is nonempty and has an element that is not $$x$$. We then want to prove that there is a sequence of points $$a_1, a_2, a_3, ...$$ from $$A/\{x\}$$ such that $$(a_n) \rightarrow x$$. Now for each $$n \in \mathbf{N}$$, pick a point
 <div>
 $$

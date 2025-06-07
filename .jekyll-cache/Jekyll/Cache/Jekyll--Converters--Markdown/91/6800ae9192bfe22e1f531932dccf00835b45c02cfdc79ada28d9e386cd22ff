@@ -1,0 +1,242 @@
+I"Ý<!------------------------------------------------------------------------------------>
+<h3>Overview&lt;/b&gt;&lt;/h4&gt;
+We talked about the lighting equation in the optics lecture.
+<div>
+$$
+\begin{align*}
+L_o(\omega_o) = \int_{i\in in} BRDF(\omega_i, \omega_o)L_i\cos(\theta_i) d\omega_i
+\end{align*}
+$$
+</div>
+We can take some of these terms out
+<div>
+$$
+\begin{align*}
+L_o(\omega_o) = BRDF(\omega_i, \omega_o)\cos(\theta_i)\int_{i\in in} L_i d\omega_i
+\end{align*}
+$$
+</div>
+We're going to simplify things and replace $L_i$ with $\frac{dI}{dA\cos(\theta)}$ and $d\omega$ with $\frac{dA\cos(\theta)}{r^2}. So now the integral is just
+<div>
+$$
+\begin{align*}
+\int_{i\in in} \frac{dI}{r^2} = \frac{1}{r^2}
+\end{align*}
+$$
+</div>
+Furthermore, if objects are approximately equidistant from the light (eg sun), then $r$ is approximately constance and can be folded into $I_{\text{light}}$. So now we instead have:
+<div>
+$$
+\begin{align*}
+L_o(\omega_o) = BRDF(\omega_i, \omega_o)L_i\cos(\theta_i) \tilde I_j
+\end{align*}
+$$
+</div>
+
+
+
+
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Light Types&lt;/b&gt;&lt;/h4&gt;
+- Point Lights: Harsh shadows
+- Area Lights: Soft Shadows
+- Directional Light (example sum)
+- Spot Light: 
+- Volumetric Lights (Dragon's fire example)
+
+
+
+
+
+
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Diffuse Materials&lt;/b&gt;&lt;/h4&gt;
+So far we know that the BRDF says giving an incoming light hitting on a material, how does it bounce off? Materials can be smooth or rough. Most materials are generally rough. We call these materials a "Difuse Material". The reflected angles are chaotic and go everywhere. The BRDF in this case is typically a constant because we don't depend on the angles and the light is just bouncing everywhere with equal probability so we don't depending on the light direction either. So the BRDF here is just simply a constant,
+<div>
+$$
+\begin{align*}
+BRDF(\omega_i, \omega_o) = k_d.
+\end{align*}
+$$
+</div>
+Therefore the lighting equation is 
+<div>
+$$
+\begin{align*}
+L_o = k_d \cos(\theta_{\text{light}}) \tilde I_{\text{light}}.
+\end{align*}
+$$
+</div>
+One example is chalk. Shading will depend on the position of the light source but not the camera position. An object with a diffuse color $(k^R_d, k^G_d, k^B_d)$ hit by a light color $(I^R, I^G, I^B)$ results in
+<div>
+$$
+\begin{align*}
+(L^R_o, L^G_o, L^B_o) = (k^R_dI^R, k^G_dI^G, k^B_dI^B) \max(0, -\omega_{\text{light}}, N)
+\end{align*}
+$$
+</div>
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Ambient Lighting&lt;/b&gt;&lt;/h4&gt;
+Ambient lighting is good when the object or surface is obsurced from all light sources in the scene. In this case, we simply drop the cosine term off and get,
+<div>
+$$
+\begin{align*}
+(L^R_o, L^G_o, L^B_o) = (k^R_aI^R, k^G_aI^G, k^B_aI^B)
+\end{align*}
+$$
+</div>
+No dependence on normals, angles nothing.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Vertex Colors&lt;/b&gt;&lt;/h4&gt;
+We will store $k_a$ and $k_d$ on the vertices $p_0, p_1$ and $p_2$ of the triangles. Given a sub-triangle point $p$, we compute its barycentric weights: $p=\alpha_0p_0 +\alpha_1p_1 + \alpha_2p_2$. and then compute
+<div>
+$$
+\begin{align*}
+k = \alpha_0k_0 + \alpha_1k_1 + \alpha_2k_2$.
+\end{align*}
+$$
+</div>
+to interpolate all relavent $k$ values for ambiant/diffuse and R/G/B values.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Flat Shading vs Smooth Shading&lt;/b&gt;&lt;/h4&gt;
+It's all about the normals. The dot product between the light direction and the normal will get us $\cos(theta)$ to determine the amount of light and therefore color of the pixel. Each vertex in the triangle belongs to a number of triangles. Average these normals from the bordering triangles could be one way to give us a unique normal for each vertex. Other methods to calculate the normal exist too. If we're given a point in a triangle, we can use the barycentric weights to calculate what the normal would be at this point. This normal would be
+<div>
+$$
+\begin{align*}
+N_p = \frac{\alpha_0N_0 + \alpha_1N_1 + \alpha_2N_2}{\left\lVert \alpha_0N_0 + \alpha_1N_1 + \alpha_2N_2 \right\rVert_2}
+\end{align*}
+$$
+</div>
+If we do this, then we won't see the triangles when shading the sphere. It will be smooth.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Flat vs Gouraud vs Phong Shading&lt;/b&gt;&lt;/h4&gt;
+We do have an intermediate shading technique here.
+
+- Flat uses the actual normal in the triangle. So here we can see the triangles. All the pixel within this triangle will use that normal. The BRDF is also evalulated once per triangle.
+
+- Gouraud: Uses the (averaged) vertex normal (from all the nearby triangles). Evalute the BRDF at each vertex and then finally interpolate using the barycentric weights at each point inside the triangle to get the color.
+
+- Phong: Uses the (averaged) vertex normal (from all the nearby triangles). Interpolate these normals for each point and calculate the BRDF at each point inside the triangle.
+
+Edges and Corners:
+Normals are poorly defined at edges and corners. Average vertex normals at these edges create unrealistic looking edges/corners. 
+
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Phong Reflection Model&lt;/b&gt;&lt;/h4&gt;
+Phong says that we can capture most of what happens with the material with only three components. This is all captured in the equation:
+<div>
+$$
+\begin{align*}
+L_o(\omega_o) = \sum_i^{\text{lights}} k_aI_a + k_d \tilde I_d max(0, -\omega_{\text{light}} \cdot N) + k_s \tilde I_s \max(0, \omega_{o} \cdot D_{\text{reflect}})^S
+\end{align*}
+$$
+</div>
+We do this for each color. The terms are explained as follows:
+
+- Ambient color doesn't depend on the light sources or cos(theta).It makes sure that objects are not completely dark. It represent a uniform constant light that illuminates all objects. Objects look 2d with the ambient term. Ambient lighting is good when the object or surface is obsurced from all light sources in the scene.
+
+- Diffuse Term: This will determine the amount of light that gets bounced off depending on the incoming light direction. (dot product between light direction and normal on the surface). The parts of the surface that face the light directly will be much brighter than the other parts facing away. This makes the object look more like a 3D object.
+
+- Specular Term: Adds highlights or bright spots. The position of these highlights will depend not on the light direction but on the viewer's ray direction and not the light's. (dot product between outgoing direction and reflected ray)
+
+
+
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Specular Highlights&lt;/b&gt;&lt;/h4&gt;
+Recall the Reflected ray equation from ray tracing lecture below,
+<div>
+$$
+\begin{align*}
+D_{\text{reflect}} = D - 2(D \cdot \hat{N})\hat{N}
+\end{align*}
+$$
+</div>
+and the reflected ray:
+<div>
+$$
+\begin{align*}
+R_{\text{reflect}} = R(t_{\text{int}}) + D_{\text{reflect}}t.
+\end{align*}
+$$
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>References&lt;/b&gt;&lt;/h4&gt;
+<a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
+<br />
+<a href="https://www.pbr-book.org/3ed-2018/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm"> PBR </a>
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</h3></h3></h3></h3></h3></h3></h3></h3></h3></h3>
+:ET

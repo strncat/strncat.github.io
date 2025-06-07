@@ -9,7 +9,7 @@ Let $$G = (V, E)$$ be a directed acyclic graph consisting of $$V$$ vertices and 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Revisiting Depth First Search</b></h4>
+<h3>Revisiting Depth First Search</h3>
 Believe or not, topological sort is just a depth first search with a minor tweak! In depth first search, we start by visiting some node and marking its start time. We then visit its children and run depth first search again on the children and their descendants. Only after we're done processing all the neighbors, we mark the node's finishing time. This means that once we mark a node finished, then it's impossible for this node to have unvisited neighbors and so this means that all the descendants of this node will have a lower finish time than the node itself! (we'll prove this). Therefore, we can utilize this idea by pushing the nodes whenever we're done processing them onto a stack. When there are no longer unvisited nodes, we will end up with the sorted vertices as required.
 {% highlight c++ %}
 int dfs(int v, int current_time,
@@ -32,7 +32,7 @@ int dfs(int v, int current_time,
 {% endhighlight %}
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/1.png)
 Let's explore the graph above with dfs to see how the start and finish times are set again. We will start from $$f$$ (arbitrarily chosen), mark its start time as zero and visit $$e$$. We will mark $$e$$'s start time and then recursively call DFS on $$d$$. We will set its start time. At this point, we don't have more neighbors and so we mark its finish time as well. When we come back, $$e$$ won't have more neighbors and so we will mark its finish time. We do the same thing with $$f$$ and we'll end up with the graph below.
 
@@ -46,7 +46,7 @@ Notice how if we ordered the nodes by their finishing times ($$a, c, b, f, e, d$
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Correctness Proof</b></h4>
+<h3>Correctness Proof</h3>
 The first time I saw topological sort I didn't believe it. It seemed strange to just be able to sort the vertices by just doing a depth first search. What do we need to show to prove that topological sort works? what is the intuition here? Let's think about this. We need to prove that for any two vertices $$a, b \in V$$, if there is an edge from $$a$$ to be $$b$$, then $$a$$ will come before $$b$$ in the sorted output. 
 <br><br>
 How do we prove this? Well, we know that topological sort relies on the finishing times of vertices and we know that $$a$$'s finishing time gets marked after its children and so this means that we want to prove that $$a$$'s finishing time is greater than $$b$$'s finishing time. So to summarize, we want to prove the following 
@@ -83,7 +83,7 @@ We conclude from all three cases that we must have $$b.finish < a.finish$$. $$\b
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 Let's tweak depth first search to push the nodes onto a stack and let's forget about the start and finishing times since we only care about returning an ordering of the vertices in this specific case. Let's call this version topological sort! Here is a simple implementation:
 {% highlight c++ %}
 typedef std::vector<std::vector<int>> graph;
@@ -116,12 +116,12 @@ void topological_sort(graph& g) {
 <a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/topological-search">Source Code</a>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 It is just DFS! so the total time is $$O(V+E)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 Stanford CS161 <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br>
 <br>

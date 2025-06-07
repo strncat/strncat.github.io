@@ -11,7 +11,7 @@ mathjax: true
 <br>
 For the definitions of an upper bound and the least upper bound of a set see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A, B \subseteq \mathbf{R}$$ be nonempty and bounded above. By the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">Axiom of Completeness</a>, $$\sup A$$ and $$\sup B$$ both exist. We claim that that $$\sup (A \cup B) = \sup (\{\sup A, \sup B\})$$. Since $$\sup A$$ and $$\sup B$$ both exist, then the set $$\{\sup A, \sup B\}$$ is nonempty and bounded above. Therefore, $$\sup (A \cup B)$$ also exists by the Axiom of Completeness.
 <br>
 <br>

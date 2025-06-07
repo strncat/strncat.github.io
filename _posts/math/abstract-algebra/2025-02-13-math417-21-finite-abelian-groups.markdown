@@ -39,7 +39,7 @@ For example, $$\mathbf{Z}_{60} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{15} \cong
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Elementary Divisor Classification</b></h4>
+<h3>Elementary Divisor Classification</h3>
 As a start we have the following classification theorem
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
@@ -73,7 +73,7 @@ Example. Suppose $$|G| = 24$$ and that $$G$$ is abelian. 24 has the prime factor
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Invariant Factor Classification</b></h4>
+<h3>Invariant Factor Classification</h3>
 We have another classification Theorem. 
 <br>
 <div class="yellowheaderdiv">
@@ -114,7 +114,7 @@ We will prove both theorems later but the idea is that we're going to prove the 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose $$G$$ is finite abelian with invariant factors: $$5,25,50,36000$$. So $$G$$ is isomorphic to
 <div>
 		$$
@@ -229,7 +229,7 @@ We can recover the invariant factors by stacking the highest powers of divisors 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Elementary Divisor Classification Proof Plan</b></h4>
+<h3>Elementary Divisor Classification Proof Plan</h3>
 We have two aspects. Existence and Uniqueness. We will show uniqueness first. We want to show if
 <div>
 		$$
@@ -275,7 +275,7 @@ Note that $$G[m]$$ doesn't need to be a subgroup but if $$G$$ is abelian, then $
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose we have $$G = \{0,1,2,3,4,5,7\}$$. Then, the orders of the elements are
 <table style="max-width: 500px; margin: 20px auto;">
 	<tr>
@@ -340,7 +340,7 @@ Note that $$\alpha_3(G) = 1$$ and that 3 and 8 are relatively prime. $$\alpha_6(
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Three Properties of \(\alpha_m(G)\)</b></h4>
+<h3>Three Properties of \(\alpha_m(G)\)</h3>
 We'll prove three important properties about the function $$\alpha_m(G)$$.
 <br>
 <div class="peachheaderdiv">
@@ -488,7 +488,7 @@ If $$1 \leq k \leq n $$, then $$o([k]_n) = gcd(k,n)$$. (we proved this before). 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Combining Everything</b></h4>
+<h3>Combining Everything</h3>
 So now we have three propositions about $$\alpha_m[G]$$
 <ol>
 	<li>If \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\)</li>
@@ -514,7 +514,7 @@ So now we have the following facts based on the definition of $$\beta$$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose that $$G = \mathbf{Z}_{2^4} = \mathbf{Z}_{16}$$. Then
 <table style="max-width: 600px; margin: 20px auto;">
 	<tr>
@@ -588,7 +588,7 @@ This here proves the uniqueness of elementary divisors. Why? if $$G$$ is isomorp
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Overview</b></h4>
+<h3>Overview</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/sampling/00-coverage.png" width="80%" class="center"></p>
 See the above figure. The sensor (which mimics the eye) gets a signal based on how much area is covered by an object. For the first black square we have full coverage and the object is covering the entire sensor and so we get a black signal. The third square is half covered and we'll get a gray signal. Basically, the sensor averages the information it gets and sends a single based on that. However when perform ray tracing and send a ray out, we're only sending a ray from the center of the pixel. So for the last square for example, we're going to see white only instead of some shade of gray and hence we're losing some information.
 <!--
@@ -16,27 +16,27 @@ There is one more issue. Besides the fact that the signal is averaging what we s
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Aliasing</b></h4>
+<h3>Aliasing</h3>
 <b>Sampling</b> is just testing a single point by sending a ray from the center of the pixel only. <b>Aliasing</b> on the other hand is caused by sampling. <b>Anti-Aliasing</b> is then the solution to aliasing and that's our goal. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/sampling/01-aliasing.png" width="50%" class="center"></p>
 For example, see the above figure. We're trying to draw a quadrilateral so we send a single ray from each pixel's center. Do our intersection test with the geometry and find out the centers that do intersect. We color these pixels and end up with a shape that's completely different (purple squares). Testing the center of the pixel only therefore causes jagged edges often called <b>jaggies</b>. Aliasing can also occur not just with rasterization but also when computing the normal vectors since w're not computing every single normal which could cause erroneous sparking highlights. Other artifacts causing by sampling include the wagon wheel effect, moire and many more.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Super Sampling</b></h4>
+<h3>Super Sampling</h3>
 One solution to the aliasing issue is to increase the number of samples (per unit area). We can do this by increasing the number of pixels in the image but now we'll take longer to render and the file will be much bigger. So far, we've used one sample per pixel but now we'll take 2x2 samples per pixel and then average the result and save that instead for the pixel. This is what super sampling mean. And so instead of Jaggies, we'll see this
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/sampling/super-sample-1.png" width="30%" class="center">             <img src="{{ site.url }}/assets/graphics/sampling/super-sample-2.png" width="30%" class="center"></p>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Sampling Rate</b></h4>
+<h3>Sampling Rate</h3>
 Supersampling is great but what we really want to do in general is to find the lowest possible sampling rate that will not result in noticeable artifacts. Take the cosine function example. See below that whether we chose 4 samples or 2 samples per period, we still don't lose any information when we reconstruct it from the samples we took.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/sampling/02-4samples.png" width="50%" class="center"><img src="{{ site.url }}/assets/graphics/sampling/03-2samples.png" width="50%" class="center"></p>
 However, if our sample rate was only 1, then we see that we've lost information and so it appears that we would need 2 samples ata minimum.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/sampling/04-1sample.png" width="60%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Anti Aliasing</b></h4>
+<h3>Anti Aliasing</h3>
 
 - Nyquist-Shannon Sampling Theorem says that if $f(t)$ contains no frequencies higher than $W$ hertz, it can be completely determined by samples spaced $1/2W$ seconds apart. So we need 2 samples per period.
 
@@ -51,7 +51,7 @@ It needs to be before sampling, otherwise these higher frequencies will get reco
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Fourier Transform</b></h4>
+<h3>Fourier Transform</h3>
 Transforms between the spatial domain $f(x)$ and the frequency domain $F(k)$.
 Frequency Domain $F(x)$:
 <div>
@@ -90,7 +90,7 @@ Examples of functions and their Fourier transform below
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Anti-Aliasing</b></h4>
+<h3>Anti-Aliasing</h3>
 Suppose we have this function with $F(k)$,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/sampling/06-nyquist.png" width="90%" class="center"></p>
 So we first have to identify the nyquist bounds
@@ -105,7 +105,7 @@ This is an example of what happens after removing the high frequencies:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Images</b></h4>
+<h3>Images</h3>
 Images have discrete values unlike continuos functions and so we need to use discrete Fourier transform. The Fast Fourier Transform (FFT) computes the discrete Fourier transform and its inverse in $O(nlogn)$ where $n$ is the number of samples. Since images are 2D, we need a 2D discrete transform using 1D transforms after each dimension. Two Example:
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/sampling/example1.png" width="90%" class="center"></p>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/sampling/example2.png" width="90%" class="center"></p>
@@ -114,7 +114,7 @@ The Pat's examples shows how edges in images have the highest frequencies! which
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Convolution</b></h4>
+<h3>Convolution</h3>
 So now we have all the geometry in the scene. We need to get rid of the high frequencies before running the ray tracer or before projecting into screen space!! sending rays from the pixel center is sampling so we need to do this before to avoid getting the high and low frequencies mixed (or high frequencies masquerading as low frequencies). So what we need is to first find a way to run a Fourier transform on the world. hmmm (the world is not a function or an image) .... We can't do this but what we can do is apply a convolution ... A convolution is a way to get the same answer as if we went into the frequency domain. 
 <br>
 <br>
@@ -125,7 +125,7 @@ Running a low pass filter or removing high frequencies of $F(f)$ is done by mult
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

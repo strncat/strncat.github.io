@@ -8,7 +8,7 @@ mathjax: true
 In this note, I want to revisit the master theorem along with its proof outline as I've learned it in CS161 at Stanford (Professor Mary Wootters).
 <br>
 <br>
-<h4><b>The Master Theorem</b></h4>
+<h3>The Master Theorem</h3>
 Let $$T(n) = aT(\frac{n}{b})+O(n^d)$$ be a recurrence where $$a \geq 1$$ and $$b \geq 1$$. Then,
 <div center>
 $$
@@ -28,7 +28,7 @@ If this recurrence represents the running time of an algorithm then,
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 We can apply the master theorem on many recurrences. For example, if we're given,
 <div center>
 $$
@@ -41,7 +41,7 @@ We can quickly see that we have $$a = 4$$, $$b = 2$$ and $$d = 1$$. Therefore, $
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Intuition</b></h4>
+<h3>Intuition</h3>
 Why do we have 3 cases and what's the intuition behind each case? To see this, we discuss three examples, one for each case, starting with case 2.
 <br>
 <br>
@@ -119,7 +119,7 @@ $$
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Proof Outline</b></h4>
+<h3>Proof Outline</h3>
 Why is the master theorem correct? Let's take a look at the recurrence again, 
 <div center>
 $$
@@ -219,7 +219,7 @@ $$
 </div>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 - <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 - CLRS
 

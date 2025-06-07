@@ -37,7 +37,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 How many necklaces with 9 beads: 4 red, 3 white, 2 yellow? This isn't an easy question. But there is an easier question which is counting the linear arrangements of the 9 beads with the colors we have. Let $$X$$ be the set of linear arrangements of 9 beads with 4 red, 3 while, 2 yellow. If they were all of different colors, then there will be $$9!$$ arrangements. But only have 3 colors so some of the beads are indistinguishable. Therefore, we have
 <div>
 $$
@@ -52,7 +52,7 @@ So it's impossible to physically see which arrangements will unique. We said ear
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Burnside Formula</b></h4>
+<h3>Burnside Formula</h3>
 First, we need the following notation
 <div class="mintheaderdiv">
 Action by \(G\) on \(X\)
@@ -78,7 +78,7 @@ $$
 </div>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 Let's apply the formula on Example 1. We had $$G = D_4 = \{e,r,r^2,j,rj,r^2j\}$$ where $$|G| = 8$$ and $$|X| = 6$$. For example, take $$r$$. We want to know the arrangements that are fixed by $$r$$ (the rotation by 90 degrees). What does it mean for an arrangement to be fixed by $$r$$. It means that the arrangement when rotated by 90 degrees, it will still be the same arrangement. Observe what happens to the following arrangement.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec29/3.png" width="55%" class="center"></p>
 This arrangement is not fixed by $$r$$. In fact, all the beads have to have the same color for $$r$$ to be able to fix them. So the fix set is zero for $$r$$. Note here that $$r^{-1} = r^{3}$$ will have the same result for the same reason.
@@ -132,7 +132,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Here, we had $$G = D_9 = \{e, r, r^2, ..., r^8, j, rj, ..., r^8j\}$$. Recall that $$|X| = 1260$$. Doing the same analysis
 <ul>
 	<li>\(e\): This is just the entire group so \(|\text{Fix}(e)| = 1260\).</li>
@@ -194,7 +194,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Proof of Burnside Formula</b></h4>
+<h3>Proof of Burnside Formula</h3>
 Let $$F = \{(g,x) \ | \ g \in G, x \in X, gx = x\}$$. (So we're writing it differently than before but it's the same. We're just counting any element that gets fixed by any $$g$$. So all of them). We're going to count this set in two different ways
 <ol>
 	<li>\(|F| = \sum_{g \in G} | x \in X \ | \ gx = x \} = \sum_{g \in G} |\text{Fix}(g)| \)</li>
@@ -226,7 +226,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 3 (Variant of Example 2)</b></h4>
+<h3>Example 3 (Variant of Example 2)</h3>
 Consider example 2 again. We had a fixed number of beads (4 red, 3 white, 2 yellow). Now, suppose that we don't have a constraint on the count for each color. We just want a necklace made of 3 colors and 9 beads. Then $$G = D_9$$ acts on $$X$$ which is the linear arrangements of beads of 3 colors. What is the size of $$X$$? The first bead can be any of the three colors, the second bead can be any of the three colors and so on. So 
 <div>
 $$
@@ -287,7 +287,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

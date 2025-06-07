@@ -11,7 +11,7 @@ mathjax: true
 <br>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>. 
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Given two real numbers $$a$$ and $$b$$. Consider the following cases:
 <ul>
 <li>\(a \geq 0, b \geq 0\): <br>

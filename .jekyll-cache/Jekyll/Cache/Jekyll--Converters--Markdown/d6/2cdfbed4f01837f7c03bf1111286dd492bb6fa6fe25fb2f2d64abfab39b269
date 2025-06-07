@@ -1,0 +1,229 @@
+I"�N<p><img src="http://localhost:4000/assets/dynamic-programming/coin-change/coin-change.png" width="100%" />
+Suppose we’re given a bill of value \(n=5\). We’re also given unlimited amount of coins. The possible coin values are 1, 2 and 5. What is the total number of ways of changing the bill into coins? We can exchange it for 5 coins of value 1. We can also exchange it for 3 coins of value 1 and 1 coin of value 2. Here are total possible ways:
+<img src="http://localhost:4000/assets/dynamic-programming/coin-change/change.png" width="100%" />
+How can we design an algorithm to solve this problem?
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Method 1&lt;/h3&gt;
+One way to count the number of ways to make change is to iterate through the coins and use each coin as a  starting point:
+- Start with a coin of value 5, then make change for $$n-5$$.
+- Start with a coin of value 2, then make change for $$n-2$$.
+- Start with a coin of value 1, then make change for $$n-1$$.
+
+When do we stop?
+
+- When the amount is negative, meaning this is not a valid combination.
+- When the amount is zero which means that we have arrived at a valid solution.
+
+This is illustrated below with amount = 4 and coins 1, 2 and 5:
+<img src="http://localhost:4000/assets/dynamic-programming/coin-change/method1-before.png" width="100%" />
+
+The solutions are highlighted in yellow. One thing we immediately notice is that we have duplicates! we're finding (1,1,2), (1,2,1) and (2,1,1) as valid solutions. How can we fix this? The simplest way to fix this issue is to restrict the coins in the next iteration to coins  that are less than our current coin. For example if our current coin is 2, then we only try out coins 1 and 2 at the next level. So our steps will now be:
+
+- Start with a coin of value 5, then make change for $$n-5$$ with coins (1,2,5).
+- Start with a coin of value 2, then make change for $$n-2$$ with coins (1,2).
+- Start with a coin of value 1, then make change for $$n-1$$ with coins (1).
+
+This is illustrated below.
+
+<img src="http://localhost:4000/assets/dynamic-programming/coin-change/method1-after.png" width="100%" />
+
+Implementation wise, we can pass an index to keep track of which coins we are allowed to use at the next level of recursion. 
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">long</span> <span class="nf">make_change_recursive_alt</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">coins</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// used coins = exact amount</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// not the right combination of coins</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// recurse again but with the largest coin = coins[i]</span>
+        <span class="c1">// this way we don't count duplicates</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">make_change_recursive_alt</span><span class="p">(</span><span class="n">coins</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">amount</span> <span class="o">-</span> <span class="n">coins</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Method 2&lt;/h3&gt;
+Another way to think about this problem is to divide the solutions into two sets. Fix a coin of choice, $$c$$, and then divide the set of solutions into solutions that use the coin $$c$$ and solutions that don't use $$c$$. For amount 4 and coin "2", we have 1 way that doesn't use coin "2" and 2 different ways that does use it.
+<img src="http://localhost:4000/assets/dynamic-programming/coin-change/method2-coin.png" width="100%" />
+
+Let $$K[c,n]$$ be the total number of ways to make change for amount $$n$$ and coins $$c$$. Fix a coin $$c_i$$ from the set $$c$$. We will have,
+<div center="">
+$$
+\begin{align*}
+K[c,n] = K[c-{c_i},n] + K[c, x-c_i].
+\end{align*}
+$$
+</div>
+The following implementation is based on the above recurrence. Just like previously, in order not to run into duplicate solutions, we make sure to have the sequence of coins in some pre set order and then use an index to keep track of which coins we're allowed to use in the next iteration.
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">long</span> <span class="nf">make_change_recursive</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">coins</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// used coins = exact amount</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// not the right combination of coins</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// ran out of coins</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// either use the coin c[n-1] or don't</span>
+    <span class="k">return</span> <span class="nf">make_change_recursive</span><span class="p">(</span><span class="n">coins</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span> <span class="o">+</span> <span class="c1">// don't use this coin</span>
+    <span class="n">make_change_recursive</span><span class="p">(</span><span class="n">coins</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">amount</span> <span class="o">-</span> <span class="n">coins</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// use the coin</span>
+<span class="p">}</span></code></pre></figure>
+
+
+However, for $$n$$ coins, this solution still takes $$O(2^n)$$ time and is not efficient.
+<br />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Method 3: Dynamic Programming&lt;/h3&gt;
+<img src="http://localhost:4000/assets/dynamic-programming/coin-change/substructure.png" width="100%" />
+Suppose we know the solution to a problem we're solving. An optimal substructure means that the solution will contain solutions to smaller subproblems. Does this apply to the coin change problem? Yes! we just came up with a beautiful recurrence in the recursive solution above. Let $$K[c,n]$$ be the total number of ways to make change for amount $$n$$ and coins $$c$$. Fix a coin $$c_i$$ from the set $$c$$. We will have,
+<div center="">
+$$
+\begin{align*}
+K[c,n] = K[c-{c_i},n] + K[c, n-c_i].
+\end{align*}
+$$
+</div>
+
+Both subproblems are independent of each other and both are smaller in size than the original problem.
+
+- The first subproblem, $$K[c-{c_i},n]$$, has one fewer coin.
+- The second subproblem, $$K[c,n-{c_i}]$$, has a smaller amount.
+
+This is exactly what we need to implement a dynamic programming algorithm. The only thing left is to define the base case. For this particular problem:
+ 
+- $$K[c,0] = 1$$. The number of ways to make change for any zero amount is 1. 
+- $$K[0,n] = 1$$ where $$n &gt; 0$$. The number of ways to make change for any amount greater than zero using zero coins is 0.
+
+It is also important just like in the recursive structure, to take care of the duplicates issue. We need to keep track of which coins we're allowed to use. 
+<table>
+	<tr>
+		<td>amount/coins</td>
+		<td>0</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td>0</td>
+		<td>1</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0</td>	
+		<td>0</td>			
+	</tr>
+	<tr>
+		<td>{1}</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>{1,2}</td>
+		<td>1</td>
+		<td>1</td>
+		<td>2</td>
+		<td>2</td>
+		<td>3</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td>{1,2,5}</td>
+		<td>1</td>
+		<td>2</td>
+		<td>2</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+	</tr>
+</table>
+
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">make_change_2d</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">coins</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">dp</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// base case for amount = 0, there is 1 way to make change</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">coins</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// otherwise the total number of ways to make change is zero for any amount &gt; 0 with zero coins</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">amount</span> <span class="o">&lt;=</span> <span class="n">MAX_AMOUNT</span><span class="p">;</span> <span class="n">amount</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">amount</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">coins</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each coin</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">amount</span> <span class="o">&lt;=</span> <span class="n">MAX_AMOUNT</span><span class="p">;</span> <span class="n">amount</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each amount</span>
+            <span class="c1">// dp[n][amount] = dp[n-1][amount] + dp[n][amount-c[n]]</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">amount</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">amount</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="o">&gt;=</span> <span class="n">coins</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">amount</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">amount</span><span class="o">-</span><span class="n">coins</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+For amount $$n$$ and $$m$$ coins, The runtime is $$O(nm)$$.
+<br />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Method 4: Optimized Dynamic Programming&lt;/h3&gt;
+The previous method is great and optimal. We could however reduce the storage requirement from 2D to only 1D. If you pay attention to the recursive structure, you'll see that each row only depends on the previous row. So what we could do is just over write the current row onto the previous row until we reach the final answer in the last row. 
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// bottom up with less memory</span>
+<span class="kt">void</span> <span class="nf">make_change_1d</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">coins</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">dp</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// base case</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">coins</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each coin</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">coins</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">amount</span> <span class="o">&lt;=</span> <span class="n">MAX_AMOUNT</span><span class="p">;</span> <span class="n">amount</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each amount, m needs to be &gt;= c[i], start from c[i]</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">amount</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">amount</span> <span class="o">-</span> <span class="n">coins</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Proof of Correctness&lt;/h3&gt;
+TODO?
+
+<!-- 
+
+<i>Proof:</i> <br>
+Suppose that we have a bill of size $$n$$ and suppose that we have unbounded copies of $$c$$ coins available to us. Now suppose that we know that the number of ways to make change is $$K[c,n]$$. Fix a coin $$c_i$$. If We claim that $$K[c-{c_i},n]$$ is the number of ways to make change and that one of the solutions contains one coin of value $$c_i$$ for some natural number $$i$$. We claim that $$K[W] - v_k$$ is an optimal value for a knapsack of size $$W - x_k$$. That is, $$K[W - x_k] = K[W] - v_k$$.
+<br><br>
+We will prove our claim by contradiction. Suppose that $$K[W] - v_k$$ is not an optimal value and that the optimal value is $$T^{\prime}$$. Since we know that the optimal solution to the knapsack of size $$W$$ contains a copy of item $$x_k$$, we can therefore add $$x_k$$ to $$K[W - x_k]$$ to obtain an optimal value $$T^{\prime} + v_k$$. But $$T^{\prime} + v_k >  K[W] - v_k + v_k = K[W]$$. This is a contradiction since we assumed that $$K[W]$$ is an optimal value. Therefore, $$K[W] - v_k$$ must be an optimal value for a knapsack of size $$W - x_k$$. $$\blacksquare$$
+
+-->
+
+<br />
+<!------------------------------------------------------------------------------------>
+<h4><b>Practice Problems&lt;/h3&gt;
+- <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=2078">11137 - Ingenuous Cubrency</a> 
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h4><b>References&lt;/h3&gt;
+- (Method 2) <a href="https://www.geeksforgeeks.org/coin-change-dp-7/">GeeksforGeeks</a> 
+<br />
+<br />
+
+
+
+
+
+</b></h4></b></h4></b></h4></b></h4></b></h4></b></h4></b></h4>
+:ET

@@ -1,0 +1,65 @@
+I"A%<p>In this problem, we are given a list of names. The goal is to find the sum of all the name scores in the list. What is a name score? A name score is calculated by multiplying its alphabetical score by its alphabetical position in the list. A name’s alphabetical score is calculated by summing each letter’s alphabetical position. 
+<br />
+<br />
+For example, the name “COLIN”’s alphabetical score is \(3 + 15 + 12 + 9 + 14 = 53\). “COLIN”’s alphabetical position is 938 after all the names in the list are sorted. Therefore, “COLIN”’s name score is \(53 * 938 = 49714\).
+<br />
+<br />
+Solution: This was pretty straightforward. The first thing we want to do is read the file we’re given. We can do this with
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">freopen</span><span class="p">(</span><span class="s">"0022_names.txt"</span> <span class="p">,</span> <span class="s">"r"</span> <span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">str</span><span class="p">;</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+freopen above will redirect the input stream to read from the file we give it. The chunk saved in str will look this</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="s">"MARY"</span><span class="p">,</span><span class="s">"PATRICIA"</span><span class="p">,</span><span class="s">"LINDA"</span><span class="p">,</span><span class="s">"BARBARA"</span><span class="p">,</span><span class="s">"ELIZABETH"</span><span class="p">,</span><span class="s">"JENNIFER"</span><span class="p">,</span><span class="s">"MARIA"</span><span class="p">,</span><span class="s">"SUSAN"</span><span class="p">,</span><span class="s">"MARGARET"</span><span class="p">,</span><span class="s">"DOROTHY"</span><span class="p">,</span>
+<span class="s">"LISA"</span><span class="p">,</span><span class="s">"NANCY"</span><span class="p">,</span><span class="s">"KAREN"</span><span class="p">,</span><span class="s">"BETTY"</span><span class="p">,</span><span class="s">"HELEN"</span><span class="p">,</span><span class="s">"SANDRA"</span><span class="p">,</span><span class="s">"DONNA"</span><span class="p">,</span><span class="s">"CAROL"</span><span class="p">,</span><span class="s">"RUTH"</span><span class="p">,</span><span class="s">"SHARON"</span><span class="p">,</span><span class="s">"MICHELLE"</span><span class="p">,</span>
+<span class="s">"LAURA"</span><span class="p">,</span><span class="s">"SARAH"</span><span class="p">,</span><span class="s">"KIMBERLY"</span><span class="p">,</span><span class="s">"DEBORAH"</span><span class="p">,</span><span class="s">"JESSICA"</span><span class="p">,</span><span class="s">"SHIRLEY"</span><span class="p">,</span><span class="s">"CYNTHIA"</span><span class="p">,</span><span class="s">"ANGELA"</span><span class="p">,</span><span class="s">"MELISSA"</span><span class="p">,</span><span class="s">"BRENDA"</span><span class="p">,</span><span class="s">"AMY"</span><span class="p">,</span>
+<span class="s">"ANNA"</span><span class="p">,</span><span class="s">"REBECCA"</span><span class="p">,</span><span class="s">"VIRGINIA"</span><span class="p">,</span><span class="s">"KATHLEEN"</span><span class="p">,.....</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+Now we want to split them based on the delimiter “,” and we also want to take out the first and last character</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">names</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="nf">ss</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">token</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="sc">','</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">names</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">token</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">token</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+
+<p>Next, we want to sort the list of names. We can just use std::sort. I’m assuming years ago, this was painful to do.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">names</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">names</span><span class="p">.</span><span class="n">end</span><span class="p">());</span></code></pre></figure>
+
+<p>Finally, we want to calculate the score as follows. (Remember that \(A-A=0\), so we can just subtract “A” to get the score we want for each letter in the name).</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">names</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="sc">'A'</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">score</span> <span class="o">*=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">score</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">score</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"score sum = %lld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>References&lt;/b&gt;&lt;/h4&gt;
+<a href="https://projecteuler.net/problem=22">Project Euler - 22</a>
+<br />
+<br />
+
+
+</h3>
+:ET

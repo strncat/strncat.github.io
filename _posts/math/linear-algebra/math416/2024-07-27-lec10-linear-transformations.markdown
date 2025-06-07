@@ -91,7 +91,7 @@ This is crucial because this says that the image of a linear combination with co
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 For $$V, W$$, the map
 <div>
 	$$
@@ -127,7 +127,7 @@ The two sides are equal and so $$T_0$$ is linear.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 The map 
 <div>
 	$$
@@ -143,7 +143,7 @@ is linear as well.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 The map 
 <div>
 	$$
@@ -177,7 +177,7 @@ Both sides are equal and so the transformation is linear.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 4</b></h4>
+<h3>Example 4</h3>
 The map 
 <div>
 	$$
@@ -202,7 +202,7 @@ is different because the domain and codomain are different here! this is crucial
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 6</b></h4>
+<h3>Example 6</h3>
 Let $$A \in M_{m \times n}$$. The map 
 <div>
 	$$
@@ -219,7 +219,7 @@ is linear. Remember here $$A\bar{x}$$ are the linear combinations of the column 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 6</b></h4>
+<h3>Example 6</h3>
 For $$a < b$$, define the map 
 <div>
 	$$
@@ -248,7 +248,7 @@ To prove that this mapping in linear, we notice that
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

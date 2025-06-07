@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(a_n)$$ be a sequence that convergences to some number $$l$$. By <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">definition (2.2.3)</a>, we know that there exists an $$N \in \mathbf{N}$$ such that if $$n \geq N$$, then for any $$\epsilon > 0$$, we have $$|a_n - l| \leq \epsilon$$. If we let $$\epsilon = 1$$, then we can conclude that $$a_n$$ is in the interval $$(l - 1, l + 1)$$. Since we don't know if $$l$$ if positive or negative, we can just use $$|l|+1$$ (why?) and conclude
 <div>
 $$

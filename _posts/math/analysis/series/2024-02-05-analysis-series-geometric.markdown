@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition</b></h4>
+<h3>Definition</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   A series is called geometric if it is of the form
   $$
@@ -17,7 +17,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Partial Sum Sequence</b></h4>
+<h3>The Partial Sum Sequence</h3>
 To know anything about whether this series converges or diverges, we look at its partial sum sequence $$(s_m)$$ where $$s_m$$ is
 <div>
   $$
@@ -46,7 +46,7 @@ to simplify the partial sum sequence into
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Convergence</b></h4>
+<h3>Convergence</h3>
 When $$r = 1$$ and $$a \neq 0$$, we have
 <div>
   $$

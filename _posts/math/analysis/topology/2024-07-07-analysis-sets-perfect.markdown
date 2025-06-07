@@ -10,7 +10,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Examples</b></h4>
+<h3>Examples</h3>
 Closed intervals are perfect sets except for the singleton sets $$[a,a]$$.
 <br>
 <br>

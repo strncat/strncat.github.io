@@ -14,7 +14,7 @@ The goal of this problem is finding the last 10 digits of the series
 	$$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 The key to this problem is using modular exponentiation. Since we only want to compute the last 10 digits of this sum, then this problem reduces to
 <div>
 	$$
@@ -35,7 +35,7 @@ We'll demonstrate how to calculate each one of these with an example
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose we want to calculate the last two digits of $$4^7$$. If we do this all at once by raising 4 to the power of 7 then, $$4^7 = 16384$$ and the last two digits are 84. To do this with modular exponentiation, we'll multiply the base each iteration with 4 and we'll do exactly 7 iterations to get the final result. The base starts at 1 in the first iteration.
 <div>
 	$$
@@ -72,7 +72,7 @@ printf("%lld\n", sum % mod_value);
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=48">Project Euler - 48</a>
 <br>
 <br>

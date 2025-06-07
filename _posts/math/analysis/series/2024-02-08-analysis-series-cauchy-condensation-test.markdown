@@ -18,7 +18,7 @@ converges.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(b_n)$$ be a sequence such that $$b_n \geq 0$$ for all $$n \in \mathbf{N}$$. For the backward direction, suppose $$\sum_{n=1}^{\infty} 2^nb_{2^n}$$ converges. Let $$(t_m)$$ be the sequence of partial sums with $$t_m$$ defined as
 <div>
 $$

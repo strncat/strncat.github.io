@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Why Triangles?</b></h4>
+<h3>Why Triangles?</h3>
 So why do we chose to render with triangles? So many benefits. Here are some:
 
 1. If we only focus on one thing then we can optimize everything for just this one type (triangles). We can optimize software, algorithms, hardware (gpus) for just the triangles. For example, we can write the basic algorithms to manipulate triangles directly into the hardware.
@@ -28,7 +28,7 @@ So why do we chose to render with triangles? So many benefits. Here are some:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Rasterization</b></h4>
+<h3>Rasterization</h3>
 So far we saw: 
 1. The process from creating geometry and then using transforms to place the geometry into the virtual world using matrix multiplications (rotations, scaling, translation).
 2. After this, we transformed the geometry again but this time from world space to screen space using the projection matrix via matrix multiplication again. 
@@ -38,7 +38,7 @@ Step (3) is the Rasterization step where we find the pixels and color them. It's
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implicit Equation for a line</b></h4>
+<h3>Implicit Equation for a line</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/triangles/00-implicit.png" width="80%" class="center"></p>
 Given two points. $$p_0$$ and $$p_1$$:
 1. Compute a direction $$p1-p_0$$.
@@ -54,7 +54,7 @@ IF we're in 3D space, it will be very similar, points on top (where the normal i
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>2D Points Inside a 2D Triangle</b></h4>
+<h3>2D Points Inside a 2D Triangle</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/triangles/01-vertex-ordering.png" width="80%" class="center"></p>
 So given the convention we've decided. We have two cases for the order of vertices in triangles:
 - Counter clockwise vertex ordering (facing camera)
@@ -72,7 +72,7 @@ This leads us to stress out the fact that vertex ordering matters: backward faci
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Overlapping Triangles</b></h4>
+<h3>Overlapping Triangles</h3>
 When one object is in front of another, two triangles can aim to color the same pixel. We know that the screen space projection computes $$z' = n + f - (fn/z)$$ for occlusion/transparency so color each pixel using the triangle that has the smallest $$z'$$ at that pixel! The problem here is that we do know the $$z'$$ for each vertex of every triangle but what we want is the $$z'$$ for the exact pixel that we're trying to color. For this reason we need to interpolate the vertices using the <a href="https://strncat.github.io/jekyll/update/2023/10/05/barycentric-coordinates.html"> barycentric Coordinates</a>) to find the $$z'$$ for that exact pixel. One other reason for doing this (instead of just picking one triangle over the other), is that these two triangles might intersect so you don't want to choose one or the other. We want to the color the correct portion. 
 <br>
 <br>
@@ -80,7 +80,7 @@ So we need to interpolate $$z'$$ values from triangle vertices to the pixel loca
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Perspective Projection: Recap</b></h4>
+<h3>Perspective Projection: Recap</h3>
 So far we're given a triangle $$p_0,p_1,p_2$$ and then we project it into screen screen to get $$p_0',p_1',p_2'$$ where the x-coordinate of each point is $$x_i' = hx_i/z_i$$ and the y-coordinate is $$y_i'=hy_i/z_i$$ for each vertex. 
 <br>
 <br>
@@ -108,7 +108,7 @@ We can use this to compute $$z = \alpha_0z_0 + \alpha_1z_1 + \alpha_2z_2$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Depth</b></h4>
+<h3>Depth</h3>
 For the pixel color, texture mapping and some other stuff we need to get the correct barycentric weights of the triangle in world space and not screen space (last section) BUT for the depth buffer we actually don't need to do that!
 <br>
 <br>
@@ -148,7 +148,7 @@ We did all of this to prove that we can still compare $$z'$$ to find which trian
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

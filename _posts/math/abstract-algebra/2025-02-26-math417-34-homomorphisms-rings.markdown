@@ -30,11 +30,11 @@ Definition: Homomorphisms of Rings
 Let \(R\) and \(S\) be rings. A unital homomorphism is a ring homomorphism such that also \(\varphi(1_R) = 1_S\)
 </div>
 <br>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 Let $$\pi: \mathbf{Z} \rightarrow \mathbf{Z}_n$$ where $$\pi(a) = [a]_n$$. Then $$\pi$$ is a unital homomorphism of rings.
 <br>
 <br>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 If $$R$$ is any ring with 1. Define $$\varphi \mathbf{Z} \rightarrow R$$ by $$\varphi(n) = n1_R$$. $$\varphi$$ is a unital ring homomorphism. For example
 <div>
 $$
@@ -50,7 +50,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Isomorphism of Rings</b></h4>
+<h3>Isomorphism of Rings</h3>
 More simple definitions:
 <br>
 <div class="mintheaderdiv">
@@ -95,7 +95,7 @@ Another example is $$\varphi: \mathbf{C} \rightarrow \mathbf{C}$$ where $$\varph
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Substitution Principle</b></h4>
+<h3>Substitution Principle</h3>
 The substitution principle is a method for constructing any ring homomorphism where the domain is a polynomial ring
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
@@ -189,7 +189,7 @@ Side study note: A polynomial belongs to the ring $$R[x]$$. A function is a mapp
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Ideals</b></h4>
+<h3>Ideals</h3>
 So far, we've seen groups, subgroups and normal subgroups. Normal subgroups were special since they show up as kernels of homomorphism and we can form quotient groups using them. 
 <br>
 <br>
@@ -248,7 +248,7 @@ Fact: $$\ker(\varphi)$$ is an ideal in $$R$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

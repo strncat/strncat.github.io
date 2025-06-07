@@ -10,7 +10,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Let $$\{O_{}: \lambda \in \Lambda\}$$ be a collection of open sets and let $$O = \bigcup_{\lambda \in \Lambda}O_{\lambda}$$. Let $$a$$ be an arbitrary element of $$O$$. To show that $$O$$ is open, we need to produce an $$\epsilon$$-neighborhood of $$a$$ that is contained in $$O$$. Since $$a \in O$$, then $$a$$ must be in at least one particular set $$O_{\lambda'}$$. But we know that $$O_{\lambda'}$$ is open and so there must exists a neighborhood $$V_{\epsilon}(a) \subseteq O_{\lambda'}$$. But since $$O_{\lambda'} \subseteq O$$, then $$V_{\epsilon}(a) \subseteq O$$ as we wanted to show.
 <br>
 <br>

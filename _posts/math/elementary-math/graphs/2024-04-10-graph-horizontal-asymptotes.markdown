@@ -10,7 +10,7 @@ Given some function $$f$$. A horizontal asymptote is a line $$y=a$$ where as the
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding a Horizontal Asymptote</b></h4>
+<h3>Finding a Horizontal Asymptote</h3>
 The end behavior of a rational function is determined by the leading terms in the numerator and the denominator. Intuitively this makes total sense because as we plug in really large values of $$x$$, the leading term will be the only thing matters. Because of this, we want to focus on only these leading terms. For example if we have,
 <div>
 $$
@@ -31,7 +31,7 @@ The degree of the numerator is $$m$$ and the degree of the denominator is $$n$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Case 1: $$m < n$$</b></h4>
+<h3>Case 1: $$m < n$$</h3>
 What happens to the rational when the degree of the numerator is less than the degree of denominator. Take the example of $$1/x$$ again. We have degree 0 in the numerator and degree 1 in the denominator. You can see here as that as you plug in larger and larger values of $$x$$, the function will approach zero. Similarly take the function,
 <div>
 $$
@@ -53,7 +53,7 @@ We can see here that it simplified again to a constant up in the numerator. Agai
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Case 2: $$m = n$$</b></h4>
+<h3>Case 2: $$m = n$$</h3>
 To study the behavior of a rational function when $$m = n$$, we will again focus on the leading terms in the numerator and the denominator. For example, if we have
 <div>
 $$
@@ -75,7 +75,7 @@ This simply states that as we plug in larger and larger values of $$x$$, we will
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Can you cross a horizontal asymptote?</b></h4>
+<h3>Can you cross a horizontal asymptote?</h3>
 Yes! unlike vertical asymptotes, we can cross horizontal asymptotes.  
 
 

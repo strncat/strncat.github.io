@@ -12,7 +12,7 @@ mathjax: true
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A$$ be a set with an upper bound $$a$$. The least upper bound of $$A$$ is less than or equal to any other upper bound by the definition of the least upper bound so,
 <div>
 $$

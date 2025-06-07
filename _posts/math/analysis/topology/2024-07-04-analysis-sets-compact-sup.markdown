@@ -10,7 +10,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Suppose $$K$$ is compact and nonempty. This means that $$K$$ is closed and bounded by <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. But if $$K$$ is bounded, then there exists a least upper bound. Let the least upper bound be $$s = \sup K$$. We know by <a href="http://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a> that since $$s$$ is the least upper bound, then for any $$\epsilon$$, there exists an $$x \in K$$ such that $$s - \epsilon < x$$. So now pick $$\epsilon$$????
 
 

@@ -9,7 +9,7 @@ These are notes I took while watching the series <a href="https://www.youtube.co
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Introduction</b></h4>
+<h3>Introduction</h3>
 It is easy to compute the dot product numerically. We just multiply the x-coordinate of both vectors followed by multiplying the y-coordinate of the vector and so on. We then add all the terms together. Here is an example:
 <div>
 $$
@@ -38,7 +38,7 @@ So to summarize, if both vectors are pointing in the same direction, then genera
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Order Doesn't Matter</b></h4>
+<h3>Order Doesn't Matter</h3>
 Even though in $$v \cdot w$$ we're projecting $$w$$ onto $$v$$ (taking the length of the projected $$w$$ and multiply it by the length of $$v$$) and in $$w \cdot v$$, we project $$v$$ onto $$w$$ (taking the length of the projected $$v$$ and multiply it by the length of $$w$$), we still get the same result which is kind of unexpected. Why doesn't the order matter?
 <br>
 <br>
@@ -54,7 +54,7 @@ This happens because scaling $$v$$ by whatever value won't change the length of 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>More Intuition</b></h4>
+<h3>More Intuition</h3>
 We've described the numerical way to calculate a dot product and then the geometric interpretation. But why would these things be related at all? How can multiplying these coordinates and then adding them together be related to projecting vectors onto each other?
 <br>
 <br>
@@ -93,7 +93,7 @@ This looks very familiar to how we compute a dot product essentially! The only d
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>1x2 Matrics and 2x1 Vectors</b></h4>
+<h3>1x2 Matrics and 2x1 Vectors</h3>
 So what's with these $$2x1$$ matrices that can just be tipped over to be $$1x2$$ vectors? It turns out that there is a connection between linear transformations that take vectors to numbers and vectors themselves. To explain this, forget everything we learned and instead take the numbers line and place it diagonally in a $$2d$$ plane where the number 0 will sit exactly at the origin. Let $$u$$ be a $$2d$$ vector such that its tip sits at the number 1 on the numbers line. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/dot-product/05-uhat.png" width="65%" class="center"></p>
 Suppose now we have a bunch of $$2d$$ vectors in the plane. Project these vectors right onto the diagonal number line. This is a function that takes $$2d$$ vectors and projects them on the numbers line. This function is linear. A line of evenly spaced dots that gets projected results in these projected dots as evenly spaced on the numbers line as well. 
@@ -140,7 +140,7 @@ This is why taking the dot product with a unit vector can be interpreted as proj
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>?</b></h4>
+<h3>?</h3>
 What about non-unit vectors? for example, scale $$v$$ by 3 to get $$[3u_x, 3u_y]$$. This means that $$\widehat{i}$$ and $$\widehat{j}$$ will land at $$3u_x$$ and $$3u_y$$. More generally, this means that the new matrix $$[3u_x,3u_y]$$ can be interpreted as projecting any vector onto the numbers line and multiplying where it lands by 3. This is why the dot product with a non-unit vector can be interpreted as first projecting onto that vector and then scaling up the length of that projection by the length of the vector. 
 
 
@@ -159,7 +159,7 @@ to summarize, the dot product is a very useful geometric tool for understanding 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>?</b></h4>
+<h3>?</h3>
 What about non-unit vectors? for example, scale $$v = [u_x, u_y]$$ by 3. 
 
 
@@ -171,7 +171,7 @@ What about non-unit vectors? for example, scale $$v = [u_x, u_y]$$ by 3.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br>
 <br>

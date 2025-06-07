@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(a_n)$$ be a sequence that is monotone and bounded. Suppose without the loss of generality that $$(a_n)$$ is increasing. We know that $$(a_n)$$ is bounded so if we consider the set $$\{a_n : n \in \mathbf{N}\}$$, then we can let
 <div>
 $$

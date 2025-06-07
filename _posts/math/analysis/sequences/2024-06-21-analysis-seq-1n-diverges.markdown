@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(a_n) = (-1)^n$$. Consider the subsequence $$(a_{2n})$$. This is a subsequence of $$(a_n)$$. $$a_{2n}$$ is
 <div>
 $$

@@ -24,33 +24,33 @@ First, if $$a < 0$$, then we'll run into complex numbers and other issues so typ
 The trick to graphing these functions to always remember that we always have the points $$(0,1)$$ and $$(1,a)$$ plotted on our graph! so always evaluate the inputs $$0$$ and $$1$$.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Domain and Range</b></h4>
+<h3>The Domain and Range</h3>
 It's important to know the domain and range to help see what the functions would look like. The domain here is any real number so $$(-\infty, \infty)$$. What about the range? We can never reach any number that is zero or below so the range can be written as $$(0, \infty)$$. This also means that $$y=0$$ is a horizontal asymptote. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Vertical Asymptotes</b></h4>
+<h3>Vertical Asymptotes</h3>
 The domain is all the real numbers so we don't have any domain issues and so we won't have any vertical asymptotes.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Horizontal Asymptotes</b></h4>
+<h3>Horizontal Asymptotes</h3>
 so I know intuitively that for $$a^x$$ for example, the graph never reaches 0 no matter what $$x$$ values we plug in. This means that $$y=0$$ is a horizontal asymptote. I've also seen tutorials define the asymptote of exponential functions of the form $$f(x)=ca^{x+b}+d$$ to be $$d$$. Either way? it's kind of clear? or maybe now?
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>$$e^x$$</b></h4>
+<h3>$$e^x$$</h3>
 $$e^x$$ comes up frequently but is there anything special about graphing it? not really. It is very similar to the above.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/exponential/2.png" width="70%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Vertical Shift</b></h4>
+<h3>Vertical Shift</h3>
 What happens if we're about to graph a function like $$3^x - 2$$. Notice here that we have a $$-2$$. This is a vertical shift that will shift be the whole graph of the function down two units (green curve moved down 2 units from the original blue curve). Note that the horizontal asymptote is also going to shift to -2.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/exponential/3.png" width="70%" class="center"></p>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Horizontal Shift</b></h4>
+<h3>Horizontal Shift</h3>
 A horizontal shift example is the following:
 <div>
 $$
@@ -63,7 +63,7 @@ We know originally we had $$2^x$$ along with a horizontal asymptote at $$y=0$$ a
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/exponential/4.png" width="70%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Reflection Around the Horizontal Asymptote</b></h4>
+<h3>Reflection Around the Horizontal Asymptote</h3>
 Suppose we're graphing the following function:
 <div>
 $$
@@ -86,7 +86,7 @@ Next,
 </ul>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>More Examples</b></h4>
+<h3>More Examples</h3>
 Suppose we're graphing the following function:
 <div>
 $$

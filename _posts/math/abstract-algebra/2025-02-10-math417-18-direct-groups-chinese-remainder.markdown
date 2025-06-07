@@ -33,7 +33,7 @@ You can verify that this is indeed a group (Exercise).
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$G = \langle a \rangle$$ where $$o(a) = 2$$ and $$H = \langle b \rangle$$ with $$o(b) = 2$$. Then
 <div>
 $$
@@ -57,7 +57,7 @@ From this we see that each element is of order 2 since $$G \times H$$ is isomorp
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Properties of Direct Product Groups</b></h4>
+<h3>Properties of Direct Product Groups</h3>
 These are some facts about direct product groups
 <div class="peachheaderdiv">
 Proposition
@@ -92,7 +92,7 @@ is an isomorphism. [TODO ... verify]
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Generalizing Direct Products</b></h4>
+<h3>Generalizing Direct Products</h3>
 We can generalize the definition of direct products to say
 <div class="mintheaderdiv">
 Definition: Generalized Direct Products
@@ -114,7 +114,7 @@ $$
 is a group.
 </div>
 <br>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let's take the previous example but slightly modify it so that $$G = \langle a \rangle$$ where $$o(a) = 2$$ and $$H = \langle b \rangle$$ with $$o(b) = 3$$. So now we're get 6 elements instead in the group
 <div>
 $$
@@ -197,7 +197,7 @@ where $$m = lcm(a,b) = \frac{ab}{gcd(a,b)}$$.
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>A New Homomorphism</b></h4>
+<h3>A New Homomorphism</h3>
 As a consequence of this, we will get an injective homomorphism from the quotient group $$\mathbf{Z}/\mathbf{Z}m$$ which is $$\mathbf{Z}_m$$ to $$\mathbf{Z}_a \times \mathbf{Z}_b$$ as follows
 <div>
 $$
@@ -232,7 +232,7 @@ Fact: the reverse, if $$gcd(a,b) > 1$$, then $$\mathbf{Z}_a \times \mathbf{Z}_b 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Chinese Remainder Theorem</b></h4>
+<h3>Chinese Remainder Theorem</h3>
 The previous theorem is in fact the Chinese Remainder Theorem but the Chinese Remainder Theorem is stated in terms of modular arithmetic.
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
@@ -276,7 +276,7 @@ For example: $$\mathbf{Z}_{240} = \mathbf{Z}_{16} \times \mathbf{Z}_3 \times \ma
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>The Multiplicative Group</b></h4>
+<h3>The Multiplicative Group</h3>
 Recall $$\mathbf{Z}_n$$ is not just a group but a ring with two operations addition and multiplication. Inside this ring, we can focus on the elements that have a multiplicative inverse and form $$\Phi(n) = \{u \in \mathbf{Z}_n \ | $$ u has a multiplicative inverse $$\} \subseteq \mathbf{Z}_n$$. $$(\Phi(n),\cdot)$$ is a group with the multiplication operation. This group is also abelian and is called "modular units". It is not a subgroup of $$\mathbf{Z}_n$$.
 <br>
 <br>
@@ -359,7 +359,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

@@ -21,7 +21,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Problem Discussion</b></h4>
+<h3>Problem Discussion</h3>
 We'll follow a similar approach to proving (i) in <a href="https://strncat.github.io/jekyll/update/2024/05/30/analysis-seq-algebraic-limit-theorem-i.html">here</a> For (ii) we want to show that $$\lim (a_n + b_n) = a + b$$. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
 <div>
 $$
@@ -66,7 +66,7 @@ $$
 $$N$$ can safely be set to the maximum of $$N_1$$ and $$N_2$$ to guarantee the above bounds.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 Let $$\epsilon > 0$$ be arbitrary. We are given that $$\lim a_n = a$$. This means that for some $$n \geq N_1$$ and for any choice of $$\epsilon$$ (we choose $$\epsilon$$ to be $$\epsilon/2$$), the following holds:
 <div>
 $$

@@ -15,13 +15,13 @@ How can we verify the above conditions? In this post, we'll develop procedures t
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Condition 1: Intersection of the diagonal \(d\) with the boundary of \(p\)</b></h4>
+<h3>Condition 1: Intersection of the diagonal \(d\) with the boundary of \(p\)</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-1.png" width="60%" class="center"></p>
 So given a diagonal candidate $$d$$ with end points $$a$$ and $$b$$, how do we go about testing its intersection with the boundary of $$p$$. The boundary consists of the edges of the polygon. The diagonal is incident to at most 4 of these edges. If we keep this case separately and focus on the rest of edges, then we simply want to know if this candidate doesn't intersect ANY of these edges besides the special 4. In other words, for all other edges that are not incident to $$a$$ or $$b$$, their intersection with $$d=ab$$ is empty.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Segment Intersection</b></h4>
+<h3>Segment Intersection</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-2.png" width="60%" class="center"></p>
 Since we only care about the existence of an intersection rather than the intersection point itself, then we can go back to what we studied before about the orientation of three ordered points (see Orientation of Three Points post and also Segment Intersection (CLRS)). Suppose we're given three ordered points $$p, q, r$$, then the expression $$(q_x-p_x)(r_y-p_y) - (r_x-p_x)(q_y-p_y)$$ is
 <ul>
@@ -92,7 +92,7 @@ Next we will study condition 2 which will handle both testing to see if $$d$$ is
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Condition 2: \(d\) is an internal diagonal (and more) </b></h4>
+<h3>Condition 2: \(d\) is an internal diagonal (and more) </h3>
 Suppose that $$d$$ indeed doesn't intersect the boundary (minus the special edges). $$d$$ has two vertices $$a$$ and $$b$$. We will perform the following test on both vertices but just for demonstration, let's choose vertex $$a$$. Suppose that vertex $$a$$ is a convex vertex (this can be determined by checking if $$a$$ is on the (left or on) of the line that goes through $$\overline{aa_0}$$). Let's consider the following cases:
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation-algorithm/tri-convex.png" width="100%" class="center"></p>
 <ul>
@@ -137,7 +137,7 @@ bool is_diagonal(tVertex *a, tVertex *b) {
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
 <br>
 <br>

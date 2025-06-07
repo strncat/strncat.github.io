@@ -76,7 +76,7 @@ Let $$E$$ be an elementary $$n \times n$$ matrix. We know that that $$E$$ was ob
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li><a href="https://www.amazon.com/Linear-Algebra-5th-Stephen-Friedberg/dp/0134860241">Linear Algebra 5th Edition by Stephen Friedberg, Arnold Insel, Lawrence Spence</a></li>
 </ul>

@@ -18,7 +18,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose $$n = 7$$ and $$a = 3$$, then
 <div>
 $$
@@ -46,7 +46,7 @@ So the multiplicative order of 4 modulo 7 is 3.
 
 
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Multiplicative_order">Wikipedia</a></li>
 </ul>

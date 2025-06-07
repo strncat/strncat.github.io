@@ -19,7 +19,7 @@ So in three iterations we have arrived at a palindrome so $$349$$ is not a lychr
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 The solution in python is extremely simple but since I stuck to $$c++$$ which was a massive pain for this problem since it deals with big integers. Not even an unsigned long long will be enough here! In main, we will want to convert each num to be represented by a vector and then check if the array represents a lychrel number.
 
 {% highlight c++ %}
@@ -111,7 +111,7 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=55">Project Euler - 55</a>
 <br>
 <br>

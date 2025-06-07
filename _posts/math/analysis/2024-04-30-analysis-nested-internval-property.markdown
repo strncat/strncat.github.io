@@ -21,11 +21,11 @@ has a nonempty intersection; that is, \(\bigcap_{n=1}^{\infty} I_n \neq \emptyse
 For the definitions of an upper bound and the least upper bound of a set, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Discussion:</b></h4>
+<h3>Discussion:</h3>
 This is a result that shows that $$\mathbf{R}$$ is definitely complete and has no holes because no matter what nested intervals we have, even if we have an infinite number of these nested intervals, their intersection will not be empty. This result is built on top of the axiom of completeness. Why another result? Because it might be more intuitive think about a never ending nested intervals without ever being empty than thinking about always having a least upper bound for bounded sets.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 We will use the axiom of completeness to produce a single real number $$x$$ satisfying $$x \in I_n$$ for every $$n \in \mathbf{N}$$. For this, consider the set of all the left end points of each of these intervals,
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/real-analysis/nested-interval.png" width="90%" class="center"></p>

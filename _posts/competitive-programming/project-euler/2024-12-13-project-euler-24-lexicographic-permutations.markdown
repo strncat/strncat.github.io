@@ -18,7 +18,7 @@ I think the point of the exercise is to implement this on our own or come up wit
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=24">Project Euler - 24</a>
 <br>
 <br>

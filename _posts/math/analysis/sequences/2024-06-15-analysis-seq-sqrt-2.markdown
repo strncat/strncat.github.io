@@ -15,7 +15,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Problem Discussion</b></h4>
+<h3>Problem Discussion</h3>
 We'll follow a similar approach to proving the example in <a href="https://strncat.github.io/jekyll/update/2024/06/04/analysis-seq-sqrt.html">here</a>. We want to show that $$(\sqrt{n + 1} - \sqrt{n})$$ converges to 0, so we need to find $$N \in \mathbf{N}$$ such that for any $$\epsilon > 0$$,
 <div>
 $$
@@ -58,7 +58,7 @@ So now if we let $$n$$ be greater than $$N = \frac{1}{4\epsilon^2}$$, we'll get 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 To show that $$(\sqrt{n + 1} - \sqrt{n})$$ converges to 0, let $$\epsilon > 0$$ be arbitrary. We want to prove that there exists some $$N \in \mathbf{N}$$ such that when $$n > N$$,
 <div>
 $$

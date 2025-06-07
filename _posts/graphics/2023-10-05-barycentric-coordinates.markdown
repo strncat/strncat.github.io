@@ -6,17 +6,17 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Overview</b></h4>
+<h3>Overview</h3>
 The barycentric coordinates are heavily used to graphics. We typically work with triangles and so when we're about to color a pixel we interpolate the values in the three vertices of the triangle to come up with the right color for the pixel. This applies to many other information stored at the vertices like reflectivity, transparency and so on. To define barycentric coordinates, we 'll start by studying the parametrized function form of a line segment next.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Parametrized Functions for Line Segments</b></h4>
+<h3>Parametrized Functions for Line Segments</h3>
 How do we interpolate between two points on a line segment? use the parametric form.
 Suppose we have two points $$(x_1,y_1), (x_2,y_2)$$
 <div>
@@ -39,7 +39,7 @@ This $$t$$ ranges from 0 to 1 and can be seen as the fraction of the way from $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Barycentric Weights for Line Segments</b></h4>
+<h3>Barycentric Weights for Line Segments</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/triangles/02-segment-barycentric.png" width="50%" class="center"></p>
 So that's fine but really, we don't care about the length among the axis. We care about the length along the segment itself. So instead of the parameter or the fraction being a fraction of the length along the x-axis, we want that to be a fraction of the length travel along the segment.
 So suppose we have two points $$p_0$$ and $$p_1$$, for 
@@ -74,7 +74,7 @@ Note where $$\alpha_0$$ and $$\alpha_1$$ are on the line. We did as a convention
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Barycentric Weights for Triangles (1st Approach: Geometric)</b></h4>
+<h3>Barycentric Weights for Triangles (1st Approach: Geometric)</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/triangles/03-triangle-barycentric.png" width="50%" class="center"></p>
 So for triangles we will express a point $$p$$ as $$p =  \alpha_0 p_0 + \alpha_1 p_1 + \alpha_2p_2$$ with barycentric weights $$\alpha_0, \alpha_1, \alpha_2 \in [0,1]$$ and $$\alpha_0 + \alpha_1 + \alpha_2 = 1$$
 We can compute the weights via the areas such as:
@@ -99,7 +99,7 @@ So using the cross product, we can compute all these areas to derive the barycen
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Barycentric Weights for Triangles (2nd Approach: Algebraic)</b></h4>
+<h3>Barycentric Weights for Triangles (2nd Approach: Algebraic)</h3>
 TODO
 
 
@@ -108,7 +108,7 @@ TODO
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Barycentric Weights for Triangles (3rd Approach)</b></h4>
+<h3>Barycentric Weights for Triangles (3rd Approach)</h3>
 Compute the vectors $$u = p_0 - p_2$$ and $$v = p_1 - p_2$$. Any point $$p$$ in the triangle can be written as 
 <div>
 $$
@@ -129,7 +129,7 @@ where $$\alpha_0 = \beta_1$$, $$alpha_1 = \beta_2$$ and $$\alpha_2 = 1 - \beta_1
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Find the color and z' value at a pixel</b></h4>
+<h3>Find the color and z' value at a pixel</h3>
 To see an example, let's say we want to find the $$z'$$ of a pixel. we know the $$z'$$ value for each vertex of the triangle. What do we do now? We just figure out the barycenteric weights and multiply the weights by the $$z'$$ values of each vertex of the triangle in,
 <div>
 $$
@@ -142,7 +142,7 @@ Similarly we can interpolate the color of the pixel. Multiply the color of the v
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>
 <br>
 <br>

@@ -10,12 +10,12 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Notes</b></h4>
+<h3>Notes</h3>
 Cantor published this proof in 1874! It's one of the most beautiful proofs I have ever seen.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Assume for the sake of contradiction that (0,1) is countable. This means that there exists a function $$f: \mathbf{N} \rightarrow (0,1)$$ that is 1-1 and onto. So for each $$m \in \mathbf{N}$$, $$f(m)$$ is a real number between 0 and 1. We'll represent this number using the decimal notation. So for each $$m, n \in mathbf{N}, a_{mn}$$ is the digit from the set \{0,1,2,...,9\} that represents that $$n$$th digit in the digital representation of $$f(m)$$,
 <div>
 $$

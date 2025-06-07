@@ -38,7 +38,7 @@ In short, we're following a recipe to construct a homomorphism. Given a homomorp
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 (1) First we need to check that $$\varphi'$$ is well defined. This means that want to show that if $$aN = bN$$ (in $$G/N$$), then $$\varphi'(a) = \varphi'(b)$$ which is $$\varphi(a) = \varphi(b)$$ in $$H$$ by how we defined $$\varphi'$$ above. Re-write $$aN = bN$$ as
 <div>
 $$
@@ -99,7 +99,7 @@ Notice now that $$N$$ is a subgroup of $$K$$. This means that any coset of $$N$$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Isomorphism Theorem</b></h4>
+<h3>Isomorphism Theorem</h3>
 <div class="yellowheaderdiv">
 Isomorphism Theorem
 </div>
@@ -124,7 +124,7 @@ Moreover, its kernel per the homomorphism theorem is $$\{aN \ | \ aN \subseteq K
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 <ul>
 <li>Let \(H = \langle a \rangle\) be a finite cyclic group of order \(n\). </li>
 <li>Let \(G = (\mathbf{Z}, +)\). </li>
@@ -147,7 +147,7 @@ Reminder: $$\mathbf{Z}/\mathbf{Z}n = \mathbf{Z}_n$$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 <ul>
 <li>Let \(\mathbf{F}^{x} = \mathbf{F} \ \{0\}\). </li>
 <li>Let \(GL_n(\mathbf{F}) = \{ A \in Mat_{n \times n}(\mathbf{F})\) such that \(A\) is invertible\(\}\) with matrix multiplication. </li>
@@ -172,7 +172,7 @@ The Isomorphism Theorem tells us that $$GL_n(\mathbf{F})/SL_n(\mathbf{F})$$ is i
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 We're going to show that $$S_4 / N \approx S_3$$. 
 <br>
 <br>
@@ -313,7 +313,7 @@ Notice here that we first proved that $$|K| = 4$$ before finding the elements in
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 4</b></h4>
+<h3>Example 4</h3>
 Suppose that $$n \geq 3$$. Let $$D_{2n}$$ be the symmetries of regular $$2n$$-gon (even number of vertices.)<br> 
 We already know that if we have a symmetry of an $$n-$$gon, we get a permutation of its vertices. But there are other ways to construct a homomorphism. Consider the following homomorphism
 <div>
@@ -339,7 +339,7 @@ The kernel of this homomorphism is a normal subgroup of $$D_6$$ and by the Isomo
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

@@ -1,0 +1,43 @@
+I"<p>This is just Sieve’s algorithm to find all primes until we reach the 10001st prime. I don’t know know if there is a faster algorithm to do this.
+In Sieve’s algorithm, we mark all numbers up to our limit \(N\) as potential primes. Then starting at 2, we mark all multiples of 2 as non prime. When we’re done, we move to the next potenial prime and repeat the same process.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#define N 1000000
+</span><span class="kt">int</span> <span class="n">primes</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">sieve</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">s</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+    <span class="c1">// mark all numbers as potential primes</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">p</span><span class="p">])</span> <span class="p">{</span>
+            <span class="c1">// mark all multiples of p as not prime</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">primes</span><span class="p">[</span><span class="n">index</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// the 10001st prime is primes[10000]</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+This isn’t the best solution to this problem. One solution I’ve seen is tokenizing this string on “0” because any product that involves zero will not be the maximum product and you are better off starting at the position right after 0. So now you have \(n\) substrings with no zeros. You can now multiply the first 13 digits and then in each subsequent iteration, you will either have to reset the product since you’ve arrived at a new substring or you will need to multiply by the new number and divide by the first very digit (sliding window kind of algorithm).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>References&lt;/b&gt;&lt;/h4&gt;
+<a href="https://projecteuler.net/problem=7">Project Euler - 07</a>
+<br />
+<br />
+
+
+</h3>
+:ET

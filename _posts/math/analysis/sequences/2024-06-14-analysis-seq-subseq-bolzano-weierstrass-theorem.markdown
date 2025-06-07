@@ -18,12 +18,12 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Problem Discussion:</b></h4>
+<h3>Problem Discussion:</h3>
 This is a great theorem because we're saying that given any sequence whether convergent or divergent, we can still extract a convergent subsequence from it. For example if we're given the sequence $$\{0,1,0,1,0,1,0,1,0,1,.....\}$$ which clearly won't converge, we can still make up the subsequence $$\{0,0,0,0,....\}$$ which clearly converges to 0. But how do we prove this? This proof relies on the <a href="https://strncat.github.io/jekyll/update/2024/04/30/analysis-nested-internval-property.html">nested interval property</a> which states that the intersection a nested sequence of closed intervals is non-empty. We will construct a subsequence from having many nested intervals and then we'll use the nested sequence property to conclude something about its convergence.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(a_n)$$ be a bounded sequence. By <a href="https://strncat.github.io/jekyll/update/2024/06/03/analysis-seq-bounded.html">theorem 2.3.1</a>, we know that there exists a number $$M > 0$$ satisfying $$|a_n| \leq M$$ for all $$n \in \mathbf{N}$$. We will bisect this closed interval $$[-M,M]$$ into two closed intervals $$[-M,0]$$ and $$[0,M]$$ noting here that the mid point belongs to both intervals. Now, $$(a_n)$$ has infinitely many terms by definition. So one of these halfs must contain an infinite number of terms of the sequence $$(a_n)$$. Let this interval be $$I_1$$ (Choose the left half if both had infinitely many terms).
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/real-analysis/bolzano-0.png" width="80%" class="center"></p>

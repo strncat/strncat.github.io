@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition: Bounded Sequences</b></h4>
+<h3>Definition: Bounded Sequences</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
 	A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
 </div>
@@ -31,7 +31,7 @@ holds. Since this bound only applies to the terms when $$n \geq N$$, we can take
 Therefore, we have $$|x_n| \leq M$$ for all $$n \in \mathbf{N}$$ as required. $$\blacksquare$$.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 </ul>

@@ -10,7 +10,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Let $$A$$ be a set subset of $$\mathbf{R}$$ and let $$L$$ be the set of its limit points. By definition $$\overline{A} = A \cup L$$. To prove that $$\overline{A}$$ is closed, we'll start by proving that $$L$$ is closed. To do so, let $$x$$ be a limit point of $$L$$. We need to prove that $$x \in L$$. Since $$x$$ is a limit point of $$L$$ this means that given $$\epsilon > 0$$, every $$\epsilon$$-neighborhood $$V_{\epsilon/2}(x)$$ of $$x$$ intersects $$L$$ at some element $$y$$ such that $$x \neq y$$. But this implies that $$y$$ is a limit point of $$A$$ (since $$L$$ is the set of $$A$$'s limit points). Again by the definition of a limit point, this means that given $$\epsilon > 0$$, every $$\epsilon$$-neighborhood $$V_{\epsilon/2}(y)$$ of $$y$$ intersects $$A$$ at some element $$z$$ such that $$y \neq z$$. So now we have $$x$$ and $$z$$ within a distance of at most $$\epsilon$$ of each other. In other words,
 <div>
 $$

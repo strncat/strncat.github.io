@@ -68,7 +68,7 @@ This runs in 0.066298 seconds on my M1 mac.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=41">Project Euler - 41</a>
 <a href="https://en.wikipedia.org/wiki/Divisibility_rule">Divisibility Rules</a>
 <br>

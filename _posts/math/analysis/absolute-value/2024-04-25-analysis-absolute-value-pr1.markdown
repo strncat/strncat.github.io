@@ -11,7 +11,7 @@ mathjax: true
 <br>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>. 
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 By the definition of the absolute value function we have two cases:
 <ul>
 <li>if \(x \geq 0\), then \(|x| = x\) and so \(|x| \geq 0\).</li>

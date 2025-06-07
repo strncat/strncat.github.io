@@ -13,7 +13,7 @@ For the definitions of sequences and what it means to for a sequence to converge
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Problem Discussion</b></h4>
+<h3>Problem Discussion</h3>
 So for the above limit, the claim is that it converges to 0. From the definitions page above, the limit of a sequence converges to $$a$$ if we can find some number $$N$$ such that no matter what $$\epsilon$$ we choose, the inequality $$|a_n - a| < \epsilon$$ will always hold. This inequality is saying that the terms in the sequence are going to fall within the neighborhood of $$a$$ ($$V_\epsilon(a)$$) for some value $$n \geq N$$. In other words, all the terms starting at $$n \geq N$$ will be within a radius of $$\epsilon$$ around $$a$$.
 <br>
 <br>
@@ -51,7 +51,7 @@ $$
 So we want $$n$$ to be greater than $$1/\epsilon^2$$. So now we are ready to write a formal proof.
 
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof Template</b></h4>
+<h3>Proof Template</h3>
 There is a pretty nice template for showing that the limit of some sequence $$(a_n)$$ equals a real number $$a$$ in the book. The template consists of
 <ol type=1>
 	<li>Let \(\epsilon > 0\) be arbitrary. (It's important to show this works for any \(\epsilon\).)</li>
@@ -62,7 +62,7 @@ Next we're going to copy this template and fill out the necessary details for th
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 Let $$\epsilon > 0$$ be arbitrary. Choose a natural number $$N$$ satisfying
 <div>
 $$

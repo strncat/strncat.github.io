@@ -10,7 +10,7 @@ mathjax: true
 </div>
 <br>
 This is in a way saying that the distance between $$a$$ and $$c$$ is less than or equal to the distance from $$a$$ to $$b$$ and then from $$b$$ to $$c$$.
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$a$$, $$b$$ and $$c$$ be real numbers. Let $$x = a-b$$ and $$y = b-c$$. Using the triangle inquality we know that
 <div>
 $$

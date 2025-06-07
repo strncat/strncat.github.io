@@ -196,7 +196,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Cramer's Rule</b></h4>
+<h3>Cramer's Rule</h3>
 Observation: If $$A \in M_{n \times n}$$ is invertible, then any system $$A\bar{x}=\bar{b}$$ has a unique solution.
 <div>
 $$
@@ -289,7 +289,7 @@ Any map with those three properties has to be the determinant!
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

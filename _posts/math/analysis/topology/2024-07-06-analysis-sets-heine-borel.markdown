@@ -15,7 +15,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 We proved that (i) and (ii) are equivalent in <a href="https://strncat.github.io/jekyll/update/2024/07/02/analysis-sets-compact-theorem.html">theorem 3.3.4</a>. Next we will show that (iii) implies (ii) and thus (i) as well. So assume that every open cover for \(K\) has a finite subcover. We'll show that \(K\) is bounded and closed. 
 <br>
 <br>

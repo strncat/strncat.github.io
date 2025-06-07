@@ -7,7 +7,7 @@ mathjax: true
 ---
 Similar to <a href="https://strncat.github.io/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html">Problem 69</a>, this problem is about Euler's Totient function. To recap, given an integer $$n$$, the Totient function $$\phi(n)$$ is the number of positive integers not exceeding $$n$$ and are relatively prime to $$n$$. The goal of this problem is to find  $$n$$ such that $$\frac{n}{\phi(n)}$$ is maximized.
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 To start, we should definitely make use of existing formula to compute the Totient function. The formula is: given an integer $$n$$ and the distinct prime divisors of $$n$$ $$\{p_1,p_2...,p_k\}$$, we can compute the Totient function as follows
 <div>
 	$$
@@ -80,7 +80,7 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>More Advanced Solution?</b></h4>
+<h3>More Advanced Solution?</h3>
 while the brute force solution is great (good to practice writing all of these methods), you can see above that the formula
 <div>
 	$$
@@ -94,7 +94,7 @@ is maximized when we have the most distinct prime numbers. So instead we can gen
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=70">Project Euler - 70</a>
 <br>
 <br>

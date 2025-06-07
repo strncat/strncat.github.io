@@ -10,12 +10,12 @@ Let $$G=(V,E)$$ be a weighted graph with $$V$$ vertices and $$E$$ edges. Bellman
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Motivation</b></h4>
+<h3>Motivation</h3>
 But why another shortest paths algorithms. W've already discussed Dijkstra's algorithm to find the shortest paths which is extremely fast and runs in just $$O(V\log(V)+E)$$ time. Unfortunately, Dijkstra doesn't handle negative edge weights and bellman-ford could! so it's important to learn what bellman-ford is about!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Optimal Substructure</b></h4>
+<h3>Optimal Substructure</h3>
 Since it's a dynamic programming algorithm, then this means that we must have some optimal recursive substructure where a solution to the problem includes solutions within it to smaller subproblems.
 <br><br>
 Let $$D[v,i]$$ be the length of the shortest path from $$s$$ to some vertex $$v$$ whose number of edges is at most $$i$$. Given that we know $$D[v,i]$$ for all $$v \in V$$, what can we say about $$D[v,i+1]$$? In other words, given that we know the shortest path using at most $$i$$ edges from $$s$$ to any vertex in $$G$$, what can we say about the length of the shortest path from $$s$$ to some vertex $$v$$ with at most $$i+1$$ edges? Let's think about this before looking at the answer. Bellman-Ford definitely wasn't easy for me to think about.
@@ -38,12 +38,12 @@ With the base case that for $$i = 0$$, $$D[s,0]=0$$ and $$D[v,0]=\infty$$ for al
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Bellman-Ford and Dijkstra</b></h4>
+<h3>Bellman-Ford and Dijkstra</h3>
 So what is the relationship between Bellman-Ford and Dijkstra? are they connected in any way? Let's think about this. We know that in every iteration of Dijkstra's algorithm, we pick the node with the smallest estimate and then check all the immediate neighbors to see whether any of the neighbors distances' can be updated. Dijkstra smartly picks the right vertex in every iteration. However, in Bellman-Ford, we just check all of vertices every single iteration. So it's slower, but now we can find the shortest paths in graphs with negative edges.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 void BellmanFord(graph& g) {
 	int distance[g.size()], parent[g.size()];
@@ -69,7 +69,7 @@ void BellmanFord(graph& g) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 We update according the base case all the shortest paths that use 0 edges to $$\infty$$ except for the source vertex where the shortest path is of length 0.
 <img src="{{ site.url }}/assets/graphs/bellman-ford/initial.png" width="100%">
 <br><br>
@@ -100,7 +100,7 @@ As this point, the algorithm terminates and we have the final shortest paths fro
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Can we have negative cycles?</b></h4>
+<h3>Can we have negative cycles?</h3>
 If $$G$$ has negative cycles then the shortest paths are not defined. They are not defined because you can always find a shorter path by traversing the negative cycle one more time. Bellman-Ford could however detect negative cycles by just doing another iteration and checking if the lengths are continuing to decrease. If they decrease, then we know we have a cycle and we can exit and report that. The sample code below can be added to the above implementation before returning from the function:
 {% highlight c++ %}
 We can add one additional iteration to discover negative cycles:
@@ -116,12 +116,12 @@ for (int i = 0; i < g.size(); i++) { // for every edge in the graph
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Why only \(n-1\) iterations?</b></h4>
+<h3>Why only \(n-1\) iterations?</h3>
 To answer this question, we ask: can we have positive cycles in a shortest path? The answer is again no. Suppose that we are given a shortest path with a positive weight cycle. Then we can remove the cycle from the path and arrive at a shorter path. This is a contradiction and therefore, we can not have positive weight cycles. Additionally if the cycle is of zero weight or length, then removing the cycle from the shortest path will produce a path with the same weight/length. Therefore, we can restrict finding the shortest path problem to finding a simple shortest path. Simple paths in a graph with $$n$$ vertices can have at most $$n-1$$ edges and therefore, all we need to do is run Bellman-Ford for $$n-1$$ iterations. (CLRS page 645)
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Correctness Proof</b></h4>
+<h3>Correctness Proof</h3>
 
 | Theorem: Given a graph $$G=(V,E)$$ and a source vertex $$s$$, Bellman-Ford correctly finds the shortest simple paths from $$s$$ to every other node in $$G$$ |
 
@@ -139,25 +139,25 @@ To answer this question, we ask: can we have positive cycles in a shortest path?
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 Assume we have $$n$$ vertices and $$m$$ edges. We have $$n-1$$ iterations. In each iteration we check every single edge in the graph. Therefore, the running time is $$O(nm)$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 <a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/shortest-paths/bellman-ford.cpp
 ">Here</a> 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Practice Problems</b></h4>
+<h3>Practice Problems</h3>
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=0&problem=499">558 - Wormholes</a>
 <br>
 - <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1390">10449 Traffic</a>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="http://web.stanford.edu/class/cs161/schedule.html">Stanford CS161</a>
 <br>
 <br>

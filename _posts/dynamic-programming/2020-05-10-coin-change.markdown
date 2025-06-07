@@ -12,7 +12,7 @@ How can we design an algorithm to solve this problem?
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Method 1</b></h4>
+<h3>Method 1</h3>
 One way to count the number of ways to make change is to iterate through the coins and use each coin as a  starting point:
 - Start with a coin of value 5, then make change for $$n-5$$.
 - Start with a coin of value 2, then make change for $$n-2$$.
@@ -57,7 +57,7 @@ long make_change_recursive_alt(std::vector<int>& coins, int index, int amount) {
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Method 2</b></h4>
+<h3>Method 2</h3>
 Another way to think about this problem is to divide the solutions into two sets. Fix a coin of choice, $$c$$, and then divide the set of solutions into solutions that use the coin $$c$$ and solutions that don't use $$c$$. For amount 4 and coin "2", we have 1 way that doesn't use coin "2" and 2 different ways that does use it.
 <img src="{{ site.url }}/assets/dynamic-programming/coin-change/method2-coin.png" width="100%">
 
@@ -91,7 +91,7 @@ However, for $$n$$ coins, this solution still takes $$O(2^n)$$ time and is not e
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Method 3: Dynamic Programming</b></h4>
+<h3>Method 3: Dynamic Programming</h3>
 <img src="{{ site.url }}/assets/dynamic-programming/coin-change/substructure.png" width="100%">
 Suppose we know the solution to a problem we're solving. An optimal substructure means that the solution will contain solutions to smaller subproblems. Does this apply to the coin change problem? Yes! we just came up with a beautiful recurrence in the recursive solution above. Let $$K[c,n]$$ be the total number of ways to make change for amount $$n$$ and coins $$c$$. Fix a coin $$c_i$$ from the set $$c$$. We will have,
 <div center>
@@ -188,7 +188,7 @@ For amount $$n$$ and $$m$$ coins, The runtime is $$O(nm)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Method 4: Optimized Dynamic Programming</b></h4>
+<h3>Method 4: Optimized Dynamic Programming</h3>
 The previous method is great and optimal. We could however reduce the storage requirement from 2D to only 1D. If you pay attention to the recursive structure, you'll see that each row only depends on the previous row. So what we could do is just over write the current row onto the previous row until we reach the final answer in the last row. 
 {% highlight c++ %}
 // bottom up with less memory
@@ -204,7 +204,7 @@ void make_change_1d(std::vector<int>& coins, std::vector<int>& dp) {
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Proof of Correctness</b></h4>
+<h3>Proof of Correctness</h3>
 TODO?
 
 <!-- 
@@ -218,12 +218,12 @@ We will prove our claim by contradiction. Suppose that $$K[W] - v_k$$ is not an 
 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Practice Problems</b></h4>
+<h3>Practice Problems</h3>
 - <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2078">11137 - Ingenuous Cubrency</a> 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 - (Method 2) <a href="https://www.geeksforgeeks.org/coin-change-dp-7/">GeeksforGeeks</a> 
 <br>
 <br>

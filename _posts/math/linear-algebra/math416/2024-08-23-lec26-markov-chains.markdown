@@ -68,7 +68,7 @@ Here \(A_{ij} \geq 0\) and \(\sum_{i=1}^nA_{ij} = 1\). So \(A_{12} = 0.02\) is t
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Limit of a Markov Matrix</b></h4>
+<h3>The Limit of a Markov Matrix</h3>
 
 So $$\bar{p_0}$$ is the probability at time step 0. What is $$\bar{p_1}, \bar{p_2},...,\bar{p_n}$$?
 <div> 
@@ -235,7 +235,7 @@ Instead of proving (c), we will prove a slightly weaker theorem where we will as
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Diagonalizable Transition Matrix</b></h4>
+<h3>Diagonalizable Transition Matrix</h3>
 
 <div class="purdiv">
 Theorem (Corollary to 5.18)
@@ -350,7 +350,7 @@ Additionally since $$\l_j$$ is a probability vector, then we also know that $$\b
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Continuing the same example from before where 
 <div> 
 $$
@@ -410,7 +410,7 @@ $$\frac{1}{6}$$ corresponds to state 1 and $$\frac{5}{6}$$ correspond to state 2
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

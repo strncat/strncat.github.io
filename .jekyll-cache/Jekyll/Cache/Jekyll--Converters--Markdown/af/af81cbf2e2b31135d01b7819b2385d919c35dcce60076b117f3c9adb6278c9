@@ -1,0 +1,211 @@
+I"nW<h4><b>2D grid with no spaces between cells (marioyc)&lt;/h3&gt;
+I used to read grids with the second method below but this one is much simpler! I had to save it here for future references, borrowed from marioyc. In this specific example (469Wetlands of Florida), we are not given the dimensions of grid (ugh).<br />
+<table>
+<td>
+1 <br />
+<br />
+LLLLLLLLL <br />
+LLWWLLWLL <br />
+LWWLLLLLL <br />
+</td>
+</table>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">tests</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">;</span>
+<span class="n">scanf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tests</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">grid</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">tests</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">grid</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+    <span class="c1">// found this pretty sweet way of reading the grid (much better than my original)</span>
+    <span class="c1">// in marioyc's github</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">'W'</span> <span class="o">&amp;&amp;</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">'L'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span> <span class="c1">// not grid data anymore</span>
+        <span class="p">}</span>
+        <span class="n">grid</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">grid</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="c1">// number of rows</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="c1">// number of columns</span>
+<span class="p">}</span></code></pre></figure>
+
+Or if you know the dimensions,
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++">    <span class="kt">int</span> <span class="n">tests</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tests</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">tests</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">grid</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+            <span class="n">grid</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></figure>
+
+
+<br />
+<!------------------------------------------------------------------------->
+<h4><b>2D grid with no spaces between cells&lt;/h3&gt;
+This is done using std::getline like above, but here we save the grid as a 2D char array instead of multiple vectors of strings (above). In this particular, we know the dimensions but not the total number of tests.<br />
+<table>
+<td>
+3 <br />
+111 <br />
+222 <br />
+333 <br />
+2 <br />
+444 <br />
+333 <br />
+</td>
+</table>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">char</span> <span class="n">m</span><span class="p">[</span><span class="n">MAX</span><span class="p">][</span><span class="n">MAX</span><span class="p">];</span>
+<span class="kt">bool</span> <span class="nf">read_input</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span> <span class="c1">// a line here is 123</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// done reading</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<!------------------------------------------------------------------------->
+<h4><b>Unbounded tests and variable length strings (use sstream)&lt;/h3&gt;
+We have a bunch of tests but we don't know the number of tests. This is an example:<br />
+<table>
+	<td>
+5 <br />
+E 0.01 *A <br />
+... <br />
+10 <br />
+S 2.23 Q* <br />
+A 9.76 CKM <br />
+...
+</td>
+</table>
+
+Each test case starts with the number of lines in the test case. Each line contains three values and so we use std::istringstream to extract the values. The following works although not pretty. 
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include</span><span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span><span class="c1">// for each test case, we read the number of lines in the test case</span>
+<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="n">scanf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">planet</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+	<span class="c1">// this is my hack to know we're done and there are no more lines</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+	
+	<span class="c1">// take this line now and process it the way you want</span>
+	<span class="c1">// in this specific case, we know we have three values</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="nf">iss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+    <span class="n">iss</span> <span class="o">&gt;&gt;</span> <span class="n">planet</span> <span class="o">&gt;&gt;</span> <span class="n">value</span> <span class="o">&gt;&gt;</span> <span class="n">neighbors</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<!------------------------------------------------------------------------->
+<h4><b>2D grid with ints and characters&lt;/h3&gt;
+This is a square grid with 5 rows and 5 columns. Also, we're only given the lower triangle only in the matrix since this is an unweighted graph. The main issue was that an 'x' was used to indicate that there is no edge between the vertices.
+<table>
+<td>
+5 <br />
+50 <br />
+10 x <br />
+x 20 40 <br />
+40 x 30 60<br />
+</td>
+</table>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">d</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%*c"</span><span class="p">);</span> <span class="c1">// read x</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<!------------------------------------------------------------------------->
+<h4><b>3D grid with no space between cells&lt;/h3&gt;
+This is from problem "532 - Dungeon Master". Here we know when to terminate. We also know the number of rows, colums and the height (number of levels). There is also an extra new line between each board.
+<table>
+<td>
+2 4 5 <br />
+SXXXX <br />
+X@@@X <br />
+X@@XX <br />
+@@@X@<br />
+<br />
+@@@@@ <br />
+@@@@@ <br />
+@@X@@ <br />
+@@XXX <br />
+<br />
+1 3 3 <br />
+S@@<br />
+@E@ <br />
+@@@ <br />
+<br />
+0 0 0
+</td>
+</table>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">char</span> <span class="n">m</span><span class="p">[</span><span class="n">MAX</span><span class="p">][</span><span class="n">MAX</span><span class="p">][</span><span class="n">MAX</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">start_k</span><span class="p">,</span> <span class="n">start_i</span><span class="p">,</span> <span class="n">start_j</span><span class="p">;</span>
+
+<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">R</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">C</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">L</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">R</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">C</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kt">char</span> <span class="n">line</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span>
+<span class="c1">// each level</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// each board</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">R</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">MAX</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span> <span class="c1">// a line here is @@XX@</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">C</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">j</span><span class="p">];</span> <span class="c1">// put each char in its cell</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'S'</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// record the start position</span>
+                <span class="n">start_k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+                <span class="n">start_i</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+                <span class="n">start_j</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">MAX</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span> <span class="c1">// get the nasty extra line between levels</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<!------------------------------------------------------------------------->
+<h4><b>Strings with variable number of ints&lt;/h3&gt;
+Consider a number of lines where each line consists of a variable number of ints. We can use std::istringstream and use a while loop to read as many ints as possible from that line.
+
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include</span><span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span><span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="n">scanf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">iss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">iss</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// do something with num</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</b></h4></b></h4></b></h4></b></h4></b></h4></b></h4>
+:ET

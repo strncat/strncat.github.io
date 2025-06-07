@@ -24,7 +24,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 Let $$(a_n)$$ and $$(b_n)$$ be sequences such that $$0 \leq a_n \leq b_n$$ for all $$n \in \mathbf{N}$$. For (i), we are given that $$\sum_{n=1}^{\infty} b_n$$ converges. Therefore, by <a href="https://strncat.github.io/jekyll/update/2024/02/02/analysis-series-cauchy-criteria.html"> the Cauchy criterion for series</a>, we know that there exists a number $$N \in \mathbf{N}$$ such that
 <div>
 $$

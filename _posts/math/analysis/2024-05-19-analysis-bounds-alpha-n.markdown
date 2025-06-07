@@ -13,7 +13,7 @@ For the definitions of an upper bound and the least upper bound of a set, see <a
 <br>
 For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$\alpha \in (0,1)$$ and $$A=\{\alpha^n: n \in \mathbf{N}\}$$. To prove that $$\inf(A)=0$$, we will show that 0 is a lower bound on $$A$$ and that for all $$\epsilon > 0$$, $$0 + \epsilon$$ is not a lower bound of $$A$$. First, we know $$\alpha$$ is positive and $$n \in \mathbf{N}$$ is positive. Therefore $$\alpha^n \geq 0$$ and so $$0$$ is a lower bound on $$A$$.
 <br>
 <br>

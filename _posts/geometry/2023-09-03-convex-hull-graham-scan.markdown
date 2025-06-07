@@ -10,12 +10,12 @@ A set of points $$S$$ is convex if for any two points $$a \in S$$ and $$b \in S$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Graham's Scan</b></h4>
+<h3>Graham's Scan</h3>
 Given a set of points $$S$$ of size $$n$$, the idea is to pick a point $$p_0$$ from the set that is known to be in the convex hull and then sort the remaining points by their angle anti-clockwise relative to $$p_0$$. Graham gave a linear-time algorithm to find vertex that is interior to the hull but this isn't needed at all since we can just pick the lowest or left most vertex and know that all the remaining vertices will be on one side of the line that goes through the point. After picking an initial point, the algorithm will sort the remaining points anti-clockwise around the initial point by their angle. The core of the algorithm then is to use a stack to maintain the convex hull. We'll iterate over the vertices keeping the invariant that for any three consecutive vertices on the stack $$p$$, $$q$$ and $$r$$, the point $$r$$ is on the left of the line that goes through the segment $$\overline{pq}$$. In other words, the angle at $$q$$ is a convex angle and not a reflex one. In the next few sections we'll study each step through an example. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 1: Pick the Left Most Point</b></h4>
+<h3>Step 1: Pick the Left Most Point</h3>
 The best way to learn this algorithm is by following an example. Suppose we are given the below 7 points,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-2.png" width="60%" class="center"></p>
 The first thing that the algorithm does is pick the left most point breaking ties by choosing the point with the lowest y-coordinate. This turns out to be point $$(1,1)$$ below
@@ -31,7 +31,7 @@ In the implementation, we do something like this
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 2: Sort the Points</b></h4>
+<h3>Step 2: Sort the Points</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-4.png" width="60%" class="center"></p>
 Next we will sort the points by their angle (anti-clockwise) around $$(1,1)$$. What does this mean? We're not changing where the points are. We're just changing the order in which we will process these points. What we want is to traverse the points in an anti-clockwise direction around $$(1,1)$$. So we want to start with the point that is furthest to the right from $$(1,1)$$ (remember that this is the left most point and there won't be points anymore on the left). Therefore, if you imagine $$(1,1)$$ connected with line segments to each of the remaining points, then what we want is to sort these by the angles they make around $$(1,1)$$.
 <br>
@@ -73,42 +73,42 @@ And this is how we can sort the array using $$std::sort$$,
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 3: The Main Loop</b></h4>
+<h3>Step 3: The Main Loop</h3>
 So now we have an initial point picked and we have the points sorted around it. Next, we will use a stack $$s$$ to hold the hull points. Initially, $$s$$ will hold the first two vertices in the sorted list of points, $$(1,1)$$ and $$(7,0)$$. Notice that $$(1,1)$$ and $$(7,0)$$ will be on the convex hull. $$(1,1)$$ is the left most point and $$(7,0)$$ is the point furthest to the right from $$(1,1)$$. (proof?). 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-step1.png" width="60%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 3: (Iteration 1)</b></h4>
+<h3>Step 3: (Iteration 1)</h3>
 Next we'll iterate over the remaining points. In the first iteration we will test $$(4,2)$$. Let the last vertex added to the stack be $$q$$ and the vertex that was added before that be $$p$$. Let $$r=(4,2)$$. We need to test if $$q$$ is a convex vertex or in other words that $$r$$ is on the left of the line that goes through $$\overline{pq}$$ (we are making a left turn on $$q$$). How can test this? by performing yet another orientation test! Since $$(4,2)$$ is indeed on the left of the line, then it is safe to add it to the stack.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-step2.png" width="120%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 3: (Iteration 2)</b></h4>
+<h3>Step 3: (Iteration 2)</h3>
 Next we will test $$(6,4)$$ against the last two vertices added to the stack. This time they are $$q=(4,2)$$ and $$p=(7,0)$$. Is $$r=(6,4)$$ on the left of the line that goes through $$(7,0)$$ and then $$(4,2)$$. No! it is not. In this case, Graham will pop the last vertex we added to the stack which was $$q=(4,2)$$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-step3.png" width="60%" class="center"></p>
 But now we not exit this iteration yet because we want to give the new point $$(6,4)$$ another chance. This time however, we will test $$(6,4)$$ against the current last two points on the stack which are $$(7,0)$$ and $$(1,1)$$. We will find that $$(6,4)$$ is on the left of the line that goes through $$(1,1)$$ and $$(7,0)$$ and we will add it to the stack. At this point, we can exit the iteration.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-step4.png" width="120%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 3: (Iteration 3)</b></h4>
+<h3>Step 3: (Iteration 3)</h3>
 In the next iteration, we will test $$(3,5)$$. The last two points in the stack are $$(6,4)$$ and $$(7,0)$$. Is $$(3,5)$$ on the left of the line that goes through $$(7,0)$$ and $$(6,4)$$? Yes! so we add $$(3,5)$$ to the stack.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-step5.png" width="120%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 3: (Iteration 4)</b></h4>
+<h3>Step 3: (Iteration 4)</h3>
 Next, we will test $$(5,6)$$. Is $$(5,6)$$ on the left of the line that goes through $$(6,4)$$ and then $$(3,5)$$? No! $$(5,6)$$ is on the right and therefore, we now pop $$(3,5)$$ from the stack.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-step6.png" width="60%" class="center"></p>
 After popping $$(3,5)$$, we remain in the same iteration but now we test $$(5,6)$$ with current last two points on the stack $$(6,4)$$ and $$(7,0)$$. We will see that $$(5,6)$$ does validate the invariant and the vertex is still convex at $$(6,4)$$.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-step7.png" width="120%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 3: (Iteration 5)</b></h4>
+<h3>Step 3: (Iteration 5)</h3>
 The last remaining point left in the array is $$(2,7)$$. We will perform the same test and find that indeed $$(2,7)$$ can be added to the stack.
 <p>style="text-align:center;"><img src="{{ site.url }}/assets/geometry/graham/graham-step8.png" width="120%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Step 3: Recap</b></h4>
+<h3>Step 3: Recap</h3>
 Let's summarize what we did so far. In each iteration, we will test vertex $$i$$ with the last two vertices in the stack. Let the top most vertex be $$q$$ and the second top most vertex be $$p$$. We will then use the orientation test on $$p, q$$ and $$r$$. 
 <ul>
     <li>If test is positive and \(r\) is indeed on the left, then we'll push \(r\) on the stack and move to the next iteration.</li>
@@ -134,7 +134,7 @@ One possible implementation is the following
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Collinear Points</b></h4>
+<h3>Collinear Points</h3>
 What do we do with the collinear points? It depends. If we don't care about collinear points and don't want to output them, then instead of using "strict_right" above, we will use "right" to disallow collinear points from getting added to the stack. If we care and want to output all collinear points, then we'll need to do some additional processing. I really struggled with understanding this myself so let's show this with an example. 
 <br>
 <br>
@@ -166,12 +166,12 @@ reverse(points.begin()+i+1, points.end());
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Full Implementation</b></h4>
+<h3>Full Implementation</h3>
 Source Code <a href="https://github.com/strncat/competitive-programming/blob/master/uva/computational-geometry/convex-hull/11626-convex-hull.cpp">11626 - Convex Hull</a>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Practice Problems</b></h4>
+<h3>Practice Problems</h3>
 <ul>
 <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2673">11626 Convex Hull</a></li>
 <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=622">681 Convex Hull Finding</a></li>
@@ -179,7 +179,7 @@ Source Code <a href="https://github.com/strncat/competitive-programming/blob/mas
 </ul>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li><a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a></li>
 <li><a href="https://jeffe.cs.illinois.edu/teaching/compgeom/schedule.html">CS 498: Computational Geometry</a></li>

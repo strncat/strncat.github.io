@@ -9,7 +9,7 @@ This one is pretty straightforward. The singleton design pattern is used wheneve
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 It is pretty straightforward as well to make a class with only one instance of itself. One way to do it is to create a static variable to hold the object and declare init to be private.
 {% highlight c++ %}
 public class Singleton {
@@ -19,7 +19,7 @@ public class Singleton {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 - <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612">Design Patterns</a>
 - <a href="https://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns (Book)</a>
 - <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaDesignPatterns/CocoaDesignPatterns.html">Cocoa Design Patterns (Apple Docs)</a>

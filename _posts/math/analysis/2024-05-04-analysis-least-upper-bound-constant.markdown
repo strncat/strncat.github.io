@@ -16,7 +16,7 @@ What is this statement saying? It's important to review the definitions in <a hr
 <br>
 How do we prove it? Any time we want to prove something about least upper bounds we'll need to verify both conditions of the definition of an upper bound. From the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">definitions page</a>, we need to verify that $$c + \sup A$$ is indeed an upper bound and then prove that it's the least one.
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A$$ be a bounded non-empty set with a least upper bound $$s = \sup A$$. Let $$c$$ be a constant. Let $$c + A$$ be the set $$\{c + a: a \in A\}$$. Since $$s$$ is an upper bound then we know that for every element $$a \in A$$, we have $$a \leq s$$. If we add $$c$$ to both sides we'll have $$a + c \leq s + c$$. Therefore, we can see that $$c + s$$ is also an upper bound for the set $$A + c$$.
 <br>
 <br>

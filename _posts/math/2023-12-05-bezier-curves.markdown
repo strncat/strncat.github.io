@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Bezier Curves</b></h4>
+<h3>Bezier Curves</h3>
 From <a href="https://www.youtube.com/watch?v=jvPPXbo87ds"> The Continuity of Splines</a>, I learned that starting with two points $p_0$ and $p_1$ we can create a path between them by linearly interpolating between the two points using
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/curves/00-line.png" width="60%" class="center"></p>
 <div>
@@ -39,7 +39,7 @@ This is called a quadratic Bezier curve and it generates a nice smooth curve!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Cubic Bezier Curve</b></h4>
+<h3>Cubic Bezier Curve</h3>
 We don't have to stop at the quadratic Bezier curve. Let's add a third point and again interpolate between the second and third point
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/curves/01-secondline.png" width="60%" class="center"></p>
 and let's connect all the new points
@@ -98,10 +98,10 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Bezier Curves of Higher Degrees</b></h4>
+<h3>Bezier Curves of Higher Degrees</h3>
 We can keep adding more and more control points to form the curve that we want but as we add more points, it gets more expensive to calculate and also harder to manipulate as moving a single control point affects the entire curve. For this reason, instead of adding more degrees, we instead connect these bezier curves together to form a Bezier Spline!
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>
 <a href="https://www.youtube.com/watch?v=jvPPXbo87ds">The Continuity of Splines</a>

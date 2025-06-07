@@ -9,7 +9,7 @@ Let $$G = (V, E)$$ be a directed acyclic graph consisting of $$V$$ vertices and 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Kahn's Algorithm</b></h4>
+<h3>Kahn's Algorithm</h3>
 Kahn's algorithm is extremely intuitive. What are we trying to achieve with topological sort? If we have two vertices/tasks $$u$$ and $$v$$ where task $$u$$ is a perquisite or required to be done before task $$v$$, then we want to output $$u$$ before $$v$$. This dependency is represented with an edge $$(u,v)$$. 
 
 ![my photo]({{ site.url }}/assets/graphs/topological-sort/kahn1.png)
@@ -44,17 +44,17 @@ If the graph has a cycle, then we will have a situation where multiple vertices 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let's go through a full example of running Kahn's algorithm based on the description we gave above. (TODO)
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Correctness Proof</b></h4>
+<h3>Correctness Proof</h3>
 How do we prove that Kahn's algorithm actually returns a correctly sorted vertices? (TODO)
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 void kahn(std::vector<std::vector<int>> &g) {
     std::vector<int> in_degree(g.size(), 0);
@@ -104,12 +104,12 @@ void kahn(std::vector<std::vector<int>> &g) {
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 We compute the in-degree of all vertices in time $$O(E+V)$$. The while loop runs in time $$O(E+V)$$ since we push and pop a vertex with indegree-0 once. We also loop through the edges of that vertex only once. The total complexity remains at $$O(E+V)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 geeks-for-geeks
 <br>
 <br>

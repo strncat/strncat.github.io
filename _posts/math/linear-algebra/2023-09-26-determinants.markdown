@@ -9,14 +9,14 @@ These are notes I took while watching the series <a href="https://www.youtube.co
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Determinant</b></h4>
+<h3>The Determinant</h3>
 We've talked about linear transformations previously. Some squish the space and some stretch the space (while of course keeping the grid lines parallel and evenly spaced and the origin in the same place). How can we measure the amount of stretching? Given an area bounded by some region, how much will its area grow by after applying some transformation? For example in the below figure, we can see that the shaded area on the left has area $$A = 1$$. After the transformation was applied, this area grew by a factor of 4 so the new area is now $$4*A$$. So the transformation scaled the area by a factor of 4.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/determinants/00.png" width="80%" class="center"></p>
 The important fact here is that knowing how much the area of that one single unit square changes is enough to know how much any area will change in the space! This follows from the fact that the parallel grid lines remain parallel and evenly spaced. This scaling factor by which a linear transformation changes any area is called the <b>determinant</b>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>More Examples</b></h4>
+<h3>More Examples</h3>
 To re-iterate, the determinant is the scaling factor by which a linear transformation changes any area. And it applies to any area because a linear transformation keeps the parallel lines parallel and evenly spaced. Let's look at some example:
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/determinants/01.png" width="80%" class="center"></p>
@@ -29,7 +29,7 @@ This is another example where the area is completely squished and it's just zero
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Negative Areas?</b></h4>
+<h3>Negative Areas?</h3>
 Unfortunately, the determinat can be negative! so what would scaling an area by a negative amount even mean? This has to do with the concept of orientation. One way to think about this is to notice that some transformations flip the space (like flipping a sheet of paper). Transformation that flip the space are said to "invert the orientation of space". (video has beautiful animations for this!)
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/determinants/03.png" width="90%" class="center"></p>
@@ -37,7 +37,7 @@ Another way to think about this is in terms of $$\widehat{i}$$ and $$\widehat{j}
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Three Dimensions</b></h4>
+<h3>Three Dimensions</h3>
 What about the determinat of a linear transformation in 3 dimensions! This time it will tell us how much the <b>volume</b> of a region will get scaled by! Instead of focusing on the single 1x1 square in dimensions, now we can focus on the 1x1x1 cube and observe what happens to it after the transformation.
 <br>
 <br>
@@ -45,7 +45,7 @@ What about negative determinants? What does orientation mean here? We will follo
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Computing the Determinant</b></h4>
+<h3>Computing the Determinant</h3>
 We compute the determinant numerically using the following
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/determinants/04.png" width="50%" class="center"></p>
 What's the intuition behind this? Suppose that the terms $$c$$ and $$d$$ are zero and so in the above, the determinant will just the product $$ad$$, shown below
@@ -62,7 +62,7 @@ What if none of the terms are zero? there is a crazy diagram in the video that s
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br>
 <br>

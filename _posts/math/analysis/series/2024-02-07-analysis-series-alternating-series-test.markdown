@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition</b></h4>
+<h3>Definition</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   [(2.7.7) The Alternating Series Test] Let \(a_n\) be a sequence satisfying
 	  <ol type="i">
@@ -17,7 +17,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Discussion</b></h4>
+<h3>Discussion</h3>
 We will prove this using the nested interval property by defining the following intervals
 <div>
   $$
@@ -37,7 +37,7 @@ we defined them in a way such that the length of each of these intervals is exac
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Let $$(a_n)$$ be a sequence satisfying the conditions above. To prove that $$\sum_{n=1}^{\infty} (-1)^{n+1}a_n$$ converges, we need to prove that the sequence of partial sums converges. Let $$(s_n)$$ be the partial sum sequence where $$s_n$$ is defined as
 <div>
   $$

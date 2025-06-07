@@ -1,0 +1,467 @@
+I"�:<p>Last time we learned that a matrix \(A\) is diagonalizable if \(A\) has \(n\) linearly independent eigenvectors. In other words if we can form a basis consisting of eigenvectors \(\beta = \{v_1,...,v_n\}\). 
+<br />
+<br />
+In that case, we will see that the matrix representative of \(L_A\) with respect to basis \(\beta\) is a diagonal matrix where the diagonal entries are those eigenvalues corresponding to the eigenvectors</p>
+<div> 
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} = 
+\begin{pmatrix} 
+\lambda_1 &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n
+\end{pmatrix},
+Av_j = \lambda_j v_j
+\end{align*}
+$$
+</div>
+<p>\(v_j\) is an eigenvector and \(\lambda_j\) is called an eigenvalue. And so to diagonalize a matrix, we need to find these eigenvectors. Last time we developed a plan for this:</p>
+<ol> 
+	<li>Find these eigenvalues \(\lambda_1, ..., \lambda_2\) </li>
+	<li>Find a basis for \(\beta_i\) for each eigenspace \(E_{\lambda_i}\)</li>
+	<li>If \(\sum_{j=1}^{k}\dim(E_{\lambda_i}) = n\), then collect all the separate bases and that's our basis \(\beta = \beta_1 \cup ... \cup \beta_k\). This step works because we proved in the last lecture the corollary \(\lambda_1 \neq \lambda_2 \rightarrow \beta_1 \cup \beta_2\) is linearly independent.</li> 
+</ol>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Examples of Non-Diagonalizable Matrices</h3>
+<p>Of course the plan above might not work and there are different ways, a matrix could fail to be diagonalized.</p>
+<div> 
+$$
+\begin{align*}
+A = 
+	\begin{pmatrix} 
+	0 &amp; -1 \\
+	1 &amp; 0
+	\end{pmatrix} 
+	\end{align*}
+$$
+</div>
+<p>This matrix has no eigenvalues so it can’t be diagonalized.</p>
+<div> 
+$$
+\begin{align*}
+B = 
+	\begin{pmatrix} 
+	1 &amp; 1 \\
+	0 &amp; 1
+	\end{pmatrix} 
+\end{align*}
+$$
+</div>
+<p>This matrix has only one eigen value.</p>
+<div>
+$$
+\begin{align*}
+det(A - tI_2) = 
+	\begin{pmatrix} 
+	1-t &amp; 1 \\
+	0 &amp; 1-t
+	\end{pmatrix} = (1-t)^2 = 0 \rightarrow t = 1
+\end{align*}
+$$
+</div>
+<p>This implies</p>
+<div>
+$$
+\begin{align*}
+E_{\lambda_1} = N(B - 1I_n) = N \left(
+	\begin{pmatrix} 
+	0 &amp; 1 \\
+	0 &amp; 0
+	\end{pmatrix} 
+	\right)
+	= \{ (t, 0) \ | \ t \in \mathbf{R} \}
+\end{align*}
+$$
+</div>
+<p>So we don’t have enough linearly independent vectors in \(\beta\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Is There a Better Diagonalization Test?</h3>
+<p>Today, we will refine our answer to the question “Is \(A\) diagonalizable?”</p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+A polynomial \(f(t)\) splits over \(\mathbf{R}\) if there are scalars \(c,a_1,...,a_k \in \mathbf{R}\) such that 
+$$
+\begin{align*}
+f(t) = c(t-a_1)(t - a_2)...(t-a_k)
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+In other words, can completely factorize the polynomial?
+<br />
+<br />
+Example 1: \(t^2 + 1\) doesn’t split over \(\mathbf{R}\). It does however split over \(\mathbf{C} as (t - i)(t + i)\).
+<br />
+<br />
+Example 2: \(t^2 - 2t + 1 = (t - 1)(t - 1)\) splits over \(\mathbf{R}\).
+<br />
+<br />
+So now what does splitting have to do with diagonalizability? The following theorem explains this
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem 1 (5.6)
+</div>
+<div class="purbdiv">
+If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\)
+</div>
+<p><br />
+Note that the the converse is false. If the characteristic polynomial splits over \(\mathbf{R}\), it doesn’t necessarily means that \(A\) is diagonalizable. (See example 2 above)
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Eigenvalues of Similar Matrices</h3>
+<p>Before going into the proof of theorem 1 above, the following proposition will be useful</p>
+<div class="purdiv">
+Proposition
+</div>
+<div class="purbdiv">
+If \(B = Q^{-1}AQ\), then 
+$$
+\begin{align*}
+\det(B - tI_n) = \det(A - tI_n)
+\end{align*}
+$$
+</div>
+<p><br />
+This means that if \(A\) and \(B\) are similar, then they have the same eigenvalues.
+<br />
+<br />
+<b>Proof:</b>
+<br />
+<br />
+Observe that</p>
+<div>
+$$
+\begin{align*}
+1 = \det(I_n) = \det(QQ^{-1}) = \det(Q)\det(Q^{-1}).
+\end{align*}
+$$
+</div>
+<p>Therefore,</p>
+<div>
+$$
+\begin{align*}
+\det(B - tI_n) &amp;= \det(Q^{-1}AQ - tI_n) \\
+              &amp;= \det(Q^{-1}AQ - QtI_nQ^{-1}) \\
+              &amp;= \det(Q (A - tI_n)Q^{-1}) \text{ (factor out Q on the left ..) }\\ 
+              &amp;= \det(Q) \det((A - tI_n)) \det(Q^{-1}) \\ 
+              &amp;= \det(Q) \det(Q^{-1}) \det((A - tI_n)) \text{ (they are just real numbers)}\\ 			  
+              &amp;= \det((A - tI_n)). \ \blacksquare \\ 			  
+\end{align*}
+$$
+</div>
+<p>Note here that in step 2, \(QtI_nQ^{-1} = tQQ^{-1} = tI_n\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Proof of Theorem 1 (5.6)</h3>
+<p>Suppose that \(A\) is diagonalizable. This means that there exists a basis \(\beta\) such that</p>
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} = 
+\begin{pmatrix} 
+\lambda_1 &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n
+\end{pmatrix},
+Av_j = \lambda_j v_j		  
+\end{align*}
+$$
+</div>
+<p>If we let \(\alpha\) be the standard basis, then know that there exists a change of coordinate matrix \(Q = [I]^{\alpha}_{\beta}\) such that</p>
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} &amp;= [I]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I]^{\alpha}_{\beta}  \\
+                   &amp;= Q^{-1}AQ.
+\end{align*}
+$$
+</div>
+<p>This means that \([L_A]_{\beta}^{\beta}\) and \(A\) are similar matrices. But by the previous proposition, this means that we have</p>
+<div>
+$$
+\begin{align*}
+\det ([L_A]_{\beta}^{\beta} -tI_n) &amp;= \det(A - tI_n).
+\end{align*}
+$$
+</div>
+<p>On the other hand,</p>
+<div>
+$$
+\begin{align*}
+\det ([L_A]_{\beta}^{\beta} -tI_n) &amp;= 
+\begin{pmatrix} 
+\lambda_1 -t &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n -t
+\end{pmatrix}	  
+\\
+&amp;= (\lambda_1 - t)...(\lambda_n - t). \ \blacksquare
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Algebraic and Geometric Multiplicities of Eigenvalues</h3>
+<p>There is another condition for diagonalizability but we need a few more definitions.</p>
+
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The algebraic multiplicity of \(\lambda\) is the number of times \(\lambda - t\) divides \(\det(A - tI_n)\).
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+An an example if \(A =  
+\begin{pmatrix} 
+1 &amp; 1 \\
+0 &amp; 1
+\end{pmatrix}\) then, \(\lambda = 1\) has algebraic multiplicity 2 because \(\det(A - I_n) = (1-t)^2\).</p>
+
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The geometric multiplicity of \(\lambda\) is \(\dim(E_{\lambda})\).
+</div>
+<!------------------------------------------------------------------------------------>
+<p><br />
+For the same example above. The geometric multiplicity of \(\lambda = 1\) is 1 because the nullspace is spanned by one vector.
+<br />
+<br />
+Given these definitions we can now introduce the following theorem.
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem 2 (5.7)
+</div>
+<div class="purbdiv">
+Geometric multiplicity of \(\lambda \leq\) the algebraic multiplicity of \(\lambda\).
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------>
+<b>Proof</b>
+<br />
+Let \(\lambda\) be an eigenvalue of \(A \in M_{n \times n}\) and let the geometric multiplicity of \(\lambda\) be \(k\). Now the goal is to relate the characteristic polynomial of \(\lambda\) to the dimension of \(E_{\lambda}\). By definition, we know that \(\dim(E_{\lambda})\) is \(k\). (definition above)
+<br />
+<br />
+Let \(\{v_1,...,v_k\}\) be a basis for \(E_{\lambda}\). We know that \(\dim(E_{\lambda})=k\). We also know that \(k \leq n\) so extend this basis to a basis for \(\mathbf{R}^n\) so</p>
+<div>
+$$
+\begin{align*}
+\beta = \{v_1, ..., v_k, v_{k+1},...,v_n\}.
+\end{align*}
+$$
+</div>
+<p>Again, we are seeking a relationship between the dimension of the eigenspace and the characteristic polynomial of \(A\). We don’t know if \([L_A]_{\beta}^{\beta}\) is diagonalizable yet. But we do know by definition that</p>
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} &amp;= 
+\begin{pmatrix} 
+[Av_1]_{\beta} &amp; \cdots &amp; [Av_n]_{\beta}
+\end{pmatrix}
+\\
+&amp;= 
+\begin{pmatrix} 
+[\lambda v_1]_{\beta} &amp; \cdots &amp; [\lambda v_k]_{\beta} &amp; [Av_{k+1}]_{\beta} &amp; \cdots &amp; [Av_n]_{\beta}
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>If we only look at the first \(k\) columns of this matrix, they will then be consisting of these eigenvectors so it will be</p>
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} &amp;= 
+\begin{pmatrix} 
+\lambda_1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; \lambda_2 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; 0 &amp; \ddots &amp; 0 &amp; \cdots \\
+0 &amp; \vdots &amp; 0 &amp; \lambda_k &amp; \cdots \\
+0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>If we organize this matrix into blocks, we will see that</p>
+<div>
+$$
+\begin{align*}
+[L_A]_{\beta}^{\beta} &amp;= 
+\begin{pmatrix} 
+\lambda I_k &amp; B \\
+O &amp; C
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>where \(O\) is the zero matrix and \(B\) and \(C\) are unknown. So we can write \(\det([L_A]_{\beta}^{\beta} - tI_n)\) as</p>
+<div>
+$$
+\begin{align*}
+\det([L_A]_{\beta}^{\beta} - tI_n) &amp;= (\lambda - t)^k \det(\text{unknown part of the matrix})
+\end{align*}
+$$
+</div>
+<p>But by the proposition we introduced earlier, since \(A\) and \([L_A]_{\beta}^{\beta}\) are similar, then</p>
+<div>
+$$
+\begin{align*}
+\det(A - tI_n) &amp;= \det([L_A]_{\beta}^{\beta} - tI_n) \\
+ &amp;= (\lambda - t)^k \det(\text{unknown part of the matrix})
+\end{align*}
+$$
+</div>
+<p>Why is this true? The top left section just consists of \(\lambda - t\) entries on the diagonal while the rest is zero. Hence, the algebraic multiplicity of \(\lambda\) is at least \(k\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>A More Refined Test for Diagonalizability</h3>
+<p>We’re finally ready to present the more refined test for diagonalizability. 
+<br /></p>
+<div class="purdiv">
+Theorem (5.8(a))
+</div>
+<div class="purbdiv">
+\(A\) is diagonalizable if and only if
+<ul style="list-style-type:lower-alpha">
+	<li>\(\det(A - tI_n)\) splits over \(\mathbf{R}\)</li>
+	<li>For each eigenvalue \(\lambda\), geometric multiplicity = algebraic multiplicity</li>
+</ul>
+</div>
+<p><br />
+<b>Proof</b>
+<br />
+<br />
+\(\Rightarrow:\)
+Suppose that \(A\) is diagonalizable. This means that we have a basis \(\beta = \{v_1,...,v_n\}\) consisting entirely of eigenvectors. Now we need to prove that \(a\) and \(b\) both hold. Last time we proved that \(a\) holds. This means that the characteristic polynomial splits over \(R\) and so</p>
+<div> 
+$$
+\begin{align*}
+\det(A - tI_n) = (t - \lambda_1)^{m_1}...(t - \lambda_k)^{m_k}
+\end{align*}
+$$
+</div>
+<p>where \(\sum_{j=1}^{k} m_j = n\). Now, given \(\lambda_j\), let \(k_j\) be the geometric multiplicity of \(\lambda_j\). We know by definition that \(k_j = \dim(E_{\lambda_j})\). The goal is to prove that \(k_j = \dim(E_{\lambda_j}) = m_j\). 
+<br />
+<br />
+Last time we proved that the geometric multiplicity is always less than or equal to the algebraic multiplicity of any \(\lambda\). Therefore, we have \(k_j \leq m_j\). Moreover, each of the eigenvectors in \(\beta\) must belong to one of our eigenspaces so let \(l_j = num(\{v_i \in \beta \ | \ v_i \in E_{\lambda_j}\})\). That is \(l_j\) is the number of eigenvectors in \(\beta\) that belong to the eigenspace \(E_{\lambda_j}\). But we only have \(n\) eigenvectors in \(\beta\), therefore,</p>
+<div> 
+$$
+\begin{align*}
+n = \sum_{j=1}^k l_j
+\end{align*}
+$$
+</div>
+<p>We also know that</p>
+<div> 
+$$
+\begin{align*}
+l_j \leq k_j
+\end{align*}
+$$
+</div>
+<p>This is because the number of vectors in the eigenspace that are selected from the basis can be at most the dimension of the eigenspace itself. Putting the above observations together, we see that</p>
+<div> 
+$$
+\begin{align*}
+n = \sum_{j=1}^k l_j \leq \sum_{j=1}^k k_j \leq \sum_{j=1}^k m_j = n
+\end{align*}
+$$
+</div>
+<p>Therefore, \(k_j = m_j\) for \(j = 1,2,...,k\). 
+<br />
+<br />
+\(\Leftarrow:\) We’re given (a) and (b). One way to prove that \(A\) is diagonalizable is by constructing a basis of eigenvectors. So let \(\beta_j\) be a basis for \(E_{\lambda_j}\). Set \(\beta = \beta_1 \cup \beta_2 \cup ... \cup \beta_k\). By the homework, \(\beta\) is linearly independent and by construction, it consists of eigenvectors. It remains to show that the number of vectors in \(\beta\) is \(n\). But from (b), we know that</p>
+<div> 
+$$
+\begin{align*}
+num(\beta) = \sum_{j=1}^k l_j = \sum_{j=1}^k k_j = \sum_{j=1}^k m_j
+\end{align*}
+$$
+</div>
+<p>Because in (b) we said that the algebraic multiplicity must be equal to the geometric multiplicity. And from (a), we know that</p>
+<div> 
+$$
+\begin{align*}
+\sum_{j=1}^k m_j = n
+\end{align*}
+$$
+</div>
+<p>So \(\beta\) is the desired basis and \(A\) must be diagonalizable. \(\ \blacksquare\)
+<br />
+<br />
+One final note here: we’ve developed several tests including the above one to test matrices for diagonalizability. What about general linear transformations \(T: V \rightarrow V\)? well we can find the matrix representable of \(T\) with respect to  basis \(\gamma\) so \([T]_{\gamma}^{\gamma}\). Check if this matrix is diagonalizable for any basis \(\gamma\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Computing \(A^k\)</h3>
+<p>If \(A\) is diagonalizable, then</p>
+<div> 
+$$
+\begin{align*}
+A = QDQ^{-1} \text { where }
+D = 
+\begin{pmatrix} 
+\lambda_1 &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>This allows us to compute \(A^k\) easily since</p>
+<div> 
+$$
+\begin{align*}
+A^k = QD^kQ^{-1} \text { where }
+D^k = 
+\begin{pmatrix} 
+\lambda_1^k &amp; \cdots &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots \\
+0 &amp; \cdots &amp; \lambda_n^k
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>References</h3>
+<ul>
+<li>Math416 by Ely Kerman</li>
+</ul>
+
+:ET

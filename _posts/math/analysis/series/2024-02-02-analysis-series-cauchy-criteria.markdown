@@ -25,7 +25,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 For the forward direction, suppose that $$\sum_{k=1}^{\infty} a_k$$ converges, we will prove that given $$\epsilon > 0$$, there exists an $$N \in \mathbf{N}$$ such that
 <div>
 $$

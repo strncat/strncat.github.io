@@ -19,7 +19,7 @@ for \(k = p - 1\) and not \(k\) less than that. In other words, the multiplicati
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Recall that the <a href="">multiplicative order</a> of $$a$$ when $$a$$ is coprime to $$n$$, is the smallest $$k$$ such that $$a^k \equiv 1 \mod n$$. Here set $$n = p$$ and $$a = 10$$, the multiplicative order of $$10$$ modulo $$p$$ is then the smallest $$k$$ for which $$10^k \equiv 1 \mod p$$.
 <br>
 <br>
@@ -42,7 +42,7 @@ So the multiplicative order of 10 modulo 7 is 6 which is $$7-1$$. So 7 is a full
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Multiplicative_order">Wikipedia</a></li>
 </ul>

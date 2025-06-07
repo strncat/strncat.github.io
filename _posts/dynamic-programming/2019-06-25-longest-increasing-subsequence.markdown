@@ -9,17 +9,17 @@ Let $$A = [a_0, a_1, a_2,...,a_n]$$ be an array containing $$n$$ real numbers. A
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$, then a longest increasing subsequence could be $$[1, 2, 4, 5]$$. Note that it is not unique.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Brute-Force</b></h4>
+<h3>Brute-Force</h3>
 To find the longest increasing subsequence, we can test every possible subsequence. How possible subsequences are there? To build a subsequence, we must select a subset of the elements in $$A$$. For each element of $$A$$, we either select the element to be in the subsequence or we do not. So for each element, we have two choices. Therefore, the total number of possible subsequences is $$2^n$$. We can rule out whether a subsequence is an increasing subsequence in $$O(n)$$ time and at the same time, we can also keep track of the longest encountered increasing subsequence so far. Therefore, the running time is $$O(2^{n})$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Dynamic Programming</b></h4>
+<h3>Dynamic Programming</h3>
 To use dynamic programming, we first need to find an optimal substructure. An optimal substructure means that an optimal solution to the problem will contain within it optimal solutions to subproblems (Ref: CLRS).<br>
 <br>
 It turns out that we have a beautiful optimal substructure to the longest increasing subsequence problem. If we let $$D[i]$$ be the length of the longest increasing subsequence ending at $$A[i]$$, then we will find that,
@@ -47,7 +47,7 @@ We claim that $$D[i+1]$$ is the length of longest increasing subsequence ending 
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>The \(O(n^2)\) Implementation</b></h4>
+<h3>The \(O(n^2)\) Implementation</h3>
 The following implements the recurrence we defined above. 
 {% highlight c++ %}
 int longest_increasing_subsequence(int *a, int n) {
@@ -75,12 +75,12 @@ int longest_increasing_subsequence(int *a, int n) {
 {% endhighlight %}
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 We're doing two simple loops to fill arrays $$c$$ and $$p$$. Therefore, the running time is $$O(n^2)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Initially we start with arrays $$A$$ and $$D$$:
 Consider again $$A = [3, 8, 1, 2, 7, 9, 6, 4, 5]$$. We initialize $$D$$ to be $$D = [1, 1, 1, 1, 1, 1, 1, 1, 1]$$ representing the initial length of the subsequence ending at each possible element, $$A[i]$$.
 <br><br>
@@ -105,7 +105,7 @@ This means that the longest subsequence ends at either element 9 or 5. We can th
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>The \(O(nlg(n))\) Solution with Binary Search</b></h4>
+<h3>The \(O(nlg(n))\) Solution with Binary Search</h3>
 The $$O(n^2)$$ dynamic programming solution we've developed is great but can we do better? The answer is fortunately yes!
 <br><br>
 Previously, we said that $$D[i]$$ is the length of the longest subsequence ending at $$A[i]$$. Now we will consider a completely different substructure. Let $$M[i]$$ to be the smallest element that ends a subsequence of length $$i$$. For simplicity, we will initially let $$M[0]$$ to be $$-\infty$$ and everything else to be $$\infty$$. 
@@ -126,7 +126,7 @@ Next, suppose that $$M[j] > M[j+1]$$. This is a contradiction for the same reaso
 <br><br>
 Therefore, we can conclude that we must have $$M[k] < M[k+1]$$ for all $$k$$ as we wanted to show.
 <!----------------------------------------------------------------------------------->
-<h4><b>Algorithm</b></h4>
+<h3>Algorithm</h3>
 Let's traverse $$A$$ from left to right. For the base case, we consider $$i = 0$$ and at this point we know that $$A[0] > -\infty$$ and so $$M[1] = A[0]$$.
 <br><br>
 Now let's consider iteration $$i$$ and element $$A[i]$$. Also, let $$k$$ be the length of the longest subsequence reached so far, meaning that $$M[k] \neq \infty$$ and for any $$j > k$$ we have $$M[j] = \infty$$. Let's consider two cases:
@@ -139,7 +139,7 @@ Could we replace the end of any other subsequence? No. Even though $$A[i] < M[j]
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>The \(O(n\log(n))\) Implementation</b></h4>
+<h3>The \(O(n\log(n))\) Implementation</h3>
 {% highlight c++ %}
 int longest_increasing_subsequence_fast(int *a, int n) { // O(nlogn)
     int m[MAX];
@@ -175,12 +175,12 @@ int longest_increasing_subsequence_fast(int *a, int n) { // O(nlogn)
 {% endhighlight %}
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/dynamic-programming/longest-increasing-subsequence.cpp">Code on Github</a>
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 - The notes on the $$O(n^2)$$ solution are based on the awesome lecture notes from <a href="http://web.stanford.edu/class/cs161/schedule.html">CS161 Stanford</a>
 - The notes on the $$(O(n\log(n)))$$ solution are my own notes
 <br>

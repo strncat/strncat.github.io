@@ -47,7 +47,7 @@ One small optimization I can think of is to avoid copying sum into f2 and f2 int
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=25">Project Euler - 25</a>
 <br>
 <br>

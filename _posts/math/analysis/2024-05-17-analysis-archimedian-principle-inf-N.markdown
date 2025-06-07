@@ -13,7 +13,7 @@ For the definitions of an upper bound and the least upper bound of a set, see <a
 <br>
 For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">this</a>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A = \{\frac{1}{n}: n \in \mathbf{N}\}$$. To prove that $$\inf(A)=0$$, we will show that 0 is a lower bound of $$A$$ and that for all $$\epsilon > 0$$, $$0 + \epsilon$$ is not a lower bound of $$A$$. First, since $$n \in \mathbf{N}$$ is positive and 1 is positive, then $$1/n > 0$$ for all $$n \in \mathbf{n}$$ and so $$0$$ is a lower bound on $$A$$.
 <br>
 <br>

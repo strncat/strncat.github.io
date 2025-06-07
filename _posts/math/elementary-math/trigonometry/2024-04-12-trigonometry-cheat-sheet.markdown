@@ -7,7 +7,7 @@ mathjax: true
 ---
 Adding identities and formulas as they come up while learning trigonometry!
 <!------------------------------------------------------------------------------------>
-<h4><b>Pythagorean Identities</b></h4>
+<h3>Pythagorean Identities</h3>
 <div>
 $$
 \begin{align*}
@@ -18,7 +18,7 @@ tan^2(\theta) + 1 &= \sec^2(\theta) \\
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Low of Sines</b></h4>
+<h3>Low of Sines</h3>
 <div>
 $$
 \begin{align*}
@@ -27,7 +27,7 @@ $$
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Low of Cosines</b></h4>
+<h3>Low of Cosines</h3>
 <div>
 $$
 \begin{align*}
@@ -38,7 +38,7 @@ c^2 &= a^2 + b^2 - 2ab \cos(C) \\
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Sum and Difference Formulas</b></h4>
+<h3>Sum and Difference Formulas</h3>
 <div>
 $$
 \begin{align*}
@@ -52,7 +52,7 @@ $$
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Double Angle Formulas</b></h4>
+<h3>Double Angle Formulas</h3>
 <div>
 $$
 \begin{align*}
@@ -65,7 +65,7 @@ $$
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Cofunction Identities</b></h4>
+<h3>Cofunction Identities</h3>
 <div>
 $$
 \begin{align*}
@@ -79,7 +79,7 @@ $$
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Product to Sum Formulas</b></h4>
+<h3>Product to Sum Formulas</h3>
 <div>
 $$
 \begin{align*}
@@ -91,7 +91,7 @@ $$
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Sum to Product Formulas</b></h4>
+<h3>Sum to Product Formulas</h3>
 <div>
 $$
 \begin{align*}
@@ -103,7 +103,7 @@ $$
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>Even and Odd Functions</b></h4>
+<h3>Even and Odd Functions</h3>
 All the trigonometric functions are odd except for $\cos$ and $\sec$.
 <div>
 $$
@@ -117,7 +117,7 @@ $$
 
 
 <!------------------------------------------------------------------------------------>
-<h4><b>The Unit Circle</b></h4>
+<h3>The Unit Circle</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/cheat-sheet/unit-circle-wikipedia.svg.png" width="77%" class="center"></p>
 <br>
 <br>

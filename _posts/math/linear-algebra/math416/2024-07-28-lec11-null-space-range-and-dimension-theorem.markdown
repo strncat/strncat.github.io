@@ -26,7 +26,7 @@ The range (image) of \(T\) is
 Notes: So the null space is any vector that the transformation turns it into the zero vector. The range just like the definition is the set of the images of all the vectors in $$V$$. If all the vectors have an image, then the range is equal to the codomain and that's when the transformation is onto.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 $$N(T^b_a) = \{$$functions in $$C^0(\mathbf{R})$$ whos average over $$[a,b]$$ is $$0\}$$. In other words, it's the set of all functions whose definite integral is 0. 
 <br>
 <br>
@@ -91,7 +91,7 @@ We know that $$N(T)$$ is a subspace of $$V$$. This means that $$\dim(N(T)) \leq 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Consider the map $$T: \mathbf{R}^n \rightarrow \mathbf{R}^n$$ where
 <div>
 	$$
@@ -131,7 +131,7 @@ From this we see that,
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$T: V \rightarrow W$$ be a linear transformation and $$V$$ be finite dimensional. Let $$\dim(V) = n$$. Let $$\dim(N(T)) = k$$. We know that $$N(T)$$ is a subspace of $$V$$. Therefore, $$k \leq n$$ (Theorem 1.11). Since $$\dim(N(T)) = k$$, this means that any basis of the null space will have $$k$$ elements. So let $$\beta_N = \{u_1,...,u_k\}$$ be a basis for $$N(T)$$.
 <br>
 <br>
@@ -265,7 +265,7 @@ Note here that $$rank(T) = \dim(R(T))$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

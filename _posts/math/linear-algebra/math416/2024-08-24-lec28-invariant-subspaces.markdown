@@ -28,7 +28,7 @@ i.e. $$T(w) \in W \ \forall w \in W$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Examples</b></h4>
+<h3>Examples</h3>
 Example 1: $$W = span\{v\}$$ where $$v$$ is an eigenvector of $$T$$.
 <br>
 <br>
@@ -55,7 +55,7 @@ $$W = span\{(1,1)\}$$ is not $$T$$-invariant
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Characteristic Polynomial of Invariant Subspaces</b></h4>
+<h3>The Characteristic Polynomial of Invariant Subspaces</h3>
 So what is the point of invariant subspaces? It helps us break off pieces of our map. What does that mean? If $$T: V \rightarrow V$$ and $$W$$ is $$T$$-invariant, then the restriction of $$T$$ to $$W$$, $$T_W$$ satisfies $$T_W: W \rightarrow W$$. So now have a smaller set instead of the entire vector space $$V$$. The following theorem describes the relationship between the characteristic polynomial of $$T:V \rightarrow V$$ and the characteristic polynomial of $$T: W \rightarrow W$$. 
 <br>
 <br>
@@ -133,7 +133,7 @@ From this we see that the characteristic polynomial of $$[T]^{\beta_W}_{\beta_W}
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>T-cyclic Subspaces</b></h4>
+<h3>T-cyclic Subspaces</h3>
 Since $$T$$-invariant subspaces are useful, the question is can we produce them? Is there a tool or mechanism to find them? We start with the following definition
 <br>
 <div class="bdiv">
@@ -311,7 +311,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

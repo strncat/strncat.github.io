@@ -1,0 +1,76 @@
+I"�#<p>Let \(G=(V,E)\) be a directed weighted graph with \(V\) vertices and \(E\) edges. Floyd-Warshall’s algorithm is a dynamic programming algorithm that solves the all-pairs shortest paths problem in $O(V^3)$ time given that we don’t have negative-weight cycles in the $G$.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Optimal Substructure</h3>
+<p>Let \(V = \{1,2,3,...,n\}\) and consider a subset \(S = \{1,2,3,...,k\}\) such that \(S \subseteq V\) for some \(k\). Let \(i\) and \(j\) be two vertices in \(V\). Now, consider all the paths from \(i\) to \(j\) whose intermediate vertices are in \(S\). Intermediate vertices on a path are all the vertices on the path except for the start and end vertex. Let \(p\) be a shortest path among the paths from \(i\) to \(j\) that are drawn from \(S\). 
+<img src="http://localhost:4000/assets/graphs/floyd-warshall/path.png" width="100%" />
+This is where it gets interesting. There are two cases here. Either \(k\) is on \(p\) or it’s not.</p>
+<ul>
+  <li>If \(k\) is not on \(p\) then we claim that all the intermediate vertices of \(p\) are drawn from the set \(\{1,2,...,k-1\}\).</li>
+  <li>If \(k\) is on \(p\), then we can decompose \(p\) into two shortest paths. A shortest path \(p_1\) from \(i\) to \(k\) with intermediate vertices \(\{1,2,...,k-1\}\) and a shortest path \(p_2\) from \(k\) to \(j\) with intermediate vertices \(\{1,2,...,k-1\}\).
+Therefore, we can derive the following:</li>
+</ul>
+<div center="">
+$$
+\begin{align*}
+ d_{ij}^{k} =\Big\{ \begin{array}{@{}lr@{}}
+        w_{ij} \text{ $\quad \quad \quad \quad \quad \quad \quad$ if $k = 0$}\\
+        \min (d_{ij}^{k-1}, d_{ik}^{k-1}+d_{jk}^{k-1}) \text{ if $k \geq 0$}\\
+        \end{array}
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Simple Implementation</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">floyd_warshall</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// O(n^3)</span>
+    <span class="c1">// the shortest path between i and j contains some internal nodes (none repeated, simple path)</span>
+    <span class="c1">// let k be an internal node, either node k is on the optimal path or it's not</span>
+    <span class="c1">// if k is on the path =&gt; the shortest distance is d[i][k] + d[k][j]</span>
+    <span class="c1">// if k is not on the optimal path =&gt; the shortest distance is dij</span>
+    <span class="c1">// if k is zero, then the shortest distance is just wij (if it exist) otherwise infinity</span>
+    <span class="c1">// (1) initialize the distance matrix</span>
+    <span class="kt">int</span> <span class="n">distance</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">vertices</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// distance from node to itself is zero</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">w_ij</span> <span class="n">exists</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_ij</span><span class="p">;</span> <span class="c1">// current edge weight</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span> <span class="c1">// this edge doesn't exist, set it to infinity</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// (2) apply floyd-warshall</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// k is the internal node on the path</span>
+        <span class="c1">// for each internal node k, see if it improves the distance[i][j]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                 <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="n">INT_MAX</span> <span class="o">||</span> <span class="n">distance</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">INT_MAX</span><span class="p">)</span> <span class="p">{</span> <span class="k">continue</span><span class="p">;</span> <span class="p">}</span>
+                 <span class="c1">// current distance vs distance though k (from i to k then k to j)</span>
+                 <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">distance</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Also,
+<a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/shortest-paths/floyd-warshall.cpp">Full Code</a>
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Practice Problems</h3>
+<ul>
+  <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=508">567 - Risk</a></li>
+  <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=762">821 - Page Hopping</a>
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h3>References</h3>
+<p>CLRS</p>
+
+:ET

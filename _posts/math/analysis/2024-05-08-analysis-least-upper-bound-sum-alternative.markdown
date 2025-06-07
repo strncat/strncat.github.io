@@ -12,7 +12,7 @@ This is just alternative proof that uses <a href="https://strncat.github.io/jeky
 <br>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A$$ and $$B$$ be sets and let $$A + B$$ be the set defined above. We want to prove that $$\sup A+B = \sup A + \sup B$$. To do this, we will prove:
 <ul> 
 	<li>\(\sup (A+B) \leq \sup A + \sup B\).</li> 

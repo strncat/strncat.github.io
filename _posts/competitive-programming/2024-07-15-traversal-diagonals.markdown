@@ -18,14 +18,14 @@ And we'll print
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Approach</b></h4>
+<h3>Approach</h3>
 We're going to divide this problem into two subproblems. In the first subproblem, we'll print the diagonals starting from the cells in the first column below.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/competitive-programming/traversal-d/2.png" width="35%" class="center"></p>
 In the second subproblem, we'll print the remaining diagonals starting from the cells in the first row but skipping the first overlapping element with the first column since we did that in the first subproblem. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/competitive-programming/traversal-d/6.png" width="32%" class="center"></p>
 
 <!------------------------------------------------------------------------------------>
-<h4><b>First Subproblem</b></h4>
+<h3>First Subproblem</h3>
 We'll iterate over the first column. From the first cell, we'll print the following diagonal.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/competitive-programming/traversal-d/3.png" width="32%" class="center"></p>
 Next, we'll move to the next cell in the column and print the diagonal starting from it.
@@ -54,7 +54,7 @@ The above code will output
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Second Subproblem</b></h4>
+<h3>Second Subproblem</h3>
 We'll iterate over the row column starting at the second cell and print the diagonal from there. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/competitive-programming/traversal-d/7.png" width="32%" class="center"></p>
 We'll move on to the third cell and print the diagonal again.
@@ -84,7 +84,7 @@ which will print the following
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Right to Left Direction</b></h4>
+<h3>The Right to Left Direction</h3>
 What about the complete other direction (right to left) below. How do we print these diagonals? 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/competitive-programming/traversal-d/10.png" width="32%" class="center"></p>
 We'll do the same thing, divide the problem into two subproblems and tackle each separately. This is captured in the following code: 

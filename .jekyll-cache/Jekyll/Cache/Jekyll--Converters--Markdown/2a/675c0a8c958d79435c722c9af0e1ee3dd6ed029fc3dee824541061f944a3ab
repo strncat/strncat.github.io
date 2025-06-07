@@ -1,0 +1,65 @@
+I"<p>We are given that \(d(n)\) is the sum of proper divisors of \(n\) (So \(n\) itself is not included). If \(d(a) = b\) and \(d(b) = a\) where \(a \neq b\), then \(a\) and \(b\) are amicable numbers. Suppose that \(a = 220\) and \(b = 284\). Observe that</p>
+<div>
+	$$
+	\begin{align*}
+	 d(220) &amp;= 1 + 2 + 4 + 5 + 10 + 11 + 20 + 22 + 44 + 55 + 110 = 284 \\
+	 d(284) &amp;= 1 + 2 + 4 + 71 + 142 = 220.
+	\end{align*}
+	$$
+</div>
+<p>Since \(d(220) = 284\) and \(d(284) = 220\), then 284 and 220 are amicable numbers.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+The problem wants us to find the sum of all amicable numbers under 10000.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+It should be obvious that the first thing we need to do is to have a table where each entry \(i\) is the sum of proper divisors of \(i\) for all \(i &lt; 10000\). We can do this right at the beginning with:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">fill_amicable_sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// it's a divisor</span>
+            <span class="n">amicable_sum</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// add the other divisor</span>
+                <span class="n">amicable_sum</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+=</span> <span class="n">n</span><span class="o">/</span><span class="n">i</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p>Next, we want to iterate over all the numbers \(i\) from 1 to 10000. For each \(i\)</p>
+<ul>
+   <li>Let \(a =\) amicable_sum[i].</li>
+   <li>Check that amicable_sum[a] is equal to \(i\).</li>
+   <li>If the condition above holds, then we want to mark both \(\text{amicable}[i] = \text{amicable}[a] = true\)</li>
+</ul>
+<p>So suppose that \(i = 220\). Then we’ll let \(a =\)amicable_sum\([i] =\)amicable_sum\([220] = 284\) and then we’ll check that amicable_sum[284] is in fact equal to \(i = 220\).</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">amicable</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">amicable_sum</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="c1">// in the example, this is 284</span>
+    <span class="c1">// now we need to check, that amicable_sum[284] == i</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">amicable_sum</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d and %d are amicable because amicable[%d]=%d, amicable[%d]=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">amicable_sum</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">amicable_sum</span><span class="p">[</span><span class="n">a</span><span class="p">]);</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">a</span><span class="p">;</span>
+        <span class="n">amicable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="n">amicable</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The reason why we mark a number as amicable is because we don’t want double count. So if we marked 220 and 284 as amicable. Then on the iteration where \(i = 284\), we’ll just skip this number.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>References</h3>
+<p><a href="https://projecteuler.net/problem=21">Project Euler - 21</a>
+<br />
+<br /></p>
+
+:ET

@@ -5,7 +5,7 @@ date:   2024-06-22 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>\(\epsilon\)-neighborhood of \(a\)</b></h4>
+<h3>\(\epsilon\)-neighborhood of \(a\)</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Given \(a \in \mathbf{R}\) and \(\epsilon > 0\), the \(\epsilon\)-neighborhood of \(a\) is the set
   $$
@@ -17,7 +17,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Open Sets</b></h4>
+<h3>Open Sets</h3>
 Based on the previous defintion, we can now define what it means for a set to be open
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   (3.2.1) A set \(O \in \mathbf{R}\) is open if for all points \(a \in O\), there exists an \(\epsilon\)-neighborhood \(V_{\epsilon}(a) \subseteq O\).

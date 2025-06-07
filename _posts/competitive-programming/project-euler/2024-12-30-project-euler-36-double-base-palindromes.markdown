@@ -49,7 +49,7 @@ printf("sum = %d\n", sum);
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Without Arrays</b></h4>
+<h3>Without Arrays</h3>
 Without additional storage for the arrays, we can do this even faster and simpler. To check if a number is a palindrome, simply reverse the number and then check if the number and its reverse are equal! so 585 and its reverse 585 are equal so 585 is a palindrome while 197 and its reverse 791 are not equal so it's not a palindrome. The entire solution becomes this
 {% highlight c++ %}
 int is_palindrome(int n, int base) {
@@ -77,7 +77,7 @@ int main(int argc, const char * argv[]) {
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=35">Project Euler - 35</a>
 <br>
 <br>

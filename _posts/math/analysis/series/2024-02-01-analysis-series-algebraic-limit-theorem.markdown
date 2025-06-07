@@ -24,7 +24,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 To show that $$\sum_{k=1}^{\infty} ca_k = cA$$, this means that we need to prove that the sequence of partial sums converges to $$cA$$. In other words, $$\lim cs_m = cA$$ where $$(s_m)$$ is the sequence of partial sums and $$s_m$$ is defined as,
 <div>
 $$

@@ -10,18 +10,18 @@ We've looked at how to check if <a href="https://strncat.github.io/jekyll/update
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Sweep Line</b></h4>
+<h3>Sweep Line</h3>
 <img src="{{ site.url }}/assets/geometry/any-segment-intersection/sweep-line.png" width="100%">
 Sweep Line  is a common technique used often in computational geometry where we imagine a vertical line going through the set of objects we're interested in. The sweep line sweeps through one dimension that we chooses. This dimension is treated as a dimension of time. For example, in the figure above, the x-axis is our time line. The vertical line sweeps through the line segments to check whether any two segments intersect. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Basics</b></h4>
+<h3>Basics</h3>
 First, we'll assume that no three points intersect at a single point and that we don't have vertical line segments. Second, instead of talking about line segments, we'll just talk about the individual points that make up these segments. We'll label the start point of a segment with "s" and the end point of a segment with "e". If we have $$n$$ segments, we will have $$2n$$ points. Finally, we'll sort these points by their x-coordinate. In case of ties, we'll place the "start" points before the "end" points. If we still have ties, we'll put the points with the lower y-coordinate first. Our dimension of time here is the x-coordinate and we will sweep from left to right.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Big Idea</b></h4>
+<h3>Big Idea</h3>
 <img src="{{ site.url }}/assets/geometry/any-segment-intersection/big-idea.png" width="100%">
 Naively, we would spend $$O(n^2)$$ time to check if any pair intersects by literally checking all possible intersections. CLRS presents a very smart algorithm that is based on one big idea. 
 <br>
@@ -30,7 +30,7 @@ Sort the segment points and sweep through the points from left to right, stoppin
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 If we have two segments $$a$$ and $$b$$ intersecting at some point $$p$$. Why must the segments be consecutive at some sweep line? 
 <br>
 <br>
@@ -52,7 +52,7 @@ There is another more intuitive way to think about this. We have two cases. We e
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Algorithm</b></h4>
+<h3>Algorithm</h3>
 The algorithm will maintain two sets of data. 
 
 - The first set, $$S$$, is the sorted list of start and end points, also called the <b>event points</b>. 
@@ -67,7 +67,7 @@ The algorithm then iterates through the event-points or $$S$$. There two cases o
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Pseudocode</b></h4>
+<h3>Pseudocode</h3>
 {% highlight c++ %}
 // S is a set of n segments
 any_segments_intersect(S) {
@@ -95,7 +95,7 @@ any_segments_intersect(S) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 But why does any of the above work? Is this magic? kind of. To prove the correctness of the algorithm we need to prove 
 
 
@@ -120,11 +120,11 @@ Therefore, if there is an intersection point, then <i>any_segments_intersect</i>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 TODO
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 CLRS Chapter 33
 <br>
 <a href="https://cs.stackexchange.com/questions/124027/in-determining-whether-any-segments-intersect-why-there-must-be-some-sweep-wher">Proof</a>

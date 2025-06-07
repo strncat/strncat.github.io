@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition: Subsequence</b></h4>
+<h3>Definition: Subsequence</h3>
 <div style="background-color: #E0FBE2; padding: 15px 15px 15px 15px; border:1px solid black;">
 	Let \(a_n\) be a sequence of real numbers, and let \(n_1 < n_2 < n_3 < n_4 < n_5 < ...\) be an increasing sequence of natural numbers. Then the sequence
 		  $$
@@ -27,7 +27,7 @@ The imposed the order on the subscripts $$n_1 < n_2 < n_3 < ...$$ just stresses 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>[2.5.2] Convergence of Subsequences</b></h4>
+<h3>[2.5.2] Convergence of Subsequences</h3>
 <div style="background-color: #E0FBE2; padding: 15px 15px 15px 15px; border:1px solid black;">
   Subsequences of a convergent sequence converge to the same limit as the original sequence.
 </div>
@@ -36,7 +36,7 @@ For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/11/an
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 </ul>

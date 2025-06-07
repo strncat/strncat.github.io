@@ -10,7 +10,7 @@ Given a simple polygon of $$n$$ vertices, we define triangulation of $$p$$ as th
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Every polygon must have at least one strictly convex vertex</b></h4>
+<h3>Every polygon must have at least one strictly convex vertex</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation/tri-1.png" width="55%" class="center"></p>
 A strictly convex vertex has an internal angle that is less than $$\pi$$. The claim is that every polygon must have at least one strictly convex vertex.
 <br>
@@ -20,7 +20,7 @@ Let $$p$$ be a simple polygon and let $$v$$ be the the vertex with the lowest y-
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Lemma (Existence of a Diagonal): Every polygon of \(n \geq 4\) vertices has an internal diagonal</b></h4>
+<h3>Lemma (Existence of a Diagonal): Every polygon of \(n \geq 4\) vertices has an internal diagonal</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation/tri-2.png" width="70%" class="center"></p>
 First recall from the Art Gallery post that a <b>Diagonal</b> is a line segment between two of the polygon's vertices $$a$$ and $$b$$ such that the intersection of the line segment $$ab$$ with the boundary of the polygon ($$\partial P$$) is exactly the set $$\{a,b\}$$. We will prove that every polygon with more than 4 vertices must have an internal diagonal.
 <br>
@@ -32,7 +32,7 @@ In either case, since $$n > 3$$, then the closed triangle $$avb$$ contains at le
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Theorem (Triangulation): Every polygon \(P\) of \(n\) vertices maybe partitioned into triangles by the addition of (zero or more) diagonals</b></h4>
+<h3>Theorem (Triangulation): Every polygon \(P\) of \(n\) vertices maybe partitioned into triangles by the addition of (zero or more) diagonals</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation/tri-5.png" width="100%" class="center"></p>
 Proof: <br><br>
 Let $$p$$ be a simple polygon with $$n$$ vertices. We will prove that $$p$$ can be partitioned into triangles by the addition of zero or more diagonals by induction on the number of vertices of $$p$$. <br><br>
@@ -41,7 +41,7 @@ Inductive Step: Let $$n>4$$ and suppose the theorem is true for any polygon with
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Lemma (Number of Diagonals): Every triangulation of a polygon \(p\) of \(n\) vertices uses \(n-3\) diagonals and consists of \(n-2\) triangles</b></h4>
+<h3>Lemma (Number of Diagonals): Every triangulation of a polygon \(p\) of \(n\) vertices uses \(n-3\) diagonals and consists of \(n-2\) triangles</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation/tri-6.png" width="80%" class="center"></p>
 Proof: Let $$p$$ be a simple polygon with $$n$$ vertices. We will prove that the triangulation of $$p$$ uses $$n-3$$ diagonals and consists of $$n-2$$ triangles by induction. <br><br>
 Base case: $$n=3$$, the polygon is a triangle and the theorem holds trivially. We have $$3-3=0$$ diagonals and $$1$$ triangle. <br><br>
@@ -49,18 +49,18 @@ Inductive Step: Let $$n>4$$ and suppose the theorem is true for any polygon with
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Triangulation's Dual</b></h4>
+<h3>Triangulation's Dual</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/triangulation/tri-7.png" width="65%" class="center"></p>
 The dual of a triangulation of a polygon is a tree such that each node is associated with each triangle and an edge exists between a pair of nodes if and only if they share a diagonal. The book then states the following lemma: "The dual $$T$$ of a triangulation is a tree with each node of degree at most three" (TODO: Proof).
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Meisters's Two Ears Theorem: Every polygon of $$n \geq 4$$ vertices has at least two non-overlapping ears</b></h4>
+<h3>Meisters's Two Ears Theorem: Every polygon of $$n \geq 4$$ vertices has at least two non-overlapping ears</h3>
 A leaf node in the triangulation dual corresponds to a an ear. A tree of two or more nodes has $$n - 2$$ nodes (each node corresponds to a triangle). We also know that a tree with two or more nodes must have two leaves.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
 <br>
 <br>

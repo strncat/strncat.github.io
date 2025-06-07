@@ -1,0 +1,90 @@
+I"�)<p>In this one, we want to find the sum of all the digits in the number \(100!\). I did this naively where I just calculate</p>
+<div>
+	$$
+	\begin{align*}
+	 100! = 100 \times 99 \times 98 \times ... \times 1
+	\end{align*}
+	$$
+</div>
+<p>But of course at least in c\(++\), we’ll need an array to hold the sum. Let <i>result</i> be the array that will hold the final outcome. Before iterating, we’ll store \(24 = 4 \times 3 \times 2 \times 1\) in <i>result</i>. The choice here is arbitrary. We’ll save the least significant digit at index 0. So in <i>result</i>, index 0 will hold the digit 4 and index 1 will hold the digit 2. We’ll also use an array \(a\) that will hold the number we’re going to multiply with. So for example \(a\) will be 5 in the next iteration since we want to calculate \(24 \times 5\). Then at each iteration we’ll do the following</p>
+<ul>
+	<li>Copy the array <i>result</i> into array \(b\).</li>
+	<li>Add one to array \(a\).</li>
+	<li>Multiply arrays \(a\) and \(b\) and save the outcome in <i>result</i>.</li>
+</ul>
+<!------------------------------------------------------------------------------------>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">;</span> <span class="n">num</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// copy result to b</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">add_one</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+    <span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+The implementation of adding 1 to an array is pretty straight forward
+<br />
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">add_one</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">an</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// least significant digit is at index 0</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">an</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+We then have the implementation of multiply. This one needed a little more work but eventually it wasn’t too bad.
+<br />
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">multiply</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">an</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bn</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// an + bn</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// least significant digit is at index 0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">an</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">bn</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">product</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+            <span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">carry_position</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">product</span> <span class="o">+</span> <span class="n">result</span><span class="p">[</span><span class="n">position</span><span class="p">];</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">carry_position</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+<p><br />
+Finally, we just need to sum the digits
+<br />
+<!------------------------------------------------------------------------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">sum</span> <span class="o">+=</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"sum = %d</span><span class="se">\n</span><span class="s">, "</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>References&lt;/b&gt;&lt;/h4&gt;
+<a href="https://projecteuler.net/problem=20">Project Euler - 20</a>
+<br />
+<br />
+
+
+</h3>
+:ET

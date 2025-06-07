@@ -9,7 +9,7 @@ These are notes I took while watching the series <a href="https://www.youtube.co
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Introduction</b></h4>
+<h3>Introduction</h3>
 One of the main uses of linear algebra is that it lets us solve a linear system of equations. So if we're given for example the following set of equations,
 <div>
 $$
@@ -45,7 +45,7 @@ This should look very familiar! The matrix $$A$$ corresponds to some linear tran
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>A 2D Example</b></h4>
+<h3>A 2D Example</h3>
 Let's start with a simple example in two dimensions such that the matrix $$A$$ is a 2x2 matrix. Suppose we have two equations and two unknowns. The equations are
 <div>
 $$
@@ -84,7 +84,7 @@ We'll analyze each case separately next.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Case 1: The Determinant is not zero (The Inverse of a Transformation)</b></h4>
+<h3>Case 1: The Determinant is not zero (The Inverse of a Transformation)</h3>
 In case 1, the determinant is not zero. This means the area is not zero and we're not squished to a lower dimension. Therefore there will be only one vector $$x$$ such that $$Ax = v$$. To find it, we really want to play the transformation in reverse going from $$v$$ to $$x$$ (imagine playing it slowly from $$\vec{v}$$ back to $$\vec{x}$$). In other words, we want the inverse transformation applied to $$v$$. The inverse of a transformation $$A$$ is called the <b>inverse of $$A$$</b> and is denoted by $$A^{-1}$$. $$A^{-1}$$ is the unique transformation with the property that if you first apply $$A$$ and then follow it with $$A^{-1}$$, you end up back where you started. And we know that applying multiple transformations is captured algebraically with matrix multiplication. So $$AA^{-1}$$ corresponds to the transformation that does nothing! The transformation that does nothing is called the <b>identity</b> transformation. It leaves both $$\widehat{i}$$ and $$\widehat{j}$$ unchanged so $$I = matrix (1,0,0,1)$$.
 <div>
 $$
@@ -111,13 +111,13 @@ Again it's important to stress the geometric meaning of this equation. We're pla
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Case 2: The Determinant is Zero</b></h4>
+<h3>Case 2: The Determinant is Zero</h3>
 So we know when the determinant is zero, this means that the two dimensions are squished onto a lower dimension. So there is no inverse because we can't unsquish a line to turn it into a plane. It is though still possible that a solution exist even when the determinant is zero. It's just when the whole space is squished into a line, we have to lucky that the vector $$v$$ lives somewhere on that line. (green means there is a solution and yellow indicates no solution exists)
 <p style="text-align:center;"><img src="{{ site.url }}/assets/linear-algebra/inverse/00.png" width="90%" class="center"></p>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Rank</b></h4>
+<h3>Rank</h3>
 If we take a 3x3 transformation in 3 dimensions where the determinant is zero, we will notice that some of these zero determinant cases feel a lot more restrictive than others. It seems that it will be harder to find a solution if we're squished to a line versus for example getting squished to a plane. This leads us to develop new terminology to distinguish these cases. We'll say the transformation that squishes us to a 1 dimensional line has <b>rank 1</b>. If we're squished to 2 dimensions, then the tranformation has rank 2. 
 <br>
 <br>
@@ -125,7 +125,7 @@ So really <b>the rank is the number of dimensions in the output of a transformat
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Column Space</b></h4>
+<h3>Column Space</h3>
 The set of all possible outputs of the 3x3 transformation is called the <b>column space of $$A$$</b> of the transformation whether it's a line, a plane or 3D space. 
 <br>
 <br>
@@ -133,7 +133,7 @@ Why did we call it the column space? We know that each column in the matrix $$A$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Null Space</b></h4>
+<h3>Null Space</h3>
 Another important thing is that the zero vector will always be included in the column space since linear transformations must keep the origin fixed in place. If the matrix is full rank, then the zero vector is the only vector that lands at the origin. But for other non full rank matrices, we can have a bunch of vectors land on zero. These vectors are called the <b>null space</b> or the <b>kernel</b> of your matrix. It's the set of all vectors that become null (land on the zero vector). 
 <br>
 <br>
@@ -141,7 +141,7 @@ If we're trying to solve $$A\vec{x}=\vec{0}$$, then the null space gives you all
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra by 3Blue1Brown</a>
 <br>
 <br>

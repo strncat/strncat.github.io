@@ -1,0 +1,112 @@
+I"+.<p>Let \(G = (V, E)\) be a directed acyclic graph consisting of \(V\) vertices and \(E\) edges. Topological sort is an ordering of the vertices of the graph such that for any given vertices \(u, v \in V\), if \((u,v) \in E\), then \(u\) must come before \(v\) in the ordering. We have already developed an algorithm for topological sort using depth first search <a href="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html">here</a>. In this article, we will explore another topological sort algorithm, Kahn’s algorithm. 
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>Kahn's Algorithm</h3>
+<p>Kahn’s algorithm is extremely intuitive. What are we trying to achieve with topological sort? If we have two vertices/tasks \(u\) and \(v\) where task \(u\) is a perquisite or required to be done before task \(v\), then we want to output \(u\) before \(v\). This dependency is represented with an edge \((u,v)\).</p>
+
+<p><img src="http://localhost:4000/assets/graphs/topological-sort/kahn1.png" alt="my photo" /></p>
+
+<p><b>The in-degree of a vertex</b><br />
+This edge contributes to the in-degree of vertex \(v\) and out-degree of vertex \(u\). The in-degree of a vertex is the number of incoming edges into the vertex. The out-degree of a vertex is the number of edges leaving the vertex. In Kahn’s algorithm, we’re interested in the in-degree of each vertex. In the above example, \(v\) has an in-degree of 1.
+<br />
+<br />
+<b>How does Kahn utilizes the in-degree of a vertex?</b><br />
+Intuitively, if we have a vertex with in-degree \(=0\), then we know that this vertex has no incoming edges. This means that this vertex (task) can be processed/started because it has no dependencies. Therefore, we can just output or add this vertex to the sorted output! This is the whole idea of Kahn’s algorithm. 
+<br />
+<br />
+<b>What if we don’t have a vertex with in-degree 0?</b><br />
+Since the graph is a DAG (no cycles), then it must have at least one node with in-degree \(=0\).
+<br />
+<br />
+<b>What happens when we don’t have any more vertices with in-degree \(=0\)?</b><br />
+<img src="http://localhost:4000/assets/graphs/topological-sort/kahn2.png" alt="my photo" />
+When we add a vertex to the sorted output, we need to decrement the in-degree count of all its neighbors. In the example above, once we add \(u\) to the sorted output, we need to decrement the in-degree of \(v\). This will lead to \(v\) having an in-degree 0. At this point, we need to also add \(v\) to the sorted output and decrement its neighbors.
+<br />
+<br />
+<b>How do we do the above?</b><br />
+We maintain a queue to hold the nodes with in-degree 0 that haven’t been added to the sorted output yet. Every time we pop a vertex from this queue, we do two things:</p>
+<ul>
+  <li>Add this node to the sorted output.</li>
+  <li>Go through its neighbors, decrement their indegree and push any neighbor with in-degree 0 to the queue.
+<br />
+<br /></li>
+</ul>
+
+<p><b>What if the graph has a cycle?</b><br />
+<img src="http://localhost:4000/assets/graphs/topological-sort/kahn3.png" alt="my photo" />
+If the graph has a cycle, then we will have a situation where multiple vertices won’t reach an indegree of zero ever. That’s totally fine. We only need to check that the sorted output at the end has the same number of vertices in the graph. If that’s not the case, then we know the graph has a cycle and we just return an error.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>Example</h3>
+<p>Let’s go through a full example of running Kahn’s algorithm based on the description we gave above. (TODO)
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>Correctness Proof</h3>
+<p>How do we prove that Kahn’s algorithm actually returns a correctly sorted vertices? (TODO)
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>Implementation</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">kahn</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">in_degree</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+
+    <span class="c1">// compute the in-degree of each vertex in O(E+V)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">u</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">neighbor</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// push the vertices of in-degree 0</span>
+    <span class="c1">// if this is a DAG, then we must have some vertex with in-degree=0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">u</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">in_degree</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ordered_vertices</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="c1">// some vertex with in-degree = 0</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">ordered_vertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+
+        <span class="c1">// decrease the in-degree of all neighbors</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">neighbor</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+            <span class="c1">// push a vertex with no more dependencies on the queue</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">in_degree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">neighbor</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// cycle check</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ordered_vertices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">g</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"cycle!!!!!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// print or return ordered_vertices</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/topological-sort/topological-sort-kahn.cpp">Source Code</a>
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>Running Time</h3>
+<p>We compute the in-degree of all vertices in time \(O(E+V)\). The while loop runs in time \(O(E+V)\) since we push and pop a vertex with indegree-0 once. We also loop through the edges of that vertex only once. The total complexity remains at \(O(E+V)\).
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>References</h3>
+<p>geeks-for-geeks
+<br />
+<br /></p>
+
+:ET

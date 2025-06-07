@@ -14,7 +14,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 $$\Rightarrow$$: Assume a set $$K$$ is compact. We'll prove that $$K$$ is closed and bounded. Suppose for the sake of contradiction that $$K$$ is not a bounded set. The definition of a compact set states that every sequence $$(a_n)$$ in $$K$$ has a subsequence $$a_{n_k}$$ that converges to a limit that is also in $$K$$. So the idea is to derive a contradiction from finding some sequence that grows to infinity in a way that it cannot have a convergent subsequence. Since $$K$$ is not a bounded set, then there must exists an element $$x_1 \in K$$ such that $$|x_1| > 1$$. Similarly, there must exists some element $$x_2 \in K$$ with $$x_2 > 2$$. In general, given any $$n \in \mathbf{N}$$, we can produce $$x_n \in K$$ such that $$|x_n| > n$$. $$x_1, x_2, ... x_n, ... = (x_n)$$ is a sequence in $$K$$. Since $$K$$ is compact, then there must exist a convergent subsequence $$(x_{n_k})$$. But all the elements in $$(x_{n_k})$$ must satisfy $$|x_{n_k}| > n_k$$ (why? see <a href="https://strncat.github.io/jekyll/update/2024/02/10/analysis-seq-subsequences.html">this</a>) and consequently $$(x_{n_k})$$ is unbounded. But <a href="http://127.0.0.1:4000/jekyll/update/2024/06/12/analysis-seq-if-convergent-then-bounded.html">theorem 2.3.2</a> states that convergent sequences must bounded. Therefore, we've arrived at a contradiction and $$K$$ must be a bounded set.
 <br>
 <br>
@@ -25,7 +25,7 @@ $$\Leftarrow$$: Assume $$K$$ is closed and bounded. We will show that $$K$$ is c
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Notes</b></h4>
+<h3>Notes</h3>
 The first part of the proof is from the book. The second part is Exercise 3.3.3 and it's my own and could contain mistakes!
 <br>
 <br>

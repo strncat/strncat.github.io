@@ -13,7 +13,7 @@ In other words, breadth first search explores the graph in layers. The immediate
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Implementation Details</b></h4>
+<h3>Implementation Details</h3>
 How could we implement a breadth first search on $$G$$? We want to explore the vertices closest to $$s$$ first. To do so, we will maintain the following data structures:
 
 - A queue. We want to explore the nodes closest to $$s$$ first. We know that a queue maintains the property that a node inserted first will be popped/explored first. We will also use the queue to keep track of the distance of each vertex to $$s$$. Initially we will enqueue $$s$$ with distance 0. When we enqueue new nodes, we will also enqueue their distance to $$s$$ which is just their parent's distance plus 1.
@@ -24,7 +24,7 @@ How could we implement a breadth first search on $$G$$? We want to explore the v
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let's explore the graph above. We will start by popping $$s$$ from the queue with its distance 0. We will then enqueue the neighbors of $$s$$ along with distance 1 and also mark them visited. We could also use the parent array to indicate that $$s$$ is the parent of $$a$$ and $$b$$. At this point, we have $$a$$ and $$b$$ in layer 1 with distance 1. This information will not change in any future iteration. 
 
 ![my photo]({{ site.url }}/assets/graphs/bfs/bfs2.png)
@@ -43,7 +43,7 @@ Notice now how the nodes are organized in layers in terms of the distance from $
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 int bfs(int start, int end, std::vector<std::vector<int>>& graph) {
     std::queue<int> q;
@@ -88,7 +88,7 @@ int bfs(int start, int end, std::vector<std::vector<int>>& graph) {
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Why does breadth first search find the shortest distances?</b></h4>
+<h3>Why does breadth first search find the shortest distances?</h3>
 Intuitively, we know that we explore the vertices in layers starting at $$s$$. So if we have a vertex $$x$$ in layer $$j$$ then we know the distance from $$s$$ to $$x$$ is $$j$$ and that $$x$$ can't have a shorter path to $$s$$ because we would have found $$x$$ in an earlier layer, right? Below is a proof by induction.
 <br>
 <br>
@@ -117,12 +117,12 @@ For all vertices $$w \in V$$, if $$w \in L_j$$, then $$distance(s,w) = j$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 We visit each vertex at most once only because of the visited array we're maintaining. That's $$O(V)$$ time. As a result, we also visit the adjacency list of each vertex at most once and that's $$O(E)$$. Therefore, the total time is $$O(V+E)$$.
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="http://web.stanford.edu/~marykw/classes/CS250_W18/index.html">Stanford - CS161</a>
 <br>
 <br>

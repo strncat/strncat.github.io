@@ -1,0 +1,452 @@
+I"U6<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+The determinant is a map
+$$
+\begin{align*}
+\det: &amp;M_{n \times n} \rightarrow \mathbf{R} \\
+     &amp;A \rightarrow \det(A)
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Properties of the determinant&lt;/b&gt;&lt;/h4&gt;
+<ol>
+	<li>\(A\) is invertible iff \(\det(A) \neq 0\)</li>
+	<li>\(\det(A)\) has geometric meaning.</li>
+	To see this, let 
+	<div>
+	$$
+	\begin{align*}
+	[0,1]^n = \{(x_1,...,x_n) \in \mathbf{R}^n \ | \ x_i \in [0,1]\}
+	\end{align*}
+	$$
+	</div>
+	What does this represent? In \(\mathbf{R}^2\), this is a unit square. In general, it's a cube determined by the vectors \(\{e_1, e_2,...,e_n\}\). 
+	<br />
+	What does this have anything to do with the determinant? 
+	<br />
+	Consider, the matrix \(A \in M_{n \times n}\). When we apply \(A\) on each vector in the standard basis, we get \(Ae_1, Ae_2, ...\).
+	<br />
+	\(L_A([0,1]^n\) is the parallelepiped determined by \(\{Ae_1, Ae_2, ...,Ae_n\}\) and \(volume(L_A([0,1]^n)) = |det(A)|\).
+	<br />
+	<br />
+	<li>The determinant map is not linear except for \(n = 1\). (It is linear in the rows of \(A\))</li>
+	<li>\(\det(AB) = \det(A)\det(B)\).</li>
+</ol>
+<br />
+<hr />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Definition of the Determinant&lt;/b&gt;&lt;/h4&gt;
+The definition of the $$\det: M_{n \times n} \rightarrow \mathbf{R}$$ is inductive on $$n$$.
+<br />
+<br />
+<!-------------------n=1------------------->
+For $$n = 1$$: 
+<div>
+$$
+\begin{align*}
+&amp;M_{1\times 1} = \{(a)\} \leftrightarrow \mathbf{R} \\
+       &amp;\det((a)) = a
+\end{align*}
+$$
+</div>
+Checking the four properties:
+<ol>
+	<li>Since we only have one entry in the matrix, then the inverse exists and is \((a)^{-1} = (\frac{1}{a})\) if and only if \(a = \det((a)) \neq 0\).</li>
+	<li>Checking the second property we see that for \(L_{(a)}: \mathbf{R}^1 \rightarrow \mathbf{R}^1\)
+<div>
+$$
+\begin{align*}
+L_{(a)} : &amp;\mathbf{R}^1 \rightarrow \mathbf{R}^1 \\
+&amp;x \rightarrow ax \\
+L_{(a)}([0,1]) &amp;= \begin{cases} [0,a] \quad \text{if } a \geq 0 \\ [a,0] \quad \text{if } a \lt 0\end{cases}\\
+volume(L_{(a)}([0,1])) &amp;= |a| = |det((a))|.
+\end{align*}
+$$
+</div>
+	</li>
+	<li>The determinant is linear for \(n = 1\)</li>
+	<li>\( det((a)(b)) = det((ab)) = ab = det((a))det((b))  \) </li>
+</ol>
+<br />
+<!-------------------n=2------------------->
+For $$n = 2$$: 
+<div>
+$$
+\begin{align*}
+\det: \ &amp;M_{2 \times 2} \rightarrow \mathbf{R} \\
+       &amp;\begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix} \rightarrow ad - bc
+\end{align*}
+$$
+</div>
+Checking the four properties:
+<ol>
+	<li>We previously proved that \(\begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix}\) is invertible if and only if \(ad - bc \neq 0\).</li>
+	<li> This property takes some work to see. Check the book for a nice description of it.</li>
+	<li>The determinant is not linear for \(n = 2\)</li>
+	<li>We want to check that \(\det(AB) = \det(A)\det(B)\). To see this:
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}a &amp; b \\ c &amp; d \end{pmatrix}\begin{pmatrix}\alpha &amp; \beta \\ \gamma &amp; \delta \end{pmatrix} &amp;= \begin{pmatrix}a\alpha + b\gamma &amp; a\beta + b\delta \\ c\alpha + d\gamma &amp; c\beta + d\delta \end{pmatrix} \\
+det(AB) &amp;= ((a\alpha + b\gamma)(c\beta + d\delta) - (a\beta + b\delta)(c\beta + d\delta)) \\
+&amp;= a\alpha d\delta + b\gamma c\beta - a\beta d\gamma - b\delta c\alpha \\
+&amp;= (ad - bc)(a\delta - \beta \gamma)\\
+&amp;= \det(A) \det(B).
+ \\
+\end{align*}
+$$
+</div>
+	</li>
+</ol>
+<br />
+<!-------------------n------------------->
+So now what about the general case? 
+<div>
+$$
+\begin{align*}
+\det: \ &amp;M_{n \times n} \rightarrow \mathbf{R}
+\end{align*}
+$$
+</div>
+Define $$\tilde{A_{ij}}$$ as the $$(n-1)\times(n-1)$$ matrix obtained from $$A$$ by deleting its $$i$$th row and $$j$$th column.
+<br />
+<br />
+For example
+<div>
+$$
+\begin{align*}
+A &amp;= \begin{pmatrix}1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end{pmatrix} \\
+\tilde{A_{23}} &amp;= \begin{pmatrix}1 &amp; 2 \\ 7 &amp; 8 \end{pmatrix}
+\tilde{A_{31}} = \begin{pmatrix}2 &amp; 3 \\ 5 &amp; 6 \end{pmatrix}  
+\end{align*}
+$$
+</div>
+So now for $$n \geq 2$$ and $$A \in M_{n \times n}$$
+<div>
+$$
+\begin{align*}
+det(A) = \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) 
+\end{align*}
+$$
+</div>
+Remark 1:
+<div>
+$$
+\begin{align*}
+(-1)^k &amp;= \begin{cases} 1 \quad \phantom{-} k \text{ even} \\ -1 \quad \text{k odd } \end{cases}
+\end{align*}
+$$
+</div>
+Remark 2:
+<div>
+$$
+\begin{align*}
+\det\left( \begin{pmatrix}A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22} \end{pmatrix}\right)  
+&amp;= (-1)^{1+1}A_{11} det((A_{22})) + (-1)^{1+2}A_{12}det((A_{21})) \\ 
+&amp;= A_{11}A_{22} - A_{12}A_{21}.
+\end{align*}
+$$
+</div>
+<br />
+<hr />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>Example&lt;/b&gt;&lt;/h4&gt;
+Compute the determinant for 
+<div>
+$$
+\begin{align*}
+\begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 1 &amp; 0 &amp; 2 \\ 2 &amp; 1 &amp; 1 \end{pmatrix} 
+\end{align*}
+$$
+</div>
+<div>
+$$
+\begin{align*}
+det(\tilde{A_{11}}) = \det \left(
+\begin{pmatrix} 0 &amp; 2 \\ 1 &amp; 1 \end{pmatrix}\right) &amp;= -2 \\
+det(\tilde{A_{12}}) = \det \left(
+\begin{pmatrix} 1 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}\right) &amp;= -3 \\
+det(\tilde{A_{13}}) = \det \left(
+\begin{pmatrix} 1 &amp; 0 \\ 2 &amp; 1 \end{pmatrix}\right) &amp;= 1 \\
+\end{align*}
+$$
+</div>
+<div>
+$$
+\begin{align*}
+\det(A) &amp;= (-1)^{1+1}(1)(-2) + (-1)^{1+2}(2)(-3) + (-1)^{1+3}(3)(1) \\
+       &amp;= -2 + 6 + 3 = 7.
+\end{align*}
+$$
+</div>
+<br />
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+\(\det(A)\) is linear in rows of \(A\).
+</div>
+<br />
+What does this mean? Suppose we have three matrices $$A, B$$ and $$C$$ in $$M_{n \times n}$$ which are equal in all rows but the $$r$$th row. And suppose that for the $$r$$th row that $$a_r = b_r + kc_r$$. 
+<div>
+$$
+\begin{align*}
+B = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}, C = \begin{pmatrix} \pi &amp; \pi \\ 1 &amp; 1 \end{pmatrix}, A = \begin{pmatrix} 1+k\pi &amp; 1+k\pi \\ 1 &amp; 1 \end{pmatrix}
+\end{align*}
+$$
+</div>
+Here, they're all equal except for the $$r$$th row which is the first row here so $$r = 1$$. The $$r$$th row of $$A$$ is $$a_r = b_r + kc_r$$. In this case,
+<div>
+$$
+\begin{align*}
+\det(A) = \det(B) + k\det(C)
+\end{align*}
+$$
+</div>
+<b>Proof:</b>
+<br />
+We have two cases. The $$r$$th row is 1 or the $$r$$th row is some other row other than 1. Why? because the current definition of the determinant that we have right now is "favoring" the first row. So we want to split the cases around this.
+<br />
+<br />
+Case 1 ($$r = 1$$): 
+<br />
+Suppose the matrices differ in the first row where the first row of $$A$$ is some linear combination of the first row in $$B$$ and the first row in $$C$$. We know that
+<div>
+$$
+\begin{align*}
+\det(A) =  \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}})
+\end{align*}
+$$
+</div>
+However we know that every entry in the first row of $$A$$ can be written as a linear combination of the entries in $$B$$ and $$C$$ and
+<div>
+$$
+\begin{align*}
+A_{1j} = B_{1j} + kC_{1j}.
+\end{align*}
+$$
+</div>
+Additionally, by the definition that we have of computing the determinant,
+<div>
+$$
+\begin{align*}
+\tilde{A_{1j}} = \tilde{B_{1j}} = \tilde{C_{1j}}.
+\end{align*}
+$$
+</div>
+Therefore,
+<div>
+$$
+\begin{align*}
+\det(A) &amp;=  \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \\
+&amp;= \sum_{j=1}^{n} (-1)^{1+j} (B_{1j} + kC_{1j}) \det(\tilde{A_{1j}}) \\
+&amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{A_{1j}}) +  \sum_{j=1}^{n} (-1)^{1+j} kC_{1j} \det(\tilde{A_{1j}}) \\
+&amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{B_{1j}}) +  k\sum_{j=1}^{n} (-1)^{1+j} C_{1j} \det(\tilde{C_{1j}}) \\
+&amp;= \det(B) + k\det(C).
+\end{align*}
+$$
+</div>
+Case 2 ($$r &gt; 1$$): By Induction on $$n$$
+<br />
+Base Case: When $$n = 1$$, the determinat is linear.
+<br />
+<br />
+Inductive Step: Suppose it is true for $$n - 1$$. Then,
+<div>
+$$
+\begin{align*}
+\det(A) &amp;=  \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}})
+\end{align*}
+$$
+</div>
+In this case, we know the matrices differ in the $$r$$'th row where $$r &gt; 1$$. and so the first row of each matrix is the same. $$A_{1j} = B_{1j} = C_{1j}$$ for all $$j$$. What about the determinants of $$\tilde{A_{1j}}, \tilde{B_{1j}}$$ and $$\tilde{C_{1j}}$$? Well, since they are now of size $$n-1 \times n-1$$, then we can use the inductive hypothesis to conclude that,
+<div>
+$$
+\begin{align*}
+\det(\tilde{A_{1j}}) &amp;=  \det(\tilde{B_{1j}}) + k \det(\tilde{C_{1j}})
+\end{align*}
+$$
+</div>
+So now we can use all of these facts to compute the determinant,
+<div>
+$$
+\begin{align*}
+\det(A) &amp;=  \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{A_{1j}}) \\
+&amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} (\det(\tilde{B_{1j}}) + k \det(\tilde{C_{1j}})) \\
+&amp;= \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{B_{1j}}) + k \sum_{j=1}^{n} (-1)^{1+j} A_{1j} \det(\tilde{C_{1j}}) \\
+&amp;= \sum_{j=1}^{n} (-1)^{1+j} B_{1j} \det(\tilde{B_{1j}}) + k \sum_{j=1}^{n} (-1)^{1+j} C_{1j} \det(\tilde{C_{1j}}) \\
+&amp;= \det(B) + k\det(C). \ \blacksquare
+\end{align*}
+$$
+</div>
+<br />
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+	For any \(r = 1,2,...,n\), we have 
+$$
+\begin{align*}
+\det(A) =  \sum_{j=1}^{n} (-1)^{r+j} A_{rj} \det(\tilde{A_{rj}})
+\end{align*}
+$$
+</div>
+<br />
+The proof for this theorem requires the following lemma
+<br />
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Lemma
+</div>
+<div class="purbdiv">
+Given \(A\). Let \(B\) be the matrix equal to \(A\) with the \(r\)th row placed by \(e_j\) so 
+$$
+\begin{align*}
+B &amp;= \begin{pmatrix} \bar{b_1} \\ \vdots \\ e_j \\ \vdots \\ \bar{b_n} \end{pmatrix}
+\end{align*}
+$$
+Then,
+$$
+\begin{align*}
+\det(B) &amp;=  (-1)^{r+j} \det(\tilde{B_{rj}})
+\end{align*}
+$$
+</div>
+<br />
+The proof of this lemma is in the textbook (page 214). (TODO: check). So now we'll do the proof for the theorem.
+<!------------------------------------------------------------------------------------>
+<br />
+<br />
+<b>Proof (Using the Lemma)</b>
+<br />
+Given $$A$$. Let $$B_j$$ be the matrix equal to $$A$$ with the $$r$$th row replaced by $$e_j$$. By the technical lemma,
+<div>
+$$
+\begin{align*}
+\det(B_j) &amp;=  (-1)^{r+j} \det(\tilde{(B_{j})_{rj}})
+\end{align*}
+$$
+</div>
+(<i>Note this is this the same expression as the technical lemma. It's just that the matrix here is called $$B_j$$ and in the technical lemma it is $$B$$. Moreover, $$\det(\tilde{(B_{j})_{rj}})$$ says take the matrix $$B_j$$ and remove the row $$r$$ and column $$j$$ to compute that determinant)</i> 
+<br />
+<br />
+So now, since we're computing the determinant by removing the row $$r$$ and column $$j$$, this determinant should the same exact determinant as $$\det(\tilde{A_{rj}})$$ since they only differ in row $$r$$ and column $$j$$. Therefore, we replace it with $$\det(\tilde{A_{rj}})$$ in
+<div>
+$$
+\begin{align*}
+\det(B_j) &amp;=  (-1)^{r+j} \det(\tilde{(B_{j})_{rj}}) \\
+&amp;=  (-1)^{r+j} \det(\tilde{A_{rj}})
+\end{align*}
+$$
+</div>
+Next, we know that $$e_1,...e_j$$ are vectors of the standard basis for $$\mathbf{R}^n$$. So we know that the $$r$$th row of $$A$$ can be expressed as a linear combination of these vectors. Moreover, the coefficients of this linear combination are just the entries in the $$r$$th row of $$A$$. So by Theorem 1 ($$\det(A)$$ is linear in the rows of $$A$$), this means that we can break the determinant of $$A$$ into the sum of all these determinants as follows
+<div>
+$$
+\begin{align*}
+\det(A) &amp;= \sum A_{rj} \det(B_j) \\
+        &amp;= \sum A_{rj}  (-1)^{r+j} \det(\tilde{A_{rj}}).
+\end{align*}
+$$
+</div>
+as we wanted to show. $$\blacksquare$$
+<!------------------------------------------------------------------------------------>
+<br />
+<br />
+This gives the following corollary
+<br />
+<div class="purdiv">
+Corollary 1
+</div>
+<div class="purbdiv">
+If \(A\) has a row of all zeros, then \(\det A = 0\).
+</div>
+<br />
+This is all fine but unfortunately, it doesn't still solve the problem of the computation of the determinant taking too long to compute. Since a matrix at random will likely not have a row of all zeros. We still have another corollary
+<!------------------------------------------------------------------------------------>
+<br />
+<div class="purdiv">
+Corollary 2
+</div>
+<div class="purbdiv">
+If \(A\) has two identical rows, then \(\det A = 0\).
+</div>
+<br />
+<b>Proof</b>
+<br />
+By induction on $$n$$. 
+<br />
+<br />
+Base Case: $$n = 2$$.
+<div>
+$$
+\begin{align*}
+\det\begin{pmatrix} a &amp; b \\ a &amp; b \end{pmatrix} = ab - ab = 0.
+\end{align*}
+$$
+</div>
+Inductive Step: <br />
+Assume this is true for $$n - 1$$. 
+<div>
+	$$
+	\begin{align*}
+	A &amp;= \begin{pmatrix} \bar{a_1} \\ \vdots \\ a_i \\ \vdots \\ a_j \\ \vdots \\ \bar{b_n} \end{pmatrix}, \text{ where $a_i = a_j$}
+	\end{align*}
+	$$
+</div>
+The goal is to compute the determinant of $$A$$ using the inductive hypothesis. Well if we choose $$r$$ such that it is not $$i$$ or $$j$$, then by the previous theorem we know that  
+<div>
+	$$
+	\begin{align*}
+	\det(A) &amp;= \sum A_{rj}  (-1)^{r+j} \det(\tilde{A_{rj}}).
+	\end{align*}
+	$$
+</div>
+But $$\det(\tilde{A_{rj}})$$ is 0 since $$\tilde{A_{rj}}$$ has two identical rows and its size is $$n-1 \times n-1$$. Therefore,
+<div>
+	$$
+	\begin{align*}
+	\det(A) &amp;= 0.
+	\end{align*}
+	$$
+</div>
+As we wanted to show. $$\blacksquare$$
+<br />
+<br />
+<hr />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>References&lt;/b&gt;&lt;/h4&gt;
+<ul>
+<li>Math416 by Ely Kerman</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</h3></h3></h3></h3>
+:ET

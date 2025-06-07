@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(a_n)$$ be a sequence. The statement, if a sequence $$a_n$$ converges to $$a$$ then every subsequence also converges to $$a$$, is proved in <a href= "https://strncat.github.io/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">here</a>. We now prove the other direction that claims that if every subsequence converges to $$a$$ then $$(a_n)$$ also converges to $$a$$. Assume that every subsequence of $$(a_n)$$ converges to $$a$$. But $$(a_n)$$ is also a subsequence of itself. Take $$(a_{n_k})$$ and set $$n_k = k$$. so $$n_1$$ is the first term of the sequence, $$n_2$$ is the second term of the sequence and so on. Therefore, $$(a_n)$$ also converges to $$a$$. $$\blacksquare$$
 <br>
 <br>

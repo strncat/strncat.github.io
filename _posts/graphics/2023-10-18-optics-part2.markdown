@@ -6,17 +6,17 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Overview</b></h4>
+<h3>Overview</h3>
 So far we defined the radiant intensity as the amount of photons per solid angle, $$I(\omega) = d\phi/d\omega$$. We  defined the irradiance as the mount of photons per surface area, $$E = d\phi/dA$$. We also defined the radiance (radiant intensity per area chunk) as $$L = dE/(d\omega \cos\theta_{\text{light}})$$. Next we're going to look at the color bleeding phenomena and then use it as a motivation to see how we can approximate light reflecting from materials in the scene we're rendering.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Color Bleeding and Objects as Area Lights</b></h4>
+<h3>Color Bleeding and Objects as Area Lights</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/optics/03-color-bleeding.png" width="70%" class="center"></p>
 Light comes from all visible objects. One example is a shiny red car. Even though we don't have a red light source, we can still see the effect on the objects next to the car for example (some reddish color). This is the affect of <b>color bleeding</b>.
 <br>
@@ -25,7 +25,7 @@ To correctly render something, we need to know all the light that's hitting it f
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Light/Object Interactions</b></h4>
+<h3>Light/Object Interactions</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/optics/06-light-rays.png" width="50%" class="center"></p>
 - When light hits a material, it maybe be: absorbed, reflected or transmitted.
 - When light passes through a material, it maybe absorbed or scattered.
@@ -51,7 +51,7 @@ The bssrdf models this extra light getting inside the marble that is getting out
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>BRDF</b></h4>
+<h3>BRDF</h3>
 Again The "Bidirectional Reflectance Distribution Function" models how light is reflected. It models everything that happens on the side of the surface where the light is coming from. The BRDF depends on the following parameters:
 <div>
 $$
@@ -82,7 +82,7 @@ So again, pick a point on the surface and pick a color. the $$BRDF$$ function wi
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Measuring/Approximating a BRDF</b></h4>
+<h3>Measuring/Approximating a BRDF</h3>
 <div>
 Many possible $$BRDF$$ models like:
 <lu>
@@ -93,7 +93,7 @@ Many possible $$BRDF$$ models like:
 </lu>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Lighting Equation</b></h4>
+<h3>The Lighting Equation</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/optics/05-lighting.png" width="70%" class="center"></p>
 
 So now we have a $$BRDF$$ function for each outgoing direction and every possible incoming direction. But since we're only concerned with one point of view (eye, aperture), then we only care about one outgoing direction and all incoming directions. Each pixel is a viewer. We have one outgoing direction but we care about all incoming directions. So again, collect all the light from all incoming directions $$\omega_i$$ but only focus on the single outgoing direction $$\omega_o$$. 
@@ -143,7 +143,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

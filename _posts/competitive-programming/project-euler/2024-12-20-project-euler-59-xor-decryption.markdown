@@ -25,7 +25,7 @@ For this problem, we are told that the password or key consists of three lower c
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 I only did the brute force solution which worked and it was pretty fast. It was a pain to figure out which characters were allowed. I did this in $$c++$$ and the code to read the input and put it in a vector is the following
 {% highlight c++ %}
 freopen("0059_cipher.txt" , "r" , stdin);
@@ -87,7 +87,7 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=55">Project Euler - 55</a>
 <br>
 <br>

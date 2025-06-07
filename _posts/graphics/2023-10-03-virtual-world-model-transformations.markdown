@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
@@ -19,7 +19,7 @@ Our goal is to mimic human vision in a virtual world. We do this by:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Rotations</b></h4>
+<h3>Rotations</h3>
 In 2D, we can rotate a point counter clock-wise about the origin with 
 <div>
 $$
@@ -47,7 +47,7 @@ All standard stuff but the cool part was the next topic which is proving that th
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Rotations Preserve Line Segments</b></h4>
+<h3>Rotations Preserve Line Segments</h3>
 Consider two points $$p$$ and $$q$$ and the line segment between them. Write the line segment in terms of these points
 <div>
 $$
@@ -82,7 +82,7 @@ so the distance is preserved.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Rotations Preserve Angels</b></h4>
+<h3>Rotations Preserve Angels</h3>
 Consider two line segments $$u$$ and $$v$$. The claim is that the angel between two is preserved after $$u$$ and $$v$$ are rotated. \\
 Proof:
 <div>
@@ -107,12 +107,12 @@ So the angel between $$u$$ and $$v$$ is the same as the angle between $$Ru$$ and
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Rotations Preserve Shape</b></h4>
+<h3>Rotations Preserve Shape</h3>
 TODO
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Scaling (Resizing)</b></h4>
+<h3>Scaling (Resizing)</h3>
 The shear/scaling matrix (keeping in mind that  shearing cause distortions)
 <div>
 $$
@@ -129,7 +129,7 @@ if $$s_1 = s_2 = s_3 = s$$, then the object is just getting scaled. In that case
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Homogenous Coordinates</b></h4>
+<h3>Homogenous Coordinates</h3>
 Before we can talk about translation, we need to introduce homogenous coordinates. The reason is because we want to do translations with matrix multiplication to speed things up. Instead of applying each transformation separately, now we can multiply all these transformations first and then apply them all at once.
 - The homogeneous coordinates of a 3D point $$x$$ = (x, y, z) are
 <div>
@@ -149,7 +149,7 @@ for any $$w \neq 0$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Order Matters!</b></h4>
+<h3>Order Matters!</h3>
 Suppose we want to rotate by 45 degrees around the x-axis and then translate all the points by $$(t_1, t_2, t_3)$$. We can use homogenous coordinates to accomplish this but we need to remember that we need to rotate first and then translate. If we change the order, then we'll get a completely different transformations. To correctly apply the transformations, $$M_1$$ followed by $$M_2$$, we'll need to multiply the matrices in the reverse order $$M_2M_1$$, meaning that we're applying $$M_1$$ first.
 <div>
 $$
@@ -252,7 +252,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

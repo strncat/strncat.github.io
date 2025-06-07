@@ -9,7 +9,7 @@ Rotating a tree is an essential step in the process of balancing binary search t
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Left Rotations</b></h4>
+<h3>Left Rotations</h3>
 Given a subtree with root $$x$$ that has a right subtree $$y$$. A left rotation makes $$y$$ the new root of the subtree and $$x$$ its left subtree. $$y$$'s left subtree $$b$$ will be $$x$$'s right subtree. The subtrees $a$ and $c$ remain the same.
 <svg width="800" height="260" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<ellipse stroke="black" stroke-width="1" fill="gray" fill-opacity="0.25" cx="571.5" cy="55.5" rx="30" ry="30"/>
@@ -53,7 +53,7 @@ Given a subtree with root $$x$$ that has a right subtree $$y$$. A left rotation 
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Correctness Proof</b></h4>
+<h3>Correctness Proof</h3>
 We want to prove the following:
 
 | a left rotation maintains the binary search property |
@@ -63,7 +63,7 @@ Let $$T$$ be a binary search tree and let the right subtree above be in $$T$$. L
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 void left_rotate(Node *root, Node *x) {
     Node *y = x->right; // we are assuming x has a right child
@@ -93,7 +93,7 @@ void left_rotate(Node *root, Node *x) {
 {% endhighlight %}
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Right Rotations</b></h4>
+<h3>Right Rotations</h3>
 Similarly, a rotation rotation takes a node $$y$$ with its left child $$x$$ and rotate them so that $$x$$ is the parent of $$y$$ and $$y$$ is now a right child of $$x$$.
 
 <svg width="800" height="260" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -137,7 +137,7 @@ Similarly, a rotation rotation takes a node $$y$$ with its left child $$x$$ and 
 </svg>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 {% highlight c++ %}
 void right_rotate(Node *root, Node *x) {
     Node *x = y->left; // we are assuming y has a left child x
@@ -167,17 +167,17 @@ void right_rotate(Node *root, Node *x) {
 {% endhighlight %}
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 Since we're performing a constant number of link changes then the runtime is $$O(1)$$.
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/red-black-tree.cpp
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 CLRS
 <br>
 <br>

@@ -10,7 +10,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 A closed interval $$[c,d]$$ is a compact set. To see why, notice that if a sequence $$(a_n)$$ is contained in $$[c,d]$$ then we can use the <a href="https://strncat.github.io/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html">Bolzano-Weirstrass theorem</a> which states that every bounded sequence contains a convergent subsequence to conclude that we are guaranteed to find a convergent subsequence $$(a_{n_k})$$. We also know from <a href="https://strncat.github.io/jekyll/update/2024/06/27/analysis-sets-closed-example.html">this</a>, that every closed interval is a closed set. Therefore, $$[c,d]$$ contains all of its limit points and the limit of $$(a_{n_k})$$ is in $$[c,d]$$ as required. 
 <br>
 <br>

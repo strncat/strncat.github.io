@@ -14,7 +14,7 @@ For the definitions of an upper bound and the least upper bound of a set, see <a
 For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/16/analysis-archimedian-principle.html">this</a>
 <br>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$a$$ and $$b$$ be real numbers with with $$a < b$$. We will produce $$q = \frac{m}{n} \in \mathbf{Q}$$ where $$m \in \mathbf{Z}$$ and $$n \in \mathbf{N}$$ such that
 <div>
 $$

@@ -5,7 +5,7 @@ date:   2019-06-18 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>2D grid with no spaces between cells (marioyc)</b></h4>
+<h3>2D grid with no spaces between cells (marioyc)</h3>
 I used to read grids with the second method below but this one is much simpler! I had to save it here for future references, borrowed from marioyc. In this specific example (469Wetlands of Florida), we are not given the dimensions of grid (ugh).<br>
 <table>
 <td>
@@ -53,7 +53,7 @@ Or if you know the dimensions,
 
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>2D grid with no spaces between cells</b></h4>
+<h3>2D grid with no spaces between cells</h3>
 This is done using std::getline like above, but here we save the grid as a 2D char array instead of multiple vectors of strings (above). In this particular, we know the dimensions but not the total number of tests.<br>
 <table>
 <td>
@@ -84,7 +84,7 @@ bool read_input() {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Unbounded tests and variable length strings (use sstream)</b></h4>
+<h3>Unbounded tests and variable length strings (use sstream)</h3>
 We have a bunch of tests but we don't know the number of tests. This is an example:<br>
 <table>
 	<td>
@@ -120,7 +120,7 @@ for (int i = 0; i < n; i++) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>2D grid with ints and characters</b></h4>
+<h3>2D grid with ints and characters</h3>
 This is a square grid with 5 rows and 5 columns. Also, we're only given the lower triangle only in the matrix since this is an unweighted graph. The main issue was that an 'x' was used to indicate that there is no edge between the vertices.
 <table>
 <td>
@@ -145,7 +145,7 @@ for (int i = 2; i <= n; i++) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>3D grid with no space between cells</b></h4>
+<h3>3D grid with no space between cells</h3>
 This is from problem "532 - Dungeon Master". Here we know when to terminate. We also know the number of rows, colums and the height (number of levels). There is also an extra new line between each board.
 <table>
 <td>
@@ -195,7 +195,7 @@ for (int k = 0; k < L; k++) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Strings with variable number of ints</b></h4>
+<h3>Strings with variable number of ints</h3>
 Consider a number of lines where each line consists of a variable number of ints. We can use std::istringstream and use a while loop to read as many ints as possible from that line.
 
 {% highlight c++ %}

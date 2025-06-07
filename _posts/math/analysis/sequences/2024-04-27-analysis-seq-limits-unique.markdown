@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(x_n)$$ be an arbitrary convergent sequence. Suppose for the sake of contradiction that the limit is not unique so we have $$(x_n) \rightarrow a$$ and $$(x_n) \rightarrow b$$ for some numbers $$a$$ and $$b$$ where $$a \neq b$$. Without the loss of generality assume that $$a \geq b$$. Now, since $$(x_n) \rightarrow a$$, then for any $$\epsilon > 0$$ there exists some $$N_1 \in \mathbf{N}$$ such that
 <div>
 $$

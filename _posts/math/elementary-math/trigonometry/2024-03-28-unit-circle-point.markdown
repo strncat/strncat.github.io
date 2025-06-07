@@ -20,7 +20,7 @@ The coordinates of the point at angle $$\frac{\pi}{6}$$ are $$(\frac{1}{2}, \fra
 
 
 <br>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>
 <a href="https://www.youtube.com/watch?v=x8FNTKGWK7c">(video)</a>

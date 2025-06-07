@@ -1,0 +1,343 @@
+I"S<p><img src="http://localhost:4000/assets/mincut/1.png" width="100%" />
+Let \(G=(V,E)\) be an undirected graph with \(V\) vertices and \(E\) edges. A cut in \(G\) is a partition of \(V\) into two non-empty sets of vertices \(A\) and \(B\). The <b>size</b> of the cut is the number of edges with one end point in \(A\) and another in \(B\). A <b>global minimum cut</b> is a cut of minimum size.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h4><b>Karger's Algorithm&lt;/h3&gt;
+Karger's algorithm starts with picking an edge $$(u,v)$$ in $$G$$ uniformly at random. It then <b>contracts</b> this edge by creating a new node $$w$$ that combines both $$u$$ and $$v$$. All the edges in $$G$$ with an end point equal to either $$u$$ and $$v$$ now point to $$w$$ instead. Also, any edge between $$u$$ and $$v$$ is deleted. It repeatedly contracts randomly picked edges until we have two vertices in the graph. We then return the number of edges between the two vertices as the global minimum cut in $$G$$. 
+<br />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger's Algorithm Pseudocode&lt;/h3&gt;
+
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">karger</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">Initially</span> <span class="n">create</span> <span class="n">a</span> <span class="n">set</span> <span class="k">for</span> <span class="n">each</span> <span class="n">node</span> <span class="n">v</span><span class="p">,</span> <span class="n">S</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">G</span> <span class="n">has</span> <span class="n">more</span> <span class="n">than</span> <span class="n">two</span> <span class="n">nodes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">choose</span> <span class="n">an</span> <span class="n">edge</span> <span class="n">e</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="n">uniformly</span> <span class="n">at</span> <span class="n">random</span><span class="p">.</span>
+        <span class="n">create</span> <span class="n">a</span> <span class="k">new</span> <span class="n">node</span> <span class="n">w</span> <span class="n">with</span> <span class="n">S</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">union</span> <span class="n">S</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">the</span> <span class="n">sets</span> <span class="n">of</span> <span class="n">the</span> <span class="n">last</span> <span class="n">two</span> <span class="n">nodes</span><span class="p">.</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Example&lt;/h3&gt;
+In this example, we will apply the contraction algorithm above on the following graph. We start by picking an edge uniformly at random. Suppose we picked the edge $$(d,e)$$ below:
+<img src="http://localhost:4000/assets/mincut/2.png" width="100%" />
+We then delete $$(d,e)$$. We create a new node $$z$$. We then point any edge that previously had an end point equal to $$d$$ or $$e$$ to point at $$z$$ instead.
+<img src="http://localhost:4000/assets/mincut/3.png" width="100%" />
+Suppose we pick $$(a,b)$$ next.
+<img src="http://localhost:4000/assets/mincut/4.png" width="100%" />
+We delete $$(a,b)$$ and create node, $$y$$, and fix all the old edges pointing at $$a$$ or $$b$$ to point at $$y$$.
+<img src="http://localhost:4000/assets/mincut/5.png" width="100%" />
+Suppose we pick $$(f,g)$$ next.
+<img src="http://localhost:4000/assets/mincut/6.png" width="100%" />
+We'll repeat the same process by creating node, $$x$$, and fixing the edges below.
+<img src="http://localhost:4000/assets/mincut/7.png" width="100%" />
+Suppose we pick $$(z,x)$$ next.
+<img src="http://localhost:4000/assets/mincut/8.png" width="100%" />
+We'll delete $$(z,x)$$, create a new node, $$w$$, and fix all the edges below.
+<img src="http://localhost:4000/assets/mincut/9.png" width="100%" />
+Finally, we have two edges left. Each edge has a 0.5 probability of being picked up. Suppose we pick $$(y,c)$$. 
+<img src="http://localhost:4000/assets/mincut/10.png" width="100%" />
+Since we only have 2 vertices then we're done. We will return the number of edges between the two vertices which is 1 in this case. So the global minimum cut is of size 1 which is correct for this graph.
+<img src="http://localhost:4000/assets/mincut/11.png" width="100%" />
+Suppose however that instead of picking $$(y,c)$$ to contract, we picked $$(y,w)$$.
+<img src="http://localhost:4000/assets/mincut/10a.png" width="100%" />
+We will end up with a global minimum cut of size 2 instead which is not correct for this graph! This is why Krager's algorithm is a Monte Carlo algorithm.
+<img src="http://localhost:4000/assets/mincut/11a.png" width="100%" />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Probability of Success&lt;/h3&gt;
+Suppose we have a graph $$G=(E,V)$$ with $$n$$ nodes and $$m$$ edges. Suppose the cut $$(A,B)$$ is a global minimum cut is of size $$k$$. Also, let $$F$$ to be the set of $$k$$ edges in the cut $$(A,B)$$. So $$F$$ has the edges that have one end point in $$A$$ and the other end point in $$B$$.
+<br />
+<br />
+The probability that the contraction algorithm succeeds is the probability that we don't make any mistake in the $$n-2$$ iterations of the algorithm. Suppose we let $$S_i$$ to be the event that we don't make a mistake in step $$i$$ or generally succeed in step $$i$$. We want to calculate the following probability:
+<div center="">
+$$
+\begin{align*}
+Pr(success) = Pr(S_1 \cap S_2 \cap S_3 \cap ... \cap S_{n-2})
+\end{align*}
+$$
+</div>
+These events are not independent! We can further expand this using the chain rule and instead calculate:
+<div center="">
+$$
+\begin{align*}
+Pr(success) = Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3})
+\end{align*}
+$$
+</div>
+<hr />
+<br />
+<b> Success in the iteration 1:</b><br />
+Let's look at how we can calculate each of these. What does it mean to not make a mistake in step 1? It means that we don't pick an edge that connects a vertex from the set $$A$$ to a vertex from the set $$B$$. Because if we did, then $$A$$ and $$B$$ will be merged together and we will not be able to return the global minimum cut $$(A,B)$$. So we basically want to avoid picking edges from $$F$$. Therefore, the probability that we don't make a mistake in step 1 is
+<br />
+<div center="">
+$$
+\begin{align*}
+Pr(S_1) = 1 - \frac{|F|}{|E|} = 1 - \frac{k}{|E|}.
+\end{align*}
+$$
+</div>
+What is $$|E|$$? <br />
+We will use $$k$$ to find an upper bound on $$|E|$$. We know that the global minimum cut is of size $$k$$, therefore, we must have:
+
+| For any node $$v$$ in $$V$$, $$degree(v) \geq k$$ |
+
+Proof: Suppose not, then there exists some node $$u$$ such that $$degree(u) &lt; k$$. Pick the minimum cut such that $$A = \{u\}$$ and $$B = V - \{u\}$$. The cut $$(A,B)$$ is a global minimum cut of size less than $$k$$ which is a contradiction. $$\blacksquare$$
+<br />
+<br />
+Based on this, we can conclude that $$|E| \geq \frac{1}{2}kn$$. ($$\frac{1}{2}$$ because $$G$$ is undirected).
+<br />
+<br />
+So now we have:
+<div center="">
+$$
+\begin{align*}
+Pr(S_1) = 1 - \frac{|F|}{|E|} \geq 1 - \frac{2k}{kn} = 1 - \frac{2}{n}.
+\end{align*}
+$$
+</div>
+<hr />
+<br />
+<b> Success in iteration $$i+1$$:</b><br />
+What about the other iterations? What is the probability that we don't make a mistake in iteration $$i+1$$ given that we haven't made any mistake in all the previous interations? At iteration $$i+1$$, we have $$n-i$$ nodes in the graph. Since we haven't made any mistake yet, we still have $$k$$ edges in $$F$$ and each node is of degree at least $$k$$ (same proof as before). Therefore, 
+<div center="">
+$$
+\begin{align*}
+Pr(S_{i+1} | S_1 \cap S_2 \cap ... \cap S_i) \geq 1 - \frac{k}{1/2k(n-j)} = 1 - \frac{2}{n-j}.
+\end{align*}
+$$
+</div>
+<hr />
+<br />
+Now we can combine everything together:
+<div center="">
+$$
+\require{cancel}
+\begin{align*}
+Pr(success) &amp;= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-2} | S_1 \cap S_2 \cap ... \cap S_{n-3}) \\
+&amp;\geq \big(1 - \frac{2}{n}\big)\big(1 - \frac{2}{n-1}\big)...\big(1-\frac{2}{n-j}\big)...\big(1-\frac{2}{3}\big) \\
+&amp;= \big(\frac{n-2}{n}\big)\big(\frac{n-3}{n-1}\big)\big(\frac{n-4}{n-2}\big)...\big(\frac{3}{5}\big)\big(\frac{2}{4}\big)\big(\frac{1}{3}\big) \\
+&amp;= \big(\frac{\bcancel{n-2}}{n}\big)\big(\frac{\bcancel{n-3}}{n-1}\big)\big(\frac{\bcancel{n-4}}{\bcancel{n-2}}\big)...\big(\frac{\bcancel{3}}{\bcancel{5}}\big)\big(\frac{2}{\bcancel{4}}\big)\big(\frac{1}{\bcancel{3}}\big) \\
+&amp;= \frac{2}{n(n-1)}.
+\end{align*}
+$$
+</div>
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Can we do better?&lt;/h3&gt;
+The probability of success, $$p$$, we found so far is 
+<div center="">
+$$
+\begin{align*}
+p &amp;\geq \frac{2}{n(n-1)} = \frac{1}{\binom{n}{2}}.
+\end{align*}
+$$
+</div>
+Suppose we run $$T$$ trials of Krager's algorithm. We then take the minimum cut of all cuts found. These trials are independent. What is the probability of NOT getting the global minimum cut? It is the probability of failing in every trial. Let $$F_i$$ be the event that we failed to find the global minimum cut in iteration $$i$$. Therefore,
+<div center="">
+$$
+\begin{align*}
+Pr(\text{Failure after } T \text{ trials}) &amp;= Pr(F_1 \cap F_2 \cap ... \cap F_T) \\
+&amp;= Pr(F_1)Pr(F_2)...Pr(F_T) \text{  (by independence)}\\
+&amp;\leq \big(1-\frac{2}{n(n-1)} \big)^{T} \\
+&amp;= \big(1-\frac{1}{\binom{n}{2}} \big)^{T}.
+\end{align*}
+$$
+</div>
+We also know that for any $$x \geq 1$$, we have
+<div center="">
+$$
+\begin{align*}
+\big (1-\frac{1}{x} \big)^x \leq \frac{1}{e}
+\end{align*}
+$$
+</div>
+Suppose we let $$x = \frac{1}{p}$$, we see that
+<div>
+$$
+\begin{align*}
+\big(1-\frac{1}{\binom{n}{2}} \big)^{\binom{n}{2}} \leq \frac{1}{e}
+\end{align*}
+$$
+</div>
+This is exactly our expression above with $$T = \binom{n}{2}$$. Furthermore, we can let $$T = \ln(n)\binom{n}{2}$$ to get
+<div>
+$$
+\begin{align*}
+P(\text{Failure}) \leq \big(1-\frac{1}{\binom{n}{2}} \big)^{\ln(n)\binom{n}{2}} \leq \frac{1}{e}^{\ln(n)} = \frac{1}{n}
+\end{align*}
+$$
+</div>
+In general, if we want the probability of failure to be at most $$\delta$$ then we need to set $$T$$ to $$\ln(1/\delta)\frac{1}{p}$$ in
+<div>
+$$
+\begin{align*}
+Pr(\text{Failure}) &amp;\leq \big(1-p\big)^{T} \leq \delta
+\end{align*}
+$$
+</div>
+This is because 
+<div>
+$$
+\begin{align*}
+Pr(\text{Failure}) &amp;\leq \big(1-p\big)^{\ln(1/\delta)\frac{1}{p}} \leq \frac{1}{e}^{\ln(1/\delta)} = \delta
+\end{align*}
+$$
+</div>
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Running Time&lt;/h3&gt;
+Suppose we have $$n$$ nodes and $$m$$ edges. In the naive implementation, we contract $$n-2$$ edges until we reach a graph with 2 vertices. Every time we contract an edge, we need to create a new node and also correct all the edges connected to either end of the contracted edge. This could take $$O(n)$$ time. Therefore, the total running time is $$O(n^2)$$. There are other faster implementations with union-find data structure that reduce the running time to $$O(m * \alpha(n))$$. (TODO: More on this?)
+<br />
+<br />
+Given that we can get a high success probability if we run Krager's algorithm for $$O(\log(n)n^2)$$. The total running time is therefore $$O(n^4\log(n))$$!
+<br />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger - Stein&lt;/h3&gt;
+Can we do better than $$O(n^4\log(n))$$ and still maintain a high success probability? Krager and Stein published an improved result that's much faster! 
+<br />
+<br />
+Observe when running Krager's algorithm is that the probability of picking the wrong edge (an edge from the edges crossing the cut, the set $$F$$) gets higher with every iteration. Therefore, we should really just run karger once in the first few iterations and then repeat Karger for the remaining nodes. 
+<br />
+<br />
+This is what Karger-Stein's algorithm is doing. We contract edges until we get $$n/\sqrt{2}$$ vertices. We then make copies of the graph and independently contract the edges again for each graph until we get to $$n/\sqrt{2}/\sqrt{2}$$. We then return the minimum of both cuts. We repeat this process again until we reach 4 vertices and simply find the minimum cut by brute force. This is illustrated in the below graph:
+<img src="http://localhost:4000/assets/mincut/stein.png" width="100%" />
+We also summarize it in the following pseudo-code:
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">karger_stein</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">find</span> <span class="n">a</span> <span class="n">minimum</span> <span class="n">cut</span> <span class="n">by</span> <span class="n">brute</span> <span class="n">force</span>
+    <span class="p">}</span>
+    <span class="n">Karger</span><span class="p">(</span><span class="n">g</span><span class="p">);</span> <span class="n">Contract</span> <span class="n">edges</span> <span class="n">until</span> <span class="n">there</span> <span class="n">are</span> <span class="n">only</span> <span class="n">n</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">nodes</span> <span class="n">left</span>
+    <span class="n">Let</span> <span class="n">g1</span> <span class="o">=</span> <span class="n">g</span> <span class="n">and</span> <span class="n">g2</span> <span class="o">=</span> <span class="n">g</span> <span class="p">(</span><span class="n">two</span> <span class="n">copies</span><span class="p">)</span>
+    <span class="n">cut1</span> <span class="o">=</span> <span class="n">karger_stein</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+    <span class="n">cut2</span> <span class="o">=</span> <span class="n">karger_stein</span><span class="p">(</span><span class="n">g2</span><span class="p">)</span>
+    <span class="n">Return</span> <span class="n">the</span> <span class="n">minmum</span> <span class="n">cut</span> <span class="n">of</span> <span class="n">cut1</span> <span class="n">and</span> <span class="n">cut2</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger - Stein Running Time&lt;/h3&gt;
+Karger-Stein is a recursive algorithm. At each level of the recursion, we perform Karger on $$G$$ until we reach $$n/\sqrt{2}$$ vertices. Karger runs in $$O(n^2)$$. Therefore, we have the following recurrence for the running time:
+<div>
+$$
+\begin{align*}
+T(n) = 2T(n/\sqrt{2}) + O(n^2)
+\end{align*}
+$$
+</div>
+And therefore, the running time is $$O(n^2\log(n))$$ by the master theorem.
+<br />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger - Stein Probability of Success&lt;/h3&gt;
+Karger-Stein first contracts the graph from $$n$$ vertices down to $$n/\sqrt{2}$$ vertices. Similar to the analysis we did earlier. The probability of success is the probability of not picking the wrong edges in any of the first $$n-n/\sqrt{2}$$ iterations. Therefore, combining all probabilities:
+<div center="">
+$$
+\require{cancel}
+\begin{align*}
+Pr(\text{success until } n/\sqrt{2}) &amp;= Pr(S_1) * Pr(S_2 | S_1) * Pr(S_3 | S_1 \cap S_2) * ... * Pr(S_{n-n\sqrt{2}} | S_1 \cap S_2 \cap ... \cap S_{n-n/\sqrt{2}}) \\
+&amp;\geq \big(1 - \frac{2}{n}\big)\big(1 - \frac{2}{n-1}\big)...\big(1-\frac{2}{n-j}\big)...\big(1-\frac{2}{n/\sqrt{2}+1}\big) \\
+&amp;= \big(\frac{n-2}{n}\big)\big(\frac{n-3}{n-1}\big)\big(\frac{n-4}{n-2}\big)...\big(\frac{n/\sqrt{2}}{n/\sqrt{2}+2}\big)\big(\frac{n/\sqrt{2}-1}{n/\sqrt{2}+1}\big) \\
+&amp;= \big(\frac{\bcancel{n-2}}{n}\big)\big(\frac{\bcancel{n-3}}{n-1}\big)\big(\frac{\bcancel{n-4}}{\bcancel{n-2}}\big)...\big(\frac{n/\sqrt{2}}{\bcancel{n/\sqrt{2}+2}}\big)\big(\frac{n/\sqrt{2}-1}{\bcancel{n/\sqrt{2}+1}}\big) \\
+&amp;= \frac{n/\sqrt{2}(n/\sqrt{2}-1)}{n(n-1)} \\
+&amp;= \frac{n(n-\sqrt{2})}{2n(n-1)} = \frac{n-\sqrt{2}}{2(n-1)} \approx \frac{1}{2}. \text{ (when n is large)}
+\end{align*}
+$$
+</div>
+If represent these probabilities with a binary tree then we know at each step we have a probability of $$1/2$$ of picking the right path down to a leaf. Since we're dividing by $$\sqrt{2}$$, then we know that the depth of the tree is 
+<div>
+$$
+\begin{align*}
+\log_{\sqrt{2}}(n) = \frac{\log(n)}{\log(\sqrt{2})} = 2\log(n)
+\end{align*}
+$$
+</div>
+And the number of leaves is
+<div>
+$$
+\begin{align*}
+2^{2\log(n)} = O(n^2)
+\end{align*}
+$$
+</div>
+To find the overall probability of success, we need to find the probability of picking the right path from the root down to a leaf. Picking the right path means that at every step we pick the right edge. Suppose $$x$$ is a vertex in this tree and let $$d$$ be the height of $$x$$. Let $$p_d$$ be the probability that there exists a path of surviving edges from $$x$$ down to a leaf. Let $$L$$ be the event that there exists a path of surviving edges in the left subtree of $$x$$. Let $$R$$ be the event that there exists a path of surviving edges in the right subtree of $$x$$. We see that
+<div>
+$$
+\begin{align*}
+p_d &amp;= \frac{1}{2} * Pr(\text{there is at least one subtree with surviving edges}) \\
+&amp;= \frac{1}{2} * Pr(L \cup R) \\
+&amp;= \frac{1}{2} * (Pr(R) + Pr(L) - Pr(R \cap L)) \\
+&amp;= \frac{1}{2} * (Pr(R) + Pr(L) - Pr(R \cap L)) \\
+&amp;= \frac{1}{2} * (p_{d-1} + p_{d-1} - p_{d-1}^2) \\
+&amp;= p_{d-1} - \frac{1}{2}p_{d-1}^2 \\
+\end{align*}
+$$
+</div>
+The claim is that $$p_d \geq \frac{1}{d+1}$$. To see this, we need to prove this by induction by $$d$$ for $$d &gt; 0$$. 
+<br />
+For the base case, the probability of finding a path of surviving edges when the height is 0 is 1. We also see that $$p_0 \geq \frac{1}{0+1} = 1$$ as we wanted to show.
+<br />
+<br />
+For the inductive hypothesis, suppose it holds for $$d-1$$ and so $$p_{d-1} \geq \frac{1}{d}$$. We will prove that it holds for $$d$$. 
+<div>
+$$
+\begin{align*}
+p_d &amp;= p_{d-1} - \frac{1}{2}p_{d-1}^2 \\
+&amp;\geq \frac{1}{d} - \frac{1}{2}\frac{1}{d^2} \\
+&amp;\geq \frac{1}{d} - \frac{1}{d(d+1)} \quad \text{(} 1/d(d+1) \text{ is strictly greater than } 1/2d^2 \text { for } d \geq 1 \text{)} \\
+&amp;= \frac{1}{d+1}.
+\end{align*}
+$$
+</div>
+Side Note: I don't know how I would come up with replacing $$1/d^2$$ with $$1/d(d+1)$$.
+<br />
+<br />
+Finally since the root of the tree has depth $$2\log(n)$$, then we know that the probability of success is at least $$\frac{1}{2\log(n)+1}$$.
+<br />
+<br />
+<!----------------------------------------------------------------------------------->
+<h4><b>Karger - Stein Improved Success Rate&lt;/h3&gt;
+
+But how many trials do we need in order to achieve the same success rate as Karger's original algorithm (with repetition)? We know the probability of success is at least $$p = \frac{1}{2\log(n)+1}$$. The probability of failing in $$T$$ trials (trials are independent) is the following if we set $$T$$ to $$\ln(1/\delta)\frac{1}{p}$$
+<div>
+$$
+\begin{align*}
+Pr(\text{failure in }T \text{ trials}) &amp;= (1 - p)^T \leq \delta
+\end{align*}
+$$
+</div>
+We arrived at this in the previous analysis of Karger's algorithm. Therefore, we set $$T = (2\log(n)+1)\ln(1/n)$$ to get a probablity of failure to be at most $$\frac{1}{n}$$.
+<!----------------------------------------------------------------------------------->
+<h4><b>References&lt;/h3&gt;
+class notes from following:
+1. http://web.stanford.edu/class/cs161/schedule.html 
+2. https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/11/Small11.pdf
+3. http://web.stanford.edu/class/archive/cs/cs161/cs161.1172/CS161Lecture16.pdf
+4. Algorithm Design (BEST BOOK)
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</b></h4></b></h4></b></h4></b></h4></b></h4></b></h4></b></h4></b></h4></b></h4></b></h4></b></h4>
+:ET

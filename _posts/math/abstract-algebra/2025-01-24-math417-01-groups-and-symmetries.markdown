@@ -5,7 +5,7 @@ date:   2025-01-24 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>Introduction</b></h4>
+<h3>Introduction</h3>
 Abstract Algebra lets us examine structures which allow for algebraic manipulations of the types we've used in high school. As an example, we have Fields. It's a set with operations addition, subtraction, multiplication and division that satisfy a few rules. An example of a field is the field of real numbers $$\mathbf{R}$$ or the field of complex numbers $$\mathbf{C}$$. We also have the field of rational numbers $$\mathbf{Q}$$. Or $$\mathbf{Z}_p$$ which is a finite field of integers modulo some prime $$p$$. It is finite with $$p$$ elements.
 <br>
 <br>
@@ -21,7 +21,7 @@ One additional structure that comes up is a Monoid. These are sets with one oper
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Groups and Symmetries</b></h4>
+<h3>Groups and Symmetries</h3>
 
 From the book, a symmetry is an undetectable motion. An object is symmetric if it has symmetries. Take an equilateral triangle. 
 
@@ -55,7 +55,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Can We Compose Symmetries?</b></h4>
+<h3>Can We Compose Symmetries?</h3>
 
 Can we compose symmetries? Yes, in fact we'll equip the group above with the operation compose. This means that for any $$x, y \in G$$, $$xy$$ means that we need to apply the rotation $$y$$ first and then apply the rotation $$x$$. Since we have $$6$$ elements in $$G$$, then we have $$36$$ ways of composing these elements. 
 <br>
@@ -215,7 +215,7 @@ What about two flips of the same type? What happens if you apply $$a$$ and then 
 </div>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Second and Third Quadrants</b></h4>
+<h3>Second and Third Quadrants</h3>
 What about applying a rotation $$r$$ followed by a flip $$a$$? What is $$ar$$? We apply a rotation so we move $$120$$ degrees anti-clockwise and then we do an $$a$$ flip which is now going to be through the $$C$$ vertex. The triangle will now be faced down which is equivalent to applying a single flip. Comparing the vertices in the original triangle and the outcome, we see that $$B$$ is fixed while $$A$$ and $$C$$ have switched. This means that this is a flip around the $$b$$ access.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec01/01-9.png" width="90%" class="center"></p>
@@ -294,7 +294,7 @@ We notice that each row has each rotation appearing exactly once and it's the sa
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Matrix Representation of Symmetries</b></h4>
+<h3>Matrix Representation of Symmetries</h3>
 We can actually represent these symmetries by matrices. For example, the following matrix will represent a $$120$$ degrees rotation around the $$z-$$ axis
 <div>
 $$
@@ -352,7 +352,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Symmetries of the Rectangle</b></h4>
+<h3>Symmetries of the Rectangle</h3>
 How many symmetries does the rectangle have?
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec01/01-rect.png" width="30%" class="center"></p>
@@ -419,7 +419,7 @@ One thing to notice here that for any rotation in $$G$$, if you apply it twice, 
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Symmetries of the Square</b></h4>
+<h3>Symmetries of the Square</h3>
 What about the symmetries of the square? There are eight of them. First we consider the axis coming through the centroid of the face toward us. There are three rotations around this axis.
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec01/01-square-r.png" width="55%" class="center"></p>
@@ -456,7 +456,7 @@ What about the cube? How many symmetries does it have? it has 24 symmetries!
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

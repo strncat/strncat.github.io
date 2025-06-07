@@ -22,7 +22,7 @@ Remark: $$x \in V$$ is a unit vector if $$\Vert x \Vert = 1$$. If $$x \neq \bar{
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 <div> 
 $$
 \begin{align*}
@@ -43,7 +43,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 The standard basis $$\beta = \{e_1, e_2, ..., e_n \}$$ of $$\mathbf{R}^n$$ is an orthonormal subset. For every distinct two vectors in $$\beta$$, their inner product is zero. Moreover, for any vector $$e_i \in \beta$$, $$\langle e_i, e_i \rangle = 1$$. In general,
 <div> 
 $$
@@ -180,7 +180,7 @@ This will follow from the procedure we will study next ...
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Gram-Schmidt Process</b></h4>
+<h3>Gram-Schmidt Process</h3>
 <div class="purdiv">
 Theorem
 </div>
@@ -232,7 +232,7 @@ But we know we want $$u_3$$ to be a unit vector. So we can just divide by the le
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 Find an orthonormal basis for $$P_2 \in C^0([-1, 1])$$. equipped with 
 <div>
 	$$
@@ -274,7 +274,7 @@ And finally $$u_3$$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Fourier coefficients</b></h4>
+<h3>Fourier coefficients</h3>
 The coefficients with respect to an orthonormal spanning set that we studied last time have a special name:
 <br>
 <div class="bdiv">
@@ -285,7 +285,7 @@ Let \(S \subseteq V\) be an (possibly infinite) orthonormal subset. The scalars 
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 <div> 
 $$
 \begin{align*}
@@ -330,7 +330,7 @@ But one thing we know here is that $$S$$ is not a basis for $$C^0[-1,1]$$. $$|t|
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

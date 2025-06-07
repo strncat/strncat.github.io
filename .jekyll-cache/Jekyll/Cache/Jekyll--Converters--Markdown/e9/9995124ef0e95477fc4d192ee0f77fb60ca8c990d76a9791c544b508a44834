@@ -1,0 +1,115 @@
+I"g*<p><img src="http://localhost:4000/assets/graphs/euler/euler.png" width="100%" />
+Let \(G=(V,E)\) be a connected undirected a graph. An <b>Eulerian path</b> is a path in a graph that traverses each edge exactly once and an <b>Eulerian tour, circuit or cycle</b> is an Eulerian path that starts and ends at the same vertex. Note that in both definitions, we can traverse any vertex more than once. It is named after Euler because in 1736 Euler proved that crossing all the seven bridges in Königsberg without crossing any bridge more than once is impossible (left figure). For more details, refer to <a href="https://en.wikipedia.org/wiki/Seven_Bridges_of_Königsberg">this Wikipedia article</a>.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>When do we have an Eulerian tour?</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Let \(G=(V,E)\) be a connected undirected graph. \(G\) has an Eulerian tour if and only if every vertex in \(G\) has an even degree.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In the left figure above, it’s impossible to have an Eulerian tour since not every node has an even degree. However, the right figure has an Eulerian cycle and every node is of even degree.
+<br />
+<br />
+<i>Proof:</i>
+Let \(G=(V,E)\) be an undirected graph. We’ll prove both directions below,</p>
+
+<p>\((\Rightarrow)\): Since \(G\) has an Eulerian cycle, we must traverse at least two edges every time we pass through a vertex except for the start and end vertex. This means that the degree of these vertices must be even. Since the start and the end vertex are the same, then this vertex must also have an even degree.</p>
+
+<p>\((\Leftarrow)\): Start traversing at an arbitrary vertex \(v\). Since all the vertices are of even degree and \(G\) is connected, then we are guaranteed to return to \(v\) and we cannot get stuck at any other vertex. Let \(u\) be any other vertex than \(v\). Suppose we get stuck at \(u\). We claim that it is impossible, since \(v\) and the node we get stuck at will both be of odd degree and this is a contradiction to our assumption of all nodes having even degrees. After we return, we would have constructed a cycle in \(G\), call it \(C\). if every edge in \(G\) was in \(C\), then we are done. Otherwise, we must have some vertices in \(C\) that still have edges which were not traversed because \(G\) is connected. Choose a vertex and start traversing the remaining edges. We are again guaranteed to return to the same vertex because of the even degree property. 
+<img src="http://localhost:4000/assets/graphs/euler/proof.png" width="100%" />
+We can combine both cycles to form a bigger cycle. We can then repeat the same steps until no edges are left in \(G\). We are able to find all cycles and merge them since \(G\) is connected. Therefore, the cycle must be an Eulerian cycle as we wanted to show.<br />
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Implementation</h3>
+<p>Assuming every node is of even degree, it is clear that the way to discover an Eulerian cycle is by discovering the cycles one at a time and then merging all cycles together (from the proof above). This sounds hard. Fortunately, there is a really smart idea of using two stacks, one to traverse the current cycle and one that collects all the nodes in the final big cycle. This makes the algorithm run in only \(O(E+V)\) time, which is fantastic! 
+<!----------------------></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">current_node</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span> <span class="c1">// pick some node</span>
+    <span class="c1">// now traverse it's edges</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">graph</span><span class="p">[</span><span class="n">current_node</span><span class="p">].</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="c1">// (a) consider an edge between the current node and any of its neighbors</span>
+        <span class="n">Edge</span> <span class="o">*</span><span class="n">edge</span> <span class="o">=</span> <span class="n">graph</span><span class="p">[</span><span class="n">current_node</span><span class="p">].</span><span class="n">front</span><span class="p">();</span> <span class="n">graph</span><span class="p">[</span><span class="n">current_node</span><span class="p">].</span><span class="n">pop</span><span class="p">();</span> 
+
+        <span class="c1">// (b) if it's used then we'll check another. If it's not then mark it used</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">edge</span><span class="o">-&gt;</span><span class="n">used</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">edge</span><span class="o">-&gt;</span><span class="n">used</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// mark it used</span>
+
+        <span class="c1">// (c) push current_node back on the stack so we can go back to it (backtrack to it)</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">current_node</span><span class="p">);</span> <span class="c1">// push current_node</span>
+
+        <span class="c1">// (d) move to the other end of edge to process it</span>
+        <span class="n">current_node</span> <span class="o">=</span> <span class="n">other_end</span><span class="p">(</span><span class="n">current_node</span><span class="p">,</span> <span class="n">edge</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// this node is now part of the big final cycle</span>
+    <span class="n">cycle</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">current_node</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The best way to proceed with this algorithm is with an example.
+<br />
+<br />
+We initially push any node of choice on “stack”, we pick \(a\). We then pop a node from the stack and set the current node to \(a\). We then proceed to traverse the cycle starting at \(a\). We do so by selecting one of its unvisited edges. We pick the edge \(a-b\) and mark it as used. We then push \(a\) on “stack”. We switch the current node to the other end of the edge which is \(b\). We traverse an unvisited edge incident to \(b\). This time it’s \(b-f\).
+<img src="http://localhost:4000/assets/graphs/euler/1.png" width="100%" /></p>
+
+<p>We repeat the above steps and set the current node to \(f\) and pick \(f-d\). We then move to \(d\) and pick \(d-a\), show in the figures below,
+<img src="http://localhost:4000/assets/graphs/euler/2.png" width="100%" /></p>
+
+<p>When setting the current node to \(a\), this time we don’t have edges to traverse. At this point it means that we reached a cycle. This cycle is “a-b-d-f”. So now we want to push this cycle onto “cycle”. We push \(a\) and then pop \(d\) and push it as well. 
+<img src="http://localhost:4000/assets/graphs/euler/3.png" width="100%" /></p>
+
+<p>We next pop \(f\) in order to push it as well. However, this is where the magic happens. \(f\) has unvisited edges. This means that there must be a new cycle that starts at \(f\). Instead of pushing \(f\) to complete the original cycle “a-d-b-f”, we explore this new cycle first, push it and then go back to complete pushing the original cycle! We set the current node to \(f\) and start traversing this new cycle by traversing \(f-e\).</p>
+
+<p><img src="http://localhost:4000/assets/graphs/euler/4.png" width="100%" /></p>
+
+<p>We repeat the same steps by pushing \(f\) back on “stack” and setting the current node to \(e\). We then explore \(e-c\) and push \(e\) on “stack”. We then explore \(b-c\) and push $$c$ on “stack”.</p>
+
+<p><img src="http://localhost:4000/assets/graphs/euler/5.png" width="100%" /></p>
+
+<p>We set the current node to \(b\) below and explore \(b-f\). Finally we set the current node to \(f\) and this is where no longer have unvisited edges, meaning that we reach the end of the cycle we’re traversing. 
+<img src="http://localhost:4000/assets/graphs/euler/6.png" width="100%" />
+We start popping the nodes from “stack” and pushing them onto “cycle”. We stop this process if we arrive at any node with unvisited edges. However, this time we don’t see any more unvisited edges and we end up pushing the whole cycle plus the original cycle on “cycle”. And we’re done!
+<img src="http://localhost:4000/assets/graphs/euler/7.png" width="100%" /></p>
+
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master">Source Code</a>
+<!------------------------------------------------------------------------------------></p>
+<h3>What about directed graphs?</h3>
+<p>Similar to the undirected case. Let \(G=(V,E)\) be a strongly connected graph. An <b>Eulerian path</b> is a path in a graph that traverses each edge exactly once and an <b>Eulerian tour</b> is an Eulerian path that starts and ends at the same vertex. Moreover,</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>\(G\) has an Eulerian tour if and only if for every vertex \(v\) in \(G\), in-degree(\(v\)) = out-degree(\(v\)).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i>
+TODO
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Practice Problems</h3>
+<ul>
+  <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=508">10054 - The Necklace</a></li>
+  <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=53">117 - The Postal Worker Rings Once</a>
+<br />
+<br />
+<!------------------------------------------------------------------------------------></li>
+</ul>
+<h3>References</h3>
+<ul>
+  <li><a href="http://www.math.caltech.edu/~2014-15/1term/ma006a/class8.pdf">Proof</a>
+<br /></li>
+  <li><a href="https://algs4.cs.princeton.edu/41graph/EulerianCycle.java">Implementation</a></li>
+</ul>
+
+:ET

@@ -79,7 +79,7 @@ printf("triangle terms count = %d\n", count);
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=42">Project Euler - 42</a>
 <br>
 <br>

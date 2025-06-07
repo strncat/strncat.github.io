@@ -92,7 +92,7 @@ Note that this product or operations works if the vector has as many entries as 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 The following matrix has three column vectors in $$\mathbf{R}^2$$. The product below is a linear combination of the columns of the matrix.
 <div>
 $$
@@ -134,7 +134,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>An Observation</b></h4>
+<h3>An Observation</h3>
 Given $$\bar{b} \in \mathbf{R}^m$$ and viewing the $$\bar{x}$$ as a variable, the equation
 <div>
 $$
@@ -149,7 +149,7 @@ is equivalent to the linear system with augmented matrix $$(A\bar{b})$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Test</b></h4>
+<h3>Test</h3>
 Let's verify the above observation. Let 
 $$
 \begin{align*}
@@ -234,7 +234,7 @@ $$A\bar{x} = \bar{b}$$ is consistent if and only if $$\bar{b} \in Col(A)$$. This
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Linear Dependence and Linear Independence</b></h4>
+<h3>Linear Dependence and Linear Independence</h3>
 Suppose $$W$$ is a subspace of $$V$$. We know that spans are subspaces but is $$W$$ a span of some elements? or what is the smallest number $$k$$ such that $$W$$ can be written as
 <div>
 	$$
@@ -268,14 +268,14 @@ is true only when $$a_1 = 0, a_2 = 0, ... a_k = 0$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 0</b></h4>
+<h3>Example 0</h3>
 Consider $$\{\bar{0}\}$$. This set is linearly dependent because we can choose a scalar $$a_1 \neq 0$$ such that $$a_1\bar{0} = \bar{0}$$.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 Given a vector $$u$$ such that $$u \neq \{\bar{0}\}$$, then $$\{u\}$$ is linearly independent.
 <br>
 <br>
@@ -294,7 +294,7 @@ But we know that $$u \neq \bar{0}$$. Therefore $$a$$ must be zero and we're done
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Given a vector $$u_1, u_2$$, prove that $$\{u_1, u_2\}$$ is linearly dependent if and only if one vector is a scalar multiple of the other.
 <br>
 <br>
@@ -331,7 +331,7 @@ From this we see that there are scalars $$a_1 = 1$$ and $$a_2 = -c$$, not all ze
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 Determine the set of the following vectors:
 <div>
 	$$
@@ -396,7 +396,7 @@ The third column has no leading entry so there are infinitely many solutions bes
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 4</b></h4>
+<h3>Example 4</h3>
 Consider $$\{ \sin(x), \cos(x)\} \in F(\mathbf{R})$$. Is this set linearly dependent or independant?
 <br>
 <br>
@@ -495,7 +495,7 @@ The rest of this lecture covered the definition of what a basis is and some othe
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

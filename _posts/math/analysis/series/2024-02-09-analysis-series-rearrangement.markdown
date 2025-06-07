@@ -6,13 +6,13 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition</b></h4>
+<h3>Definition</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   [(2.7.10) If a series converges absolutely, then any rearrangements of this series converges to the same limit.
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Let $$\sum_{n=1}^{\infty} a_n$$ be a series that converges absolutely to $$A$$. This also means that the sequence of partial sums converges to $$A$$. Let $$(s_n)$$ be the sequence of partial sums where $$s_n$$ is defined as
 <div>
   $$

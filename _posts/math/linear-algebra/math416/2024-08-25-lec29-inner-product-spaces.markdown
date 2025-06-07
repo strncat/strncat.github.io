@@ -43,7 +43,7 @@ such that
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 The simplest example is $$V = \mathbf{R}^1$$ (vector space over $$\mathbf{R}$$) where
 <div> 
 $$
@@ -63,7 +63,7 @@ This map satisfies the inner product properties. Notice that
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 We can also define this inner product
 <div> 
 $$
@@ -78,7 +78,7 @@ which also satisfies the inner product properties (TODO)
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3: Dot Product</b></h4>
+<h3>Example 3: Dot Product</h3>
 Another example is $$V = \mathbf{R}^n$$ over $$\mathbf{R}$$ where
 <div> 
 $$
@@ -93,7 +93,7 @@ which is commonly known as the dot product.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 4</b></h4>
+<h3>Example 4</h3>
 Another example is $$V = \mathbf{R}^2$$ over $$\mathbf{R}$$ where
 <div> 
 $$
@@ -116,7 +116,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 5</b></h4>
+<h3>Example 5</h3>
 Define $$V = \mathbf{C}$$ over $$\mathbf{C}$$ where
 <div> 
 $$
@@ -131,7 +131,7 @@ Note here that if we defined the product as $$\langle z_1, z_2 \rangle = z_1z_2$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 6: Frobenius Inner Product</b></h4>
+<h3>Example 6: Frobenius Inner Product</h3>
 Define $$V = \mathbf{C}^0([0,1]) = \{f: [0,1] \rightarrow \mathbf{R} \ | \ f \text{ continuous}\}$$ 
 <div> 
 $$
@@ -154,7 +154,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 7</b></h4>
+<h3>Example 7</h3>
 Define $$V = M_{n \times n}(\mathbf{R})$$ 
 <div> 
 $$
@@ -234,7 +234,7 @@ In fact, $$tr(B^tA) = \sum_{ij} A_{ij}B_{ij}$$. the definition of $$tr(B^tA)$$ i
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Inner Product Spaces</b></h4>
+<h3>Inner Product Spaces</h3>
 So far, we've seen that inner products are not unique. We can define many inner products on a given vector space. So we have the following definition to fix a specific inner product on a vector space
 <br>
 <div class="bdiv">
@@ -251,7 +251,7 @@ Example: ($$\mathbf{R}^2, \langle x,y \rangle = x_1y_1 + x_2y_2$$) is an inner p
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Norm of a Vector</b></h4>
+<h3>The Norm of a Vector</h3>
 For the rest of the lecture, we're going to assume that we have a fixed inner product on $$V$$. 
 <br>
 <br>
@@ -379,7 +379,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

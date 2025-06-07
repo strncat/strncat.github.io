@@ -5,7 +5,7 @@ date:   2019-07-26 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>What is a Random Variable?</b></h4>
+<h3>What is a Random Variable?</h3>
 A random variable is a real-valued function defined on a sample space. Why define a random variable? sometimes instead of being interested in the individual outcomes of an experiment, we are interested in some groups of the outcomes or more formally some <b>function of the outcome</b>. 
 <br>
 <br>
@@ -20,12 +20,12 @@ Suppose we roll two dice and we're interested in the sum of the two dice. We def
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Discrete Random Variables</b></h4>
+<h3>Discrete Random Variables</h3>
 If our random variable takes on countable values $$x_1, x_2, x_3,...,x_n$$, we call it a discrete random variable. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Probability Mass Function</b></h4>
+<h3>Probability Mass Function</h3>
 Suppose we have a random variable $$X$$ that takes on a discrete values in $$R_X = \{k_1, k_2,...,k_n\}$$. Define the probability mass function $$p_X(k)$$ to be the probability that $$X$$ takes on a particular value $$k$$. In other words, the PMF is defined as
 <div center>
 $$
@@ -62,7 +62,7 @@ Suppose we roll the two dice again from example 2. Define a random variable $$X$
 <img src="{{ site.url }}/assets/random/pmf.png" width="100%">
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Cumulative Distribution Function</b></h4>
+<h3>Cumulative Distribution Function</h3>
 Suppose we're interested in the probability that a random variables, $$X$$, is less than or equal to a particular value, $$C$$. One way to do this is to sum all the probabilities for all the values that $$X$$ can take up to $$C$$. An easier way to do this is to use the cumulative distribution function (CDF) that gives the probability that $$X$$ is less than or equal to a particular value, specifically
 <div center>
 $$
@@ -81,7 +81,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Expectation</b></h4>
+<h3>Expectation</h3>
 The expectation or expected value of a random variable $$X$$ is defined as:
 <div center>
 $$
@@ -109,7 +109,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Expectation of a function of a random variable</b></h4>
+<h3>Expectation of a function of a random variable</h3>
 Suppose we have a random variable $$X$$ and we have a function $$g$$ where $$g$$ is real-valued function. Suppose we want to calculate the expected value of $$g(X)$$. Define 
 <div center>
 $$
@@ -130,7 +130,7 @@ Using the above, $$E[Y] = E[X^2] = \sum_i (k_i^2)p(k_i) = 1/6*(1+4+9+16+25+36) \
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Linearity of Expectation</b></h4>
+<h3>Linearity of Expectation</h3>
 Expectation of the sum of two random variables is the sum of expectation of the two random variables.
 <div center>
 $$
@@ -175,7 +175,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 8: St. Petersburg Paradox</b></h4>
+<h3>Example 8: St. Petersburg Paradox</h3>
 A fair coin comes up heads with $$p = 0.5$$. We flip the coin until we see the first tails. We will then win $$2^n$$ dollars where $$n$$ is the number of heads seen before the first tail. How much would you pay to play?
 <br>
 <br>
@@ -199,7 +199,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 9: Roulette</b></h4>
+<h3>Example 9: Roulette</h3>
 Consider an even money bet (betting "Red" in Roulette). $$p=18/38$$ you win $$Y$$ dollars, otherwise $$1-p$$ you lose $$Y$$ dollars. Consider the following strategy:
 1. Let $$Y=1$$. <br>
 2. Bet $$Y$$.<br>
@@ -219,7 +219,7 @@ E[Z] &= p*1 + (1-p)p*(2-1) + (1-p)^2p*(4-2-1) + ... \\
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 My study notes from CS109 http://web.stanford.edu/class/archive/cs/cs109/cs109.1188// <br>
 Specifically: http://web.stanford.edu/class/archive/cs/cs109/cs109.1188/lectures/06_random_variables.pdf
 <br>

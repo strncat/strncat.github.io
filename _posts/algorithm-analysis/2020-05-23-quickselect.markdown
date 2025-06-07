@@ -10,7 +10,7 @@ Given an array with $$n$$ elements. We can find the minimum element or maximum e
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Algorithm</b></h4>
+<h3>Algorithm</h3>
 Quickselect turns out to be just a slight modification on quicksort which is described <a href="https://strncat.github.io/jekyll/update/2020/05/21/quicksort.html">here</a>! As a reminder, in quicksort, we start by picking a random pivot,
 
 <img src="{{ site.url }}/assets/randomized/quickselect/1.png" width="100%">
@@ -39,7 +39,7 @@ To summarize, there are three cases:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 The following is an in-place implementation of quickselect.
 {% highlight c++ %}
 int quickselect(std::vector<int>& a, int first, int last, int k) {
@@ -76,13 +76,13 @@ int quickselect(std::vector<int>& a, int first, int last, int k) {
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Correctness of Quickselect</b></h4>
+<h3>Correctness of Quickselect</h3>
 TODO.
 Here is a proof by strong induction: <a href="http://web.stanford.edu/class/cs161/Lectures/Lecture4/CS161_handout_lecture4.pdf">here</a>
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Worst case analysis</b></h4>
+<h3>Worst case analysis</h3>
 In the worst-case, we're always choosing a pivot such that our kth element ends up in the larger half. Not only that, but our choice of pivot is always either the smallest or largest element and so in each iteration, the number of elements decrease by only one element. Therefore, we have the following recurrence,
 <div center>
 $$
@@ -95,7 +95,7 @@ Remember that the $$O(n)$$ part is due to partition. This recurrence has the sol
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Best case analysis</b></h4>
+<h3>Best case analysis</h3>
 In the best-case, we're always choosing a pivot that divides the array in the middle and so we have the following recurrence,
 <div center>
 $$
@@ -108,18 +108,18 @@ This recurrence has the solution, $$T(n) = O(n)$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Expected case analysis</b></h4>
+<h3>Expected case analysis</h3>
 The expected running time of Quickselect turns out to be $$O(n)$$.<br>
 Proof: TODO: (basically section 9.2 in CLRS (not easy though))
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Can quickselect run in linear time in the worst case?</b></h4>
+<h3>Can quickselect run in linear time in the worst case?</h3>
 So far, we've seen that quickselect runs in $$O(n^2)$$ in the worst case. Could we do something so that quickselect actually runs in linear time in the worst case? The answer is yes! we can modify the way we select the pivot to guarantee a linear runtime in the worst-case! (TODO: 9.3 in CLRS)
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 - CLRS Chapter 9
 - <a href="http://web.stanford.edu/class/cs161/Lectures/Lecture4/Lecture4-compressed.pdf">CS161 Stanford</a>
 <br>

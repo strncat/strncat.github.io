@@ -36,7 +36,7 @@ are examples of linear transformations with finite dimensional vector spaces tha
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Coordinate Expression for a vector</b></h4>
+<h3>Coordinate Expression for a vector</h3>
 Recall that if $$\beta$$ is a basis for $$V$$, then for any $$v \in V$$, $$v$$ can be expressed uniquely as an element of $$Span(\beta)$$. We proved this previously for any vector space whether infinite or finite dimensional. But if the basis is finite ($$\beta = \{v_1, ... , v_n\}$$), then for every $$v \in V$$, $$v$$ can be expressed uniquely in the form,
 <div>
 	$$
@@ -68,7 +68,7 @@ is the coordinate expression for \(v\) with respect to \(\beta\).
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$V = \mathbf{R}^2, v = (2,1), \beta = \{(1,0), (0,1)\}$$ and $$\beta' = \{(1,1), (1,-1)\}$$.
 <br>
 <div>
@@ -135,7 +135,7 @@ The idea is that each basis $$\beta$$ of $$V$$ with dimension $$\dim V = n$$ giv
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Matrix Representation of linear transformations</b></h4>
+<h3>Matrix Representation of linear transformations</h3>
 Consider now $$T: V \rightarrow W$$ linear and both $$V$$ and $$W$$ are finite dimensional.
 We know we can identify $$V$$ with $$\mathbf{R}^n$$ and we can identify $$W$$ with $$\mathbf{R}^m$$ but now we want to represent $$T$$ as a matrix. Let $$\beta = \{v_1, ..., v_n\}$$ be the basis for $$V$$ and let $$\gamma = \{w_1, ..., w_n\}$$ be the basis for $$W$$. For $$v \in V$$, we have
 <div>
@@ -184,7 +184,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let
 <div>
 	$$
@@ -300,7 +300,7 @@ So far, we've taken a linear transformation from a vector space $$V$$ to another
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Linear Transformation as a Matrix Multiplication</b></h4>
+<h3>Linear Transformation as a Matrix Multiplication</h3>
 <div class="purdiv">
 Theorem 2.14
 </div>
@@ -359,7 +359,7 @@ This is exactly what we wanted to show. $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let's continue the same example from earlier where we found the matrix representative for the linear transformation
 <div>
 	$$
@@ -398,7 +398,7 @@ This gives us the coefficients vector with respect to the basis $$\gamma$$. This
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

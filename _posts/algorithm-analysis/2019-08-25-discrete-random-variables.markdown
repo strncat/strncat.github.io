@@ -5,7 +5,7 @@ date:   2019-08-25 07:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>Indicator/Bernoulli Random Variable</b></h4>
+<h3>Indicator/Bernoulli Random Variable</h3>
 If we have an experiment that results in a boolean answer (yes/no) or (success/failure) with probability $$p$$ for success and $$1-p$$ for failure then we can use an indicator or a boolean random variable to represent its outcomes. We define the following: 
 <div center>
 $$
@@ -54,7 +54,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Binomial Random Variable</b></h4>
+<h3>Binomial Random Variable</h3>
 If we on the other hand have $$n$$ independent trials of Bernoulli random variables with a probability of success $$p$$, then we can use a binomial random variable to represent the number of successes in $$n$$ trials. For example, if we are flipping a coin with probability of getting heads (success) equals to $$p$$, then we can define a binomial random variable $$X$$ to represent the number of heads in $$n$$ trials. 
 <br>
 <br>
@@ -116,7 +116,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Poisson Random Variable</b></h4>
+<h3>Poisson Random Variable</h3>
 Consider a duration of time where events occur at an average rate of $$\lambda$$. Let $$X$$ be the number of occurrences in a unit of time. We have $$R_X = \{0,1,...,n\}$$. The PMF of $$X$$ is:
 <div center>
 $$
@@ -138,7 +138,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Binomial and Poisson Random Variables</b></h4>
+<h3>Binomial and Poisson Random Variables</h3>
 A Poisson random variable can also be used to approximate a binomial random variable if $$n$$ is very large and $$p$$ is small so that $$np$$ is moderate. Let $$\lambda = E[X] = np$$ which is the average number of successes you see in $$n$$ trials. Then we will have
 <div center>
 $$
@@ -160,13 +160,13 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Expected Value and Variance of a Poisson Random Variable</b></h4>
+<h3>Expected Value and Variance of a Poisson Random Variable</h3>
 Both the expected value and variance of a Poisson random variable is $$\lambda$$. Intuitively, we know Poisson approximates a binomial random variable when $$n$$ is large and $$p$$ is small with $$\lambda = np$$. We also know that the expected value of a binomial random variable is $$E[X] = np$$.  Therefore, the expected value of a Poisson random variable should be $$\lambda$$. Similarly, to compute the variance, we know the binomial random variable variance is $$np(1-p)$$ and so $$\lambda(1-p)$$ when $$p$$ is very small is also $$\lambda$$.
 
 (Proof?)
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Geometric Random Variable</b></h4>
+<h3>Geometric Random Variable</h3>
 Let $$X$$ be a random variable for the number of trials until we see the first success. $$X$$ is a geometric random variable with $$PMF$$
 <div center>
 $$
@@ -208,7 +208,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Negative Binomial Random Variable</b></h4>
+<h3>Negative Binomial Random Variable</h3>
 $$X$$ is the number of independent trials until the $$r$$th success.
 <div center>
 $$

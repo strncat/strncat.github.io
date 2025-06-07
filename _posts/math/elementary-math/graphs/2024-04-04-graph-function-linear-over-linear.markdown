@@ -17,7 +17,7 @@ How can we approach this?
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Vertical Asymptotes</b></h4>
+<h3>Vertical Asymptotes</h3>
 The first step is finding the asymptotes. For the vertical asymptote, we want to find what makes the denominator equal to zero. The function is already in a simple form (otherwise we'd need to simplify it first (why? because the factors that cancel with the numerator will be holes in the graph rather than asymptotes)). We can then just solve,
 <div>
 $$
@@ -31,7 +31,7 @@ So $$x = 2$$ will be our vertical asymptote.
 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Horizontal Asymptotes</b></h4>
+<h3>Horizontal Asymptotes</h3>
 Next, we need to find the horizontal asymptote. Let's revise the three cases we did before. Suppose we have the function 
 <div>
 $$
@@ -49,7 +49,7 @@ Then,
 Here, $$m = n$$, therefore, the horizontal asymptote is $$y = -3$$.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Plotting points for each section of the graph</b></h4>
+<h3>Plotting points for each section of the graph</h3>
 After graphing the asymptotes, we'll have the following graph,
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/linear-over-linear/0.png" width="60%" class="center"></p>
 Now, we want to find at least two points to plot for each section of the graph. Let's find the value of $$f$$ for example at at 1 and -1. We can see that $$f(1) = \frac{3 - 3}{-1 + 2} = 0$$ and $$f(-1) = \frac{-3 - 3}{-(-1) + 2} = -2$$. For the other side, let's find $$f$$ at values $$3$$ and $$5$$. $$f(3) = \frac{9 - 3}{-1} = -6$$ and $$f(5) = \frac{15 - 3}{-3} = -4$$. And now we're done!

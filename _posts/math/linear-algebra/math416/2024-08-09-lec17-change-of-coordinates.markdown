@@ -26,7 +26,7 @@ By theorem 2.14, we can re-write this line by first computing the matrix represe
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$V = P_1$$, $$\beta = \{1, x\}$$ and $$\beta' = \{1+x, 1-x\}$$. Then to compute the matrix $$[I_V]_{\beta}^{\beta'}$$, we want to apply the map on the basis $$\beta$$ and then write these relative to the basis $$\beta'$$ (meaning for each vector, find its coordinates when written as a linear combination of the vectors of the basis $$\beta'$$).
 <div>
 $$
@@ -99,7 +99,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Inverse of the Change of Coordinates Matrix</b></h4>
+<h3>The Inverse of the Change of Coordinates Matrix</h3>
 <div class="purdiv">
 Theorem
 </div>
@@ -125,7 +125,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Change of Bases</b></h4>
+<h3>Change of Bases</h3>
 Question: Given $$T: V \rightarrow W$$ and finite bases $$\beta, \beta'$$ for $$V$$ and $$\gamma, \gamma'$$ for $$W$$, how are $$[T]^{\gamma}_{\beta}$$ and $$[T]^{\gamma'}_{\beta'}$$ related? The only tool we have is composition and using Theorem 2.11 
 <div>
 $$
@@ -155,7 +155,7 @@ Definition
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$A =  \begin{pmatrix} 6 & 2 \\2 & 6 \end{pmatrix} $$ and consider the map $$L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2$$. Suppose we want to compute $$L_A^k = L_A \circ L_A \circ ... \circ L_A$$ ($$k$$ times)? If we try this the naive way
 <div>
 $$
@@ -203,7 +203,7 @@ The trick here was to find $$v_1$$ and $$v_2$$ which isn't yet obvious yet but w
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example: Matrix Representation of Orthogonal Projection</b></h4>
+<h3>Example: Matrix Representation of Orthogonal Projection</h3>
 Let $$W = Span\{(1,-1,0), (0,1,-1)\}$$. $$W$$ is a subspace of $$\mathbf{R}^3$$ (It is a plane in $$\mathbf{R}^3$$). 
 <br>
 <br>
@@ -290,7 +290,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>s
 </ul>

@@ -1,0 +1,315 @@
+I"t*<p>Consider a linear map \(T: V \rightarrow V\). Suppose \(v\) is an eigenvector of \(T\). We know by definition that \(Tv = \lambda v\) and \(v \neq 0\). We also know that \(span\{v\} \subset V\) is subspace. The observation here is that since \(v\) is an eigenvector, then when \(T\) acts on the subspace, then it stays inside the subspace meaning</p>
+<div> 
+$$
+\begin{align*}
+T(span\{v\}) \subset span\{v\}
+\end{align*}
+$$
+</div>
+<p>This is because \(T(cv) = cT(v) = (c\lambda) v\) which is in the span of \(v\). The span of an eigenvector is the simplest example an invariant subspace.
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+A subspace \(W \in V\) is \(T\)-invariant if \(T(W) \subseteq W\).
+</div>
+<p><br />
+i.e. \(T(w) \in W \ \forall w \in W\)
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h3>Examples</h3>
+<p>Example 1: \(W = span\{v\}\) where \(v\) is an eigenvector of \(T\).
+<br />
+<br />
+Example 2: \(I_V:V \rightarrow V\) Every subspace is \(I_V\)-invariant.
+<br />
+<br />
+Example 3: \(0_V:V \rightarrow V\) Every subspace is \(0_V\)-invariant.
+<br />
+<br />
+Example 4:</p>
+<div> 
+$$
+\begin{align*}
+T : \ &amp;\mathbf{R}^2 \rightarrow \mathbf{R}^2 \\
+&amp;(x, y) \rightarrow (x,0)
+\end{align*}
+$$
+</div>
+<p>\(W = span\{(1,0)\}\) is \(T\)-invariant
+<br />
+\(W = span\{(1,1)\}\) is not \(T\)-invariant
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>The Characteristic Polynomial of Invariant Subspaces</h3>
+<p>So what is the point of invariant subspaces? It helps us break off pieces of our map. What does that mean? If \(T: V \rightarrow V\) and \(W\) is \(T\)-invariant, then the restriction of \(T\) to \(W\), \(T_W\) satisfies \(T_W: W \rightarrow W\). So now have a smaller set instead of the entire vector space \(V\). The following theorem describes the relationship between the characteristic polynomial of \(T:V \rightarrow V\) and the characteristic polynomial of \(T: W \rightarrow W\). 
+<br />
+<br /></p>
+<div class="purdiv">
+Theorem
+</div>
+<div class="purbdiv">
+Suppose \(T: V \rightarrow V\) is linear and \(\dim(V) &lt; \infty\). If \(W\) is \(T\)-invariant, then the characteristic polynomial of \(T_W\) divides that of \(T\).
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>Proof</b>
+<br />
+<br />
+Let \(\beta_w = \{v_1,...,v_k\}\) be a basis of \(W\). Extend this to a basis for \(V\). so</p>
+<div> 
+$$
+\begin{align*}
+\beta = \{v_1,...,v_k,v_{k+1},...,v_n\}
+\end{align*}
+$$
+</div>
+<p>We can express \(T\) with respect \(\beta\) to get</p>
+<div> 
+$$
+\begin{align*}
+[T]_{\beta}^{\beta} &amp;= \begin{pmatrix} [T(v_1)]_{\beta_1} &amp; \cdots &amp; [T(v_n)]_{\beta_1} \end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>We know that \(T(v_i) \in W\) for \(i = 1,...,k\) since \(W\) is \(T\)-invariant. Therefore, we can express \(T(v_i)\) as a linear combination of just the first \(k\) vectors in \(\beta\). The rest of the coefficients will be zero for the remaining vectors in \(\beta\). So you can imagine below that for the first \(k\) columns of \([T]_{\beta}^{\beta}\), we’ll have zero entries for anything below the \(k\)th entry. Let \(B_1\) be the coefficients that we know will not be zero (at least some).</p>
+<div> 
+$$
+\begin{align*}
+[T]_{\beta}^{\beta} &amp;= 
+\begin{pmatrix} 
+B_1 &amp; | &amp; B_2 \\
+---- &amp; - &amp; ---- \\
+0 &amp; | &amp; B_3 \\
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>We claim that \(B_1 = [T]_{\beta_W}^{\beta_W}\). Now, we want to determine the characteristic polynomial of \([T]_{\beta}^{\beta}\).</p>
+<div> 
+$$
+\begin{align*}
+\det([T]_{\beta}^{\beta} - tI_n) &amp;= 
+\begin{pmatrix} 
+[T]_{\beta_W}^{\beta_W} - tI_k &amp; | &amp; B_2 \\
+---- &amp; - &amp; ---- \\
+0 &amp; | &amp; B_3 - tI_{n-k} \\
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>This is a block upper triangular matrix. The determinant has a nice form for such matrices and we can write</p>
+<div> 
+$$
+\begin{align*}
+\det([T]_{\beta}^{\beta} - tI_n) &amp;= 
+\begin{pmatrix} 
+[T]_{\beta_W}^{\beta_W} - tI_k &amp; | &amp; B_2 \\
+---- &amp; - &amp; ---- \\
+0 &amp; | &amp; B_3 - tI_{n-k} \\
+\end{pmatrix} \\
+&amp;= \det([T]_{\beta_W}^{\beta_W} - tI_k)g(t)
+\end{align*}
+$$
+</div>
+<p>From this we see that the characteristic polynomial of \([T]^{\beta_W}_{\beta_W}\) divides the characteristic polynomial of \([T]_{\beta}^{\beta} \ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>T-cyclic Subspaces</h3>
+<p>Since \(T\)-invariant subspaces are useful, the question is can we produce them? Is there a tool or mechanism to find them? We start with the following definition
+<br /></p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+For \(v \in V\) the \(T\)-cyclic subspace generated by \(v\) is \(W=span\{v, T(v), T^2(v),...\} \subseteq V\).
+</div>
+<p><br />
+Observe here that \(W\) is \(T\)-invariant. Why? take any element \(w \in W\), \(T(w)\) is still in \(W\). To see this, notice that</p>
+<div> 
+$$
+\begin{align*}
+T(a_0v + a_1T(v) + ... + a_kT^k(v)) = a_0T(v) + a_1T^2(v)+...+a_kT^{k+1}(v) \in W
+\end{align*}
+$$
+</div>
+<p>Question: Are all \(T\)-invariant subspaces \(T\)-cyclic?
+<br />
+<br />
+The answer is no. Suppose</p>
+<div> 
+$$
+\begin{align*}
+T \ &amp;: \mathbf{R}^3 \rightarrow \mathbf{R}^3  \\
+ &amp;(x,y,z) \rightarrow (x,y,0)
+\end{align*}
+$$
+</div>
+<p>\(W = \{(x,y,0) \ | \ x, y \in \mathbf{R}\}\) is \(T\)-invariant. We just map it to itself. In fact \(T_W = I_W\).
+<br />
+<br />
+So we see here that \(W\) is not \(T\)-cyclic. Take \((x, y, 0)\),</p>
+<div> 
+$$
+\begin{align*}
+span\{(x,y,0), T(x,y,0),...\} = span\{(x,y,0)\}
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<div class="bdiv">
+Theorem
+</div>
+<div class="bbdiv">
+Suppose \(T: V \rightarrow V\) is linear and \(\dim(V) &lt; \infty\).
+Let \(W\) be a \(T\)-cyclic subspace generated by \(v\). Set \(\dim W = k \leq \dim V\). Then
+<ul style="list-style-type:lower-alpha">
+	<li>\(\{v,T(v),...,T^{k-1}(v)\}\) is a basis for \(W\)</li>
+	<li>If \(T^k(v) = a_0v + ... + a_{k-1}T^{k-1}(v)\), then the characteristic polynomial of \(T_W\) \((-1)^{k+1}(a_0 + a_1t + ... + a_{k-1}t^{k-1} - t^k)\)</li>
+</ul>
+</div>
+<p><br />
+For (a). Since the dimension is not infinite anymore. Then it’s natural to ask if only \(k\) of the infinitely generated vectors is a span for \(W\) and the answer is yes.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<b>Proof:</b>
+<br />
+<br />
+We’ll start with a proof of (b) given (a). To say anything about the characteristic polynomial, we need to find a basis and then compute the matrix with respect to the basis. A natural choice is the basis given to us in \(a\) so</p>
+<div> 
+$$
+\begin{align*}
+\beta_W = \{v,T(v),...,T^{k-1}(v)\}
+\end{align*}
+$$
+</div>
+<p>Next we need to compute \([T_W]_{\beta_W}^{\beta_W}\)</p>
+<div> 
+$$
+\begin{align*}
+[T_W]_{\beta_W}^{\beta_W} &amp;=
+\begin{pmatrix} 
+[T_W(v)]_{\beta_W} &amp; \cdots &amp; [T_W(T^{k-1}(v))]_{\beta_W}
+\end{pmatrix}\\
+&amp;= 
+\begin{pmatrix} 
+0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_0 \\
+1 &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1  \\
+0 &amp; 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\
+\vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\
+0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 1 &amp; a_{k-1} \\
+\end{pmatrix}
+\end{align*}
+$$
+</div>
+<p>The first column is the coefficients of \(T_W(v)\) with respect to \(\beta_W\) so that’s just 1 for \(T(v)\) while the rest are 0. Similarly, we have the same thing for the rest of the \(k-1\) column vectors. But for the last column, we need to represent \(T_W(T^{k-1}(v)) = T^k(v)\). We’re given \(T^k(v) = a_0v + ... + a_{k-1}T^{k-1}(v)\) and so the rest of the coefficients are \(a_0,a_1 .... a_{k-1}\). 
+<br />
+<br />
+Now, we can compute the determinant expanding across the first row</p>
+<div> 
+$$
+\begin{align*}
+&amp;\det([T_W]_{\beta_W}^{\beta_W} -tI_k)
+= 
+\begin{pmatrix} 
+-t &amp; 0 &amp; \cdots &amp; \cdots &amp; 0 &amp; a_0 \\
+1 &amp; -t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1  \\
+0 &amp; 1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\
+\vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\
+0 &amp; 0 &amp; \cdots &amp; \cdots &amp; 1 &amp; a_{k-1}-t \\
+\end{pmatrix} \\
+&amp;=
+(-1)^{1+1}(-t)\det 
+\begin{pmatrix}  
+-t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1  \\
+1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\
+ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\
+\vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\
+ 0 &amp; \cdots &amp; \cdots &amp; -t &amp; a_{k-1}-t \\
+\end{pmatrix}
++(-1)^{1+k}a_0 (1)
+\end{align*}
+$$
+</div>
+<p>The last determinant for the \(a_0\) component is 1 because that sub matrix is upper triangular so the determinant is the product of the entries on the diagonal which are all 1.
+<br />
+<br />
+Next, we want to compute that new determinant but notice now that it has the same pattern so</p>
+<div> 
+$$
+\begin{align*}
+&amp;=
+-t
+\left(
+\det 
+\begin{pmatrix}  
+-t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_1  \\
+1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_2 \\
+ \vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\
+\vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; a_{k-2} \\
+ 0 &amp; \cdots &amp; \cdots &amp; -t &amp; a_{k-1}-t \\
+\end{pmatrix}
+
+\right)
++(-1)^{1+k}a_0 (1)
+\\
+&amp;=
+(-t)
+\left(
+(-t)
+\begin{pmatrix}  
+-t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_2 \\
+1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_3 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\
+0 &amp; \cdots &amp; \ddots &amp; -t &amp; a_{k-2} \\
+ 0 &amp; \cdots &amp; \cdots &amp; 1 &amp; a_{k-1}-t \\
+\end{pmatrix}
++ (-1)^k a_1
+\right)
++(-1)^{1+k}a_0 (1)
+\\
+&amp;=
+(-1)^2
+t^2
+\begin{pmatrix}  
+-t &amp; \cdots &amp; \cdots &amp; 0 &amp; a_2 \\
+1 &amp; \ddots &amp; \cdots &amp; 0 &amp; a_3 \\
+\vdots &amp; \ddots &amp; \ddots &amp; \vdots &amp; \vdots \\
+0 &amp; \cdots &amp; \ddots &amp; -t &amp; a_{k-2} \\
+ 0 &amp; \cdots &amp; \cdots &amp; 1 &amp; a_{k-1}-t \\
+\end{pmatrix}
++ (-1)^{k+1} (ta_1 + a_0)
+\\
+&amp;= (-1)^{k+1}(a_0 + ta_1 + ... + t^{k-1}a_{k-1} - t^k)
+\end{align*}
+$$
+</div>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h3>References</h3>
+<ul>
+<li>Math416 by Ely Kerman</li>
+</ul>
+
+:ET

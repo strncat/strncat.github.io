@@ -19,7 +19,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Properties of the determinant</b></h4>
+<h3>Properties of the determinant</h3>
 <ol>
 	<li>\(A\) is invertible iff \(\det(A) \neq 0\)</li>
 	<li>\(\det(A)\) has geometric meaning.</li>
@@ -47,7 +47,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Definition of the Determinant</b></h4>
+<h3>Definition of the Determinant</h3>
 The definition of the $$\det: M_{n \times n} \rightarrow \mathbf{R}$$ is inductive on $$n$$.
 <br>
 <br>
@@ -163,7 +163,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Compute the determinant for 
 <div>
 $$
@@ -429,7 +429,7 @@ As we wanted to show. $$\blacksquare$$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

@@ -19,7 +19,7 @@ For the definitions of sequences and what it means to for a sequence to converge
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof (i)</b></h4>
+<h3>Proof (i)</h3>
 Assume for the sake of contradiction that $$a < 0$$. Since $$\lim a_n = a$$, then for $$\epsilon > 0$$, there exist some $$n \geq N$$ such that $$|a_n - a| < \epsilon$$. Choose $$\epsilon = |a|$$. Then, we must have an $$n \geq N$$ such that
 <div>
 $$
@@ -34,13 +34,13 @@ $$
 But this contradicts the assumption that $$a_n \geq 0$$ for all $$n \in \mathbf{N}$$. Therefore, we must have $$a \geq 0$$. $$\blacksquare$$
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof (ii)</b></h4>
+<h3>Proof (ii)</h3>
 Write $$a_n \leq b_n$$ as $$b_n - a_n \geq 0$$. Since we have both $$\lim a_n = a$$ and $$\lim b_n = a$$, then by <a href="https://strncat.github.io/jekyll/update/2024/05/31/analysis-seq-algebraic-limit-theorem-ii.html">the algebraic limit theorem</a>, This limit will converge to $$b - a$$. By part (i), since $$b_n - a_n \geq 0$$, then $$b-a \geq 0$$ and so $$a \leq b$$ as required. 
 $$\blacksquare$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof (iii)</b></h4>
+<h3>Proof (iii)</h3>
 TODO
 <br>
 <br>

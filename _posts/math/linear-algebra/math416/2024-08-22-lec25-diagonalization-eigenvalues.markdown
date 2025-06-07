@@ -31,7 +31,7 @@ $$v_j$$ is an eigenvector and $$\lambda_j$$ is called an eigenvalue. And so to d
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Examples of Non-Diagonalizable Matrices</b></h4>
+<h3>Examples of Non-Diagonalizable Matrices</h3>
 Of course the plan above might not work and there are different ways, a matrix could fail to be diagonalized.
 <div> 
 $$
@@ -88,7 +88,7 @@ So we don't have enough linearly independent vectors in $$\beta$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Is There a Better Diagonalization Test?</b></h4>
+<h3>Is There a Better Diagonalization Test?</h3>
 Today, we will refine our answer to the question "Is $$A$$ diagonalizable?"
 <div class="bdiv">
 Definition
@@ -128,7 +128,7 @@ Note that the the converse is false. If the characteristic polynomial splits ove
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Eigenvalues of Similar Matrices</b></h4>
+<h3>Eigenvalues of Similar Matrices</h3>
 Before going into the proof of theorem 1 above, the following proposition will be useful
 <div class="purdiv">
 Proposition
@@ -175,7 +175,7 @@ Note here that in step 2, $$QtI_nQ^{-1} = tQQ^{-1} = tI_n  $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof of Theorem 1 (5.6)</b></h4>
+<h3>Proof of Theorem 1 (5.6)</h3>
 Suppose that $$A$$ is diagonalizable. This means that there exists a basis $$\beta$$ such that 
 <div>
 $$
@@ -226,7 +226,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Algebraic and Geometric Multiplicities of Eigenvalues</b></h4>
+<h3>Algebraic and Geometric Multiplicities of Eigenvalues</h3>
 There is another condition for diagonalizability but we need a few more definitions.
 
 <div class="bdiv">
@@ -347,7 +347,7 @@ Why is this true? The top left section just consists of $$\lambda - t$$ entries 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>A More Refined Test for Diagonalizability</b></h4>
+<h3>A More Refined Test for Diagonalizability</h3>
 We're finally ready to present the more refined test for diagonalizability. 
 <br>
 <div class="purdiv">
@@ -428,7 +428,7 @@ One final note here: we've developed several tests including the above one to te
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Computing \(A^k\)</b></h4>
+<h3>Computing \(A^k\)</h3>
 If $$A$$ is diagonalizable, then
 <div> 
 $$
@@ -461,7 +461,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

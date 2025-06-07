@@ -58,7 +58,7 @@ This is something that also threw me off. The example in the book defines $$S$$ 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Vector Space \(\mathbf{F}^S\)</b></h4>
+<h3>The Vector Space \(\mathbf{F}^S\)</h3>
 $$\mathbf{F}^S$$ is another example of a vector space over $$\mathbf{F}$$ along with the operations of addition and scalar multiplication defined previously above. Moreever, let the function 0 defined as $$0(x) = 0$$ be the additive identity for all $$x \in S$$. For the additive inverse, let $$-f: S \rightarrow \mathbf{F}$$ be defined as $$(-f)(x) = -f(x)$$ be the additive inverse of $$f$$ for all $$x \in S$$.
 <br>
 <br>

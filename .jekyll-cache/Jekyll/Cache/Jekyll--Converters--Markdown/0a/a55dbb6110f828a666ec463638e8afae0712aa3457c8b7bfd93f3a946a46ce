@@ -1,0 +1,65 @@
+I"¢<p>Any integer greater than one, can represented uniquely as the product of prime numbers (its prime factorization). For example, \(13195\) can be written as the product</p>
+<div>
+	$$
+	\begin{align*}
+	13195 = 5 \times 7 \times 13 \times 29
+	\end{align*}
+	$$
+</div>
+<p>In other words, the prime factors of \(13195\) are \(5, 7, 13\) and \(29\). The goal of this problem is to find the largest prime factor of the number \(600851475143\).
+<br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Solution&lt;/h3&gt;
+There are lots of tutorials out there that cover implementing prime factorization. The simplest one is to divide by 2 and collect these prime factors first. Then we'll check against all the other odd factors up to the square root of $$n$$. While it appears that we're checking if $$9$$ is a factor, we will never add $$9$$ since we have checked $$3$$ before checking against $$9$$. The following code implements this.
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="nf">max_prime_factorization</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+    <span class="c1">// prime factor 2</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">n</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">max</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// all the other prime factors</span>
+    <span class="c1">// note here that while yes we check against factors like 9</span>
+    <span class="c1">// we don't ever add 9 to the list of factors since we had checked against</span>
+    <span class="c1">// 3 before checking against 9!</span>
+    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">max</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">n</span> <span class="o">/=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="c1">//printf("prime factor = %llu\n", i);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">max</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+What remains now is actually calling the above method for $$600851475143$$
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">600851475143</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">largest_factor</span><span class="p">;</span>
+<span class="n">largest_factor</span> <span class="o">=</span> <span class="n">max_prime_factorization</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%llu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">largest_factor</span><span class="p">);</span></code></pre></figure>
+
+<!------------------------------------------------------------------------------------>
+The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0003-largest-prime-factor.cpp">here</a>.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h4><b>References&lt;/h3&gt;
+<a href="https://projecteuler.net/problem=3">Project Euler - 03</a>
+<br />
+<br />
+
+
+</b></h4></b></h4>
+:ET

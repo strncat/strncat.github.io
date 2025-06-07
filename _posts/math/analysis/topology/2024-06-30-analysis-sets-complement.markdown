@@ -10,7 +10,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Let $$O \in \mathbf{R}$$ be an open set. We need to prove that $$O^c$$ is a closed set. To do so, we need to show that $$O^c$$ contains all of its limit points. Let $$x$$ be an arbitrary limit point of $$O^c$$. Now suppose for the sake of contradiction that $$x \notin O^c$$ so $$x \in O$$. By the definition of an open set, this means that there exists some $$\delta$$-neighborhood, $$V_{\delta}(x)$$, of $$x$$ such that $$V_{\delta}(x) \subseteq O$$. By the definition of a limit point, there exists a sequence $$(a_n)$$ such that $$(a_n) \rightarrow x$$ and $$a_n \in O^c$$ and $$x$$ is not a term of the sequence. This implies that for any $$\epsilon > 0$$, we must have an $$N \in \mathbf{N}$$ such that when $$n > N$$, $$|a_n - x| \leq \epsilon$$. But if we set $$\epsilon = \delta$$, then $$a_n \in (x - \delta, x + \delta)$$. This means that $$(a_n)$$ could not possibly converge since the terms in that interval are in $$O$$ and not $$O^c$$ because we earlier said that $$V_{\delta}(x) \subseteq O$$. This is a contradiction and so $$x \in O$$.
 <br>
 <br>

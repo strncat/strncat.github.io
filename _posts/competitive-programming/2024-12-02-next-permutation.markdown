@@ -29,7 +29,7 @@ Notice now that after 3 everything is in a descending order. This means that it'
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding a Pattern</b></h4>
+<h3>Finding a Pattern</h3>
 So in a way, our first move is always finding the right most pair such that $$a_i < a_{i+1}$$. Given the last permutation we generated, $$[1,4,2,3]$$, $$a_i = 2$$ and $$a_{i+1} = 3$$. Since it's literally the last pair in the permutation, then we'll swap 2 and 3 and be done. 
 {% highlight c++ %}
 [1,4,3,2]
@@ -63,7 +63,7 @@ Now we can see that $$a_i = 3$$ and $$a_{i+1} = 4$$. But searching for a smaller
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Putting Things Together</b></h4>
+<h3>Putting Things Together</h3>
 The first step is simple. Find the most right pair such that $$a_{i} < a_{i+1}$$
 {% highlight c++ %}
 // (1) Find the right most pair such that a_i < a_i+1

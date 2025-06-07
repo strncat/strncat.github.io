@@ -1,0 +1,189 @@
+I";<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="68.5" rx="30" ry="30" />
+	<text x="289.5" y="74.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="68.5" rx="30" ry="30" />
+	<text x="494.5" y="74.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="664.5" cy="147.5" rx="30" ry="30" />
+	<text x="659.5" y="153.5" font-family="Times New Roman" font-size="20">d</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="218.5" rx="30" ry="30" />
+	<text x="494.5" y="224.5" font-family="Times New Roman" font-size="20">e</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="218.5" rx="30" ry="30" />
+	<text x="291.5" y="224.5" font-family="Times New Roman" font-size="20">f</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="137.5" cy="159.5" rx="30" ry="30" />
+	<text x="133.5" y="165.5" font-family="Times New Roman" font-size="20">a</text>
+	<polygon stroke="black" stroke-width="1" points="324.5,68.5 468.5,68.5" />
+	<text x="391.5" y="89.5" font-family="Times New Roman" font-size="20">4</text>
+	<polygon stroke="black" stroke-width="1" points="525.589,81.392 637.411,134.608" />
+	<text x="586.5" y="98.5" font-family="Times New Roman" font-size="20">7</text>
+	<polygon stroke="black" stroke-width="1" points="636.917,159.298 526.083,206.702" />
+	<text x="566.5" y="173.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="468.5,218.5 324.5,218.5" />
+	<text x="391.5" y="209.5" font-family="Times New Roman" font-size="20">6</text>
+	<polygon stroke="black" stroke-width="1" points="318.67,200.728 474.33,86.272" />
+	<text x="401.5" y="164.5" font-family="Times New Roman" font-size="20">5</text>
+	<polygon stroke="black" stroke-width="1" points="163.455,144.456 268.545,83.544" />
+	<text x="220.5" y="135.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="165.583,170.053 266.417,207.947" />
+	<text x="201.5" y="210.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="498.5,188.5 498.5,98.5" />
+	<text x="503.5" y="149.5" font-family="Times New Roman" font-size="20">3</text>
+	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5" />
+	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
+</svg>
+<p>Let \(G=(V,E)\) be undirected, weighted graph with \(V\) vertices and \(E\) edges. A minimum spanning tree is a tree that connects all the vertices in \(V\) of minimal cost. Kruskal’s algorithm is a greedy algorithm. We always take the cheapest edge from the graph that won’t create a cycle. In other words, Kruskal is maintaining a bunch of forests at each step. We slowly combine these trees to form the final single tree that covers all vertices. 
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>Algorithm (slow version)</h3>
+<p>The simplest way to implement Kruskal is to sort the edges according to their weights in \(O(E\log(E))\) time and then loop through the edges to pick the cheapest ones that don’t create a cycle. We can check for cycles in \(O(E+V)\). So this algorithm ends up being really slow.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">E</span> <span class="o">=</span> <span class="n">Sort</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">by</span> <span class="n">non</span><span class="o">-</span><span class="n">decreasing</span> <span class="n">weight</span><span class="p">.</span>
+<span class="n">MST</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">e</span> <span class="n">in</span> <span class="n">sorted</span> <span class="n">E</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">we</span> <span class="n">can</span> <span class="n">add</span> <span class="n">e</span> <span class="n">to</span> <span class="n">MST</span> <span class="n">without</span> <span class="n">creating</span> <span class="n">a</span> <span class="n">cycle</span> <span class="p">{</span> <span class="c1">// O(E+V)</span>
+        <span class="n">add</span> <span class="n">e</span> <span class="n">to</span> <span class="n">MST</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="n">MST</span></code></pre></figure>
+
+<p><br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>Algorithm (fast version)</h3>
+<p>There is a much better way to implement Kruskal and boost its run time than the above method. The key to the faster version is using a special data structure call union-find. Union-find supports the following operations,</p>
+<ul>
+  <li>makeSet(u): creates a set \(\{u\}\)</li>
+  <li>find(u): returns the set that \(u\) is in.</li>
+  <li>union(u,v): merge the set that \(u\) is in with the set that \(v\) is in.</li>
+</ul>
+
+<p>How do we use union-find to boost the performance of Kruskal? We initialize \(V\) sets for each of the vertices. We then loop through the sorted edges and <i>union</i> the two vertices only if they’re not in the same set already. This way we don’t need to check for cycles anymore.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">E</span> <span class="o">=</span> <span class="n">Sort</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">by</span> <span class="n">non</span><span class="o">-</span><span class="n">decreasing</span> <span class="n">weight</span><span class="p">.</span>
+<span class="n">MST</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">v</span> <span class="n">in</span> <span class="n">V</span> <span class="p">{</span>
+    <span class="n">makeSet</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="n">in</span> <span class="n">E</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">!=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">add</span> <span class="p">{</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">}</span> <span class="n">to</span> <span class="n">MST</span>
+        <span class="k">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="n">MST</span></code></pre></figure>
+
+<p><br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>Example</h3>
+<p>In the above graph, we initialize the following forests \(\{a\}, \{b\}, \{c\}, \{d\}, \{e\}, \{f\}\). We also sort the edges by non-decreasing weight and proceed to merge our forests. Assume the sorted order is the following: \(\{a,b\}, \{b,f\}, \{a,f\}, \{e,d\}, \{c,e\}, \{b,c\}, \{c,f\}, \{f,e\}, \{c,d\}\)
+<br /><br />
+<i>Iteration 0</i><br />
+The first edge to consider is \(\{a,b\}\). Since \(a\) and \(b\) are not in the same set, we add the edge to the MST and combine both \(a\) and \(b\).</p>
+
+<p><i>Iteration 1</i><br />
+We next consider  \(\{b,f\}\). Since \(b\) and \(f\) are not in the same set, we add the edge to the MST and combine both \(b\) and \(f\). So now we have the following forests: \(\{a, b, f\}, \{c\}, \{d\}, \{e\}\)</p>
+
+<p><i>Iteration 2</i><br />
+We next consider  \(\{a,f\}\). Since \(a\) and \(f\) are in the same set, we skip this edge.</p>
+
+<p><i>Iteration 3</i><br />
+We next consider \(\{e,d\}\). Since \(e\) and \(d\) are not in the same set, we merge these two forests into one. We now have the following forests: \(\{a, b, f\}, \{c\}, \{d, e\}\)</p>
+
+<p>$$
+At the end of the algorithm, the minimum spanning tree is the following tree:</p>
+<svg width="800" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="68.5" rx="30" ry="30" />
+	<text x="289.5" y="74.5" font-family="Times New Roman" font-size="20">b</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="68.5" rx="30" ry="30" />
+	<text x="494.5" y="74.5" font-family="Times New Roman" font-size="20">c</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="664.5" cy="147.5" rx="30" ry="30" />
+	<text x="659.5" y="153.5" font-family="Times New Roman" font-size="20">d</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="498.5" cy="218.5" rx="30" ry="30" />
+	<text x="494.5" y="224.5" font-family="Times New Roman" font-size="20">e</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="294.5" cy="218.5" rx="30" ry="30" />
+	<text x="291.5" y="224.5" font-family="Times New Roman" font-size="20">f</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="137.5" cy="159.5" rx="30" ry="30" />
+	<text x="133.5" y="165.5" font-family="Times New Roman" font-size="20">a</text>
+	<polygon stroke="black" stroke-width="1" points="324.5,68.5 468.5,68.5" />
+	<text x="391.5" y="89.5" font-family="Times New Roman" font-size="20">4</text>
+	<polygon stroke="black" stroke-width="1" points="636.917,159.298 526.083,206.702" />
+	<text x="566.5" y="173.5" font-family="Times New Roman" font-size="20">2</text>
+	<polygon stroke="black" stroke-width="1" points="163.455,144.456 268.545,83.544" />
+	<text x="220.5" y="135.5" font-family="Times New Roman" font-size="20">1</text>
+	<polygon stroke="black" stroke-width="1" points="498.5,188.5 498.5,98.5" />
+	<text x="503.5" y="149.5" font-family="Times New Roman" font-size="20">3</text>
+	<polygon stroke="black" stroke-width="1" points="294.5,188.5 294.5,98.5" />
+	<text x="299.5" y="149.5" font-family="Times New Roman" font-size="20">1</text>
+</svg>
+<p><br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>Proof of Correctness (Preliminarily)</h3>
+<p>Why does this algorithm find a minimum spanning tree? Before we can answer that, let’s define some terms and prove a lemma that will be useful in the main proof. Let \(G=(V,E)\) be the graph below and let \(S\) be the set of yellow edges in \(G\).</p>
+
+<p><img src="http://localhost:4000/assets/cut.png" alt="my photo" /></p>
+
+<ul>
+  <li>A <b>cut</b> is a partition of the vertices into two non-empty parts. the red line (cut) partitions \(G\) into \(\{a,b,f,e\}\) and \(\{c,d\}\).</li>
+  <li>A cut <b>respects</b> \(S\) if no edges in \(S\) cross the cut. None of the yellow edges cross the red cut.</li>
+  <li>An edge crossing the cut is called <b>light</b> if it has the smallest weight of any edge crossing the cut. In this case, \(\{e,d\}\) is a light edge.</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Lemma: Let \(S\) be a set of edges and consider a cut that respects \(S\). Suppose there is an MST containing \(S\). Let \(\{u,v\}\) be a light edge. Then there is an MST containing \(S \cup \{u,v\}\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i> Let \(S\) be a set of edges and and consider a cut that respects \(S\). Let \(T\) be an MST containing \(S\). Let \(\{u,v\}\) be a light edge. There are two cases. <br />
+Case 1: \(\{u,v\}\) is in \(T\), then we’re done. <br />
+Case 2: \(\{u,v\}\) is not in \(T\). By the definition of MST, adding \(\{u,v\}\) will create a cycle in \(T\). Since the sets resulting from the cut must be non-empty. This means that we must have an edge that crosses the cut in \(T\). Let that edge be \(\{x,y\}\). Consider replacing \(\{u,v\}\) with \(\{x,y\}\) to produce the new tree \(T'\). \(T\) is still an MST since we deleted \(\{x,y\}\). \(T'\) has also a cost of at most the cost of \(T\) since {u,v} is a light edge. Therefore, \(T'\) is an MST which includes both \(\{u,v\}\) and \(S\) which is what we wanted to show. \(\blacksquare\)
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>Kruska's Proof of Correctness</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Theorem: Kruskal will correctly find a minimum spanning tree</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><i>Proof:</i> <br />
+<b>Inductive Hypothesis: </b>After adding the \(t\)‘th edge, there exists an MST with the edges added so far.
+<br /></p>
+
+<p><b>Base Case: </b> After adding the 0’th edge, there exists an MST with the edges added so far.
+<br />
+<br />
+<b>Inductive Step:</b> Suppose the inductive hypothesis holds for \(t\). Let \(S\) be the set containing the edges added so far and so there is an MST extending them by the inductive hypothesis. Kruskal adds the next edge that combines some trees \(T_1\) and \(T_2\) from \(S\). Consider the cut \(T_1\) and \(V-T_1\). This cut respects \(S\). By the Lemma above, that edge is safe to add. Therefore, there is still an MST extending the new set of edges.
+<br />
+<br />
+<b>Conclusion:</b> After adding the \(n-1\)‘st edge, there exists an MST with the edges added so far. At this point we have reached all vertices and the \(n-1\) edges we have is an MST.\(\blacksquare\)
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>Running Time</h3>
+<p>Assume we have \(n\) vertices and \(m\) edges. First of all, sorting the edges will take time \(O(m\log(m)) = m\log(n^2) = O(m\log(n))\). If radixSort can be utilized then we can do this step in time \(O(m)\). 
+<br /><br />
+We then have \(n\) calls to makeSet, \(2m\) calls to find and \(n\) calls to union. These operations run in amortized time \(O(\alpha(n))\) where \(\alpha(n)\) is the inverse Ackerman function and \(\alpha(n) \leq 4\) provided that \(n\) is smaller than the number of atoms in the universe.
+<br /><br />
+Therefore, the total time is just \(O(m\log(n))\) which is similar to Prim if we use a Red Black Tree and closer to \(O(m)\) if we use radixSort.
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>Implementation</h3>
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/graphs/minimum-spanning-trees/kruskal.cpp">Source Code</a>
+<br />
+<br />
+<!----------------------------------------------------------------------------------------></p>
+<h3>References</h3>
+<ul>
+  <li>CS161 @ Stanford (With Mary Wootters)</li>
+  <li>CLRS
+<br /></li>
+</ul>
+
+:ET

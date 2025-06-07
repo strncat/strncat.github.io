@@ -17,12 +17,12 @@ For the definitions related to correspondence, cardinality and countable sets, s
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof Discussion</b></h4>
+<h3>Proof Discussion</h3>
 We're going to show that $$\mathbf{Q}$$ is countable by establishing that both $$\mathbf{N}$$ and $$\mathbf{Q}$$ have the same cardinality. To do so, we're going to establish correspondance between the two sets meaning that we're going to prove that there exists some mapping that is both one-to-one and onto between the two sets. For the second statement, this will be a proof by contradiction.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 Let $$A_1=\{0\}$$ and for $$n \geq 2$$, let A_n be
 <div>
 $$

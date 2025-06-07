@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Discussion:</b></h4>
+<h3>Discussion:</h3>
 We already did the direction every convergent sequence is a Cauchy sequence in <a href="https://strncat.github.io/jekyll/update/2024/06/17/analysis-seq-convergent-sequences-are-cauchy.html">here</a>. For the second part where we want to prove that a Cauchy sequence converges, we want to find $$N$$ such that 
 <div>
 	$$
@@ -34,7 +34,7 @@ So now we can go back and figure out what $$N$$ would work here. We have $$|a_n 
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 The direction, a convergent sequence is a Cauchy sequence is proved <a href="https://strncat.github.io/jekyll/update/2024/06/17/analysis-seq-convergent-sequences-are-cauchy.html">here</a>. For the other direction, we want to prove that if a sequence is Cauchy then it is convergent. Let $$(a_n)$$ be a Cauchy sequence. This means that $$(a_n)$$ is bounded by <a href="https://strncat.github.io/jekyll/update/2024/06/16/analysis-seq-cauchy-bounded.html">the proof we did earlier</a>. And since $$(a_n)$$ is bounded, then by <a href="https://strncat.github.io/jekyll/update/2024/06/14/analysis-seq-subseq-bolzano-weierstrass-theorem.html">the Bolzano-Weierstrass theorem</a>, we know that we must have a subsequence that is convergent. Let this subsequence be $$(a_{n_k})$$ and let $$(a_{n_k}) \rightarrow l$$. We will use $$l$$ as the convergence candidate for $$(a_n)$$.
 <br>
 <br>

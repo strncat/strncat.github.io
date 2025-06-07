@@ -13,7 +13,7 @@ For the definitions of an upper bound and the least upper bound of a set, see <a
 <br>
 For the Archimedean Principle, see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A = \{\frac{1}{n}: n \in \mathbf{N}\}$$. To prove that $$\sup(A)=1$$, we will show that 1 is an upper bound on $$A$$ and that 1 is the least upper bound on $$A$$ using <a href="https://strncat.github.io/jekyll/update/2024/05/05/analysis-least-upper-bound-epsilon.html">lemma 1.3.8</a>. First, to prove that $$1$$ is an upper bound, note that for all $$n \in \mathbf{N}$$, $$n \geq 1$$. Divide both sides by $$n$$ to get $$1 \geq \frac{1}{n}$$. Therefore, 1 is an upper bound on $$A$$.
 <br>
 <br>

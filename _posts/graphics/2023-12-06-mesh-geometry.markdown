@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Mesh Representation</b></h4>
+<h3>Mesh Representation</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/curves/00-line.png" width="60%" class="center"></p>
 We can represent meshes using different ways. One way to represent a mesh is to simply store the triangles the mesh is made up. Another representation is storing the list of vertices and then the list of indexed triangles so for example
 <div>
@@ -26,7 +26,7 @@ Note here that we can have the same set of vertices represent two different mesh
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Mesh Representation</b></h4>
+<h3>Mesh Representation</h3>
 2D manifolds are surfaces such that when cut with a small sphere, it will always yields a disk or half a disk on the boundary. Manifolds have some important properties like
 - an edge connects two faces exactly.
 - an edge connects two vertices only.
@@ -36,7 +36,7 @@ Note here that we can have the same set of vertices represent two different mesh
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>
 <a href="https://gfxcourses.stanford.edu/cs248a">Computer Graphics by Kayvon Fatahalian</a>

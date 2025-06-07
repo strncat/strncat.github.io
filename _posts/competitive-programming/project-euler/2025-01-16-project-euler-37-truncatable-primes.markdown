@@ -124,7 +124,7 @@ Finally, we can just call the above method for all prime numbers under 1 million
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=37">Project Euler - 37</a>
 <br>
 <br>

@@ -64,7 +64,7 @@ int long_division(int number) {
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Other Ideas</b></h4>
+<h3>Other Ideas</h3>
 So far we have a solution that is fast and acceptable but is there more to this? Take a look at the longest cycle for all numbers up to 1000 and observe that when d = 7, 1/d has d-1=6 digits, when d = 17, 1/d has d-1=16 digits. Furthermore, when d = 19, 1/d has 19-1=18 digits. Same for 1/23 which has 23-1=22 digits. All of these are prime numbers. But when we take d = 11, 1/11 has only two digits in its cycle. So what's special about 7, 17, 19, 23 ...? It turns out these special primes have a special name. These special primes are <a href="https://strncat.github.io/jekyll/update/2025/01/05/reptend-prime.html">Full Reptend Primes</a>.
 <br>
 <br>
@@ -74,7 +74,7 @@ Since for any full reptend prime $$p$$, the the cycle length is $$p - 1$$, then 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ol>
 <li><a href="https://projecteuler.net/problem=26">Project Euler - 26</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Reciprocals_of_primes">Wikipedia: Reciprocals of Primes</a></li>

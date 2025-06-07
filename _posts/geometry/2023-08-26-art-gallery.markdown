@@ -10,13 +10,13 @@ Suppose we have an art gallery represented by a simple polygon $$P$$ with $$n$$ 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Simple Polygons</b></h4>
+<h3>Simple Polygons</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-2.png" width="60%" class="center"></p>
 To start we first define a <b>line segment</b> as a closed subset of a line contained between points $$a$$ and $$b$$ called its end points. A <b>simple polygon</b> is a closed curve consisting of a finite collection of line segments that doesn't intersect itself. This means that the intersection of each pair of adjacent segments is only the vertex shared between them and such that non-adjacent segments do not intersect. In the figure above, the intersection of $$e_i$$ and $$e_{i+1}$$ is only $$v_i$$ and none of non-adjacent segments intersect.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Diagonals in Polygons</b></h4>
+<h3>Diagonals in Polygons</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-6.png" width="90%" class="center"></p>		
 		
 A <b>Diagonal</b> is a line segment between two of the polygon's vertices $$a$$ and $$b$$ such that the intersection of the line segment $$ab$$ with the boundary of $$P$$ ($$\partial P$$) is exactly the set $$\{a,b\}$$. In the first figure the segment connecting $$v_1$$ and $$v_6$$ is a diagonal since the intersection of the line segment with $$\partial P$$ is only $$\{v_1,v_6\}$$ while in the right figure none of the red line segments are diagonals. Note here that this definition applies to both internal and external diagonals!
@@ -26,13 +26,13 @@ Two diagonals are <b>non-crossing</b> if their intersection is a subset of their
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Triangulation</b></h4>
+<h3>Triangulation</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-8.png" width="50%" class="center"></p>
 There is one more definition that we will need for the proof later. If we add as many non-crossing diagonals as possible to a polygon, then the interior is partitioned into triangles. Such a partition is called a <b>triangulation</b> of a polygon. Why? This is a whole other topic an another post will be dedicated on this.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formalizing the Art Gallery Problem</b></h4>
+<h3>Formalizing the Art Gallery Problem</h3>
 We will define $$g(P)$$ to be the smallest number of guards needed to cover polygon $$P$$.
 <div center>
 $$
@@ -66,7 +66,7 @@ Is $$G(n)$$ finite for all $$n$$? and can it be expressed with a simple formula?
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Small Values of \(n\)</b></h4>
+<h3>Small Values of \(n\)</h3>
 
 We can start by plugging in small values of $$n$$ to see if we can find any pattern. For starters, for any polygon we will need at least 1 guard ($$G(n) \geq 1$$) and at most $$n$$ guards ($$G(n)\leq n$$) (proof?).
 
@@ -85,12 +85,12 @@ For polygons of 5 vertices (pentagons) can be divided into:
 </ul>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Fisk's Theorem</b></h4>
+<h3>Fisk's Theorem</h3>
 Fisk established that every Polygon with $$n$$ vertices will need at least $$\lfloor n/3 \rfloor$$ guards. In this section, we will outline the proof.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof Outline</b></h4>
+<h3>Proof Outline</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/geometry/art-gallery/art-gallery-3.png" width="90%" class="center"></p>
 Given an arbitrary polygon $$P$$ of $$n$$ vertices. The first step of the proof is to triangulate the polygon by adding as many <b>non-crossing</b> diagonals as possible to it until the polygon is partitioned into triangles. Let the resulting graph be $$G$$ such that the vertices of the polygon are the vertices of $$G$$. The edges of $$G$$ are the set of the original edges of the polygon plus the newly added non-crossing diagonals.
 <br>
@@ -105,7 +105,7 @@ The forth step is the application of the pigeonhole principle. Recall that the p
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B">Computational Geometry in C</a>
 <br>
 <br>

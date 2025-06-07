@@ -17,7 +17,7 @@ In other words, the prime factors of $$13195$$ are $$5, 7, 13$$ and $$29$$. The 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 There are lots of tutorials out there that cover implementing prime factorization. The simplest one is to divide by 2 and collect these prime factors first. Then we'll check against all the other odd factors up to the square root of $$n$$. While it appears that we're checking if $$9$$ is a factor, we will never add $$9$$ since we have checked $$3$$ before checking against $$9$$. The following code implements this.
 {% highlight c++ %}
 unsigned long long max_prime_factorization(unsigned long long n) {
@@ -62,7 +62,7 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=3">Project Euler - 03</a>
 <br>
 <br>

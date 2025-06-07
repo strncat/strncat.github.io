@@ -12,7 +12,7 @@ mathjax: true
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A$$ be the set defined above. We claim that $$\sup A = \frac{1}{2}$$. To see this, we need to prove that $$1/2$$ is an upper bound and then prove that $$1/2$$ is the least upper bound.
 <br>
 <br>

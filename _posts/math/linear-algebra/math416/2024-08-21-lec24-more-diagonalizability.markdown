@@ -61,7 +61,7 @@ This is great and gives up the following plan to diagonalize $$A$$:
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Diagonalize $$
 \begin{align*}
 A = 
@@ -273,7 +273,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Eigenvectors of distinct eigenvalues are Linearly Independent</b></h4>
+<h3>Eigenvectors of distinct eigenvalues are Linearly Independent</h3>
 Question: is the strategy of combining bases of various eigenspaces $$E_{\lambda}$$'s to form larger linearly independent subsets always work or useful?
 <br>
 <br>
@@ -318,7 +318,7 @@ This means that we didn't need to do step 3 from our algorithm to check that our
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Is Every Matrix Diagonalizable?</b></h4>
+<h3>Is Every Matrix Diagonalizable?</h3>
 The answer is no! For some matrices, we won't be able to find $$n$$ linearly independent eigenvectors. One test that we did last time is to check the characteristic polynomial's roots or in other words, solve $$\det(A - tI_2) = 0$$.
 <div>
 $$
@@ -339,7 +339,7 @@ This polynomial has no real roots and so we don't have eigenvalues. Is the only 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

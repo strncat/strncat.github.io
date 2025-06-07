@@ -15,7 +15,7 @@ Now that we've studied matrix multiplication we can state the fact that performi
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Elementary Matrices</b></h4>
+<h3>Elementary Matrices</h3>
 <div class="bdiv">
 Definition
 </div>
@@ -24,7 +24,7 @@ An \(m \times n\) elementary matrix obtained from \(I_n\) by performing an eleme
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Applying the three types of elementary row operations results in the following matrices
 <div>
 $$
@@ -69,7 +69,7 @@ Theorem
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let's apply the elementary matrices on the following given matrix
 <div>
 $$
@@ -96,7 +96,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>RREF by Matrix Multiplication</b></h4>
+<h3>RREF by Matrix Multiplication</h3>
 Since we can perform elementary row operations by matrix multiplication, then we can possibly see how we can put a matrix in reduced row echelon by multiplication. But first, there is an observation
 <div class="purdiv">
 Corollary
@@ -141,7 +141,7 @@ Corollary
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Rank of a Matrix</b></h4>
+<h3>The Rank of a Matrix</h3>
 Recall that the rank of $$T: V \rightarrow W$$ is $$\dim(R(T))$$.
 
 <div class="bdiv">
@@ -215,7 +215,7 @@ But we know that $$\dim(R(L_A))$$ is the rank of $$A$$. and $$\dim(L_B(R(L_A))$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Rank of a Matrix</b></h4>
+<h3>The Rank of a Matrix</h3>
 So now we can go back to our original goal of finding an expression for finding the rank of a matrix $$A$$ without going back to the rank of the linear map $$L_A$$. We just proved that $$\text{rank}(BA) = \text{rank}(A)$$. for any invertible matrix $$B$$. We further studied earlier that elementary matrices are invertible. So multiplying $$A$$ by a set of elementary matrices will not change its rank. So we can get $$A$$ in RREF without its rank changing. Based on this we have the following corollaries:
 <div class="purdiv">
 Corollary
@@ -240,7 +240,7 @@ Why do we want RREF? because it's easy to read off and we can easily figure out 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 What is the range of the following matrix?
 <div>
 $$
@@ -283,7 +283,7 @@ In other words, the columns span the range. Here, we see that we have 3 non-zero
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 What is the range of the following matrix?
 <div>
 $$
@@ -302,7 +302,7 @@ It's still true that the range of this is still spanned by the columns (always t
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Nullity and The Dimension Theorem</b></h4>
+<h3>Nullity and The Dimension Theorem</h3>
 So we know that $$\text{nullity}(A) = \dim(N(A))$$. We found a basis for the null space of $$A$$ by solving $$Ax = 0$$ and finding all the solutions and then writing a set that spans that solution set. From the basis we knew the dimension of the null space. Specifically when we solved $$Ax = 0$$, it was the number of columns without leading entries. So we can write $$\text{nullity}(A) = \dim(N(A)) = $$ # of columns without leading entries.
 <br>
 <br>
@@ -312,7 +312,7 @@ So now if we put together the number of columns without leading entries (nullity
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

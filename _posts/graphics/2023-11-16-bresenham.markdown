@@ -35,7 +35,7 @@ void draw_line(x1, y1, x2, y2) {
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Integers Only!</b></h4>
+<h3>Integers Only!</h3>
 The above procedure works really well but we don't want floats. We want integers only. What can we do to avoid calculating the slope $$m$$. In every iteration, notice that we're adding $$m$$ to $$\epsilon$$ and then directly comparing it again the threshold $$0.5$$. Let's expand the terms and see where we can go.
 <div>
 $$
@@ -91,7 +91,7 @@ void draw_line(x1, y1, x2, y2) {
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Generalizing The Algorithm</b></h4>
+<h3>Generalizing The Algorithm</h3>
 So far we have code that works for the first octant ONLY! where the slope is positive and is less than 1. How do we handle the other cases? We're going to handle the case when the $$\Delta x$$ is still larger in magnitude than $$\Delta y$$.
 <br>
 <br>
@@ -105,7 +105,7 @@ What about the eigth octant? The magnitude of the slope is still between 0 and 1
 <br>
 Next, we'll handle all the remaining octants where the magnitude of the slope is greater than 1. Here we have more steps in $$y$$ than in $$x$$. So we need instead to move in the $$y$$ direction while keeping the error term to track the error in $$x$$ instead of $$y$$. So the same exact code still but we just need to swap $$x$$ and $$y$$! of course we will still need to adjust value of xstep and ystep similar to the above cases that we discussed.
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html">Bresenham Line-Drawing Algorithm</a>
 <br>
 <a href="https://www.youtube.com/watch?v=y_SPO_b-WXk&t=604s">Bresenham's Line Algorithm</a>

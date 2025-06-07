@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Discussion:</b></h4>
+<h3>Discussion:</h3>
 We want to find $$N$$ such that 
 <div>
 	$$
@@ -40,7 +40,7 @@ Our goal is to bound the term to be less than $$\epsilon$$ and now we have $$|a_
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(a_n)$$ be a convergent sequence. Let $$(a_n) \rightarrow l$$. This means that for any $$\epsilon > 0$$, there must exist a number $$N \in \mathbf{N}$$ such that
 <div>
 	$$

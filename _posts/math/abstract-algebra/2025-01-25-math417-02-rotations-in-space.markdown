@@ -32,7 +32,7 @@ What are examples of the groups?
 </ol>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose we define the group $$(\mathbf{R}, \ast)$$ where $$\ast$$ is defined as
 <div>
 $$
@@ -45,7 +45,7 @@ We can further check that this product satisfies the three axioms of a group.
 <br>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$F$$ be a field (for example $$\mathbf{R}$$ or $$\mathbf{C}$$). Let $$Mat_{n \times n}(F)$$ be the set of matrices with entries in $$F$$. Then define $$GL_n(F)$$ (General Linear Group) as a subset of $$A \in M_{n \times n}(F)$$ where $$A$$ is an invertible matrix.  
 <br>
 <br>
@@ -57,7 +57,7 @@ The set $$GL_n(F)$$ equipped with matrix multiplication is a group. It satisfies
 </ol>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Rotations in Plane</b></h4>
+<h3>Rotations in Plane</h3>
 We can define a plane rotation by an angle counter clockwise by the left multiplication by the following rotation matrix
 <div>
 $$
@@ -81,7 +81,7 @@ From this we see that the collection of rotation matrices forms a group with mat
 <br>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Rotations in Space</b></h4>
+<h3>Rotations in Space</h3>
 <div>
 $$
 \begin{align*}
@@ -100,7 +100,7 @@ This defines a rotation around the $$z-$$axis by angle $$\theta$$ counter clockw
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>How Do you Compute The Rotation Matrix?</b></h4>
+<h3>How Do you Compute The Rotation Matrix?</h3>
 Recall from Linear Algebra that
 <div class="mintheaderdiv">
 Definition
@@ -131,7 +131,7 @@ So we're taking the standard rotation around the $$z$$-axis or $$e_3$$ and chang
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 So now suppose we want to rotate around $$\frac{(e_1 + e_2)}{\sqrt{2}}$$ (which is a unit vector) by $$\theta = \frac{\pi}{3}$$. Then, we'll need two more orthonormal vectors in addition to $$\frac{(e_1 + e_2)}{\sqrt{2}}$$ to construct an orthonormal basis. We can use Gram-Schmidt to come up with the following orthonormal vectors and set them to be the column vectors of $$P$$ as follows
 <div>
 $$
@@ -175,7 +175,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Rotations in Space</b></h4>
+<h3>Rotations in Space</h3>
 From last lecture, we saw the symmetries of the square. These symmetries can be represented with rotation matrices. We have the identity rotation $$I$$. We can also define the rotation around the axis coming through the centroid of the face ($$z-$$axis in the lecture) as $$R = \text{Rot}_{e_3}(\frac{\pi}{2})$$. Therefore, $$R^2 = \text{Rot}_{e_3}(\pi)$$ and $$R^3 = \text{Rot}_{e_3}(\frac{3\pi}{2})$$.
 <br>
 <br>
@@ -285,7 +285,7 @@ By an algebraic argument we can show that $$a = d = \cos\theta$$ and $$c = -b = 
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

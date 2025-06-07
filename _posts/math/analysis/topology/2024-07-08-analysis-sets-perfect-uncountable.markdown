@@ -10,7 +10,7 @@ mathjax: true
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof</b></h4>
+<h3>Proof</h3>
 If $$P$$ is perfect and nonempty, then it must be infinite because otherwise it would consist only of isolated points. Suppose for the sake of contradiction that $$P$$ is countable. This means we can write
 <div>
 $$

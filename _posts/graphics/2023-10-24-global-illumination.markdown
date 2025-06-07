@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Photon Tracing</b></h4>
+<h3>Photon Tracing</h3>
 Photons come out of the light and then bounce around. One idea for rendering an image is to just follow every photon around and see where it goes. Some will bounce and hit an object like a chair and then get absorbed so they're gone. Some will go through the camera aperture and hit the film and this is when we can see their contribution. So basically:
 - For each light, choose a number of directions and emit a photon in each direction. 
 (1) Let the photon travel in a straight line until it hit object. Then:
@@ -25,7 +25,7 @@ Issues:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(Backward) Path Tracing</b></h4>
+<h3>(Backward) Path Tracing</h3>
 The solution to the photon tracing problem is to send only a subset of photons. One idea is to start at the film and go backwards (just like a ray tracer). But there is an issue here is that if we go backward and then hit an object. We still don't know where the photon could come from. It could come from any direction on the hemisphere. (Similar to the BRDF, we had many incoming directions and one outgoing direction to the viewer/pixel)
 <br>
 <br>
@@ -45,7 +45,7 @@ To summarize, a ray tracer does direct illumination with the shadow rays and som
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Bidirectional Ray Tracing</b></h4>
+<h3>Bidirectional Ray Tracing</h3>
 This approach combines both Photon Tracing and Ray Tracing. So not just the backward tracing in ray tracing but also the forward path in photon tracing. 
 <br>
 <br>
@@ -68,7 +68,7 @@ Light maps are great for soft shadows, color bleeding and can generate other int
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Equation of Light Revisited</b></h4>
+<h3>The Equation of Light Revisited</h3>
 Recall the lighting equation from the optics lecture
 <div>
 $$
@@ -112,7 +112,7 @@ One additional note here is that we're still simplifying the light here because 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Discretization of the integral equation</b></h4>
+<h3>Discretization of the integral equation</h3>
 We will solve the above problem with discretization. Cut up the surface into chuncks and choose a few points and a few directions: 
 
 - Choose $p$ points, each representing a chunck of surface area. (for the classroom for example, just choose a bunch of samples. If we care about objects for example then we'll pick points $p$ on objects). Basically sample the room we're tring to render.
@@ -145,7 +145,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Power Series</b></h4>
+<h3>Power Series</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/global-illumination/00-power-series.png" width="80%" class="center"></p>
 
 <div>
@@ -162,7 +162,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Tractability</b></h4>
+<h3>Tractability</h3>
 
 Issues with the power series:
 - A typical scene might have tens of thousands of area chunks. So $p$ could be $1e3, 1e4..$.
@@ -176,7 +176,7 @@ So this isn't possible. How to fix this?
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Addressing Tractability</b></h4>
+<h3>Addressing Tractability</h3>
 Idea: Separate the diffuse and specular contribution.
 
 Diffuse:
@@ -191,7 +191,7 @@ Specular:
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Radiosity and Albedo</b></h4>
+<h3>Radiosity and Albedo</h3>
 This is what we typically work with in computer vision. 
 - Radiosity: power per unit surface area leaving a surface (similar to irradiance, but outgoing instead of incoming):
 <div>
@@ -228,7 +228,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(Purly Diffuse) Lighting Equation</b></h4>
+<h3>(Purly Diffuse) Lighting Equation</h3>
 So now we can bring back the lighting equation from above,
 <div>
 $$
@@ -265,7 +265,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Understanding the Form Factor</b></h4>
+<h3>Understanding the Form Factor</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/global-illumination/00-form-factor.png" width="80%" class="center"></p>
 - Place a unit hemisphere at a surface point $x_i$.
 - Project the other surface on the hemisphere, nothing that 
@@ -281,7 +281,7 @@ Project the result downwards onto the circular base of the hemisphere which mult
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

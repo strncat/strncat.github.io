@@ -12,7 +12,7 @@ mathjax: true
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$A \subseteq \mathbf{R}$$ be nonempty and bounded above, let $$c \in \mathbf{R}$$ and let $$cA = \{ca : a \in A\}$$. We'll verify both conditions of the least upper bound. Let $$a \in A$$. We know that $$a \leq \sup A$$. Multiply both sides by $$c$$ to get
 <div>
 $$

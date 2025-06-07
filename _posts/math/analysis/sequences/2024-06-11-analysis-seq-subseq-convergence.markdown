@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(a_n)$$ be a sequence and $$(a_{n_k})$$ be a subsequence. We know that $$(a_n)$$ convergences to some number $$l$$. By <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">definition (2.2.3)</a>, we know that there exists an $$N \in \mathbf{N}$$ such that if $$n \geq N$$, then for any $$\epsilon > 0$$, we have
 <div>
 $$

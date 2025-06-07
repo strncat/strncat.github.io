@@ -21,7 +21,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Problem Discussion</b></h4>
+<h3>Problem Discussion</h3>
 Similar to the previous two examples in <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">here</a> and <a href="https://strncat.github.io/jekyll/update/2024/05/22/analysis-seq-limit-example.html">here</a>, we're going to use the template after working on finding the right $$N$$ value. For (i) we want to show that $$\lim (ca_n) = ca$$. So we want to find $$N$$ such that for any $$\epsilon > 0$$,
 <div>
 $$
@@ -43,7 +43,7 @@ $$
 So now we are ready to write a formal proof.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 Let $$\epsilon > 0$$ be arbitrary. Choose a natural number $$N$$ satisfying
 <div>
 $$
@@ -71,7 +71,7 @@ $$
 as required. $$\blacksquare$$
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Notes</b></h4>
+<h3>Notes</h3>
 I'm not too comfortable yet with this proof. I don't know why it was okay to keep $$|a_n - a|$$ as is?
 <br>
 <br>

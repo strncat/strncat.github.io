@@ -9,7 +9,7 @@ Suppose we are given a list of $$n$$ two dimensional points $$\{\{x_1,y_1\},\{x_
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Divide and Conquer</b></h4>
+<h3>Divide and Conquer</h3>
 The brilliant algorithm we're about to study is a divide and conquer algorithm, meaning that we will repeatedly divide the problem into a number of subproblems and then we will repeatedly combine the intermediate results until we arrive at the final result. As a starting point we will sort the points by their x-coordinate and let that array be $$P_x$$. We will also sort the points by their y-coordinate and let that array be $$P_y$$. We will be using $$P_y$$ later in the algorithm.
 <img src="{{ site.url }}/assets/closest/1.png" width="100%">
 Given $$P_x$$. We can start by applying the following divide and conquer idea. Repeatedly divide $$P_x$$ into two halfs, left and right. Find the closest pair in the left half and the closest pair in the right half and then combine the results to output the single true closest pair.
@@ -49,7 +49,7 @@ int closest_pair(Px, Py) { // Px sorted by x-coordinate, Py by y-coordinate
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 We sorted the array upfront twice in $$O(n\log(n))$$ time. We divide the input repeatedly in half until we reached the base case. We then combined the results by finding the split pair and returning the pair with the minimum distance. So we have a recurrence that looks like this:
 <div center>
 $$
@@ -63,7 +63,7 @@ The $$c$$ constant depends on the work we're doing in each level. We first creat
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Sorting $P_x$ by the x-coordinate and the y-coordinate $O(n)$ time</b></h4>
+<h3>Sorting $P_x$ by the x-coordinate and the y-coordinate $O(n)$ time</h3>
 So we're claiming that we're sorting once only and then somehow we're are repeatedly passing the two halfs of the $$P_x$$ sorted by the x-coordinate and by the y-coordinate. How?! For sorting by the x-coordinate, we simply split $$P_x$$ in half by calculating the median in $$O(1)$$ time and then iterating over $$P_x$$ to split the array into $$left_x$$ and $$right_x$$. That takes $$O(n)$$ time where $$n$$ is the current size of $$P_x$$. 
 <br>
 <br>
@@ -71,7 +71,7 @@ Now that we have both $$left_x$$ and $$right_x$$. We want to create two arrays $
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Finding the split pair in $$O(n)$$ time </b></h4>
+<h3>Finding the split pair in $$O(n)$$ time </h3>
 <img src="{{ site.url }}/assets/closest/3.png" width="100%">
 Let's assume that the minimum pair is not a left pair or a right pair and it is a split pair. In the algorithm we described above, let the left minimum distance be $$\delta_l$$ (shown above) and let the right minimum distance be $$\delta_r$$. Let $$\delta$$ be the minimum of $$\delta_l$$ and $$\delta_r$$. Also let the right most point in the left array be $$\bar{x}$$. Now construct $$M$$ to be an array with all the points that have x-coordinate between $$\bar{x} - \delta$$ and $$\bar{x} + \delta$$ sorted by their y-coordinate (we can use $$P_y$$ with a linear scan to insert any point that has an x-coordinate that fits our criteria). This linear scan costs $$O(n)$$ time which is fine by us!
 <br><br>
@@ -124,7 +124,7 @@ The next question is how many points do we have in each box?
 <br><br>
 We claim that each box has only 1 point. Proof: Suppose it doesn't and some box in the diagram above has 2 points. Let these points be $$a$$ and $$b$$. This means than $$a$$ and $$b$$ are both a left pair or a right pair. Moreover, the distance between $$a$$ and $$b$$ is at most $$\sqrt{(\delta/2)^2 + (\delta/2)^2} = \delta/\sqrt{2} < \delta$$. This is a contradiction, since by assumption we said both $$\delta_l$$ and $$\delta_r$$ are greater than $$\delta$$. Therefore, we must have 1 point in each box and so there are only 6 points between $$p$$ and $$q$$. $$\blacksquare$$ Wonderful!! 
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 These are my study notes from chapter 3 of Algorithms Illuminated: Part 1: The Basics. Buy this book!!!
 <br>
 <br>

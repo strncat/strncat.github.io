@@ -1,0 +1,714 @@
+I"�s<p>We’ll start by defining Quotient Rings
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Domain
+</div>
+<div class="mintbodydiv">
+A domain \(R\) is a commutative ring with 1 such that
+<ol>
+	<li>\(1 \neq 0\).</li>
+	<li>If \(a,b \in R/\{0\}\), then \(ab \in R/\{0\}\). So non-zero elements multiply to non-zero elements. In other words, \(ab = 0\) then either \(a = 0\) or \(b = 0\).</li>
+</ol>
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+Fact: Every field is a domain. Other examples:</p>
+<ol>
+	<li>\(\mathbf{Z}\) and \(K[x]\) are domains.</li>
+	<li>The Gaussian integers are a domain \(\mathbf{Z}[i] = \{a + bi \in \mathbf{C} \ | \ a, b \in \mathbf{Z}\).</li>
+	<li>\(\mathbf{Z}_4\) is not a domain, \([2] \neq 0\) but \([2][2] = [4] = [0]]\).</li>
+	<li>\(\mathbf{Q}/(f_1f_2)\) where \(\deg(f_i) \geq 1\) is not a domain. (Exercise)</li>
+</ol>
+<p>Fact: If \(K\) is a field and \(R \subseteq K\) is a subring such that \(1_K \in R\), then \(R\) is a domain
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+Every domain \(R\) is (isomorphic) a subring of a field \(F = \text{Frac}(R)\) (field of fraction)
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+So basically every domain can be enlarge to be a field.
+<br />
+<br />
+<b>Proof</b>
+<br />
+Let \(X = \{(a,b) \ | \ a, b \in R, b \neq 0\}\). Define a relation on \(X\):</p>
+<div>
+$$
+\begin{align*}
+(a,b) \sim (a',b') \quad \text{ iff } ab' = ba'
+\end{align*}
+$$
+</div>
+<p>We claim that this relation is an equivalence relation. (Exercise, hard to prove but use that \(R\) is a domain Side note: domains have cancellations so if \(ab = bc\) and \(a \neq 0\), then \(b = c\).)
+<br />
+<br />
+Since we have an equivalence relation on a set \(X\), then define \(F: X/\sim\) to be the set of equivalence classes. Write \([\frac{a}{b}] \in F\) for the equivalence class of \((a,b)\). Now, define</p>
+<div>
+$$
+\begin{align*}
+\big[\frac{a}{b}\big] + \big[\frac{a'}{b'}\big] &amp;= \big[\frac{ab'+ba'}{bb'}\big] \\
+\big[\frac{a}{b}\big]\big[\frac{a'}{b'}\big] &amp;= \big[\frac{aa'}{bb'}\big]
+\end{align*}
+$$
+</div>
+<p>Check that these operations are well defined and make \(F\) a field. Finally, define \(\varphi: R \rightarrow F\) by \(\varphi(a) = [\frac{a}{1}]\). Check that \(\varphi\) is an injective ring homomorphism.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Examples</h3>
+<ol>
+	<li>Suppose \(R = \mathbf{Z}\), then \(\text{Frac}(\mathbf{Z}) \cong \mathbf{Q}\).</li>
+	<li>Suppose \(R = K[x]\) the ring of polynomials over a field. Then \(\text{Frac}(K[x]) = K[x]\) is the field of rational polynomials. elements in \(\text{Frac}(K[x]) = K[x]\) are of the form \(\frac{f}{g}\).</li>
+</ol>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Element Types</h3>
+<p>We want to discuss factorization in a domain but before doing so, we need to see the types of elements we can find in a domain.</p>
+<ol>
+	<li>Zero: the element zero is in \(R\).</li>
+	<li>Units: These are the elements that have a multiplicative inverse.</li>
+	<li>Reducible: If \(a \in R\), \(a \neq 0\) and \(a \not\in R^{\times}\) (not a unit), then there exists \(b,c \in R\) such that \(a = bc\). (\(b\) and \(b\) must both be non-units!)</li>
+	<li>Irreducible: Not a zero, not a unit and not reducible. This means \(a \in R\), \(a \not\in R^{\times}\) and if \(a = bc\), then either \(b \in R^{\times}\) or \(c \in R^{\times}\).</li>
+</ol>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Examples</h3>
+<ol>
+	<li>\(R = \mathbf{Z}\)</li>
+	<ul>
+		<li>Units: \(\mathbf{Z}^{\times} = \{-1, +1\}\)</li>
+		<li>Reducible: \(\{\pm n, n \in \mathbf{N}, \text{composite}\}\)</li>
+		<li>Irreducible: These are the elements that don't factor so \(\{\pm p, p \in \mathbf{N}, \text{prime}\}\)</li>
+	</ul>
+	<!---------------Field----------------->
+	<li>\(R = K\) where \(K\) is a field</li>
+	<ul>
+		<li>\(0 \in K\)</li>
+		<li>Units: \(K^{\times} = K / \{0\}\)</li>
+		<li>Reducible: none.</li>
+		<li>Irreducible: none.</li>
+	</ul>
+	<!---------------Polynomial Rings----------------->
+	<li>\(R = K[x]\) where \(K\) is a field</li>
+	<ul>
+		<li>\(0 \in K[x]\)</li>
+		<li>Units: these are polynomials of degree 0 so \(K^{\times}\)</li>
+		<li>Reducible: polynomials that you can factor into smaller ones. \(f, \deg(f) \geq 1\) such that \(f = gh, 0 &lt; \deg(g), \deg(h) &lt; \deg(f)\)</li>
+		<li>Irreducible: polynomials that you can't factor. \(f, \deg(f) \geq 1\) such that there is no \(g,h, \deg(h), \deg(g) &lt; \deg(f)\) such that \(f = gh\)</li>
+	</ul>
+	<!------------ polynomials over the complex numbers ----------------->
+	<li>\(R = \mathbf{C}[x]\)</li>
+	<ul>
+		<li>\(0 \in C[x]\)</li>
+		<li>Units: \(C^{\times}\)</li>
+		<li>Reducible: \(f, \deg(f) \geq 2\)</li>
+		<li>Irreducible: \(f, \deg(f) = 1\)</li>
+	</ul>
+	<!--------- polynomials over the real numbers ------------->
+	<li>\(R = \mathbf{C}[x]\)</li>
+	<ul>
+		<li>\(0 \in R[x]\)</li>
+		<li>Units: \(R^{\times}\)</li>
+		<li>Irreducible: One form is \(ax + b, a \neq 0\) and another form is \(ax^2 + bx + c\) where \(a \neq 0, b^2 - 4ac &lt; 0\)</li>
+		<li>Reducible: The rest of polynomials are reducible</li>
+	</ul>
+</ol>
+<p>Warning: If we take a look at the polynomials over the rational numbers, we will find out that there are a lot more irreducible polynomials there. Note here that the ring of polynomials with rational coefficients is contained in the ring of polynomials with the real coefficients and that’s contained in the field of rational functions over \(\mathbf{R}\). In other words, \(\mathbf{Q}[x] \subseteq \mathbf{R}[x] \subseteq \mathbf{R}(x)\). Now, take \(x^p - 2\) where \(p \geq 2\), then \(x^p - 2\) is irreducible in \(Q[x]\), reducible in \(R[x]\). (The proof is not obvious). It is a unit in \(\mathbf{R}(x)\)! so it’s important to consider the context in which we’re in.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Norm Functions</h3>
+<p>Another Example is the Gaussian Integers: \(R = \mathbf{Z}[i] = \{a + bi \ | \ a, b \in \mathbf{Z}\} \subseteq \mathbf{C}\). So \(R\) is a subring of the complex numbers and it is a domain. Since it’s a domain, we want to categorize the elements in it. But to do so, we need another tool defined as follows
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition: Norm Functions
+</div>
+<div class="mintbodydiv">
+The norm of \(a + bi\) is defined to be \(N(a + bi)  = a^2 + b^2 = (a + bi)(a - bi) = \lVert a + bi \rVert^2 \)
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+So this is a function defined on the complex numbers and therefore defined on the Gaussian integers. Some properties:</p>
+<ol>
+	<li>If \(z \in \mathbf{Z}[i], N(z) \in \mathbf{Z}_{\geq 0}\)</li>
+	<li>\(N(z) = 0\) if and only if \(z = 0\)</li>
+	<li>If \(z, w \in \mathbf{Z}[i], N(zw) = N(z)N(w)\)</li>
+	<li>If \(z \in \mathbf{Z}[i]\), then \(z \in \mathbf{Z}[i]^{\times}\) if and only if \(N(z) = 1\)</li>
+</ol>
+<p>Proof of (4):
+<br />
+If \(z \in \mathbf{Z}[i]^{\times}\), then \(z\) is a unit and \(zz^{-1} = 1\). We know that \(z^{-1} \in \mathbf{Z}[i]\) so \(z^{-1}\) is a Gaussian integer. So</p>
+<div>
+$$
+\begin{align*}
+1 = N(1) = N(z)N(z^{-1})
+\end{align*}
+$$
+</div>
+<p>But \(N(z)\) and \(N(z^{-1})\) are positive integers by (1). Therefore \(N(z) = N(z^{-1}) = 1\). 
+<br />
+<br />
+For the other direction when \(N(z) = 1\). Write \(z = a + bi\) where \(a, b \in \mathbf{Z}\). By definition</p>
+<div>
+$$
+\begin{align*}
+1 = N(z) = N(a + bi) = (a + bi)(a - bi)
+\end{align*}
+$$
+</div>
+<p>Therefore, \((a + bi)^{-1} = (a - bi)\). 
+<br />
+<br />
+In fact the units are just \(\mathbf{Z}^{-1}[i] = \{ \pm 1, \pm i\}\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Example 1</h3>
+<p>Example: \(2 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). So 2 is also a Gaussian integer since \(\mathbf{Z}\) is a subring of the Gaussian integers. \(2\) is a prime number so it’s irreducible as an integer. However, is it reducible as a Gaussian integer? Observe that</p>
+<div>
+$$
+\begin{align*}
+2 = (1 + i)(1 - i)
+\end{align*}
+$$
+</div>
+<p>So it’s definitely reducible as a Gaussian integer.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Example 2</h3>
+<p>Example: Take \(1 + i \in \mathbf{Z}[i]\). Is it reducible or irreducible in \(\mathbf{Z}[i]\)? It is in fact irreducible. We know this because \(N(1 + i) = 2\) and if there were factors \(1 + i = zw\), then</p>
+<div>
+$$
+\begin{align*}
+N(1 + i) = N(z)N(w) = 2
+\end{align*}
+$$
+</div>
+<p>But the norm is a non-negative integer. So the only way to make this work is that either \(N(z) = 1\) or \(N(w) = 1\) so one of the factors is a unit. Thus, by definition, \(z\) is irreducible. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Associate Elements</h3>
+<p>Next, we have this definition for when two elements are associate when one element is a product of some unit times the other element.
+<br /></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+\(a, b \in R\) are the <b>same up-to-units</b> or <b>associate</b> (we write \(a \sim b\)) if there exists an element \(u \in R^{\times}\) such that \(b = ua\).
+</div>
+<p><br />
+<!----------------------------------------------------------------------------->
+This is in fact an equivalence relation (Exercise)
+<br />
+<br />
+Example: In \(\mathbf{Z}\), associate classes are \(\{0\}\), \(\{\pm n\}, n &gt; 0\). Another example is \(K[x]\), \(f \sim g\) if \(g = fc\) for some \(c \in K/\{0\}\). 
+<br />
+<br />
+Fact: If two elements are associate, then they are of the same type!
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Example 3</h3>
+<p>\(3 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible? It is irreducible in \(\mathbf{Z}\) since it is prime. In \(\mathbf{Z}[i]\), we know that \(N(3) = N(3 + 0i) = 9\). Suppose it was reducible. This means that there exists \(z,w \in \mathbf{Z}[i]\)</p>
+<div>
+$$
+\begin{align*}
+9 = N(3) = N(z)N(w)
+\end{align*}
+$$
+</div>
+<p>To be reducible, neither \(z\) or \(w\) can be units so they can’t have a norm of 1. Therefore, we must have \(N(z) = N(w) = 3\). This a contradiction since we don’t have any Gaussian integers with norm 3 (square root of 3 from the origin).</p>
+<div>
+$$
+\begin{align*}
+N(a + bi) = a^2 + b^2, \quad a^2, b^2 \in \{0,1,4,9,16,...\}
+\end{align*}
+$$
+</div>
+<p>So it’s not possible to construct an element of the form \(a + bi\) in \(\mathbf{Z}[i]\) such that \(a^2 + b^2 = 3\). 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Example 4</h3>
+<p>\(4 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible? It is reducible in \(\mathbf{Z}\). In \(\mathbf{Z}[i]\), we know that \(4 = (2)(2)\) and \(2\) is not a unit in \(\mathbf{Z}[i]\). Not just that but we also saw that \(2\) can be factored using the previous example \(2 = (1 + i)(1 - i)\). Furthermore, we also have another way too to factor 4. Below are some of the ways</p>
+<div>
+$$
+\begin{align*}
+4 = 2(2) = (1 + i)^2(1 - i)^2 = -(1 + i)^4
+\end{align*}
+$$
+</div>
+<p><br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Example 5</h3>
+<p>\(5 \in \mathbf{Z} \subseteq \mathbf{Z}[i]\). Is it reducible in \(\mathbf{Z}[i]\)? It is reducible because</p>
+<div>
+$$
+\begin{align*}
+5 = (2 + i)(2 - i)
+\end{align*}
+$$
+</div>
+<p>The factors themselves \((2+i)\) and \((2-i)\) are irreducible since the the norm \(N(2 + i) = 5\). Also note that \((2+i)\) and \((2-i)\) are not associate. 
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>When is \(p\) reducible in \(\mathbf{Z}[i]\)?</h3>
+<p>We went through a few examples of doing this calculation but in fact we do have a proposition about this as follows
+<br /></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(p \in \mathbf{N}\) is a prime number, then \(p\) is reducible in \(\mathbf{Z}[i]\) if and only if \(p = a^2 + b^2\) for some \(a,b \in \mathbf{Z}\)
+</div>
+<p><br />
+<!----------------------------------------------------------------------------->
+<b>Proof</b>
+<br />
+\(\Leftarrow:\) Suppose that \(p = a^2 + b^2\). Then we can write</p>
+<div>
+$$
+\begin{align*}
+p = (a - bi)(a + bi)
+\end{align*}
+$$
+</div>
+<p>Recall that \(N(a + bi) = a^2 + b^2\) but that means \(N(a + bi) = p\) and \(p\) is prime so it’s not 1. So neither (a + bi) or (a - bi) is a unit. Therefore, \(p\) is reducible. 
+<br />
+<br />
+\(\Rightarrow:\) Suppose that \(p\) is reducible so \(p = zw\). Therefore,</p>
+<div>
+$$
+\begin{align*}
+N(p) = N(z)N(w) = p^2 \quad (\text{since } p \in \mathbf{Z}, N(p)=p^2)
+\end{align*}
+$$
+</div>
+<p>But \(p\) is prime and so we must have \(N(z)=N(w)=p\). This means that there exists some \(a, b\) such that \(z = a + bi\) where \(N(z) = p\). This means</p>
+<div>
+$$
+\begin{align*}
+N(z) = a^2 + b^2 = p.
+\end{align*}
+$$
+</div>
+<p>So \(p = a^2 + b^2\) as we wanted to show. \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Examples</h3>
+<p>The proof shows that for a prime to be a sum of squares is related to whether it factors as a Gaussian integer</p>
+
+<div>
+<table style="max-width: 700px; margin: 20px auto;">
+  <tr>
+    <td>Reducible in \(Z[i]\)</td>
+	<td>Irreducible in \(Z[i]\)</td>
+  </tr>
+  <tr>
+    <td>\(2 = 1^2 + 1^2\)</td>
+	<td>3</td>
+  </tr>
+  <tr>
+    <td>\(5 = 2^2 + 1^2\)</td>
+	<td>7</td>
+  </tr>
+  <tr>
+    <td>\(13 = 3^2 + 2^2\)</td>
+	<td>11</td>
+  </tr>
+  <tr>
+    <td>\(17 = 4^2 + 2^2\)</td>
+	<td>19</td>
+  </tr>
+  <tr>
+    <td>\(29 = 5^2 + 2^2\)</td>
+	<td>23</td>
+  </tr>
+  <tr>
+    <td>\(37 = 6^2 + 1^2\)</td>
+	<td>31</td>
+  </tr>
+</table>
+</div>
+<p>Notice the pattern here. The left prime numbers are congruent to 1 mod 4 while the right prime numbers are congruent to -1 mod 4.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Irreducible Elements in \(R\)</h3>
+<p>Lecture 38: To state things again, \(a \in R\) is irreducible if</p>
+<ol>
+	<li>\(a \neq 0\)</li>
+	<li>\(a \not\in R^{\times}\)</li>
+	<li>If \(a = bc\), then one of \(b\) or \(c\) is a unit</li>	
+</ol>
+<p>This notion of irreducible element is kind of the replacement we have to the notion of a prime number. In fact, we can re-write this condition to make it closer.</p>
+<ul>
+	<li>Given two elements in a domain \(a,b \in R\), we say that \(a\) divides \(b\) (write \(a \ | \ b\)) if there exists an element \(c \in R\) such that \(b = ac\)</li>
+	<li>In terms of ideals. This is equivalent to saying \(b\) is in \(Ra\). It is also equivalent to saying that \(Rb \subseteq Ra\). </li>
+	<li>\(a\) is irreducible if whenever \(b \ | \ a\), either \(b\) is a unit or \(b \sim a\). This is similar to how we defined prime numbers. if an element divides \(p\), then it's either \(p\) or \(1\)</li>
+</ul>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Prime Elements in \(R\)</h3>
+<p>The reason we’re discussing this is because of another definition that might make things confusing.
+<br />
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+\(p \neq 0 \in R\) is prime if for every \(a, b \in R\), if \(p \ | \ ab\), then either \(p \ | \ a \) or \(p \ | \ b\).
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+This is the definition a prime element in a domain. The confusing part is that the definition of an irreducible element is the one equivalent to a prime number. 
+<br />
+<br />
+Now, this notion is actually related to irreducibility. In fact, in \(R = \mathbf{Z}\), the prime elements and the irreducible elements are exactly the same. 
+<br />
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(p \in R\) where \(R\) is a domain. Then if \(p\) is prime, then \(p\) is irreducible.
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+<b>Proof</b>
+<br />
+Suppose that \(p\) is prime. We want to show that \(p\) is irreducible so suppose that \(p = ab\) where \(a, b \in R\). We want to show that either \(a\) or \(b\) is a unit so \(a \in R^{\times}\) or \(b \in R^{\times}\). Since \(p = ab\), then \(p \ | \ ab\). But prime means that \(p \ | \ a\) or \(p \ | \ b\). So, suppose \(p \ | \ a\). This means that \(p\) is a factor of \(a\) so \(a = pc\) for some \(c \in R\). Plugging this back in the original equation to see that</p>
+<div>
+$$
+\begin{align*}
+p &amp;= ab \\
+p &amp;= pcb \\
+1 &amp;= cb \quad (p \neq 0)
+\end{align*}
+$$
+</div>
+<p>But this means that \(b\) is a unit. Therefore, \(p\) is irreducible. \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Irreducible but not Prime elements</h3>
+<p>The converse of the previous proposition is not true. If an element is irreducible, it won’t necessarily be prime. An example is the domain \(R = \mathbf{Z}[\sqrt{-5}] \subseteq \mathbf{C}\). It is defined as the set</p>
+<div>
+$$
+\begin{align*}
+R = \mathbf{Z}[\sqrt{-5}] = \{a + b\sqrt{-5} \ | \ a, b \in \mathbf{Z}\}
+\end{align*}
+$$
+</div>
+<p>It is a subring of \(\mathbf{C}\) and it has a 1 so it’s a domain. Next, we’re going to produce an element that is irreducible but not prime!
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Claim
+</div>
+<div class="peachbodydiv">
+\(2 \in R\) is irreducible but not prime in \(R\)
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+In order to show this, we need to define the norm function for \(R\) so
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+Define the norm function for \(R =  \mathbf{Z}[\sqrt{-5}]\) as follows
+$$
+\begin{align*}
+N: \mathbf{Z}[\sqrt{-5}] &amp;\rightarrow \mathbf{Z} \\
+ N(a + b\sqrt{5}) &amp;= (a + b\sqrt{5})(a - b\sqrt{5}) = a^2 + 5b^2 
+\end{align*}
+$$
+for any \(a, b \in \mathbf{Z}\). 
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+The norm function has the following properties
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+The norm function defined above has the following properties
+<ol>
+	<li>The norm is a non-negative integer. \(N(a + b\sqrt{-5}) \in \mathbf{Z}_{\geq 0}\)</li>
+	<li>\(N(z) = 0\) if and only if \(z = 0\)</li>
+	<li>\(N(zw) = N(z)N(w)\), \(N(1)\)</li>
+	<li>If \(N(z) = 1\) if and only if \(z \in R^{\times}\)</li>
+</ol>
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+<b>Proof (4)</b>
+<br />
+\(\Rightarrow\): Suppose that \(N(a + b \sqrt{-5}) = 1\). Then</p>
+<div>
+$$
+\begin{align*}
+N((a+b\sqrt{-5}) &amp;= (a+b\sqrt{-5})(a - b\sqrt{-5}) \quad \text{(By defintion of the norm above)}  \\
+1 &amp;= (a+b\sqrt{-5})(a - b\sqrt{-5}) \\
+(a+b\sqrt{-5})^{-1} &amp;= (a - b\sqrt{-5})
+\end{align*}
+$$
+</div>
+<p>Thus, \((a + b\sqrt{-5})\) is a unit in \(R\).
+<br />
+<br />
+\(\Leftarrow\): Suppose that \(z \in R^{\times}\) so \(z\) is a unit. Observe that</p>
+<div>
+$$
+\begin{align*}
+N(1) &amp;= N(z\bar{z}) = N(z)N(\bar{z})
+\end{align*}
+$$
+</div>
+<p>But since \(N(z)\) and \(N(\bar{z})\) are non-negative integers, then the only solution is that \(N(z) = N(\bar{z}) = 1\). \(\ \blacksquare\)
+<br />
+<br />
+Note that we can also conclude here that the possible units in this ring are</p>
+<div>
+$$
+\begin{align*}
+(\mathbf{Z}[\sqrt{-5}])^{\times} = \{ \pm 1\}
+\end{align*}
+$$
+</div>
+<p>So now back to the claim that \(2\) is irreducible but not prime. We’ll show that \(2\) is irreducible first. Computing the norm, we see that</p>
+<div>
+$$
+\begin{align*}
+N(2) = 2^2 + 0^2 = 4
+\end{align*}
+$$
+</div>
+<p>So now suppose that \(2 = uv\) where \(u,v \in R\). Observe that</p>
+<div>
+$$
+\begin{align*}
+4 = N(2) = N(uv) = N(u)N(v)
+\end{align*}
+$$
+</div>
+<p>To show that \(2\) is irreducible, we need to show that \(u\) or \(v\) is a unit. So the claim is that \(u\) or \(v\) is a unit. So we need to show that either \(N(u)\) or \(N(v)\) is 1. This means that we want to show that \(N(u)=2\) is not possible. Suppose for the sake of contradiction that \(N(u)=2\). This means that</p>
+<div>
+$$
+\begin{align*}
+2 = a^2 + 5b^2.
+\end{align*}
+$$
+</div>
+<p>But there are no integer solutions to this. Therefore, \(2\) is irreducible in \(R = \mathbf{Z}[\sqrt{-2}]\). What about 2 being prime? Observe that</p>
+<div>
+$$
+\begin{align*}
+6 = 2(3) = (1+\sqrt{-5})(1-\sqrt{-5})
+\end{align*}
+$$
+</div>
+<p>We know that \(2 \ | \ 6\). But 2 doesn’t divide either of \((1 \pm \sqrt{-5})\) in \(R\). So by defintion, \(2\) is not prime. (recall that the def was that a prime must divide either \(a\) or \(b\)). This fails in this domain because in \(\mathbf{Z}\) prime factorization is unique but in this domain we see that we have two completely different factorization.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>Principle Ideal Domain (PID)</h3>
+<p>A new definition
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="mintheaderdiv">
+Definition
+</div>
+<div class="mintbodydiv">
+A domain \(R\) is a Principle Ideal Domain if every ideal is a principle ideal in \(R\).
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+Examples</p>
+<ul>
+	<li>\(R = K\) where \(K\) is a field. Recall that fields are domains and they have two ideals.</li>
+	<li>\(R = \mathbf{Z}\). Recall that every ideal in \(\mathbf{Z}\) is principle. </li>
+	<li>\(R = K[x]\) where \(K\) is a field</li>
+</ul>
+<p>Non-Examples</p>
+<ul>
+	<li>\(R = K[x,y]\). Polynomial rings in two variables are not PIDs. One example is that $$I = (x,y)$$ is not a principle ideal. (Exercise)</li>
+	<li>\(\mathbf{Z}[x]\). \((z,x)\) also not a principle ideal. (Exercise)</li>
+	<li>\(R = \mathbf{Z}[\sqrt{-5}]\) is not a principle domain</li>
+</ul>
+<p>This last example is a consequence of the following proposition. It contains the ideal \(I = (2, 1+\sqrt{-5})\) which is not principle. (complete proof in the lecture notes)
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+In a PID irreducible elements are the same as prime elements
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+<b>Proof</b>
+<br />
+\(\Rightarrow\): We know that prime elements are always irreducible. 
+<br />
+<br />
+\(\Leftarrow:\): Suppose \(R\) is a PID and \(p \in R\) is irreducible. We want to show that \(p\) is prime. Since \(p\) is irreducible, then it’s non-zero. So now suppose \(p \ | \ ab\). We want to show that \(p \ | \ a\) or \(p \ | \ b\). So assume that \(p \nmid a\), we will show that \(p \ | \ b\).<br />
+<br />
+Now consider the ideal generated by the two elements \(p\) and \(a\) so \(I = (p,a)\). By assumption this ideal is principle. So it is also generated by a single element \(I = (c)\). We know that \(p \in I\). So \(p\) is a multiple of \(c\) so \(p = cd\) for some \(d \in R\). Since \(p\) is irreducible, then either \(c\) is a unit \(c \in R^{\times}\) or \(d\) is a unit, \(d \in R^{\times}\). 
+<br />
+<br />
+\(d\) can’t be a unit. This is because \(p = cd\) and since \(d\) is a unit, then multiply both sides by the inverse of \(d\) to see that \(c = pd^{-1}\). But this means that \(c\) is a multiple of \(p\). So \(c \in (p)\). Thus, \((c)\) = \((p)\). (Side note: In general, \((p)=(c)\) if and only if \(p = cd\) for some unit \(d\)) Now, we know that \(p \nmid a\). But \(a \in (p,a) = (c)\). So \(a \in (p)\). This is a contradiction since \(p \nmid a\). Therefore, \(d\) can’t be a unit. Thus, \(c\) is a unit. But we know that \(I = (c)\) so \(I = R\). So \(1 \in (p,a)\). So</p>
+<div>
+$$
+\begin{align*}
+1 &amp;= px + ay \quad \text{ for some } x,y \in R \\
+b &amp;= bpx + aby 
+\end{align*}
+$$
+</div>
+<p>We know that \(p \ | \ bpx\). We also know that \(p \ | \ ab\). Therefore, \(p \ | \ b\) as we wanted to show. \(\ \blacksquare\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>The Set of Gaussian Integers is a PID</h3>
+<p>One more example of PID. We want to show that the gaussian integers are a pid but to show this, we need the following proposition
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="peachheaderdiv">
+Proposition
+</div>
+<div class="peachbodydiv">
+If \(u,v \in \mathbf{Z}[i]\) and \(v \neq 0\). Then there exists \(q, r \in \mathbf{Z}[i]\) such that 
+$$
+\begin{align*}
+u = qv + r \quad \text{ and } \quad N(r) &lt; N(v)
+\end{align*}
+$$
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+<b>Proof</b>
+<br />
+The proof for this proposition is geometric. Take the complex plane and label the gaussian integers with black dots as shown below</p>
+
+<p style="text-align:center;"><img src="http://localhost:4000/assets/math/abstract-algebra/lec38/complex.png" width="55%" class="center" /></p>
+
+<p>So suppose \(v\) is the red dot above, then distance between \(v\) and the next closest Gaussian number is always less than or equal to \(\frac{\sqrt{2}}{2}\). This is because the diagonal between any two gaussian numbers is of length \(\sqrt{2}\). So any complex number is at most a distance of 1 away from any Gaussian number. 
+<br />
+<br />
+So now take \(v\) and \(u\) and divide them \(\frac{u}{v}\). This is a complex number still. Now choose \(q \in \mathbf{Z}[i]\) that is the closest to \(\frac{u}{v}\). Observe that</p>
+<div>
+$$
+\begin{align*}
+\lVert \frac{u}{v} - q \rVert &amp;&lt; 1 \\
+\lVert \frac{u}{v} - \frac{qv}{v} \rVert &amp;&lt; 1 \\
+\lVert \frac{u - qv}{v} \rVert &amp;&lt; 1 \\
+\frac{\lVert u - qv \rVert}{\lVert v\rVert} &amp;&lt; 1 \\
+\lVert u - qv \rVert &amp;&lt; \lVert v\rVert \\
+\lVert u - qv \rVert^2 &amp;&lt; \lVert v\rVert^2 \\
+N(u - qv) &amp;&lt; N(v) \\
+\end{align*}
+$$
+</div>
+<p>So now set \(r = u - qv \in \mathbf{Z}[i]\). Thus, \(N(r) &lt; N(v)\). \(\ \blacksquare\). 
+<br />
+<br />
+Notice here that we don’t have uniqueness statement about \(q\) and \(r\) like the division algorithm for integers. So now we can prove the following theorem about \(\mathbf{Z}[i]\)
+<br />
+<!-----------------------------------------------------------------------------></p>
+<div class="yellowheaderdiv">
+Theorem
+</div>
+<div class="yellowbodydiv">
+\(R = \mathbf{Z}[i] = \{a + bi \ | \ a,b \in \mathbf{Z}\} \) is a PID. In other words, Every ideal in the gaussian integers is a principle.
+</div>
+<!----------------------------------------------------------------------------->
+<p><br />
+<br />
+<b>Proof</b>
+<br />
+We want to show that \(R\) is a principle ideal domain. By defintion, this means that every ideal is a principle ideal in \(R\). So let \(I \in \mathbf{Z}[i]\). We want to show that \(I\) is a principle ideal.
+Use the previous proposition. If \(u, v \in \mathbf{Z}[i]\). If it’s the zero ideal, there is nothing to do. So if it’s a non-zero ideal, then it has a non-zero element. Choose an element \(d \in I/\{0\}\) in the ideal with minimal norm. We claim that \(I = (d)\). <br /><br />
+\((d) \subseteq I\): This is easy since \(d \in I\). <br /><br />
+\(I \subseteq (d)\): Suppose \(u \in I\), then by the previous proposition, \(u = qd + r\) where \(N(r) &lt; N(d)\). So \(r = u - qd\). \(u \in I\) and \(qv \in I\). Thus, \(r \in I\). But \(N(r) &lt; N(d)\) and we said that \(d\) is the element with minimum norm. So \(r = 0\). Therefore, \(u \in (d)\). So \(I = (d)\) and so \(R\) is a principle ideal domain. \(\ \blacksquare\)
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!-------------------------------------------------------------------------></p>
+<h3>References</h3>
+<ul>
+	<li>MATH417 by Charles Rezk</li>
+	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>
+</ul>
+
+:ET

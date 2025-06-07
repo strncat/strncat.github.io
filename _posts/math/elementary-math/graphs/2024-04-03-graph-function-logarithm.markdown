@@ -24,15 +24,15 @@ $$
 So taking $$f(x) = \log_2(x)$$, we just need to apply some transformations to get to $$g$$.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Stretching or Shrinking Vertically</b></h4>
+<h3>Stretching or Shrinking Vertically</h3>
 Let's sketch the $$f$$ after adding the stretching factor 4 (it will shrink if the factor was negative). So now we have $$4f(x)$$. This means that $$f(1)$$ is $$0(4) = 0$$. and $$f(2)$$ is $$1(4)=4$$. The asymptote won't get affected! Let's sketch the graph with the new points $$(1,0)$$ and $$(2,4)$$ below.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/logarithmic/1.png" width="60%" class="center"></p>
 <!------------------------------------------------------------------------------------>
-<h4><b>Shifting Left or Right Horizontally</b></h4>
+<h3>Shifting Left or Right Horizontally</h3>
 Next, let's add the inside term -3 so that $$f$$ is now $$4f(x-3)$$. This means that we need to shift the graph horizontally to the right by 3 points. So $$f(1+3=4) = 0$$ and $$f(2+4=5) = 4$$. Shifting a graph horizontally will translate the asymptote as well so now the asymptote will be at $$x = 3$$. Let's sketch the new asymptote along with the new points $$(4,0)$$ and $$(5,4)$$.  
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/logarithmic/2.png" width="80%" class="center"></p>
 <!------------------------------------------------------------------------------------>
-<h4><b>Shifting Up or Down Vertically</b></h4>
+<h3>Shifting Up or Down Vertically</h3>
 Finally we want to add the term +1 so that $$f = 4\log_2(x-3) + 1$$. This shifts the function vertically up by 1 point. So the point $$(4,0)$$ will be $$(4,1)$$ and the point $$(5,4)$$ will be $$(5,5)$$. The asymptote is unaffected since this is a vertical shift. Finally, this will be the final graph!
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/graphs/logarithmic/3.png" width="80%" class="center"></p>
 	

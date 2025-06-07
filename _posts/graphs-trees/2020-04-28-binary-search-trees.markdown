@@ -9,14 +9,14 @@ mathjax: true
 A binary search tree is a binary tree that maintains the binary-search-tree property for every node in the tree. The <b>binary-search-tree property</b> states that given a node $$x$$ in the tree, every node in the left subtree has a key less than $$x$$'s key and every node in the right subtree has a key greater than $$x$$'s key.
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Motivation</b></h4>
+<h3>Motivation</h3>
 But why invent another data structure? Let's take a look at sorted arrays. We can search a sorted array for keys in just $$O(\log(n))$$ time with binary search. However, inserting and deleting elements takes $$O(n)$$ time. Similarly, while inserting elements in a linked list takes only $$O(1)$$ time, searching a linked list takes $$O(n)$$ time in the worst case. Can we do better with binary search trees? yes!
 <br><br>
 The binary search tree property is really great at allowing us to insert/search and delete in just $$O(h)$$ time since we can eliminate a branch at every single step. Moreover, if the tree is balanced, the height will only be $$O(\log(n))$$ where is $$n$$ is the number of nodes. Overall, this is a much better data structure for dynamic data than both arrays and linked lists!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>In Order Walk</b></h4>
+<h3>In Order Walk</h3>
 Another great property of binary search trees is that an in order walk of the tree results in getting all the keys sorted. 
 <!---------------------->
 {% highlight c++ %}
@@ -32,7 +32,7 @@ Proving that it takes $$O(n)$$ time to perform the in order walk is such a great
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Search</b></h4>
+<h3>Search</h3>
 Similar to the in-order walk, we can simply perform a search by using the following
 <!---------------------->
 {% highlight c++ %}
@@ -49,7 +49,7 @@ tree* search(tree *t, key) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Minimum, Maximum, Predecessor and Successor</b></h4>
+<h3>Minimum, Maximum, Predecessor and Successor</h3>
 Similarly, we can find the minimum and maximum by traversing all the way to the left and all the way to the right respectively. For example to find the successor of a node $$x$$, we have two cases:
 - If $$x$$ has a right subtree, then the most left element (tree minimum) of the right subtree is the successor. 
 - If $$x$$ doesn't have a right subtree, then the next element would be the first ancestor such that $$x$$ is a left child of it. 
@@ -70,7 +70,7 @@ tree* successor(tree *t) {
 {% endhighlight %}
 <br>
  <!------------------------------------------------------------------------------------>
- <h4><b>Insert</b></h4>
+ <h3>Insert</h3>
 Inserting a node into a binary search tree is pretty simple. We need to follow the following steps:
 - Create a new node and assign both the left and right pointers to NULL.
 - Similar to search, descend in the tree with pointer $$current$$ based on the key value, while keeping a trailing pointer $$p$$ to its parent. Once we hit NULL, we know that the $$p$$ will be the parent of our node.
@@ -102,7 +102,7 @@ void insert(tree **t, key) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Delete</b></h4>
+<h3>Delete</h3>
 Before discussing delete, we'll present a helper function that we will use in deleting a node in a binary search three. <i>transplant</i> replaces a subtree rooted at $$x$$ with another subtree rooted at $$v$$, illustrated below, 
 <img src="{{ site.url }}/assets/trees/binary-search-trees/transplant.png" width="100%">
 {% highlight c++ %}
@@ -192,10 +192,10 @@ void delete(tree **t, tree *x) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Implementation</b></h4>
+<h3>Implementation</h3>
 <a href="https://github.com/strncat/algorithms-and-data-structures/blob/master/trees/binary-search-tree.cpp">Source Code</a>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 CLRS
 
 

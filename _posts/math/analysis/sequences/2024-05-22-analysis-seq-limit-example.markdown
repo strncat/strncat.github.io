@@ -15,7 +15,7 @@ For the "show the limit" template, see <a href="https://strncat.github.io/jekyll
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Problem Discussion</b></h4>
+<h3>Problem Discussion</h3>
 We want to prove that $$\lim\big(\frac{n+1}{n}\big) = 1$$. To do so we need to find $$N \in \mathbf{N}$$ such that for any $$\epsilon > 0$$, we have
 <div>
 $$
@@ -39,7 +39,7 @@ $$
 </div>
 From this we want $$n$$ to be greater than $$1/\epsilon$$ in order to make the inequality works. 
 <!------------------------------------------------------------------------------------>
-<h4><b>Formal Proof</b></h4>
+<h3>Formal Proof</h3>
 Let $$\epsilon > 0$$ be arbitrary. Choose a natural number $$N \geq \frac{1}{\epsilon}$$. We now verify that this choice is appropriate. Let $$n \geq N$$. Then,
 <div>
 $$

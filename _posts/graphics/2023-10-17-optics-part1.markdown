@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Overview</b></h4>
+<h3>Overview</h3>
 So now the focus will be on formalizing why the $\cos(\theta)$ matters. To do this, we'll study two important things about light. How does light leave the light source and how does it hit an object?
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/optics/00-sphere.png" width="80%" class="center"></p>
 To start, we'll want to know how to measure an angle in 3D. For a 2D circle, we have 
@@ -34,7 +34,7 @@ This time, $A$ is the area of the surface on the sphere. The surface area of a s
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>(1) Radiant Intensity from a Light Source</b></h4>
+<h3>(1) Radiant Intensity from a Light Source</h3>
 How does light leave a light source? The radiant intensity from a light source is
 <div>
 $$$
@@ -66,7 +66,7 @@ So if we know the power in watts of the light source ($\phi$), then we can divid
 
 
 <!------------------------------------------------------------------------------------>
-<h4><b>(2) Irradiance onto a Surface</b></h4>
+<h3>(2) Irradiance onto a Surface</h3>
 So this is how the light leaves the light source. Now we'll switch to surfaces! How does light hit an object? For lights, it's like a point throwing out light. For surfaces, it's some flat object with area catching this light. So instead of radiance intensity, we'll define irradiance for surfaces,
 <div>
 $$
@@ -101,7 +101,7 @@ Why does the math still work out? It turns out that the angle in the above picur
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solid Angle vs. Cross Sectional Area</b></h4>
+<h3>Solid Angle vs. Cross Sectional Area</h3>
 So now we'll tie (1) radiance and (2) Irradiance together. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/optics/02-area.png" width="50%" class="center"></p>
 In this figure, the light source is at $S_0$. The surface is denoted by $dA$ above. The light comes out of this unit sphere. These photons start spreading out until they hit the surface patch in the figure above. We already know from the first section how to compute the solid angle using:
@@ -125,7 +125,7 @@ So what did we do here? We wrote an equation that compares the area of the objec
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Area Lights</b></h4>
+<h3>Area Lights</h3>
 But ... light however doesn't work as a single point. Light power is emitted per unit area. The emitted light goes in varius directions (area or sphere emitting in every direction). So how do we measure this? We break this light area into small area chunks (so radiant intensity per area chunk), So now we know the radiant intensity unit and we know the area chance unit and we can write the "Radiant Intensity per Area Chunk (aka Radiance)) as a fraction,
 <div>
 $$
@@ -152,7 +152,7 @@ Remember this is not a point. It's an area. So now this area can be tilted and t
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

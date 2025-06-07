@@ -37,7 +37,7 @@ The size of $$S_n$$ is $$|S_n| = n!$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Two Line Notation</b></h4>
+<h3>Two Line Notation</h3>
 Let $$\rho, \psi \in S_4$$, then we'll write
 <div>
 	$$
@@ -68,7 +68,7 @@ so $$\rho\psi(1) = 2$$, $$\rho\psi(2) = 4$$, $$\rho\psi(3) = 1$$ and $$\rho\psi(
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Cycle Notation</b></h4>
+<h3>Cycle Notation</h3>
 We can decompose the cycles in each permutation above. For example for the first permutation
 <div>
 	$$
@@ -127,7 +127,7 @@ Note here that we have two disjoint cycles. $$(1 \quad 4 \quad 3)$$ where $$1$$ 
 	$$
 </div>
 <!------------------------------------------------------------------------>
-<h4><b>Facts</b></h4>
+<h3>Facts</h3>
 Some facts about the cycle notation
 <ul>
 <li>\((1) = (2) = ... (n) = id\). All of these represent the identity permutations.</li>
@@ -153,7 +153,7 @@ The proof for this theorem is in the class notes.
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Cycle Type</b></h4>
+<h3>Cycle Type</h3>
 We can classify permutations of a finite set into groups corresponding to the number of cycles of various lengths in their cycle decomposition.
 <br>
 <br>
@@ -208,7 +208,7 @@ For $$S_4$$,
 </table>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>The Order of an Element</b></h4>
+<h3>The Order of an Element</h3>
 (Start of lecture 4). The first concept that we will talk about is the order of an element in a group.
 <br>
 <div class="mintheaderdiv">
@@ -244,7 +244,7 @@ From this we see that $$\text{order}(\nu) = 4$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>Parity of a Permutation</b></h4>
+<h3>Parity of a Permutation</h3>
 The second concept that we want to talk about is the parity of a permutation but first we'll start with the following proposition.
 <br>
 <div class="peachheaderdiv">
@@ -345,7 +345,7 @@ So now define: $$sgn(\sigma) = \det(A_{\sigma})$$ where $$sgn: S_n \rightarrow \
 <hr>
 <br>
 <!------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

@@ -62,7 +62,7 @@ This runs in 0.002568 seconds on my M1 mac.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=32">Project Euler - 32</a>
 <br>
 <br>

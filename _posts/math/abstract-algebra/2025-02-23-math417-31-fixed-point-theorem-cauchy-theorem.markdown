@@ -54,7 +54,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Fixed Point Theorem</b></h4>
+<h3>Fixed Point Theorem</h3>
 We'll study one theorem about this. But first define
 <br>
 <!----------------------------------------------------------------------------->
@@ -132,7 +132,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Application of the Fixed Point Theorem</b></h4>
+<h3>Application of the Fixed Point Theorem</h3>
 Here are some application of this theorem
 <br>
 <!----------------------------------------------------------------------------->
@@ -194,7 +194,7 @@ When $$|Z(G)| = p$$, recall that $$Z(G)$$ is a normal subgroup in $$G$$. Therefo
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Cauchy Theorem</b></h4>
+<h3>Cauchy Theorem</h3>
 There is one more application of the fixed point theorem. 
 <br>
 <!----------------------------------------------------------------------------->
@@ -331,7 +331,7 @@ So $$|X^C|$$ must be divisible by $$p$$ and since $$|X^C| \geq 1$$, then $$|X^C|
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Classification of Groups of Order 6</b></h4>
+<h3>Classification of Groups of Order 6</h3>
 We've seen before $$\mathbf{Z}_6 \cong \mathbf{Z}_2 \times \mathbf{Z}_3$$ and we've also seen $$D_3 \cong S_3$$. 
 <br>
 <br>
@@ -383,7 +383,7 @@ $$A$$ is of order 2 so it must be isomorphic to $$\mathbf{Z}_2$$. $$N$$ is of or
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Study Notes on \(D_3\)</b></h4>
+<h3>Study Notes on \(D_3\)</h3>
 How does the non-trivial homomorphism gives us the dihedral group? how does this happen? We have 
 <ul>
 	<li>\(N = \langle n \rangle \cong \mathbf{Z}_3\) where \(n^3 = e\).</li>
@@ -418,7 +418,7 @@ So now if we apply the semidirect product multiplication, using the homomorphism
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Classification of Groups of Order \(2p\)</b></h4>
+<h3>Classification of Groups of Order \(2p\)</h3>
 where $$p$$ is an odd prime. We know two groups $$\mathbf{Z}_{2p} =\mathbf{Z}_{2} \times \mathbf{Z}_{p}$$ and $$D_p$$. 
 <br>
 <br>
@@ -455,7 +455,7 @@ $$A$$ is of order 2 so it must be isomorphic to $$\mathbf{Z}_2$$. $$N$$ is of or
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Classification of Groups of Order \(pq\)</b></h4>
+<h3>Classification of Groups of Order \(pq\)</h3>
 $$p$$ and $$q$$ are distinct primes where $$p > q$$. So again we have $$|G|=pq$$. By Cauchy, we have two cyclic subgroups such that
 <div>
 $$
@@ -507,7 +507,7 @@ There are two cases:
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

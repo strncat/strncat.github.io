@@ -8,7 +8,7 @@ mathjax: true
 The reference video is an excellent video on Semidirect Products. The following are just notes so I can fully follow along.
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Inner Semidirect Product Group</b></h4>
+<h3>Inner Semidirect Product Group</h3>
 Suppose we're given two subgroups $$H, K \leq G$$. We also know that $$HK = G$$ and $$H \cap K = \{e\}$$ (in this case, we call $$H$$ and $$K$$ complements). Consider the map
 <div>
 	$$
@@ -47,7 +47,7 @@ Next, we want to show that $$\phi$$ is surjective. Notice that $$Im(\phi) = \{hk
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>How to Make \(\phi\) a Homomorphism</b></h4>
+<h3>How to Make \(\phi\) a Homomorphism</h3>
 Now, suppose that we're also given that $$H$$ is normal. We know that $$\phi: H \times G \rightarrow G$$ is a bijection. We also know that $$G$$ is a group but we never defined $$H \times K$$ as a group. We just said it was a set. The question is can we make $$H \times K$$ a group so that $$\phi$$ isn't just a bijection but also an isomorphism? (hmmm, this is a iff right?)
 <br>
 <br>
@@ -102,7 +102,7 @@ This immediately gives us the required operation for $$G \times H$$ to be a grou
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Outer Semidirect Product Group</b></h4>
+<h3>Outer Semidirect Product Group</h3>
 So now consider the groups $$H$$ and $$K$$. $$H$$ and $$K$$ are just two groups. They are not necessarily subgroups of $$G$$. We want to find $$G$$ such that $$G$$ satisfies the following:
 <ol>
 	<li>\(H_G\) is a normal subgroup of \(G\)</li>
@@ -229,7 +229,7 @@ Which is exactly why the semidirect product is defined that way!!!!!!!!!!
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Take $$D_{2n}$$. We need to find two subgroups that are complements in $$D_{2n}$$. The subgroups are $$\langle r \rangle$$ and $$\langle s \rangle$$ are complements in $$D_{2n}$$. To see why. 
 <ul>
 	<li>\(\langle r \rangle \langle s \rangle = D_{2n}\). Every element in \(D_{2n}\) can be written as \(r^ke \in \langle r \rangle\) or \(r^ks \in \langle s \rangle\). </li>
@@ -349,7 +349,7 @@ To further see how this works, it's helpful to look at more examples of how the 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li><a href="https://www.youtube.com/watch?v=Pat5Qsmrdaw">Semidirect Products Derivation</a></li>
 	<li><a href="https://www.youtube.com/watch?v=DvclxOaWbJM">Semidirect Products Example</a></li>

@@ -5,7 +5,7 @@ date:   2019-06-17 12:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>Finding the shortest distances with BFS in a grid</b></h4>
+<h3>Finding the shortest distances with BFS in a grid</h3>
 Tuples might be an overkill? Another matrix could handle the distances instead of using a tuple.
 {% highlight c++ %}
 bool g[MAX][MAX];
@@ -38,7 +38,7 @@ int bfs(int start_i, int start_j) {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Sorting a map according to the values in the map</b></h4>
+<h3>Sorting a map according to the values in the map</h3>
 For problem "10336 - Rank the Languages", we had to find the total area per letter and then print out the results sorted by the frequency. For this problem I used an unordered_map to find the totals and then insert these pairs into a vector that was sorted before printing.
 {% highlight c++ %}
 std::unordered_map<char,int> map;
@@ -63,7 +63,7 @@ std::sort(letters.begin(), letters.end(), [](const std::pair<char,int> &l, const
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Hashing pairs for grid positions</b></h4>
+<h3>Hashing pairs for grid positions</h3>
 For whatever reason, you want to hash pairs but these pairs are specifically used for grids. You can use the following simple hash function. 
 {% highlight c++ %}
 // figuring out the total cells in the path
@@ -78,7 +78,7 @@ std::unordered_map<const position, position, hash,std::equal_to<position>> paren
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Hashing tuples for grid positions</b></h4>
+<h3>Hashing tuples for grid positions</h3>
 This is the same as above but for a 3D grid! we use std tuples this time:
 {% highlight c++ %}
 typedef std::tuple<int, int, int> key;

@@ -30,7 +30,7 @@ Fact 2: In infinite dimensions $$T^*$$ need not exist.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 $$A \in M_{m \times n}(\mathbf{F})$$ with $$\mathbf{F} = \mathbf{R}$$ or $$\mathbf{C}$$
 <div>
 $$
@@ -43,7 +43,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Normal Linear Maps</b></h4>
+<h3>Normal Linear Maps</h3>
 The goal of today is use this notion of adjoint maps to define more classes of linear maps which will be useful. Though we're going to restrict the maps to maps from a finite dimensional inner product space $$V$$ to $$V$$ with $$\beta$$ being an orthonormal basis. Therefore, in this setting, we will always have an adjoint map.
 <div class="purdiv">
 Theorem 1
@@ -71,7 +71,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Let $$A \in M_{n \times n}(\mathbf{F})$$ is normal if $$AA^* = A^*A$$
 <div>
 $$
@@ -111,7 +111,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 Suppose that $$A^* = - A$$, then
 <div>
 $$
@@ -137,7 +137,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>A Sufficient Condition for Normal Linear Maps</b></h4>
+<h3>A Sufficient Condition for Normal Linear Maps</h3>
 Next, we will describe a sufficient condition for an operator to be normal which will be useful later!
 <br>
 <div class="purdiv">
@@ -209,7 +209,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Properties of Normal Linear Maps</b></h4>
+<h3>Properties of Normal Linear Maps</h3>
 So now that we have a sufficient condition to identify normal maps. Let's study their properties.
 <br>
 <div class="purdiv">
@@ -287,7 +287,7 @@ But we know that $$\lambda_1 \neq \lambda_2$$. Therefore, we must have that $$\l
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Self-Adjoint Maps</b></h4>
+<h3>Self-Adjoint Maps</h3>
 Next we will study another special class of adjoint maps called self adjoint maps defined below
 <br>
 <div class="bdiv">
@@ -306,14 +306,14 @@ Note here that self adjoint implies that $$T$$ is normal. The converse is not tr
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 Let $$A \in M_{n \times n}(\mathbf{R})$$ and $$A_{ij} = A_{ji} \ \forall i,j$$, then A ($$L_A$$) is self-adjoint.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Suppose that $$V$$ is a finite dimensional inner product space where $$W \subseteq V$$ is a subspace.
 <div>
 $$
@@ -364,7 +364,7 @@ as we wanted to show. $$\blacksquare$$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Self-adjoint Maps are Diagonalizable</b></h4>
+<h3>Self-adjoint Maps are Diagonalizable</h3>
 Today's goal is to prove that self adjoint maps are diagonalizable. Note here that when a matrix $$A$$ is symmetric where $$A_{ij} = A_{ji}$$, then $$A$$ is self-adjoint. This implies $$A$$ is diagonalizable and so  $$\det(A - tI_n)$$ splits which is really useful to know!
 <br>
 <br>
@@ -377,7 +377,7 @@ Proving that self adjoint maps are diagonalizable, requires a few things along t
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Eigenvalues of Self-adjoint Maps</b></h4>
+<h3>Eigenvalues of Self-adjoint Maps</h3>
 <div class="purdiv">
 Theorem 1
 </div>
@@ -412,7 +412,7 @@ as we wanted to show. $$\blacksquare$$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Do Self-adjoint Maps have Eigenvalues?</b></h4>
+<h3>Do Self-adjoint Maps have Eigenvalues?</h3>
 So eigenvalues are real but are there eigenvalues?
 <br>
 <br>
@@ -460,7 +460,7 @@ We know that $$L_A$$ is self adjoint so $$(L_A)^* = L_{A^*} = L_{A^t} = L_A$$. S
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Eigenvectors of a Self-adjoint Map</b></h4>
+<h3>Eigenvectors of a Self-adjoint Map</h3>
 What can we say about the eigenvectors of a linear self-adjoint map? 
 <br>
 <div class="purdiv">
@@ -537,7 +537,7 @@ Corollary
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

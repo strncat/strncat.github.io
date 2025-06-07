@@ -1,0 +1,202 @@
+I"�<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+A matrix is in Row Echelon Form (REF) if
+<ol style="list-style-type:lower-alpha">
+<li> All zero rows are below all nonzero rows.</li>
+<li> The leading entry of of each row to be to the right of the leading entry of the row above.</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 1</b></h4>
+<p>For example, this matrix is in Row Echelon Form:</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4  \\
+0 &amp; 1 &amp; 1 &amp; 1  \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<div class="bdiv">
+Definition
+</div>
+<div class="bbdiv">
+A matrix is in Reduced Row Echelon Form (RREF) if it is in REF and it satisfies the following two additional properties:
+c) The leading entries are all 1.
+d) The leading entries are the only non-zero entries in their column
+<ol style="list-style-type:lower-alpha">
+<li> The leading entries are all 1..</li>
+<li> The leading entries are the only non-zero entries in their column.</li>
+</ol>
+</div>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 2</b></h4>
+<p>The same matrix from example 1 is not in RREF because column 2 for example still has non-zero entries above its leading entry.</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4  \\
+0 &amp; 1 &amp; 1 &amp; 1  \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<!------------------------------------------------------------------------------------>
+<div class="purdiv">
+Theorem 2
+</div>
+<div class="purbdiv">
+Every matrix can be put in RREF by a finite sequence of elementary row operations.
+<ol>
+	<li>\(R_i \leftrightarrow R_j \) </li>
+    <li> \(cR_i\) where \(c \neq 0\)</li>
+    <li> \(R_i \rightarrow R_i + cR_j\) </li>
+</ol>
+</div>
+<p>Proof: by construction (Gaussian Elimination) … TODO?
+<br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem 3
+</div>
+<div class="purbdiv">
+The reduced RREF form of a matrix is unique. (Note row echelon form is not unique).
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Theorem 4
+</div>
+<div class="purbdiv">
+The solution set of a linear system with augmented matrix in reduced row echelon form is easily described in a standard way.
+</div>
+<!------------------------------------------------------------------------------------>
+<h4><b>Example 3</b></h4>
+<p>Consider the system with augmented matrix as follows:</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 0 &amp; -1 &amp; 0  \\
+0 &amp; 1 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p>The last row has a single non-zero entry in the last column. This tells us that this system will not have a solution. To see this, translate back the system of linear equations</p>
+<div>
+$$
+\begin{array}{ll}
+x_1 \quad -x_3 &amp;=0 \\ 
+\quad x_2 &amp;=0 \\ 
+\quad \quad \quad \quad 0 &amp;= 1
+\end{array}
+$$
+</div>
+<p>We can see here that \(0=1\) has no solutions.
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 4</b></h4>
+<p>Consider the system with augmented matrix as follows:</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 0 &amp; -1 &amp; 0  \\
+0 &amp; 1 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p>The last row has has all zeros. This tells us that we will have infinitely many solutions. To see this, translate back the system of linear equations</p>
+<div>
+$$
+\begin{array}{ll}
+x_1 \quad -x_3 &amp;=0 \\ 
+\quad x_2 &amp;=0 \\ 
+\quad \quad \quad \quad 0 &amp;= 0
+\end{array}
+$$
+</div>
+<p>This time we have infinitely many solutions. The convention is to look for a column without a leading entry like Column 3. The convention is to use the third variable \(x_3\) to parameterize the solution set. so set \(x_3 = t\), then</p>
+<div>
+$$
+\begin{align*}
+x_3 &amp;= t \\
+x_1 &amp;= t \\
+x_2 &amp;= 0.
+\end{align*}
+$$
+</div>
+<p>The solution set is \((x_1,x_2,x_3) = \{(t, t, 0) | t \in \mathbf{R}\}\).
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Example 5</b></h4>
+<p>Consider the system with augmented matrix as follows:</p>
+<div>
+$$
+\begin{align*}
+\begin{pmatrix}
+1 &amp; 2 &amp; 0 &amp; 1 &amp; 0 &amp; 2  \\
+0 &amp; 0 &amp; 1 &amp; 3 &amp; 0 &amp; 3  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 4  \\
+\end{pmatrix}.
+\end{align*}
+$$
+</div>
+<p>This is a system of three equations in 5 unknowns. Column one is \(x_1\), column two is \(x_2\) and so on. This matrix is also in Row Reduced Echelon Form because the leading entries are 1 and the leading entries are the only non-zero entries in their columns. Also, we don’t have a leading entry in the very last column so we do have a solution. This translates to the system of linear:</p>
+<div>
+$$
+\begin{array}{ll}
+x_1 + 2x_2 \quad \quad + x_4 &amp;= 2 \\ 
+\ \ \ \ \ \ \ \quad \quad \quad x_3 + 3x_4 &amp;= 3 \\ 
+\quad \quad \quad \quad \quad \quad \quad \quad \quad x_5 &amp;= 4
+\end{array}
+$$
+</div>
+<p>We have infinitely many solutions. So we’ll go by the convention which is to look for the columns without a leading entries and assign them variables. Here, columns 2 and 4 have no leading entries so set \(x_2 = t_1\) and \(x_4 = t_2\). This means that \(x_3 = 3 - 3t_2\) and \(x_1 = 2 - 2t_1 - t_2\). Writing this a solution vector:</p>
+<div>
+$$
+\begin{align*}
+\{(2-2t_1-t_2, t_1, 3-3t_2, t_2, 4) | t_1, t_2 \in \mathbf{R} \}.
+\end{align*}
+$$
+</div>
+<p><br />
+<!------------------------------------------------------------------------------------></p>
+<div class="purdiv">
+Corollary
+</div>
+<div class="purbdiv">
+a system of linear equations has no solutions, exactly one solution (no parameters), or infinitely many solutions.
+</div>
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References:</b></h4>
+<ul>
+<li>Math416 by Ely Kerman</li>
+</ul>
+
+:ET

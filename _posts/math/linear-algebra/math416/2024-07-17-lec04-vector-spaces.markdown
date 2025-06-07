@@ -26,14 +26,14 @@ For property (4), we don't call it $$-v$$ yet because we didn't prove yet if it'
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1: \(\mathbf{R}\)</b></h4>
+<h3>Example 1: \(\mathbf{R}\)</h3>
 $$\mathbf{R}$$ is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties are true.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2: A Set of Matrices</b></h4>
+<h3>Example 2: A Set of Matrices</h3>
 The set of $$m$$ by $$n$$ matrices ($$M_{m \times n}$$) equipped with component wise addition such that
 <div>
 $$
@@ -78,7 +78,7 @@ is a vector space.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3: Sets of Functions</b></h4>
+<h3>Example 3: Sets of Functions</h3>
 let $$S$$ be a nonempty set. For example $$S = \mathbf{R}$$, or $$S = \{\pi, \pi^2\}$$, $$S = \{$$atoms in the universe$$\}$$. Basically any non-empty set. 
 Now consider $$F(S) = \{f: S \rightarrow \mathbf{R}\}$$, the set of all functions or mappings from $$S$$ to $$\mathbf{R}$$. One way to think of this is the all the ways we can label the elements in the set $$S$$ with real numbers.
 <br><br>
@@ -90,7 +90,7 @@ $$F(S)$$ is a vector space. It satisfies all 8 conditions. For example. The zero
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 4: The Set of all Sequences</b></h4>
+<h3>Example 4: The Set of all Sequences</h3>
 Consider the set of all natural numbers $$\mathbf{N}$$ and the set of functions $$F(\mathbf{N}) = \{\sigma: \mathbf{N} \rightarrow \mathbf{R}$$. $$\sigma$$ is a function that takes a natural number and assigns it a real number. But
 <div>
 $$
@@ -113,7 +113,7 @@ Let $$V = \{$$ sequences $$\{a_n\}$$ is a vector space. Define the addition of t
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 5: The Set of Polynomials</b></h4>
+<h3>Example 5: The Set of Polynomials</h3>
 <div class="bdiv">
   Definition: Degree of a Polynomial
 </div>
@@ -151,7 +151,7 @@ Question: why did we define the polynomials to have at most $$n$$ and not just $
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Additional Vector Space Results</b></h4>
+<h3>Additional Vector Space Results</h3>
 <div class="purdiv">
   Theorem
 </div>
@@ -245,7 +245,7 @@ Two additional implications mentioned in the class is that $$w = (-1)v$$ and $$0
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 6: A Non Example</b></h4>
+<h3>Example 6: A Non Example</h3>
 Consider the set $$\mathbf{R}^2$$ equipped with a different set of operations. Let's define addition as
 <div>
 $$
@@ -297,7 +297,7 @@ so it can never be equal to (0, 1).
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 <li>Linear Algebra Done Right for the last two proofs</li>

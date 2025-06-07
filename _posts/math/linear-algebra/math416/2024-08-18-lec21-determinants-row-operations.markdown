@@ -158,7 +158,7 @@ As we wanted to show. $$\blacksquare$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Compute the determinant for 
 $$A = \begin{pmatrix}
 	1 & 2 & 3 \\
@@ -244,14 +244,14 @@ This operation will not further change the value of the determinant. So now we c
 </div>
 <br>
 <!-------------------------------------------------------------------------->
-<h4><b>Comparisons</b></h4>
+<h3>Comparisons</h3>
 Computing $$\det(A)$$ for $$A \in M_{n \times n}$$ using the inductive formula is roughly $$n!$$ operations. Using row operations, it is roughly $$n^3$$ operations.
 <br>
 <br>
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

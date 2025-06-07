@@ -12,7 +12,7 @@ mathjax: true
 What is this statement saying? It's important to review the definitions in <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">here</a>. Keep these on the side while working on this proof. For a set $$A$$ with an upper bound $$s$$, $$s$$ can be qualified as the least upper bound if and only if "any number smaller than $$s$$ is not an upper bound". In other words, for $$s$$ to be the least upper bound, then no matter how tiny $$\epsilon$$ is, $$s - \epsilon$$ will get disqualified from being an upper bound because we're guaranteed to find an element in $$A$$ that is greater than $$s - \epsilon$$. So we can't make $$s$$ any smaller without losing its status of being an upper bound.
 <br>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 We'll prove both directions of the statement.
 <ul>
 	<li>\((\Rightarrow)\) If \(s = \sup A\), then for every choice of \(\epsilon > 0\) there exists an element \(a \in A\) such that \(s - \epsilon < a\). </li>

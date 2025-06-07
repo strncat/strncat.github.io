@@ -9,7 +9,7 @@ Gaussian Elimination consists of two passes. The forward pass is used to put the
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 Suppose we have the following augmented matrix:
 <div>
 $$
@@ -103,7 +103,7 @@ Now this matrix is in Reduced Row Echelon Form.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Find all the solutions to the following system
 <div>
 $$
@@ -156,7 +156,7 @@ Here we should know that that since there is a leading entry in the last column 
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 Find all the solutions to the following system
 <div>
 $$
@@ -249,7 +249,7 @@ $$
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References:</b></h4>
+<h3>References:</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

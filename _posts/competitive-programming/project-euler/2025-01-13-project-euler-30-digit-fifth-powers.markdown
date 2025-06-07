@@ -44,7 +44,7 @@ printf("%d\n", total_sum);
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=30">Project Euler - 30</a>
 <br>
 <br>

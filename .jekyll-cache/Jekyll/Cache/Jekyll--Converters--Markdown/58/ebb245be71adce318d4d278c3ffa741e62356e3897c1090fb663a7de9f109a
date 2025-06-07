@@ -1,0 +1,73 @@
+I"<<p>Many competitive programming problems require generating combinations. For example, in <a href="https://onlinejudge.org/index.php?option=onlinejudge&amp;page=show_problem&amp;problem=382">411 - Lotto</a>, we are given \(k\) integers (all distinct) and we want to print all possible ways of choosing 6 numbers from the set. There are many approaches to generating these combinations. The following approach is a simple one. 
+<!------------------------------------------------------------------------------------></p>
+<h4><b>Approach 1&lt;/h3&gt;
+In this approach, we generate all possible subsets, stopping when we reach the combination size we're after. Suppose we're generating $k=3$ numbers from the following set:
+<img src="http://localhost:4000/assets/competitive-programming/combinations/set.png" width="100%" />
+We start generating the combinations by looking at each element starting at element "1". We also keep track of what elements make our combination in a new array called <i>selected</i>. We have two choices for "1". We either select it or we skip it. We record our selection and move down to the next level.
+<br />
+<br />
+<img src="http://localhost:4000/assets/competitive-programming/combinations/1.png" width="100%" />
+<br />
+<br />
+So now we're maintaining two <i>selected</i> arrays, one for each choice. Next we look at "2". We again have two choices. We either select "2" or we skip it.
+<br />
+<br />
+<img src="http://localhost:4000/assets/competitive-programming/combinations/2.png" width="100%" />
+<br />
+<br />
+We next look at "3". For each <i>selected</i> array above, we have two more choices of whether we want to add "3" or just skip it.
+<br />
+<br />
+<img src="http://localhost:4000/assets/competitive-programming/combinations/3.png" width="100%" />
+<br />
+<br />
+We repeat this process until one of two things happen:
+- We reach $$k=3$$ elements in <i>selected</i> and so we can print our choice and return. 
+- We run out of possible elements to choose and we exit.
+
+The following code represents the process we just followed.
+
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">combinations</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">a</span><span class="p">,</span> 
+                  <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> 
+                  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&amp;</span> <span class="n">sel</span><span class="p">,</span> 
+                  <span class="kt">int</span> <span class="n">selections</span><span class="p">,</span>
+                  <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">selections</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">print_combination</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">sel</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// no more elements</span>
+    <span class="c1">// two choices</span>
+    <span class="c1">// (1) select a[i]</span>
+    <span class="n">sel</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="n">combinations</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">selections</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+
+    <span class="c1">// (2) don't select a[i]</span>
+    <span class="n">sel</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">combinations</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">selections</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+<!------------------------------------------------------------------------------------>
+<h4><b>Worst case analysis&lt;/h3&gt;
+At the top level of the recursion tree (level = 0), we make one call. At level 1 we make $$2^1$$ calls. At level 2, we make $$2^2$$ calls. The last level (level = $$n-1$$) would have $$2^n$$ subproblems. For each call, we make $$O(1)$$ work of selecting or not selecting the element. So the total time would be $$1+2+2^2+2^3+...+2^n = 2^{n+1} - 1 = O(2^{n})$$.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h4><b>Approach 2&lt;/h3&gt;
+TODO
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h4><b>Practice Problems&lt;/h3&gt;
+- <a href="https://onlinejudge.org/index.php?option=onlinejudge&amp;page=show_problem&amp;problem=382">411 - Lotto</a>
+(<a href="https://github.com/strncat/competitive-programming/blob/master/uva/backtracking/441-lotto.cpp">Solution Using Approach 1</a>)
+<br />
+<br />
+
+
+
+</b></h4></b></h4></b></h4></b></h4>
+:ET

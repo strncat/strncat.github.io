@@ -9,7 +9,7 @@ mathjax: true
   <b>Prove that \(\sqrt{3} + \sqrt{5}\) and \(\sqrt{3} - \sqrt{5}\) are both irrational</b>
 </div>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Suppose it is a rational number and let $$\sqrt{3} + \sqrt{5} = \frac{p}{q}$$ where $$p$$ and $$q$$ are integers and $$q$$ is not zero. Furthermore, assume that the fraction is in its simplist form. Now we can square each side:
 <div>
 $$

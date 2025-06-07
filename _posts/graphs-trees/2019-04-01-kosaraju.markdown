@@ -12,7 +12,7 @@ The goal of Kosaraju's algorithm is to find all the strongly connected component
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Algorithm</b></h4>
+<h3>Algorithm</h3>
 Kosaraju's algorithm is shockingly simple. We simply run two passes of depth first search on $$G$$. Here is a sketch of what the algorithm is all about,
 {% highlight c++ %}
 (1) Run depth first search on G and keep track of finishing times.
@@ -24,7 +24,7 @@ Since all we're doing is a depth first search, the running time is astonishingly
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 <img src="{{ site.url }}/assets/graphs/scc/1.png" width="100%">
 Let's apply Kosaraju's algorithm on the graph above. First, we need to run depth first search on the graph while keeping track of the finishing times of vertices. We start by visiting $$a$$ and mark the start time as 0. We will continue to visit $$f$$ and then $$b$$ marking their start times below.
 <img src="{{ site.url }}/assets/graphs/scc/2.png" width="100%">
@@ -45,16 +45,16 @@ We finally visit $$d$$ and $$e$$ and that's our third and final strongly connect
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Correctness Proof</b></h4>
+<h3>Correctness Proof</h3>
 Why does this algorithm find the SCCs? To show why it beautifully works, we'll breakdown the proof into proving a small claim followed by two lemmas that will be used in the correctness proof. 
 <br>
 <br>
-<h4><b>Claim: Let \(G\) be a graph. Let \(u\) and \(v\) be vertices in \(G\). If \(u\) and \(v\) are mutually reachable and \(v\) and \(w\) are mutually reachable then \(u\) and \(w\) are mutually reachable </b></h4>
+<h3>Claim: Let \(G\) be a graph. Let \(u\) and \(v\) be vertices in \(G\). If \(u\) and \(v\) are mutually reachable and \(v\) and \(w\) are mutually reachable then \(u\) and \(w\) are mutually reachable </h3>
 <i>Proof:</i> We can construct a path from $$u$$ to $$w$$ by first going from $$u$$ to $$v$$ since they are mutually reachable and then going from $$v$$ to $$w$$ for the same reason. We can construct the reversed path from going from $$w$$ to $$v$$ since they are mutually reachable and then going from $$v$$ to $$u$$. Therefore, $$u$$ and $$w$$ are mutually reachable. $$\blacksquare$$ 
 <br>
 <br>
 <br>
-<h4><b> Lemma 1: The SCC graph is a directed acyclic graph (DAG) </b></h4>
+<h3> Lemma 1: The SCC graph is a directed acyclic graph (DAG) </h3>
 <img src="{{ site.url }}/assets/graphs/scc/lemma1.png" width="100%">
 <i>Proof:</i> Suppose that the SCC graph is not a DAG. Therefore, we must have some cycle in the SSC graph. Without the loss of generality, let $$A$$ and $$B$$ be two components in that cycle. We claim that $$A$$ and $$B$$ must be in the same connected component and therefore, it is a contradiction to the assumption that the SCC graph is not a DAG. 
 <br> 
@@ -63,7 +63,7 @@ Since $$A$$ and $$B$$ participate in some cycle, then there must be some vertice
 <br>
 <br>
 Before introducing the next lemma, let $$G$$ be a graph and let $$A$$ be a strongly connected component. We will denote $$A.finish$$ as the maximum finish time of all the vertices in $$A$$.
-<h4><b> Lemma 2: In the SCC DAG, if there is an edge from component \(A\) to component \(B\) then \(A.finish > B.finish\) </b></h4>
+<h3> Lemma 2: In the SCC DAG, if there is an edge from component \(A\) to component \(B\) then \(A.finish > B.finish\) </h3>
 <i>Proof:</i> There are two cases:
 <img src="{{ site.url }}/assets/graphs/scc/case1.png" width="100%">
 Case 1: We reached $$A$$ before $$B$$ in our first depth first search pass: Let $$x$$ have the largest finishing time in $$A$$ and $$y$$ have the largest finish time in $$B$$. Let $$z$$ be the first node discovered in $$A$$, then we will reach $$A$$ and discover $$z$$, then at some point we will reach $$B$$ and discover $$y$$. This means that $$y$$ is a descendant of $$z$$. By the parentheses theorem (<a href="https://strncat.github.io/jekyll/update/2019/07/10/topological-sort.html">used in proving topological sort here</a>), this means that $$z$$ has a larger finish time. Since $$x$$ has the largest finish time in $$A$$, then $$x.finish > y.finish$$ and since $$y$$ has the largest finishing time in $$B$$, then we have $$A.finish > B.finish$$, as required.
@@ -73,12 +73,12 @@ Case 2: We reached $$B$$ before $$A$$ in our first depth first search: Since we 
 <br>
 <br>
 <br>
-<h4><b> Corollary 1: In the SCC DAG, if there is an edge from component \(B\) to component \(A\) in the <i>reversed</i> graph, then \(A.finish > B.finish\) </b></h4>
+<h3> Corollary 1: In the SCC DAG, if there is an edge from component \(B\) to component \(A\) in the <i>reversed</i> graph, then \(A.finish > B.finish\) </h3>
 <br>
 We can now combine the previous results to prove the following theorem:
 <br>
 <br>
-<h4><b>Theorem: Kosaraju's algorithm correctly finds the strongly connected components</b></h4>
+<h3>Theorem: Kosaraju's algorithm correctly finds the strongly connected components</h3>
 <i>Proof:</i> <br>
 <b>Inductive Hypothesis:</b> The first $$t$$ trees found in the second (reversed) DFS
 forest are the $$t$$ SCCs with the largest finish times. Moreover, what’s left unvisited after these $$t$$ trees have been explored is a DAG on the un-found SCCs.
@@ -99,12 +99,12 @@ Therefore, we will only discover the vertices in $$A$$ from $$x$$. So the $$t+1$
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>Practice Problems</b></h4>
+<h3>Practice Problems</h3>
 <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2499">11504 - Dominos (Almost Kosaraju but not quite)</a>
 <br>
 <br>
 <!---------------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 - <a href="http://web.stanford.edu/~marykw/classes/CS250_W18/index.html">CS161 Stanford</a>
 - Algorithm Design
 <br>

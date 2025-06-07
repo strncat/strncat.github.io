@@ -238,7 +238,7 @@ Every irreducible \(u \in R = \mathbf{Z}[i]\) is the same up to units to exactly
 </ol>
 </div>
 <!--------------------------------------->
-<h4><b>Examples</b></h4>
+<h3>Examples</h3>
 <ul>
 	<li>To factor \(z = 3 + 9i\) into irreducibles, \(N(z) = 3^2 + 9^2 = 90 = 2 \cdot 3^2 \cdot 5\). The norm is a multiplicative function, so the norms of each factor will multiply to \( 2 \cdot 3^2 \cdot 5\). Since we only have 3 of them, then the only possible irreducible factors are \(1 + i, 2 \pm i, 3\). In fact, \(1+i\) must be a factor since it's the only one with norm equals 2. \(3\) has to be a factor since it's the only one with norm 3. We don't know which of \(2 + i\) or \(2 - i\) is factor but we can check and we will get \(2 - i\).
 	</li>

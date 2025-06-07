@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
-<h4><b>Note</b></h4>
+<h3>Note</h3>
 These are my rough notes based on attending CS148. They might contain errors so proceed with caution!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Overview</b></h4>
+<h3>Overview</h3>
 In the global illumination lecture we talked about bidirectional ray tracing. It combined both photon tracing (forward) and ray tracking (backward). We said that we will emit photons from the light, bathe these objects in light in order to create a light map. We will then use  this light map when we ray trace the scene to estimate the indirect light instead of just relying on the ambient term.
 <br>
 <br>
@@ -19,7 +19,7 @@ We then discussed the fact that the lighting equation can be used to described a
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Photon Maps</b></h4>
+<h3>Photon Maps</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/graphics/photon-mapping/photons.png" width="60%" class="center"></p>
 To create a photon map, we'll emit photons from light sources and bounce around the scene. In the figure above, we have a number photons photons where each photon is storing the incoming light direction with the strength just like regular lights. If we want to know the pixel color at a point for example (the $L$ viewing direction in the picture), we'll sum over the light from all the photons nearby and sum over all of these just like regular lights. Note that we'll still be doing the important sampling and handle direct light with shadow rays and sum this amount as well. We could use a photon map for all lighting but it will require a ton of photons so it's easier to still do the direct lighting with shadow rays.
 <br>
@@ -32,7 +32,7 @@ Next, if this photon hits say a camera and bounces, then that's two bounces! we'
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Tractability</b></h4>
+<h3>Tractability</h3>
 
 In the global illumination lecture, we discretized surfaces and hemisphere directions. too many chucks (curse of dimensionality).
 
@@ -44,7 +44,7 @@ Monte Carlo Integration: No curse of dimensionality. Scales to higher dimensions
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example of Monte Carlo Integration</b></h4>
+<h3>Example of Monte Carlo Integration</h3>
  
 as opposed to Newton-Cote. Consider approximating $\pi$. You need a compass. Draw a circle of with radius of one unit distance. The area is $A=\pi r^2$ and therefore, the area is just $\pi$. So we just need to find the area of the circle. Integrate $f(x,y)=1$ over the unit circle to obtain $\int\int_A f(x,y)dA = \pi$. 
 
@@ -57,7 +57,7 @@ For Monte Carlo, construct a square with side length 4 containing the circle. Ge
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Monte Carlo Methods</b></h4>
+<h3>Monte Carlo Methods</h3>
 Random (pseudo-random) numbers generate sample points that are multiplied by some element size (length, area, volume). Basically each point in enclosed in some sample area size are if we're working in 2D. They might overlap but that's find. The error decreases by $1/\sqrt{N}$ where $N$ is the number of samples.  Monte Carlo is good for higher dimensions while Newton-Cote is much better in 1/2/3D.
 <br>
 <br>
@@ -82,7 +82,7 @@ This is a simple averaging of all the sample results.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Important Sampling</b></h4>
+<h3>Important Sampling</h3>
 Sometimes we want to cheat with what samples we want to pick. If we have a function that is flat in some range and not flat in some other range, we'd want to pick samples from the non-flat range. For example, suppose $f(x)$ is only non-zero in $[a_1, b_1] \subset [a,b]$ so that $\int_a^b f(x)dx = \int_{a_1}^{b_1} f(x)dx$. In this case, if $X_i \notin [a_1, b_1]$ doesn't contribute to the integral.
 <br>
 <br>
@@ -105,7 +105,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Photon Emission</b></h4>
+<h3>Photon Emission</h3>
 Photon Strength: We'll choose some number of photons and divide them amongst the lights (based on relative power). Photons all have the same power but brighter lights will just have more photons. 
 <br>
 <br>
@@ -116,7 +116,7 @@ Emission Direction: Randomly choose a direction on a sphere, a hemisphere or a s
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Light Map</b></h4>
+<h3>Light Map</h3>
 
 - We will have a different photon map for each color.
 
@@ -133,7 +133,7 @@ Emission Direction: Randomly choose a direction on a sphere, a hemisphere or a s
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Separating Diffuse/Specular</b></h4>
+<h3>Separating Diffuse/Specular</h3>
 It's more convenient to store diffuse and specular lighting separately. So when bouncing a photon, determine randomly if the photon will
 - get absorbed
 - will be diffuse bounced
@@ -148,7 +148,7 @@ It's more convenient to store diffuse and specular lighting separately. So when 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Gathering Radiance</b></h4>
+<h3>Gathering Radiance</h3>
 - Trace rays from the camera and intersect with objects and use shadow rays for direct lighting.
 - Estimate radiance contribution to the ray from caustics and indirect lighting using the respective light maps: use the N closest photons to the point of intersection (with the aid of the acceleration structure (octree or kdtree))
 
@@ -157,7 +157,7 @@ It's more convenient to store diffuse and specular lighting separately. So when 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Color</b></h4>
+<h3>Color</h3>
 - 3 photon maps one for each color. Objects of certain color better absorb photons of differing colors so this gives color bleeding and related effects.
 
 
@@ -167,7 +167,7 @@ It's more convenient to store diffuse and specular lighting separately. So when 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390">Fundamentals of Computer Graphics, 4th Edition</a>
 <br>
 <a href="https://web.stanford.edu/class/cs148/lectures.html"> CS148 Lectures </a>

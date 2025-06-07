@@ -53,7 +53,7 @@ Additionally, the theorem also claims that the normal subgroups of $$G/N$$ corre
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$G = \mathbf{Z}$$ and $$N = \mathbf{Z}6$$ (multiples of 6). Therefore $$G/N = \mathbf{Z}/\mathbf{Z}6 = \mathbf{Z}_6$$. Here is a breakdown of the subgroups of $$\mathbf{Z}$$. Within all of these subgroups you'll see the $$\mathbf{Z}6$$. The subgroups in the red outline will correspond to the subgroups of $$\mathbf{Z}/\mathbf{Z}6 = \mathbf{Z}_6$$ on the left side.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec17/2.png" width="90%" class="center"></p>
 Take another example. Suppose that $$N = \mathbf{Z}2$$. Recall the definition of $$\pi$$:
@@ -105,7 +105,7 @@ So we see here that there is a bijective correspondance between $$\{[0]\}$$ whic
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Proof of the Correspondence Theorem</b></h4>
+<h3>Proof of the Correspondence Theorem</h3>
 So again, we want to show that there is a bijection between the subgroup $$d$$ of the quotient group $$G/N$$ and the subgroup of $$G$$ which contain $$N$$
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec17/1.png" width="80%" class="center"></p>
 One way to show that there is a bijection is to show that we have an inverse function. 
@@ -124,7 +124,7 @@ Remark: If we don't know that $$A$$ contains $$N$$, then if $$A \leq G$$, we can
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>General Correspondance Theorem</b></h4>
+<h3>General Correspondance Theorem</h3>
 There is a more general correspondance theorem (the way it is listed in the book) which says
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
@@ -142,7 +142,7 @@ So we have $$H \approx G/N$$ by the Isomorphism Theorem and then we have the sec
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Factorization Theorem</b></h4>
+<h3>Factorization Theorem</h3>
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
 Factorization Theorem
@@ -170,7 +170,7 @@ Note here that the kernel $$K/N$$ is a subgroup of $$G/N$$. The kernel consists 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Product Subsets</b></h4>
+<h3>Product Subsets</h3>
 <div class="mintheaderdiv">
 Definition (Product Subsets)
 </div>
@@ -191,7 +191,7 @@ If $$A$$ and $$B$$ are subgroups of $$G$$, then we can have $$AB \neq BA$$. We c
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Suppose $$G = S_3$$. Then
 <div>
 $$
@@ -246,7 +246,7 @@ $$\Leftarrow:$$ Now suppose that $$AB = BA$$. We want to show that $$AB$$ is a s
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Diamond Isomorphism Theorem</b></h4>
+<h3>Diamond Isomorphism Theorem</h3>
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
 Diamond Isomorphism Theorem
@@ -269,7 +269,7 @@ Proof in lecture notes along with an example that we will need for the next home
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

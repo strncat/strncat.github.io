@@ -1,0 +1,71 @@
+I"<p><img src="http://localhost:4000/assets/graphs/dfs/0.png" alt="my photo" /></p>
+
+<p>Depth first search like breadth first search is an algorithm used to explore a graph. Let \(G = (V, E)\) be a graph consisting of \(V\) vertices and \(E\) edges and let \(s\) be the source vertex where we will start the traversal from. Depth first search explores the graph from the root as deep as possible until there are no more vertices to visit and then resumes the search again from a different branch.
+<br /><br />
+In a depth first search, we typically keep track of the time we first discovered a vertex and also the time we finished processing a vertex (after we look at all of its neighbors). This information will help later in topologically sorting a graph. 
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>Implementation Details</h3>
+<p>To perform a depth first search, we will maintain the following data structures:</p>
+<ul>
+  <li>A set or an array that keeps track of the visited nodes. Remember that \(G\) might contain cycles and so we want to make sure that we explore each node once.</li>
+  <li>A stack. We want to explore the nodes closest to \(s\) first. Since we’re insterested in going as deep as possible, a stack will be the ideal data structures. Note that we can just eliminate the use of an explicit stack by using recursion (implicit stack) as we’ll be doing in the implementation below.
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></li>
+</ul>
+<h3>Example</h3>
+<p>Let’s explore the graph above. We will start from \(s\) and as soon as we see \(a\) we’ll recursively call dfs again. The start time for \(s\) is 0 and the start time for \(a\) is 1.</p>
+
+<p><img src="http://localhost:4000/assets/graphs/dfs/1.png" alt="my photo" /></p>
+
+<p>Next we will recursively visit \(c\), \(e\) and \(d\). They will have start times 2, 3 and 4 respectively.</p>
+
+<p><img src="http://localhost:4000/assets/graphs/dfs/2.png" alt="my photo" /></p>
+
+<p>At this point, there will be no more vertices to traverse and so node 
+\(d\) is now finished with time 5, followed by \(e\), \(c\) and then \(a\).</p>
+
+<p><img src="http://localhost:4000/assets/graphs/dfs/3.png" alt="my photo" /></p>
+
+<p>Finally, we will traverse node \(b\) with start time 9 and finish time 10. Node \(s\) will now be done with finish time \(11\).</p>
+
+<p><img src="http://localhost:4000/assets/graphs/dfs/4.png" alt="my photo" />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>Implementation</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">current_time</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">graph</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">times</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">visited</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="n">times</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">first</span> <span class="o">=</span> <span class="n">current_time</span><span class="o">++</span><span class="p">;</span> <span class="c1">// seeing v for the first time</span>
+    <span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">current_time</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">current_time</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">visited</span><span class="p">);</span>
+            <span class="n">current_time</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">times</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">second</span> <span class="o">=</span> <span class="n">current_time</span><span class="p">;</span> <span class="c1">// v is done bye forever</span>
+    <span class="k">return</span> <span class="n">current_time</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><a href="https://github.com/strncat/algorithms-and-data-structures/tree/master/graphs/depth-first-search">Source Code on Github</a>
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>Running Time</h3>
+<p>Similar to the analysis of breadth first search. We visit each vertex once only. That’s \(O(V)\) time. Therefore, we also visit the adjacency list of each vertex at most once and that’s \(O(E)\) time. Therefore, the total time is \(O(V+E)\).
+<br />
+<br />
+<!-----------------------------------------------------------------------------------></p>
+<h3>References</h3>
+<p><a href="http://web.stanford.edu/class/cs161/index.html">Stanford - CS161</a>
+<br />
+<br /></p>
+
+:ET

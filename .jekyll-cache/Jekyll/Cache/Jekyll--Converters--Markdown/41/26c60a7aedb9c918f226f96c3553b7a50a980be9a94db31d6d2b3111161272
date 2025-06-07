@@ -1,0 +1,97 @@
+I"3#<p>Similar to <a href="https://strncat.github.io/jekyll/update/2025/01/23/project-euler-69-totient-maximum.html">Problem 69</a>, this problem is about Euler’s Totient function. To recap, given an integer \(n\), the Totient function \(\phi(n)\) is the number of positive integers not exceeding \(n\) and are relatively prime to \(n\). The goal of this problem is to find  \(n\) such that \(\frac{n}{\phi(n)}\) is maximized.
+<!------------------------------------------------------------------------------------></p>
+<h3>Solution&lt;/b&gt;&lt;/h4&gt;
+To start, we should definitely make use of existing formula to compute the Totient function. The formula is: given an integer $$n$$ and the distinct prime divisors of $$n$$ $$\{p_1,p_2...,p_k\}$$, we can compute the Totient function as follows
+<div>
+	$$
+	\begin{align*}
+	 \phi(n) = n \prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big).
+	\end{align*}
+	$$
+</div>
+But we're interested in computing specifically $$\frac{n}{\phi(n)}$$ so we can simplify the above formula further
+<div>
+	$$
+	\begin{align*}
+	 \frac{n}{\phi(n)} &amp;= \frac{n}{n\prod_{i=1}^{k} \big( 1 - \frac{1}{p_i} \big)} \\
+	                   &amp;= \frac{1}{\big( 1 - \frac{1}{p_1} \big) \times \big( 1 - \frac{1}{p_2} \big) \times ... \times \big( 1 - \frac{1}{p_k} \big)} \\
+					   &amp;= \frac{1}{\big( \frac{p_1 - 1}{p_1} \big) \times \big( \frac{p_2 - 1}{p_2} \big) \times ... \times \big( \frac{p_k - 1}{p_k} \big)}  \\
+					   &amp;= \frac{p_1 \times \p_2 \times ... \times p_k}{ (p_1 - 1) \times (p_2 - 1) \times ... \times (p_k - 1)  }
+	\end{align*}
+	$$
+</div>
+Before we can start implementing, we still need to generate these distinct prime factors. We've implemented this before in <a href="">Problem 3</a>. 
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">prime_factorization</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">factors</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// prime factor 2</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">n</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">factors</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// all the other prime factors</span>
+    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">factors</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="n">n</span> <span class="o">/=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// n is prime itself</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">factors</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<br />
+Once we have these distinct factors, we can just run this for all integers $$n \leq 1000000$$ In
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">double</span> <span class="n">max</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">factors</span><span class="p">;</span>
+        <span class="n">prime_factorization</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">factors</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">tot</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="c1">//printf("%d: ", i);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">e</span> <span class="o">=</span> <span class="n">factors</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">e</span> <span class="o">!=</span> <span class="n">factors</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">e</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">//printf("%d, ", *e);</span>
+            <span class="n">tot</span> <span class="o">*=</span> <span class="o">*</span><span class="n">e</span> <span class="o">/</span> <span class="p">(</span><span class="o">*</span><span class="n">e</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">tot</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">max</span> <span class="o">=</span> <span class="n">tot</span><span class="p">;</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">//printf("tot = %f \n", tot);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"max n = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span></code></pre></figure>
+
+I added one small optimization which didn't do much and feels unnecessary to skip prime numbers since based on the formula, the solution will never be a prime number.
+<br />
+<br />
+The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0069-totient-maximum">here</a>.
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>More Advanced Solution?&lt;/b&gt;&lt;/h4&gt;
+while the brute force solution is great (good to practice writing all of these methods), you can see above that the formula
+<div>
+	$$
+	\begin{align*}
+	 \frac{n}{\phi(n)} &amp;= \frac{p_1 \times \p_2 \times ... \times p_k}{ (p_1 - 1) \times (p_2 - 1) \times ... \times (p_k - 1)  }
+	\end{align*}
+	$$
+</div>
+is maximized when we have the most distinct prime numbers. So instead we can generate all prime numbers with sieve and then multiply them until we hit the limit $$1,000,000$$.
+<br />
+<br />
+<br />
+<!------------------------------------------------------------------------------------>
+<h3>References&lt;/b&gt;&lt;/h4&gt;
+<a href="https://projecteuler.net/problem=70">Project Euler - 70</a>
+<br />
+<br />
+
+
+</h3></h3></h3>
+:ET

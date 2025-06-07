@@ -9,7 +9,7 @@ Per the problem description, what is the smallest positive number that is evenly
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 Keeping the current least common multiple in a variable $$m$$ and starting at $$i = 2$$, we want to find $$lcm(m,i) = lcm(1,2) = 2$$ and save this result back in $$m$$. In the next iteration, we want to find $$lcm(m,i) = lcm(2,3) = 6$$. In the next iteration, we will find $$lcm(6,4) = 24$$ and so on until we reach $$20$$. 
 {% highlight c++ %}
 long gcd(long long a, long long b) {
@@ -38,7 +38,7 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=3">Project Euler - 03</a>
 <br>
 <br>

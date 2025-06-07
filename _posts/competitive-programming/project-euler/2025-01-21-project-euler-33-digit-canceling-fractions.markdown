@@ -33,7 +33,7 @@ printf("count = %d\n", count);
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Solution</b></h4>
+<h3>Solution</h3>
 Since we have at most $$1377$$ cases, then we can easily check all of them. We will ignore trivial cases. For the non-trivial cases like $$49/98$$, we will extract the $$4$$ digits and save them in different variables. The numerator digits are $$n_1 = 9$$ and $$n_2 = 4$$. The denominator digits are $$d_1 = 8$$ and $$d_2 = 8$$. To check if $$\frac{49}{98}$$ is equal to $$\frac{4}{8}$$, we can check if
 <div>
 	$$
@@ -77,7 +77,7 @@ The entire code is <a href="https://github.com/strncat/project-euler/blob/main/0
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=33">Project Euler - 33</a>
 <br>
 <br>

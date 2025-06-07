@@ -27,7 +27,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Unit Circle</b></h4>
+<h3>The Unit Circle</h3>
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/unit-circle/1.png" width="70%" class="center"></p>
 So now we know that if we fix $$\theta$$, whatever right triangle we come up with will be similar to the original triangle, meaning that $$\sin(\theta)$$ and $$\cos(\theta)$$ will always be the same. Since it doesn't matter how big this triangle is, then why not just let the hypotenuse be 1 to make it easy to calculate these values. Setting the hypotenuse to 1 will lead to having $$\sin(\theta)$$ become just $$b$$ and $$\cos(\theta)$$ become just $$c$$ since we don't need to divide by $$r$$ because $$r$$ is just 1! Neat!
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/unit-circle/2.png" width="65%" class="center"></p>
@@ -38,7 +38,7 @@ Also, note that the coordinates of that point at the end of the arc is just $$(b
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/unit-circle/3.png" width="73%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Unit Circle Expanded</b></h4>
+<h3>The Unit Circle Expanded</h3>
 So now we know that the coordinates $$(x,y)$$ on the unit circle are exactly the trigonometric functions $$(sin(\theta), cos(\theta))$$. We also know that $$\sin(\theta)$$ represents the relationship between the opposite side and the hypotenuse. We chose to work with the unit circle because it's easy to compute these trigonometric functions when the radius is 1 and no matter what radius we choose, these trigonometric functions will be exactly the same so why not just pick a radius that's easy. 
 <br>
 <br>

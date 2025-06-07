@@ -54,7 +54,7 @@ printf("a = %d, b = %d, a*b = %d\n", max_a, max_b, max_a * max_b);
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=27">Project Euler - 27</a>
 <br>
 <br>

@@ -64,7 +64,7 @@ printf("score sum = %lld\n", sum);
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <a href="https://projecteuler.net/problem=22">Project Euler - 22</a>
 <br>
 <br>

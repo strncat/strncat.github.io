@@ -9,7 +9,7 @@ mathjax: true
   <b>If \(p^2\) is even, then \(p\) is even.</b>
 </div>
 <br>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Suppose $$p^2$$ is even and $$p$$ is not. Since $$p$$ is odd, let $$p = 2k+1$$ where $$k$$ is an integer. Now, square $$p$$ so that we have,
 <div>
 $$

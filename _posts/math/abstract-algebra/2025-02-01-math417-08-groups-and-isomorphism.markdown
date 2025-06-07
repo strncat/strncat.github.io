@@ -30,7 +30,7 @@ In addition to groups, we also have
 <hr>
 <br>
 <!---------------------------------------------------------------------->
-<h4><b>Basic Properties of Groups</b></h4>
+<h3>Basic Properties of Groups</h3>
 In the next few propositions, we'll prove that the identity element in a group is unique and similarly the inverses are unique.
 <!---------------------------------------------------------------------->
 <div class="peachheaderdiv">
@@ -176,7 +176,7 @@ Notice that $$(ab)(b^{-1}a^{-1}) = a(b((b^{-1}a^{-1})) = a((bb^{-1})a^{-1}) = a(
 <hr>
 <br>
 <!---------------------------------------------------------------------->
-<h4><b>The Left and Right Multiplication Maps</b></h4>
+<h3>The Left and Right Multiplication Maps</h3>
 
 <div class="peachheaderdiv">
 Proposition 2.1.5
@@ -255,7 +255,7 @@ A row in the multiplication table can be represented by a left multiplication ma
 <hr>
 <br>
 <!--------------------------------------------------------------------->
-<h4><b>Associativity in Groups</b></h4>
+<h3>Associativity in Groups</h3>
 We know by definition that the product is associative so for all $$a, b, c \in G$$, we have $$(ab)c = a(bc)$$. What about the product of 4 or more elements? is it associative? For example, there are five ways to group four elements
 <div>
 	$$
@@ -327,7 +327,7 @@ are defined since we have at most $$n-1$$ elements. ... [TODO]
 <hr>
 <br>
 <!--------------------------------------------------------------------->
-<h4><b>General Powers</b></h4>
+<h3>General Powers</h3>
 Now, we turn into defining powers of an element in a group
 <br>
 <div class="mintheaderdiv">
@@ -399,7 +399,7 @@ Inductive Case: Suppose the inductive hypothesis is true for $$n$$. That is $$(a
 <hr>
 <br>
 <!---------------------------------------------------------------------->
-<h4><b>Isomorphism</b></h4>
+<h3>Isomorphism</h3>
 One thing that we want to do is to compare two groups. For example take $$(\mathbf{Z}_4, +)$$, the symmetries of the rectangle, $$(\phi(5), \cdot)$$ and $$(\phi(8), \cdot)$$. These are all groups with exactly 4 elements. To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
 <br>
 <br>
@@ -498,7 +498,7 @@ Therefore $$\varphi^{-1}$$ is an isomorphism as desired. $$\ \blacksquare$$.
 <hr>
 <br>
 <!---------------------------------------------------------------------->
-<h4><b>Groups of Small Order</b></h4>
+<h3>Groups of Small Order</h3>
 The order of a group is the number of elements in it. Formally,
 <br>
 <br>
@@ -618,7 +618,7 @@ So $$\phi(g)$$ is the inverse of $$\phi(g^{-1})$$ or in other words $$\phi(g)^{-
 <hr>
 <br>
 <!---------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 <li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

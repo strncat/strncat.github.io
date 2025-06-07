@@ -48,7 +48,7 @@ $$
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$G = \mathbf{Z}$$ and let $$H = \mathbf{Z}n$$ where $$n \geq 0$$ (multiples of $$n$$). Then the set of left cosets is
 <div>
 $$
@@ -87,7 +87,7 @@ So now we see that $$G / H = \mathbf{Z}_n$$. This is a group. In fact $$\pi \ : 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Quotient Function</b></h4>
+<h3>Quotient Function</h3>
 The question now is if we can do this in general. If we have a group $$G$$ and a subgroup $$H \leq G$$. We want to put a group structure on the set of left $$H$$-cosets, $$G / H$$ such that $$\pi \ : \ G \rightarrow G / H$$ is a homomorphism? This is called the "Quotient Group".
 <br>
 <br>
@@ -109,7 +109,7 @@ But we also know that kernels are normal subgroups so this means that $$H$$ must
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Quotient Group</b></h4>
+<h3>Quotient Group</h3>
 Now suppose we have a group $$G$$ and a normal subgroup $$N$$. Define $$G/N$$ to be the set of all left cosets of $$N$$ so $$G/N = \{ aN \ | \ a \in G \}$$. In fact since $$N$$ is normal, the left cosets are the right cosets so we don't need to say left or right in the definition. Let's also define a group operation on the group $$G/N$$. 
 <div class="mintheaderdiv">
 Definition
@@ -174,7 +174,7 @@ Next we want to show that $$\pi: G \rightarrow G/N$$ is a homomorphism with kern
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 Let $$G = D_4 = \{e, r, r^2, r^3, j, rj, r^2j, r^3j\}$$. We established the identities $$r^4 = e = j^2$$ and $$jr = r^{-1}j$$. We first claim that $$N = \langle r^2 \rangle = \{e, r^2\}$$ is a normal subgroup of $$G$$. Why? For any $$g \in D_4$$, we have $$g r^2 g^{-1} \in \langle r^2 \rangle$$.
 <br>
 <br>
@@ -211,7 +211,7 @@ Next, $$(rjN)^2 = (rj)^2N$$ But $$rj$$ is a flip so it's square is $$e$$ and so 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Now consider $$D_6 = \{e, r, r^2, r^3, r^4, r^5, j, rj, r^2j, r^3j, r^4j, r^5j\}$$. Consider $$N = \langle r^3 \rangle = \{e, r^3\}$$ which is a normal subgroup of $$D_6$$. Why is it normal? Because if we conjugate it with any element from $$D_6$$, we will get the same set
 <div>
 	$$
@@ -244,7 +244,7 @@ In fact, $$r^2N$$ has order 3 as well. So none of the elements have order 6 and 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 3</b></h4>
+<h3>Example 3</h3>
 Now consider $$G = (\mathbf{R}, +)$$ and $$H = (\mathbf{Z}, +)$$. $$G$$ is abelian. Therefore, all of its subgroups are normal and $$H$$ is normal. Now let's form the quotient group as follows
 <div>
 	$$
@@ -278,7 +278,7 @@ Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 4</b></h4>
+<h3>Example 4</h3>
 Let $$F$$ be a field. ($$F = \mathbf{R}$$ or $$\mathbf{C}$$ or $$\mathbf{Z}p$$, $$p$$ is prime). Now let 
 <div>
 	$$
@@ -309,7 +309,7 @@ We can form the quotient group
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Symmetric Groups</b></h4>
+<h3>Symmetric Groups</h3>
 We want to know what the normal subgroups of symmetric groups are. In order to do so, we want to see what happens if we conjugate a permutation $$\tau$$ with element so $$\sigma \tau \sigma^{-1}$$?
 <br>
 <br>
@@ -360,7 +360,7 @@ From Case 1 and Case 2, we see that $$\sigma \tau \sigma^{-1}$$ is the $$k$$-cyc
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Cycle Conjugation Formula Application</b></h4>
+<h3>Cycle Conjugation Formula Application</h3>
 Suppose we have an element $$\tau = \tau_1 \tau_2 ... \tau_r \in S_n$$ where each $$\tau_i$$ is a cycle. Now suppose we have another element $$\sigma$$. Then
 <div>
 	$$
@@ -393,7 +393,7 @@ If \(\tau, \tau' \in S_n\) have the same cycle type. Then \(\tau' = \sigma \tau 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 For example, let $$\sigma = (1 \ 3 \ 4 \ 7 \ 2 \ 5) \in S_9$$ and let $$\tau = (2 \ 9)(1 \ 8 \ 7)$$. If we conjugate $$\tau$$ with $$\sigma$$, then we know by the previous fact that the cycle type will remain the same. This means that we will get a 3-cycle followed by a 2-cycle $$(a_1 \ a_2 \ a_3)(a_4 \ a_5)$$. Furthermore, to figure out these new numbers. We just apply sigma on $$\tau$$, meaning that we permute the elements in $$\tau$$ according to $$\sigma$$. For example, $$\sigma$$ sends 2 to 5. so we'll replace 2 with 5 in $$\tau$$. $$\sigma$$ doesn't do anything to 6 so it just stays and so on.
 <div>
 	$$
@@ -424,7 +424,7 @@ Notice that for the other elements 3. We don't care where it goes as long it goe
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Let $$G = S_3$$ and $$N = \{e, (1 \ 2 \ 3), (1 \ 3\ 2)\} \leq S_3$$.
 <br>
 <br>
@@ -437,7 +437,7 @@ Based on this, $$H = \{e, (1 \ 2)\} \leq S_3$$. $$H$$ is not normal since it doe
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

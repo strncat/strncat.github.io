@@ -19,7 +19,7 @@ $$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 Suppose $$S = \{(0,0,1)\} \subset \mathbf{R}^3$$. The orthogonal complement to $$S$$ is any element $$x$$ in $$\mathbf{R}^3$$ such that for any element $$y \in S$$, the inner product $$\langle x, y \rangle$$ must be zero.
 <div>
 $$
@@ -113,7 +113,7 @@ But $$w,\tilde{w} \in W$$ and $$z, \tilde{z} \in Z$$ and since $$W \cap W^{\perp
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Projection of \(x\) onto \(W\)</b></h4>
+<h3>Projection of \(x\) onto \(W\)</h3>
 The $$w$$ vector we found in the last theorem has a special name. It is the projection of $$x$$ onto the subspace $$W$$.
 <br>
 <div class="bdiv">
@@ -172,7 +172,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Projection as a Map</b></h4>
+<h3>Projection as a Map</h3>
 In general we can think of the projection onto $$W$$ as a map. 
 <div>
 $$
@@ -196,7 +196,7 @@ This formula tells us that the projection is linear in $$x$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Least Squares</b></h4>
+<h3>Least Squares</h3>
 We're going to use the projection in studying systems of linear equations that are inconsistent. So consider the system of equations 
 <div>
 $$
@@ -243,7 +243,7 @@ But why is this true? to be able to prove this theorem we need a few other defin
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Adjoint Linear Maps</b></h4>
+<h3>Adjoint Linear Maps</h3>
 <div class="bdiv">
 Definition
 </div>
@@ -269,7 +269,7 @@ Set \(A^* = (\bar{A})^t\)
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 The matrix
 <div>
 $$
@@ -406,7 +406,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Theorem 3 Proof</b></h4>
+<h3>Theorem 3 Proof</h3>
 We're going to set $$\mathbf{F} = \mathbf{R}$$. Therefore, $$A^* = A^t$$. We are given that rank$$(A)=n$$. We want to show that
 <div>
 $$
@@ -435,7 +435,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

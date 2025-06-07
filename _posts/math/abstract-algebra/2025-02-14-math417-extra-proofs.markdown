@@ -5,7 +5,7 @@ date:   2025-02-14 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4><b>Example 1</b></h4>
+<h3>Example 1</h3>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition
@@ -39,7 +39,7 @@ But since $$|x| = r$$ and $$|y| = s$$, then $$r \ | \ l'$$ and $$s \ | \ l'$$. B
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Example 2</b></h4>
+<h3>Example 2</h3>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
 Proposition
@@ -72,7 +72,7 @@ $$\longleftarrow:$$ Now suppose that $$gcd(m,n) = 1$$. We want to show that $$\m
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li><a href="https://www.youtube.com/watch?v=ako25Pghxa8">The order of an element in a direct group is the lcm of both elements orders</a></li>
 </ul>

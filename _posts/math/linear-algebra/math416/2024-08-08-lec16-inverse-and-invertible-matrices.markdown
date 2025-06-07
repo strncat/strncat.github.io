@@ -86,7 +86,7 @@ The inverse of $$A$$ can be denoted by $$A^{-1}$$.
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Conditions for An Invertible Matrix</b></h4>
+<h3>Conditions for An Invertible Matrix</h3>
 So now given a matrix $$A$$, how do we know that it's invertible? Previously, we asked if a linear map is invertible and if it was invertible, then we knew the matrix representation of the map is also invertible. So $$A$$ is invertible if and only if
 <ul style="list-style: none;">
 	<li>\(\Leftrightarrow L_A: \mathbf{R}^n \rightarrow \mathbf{R}^n\) is invertible.</li>
@@ -100,7 +100,7 @@ So now given a matrix $$A$$, how do we know that it's invertible? Previously, we
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Matrix Representation for an Inverse Linear Transformation</b></h4>
+<h3>Matrix Representation for an Inverse Linear Transformation</h3>
 We know that linear maps between finite dimensional vector spaces have matrix representations. So now we know to relate these the matrix representation of these maps to their inverse matrices.
 <br>
 <br>
@@ -138,7 +138,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Matrix Representation for an Inverse Linear Transformation</b></h4>
+<h3>Matrix Representation for an Inverse Linear Transformation</h3>
 If $$A$$ is invertible, how do you find an its inverse?
 <br>
 <br>
@@ -181,7 +181,7 @@ We then put this matrix in row reduced echelon form to get $$(RREF(A) | B)$$. Be
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Example</b></h4>
+<h3>Example</h3>
 Let $$A = \begin{pmatrix}
 1 & 2 \\
 3 & 4
@@ -229,7 +229,7 @@ $$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Special Rule for 2 by 2 Matrices</b></h4>
+<h3>Special Rule for 2 by 2 Matrices</h3>
 In fact, any 2 by 2 matrix $$\begin{pmatrix}
 a & b \\
 c & d
@@ -287,7 +287,7 @@ And so this will be the inverse. We still need to settle the case when $$a = 0$$
 <hr>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li>Math416 by Ely Kerman</li>
 </ul>

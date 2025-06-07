@@ -26,7 +26,7 @@ We also defined a PID which is a principle ideal domain. a domain $$R$$ is a PID
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Unique Factorization Domain (UFD)</b></h4>
+<h3>Unique Factorization Domain (UFD)</h3>
 We have a new defintion for a domain that has a unique factorization property
 <br>
 <!--------------------------------------->
@@ -47,7 +47,7 @@ Example: $$R = \mathbf{Z}$$ is a UFD.
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>Every PID is a UFD</b></h4>
+<h3>Every PID is a UFD</h3>
 Next, we will show that every principle domain is actually a unique factorization domain
 <br>
 <!--------------------------------------->
@@ -130,7 +130,7 @@ Note: We will apply this to an example involving the Gaussian integers next lect
 <hr>
 <br>
 <!------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

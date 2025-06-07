@@ -18,7 +18,7 @@ Let's study each coefficient and figure out what it does to the original graph a
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>What Values Do We Plot?</b></h4>
+<h3>What Values Do We Plot?</h3>
 Before deciding on the values, we need to understand that both sine and cosine repeat their values at regular intervals or periods. The period of $$\sin(x)$$ and $$\cos(x)$$ is exactly $$2\pi$$. So the sine or cosine wave will just repeat every $$2\pi$$. This means we can just focus on plotting one single entire wave and then just repeat the rest.
 <br>
 <br>
@@ -43,7 +43,7 @@ What $$x$$ values do we pick in the period $$[0,2\pi]$$? For both sine and cosin
 </table>
 This table will just repeat in the next period from $$2\pi$$ to $$4\pi$$ and so on.
 <!------------------------------------------------------------------------------------>
-<h4><b>Amplitude</b></h4>
+<h3>Amplitude</h3>
 $$a$$ is the amplitude. This indicates how far up and down the wave of sine or cosine would go. Say we're given the function,
 <div>
 $$
@@ -92,7 +92,7 @@ and we're done.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Period</b></h4>
+<h3>Period</h3>
 We know both $$\sin(x)$$ and $$\cos(x)$$ have a period of $$2\pi$$. Suppose we want to graph the following function,
 <div>
 $$
@@ -182,7 +182,7 @@ That's it! We didn't have to plug in any $$x$$ values in the function and comput
 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Horizontal Shift</b></h4>
+<h3>Horizontal Shift</h3>
 Let's now focus on the horizontal shift that could happen by having a term inside (not to be confused with the period). Here 2 is the period and $$-\pi/2$$ is the shift.
 <div>
 $$
@@ -283,7 +283,7 @@ Finally, let's calculate the new $$y$$ using the original values and multiplying
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/trig/graphs/3.png" width="100%" class="center"></p>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Vertical Shift</b></h4>
+<h3>Vertical Shift</h3>
 The last thing we want to know is how to apply the vertical shift. What we want to do is take our x-axis and pretend to lift it either up or down depending on the vertical shift we have. So if we're graphing something like
 <div>
 $$
@@ -332,7 +332,7 @@ So you can see here the red graph from the last section and now it's shifted up 
 
 
 <!------------------------------------------------------------------------------------>
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=__nefjOhVks">Professor Leonard's Trigonometry Class</a></li>
 </ul>

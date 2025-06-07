@@ -10,7 +10,7 @@ Given a set of $$k$$ strings of total length $$m$$ and a prefix $$p$$ of length 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>The Trie Data Structure</b></h4>
+<h3>The Trie Data Structure</h3>
 <img src="{{ site.url }}/assets/trie/1.png" width="100%">
 <br>
 The trie (pronounced "try") data structure is an efficient data structure that can help us achieve a faster running time when searching for prefixes. In the picture above forexample, we can find the words that start with the prefix "ca" by starting at the root and traversing down to find the words (words end with colored nodes): cake, cakes and cat.
@@ -30,7 +30,7 @@ You can see above, the root has only one edge of value $$c$$. From $$c$$, we can
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Node and Edges Representation</b></h4>
+<h3>Node and Edges Representation</h3>
 This can be done in many ways. The following is just one way that uses a struct to represent a node. This struct will include a bool value to indicate whether we have arrived at a valid word or not. Each node/struct will also have an array to store all possible edges. Each array position holds a pointer to a node struct, intially all set to NULL. Here, we will consider the English alphabet which consists of 26 letters. We will use position 0 to represent 'a', 1 to represent 'b' and so. We will take advantage of the fact that the ASCII value for the letter a is 97 and z is 122 and so to store 'c', we simply find the right position in the array by subtracting 'a' (97) from 'c' (99) to get 2 which is the correct position for 'c'. 
 {% highlight c++ %}
 #define SIZE 26
@@ -48,7 +48,7 @@ typedef struct trie {
 {% endhighlight %}
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Prefix Search</b></h4>
+<h3>Prefix Search</h3>
 Given a prefix $$p$$ of length $$n$$, we want to output all the possible words that start with $$p$$. To do, we start with the root of the trie and the first letter of $$p$$. We then check if the root contains a non-null node at the first letter of $$p$$. If there is, then we move to this new node and advance to the next letter of $$p$$. We repeat the same process until we either exit (return NULL) or reach the last letter of $$p$$ and return that node.
 <br>
 {% highlight c++ %}
@@ -111,7 +111,7 @@ int words_with_prefix(std::string prefix) {
 }
 {% endhighlight %}
 <!------------------------------------------------------------------------------------>
-<h4><b>Insert</b></h4>
+<h3>Insert</h3>
 Suppose we want to insert a new word of length $$n$$. We follow a similar process. We start at the root and we also start at the beginning of the word to be inserted. If the letter we're on has already a link in the root then we follow it a long and move to the next letter as well. If the link is null then we create a new node for that letter.
 <br>
 {% highlight c++ %}
@@ -141,27 +141,27 @@ void insert(std::string word) {
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Delete</b></h4>
+<h3>Delete</h3>
 To be added.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Longest Prefix</b></h4>
+<h3>Longest Prefix</h3>
 To be added
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Running Time</b></h4>
+<h3>Running Time</h3>
 We mentioned above that insert and search both take $$O(n)$$ time where $$n$$ is the length of the pattern. How long does it take to build a trie to represent all words of total length $$m$$? We need to make $$k$$ insertions each of which will take $$O($$size of each word$$)$$. Since the total length of all words is $$m$$, then the total time is $$O(m)$$ which happens only once initially. Therefore, in the RMQ notation we will have $$\langle O(m), O(n) \rangle$$ which is a lot better than the naive solution. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Full Implementation</b></h4>
+<h3>Full Implementation</h3>
 https://github.com/strncat/algorithms-and-data-structures/tree/master/strings/trie.cpp
 <br>
 <br>
 <!----------------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 - Algorithms by Robert Sedgwick and Kevin Wayne
 <br>
 - http://web.stanford.edu/class/cs166/

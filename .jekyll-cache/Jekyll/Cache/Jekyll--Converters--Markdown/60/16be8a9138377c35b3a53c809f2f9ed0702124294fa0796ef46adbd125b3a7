@@ -1,0 +1,54 @@
+I"U<p>In this one, we want the sum of all numbers such that each number’s digit factorials add up to the number itself. For example</p>
+<div>
+	$$
+	\begin{align*}
+	 145 = 1! + 4! + 5!
+	\end{align*}
+	$$
+</div>
+<p>We are told not to include the trivial cases \(1! = 1\) and \(2! = 2\) since they are not sums. We are also not given any upper bound. As a guess, we can observe that \(9! * 10 = 3628800\). So a number consisting of 10 digits will at most be 3628800. I tried this upper limit and it was fine. One thing we want to do is to pre-calculate the factorials for all digits a head of time in</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">f</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">calc_factorial</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The rest is all simple</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">calc_factorial</span><span class="p">();</span>
+    <span class="c1">// 9! * 10 = 3628800</span>
+    <span class="c1">// 0! + 0! + 0! + 1! + 1! = 2</span>
+    <span class="kt">int</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">3628800</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">num</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">num</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">d</span><span class="p">];</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">p</span><span class="p">;</span>
+            <span class="n">num</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">total_sum</span> <span class="o">+=</span> <span class="n">sum</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">total_sum</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><br />
+<br />
+<!------------------------------------------------------------------------------------></p>
+<h4><b>References&lt;/h3&gt;
+<a href="https://projecteuler.net/problem=34">Project Euler - 34</a>
+<br />
+<br />
+
+
+</b></h4>
+:ET

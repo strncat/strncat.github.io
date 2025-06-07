@@ -71,7 +71,7 @@ A regular polyhedra is a three dimensional solid where the faces are congruent r
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>Symmetry Groups</b></h4>
+<h3>Symmetry Groups</h3>
 The reason we introduced these regular polyhedra is because we want to study their symmetry groups. So now, given a Polyhedron, we have a set $$V$$ of vertices (with the center of mass at 0). Define, the symmetry group $$G$$ of the polyhedron as
 <div>
 	$$
@@ -86,7 +86,7 @@ So this a point is a vertex if and only if, rotating this point by $$A$$ is also
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>The Symmetry Group of the Tetrahedron</b></h4>
+<h3>The Symmetry Group of the Tetrahedron</h3>
 Let's study the specific symmetry group of the Tetrahedron. Notice that if we draw a line from any vertex through the centroid of the opposite face, we get an axis where we can rotate around. We have two possible rotations here. Going one third clockwise and one third of full rotation counter clockwise. So $$2\pi / 3$$ in either direction. Each of these have order 3. Moreover, there are 4 possible axes of this type since we have 4 different vertices.
 <br>
 <br>
@@ -149,7 +149,7 @@ The kernel of this homomorphism is just the identity symmetry. If you think abou
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>The Symmetry Group of the Cube</b></h4>
+<h3>The Symmetry Group of the Cube</h3>
 Next, we want to explore the symmetries of the cube. The first symmetry that we can construct is the symmetry around the axis that goes between two opposite vertices. We have 8 vertices total. Therefore, there are 4 pairs of those vertices. So 4 axes total. A rotation is one third of a full spin, so the angle is $$2\pi/3$$. Since we have two choices for the angle, then the number of total rotations is $$2*4 = 8$$ total rotations.
 <br>
 <br>
@@ -230,7 +230,7 @@ So next we want $$\phi$$ to not just be a homomorphism. We want it to be an isom
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>The Symmetry Group of the Dodecahedron</b></h4>
+<h3>The Symmetry Group of the Dodecahedron</h3>
 Next, we'll do the symmetry group of the Dodecahedron
 <ul>
 	<li>Vertex/Vertex Symmetry: We have a total of 20 vertices. So 20 pairs of axes. Each vertex is connected to three edges. So each turn is a third of a full turn like before. Since it's 3 turns total, then each symmetry is of order 3. The number of symmetries is then 10*2 for each angle, so 20 total symmetries. </li>
@@ -316,7 +316,7 @@ The image of this homomorphism is exactly $$A_5$$ and this homomorphism is also 
 <hr>
 <br>
 <!----------------------------------------------------------------------------->
-<h4><b>References</b></h4>
+<h3>References</h3>
 <ul>
 	<li>MATH417 by Charles Rezk</li>
 	<li><a href="https://homepage.divms.uiowa.edu/~goodman/algebrabook.dir/algebrabook.html">Algebra: Abstract and Concrete by Frederick M. Goodman</a></li>

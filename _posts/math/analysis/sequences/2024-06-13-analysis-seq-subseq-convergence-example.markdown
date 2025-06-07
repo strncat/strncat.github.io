@@ -24,12 +24,12 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br> 
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Problem Discussion:</b></h4>
+<h3>Problem Discussion:</h3>
 This was really tricky. We are given a sequence and to find its limit, the idea here is to extract a subsequence and then concluding that it also converges to the same limit as the original sequence by theorem 2.5.2 which says that subsequences of a convergent sequence converge to the same limit as the original sequence. But then we can also find the limit of the subsequence using a differen path. So'll end up with two limits for the same subsequence. This is impossible since limits are unique and this will give us a direct us. This final answer is only the limit of the subsequence but also the limit of the sequence itself.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h4><b>Proof:</b></h4>
+<h3>Proof:</h3>
 Let $$(b^n)$$ is the sequence defined above. This sequence is decreasing and bounded below by definition. By the <a href="https://strncat.github.io/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">monotone convergence theorem</a>, $$(b^n)$$ convergences to some number $$l$$ such that $$b > l \geq 0$$. To compute $$l$$, let $$(b^{2n})$$ be a subsequence of $$(b^n)$$. The terms of $$(b^{2n})$$ are
 <div>
 $$

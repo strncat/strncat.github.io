@@ -9,13 +9,9 @@ mathjax: true
 Definition
 </div>
 <div class="mintbodydiv">
-Let \(a, b \in \mathbb{Z}\). \(a\) divides \(b\) (write \(a | b\)) if there exists \(m \in \mathbb{Z}\) such that \(am = b\).
-$$
-\begin{align*}
-a^k \equiv 1 (\mod n)
-\end{align*}
-$$
+Let \(a, b \in \mathbb{Z}\). \(a\) divides \(b\) or \(a \ | \ b\) if there exists an \(m \in \mathbb{Z}\) such that \(am = b\).
 </div>
+Note: $$a \ | \ b$$ doesn't mean that $$\frac{b}{a}$$ is defined. Also note that $$a \ | \ 0$$ is only true if $$a = 0$$.
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
 Suppose $$n = 7$$ and $$a = 3$$, then

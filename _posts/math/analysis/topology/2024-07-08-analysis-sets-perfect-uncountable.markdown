@@ -54,7 +54,7 @@ will be contained entirely in $$I_1$$ (but formally why though?). We can iterati
 <li>\(I_n \cap P \neq \emptyset\). This was because \(x_n\) is a limit point in \(I_n\) and so the intersection with P must be nonempty.</li>
 </ul>
 
-Next, let $$K_n = I_n \cap P$$. For each $$n \in \mathbf{N}$$, we know that
+Next, let $$K_n = I_n \cap P$$. For each $$n \in \mathbb{N}$$, we know that
 <ul>
 <li>\(K_n\) is closed since \(K_n\) is the intersection of two closed sets.</li>
 <li>\(K_n\) is bounded since it is contained in \(I_n\) and \(I_n\) is bounded by construction.</li>

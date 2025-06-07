@@ -20,7 +20,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
-Let $$(a_n)$$ be a sequence. We want to prove for any $$\epsilon > 0$$, there exists an $$N \in \mathbf{N}$$ such that  
+Let $$(a_n)$$ be a sequence. We want to prove for any $$\epsilon > 0$$, there exists an $$N \in \mathbb{N}$$ such that  
 <div>
 $$
 \begin{align*}
@@ -28,7 +28,7 @@ $$
 \end{align*}
 $$
 </div>
-We are given that $$\sum_{n=1}^{\infty} a_n$$ converges. This means that for any $$\epsilon > 0$$, there exists an $$N \in \mathbf{N}$$ such that 
+We are given that $$\sum_{n=1}^{\infty} a_n$$ converges. This means that for any $$\epsilon > 0$$, there exists an $$N \in \mathbb{N}$$ such that 
 <div>
 $$
 \begin{align*}

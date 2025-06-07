@@ -26,10 +26,10 @@ Notes: So the null space is any vector that the transformation turns it into the
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
-$$N(T^b_a) = \{$$functions in $$C^0(\mathbf{R})$$ whos average over $$[a,b]$$ is $$0\}$$. In other words, it's the set of all functions whose definite integral is 0. 
+$$N(T^b_a) = \{$$functions in $$C^0(\mathbb{R})$$ whos average over $$[a,b]$$ is $$0\}$$. In other words, it's the set of all functions whose definite integral is 0. 
 <br>
 <br>
-$$R(T^b_a) = \mathbf{R}$$. Here we want all functions whose definite integral is some constant/some real number. In other words, this will be the entire codomain ($$\mathbf{R}$$). We call this map $$(T^b_a)$$ onto.
+$$R(T^b_a) = \mathbb{R}$$. Here we want all functions whose definite integral is some constant/some real number. In other words, this will be the entire codomain ($$\mathbb{R}$$). We call this map $$(T^b_a)$$ onto.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -89,7 +89,7 @@ We know that $$N(T)$$ is a subspace of $$V$$. This means that $$\dim(N(T)) \leq 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
-Consider the map $$T: \mathbf{R}^n \rightarrow \mathbf{R}^n$$ where
+Consider the map $$T: \mathbb{R}^n \rightarrow \mathbb{R}^n$$ where
 <div>
 	$$
 	\begin{align*}
@@ -120,7 +120,7 @@ From this we see that,
 	\begin{align*}
 	 \dim(R(T)) + \dim(N(T)) &= m + n - m \\ 
 	                        &= n \\ 
-	                        &= \dim(\mathbf{R}^n)
+	                        &= \dim(\mathbb{R}^n)
 	\end{align*}
 	$$
 </div>
@@ -163,7 +163,7 @@ So now we need to prove that $$\{T(v_1),...,T(v_{n-k})\}$$ is a basis. To do so,
 	$$
 	\begin{align*}
 	R(T) &= \{T(v) \ | \ v \in V\} \\
-	     &= \{T(a_1u_1 + ... + a_ku_k + b_1v_1 + ... + b_{n-k}v_{n-k}) \ | \ a_1,...,a_k \in \mathbf{R}, b_1,...b_{n-k}\in \mathbf{R} \}. \\
+	     &= \{T(a_1u_1 + ... + a_ku_k + b_1v_1 + ... + b_{n-k}v_{n-k}) \ | \ a_1,...,a_k \in \mathbb{R}, b_1,...b_{n-k}\in \mathbb{R} \}. \\
 	     &= \{a_1T(u_1) + ... + a_kT(u_k) + b_1T(v_1) + ... + b_{n-k}T(v_{n-k}) \} \\
 		 &= \{b_1T(v_1) + ... + b_{n-k}T(v_{n-k})\} \quad \text{because $u_1,...u_k$ are in the null space ($T(u_i)=0_W$)} \\
 		 &= Span(\{T(v_1),...,T(v_{n-k})\}).

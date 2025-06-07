@@ -8,9 +8,9 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>[The Order Limit Theorem] Assume \(\lim a_n = a\) and \(\lim b_n = a\). Then,</b>
 	  <ol type="i">
-	    <li>If \(a_n \geq 0\) for all \(n \in \mathbf{N}\), then \(a \geq 0\);</li>
-	    <li>If \(a_n \leq b_n\) for all \(n \in \mathbf{N}\), then \(a \leq b\);</li>
-	    <li>If there exists \(c \in \mathbf{R}\) for which \(c \leq b_n\) for all \(n \in \mathbf{N}\), then \(c \leq b\). Similarly, if \(a_n \leq c\) for all \(n \in \mathbf{N}\), then \(a \leq c\) </li>
+	    <li>If \(a_n \geq 0\) for all \(n \in \mathbb{N}\), then \(a \geq 0\);</li>
+	    <li>If \(a_n \leq b_n\) for all \(n \in \mathbb{N}\), then \(a \leq b\);</li>
+	    <li>If there exists \(c \in \mathbb{R}\) for which \(c \leq b_n\) for all \(n \in \mathbb{N}\), then \(c \leq b\). Similarly, if \(a_n \leq c\) for all \(n \in \mathbb{N}\), then \(a \leq c\) </li>
 	  </ol>
 </div>
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>, for subsequences see <a href="https://strncat.github.io/jekyll/update/2024/02/10/analysis-seq-subsequences.html">this</a>.
@@ -30,7 +30,7 @@ $$
 \end{align*}
 $$
 </div>
-But this contradicts the assumption that $$a_n \geq 0$$ for all $$n \in \mathbf{N}$$. Therefore, we must have $$a \geq 0$$. $$\blacksquare$$
+But this contradicts the assumption that $$a_n \geq 0$$ for all $$n \in \mathbb{N}$$. Therefore, we must have $$a \geq 0$$. $$\blacksquare$$
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof (ii)</h3>

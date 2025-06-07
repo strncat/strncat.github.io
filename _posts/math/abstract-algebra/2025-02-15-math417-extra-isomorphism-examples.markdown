@@ -51,7 +51,7 @@ Recall, that we defined the multiplication of cosets by $$(xN)(yN)=(xy)N$$. Sinc
 	\end{align*}
 	$$
 </div>
-This multiplication table looks like the multiplication table of $$\mathbf{Z}_2$$. In fact $$Q_8 / \langle i \rangle \cong \mathbf{Z}_2$$.
+This multiplication table looks like the multiplication table of $$\mathbb{Z}_2$$. In fact $$Q_8 / \langle i \rangle \cong \mathbb{Z}_2$$.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -75,7 +75,7 @@ $$\langle -1 \rangle$$ is a normal subgroup (easy check, every element in the su
 	\end{align*}
 	$$
 </div>
-Let's calculate the order of each element. For example, $$(i \langle -1 \rangle)^2 = -1\langle -1 \rangle = \langle -1 \rangle$$. So $$o(i\langle -1 \rangle) = 2$$. In fact, we also have $$o(j\langle -1 \rangle) = 2$$ and $$o(k\langle -1 \rangle) = 2$$. This isn't cyclic so this group must be isomorphic to the non-cyclic group of order 4. So it's isomorphic to $$\mathbf{Z}_2 \times \mathbf{Z}_2$$. 
+Let's calculate the order of each element. For example, $$(i \langle -1 \rangle)^2 = -1\langle -1 \rangle = \langle -1 \rangle$$. So $$o(i\langle -1 \rangle) = 2$$. In fact, we also have $$o(j\langle -1 \rangle) = 2$$ and $$o(k\langle -1 \rangle) = 2$$. This isn't cyclic so this group must be isomorphic to the non-cyclic group of order 4. So it's isomorphic to $$\mathbb{Z}_2 \times \mathbb{Z}_2$$. 
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -84,8 +84,8 @@ Suppose that we are given
 <div>
 	$$
 	\begin{align*}
-	\phi: \mathbf{Z} &\rightarrow \mathbf{Z}_n \\
-	                 &\phi(m) = [m] = \{k \in \mathbf{Z} \ | \ k \equiv m (\bmod n)\}
+	\phi: \mathbb{Z} &\rightarrow \mathbb{Z}_n \\
+	                 &\phi(m) = [m] = \{k \in \mathbb{Z} \ | \ k \equiv m (\bmod n)\}
 	\end{align*}
 	$$
 </div>
@@ -101,12 +101,12 @@ The kernel of $$\phi$$ is
 <div>
 	$$
 	\begin{align*}
-	\ker(\phi) &= \{ m \in \mathbf{Z} \ | \ [m] = [0]\} \\
-	           &= \{0, \pm n, \pm 2n,....\} = n\mathbf{Z}
+	\ker(\phi) &= \{ m \in \mathbb{Z} \ | \ [m] = [0]\} \\
+	           &= \{0, \pm n, \pm 2n,....\} = n\mathbb{Z}
 	\end{align*}
 	$$
 </div>
-So now we have $$\ker(\phi) = n\mathbf{Z}$$. We know that it is normal. We also showed that $$\phi$$ is a surjective homomorphism. Therefore, by the Isomorphism Theorem, $$\mathbf{Z}/n\mathbf{Z} \cong \mathbf{Z}_n$$.
+So now we have $$\ker(\phi) = n\mathbb{Z}$$. We know that it is normal. We also showed that $$\phi$$ is a surjective homomorphism. Therefore, by the Isomorphism Theorem, $$\mathbb{Z}/n\mathbb{Z} \cong \mathbb{Z}_n$$.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -115,7 +115,7 @@ Next, let's take
 <div>
 	$$
 	\begin{align*}
-	\phi: \mathbf{Z}_4 &\rightarrow \mathbf{Z}_2 \\
+	\phi: \mathbb{Z}_4 &\rightarrow \mathbb{Z}_2 \\
 	        &\phi([m]_4) = [m]_2 
 	\end{align*}
 	$$
@@ -131,7 +131,7 @@ Here, it is not obvious this is well-defined. So let's check that it is. Suppose
 	\end{align*}
 	$$
 </div>
-This says that $$m_1 - m_2$$ must be a multiple of 4 so $$m_1 - m_2 = 4k = 2(2k)$$ for some $$k \in \mathbf{Z}$$. So $$m_1 - m_2$$ is also a multiple of 2. Therefore, $$m_1-m_2 \equiv 0 \bmod 2$$ and so $$[m_1]_2 = [m_2]_2$$.
+This says that $$m_1 - m_2$$ must be a multiple of 4 so $$m_1 - m_2 = 4k = 2(2k)$$ for some $$k \in \mathbb{Z}$$. So $$m_1 - m_2$$ is also a multiple of 2. Therefore, $$m_1-m_2 \equiv 0 \bmod 2$$ and so $$[m_1]_2 = [m_2]_2$$.
 <br>
 <br>
 $$\phi$$ is also a homomorphism. since 
@@ -149,13 +149,13 @@ The kernel of $$\phi$$ is
 <div>
 	$$
 	\begin{align*}
-	\ker(\phi) &= \{ [m]_4 \in \mathbf{Z}_4 \ | \ \phi([m]_4) = [0]_2\} \\
-	           &= \{ [m]_4 \in \mathbf{Z}_4 \ | \ [m]_2 = [0]_2\} \\
-			   &= \{ [0]_4, [2]_4 \} = \langle [2]_4 \rangle = 2\mathbf{Z}_4 \\
+	\ker(\phi) &= \{ [m]_4 \in \mathbb{Z}_4 \ | \ \phi([m]_4) = [0]_2\} \\
+	           &= \{ [m]_4 \in \mathbb{Z}_4 \ | \ [m]_2 = [0]_2\} \\
+			   &= \{ [0]_4, [2]_4 \} = \langle [2]_4 \rangle = 2\mathbb{Z}_4 \\
 	\end{align*}
 	$$
 </div>
-So now we have $$\ker(\phi) = \langle [2]_4 \rangle$$. We know that it is normal. We also showed that $$\phi$$ is a surjective homomorphism. Therefore, by the Isomorphism Theorem, $$\mathbf{Z}_4/\langle [2]_4 \rangle \cong \mathbf{Z}_2$$.
+So now we have $$\ker(\phi) = \langle [2]_4 \rangle$$. We know that it is normal. We also showed that $$\phi$$ is a surjective homomorphism. Therefore, by the Isomorphism Theorem, $$\mathbb{Z}_4/\langle [2]_4 \rangle \cong \mathbb{Z}_2$$.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -164,11 +164,11 @@ Next, let's take
 <div>
 	$$
 	\begin{align*}
-	\phi: \mathbf{Z}_6 &\rightarrow \mathbf{Z}_{15}
+	\phi: \mathbb{Z}_6 &\rightarrow \mathbb{Z}_{15}
 	\end{align*}
 	$$
 </div>
-We need to figure out a homomorphism. First recall that for any element, $$|\phi(x)| \ | \ |x|$$. Let's list the order of the elements in $$\mathbf{Z}_{15}$$. Notice here that $$\mathbf{Z}_{15}$$ is a cyclic group (with addition) so the order of any element $$g + a$$ is going to be $$\frac{15}{gcd(a,15)}$$
+We need to figure out a homomorphism. First recall that for any element, $$|\phi(x)| \ | \ |x|$$. Let's list the order of the elements in $$\mathbb{Z}_{15}$$. Notice here that $$\mathbb{Z}_{15}$$ is a cyclic group (with addition) so the order of any element $$g + a$$ is going to be $$\frac{15}{gcd(a,15)}$$
 <div>
 	$$
 	\begin{align*}
@@ -179,10 +179,10 @@ We need to figure out a homomorphism. First recall that for any element, $$|\phi
 	\end{align*}
 	$$
 </div>
-So now let's pick $$[1]_{6}$$. It is a generator for $$\mathbf{Z}_{6}$$. We know that $$\phi([1]_6)$$ must divide the order of the element itself so $$|[1]_6| = 6$$. So that tells us that $$|\phi([1]_6)|$$ must be either 1,2,3 or 6. 2 and 6 are not possibilities so we don't have any elements of that order in $$\mathbf{Z}_{15}$$. So it's either 1 or 3.
+So now let's pick $$[1]_{6}$$. It is a generator for $$\mathbb{Z}_{6}$$. We know that $$\phi([1]_6)$$ must divide the order of the element itself so $$|[1]_6| = 6$$. So that tells us that $$|\phi([1]_6)|$$ must be either 1,2,3 or 6. 2 and 6 are not possibilities so we don't have any elements of that order in $$\mathbb{Z}_{15}$$. So it's either 1 or 3.
 <br>
 <br>
-Case 1: Suppose we pick some element of order 1. That means that $$\phi([1]_6) = 1$$. This implies that $$\phi([1]_6) = [0]_{15}$$. Since it's a generator, then $$\ker(\phi) = \mathbf{Z}_6$$. And $$Im(\phi) = \{[0]_{15}\}$$. This gives us $$\mathbf{Z}_6/\mathbf{Z}_6 = \{[0]_{15}\} \leq \mathbf{Z}_{15}$$. So it's pretty boring.
+Case 1: Suppose we pick some element of order 1. That means that $$\phi([1]_6) = 1$$. This implies that $$\phi([1]_6) = [0]_{15}$$. Since it's a generator, then $$\ker(\phi) = \mathbb{Z}_6$$. And $$Im(\phi) = \{[0]_{15}\}$$. This gives us $$\mathbb{Z}_6/\mathbb{Z}_6 = \{[0]_{15}\} \leq \mathbb{Z}_{15}$$. So it's pretty boring.
 <br>
 <br>
 Case 2: Suppose we pick some element of order 3 so $$|\phi([1]_6)| = 3$$. So let $$\phi([1]_6) = [5]_{15}$$. Based on this, where will $$[2]_6$$ will go? Remember that we want $$\phi$$ to be a homomorphism. This means that we want this to be true. That $$\phi([2]_6) = \phi([1 + 1]_6) = \phi([1]_6) + \phi([1]_6) = [5]_{15} + [5_{15} = [10]_{15}$$. So we want to pick $$[10]_{15}$$ for $$[2]_6$$. Based on this, the elements will get mapped to 
@@ -202,20 +202,20 @@ So the image of our homomorphism is
 <div>
 	$$
 	\begin{align*}
-	Im(\phi) = \{[0]_{15}, [5]_{15}, [10]_{15}\} = \langle [5]_{15} \rangle \cong \mathbf{Z}_3
+	Im(\phi) = \{[0]_{15}, [5]_{15}, [10]_{15}\} = \langle [5]_{15} \rangle \cong \mathbb{Z}_3
 	\end{align*}
 	$$
 </div>
-The last statement is because all cyclic groups of order 3 are isomorphic to $$\mathbf{Z}_3$$. The kernel of $$\phi$$ is 
+The last statement is because all cyclic groups of order 3 are isomorphic to $$\mathbb{Z}_3$$. The kernel of $$\phi$$ is 
 <div>
 	$$
 	\begin{align*}
-	\ker(\phi) &= \{ [m]_6 \in \mathbf{Z}_6 \ | \ \phi([m]_6) = [0]_{15}\} \\
-			   &= \{ [0]_6, [3]_{6} \} = \langle [3]_6 \rangle \cong \mathbf{Z}_2\\
+	\ker(\phi) &= \{ [m]_6 \in \mathbb{Z}_6 \ | \ \phi([m]_6) = [0]_{15}\} \\
+			   &= \{ [0]_6, [3]_{6} \} = \langle [3]_6 \rangle \cong \mathbb{Z}_2\\
 	\end{align*}
 	$$
 </div>
-By the Isomorphism Theorem, $$\mathbf{Z}_{6}/\langle [3]_6 \rangle \cong \langle [5]_{15} \rangle \cong \mathbf{Z}_3$$.
+By the Isomorphism Theorem, $$\mathbb{Z}_{6}/\langle [3]_6 \rangle \cong \langle [5]_{15} \rangle \cong \mathbb{Z}_3$$.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -232,7 +232,7 @@ To define a homomorphism, we need these defining identities to hold on both side
 <div>
 	$$
 	\begin{align*}
-	\phi: D_n &\rightarrow \mathbf{Z}_2 \\
+	\phi: D_n &\rightarrow \mathbb{Z}_2 \\
 	      r  &\rightarrow 0 \quad \text{we don't to write $[0]_2$ since it's clear} \\
 		  s &\rightarrow 1
 	\end{align*}
@@ -263,7 +263,7 @@ Finally, we have $$\phi(rs) = \phi(sr^{n-1})$$. We can check both sides
 	\end{align*}
 	$$
 </div>
-Next, we need to see that it is surjective but that's trivial since we're sending $$r$$ to $$0$$ and $$s$$ to $$1$$ so it's definitely surjective. The image of $$\phi$$ is $$\mathbf{Z}_2$$. The kernel is also easy to see 
+Next, we need to see that it is surjective but that's trivial since we're sending $$r$$ to $$0$$ and $$s$$ to $$1$$ so it's definitely surjective. The image of $$\phi$$ is $$\mathbb{Z}_2$$. The kernel is also easy to see 
 <div>
 	$$
 	\begin{align*}
@@ -273,7 +273,7 @@ Next, we need to see that it is surjective but that's trivial since we're sendin
 	$$
 </div>
 This is because any rotation is sent to 0 and any reflection $$\phi(r^ks) = \phi(sr^{n-k} = 1$$.<br>
-By the Isomorphism Theorem, $$D_n/\langle r \rangle \cong \mathbf{Z}_2$$.
+By the Isomorphism Theorem, $$D_n/\langle r \rangle \cong \mathbb{Z}_2$$.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -290,7 +290,7 @@ To define a homomorphism, we need these defining identities to hold on both side
 <div>
 	$$
 	\begin{align*}
-	\phi: D_n &\rightarrow \mathbf{Z}_n \\
+	\phi: D_n &\rightarrow \mathbb{Z}_n \\
 	      r  &\rightarrow 1 \\
 		  s &\rightarrow 0
 	\end{align*}
@@ -322,7 +322,7 @@ And then define
 <div>
 	$$
 	\begin{align*}
-	\phi: D_{2n} &\rightarrow \mathbf{Z}_2 \\
+	\phi: D_{2n} &\rightarrow \mathbb{Z}_2 \\
 	      r  &\rightarrow 1 \\
 		  s &\rightarrow 0
 	\end{align*}
@@ -364,7 +364,7 @@ So $$\phi$$ is a homomorphism. It is surjective since we hit both elements in th
 	\end{align*}
 	$$
 </div>
-By the Isomorphism Theorem, $$D_{2n}/D_n \cong \mathbf{Z}_2$$.
+By the Isomorphism Theorem, $$D_{2n}/D_n \cong \mathbb{Z}_2$$.
 <hr>
 
 <!----------------------------------------------------------------------------->

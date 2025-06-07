@@ -9,7 +9,7 @@ Recall the the vector space of linear transformations
 <div>
 $$
 \begin{align*}
-\mathcal{L}(\mathbf{R}^n, \mathbf{R}^m) = \{L_A: A \in M_{m \times n}\}.
+\mathcal{L}(\mathbb{R}^n, \mathbb{R}^m) = \{L_A: A \in M_{m \times n}\}.
 \end{align*}
 $$
 </div>
@@ -20,7 +20,7 @@ By Corollary from last lecture (If $$\dim(V)=n$$ and $$T$$ is invertible, then $
 <div>
 $$
 \begin{align*}
-L_A: \ &\mathbf{R}^n \rightarrow \mathbf{R}^m \\
+L_A: \ &\mathbb{R}^n \rightarrow \mathbb{R}^m \\
 &\bar{x} \rightarrow A\bar{x}
 \end{align*}
 $$
@@ -29,7 +29,7 @@ When is this map invertible? For this map to be invertible, we need a map
 <div>
 $$
 \begin{align*}
-(L_A)^{-1}: \mathbf{R}^n \rightarrow \mathbf{R}^n
+(L_A)^{-1}: \mathbb{R}^n \rightarrow \mathbb{R}^n
 \end{align*}
 $$
 </div>
@@ -37,7 +37,7 @@ such that
 <div>
 $$
 \begin{align*}
-(L_A)^{-1} \circ L_A = I_{\mathbf{R}^n} = L_A \circ (L_A)^{-1}
+(L_A)^{-1} \circ L_A = I_{\mathbb{R}^n} = L_A \circ (L_A)^{-1}
 \end{align*}
 $$
 </div>
@@ -45,7 +45,7 @@ This map is linear since the inverse of a linear map is linear. Since it is line
 <div>
 $$
 \begin{align*}
-L_B \circ L_A &= I_{\mathbf{R}^n} = L_A \circ L_B \\
+L_B \circ L_A &= I_{\mathbb{R}^n} = L_A \circ L_B \\
 L_{BA} &= L_{I_n} = L_{AB} \\
 BA &= I_n = AB.
 \end{align*}
@@ -88,7 +88,7 @@ The inverse of $$A$$ can be denoted by $$A^{-1}$$.
 <h3>Conditions for An Invertible Matrix</h3>
 So now given a matrix $$A$$, how do we know that it's invertible? Previously, we asked if a linear map is invertible and if it was invertible, then we knew the matrix representation of the map is also invertible. So $$A$$ is invertible if and only if
 <ul style="list-style: none;">
-	<li>\(\Leftrightarrow L_A: \mathbf{R}^n \rightarrow \mathbf{R}^n\) is invertible.</li>
+	<li>\(\Leftrightarrow L_A: \mathbb{R}^n \rightarrow \mathbb{R}^n\) is invertible.</li>
 	<li>\(\Leftrightarrow L_A\) is 1-1 and onto. (you only need one as consequence of the dimension theorem since the dimension of the domain and the codomain are the same)</li>
 	<li>\(\Leftrightarrow L_A\) is 1-1. (see above or theorem 2.5)</li>
 	<li>\(\Leftrightarrow N(L_A) = \{\bar{0}\}\). The above is equivalent (proved in homework I think) to saying that the null space is only the zero vector.</li>

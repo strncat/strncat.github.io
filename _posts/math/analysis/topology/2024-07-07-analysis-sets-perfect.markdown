@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (Definition 3.4.1) A set \(P \subseteq \mathbf{R}\) is perfect if it is closed and contains no isolated points. 
+  (Definition 3.4.1) A set \(P \subseteq \mathbb{R}\) is perfect if it is closed and contains no isolated points. 
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Examples</h3>

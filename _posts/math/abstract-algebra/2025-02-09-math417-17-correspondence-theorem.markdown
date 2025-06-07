@@ -50,14 +50,14 @@ Additionally, the theorem also claims that the normal subgroups of $$G/N$$ corre
 
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
-Let $$G = \mathbf{Z}$$ and $$N = \mathbf{Z}6$$ (multiples of 6). Therefore $$G/N = \mathbf{Z}/\mathbf{Z}6 = \mathbf{Z}_6$$. Here is a breakdown of the subgroups of $$\mathbf{Z}$$. Within all of these subgroups you'll see the $$\mathbf{Z}6$$. The subgroups in the red outline will correspond to the subgroups of $$\mathbf{Z}/\mathbf{Z}6 = \mathbf{Z}_6$$ on the left side.
+Let $$G = \mathbb{Z}$$ and $$N = \mathbb{Z}6$$ (multiples of 6). Therefore $$G/N = \mathbb{Z}/\mathbb{Z}6 = \mathbb{Z}_6$$. Here is a breakdown of the subgroups of $$\mathbb{Z}$$. Within all of these subgroups you'll see the $$\mathbb{Z}6$$. The subgroups in the red outline will correspond to the subgroups of $$\mathbb{Z}/\mathbb{Z}6 = \mathbb{Z}_6$$ on the left side.
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/abstract-algebra/lec17/2.png" width="90%" class="center"></p>
-Take another example. Suppose that $$N = \mathbf{Z}2$$. Recall the definition of $$\pi$$:
+Take another example. Suppose that $$N = \mathbb{Z}2$$. Recall the definition of $$\pi$$:
 <div>
 $$
 \begin{align*}
-\pi \ : \ \mathbf{Z} &\rightarrow (\mathbf{Z}/\mathbf{Z}2 = \mathbf{Z}_2) \\ 
-       \pi(x) &= x + \mathbf{Z}2.
+\pi \ : \ \mathbb{Z} &\rightarrow (\mathbb{Z}/\mathbb{Z}2 = \mathbb{Z}_2) \\ 
+       \pi(x) &= x + \mathbb{Z}2.
 \end{align*}
 $$
 </div>
@@ -65,21 +65,21 @@ For example $$x = 3$$ and $$x = 6$$. Then
 <div>
 $$
 \begin{align*}
-\pi(3) = 3 + \mathbf{Z}2 &= \{...,3 + -4, 3 + -2, 3 + 0, 3 + 2, 3 + 4,...\} \\
+\pi(3) = 3 + \mathbb{Z}2 &= \{...,3 + -4, 3 + -2, 3 + 0, 3 + 2, 3 + 4,...\} \\
                           &= \{..., -1, 1, 3, 5, 7...\} = [1]_2 \\
-\pi(6) = 6 + \mathbf{Z}2 &= \{...,6 + -4, 6 + -2, 6 + 0, 6 + 2, 6 + 4,...\}  \\
+\pi(6) = 6 + \mathbb{Z}2 &= \{...,6 + -4, 6 + -2, 6 + 0, 6 + 2, 6 + 4,...\}  \\
                           &= \{...,2, 4, 6, 8, 10...\} = [0]_2
 \end{align*}
 $$
 </div>
-In general, we will have exactly two cosets. Again $$\mathbf{Z}/\mathbf{Z}2$$ partitions $$\mathbf{Z}$$ into two cosets. The coset of the even numbers and the coset of the odd numbers.
+In general, we will have exactly two cosets. Again $$\mathbb{Z}/\mathbb{Z}2$$ partitions $$\mathbb{Z}$$ into two cosets. The coset of the even numbers and the coset of the odd numbers.
 <br>
 <br>
-Now, we want to take their pre-image. Here the possible subsets in $$\mathbf{Z}_2$$ are $$[0]_2$$ and $$[1]_2$$. BUT, the subgroups of $$\mathbf{Z}_2$$ are only $$\{[0]\}$$ and $$\mathbf{Z}_2$$. $$[1]$$ is NOT a subgroup. So $$B = \{\{[0]\}, \mathbf{Z}_2\}$$ in
+Now, we want to take their pre-image. Here the possible subsets in $$\mathbb{Z}_2$$ are $$[0]_2$$ and $$[1]_2$$. BUT, the subgroups of $$\mathbb{Z}_2$$ are only $$\{[0]\}$$ and $$\mathbb{Z}_2$$. $$[1]$$ is NOT a subgroup. So $$B = \{\{[0]\}, \mathbb{Z}_2\}$$ in
 <div>
 $$
 \begin{align*}
-\pi^{-1}(B) = \{g \in \mathbf{Z} \ | \ \pi(g) \in B\}
+\pi^{-1}(B) = \{g \in \mathbb{Z} \ | \ \pi(g) \in B\}
 \end{align*}
 $$
 </div>
@@ -87,15 +87,15 @@ Applying it on each subgroup, we see that
 <div>
 $$
 \begin{align*}
-\pi^{-1}(\{[0]\}) &= \{g \in \mathbf{Z} \ | \ \pi(g) \in \{[0]\}\} \\
+\pi^{-1}(\{[0]\}) &= \{g \in \mathbb{Z} \ | \ \pi(g) \in \{[0]\}\} \\
               &= \{-4, -2, 0, 2, 4,.... \} \\
-			  &= \mathbf{Z}2 \\
-\pi^{-1}(\mathbf{Z}_2)  &= \{g \in \mathbf{Z} \ | \ \pi(g) \in \mathbf{Z}_2\} \\
-              &= \mathbf{Z}
+			  &= \mathbb{Z}2 \\
+\pi^{-1}(\mathbb{Z}_2)  &= \{g \in \mathbb{Z} \ | \ \pi(g) \in \mathbb{Z}_2\} \\
+              &= \mathbb{Z}
 \end{align*}
 $$
 </div>
-So we see here that there is a bijective correspondance between $$\{[0]\}$$ which is a subgroup of $$\mathbf{Z}/\mathbf{Z}2 = \mathbf{Z}_2$$ and $$\mathbf{Z}2$$ which is a subgroup of $$\mathbf{Z}$$. 
+So we see here that there is a bijective correspondance between $$\{[0]\}$$ which is a subgroup of $$\mathbb{Z}/\mathbb{Z}2 = \mathbb{Z}_2$$ and $$\mathbb{Z}2$$ which is a subgroup of $$\mathbb{Z}$$. 
 <hr>
 
 <!----------------------------------------------------------------------------->

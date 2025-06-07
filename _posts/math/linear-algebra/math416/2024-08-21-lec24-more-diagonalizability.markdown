@@ -5,7 +5,7 @@ date:   2024-08-21 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-We saw in the previous lecture that $$A \in M_{n \times n}$$ is diagonalizable if there is a basis $$\beta = \{v_1, v_2,...,v_n\}$$ of $$\mathbf{R}^n$$ such that
+We saw in the previous lecture that $$A \in M_{n \times n}$$ is diagonalizable if there is a basis $$\beta = \{v_1, v_2,...,v_n\}$$ of $$\mathbb{R}^n$$ such that
 <div> 
 $$
 \begin{align*}
@@ -20,11 +20,11 @@ $$
 </div>
 Where each vector of this matrix is $$Av_j = \lambda_j v_j$$. $$v_j$$ is an eigenvector and $$\lambda_j$$ is called an eigenvalue.
 <br>
-Let the standard basis of $$\mathbf{R}^n$$ be $$\alpha$$, then we know that $$[L_A]_{\alpha}^{\alpha} = A$$. We also know that we can find a change of coordinates matrix such that
+Let the standard basis of $$\mathbb{R}^n$$ be $$\alpha$$, then we know that $$[L_A]_{\alpha}^{\alpha} = A$$. We also know that we can find a change of coordinates matrix such that
 <div> 
 $$
 \begin{align*}
-[L_A]_{\beta}^{\beta} &= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha}
+[L_A]_{\beta}^{\beta} &= [I_{\mathbb{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbb{R}^n}]_{\beta}^{\alpha}
 \\
 &= Q^{-1}AQ.
 \end{align*}
@@ -54,7 +54,7 @@ This is great and gives up the following plan to diagonalize $$A$$:
 <ol>
 	<li>Find all the eigenvalues of \(A\), \(\lambda_1,...,\lambda_k\).</li>
 	<li>Find a basis for \(E_{\lambda_j}\).</li>
-	<li>Determine if these bases combine to form a basis \(\beta\) for \(\mathbf{R}^n\)</li>
+	<li>Determine if these bases combine to form a basis \(\beta\) for \(\mathbb{R}^n\)</li>
 	<li>Compute \(Q, Q^{-1}\) etc.</li>
 </ol>
 <hr>
@@ -139,14 +139,14 @@ Following the above plan:
 	$$
 	\begin{align*}
 	N(A - 2I_3) &= \{(x_1, x_2, x_3) \ | \ x_1 = \frac{1}{2}x_3\} \\
-	        &= \{(\frac{1}{2}t_2, t_1, t_2) \ | \ t_1, t_2 \in \mathbf{R}\} \\
+	        &= \{(\frac{1}{2}t_2, t_1, t_2) \ | \ t_1, t_2 \in \mathbb{R}\} \\
 	        &= span\{(0,1,0), (\frac{1}{2},0,1)\}
 	\end{align*}	
 	$$
 	</div>
 </li>
 	<!-----------------3------------------>
-	<li>Next, we need to determine if \(\{(1,0,1),(0,1,0),(\frac{1}{2},0,1)\}\) is a basis for \(\mathbf{R}^3\). This means we want to know if they are linearly independent. We can do by seeing if 
+	<li>Next, we need to determine if \(\{(1,0,1),(0,1,0),(\frac{1}{2},0,1)\}\) is a basis for \(\mathbb{R}^3\). This means we want to know if they are linearly independent. We can do by seeing if 
 		<div>
 		$$
 		\begin{align*}
@@ -218,7 +218,7 @@ Therefore, we finally have
 <div>
 $$
 \begin{align*}
-B = [L_A]_{\beta}^{\beta} &= [I_{\mathbf{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbf{R}^n}]_{\beta}^{\alpha}
+B = [L_A]_{\beta}^{\beta} &= [I_{\mathbb{R}^n}]_{\alpha}^{\beta}[L_A]_{\alpha}^{\alpha}[I_{\mathbb{R}^n}]_{\beta}^{\alpha}
 \\
 &= Q^{-1}AQ \\
 &= 

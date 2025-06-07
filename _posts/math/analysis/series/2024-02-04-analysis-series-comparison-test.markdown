@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  [The Comparison Test for Series (2.7.4)] Assume \(a_n\) and \(b_n\) are sequences satisfying \(0 \leq a_n \leq b_n\) for all \(n \in \mathbf{N}\). 
+  [The Comparison Test for Series (2.7.4)] Assume \(a_n\) and \(b_n\) are sequences satisfying \(0 \leq a_n \leq b_n\) for all \(n \in \mathbb{N}\). 
 	  <ol type="i">
 	    <li>If \(\sum_{n=1}^{\infty} b_n\) converges, then \(\sum_{n=1}^{\infty} a_n\) converges.</li>
 	    <li>If \(\sum_{n=1}^{\infty} a_n\) diverges, then \(\sum_{n=1}^{\infty} b_n\) diverges.</li>
@@ -24,7 +24,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
-Let $$(a_n)$$ and $$(b_n)$$ be sequences such that $$0 \leq a_n \leq b_n$$ for all $$n \in \mathbf{N}$$. For (i), we are given that $$\sum_{n=1}^{\infty} b_n$$ converges. Therefore, by <a href="https://strncat.github.io/jekyll/update/2024/02/02/analysis-series-cauchy-criteria.html"> the Cauchy criterion for series</a>, we know that there exists a number $$N \in \mathbf{N}$$ such that
+Let $$(a_n)$$ and $$(b_n)$$ be sequences such that $$0 \leq a_n \leq b_n$$ for all $$n \in \mathbb{N}$$. For (i), we are given that $$\sum_{n=1}^{\infty} b_n$$ converges. Therefore, by <a href="https://strncat.github.io/jekyll/update/2024/02/02/analysis-series-cauchy-criteria.html"> the Cauchy criterion for series</a>, we know that there exists a number $$N \in \mathbb{N}$$ such that
 <div>
 $$
 \begin{align*}
@@ -32,7 +32,7 @@ $$
 \end{align*}
 $$
 </div>
-but $$b_n \geq 0$$ by assumption so we can drop the absolute value from the term. Moreover, we know that each term $$b_n$$ is greater than $$a_n$$ for all $$n \in \mathbf{N}$$ and so
+but $$b_n \geq 0$$ by assumption so we can drop the absolute value from the term. Moreover, we know that each term $$b_n$$ is greater than $$a_n$$ for all $$n \in \mathbb{N}$$ and so
 <div>
 $$
 \begin{align*}

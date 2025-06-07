@@ -30,11 +30,11 @@ Definition: Homomorphisms of Rings
 Let \(R\) and \(S\) be rings. A unital homomorphism is a ring homomorphism such that also \(\varphi(1_R) = 1_S\)
 </div>
 <h3>Example 1</h3>
-Let $$\pi: \mathbf{Z} \rightarrow \mathbf{Z}_n$$ where $$\pi(a) = [a]_n$$. Then $$\pi$$ is a unital homomorphism of rings.
+Let $$\pi: \mathbb{Z} \rightarrow \mathbb{Z}_n$$ where $$\pi(a) = [a]_n$$. Then $$\pi$$ is a unital homomorphism of rings.
 <br>
 <br>
 <h3>Example 2</h3>
-If $$R$$ is any ring with 1. Define $$\varphi \mathbf{Z} \rightarrow R$$ by $$\varphi(n) = n1_R$$. $$\varphi$$ is a unital ring homomorphism. For example
+If $$R$$ is any ring with 1. Define $$\varphi \mathbb{Z} \rightarrow R$$ by $$\varphi(n) = n1_R$$. $$\varphi$$ is a unital ring homomorphism. For example
 <div>
 $$
 \begin{align*}
@@ -71,11 +71,11 @@ For example, take the set of matrices such that
 $$
 \begin{align*}
 S = \big\{ \begin{pmatrix} a & -b \\ b & a \end{pmatrix} \big\} 
-\subseteq \text{Mat}_{2\times 2}(\mathbf{R})
+\subseteq \text{Mat}_{2\times 2}(\mathbb{R})
 \end{align*}
 $$
 </div>
-with $$a, b \in \mathbf{R}$$. $$S$$ is a subring. We have an isomorphism of rings between $$S$$ and the complex numbers as follows
+with $$a, b \in \mathbb{R}$$. $$S$$ is a subring. We have an isomorphism of rings between $$S$$ and the complex numbers as follows
 <div>
 $$
 \begin{align*}
@@ -155,27 +155,27 @@ $$
 </div>
 Warning: We can have $$f \neq g$$ but $$func_f = func_g$$!.
 <br>
-Example 1: Let $$R = \mathbf{Z}_p$$ where $$p$$ is prime. Then
+Example 1: Let $$R = \mathbb{Z}_p$$ where $$p$$ is prime. Then
 <div>
 $$
 \begin{align*}
-f &= x \in \mathbf{Z}_p[x] \implies func_f = id: \mathbf{Z}_p \rightarrow \mathbf{Z}_p \\
-g &= x^p \in \mathbf{R}_p[x] \implies func_g(c) = c^p: \mathbf{Z}_p \rightarrow \mathbf{Z}_p 
+f &= x \in \mathbb{Z}_p[x] \implies func_f = id: \mathbb{Z}_p \rightarrow \mathbb{Z}_p \\
+g &= x^p \in \mathbb{R}_p[x] \implies func_g(c) = c^p: \mathbb{Z}_p \rightarrow \mathbb{Z}_p 
 \end{align*}
 $$
 </div>
-These are two different polynomials but they are the same function because due to Fermat's little theorem. $$c^p \equiv c (\bmod p)$$ so $$c^p = c$$ in $$\mathbf{Z}_p$$.
+These are two different polynomials but they are the same function because due to Fermat's little theorem. $$c^p \equiv c (\bmod p)$$ so $$c^p = c$$ in $$\mathbb{Z}_p$$.
 <br>
 <br>
-Example 2: Let $$h = g-f \in \mathbf{Z}_p$$ so $$h = x^p - x$$ and $$func_h = 0$$ for any $$x \in \mathbf{Z}_p$$. So any element in $$\mathbf{Z}_p$$ is a root of $$h(x)$$ and $$h(x)$$ has at least $$p$$ roots in $$\mathbf{Z}_p$$. In otherwords, we have a polynomial where any element we input, we get zero and so we can't distinguish it as a function from the zero function. 
+Example 2: Let $$h = g-f \in \mathbb{Z}_p$$ so $$h = x^p - x$$ and $$func_h = 0$$ for any $$x \in \mathbb{Z}_p$$. So any element in $$\mathbb{Z}_p$$ is a root of $$h(x)$$ and $$h(x)$$ has at least $$p$$ roots in $$\mathbb{Z}_p$$. In otherwords, we have a polynomial where any element we input, we get zero and so we can't distinguish it as a function from the zero function. 
 <ul>
 <li>So as a polynomial, $$h(x) = x - x^p$$ is not the zero polynomial. Its coefficients are not all zero. </li>
-<li>But as a function, it is the zero function. It evalutes to zero for any input in \(\mathbf{Z}_p\)</li>
+<li>But as a function, it is the zero function. It evalutes to zero for any input in \(\mathbb{Z}_p\)</li>
 </ul>
-This happens because we're in $$\mathbf{Z}_p$$. If we're in an inifinite field, then when $$f \neq g$$, we will always get $$func_g \neq func_f$$. Also in general, polynomials give us functions but they are not exactly functions!
+This happens because we're in $$\mathbb{Z}_p$$. If we're in an inifinite field, then when $$f \neq g$$, we will always get $$func_g \neq func_f$$. Also in general, polynomials give us functions but they are not exactly functions!
 <br>
 <br>
-Side study note: A polynomial belongs to the ring $$R[x]$$. A function is a mapping from $$R$$ to $$R$$. It assigns to each input $$r$$ in $$R$$, another value $$f(r)$$ in $$R$$. The function lives in the set of functions from $$R$$ to $$R$$. If $$R$$ is finite, two different polynomials in $$R[x]$$ may define the same function! So $$x^2$$ and $$x$$, will define the same function from $$\mathbf{Z}_2 \rightarrow \mathbf{Z}_2$$. If $$R$$ was an infinite field, then each distinct polynmoial will give a distinct function.
+Side study note: A polynomial belongs to the ring $$R[x]$$. A function is a mapping from $$R$$ to $$R$$. It assigns to each input $$r$$ in $$R$$, another value $$f(r)$$ in $$R$$. The function lives in the set of functions from $$R$$ to $$R$$. If $$R$$ is finite, two different polynomials in $$R[x]$$ may define the same function! So $$x^2$$ and $$x$$, will define the same function from $$\mathbb{Z}_2 \rightarrow \mathbb{Z}_2$$. If $$R$$ was an infinite field, then each distinct polynmoial will give a distinct function.
 <hr>
 
 <!------------------------------------------------------------------------->
@@ -214,7 +214,7 @@ Example: If $$K$$ is a field, then we have exactly two ideals $$K$$ and $$\{0\}$
 Example: If $$K$$ is a field and $$n \geq 1$$, then $$S = \text{Mat}_{n \times n}(K)$$ has two ideals: $$\{0\}$$ and $$S$$ (not trivial but not hard to prove).
 <br>
 <br>
-Example: If $$R = \mathbf{Z}$$, the ideals in $$\mathbf{Z}$$ all have form $$\{\mathbf{Z}_n = \{an \ | \ a \in \mathbf{Z}\}$$. 
+Example: If $$R = \mathbb{Z}$$, the ideals in $$\mathbb{Z}$$ all have form $$\{\mathbb{Z}_n = \{an \ | \ a \in \mathbb{Z}\}$$. 
 <br>
 <br>
 <!----------------------------------------------------------------------------->

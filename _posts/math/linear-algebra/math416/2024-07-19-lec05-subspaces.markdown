@@ -7,11 +7,11 @@ mathjax: true
 ---
 
 	
-Consider $$\mathbf{R}^2 = \{(x,y) | x,y \in \mathbf{R}\}$$ with component wise addition and component wise scalar multiplication defined in the previous lecture. This is a vector space. Now, consider a line $$L_m$$ through the origin. 
+Consider $$\mathbb{R}^2 = \{(x,y) | x,y \in \mathbb{R}\}$$ with component wise addition and component wise scalar multiplication defined in the previous lecture. This is a vector space. Now, consider a line $$L_m$$ through the origin. 
 <div>
 $$
 \begin{align*}
-L_m &= \{(x,y) | y = mx\} = \{(x, mx) | x \in \mathbf{R}\}.
+L_m &= \{(x,y) | y = mx\} = \{(x, mx) | x \in \mathbb{R}\}.
 \end{align*}
 $$
 </div>
@@ -24,7 +24,7 @@ $$
 \end{align*}
 $$
 </div>
-Similarly, scalar multiplication also preserves $$L_m$$. So $$L_m$$ seems to inherit the same structure of a vector space from $$\mathbf{R}^2$$. Let's introduce the following definition
+Similarly, scalar multiplication also preserves $$L_m$$. So $$L_m$$ seems to inherit the same structure of a vector space from $$\mathbb{R}^2$$. Let's introduce the following definition
 <div class="bdiv">
   Definition
 </div>
@@ -33,17 +33,17 @@ Similarly, scalar multiplication also preserves $$L_m$$. So $$L_m$$ seems to inh
   <ol style="list-style-type:lower-alpha">
       <li>\(\bar{0} \in W\).</li>
 	  <li>For any \(w_1, w_2 \in W\). \(w_1 + w_2 \in W\). (\(W\) is closed under addition)</li>
-      <li>For any \(c \in \mathbf{R}\) and \(w \in W\), \(cw \in W\). (\(W\) is closed under scalar multiplication).</li>
+      <li>For any \(c \in \mathbb{R}\) and \(w \in W\), \(cw \in W\). (\(W\) is closed under scalar multiplication).</li>
 </ol>
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1: \([0, 1]\)</h3>
-Let $$W = [0, 1] \subset \mathbf{R}$$. It is not closed under addition. For example, for $$w_1 = 1$$ and $$w_2 = 1$$, $$w_1 + w_2 \notin \mathbf{R}$$. It is not closed under scalar multiplication either. $$\bar{0} \in [0,1]$$. 
+Let $$W = [0, 1] \subset \mathbb{R}$$. It is not closed under addition. For example, for $$w_1 = 1$$ and $$w_2 = 1$$, $$w_1 + w_2 \notin \mathbb{R}$$. It is not closed under scalar multiplication either. $$\bar{0} \in [0,1]$$. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h3>Example 2: \(\mathbf{Z}\)</h3>
-$$\bar{0} \in \mathbf{Z}$$. It is closed under addition. But it is not closed under scalar multiplication because we defined scalar multiplication as $$\{c(x, y) = (cx, cy) | c \in \mathbf{R}\}$$. (Remember that the vector spaces we're defining are over $$\mathbf{R}$$).
+<h3>Example 2: \(\mathbb{Z}\)</h3>
+$$\bar{0} \in \mathbb{Z}$$. It is closed under addition. But it is not closed under scalar multiplication because we defined scalar multiplication as $$\{c(x, y) = (cx, cy) | c \in \mathbb{R}\}$$. (Remember that the vector spaces we're defining are over $$\mathbb{R}$$).
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -64,10 +64,10 @@ Therefore $$W$$ is a vector space as we wanted to show. $$\blacksquare$$
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 3</h3>
-Show that $$W = \{(t_1 + t_2, t_1 - t_2, t_1) | t_1, t_2 \in \mathbf{R}\}$$ is a vector space.
+Show that $$W = \{(t_1 + t_2, t_1 - t_2, t_1) | t_1, t_2 \in \mathbb{R}\}$$ is a vector space.
 <br>
 <br>
-Proof: $$W$$ is a subset of $$\mathbf{R}^3$$ so by the previous theorem, it suffices to show that $$W$$ is a subspace of $$\mathbf{R}^3$$. For condition one, set $$t_1$$ and $$t_2$$ to 0 to get $$\bar{0} = (0,0,0) \in W$$. For any $$w \in W$$, we see that $$w + \bar{0} = w + (0,0,0) = w$$ as required. For condition 2, let $$w_1, w_2 \in W$$. 
+Proof: $$W$$ is a subset of $$\mathbb{R}^3$$ so by the previous theorem, it suffices to show that $$W$$ is a subspace of $$\mathbb{R}^3$$. For condition one, set $$t_1$$ and $$t_2$$ to 0 to get $$\bar{0} = (0,0,0) \in W$$. For any $$w \in W$$, we see that $$w + \bar{0} = w + (0,0,0) = w$$ as required. For condition 2, let $$w_1, w_2 \in W$$. 
 <div>
 $$
 \begin{align*}
@@ -77,7 +77,7 @@ w_1 + w_2 &= (t_1 + t_2, t_1 - t_2, t_1) + (s_1 + s_2, s_1 - s_2, s_1) \\
 \end{align*}
 $$
 </div>
-Therefore, $$w_1 + w_2 \in W$$. For condition 3, let $$w \in W$$ and $$c \in \mathbf{R}$$,
+Therefore, $$w_1 + w_2 \in W$$. For condition 3, let $$w \in W$$ and $$c \in \mathbb{R}$$,
 <div>
 $$
 \begin{align*}
@@ -91,7 +91,7 @@ This is also clearly in $$W$$, Therefore, we can conclude that $$W$$ is a vector
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Are Solution Sets Vector Spaces?</h3>
-From the previous example, $$W$$ has the form of a solution set of a linear system so does this mean that every solution set is a vector space? The answer is no. Consider $$W' = \{t_1 + t_2, t_1 - t_2, t_1 + 1\}$$. $$W'$$ is not a subspace of $$\mathbf{R}^3$$. We don't have a zero vector $$\bar{0}$$ in $$W$$. To show that, we need to prove that there isn't a solution for the system $$\{t_1 + t_2, t_1 - t_2, t_1 + 1\}$$ where $$t_1+t_2 = 0$$, $$t_1 - t_2 = 0$$ and $$t_1 + 1 = 0$$.
+From the previous example, $$W$$ has the form of a solution set of a linear system so does this mean that every solution set is a vector space? The answer is no. Consider $$W' = \{t_1 + t_2, t_1 - t_2, t_1 + 1\}$$. $$W'$$ is not a subspace of $$\mathbb{R}^3$$. We don't have a zero vector $$\bar{0}$$ in $$W$$. To show that, we need to prove that there isn't a solution for the system $$\{t_1 + t_2, t_1 - t_2, t_1 + 1\}$$ where $$t_1+t_2 = 0$$, $$t_1 - t_2 = 0$$ and $$t_1 + 1 = 0$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -105,7 +105,7 @@ $$
 \end{align*}
 $$
 </div>
-The result is in $$P_k$$ which means that $$P_k$$ is closed under addition. For condition 3, take a polynomial in $$P_k$$ and a scalar $$c \in \mathbf{R}$$, then
+The result is in $$P_k$$ which means that $$P_k$$ is closed under addition. For condition 3, take a polynomial in $$P_k$$ and a scalar $$c \in \mathbb{R}$$, then
 <div>
 $$
 \begin{align*}
@@ -118,7 +118,7 @@ This is also in $$P_k$$ which means that $$P_k$$ is closed under scalar multipli
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 4: Continuous Functions</h3>
-The claim is that $$C^0(\mathbf{R})$$ is a subspace of $$F(\mathbf{R})$$. For the zero vector, $$\bar{0}(x) = 0$$ is a continuous function so it belongs to $$C^0(\mathbf{R})$$. For condition 2, if $$f$$ and $$g$$ are continuous then we know that $$f+g$$ is also continuous (from calculus, needs to be proved). For condition 3, a scalar multiplied by $$f$$ is also continuous. 
+The claim is that $$C^0(\mathbb{R})$$ is a subspace of $$F(\mathbb{R})$$. For the zero vector, $$\bar{0}(x) = 0$$ is a continuous function so it belongs to $$C^0(\mathbb{R})$$. For condition 2, if $$f$$ and $$g$$ are continuous then we know that $$f+g$$ is also continuous (from calculus, needs to be proved). For condition 3, a scalar multiplied by $$f$$ is also continuous. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -167,7 +167,7 @@ $$
 </div>
 Since both matrices are symmetric. But this implies that \(A+B = (A+B)^t\).
 </li>
-<li>For any \(c \in \mathbf{R}\) and \(s_1 \in S\), \(cS\) is a symmetric matrix and therefore it is in \(S\). So (\(S\) is closed under scalar multiplication).</li>
+<li>For any \(c \in \mathbb{R}\) and \(s_1 \in S\), \(cS\) is a symmetric matrix and therefore it is in \(S\). So (\(S\) is closed under scalar multiplication).</li>
 </ol>
 <br>
 <br>

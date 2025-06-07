@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbf{N}\), then \(x_n \rightarrow 0\).</b>
+  <b>Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbb{N}\), then \(x_n \rightarrow 0\).</b>
 </div>
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>, for subsequences see <a href="https://strncat.github.io/jekyll/update/2024/02/10/analysis-seq-subsequences.html">this</a>.
 <br>
@@ -39,7 +39,7 @@ and this is exactly what we wanted to prove. we're done!
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
-To show that $$\lim(x_n) = 0$$, let $$\epsilon > 0$$ be arbitrary. We want to prove that there exists some $$N \in \mathbf{N}$$ such that when $$n \geq N$$, we'll have
+To show that $$\lim(x_n) = 0$$, let $$\epsilon > 0$$ be arbitrary. We want to prove that there exists some $$N \in \mathbb{N}$$ such that when $$n \geq N$$, we'll have
 <div>
 $$
 \begin{align*}
@@ -72,7 +72,7 @@ $$
 \end{align*}
 $$
 </div>
-Starting with $$x_n$$. We know that $$x_n \leq |x_n|$$ for any $$n \in \mathbf{N}$$. Similarly $$x_n \geq -|x_n|$$ (for the full proof see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">this</a>. So now we have
+Starting with $$x_n$$. We know that $$x_n \leq |x_n|$$ for any $$n \in \mathbb{N}$$. Similarly $$x_n \geq -|x_n|$$ (for the full proof see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">this</a>. So now we have
 <div>
 $$
 \begin{align*}

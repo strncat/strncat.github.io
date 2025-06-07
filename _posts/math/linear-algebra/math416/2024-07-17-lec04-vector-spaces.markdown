@@ -9,7 +9,7 @@ mathjax: true
   Definition
 </div>
 <div class="bbdiv">
-  A <i>vector space</i> is a set \(V\) with two operations: addition: \(V \times V \rightarrow V\), and a scalar multiplication: \(\mathbf{R} \times V \rightarrow V\), such that the following properties hold:
+  A <i>vector space</i> is a set \(V\) with two operations: addition: \(V \times V \rightarrow V\), and a scalar multiplication: \(\mathbb{R} \times V \rightarrow V\), such that the following properties hold:
   <ol>
       <li>\(u + v = v + u\) for all \(u,v \in V\).</li>
 	  <li> \((u + v) + w = u + (v + w)\) for all \(u, v, w \in V\).</li>
@@ -25,8 +25,8 @@ For property (4), we don't call it $$-v$$ yet because we didn't prove yet if it'
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
-<h3>Example 1: \(\mathbf{R}\)</h3>
-$$\mathbf{R}$$ is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties are true.
+<h3>Example 1: \(\mathbb{R}\)</h3>
+$$\mathbb{R}$$ is a vector space equipped with the usual addition and scalar multiplication. The number 0 is the zero vector. We can additionally verify that all the 8 properties are true.
 <hr>
 
 <!------------------------------------------------------------------------------------>
@@ -74,17 +74,17 @@ is a vector space.
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 3: Sets of Functions</h3>
-let $$S$$ be a nonempty set. For example $$S = \mathbf{R}$$, or $$S = \{\pi, \pi^2\}$$, $$S = \{$$atoms in the universe$$\}$$. Basically any non-empty set. 
-Now consider $$F(S) = \{f: S \rightarrow \mathbf{R}\}$$, the set of all functions or mappings from $$S$$ to $$\mathbf{R}$$. One way to think of this is the all the ways we can label the elements in the set $$S$$ with real numbers.
+let $$S$$ be a nonempty set. For example $$S = \mathbb{R}$$, or $$S = \{\pi, \pi^2\}$$, $$S = \{$$atoms in the universe$$\}$$. Basically any non-empty set. 
+Now consider $$F(S) = \{f: S \rightarrow \mathbb{R}\}$$, the set of all functions or mappings from $$S$$ to $$\mathbb{R}$$. One way to think of this is the all the ways we can label the elements in the set $$S$$ with real numbers.
 <br><br>
 Define addition as $$(f+g)(s) = f(s) + g(s)$$ for all $$s \in S$$. So addition of functions works as addition of their values and produces a real number which is what we want. Define scalar multiplication as $$cf(s) =c(f(s))$$ for all $$s \in S$$. 
 <br><br>
-$$F(S)$$ is a vector space. It satisfies all 8 conditions. For example. The zero vector in this space is $$\bar{0}(s) = 0$$ for all $$s \in S$$. Note also that $$C^1(\mathbf{R})$$ (the functions where with continues derivatives) is a subset of $$C^0(\mathbf{R})$$ (the set of continuous functions) which is a subset of $$F(S)$$.
+$$F(S)$$ is a vector space. It satisfies all 8 conditions. For example. The zero vector in this space is $$\bar{0}(s) = 0$$ for all $$s \in S$$. Note also that $$C^1(\mathbb{R})$$ (the functions where with continues derivatives) is a subset of $$C^0(\mathbb{R})$$ (the set of continuous functions) which is a subset of $$F(S)$$.
 <hr>
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 4: The Set of all Sequences</h3>
-Consider the set of all natural numbers $$\mathbf{N}$$ and the set of functions $$F(\mathbf{N}) = \{\sigma: \mathbf{N} \rightarrow \mathbf{R}$$. $$\sigma$$ is a function that takes a natural number and assigns it a real number. But
+Consider the set of all natural numbers $$\mathbb{N}$$ and the set of functions $$F(\mathbb{N}) = \{\sigma: \mathbb{N} \rightarrow \mathbb{R}$$. $$\sigma$$ is a function that takes a natural number and assigns it a real number. But
 <div>
 $$
 \begin{align*}
@@ -229,7 +229,7 @@ Two additional implications mentioned in the class is that $$w = (-1)v$$ and $$0
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 6: A Non Example</h3>
-Consider the set $$\mathbf{R}^2$$ equipped with a different set of operations. Let's define addition as
+Consider the set $$\mathbb{R}^2$$ equipped with a different set of operations. Let's define addition as
 <div>
 $$
 \begin{align*}
@@ -264,7 +264,7 @@ $$
 \end{align*}
 $$
 </div>
-The claim is that property 4 can't be true. Let $$v = (0,0)$$. There is no $$(a_1, a_2) \in \mathbf{R}^2$$ such that 
+The claim is that property 4 can't be true. Let $$v = (0,0)$$. There is no $$(a_1, a_2) \in \mathbb{R}^2$$ such that 
 $$v + (a_1, a_2) = \bar{0}$$. To see this, 
 <div>
 $$

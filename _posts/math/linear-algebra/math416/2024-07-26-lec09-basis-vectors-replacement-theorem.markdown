@@ -39,7 +39,7 @@ Proof: Let $$u \in V$$. Let $$\beta \subset V$$ be a basis for $$V$$. We can exp
 	\end{align*}
 	$$
 </div>
-for $$u_1, ..., u_k \in \beta$$ and $$a_1, ....,a_k \in \mathbf{R}$$. We claim that this is the only way to express $$u$$ in terms of the elements in $$\beta$$. To see why, suppose for the sake of contradiction that it is not the only way. This means that we can also express $$u$$ as
+for $$u_1, ..., u_k \in \beta$$ and $$a_1, ....,a_k \in \mathbb{R}$$. We claim that this is the only way to express $$u$$ in terms of the elements in $$\beta$$. To see why, suppose for the sake of contradiction that it is not the only way. This means that we can also express $$u$$ as
 <div>
  	$$
  	\begin{align*}
@@ -70,7 +70,7 @@ This is exactly the first representation of $$u$$ which is a contradiction and s
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
-In $$\mathbf{R}^n$$, let
+In $$\mathbb{R}^n$$, let
 <div>
 	$$
 	\begin{align*}
@@ -78,7 +78,7 @@ In $$\mathbf{R}^n$$, let
 	\end{align*}
 	$$
 </div>
-$$\beta = \{e_1,e_2,...,e_n\}$$ is the standard basis of $$\mathbf{R}^n$$.
+$$\beta = \{e_1,e_2,...,e_n\}$$ is the standard basis of $$\mathbb{R}^n$$.
 <hr>
 
 <!------------------------------------------------------------------------------------>
@@ -106,7 +106,7 @@ The vector space of all polynomials ($$P$$). The standard basis is $$\beta = \{1
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 5</h3>
-$$\mathcal{F}(\mathbf{R})$$ has a basis ... hard to describe but it exists!
+$$\mathcal{F}(\mathbb{R})$$ has a basis ... hard to describe but it exists!
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -263,7 +263,7 @@ Definition
 <!------------------------------------------------------------------------------------>
 <h3>Examples</h3>
 <ul>
-<li>\(\dim(\mathbf{R}^n) = n\) </li>
+<li>\(\dim(\mathbb{R}^n) = n\) </li>
 <li> \(\dim(M_{m \times n}) = mn\) </li>
 One basis for this space is \(\{E^{ij} \in M_{m \times n} \ | \ a_{ij} = 1, \text{ all other elements are 0}\}\). So We'll have \(mn\) matrices where each matrix will have a 1 in the \((i,j)\) position.<br><br>
 

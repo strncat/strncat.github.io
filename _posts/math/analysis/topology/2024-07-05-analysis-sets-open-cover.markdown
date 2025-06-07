@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (Definition 3.3.6) Let \(A \subseteq \mathbf{R}\). An <b>open cover</b> for \(A\) is a (possibly infinite) collection of open sets \(\{O_{\lambda}: \lambda \in \Lambda\}\) whose union contains the set \(A\); that is, \(A \subseteq_{\lambda \in \Lambda} O_{\lambda}\). Given an open cover for \(A\), a <b>finite subcover</b> is a finite sub collection of open sets from the original open cover whose union still manages to completely contain \(A\).
+  (Definition 3.3.6) Let \(A \subseteq \mathbb{R}\). An <b>open cover</b> for \(A\) is a (possibly infinite) collection of open sets \(\{O_{\lambda}: \lambda \in \Lambda\}\) whose union contains the set \(A\); that is, \(A \subseteq_{\lambda \in \Lambda} O_{\lambda}\). Given an open cover for \(A\), a <b>finite subcover</b> is a finite sub collection of open sets from the original open cover whose union still manages to completely contain \(A\).
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>

@@ -9,7 +9,7 @@ mathjax: true
 Definition
 </div>
 <div class="mintbodydiv">
-The Dihedral group is the group of rotational symmetries of a regular n-gon in \(\mathbf{R}^3\). It is a subgroup of the special orthogonal matrices, \(SO(3)\).
+The Dihedral group is the group of rotational symmetries of a regular n-gon in \(\mathbb{R}^3\). It is a subgroup of the special orthogonal matrices, \(SO(3)\).
 </div>
 Before discussing the Dihedral group, we will discuss the symmetries of the disk. Why? if you inscribe a regular polygon inside a circle, observe that the symmetries of the polygon are a subset of the symmetries of the circle/disk. So it's helpful to start there.
 <br>
@@ -35,7 +35,7 @@ The rotation vector can written as
 	\end{align*}
 	$$
 </div>
-This vector spans a line $$l_{\theta} = \mathbf{R}u_{\theta}$$. This line is in the $$xy$$ plane that goes through the vector $$u$$. Note here that adding another rotation of $$\pi$$ will not change the line so $$j_{\theta + \pi n} = j_{\theta}$$. However, the vector $$u_{\theta}$$ though will face the other direction after adding $$\pi$$ and so $$u_{\theta+\pi} = -u_{\theta}$$. Moreover, $$j^2_{\theta} = e$$.
+This vector spans a line $$l_{\theta} = \mathbb{R}u_{\theta}$$. This line is in the $$xy$$ plane that goes through the vector $$u$$. Note here that adding another rotation of $$\pi$$ will not change the line so $$j_{\theta + \pi n} = j_{\theta}$$. However, the vector $$u_{\theta}$$ though will face the other direction after adding $$\pi$$ and so $$u_{\theta+\pi} = -u_{\theta}$$. Moreover, $$j^2_{\theta} = e$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------>

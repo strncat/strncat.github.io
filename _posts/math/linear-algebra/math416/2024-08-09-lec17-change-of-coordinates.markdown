@@ -150,7 +150,7 @@ Definition
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
-Let $$A =  \begin{pmatrix} 6 & 2 \\2 & 6 \end{pmatrix} $$ and consider the map $$L_A: \mathbf{R}^2 \rightarrow \mathbf{R}^2$$. Suppose we want to compute $$L_A^k = L_A \circ L_A \circ ... \circ L_A$$ ($$k$$ times)? If we try this the naive way
+Let $$A =  \begin{pmatrix} 6 & 2 \\2 & 6 \end{pmatrix} $$ and consider the map $$L_A: \mathbb{R}^2 \rightarrow \mathbb{R}^2$$. Suppose we want to compute $$L_A^k = L_A \circ L_A \circ ... \circ L_A$$ ($$k$$ times)? If we try this the naive way
 <div>
 $$
 \begin{align*}
@@ -173,7 +173,7 @@ L_A(v_2) &= Av_2 \begin{pmatrix} 6 & 2 \\2 & 6 \end{pmatrix} \begin{pmatrix} 1 \
 \end{align*}
 $$
 </div>
-Notice that $$\beta' = \{v_1, v_2\}$$ is a basis for $$\mathbf{R}^2$$. To find $$[L_A]_{\beta'}^{\beta'} = [L_A]_{\beta'}$$, we need to apply $$L_A$$ on the basis vectors of $$\beta'$$ and then write them with respect to $$\beta'$$. 
+Notice that $$\beta' = \{v_1, v_2\}$$ is a basis for $$\mathbb{R}^2$$. To find $$[L_A]_{\beta'}^{\beta'} = [L_A]_{\beta'}$$, we need to apply $$L_A$$ on the basis vectors of $$\beta'$$ and then write them with respect to $$\beta'$$. 
 <div>
 $$
 \begin{align*}
@@ -197,10 +197,10 @@ The trick here was to find $$v_1$$ and $$v_2$$ which isn't yet obvious yet but w
 
 <!------------------------------------------------------------------------------------>
 <h3>Example: Matrix Representation of Orthogonal Projection</h3>
-Let $$W = Span\{(1,-1,0), (0,1,-1)\}$$. $$W$$ is a subspace of $$\mathbf{R}^3$$ (It is a plane in $$\mathbf{R}^3$$). 
+Let $$W = Span\{(1,-1,0), (0,1,-1)\}$$. $$W$$ is a subspace of $$\mathbb{R}^3$$ (It is a plane in $$\mathbb{R}^3$$). 
 <br>
 <br>
-Let $$T: \mathbf{R}^3 \rightarrow \mathbf{R}^3$$ be the orthogonal projection onto $$W$$. Because we're projecting onto $$W$$ and both $$w_1$$ and $$w_2$$ are part of this plane, then we know that $$T(w_1) = w_1$$ and $$T(w_2) = w_2$$. 
+Let $$T: \mathbb{R}^3 \rightarrow \mathbb{R}^3$$ be the orthogonal projection onto $$W$$. Because we're projecting onto $$W$$ and both $$w_1$$ and $$w_2$$ are part of this plane, then we know that $$T(w_1) = w_1$$ and $$T(w_2) = w_2$$. 
 <br>
 <br>
 What we want is to find a matrix expression for this project $$[T]_{\beta}^{\beta}$$ where $$\beta$$ is the standard basis so $$\beta = \{(1,0,0),(0,1,0),(0,0,1)\}$$.
@@ -225,11 +225,11 @@ But this is $$T$$ with respect to $$\beta'$$ and we want $$T$$ with respect to $
 <div>
 $$
 \begin{align*}
-[T]_{\beta}^{\beta} &= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} [I_{\mathbf{R}^3}]_{\beta}^{\beta'}
+[T]_{\beta}^{\beta} &= [I_{\mathbb{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} [I_{\mathbb{R}^3}]_{\beta}^{\beta'}
 \end{align*}
 $$
 </div>
-So now we need to compute $$[I_{\mathbf{R}^3}]_{\beta'}^{\beta}$$. This means for each vector in $$\beta'$$, we will apply the identity map which does nothing and then we want to write the vector in terms of the standard basis.
+So now we need to compute $$[I_{\mathbb{R}^3}]_{\beta'}^{\beta}$$. This means for each vector in $$\beta'$$, we will apply the identity map which does nothing and then we want to write the vector in terms of the standard basis.
 <div>
 $$
 \begin{align*}
@@ -243,15 +243,15 @@ $$
 <div>
 $$
 \begin{align*}
-[I_{\mathbf{R}^3}]_{\beta'}^{\beta} = \begin{pmatrix} 1 & 0 & 1 \\ -1 & 1 & 1 \\ 0 & -1 & 1 \end{pmatrix}
+[I_{\mathbb{R}^3}]_{\beta'}^{\beta} = \begin{pmatrix} 1 & 0 & 1 \\ -1 & 1 & 1 \\ 0 & -1 & 1 \end{pmatrix}
 \end{align*}
 $$
 </div>
-But $$[I_{\mathbf{R}^3}]_{\beta}^{\beta'}$$ is a little tricker since we want to write the vectors in $$\beta$$ (the standard basis) as linear combinations of the basis $$\beta'$$ which we could do. Instead it is easier to just compute the inverse in this case
+But $$[I_{\mathbb{R}^3}]_{\beta}^{\beta'}$$ is a little tricker since we want to write the vectors in $$\beta$$ (the standard basis) as linear combinations of the basis $$\beta'$$ which we could do. Instead it is easier to just compute the inverse in this case
 <div>
 $$
 \begin{align*}
-[I_{\mathbf{R}^3}]_{\beta}^{\beta'} = ([I_{\mathbf{R}^3}]_{\beta'}^{\beta})^{-1} = \frac{1}{3}\begin{pmatrix} 2 & -1 & -1 \\ 1 & 1 & 2 \\ 1 & 1 & 1 \end{pmatrix}
+[I_{\mathbb{R}^3}]_{\beta}^{\beta'} = ([I_{\mathbb{R}^3}]_{\beta'}^{\beta})^{-1} = \frac{1}{3}\begin{pmatrix} 2 & -1 & -1 \\ 1 & 1 & 2 \\ 1 & 1 & 1 \end{pmatrix}
 \end{align*}
 $$
 </div>
@@ -259,8 +259,8 @@ Therefore,
 <div>
 $$
 \begin{align*}
-[T]_{\beta}^{\beta} &= [I_{\mathbf{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} 
- [I_{\mathbf{R}^3}]_{\beta}^{\beta'} \\
+[T]_{\beta}^{\beta} &= [I_{\mathbb{R}^3}]_{\beta'}^{\beta} [T]_{\beta'}^{\beta'} 
+ [I_{\mathbb{R}^3}]_{\beta}^{\beta'} \\
   &= 
   \frac{1}{3} \begin{pmatrix} 1 & 0 & 1 \\ -1 & 1 & 1 \\ 0 & -1 & 1 \end{pmatrix} 
   \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}

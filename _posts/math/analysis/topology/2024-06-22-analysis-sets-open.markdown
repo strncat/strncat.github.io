@@ -7,10 +7,10 @@ mathjax: true
 ---
 <h3>\(\epsilon\)-neighborhood of \(a\)</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Given \(a \in \mathbf{R}\) and \(\epsilon > 0\), the \(\epsilon\)-neighborhood of \(a\) is the set
+  Given \(a \in \mathbb{R}\) and \(\epsilon > 0\), the \(\epsilon\)-neighborhood of \(a\) is the set
   $$
   \begin{equation*}
-  V_{\epsilon}(a) = \{x \in \mathbf{R}: |x - a| < \epsilon\}.
+  V_{\epsilon}(a) = \{x \in \mathbb{R}: |x - a| < \epsilon\}.
   \end{equation*}
   $$
   In other words, \(V_{\epsilon}(a)\) is the open interval \((a - \epsilon, a + \epsilon)\), centered at \(a\) with radius \(\epsilon\).
@@ -19,10 +19,10 @@ mathjax: true
 <h3>Open Sets</h3>
 Based on the previous defintion, we can now define what it means for a set to be open
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (3.2.1) A set \(O \in \mathbf{R}\) is open if for all points \(a \in O\), there exists an \(\epsilon\)-neighborhood \(V_{\epsilon}(a) \subseteq O\).
+  (3.2.1) A set \(O \in \mathbb{R}\) is open if for all points \(a \in O\), there exists an \(\epsilon\)-neighborhood \(V_{\epsilon}(a) \subseteq O\).
 </div>
 <!--<p style="text-align:center;"><img src="{{ site.url }}/assets/math/real-analysis/cantor-set-1.png" width="80%" class="center"></p>-->
-What does this mean? Consider the set $$(c,d)=\{x \in \mathbf{R}, c < x < d\}$$. $$(c,d)$$ is an open set. To see why, let $$x \in (c,d)$$ be arbitrary. Set $$\epsilon = \min\{x - c, d - x\}$$, then from this we see that $$V_{\epsilon}(a) \subseteq (c,d)$$. For example if you take $$(1,2)$$ and pick $$x$$ to be 1.7, we will then set $$\epsilon$$ to be 0.3 which is what we need since $$1.7\pm \epsilon$$ will always be 
+What does this mean? Consider the set $$(c,d)=\{x \in \mathbb{R}, c < x < d\}$$. $$(c,d)$$ is an open set. To see why, let $$x \in (c,d)$$ be arbitrary. Set $$\epsilon = \min\{x - c, d - x\}$$, then from this we see that $$V_{\epsilon}(a) \subseteq (c,d)$$. For example if you take $$(1,2)$$ and pick $$x$$ to be 1.7, we will then set $$\epsilon$$ to be 0.3 which is what we need since $$1.7\pm \epsilon$$ will always be 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

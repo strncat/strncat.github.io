@@ -5,11 +5,11 @@ date:   2024-08-25 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Let $$V$$ be. vector space over $$\mathbf{F} = \mathbf{R}$$ or $$\mathbf{C}$$. 
+Let $$V$$ be. vector space over $$\mathbf{F} = \mathbb{R}$$ or $$\mathbf{C}$$. 
 <div> 
 $$
 \begin{align*}
-\mathbf{C} = \{ z=a+ib \ | \ a, b \in \mathbf{R} \}
+\mathbf{C} = \{ z=a+ib \ | \ a, b \in \mathbb{R} \}
 \end{align*}
 $$
 </div>
@@ -29,7 +29,7 @@ Definition
 An inner product \(\langle \ , \ \rangle\) on a vector \(V\) is a map
 $$
 \begin{align*}
-\langle \ , \ \rangle : \ &V \times V \rightarrow \mathbf{F} = \mathbf{R} \text{ or } \mathbf{C} \\
+\langle \ , \ \rangle : \ &V \times V \rightarrow \mathbf{F} = \mathbb{R} \text{ or } \mathbf{C} \\
 &(x, y) \rightarrow \langle x , y \rangle
 \end{align*}
 $$
@@ -37,13 +37,13 @@ such that
 <ol type="i">
 	<li>\(\langle x+z, y \rangle = \langle x , y \rangle + \langle z , y \rangle\)</li>
 	<li>\(\langle cx, y \rangle = c \langle x , y \rangle\)</li>
-	<li>\(\langle x, y \rangle = \overline{\langle y, x \rangle}\). Note if \(\mathbf{F} = \mathbf{R}\), then \(\langle x, y \rangle = \langle y, x \rangle\) </li>
+	<li>\(\langle x, y \rangle = \overline{\langle y, x \rangle}\). Note if \(\mathbf{F} = \mathbb{R}\), then \(\langle x, y \rangle = \langle y, x \rangle\) </li>
 	<li>\(\langle x, x \rangle > 0 \text{ if } x \neq \bar{0}\)</li>
 </ol>
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
-The simplest example is $$V = \mathbf{R}^1$$ (vector space over $$\mathbf{R}$$) where
+The simplest example is $$V = \mathbb{R}^1$$ (vector space over $$\mathbb{R}$$) where
 <div> 
 $$
 \begin{align*}
@@ -75,7 +75,7 @@ which also satisfies the inner product properties (TODO)
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 3: Dot Product</h3>
-Another example is $$V = \mathbf{R}^n$$ over $$\mathbf{R}$$ where
+Another example is $$V = \mathbb{R}^n$$ over $$\mathbb{R}$$ where
 <div> 
 $$
 \begin{align*}
@@ -88,7 +88,7 @@ which is commonly known as the dot product.
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 4</h3>
-Another example is $$V = \mathbf{R}^2$$ over $$\mathbf{R}$$ where
+Another example is $$V = \mathbb{R}^2$$ over $$\mathbb{R}$$ where
 <div> 
 $$
 \begin{align*}
@@ -123,7 +123,7 @@ Note here that if we defined the product as $$\langle z_1, z_2 \rangle = z_1z_2$
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 6: Frobenius Inner Product</h3>
-Define $$V = \mathbf{C}^0([0,1]) = \{f: [0,1] \rightarrow \mathbf{R} \ | \ f \text{ continuous}\}$$ 
+Define $$V = \mathbf{C}^0([0,1]) = \{f: [0,1] \rightarrow \mathbb{R} \ | \ f \text{ continuous}\}$$ 
 <div> 
 $$
 \begin{align*}
@@ -145,7 +145,7 @@ $$
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 7</h3>
-Define $$V = M_{n \times n}(\mathbf{R})$$ 
+Define $$V = M_{n \times n}(\mathbb{R})$$ 
 <div> 
 $$
 \begin{align*}
@@ -157,7 +157,7 @@ where
 <div> 
 $$
 \begin{align*}
-tr: \ &M_{n \times n}(\mathbf{R}) \rightarrow M_{n \times n}(\mathbf{R}) \\
+tr: \ &M_{n \times n}(\mathbb{R}) \rightarrow M_{n \times n}(\mathbb{R}) \\
 &C \rightarrow \sum_j C_{jj} = C_{11} + C_{22} + ... + C_{nn}
 \end{align*}
 $$
@@ -190,7 +190,7 @@ Does this map satisfy the inner product conditions?
 	</div>
 	</li>
 	<!------------(iii)---------------->
-	<li>We want to show that \(\langle A, B \rangle = \langle B, A \rangle\). (over \(\mathbf{R}\)). Note here that \(tr(C^t) = tr(C)\). Then
+	<li>We want to show that \(\langle A, B \rangle = \langle B, A \rangle\). (over \(\mathbb{R}\)). Note here that \(tr(C^t) = tr(C)\). Then
 	<div> 
 	$$
 	\begin{align*}
@@ -203,7 +203,7 @@ Does this map satisfy the inner product conditions?
 	</div>
 	</li>
 	<!------------(iv)---------------->
-	<li>We need to show that \(\langle A, A \rangle > 0 \text{ if } A \neq \bar{0} \in M_{n \times n}(\mathbf{R})\)
+	<li>We need to show that \(\langle A, A \rangle > 0 \text{ if } A \neq \bar{0} \in M_{n \times n}(\mathbb{R})\)
 		<div> 
 		$$
 		\begin{align*}
@@ -232,7 +232,7 @@ Definition
 An inner product space is a vector space is a vector space \(V\) with a fixed inner product.
 </div>
 <br>
-Example: ($$\mathbf{R}^2, \langle x,y \rangle = x_1y_1 + x_2y_2$$) is an inner product space different from $$(\mathbf{R}^2, \langle x,y \rangle = 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2)$$
+Example: ($$\mathbb{R}^2, \langle x,y \rangle = x_1y_1 + x_2y_2$$) is an inner product space different from $$(\mathbb{R}^2, \langle x,y \rangle = 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2)$$
 <hr>
 
 <!------------------------------------------------------------------------------------>
@@ -287,7 +287,7 @@ For any \(x, y \in V\) and \(c \in \mathbf{F}\)
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
-The proof for (a) and (b) follow easily. For (c). The motivation is from $$\mathbf{R}^2$$ with the standard inner product. 
+The proof for (a) and (b) follow easily. For (c). The motivation is from $$\mathbb{R}^2$$ with the standard inner product. 
 <div> 
 $$
 \begin{align*}

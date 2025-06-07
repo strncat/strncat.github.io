@@ -13,7 +13,7 @@ We'll start with this important fact: <br>
 <div>
 		$$
 		\begin{align*}
-		G \cong \mathbf{Z}_{n_1} \times \mathbf{Z}_{n_2} \times ... \times \mathbf{Z}_{n_k}, \quad k \geq 0,n_1,...,n_k \geq 1
+		G \cong \mathbb{Z}_{n_1} \times \mathbb{Z}_{n_2} \times ... \times \mathbb{Z}_{n_k}, \quad k \geq 0,n_1,...,n_k \geq 1
 		\end{align*}
 		$$
 </div>
@@ -27,12 +27,12 @@ Theorem (CRT)
 if \(a = a_1a_2...,a_k\) where \(a_1,...,a_k\) are relatively prime and \(a_i \geq 1\). Then
 	$$
 	\begin{align*}
-	\mathbf{Z}_a \cong \mathbf{Z}_{a_1} \times ...\times \mathbf{Z}_{a_k}
+	\mathbb{Z}_a \cong \mathbb{Z}_{a_1} \times ...\times \mathbb{Z}_{a_k}
 	\end{align*}
 	$$
 </div>
 <!----------------------------------------------------------------------------->
-For example, $$\mathbf{Z}_{60} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{15} \cong \mathbf{Z}_{4} \times \mathbf{Z}_{3} \times \mathbf{Z}_{5}$$. But this doesn't help with classification. For example, if we're given some other product of cyclic groups, how do we know it's isomorphic to a given group? A classification means that we can look at two products of cyclic groups and then be able to know if they are isomorphic to each other or not.
+For example, $$\mathbb{Z}_{60} \cong \mathbb{Z}_{4} \times \mathbb{Z}_{15} \cong \mathbb{Z}_{4} \times \mathbb{Z}_{3} \times \mathbb{Z}_{5}$$. But this doesn't help with classification. For example, if we're given some other product of cyclic groups, how do we know it's isomorphic to a given group? A classification means that we can look at two products of cyclic groups and then be able to know if they are isomorphic to each other or not.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -46,7 +46,7 @@ Theorem (Elementary Divisors)
 Every finite abelian group \(G\) is isomorphic to a group of the following form
 	$$
 	\begin{align*}
-	G \cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}}\times ...\times \mathbf{Z}_{p_k^{r_k}}
+	G \cong \mathbb{Z}_{p_1^{r_1}} \times \mathbb{Z}_{p_2^{r_2}}\times ...\times \mathbb{Z}_{p_k^{r_k}}
 	\end{align*}
 	$$
 where \(k \geq 0, r_1 \geq 1, p_1,p_2,...,p_k\) are primes. (not necessarily distinct)
@@ -60,9 +60,9 @@ So $$G$$ is isomorphic to only one direct product of cyclic prime orders (up to 
 <!----------------------------------------------------------------------------->
 Example. Suppose $$|G| = 24$$ and that $$G$$ is abelian. 24 has the prime factorization $$24 = 2 \times 2 \times 2 \times 3$$. Thus, $$G$$ is isomorphic to one of the following
 <ol>
-	<li>\(\mathbf{Z}_{2^{3}} \times \mathbf{Z}_{3^{1}}\). Note here that this group is cyclic by the Chinese Remainder Theorem since \(8\) and \(3\) are relatively prime.</li>
-	<li>\(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \)</li>
-	<li>\(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}}\)</li>
+	<li>\(\mathbb{Z}_{2^{3}} \times \mathbb{Z}_{3^{1}}\). Note here that this group is cyclic by the Chinese Remainder Theorem since \(8\) and \(3\) are relatively prime.</li>
+	<li>\(\mathbb{Z}_{2^{2}} \times \mathbb{Z}_{2^{1}} \times \mathbb{Z}_{3^{1}} \)</li>
+	<li>\(\mathbb{Z}_{2^{1}} \times \mathbb{Z}_{2^{1}} \times \mathbb{Z}_{2^{1}} \times \mathbb{Z}_{3^{1}}\)</li>
 </ol>
 <hr>
 
@@ -77,7 +77,7 @@ Theorem (Invariant Factor Form)
 Every finite abelian group \(G\) is isomorphic to a group of the following form
 	$$
 	\begin{align*}
-	G \cong \mathbf{Z}_{a_1} \times \mathbf{Z}_{a_2} ...\times \mathbf{Z}_{a_s}
+	G \cong \mathbb{Z}_{a_1} \times \mathbb{Z}_{a_2} ...\times \mathbb{Z}_{a_s}
 	\end{align*}
 	$$
 where \(s \geq 0, a_1 \geq 2\) and \(a_i \ | \ a_{i+1}\).
@@ -89,15 +89,15 @@ Note that we don't need to add up to re-ordering here since the condition $$a_i 
 <br>
 Example: If we take the same $$G$$ as before where $$|G|=24$$, then we $$G$$ is isomorphic to one of the following:
 <ol>
-	<li>\(\mathbf{Z}_{24}\).</li>
-	<li>\(\mathbf{Z}_{2} \times \mathbf{Z}_{12}\). Note how each factor divides the factor coming after it. </li>
-	<li>\(\mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\). Same here 2 divides 2 and then the next 2 divides 6</li>
+	<li>\(\mathbb{Z}_{24}\).</li>
+	<li>\(\mathbb{Z}_{2} \times \mathbb{Z}_{12}\). Note how each factor divides the factor coming after it. </li>
+	<li>\(\mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{6}\). Same here 2 divides 2 and then the next 2 divides 6</li>
 </ol>
 Notice how this theorem gave us three possibilities and the previous theorem gave us another three possibilities. In fact, there is a correspondance between the elementary divisors and the invariant factors.
 <ol>
-	<li>\(\mathbf{Z}_{2^{3}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{24}\).</li>
-	<li>\(\mathbf{Z}_{2^{2}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{12}\). </li>
-	<li>\(\mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{2^{1}} \times \mathbf{Z}_{3^{1}} \cong \mathbf{Z}_{2} \times \mathbf{Z}_{2} \times \mathbf{Z}_{6}\).</li>
+	<li>\(\mathbb{Z}_{2^{3}} \times \mathbb{Z}_{3^{1}} \cong \mathbb{Z}_{24}\).</li>
+	<li>\(\mathbb{Z}_{2^{2}} \times \mathbb{Z}_{2^{1}} \times \mathbb{Z}_{3^{1}} \cong \mathbb{Z}_{2} \times \mathbb{Z}_{12}\). </li>
+	<li>\(\mathbb{Z}_{2^{1}} \times \mathbb{Z}_{2^{1}} \times \mathbb{Z}_{2^{1}} \times \mathbb{Z}_{3^{1}} \cong \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{6}\).</li>
 </ol>
 <!----------------------------------------------------------------------------->
 We will prove both theorems later but the idea is that we're going to prove the existence of invariant factors first and then we're going to prove the uniqueness of the elementary divisors. This is enough because if we have an invariant factor decomposition, then we can always turn it into its elementary divisors decomposition. To see, we'll do an example next.
@@ -109,7 +109,7 @@ Suppose $$G$$ is finite abelian with invariant factors: $$5,25,50,36000$$. So $$
 <div>
 		$$
 		\begin{align*}
-		G \cong \mathbf{Z}_{5} \times \mathbf{Z}_{25} \times \mathbf{Z}_{50} \times \mathbf{Z}_{36000}
+		G \cong \mathbb{Z}_{5} \times \mathbb{Z}_{25} \times \mathbb{Z}_{50} \times \mathbb{Z}_{36000}
 		\end{align*}
 		$$
 </div>
@@ -150,7 +150,7 @@ This in fact gives us the elementary divisors. How? Observe that
 		<td></td>
 		<td></td>
 		<td>\(5^1\)</td>
-		<td>\(\mathbf{Z}_5 \cong \mathbf{Z}_5\)</td>
+		<td>\(\mathbb{Z}_5 \cong \mathbb{Z}_5\)</td>
 	</tr>
 	<!------------------>
 	<tr>
@@ -158,7 +158,7 @@ This in fact gives us the elementary divisors. How? Observe that
 		<td></td>
 		<td></td>
 		<td>\(5^2\)</td>
-		<td>\(\mathbf{Z}_{25} \cong \mathbf{Z}_{5^2}\)</td>
+		<td>\(\mathbb{Z}_{25} \cong \mathbb{Z}_{5^2}\)</td>
 	</tr>
 	<!------------------>
 	<tr>
@@ -166,7 +166,7 @@ This in fact gives us the elementary divisors. How? Observe that
 		<td>\(2^1\)</td>
 		<td></td>
 		<td>\(5^2\)</td>
-		<td>\(\mathbf{Z}_{50} \cong \mathbf{Z}_{5^2} \times \mathbf{Z}_{2^1} \) (By CRT)</td>
+		<td>\(\mathbb{Z}_{50} \cong \mathbb{Z}_{5^2} \times \mathbb{Z}_{2^1} \) (By CRT)</td>
 	</tr>
 	<!------------------>
 	<tr>
@@ -174,7 +174,7 @@ This in fact gives us the elementary divisors. How? Observe that
 		<td>\(2^5\)</td>
 		<td>\(3^2\)</td>
 		<td>\(5^3\)</td>
-		<td>\(\mathbf{Z}_{36000} \cong \mathbf{Z}_{2^5} \times \mathbf{Z}_{3^2} \times \mathbf{Z}_{5^3}\) (By CRT)</td>
+		<td>\(\mathbb{Z}_{36000} \cong \mathbb{Z}_{2^5} \times \mathbb{Z}_{3^2} \times \mathbb{Z}_{5^3}\) (By CRT)</td>
 	</tr>
 </table>
 The first column is the invariant factors while the next three are the elementary divisors. We can also start with the elementary divisors and then get the invariant factors from them. So suppose $$G$$ has elementary divisors:
@@ -223,8 +223,8 @@ We have two aspects. Existence and Uniqueness. We will show uniqueness first. We
 <div>
 		$$
 		\begin{align}
-		G &\cong \mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} \times ... \times \mathbf{Z}_{p_k^{r_k}}, \quad \text{and} \\ 
-		G &\cong \mathbf{Z}_{q_1^{s_1}} \times \mathbf{Z}_{q_2^{s_2}} \times ... \times \mathbf{Z}_{q_l^{s_l}}, 
+		G &\cong \mathbb{Z}_{p_1^{r_1}} \times \mathbb{Z}_{p_2^{r_2}} \times ... \times \mathbb{Z}_{p_k^{r_k}}, \quad \text{and} \\ 
+		G &\cong \mathbb{Z}_{q_1^{s_1}} \times \mathbb{Z}_{q_2^{s_2}} \times ... \times \mathbb{Z}_{q_l^{s_l}}, 
 		\end{align}
 		$$
 </div>
@@ -232,8 +232,8 @@ then the lists $$p_1^{r_1},...,p_k^{r_k}$$ and $$q_1^{s_1},...,q_l^{s_l}$$ are t
 <div>
 		$$
 		\begin{align*}
-		&\mathbf{Z}_{p_1^{r_1}} \times \mathbf{Z}_{p_2^{r_2}} \times ... \times \mathbf{Z}_{p_k^{r_k}}, \quad \text{and} \\ 
-		&\mathbf{Z}_{q_1^{s_1}} \times \mathbf{Z}_{q_2^{s_2}} \times ... \times \mathbf{Z}_{q_l^{s_l}}, 
+		&\mathbb{Z}_{p_1^{r_1}} \times \mathbb{Z}_{p_2^{r_2}} \times ... \times \mathbb{Z}_{p_k^{r_k}}, \quad \text{and} \\ 
+		&\mathbb{Z}_{q_1^{s_1}} \times \mathbb{Z}_{q_2^{s_2}} \times ... \times \mathbb{Z}_{q_l^{s_l}}, 
 		\end{align*}
 		$$
 </div>
@@ -254,7 +254,7 @@ Also define for finite groups
 Definition
 </div>
 <div class="mintbodydiv">
-Define \(\alpha_m \rightarrow \mathbf{N}\) by \(\alpha_m(G) = |G[m]| \)
+Define \(\alpha_m \rightarrow \mathbb{N}\) by \(\alpha_m(G) = |G[m]| \)
 </div>
 <!----------------------------------------------------------------------------->
 Note that $$G[m]$$ doesn't need to be a subgroup but if $$G$$ is abelian, then $$G[m] \leq G$$.
@@ -401,10 +401,10 @@ But we know that multiplication in a direct product is component wise so $$(g_1,
 Proposition 3
 </div>
 <div class="peachbodydiv">
-If \(G = \mathbf{Z}_n\) (G is cyclic) where \(n \geq 1\), then 
+If \(G = \mathbb{Z}_n\) (G is cyclic) where \(n \geq 1\), then 
 	$$
 	\begin{align*}
-	\alpha_m(\mathbf{Z}_n) = d \quad \text{ where } d = gcd(m,n)
+	\alpha_m(\mathbb{Z}_n) = d \quad \text{ where } d = gcd(m,n)
 	\end{align*}
 	$$
 </div>
@@ -423,7 +423,7 @@ Step (1): We will show that if $$G$$ is a group (even if not cyclic) such that $
  		$$
  </div>
 $$G[d] \subseteq G[m]$$:
-Since $$d = gcd(m,n)$$, then $$d \ | \ m$$ and $$m = ds$$ for some $$s \in \mathbf{Z}$$. Suppose that $$g^d = e$$, then
+Since $$d = gcd(m,n)$$, then $$d \ | \ m$$ and $$m = ds$$ for some $$s \in \mathbb{Z}$$. Suppose that $$g^d = e$$, then
  <div>
  		$$
  		\begin{align*}
@@ -432,7 +432,7 @@ Since $$d = gcd(m,n)$$, then $$d \ | \ m$$ and $$m = ds$$ for some $$s \in \math
  		$$
  </div>
 <br>
-$$G[m] \subseteq G[d]$$: We can also write $$d$$ as $$d = sm + tn$$ for some $$t, n \in \mathbf{Z}$$. Since $$|G| = n$$, then we know that $$g^n = e$$ for any $$g \in G$$ by the order theorem. So suppose that $$g^m = e$$, then 
+$$G[m] \subseteq G[d]$$: We can also write $$d$$ as $$d = sm + tn$$ for some $$t, n \in \mathbb{Z}$$. Since $$|G| = n$$, then we know that $$g^n = e$$ for any $$g \in G$$ by the order theorem. So suppose that $$g^m = e$$, then 
  <div>
  		$$
  		\begin{align*}
@@ -443,11 +443,11 @@ $$G[m] \subseteq G[d]$$: We can also write $$d$$ as $$d = sm + tn$$ for some $$t
 So $$G[m] \subseteq G[d]$$. Therefore, $$G[m] = G[d]$$ and therefore $$\alpha_m(G) = \alpha_d(G)$$.
 <br>
 <br>
-Step (2): We will show that if $$d \ | \ n$$, then $$\alpha_d(\mathbf{Z}_n) = d$$. We can calculate this. We know 
+Step (2): We will show that if $$d \ | \ n$$, then $$\alpha_d(\mathbb{Z}_n) = d$$. We can calculate this. We know 
  <div>
  		$$
  		\begin{align*}
- 		\mathbf{Z}_n = \{[1]_n, [2]_n,...,[n]_n\}
+ 		\mathbb{Z}_n = \{[1]_n, [2]_n,...,[n]_n\}
  		\end{align*}
  		$$
  </div>
@@ -455,7 +455,7 @@ If $$1 \leq k \leq n $$, then $$o([k]_n) = gcd(k,n)$$. (we proved this before). 
  <div>
  		$$
  		\begin{align*}
- 		\mathbf{Z}_n[d] = \{[e]_n, [2w]_n,...,[de]_n\}
+ 		\mathbb{Z}_n[d] = \{[e]_n, [2w]_n,...,[de]_n\}
  		\end{align*}
  		$$
  </div>
@@ -468,7 +468,7 @@ So now we have three propositions about $$\alpha_m[G]$$
 <ol>
 	<li>If \(G \cong H\), then \(\alpha_m(G) = \alpha_m(H)\)</li>
 	<li>If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\alpha_m(G) = \alpha_m(G_1) \cdot \alpha_m(G_2) \ \cdot \ ... \ \cdot \ \alpha_m(G_k)\)</li>
-	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 1\) (Corollary from proposition 3 since the gcd will be 1). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = min(p^l, p^r)\). Note here that the gcd of \(p^l, p^r\) is exactly their minimum.</li>
+	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbb{Z}_{p^r}) = 1\) (Corollary from proposition 3 since the gcd will be 1). Furthermore, \(\alpha_{p^l}(\mathbb{Z}_{p^r}) = min(p^l, p^r)\). Note here that the gcd of \(p^l, p^r\) is exactly their minimum.</li>
 </ol>
 We can see now how given a product of elementary divisors, we can compute $$\alpha_m$$ on each factor using the propositions above. However, we're not going to use exactly the function $$\alpha$$. We will instead define the following
  <div>
@@ -483,13 +483,13 @@ So now we have the following facts based on the definition of $$\beta$$
 <ol>
  	<li>If \(G \cong H\), then \(\beta_{q^l}(G) = \beta_{q^l}(H)\). This is clear since \(\beta\)'s definition is based on \(\alpha\)</li>
  	<li>If \(G = G_1 \times G_2 \times ... \times G_k\) then \(\beta_{q^l}(G) = \sum_{i=1}^k \beta_{q^l}(G_i)\)</li>
- 	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbf{Z}_{p^r}) = 0\). Furthermore, \(\alpha_{p^l}(\mathbf{Z}_{p^r}) = 1\) if \(l = r\) and it is 0 when \(l \neq r\).</li>
+ 	<li>If \(p, q\) are primes where \(p \neq q\), then \(\alpha_{q^l}(\mathbb{Z}_{p^r}) = 0\). Furthermore, \(\alpha_{p^l}(\mathbb{Z}_{p^r}) = 1\) if \(l = r\) and it is 0 when \(l \neq r\).</li>
 </ol>
 <hr>
 
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
-Suppose that $$G = \mathbf{Z}_{2^4} = \mathbf{Z}_{16}$$. Then
+Suppose that $$G = \mathbb{Z}_{2^4} = \mathbb{Z}_{16}$$. Then
 <table style="max-width: 600px; margin: 20px auto;">
 	<tr>
 		<td>l</td>

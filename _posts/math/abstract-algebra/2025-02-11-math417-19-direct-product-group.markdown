@@ -108,13 +108,13 @@ So we need all the products such that $$a \in A$$ and $$b \in B$$ where $$(a,b)=
 
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
-Let $$G = \mathbf{Z}_{12}$$. Let $$A = \langle [3] \rangle = \{[0],[3],[6],[9]\}$$. Let $$B = \langle [3] \rangle = \{[0],[4],[8]\}$$ Both $$A$$ and $$B$$ are subgroups of $$\mathbf{Z}_{12}$$. Check all three properties
+Let $$G = \mathbb{Z}_{12}$$. Let $$A = \langle [3] \rangle = \{[0],[3],[6],[9]\}$$. Let $$B = \langle [3] \rangle = \{[0],[4],[8]\}$$ Both $$A$$ and $$B$$ are subgroups of $$\mathbb{Z}_{12}$$. Check all three properties
 <ul>
-	<li>Are they normal? Yes because \(A\) and \(B\) are abelian since \(\mathbf{Z}_{12}\) is abelian.</li>
+	<li>Are they normal? Yes because \(A\) and \(B\) are abelian since \(\mathbb{Z}_{12}\) is abelian.</li>
 	<li>\(A \cap B = \{[0]\}\) since we listed the elements above.</li>
 	<li>The product subset is \(A+B = \{x+y \in A, y \in B\} = G\)</li>
 </ul>
-Note here that we already know that $$\mathbf{Z}_3 \times \mathbf{Z}_4 \cong \mathbf{Z}_{12}$$ by the Chinese Remainder Theorem.
+Note here that we already know that $$\mathbb{Z}_3 \times \mathbb{Z}_4 \cong \mathbb{Z}_{12}$$ by the Chinese Remainder Theorem.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -122,7 +122,7 @@ Note here that we already know that $$\mathbf{Z}_3 \times \mathbf{Z}_4 \cong \ma
 An Automorphism of a group $$G$$ is just an isomorphism from the group to itself. The identity map is the easiest example of an automorphism but there can be others.
 <br>
 <br>
-Example: Let $$V = \{e, a, b, c\}$$ (The Klien 4-group)($$\cong \mathbf{Z}_2 \times \mathbf{Z}_2)$$. We know that $$a^2 = b^2 = c^2 = e$$. The products are
+Example: Let $$V = \{e, a, b, c\}$$ (The Klien 4-group)($$\cong \mathbb{Z}_2 \times \mathbb{Z}_2)$$. We know that $$a^2 = b^2 = c^2 = e$$. The products are
 <div>
 	$$
 	\begin{align*}
@@ -149,12 +149,12 @@ For example, we can see using the example above that Aut$$(V)$$ is isomorphic to
 
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
-Let $$G = \mathbf{Z}_n$$ where $$n \geq 1$$. Does this group have automorphisms other than the identity? <br>
-For example, let $$G = \mathbf{Z}_{15}$$. Define the following function
+Let $$G = \mathbb{Z}_n$$ where $$n \geq 1$$. Does this group have automorphisms other than the identity? <br>
+For example, let $$G = \mathbb{Z}_{15}$$. Define the following function
 <div>
 	$$
 	\begin{align*}
-	\varphi: \mathbf{Z}_{15} &\rightarrow \mathbf{Z}_{15} \\
+	\varphi: \mathbb{Z}_{15} &\rightarrow \mathbb{Z}_{15} \\
 	            \varphi([x]) &= [2x] = [2][x].
 	\end{align*}
 	$$
@@ -169,7 +169,7 @@ The claim is that $$\varphi$$ is an automorphism. It is a homomorphism because
 	\end{align*}
 	$$
 </div>
-It is also a bijection. Note that we're multiplying by $$[2]$$. In $$\mathbf{Z}_{15}$$ (mod 15), $$[2]$$ has a multiplicate inverse since 2 and 15 are relatively prime. In fact, its multiplicative inverse is $$[8]$$ because $$[2][8] = [16\%15] = [1]$$. Therefore, to get the inverse, we just need to multiply by $$[8]$$.
+It is also a bijection. Note that we're multiplying by $$[2]$$. In $$\mathbb{Z}_{15}$$ (mod 15), $$[2]$$ has a multiplicate inverse since 2 and 15 are relatively prime. In fact, its multiplicative inverse is $$[8]$$ because $$[2][8] = [16\%15] = [1]$$. Therefore, to get the inverse, we just need to multiply by $$[8]$$.
 <div>
 	$$
 	\begin{align*}
@@ -177,7 +177,7 @@ It is also a bijection. Note that we're multiplying by $$[2]$$. In $$\mathbf{Z}_
 	\end{align*}
 	$$
 </div>
-Therefore, $$\varphi$$ is a bijection. Thus, it is an automorphism. In fact, this generalizes to $$\mathbf{Z}_n$$. Every modular unit mod n gives us an automorphism for $$\mathbf{Z}_n$$. This is captured in the following proposition
+Therefore, $$\varphi$$ is a bijection. Thus, it is an automorphism. In fact, this generalizes to $$\mathbb{Z}_n$$. Every modular unit mod n gives us an automorphism for $$\mathbb{Z}_n$$. This is captured in the following proposition
 <br>
 <!----------------------------------------------------------------------------->
 <div class="peachheaderdiv">
@@ -198,11 +198,11 @@ Note here that $$\gamma(a)$$ is a function. The isomorphism is between a group o
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>
-Suppose $$\varphi \in \text{Aut}(\mathbf{Z}_n)$$. Let $$[a] = \varphi([1])$$. Then we can show that $$\varphi([x]) = [ax]$$. 
+Suppose $$\varphi \in \text{Aut}(\mathbb{Z}_n)$$. Let $$[a] = \varphi([1])$$. Then we can show that $$\varphi([x]) = [ax]$$. 
 <br>
 <br>
 <!----------------------------------------------------------------------------->
-Example: What about $$\mathbf{Z}$$? What are the automorphism? Aut$$(\mathbf{Z}) = \{\pm 1\}$$
+Example: What about $$\mathbb{Z}$$? What are the automorphism? Aut$$(\mathbb{Z}) = \{\pm 1\}$$
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -235,7 +235,7 @@ Since it's a homomorphism, we can check its kernel. It's kernel is as follows
 <div>
 	$$
 	\begin{align*}
-	\ker(c) = \mathbf{Z}(G)
+	\ker(c) = \mathbb{Z}(G)
 	\end{align*}
 	$$
 </div>

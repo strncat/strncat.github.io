@@ -75,7 +75,7 @@ The reason we introduced these regular polyhedra is because we want to study the
 <div>
 	$$
 	\begin{align*}
-	G = \{ A \in SO(3) \ | \ v \in V \Leftrightarrow Av \in V, v \in \mathbf{R}^3 \}
+	G = \{ A \in SO(3) \ | \ v \in V \Leftrightarrow Av \in V, v \in \mathbb{R}^3 \}
 	\end{align*}
 	$$
 </div>

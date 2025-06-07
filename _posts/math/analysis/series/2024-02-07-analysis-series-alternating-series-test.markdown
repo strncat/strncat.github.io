@@ -62,7 +62,7 @@ We can also see that the length of each interval $$I_n$$ is exactly $$a_{n+1}$$.
   \end{align*}
   $$
 </div>
-Therefore, let $$s \in \bigcap_{n=1}^{\infty} I_n$$. We claim that the sequence of partial sums $$(s_m)$$ converges to $$s$$ or $$\lim s_m = s$$. To prove this, let $$\epsilon > 0$$. We will find $$N \in \mathbf{N}$$ such that whenever $$n \geq N$$ we have
+Therefore, let $$s \in \bigcap_{n=1}^{\infty} I_n$$. We claim that the sequence of partial sums $$(s_m)$$ converges to $$s$$ or $$\lim s_m = s$$. To prove this, let $$\epsilon > 0$$. We will find $$N \in \mathbb{N}$$ such that whenever $$n \geq N$$ we have
 <div>
   $$
   \begin{align*}
@@ -78,7 +78,7 @@ To see this, we know that $$s \in I_n$$ and also $$s_n \in I_n$$ by how we const
   \end{align*}
   $$
 </div>
-But we also know that the sequence $$(a_n)$$ converges to 0. This means that for $$\epsilon > 0$$, there exists an $$N \in \mathbf{N}$$ such that when $$n \geq N$$, we have $$|a_n| < \epsilon$$. This means that $$|a_{n+1}| < \epsilon$$ too. But $$a_{n+1} \geq 0$$ so we can just write $$a_{n+1} < \epsilon$$. Finally, we can see that
+But we also know that the sequence $$(a_n)$$ converges to 0. This means that for $$\epsilon > 0$$, there exists an $$N \in \mathbb{N}$$ such that when $$n \geq N$$, we have $$|a_n| < \epsilon$$. This means that $$|a_{n+1}| < \epsilon$$ too. But $$a_{n+1} \geq 0$$ so we can just write $$a_{n+1} < \epsilon$$. Finally, we can see that
 <div>
   $$
   \begin{align*}

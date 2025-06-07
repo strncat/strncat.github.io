@@ -188,21 +188,21 @@ To see this, apply the operation and you'll see that $$(a_1, a_2)(n_1, n_2) = (n
 
 <!----------------------------------------------------------------------------->
 <h3>Example 2</h3>
-Let $$N = (\mathbf{Z}_n, +)$$ where $$n \geq 3$$ and let $$A = \mathbf{Z}_2 = \{[0]_2, [1]_2\}$$. 
+Let $$N = (\mathbb{Z}_n, +)$$ where $$n \geq 3$$ and let $$A = \mathbb{Z}_2 = \{[0]_2, [1]_2\}$$. 
 <br>
 Define $$\gamma$$ be
 <div>
 		$$
 		\begin{align*}
-	    \gamma: \mathbf{Z}_2 &\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n)
+	    \gamma: \mathbb{Z}_2 &\rightarrow \text{Aut}(\mathbb{Z}_n) \cong \Phi(n)
 		\end{align*}
 		$$
 </div>
-We've seen before that $$\text{Aut}(\mathbf{Z}_n)$$ is the modular units (mod n) group. How can we construct a homomorphism? We know that $$\mathbf{Z} = \{[0]_2, [1]_2\}$$. We know we have to send $$[0]_2$$ to the identity element $$[1]_n$$. For $$[1]_2$$, we need to send it to an element of $$\Phi(n)$$ of order 2. As an example, observe that $$[-1]_n$$ is of order 2 because $$(-1)^2 = 1$$. So
+We've seen before that $$\text{Aut}(\mathbb{Z}_n)$$ is the modular units (mod n) group. How can we construct a homomorphism? We know that $$\mathbb{Z} = \{[0]_2, [1]_2\}$$. We know we have to send $$[0]_2$$ to the identity element $$[1]_n$$. For $$[1]_2$$, we need to send it to an element of $$\Phi(n)$$ of order 2. As an example, observe that $$[-1]_n$$ is of order 2 because $$(-1)^2 = 1$$. So
 <div>
 		$$
 		\begin{align*}
-	    \gamma: \mathbf{Z}_2 &\rightarrow \text{Aut}(\mathbf{Z}_n) \cong \Phi(n) \\
+	    \gamma: \mathbb{Z}_2 &\rightarrow \text{Aut}(\mathbb{Z}_n) \cong \Phi(n) \\
 		                 [0]_2  &\rightarrow [1]_n \\
 						 [1]_2	&\rightarrow [-1]_n.
 		\end{align*}
@@ -227,7 +227,7 @@ We can set $$\gamma$$ like we did before. So
 	\end{align*}
 	$$
 </div>
-Remark: If you have other elements of order 2 in $$\text{Aut}(\mathbf{Z}_n) \cong \Phi(n)$$, then you can form "semi-dihedral groups". For example, take $$N = \mathbf{Z}_8$$, then Aut$$(N) = \Phi(8) = \{1,3,5,7\}$$. All the elements in this group is of order 2 except for 1. Therefore we can define
+Remark: If you have other elements of order 2 in $$\text{Aut}(\mathbb{Z}_n) \cong \Phi(n)$$, then you can form "semi-dihedral groups". For example, take $$N = \mathbb{Z}_8$$, then Aut$$(N) = \Phi(8) = \{1,3,5,7\}$$. All the elements in this group is of order 2 except for 1. Therefore we can define
 <div>
 		$$
 		\begin{align*}
@@ -298,8 +298,8 @@ So we're to construct a group by a semi direct group. Set
 <div>
 		$$
 		\begin{align*}
-		N &= \langle r \rangle \cong (\mathbf{Z}, +), \quad o(r)=\infty \\
-		A &= \langle j \rangle \cong (\mathbf{Z}_2, +), \quad o(j)=2
+		N &= \langle r \rangle \cong (\mathbb{Z}, +), \quad o(r)=\infty \\
+		A &= \langle j \rangle \cong (\mathbb{Z}_2, +), \quad o(j)=2
 		\end{align*}
 		$$
 </div>
@@ -307,7 +307,7 @@ Define the homomorphism
 <div>
 		$$
 		\begin{align*}
-		\gamma: A \rightarrow \text{Aut}(N) \cong \text{Aut}(\mathbf{Z}) = \{\pm 1\}, \quad o(\text{Aut}(\mathbf{Z}) = 2)
+		\gamma: A \rightarrow \text{Aut}(N) \cong \text{Aut}(\mathbb{Z}) = \{\pm 1\}, \quad o(\text{Aut}(\mathbb{Z}) = 2)
 		\end{align*}
 		$$
 </div>

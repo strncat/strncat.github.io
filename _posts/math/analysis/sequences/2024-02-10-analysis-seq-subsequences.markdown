@@ -14,7 +14,7 @@ mathjax: true
 		  (a_{n_1}, a_{n_2}, a_{n_3}, a_{n_4}, a_{n_5} ...)
 		  \end{align*}
 		  $$
-    is called a <i>subsequence</i> of \((a_n)\) and is denoted by \((a_{nk})\), where \(k \in \mathbf{N}\) indexes the subsequence.
+    is called a <i>subsequence</i> of \((a_n)\) and is denoted by \((a_{nk})\), where \(k \in \mathbb{N}\) indexes the subsequence.
 </div>
 It's important to note that the order of the terms in the subsequence is the same as the original sequence and repetitions are not allowed. For example if $$(a_n) = (1,2,3,4,5,6,.....)$$, then $$(2,4,6,..)$$ is a valid subsequence while $$(4, 6, 2...)$$ is not. $$(2,2,2,2)$$ is not either.
 <br>

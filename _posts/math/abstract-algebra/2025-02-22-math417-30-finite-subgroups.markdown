@@ -9,7 +9,7 @@ Today, we'll analyze finite subgroups of $$SO(3)$$. Let's describe the ones we a
 <ul>
 	<li>The trivial subgroup \(\{I\}\).</li>
 	<!-------------------------------------->
-	<li>Subgroups that are cyclic so these subgroups are isomorphic to \(\mathbf{Z}_n\). For each \(n\), we have infinitely many subgroups. For example, there are infinitely many cyclic subgroups of order 3 in \(SO(3)\). Pick any axis and consider the rotation by angle \(\frac{2\pi}{3}\) around this axis. This makes a subgroup of order 3. So you can get a new subgroup for whatever axis you pick. Therefore, we have infinitely many. In fact, all these subgroups that are rotations by \(\frac{2\pi}{3}\) are conjugate (see the lecture before last. If we have a rotation by \(\theta\) around a unit vector \(v\) and we have the same rotation around another unit vector \(u\), then we change \(u\) to \(v\) by some rotation \(A \in SO(3)\).</li>
+	<li>Subgroups that are cyclic so these subgroups are isomorphic to \(\mathbb{Z}_n\). For each \(n\), we have infinitely many subgroups. For example, there are infinitely many cyclic subgroups of order 3 in \(SO(3)\). Pick any axis and consider the rotation by angle \(\frac{2\pi}{3}\) around this axis. This makes a subgroup of order 3. So you can get a new subgroup for whatever axis you pick. Therefore, we have infinitely many. In fact, all these subgroups that are rotations by \(\frac{2\pi}{3}\) are conjugate (see the lecture before last. If we have a rotation by \(\theta\) around a unit vector \(v\) and we have the same rotation around another unit vector \(u\), then we change \(u\) to \(v\) by some rotation \(A \in SO(3)\).</li>
 	<!-------------------------------------->
 	<li>Subgroups isomorphic to the dihedral groups \(D_n\) where \(n \geq 2\). These are symmetries of a regular \(n-\)gon. Pick any \(n-\) and fix one of the vertices on the \(x-\)axis. The symmetries of the \(n-\) is a group isomorphic to \(D_n\).</li>
 	<!-------------------------------------->
@@ -30,13 +30,13 @@ Every finite subgroup of \(SO(3)\) is in the list above.
 </div>
 <b>Proof</b>
 <br>
-$$SO(3)$$ acts on $$\mathbf{R}^3$$ (we multiply a matrix in $$SO(3)$$ by a vector in $$\mathbf{R}^3$$). So now suppose that $$G$$ is a subgroup of $$SO(3)$$. $$G$$ acts on $$\mathbf{R}^3$$. We'll focus on the pole subset in $$\mathbf{R}^3$$. What is a poll?
+$$SO(3)$$ acts on $$\mathbb{R}^3$$ (we multiply a matrix in $$SO(3)$$ by a vector in $$\mathbb{R}^3$$). So now suppose that $$G$$ is a subgroup of $$SO(3)$$. $$G$$ acts on $$\mathbb{R}^3$$. We'll focus on the pole subset in $$\mathbb{R}^3$$. What is a poll?
 <br>
 <br>
-A pole for $$G \subseteq SO(3)$$ is a unit vector $$(u) \in \mathbf{R}^3$$ where $$\lVert u \rVert = 1$$ such that $$|Stab_G(u)|\geq 2$$.
+A pole for $$G \subseteq SO(3)$$ is a unit vector $$(u) \in \mathbb{R}^3$$ where $$\lVert u \rVert = 1$$ such that $$|Stab_G(u)|\geq 2$$.
 <br>
 <br>
-In other words, there exists an element $$g$$ in $$\text{Stab}_G(u)$$ other than the identity such that $$gu = u$$. If $$g \neq I$$, then $$g = Rot_u(\theta)$$ where $$\theta$$ is not a multiple of $$2\pi$$. Recall, that a rotation in space only fixes vectors along the axis of rotation. But since we constrained this to unit vectors, then it will only fix the unit vector on the axis of rotation. So $$g$$ fixes only $$\pm u$$. As a consequence, poles come in pairs. If $$u$$ is a pole, then $$-u$$ is a pole too. So again, a pole is a unit vector in $$\mathbf{R}^3$$ that gets fixed by some rotation in $$G$$. In other words, $$u$$ is a unit vector along the axis of some rotation in $$G$$. As a consequence, every non-identity element in $$G$$ can contribute 2 poles to the set of poles. If we let $$X$$ to be the set of poles, then
+In other words, there exists an element $$g$$ in $$\text{Stab}_G(u)$$ other than the identity such that $$gu = u$$. If $$g \neq I$$, then $$g = Rot_u(\theta)$$ where $$\theta$$ is not a multiple of $$2\pi$$. Recall, that a rotation in space only fixes vectors along the axis of rotation. But since we constrained this to unit vectors, then it will only fix the unit vector on the axis of rotation. So $$g$$ fixes only $$\pm u$$. As a consequence, poles come in pairs. If $$u$$ is a pole, then $$-u$$ is a pole too. So again, a pole is a unit vector in $$\mathbb{R}^3$$ that gets fixed by some rotation in $$G$$. In other words, $$u$$ is a unit vector along the axis of some rotation in $$G$$. As a consequence, every non-identity element in $$G$$ can contribute 2 poles to the set of poles. If we let $$X$$ to be the set of poles, then
 <div>
 $$
 \begin{align*}
@@ -44,7 +44,7 @@ $$
 \end{align*}
 $$
 </div>
-So the set of poles $$X$$ is the collection of unit vectors along the axes of rotations of elements in the group $$G$$. $$G$$ acts on the subset $$X \in \mathbf{R}^3$$. For example, if $$g \in G$$ and $$x \in X$$, then we know that $$gx$$ and $$g^{-1}x$$ are both in $$X$$. Why?
+So the set of poles $$X$$ is the collection of unit vectors along the axes of rotations of elements in the group $$G$$. $$G$$ acts on the subset $$X \in \mathbb{R}^3$$. For example, if $$g \in G$$ and $$x \in X$$, then we know that $$gx$$ and $$g^{-1}x$$ are both in $$X$$. Why?
 <br>
 If $$x$$ is a pole, we want to show that $$gx$$ is a pole. Since $$x$$ is a pole, then we know that $$|\text{Stab}_G(x)| \geq 2$$. But we also know that $$\text{Stab}(gx) = g\text{Stab}(x)g^{-1}$$ (By HW10, Problem 2). As a consequence, they both have the same size. Therefore, $$|\text{Stab}_G(gx)| \geq 2$$. Therefore, $$gx$$ is also a pole.
 <br>
@@ -76,7 +76,7 @@ Now, since $$G$$ acts on the set of poles $$X$$, then the set $$X$$ decomposes h
 	<td></td>
   </tr>
   <tr>
-	<td>\(\mathbf{Z}_n, n \geq 2\)</td>
+	<td>\(\mathbb{Z}_n, n \geq 2\)</td>
 	<td>\(n\)</td>
 	<td>2</td>
 	<td>1,1</td>

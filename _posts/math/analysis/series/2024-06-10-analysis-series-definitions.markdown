@@ -7,7 +7,7 @@ mathjax: true
 ---
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Series</h3>
-A sequence is defined in the book as a function whose domain in $$\mathbf{N}$$ (see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>). A series is defined as follows:
+A sequence is defined in the book as a function whose domain in $$\mathbb{N}$$ (see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>). A series is defined as follows:
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   Let \((b_n)\) be a sequence. A <i>infinite series</i> is a formal expression of the form
   $$
@@ -102,7 +102,7 @@ As an example $$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$$ converges conditional
 <!------------------------------------------------------------------------------------>
 <h3>(2.7.9) Definition: Rearrangement</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Let \(\sum_{n=1}^{\infty} a_n\) be a series, A series \(\sum_{n=1}^{\infty} b_n\) is called a rearrangement of \(\sum_{n=1}^{\infty} a_n\) if there exists a one-to-one, onto function \(\mathbf{N} \rightarrow \mathbf{N}\) such that \(b_{f(n)} = a_n\) for all \(n \in \mathbf{N}\). 
+  Let \(\sum_{n=1}^{\infty} a_n\) be a series, A series \(\sum_{n=1}^{\infty} b_n\) is called a rearrangement of \(\sum_{n=1}^{\infty} a_n\) if there exists a one-to-one, onto function \(\mathbb{N} \rightarrow \mathbb{N}\) such that \(b_{f(n)} = a_n\) for all \(n \in \mathbb{N}\). 
 </div>
 <br>
 <!------------------------------------------------------------------------------------>

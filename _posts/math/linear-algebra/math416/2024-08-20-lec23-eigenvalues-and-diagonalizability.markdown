@@ -101,7 +101,7 @@ $$
 	<li>\(\leftrightarrow \). Because both sides of the equation are written with respect to basis \(\beta\), we can take it out and write
 		<div>
 		$$
-		 T(v_j) = \lambda_jv_j \text { for } j = 1,...,n \text { and } \lambda_1,...,\lambda_n \in \mathbf{R}
+		 T(v_j) = \lambda_jv_j \text { for } j = 1,...,n \text { and } \lambda_1,...,\lambda_n \in \mathbb{R}
 		$$
 		</div>
 	</li>
@@ -138,7 +138,7 @@ And the $$\lambda$$'s are called,
 Definition
 </div>
 <div class="bbdiv">
-\(\lambda \in \mathbf{R}\) is an eigenvalue of \(\ T \in V \rightarrow V\) if \(\exists v \neq \bar{0}_V\) such that \(T(v) = \lambda v\).
+\(\lambda \in \mathbb{R}\) is an eigenvalue of \(\ T \in V \rightarrow V\) if \(\exists v \neq \bar{0}_V\) such that \(T(v) = \lambda v\).
 </div>
 We can now restate the previous theorem as the following,
 <br>
@@ -181,7 +181,7 @@ This is equivalent to "There is a $$Q \in M_{n \times n}$$ such that $$Q^{-1}AQ$
 Definition
 </div>
 <div class="bbdiv">
-An eigenvector of \(A \in M_{n \times n}\) is a \(v \neq \bar{0} \in \mathbf{R}^n\) such that \(Av = \lambda v\).
+An eigenvector of \(A \in M_{n \times n}\) is a \(v \neq \bar{0} \in \mathbb{R}^n\) such that \(Av = \lambda v\).
 </div>
 and finally,
 <br>
@@ -189,7 +189,7 @@ and finally,
 Definition
 </div>
 <div class="bbdiv">
-\(\lambda \in \mathbf{R}\) is an eigenvalue of \(A \in M_{n \times n}\) if \(\exists v \neq \bar{0}_V\) such that \(Av = \lambda v\).
+\(\lambda \in \mathbb{R}\) is an eigenvalue of \(A \in M_{n \times n}\) if \(\exists v \neq \bar{0}_V\) such that \(Av = \lambda v\).
 </div>
 <hr>
 
@@ -201,7 +201,7 @@ Okay now that we've narrowed down the discussion to matrices, how do we actually
 Lemma
 </div>
 <div class="purbdiv">
-\(v \in \mathbf{R}^n\) is an eigenvector of \(A\) with eigenvalue \(\lambda\) if and only if \(v \in N(A - \lambda I_n)\).
+\(v \in \mathbb{R}^n\) is an eigenvector of \(A\) with eigenvalue \(\lambda\) if and only if \(v \in N(A - \lambda I_n)\).
 </div>
 <b>Proof:</b>
 <br>
@@ -272,7 +272,7 @@ From this we see that the null space consists of vectors of the form
 $$
 \begin{align*}
 &= \{(x_1, x_2, x_3) \ | \ x_3 = t, x_1 = t, x_2 = 0\}. \\
-&= \{(t, 0, t) \ | \ t \in \mathbf{R} \} \\
+&= \{(t, 0, t) \ | \ t \in \mathbb{R} \} \\
 &= span\{ (1,0,1) \}
 \end{align*}
 $$

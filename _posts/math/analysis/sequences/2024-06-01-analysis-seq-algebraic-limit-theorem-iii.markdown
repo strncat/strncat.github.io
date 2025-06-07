@@ -8,7 +8,7 @@ mathjax: true
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>[The Algebraic Limit Theorem] Let \(\lim a_n = a\) and \(\lim b_n = a\). Then,</b>
 	  <ol type="i">
-	    <li>\(\lim (ca_n) = ca\) for all \(c \in \mathbf{R}\);</li>
+	    <li>\(\lim (ca_n) = ca\) for all \(c \in \mathbb{R}\);</li>
 	    <li>\(\lim (a_n + b_n) = a + b\);</li>
 	    <li>\(\lim (a_nb_n) = ab\);</li>
 	    <li>\(\lim (a_n/b_n) = a\);</li>

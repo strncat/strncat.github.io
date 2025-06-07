@@ -23,17 +23,17 @@ A group is a (nonempty) set \(G\) with a binary operation (a product) \(G \times
 <br>
 What are examples of the groups?
 <ol type="a">
-	<li>\(\mathbf{R}\) with the addition operation.</li>
-	<li>\(\mathbf{R}^{x} = \mathbf{R} - \{0\}\) with the multiplication operation.</li>
-	<li>\(\mathbf{Z}\) with the addition operation.</li>
-	<li>The set of invertible \(n \times n\) matrices with entries in \(\mathbf{R}\) with matrix multiplication as the product.</li>
+	<li>\(\mathbb{R}\) with the addition operation.</li>
+	<li>\(\mathbb{R}^{x} = \mathbb{R} - \{0\}\) with the multiplication operation.</li>
+	<li>\(\mathbb{Z}\) with the addition operation.</li>
+	<li>The set of invertible \(n \times n\) matrices with entries in \(\mathbb{R}\) with matrix multiplication as the product.</li>
 	<li>Any vector space is a group if you forget about the scalar multiplication.</li>
 	<li>For any set \(T\), define the set of all bijections \(g: T \rightarrow T\). The set of all bijections is the symmetric group of \(T\). The operation here is the composition of these maps.</li>
 </ol>
 <br>
 <!------------------------------------------------------------------------>
 <h3>Example</h3>
-Suppose we define the group $$(\mathbf{R}, \ast)$$ where $$\ast$$ is defined as
+Suppose we define the group $$(\mathbb{R}, \ast)$$ where $$\ast$$ is defined as
 <div>
 $$
 \begin{align*}
@@ -46,7 +46,7 @@ We can further check that this product satisfies the three axioms of a group.
 <br>
 <!------------------------------------------------------------------------>
 <h3>Example</h3>
-Let $$F$$ be a field (for example $$\mathbf{R}$$ or $$\mathbf{C}$$). Let $$Mat_{n \times n}(F)$$ be the set of matrices with entries in $$F$$. Then define $$GL_n(F)$$ (General Linear Group) as a subset of $$A \in M_{n \times n}(F)$$ where $$A$$ is an invertible matrix.  
+Let $$F$$ be a field (for example $$\mathbb{R}$$ or $$\mathbf{C}$$). Let $$Mat_{n \times n}(F)$$ be the set of matrices with entries in $$F$$. Then define $$GL_n(F)$$ (General Linear Group) as a subset of $$A \in M_{n \times n}(F)$$ where $$A$$ is an invertible matrix.  
 <br>
 <br>
 The set $$GL_n(F)$$ equipped with matrix multiplication is a group. It satisfies the three axioms
@@ -75,7 +75,7 @@ The rotation matrix has some properties
 	<li>\(\text{Rot}(0) = I\) is the identity matrix.</li>
 	<li>\(\text{Rot}(\alpha)Rot(\beta) = \text{Rot}(\alpha + \beta)\).</li>
 	<li>\(\text{Rot}(\alpha)^{-1} = \text{Rot}(-\alpha)\).</li>
-	<li>\(\text{Rot}(\alpha + 2\pi n) = \text{Rot}(\alpha)\) where \(n \in \mathbf{Z}\).</li>
+	<li>\(\text{Rot}(\alpha + 2\pi n) = \text{Rot}(\alpha)\) where \(n \in \mathbb{Z}\).</li>
 </ol>
 From this we see that the collection of rotation matrices forms a group with matrix multiplication.
 <br>
@@ -94,7 +94,7 @@ $$
 \end{align*}
 $$
 </div>
-This defines a rotation around the $$z-$$axis by angle $$\theta$$ counter clockwise viewed from the head of the vector $$e_3$$ where $$e_3 = (0,0,1)$$. But what if we wanted to rotate around a different vector? let $$u \in \mathbf{R}^3$$ such that $$\lVert {u} \rVert = 1$$ and let $$\text{Rot}_u(\theta)$$ be a rotation matrix around the axis through $$u$$ by angle $$\theta$$ counterclockwise when viewed from the head of $$u$$. How do we compute such a matrix?
+This defines a rotation around the $$z-$$axis by angle $$\theta$$ counter clockwise viewed from the head of the vector $$e_3$$ where $$e_3 = (0,0,1)$$. But what if we wanted to rotate around a different vector? let $$u \in \mathbb{R}^3$$ such that $$\lVert {u} \rVert = 1$$ and let $$\text{Rot}_u(\theta)$$ be a rotation matrix around the axis through $$u$$ by angle $$\theta$$ counterclockwise when viewed from the head of $$u$$. How do we compute such a matrix?
 <hr>
 
 <!------------------------------------------------------------------------>
@@ -104,9 +104,9 @@ Recall from Linear Algebra that
 Definition
 </div>
 <div class="mintbodydiv">
-An orthogonal matrix is a square matrix \(P \in Mat_{n \times n}(\mathbf{R})\) such that \(P^{T}P = I\) or \(P^{-1} = P^{T}\).
+An orthogonal matrix is a square matrix \(P \in Mat_{n \times n}(\mathbb{R})\) such that \(P^{T}P = I\) or \(P^{-1} = P^{T}\).
 </div>
-Equivalently the columns of $$P$$ are an orthonormal basis of $$\mathbf{R}^n$$ and the rows of $$P$$ are also orthonormal basis of $$\mathbf{R}^n$$. Based on this, we have a useful formula where if we're given $$u \in \mathbf{R}^3$$ such that $$\lVert u \rVert = 1$$, $$\theta \in \mathbf{R}$$ and $$P$$ an orthogonal matrix, then $$P \text{Rot}_u(\theta) P^{-1}$$ is actually a rotation matrix around the vector $$Pu$$. So
+Equivalently the columns of $$P$$ are an orthonormal basis of $$\mathbb{R}^n$$ and the rows of $$P$$ are also orthonormal basis of $$\mathbb{R}^n$$. Based on this, we have a useful formula where if we're given $$u \in \mathbb{R}^3$$ such that $$\lVert u \rVert = 1$$, $$\theta \in \mathbb{R}$$ and $$P$$ an orthogonal matrix, then $$P \text{Rot}_u(\theta) P^{-1}$$ is actually a rotation matrix around the vector $$Pu$$. So
 <div>
 $$
 \begin{align*}
@@ -114,7 +114,7 @@ $$
 \end{align*}
 $$
 </div>
-Why is this a useful formula? Given $$\lVert u \rVert = 1$$ and some angle $$\theta$$, construct an orthonormal basis using Gram-Schmidt by setting $$u_3 = u$$ and finding two more perpendicular vectors (normalized) $$u_1, u_2 \in \mathbf{R}^3$$. Let $$P = [u_1 \quad u_2 \quad u_3]$$. This means that $$Pe_3 = u_3 = u$$. Therefore
+Why is this a useful formula? Given $$\lVert u \rVert = 1$$ and some angle $$\theta$$, construct an orthonormal basis using Gram-Schmidt by setting $$u_3 = u$$ and finding two more perpendicular vectors (normalized) $$u_1, u_2 \in \mathbb{R}^3$$. Let $$P = [u_1 \quad u_2 \quad u_3]$$. This means that $$Pe_3 = u_3 = u$$. Therefore
 <div>
 $$
 \begin{align*}
@@ -179,7 +179,7 @@ What about the $$180$$ degrees rotation around the $$x-axis$$ labeled as $$a$$ f
 Rotations in space have also the following properties / identities
 <ol type="a">
 	<li>\(\text{Rot}_u(0) = I\) is the identity matrix where \(u\) is any unit vector.</li>
-	<li>\(\text{Rot}_u(\theta + 2\pi n) = \text{Rot}_u(\theta)\) where \(n \in \mathbf{Z}\).</li>
+	<li>\(\text{Rot}_u(\theta + 2\pi n) = \text{Rot}_u(\theta)\) where \(n \in \mathbb{Z}\).</li>
 	<li>\(\text{Rot}_u(\theta) = \text{Rot}_{-u}(-\theta)\).</li>
 	<li>\(\text{Rot}_u(\theta)^{-1} = \text{Rot}_{u}(-\theta) = \text{Rot}_{-u}(\theta)\).</li>
 	<li>\(\text{Rot}_u(\alpha)Rot_v(\beta) = a\) is a rotation matrix.</li>
@@ -193,7 +193,7 @@ But why is the last statement true? To figure it out, we need to introduce anoth
 Definition
 </div>
 <div class="mintbodydiv">
-A special orthogonal matrix is an \(A \in Mat_{n \times n}(\mathbf{R})\) such that
+A special orthogonal matrix is an \(A \in Mat_{n \times n}(\mathbb{R})\) such that
 <ol type="a">
 	<li>\(A^TA = I\). (The orthogonal property)</li>
 	<li>\(\det(A) = \pm 1\). (This is as a result of the fact that \(det(A^{-1}) = \frac{1}{\det(A)}\) and that \(\det(A) = \det(A^T)\)</li> 
@@ -205,13 +205,13 @@ And now we have the following proposition
 Proposition
 </div>
 <div class="peachbodydiv">
-\(A \in Mat_{3 \times 3}(\mathbf{R})\) is a rotation matrix if and only if it is special orthogonal.
+\(A \in Mat_{3 \times 3}(\mathbb{R})\) is a rotation matrix if and only if it is special orthogonal.
 </div>
 We denote these matrices special matrices with
 <div>
 $$
 \begin{align*}
-SO(n) = \{ A \in Mat_{n \times n} \text{ special orthogonal} \} \subseteq O(n) \subseteq GL_n(\mathbf{R}) 
+SO(n) = \{ A \in Mat_{n \times n} \text{ special orthogonal} \} \subseteq O(n) \subseteq GL_n(\mathbb{R}) 
 \end{align*}
 $$
 </div>
@@ -224,7 +224,7 @@ Observation: $$A, B \in SO(n)$$ implies that $$AB \in SO(n)$$. To show that this
 Also observe that the identity matrix is in $$SO(n)$$ and that for any $$A \in SO(n)$$, $$A^{-1} = A^{T} \in SO(n)$$. Therefore $$SO(n)$$ is a group with matrix multiplication.
 <br>
 <br>
-So now we know that the collection of special orthogonal matrices is a group. Therefore, if the proposition we introduced earlier holds (where we said that $$A \in Mat_{3 \times 3}(\mathbf{R})$$ is a rotation matrix if and only if it is special orthogonal), then we can also conclude that the product of two rotation matrices is also a rotation matrix. So let's sketch the proof of the proposition
+So now we know that the collection of special orthogonal matrices is a group. Therefore, if the proposition we introduced earlier holds (where we said that $$A \in Mat_{3 \times 3}(\mathbb{R})$$ is a rotation matrix if and only if it is special orthogonal), then we can also conclude that the product of two rotation matrices is also a rotation matrix. So let's sketch the proof of the proposition
 <hr>
 
 <!------------------------------------------------------------------------>

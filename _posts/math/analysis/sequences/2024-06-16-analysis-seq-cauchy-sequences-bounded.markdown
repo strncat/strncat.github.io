@@ -18,7 +18,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof:</h3>
-Let $$(a_n)$$ be a cauchy sequence and let $$\epsilon = 1$$. By definition, this means that there exists a number $$N \in \mathbf{N}$$ such that
+Let $$(a_n)$$ be a cauchy sequence and let $$\epsilon = 1$$. By definition, this means that there exists a number $$N \in \mathbb{N}$$ such that
 <div>
 	$$
 	\begin{align*}

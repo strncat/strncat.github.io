@@ -12,7 +12,7 @@ mathjax: true
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>
-Given the series $$\sum_{n=1}^{\infty}|a_n|$$ converges, we know that for any $$\epsilon > 0$$, there must exist a number $$N \in \mathbf{N}$$ such that whenever $$n > m \geq N$$,
+Given the series $$\sum_{n=1}^{\infty}|a_n|$$ converges, we know that for any $$\epsilon > 0$$, there must exist a number $$N \in \mathbb{N}$$ such that whenever $$n > m \geq N$$,
 <div>
   $$
   \begin{align*}

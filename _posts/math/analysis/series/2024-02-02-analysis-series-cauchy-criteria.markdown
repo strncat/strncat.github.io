@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  [Cauchy Criterion for Series (2.7.2)] The series \(\sum_{k=1}^{\infty} a_k\) converges if and only if, given \(\epsilon > 0\), there exists an \(N \in \mathbf{N}\) such that whenever \(n > m \geq N\) it follows that
+  [Cauchy Criterion for Series (2.7.2)] The series \(\sum_{k=1}^{\infty} a_k\) converges if and only if, given \(\epsilon > 0\), there exists an \(N \in \mathbb{N}\) such that whenever \(n > m \geq N\) it follows that
   $$
   \begin{align*}
 	  | a_{m+1} + a_{m+2} + ... + a_{n} | <  \epsilon.
@@ -25,7 +25,7 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Formal Proof</h3>
-For the forward direction, suppose that $$\sum_{k=1}^{\infty} a_k$$ converges, we will prove that given $$\epsilon > 0$$, there exists an $$N \in \mathbf{N}$$ such that
+For the forward direction, suppose that $$\sum_{k=1}^{\infty} a_k$$ converges, we will prove that given $$\epsilon > 0$$, there exists an $$N \in \mathbb{N}$$ such that
 <div>
 $$
 \begin{align*}
@@ -41,7 +41,7 @@ s_m = a_1 + a_2 + ... + a_m,
 \end{align*}
 $$
 </div>
-converges. Since the sequence of partial sums converges. Since it converges then by the <a href="https://strncat.github.io/jekyll/update/2024/06/18/analysis-seq-cauchy-critertion.html">Cauchy criterion for sequences</a>, this sequence is also Cauchy. Now, let $$\epsilon > 0$$. Because the sequence of partial sums is Cauchy, then by definition we can find  $$N \in \mathbf{N}$$ such that if $$n > m \geq N$$, we have $$|S_n - S_m| < \epsilon$$. Expand $$|S_n - S_m|$$ to see that
+converges. Since the sequence of partial sums converges. Since it converges then by the <a href="https://strncat.github.io/jekyll/update/2024/06/18/analysis-seq-cauchy-critertion.html">Cauchy criterion for sequences</a>, this sequence is also Cauchy. Now, let $$\epsilon > 0$$. Because the sequence of partial sums is Cauchy, then by definition we can find  $$N \in \mathbb{N}$$ such that if $$n > m \geq N$$, we have $$|S_n - S_m| < \epsilon$$. Expand $$|S_n - S_m|$$ to see that
 <div>
 $$
 \begin{align*}
@@ -50,7 +50,7 @@ $$
 \end{align*}
 $$
 </div>
-Which is what we wanted to show. For the backward direction, Suppose that there exists an $$N \in \mathbf{N}$$ such that whenever $$n > m \geq N$$ it follows that
+Which is what we wanted to show. For the backward direction, Suppose that there exists an $$N \in \mathbb{N}$$ such that whenever $$n > m \geq N$$ it follows that
 <div>
 $$
 \begin{align*}

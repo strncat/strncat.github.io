@@ -116,7 +116,7 @@ Let $$G = SO(3) = \{Rot_u(\theta)\}$$ where $$u$$ is a unit vector. $$Rot_u(\the
 <div>
 	$$
 	\begin{align*}
-	 Rot_u(\theta + 2\pi n) &= Rot_u(\theta), n \in \mathbf{Z} \\
+	 Rot_u(\theta + 2\pi n) &= Rot_u(\theta), n \in \mathbb{Z} \\
 	 Rot_{-u}(\theta) &= Rot_{u}(-\theta) \\
 	 Rot_{u}(0) &= I
 	\end{align*}
@@ -160,7 +160,7 @@ So the conjugacy class of $$Rot_u(\theta)$$ is any rotation around the same angl
 <div>
 	$$
 	\begin{align*}
-	Cl(Rot_u(\theta)) = \{Rot_v(\theta), v \in \mathbf{R}, \lVert v \rVert = 1 \}
+	Cl(Rot_u(\theta)) = \{Rot_v(\theta), v \in \mathbb{R}, \lVert v \rVert = 1 \}
 	\end{align*}
 	$$
 </div>
@@ -179,7 +179,7 @@ What about the centralizer of $$Rot_u(\theta)$$ where $$\theta \in (0,2\pi)$$ (a
 <div>
 	$$
 	\begin{align*}
-	\text{Cent}(Rot_u(\theta)) = \{A = Rot_u(\alpha) \ | \ \alpha \in \mathbf{R}\} 
+	\text{Cent}(Rot_u(\theta)) = \{A = Rot_u(\alpha) \ | \ \alpha \in \mathbb{R}\} 
 	\end{align*}
 	$$
 </div>
@@ -190,7 +190,7 @@ There is exception for  $$\pi = 180$$ because in addition to all the arbitrary r
 <div>
 	$$
 	\begin{align*}
-	\text{Cent}(Rot_u(\theta) = \{A = Rot_u(\alpha) \ | \ \alpha \in \mathbf{R}\} \cup \{Rot_v(\pi) \ | \ \text{any } v \text{ such that } v \cdot u = 0\}.
+	\text{Cent}(Rot_u(\theta) = \{A = Rot_u(\alpha) \ | \ \alpha \in \mathbb{R}\} \cup \{Rot_v(\pi) \ | \ \text{any } v \text{ such that } v \cdot u = 0\}.
 	\end{align*}
 	$$
 </div>

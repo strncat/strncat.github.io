@@ -11,7 +11,7 @@ mathjax: true
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>
 Let $$[c,d] = \{c \leq x \leq d\}$$ be a closed interval. To prove that it's a closed set, we need to prove that $$[c,d]$$ contains all of its limit points so let $$x$$ be an arbitrary limit point. By the definition of a limit point, we know that there must exist a sequence $$(x_n)$$ such that $$(x_n) \rightarrow x$$. We need to show that $$x \in [c,d]$$. 
-By the <a href="https://strncat.github.io/jekyll/update/2024/06/02/analysis-seq-order-limit-theorem.html">order limit theorem (iii)</a>, since $$c \leq x_n \leq d$$ for all $$n \in \mathbf{N}$$ it follows that $$c \leq x \leq d$$ as well. Therefore, $$[c,d]$$ is closed as required. $$\blacksquare$$.
+By the <a href="https://strncat.github.io/jekyll/update/2024/06/02/analysis-seq-order-limit-theorem.html">order limit theorem (iii)</a>, since $$c \leq x_n \leq d$$ for all $$n \in \mathbb{N}$$ it follows that $$c \leq x \leq d$$ as well. Therefore, $$[c,d]$$ is closed as required. $$\blacksquare$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

@@ -133,7 +133,7 @@ $$
 and if $$a_m \neq 0$$ and $$b_n \neq 0$$, then $$a_mb_n \neq 0$$. This is because $$K$$ is a field so if $$a,b \in K$$ and $$a \neq 0$$, $$b \neq 0$$, then $$ab \neq 0$$. (because $$K^{\times} = K\{0\}$$). 
 <hr>
 
-Non-example: Take $$R = \mathbf{Z}_4 = \{0,1,2,3\}$$. $$\mathbf{Z}_4$$ is not a field since element 2 doesn't have an inverse in $$\mathbf{Z}_4$$. Note that only elements 1 and 3 have inverses. ($$3*3 = 1$$ and $$1*1 = 1$$ in $$\mathbf{Z}_4$$. Now consider $$\mathbf{Z}_4[x]$$ and let $$f = 1 + 2x \in \mathbf{Z}_4[x]$$. Observe that
+Non-example: Take $$R = \mathbb{Z}_4 = \{0,1,2,3\}$$. $$\mathbb{Z}_4$$ is not a field since element 2 doesn't have an inverse in $$\mathbb{Z}_4$$. Note that only elements 1 and 3 have inverses. ($$3*3 = 1$$ and $$1*1 = 1$$ in $$\mathbb{Z}_4$$. Now consider $$\mathbb{Z}_4[x]$$ and let $$f = 1 + 2x \in \mathbb{Z}_4[x]$$. Observe that
 <div>
 $$
 \begin{align*}

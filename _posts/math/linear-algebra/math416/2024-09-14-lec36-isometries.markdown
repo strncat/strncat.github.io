@@ -19,8 +19,8 @@ $$
 $$
 </div>
 <!------------------------------------------------------------------------------------>
-For example, in $$\mathbf{R}^3$$, this means that isometries preserve lengths and angles. <br>
-When $$V$$ is over $$\mathbf{C}$$, an isometry is sometimes called unitary while if $$V$$ is over $$\mathbf{R}$$, $$T$$ is called orthogonal.
+For example, in $$\mathbb{R}^3$$, this means that isometries preserve lengths and angles. <br>
+When $$V$$ is over $$\mathbf{C}$$, an isometry is sometimes called unitary while if $$V$$ is over $$\mathbb{R}$$, $$T$$ is called orthogonal.
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
 Let $$T = L_A$$ where
@@ -259,7 +259,7 @@ $$
 
 <!------------------------------------------------------------------------------------>
 <h3>Isometries Are Rare</h3>
-From research, we know that Isometries are actually rare. One fact is that $$T$$ is an isometry of $$\mathbf{R}^2$$ if and only if 
+From research, we know that Isometries are actually rare. One fact is that $$T$$ is an isometry of $$\mathbb{R}^2$$ if and only if 
 <div>
 $$
 \begin{align*}
@@ -278,7 +278,7 @@ A =
 \end{align*}
 $$
 </div>
-So these are the only possibilities for isometries for $$\mathbf{R}^2$$.
+So these are the only possibilities for isometries for $$\mathbb{R}^2$$.
 
 
 <hr>

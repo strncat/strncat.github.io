@@ -6,13 +6,13 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>[Cut Property] If \(A\) and \(B\) are nonempty, disjoint sets with \(A \cup B = \mathbf{R}\) and \(a < b\) for all \(a \in A\) and \(b \in B\), then there exists \(c \in \mathbf{R}\) such that \(x \leq c\) whenever \(x \in A\) and \(x \geq c\) whenever \(x \in B\).</b>
+  <b>[Cut Property] If \(A\) and \(B\) are nonempty, disjoint sets with \(A \cup B = \mathbb{R}\) and \(a < b\) for all \(a \in A\) and \(b \in B\), then there exists \(c \in \mathbb{R}\) such that \(x \leq c\) whenever \(x \in A\) and \(x \geq c\) whenever \(x \in B\).</b>
 </div>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <br>
 <h3>Proof:</h3>
-Let $$A$$ and $$B$$ be nonempty sets such that $$A \cup B = \mathbf{R}$$. Since for all \(a \in A\) and \(b \in B\), we have \(a < b\), 
+Let $$A$$ and $$B$$ be nonempty sets such that $$A \cup B = \mathbb{R}$$. Since for all \(a \in A\) and \(b \in B\), we have \(a < b\), 
 
 <div>
 $$

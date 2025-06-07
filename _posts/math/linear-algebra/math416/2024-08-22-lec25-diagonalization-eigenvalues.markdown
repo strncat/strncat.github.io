@@ -78,7 +78,7 @@ E_{\lambda_1} = N(B - 1I_n) = N \left(
 	0 & 0
 	\end{pmatrix} 
 	\right)
-	= \{ (t, 0) \ | \ t \in \mathbf{R} \}
+	= \{ (t, 0) \ | \ t \in \mathbb{R} \}
 \end{align*}
 $$
 </div>
@@ -92,7 +92,7 @@ Today, we will refine our answer to the question "Is $$A$$ diagonalizable?"
 Definition
 </div>
 <div class="bbdiv">
-A polynomial \(f(t)\) splits over \(\mathbf{R}\) if there are scalars \(c,a_1,...,a_k \in \mathbf{R}\) such that 
+A polynomial \(f(t)\) splits over \(\mathbb{R}\) if there are scalars \(c,a_1,...,a_k \in \mathbb{R}\) such that 
 $$
 \begin{align*}
 f(t) = c(t-a_1)(t - a_2)...(t-a_k)
@@ -102,10 +102,10 @@ $$
 In other words, can completely factorize the polynomial?
 <br>
 <br>
-Example 1: $$t^2 + 1$$ doesn't split over $$\mathbf{R}$$. It does however split over $$\mathbf{C} as (t - i)(t + i)$$.
+Example 1: $$t^2 + 1$$ doesn't split over $$\mathbb{R}$$. It does however split over $$\mathbf{C} as (t - i)(t + i)$$.
 <br>
 <br>
-Example 2: $$t^2 - 2t + 1 = (t - 1)(t - 1)$$ splits over $$\mathbf{R}$$.
+Example 2: $$t^2 - 2t + 1 = (t - 1)(t - 1)$$ splits over $$\mathbb{R}$$.
 <br>
 <br>
 So now what does splitting have to do with diagonalizability? The following theorem explains this
@@ -116,9 +116,9 @@ So now what does splitting have to do with diagonalizability? The following theo
 Theorem 1 (5.6)
 </div>
 <div class="purbdiv">
-If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbf{R}\)
+If \(A\) is diagonalizable, then its characteristic polynomial splits over \(\mathbb{R}\)
 </div>
-Note that the the converse is false. If the characteristic polynomial splits over $$\mathbf{R}$$, it doesn't necessarily means that $$A$$ is diagonalizable. (See example 2 above)
+Note that the the converse is false. If the characteristic polynomial splits over $$\mathbb{R}$$, it doesn't necessarily means that $$A$$ is diagonalizable. (See example 2 above)
 <hr>
 
 <!------------------------------------------------------------------------------------>
@@ -258,7 +258,7 @@ Geometric multiplicity of \(\lambda \leq\) the algebraic multiplicity of \(\lamb
 Let $$\lambda$$ be an eigenvalue of $$A \in M_{n \times n}$$ and let the geometric multiplicity of $$\lambda$$ be $$k$$. Now the goal is to relate the characteristic polynomial of $$\lambda$$ to the dimension of $$E_{\lambda}$$. By definition, we know that $$\dim(E_{\lambda})$$ is $$k$$. (definition above)
 <br>
 <br>
-Let $$\{v_1,...,v_k\}$$ be a basis for $$E_{\lambda}$$. We know that $$\dim(E_{\lambda})=k$$. We also know that $$k \leq n$$ so extend this basis to a basis for $$\mathbf{R}^n$$ so 
+Let $$\{v_1,...,v_k\}$$ be a basis for $$E_{\lambda}$$. We know that $$\dim(E_{\lambda})=k$$. We also know that $$k \leq n$$ so extend this basis to a basis for $$\mathbb{R}^n$$ so 
 <div>
 $$
 \begin{align*}
@@ -339,7 +339,7 @@ Theorem (5.8(a))
 <div class="purbdiv">
 \(A\) is diagonalizable if and only if
 <ul style="list-style-type:lower-alpha">
-	<li>\(\det(A - tI_n)\) splits over \(\mathbf{R}\)</li>
+	<li>\(\det(A - tI_n)\) splits over \(\mathbb{R}\)</li>
 	<li>For each eigenvalue \(\lambda\), geometric multiplicity = algebraic multiplicity</li>
 </ul>
 </div>

@@ -19,7 +19,7 @@ $$
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
-Suppose $$S = \{(0,0,1)\} \subset \mathbf{R}^3$$. The orthogonal complement to $$S$$ is any element $$x$$ in $$\mathbf{R}^3$$ such that for any element $$y \in S$$, the inner product $$\langle x, y \rangle$$ must be zero.
+Suppose $$S = \{(0,0,1)\} \subset \mathbb{R}^3$$. The orthogonal complement to $$S$$ is any element $$x$$ in $$\mathbb{R}^3$$ such that for any element $$y \in S$$, the inner product $$\langle x, y \rangle$$ must be zero.
 <div>
 $$
 \begin{align*}
@@ -193,11 +193,11 @@ Ax = b
 \end{align*}
 $$
 </div>
-and suppose that this system is inconsistent. This means that $$b$$ can't be written as $$Ax$$ and so $$b \not\in \{Ax \ | \ x \in \mathbf{R}^n\}$$. What is $$Ax$$? This is the range of the linear operator $$L_A$$, the set of images when $$L_A$$ is applied on $$x$$ so $$R(L_A)$$. But this is also the column space of $$A$$ and so
+and suppose that this system is inconsistent. This means that $$b$$ can't be written as $$Ax$$ and so $$b \not\in \{Ax \ | \ x \in \mathbb{R}^n\}$$. What is $$Ax$$? This is the range of the linear operator $$L_A$$, the set of images when $$L_A$$ is applied on $$x$$ so $$R(L_A)$$. But this is also the column space of $$A$$ and so
 <div>
 $$
 \begin{align*}
-b \not\in \{Ax \ | \ x \in \mathbf{R}^n\} = R(L_A) = Col(A)
+b \not\in \{Ax \ | \ x \in \mathbb{R}^n\} = R(L_A) = Col(A)
 \end{align*}
 $$
 </div>
@@ -248,7 +248,7 @@ Note here that the inner product on the left is the inner product of $$W$$ but t
 Definition
 </div>
 <div class="bbdiv">
-For \(A \in M_{m \times n}(\mathbf(F)), \ \) \(\mathbf{F} = \mathbf{R}\) or \(\mathbf{C}\)
+For \(A \in M_{m \times n}(\mathbf(F)), \ \) \(\mathbf{F} = \mathbb{R}\) or \(\mathbf{C}\)
 Set \(A^* = (\bar{A})^t\)
 </div>
 <!------------------------------------------------------------------------------------>
@@ -276,7 +276,7 @@ Now we are ready to prove the first result that we need to prove the theorem we 
 Lemma 1
 </div>
 <div class="purbdiv">
-\(A \in M_{m \times n}(\mathbf{F})\), \(\mathbf{F} = \mathbf{R}\) or \(\mathbf{C}\) 
+\(A \in M_{m \times n}(\mathbf{F})\), \(\mathbf{F} = \mathbb{R}\) or \(\mathbf{C}\) 
 $$
 \begin{align*}
 L_A: \ \mathbf{F}^n \rightarrow  \mathbf{F}^m
@@ -383,7 +383,7 @@ $$
 
 <!------------------------------------------------------------------------------------>
 <h3>Theorem 3 Proof</h3>
-We're going to set $$\mathbf{F} = \mathbf{R}$$. Therefore, $$A^* = A^t$$. We are given that rank$$(A)=n$$. We want to show that
+We're going to set $$\mathbf{F} = \mathbb{R}$$. Therefore, $$A^* = A^t$$. We are given that rank$$(A)=n$$. We want to show that
 <div>
 $$
 \begin{align*}
@@ -398,8 +398,8 @@ We also know that $$\text{proj}_{Col(A)}b$$ is the unique vector $$w$$ from theo
 <div>
 $$
 \begin{align*}
-Ax_0 = \text{proj}_{Col(A)}b \ &\Longleftrightarrow \ \langle b - Ax_0, Ax \rangle = 0 \ \forall x \in \mathbf{R}^n \quad \text{(By Theorem 1)} \\
-& \Longleftrightarrow \ \langle A^t (b - Ax_0), x \rangle = 0 \ \forall x \in \mathbf{R}^n \quad \text{move the adjoint to the other side} \\
+Ax_0 = \text{proj}_{Col(A)}b \ &\Longleftrightarrow \ \langle b - Ax_0, Ax \rangle = 0 \ \forall x \in \mathbb{R}^n \quad \text{(By Theorem 1)} \\
+& \Longleftrightarrow \ \langle A^t (b - Ax_0), x \rangle = 0 \ \forall x \in \mathbb{R}^n \quad \text{move the adjoint to the other side} \\
 & \Longleftrightarrow \  A^t (b - Ax_0) = \bar{0} \\
 & \Longleftrightarrow \  A^tb - A^tAx_0 = \bar{0} \\
 & \Longleftrightarrow \  x_0 = (A^tA)^{-1}A^tb \quad \blacksquare \\

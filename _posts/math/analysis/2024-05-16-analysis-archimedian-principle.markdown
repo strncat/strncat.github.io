@@ -7,7 +7,7 @@ mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
   <b>[The Archimedean Principle]. If \(a\) and \(b\) are real numbers with with \(a > 0\), then there exists a natural number \(n\) such that \(na > b\).<br>
-	  In particular, for any \(\epsilon > 0\) there exits \(n \in \mathbf{N}\) such that \(\frac{1}{n} < \epsilon\).</b>
+	  In particular, for any \(\epsilon > 0\) there exits \(n \in \mathbb{N}\) such that \(\frac{1}{n} < \epsilon\).</b>
 </div>
 From what I understand so far (beginner in real analysis) that we're trying to prove that \(N\) is unbounded. Why are we trying to prove it in this form? and why? I'm not sure yet.
 <br>
@@ -15,10 +15,10 @@ For the definitions of an upper bound and the least upper bound of a set, see <a
 <br>
 <br>
 <h3>Proof:</h3>
-Let $$a$$ and $$b$$ be real numbers with with $$a > 0$$. We want to show that there exists a natural number $$n$$ such that $$na > b$$. This is equivalent to proving that $$n > a/b$$ since $$a\b$$ is a number still in $$\mathbf{R}$$. Let $$x = a/b$$. We'll prove that given a real number $$x$$, there exists some natural number $$n$$ such that $$n > x$$. 
+Let $$a$$ and $$b$$ be real numbers with with $$a > 0$$. We want to show that there exists a natural number $$n$$ such that $$na > b$$. This is equivalent to proving that $$n > a/b$$ since $$a\b$$ is a number still in $$\mathbb{R}$$. Let $$x = a/b$$. We'll prove that given a real number $$x$$, there exists some natural number $$n$$ such that $$n > x$$. 
 <br>
 <br>
-Assume for the same of contradiction that this number doesn't exist. This implies that $$x$$ is an upper bound on the set $$\mathbf{N}$$ and so $$\mathbf{N}$$ is bounded. Moreover, since $$\mathbf{N} \subseteq \mathbf{R}$$, then the least upper bound exists by the completeness axiom. Let the least upper bound be $$\alpha = \sup(\mathbf{N})$$. Since $$\alpha$$ is the least upper bound, then by lemma 1.3.8, there exists some number $$m$$ in $$\mathbf{N}$$ where for any $$\epsilon > 0$$, we have $$m > \alpha - \epsilon$$. Let $$\epsilon = 1$$ so $$m > \alpha - 1$$. We can re-write this to be
+Assume for the same of contradiction that this number doesn't exist. This implies that $$x$$ is an upper bound on the set $$\mathbb{N}$$ and so $$\mathbb{N}$$ is bounded. Moreover, since $$\mathbb{N} \subseteq \mathbb{R}$$, then the least upper bound exists by the completeness axiom. Let the least upper bound be $$\alpha = \sup(\mathbb{N})$$. Since $$\alpha$$ is the least upper bound, then by lemma 1.3.8, there exists some number $$m$$ in $$\mathbb{N}$$ where for any $$\epsilon > 0$$, we have $$m > \alpha - \epsilon$$. Let $$\epsilon = 1$$ so $$m > \alpha - 1$$. We can re-write this to be
 <div>
 $$
 \begin{align*}
@@ -26,7 +26,7 @@ m + 1 > \alpha.
 \end{align*}
 $$
 </div>
-This is a contradiction because we found $$m + 1 \in \mathbf{N}$$ which is larger than $$\alpha$$ but $$\alpha$$ is an upper bound on $$A$$. Therefore there will exist an $$n$$ larger than a given $$x = a\b$$. The second statements follows directly if we subsitute by letting $$a = \epsilon$$ and $$b = 1$$ in
+This is a contradiction because we found $$m + 1 \in \mathbb{N}$$ which is larger than $$\alpha$$ but $$\alpha$$ is an upper bound on $$A$$. Therefore there will exist an $$n$$ larger than a given $$x = a\b$$. The second statements follows directly if we subsitute by letting $$a = \epsilon$$ and $$b = 1$$ in
 <div>
 $$
 \begin{align*}

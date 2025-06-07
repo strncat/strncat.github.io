@@ -8,7 +8,7 @@ mathjax: true
 This was another proof that I liked.
 
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Let \(A \subseteq \mathbf{R}\) be nonempty and bounded above. Let \(c \in \mathbf{R}\). Define the set \(A + c\) by \(c + A = \{ c + a: a \in A\}\). Then \(sup(c+A) = c + sup A\).</b>
+  <b>Let \(A \subseteq \mathbb{R}\) be nonempty and bounded above. Let \(c \in \mathbb{R}\). Define the set \(A + c\) by \(c + A = \{ c + a: a \in A\}\). Then \(sup(c+A) = c + sup A\).</b>
 </div>
 What is this statement saying? It's important to review the definitions in <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">here</a>. Keep these on the side while working on this proof. So assuming we have a least upper bound $$\sup A$$. If the set was modified such that each element was changed by adding $$c$$ to it, then the least upper bound will be $$c + \sup A$$. Sounds very reasonable.
 <br>

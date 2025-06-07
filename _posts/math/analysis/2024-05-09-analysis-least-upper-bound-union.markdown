@@ -6,12 +6,12 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Suppose \(A, B \subseteq \mathbf{R}\) are nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.</b>
+  <b>Suppose \(A, B \subseteq \mathbb{R}\) are nonempty and bounded above. Find a formula for \(\sup (A \cup B)\) and prove that it is correct.</b>
 </div>
 For the definitions of an upper bound and the least upper bound of a set see <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">this</a>.
 <br>
 <h3>Proof:</h3>
-Let $$A, B \subseteq \mathbf{R}$$ be nonempty and bounded above. By the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">Axiom of Completeness</a>, $$\sup A$$ and $$\sup B$$ both exist. We claim that that $$\sup (A \cup B) = \sup (\{\sup A, \sup B\})$$. Since $$\sup A$$ and $$\sup B$$ both exist, then the set $$\{\sup A, \sup B\}$$ is nonempty and bounded above. Therefore, $$\sup (A \cup B)$$ also exists by the Axiom of Completeness.
+Let $$A, B \subseteq \mathbb{R}$$ be nonempty and bounded above. By the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">Axiom of Completeness</a>, $$\sup A$$ and $$\sup B$$ both exist. We claim that that $$\sup (A \cup B) = \sup (\{\sup A, \sup B\})$$. Since $$\sup A$$ and $$\sup B$$ both exist, then the set $$\{\sup A, \sup B\}$$ is nonempty and bounded above. Therefore, $$\sup (A \cup B)$$ also exists by the Axiom of Completeness.
 <br>
 <br>
 Without the loss of generality, suppose that $$\sup A \geq \sup B$$. If that's the case, then $$\sup (\{\sup A, \sup B\}) = \sup A$$. (Why? because the maximum of the set is the supremum of the set. The <a href="https://www.youtube.com/watch?v=5bLaGzeTMkY">proof</a> for this is straight forward). So now the goal is to prove that $$\sup (A \cup B) = \sup A$$. To do this, we will prove that

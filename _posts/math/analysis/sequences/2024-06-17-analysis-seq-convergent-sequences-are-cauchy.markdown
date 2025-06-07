@@ -40,7 +40,7 @@ Our goal is to bound the term to be less than $$\epsilon$$ and now we have $$|a_
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof:</h3>
-Let $$(a_n)$$ be a convergent sequence. Let $$(a_n) \rightarrow l$$. This means that for any $$\epsilon > 0$$, there must exist a number $$N \in \mathbf{N}$$ such that
+Let $$(a_n)$$ be a convergent sequence. Let $$(a_n) \rightarrow l$$. This means that for any $$\epsilon > 0$$, there must exist a number $$N \in \mathbb{N}$$ such that
 <div>
 	$$
 	\begin{align*}

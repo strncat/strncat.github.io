@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Definition 3.3.1 (Compactness). A set \(K \subseteq \mathbf{R}\) is compact if every sequence in \(K\) has a subsequence that converges to a limit that is also in \(K\).
+  Definition 3.3.1 (Compactness). A set \(K \subseteq \mathbb{R}\) is compact if every sequence in \(K\) has a subsequence that converges to a limit that is also in \(K\).
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>

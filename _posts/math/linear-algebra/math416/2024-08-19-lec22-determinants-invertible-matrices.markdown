@@ -269,7 +269,7 @@ $$
 Theorem
 </div>
 <div class="purbdiv">
-Suppose \(F: M_{n \times n} \rightarrow \mathbf{R}\) such that
+Suppose \(F: M_{n \times n} \rightarrow \mathbb{R}\) such that
 <ol>
 	<li>\(F\) is linear in rows.</li>
 	<li>\(F(A) = 0\) if \(A\) has two identical rows.</li>

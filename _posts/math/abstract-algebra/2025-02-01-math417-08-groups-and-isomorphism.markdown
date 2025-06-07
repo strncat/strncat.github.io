@@ -318,7 +318,7 @@ Now, we turn into defining powers of an element in a group
 Definition
 </div>
 <div class="mintbodydiv">
-For \(a \in G\) where \(G\) is a group and \(n \in \mathbf{Z}\). Define \(a^n \in G\) by
+For \(a \in G\) where \(G\) is a group and \(n \in \mathbb{Z}\). Define \(a^n \in G\) by
 <ol>
 	<li>\(a^0 = e\).</li>
 	<li>\(a^1 = a\).</li>
@@ -380,7 +380,7 @@ Inductive Case: Suppose the inductive hypothesis is true for $$n$$. That is $$(a
 
 <!---------------------------------------------------------------------->
 <h3>Isomorphism</h3>
-One thing that we want to do is to compare two groups. For example take $$(\mathbf{Z}_4, +)$$, the symmetries of the rectangle, $$(\phi(5), \cdot)$$ and $$(\phi(8), \cdot)$$. These are all groups with exactly 4 elements. To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
+One thing that we want to do is to compare two groups. For example take $$(\mathbb{Z}_4, +)$$, the symmetries of the rectangle, $$(\phi(5), \cdot)$$ and $$(\phi(8), \cdot)$$. These are all groups with exactly 4 elements. To compare two groups, we want to see if we can construct a bijection between the two groups. Formally, this is called an isomorphism as follows
 <br>
 <br>
 <!---------------------------------------------------------------------->
@@ -490,11 +490,11 @@ One interesting thing to do is to classify all groups of a given finite order. I
 <ol>
 	<li>Order 0: None because we need to at least have the identity element.</li>
 	<li>Order 1: \(G = \{e\}\). Other groups of order 1 can be \(G'=\{1\}\). These two groups are isomorphic. Technically, it's a different set but to us, they're the same group. So "up to isomorphism", there is only one group of size 1.</li>
-	<li>Order 2: Up to isomorphism, the only unique group is \(\mathbf{Z}_2 = \{[0], [1], [2]\}\).</li>
-	<li>Order 3: Up to isomorphism, the only unique group is \(\mathbf{Z}_3\). All other groups of size 3 will be isomorphic to \(\mathbf{Z}_3\).</li>
-	<li>order 4: Up to isomorphism, there are two unique groups. \(\mathbf{Z}_4 \) and \(\mathbf{Z}_2 \times \mathbf{Z}_2\) (symmetries of the rectangle). Groups of order 4 can be isomorphic to either one.</li>
-	<li>Order 5: Up to isomorphism, the only unique group is \(\mathbf{Z}_5\)</li>
-	<li>Order 6: Up to isomorphism, we have two unique groups. \(\mathbf{Z}_6\) and \(S_3 \approx D_3\). These two groups are not isomorphic because \(S_3\) is non-abelian while \(\mathbf{Z}_6\) is abelian. The proof for this fact is next.</li>
+	<li>Order 2: Up to isomorphism, the only unique group is \(\mathbb{Z}_2 = \{[0], [1], [2]\}\).</li>
+	<li>Order 3: Up to isomorphism, the only unique group is \(\mathbb{Z}_3\). All other groups of size 3 will be isomorphic to \(\mathbb{Z}_3\).</li>
+	<li>order 4: Up to isomorphism, there are two unique groups. \(\mathbb{Z}_4 \) and \(\mathbb{Z}_2 \times \mathbb{Z}_2\) (symmetries of the rectangle). Groups of order 4 can be isomorphic to either one.</li>
+	<li>Order 5: Up to isomorphism, the only unique group is \(\mathbb{Z}_5\)</li>
+	<li>Order 6: Up to isomorphism, we have two unique groups. \(\mathbb{Z}_6\) and \(S_3 \approx D_3\). These two groups are not isomorphic because \(S_3\) is non-abelian while \(\mathbb{Z}_6\) is abelian. The proof for this fact is next.</li>
 </ol>
 <br>
 <!---------------------------------------------------------------------->

@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  (Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbf{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two
+  (Theorem 3.3.8)[Heine-Borel Theorem] Let \(K\) be a subset of \(\mathbb{R}\). All of the following statements are equivalent in the sense that any one of them implies the other two
 	  <ol type="i">
 	    <li>\(K\) is compact.</li>
 	    <li>\(K\) is closed and bounded.</li>
@@ -29,7 +29,7 @@ $$
 \end{align*}
 $$
 </div>
-Now, since $$(y_n) \rightarrow y$$, then for all $$\epsilon > 0$$, there exists an $$N \in \mathbf{N}$$ such that when $$n \geq N$$, we have $$|y_n - y| < \epsilon_0$$. But this implies that $$y_n$$ is not in any $$O_x$$ meaning that
+Now, since $$(y_n) \rightarrow y$$, then for all $$\epsilon > 0$$, there exists an $$N \in \mathbb{N}$$ such that when $$n \geq N$$, we have $$|y_n - y| < \epsilon_0$$. But this implies that $$y_n$$ is not in any $$O_x$$ meaning that
 <div>
 $$
 \begin{align*}

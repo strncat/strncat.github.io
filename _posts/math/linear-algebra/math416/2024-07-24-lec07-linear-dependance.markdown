@@ -30,7 +30,7 @@ a_{m1} & a_{m2} & ... & a_{mn}
 \end{align*}
 $$
 </div>
-If we view this matrix as a collection of $$n-$$column vectors in $$R^m$$ instead. The span of these vectors is a subspace of $$\mathbf{R}^m$$. We call this subspace the <b>Column Space of $$A$$ $$(Col(A))$$</b>.
+If we view this matrix as a collection of $$n-$$column vectors in $$R^m$$ instead. The span of these vectors is a subspace of $$\mathbb{R}^m$$. We call this subspace the <b>Column Space of $$A$$ $$(Col(A))$$</b>.
 <br>
 <br>
 <div class="bdiv">
@@ -47,7 +47,7 @@ x_2 \\
 . \\
 x_n
 \end{pmatrix}.
-\in \mathbf{R}^n
+\in \mathbb{R}^n
 \), we define the following operation
 \begin{align*}
 A\bar{x} = 
@@ -92,7 +92,7 @@ Note that this product or operations works if the vector has as many entries as 
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
-The following matrix has three column vectors in $$\mathbf{R}^2$$. The product below is a linear combination of the columns of the matrix.
+The following matrix has three column vectors in $$\mathbb{R}^2$$. The product below is a linear combination of the columns of the matrix.
 <div>
 $$
 \begin{align*}
@@ -133,7 +133,7 @@ $$
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>An Observation</h3>
-Given $$\bar{b} \in \mathbf{R}^m$$ and viewing the $$\bar{x}$$ as a variable, the equation
+Given $$\bar{b} \in \mathbb{R}^m$$ and viewing the $$\bar{x}$$ as a variable, the equation
 <div>
 $$
 \begin{align*}
@@ -386,7 +386,7 @@ The third column has no leading entry so there are infinitely many solutions bes
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 4</h3>
-Consider $$\{ \sin(x), \cos(x)\} \in F(\mathbf{R})$$. Is this set linearly dependent or independant?
+Consider $$\{ \sin(x), \cos(x)\} \in F(\mathbb{R})$$. Is this set linearly dependent or independant?
 <br>
 <br>
 From the definition if $$\sin(x)$$ was a non-zero scalar multiple of $$cos(x)$$, in other words $$\sin(x) = a\cos(x)$$ for some non-zero scalar $$a$$, then they are linearly dependent. But two functions are equal when they take the same value at every point.

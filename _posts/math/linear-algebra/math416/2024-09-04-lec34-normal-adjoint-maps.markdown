@@ -29,7 +29,7 @@ Fact 2: In infinite dimensions $$T^*$$ need not exist.
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
-$$A \in M_{m \times n}(\mathbf{F})$$ with $$\mathbf{F} = \mathbf{R}$$ or $$\mathbf{C}$$
+$$A \in M_{m \times n}(\mathbf{F})$$ with $$\mathbf{F} = \mathbb{R}$$ or $$\mathbf{C}$$
 <div>
 $$
 \begin{align*}
@@ -122,7 +122,7 @@ A = \begin{pmatrix}
 -c & 0
 \end{pmatrix}
 \in 
-A \in M_{n \times n}(\mathbf{R})
+A \in M_{n \times n}(\mathbb{R})
 \end{align*}
 $$
 </div>
@@ -291,7 +291,7 @@ Note here that self adjoint implies that $$T$$ is normal. The converse is not tr
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
-Let $$A \in M_{n \times n}(\mathbf{R})$$ and $$A_{ij} = A_{ji} \ \forall i,j$$, then A ($$L_A$$) is self-adjoint.
+Let $$A \in M_{n \times n}(\mathbb{R})$$ and $$A_{ij} = A_{ji} \ \forall i,j$$, then A ($$L_A$$) is self-adjoint.
 <hr>
 
 <!------------------------------------------------------------------------------------>
@@ -393,7 +393,7 @@ So eigenvalues are real but are there eigenvalues?
 <br>
 If $$V$$ is a vector space over $$\mathbf{C}$$, then $$T: V \rightarrow V$$ always has eigenvalues. It doesn't matter if $$T$$ is self-adjoint or not. The characteristic polynomial $$\det([T]_{\beta}^{\beta} - tI_n)$$ with complex entries always splits! (fact from algebra). 
 <br>
-What if $$V$$ was over $$\mathbf{R}?$$
+What if $$V$$ was over $$\mathbb{R}?$$
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -401,7 +401,7 @@ What if $$V$$ was over $$\mathbf{R}?$$
 Theorem 2
 </div>
 <div class="purbdiv">
-If \(T: V \rightarrow V\) where \(V\) is over \(\mathbf{R}\) is self-adjoint, then \(T\) has at least one eigenvalue.
+If \(T: V \rightarrow V\) where \(V\) is over \(\mathbb{R}\) is self-adjoint, then \(T\) has at least one eigenvalue.
 </div>
 An example is the rotation matrix. It is normal but not self-adjoint and it doesn't have real eigenvalues.
 <br>
@@ -415,7 +415,7 @@ $$
 A = [T]^{\beta}_{\beta} &= [T^*]^{\beta}_{\beta} \quad \text{(Because $$T$$ is self-adjoint)} \\
                     &= ([T]^{\beta}_{\beta})^* \quad \text{(Proof in last lecture)} \\
 					&= A^* \\
-					&= A^t \quad \text{(because $$V$$ is over $\mathbf{R}$)}
+					&= A^t \quad \text{(because $$V$$ is over $\mathbb{R}$)}
 \end{align*}
 $$
 </div>

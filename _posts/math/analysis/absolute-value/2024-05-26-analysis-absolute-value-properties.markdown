@@ -10,7 +10,7 @@ Some definitions worth keeping in mind while studying for the next of proofs.
 <!------------------------------------------------------------------------------------>
 <h3>The Absolute Value Function</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Let \(x \in \mathbf{R}\), then the absolute value of \(x\) is denoted \(|x|\) and is given by
+  Let \(x \in \mathbb{R}\), then the absolute value of \(x\) is denoted \(|x|\) and is given by
   $$
   \begin{equation*}
   |x| = \begin{cases} x \quad \ \ \ \text{if } x \geq 0 \\ -x \quad \text{if } x \lt 0\end{cases}
@@ -20,13 +20,13 @@ Some definitions worth keeping in mind while studying for the next of proofs.
 <!------------------------------------------------------------------------------------>
 <h3>Properties</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Let \(x \in \mathbf{R}\), \(|x| \geq 0\).
+  Let \(x \in \mathbb{R}\), \(|x| \geq 0\).
 </div>
 For the proof, see <a href="https://strncat.github.io/jekyll/update/2024/04/25/analysis-absolute-value-pr1.html">this</a>. 
 <br>
 <!------------------------------------------------------------------------------------>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Let \(x \in \mathbf{R}\), \(-|x| \leq x \leq |x|\).
+  Let \(x \in \mathbb{R}\), \(-|x| \leq x \leq |x|\).
 </div>
 For the proof, see <a href="https://strncat.github.io/jekyll/update/2024/04/26/analysis-absolute-value-pr2.html">this</a>. 
 <br>

@@ -8,12 +8,12 @@ mathjax: true
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Sequence</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  A sequence is a function whose domain is \(\mathbf{N}\).
+  A sequence is a function whose domain is \(\mathbb{N}\).
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>[2.2.3] Definition: Convergence of a Sequence</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  A sequence \((a_n)\) converges to a real number \(a\) if, for every positive number \(\epsilon\), there exists an \(N \in \mathbf{N}\) such that whenever \(n \geq N\) it follows that \(|a_n - a| \leq \epsilon\).
+  A sequence \((a_n)\) converges to a real number \(a\) if, for every positive number \(\epsilon\), there exists an \(N \in \mathbb{N}\) such that whenever \(n \geq N\) it follows that \(|a_n - a| \leq \epsilon\).
 </div>
 This can also be written as $$\displaystyle \lim_{n\to\infty}a_n = a$$. What is this saying? After a certain number of terms, say after $$N$$, all the points in the sequence will converge to a real number $$a$$. Defining these points with $$|a_n - a| \leq \epsilon$$ is explained in the next definition.
 <br>
@@ -21,11 +21,11 @@ This can also be written as $$\displaystyle \lim_{n\to\infty}a_n = a$$. What is 
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Epsilon Neighborhood of \(a\)</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  Given a real number \(a \in \mathbf{R}\) and a positive number \(\epsilon > 0\), the set
+  Given a real number \(a \in \mathbb{R}\) and a positive number \(\epsilon > 0\), the set
   <div>
 	  $$
 	  \begin{align*}
-	  V_{\epsilon}(a) = \{x \in \mathbf{R}: |x - a| \leq \epsilon\}
+	  V_{\epsilon}(a) = \{x \in \mathbb{R}: |x - a| \leq \epsilon\}
 	  \end{align*}
 	  $$
   </div>
@@ -59,7 +59,7 @@ This will certainly require a proof!
 <!------------------------------------------------------------------------------------>
 <h3>[2.3.1] Definition: Bounded Sequences</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-	A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbf{N}\).
+	A sequence \(x_n\) is bounded if there exists a number \(M > 0\) such that every term in the sequence \(|x_n| \leq M\) for all \(n \in \mathbb{N}\).
 </div>
 For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/03/analysis-seq-bounded.html">this</a>.
 <br>
@@ -75,7 +75,7 @@ For the proof see <a href="https://strncat.github.io/jekyll/update/2024/06/12/an
 <!------------------------------------------------------------------------------------>
 <h3>Definition: Increasing, Decreasing and Monotone Sequences</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-	A sequence \(a_n\) is increasing if \(a_n \leq a_{n+1}\) for all \(n \in \mathbf{N}\) and decreasing if \(a_n \geq a_{n+1}\) for all \(n \in \mathbf{N}\). A sequence is monotone if it is either increasing or decreasing.
+	A sequence \(a_n\) is increasing if \(a_n \leq a_{n+1}\) for all \(n \in \mathbb{N}\) and decreasing if \(a_n \geq a_{n+1}\) for all \(n \in \mathbb{N}\). A sequence is monotone if it is either increasing or decreasing.
 </div>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -89,7 +89,7 @@ For the proof see <a href="https://strncat.github.io/jekyll/update/2024/04/29/an
 <!------------------------------------------------------------------------------------>
 <h3>[2.6.1] Definition: Cauchy Sequences</h3>
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-	A sequence \(a_n\) is called a Cauchy sequence if, for every  \(\epsilon > 0\), there exists an \(N \in \mathbf{N}\) such that whenever \(m, n \geq N\) it follows that \(|a_n - a_m| < \epsilon\).
+	A sequence \(a_n\) is called a Cauchy sequence if, for every  \(\epsilon > 0\), there exists an \(N \in \mathbb{N}\) such that whenever \(m, n \geq N\) it follows that \(|a_n - a_m| < \epsilon\).
 </div>
 <br>
 <!------------------------------------------------------------------------------------>

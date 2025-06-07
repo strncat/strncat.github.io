@@ -60,7 +60,7 @@ $$
 <div>
 $$
 \begin{align*}
-T : \ &\mathbf{R}^2 \rightarrow \mathbf{R}^2 \\
+T : \ &\mathbb{R}^2 \rightarrow \mathbb{R}^2 \\
     &(x, y) \rightarrow (y, -x)         
 \end{align*}
 $$
@@ -69,7 +69,7 @@ has an inverse
 <div>
 $$
 \begin{align*}
-S : \ &\mathbf{R}^2 \rightarrow \mathbf{R}^2 \\
+S : \ &\mathbb{R}^2 \rightarrow \mathbb{R}^2 \\
     &(x, y) \rightarrow (-y, x)         
 \end{align*}
 $$
@@ -261,11 +261,11 @@ Definition
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example 4</h3>
-$$\mathbf{R}^3$$ and $$P_2$$ are isomorphic. To see this, we need an invertible map from one to the other. The maps
+$$\mathbb{R}^3$$ and $$P_2$$ are isomorphic. To see this, we need an invertible map from one to the other. The maps
 <div>
 $$
 \begin{align*}
-T : \ &\mathbf{R}^3 \rightarrow P_2  \\
+T : \ &\mathbb{R}^3 \rightarrow P_2  \\
 &(a_1,a_2,a_3) \rightarrow a_1 + a_2x + a_3x^2
 \end{align*}
 $$
@@ -274,7 +274,7 @@ and
 <div>
 $$
 \begin{align*}
-U : \ &\mathbf{R}^3 \rightarrow P_2  \\
+U : \ &\mathbb{R}^3 \rightarrow P_2  \\
 &(a_1,a_2,a_3) \rightarrow a_3 + (a_1 + a_2)x + (a_1 + a_2)x^2
 \end{align*}
 $$

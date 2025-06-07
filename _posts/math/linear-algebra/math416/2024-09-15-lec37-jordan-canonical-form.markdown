@@ -15,7 +15,7 @@ Theorem (5.8(a))
 <div class="purbdiv">
 \(T\) is diagonalizable if and only if
 <ul style="list-style-type:lower-alpha">
-	<li>The characteristic polynomial splits over its field \(\mathbf{R}\) or \(\mathbf{C}\)</li>
+	<li>The characteristic polynomial splits over its field \(\mathbb{R}\) or \(\mathbf{C}\)</li>
 	<li>For each eigenvalue of \(T\), its geometric multiplicity (\(\dim(E_{\lambda})\)) = algebraic multiplicity</li>
 </ul>
 </div>

@@ -9,13 +9,13 @@ mathjax: true
 Definition
 </div>
 <div class="purbdiv">
-A map \(T\) from a vector space \(V\) to a vector space \(W\), \(T: V \rightarrow W\) is linear for all \(v_1, v_2 \in V\) and \(c \in \mathbf{R}\) if
+A map \(T\) from a vector space \(V\) to a vector space \(W\), \(T: V \rightarrow W\) is linear for all \(v_1, v_2 \in V\) and \(c \in \mathbb{R}\) if
 <ol>
 	<li>\(T(v_1+v_2) = T(v_1) + T(v_2))\)</li>
 	<li>\(T(cv_1) = cT(v_1)\)</li>
 </ol>
 </div>
-Remark: The two conditions can be combined together and so $$T: V \rightarrow W$$ is linear above if and only if $$T(v_1 + cv_2) = T(v_1) + cT(v_2)$$ for all $$v_1, v_2 \in V$$ and $$c \in \mathbf{R}$$.
+Remark: The two conditions can be combined together and so $$T: V \rightarrow W$$ is linear above if and only if $$T(v_1 + cv_2) = T(v_1) + cT(v_2)$$ for all $$v_1, v_2 \in V$$ and $$c \in \mathbb{R}$$.
 <br>
 <br>
 Proof: 
@@ -139,7 +139,7 @@ The map
 <div>
 	$$
 	\begin{align*}
-	T: \ &\mathbf{R}^2 \rightarrow \mathbf{R}^2  \\
+	T: \ &\mathbb{R}^2 \rightarrow \mathbb{R}^2  \\
 	&(x,y) \rightarrow (-y,x)
 	\end{align*}
 	$$
@@ -194,7 +194,7 @@ Let $$A \in M_{m \times n}$$. The map
 <div>
 	$$
 	\begin{align*}
-	 L_A: \ &\mathbf{R}^n \rightarrow \mathbf{R}^m \\
+	 L_A: \ &\mathbb{R}^n \rightarrow \mathbb{R}^m \\
 	  &\bar{x} \rightarrow A\bar{x}.
 	\end{align*}
 	$$
@@ -209,15 +209,15 @@ For $$a < b$$, define the map
 <div>
 	$$
 	\begin{align*}
-	 T_a^b: \ &C^0(\mathbf{R}) \rightarrow \mathbf{R} \\
+	 T_a^b: \ &C^0(\mathbb{R}) \rightarrow \mathbb{R} \\
 	  &f \rightarrow \int_a^b f(x)dx.
 	\end{align*}
 	$$
 </div>
-($$C^0$$ is the set of continuous functions on $$\mathbf{R})$$). 
+($$C^0$$ is the set of continuous functions on $$\mathbb{R})$$). 
 <br>
 <br>
-Recall the dimension of $$\mathbf{R}$$ is 1 and the dimension of $$C^0$$ is infinte because the set of all polynomials (which has dimension infinity) is a subset of the set of continuous functions. Therefore, the set of continuous function has dimension infinity as well. This mapping goes from an infinite dimensional space to a finite dimensional space.
+Recall the dimension of $$\mathbb{R}$$ is 1 and the dimension of $$C^0$$ is infinte because the set of all polynomials (which has dimension infinity) is a subset of the set of continuous functions. Therefore, the set of continuous function has dimension infinity as well. This mapping goes from an infinite dimensional space to a finite dimensional space.
 <br>
 <br>
 To prove that this mapping in linear, we notice that

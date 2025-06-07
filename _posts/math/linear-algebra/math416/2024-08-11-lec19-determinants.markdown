@@ -12,7 +12,7 @@ Definition
 The determinant is a map
 $$
 \begin{align*}
-\det: &M_{n \times n} \rightarrow \mathbf{R} \\
+\det: &M_{n \times n} \rightarrow \mathbb{R} \\
      &A \rightarrow \det(A)
 \end{align*}
 $$
@@ -26,11 +26,11 @@ $$
 	<div>
 	$$
 	\begin{align*}
-	[0,1]^n = \{(x_1,...,x_n) \in \mathbf{R}^n \ | \ x_i \in [0,1]\}
+	[0,1]^n = \{(x_1,...,x_n) \in \mathbb{R}^n \ | \ x_i \in [0,1]\}
 	\end{align*}
 	$$
 	</div>
-	What does this represent? In \(\mathbf{R}^2\), this is a unit square. In general, it's a cube determined by the vectors \(\{e_1, e_2,...,e_n\}\). 
+	What does this represent? In \(\mathbb{R}^2\), this is a unit square. In general, it's a cube determined by the vectors \(\{e_1, e_2,...,e_n\}\). 
 	<br>
 	What does this have anything to do with the determinant? 
 	<br>
@@ -46,7 +46,7 @@ $$
 
 <!------------------------------------------------------------------------------------>
 <h3>Definition of the Determinant</h3>
-The definition of the $$\det: M_{n \times n} \rightarrow \mathbf{R}$$ is inductive on $$n$$.
+The definition of the $$\det: M_{n \times n} \rightarrow \mathbb{R}$$ is inductive on $$n$$.
 <br>
 <br>
 <!-------------------n=1------------------->
@@ -54,7 +54,7 @@ For $$n = 1$$:
 <div>
 $$
 \begin{align*}
-&M_{1\times 1} = \{(a)\} \leftrightarrow \mathbf{R} \\
+&M_{1\times 1} = \{(a)\} \leftrightarrow \mathbb{R} \\
        &\det((a)) = a
 \end{align*}
 $$
@@ -62,11 +62,11 @@ $$
 Checking the four properties:
 <ol>
 	<li>Since we only have one entry in the matrix, then the inverse exists and is \((a)^{-1} = (\frac{1}{a})\) if and only if \(a = \det((a)) \neq 0\).</li>
-	<li>Checking the second property we see that for \(L_{(a)}: \mathbf{R}^1 \rightarrow \mathbf{R}^1\)
+	<li>Checking the second property we see that for \(L_{(a)}: \mathbb{R}^1 \rightarrow \mathbb{R}^1\)
 <div>
 $$
 \begin{align*}
-L_{(a)} : &\mathbf{R}^1 \rightarrow \mathbf{R}^1 \\
+L_{(a)} : &\mathbb{R}^1 \rightarrow \mathbb{R}^1 \\
 &x \rightarrow ax \\
 L_{(a)}([0,1]) &= \begin{cases} [0,a] \quad \text{if } a \geq 0 \\ [a,0] \quad \text{if } a \lt 0\end{cases}\\
 volume(L_{(a)}([0,1])) &= |a| = |det((a))|.
@@ -83,7 +83,7 @@ For $$n = 2$$:
 <div>
 $$
 \begin{align*}
-\det: \ &M_{2 \times 2} \rightarrow \mathbf{R} \\
+\det: \ &M_{2 \times 2} \rightarrow \mathbb{R} \\
        &\begin{pmatrix}a & b \\ c & d \end{pmatrix} \rightarrow ad - bc
 \end{align*}
 $$
@@ -114,7 +114,7 @@ So now what about the general case?
 <div>
 $$
 \begin{align*}
-\det: \ &M_{n \times n} \rightarrow \mathbf{R}
+\det: \ &M_{n \times n} \rightarrow \mathbb{R}
 \end{align*}
 $$
 </div>
@@ -345,7 +345,7 @@ $$
 \end{align*}
 $$
 </div>
-Next, we know that $$e_1,...e_j$$ are vectors of the standard basis for $$\mathbf{R}^n$$. So we know that the $$r$$th row of $$A$$ can be expressed as a linear combination of these vectors. Moreover, the coefficients of this linear combination are just the entries in the $$r$$th row of $$A$$. So by Theorem 1 ($$\det(A)$$ is linear in the rows of $$A$$), this means that we can break the determinant of $$A$$ into the sum of all these determinants as follows
+Next, we know that $$e_1,...e_j$$ are vectors of the standard basis for $$\mathbb{R}^n$$. So we know that the $$r$$th row of $$A$$ can be expressed as a linear combination of these vectors. Moreover, the coefficients of this linear combination are just the entries in the $$r$$th row of $$A$$. So by Theorem 1 ($$\det(A)$$ is linear in the rows of $$A$$), this means that we can break the determinant of $$A$$ into the sum of all these determinants as follows
 <div>
 $$
 \begin{align*}

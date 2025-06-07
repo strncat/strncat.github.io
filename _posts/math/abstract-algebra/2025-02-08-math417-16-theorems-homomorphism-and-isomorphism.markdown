@@ -118,21 +118,21 @@ Moreover, its kernel per the homomorphism theorem is $$\{aN \ | \ aN \subseteq K
 <h3>Example 1</h3>
 <ul>
 <li>Let \(H = \langle a \rangle\) be a finite cyclic group of order \(n\). </li>
-<li>Let \(G = (\mathbf{Z}, +)\). </li>
-<li>Let \(N = \mathbf{Z}n \unlhd \mathbf{Z}\) the group of multiples of \(n\) which is a subgroup of \(G = \mathbf{Z}\).</li>
-<li>Let \(\phi: \mathbf{Z} \rightarrow H \) be a surjective homomorphism by the formula \(\phi(m) = a^m\)</li>
-<li>The kernel of \(\phi\) is \(ker(\phi) = \{m \in \mathbf{Z} \ | \ a^m = e\}\). The kernel is the set of all the multiples of the order of \(\langle a \rangle\) so it's \(\mathbf{Z}n\) where \(n\) is the order.</li>
+<li>Let \(G = (\mathbb{Z}, +)\). </li>
+<li>Let \(N = \mathbb{Z}n \unlhd \mathbb{Z}\) the group of multiples of \(n\) which is a subgroup of \(G = \mathbb{Z}\).</li>
+<li>Let \(\phi: \mathbb{Z} \rightarrow H \) be a surjective homomorphism by the formula \(\phi(m) = a^m\)</li>
+<li>The kernel of \(\phi\) is \(ker(\phi) = \{m \in \mathbb{Z} \ | \ a^m = e\}\). The kernel is the set of all the multiples of the order of \(\langle a \rangle\) so it's \(\mathbb{Z}n\) where \(n\) is the order.</li>
 </ul>
 Applying the Isomorphism Theorem, we get a new isomorphism
 <div>
 $$
 \begin{align*}
-\varphi' \ : \ &\mathbf{Z}/\mathbf{Z}n \rightarrow H = \langle a \rangle \\
+\varphi' \ : \ &\mathbb{Z}/\mathbb{Z}n \rightarrow H = \langle a \rangle \\
               &[m]_n \rightarrow a^m.
 \end{align*}
 $$
 </div>
-Reminder: $$\mathbf{Z}/\mathbf{Z}n = \mathbf{Z}_n$$
+Reminder: $$\mathbb{Z}/\mathbb{Z}n = \mathbb{Z}_n$$
 <hr>
 
 <!----------------------------------------------------------------------------->

@@ -9,7 +9,7 @@ Recall $$A \in M_{m \times n}$$ defines a linear map
 <div>
 	$$
 	\begin{align*}
-	L_A: \ &\mathbf{R}^n \rightarrow \mathbf{R}^m \\ 
+	L_A: \ &\mathbb{R}^n \rightarrow \mathbb{R}^m \\ 
 	            &\bar{x} \rightarrow A\bar{x} 
 	\end{align*}
 	$$
@@ -61,14 +61,14 @@ a_1 \\
 . \\
 a_n
 \end{pmatrix}
-\in \mathbf{R}^n
+\in \mathbb{R}^n
 	\end{align*}
 	$$
 is the coordinate expression for \(v\) with respect to \(\beta\).
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example</h3>
-Let $$V = \mathbf{R}^2, v = (2,1), \beta = \{(1,0), (0,1)\}$$ and $$\beta' = \{(1,1), (1,-1)\}$$.
+Let $$V = \mathbb{R}^2, v = (2,1), \beta = \{(1,0), (0,1)\}$$ and $$\beta' = \{(1,1), (1,-1)\}$$.
 <br>
 <div>
 	$$
@@ -124,17 +124,17 @@ So we can think of $$[\quad]_{\beta'}$$ as a map:
 <div>
 	$$
 	\begin{align*}
-	 [\quad]_{\beta'}: V \rightarrow \mathbf{R}^n
+	 [\quad]_{\beta'}: V \rightarrow \mathbb{R}^n
 \end{align*}
 $$
 </div>
-The idea is that each basis $$\beta$$ of $$V$$ with dimension $$\dim V = n$$ gives a map that identifies $$V$$ with $$\mathbf{R}^n$$. This map is linear, 1-1 and onto. "Bijective Correspondance"
+The idea is that each basis $$\beta$$ of $$V$$ with dimension $$\dim V = n$$ gives a map that identifies $$V$$ with $$\mathbb{R}^n$$. This map is linear, 1-1 and onto. "Bijective Correspondance"
 <hr>
 
 <!------------------------------------------------------------------------------------>
 <h3>Matrix Representation of linear transformations</h3>
 Consider now $$T: V \rightarrow W$$ linear and both $$V$$ and $$W$$ are finite dimensional.
-We know we can identify $$V$$ with $$\mathbf{R}^n$$ and we can identify $$W$$ with $$\mathbf{R}^m$$ but now we want to represent $$T$$ as a matrix. Let $$\beta = \{v_1, ..., v_n\}$$ be the basis for $$V$$ and let $$\gamma = \{w_1, ..., w_n\}$$ be the basis for $$W$$. For $$v \in V$$, we have
+We know we can identify $$V$$ with $$\mathbb{R}^n$$ and we can identify $$W$$ with $$\mathbb{R}^m$$ but now we want to represent $$T$$ as a matrix. Let $$\beta = \{v_1, ..., v_n\}$$ be the basis for $$V$$ and let $$\gamma = \{w_1, ..., w_n\}$$ be the basis for $$W$$. For $$v \in V$$, we have
 <div>
 	$$
 	\begin{align*}
@@ -253,21 +253,21 @@ Theorem 2.15(a)
 Let \(A \in M_{m \times n}\) and let
 $$
 \begin{align*}
-L_A: \ &\mathbf{R}^n \rightarrow \mathbf{R}^m \\
+L_A: \ &\mathbb{R}^n \rightarrow \mathbb{R}^m \\
 &\bar{x} \rightarrow A\bar{x}.
 \end{align*}
 $$
-If \(\beta\) and \(\gamma\) are the standard bases for \(\mathbf{R}^n\) and \(\mathbf{R}^m\) respectively, then
+If \(\beta\) and \(\gamma\) are the standard bases for \(\mathbb{R}^n\) and \(\mathbb{R}^m\) respectively, then
 $$
 \begin{align*}
 [L_A]^{\gamma}_{\beta} = A.
 \end{align*}
 $$
 </div>
-(Note: We earlier said that any linear transformation between finite dimensional vector spaces can be represented by a matrix. $$L_A$$ is a linear transformation. So what is the matrix representation of it? The claim is that as long as you use the standard basis for $$\mathbf{R}^n$$ and $$\mathbf{R}^m$$, then the representation is just $$A$$ itself!)
+(Note: We earlier said that any linear transformation between finite dimensional vector spaces can be represented by a matrix. $$L_A$$ is a linear transformation. So what is the matrix representation of it? The claim is that as long as you use the standard basis for $$\mathbb{R}^n$$ and $$\mathbb{R}^m$$, then the representation is just $$A$$ itself!)
 <br>
 <br>
-Proof: $$\beta$$ is the standard basis of $$\mathbf{R}^n$$ so $$\beta = \{e_1,...,e_n\}$$ where 
+Proof: $$\beta$$ is the standard basis of $$\mathbb{R}^n$$ so $$\beta = \{e_1,...,e_n\}$$ where 
 $$e_1 = \begin{pmatrix}
 1 & 0 & ... & 0
 \end{pmatrix}^t
@@ -289,7 +289,7 @@ $$
 \end{align*}
 $$
 </div>
-So far, we've taken a linear transformation from a vector space $$V$$ to another $$W$$ and represented it with a matrix $$[T]_{\beta}^{\gamma}$$. Above, we can also take a matrix $$A$$ and turn it into a linear map $$L_A$$ and if we do so with the standard bases $$\mathbf{R}^n$$ and $$\mathbf{R}^m$$, we can recover the matrix $$A$$. 
+So far, we've taken a linear transformation from a vector space $$V$$ to another $$W$$ and represented it with a matrix $$[T]_{\beta}^{\gamma}$$. Above, we can also take a matrix $$A$$ and turn it into a linear map $$L_A$$ and if we do so with the standard bases $$\mathbb{R}^n$$ and $$\mathbb{R}^m$$, we can recover the matrix $$A$$. 
 <br>
 <br>
 <!------------------------------------------------------------------------------------>

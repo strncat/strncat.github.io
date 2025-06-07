@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>The open interval \((0,1) = \{x \in \mathbf{R}: 0 < x < 1\}\) is uncountable.</b>
+  <b>The open interval \((0,1) = \{x \in \mathbb{R}: 0 < x < 1\}\) is uncountable.</b>
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Notes</h3>
@@ -15,7 +15,7 @@ Cantor published this proof in 1874! It's one of the most beautiful proofs I hav
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof</h3>
-Assume for the sake of contradiction that (0,1) is countable. This means that there exists a function $$f: \mathbf{N} \rightarrow (0,1)$$ that is 1-1 and onto. So for each $$m \in \mathbf{N}$$, $$f(m)$$ is a real number between 0 and 1. We'll represent this number using the decimal notation. So for each $$m, n \in mathbf{N}, a_{mn}$$ is the digit from the set \{0,1,2,...,9\} that represents that $$n$$th digit in the digital representation of $$f(m)$$,
+Assume for the sake of contradiction that (0,1) is countable. This means that there exists a function $$f: \mathbb{N} \rightarrow (0,1)$$ that is 1-1 and onto. So for each $$m \in \mathbb{N}$$, $$f(m)$$ is a real number between 0 and 1. We'll represent this number using the decimal notation. So for each $$m, n \in mathbf{N}, a_{mn}$$ is the digit from the set \{0,1,2,...,9\} that represents that $$n$$th digit in the digital representation of $$f(m)$$,
 <div>
 $$
 \begin{align*}
@@ -23,7 +23,7 @@ f(m) = .a_{m1}a_{m2}a_{m3}a_{m4}...a_{mn}
 \end{align*}
 $$
 </div>
-We can summarize the 1-1 correspondance between $$\mathbf{N}$$ and $$(0,1)$$ in the following table,
+We can summarize the 1-1 correspondance between $$\mathbb{N}$$ and $$(0,1)$$ in the following table,
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/real-analysis/cantor.png" width="80%" class="center"></p>
 

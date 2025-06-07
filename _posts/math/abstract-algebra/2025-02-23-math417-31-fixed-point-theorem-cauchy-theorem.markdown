@@ -61,7 +61,7 @@ Definition
 <div class="mintbodydiv">
 Let \(p\) be a prime number. A \(p\)-group is a group of order \(p^k\) for some \(k \geq 1\).
 </div>
-For example $$\mathbf{Z}_{p^k}$$ is a $$p$$-group. The cyclic group like $$\mathbf{Z}_{p^i} \times \mathbf{Z}_{p^j}$$ is another $$p$$-group. Or the dihedral group $$D_{2^k}$$ which has order $$2^{k+1}$$ so this is a 2-group.
+For example $$\mathbb{Z}_{p^k}$$ is a $$p$$-group. The cyclic group like $$\mathbb{Z}_{p^i} \times \mathbb{Z}_{p^j}$$ is another $$p$$-group. Or the dihedral group $$D_{2^k}$$ which has order $$2^{k+1}$$ so this is a 2-group.
 <br>
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
@@ -169,7 +169,7 @@ Proposition
 <div class="peachbodydiv">
 Let \(p\) be a prime number. Then every group of order \(p^2\) is abelian.
 </div>
-Using this, we can now use the elementary divisor theorem to classify these groups. In fact, $$G$$ of order \(p^2\) is isomorphic to either $$\mathbf{Z}_{p^2}$$ or $$\mathbf{Z}_p \times \mathbf{Z}_p$$. 
+Using this, we can now use the elementary divisor theorem to classify these groups. In fact, $$G$$ of order \(p^2\) is isomorphic to either $$\mathbb{Z}_{p^2}$$ or $$\mathbb{Z}_p \times \mathbb{Z}_p$$. 
 <br>
 <br>
 <b>Proof</b>
@@ -312,7 +312,7 @@ So $$|X^C|$$ must be divisible by $$p$$ and since $$|X^C| \geq 1$$, then $$|X^C|
 
 <!------------------------------------------------------------------------->
 <h3>Classification of Groups of Order 6</h3>
-We've seen before $$\mathbf{Z}_6 \cong \mathbf{Z}_2 \times \mathbf{Z}_3$$ and we've also seen $$D_3 \cong S_3$$. 
+We've seen before $$\mathbb{Z}_6 \cong \mathbb{Z}_2 \times \mathbb{Z}_3$$ and we've also seen $$D_3 \cong S_3$$. 
 <br>
 <br>
 Suppose $$|G| = 6 = 2(3)$$. These are prime factors, so we can use Cauchy's Theorem twice to conclude that we must have an element of order 2 and another element of order 3. So let 
@@ -354,9 +354,9 @@ N \rtimes_{\gamma} A \cong G
 \end{align*}
 $$
 </div>
-$$A$$ is of order 2 so it must be isomorphic to $$\mathbf{Z}_2$$. $$N$$ is of order 3 so it's isomorphic to $$\mathbf{Z}_3$$. We know that $$\text{Aut}(\mathbf{Z}_3) \cong \Phi(3)$$ But $$\Phi(3)$$ is of order 2 so it's isomorphic to $$\mathbf{Z}_2$$. So how many homomorphisms can we have from $$A$$ to $$\text{Aut}(N)$$ if both groups are cyclic of order 2? There are only two choices.
+$$A$$ is of order 2 so it must be isomorphic to $$\mathbb{Z}_2$$. $$N$$ is of order 3 so it's isomorphic to $$\mathbb{Z}_3$$. We know that $$\text{Aut}(\mathbb{Z}_3) \cong \Phi(3)$$ But $$\Phi(3)$$ is of order 2 so it's isomorphic to $$\mathbb{Z}_2$$. So how many homomorphisms can we have from $$A$$ to $$\text{Aut}(N)$$ if both groups are cyclic of order 2? There are only two choices.
 <ul>
-	<li>The trivial homomorphism gives us the product group \(\mathbf{Z}_2 \times \mathbf{Z}_3\)</li>
+	<li>The trivial homomorphism gives us the product group \(\mathbb{Z}_2 \times \mathbb{Z}_3\)</li>
 	<li>The non-trivial homomorphism gives us the dihedral group \(D_3\).</li>
 </ul>
 <hr>
@@ -365,14 +365,14 @@ $$A$$ is of order 2 so it must be isomorphic to $$\mathbf{Z}_2$$. $$N$$ is of or
 <h3>Study Notes on \(D_3\)</h3>
 How does the non-trivial homomorphism gives us the dihedral group? how does this happen? We have 
 <ul>
-	<li>\(N = \langle n \rangle \cong \mathbf{Z}_3\) where \(n^3 = e\).</li>
-	<li>\(A = \langle a \rangle \cong \mathbf{Z}_2\) where \(a^2 = e\)</li>
+	<li>\(N = \langle n \rangle \cong \mathbb{Z}_3\) where \(n^3 = e\).</li>
+	<li>\(A = \langle a \rangle \cong \mathbb{Z}_2\) where \(a^2 = e\)</li>
 </ul>
 Define
 <div>
 	$$
 	\begin{align*}
-	\gamma: A &\rightarrow \text{Aut}(\mathbf{Z}_3) \\
+	\gamma: A &\rightarrow \text{Aut}(\mathbb{Z}_3) \\
 	\gamma(a) &= \alpha \text{ where } \alpha(n) = n^{-1} \\
 	\gamma(a)(n) &= n^{-1}
 	\end{align*}
@@ -396,7 +396,7 @@ So now if we apply the semidirect product multiplication, using the homomorphism
 
 <!------------------------------------------------------------------------->
 <h3>Classification of Groups of Order \(2p\)</h3>
-where $$p$$ is an odd prime. We know two groups $$\mathbf{Z}_{2p} =\mathbf{Z}_{2} \times \mathbf{Z}_{p}$$ and $$D_p$$. 
+where $$p$$ is an odd prime. We know two groups $$\mathbb{Z}_{2p} =\mathbb{Z}_{2} \times \mathbb{Z}_{p}$$ and $$D_p$$. 
 <br>
 <br>
 Let $$|G| = 2p$$. By Cauchy, $$2$$ divides $$|G|$$. Therefore, we have an element of order $$2$$. From this, we get $$A = \langle a \rangle$$ where $$|A| = 2$$. We also have an element of order $$p$$. From this we get $$N = \langle N \rangle$$. Again, we will see that
@@ -422,9 +422,9 @@ N \rtimes_{\gamma} A \cong G
 \end{align*}
 $$
 </div>
-$$A$$ is of order 2 so it must be isomorphic to $$\mathbf{Z}_2$$. $$N$$ is of order $$p$$ so it's isomorphic to $$\mathbf{Z}_p$$ (cyclic). We know that $$\text{Aut}(\mathbf{Z}_p) \cong \Phi(p)$$ where $$\Phi(p)$$ is of order $$p-1$$. So how many homomorphisms can we have from $$A$$ to $$\text{Aut}(N)$$.
+$$A$$ is of order 2 so it must be isomorphic to $$\mathbb{Z}_2$$. $$N$$ is of order $$p$$ so it's isomorphic to $$\mathbb{Z}_p$$ (cyclic). We know that $$\text{Aut}(\mathbb{Z}_p) \cong \Phi(p)$$ where $$\Phi(p)$$ is of order $$p-1$$. So how many homomorphisms can we have from $$A$$ to $$\text{Aut}(N)$$.
 <ul>
-	<li>The trivial homomorphism gives us the product group \(\mathbf{Z}_2 \times \mathbf{Z}_p\)</li>
+	<li>The trivial homomorphism gives us the product group \(\mathbb{Z}_2 \times \mathbb{Z}_p\)</li>
 	<li>The non-trivial homomorphism gives us the dihedral group \(D_p\).</li>
 </ul>
 <hr>
@@ -468,14 +468,14 @@ Where
 	$$
 	\begin{align*}
 	\gamma: A &\rightarrow \text{Aut}(N) \\
-	\gamma: \mathbf{Z}_p &\rightarrow \Phi(p)
+	\gamma: \mathbb{Z}_p &\rightarrow \Phi(p)
 	\end{align*}
 	$$
 </div>
 There are two cases:
 <ul>
-	<li>\(q \ \not\mid \ (p-1)\): In this case, the generator of the group \(A\)'s \(q\)th power has to go to the identity because \(q\) doesn't divide \(p - 1\) which is the order of \(\Phi(p)\). The only possible \(\gamma\) is \(\gamma(a) = e\) so send everything to the identity and we get the direct product \(\mathbf{Z}_p \times \mathbf{Z}_q\).</li>
-	<li>\(q \ | \ (p-1)\): So we get the non-trivial homomorphism \(\gamma\). Because \(q \ (p-1)\) which is the order of \(\Phi(p-1)\), then by Cauchy there exists an element of order \(q\) in \(\Phi(p-1)\). So \(\mathbf{Z}_{pq}\) and another non abelian group.</li>
+	<li>\(q \ \not\mid \ (p-1)\): In this case, the generator of the group \(A\)'s \(q\)th power has to go to the identity because \(q\) doesn't divide \(p - 1\) which is the order of \(\Phi(p)\). The only possible \(\gamma\) is \(\gamma(a) = e\) so send everything to the identity and we get the direct product \(\mathbb{Z}_p \times \mathbb{Z}_q\).</li>
+	<li>\(q \ | \ (p-1)\): So we get the non-trivial homomorphism \(\gamma\). Because \(q \ (p-1)\) which is the order of \(\Phi(p-1)\), then by Cauchy there exists an element of order \(q\) in \(\Phi(p-1)\). So \(\mathbb{Z}_{pq}\) and another non abelian group.</li>
 </ul>
 <hr>
 

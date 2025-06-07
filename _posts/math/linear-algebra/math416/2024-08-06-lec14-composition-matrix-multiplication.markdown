@@ -169,8 +169,8 @@ $$
 <div>
 $$
 \begin{align*}
-A &\in M_{m \times n} \rightarrow L_A: \mathbf{R}^n \rightarrow \mathbf{R}^m \\
-B &\in M_{p \times m} \rightarrow L_B: \mathbf{R}^m \rightarrow \mathbf{R}^p
+A &\in M_{m \times n} \rightarrow L_A: \mathbb{R}^n \rightarrow \mathbb{R}^m \\
+B &\in M_{p \times m} \rightarrow L_B: \mathbb{R}^m \rightarrow \mathbb{R}^p
 \end{align*}
 $$
 </div>

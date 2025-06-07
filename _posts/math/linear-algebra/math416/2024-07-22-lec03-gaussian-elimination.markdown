@@ -239,7 +239,7 @@ Finally, we can write the solution set as
 <div>
 $$
 \begin{align*}
-\{(-1-5t, 1+3t, t) | t \in \mathbf{R}\}.
+\{(-1-5t, 1+3t, t) | t \in \mathbb{R}\}.
 \end{align*}
 $$
 </div>

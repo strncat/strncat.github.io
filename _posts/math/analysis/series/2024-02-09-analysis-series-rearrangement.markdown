@@ -20,7 +20,7 @@ Let $$\sum_{n=1}^{\infty} a_n$$ be a series that converges absolutely to $$A$$. 
   \end{align*}
   $$
 </div>
-Now suppose that $$\sum_{n=1}^{\infty} b_n$$ is a re-arrangement of $$\sum_{n=1}^{\infty} a_n$$ via $$f: \mathbf{N} \rightarrow \mathbf{N}$$ where $$b_{f(n)} = a_n$$ for all $$n \in \mathbf{N}$$. Let the sequence of its partial sums be $$(t_n)$$ where $$t_n$$ is
+Now suppose that $$\sum_{n=1}^{\infty} b_n$$ is a re-arrangement of $$\sum_{n=1}^{\infty} a_n$$ via $$f: \mathbb{N} \rightarrow \mathbb{N}$$ where $$b_{f(n)} = a_n$$ for all $$n \in \mathbb{N}$$. Let the sequence of its partial sums be $$(t_n)$$ where $$t_n$$ is
 <div>
   $$
   \begin{align*}
@@ -28,7 +28,7 @@ Now suppose that $$\sum_{n=1}^{\infty} b_n$$ is a re-arrangement of $$\sum_{n=1}
   \end{align*}
   $$
 </div>
-We will show that $$(t_n) \rightarrow A$$. Since $$(s_k) \rightarrow A$$, this means that given $$\epsilon > 0$$, there exists an $$N_1 \in \mathbf{N}$$ such that if $$n \geq N_1$$, we have
+We will show that $$(t_n) \rightarrow A$$. Since $$(s_k) \rightarrow A$$, this means that given $$\epsilon > 0$$, there exists an $$N_1 \in \mathbb{N}$$ such that if $$n \geq N_1$$, we have
 <div>
   $$
   \begin{align*}
@@ -36,7 +36,7 @@ We will show that $$(t_n) \rightarrow A$$. Since $$(s_k) \rightarrow A$$, this m
   \end{align*}
   $$
 </div>
-But by the <a href="https://strncat.github.io/jekyll/update/2024/02/06/analysis-series-absolute-convergence-test.html">Absolute Convergence Test</a>, we also know that $$\sum_{n=1}^{\infty} |a_n|$$ also converges to $$A$$. We can use the <a href="https://strncat.github.io/jekyll/update/2024/02/02/analysis-series-cauchy-criteria.html">Cauchy Criterion for Series</a> to conclude that given $$\epsilon > 0$$, we can find an $$N_2 \in \mathbf{N}$$ such that if $$n > m \geq N_2$$, we have
+But by the <a href="https://strncat.github.io/jekyll/update/2024/02/06/analysis-series-absolute-convergence-test.html">Absolute Convergence Test</a>, we also know that $$\sum_{n=1}^{\infty} |a_n|$$ also converges to $$A$$. We can use the <a href="https://strncat.github.io/jekyll/update/2024/02/02/analysis-series-cauchy-criteria.html">Cauchy Criterion for Series</a> to conclude that given $$\epsilon > 0$$, we can find an $$N_2 \in \mathbb{N}$$ such that if $$n > m \geq N_2$$, we have
 <div>
   $$
   \begin{align*}

@@ -18,15 +18,15 @@ For the "show the limit" template and an example, see <a href="https://strncat.g
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof:</h3>
-Let $$(a_n)$$ be a sequence that is monotone and bounded. Suppose without the loss of generality that $$(a_n)$$ is increasing. We know that $$(a_n)$$ is bounded so if we consider the set $$\{a_n : n \in \mathbf{N}\}$$, then we can let
+Let $$(a_n)$$ be a sequence that is monotone and bounded. Suppose without the loss of generality that $$(a_n)$$ is increasing. We know that $$(a_n)$$ is bounded so if we consider the set $$\{a_n : n \in \mathbb{N}\}$$, then we can let
 <div>
 $$
 \begin{align*}
-s = \sup{\{a_n : n \in \mathbf{N}\}}.
+s = \sup{\{a_n : n \in \mathbb{N}\}}.
 \end{align*}
 $$
 </div>
-The claim is $$(a_n)$$ converges to $$s$$ or $$\lim(a_n) = s$$. To prove that, we need to show that for any $$\epsilon > 0$$, there exists some $$n \in \mathbf{N}$$ such that,
+The claim is $$(a_n)$$ converges to $$s$$ or $$\lim(a_n) = s$$. To prove that, we need to show that for any $$\epsilon > 0$$, there exists some $$n \in \mathbb{N}$$ such that,
 <div>
 $$
 \begin{align*}

@@ -141,7 +141,7 @@ Recall that the rank of $$T: V \rightarrow W$$ is $$\dim(R(T))$$.
 Definition
 </div>
 <div class="bbdiv">
-	The rank of \(A \in M_{n \times n}\), \(rank(A)\) is the rank of \(L_A: \mathbf{R}^m \rightarrow \mathbf{R}^n\).
+	The rank of \(A \in M_{n \times n}\), \(rank(A)\) is the rank of \(L_A: \mathbb{R}^m \rightarrow \mathbb{R}^n\).
 </div>
 This definition is kind of awkward and instead we want to find an expression for rank($$A$$) in terms of $$A$$ itself and not have to rely on $$L_A$$. To figure this out, we need the following result
 <div class="purdiv">
@@ -163,14 +163,14 @@ rank(BA) &= rank(L_{BA}) \\
 \end{align*}
 $$
 </div>
-By definition, to get the range, we just apply the linear map on $$v \in \mathbf{R}^n$$. This range is a subset of $$\mathbf{R}^m$$. Applying the linear map is just multiplying $$v$$ by the matrices $$A$$ and $$B$$. So we can see this below:
+By definition, to get the range, we just apply the linear map on $$v \in \mathbb{R}^n$$. This range is a subset of $$\mathbb{R}^m$$. Applying the linear map is just multiplying $$v$$ by the matrices $$A$$ and $$B$$. So we can see this below:
 <div>
 $$
 \begin{align*}
-\dim(R(L_{BA})) &= \{L_{BA}(v) \ | \ v \in \mathbf{R}^n \} \subset \mathbf{R}^m \\
-                &= \{BA(v) \ | \ v \in \mathbf{R}^n\} \\
-				&= \{B(A(v)) \ | \ v \in \mathbf{R}^n\} \\
-				&= \{B(A(v)) \ | \ v \in \mathbf{R}^n\}
+\dim(R(L_{BA})) &= \{L_{BA}(v) \ | \ v \in \mathbb{R}^n \} \subset \mathbb{R}^m \\
+                &= \{BA(v) \ | \ v \in \mathbb{R}^n\} \\
+				&= \{B(A(v)) \ | \ v \in \mathbb{R}^n\} \\
+				&= \{B(A(v)) \ | \ v \in \mathbb{R}^n\}
 \end{align*}
 $$
 </div>
@@ -178,18 +178,18 @@ This is equivalent to applying the linear map $$L_{B}$$ on the set that we get f
 <div>
 $$
 \begin{align*}
-\dim(R(L_{BA})) &= L_B(\{A(v) \ | \ v \in \mathbf{R}^n\}) \\
+\dim(R(L_{BA})) &= L_B(\{A(v) \ | \ v \in \mathbb{R}^n\}) \\
 \end{align*}
 $$
 </div>
 But this internal set is the range of the linear map $$L_A$$, $$R(L_A)$$. So what we want to show is that applying $$L_B$$ doesn't change the dinemsion of $$(R(L_A))$$ or multiplying by the matrix $$B$$ above, doesn't change anything about the dimension of the internal set.
 <br>
 <br> 
-The idea is simple but subtle. We know that $$L_B$$ is a map from $$\mathbf{R}^m$$ to $$\mathbf{R}^m$$. But here, $$L_B$$ is not acting on $$\mathbf{R}^m$$ but rather $$R(L_A)$$ (the internal set)$$. The range of $$L_A$$ is a subset of $$\mathbf{R}^m$$. So define the map
+The idea is simple but subtle. We know that $$L_B$$ is a map from $$\mathbb{R}^m$$ to $$\mathbb{R}^m$$. But here, $$L_B$$ is not acting on $$\mathbb{R}^m$$ but rather $$R(L_A)$$ (the internal set)$$. The range of $$L_A$$ is a subset of $$\mathbb{R}^m$$. So define the map
 <div>
 $$
 \begin{align*}
-L_B&: \mathbf{R}^m \rightarrow \mathbf{R}^m \\
+L_B&: \mathbb{R}^m \rightarrow \mathbb{R}^m \\
 \tilde{L_B}&: R(L_A) \rightarrow L_B(R(L_A))
 \end{align*}
 $$

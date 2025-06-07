@@ -23,7 +23,7 @@ This is a great theorem because we're saying that given any sequence whether con
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Proof:</h3>
-Let $$(a_n)$$ be a bounded sequence. By <a href="https://strncat.github.io/jekyll/update/2024/06/03/analysis-seq-bounded.html">theorem 2.3.1</a>, we know that there exists a number $$M > 0$$ satisfying $$|a_n| \leq M$$ for all $$n \in \mathbf{N}$$. We will bisect this closed interval $$[-M,M]$$ into two closed intervals $$[-M,0]$$ and $$[0,M]$$ noting here that the mid point belongs to both intervals. Now, $$(a_n)$$ has infinitely many terms by definition. So one of these halfs must contain an infinite number of terms of the sequence $$(a_n)$$. Let this interval be $$I_1$$ (Choose the left half if both had infinitely many terms).
+Let $$(a_n)$$ be a bounded sequence. By <a href="https://strncat.github.io/jekyll/update/2024/06/03/analysis-seq-bounded.html">theorem 2.3.1</a>, we know that there exists a number $$M > 0$$ satisfying $$|a_n| \leq M$$ for all $$n \in \mathbb{N}$$. We will bisect this closed interval $$[-M,M]$$ into two closed intervals $$[-M,0]$$ and $$[0,M]$$ noting here that the mid point belongs to both intervals. Now, $$(a_n)$$ has infinitely many terms by definition. So one of these halfs must contain an infinite number of terms of the sequence $$(a_n)$$. Let this interval be $$I_1$$ (Choose the left half if both had infinitely many terms).
 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/real-analysis/bolzano-0.png" width="80%" class="center"></p>
 
@@ -54,10 +54,10 @@ Now, we want to prove that $$(a_{n_k})$$ is a convergent subsequence. To do so, 
 	\end{align*}
 	$$
 </div>
-This forms a nested sequence of closed intervals and so by the <a href="https://strncat.github.io/jekyll/update/2024/04/30/analysis-nested-internval-property.html">Nested Interval Property</a>, there exits at least one point $$x \in \mathbf{R}$$ such that it is contained in every interval $$I_k$$. So let's prove that $$(a_{n_k}) \rightarrow x$$.
+This forms a nested sequence of closed intervals and so by the <a href="https://strncat.github.io/jekyll/update/2024/04/30/analysis-nested-internval-property.html">Nested Interval Property</a>, there exits at least one point $$x \in \mathbb{R}$$ such that it is contained in every interval $$I_k$$. So let's prove that $$(a_{n_k}) \rightarrow x$$.
 <br>
 <br>
-Let $$\epsilon > 0$$ be arbitrary chosen. We will show that there exists a number $$N \in \mathbf{N}$$ such that for any $$k \geq N$$, we have
+Let $$\epsilon > 0$$ be arbitrary chosen. We will show that there exists a number $$N \in \mathbb{N}$$ such that for any $$k \geq N$$, we have
 <div>
 	$$
 	\begin{align*}

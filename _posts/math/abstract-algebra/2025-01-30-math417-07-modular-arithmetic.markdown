@@ -16,7 +16,7 @@ $$
 a \equiv b \bmod n \quad \text{or} \quad a \equiv_n b
 \end{align*}
 $$
-if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbf{Z}\) such that \(a - b = tn\)
+if \(a - b\) is divisible by \(n\) or \(n \ | \ a - b\). So there exists some \(t \in \mathbb{Z}\) such that \(a - b = tn\)
 </div>
 Example: $$(1 \bmod 7) = (8 \bmod 7) = 1$$. Therefore, $$1 \equiv_7 8$$.
 <br>
@@ -29,13 +29,13 @@ Definition
 For each integer \(a\), write
 $$
 \begin{align*}
-[a] &= [a]_n = \{x \in \mathbf{Z} \ | \ x \equiv a \bmod n\} \subseteq \mathbf{Z} \\
-    &= \{ a + ny \ | \ y \in \mathbf{Z} \}
+[a] &= [a]_n = \{x \in \mathbb{Z} \ | \ x \equiv a \bmod n\} \subseteq \mathbb{Z} \\
+    &= \{ a + ny \ | \ y \in \mathbb{Z} \}
 \end{align*}
 $$
 The set \([a]\) is called the residue class or congruence class of \(a\) modulo \(n\).
 </div>
-Example: $$[2]_6 = \{2 + 6y \ | \ y \in \mathbf{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}$$
+Example: $$[2]_6 = \{2 + 6y \ | \ y \in \mathbb{Z}\} = \{ ...,-10,-4,2,8,14,20,... \}$$
 <br>
 $$[2]_6 = [8]_6 = [-10]_6 = [602]_6 = ....$$
 <hr>
@@ -49,9 +49,9 @@ Another important definition that we need is the following
 Definition
 </div>
 <div class="mintbodydiv">
-	\(rem_n \ : \ \mathbf{Z} \rightarrow \{0,1,2,...,n-1\}\) is the remainder function after dividing by \(n\).
+	\(rem_n \ : \ \mathbb{Z} \rightarrow \{0,1,2,...,n-1\}\) is the remainder function after dividing by \(n\).
 	<br>
-	\(rem_n(a) = r\) is the unique remainder of \(a \div n\) such that \(0 \leq r < n\) and \(a = qn + r\) for some \(q \in \mathbf{Z}\). Note that \(a - r\) is divisible by \(n\) or \(a \equiv_n r\).
+	\(rem_n(a) = r\) is the unique remainder of \(a \div n\) such that \(0 \leq r < n\) and \(a = qn + r\) for some \(q \in \mathbb{Z}\). Note that \(a - r\) is divisible by \(n\) or \(a \equiv_n r\).
 </div>
 It's important to note that the remainder is in the same congruence class as $$a$$. In fact $$[a]_n \cap \{0,...n-1\} = \{r\}$$. Usually the remainder $$r$$ is the standard/canonical name for the congruence class. So for example, we usually don't write $$[602]_6$$ but write $$[2]_6$$. But we don't have to put it in canonical form.
 <hr>
@@ -68,9 +68,9 @@ Lemma (Book 1.7.2)
 <div class="yellowbodydiv">
 	Properties of Congruence:
 <ol>
-	<li>Reflexive: For all \(a \in \mathbf{Z}\), \(a \equiv a \bmod n\).</li>
-	<li>Symmetric: For all \(a, b \in \mathbf{Z}\), \(a \equiv b \bmod n\) if and only if \(b \equiv a \bmod n\).</li>
-	<li>Transitive: For all \(a, b, c \in \mathbf{Z}\), if \(a \equiv b \bmod n\) and \(b \equiv c \bmod n\), then \(a \equiv c \bmod n\).</li>
+	<li>Reflexive: For all \(a \in \mathbb{Z}\), \(a \equiv a \bmod n\).</li>
+	<li>Symmetric: For all \(a, b \in \mathbb{Z}\), \(a \equiv b \bmod n\) if and only if \(b \equiv a \bmod n\).</li>
+	<li>Transitive: For all \(a, b, c \in \mathbb{Z}\), if \(a \equiv b \bmod n\) and \(b \equiv c \bmod n\), then \(a \equiv c \bmod n\).</li>
 </ol>
 </div>
 <!------------------------------------------------------------------------------>
@@ -88,7 +88,7 @@ Based on these properties, we have the following proposition
 Proposition (Book Lemma 1.7.3)
 </div>
 <div class="yellowbodydiv">
-For \(a, b \in \mathbf{Z}\), the following are equivalent:
+For \(a, b \in \mathbb{Z}\), the following are equivalent:
 <ol type="a">
 	<li>\(a \equiv b \bmod n\).</li>
 	<li>\([a]_n = [b]_n\).</li>
@@ -103,7 +103,7 @@ $$(a) \implies (b)$$:
 <br>
 Suppose $$a \equiv b \bmod n$$. We want to show that $$[a]_n = [b]_n$$. 
 <br>
-$$[a]_n \subseteq [b]_n$$: Let $$c \in \mathbf{Z}$$. If $$c \equiv a \bmod n$$, then $$c \equiv b \bmod n$$ by Lemma 1.7.2 (c). Therefore $$[a]_n \subseteq [b]_n$$.
+$$[a]_n \subseteq [b]_n$$: Let $$c \in \mathbb{Z}$$. If $$c \equiv a \bmod n$$, then $$c \equiv b \bmod n$$ by Lemma 1.7.2 (c). Therefore $$[a]_n \subseteq [b]_n$$.
 <br>
 $$[b]_n \subseteq [a]_n$$: If $$c \equiv b \bmod n$$, then $$c \equiv a \bmod n$$ and so $$[a] = [b]$$ as required.
 <br>
@@ -153,9 +153,9 @@ Definition
 <div class="mintbodydiv">
 	$$
 	\begin{align*}
-	\mathbf{Z}_n &= \{ \text{ set of congruence classes mod } n \} \\
-	             &= \{ [a]_n \ | \ a \in \mathbf{Z} \} \\
-				 &= \{ [0]_n, [1]_n,...,[n-1]_n \ | \ a \in \mathbf{Z} \} \\
+	\mathbb{Z}_n &= \{ \text{ set of congruence classes mod } n \} \\
+	             &= \{ [a]_n \ | \ a \in \mathbb{Z} \} \\
+				 &= \{ [0]_n, [1]_n,...,[n-1]_n \ | \ a \in \mathbb{Z} \} \\
 	\end{align*}
 	$$
 </div>
@@ -168,7 +168,7 @@ So now we can use the operations we defined previously to turn this set into a c
 Definition
 </div>
 <div class="mintbodydiv">
-Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by
+Define operations \(+\), \(\cdot\) on \(\mathbb{Z}_n\) by
 	$$
 	\begin{align*}
 	[a]_n + [b]_n &= [a + b]_n \\
@@ -176,10 +176,10 @@ Define operations \(+\), \(\cdot\) on \(\mathbf{Z}_n\) by
 	\end{align*}
 	$$
 </div>
-$$(\mathbf{Z}_n,+,\cdot)$$ is commutative ring with identity while $$(\mathbf{Z}_n,\cdot)$$ is a commutative monoid. $$[1]$$ is the identity element.
+$$(\mathbb{Z}_n,+,\cdot)$$ is commutative ring with identity while $$(\mathbb{Z}_n,\cdot)$$ is a commutative monoid. $$[1]$$ is the identity element.
 <br>
 <br>
-Only some elements $$[a] \in \mathbf{Z}_n$$ have a multiplicative inverse. (such that $$[a][b] = [1] = [b][a]$$). The question is when do we have a multiplicative inverse? The answer is in the following proposition.
+Only some elements $$[a] \in \mathbb{Z}_n$$ have a multiplicative inverse. (such that $$[a][b] = [1] = [b][a]$$). The question is when do we have a multiplicative inverse? The answer is in the following proposition.
 <br>
 <br>
 <!------------------------------------------------------------------------------>
@@ -187,12 +187,12 @@ Only some elements $$[a] \in \mathbf{Z}_n$$ have a multiplicative inverse. (such
 Proposition
 </div>
 <div class="peachbodydiv">
-Let \(n \geq 1, a \in \mathbf{Z}\). Then \([a]\) has a multiplicative inverse in \(\mathbf{Z}\) if and only if \(gcd(a,n) = 1\).
+Let \(n \geq 1, a \in \mathbb{Z}\). Then \([a]\) has a multiplicative inverse in \(\mathbb{Z}\) if and only if \(gcd(a,n) = 1\).
 </div>
 <!------------------------------------------------------------------------------>
 <b>Proof</b>
 <br>
-Suppose that $$gcd(a,n)=1$$. Then there exists $$r, s \in \mathbf{Z}$$ such that $$ar + ns = 1$$. Re-writing this equation, we observe that
+Suppose that $$gcd(a,n)=1$$. Then there exists $$r, s \in \mathbb{Z}$$ such that $$ar + ns = 1$$. Re-writing this equation, we observe that
 <div>
 $$
 \begin{align*}
@@ -203,7 +203,7 @@ ar + ns = 1 &\Longleftrightarrow ar = 1 + (-s)n \quad \text{ (so $ar$ and 1 diff
 $$
 </div>
 <!------------------------------------------------------------------------------>
-We will use $$\phi(n) = \{x \in \mathbf{Z}_n \ | \ x \text{ has a multiplicative inverse}\} \in \mathbf{Z}_n$$. 
+We will use $$\phi(n) = \{x \in \mathbb{Z}_n \ | \ x \text{ has a multiplicative inverse}\} \in \mathbb{Z}_n$$. 
 <br>
 $$(\phi(n))$$ is a commutative group.
 <hr>
@@ -218,7 +218,7 @@ Next we have the binomial theorem which we need to prove a proposition which wil
 Theorem (Binomial Theorem)
 </div>
 <div class="yellowbodydiv">
-	\(a, b \in \mathbf{R}, n \in \mathbf{N}\). Then
+	\(a, b \in \mathbb{R}, n \in \mathbb{N}\). Then
 	$$
 	\begin{align*}
 	(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k
@@ -239,7 +239,7 @@ As a consequence of the binomial theorem, we have the next proposition
 Proposition
 </div>
 <div class="peachbodydiv">
-Let \(p\) be prime. For all \(a, b \in \mathbf{Z}\):
+Let \(p\) be prime. For all \(a, b \in \mathbb{Z}\):
 	$$
 	\begin{align*}
 	(a + b)^p \equiv a^p + b^p \bmod p
@@ -288,7 +288,7 @@ Next, we will prove Fermat's Little Theorem.
 Theorem
 </div>
 <div class="yellowbodydiv">
-	Let \(p\) be prime, \(a \in \mathbf{Z}\)
+	Let \(p\) be prime, \(a \in \mathbb{Z}\)
 	<ol>
 		<li>\(a^p \equiv a \bmod p\)</li>
 		<li>If \(p \nmid a\), then \(a^{p-1} \equiv 1 \bmod p\)</li>
@@ -348,11 +348,11 @@ Theorem
 	   m = lcm(p-1, q-1) = \frac{(p-1)(q-1)}{gcd(p-1,q-1)}
 	\end{align*}
 	$$
-If \(a \in \mathbf{Z}\), \(h \in \mathbf{N}\) such that \(h \equiv 1 \bmod m\), then \(a^h \equiv a \bmod n\)
+If \(a \in \mathbb{Z}\), \(h \in \mathbb{N}\) such that \(h \equiv 1 \bmod m\), then \(a^h \equiv a \bmod n\)
 </div>
 <b>Proof</b>
 <br>
-We know that $$h \equiv 1 \bmod m$$ so $$h = 1 + tm$$ for some $$t \in \mathbf{Z}$$. We want to show that $$a^h \equiv a \bmod n$$. In other words, we want to show that $$n \ | \ a^h - a$$ which means that $$pq \ | \ a^h - a$$. We can write $$a^h - a$$ as follows
+We know that $$h \equiv 1 \bmod m$$ so $$h = 1 + tm$$ for some $$t \in \mathbb{Z}$$. We want to show that $$a^h \equiv a \bmod n$$. In other words, we want to show that $$n \ | \ a^h - a$$ which means that $$pq \ | \ a^h - a$$. We can write $$a^h - a$$ as follows
 <div>
 	$$
 	\begin{align*}
@@ -364,7 +364,7 @@ We know that $$h \equiv 1 \bmod m$$ so $$h = 1 + tm$$ for some $$t \in \mathbf{Z
 Therefore, want to show that $$pq$$ divides $$a(a^{tm} - 1)$$. Lecture 5 Proposition (Corollary 1.6.17 in the book) states that if $$a$$ and $$b$$ are relatively prime, $$a \ | \ n$$ and $$b \ | \ n$$, $$ab \ | \ n$$. We're given that $$p$$ and $$q$$ are distinct primes so they are relatively prime. So the goal is to prove that $$p$$ divides $$a(a^{tm} - 1)$$ and $$q$$ divides $$a(a^{tm} - 1)$$ to conclude that the product $$pq$$ divides $$a(a^{tm} - 1)$$.
 <br>
 <br>
-To start, we want to show that $$p \ | \ a(a^{tm} - 1)$$. But since $$p$$ is prime, then it will have to divide $$a$$ or $$a^{tm} - 1$$. So we need to show that either $$p \ | \ a$$ or $$p \ | \ a^{tm} - 1$$. So suppose that $$p \nmid a$$. We claim that $$p \ | \ a^{tm} - 1$$. Recall that $$m = lcm(p-1, q-1)$$. So $$m$$ is a multiple of $$p-1$$ and we can write $$m = (p - 1)s$$ for some $$s \in \mathbf{N}$$. So now we can write $$a^{tm}$$ as follows
+To start, we want to show that $$p \ | \ a(a^{tm} - 1)$$. But since $$p$$ is prime, then it will have to divide $$a$$ or $$a^{tm} - 1$$. So we need to show that either $$p \ | \ a$$ or $$p \ | \ a^{tm} - 1$$. So suppose that $$p \nmid a$$. We claim that $$p \ | \ a^{tm} - 1$$. Recall that $$m = lcm(p-1, q-1)$$. So $$m$$ is a multiple of $$p-1$$ and we can write $$m = (p - 1)s$$ for some $$s \in \mathbb{N}$$. So now we can write $$a^{tm}$$ as follows
 <div>
 	$$
 	\begin{align*}
@@ -391,11 +391,11 @@ This encryption method is based on the two prime fermat theorem. It is widely us
 <br>
 <br>
 Symmetric Encryption:
-We have some plain text ($$x \in \mathbf{Z}_n$$) that we want to encrypt. We have a function that takes a key ($$e \in \mathbf{Z}$$) to encrypt the plain text and turn it to encrypted text ($$y \in \mathbf{Z}_n$$). To decrypt it back, we have to use the same key again to turn it to plain text. The flaw in this method is that the encryption and decryption keys are the same and will need to be shared somehow. That's why we have an alternative:
+We have some plain text ($$x \in \mathbb{Z}_n$$) that we want to encrypt. We have a function that takes a key ($$e \in \mathbb{Z}$$) to encrypt the plain text and turn it to encrypted text ($$y \in \mathbb{Z}_n$$). To decrypt it back, we have to use the same key again to turn it to plain text. The flaw in this method is that the encryption and decryption keys are the same and will need to be shared somehow. That's why we have an alternative:
 <br>
 <br>
 Asymmetric Encryption:
-This is the same proces except that now we have a decryption key $$(d \in \mathbf{Z})$$. So now we have a pair of keys $$(e, d)$$. You will broadcast $$e$$ so that anyone can encrypt a message and send it to you, but you are the only with the decryption key. The goal here is to design the pair such that one one can deduce $$d$$ from $$e$$. So how to design such a pair?
+This is the same proces except that now we have a decryption key $$(d \in \mathbb{Z})$$. So now we have a pair of keys $$(e, d)$$. You will broadcast $$e$$ so that anyone can encrypt a message and send it to you, but you are the only with the decryption key. The goal here is to design the pair such that one one can deduce $$d$$ from $$e$$. So how to design such a pair?
 <br>
 <br>
 One way to implement this idea is the following (RSA):

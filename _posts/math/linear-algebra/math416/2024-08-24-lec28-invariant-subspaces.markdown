@@ -41,7 +41,7 @@ Example 4:
 <div> 
 $$
 \begin{align*}
-T : \ &\mathbf{R}^2 \rightarrow \mathbf{R}^2 \\
+T : \ &\mathbb{R}^2 \rightarrow \mathbb{R}^2 \\
 &(x, y) \rightarrow (x,0)
 \end{align*}
 $$
@@ -151,12 +151,12 @@ The answer is no. Suppose
 <div> 
 $$
 \begin{align*}
-T \ &: \mathbf{R}^3 \rightarrow \mathbf{R}^3  \\
+T \ &: \mathbb{R}^3 \rightarrow \mathbb{R}^3  \\
  &(x,y,z) \rightarrow (x,y,0)
 \end{align*}
 $$
 </div>
-$$W = \{(x,y,0) \ | \ x, y \in \mathbf{R}\}$$ is $$T$$-invariant. We just map it to itself. In fact $$T_W = I_W$$.
+$$W = \{(x,y,0) \ | \ x, y \in \mathbb{R}\}$$ is $$T$$-invariant. We just map it to itself. In fact $$T_W = I_W$$.
 <br>
 <br>
 So we see here that $$W$$ is not $$T$$-cyclic. Take $$(x, y, 0)$$,

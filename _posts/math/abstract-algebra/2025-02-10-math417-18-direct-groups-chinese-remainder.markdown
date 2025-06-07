@@ -47,7 +47,7 @@ $$
 \end{align*}
 $$
 </div>
-From this we see that each element is of order 2 since $$G \times H$$ is isomorphic to $$V$$ (The Klien 4-group which is isomorphic to $$\mathbf{Z}_2 \times \mathbf{Z}_2$$).
+From this we see that each element is of order 2 since $$G \times H$$ is isomorphic to $$V$$ (The Klien 4-group which is isomorphic to $$\mathbb{Z}_2 \times \mathbb{Z}_2$$).
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -122,7 +122,7 @@ $$
 \end{align*}
 $$
 </div>
-At some point when we get to $$x^4$$, we know by Lagrange, that the order of the element will be 6. This group is in fact isomorphic to $$\mathbf{Z}_2 \times \mathbf{Z}_3 \cong \mathbf{Z}_6$$.
+At some point when we get to $$x^4$$, we know by Lagrange, that the order of the element will be 6. This group is in fact isomorphic to $$\mathbb{Z}_2 \times \mathbb{Z}_3 \cong \mathbb{Z}_6$$.
 <br>
 <br>
 Why was this example different? why was this one cyclic. Because 2 and 3 are prime numbers. $$a$$ has order $$2$$ and $$b$$ is of order $$3$$. To get to the identity element, we will need a power that is the least common multiple which is 6.
@@ -141,17 +141,17 @@ $$
 \gamma(x) = ([x]_a, [x]_b)
 \end{align*}
 $$
-defines a homomorphism \(\gamma: \mathbf{Z} \rightarrow \mathbf{Z}_a \times \mathbf{Z}_b\) such that
+defines a homomorphism \(\gamma: \mathbb{Z} \rightarrow \mathbb{Z}_a \times \mathbb{Z}_b\) such that
 $$
 \begin{align*}
-\ker(\gamma) = \mathbf{Z}m \ \text{ (multiples of $m$ where } m=lcm(a,b)).
+\ker(\gamma) = \mathbb{Z}m \ \text{ (multiples of $m$ where } m=lcm(a,b)).
 \end{align*}
 $$
 </div>
 <!----------------------------------------------------------------------------->
 <b>Proof</b>
 <br>
-First note that $$\gamma$$ is well defined. Next, we want to show that $$\gamma$$ is a homomorphism. Since we're working on $$\mathbf{Z}_a$$ and $$\mathbf{Z}_b$$, then we want to show that $$\gamma(x+y) = \gamma(x) + \gamma(y)$$. Observe that
+First note that $$\gamma$$ is well defined. Next, we want to show that $$\gamma$$ is a homomorphism. Since we're working on $$\mathbb{Z}_a$$ and $$\mathbb{Z}_b$$, then we want to show that $$\gamma(x+y) = \gamma(x) + \gamma(y)$$. Observe that
 <div>
 $$
 \begin{align*}
@@ -162,11 +162,11 @@ $$
 \end{align*}
 $$
 </div>
-Next, we want to show that the kernel is the set of multiples of $$m$$ so $$\ker(\gamma) = \mathbf{Z}m$$ where $$m = lcm(a,b)$$. By definition,
+Next, we want to show that the kernel is the set of multiples of $$m$$ so $$\ker(\gamma) = \mathbb{Z}m$$ where $$m = lcm(a,b)$$. By definition,
 <div>
 $$
 \begin{align*}
-\ker(\gamma) &= \{x \in \mathbf{Z} \ | \ \gamma(x) = ([x]_a, [x]_b) = ([0]_a, [0]_b)\}.
+\ker(\gamma) &= \{x \in \mathbb{Z} \ | \ \gamma(x) = ([x]_a, [x]_b) = ([0]_a, [0]_b)\}.
 \end{align*}
 $$
 </div>
@@ -174,7 +174,7 @@ In other words, we want $$x$$ such that $$x \equiv 0 (\bmod a)$$ and $$x \equiv 
 <div>
 $$
 \begin{align*}
-\ker(\gamma) &= \mathbf{Z}a \cap \mathbf{Z}b = \mathbf{Z}m.
+\ker(\gamma) &= \mathbb{Z}a \cap \mathbb{Z}b = \mathbb{Z}m.
 \end{align*}
 $$
 </div>
@@ -183,19 +183,19 @@ where $$m = lcm(a,b) = \frac{ab}{gcd(a,b)}$$.
 
 <!----------------------------------------------------------------------------->
 <h3>A New Homomorphism</h3>
-As a consequence of this, we will get an injective homomorphism from the quotient group $$\mathbf{Z}/\mathbf{Z}m$$ which is $$\mathbf{Z}_m$$ to $$\mathbf{Z}_a \times \mathbf{Z}_b$$ as follows
+As a consequence of this, we will get an injective homomorphism from the quotient group $$\mathbb{Z}/\mathbb{Z}m$$ which is $$\mathbb{Z}_m$$ to $$\mathbb{Z}_a \times \mathbb{Z}_b$$ as follows
 <div>
 $$
 \begin{align*}
-\mathbf{Z}_m &\rightarrow \mathbf{Z}_a \times \mathbf{Z}_b  \\
+\mathbb{Z}_m &\rightarrow \mathbb{Z}_a \times \mathbb{Z}_b  \\
                         [x]_m &\rightarrow ([x]_a, [x]_b)
 \end{align*}
 $$
 </div>
-Why? Recall that we defined a homomorphism $$\gamma$$ from $$\mathbf{Z}$$ to $$\mathbf{Z}_a \times \mathbf{Z}_b$$. Its kernel $$K = \mathbf{Z}m$$. By the Homomorphism Theorem, we get another homomorphism from the quotient group $$\mathbf{Z}/K$$ to the same target group $$\mathbf{Z}_a \times \mathbf{Z}_b$$. Also recall that since $$\ker(\gamma) = K = \mathbf{Z}m$$, then the new homomorphism is also injective.
+Why? Recall that we defined a homomorphism $$\gamma$$ from $$\mathbb{Z}$$ to $$\mathbb{Z}_a \times \mathbb{Z}_b$$. Its kernel $$K = \mathbb{Z}m$$. By the Homomorphism Theorem, we get another homomorphism from the quotient group $$\mathbb{Z}/K$$ to the same target group $$\mathbb{Z}_a \times \mathbb{Z}_b$$. Also recall that since $$\ker(\gamma) = K = \mathbb{Z}m$$, then the new homomorphism is also injective.
 <br>
 <br>
-When will the homomorphism be surjective? Since it's injective, then it suffices that to show that $$|\mathbf{Z}_m| = |\mathbf{Z}_a \times \mathbf{Z}_b|$$. So when will they have the same size?
+When will the homomorphism be surjective? Since it's injective, then it suffices that to show that $$|\mathbb{Z}_m| = |\mathbb{Z}_a \times \mathbb{Z}_b|$$. So when will they have the same size?
 <br>
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
@@ -205,12 +205,12 @@ Theorem
 If \(a, b \geq 1\) and \(gcd(a,b) = 1\). Then we have an isomorphism
 $$
 \begin{align*}
-\gamma: \mathbf{Z}_m &\rightarrow \mathbf{Z}_a \times \mathbf{Z}_b,  \quad (m = ab)\\
+\gamma: \mathbb{Z}_m &\rightarrow \mathbb{Z}_a \times \mathbb{Z}_b,  \quad (m = ab)\\
                         [x]_m &\rightarrow ([x]_a, [x]_b)
 \end{align*}
 $$
 </div>
-Fact: the reverse, if $$gcd(a,b) > 1$$, then $$\mathbf{Z}_a \times \mathbf{Z}_b \not\cong \mathbf{Z}_{ab}$$.
+Fact: the reverse, if $$gcd(a,b) > 1$$, then $$\mathbb{Z}_a \times \mathbb{Z}_b \not\cong \mathbb{Z}_{ab}$$.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -221,7 +221,7 @@ The previous theorem is in fact the Chinese Remainder Theorem but the Chinese Re
 Theorem
 </div>
 <div class="yellowbodydiv">
-If \(a, b \geq 1\), \(gcd(a,b) = 1\) and \(m = ab\). Then for any \(\alpha, \beta \in \mathbf{Z}\), there exists \(x \in \mathbf{Z}\) such that 
+If \(a, b \geq 1\), \(gcd(a,b) = 1\) and \(m = ab\). Then for any \(\alpha, \beta \in \mathbb{Z}\), there exists \(x \in \mathbb{Z}\) such that 
 <div>
 $$
 \begin{align*}
@@ -244,21 +244,21 @@ Theorem
 If \(a_1, a_2, ... a_r \geq 1\) and \(gcd(a_i, a_j) = 1\) if \(i \neq j\). Then there is an isomorphism
 $$
 \begin{align*}
-\mathbf{Z}_m &\rightarrow \mathbf{Z}_{a_1} \times \mathbf{Z}_{a_2} \times ... \mathbf{Z}_{a_r}\\
+\mathbb{Z}_m &\rightarrow \mathbb{Z}_{a_1} \times \mathbb{Z}_{a_2} \times ... \mathbb{Z}_{a_r}\\
                         [x]_m &\rightarrow ([x]_{a_1}, [x]_{a_2},...,[x]_{a_r})
 \end{align*}
 $$
 where \(m = a_1a_2....a_r\).
 </div>
-For example: $$\mathbf{Z}_{240} = \mathbf{Z}_{16} \times \mathbf{Z}_3 \times \mathbf{Z}_5$$
+For example: $$\mathbb{Z}_{240} = \mathbb{Z}_{16} \times \mathbb{Z}_3 \times \mathbb{Z}_5$$
 <hr>
 
 <!----------------------------------------------------------------------------->
 <h3>The Multiplicative Group</h3>
-Recall $$\mathbf{Z}_n$$ is not just a group but a ring with two operations addition and multiplication. Inside this ring, we can focus on the elements that have a multiplicative inverse and form $$\Phi(n) = \{u \in \mathbf{Z}_n \ | $$ u has a multiplicative inverse $$\} \subseteq \mathbf{Z}_n$$. $$(\Phi(n),\cdot)$$ is a group with the multiplication operation. This group is also abelian and is called "modular units". It is not a subgroup of $$\mathbf{Z}_n$$.
+Recall $$\mathbb{Z}_n$$ is not just a group but a ring with two operations addition and multiplication. Inside this ring, we can focus on the elements that have a multiplicative inverse and form $$\Phi(n) = \{u \in \mathbb{Z}_n \ | $$ u has a multiplicative inverse $$\} \subseteq \mathbb{Z}_n$$. $$(\Phi(n),\cdot)$$ is a group with the multiplication operation. This group is also abelian and is called "modular units". It is not a subgroup of $$\mathbb{Z}_n$$.
 <br>
 <br>
-It turns out that we can use the Chinese Remainder Theorem to decompose $$\Phi(n)$$, the modular units group. Before listing the theorem recall that if $$x \in \mathbf{Z}$$. Then $$[x]_n \in \Phi(n)$$ if and only if $$gcd(x,n)=1$$. 
+It turns out that we can use the Chinese Remainder Theorem to decompose $$\Phi(n)$$, the modular units group. Before listing the theorem recall that if $$x \in \mathbb{Z}$$. Then $$[x]_n \in \Phi(n)$$ if and only if $$gcd(x,n)=1$$. 
 <!----------------------------------------------------------------------------->
 <div class="yellowheaderdiv">
 Theorem
@@ -279,7 +279,7 @@ Recall the isomorphism we established earlier
 <div>
 $$
 \begin{align*}
-\gamma: \mathbf{Z}_m &\rightarrow \mathbf{Z}_a \times \mathbf{Z}_b \\
+\gamma: \mathbb{Z}_m &\rightarrow \mathbb{Z}_a \times \mathbb{Z}_b \\
 [x]_m &\rightarrow ([x]_{a}, [x]_{b})
 \end{align*}
 $$
@@ -292,7 +292,7 @@ $$
 \end{align*}
 $$
 </div>
-where $$u_1, u_2 \in \mathbf{Z}_a$$ and $$v_1,v_2 \in \mathbf{Z}_b$$. The two operations (addition and multiplication) make $$R = \mathbf{Z}_a \times \mathbf{Z}_b$$ a ring. We have two claims:
+where $$u_1, u_2 \in \mathbb{Z}_a$$ and $$v_1,v_2 \in \mathbb{Z}_b$$. The two operations (addition and multiplication) make $$R = \mathbb{Z}_a \times \mathbb{Z}_b$$ a ring. We have two claims:
 <br>
 <br>
 Claim 1: $$\gamma(xy) = ([xy]_a, [xy]_b)$$
@@ -317,17 +317,17 @@ $$
 </div>
 which is a bijection. why? 
 <ul>
-<li>if \(x \in \mathbf{Z}\) such that \([x]_m \in \Phi(m)\), then we know that \(gcd(x,m) = 1\). We defined \(m = ab\). So if \(x\) is relatively prime to \(m\), then it must be relatively prime to the factors of \(m\), so \(gcd(x,b) = 1\). This means that \([x]_a \in \Phi(a)\) and \([x]_b \in \Phi(b)\). </li>
+<li>if \(x \in \mathbb{Z}\) such that \([x]_m \in \Phi(m)\), then we know that \(gcd(x,m) = 1\). We defined \(m = ab\). So if \(x\) is relatively prime to \(m\), then it must be relatively prime to the factors of \(m\), so \(gcd(x,b) = 1\). This means that \([x]_a \in \Phi(a)\) and \([x]_b \in \Phi(b)\). </li>
 <li>\(\gamma'\) is injective because \(\gamma\) is an injective function.</li>
-<li>\(\gamma'\) is surjective. \(\gamma\) is a bijection so every element of \(\mathbf{Z}_a \times \mathbf{Z}_b\) has the form \([x]_a, [x]_b\) for some \(x \in \mathbf{Z}\). This means that \(gcd(x,a) = 1 = gcd(x, b)\). So \(gcd(x,ab) = 1\).</li>
+<li>\(\gamma'\) is surjective. \(\gamma\) is a bijection so every element of \(\mathbb{Z}_a \times \mathbb{Z}_b\) has the form \([x]_a, [x]_b\) for some \(x \in \mathbb{Z}\). This means that \(gcd(x,a) = 1 = gcd(x, b)\). So \(gcd(x,ab) = 1\).</li>
 </ul>
 Example: $$\Phi(30) \cong \Phi(6) \times \Phi(5) \cong \Phi(2) \times \Phi(3) \times \Phi(5)$$. Then we can analyze each of these groups. So
 <div>
 $$
 \begin{align*}
 \Phi(5) &\cong \{e\} \\
-\Phi(5) &\cong \mathbf{Z}_2 \\
-\Phi(5) &\cong \mathbf{Z}_4.
+\Phi(5) &\cong \mathbb{Z}_2 \\
+\Phi(5) &\cong \mathbb{Z}_4.
 \end{align*}
 $$
 </div>

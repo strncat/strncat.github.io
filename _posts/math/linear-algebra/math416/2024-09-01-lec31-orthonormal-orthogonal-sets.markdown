@@ -40,7 +40,7 @@ $$
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 2</h3>
-The standard basis $$\beta = \{e_1, e_2, ..., e_n \}$$ of $$\mathbf{R}^n$$ is an orthonormal subset. For every distinct two vectors in $$\beta$$, their inner product is zero. Moreover, for any vector $$e_i \in \beta$$, $$\langle e_i, e_i \rangle = 1$$. In general,
+The standard basis $$\beta = \{e_1, e_2, ..., e_n \}$$ of $$\mathbb{R}^n$$ is an orthonormal subset. For every distinct two vectors in $$\beta$$, their inner product is zero. Moreover, for any vector $$e_i \in \beta$$, $$\langle e_i, e_i \rangle = 1$$. In general,
 <div> 
 $$
 \begin{align*}

@@ -15,7 +15,7 @@ For the "show the limit" template, see <a href="https://strncat.github.io/jekyll
 <br>
 <!------------------------------------------------------------------------------------>
 <h3>Problem Discussion</h3>
-We want to prove that $$\lim\big(\frac{n+1}{n}\big) = 1$$. To do so we need to find $$N \in \mathbf{N}$$ such that for any $$\epsilon > 0$$, we have
+We want to prove that $$\lim\big(\frac{n+1}{n}\big) = 1$$. To do so we need to find $$N \in \mathbb{N}$$ such that for any $$\epsilon > 0$$, we have
 <div>
 $$
 \begin{align*}

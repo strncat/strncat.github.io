@@ -13,13 +13,13 @@ Definition
 A linear combination of the vectors \(u_1,...,u_k\) in \(V\) is a vector of the form
 $$
 \begin{align*}
-a_1u_1 + a_2u_2 + ... + a_ku_k, \quad \text{where $a_1, a_2, ... a_k \in \mathbf{R}$}.
+a_1u_1 + a_2u_2 + ... + a_ku_k, \quad \text{where $a_1, a_2, ... a_k \in \mathbb{R}$}.
 \end{align*}
 $$
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example 1</h3>
-$$(4,3) \in \mathbf{R}^2$$. This vector can be written as
+$$(4,3) \in \mathbb{R}^2$$. This vector can be written as
 <div>
 $$
 \begin{align*}
@@ -44,7 +44,7 @@ Definition
 Let \(V\) be a vector space and let \(S \in V\) be a subset. The span of \(S\) is the set of all linear combinations of elements in \(S\).
 $$
 \begin{align*}
-Span(S) = \{a_1u_1 + a_2u_2 + ... + a_ku_k \quad|\quad a_1, a_2, ... a_k \in \mathbf{R}, u_1, u_2,...,u_k \in S\}.
+Span(S) = \{a_1u_1 + a_2u_2 + ... + a_ku_k \quad|\quad a_1, a_2, ... a_k \in \mathbb{R}, u_1, u_2,...,u_k \in S\}.
 \end{align*}
 $$
 </div>
@@ -60,13 +60,13 @@ Let $$S = V$$, then $$Span(S) = V.$$
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 5</h3>
-Let $$S=\{(1,0),(0,1)\}$$. $$S \subset \mathbf{R}^2$$. Then,
+Let $$S=\{(1,0),(0,1)\}$$. $$S \subset \mathbb{R}^2$$. Then,
 <div>
 $$
 \begin{align*}
-Span(S) &= \{a_1(1,0) + a_2(0,1) \ | \ a_1, a_2 \in \mathbf{R}\} \\
-        &= \{(a_1, a_2) \ | \ a_1, a_2 \in \mathbf{R}\} \\
-		&= \mathbf{R}^2.
+Span(S) &= \{a_1(1,0) + a_2(0,1) \ | \ a_1, a_2 \in \mathbb{R}\} \\
+        &= \{(a_1, a_2) \ | \ a_1, a_2 \in \mathbb{R}\} \\
+		&= \mathbb{R}^2.
 \end{align*}
 $$
 </div>
@@ -74,12 +74,12 @@ $$
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 6</h3>
-Let $$S=\{(1,m)\}$$. $$S \subset \mathbf{R}^2$$. Then,
+Let $$S=\{(1,m)\}$$. $$S \subset \mathbb{R}^2$$. Then,
 <div>
 $$
 \begin{align*}
-Span(S) &= \{a_1(1,m) \ | \ a_1 \in \mathbf{R}\} \\
-        &= \{(a_1, ma_1) \ | \ a_1 \in \mathbf{R}\} \\
+Span(S) &= \{a_1(1,m) \ | \ a_1 \in \mathbb{R}\} \\
+        &= \{(a_1, ma_1) \ | \ a_1 \in \mathbb{R}\} \\
 		&= L_m.
 \end{align*}
 $$
@@ -89,16 +89,16 @@ This is the line through the origin with slope $$m$$.
 
 <!------------------------------------------------------------------------------------>
 <h3>Example 7</h3>
-Let $$S=\{(1,0,0),(0,0,1)\}$$. $$S \subset \mathbf{R}^3$$. Then,
+Let $$S=\{(1,0,0),(0,0,1)\}$$. $$S \subset \mathbb{R}^3$$. Then,
 <div>
 $$
 \begin{align*}
-Span(S) &= \{a_1(1,0,0) + a_2(0,0,1) \ | \ a_1, a_2 \in \mathbf{R}\} \\
-        &= \{(a_1, 0, a_2) \ | \ a_1, a_2 \in \mathbf{R}\} \\
+Span(S) &= \{a_1(1,0,0) + a_2(0,0,1) \ | \ a_1, a_2 \in \mathbb{R}\} \\
+        &= \{(a_1, 0, a_2) \ | \ a_1, a_2 \in \mathbb{R}\} \\
 \end{align*}
 $$
 </div>
-This is the $$xz$$-plane in $$\mathbf{R}^3$$.
+This is the $$xz$$-plane in $$\mathbb{R}^3$$.
 <br>
 <br>
 <!------------------------------------------------------------------------------------>
@@ -112,7 +112,7 @@ Proof: Let $$S \subset V$$ where $$V$$ is a vector space. By definition we know 
 <div>
 $$
 \begin{align*}
-\{a_1u_1 + a_2u_2 + ... + a_ku_k \ | \ a_1, a_2, ... a_k \in \mathbf{R}, u_1, u_2,...u_k \in S\}
+\{a_1u_1 + a_2u_2 + ... + a_ku_k \ | \ a_1, a_2, ... a_k \in \mathbb{R}, u_1, u_2,...u_k \in S\}
 \end{align*}
 $$
 </div>
@@ -161,7 +161,7 @@ From (a), (b), (c), we can conclude that $$Span(S)$$ is a subspace of $$V$$.
 Is $$x^3 - 3x + 5$$ in $$Span(\{x^3 + 2x^2 - x + 1, x^3 + 3x^2 - 1\})$$?
 <br>
 <br>
-For $$x^3 - 3x + 5$$ to be in the span, this means that $$x^3 - 3x + 5$$ can be written as a linear combinations of what's inside the set. In other words, there exists $$a_1, a_2 \in \mathbf{R}$$ such that
+For $$x^3 - 3x + 5$$ to be in the span, this means that $$x^3 - 3x + 5$$ can be written as a linear combinations of what's inside the set. In other words, there exists $$a_1, a_2 \in \mathbb{R}$$ such that
 <div>
 $$
 \begin{align*}
@@ -232,7 +232,7 @@ Definition
 </div>
 <!------------------------------------------------------------------------------------>
 <h3>Example 8</h3>
-The set $$\{(1,0),(0,1)\}$$ generates $$\mathbf{R}^2$$.
+The set $$\{(1,0),(0,1)\}$$ generates $$\mathbb{R}^2$$.
 <hr>
 
 <!------------------------------------------------------------------------------------>

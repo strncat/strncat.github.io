@@ -26,7 +26,6 @@ mathjax: true
           Two real numbers \(a\) and \(b\) are equal if and only if for every real number \(\epsilon > 0\) it follows that \(|a - b| < \epsilon\).   
     </a></li>
 </ol>
-<br>
 <!---------------------------- The Absolute Value Function ------------------------------->
 <h3> The Absolute Value Function </h3>
 <ol>
@@ -52,7 +51,6 @@ mathjax: true
           \(|a - c| \leq |a - b|+|b - c|\) holds for all real numbers \(a\), \(b\) and \(c\).   
     </a></li>
 </ol>
-<br>
 <!-------------------------------------- Bounds --------------------------------------->
 <h3> Upper and Lower Bounds </h3>	
 <ol>
@@ -110,7 +108,6 @@ mathjax: true
           Show that \(\sup\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 1.\)
     </a></li>
 </ol>
-<br>
 <!-------------------------------------- Cardinality --------------------------------------->
 <h3>Cardinality</h3>
 <ol>
@@ -126,7 +123,6 @@ mathjax: true
     </a></li>
 	-->
 </ol>
-<br>
 <!-------------------------------------- Sequences --------------------------------------->
 <h3>Sequences and Subsequences</h3>
 <ol>
@@ -209,7 +205,6 @@ mathjax: true
 		  Prove that \((a_n) = (-1)^n\) diverges.
 </a></li>
 </ol>
-<br>
 <!-------------------------------------- Series --------------------------------------->
 <h3>Series</h3>
 <ol>
@@ -246,7 +241,6 @@ mathjax: true
     </a></li>
 	-->
 </ol>
-<br>
 <!-------------------------------------- Topology of R --------------------------------------->
 <h3>Topology of R</h3>
 <ol>
@@ -312,4 +306,3 @@ mathjax: true
     </a></li>
 	-->
   </ol>
-<br>

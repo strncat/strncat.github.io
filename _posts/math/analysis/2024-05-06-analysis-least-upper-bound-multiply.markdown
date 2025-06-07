@@ -6,13 +6,13 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Let \(A \subseteq \mathbf{R}\) be nonempty and bounded above, and let \(c \in \mathbf{R}\). Define the set \(cA = \{ca : a \in A\}\). Then if \(c \geq 0\), show that \(\sup cA = c\sup A\).</b>
+  <b>Let \(A \subseteq \mathbb{R}\) be nonempty and bounded above, and let \(c \in \mathbb{R}\). Define the set \(cA = \{ca : a \in A\}\). Then if \(c \geq 0\), show that \(\sup cA = c\sup A\).</b>
 </div>
 For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
 <br>
 <br>
 <h3>Proof:</h3>
-Let $$A \subseteq \mathbf{R}$$ be nonempty and bounded above, let $$c \in \mathbf{R}$$ and let $$cA = \{ca : a \in A\}$$. We'll verify both conditions of the least upper bound. Let $$a \in A$$. We know that $$a \leq \sup A$$. Multiply both sides by $$c$$ to get
+Let $$A \subseteq \mathbb{R}$$ be nonempty and bounded above, let $$c \in \mathbb{R}$$ and let $$cA = \{ca : a \in A\}$$. We'll verify both conditions of the least upper bound. Let $$a \in A$$. We know that $$a \leq \sup A$$. Multiply both sides by $$c$$ to get
 <div>
 $$
 \begin{align*}

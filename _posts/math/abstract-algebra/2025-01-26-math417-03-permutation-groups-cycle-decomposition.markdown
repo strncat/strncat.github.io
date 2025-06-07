@@ -207,7 +207,7 @@ For $$S_4$$,
 Definition
 </div>
 <div class="mintbodydiv">
-Suppose we have a group \((G, \cdot)\) and let \(a \in G\). The order of \(a\) is the smallest positive integer \(n\) such that \(a^n = e\) (or infinite). \(\text{order}(a) \in \mathbf{N} \cup \{\infty\}\).
+Suppose we have a group \((G, \cdot)\) and let \(a \in G\). The order of \(a\) is the smallest positive integer \(n\) such that \(a^n = e\) (or infinite). \(\text{order}(a) \in \mathbb{N} \cup \{\infty\}\).
 </div>
 <!------------------------------------------------------------------------>
 <br>
@@ -270,7 +270,7 @@ Define a function $$sgn: S_n \rightarrow \{\pm 1\}$$ such that
 	<li>\(sgn(\sigma \circ \tau) = sgn(\sigma)sgn(\tau)\)</li>
 	<li>If \(\tau\) is a transposition, then \(sgn(\tau) = -1\)</li>
 </ol>
-So now given a permutation $$\sigma \in S_n$$, there is a corresponding permutation matrix $$A_{\sigma} \in GL_{n}(\mathbf{R})$$. $$A_{\sigma}$$ has the standard basis vectors but permuted according to the permutation $$\sigma$$. For example
+So now given a permutation $$\sigma \in S_n$$, there is a corresponding permutation matrix $$A_{\sigma} \in GL_{n}(\mathbb{R})$$. $$A_{\sigma}$$ has the standard basis vectors but permuted according to the permutation $$\sigma$$. For example
 <div>
 $$
 \begin{align*}
@@ -299,7 +299,7 @@ $$
 where $$e_{\sigma(k)}$$ is the standard column vector $$e_k$$ permuted according to $$\sigma(k)$$. 
 <br>
 <br>
-The permutation matrix $$A_{\sigma}$$ is useful in that left multiplication by $$A_{\sigma}$$ permutes the subset $$\{e_1,...,e_n\} \in \mathbf{R}^n$$ according to $$\sigma$$. So
+The permutation matrix $$A_{\sigma}$$ is useful in that left multiplication by $$A_{\sigma}$$ permutes the subset $$\{e_1,...,e_n\} \in \mathbb{R}^n$$ according to $$\sigma$$. So
 <div>
 $$
 \begin{align*}

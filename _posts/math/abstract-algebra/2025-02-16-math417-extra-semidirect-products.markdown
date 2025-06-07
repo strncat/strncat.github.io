@@ -273,30 +273,30 @@ This gives up a complete description of the conjugation without ever talking abo
 	\end{align*}
 	$$
 </div>
-The big reason that we want to replace the conjugation with $$\gamma$$ though is we don't have elements multiplying between the two subgroups. This means that we can further abstract this with different groups that are isomorphic to the subgroups we have. In particular, we know that in $$D_{2n}$$, $$\langle r \rangle \cong \mathbf{Z}_n$$. The isomorphism is given by
+The big reason that we want to replace the conjugation with $$\gamma$$ though is we don't have elements multiplying between the two subgroups. This means that we can further abstract this with different groups that are isomorphic to the subgroups we have. In particular, we know that in $$D_{2n}$$, $$\langle r \rangle \cong \mathbb{Z}_n$$. The isomorphism is given by
 <div>
 	$$
 	\begin{align*}
-    \langle r \rangle &\rightarrow \mathbf{Z}_n \\
+    \langle r \rangle &\rightarrow \mathbb{Z}_n \\
 	               r^k  &\rightarrow k 
 	\end{align*}
 	$$
 </div>
-Similarly $$\langle s \rangle \mathbf{Z}_2$$. The isomorphism is given by 
+Similarly $$\langle s \rangle \mathbb{Z}_2$$. The isomorphism is given by 
 <div>
 	$$
 	\begin{align*}
-    \langle s \rangle &\rightarrow \mathbf{Z}_2 \\
+    \langle s \rangle &\rightarrow \mathbb{Z}_2 \\
 	               e  &\rightarrow 0 \\
 				   s &\rightarrow 1
 	\end{align*}
 	$$
 </div>
-So now we can take the semidirect product that we have and replace $$\langle r \rangle$$ and $$\langle s \rangle$$ with their isomorphic groups $$\mathbf{Z}_n$$ and $$\mathbf{Z}_2$$. So we can re-write the semidirect product as
+So now we can take the semidirect product that we have and replace $$\langle r \rangle$$ and $$\langle s \rangle$$ with their isomorphic groups $$\mathbb{Z}_n$$ and $$\mathbb{Z}_2$$. So we can re-write the semidirect product as
 <div>
 	$$
 	\begin{align*}
-	D_{2n} \cong \mathbf{Z}_n \rtimes_{\gamma} \mathbf{Z}_2
+	D_{2n} \cong \mathbb{Z}_n \rtimes_{\gamma} \mathbb{Z}_2
 	\end{align*}
 	$$
 </div>
@@ -304,7 +304,7 @@ So now, the elements will no longer be $$(r^k, h)$$. Instead, they will be their
 <div>
 	$$
 	\begin{align*}
-	D_{2n} &\cong \mathbf{Z}_n \rtimes_{\gamma} \mathbf{Z}_2 \\
+	D_{2n} &\cong \mathbb{Z}_n \rtimes_{\gamma} \mathbb{Z}_2 \\
 	(r^k, h)    &\rightarrow          (a, x)
 	\end{align*}
 	$$

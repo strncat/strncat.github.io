@@ -30,16 +30,16 @@ Note here that if $$K$$ is the trivial subgroup so $$K = \{e\}$$, then $$[H:\{e\
 <br>
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
-Suppose we have $$\mathbf{Z} \geq \mathbf{Z_3} \geq \mathbf{Z}_{12}$$ where $$G = \mathbf{Z}$$, $$H = \mathbf{Z}_{3}$$ and $$K = \mathbf{Z}_{12}$$. We know that $$[\mathbf{Z} : \mathbf{Z}_{12}] = 12$$ and $$[\mathbf{Z} : \mathbf{Z}_{3}] = 3$$ so 
+Suppose we have $$\mathbb{Z} \geq \mathbf{Z_3} \geq \mathbb{Z}_{12}$$ where $$G = \mathbb{Z}$$, $$H = \mathbb{Z}_{3}$$ and $$K = \mathbb{Z}_{12}$$. We know that $$[\mathbb{Z} : \mathbb{Z}_{12}] = 12$$ and $$[\mathbb{Z} : \mathbb{Z}_{3}] = 3$$ so 
 <div>
 $$
 \begin{align*}
-[\mathbf{Z} : \mathbf{Z}_{12}] = [\mathbf{Z} : \mathbf{Z}_{3}]  [\mathbf{Z}_{3} : \mathbf{Z}_{12}] \\
-12 = 3[\mathbf{Z}_{3} : \mathbf{Z}_{12}]
+[\mathbb{Z} : \mathbb{Z}_{12}] = [\mathbb{Z} : \mathbb{Z}_{3}]  [\mathbb{Z}_{3} : \mathbb{Z}_{12}] \\
+12 = 3[\mathbb{Z}_{3} : \mathbb{Z}_{12}]
 \end{align*}
 $$
 </div>
-From this we can deduce that the index of $$\mathbf{Z}_{12}$$ inside $$\mathbf{Z}_3$$ is 4.
+From this we can deduce that the index of $$\mathbb{Z}_{12}$$ inside $$\mathbb{Z}_3$$ is 4.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -121,7 +121,7 @@ Definition
 <div class="mintbodydiv">
 A relation on a set \(X\) is a subset \(R \subseteq X \times X\). We write \(a \sim b\) for \((a,b) \in R\).
 </div>
-For example, let $$X = \mathbf{Z}$$, then examples of relations are $$=, >, \geq, \leq, < ...$$, "coprime", $$\equiv \bmod n$$ and so on.
+For example, let $$X = \mathbb{Z}$$, then examples of relations are $$=, >, \geq, \leq, < ...$$, "coprime", $$\equiv \bmod n$$ and so on.
 <br>
 <!----------------------------------------------------------------------------->
 <div class="mintheaderdiv">

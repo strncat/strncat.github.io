@@ -163,7 +163,7 @@ Let $$A = \begin{pmatrix}
 -1 & 0 & 5 \\
 -1 & -1 & 4
 \end{pmatrix}
-$$. Put $$A$$ in JCF if possible. Here $$T$$ is $$L_A: \mathbf{R}^3 \rightarrow \mathbf{R}^3$$. 
+$$. Put $$A$$ in JCF if possible. Here $$T$$ is $$L_A: \mathbb{R}^3 \rightarrow \mathbb{R}^3$$. 
 <br>
 <br>
 We first need to check if the characteristic polynomial splits.

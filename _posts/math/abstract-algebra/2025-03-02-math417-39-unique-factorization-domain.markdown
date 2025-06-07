@@ -20,7 +20,7 @@ Also recall that defined a element $$p \in R$$ to be prime if
 From this, we should that if an element is prime, then it must be irreducible but the converse isn't true.
 <br>
 <br>
-We also defined a PID which is a principle ideal domain. a domain $$R$$ is a PID if every ideal is principle in $$R$$. An example of a PID is $$\mathbf{Z}$$, $$\mathbf{Z}[i]$$, $$K$$ and $$K[x]$$ where $$K$$ is a field. Domains that were not PIDs were $$K[x,y], \mathbf{Z}[x], \mathbf{Z}[\sqrt{-5}]$$. 
+We also defined a PID which is a principle ideal domain. a domain $$R$$ is a PID if every ideal is principle in $$R$$. An example of a PID is $$\mathbb{Z}$$, $$\mathbb{Z}[i]$$, $$K$$ and $$K[x]$$ where $$K$$ is a field. Domains that were not PIDs were $$K[x,y], \mathbb{Z}[x], \mathbb{Z}[\sqrt{-5}]$$. 
 <hr>
 
 <!------------------------------------------------------------------------->
@@ -38,7 +38,7 @@ A domain \(R\) is such that every non-zero and non-unit can be a factored as a p
 	<li>Uniqueness: If \(a = p_1p_2,...p_m = q_1q_2...q_n\), where \(p_i,q_j\) are irreducible, then \(m = n\) and there exists \(\sigma \in S_n\) such that \(q_k = p_{\sigma(k)}u_k\) for some \(u_k \in R^{\times}, \ \forall k = 1,...,n\). So these sequences are the same up to unit and re-ordering</li>
 </ol>
 </div>
-Example: $$R = \mathbf{Z}$$ is a UFD.
+Example: $$R = \mathbb{Z}$$ is a UFD.
 <hr>
 
 <!------------------------------------------------------------------------->
@@ -54,7 +54,7 @@ Every principle ideal domain (PID) is a unique factorization domain (UFD)
 </div>
 <!--------------------------------------->
 <br>
-Fact: If $$R$$ is a UFD, then so is $$R[x]$$. As a consequence, $$K[x,y]$$ is a UFD but not a PID. Also note that $$\mathbf{Z}[\sqrt{-5}]$$ is not a UFD. Recall that we showed $$6 = 2 (3) = (1 + \sqrt{-5})(1 - \sqrt{-5})$$.
+Fact: If $$R$$ is a UFD, then so is $$R[x]$$. As a consequence, $$K[x,y]$$ is a UFD but not a PID. Also note that $$\mathbb{Z}[\sqrt{-5}]$$ is not a UFD. Recall that we showed $$6 = 2 (3) = (1 + \sqrt{-5})(1 - \sqrt{-5})$$.
 <br>
 <br>
 Take another example where $$R$$ is a subring $$R \subseteq Q[x]$$. $$R$$ is the set of all polynomials with rational coefficients but additionally we'll add the condition that the constant term must be integer. This subring also has 1 so it's a domain. However, it is not a UFD. Observe that $$x \in R$$ but $$x$$ has no irreducible factorization in $$R$$. $$x = 2\frac{1}{2}x = 2(2)\frac{1}{4}x = 2(2)(2)\frac{1}{8}x = ...$$. Here $$x$$ is irreducible in $$Q[x]$$ but it is not irreducible in $$R$$. 

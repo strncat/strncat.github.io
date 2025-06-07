@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Let \(x \in \mathbf{R}\), \(-|x| \leq x \leq |x|\).</b>
+  <b>Let \(x \in \mathbb{R}\), \(-|x| \leq x \leq |x|\).</b>
 </div>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>. 
 <br>

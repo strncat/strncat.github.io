@@ -46,16 +46,16 @@ $$
 
 <!----------------------------------------------------------------------------->
 <h3>Example</h3>
-Let $$G = \mathbf{Z}$$ and let $$H = \mathbf{Z}n$$ where $$n \geq 0$$ (multiples of $$n$$). Then the set of left cosets is
+Let $$G = \mathbb{Z}$$ and let $$H = \mathbb{Z}n$$ where $$n \geq 0$$ (multiples of $$n$$). Then the set of left cosets is
 <div>
 $$
 \begin{align*}
-G / H &= \{[a]_n \ | \ a \in \mathbf{Z}\} \\
-      &= \mathbf{Z}_n
+G / H &= \{[a]_n \ | \ a \in \mathbb{Z}\} \\
+      &= \mathbb{Z}_n
 \end{align*}
 $$
 </div>
-Side note: Why? so say $$H = \mathbf{Z}3$$, then $$H = \{...,-6,-3,0,3,6,9,...\}$$ and the left cosets are 
+Side note: Why? so say $$H = \mathbb{Z}3$$, then $$H = \{...,-6,-3,0,3,6,9,...\}$$ and the left cosets are 
 <div>
 $$
 \begin{align*}
@@ -78,7 +78,7 @@ $$
 From this we see that $$3H = 0H$$, $$4H = 1H$$ and so on. There are exactly 3 distinct left cosets. These three left cosets are exactly $$Z_3 = \{[0], [1], [2]\}$$.
 <br>
 <br>
-So now we see that $$G / H = \mathbf{Z}_n$$. This is a group. In fact $$\pi \ : \ \mathbf{Z} \rightarrow \mathbf{Z}/\mathbf{Z}n$$ is a homomorphism.
+So now we see that $$G / H = \mathbb{Z}_n$$. This is a group. In fact $$\pi \ : \ \mathbb{Z} \rightarrow \mathbb{Z}/\mathbb{Z}n$$ is a homomorphism.
 <hr>
 
 <!----------------------------------------------------------------------------->
@@ -230,30 +230,30 @@ In fact, $$r^2N$$ has order 3 as well. So none of the elements have order 6 and 
 
 <!----------------------------------------------------------------------------->
 <h3>Example 3</h3>
-Now consider $$G = (\mathbf{R}, +)$$ and $$H = (\mathbf{Z}, +)$$. $$G$$ is abelian. Therefore, all of its subgroups are normal and $$H$$ is normal. Now let's form the quotient group as follows
+Now consider $$G = (\mathbb{R}, +)$$ and $$H = (\mathbb{Z}, +)$$. $$G$$ is abelian. Therefore, all of its subgroups are normal and $$H$$ is normal. Now let's form the quotient group as follows
 <div>
 	$$
 	\begin{align*}
-	G/H = \mathbf{R}/\mathbf{Z} = \{a + \mathbf{Z} \ | \ a \in \mathbf{R}\}.
+	G/H = \mathbb{R}/\mathbb{Z} = \{a + \mathbb{Z} \ | \ a \in \mathbb{R}\}.
 	\end{align*}
 	$$
 </div> 
-$$a + \mathbf{Z} = [a] = \{a + n \ | \ n \in \mathbf{Z}\}$$ is a $$\mathbf{Z}$$ coset of $$a$$. For example if $$a = \frac{1}{3}$$, then
+$$a + \mathbb{Z} = [a] = \{a + n \ | \ n \in \mathbb{Z}\}$$ is a $$\mathbb{Z}$$ coset of $$a$$. For example if $$a = \frac{1}{3}$$, then
 <div>
 	$$
 	\begin{align*}
-	\frac{1}{3} + \mathbf{Z} = \{...,-1 + \frac{1}{3}, 0 + \frac{1}{3}, 1 + \frac{1}{3}, ...\} \subseteq \mathbf{R}
+	\frac{1}{3} + \mathbb{Z} = \{...,-1 + \frac{1}{3}, 0 + \frac{1}{3}, 1 + \frac{1}{3}, ...\} \subseteq \mathbb{R}
 	\end{align*}
 	$$
 </div>
 $$G/H$$ is a group under addition where $$[a] + [b] = [a + b]$$. This group is abelian. What is this group isomorphic to? 
 <br>
 <br>
-Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = Rot_{e_3}(\theta) \ | \ \theta \in \mathbf{R}\}$$. This is a subgroup of $$SO(3)$$. Note here that $$r_{\theta + 2\pi n} = r_{\theta}$$. It turns out that $$\mathbf{R}/\mathbf{Z}$$ is isomorphic to $$T$$. The isomorphism is
+Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = Rot_{e_3}(\theta) \ | \ \theta \in \mathbb{R}\}$$. This is a subgroup of $$SO(3)$$. Note here that $$r_{\theta + 2\pi n} = r_{\theta}$$. It turns out that $$\mathbb{R}/\mathbb{Z}$$ is isomorphic to $$T$$. The isomorphism is
 <div>
 	$$
 	\begin{align*}
-	\mathbf{R}/\mathbf{Z} &\rightarrow T \\
+	\mathbb{R}/\mathbb{Z} &\rightarrow T \\
 	[x] &\rightarrow r_{2\pi x}
 	\end{align*}
 	$$
@@ -262,7 +262,7 @@ Let $$T$$ be the set of rotations around the $$z$$ axis so $$T = \{r_{\theta} = 
 
 <!----------------------------------------------------------------------------->
 <h3>Example 4</h3>
-Let $$F$$ be a field. ($$F = \mathbf{R}$$ or $$\mathbf{C}$$ or $$\mathbf{Z}p$$, $$p$$ is prime). Now let 
+Let $$F$$ be a field. ($$F = \mathbb{R}$$ or $$\mathbf{C}$$ or $$\mathbb{Z}p$$, $$p$$ is prime). Now let 
 <div>
 	$$
 	\begin{align*}

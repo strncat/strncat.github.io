@@ -122,7 +122,7 @@ $$
 \end{align*}
 $$
 </div>
-The greatest common divisor is 1 and you can see that $$q=1$$ in every step. To find out the number of steps in the worst case, notice that each remainder is the sum of the next two remainders. So $$r_i = r_{i+1} + r_{i+2}$$. if we work backward, then we get the sequence
+The greatest common divisor is 1 and you can see that $$q=1$$ in every step. To find out the number of steps, notice here that each remainder is the sum of the next two remainders. So $$r_i = r_{i+1} + r_{i+2}$$. And in the worst case specifically, notice that if we work backward, then we get the sequence
 <div>
 $$
 \begin{align*}
@@ -138,7 +138,30 @@ This is the fibonacci sequence and this happens in the worst case for Euclid's a
 	<tr><td>Lower Bound</td><td>0</td><td>1</td><td>1</td><td>2</td><td>2</td><td>4</td><td>4</td><td>\(\cdots\)</td></tr>
 </table>
 </div>
-So $$2^{n/2} \leq F_n \leq 2^n$$. 
+From this we see that $$F_n$$ is bounded below and above by 
+<div>
+$$
+\begin{align*}
+2^{n/2} &\leq F_n \leq 2^n \\
+\frac{n}{2}\log(2) &\leq \log(F_n) \leq \log(2)n
+\end{align*}
+$$
+</div>
+Again
+<ul>
+	<li>\(n\) is the number of steps in Euclid's algorithm.</li>
+	<li>\(n\) is also the index of the \(n\)th term Fibonacci sequence.</li>
+</ul>
+We're interested in a bound on $$n$$, so we want a bound on the $$n$$th fibonacci number. Using the above inequality, we see that
+<div>
+$$
+\begin{align*}
+\frac{n}{2}\log(2) &\leq \log(F_n)  \\
+n &\leq c\log(F_n) \quad \text{ for some constant } c
+\end{align*}
+$$
+</div>
+So $$n$$ is at most $$c\log(F_n)$$ where $$c$$ is a constant. Therefore, in the worst case, the number of steps in Euclid's algorithm is bounded above by a constant times the number of digits in that $$n$$th Fibonacci number. For example, if one of the numbers has a 1000 digits, then Euclid's algorithm will take at most 1000 iterations (times a constant) in the worst case. 
 		
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>

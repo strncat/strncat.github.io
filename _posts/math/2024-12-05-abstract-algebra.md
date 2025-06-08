@@ -5,7 +5,7 @@ date:   2024-12-05 09:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<h4> MATH417 </h4>
+<h3> Abstract Algebra (Math417) </h3>
 <ol style="list-style-type:none;">
        <li><a href="/jekyll/update/2025/01/24/math417-01-groups-and-symmetries.html">
        Lecture 01: Groups and Symmetries

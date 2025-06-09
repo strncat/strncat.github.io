@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lecture 03: Divisibility"
+title:  "Lecture 03-04: Divisibility and Euclid's Algorithm"
 date:   2025-06-01 01:01:36 -0700
 categories: jekyll update
 mathjax: true
@@ -161,7 +161,92 @@ n &\leq c\log(F_n) \quad \text{ for some constant } c
 \end{align*}
 $$
 </div>
-So $$n$$ is at most $$c\log(F_n)$$ where $$c$$ is a constant. Therefore, in the worst case, the number of steps in Euclid's algorithm is bounded above by a constant times the number of digits in that $$n$$th Fibonacci number. For example, if one of the numbers has a 1000 digits, then Euclid's algorithm will take at most 1000 iterations (times a constant) in the worst case. 
+So $$n$$ is at most $$c\log(F_n)$$ where $$c$$ is a constant. Therefore, in the worst case, the number of steps in Euclid's algorithm is bounded above by a constant times the number of digits in that $$n$$th Fibonacci number. For example, if one of the numbers has a 1000 digits, then Euclid's algorithm will take at most 1000 iterations (times a constant) in the worst case.
+<hr>
+<!------------------------------------------------------------------------------------>
+<h3>Solving \(ax + by = d\)</h3>
+We can use also Euclid's algorithm to solve equations like 71x + 17y = 1. The first thing we want to do is to find the gcd of 71 and 17 using Euclid's algorithm. So
+<div>
+$$
+\begin{align*}
+71 &= 17 \cdot 4 + 3 \\
+17 &= 3 \cdot 5 + 2 \\
+3 &= 2 \cdot 1 + 1 \\
+2 &= 1 \cdot 2 + 0
+\end{align*}
+$$
+</div>
+The greatest common divisor in this case is 1. So now we work backwards. Starting from the greatest common divisor 1, we look at the previous equation and we write 1 in terms of 3 and 2 to get
+<div>
+$$
+\begin{align*}
+1 &= 3 - 1 \cdot 2
+\end{align*}
+$$
+</div>
+Next, we write 2 in terms of the previous equation
+<div>
+$$
+\begin{align*}
+1 &= 3 - 1 \cdot (17 - 5 \cdot 3) \\
+  &= 3 - 1 \cdot 17  + 5 \cdot 3 \\
+  &= 6 \cdot 3 - 1 \cdot 17 \\
+\end{align*}
+$$
+</div>
+Now, we look at the equation before that (the first equation) and write 3 above in terms of it
+<div>
+$$
+\begin{align*}
+1 &= 6 \cdot 3 - 1 \cdot 17 \\
+ &= 6 \cdot (71 - 17 \cdot 4) - 1 \cdot 17 \\
+ &= 6 \cdot 71 - 17 \cdot 24 - 1 \cdot 17 \\
+ &= 6 \cdot 71 - 17 \cdot 25 \\
+\end{align*}
+$$
+</div>
+Therefore, the solution is $$x = 6$$ and $$y = -25$$. 
+<br>
+<br>
+Suppose now that we want to solve $$72x + 26y = 1$$. We should immediately notice that since both 72 and 26 are even, then there can't be a solution satisfying this. In general, if $$ax + by = c$$ is solvable and we have that $$d \mid a$$ and $$d \mid b$$, then we must have $$d \mid c$$ as well. In particular, $$c$$ must be divisible by the greatest common divisor of $$a$$ and $$b$$. Conversely, if $$(a,b) \ | \ c$$, then the equation is solvable. This is because we know that the greatest common divisor can be written as a linear combination of $$a$$ and $$b$$.
+<hr> 
+<!------------------------------------------------------------------------------------>
+<h3>Linear Equations in 3 Variables</h3>
+What about solving a linear equation in 3 variables. For example
+<div>
+$$
+\begin{align*}
+6x + 10y + 15z = 1
+\end{align*}
+$$
+</div>
+We first solve the following equation using Euclid's method
+<div>
+$$
+\begin{align*}
+6x + 10y &= (6,10) = 2
+\end{align*}
+$$
+</div>
+The solution for this is $$x = 2$$ and $$y = -1$$ so $$6 \cdot 2 - 1 \cdot 10 = 2$$. Next, we solve
+<div>
+$$
+\begin{align*}
+2w + 15z &= 1.
+\end{align*}
+$$
+</div>
+The solution for this is $$x = -7$$ and $$y = 1$$. At this point, we can substitute the solution from the first equation into the solution we have
+<div>
+$$
+\begin{align*}
+2 \cdot -7 + 15 \cdot 1 &= 1 \\
+(6 \cdot 2 + 10 \cdot -1) \cdot -7 + 15 \cdot 1 &= 1 \\
+6 \cdot -15 + 10 \cdot 7 + 15 \cdot 1 &= 1
+\end{align*}
+$$
+</div>
+In general, $$ax + by + cz = n$$ has a solution if and only if $$(a,b,c) \mid n$$. This method also works for equations in $$n$$ variables.
 		
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>

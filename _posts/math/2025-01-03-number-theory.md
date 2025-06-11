@@ -9,7 +9,10 @@ mathjax: true
 <h3>Math115a</h3>
 <ol style="list-style-type:none;">
    <li><a href="/jekyll/update/2025/06/01/lec03-divisibility.html">
-	   Lecture 03: Divisibility
+	   Lecture 03/04: Divisibility and Euclid's Algorithm
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/02/lec05-primes.html">
+	   Lecture 05: Primes
    </a></li>
 </ol>
 

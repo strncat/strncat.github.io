@@ -247,8 +247,44 @@ $$
 $$
 </div>
 In general, $$ax + by + cz = n$$ has a solution if and only if $$(a,b,c) \mid n$$. This method also works for equations in $$n$$ variables.
+<hr>
+<!-------------------------------------------------------------------------->
+<h3>Alternative to Long Division</h3>
+We still have an issue with Euclid's algorithm because long division is slow and complicated when the numbers have hundreds of digits. So a better algorithm is to avoid long division. Instead, we do the following to find the greatest common divisor of $$a$$ and $$b$$
+<ol>
+	<li>Take out all factors of 2 from \(a\) and \(b\). This is easy to do since it's a simple shift operator. So now both \(a\) and \(b\) are odd. Also we can assume that \(a > b\), otherwise swap them.</li>
+	<li>Change \(a\) to \(a - b\). If the result \(a - b\), we stop. Otherwise notice here that \(a\) is even so it at least have a factor of \(2\).</li>
+	<li>Take all factors of 2 from \(a\). Go back to step 2.</li>
+</ol>
+Since we keep dividing by 2, this algorithm is still fast and the number of steps is approximately $$c\log(a)$$ where $$c$$ is some constant. 
+<!-------------------------------------------------------------------------->
+<h3>Example</h3>
+Suppose we want to find the greatest common divisor of 68 and 142. Then we take out the factors of 2 out. So 68 becomes 34 and then 17. While 141 becomes 71. Notice how there is a common factor of 2 between the two numbers. Next, we find the greatest common divisor of 71 and 17 using the subtraction method
+<ol>
+	<li>Subtract \(71 - 17 = 54\). The result is not zero so we continue.</li>
+	<li>Take all factors of 2 from \(54\). So 54 becomes 27.</li>
+	<li>We repeat the subtraction step so \(27 - 17 = 10\). The result is not zero so we continue by taking 2 out of 10 to get 5.</li>
+	<li>We subtract again, \(17 - 5 = 12\). Take the 2 factor out twice to get 3</li>
+	<li>We subtract \(5 - 3 = 2\). Take the factor 2 out to get 1.</li>
+	<li>We subtract \(3 - 1 = 2\), Take the factor 2 out to get 1.</li>
+	<li>Finally \(1 - 1 = 0\) so. we stop.</li>
+</ol>
+So the greatest common of 17 and 71 is 1. The greatest common divisor of 68 and 142 is therefore $$2 \cdot 1 = 2$$. 
+<!-------------------------------------------------------------------------->
+<hr>
+<h3>The Least Common Multiple</h3>
+The least common multiple of two numbers $$a$$ and $$b$$ is defined to be the smallest number divisible by $$a$$ and $$b$$. So this means it will be at most $$ab$$. In fact, 
+<div>
+$$
+\begin{align*}
+lcm(a,b) = \frac{ab}{gcd(a,b)}
+\end{align*}
+$$
+</div>
+
 		
-<!------------------------------------------------------------------------------------>
+<!-------------------------------------------------------------------------->
+<hr>
 <h3>References</h3>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=pVKhDtOjji8">Math115a by Richard E Borcherds</a></li>

@@ -14,6 +14,9 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/02/lec05-primes.html">
 	   Lecture 05: Primes
    </a></li>
+   <li><a href="/jekyll/update/2025/06/03/lec06-multiplicative-functions.html">
+	   Lecture 06: Multiplicative Functions
+   </a></li>
 </ol>
 
 

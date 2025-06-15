@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------------------------------------------------->  
-<h3> Abstract Linear Algebra (Math416) </h3>
+<h3> Abstract Linear Algebra (Math416, UIUC) </h3>
 <ul style="list-style-type:none;">
 	   <li><a href="/jekyll/update/2024/07/21/lec02-rref.html">
         Lecture 2: Echelon Form and Reduced Echelon Form

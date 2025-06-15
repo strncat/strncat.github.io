@@ -6,7 +6,7 @@ categories: jekyll update
 mathjax: true
 ---
 <!------------------------ Math115a --------------------------->
-<h3>Math115a</h3>
+<h3>Math115a (Youtube)</h3>
 <ol style="list-style-type:none;">
    <li><a href="/jekyll/update/2025/06/01/lec03-divisibility.html">
 	   Lecture 03/04: Divisibility and Euclid's Algorithm
@@ -16,6 +16,14 @@ mathjax: true
    </a></li>
    <li><a href="/jekyll/update/2025/06/03/lec06-multiplicative-functions.html">
 	   Lecture 06: Multiplicative Functions
+   </a></li>
+</ol>
+
+<!------------------------ Math115a (Problems) --------------------------->
+<h3>Math115a (Attempted Problems)</h3>
+<ol style="list-style-type:none;">
+   <li><a href="/jekyll/update/2025/06/04/1.2-problem-19.html">
+	   1.2: Problem 19: Any set of integers that relatively prime in pairs are relatively prime.
    </a></li>
 </ol>
 

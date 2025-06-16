@@ -25,6 +25,12 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/04/1.2-problem-19.html">
 	   1.2: Problem 19: Any set of integers that relatively prime in pairs are relatively prime.
    </a></li>
+   <li><a href="/jekyll/update/2025/06/05/1.2-problem-21.html">
+	   1.2: Problem 21: Prove that if an integer of the form \(6k + 5\), then it is necessarily of the form \(3k-1\), but not conversely.
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/06/1.2-problem-26.html">
+	   1.2: Problem 26: Let \(s\) and \(g > 0\) be given integers. Prove that integers \(x\) and \(y\) exist satisfying \(x + y = s\) and \((x, y) = g\) if and only if \(g \mid s\).
+   </a></li>
 </ol>
 
 

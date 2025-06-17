@@ -31,6 +31,9 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/06/1.2-problem-26.html">
 	   1.2: Problem 26: Let \(s\) and \(g > 0\) be given integers. Prove that integers \(x\) and \(y\) exist satisfying \(x + y = s\) and \((x, y) = g\) if and only if \(g \mid s\).
    </a></li>
+   <li><a href="/jekyll/update/2025/06/07/1.3-problem-6.html">
+	   1.3: Problem 6: Show that every positive integer \(n\) has a unique expression of the form \(n = 2^rm\), \(r \geq 0\), \(m\) a positive odd integer.
+   </a></li>
 </ol>
 
 

@@ -310,6 +310,55 @@ $$
 \end{align*}
 $$
 </div>
+So now the observation is that this is a perfect number so the sum of all the divisors must be $$2n$$ and since we're adding a subset of the divisors and we already see a $$2n$$ term, then this extra term $$ \left(1 - \frac{1}{2^{a+1}} \right) \cdot \left(1 + \frac{1}{p} \right)$$ must at most be 1. On the other hand, we notice that the product $$(1 + 2 + 4 + ... + 2^a) = 2^{a+1} - 1$$ is odd and must be divisible by one of the prime factors of $$n$$ [WHY?? TODO]. So suppose that $$p$$ is the smallest prime factor of $$n$$, then $$p \leq 2^{a+1} - 1$$. But this makes the product $$(1 + \frac{1}{p})$$ be greater than or equal to 1. But this is impossible since we said it must be at most 1. Therefore, it has to be exactly 1.
+<br>
+<br>
+But if it's exactly 1, then this means that $$2n =  (1 + 2 + 4 + ... + 2^a) \cdot (p^{b-1} + p^b) \cdot q^c$$. But this implies that we can't have any other divisors. So $$c$$ must be zero and $$b$$ must be 1. This means that $$p = 2^{a+1} - 1$$. Therefore, we end up with the same form from before
+<div>
+$$
+\begin{align*}
+2^a \cdot (2^{a+1} - 1)
+\end{align*}
+$$
+</div>
+In other words, it's a Mersenne prime. So now based on this, are there infinite even perfect numbers? well since they are Mersenne primes, then it's a question of whether we have infinite number of Mersenne primes. We don't know the answer to this question. At the moment, the largest one found is $$2^{2136,279,841} - 1$$. 
+<br>
+<br>
+Another question we can ask is are there any odd perfect numbers? nobody knows. 
+
+<!-- didn't follow the argument - for another time
+Observe here that $$n$$ is a perfect number by assumption so the sum of all divisors must be exactly $$2n$$. But since we're only adding a subset of the divisors and the first term is already $$2n$$, then the term $$1 - \frac{1}{2^{a+1}}$$ is at most 1. (side note: but also $$2^{a+1} \geq 1$$. so expression $$1 - \frac{1}{2^{a+1}}$$ has to be at most 1?). 
+<br>
+<br>
+Notice also that the sum $$(1 + 2 + 4 + ... + 2^a) = 2^{a+1} - 1$$ is odd and that
+<div>
+$$
+\begin{align*}
+2n = 2(2^a p^b q^c) = 2^{a+1} p^b q^c
+\end{align*}
+$$
+</div>
+But we also know that
+<div>
+$$
+\begin{align*}
+2n &= (2^{a+1} - 1) \cdot (1+p+...+p^b) \cdot (1+q+...+q^c) \\
+2^{a+1} p^b q^c  &= (2^{a+1} - 1) \cdot \sigma(p) \cdot \sigma(q)
+\end{align*}
+$$
+</div>
+The claim is that $$2^{a+1} - 1$$ must be divisible by some prime factor of $$n$$. Why? we first note that 
+<div>
+$$
+\begin{align*}
+\sigma(p) &= \frac{p^{b+1} - 1}{p - 1}
+\end{align*}
+$$
+</div>
+But $$p \not\mid p-1$$ and $$p \not\mid p^{b+1} - 1$$ so $$p \not\mid \sigma(p)$$. Similarly, $$q \not\mid \sigma(q)$$.  
+by construction we know that $$p$$ and $$q$$ are odd primes. The sum $$2^{a+1} - 1$$ By assumption $$p$$ is an odd prime. 
+-->
+
 
 
 

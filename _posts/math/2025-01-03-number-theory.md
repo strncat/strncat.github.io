@@ -35,6 +35,9 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/07/1.3-problem-6.html">
 	   1.3: Problem 6: Show that every positive integer \(n\) has a unique expression of the form \(n = 2^rm\), \(r \geq 0\), \(m\) a positive odd integer.
    </a></li>
+   <li><a href="/jekyll/update/2025/06/08/1.3-problem-14.html">
+	   1.3: Problem 14: Evaluate \(ab, p^4\) and \(a+b, p^4\) given that \((a,p^2) = p\) and \((b, p^3) = p^2\) where \(p\) is prime.
+   </a></li>
 </ol>
 
 

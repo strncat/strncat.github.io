@@ -322,9 +322,6 @@ $$
 $$
 </div>
 In other words, it's a Mersenne prime. So now based on this, are there infinite even perfect numbers? well since they are Mersenne primes, then it's a question of whether we have infinite number of Mersenne primes. We don't know the answer to this question. At the moment, the largest one found is $$2^{2136,279,841} - 1$$. 
-<br>
-<br>
-Another question we can ask is are there any odd perfect numbers? nobody knows. 
 
 <!-- didn't follow the argument - for another time
 Observe here that $$n$$ is a perfect number by assumption so the sum of all divisors must be exactly $$2n$$. But since we're only adding a subset of the divisors and the first term is already $$2n$$, then the term $$1 - \frac{1}{2^{a+1}}$$ is at most 1. (side note: but also $$2^{a+1} \geq 1$$. so expression $$1 - \frac{1}{2^{a+1}}$$ has to be at most 1?). 
@@ -358,9 +355,31 @@ $$
 But $$p \not\mid p-1$$ and $$p \not\mid p^{b+1} - 1$$ so $$p \not\mid \sigma(p)$$. Similarly, $$q \not\mid \sigma(q)$$.  
 by construction we know that $$p$$ and $$q$$ are odd primes. The sum $$2^{a+1} - 1$$ By assumption $$p$$ is an odd prime. 
 -->
-
-
-
+<!-------------------------------------------------------------------------->
+<hr>
+<h3>Odd Perfect Number</h3>
+Another question we can ask is are there any odd perfect numbers? nobody knows. But, we can have more restrictive conditions on odd perfect numbers. So let $$n = p_1^{n_1}...p_1^{n_k}$$ be an odd perfect number. Then
+<div>
+$$
+\begin{align*}
+\sigma(n) &= (1 + p_1 + \cdots + p_1^{n_1}) \cdot (1 + p_2 + \cdots + p_2^{n_2}) \ \cdots \ (1 + p_k + \cdots + p_k^{n_k})
+\end{align*}
+$$
+</div>
+We know that $$\sigma(n) = 2n$$. So if $$n$$ is odd, then $$2n$$ is also odd. But this means that exactly one terms above must be even. The term $$(1 + p + p^2 + \cdots + p^{n_1})$$ is odd if and only if $$n_1$$ is even. So exactly one $$n_i$$ (of the $$k$$ powers) must be odd. So $$n$$ can be written as a square times a prime number. We can push this further but then we can never arrive at contradiction and we never know if they really exist. This is a very old open problem.
+<!-------------------------------------------------------------------------->
+<hr>
+<h3>Landau's Problem</h3>
+One more problem that is easy to state but we don't know how to answer. First, the Goldbach Conjecture which states that every even integer greater than 4 can be written as the sum of two prime numbers. $$2n = p_1 + p_2$$.
+<br>
+<br>
+The next is the Twin Prime Conjecture which states that there are infinitely many primes with difference two? so $$p_1 - p_2 = 2$$.
+<br>
+<br>
+The third one is given an $$n$$, can we find a prime such that $$n^2 < p < (n+1)^2$$. 
+<br>
+<br>
+Can we find infinitely many primes of the form $$p = n^2 + 1$$? 
 
 <!-------------------------------------------------------------------------->
 <hr>

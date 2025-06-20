@@ -273,7 +273,7 @@ So the greatest common of 17 and 71 is 1. The greatest common divisor of 68 and 
 <!-------------------------------------------------------------------------->
 <hr>
 <h3>The Least Common Multiple</h3>
-The least common multiple of two numbers $$a$$ and $$b$$ is defined to be the smallest number divisible by $$a$$ and $$b$$. So this means it will be at most $$ab$$. In fact, 
+The least common multiple of two numbers $$a$$ and $$b$$ is defined to be the smallest multiple of $$a$$ and $$b$$. So this means it will be at most $$ab$$. In fact, 
 <div>
 $$
 \begin{align*}

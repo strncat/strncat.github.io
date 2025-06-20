@@ -41,6 +41,7 @@ mathjax: true
 	   1.2: Problem 26: Let \(s\) and \(g > 0\) be given integers. Prove that integers \(x\) and \(y\) exist satisfying \(x + y = s\) and \((x, y) = g\) if and only if \(g \mid s\).
    </a></li>
    <br>
+   <!--------- 1.3 ---------->
    <li><a href="/jekyll/update/2025/06/07/1.3-problem-6.html" class="truncated-link">
 	   1.3: Problem 6: Show that every positive integer \(n\) has a unique expression of the form \(n = 2^rm\), \(r \geq 0\), \(m\) a positive odd integer.
    </a></li>
@@ -58,6 +59,11 @@ mathjax: true
    </a></li>
    <li><a href="/jekyll/update/2025/06/11/1.3-problem-20.html" class="truncated-link">
 	   1.3: Problem 20: Given \((a,b,c)[a,b,c] = abc\), prove that \((a,b) = (b,c) = (a,c) = 1\).
+   </a></li>
+   <br>
+   <!--------- 1.4 ---------->
+   <li><a href="/jekyll/update/2025/06/15/1.4-problem-4.html" class="truncated-link">
+	   1.4: Problem 4: Suppose that \(S\) contains \(2n\) elements and that \(S\) is partitioned into \(n\) disjoint subsets each one containing exactly two elements of \(S\). Show that this can be done in precisely
    </a></li>
 </ol>
 

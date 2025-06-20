@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lecture 07: Binomial Coefficients"
-date:   2025-06-12 01:01:36 -0700
+date:   2025-06-13 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---

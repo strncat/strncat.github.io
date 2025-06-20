@@ -17,7 +17,7 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/03/lec06-multiplicative-functions.html">
 	   Lecture 06: Multiplicative Functions
    </a></li>
-   <li><a href="/jekyll/update/2025/06/12/lec07-binomial-coefficients.html">
+   <li><a href="/jekyll/update/2025/06/13/lec07-binomial-coefficients.html">
 	   Lecture 07: Binomial Coefficients
    </a></li>
 </ol>
@@ -49,6 +49,9 @@ mathjax: true
    </a></li>
    <li><a href="/jekyll/update/2025/06/09/1.3-problem-16.html" class="truncated-link">
 	   1.3: Problem 16: Find a positive integer \(n\) such that \(n/2\) is a square, \(n/3\) is a cube, and \(n/5\) is a fifth power.
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/14/1.3-problem-18.html" class="truncated-link">
+	   1.3: Problem 18: Prove that \((a^2,b^2) = c^2\) if \((a,b) = c\).
    </a></li>
    <li><a href="/jekyll/update/2025/06/10/1.3-problem-19.html" class="truncated-link">
 	   1.3: Problem 19: Let \(a\) and \(b\) be positive integers such that \((a,b) = 1\) and \(ab\) is a perfect square. Prove that \(a\) and \(b\) are perfect squares. Prove that the result generalizes to \(k\)th powers.

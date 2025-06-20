@@ -173,9 +173,9 @@ If $$n$$ is integer, this value is always integer. This is not true for other po
 <!-------------------------------------------------------------------------->
 <hr>
 <h3>More Properties of Binomial Coefficients</h3>
-Looking at Pascal Triangle again. 
+Looking at Pascal's Triangle again. 
 <p style="text-align:center;"><img src="{{ site.url }}/assets/math/number-theory/pascal.png" width="40%" class="center"></p>
-We also see that each number is the sum of all the numbers in the edge above it. So if you take 4, then it's the sum of $$1 + 1 + 1 + 1$$ in the edge above it. If you take $$20$$, it's the same of $$1 + 3 + 6 + 10$$ and so on. This is fact a property for binomial coefficients and we can write it as follows
+We also see that each number is the sum of all the numbers in the left edge above it. So if you take 4, then it's the sum of $$1 + 1 + 1 + 1$$ in the left edge above it. If you take $$20$$, it's the sum of $$1 + 3 + 6 + 10$$ and so on. This is fact a property of binomial coefficients and we can write it as follows
 <div>
 $$
 \begin{align*}

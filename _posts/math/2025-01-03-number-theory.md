@@ -20,6 +20,9 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/13/lec07-binomial-coefficients.html">
 	   Lecture 07: Binomial Coefficients
    </a></li>
+   <li><a href="/jekyll/update/2025/06/16/lec08-applications-of-binomial-coefficients.html">
+	   Lecture 08: Applications of Binomial Coefficients
+   </a></li>
 </ol>
 
 <!------------------------ Math115a (Problems) --------------------------->

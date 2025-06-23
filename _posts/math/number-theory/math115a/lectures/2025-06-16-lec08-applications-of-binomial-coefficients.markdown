@@ -107,7 +107,7 @@ $$
 </div>
 <!-------------------------------------------------------------------------->
 <hr>
-<h3>Example</h3>
+<h3>Example 1</h3>
 Take 1000! how many zeros does it have? so we want to count how many times does 2 divide 1000! and also how many times does 5 divide this number. The number of times 5 divides 1000! is
 <div>
 $$
@@ -137,7 +137,7 @@ $$
 But we don't need to continue dividing as we have already passed the count of 249 in step 1. We stop since now we have exactly 249 zeros.
 <!-------------------------------------------------------------------------->
 <hr>
-<h3>Example</h3>
+<h3>Example 2</h3>
 Suppose we want to find the number of times 7 divides $$\binom{100}{40}$$. The number of times 7 divides 100 is
 <div>
 $$
@@ -294,9 +294,172 @@ $$
 <!-------------------------------------------------------------------------->
 <hr>
 <h3>A Lower Bound on the Number of Primes \(\leq n\)?</h3>
-What about a lower bound on the number of primes?
-
-
+What about a lower bound on the number of primes? We will again look at the binomial coefficient $$\binom{2n}{n}$$. If we take the product of all prime powers less than $$2^n$$, then we will get the following bound (WHY?)
+<div>
+$$
+\begin{align*}
+\prod_{p^k \leq 2n} p  \geq \binom{2n}{n}
+\end{align*}
+$$
+</div>
+[The left hand side is the product of $$k$$ copies of $$p$$ where $$p^k \leq 2n$$.] The number of times $$p$$ divides $$\binom{2n}{n}$$, can be done similar to example 2. Since $$\binom{2n}{n} = \frac{(2n)!}{n!n!}$$, then 
+<div>
+$$
+\begin{align*}
+&=\left[\frac{2n}{p}\right] - \left[\frac{n}{p}\right] - \left[\frac{n}{p}\right] \\
+&+
+\left[\frac{2n}{p^2}\right] - \left[\frac{n}{p^2}\right] - \left[\frac{n}{p^2}\right] \\
+&+ \cdots
+\end{align*}
+$$
+</div>
+However, observe here that the expression $$\left[\frac{2n}{p}\right] - \left[\frac{n}{p}\right] - \left[\frac{n}{p}\right]$$ is either 0 or 1 since it is equal to $$[2n] - [n] - [n]$$ and this is always 1 or 0 depending on the fractional part of $$n$$. This means that in the inequality above, for each power of $$p$$, we're going to see that we will get at most 1 copy of $$p$$ dividing $$\binom{2n}{n}$$. Therefore, the product $$\prod_{p^k \leq 2n} p$$ is at least bigger than $$\binom{2n}{n}$$.
+<br>
+<br>
+Furthermore, we saw earlier that that 
+<div>
+$$
+\begin{align*}
+\binom{2n}{n} \geq \frac{2^{2n}}{2n+1}
+\end{align*}
+$$
+</div>
+Combining both inequalities and then taking the logarithms of both sides
+<div>
+$$
+\begin{align*}
+\prod_{p^k \leq 2n} p &\geq \frac{2^{2n}}{2n+1} \\
+\log \prod_{p^k \leq 2n} p &\geq  \frac{2^{2n}}{2n+1} \\
+\sum_{p^k \leq 2n} \log p &\geq  2n\log 2 - \log(2n+1)
+\end{align*}
+$$
+</div>
+So now how do we turn $$\sum_{p^k \leq 2n} \log p$$ to counting primes? We need to simplify things further. First, the terms $$p^2$$, $$p^3$$, and so on are small. Second, $$\log(x)$$ is almost constant as $$n$$ gets really big. Therefore, $$\log p \approx \log 2n$$ for most primes. Thus
+<div>
+$$
+\begin{align*}
+\sum_{p \leq 2n} 2n &\geq  2n\log 2 - \log(2n + 1)
+\end{align*}
+$$
+</div>
+In other words,
+<div>
+$$
+\begin{align*}
+\pi(2n) &\geq  \frac{2n\log 2}{\log 2n} - \text{small factors}
+\end{align*}
+$$
+</div>
+<!-------------------------------------------------------------------------->
+<hr>
+<h3>Catalan Numbers</h3>
+Take a look at the binomial coefficient $$\binom{2n}{n}$$ again. If we write them down, we will get
+<div>
+$$
+\begin{align*}
+1 \ \ 2 \ \ 6 \ \ 20 \ \ 70 \ \ \cdots
+\end{align*}
+$$
+</div>
+which we notice that they are divisible by 
+<div>
+$$
+\begin{align*}
+1 \ \ 2 \ \ 3 \ \ 4 \ \ 5 \ \ \cdots
+\end{align*}
+$$
+</div>
+so $$\binom{2n}{n}$$ is always divisible by $$n+1$$. The sequence we get after dividing is
+<div>
+$$
+\begin{align*}
+1 \ \ 1 \ \ 2 \ \ 5 \ \ 14 \ \ \cdots
+\end{align*}
+$$
+</div>
+This sequence is called the Catalan numbers. They are famous because they count many things. For instance, they count the number of ways to bracket products. So to count the ways to multiply $$abcd$$, we will see that there are exactly 5 ways.
+<div>
+$$
+\begin{align*}
+(((ab)c)d) \quad a(b(cd)) \quad (ab)(cd) \quad (a(bc))d \quad a((bc)d)
+\end{align*}
+$$
+</div>
+Why is this true? Catalan numbers can be described with the following
+<div>
+$$
+\begin{align*}
+C_0 &= 1 \\
+C_n &= C_0C_{n-1} + C_1C_{n-2} + C_2C_{n-3}  + \cdots + C_{n-1}C_0
+\end{align*}
+$$
+</div>
+So if we're multiply $$n$$ numbers together, we can imagine that $$C_0$$ represents $$a$$, $$C_1$$ represents $$ab$$, $$C_2$$ represents $$abc$$ and we can start pairing them as follows
+<div>
+$$
+\begin{align*}
+(a(...)) \quad (ab)(...) \quad (abc)(...) \quad \cdots
+\end{align*}
+$$
+</div>
+How did the recurrence formula for Catalan numbers came to? For this we again use the powerful tool of generating numbers. So if we let 
+<div>
+$$
+\begin{align*}
+f(x) = C_0 + C_1x + C_2x^2 + \cdots
+\end{align*}
+$$
+</div>
+Then
+<div>
+$$
+\begin{align*}
+f(x)^2 = C_0^2 + (C_1C_0 + C_0C_1)x + (C_0C_2+C_1C_1+C_2C_0)x^2 + \cdots \\
+\end{align*}
+$$
+</div>
+In fact,
+<div>
+$$
+\begin{align*}
+1 + xf(x)^2 = f(x)
+\end{align*}
+$$
+</div>
+This is a quadratic equation where we can use the quadratic formula to solve it and get
+<div>
+$$
+\begin{align*}
+f(x) = \frac{1 \pm \sqrt{1 - 4x}}{2x}
+\end{align*}
+$$
+</div>
+But now recall that
+<div>
+$$
+\begin{align*}
+(1 + x)^n = 1 + \binom{n}{1}x + \binom{n}{2}x^2 + \cdots + \binom{n}{n}x^n
+\end{align*}
+$$
+</div>
+and this works even if $$n$$ is not an integer. So we can use this to expand $$\sqrt{1 - 4x}$$ in the quadratic formula above. So
+<div>
+$$
+\begin{align*}
+(1 - 4x)^{1/2} = \sum_{n=0} \binom{1/2}{n} (-4x)^n
+\end{align*}
+$$
+</div>
+If we work this out, we will see that this turns out to be 
+<div>
+$$
+\begin{align*}
+\frac{1 - (1 - 4x)^{1/2}}{2x} &= \sum_{n} \frac{(2n-2)!}{n!(n-1)!}x^{n-1} \\
+                              &= \sum_{n} x^n \frac{\binom{2n}{n}}{n+1} \\
+                               &= \sum_{n} C_nx^n
+\end{align*}
+$$
+</div>
 
 <!-------------------------------------------------------------------------->
 <hr>

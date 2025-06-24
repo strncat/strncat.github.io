@@ -23,13 +23,16 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/16/lec08-applications-of-binomial-coefficients.html">
 	   Lecture 08: Applications of Binomial Coefficients
    </a></li>
+   <li><a href="/jekyll/update/2025/06/17/lec09-congruences.html">
+	   Lecture 09: Congruences
+   </a></li>
 </ol>
 
 <!------------------------ Math115a (Problems) --------------------------->
 <h3>Math115a (Attempted Problems)</h3>
 <ol style="list-style-type:none;">
     <li><a href="/jekyll/update/2025/06/12/1.2-problem-0.html" class="truncated-link">
- 	   1.2: Problem 0: Show that \([a,b] = \frac{ab}{(a,b)}\) for any integers \(a,b\).
+ 	   1.2: Problem 00: Show that \([a,b] = \frac{ab}{(a,b)}\) for any integers \(a,b\).
     </a></li>
    <li><a href="/jekyll/update/2025/06/04/1.2-problem-19.html" class="truncated-link">
 	   1.2: Problem 19: Any set of integers that relatively prime in pairs are relatively prime.
@@ -46,7 +49,7 @@ mathjax: true
    <br>
    <!--------- 1.3 ---------->
    <li><a href="/jekyll/update/2025/06/07/1.3-problem-6.html" class="truncated-link">
-	   1.3: Problem 6: Show that every positive integer \(n\) has a unique expression of the form \(n = 2^rm\), \(r \geq 0\), \(m\) a positive odd integer.
+	   1.3: Problem 06: Show that every positive integer \(n\) has a unique expression of the form \(n = 2^rm\), \(r \geq 0\), \(m\) a positive odd integer.
    </a></li>
    <li><a href="/jekyll/update/2025/06/08/1.3-problem-14.html" class="truncated-link">
 	   1.3: Problem 14: Evaluate \(ab, p^4\) and \(a+b, p^4\) given that \((a,p^2) = p\) and \((b, p^3) = p^2\) where \(p\) is prime.
@@ -66,7 +69,15 @@ mathjax: true
    <br>
    <!--------- 1.4 ---------->
    <li><a href="/jekyll/update/2025/06/15/1.4-problem-4.html" class="truncated-link">
-	   1.4: Problem 4: Suppose that \(S\) contains \(2n\) elements and that \(S\) is partitioned into \(n\) disjoint subsets each one containing exactly two elements of \(S\). Show that this can be done in precisely
+	   1.4: Problem 04: Suppose that \(S\) contains \(2n\) elements and that \(S\) is partitioned into \(n\) disjoint subsets each one containing exactly two elements of \(S\). Show that this can be done in precisely
+   </a></li>
+   <br>
+   <!--------- 2.1 ---------->
+   <li><a href="/jekyll/update/2025/06/18/2.1-problem-02.html" class="truncated-link">
+	   2.1: Problem 02: Exhibit a complete residue system module 17 composed entirely of multiples of 3.
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/19/2.1-problem-06.html" class="truncated-link">
+	   2.1: Problem 06: Prove that if \(p\) is a prime and \(a^2 \equiv b^2 (\bmod p)\), then \(p \mid (a + b)\) or \(p \mid (a - b)\) 
    </a></li>
 </ol>
 

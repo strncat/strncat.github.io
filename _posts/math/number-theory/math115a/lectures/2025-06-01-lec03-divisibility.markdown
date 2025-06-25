@@ -5,10 +5,7 @@ date:   2025-06-01 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
+<div class="def">
 Let \(a, b \in \mathbb{Z}\). \(a\) divides \(b\) or \(a \mid b\) if there exists an \(m \in \mathbb{Z}\) such that \(am = b\).
 </div>
 Note: $$a \mid b$$ doesn't mean that $$\frac{b}{a}$$ is defined. Also note that $$a \mid 0$$ is only true if $$a = 0$$.
@@ -54,10 +51,7 @@ From this we see that $$n^2 - 1$$ is divisible by 8.
 <hr>
 <!------------------------------------------------------------------------>
 <h3>Euclid's Divison Algorithm</h3>
-<div class="peachheaderdiv">
-Proposition
-</div>
-<div class="peachbodydiv">
+<div class="prop">
 Given integers \(a,b > 0\), then exists unique integers \(q\) and \(r\) such that 
 $$
 \begin{align*}

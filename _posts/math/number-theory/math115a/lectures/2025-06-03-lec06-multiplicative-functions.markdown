@@ -5,10 +5,7 @@ date:   2025-06-03 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
+<div class="def">
 An arithmetical function is a function from the positive integers to a subset of the complex numbers (could be the integers, reals or the complex numbers).
 </div>
 <!------------------------------------------------------------------------------>
@@ -29,10 +26,7 @@ $$
 <hr>
 <h3>Multiplicative Functions</h3>
 The previous examples were strictly multiplicative functions. It turns out that we are okay if a weaker condition. So we define
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
+<div class="def">
 A multiplicative function is a function such that $$f(mn) = f(m)f(n)$$ if \((m,n) = 1\).
 </div>
 <!------------------------------------------------------------------------------>
@@ -226,10 +220,7 @@ So the Möbius function turns up in the coefficients of the inverse of the Reima
 <h3>Applications of Multiplicative Functions: Perfect Numbers</h3>
 Define a perfect number as follows
 <!----------------------------------------------------------->
-<div class="mintheaderdiv">
-Definition
-</div>
-<div class="mintbodydiv">
+<div class="def">
 A perfect number is a number that is the sum of its proper divisors.
 </div>
 <!----------------------------------------------------------->

@@ -26,6 +26,9 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/17/lec09-congruences.html">
 	   Lecture 09: Congruences
    </a></li>
+   <li><a href="/jekyll/update/2025/06/23/lec10-fermat-applications.html">
+	   Lecture 10: Applications of Fermat's Theorem
+   </a></li>
 </ol>
 
 <!------------------------ Math115a (Problems) --------------------------->
@@ -78,6 +81,15 @@ mathjax: true
    </a></li>
    <li><a href="/jekyll/update/2025/06/19/2.1-problem-06.html" class="truncated-link">
 	   2.1: Problem 06: Prove that if \(p\) is a prime and \(a^2 \equiv b^2 (\bmod p)\), then \(p \mid (a + b)\) or \(p \mid (a - b)\) 
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/20/2.1-problem-08.html" class="truncated-link">
+	   2.1: Problem 08: Prove that any number that is a square must have one of the following for its units digit: \(0,1,4,5,6,9\)
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/21/2.1-problem-12.html" class="truncated-link">
+	   2.1: Problem 09: Prove that 19 is not a divisor of \(4n^2 + 4\) for any integer \(n\).
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/22/2.1-problem-18.html" class="truncated-link">
+	   2.1: Problem 09: Show that if \(p \equiv 3 (\bmod 4)\), then \(\frac{p-1}{2}! \equiv \pm (\bmod p)\)
    </a></li>
 </ol>
 

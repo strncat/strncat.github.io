@@ -5,19 +5,14 @@ date:   2025-06-13 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<div class="mintheaderdiv">
-Combinatorial Definition
-</div>
-<div class="mintbodydiv">
+We start with the combinatorial definition as follows
+<div class="def">
 \(\binom{n}{k}\) is the number of \(k\) element subsets of an\(n\) element set.
 </div>
 <!------------------------------------------------------------------------------>
 Another way we see these binomial coefficients is when we expand a binomial (sum of two elements) as follows
 <!------------------------------------------------------------------------------>
-<div class="yellowheaderdiv">
-Binomial Coefficients
-</div>
-<div class="yellowbodydiv">
+<div class="thm">
 	\(a, b \in \mathbb{R}, n \in \mathbb{N}\). Then
 	$$
 	\begin{align*}
@@ -26,10 +21,7 @@ Binomial Coefficients
 	$$
 </div>
 We also have an explicit way (third way) to expand the binomial coefficient as follows
-<div class="mintheaderdiv">
-Explicit Definition
-</div>
-<div class="mintbodydiv">
+<div class="def">
 \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)
 </div>
 <!------------------------------------------------------------------------------>

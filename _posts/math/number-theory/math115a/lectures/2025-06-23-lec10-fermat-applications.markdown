@@ -129,12 +129,64 @@ Therefore, the order of $$2$$ must divide $$q$$ by the previous result. But $$q$
  	$$
  </div>
 as we wanted to show. $$\ \blacksquare$$
-
-
-
-
-
-
+<!----------------------------------------------------------------------->
+<hr>
+<h3>Example</h3>
+<div class="stmt">
+Show that \(2^{13} - 1\) is prime. 
+</div>
+One way to do this, is to iterate through all primes less than $$\sqrt{2^{13}} = \sqrt{8191} = 91$$ and see if they divide $$2^{13}$$. This works but there is a faster way. We can use the previous theorem we just proved where if $$p$$ and $$q$$ are primes and $$p$$ divides $$2^q - 1$$, then $$p \equiv 1 \bmod q$$. So if $$p \mid 2^{13} - 1$$, then this means
+ <div>
+ 	$$
+ 	\begin{align*}
+ 	p \equiv 1 \bmod 13
+ 	\end{align*}
+ 	$$
+ </div>
+Only two primes under $$\sqrt{8191} = 91$$ satisfy this equation. $$p = 53$$ and $$p = 79$$. So just need to check that that neither divide $$2^13 = 8191$$ and neither does! $$\blacksquare$$
+<!----------------------------------------------------------------------->
+<hr>
+<h3>Fermat Primes</h3>
+Recall that Fermat Primes are of the form $$2^n + 1$$. Also recall that if $$n$$ has an odd factor, then $$2^n+1$$ is not prime. The reason for this is that $$x^{2n+1}+1$$ is divisible by $$x+1$$ since
+ <div>
+ 	$$
+ 	\begin{align*}
+ 	x^{2n+1} + 1 = (x+1)(x^{2n} - x^{2n-1} + \cdots + 1)
+ 	\end{align*}
+ 	$$
+ </div>
+In general if $$n = ab$$ with $$a$$ odd. Then,
+ <div>
+ 	$$
+ 	\begin{align*}
+ 	2^{n} + 1 = 2^{ab} + 1 = (2^b)^a + 1 
+ 	\end{align*}
+ 	$$
+ </div>
+ $$(2^b)^a + 1$$ is divisible by $$2^b + 1$$.
+So for $$2^n + 1$$ to be prime, $$n$$ needs to be a power of 2. For example, the following are Fermat primes
+ <div>
+ 	$$
+ 	\begin{align*}
+ 	2^1 + 1 = 3, 2^2 + 1 = 5, 2^4 + 1 = 17, 2^8 + 1 = 257, 2^{16} + 1 = 65537
+ 	\end{align*}
+ 	$$
+ </div>
+ So now we want check the following
+<div class="stmt">
+Show that \(2^{2^n} + 1\) is prime. 
+</div>
+As before, we can check all the primes up to $$\sqrt{2^{n}} + 1$$. But we can use Fermat's theorem to speed things up. How? Suppose $$p$$ divides $$2^{2^n} + 1$$. This just means that
+ <div>
+ 	$$
+ 	\begin{align*}
+	2^{2^n} + 1 &\equiv 0 \bmod p \\
+ 	2^{2^n} &\equiv -1 \bmod p \\
+	2^{2^{n+1}} &\equiv (-1)^2 \bmod p^2 \\
+	2^{2^{n+1}} &\equiv 1 \bmod p^2 \\
+ 	\end{align*}
+ 	$$
+ </div>
 
 
 <!----------------------------------------------------------------------->

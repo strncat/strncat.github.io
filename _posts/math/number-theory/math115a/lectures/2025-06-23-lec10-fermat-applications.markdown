@@ -176,18 +176,261 @@ So for $$2^n + 1$$ to be prime, $$n$$ needs to be a power of 2. For example, the
 <div class="stmt">
 Show that \(2^{2^n} + 1\) is prime. 
 </div>
-As before, we can check all the primes up to $$\sqrt{2^{n}} + 1$$. But we can use Fermat's theorem to speed things up. How? Suppose $$p$$ divides $$2^{2^n} + 1$$. This just means that
+As before, we can check all the primes up to $$\sqrt{2^{n} + 1}$$. But we can use Fermat's theorem to speed things up. How? Suppose $$p$$ divides $$2^{2^n} + 1$$. This just means that
  <div>
  	$$
  	\begin{align*}
 	2^{2^n} + 1 &\equiv 0 \bmod p \\
- 	2^{2^n} &\equiv -1 \bmod p \\
-	2^{2^{n+1}} &\equiv (-1)^2 \bmod p^2 \\
-	2^{2^{n+1}} &\equiv 1 \bmod p^2 \\
+ 	2^{2^n} &\equiv -1 \bmod p
  	\end{align*}
  	$$
  </div>
-
+ Squaring both sides
+ <div>
+ 	$$
+ 	\begin{align*}
+	2^{2^{n+1}} &\equiv (-1)^2 \bmod p \\
+	2^{2^{n+1}} &\equiv 1 \bmod p
+ 	\end{align*}
+ 	$$
+ </div>
+ So now, let $$d$$ be the order of $$2 \mod p$$. $$d$$ must divide $$2^{n+1}$$ so $$d$$ must be some power of 2 less than $$2^{n+1}$$ so 
+ <div>
+ 	$$
+ 	\begin{align*}
+	d \in \{1,2,4,\cdots,2^n,2^{n+1}\}
+ 	\end{align*}
+ 	$$
+ </div>
+At the same time, $$d$$ is the smallest power such that $$2^d \equiv 1 \bmod p$$ and we also know that 
+ <div>
+ 	$$
+ 	\begin{align*}
+	2^{2n} \equiv -1 \bmod p
+ 	\end{align*}
+ 	$$
+ </div>
+So $$d$$ can't divide $$2^n$$. Why? Suppose it did, then we can write $$2^n = d \cdot m$$. Then
+ <div>
+ 	$$
+ 	\begin{align*}
+	2^{2^n} = 2^{d \cdot m} = (2^d)^m
+ 	\end{align*}
+ 	$$
+ </div>
+ But $$d$$ is the order of 2 so
+ <div>
+ 	$$
+ 	\begin{align*}
+	 2^{2^n} = (2^d)^m \equiv 1 \bmod p
+ 	\end{align*}
+ 	$$
+ </div>
+This is a contradiction since $$2^{2^n} \equiv -1 \bmod p$$. So $$d$$ must be exactly $$2^{2^{n+1}}$$. Also by Fermat, we know that 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 2^{p-1} \equiv 1 \bmod p
+ 	\end{align*}
+ 	$$
+ </div>
+ This is because $$(2,p) = 1$$ and $$p$$ is prime. Therefore, $$d = 2^{n+1}$$ divides $$p-1$$. This means that 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 p - 1 \equiv 0 \bmod 2^{n+1} \\
+	 p  \equiv 1 \bmod 2^{n+1}
+ 	\end{align*}
+ 	$$
+ </div>
+ This is a strong condition that the prime factors must satisfy. For example, take
+ <div>
+ 	$$
+ 	\begin{align*}
+	 65537 = 2^{16} + 1
+ 	\end{align*}
+ 	$$
+ </div>
+ If $$p \mid 65537$$, then 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 p  \equiv 1 \quad (\bmod 2^{4+1}=32)
+ 	\end{align*}
+ 	$$
+ </div>
+and if 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 p \not\equiv 1 \bmod 32
+ 	\end{align*}
+ 	$$
+ </div>
+ Then $$p \not\mid 65537$$. So we only want to check any prime $$p$$ less than $$\sqrt{65537} < 257$$ such that $$p \equiv 1 \bmod 32$$. If we look at any number that satisfies $$p \equiv 1 \bmod 32$$, then we get
+ <div>
+ 	$$
+ 	\begin{align*}
+	 33, 65, 97, 129, 161, 197,225
+ 	\end{align*}
+ 	$$
+ </div>
+ Some of these are obviously not prime, we only need to check
+ <div>
+ 	$$
+ 	\begin{align*}
+	 97, 197
+ 	\end{align*}
+ 	$$
+ </div>
+ So now we can just use long division to verify that 65537 is prime. Neither of these divide 65537 so 65537 is prime.
+<!----------------------------------------------------------------------->
+<hr>
+<h3>Example</h3>
+<div class="stmt">
+Is \(2^{2^5} + 1 = 2^{32} + 1\) prime?
+</div>
+Euler proved that this is not a prime. Using the condition we proved earlier, suppose that $$p \mid 2^{2^5} + 1$$. This means that
+ <div>
+ 	$$
+ 	\begin{align*}
+	 p \equiv 1 \bmod 2^{5+1} = 64
+ 	\end{align*}
+ 	$$
+ </div>
+So the numbers that satisfy this are
+ <div>
+ 	$$
+ 	\begin{align*}
+	 65, 129, 193, 257, 321, 385, 449, 513, 577, 641, ....
+ 	\end{align*}
+ 	$$
+ </div>
+We can cross the numbers divisible by 5 or 3 and get
+ <div>
+ 	$$
+ 	\begin{align*}
+	 129, 193, 257, 449, 577, 641, ....
+ 	\end{align*}
+ 	$$
+ </div>
+What Euler discovered is that $$641 \mid 2^{2^5} + 1$$. How do we check that 641 divides $$2^{2^5} + 1$$? An easy way is see that 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 2^{16} = 154 \bmod 641
+ 	\end{align*}
+ 	$$
+ </div>
+So now 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 2^{32} = (2^{16})^2 = (154)^2 \equiv -1 \bmod 641
+ 	\end{align*}
+ 	$$
+ </div>
+The idea is to take modulo 641 at every step to avoid large calculations.
+<!----------------------------------------------------------------------->
+<hr>
+<h3>Example</h3>
+<div class="stmt">
+Suppose \(a^2 \equiv b^2 \bmod m\). Does this imply \(a \equiv \pm b \bmod m\)
+</div>
+The answer is no. Suppose $$m = 8$$. Then, 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \bmod 8
+ 	\end{align*}
+ 	$$
+ </div>
+ But
+ <div>
+ 	$$
+ 	\begin{align*}
+	 1 \not\equiv \pm 3 \bmod 8
+ 	\end{align*}
+ 	$$
+ </div>
+ It does work if $$m$$ is prime. Why? Observe that
+ <div>
+ 	$$
+ 	\begin{align*}
+	 a^2 \equiv b^2 \bmod p \\
+	 a^2 - b^2 \equiv 0 \bmod p \\
+	 (a-b)(a+b) \equiv 0 \bmod p
+ 	\end{align*}
+ 	$$
+ </div>
+ Because $$p$$ is prime, then either $$(a-b)\equiv 0 \bmod p$$ or $$(a+b) \equiv 0 \bmod p$$.
+<!----------------------------------------------------------------------->
+<hr>
+<h3>Example</h3>
+<div class="stmt">
+Suppose \(a^2 \equiv b^2 \bmod m^2\). Does this imply \(a \equiv \pm b \bmod m\)
+</div>
+The answer is still no. Take primes $$p$$ and $$q$$ and let $$m = pq$$.
+Now suppose
+ <div>
+ 	$$
+ 	\begin{align*}
+	 a &\equiv b \bmod p^2 \\
+	 a &\equiv -b \bmod q^2
+ 	\end{align*}
+ 	$$
+ </div>
+But these two imply that
+ <div>
+ 	$$
+ 	\begin{align*}
+	 a^2 &\equiv b^2 \bmod p^2 \\
+	 a^2 &\equiv (-b)^2=b^2 \bmod q^2
+ 	\end{align*}
+ 	$$
+ </div>
+We can combine both to get
+ <div>
+ 	$$
+ 	\begin{align*}
+	 a^2 \equiv b^2 \bmod p^2 \cdot q^2 \\
+	 a^2 \equiv b^2 \bmod m^2
+ 	\end{align*}
+ 	$$
+ </div>
+The claim is that 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 a \not\equiv \pm b \bmod m
+ 	\end{align*}
+ 	$$
+ </div>
+Why? suppose for the sake of contradiction that $$a \equiv \pm b \bmod m=pq$$. Specifically suppose that
+ <div>
+ 	$$
+ 	\begin{align*}
+	 a &\equiv -b \bmod pq
+ 	\end{align*}
+ 	$$
+ </div>
+ Since $$(p,q) = 1$$, then 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 a &\equiv -b \bmod p \\
+ 	\end{align*}
+ 	$$
+ </div>
+but now recall that we also have $$a \equiv b \bmod p^2$$ so 
+ <div>
+ 	$$
+ 	\begin{align*}
+	 a &\equiv b \bmod p
+ 	\end{align*}
+ 	$$
+ </div>
+ This is a contradiction. We can't have both $$a \equiv b \bmod p$$ and $$a \equiv -b \bmod p$$ at the same time. Similarly, we can arrive at a contradiction if $$a \equiv b \bmod pq$$ by using the other assumption that $$a \equiv -b \bmod q^2$$. $$\ \blacksquare$$
 
 <!----------------------------------------------------------------------->
 <hr>

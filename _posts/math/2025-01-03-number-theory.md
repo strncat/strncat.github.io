@@ -29,6 +29,9 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/23/lec10-fermat-applications.html">
 	   Lecture 10: Applications of Fermat's Theorem
    </a></li>
+   <li><a href="/jekyll/update/2025/06/24/lec11-euler-theorem.html">
+	   Lecture 11: Euler's Theorem
+   </a></li>
 </ol>
 
 <!------------------------ Math115a (Problems) --------------------------->

@@ -10,8 +10,8 @@ Recall Fermat's Theorem from the lecture 09
 	If \(p\) is prime, \(n \in \mathbb{Z}\), then
 	$$
 	\begin{align*}
-	n^p &\equiv n \bmod p \\
-	n^{p-1} &\equiv 1 \bmod p \quad \text{when } (a,p)=1
+	a^p &\equiv a \bmod p \\
+	a^{p-1} &\equiv 1 \bmod p \quad \text{when } (a,p)=1
 	\end{align*}
 	$$
 </div>
@@ -335,7 +335,7 @@ The idea is to take modulo 641 at every step to avoid large calculations.
 <hr>
 <h3>Example</h3>
 <div class="stmt">
-Suppose \(a^2 \equiv b^2 \bmod m\). Does this imply \(a \equiv \pm b \bmod m\)
+Suppose \(a^2 \equiv b^2 \bmod m\). Does this imply \(a \equiv \pm b \bmod m\)?
 </div>
 The answer is no. Suppose $$m = 8$$. Then, 
  <div>
@@ -368,7 +368,7 @@ The answer is no. Suppose $$m = 8$$. Then,
 <hr>
 <h3>Example</h3>
 <div class="stmt">
-Suppose \(a^2 \equiv b^2 \bmod m^2\). Does this imply \(a \equiv \pm b \bmod m\)
+Suppose \(a^2 \equiv b^2 \bmod m^2\). Does this imply \(a \equiv \pm b \bmod m\)?
 </div>
 The answer is still no. Take primes $$p$$ and $$q$$ and let $$m = pq$$.
 Now suppose

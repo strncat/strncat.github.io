@@ -32,6 +32,12 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/24/lec11-euler-theorem.html">
 	   Lecture 11: Euler's Theorem
    </a></li>
+   <li><a href="/jekyll/update/2025/06/25/lec12-wilson-theorem.html">
+	   Lecture 12: Wilson's Theorem
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/26/lec13-chinese-remainder-theorem.html">
+	   Lecture 13: Chinese Remainder Theorem
+   </a></li>
 </ol>
 
 <!------------------------ Math115a (Problems) --------------------------->

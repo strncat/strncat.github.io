@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lecture 12: Chinese Remainder Theorem"
+title:  "Lecture 13: Chinese Remainder Theorem"
 date:   2025-06-26 01:01:36 -0700
 categories: jekyll update
 mathjax: true

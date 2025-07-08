@@ -38,6 +38,9 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/26/lec13-chinese-remainder-theorem.html">
 	   Lecture 13: Chinese Remainder Theorem
    </a></li>
+   <li><a href="/jekyll/update/2025/06/27/lec14-euler-totient-function.html">
+	   Lecture 14: Euler Totient Function
+   </a></li>
 </ol>
 
 <!------------------------ Math115a (Problems) --------------------------->

@@ -141,9 +141,9 @@ mathjax: true
 <!-------------------------------------- Sequences --------------------------------------->
 <li><b>Sequences and Subsequences</b>
 <ol>
-    <p><a href="/jekyll/update/2024/05/21/analysis-seq-definitions.html">
+    <li><a href="/jekyll/update/2024/05/21/analysis-seq-definitions.html">
           Sequences Definitions
-    </a></p>
+    </a></li>
     <li><a class="truncated-link" href="/jekyll/update/2024/05/12/analysis-seq-limit-template.html">
           Show the Limit Template + Example \(\lim\big(\frac{1}{\sqrt{n}}\big)= 0\).
     </a></li>
@@ -171,9 +171,9 @@ mathjax: true
     <li><a href="/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">
 		  [Monotone Convergence Theorem (2.4.2)] If a sequence is monotone and bounded, then it converges.
     </a></li>
-    <p><a href="/jekyll/update/2024/02/10/analysis-seq-subsequences.html">
+    <li><a href="/jekyll/update/2024/02/10/analysis-seq-subsequences.html">
           Subsequences Definitions
-    </a></p>
+    </a></li>
     <li><a class="truncated-link" href="/jekyll/update/2024/06/11/analysis-seq-subseq-convergence.html">
 		  [Convergence of Subsequence (2.5.2)] Subsequences of a convergent sequence converge to the same limit as the original sequence.
     </a></li>

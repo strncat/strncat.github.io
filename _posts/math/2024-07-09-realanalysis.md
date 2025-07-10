@@ -9,9 +9,6 @@ mathjax: true
 <!--
 <h3> Exercises (Summer 2025) </h3>
 <ol type="1">
-	    <li><a class="truncated-link" href="/jekyll/update/2025/05/01/if-a-upperbound-then-a=sup.html">
-			  Prove that if \(a\) is an upper bound for \(A\), and if \(a\) is also an element of \(A\), then it must be that \(a=\sup A\)
-		</a></li>
 	    <li><a class="truncated-link" href="/jekyll/update/2025/05/02/A-B-nonempty-show-supBsupA.html">
 			  Assume that \(A\) and \(B\) are nonempty, bounded above, and satisfy \(B \subseteq A\). Show \(\sup B \leq \sup A\).
 		</a></li>
@@ -20,7 +17,7 @@ mathjax: true
 <br>
 -->
 <!------------------------------------------------------------------->  
-<h3> Self-Study Notes (Understanding Analysis, Summer 2024) </h3>
+<h3> Self-Study Notes (Understanding Analysis) </h3>
 <ol type="a">
 	<li><b>Basics</b>
 	  <ol type="1">
@@ -45,10 +42,10 @@ mathjax: true
           Definition and Properties  
     </a></li>
     <li><a href="/jekyll/update/2024/04/25/analysis-absolute-value-pr1.html">
-          Let \(x \in \mathbf{R}\), \(|x| \geq 0\).   
+          Let \(x \in \mathbf{R}\), prove that \(|x| \geq 0\).   
     </a></li>
     <li><a href="/jekyll/update/2024/04/26/analysis-absolute-value-pr2.html">
-          Let \(x \in \mathbf{R}\), \(-|x| \leq x \leq |x|\).   
+          Let \(x \in \mathbf{R}\), prove that \(-|x| \leq x \leq |x|\).   
     </a></li>
     <li><a href="/jekyll/update/2024/05/13/analysis-absolute-value-max-x-y.html">
           For two real numbers \(x\) and \(y\), prove that \(\max(x,y) = \frac{1}{2}(x+y+|x - y|)\).   
@@ -93,6 +90,12 @@ mathjax: true
     <p>
           Exercises
     </p>
+    <li><a class="truncated-link" href="/jekyll/update/2025/05/01/bounds-if-a-upperbound-then-a=sup.html">
+		  Prove that if \(a\) is an upper bound for \(A\), and if \(a\) is also an element of \(A\), then it must be that \(a=\sup A\)
+	</a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2025/05/02/bounds-A-B-nonempty-show-supBsupA.html">
+		  Assume that \(A\) and \(B\) are nonempty, bounded above, and satisfy \(B \subseteq A\). Show \(\sup B \leq \sup A\).
+	</a></li>
     <li><a class="truncated-link" href="/jekyll/update/2024/05/04/analysis-least-upper-bound-constant.html">
           The set defined as \(c+A = \{c + a : a \in A\}\) where \(c\) is a constant has a least upper bound equal to \(c + sup A\).
     </a></li>

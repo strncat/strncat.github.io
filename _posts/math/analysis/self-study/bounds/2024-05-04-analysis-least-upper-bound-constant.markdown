@@ -16,13 +16,27 @@ This was another proof that I liked.
   $$
   Then, \(\sup(c+A) = c + \sup A\).
 </div>
-Definitions of bounds: <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">here</a>. How do we prove it? Any time we want to prove something about least upper bounds we'll need to verify both conditions of the definition of an upper bound. From the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">definitions page</a>, we need to verify that $$c + \sup A$$ is indeed an upper bound and then prove that it's the least one.
-<br>
+Definitions of bounds: <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">here</a>. How do we prove it? Any time we want to prove something about least upper bounds we'll need to verify both conditions of the definition of a least upper bound. From the <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">definitions page</a>, we need to verify that $$c + \sup A$$ is an upper bound and then prove that it's the least one.
+<hr> 
 <!------------------------------------------------------------------------>
 <h3>Proof</h3>
-Let $$A$$ be a bounded non-empty set with a least upper bound $$s = \sup A$$. Let $$c$$ be a constant. Let $$c + A$$ be the set $$\{c + a: a \in A\}$$. Since $$s$$ is an upper bound then we know that for every element $$a \in A$$, we have $$a \leq s$$. If we add $$c$$ to both sides we'll have $$a + c \leq s + c$$. Therefore, we can see that $$c + s$$ is also an upper bound for the set $$A + c$$.
-<br>
-To verify condition two, let $$b$$ be an arbitrarily chosen upper bound of the set $$A + c$$. This means that $$a + c \leq b$$ for every element $$a \in A$$. We can re-write the inequality as,
+Let $$A$$ be a bounded non-empty set with a least upper bound $$\sup A$$. Let $$c$$ be a constant. Let $$c + A$$ be the set defined above. Since $$s$$ is an upper bound, then we know that for every element $$a \in A$$, we must have $$a \leq s$$. If we add $$c$$ to both sides, then
+<div>
+$$
+\begin{align*}
+a + c \leq \sup A + c.
+\end{align*}
+$$
+</div>
+This implies that $$\sup A + c$$ is an upper bound for $$A + c$$. Next, we want to show $$\sup A + c$$ is the least upper bound on $$A + c$$. Let $$b$$ be any upper bound of $$A + c$$. This means that for any element in $$A + c$$, we must have 
+<div>
+$$
+\begin{align*}
+a + c \leq b.
+\end{align*}
+$$
+</div>
+We can re-write the inequality as
 <div>
 $$
 \begin{align*}
@@ -30,24 +44,24 @@ a \leq b - c.
 \end{align*}
 $$
 </div>
-From this we can conclude that $$b - c$$ is an upper bound for $$A$$. Earlier we defined $$s$$ as the least upper bound for $$A$$ so we must have,
+But this means that $$b - c$$ is an upper bound for $$A$$. Therefore, by the definition of a least upper bound, we must have
 <div>
 $$
 \begin{align*}
-s \leq b - c.
+\sup A \leq b - c.
 \end{align*}
 $$
 </div>
-Re-writing this as,
+But we can re-write this as
 <div>
 $$
 \begin{align*}
-s + c \leq b
+\sup A + c \leq b
 \end{align*}
 $$
 </div>
-shows that $$s + c$$ is less than or equal to any chosen upper bound of $$A + c$$. This means that $$s + c$$ must be the least upper bound of $$A + c$$. This verifies condition two of the definition of the least upper bound. $$\blacksquare$$
-<br>
+This shows that $$\sup A + c$$ is less than or equal to any arbitrary upper bound of $$A + c$$. But this just implies that $$\sup A + c$$ is the least upper bound of $$A + c$$ as we wanted to show. $$\blacksquare$$
+<hr>
 <!------------------------------------------------------------------------------------>
 <h3>References</h3>
 <ul>

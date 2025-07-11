@@ -87,9 +87,14 @@ mathjax: true
     <li><a class="truncated-link" href="/jekyll/update/2024/05/20/analysis-density-of-q-in-r.html">
           [Density of \(\mathbf{Q}\) in \(\mathbf{R}\)] For every two real numbers \(a\) and \(b\) with \(a < b\), there exists a rational number \(r\) satisfying \(a < r < b\).
     </a></li>
-    <p>
-          Exercises
-    </p>
+</ol>
+	<ol>
+	    <p>
+	          Exercises
+	    </p>
+    <li><a class="truncated-link" href="/jekyll/update/2025/05/03/bounds-compute-bounds.html">
+		  Compute the suprema and infima of the following sets ...
+	</a></li>
     <li><a class="truncated-link" href="/jekyll/update/2025/05/01/bounds-if-a-upperbound-then-a=sup.html">
 		  Prove that if \(a\) is an upper bound for \(A\), and if \(a\) is also an element of \(A\), then it must be that \(a=\sup A\)
 	</a></li>
@@ -122,6 +127,9 @@ mathjax: true
     </a></li>
     <li><a class="truncated-link" href="/jekyll/update/2024/05/18/analysis-archimedian-principle-sup-N.html">
           Show that \(\sup\big(\{\frac{1}{n}: n \in \mathbf{N}\} \big) = 1.\)
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2025/05/04/bounds-supA-supB.html">
+          If \(\sup A < \sup B\), then show that there exists an element \(b \in B\) that is an upper bound for \(A\).
     </a></li>
 </ol>
 </li>
@@ -192,6 +200,8 @@ mathjax: true
     <li><a class="truncated-link" href="/jekyll/update/2024/06/18/analysis-seq-cauchy-critertion.html">
 		  [Cauchy Criterion (2.6.4)] A sequence converges if and only if it is a Cauchy sequence.
     </a></li>
+</ol>
+<ol>
     <p>
           Exercises
     </p>

@@ -1,16 +1,17 @@
 ---
 layout: post
-title:  "The Least Upper Bound After Multiplying a Constant"
+title:  "[1.3.5] The Least Upper Bound After Multiplying a Constant"
 date:   2024-05-06 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>Let \(A \subseteq \mathbb{R}\) be nonempty and bounded above, and let \(c \in \mathbb{R}\). Define the set \(cA = \{ca : a \in A\}\). Then if \(c \geq 0\), show that \(\sup cA = c\sup A\).</b>
+<div class="stmt">
+  Let \(A \subseteq \mathbb{R}\) be nonempty and bounded above, and let \(c \in \mathbb{R}\). Define the set \(cA = \{ca : a \in A\}\). Then if \(c \geq 0\), show that \(\sup cA = c\sup A\).
 </div>
-For the definitions of an upper bound and the least upper bound of a set. See <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
-<br>
-<h3>Proof:</h3>
+Definitions of bounds: <a href="https://strncat.github.io/jekyll/update/2024/05/03/analysis-set-bounded.html">This</a>.
+<hr>
+<!---------------------------------------------------------------->
+<h3>Proof</h3>
 Let $$A \subseteq \mathbb{R}$$ be nonempty and bounded above, let $$c \in \mathbb{R}$$ and let $$cA = \{ca : a \in A\}$$. We'll verify both conditions of the least upper bound. Let $$a \in A$$. We know that $$a \leq \sup A$$. Multiply both sides by $$c$$ to get
 <div>
 $$
@@ -38,9 +39,9 @@ b &\leq c \sup A.
 $$
 </div>
 Recall that $$b$$ was an arbitrary upper bound of $$cA$$. Therefore, we can conclude from this that $$c \sup A$$ is a least upper bound for $$cA$$ as required. $$\blacksquare$$
-<br>
+<hr>
 <!------------------------------------------------------------------------------------>
-<b>References:</b>
+<h3>References</h3>
 <ul>
 <li><a href="https://www.amazon.com/Understanding-Analysis-Undergraduate-Texts-Mathematics/dp/1493927116">Understanding Analysis by Stephen Abbott</a></li>
 </ul>

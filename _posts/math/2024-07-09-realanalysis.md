@@ -131,6 +131,9 @@ mathjax: true
     <li><a class="truncated-link" href="/jekyll/update/2025/05/04/bounds-supA-supB.html">
           If \(\sup A < \sup B\), then show that there exists an element \(b \in B\) that is an upper bound for \(A\).
     </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2025/05/05/bounds-true-or-false.html">
+          Determine if the following statements are true or false.
+    </a></li>
 </ol>
 </li>
 <!-------------------------------------- Cardinality --------------------------------------->

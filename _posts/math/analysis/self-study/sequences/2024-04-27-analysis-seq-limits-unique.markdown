@@ -5,8 +5,8 @@ date:   2024-04-27 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-<div style="background-color: #E3F4F4; padding: 15px 15px 15px 15px; border:1px solid black;">
-  <b>The limit of a sequence, when it exists must be unique.</b>
+<div class="prop">
+  The limit of a sequence, when it exists must be unique.
 </div>
 <!------------------------------------------------------------------------------------>
 For the absolute value function definition and other properties see <a href="https://strncat.github.io/jekyll/update/2024/05/26/analysis-absolute-value-properties.html">here</a>.
@@ -14,9 +14,9 @@ For the absolute value function definition and other properties see <a href="htt
 For the definitions of sequences and what it means to for a sequence to converge, see <a href="https://strncat.github.io/jekyll/update/2024/05/21/analysis-seq-definitions.html">this</a>.
 <br>
 For the "show the limit" template and an example, see <a href="https://strncat.github.io/jekyll/update/2024/05/12/analysis-seq-limit-template.html">this</a>.
-<br>
+<hr>
 <!------------------------------------------------------------------------------------>
-<h3>Proof:</h3>
+<h3>Proof</h3>
 Let $$(x_n)$$ be an arbitrary convergent sequence. Suppose for the sake of contradiction that the limit is not unique so we have $$(x_n) \rightarrow a$$ and $$(x_n) \rightarrow b$$ for some numbers $$a$$ and $$b$$ where $$a \neq b$$. Without the loss of generality assume that $$a \geq b$$. Now, since $$(x_n) \rightarrow a$$, then for any $$\epsilon > 0$$ there exists some $$N_1 \in \mathbb{N}$$ such that
 <div>
 $$
@@ -67,9 +67,9 @@ $$
 $$
 </div>
 Notice here that we have both $$x_n < \frac{a+b}{2}$$ and $$x_n > \frac{a+b}{2}$$ and that's not possible. Therefore the limit must be unique if it exists. $$\blacksquare$$
-<br>
+<hr>
 <!------------------------------------------------------------------------------------>
-<b>References:</b>
+<h3>References</h3>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=1xsIpCa961w">Wrath of Math Youtube Channel</a></li>
 </ul>

@@ -52,6 +52,10 @@ This will certainly require a proof!
 <div class="def">
 	A sequence that doesn't converge is said to diverge.
 </div>
+We know that a sequence <b>converges</b> if <b>for all</b> $$\epsilon > 0$$, <b>there exists</b> some tail of the sequence in the radius $$(L-\epsilon, L+\epsilon)$$. The negation of this statement is as follows:
+<br>
+<br>
+A sequence <b>diverges</b> if <b>there exists</b> some $$\epsilon$$ such that <b>for all</b> tails of the sequence, the tail will not be inside $$(L-\epsilon, L+\epsilon)$$. So it doesn't matter where the tail starts, for that specific $$\epsilon$$, this tail will never be fully contained in that radius.
 <hr>
 <!------------------------------------------------------------------------------------>
 <h3>[2.3.1] Definition: Bounded Sequences</h3>

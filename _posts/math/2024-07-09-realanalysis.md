@@ -153,13 +153,10 @@ mathjax: true
 </ol>
 </li>
 <!-------------------------------------- Sequences --------------------------------------->
-<li><b>Sequences and Subsequences</b>
+<li><b>Sequences</b>
 <ol>
     <li><a href="/jekyll/update/2024/05/21/analysis-seq-definitions.html">
           Sequences Definitions
-    </a></li>
-    <li><a class="truncated-link" href="/jekyll/update/2024/05/12/analysis-seq-limit-template.html">
-          Show the Limit Template + Example \(\lim\big(\frac{1}{\sqrt{n}}\big)= 0\).
     </a></li>
     <li><a href="/jekyll/update/2024/04/27/analysis-seq-limits-unique.html">
           [Uniqueness of Limits (2.2.7)] The limit of a sequence, when it exists must be unique.
@@ -185,6 +182,43 @@ mathjax: true
     <li><a href="/jekyll/update/2024/04/29/analysis-seq-monotone-convergence-theorem.html">
 		  [Monotone Convergence Theorem (2.4.2)] If a sequence is monotone and bounded, then it converges.
     </a></li>
+</ol>
+<ol>
+    <p>
+          Exercises
+    </p>
+    <li><a class="truncated-link" href="/jekyll/update/2024/05/12/analysis-seq-limit-template.html">
+          \(\lim\big(\frac{1}{\sqrt{n}}\big)= 0\). (Show the Limit Template)
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2024/05/22/analysis-seq-limit-example.html">
+          Prove that \(\lim\big(\frac{n+1}{n}\big)= 1\).
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2025/05/06/analysis-seq-limit-example-2.html">
+          Prove that \(\lim\big(\frac{1}{3n^3}\big)= 0\).
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2024/06/04/analysis-seq-sqrt.html">
+		  Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html">
+		  [Squeeze Theorem] Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2024/06/06/analysis-seq-abs-value.html">
+		  Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbf{N}\), then \(x_n \rightarrow 0\).
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2024/06/15/analysis-seq-sqrt-2.html">
+		  Show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0.
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html">
+		  Prove that \(b > b^2 > b^3 > b^4 > ... > 0\) converges to 0 if \(0 < b < 1\). (Example of 2.5.2).
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2024/06/19/analysis-seq-subseq-convergence.html">
+		  A sequence \(a_n\) converges to \(a\) if and only if every subsequence of \(a_n\) also converges to \(a\).
+    </a></li>
+</ol>
+</li>
+<!-------------------------------------- Sequences --------------------------------------->
+<li><b>Subsequences</b>
+<ol>
     <li><a href="/jekyll/update/2024/02/10/analysis-seq-subsequences.html">
           Subsequences Definitions
     </a></li>
@@ -208,27 +242,6 @@ mathjax: true
     <p>
           Exercises
     </p>
-    <li><a class="truncated-link" href="/jekyll/update/2024/05/22/analysis-seq-limit-example.html">
-          Show that \(\lim\big(\frac{n+1}{n}\big)= 1\).
-    </a></li>
-    <li><a class="truncated-link" href="/jekyll/update/2024/06/04/analysis-seq-sqrt.html">
-		  Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).
-    </a></li>
-    <li><a class="truncated-link" href="/jekyll/update/2024/06/05/analysis-seq-squeeze-theorem.html">
-		  [Squeeze Theorem] Show that if \(x_n \leq y_n \leq z_n\) for all \(n \in \mathbf{N}\), and if \(\lim x_n = \lim z_n = l\), then \(\lim y_n = l\) as well.
-    </a></li>
-    <li><a class="truncated-link" href="/jekyll/update/2024/06/06/analysis-seq-abs-value.html">
-		  Show that if \((|x_n|) \rightarrow 0\) for all \(n \in \mathbf{N}\), then \(x_n \rightarrow 0\).
-    </a></li>
-    <li><a class="truncated-link" href="/jekyll/update/2024/06/15/analysis-seq-sqrt-2.html">
-		  Show that \((\sqrt{n + 1} - \sqrt{n})\) converges to 0.
-    </a></li>
-    <li><a class="truncated-link" href="/jekyll/update/2024/06/13/analysis-seq-subseq-convergence-example.html">
-		  Prove that \(b > b^2 > b^3 > b^4 > ... > 0\) converges to 0 if \(0 < b < 1\). (Example of 2.5.2).
-    </a></li>
-    <li><a class="truncated-link" href="/jekyll/update/2024/06/19/analysis-seq-subseq-convergence.html">
-		  A sequence \(a_n\) converges to \(a\) if and only if every subsequence of \(a_n\) also converges to \(a\).
-    </a></li>
     <li><a class="truncated-link" href="/jekyll/update/2024/06/20/analysis-seq-subseq-divergence.html">
 		  If two subsequences of \(a_n\) converge to different limits, or if any subsequences of \(a_n\) diverges then \(a_n\) diverges.
     </a></li>

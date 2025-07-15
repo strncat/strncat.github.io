@@ -15,7 +15,7 @@ $$
 if \(a - b\) is divisible by \(c\) or \(c \ | \ a - b\).
 </div>
 <!----------------------------------------------------------------------->
-Addition and multiplication is preserved module a fixed number so
+Addition and multiplication are preserved module a fixed number so
 <!----------------------------------------------------------------------->
 <div class="prop">
 Let \(a_1, a_2, b_1, b_2\) be integers with \(a_1 \equiv a_2 \bmod c\) and \(b_1 \equiv b_2 \bmod c\). Then 
@@ -61,7 +61,10 @@ The set of residue classes form a ring.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Example 1</h3>
-Suppose we want to test if $$357$$ is divisible by 9. We do this by summing the digits $$3+5+7 = 15$$ and then again $$1+5 = 6$$. From this we conclude that $$357 \equiv 6 \bmod 9$$. Why does this work? because
+<div class="stmt">
+Is \(357\) divisible by 9?
+</div>
+We typically do this by summing the digits $$3+5+7 = 15$$ and then again $$1+5 = 6$$. From this we conclude that $$357 \equiv 6 \bmod 9$$. Why does this work? because
 <div>
 $$
 \begin{align*}
@@ -69,20 +72,33 @@ $$
 \end{align*}
 $$
 </div>
-We know that $$10 \equiv 1 \bmod 9$$. So we can re-write the above as
+We know that $$10 \equiv 1 \bmod 9$$. This means that
+<div class="ediv">
+$$
+\begin{align*}
+10^k &\equiv 1^k \equiv 1 \bmod 9
+\end{align*}
+$$
+</div>
+Thus
 <div>
 $$
 \begin{align*}
+357 &\equiv 3 \cdot 10^2 + 5 \cdot 10^1 + 7 \cdot 10^0 \bmod 9 \\ 
 &\equiv 3 \cdot 1^2 + 5 \cdot 1^1 + 7 \cdot 1^0 \bmod 9 \\
 &\equiv 15 \bmod 9 \\
 &\equiv 6 \bmod 9
 \end{align*}
 $$
 </div>
+Therefore, it is not divisible by 9.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Example 2</h3>
-Suppose we want to test if $$1234$$ is divisible by 11. Then what we do is that we take the alternating sum of the digits so $$4 - 3 + 2 - 1 = 2$$ so $$1234 \equiv 2 \mod 11$$. This works because 
+<div class="stmt">
+Is \(1234\) is divisible by 11?
+</div>
+We do this by taking the alternating sum of the digits so $$4 - 3 + 2 - 1 = 2$$. Thus, $$1234 \equiv 2 \mod 11$$ and $$1234$$ is not divisible by 11. This works because 
 <div>
 $$
 \begin{align*}
@@ -90,29 +106,40 @@ $$
 \end{align*}
 $$
 </div>
-We note that $$10 \equiv -1 \bmod 11$$ so
+But we know that
+<div class="ediv">
+$$
+\begin{align*}
+10 \equiv -1 \bmod 11
+\end{align*}
+$$
+</div>
+Therefore
 <div>
 $$
 \begin{align*}
-&\equiv 1 \cdot (-1)^3 + 2 \cdot (-1)^2 + 3 \cdot (-1)^1 + 4 \cdot (-1)^0 \\
-&\equiv (1 \cdot -1) + (2 \cdot 1) + (3 \cdot -1) + (4 \cdot 1) \\
-&\equiv -1 + 2 - 3 + 4
+1234 &\equiv 1 \cdot (-1)^3 + 2 \cdot (-1)^2 + 3 \cdot (-1)^1 + 4 \cdot (-1)^0 \bmod 11 \\
+&\equiv (1 \cdot -1) + (2 \cdot 1) + (3 \cdot -1) + (4 \cdot 1) \bmod 11 \\
+&\equiv -1 + 2 - 3 + 4 \bmod 11
 \end{align*}
 $$
 </div>
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Example 3</h3>
-Suppose we want to know if $$1234567$$ is a square. So we want to know if $$1234567 = a^2$$ for some $$a$$. Then, suppose $$b$$ is the last digit of $$a$$. Then
-<div>
+<div class="stmt">
+Is \(1234567\) a square? 
+</div>
+This means that we want to know if $$1234567 = a^2$$ for some $$a$$. Then, suppose $$b$$ is the last digit of $$a$$. If we take $$a$$ module $$10$$, then we will get exactly $$b$$. Thus
+<div class="ediv">
 $$
 \begin{align*}
 a &\equiv b \mod 10 \\
-a^2 &\equiv b^2 \mod 10 
+a^2 &\equiv b^2 \mod 10 \quad \text{(taking both sides to the same power)}
 \end{align*}
 $$
 </div>
-The possibilities for $$b$$ are $$0,1,2,3,4,5,6,7,8,9$$. So $$b^2$$ is 
+We know $$b$$ is a single digit. Then $$b$$ can only be some number in $$\{0,1,2,3,4,5,6,7,8,9\}$$. Thus, $$b^2$$ can only be one of the following 
 <div>
 $$
 \begin{align*}
@@ -120,11 +147,14 @@ $$
 \end{align*}
 $$
 </div>
-Therefore, the last digit is $$0,1,4,9,6,5$$. Thus, 7 is not in the set so $$123457$$ is not a square.
+But we're working module $$10$$, so the possible unique digits are $$\{0,1,4,9,6,5\}$$. Thus, 7 is not in the set so $$123457$$ is not a square.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Example 4</h3>
-What is $$a^2 \bmod 8$$. If we take $$a$$ module 8, then the possible distinct digits are $$0, 1,2,3,4,5,6,7$$. So now if we take $$a^2$$ module 8, we get
+<div class="stmt">
+What is \(a^2 \bmod 8\)? 
+</div>
+If we take $$a$$ module 8, then the possible distinct digits are $$0, 1,2,3,4,5,6,7$$. So now if we take $$a^2$$ module 8, we get
 <div>
 $$
 \begin{align*}
@@ -144,8 +174,8 @@ Since if $$a \equiv 7 \bmod 8$$, then $$a^2 + b^2 + c^2$$ is the sum of integers
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Example 5</h3>
-This time let's consider cubes. Can we write any integer $$n$$ as a sum of three cubes so 
-<div>
+<div class="stmt">
+Can we write any integer \(n\) as a sum of three cubes? so 
 $$
 \begin{align*}
 n = a^3 + b^3 + c^3
@@ -161,23 +191,56 @@ $$
 \end{align*}
 $$
 </div>
-So adding 3 to $$a$$ didn't change its value module 9. So we only need to consider the set $$\{-1,0,1\}$$ because we can construct any number by adding a multiple 3 to a number of the set. For example $$4 = (1 + 3)$$, $$6 = (0 + 3(2))$$ and so on. Therefore,
+Observe that adding $$3$$ to $$a$$ didn't change its value module 9. In other words
+<div class="ediv">
+$$
+\begin{align*}
+(a + 3)^3 &\equiv a^3 \bmod 9
+\end{align*}
+$$
+</div>
+So adding $$3$$ keeps $$a$$ in the same residue class module $$9$$. So if $$a = 0$$, then
 <div>
+$$
+\begin{align*}
+0^3 &\equiv 3^3 \equiv 6^3 \equiv 0 \bmod 9
+\end{align*}
+$$
+</div>
+And if $$a = 1$$, then
+<div>
+$$
+\begin{align*}
+1^3 &\equiv 4^3 \equiv 7^3 \equiv 1 \bmod 9
+\end{align*}
+$$
+</div>
+And if $$a = 2$$, then
+<div>
+$$
+\begin{align*}
+2^3 &\equiv 5^3 \equiv 8^3 \equiv -1 \bmod 9
+\end{align*}
+$$
+</div>
+So this means any cube can only leave a remainder of $$\{-1,0,1\}$$. Therefore, any sum of three cubes will look like the following module $$9$$
+<div class="ediv">
 $$
 \begin{align*}
 a^3 + b^3 + c^3 \equiv \{-1,0,1\} + \{-1,0,1\} + \{-1,0,1\} \bmod 9
 \end{align*}
 $$
 </div>
-The possible sums are
-<div>
+So now we can just consider all possible sums. For example $$\{(-1-1+0),(-1+0+0), (-1+0+1), (1+1+0)\cdots$$\}. 
+In fact, it turns out that the possible sums of cubes can only leave a remainder of
+<div class="ediv">
 $$
 \begin{align*}
 -3,-2,-1,0,1,2,3 \bmod 9
 \end{align*}
 $$
 </div>
-So if $$n \equiv 4 \bmod 9$$ or $$n \equiv 4 \bmod 9$$, then $$n \neq a^3 + b^3 + c^3$$. Note here that $$-3 \equiv 6 \bmod 9$$ and $$-1 \equiv 8 \bmod 9$$. So it's possible to write $$6$$ or $$8$$ as sums of three cubes. Only remainders of 4 and 5 (module 9) are not possible.
+This means that if $$n \equiv 4 \bmod 9$$ or $$n \equiv 5 \bmod 9$$, then we don't have a solution. Only the remainders of $$4$$ and $$5$$ (module $$9$$) are not possible when writing $$n$$ as a sum of three cubes. For example, if $$n = 39$$, then $$39 \bmod 9 = 3$$ so $$39$$ can be written as a sum of three cubes. While $$n = 40$$ leaves a remainder of $$40 \bmod 9 = 4$$. Therefore, $$40$$ can't be written as a sum of three cubes.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Fermat's Theorem</h3>
@@ -225,7 +288,7 @@ $$
 $$
 </div>
 Clearly this is also divisible by 5. Therefore, $$3n^5 + 5n^3 + 7n$$ is divisible by 15 and we are done.
-<br>
+<hr>
 <h3>Fermat's Proof</h3>
 Recall from the previous lecture that $$\binom{p}{k}$$ is divisible $$p$$ if $$1 \leq k \leq p-1$$. This resulted having
 <div>
@@ -259,16 +322,18 @@ We can do the same thing for negative integers.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Application of Fermat's Theorem</h3>
-Is $$n=35$$ a prime? It's obviously not but suppose $$n$$ has 1000 digits. 
-So now we can use Fermat's theorem to say "If 35 is a prime, then
-<div>
+<div class="stmt">
+Is \(n=35\) a prime? 
+</div>
+It's obviously not, but hypothetically suppose $$n=35$$ has 1000 digits. Then, we can use Fermat's theorem to say that If 35 is a prime, then the following
+<div class="ediv">
 	$$
 	\begin{align*}
 	2^{35} &\equiv 2 \bmod 35
 	\end{align*}
 	$$
 </div>
-if this isn't true, then 35 is definitely not a prime. (What if this was true, does that immediately imply that 35 is prime? no, we'll discuss later). So now how do we calculate $$2^35$$? we can do this by reducing the product modulo 35 each step so the product doesn't get too big. We can start with $$2^6 = 64$$ and then keep reducing as follows
+must be true. If this isn't true, then $$35$$ is definitely <b>not</b> a prime. (What if this was true, does that immediately imply that 35 is prime? no, we'll discuss later). So now how do we calculate $$2^{35}$$? we can do this by reducing the product modulo $$35$$ every iteration in order for the product not to get too big. We can start with $$2^6 = 64$$ and then keep reducing as follows
 <div>
 	$$
 	\begin{align*}
@@ -278,7 +343,7 @@ if this isn't true, then 35 is definitely not a prime. (What if this was true, d
 	\end{align*}
 	$$
 </div>
-We can keep doing this until we reach $$2^35$$ or the 1000 digits number. This is good but isn't great since we still have to do this for 35 steps until we reach $$2^{35}$$. Instead write $$35$$ as powers of 2 so
+We can keep doing this until we reach $$2^{35}$$. This is good but isn't great since we have to do this for $$35$$ steps until we reach $$2^{35}$$. Instead write $$35$$ as powers of 2 so
 <div>
 	$$
 	\begin{align*}
@@ -286,7 +351,7 @@ We can keep doing this until we reach $$2^35$$ or the 1000 digits number. This i
 	\end{align*}
 	$$
 </div> 
-and now we will square 2 in every step as follows
+and now we will square $$2$$ in every step as follows
 <div>
 	$$
 	\begin{align*}
@@ -299,7 +364,7 @@ and now we will square 2 in every step as follows
 	\end{align*}
 	$$
 </div>
-Now 
+Thus
 <div>
 	$$
 	\begin{align*}
@@ -310,14 +375,15 @@ Now
 	\end{align*}
 	$$
 </div>
-So it's 2 and therefore, $$35$$ is not prime. So this is a much faster method.
+So it's not $$2$$. Therefore, $$35$$ is not prime. So this is a much faster method. (I believe this is called Modular Exponentiation)
 <br>
 <br>
-Now, if $$n$$ passes the test, It isn't a guarantee that $$n$$ is prime. What we might do is test if $$3^n \equiv 3 \bmod n$$. If it still passes, you'll suspect it is a prime but it's not a guarantee. Kind of probabilistic test at this point. So with some probability, this $$n$$ is a prime. 
+Now, if $$n$$ passes the test, It isn't a guarantee that $$n$$ is prime. What we might do is test if $$3^n \equiv 3 \bmod n$$. If it still passes, you'll suspect it is a prime but it's not a guarantee. It is kind of a probabilistic test at this point. So with some probability, this $$n$$ is a prime. 
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Infinitely Many Primes of the Form \(4n+1\)</h3>
 Recall from the primes lecture that to prove that we have infinitely many primes of the form $$4n+1$$, we used the fact that if a prime divides $$n^2 + 1$$, then $$p = 2$$ or $$p = 4n+1$$ but we never proved this fact. To show, first notice these values for the first $$n$$ integers again
+<center>
 <table>
 	<tr>
 		<td>\(n\)</td> <td>\(1\)</td> <td>\(2\)</td> 
@@ -338,6 +404,7 @@ Recall from the primes lecture that to prove that we have infinitely many primes
 	<td>\(2,5\)</td> <td>\(5,13\)</td> 
     </tr>
 </table>
+</center>
 Observe that all of these prime factors are either 2 or 1 module 4. 
 <br>
 Suppose now that $$p$$ is an odd prime and it divides $$n^2 + 1$$. This means that $$n^2 \equiv -1 \bmod p$$. Then we can use Fermat's theorem to show that $$p$$ satisfies $$p \equiv 1 \bmod 4$$. So

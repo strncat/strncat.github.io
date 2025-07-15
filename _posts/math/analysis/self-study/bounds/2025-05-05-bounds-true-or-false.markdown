@@ -63,9 +63,9 @@ Determine if the following statements are true or false.
 </li>
 <hr>
 	<!-------------------(e)---------------------->
-<li>If \(\sup A = s\) and \(\sup B = t\), then \(\sup(A+B) = s+t\). The set \(A + B\) is defined as \(A + B = \{a + b: a \in A \text{ and } b \in B\}\)
+<li>If \(\sup A \leq \sup B\), then there exists an element \(b \in B\) that is an upper bound for \(A\).
 	<br><br>
-	T
+	False. \(\sup B\) isn't necessarily in \(B\). A counter example is \(A = (0,1)\) and \(B=(0,1)\). \(\sup A = \sup B = 1\). But no \(b \in B\) can be an upper bound on \(A\).
 	<br><br>
 </li>
 </ol>

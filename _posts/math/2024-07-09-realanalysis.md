@@ -134,6 +134,9 @@ mathjax: true
     <li><a class="truncated-link" href="/jekyll/update/2025/05/05/bounds-true-or-false.html">
           Determine if the following statements are true or false.
     </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2025/05/08/bounds-a-b.html">
+          Let \(A\) and \(B\) be nonempty subsets of \(\mathbb{R}\) with \(A\) bounded above and \(B\) bounded below. Define \(A - B = \{a - b: a \in A, b \in B\}\). Prove that \(\sup(A - B) = \sup A - \inf B\). 
+    </a></li>
 </ol>
 </li>
 <!-------------------------------------- Cardinality --------------------------------------->
@@ -195,6 +198,9 @@ mathjax: true
     </a></li>
     <li><a class="truncated-link" href="/jekyll/update/2025/05/06/analysis-seq-limit-example-2.html">
           Prove that \(\lim\big(\frac{1}{3n^3}\big)= 0\).
+    </a></li>
+    <li><a class="truncated-link" href="/jekyll/update/2025/05/07/analysis-seq-limit-example-3-diverges.html">
+          Prove that \(\lim\big(n\big)\) diverges.
     </a></li>
     <li><a class="truncated-link" href="/jekyll/update/2024/06/04/analysis-seq-sqrt.html">
 		  Let \(x_n \geq 0\) for all \(n \in \mathbf{N}\). Show that if \((x_n) \longrightarrow x\), Then \((\sqrt{x_n}) \longrightarrow \sqrt{x}\).

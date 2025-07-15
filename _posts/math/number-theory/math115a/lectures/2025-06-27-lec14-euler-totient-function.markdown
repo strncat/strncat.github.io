@@ -5,7 +5,7 @@ date:   2025-06-27 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-Recall that Euler's $$\phi(n)$$ (totient) function is the number of residue classes (mod $$n$$) coprime to $$n$$. Computing
+Recall that Euler's $$\phi(n)$$ (totient) function is the number of residue classes (mod $$n$$) coprime to $$n$$ or the number of positive integers $$\leq n$$ that are relatively prime to $$n$$. Computing
  the values of $$\phi(n)$$ for $$n=1,2,\cdots,10$$.
 <center>
 <table border="1" cellpadding="6" cellspacing="0">
@@ -64,7 +64,7 @@ So now what is $$\phi(p^i)$$ for some power $$i$$? It is the number of integers 
 	\end{align*}
 	$$
 </div>
-There are exactly $$p^{i-1}$$ such numbers. Therefore, the total number of numbers coprime to $$p^i$$ is
+We have $$p^i$$ possible numbers less than or equal to $$p^i$$, $$\{1,2,\cdots,p^i\}$$. Out of these factors, there are exactly $$p^{i-1}$$ numbers that are not coprime to $$p^i$$. Therefore, the total number of numbers coprime to $$p^i$$ is
 <div>
 	$$
 	\begin{align*}
@@ -78,9 +78,9 @@ Then
 <div>
 	$$
 	\begin{align*}
-	\phi(n) &= \phi(p_1^{n_1}) \cdot \phi(p_2^{n_2}) \cdot \cdots \cdot \phi(p_k^{n_k}) \\
-	&= p_1^{n_1} \left( 1- \frac{1}{p_1}\right) \cdot p_2^{n_2} \left(1- \frac{1}{p_2}\right) \cdots p_k^{n_k} \left(1- \frac{1}{p_k} \right) \\
-	&= ( p_1^{n_1}p_2^{n_2} \cdots p_k^{n_k} ) \cdot \left( 1- \frac{1}{p_1}\right) \cdot \left(1- \frac{1}{p_2}\right) \cdots \left(1- \frac{1}{p_k} \right) \\
+	\phi(n) &= \phi(p_1^{e_1}) \cdot \phi(p_2^{e_2}) \cdot \cdots \cdot \phi(p_k^{e_k}) \\
+	&= p_1^{e_1} \left( 1- \frac{1}{p_1}\right) \cdot p_2^{e_2} \left(1- \frac{1}{p_2}\right) \cdots p_k^{e_k} \left(1- \frac{1}{p_k} \right) \\
+	&= ( p_1^{e_1}p_2^{e_2} \cdots p_k^{e_k} ) \cdot \left( 1- \frac{1}{p_1}\right) \cdot \left(1- \frac{1}{p_2}\right) \cdots \left(1- \frac{1}{p_k} \right) \\
 	&= n \cdot \left( 1- \frac{1}{p_1}\right) \cdot \left(1- \frac{1}{p_2}\right) \cdots \left(1- \frac{1}{p_k} \right)
 	\end{align*}
 	$$
@@ -104,7 +104,7 @@ Then we have to throw away the numbers divisible so $$6$$ so $$3$$
 	\end{align*}
 	$$
 </div>
-But now we have to add the numbers divisible by 6 back since we removed them since they are divisible by 2 and 3. 
+But now we have to add the numbers divisible by 6 back since we removed two copies of them because they are divisible by 2 and 3. 
 <div>
 	$$
 	\begin{align*}
@@ -112,7 +112,7 @@ But now we have to add the numbers divisible by 6 back since we removed them sin
 	\end{align*}
 	$$
 </div>
-Let's do $$\phi(30)$$ now. We need take out all the numbers divisible by 2, 3 and 5 and then add the numbers taken out twice, $$2 \cdot 3 = 6$$, $$3 \cdot 5 = 15$$, $$2 \cdot 5 = 10$$. But notice now that we've thrown 30 three times but we added it three times. We need to throw it away
+Let's do $$\phi(30)$$ now. We need take out all the numbers divisible by 2, 3 and 5 and then add the numbers taken out twice, $$2 \cdot 3 = 6$$, $$3 \cdot 5 = 15$$, $$2 \cdot 5 = 10$$. But notice now that we've thrown 30 three times but we added it four times. We need to throw it away
 <div>
 	$$
 	\begin{align*}
@@ -122,7 +122,7 @@ Let's do $$\phi(30)$$ now. We need take out all the numbers divisible by 2, 3 an
 	\end{align*}
 	$$
 </div>
-The ones remaining coprime to $$30$$ are $$\{1, 7, 11, 13, 17, 19, 23, 29\}$$. Professor used a venn diagram which was nice (TODO). 
+The ones remaining coprime to $$30$$ are $$\{1, 7, 11, 13, 17, 19, 23, 29\}$$. The professor used a venn diagram which was nice (TODO). 
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Alternative Explanation 2: Probability</h3>
@@ -144,9 +144,6 @@ For three events, we need
 <div>
 	$$
 	\begin{align*}
-	P(A \cap B) &= P(A) \cdot P(B) \\
-	P(B \cap C) &= P(B) \cdot P(C) \\
-	P(A \cap C) &= P(A) \cdot P(C) \\
 	P(A \cap B \cap C) &= P(A) \cdot P(B) \cdot P(C)
 	\end{align*}
 	$$
@@ -189,7 +186,7 @@ Then
 	\end{align*}
 	$$
 </div>
-So as long as we know the prime factorization, then as we can see here, it is very easy to find out $$\phi(n)$$.
+So as long as we know the prime factorization, then it is very easy to find out $$\phi(n)$$.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Example</h3>
@@ -208,11 +205,12 @@ But for any $$n$$, we know that
 <div>
 	$$
 	\begin{align*}
-	 \phi(n) &= 24 =  p^{e-1}(p - 1) \cdots
+	 \phi(n) &=  p^{e-1}(p - 1) \cdots \\
+	 24 &=  p^{e-1}(p - 1) \cdots
 	\end{align*}
 	$$
 </div>
-We can see here that $$p$$ is a prime number and $$(p-1)$$ must divide 24. So $$(p-1)$$ is a factor of 24. But the factors of $$24$$ are
+So we're trying to factor out $$24$$ as $$p^{e-1}(p - 1) \cdots$$. But the factors of $$24$$ are
 <div>
 	$$
 	\begin{align*}
@@ -220,15 +218,15 @@ We can see here that $$p$$ is a prime number and $$(p-1)$$ must divide 24. So $$
 	\end{align*}
 	$$
 </div>
-So we can throw away the numbers that aren't prime after adding 1 and we'll end up with the following list
+So we need numbers $$(p-1)$$ that divide $$24$$ but $$p$$ itself is prime. In the list above, $$8$$ divides $$24$$ but $$8+1 = 9$$ is not prime. So $$8$$ can't show up and can be eliminated. Similarly, $$3$$ can be eliminated because $$3+1=4$$ is not prime. We'll end up with the following list
 <div>
 	$$
 	\begin{align*}
-	 \{2,3,5,7,13\}
+	 \{1,2,4,6,12\}
 	\end{align*}
 	$$
 </div>
-If we take $$p = 13$$ for example, then $$p-1 = 12$$ divides $$24$$ and then we still have some prime power of $$13$$ in the expansion 
+Consider $$p-1 = 12$$. Then, $$p = 13$$ and 
 <div>
 	$$
 	\begin{align*}
@@ -244,7 +242,7 @@ But it is obvious here that $$e$$ can't be bigger than $$2$$ since $$13^2 > 24$$
 	\end{align*}
 	$$
 </div>
-This is a pretty small list that we can get through. For example, 
+This is a pretty small list to iterate over and just brute force possible solutions. For example, 
 <div>
  	$$
  	\begin{align*}
@@ -260,7 +258,7 @@ This means that $$n$$ itself is $$13^1 \cdot 2^2 = 52$$. Another choice is
  	\end{align*}
  	$$
 </div>
-This will give us $$n = 7 \cdot 2^3 = 56$$. 
+This will give us $$n = 7 \cdot 2^3 = 56$$ and so on. 
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Example: Carmichael's Conjecture</h3>
@@ -275,7 +273,7 @@ So far we know that the answer is yes and so far people have computed this for v
  	\end{align*}
  	$$
 </div>
-We can use the same type of argument with divisibility rule to conclude similar results but no ever had ever proved it all.
+We can use the same type of argument with divisibility rule to exclude more numbers but no one had ever proved it for all cases.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Example</h3>
@@ -306,20 +304,22 @@ Then, using Euler's formula
 	\end{align*}
 	$$
 </div>
-Notice that if $$p_i \neq 2$$, then we must have $$e_i = 1$$ since if this wasn't the case then $$\phi(n)$$ will be divisible by a prime other than 2. Moreover, $$(p_i - 1)$$ must be a power of $$2$$ since it divides $$\phi(n)$$. So $$\phi(n)$$ has the form
+Notice that if $$p_i \neq 2$$, then we must have $$e_i = 1$$ (since if this wasn't the case then $$\phi(n)=2^k$$ will be divisible by a prime other than 2). So we should expect something like
 <div>
 	$$
 	\begin{align*}
-	 \phi(n) &= 2^x \cdot (p_1 - 1) \cdot (p_2 - 1) \cdots 
-	\end{align*}
+	 \phi(n) &=  2^{a}(2 - 1) \cdot 2^{b}(2 - 1) \cdots p_1^{e_1-1}(p_1 - 1) \cdot p_2^{e_2-1}(p_2 - 1) \cdots \\
+	 \phi(n) &=  2^{a} \cdot 2^{b} \cdots p_1^{1-1}(p_1 - 1) \cdot p_2^{1-1}(p_2 - 1) \cdots \\
+	2^k &=  2^{a+b+\cdots} \cdot (p_1 - 1) (p_2 - 1) \cdots 
+		\end{align*}
 	$$
 </div>
-But each one of these $$(p_i - 1)$$ is a power of $$2$$. Therefore
+So we will have some power of $$2$$ multiplied by the remaining product. Observe that $$(p_i - 1)$$ must be a power of $$2$$ since it divides $$\phi(n)=2^k$$. So each of these $$(p_i - 1)$$ has the form
 <div>
 	$$
 	\begin{align*}
-	 p_i - 1 &= 2^t \\
-	 p_i &= 2^t + 1
+ 	 p_i - 1 &= 2^t \\
+ 	 p_i &= 2^t + 1
 	\end{align*}
 	$$
 </div>
@@ -332,11 +332,14 @@ But now we know that $$p_i$$ is a prime and since it has the form $$2^t + 1$$, t
 	\end{align*}
 	$$
 </div>
-Each of these $$p_i$$'s is a Fermat prime.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>How big is \(\phi(n)?\)</h3>
-The upper bound is pretty obvious. $$\phi(n) < n$$. When $$p$$ is prime, then $$\phi(n) = p-1$$. So $$\phi(n)/n \leq 1$$ can get very close to 1 since when $$n$$ can be prime.
+We can also ask
+<div class="stmt">
+How big can \(\phi(n)\) get?
+</div>
+The upper bound is pretty obvious. $$\phi(n) < n$$. When $$p$$ is prime, then $$\phi(n) = p-1$$. So $$\phi(n)/n \leq 1$$ can get very close to 1 since when $$n$$ is prime.
 <br>
 <br>
 How small can $$\phi(n)/n$$ get? We know
@@ -352,24 +355,76 @@ where $$p_1,p_2,\cdots$$ are the primes dividing $$n$$. So to make this number s
 	$$
 	\begin{align*}
 	 2&: \quad  \phi(2)/2 = \frac{1}{2} \\
-	 2 \cdot 3&:\quad  \phi(6)/6 = \frac{1}{3} \\
-	 2 \cdot 3 \cdot 5&: \quad  \phi(30)/30 = \frac{8}{30} \\
+	 2 \cdot 3&:\quad  \phi(6)/6 = \frac{1}{2} \cdot \frac{2}{3} = \frac{1}{3} \\
+	 2 \cdot 3 \cdot 5&: \quad  \phi(30)/30 =  \frac{1}{2} \cdot \frac{2}{3} \cdot \frac{4}{5} =  \frac{8}{30} \\
 	 2 \cdot 3 \cdot 5 \cdot 7&: \quad \phi(210)/210 = \cdots \\
 	\end{align*}
 	$$
 </div>
-But now, can we make this number as small as we like? for example less than $$\frac{1}{100}$$? To answer this, we want to know how small could
+But now, can we make $$\phi(n)/n$$ as small as we like? for example less than $$\frac{1}{100}$$? To answer this, we want to know how small could the following number get
 <div>
 	$$
 	\begin{align*}
-&\left(1 - \frac{1}{2}\right) \left(1 - \frac{1}{3}\right) \left(1 - \frac{1}{5}\right) \left(1 - \frac{1}{7}\right)  \cdots \\
+&\left(1 - \frac{1}{2}\right) \left(1 - \frac{1}{3}\right) \left(1 - \frac{1}{5}\right) \left(1 - \frac{1}{7}\right)  \cdots 
+	\end{align*}
+	$$
+</div>
+Could this number get smaller and smaller until it reaches zero or could there be some lower limit? We can figure this out by looking at its inverse (why its inverse? because sometimes it is easier to see big a number can get rather than how close it can get to zero). Then, taking the inverse 
+<div>
+	$$
+	\begin{align*}
+	 &= \left(\frac{1}{1 - \frac{1}{2}}\right) \left(\frac{1}{1 - \frac{1}{3}}\right)\left(\frac{1}{1 - \frac{1}{5}}\right)\left(\frac{1}{1 - \frac{1}{7}}\right)  \cdots
+	\end{align*}
+	$$
+</div>
+But now we can use the identity 
+<div>
+	$$
+	\begin{align*}
+	\frac{1}{1 - x} &= 1 + x + x^2 + \cdots
+	\end{align*}
+	$$
+</div>
+To see that
+<div>
+	$$
+	\begin{align*}
 	 &= \left(\frac{1}{1 - \frac{1}{2}}\right) \left(\frac{1}{1 - \frac{1}{3}}\right)\left(\frac{1}{1 - \frac{1}{5}}\right)\left(\frac{1}{1 - \frac{1}{7}}\right)  \cdots \\
 	 &= \left(1 + \frac{1}{2} + \frac{1}{2^2} +\cdots\right)\left(1 + \frac{1}{3} + \frac{1}{3^2} +\cdots\right)\cdots \\
+	 &= \prod_p \left(1 + \frac{1}{p} + \frac{1}{p^2} +\cdots\right)
+	\end{align*}
+	$$
+</div>
+Using the Euler product formula when $$s = 1$$, then (TODO: what is this)
+<div>
+	$$
+	\begin{align*}
 	 &= \prod_p \left(1 + \frac{1}{p} + \frac{1}{p^2} +\cdots\right) \\
 	 &= \sum_{\text{all prime factors }\leq p} \frac{1}{n}
 	\end{align*}
 	$$
 </div>
+But this grows without bound. So this means that 
+<div>
+	$$
+	\begin{align*}
+	 &= \prod_{p \text{ prime}} \left(1-\frac{1}{p}\right)
+	\end{align*}
+	$$
+</div>
+goes to 0 so we can make it as small as we like
+<!----------------------------------------------------------------------->
+<hr>
+<h3>Average of \(\phi(n)/n\)</h3>
+Another question we can ask is
+<div class="stmt">
+What is the average of \(\phi(n)/n\)?
+</div>
+We saw that we can make this value go to zero but just adding more prime factors. We also saw that can we make it get very close to 1 but just choosing $$n$$ to be prime. What about the average value? 
+
+
+
+
 
 <!----------------------------------------------------------------------->
 <hr>

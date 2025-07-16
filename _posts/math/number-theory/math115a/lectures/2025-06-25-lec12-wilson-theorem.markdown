@@ -5,15 +5,15 @@ date:   2025-06-25 01:01:36 -0700
 categories: jekyll update
 mathjax: true
 ---
-This lecture will focus on Wilson's Theorem. Wilson's Theorem talks about what happens when you take 
+This lecture will focus on Wilson's Theorem. Let $$m$$ be an integer. Consider the following  
 <div>
 	$$
 	\begin{align*}
-	(p-1)! \pmod{p}
+	(m-1)! \pmod{m}
 	\end{align*}
 	$$
 </div>
-Trying this for a few values we see that
+Trying different values for $$m$$, we see the following pattern
 <center>
 <table border="1" cellpadding="6" style="border-collapse: collapse; text-align: center;">
   <thead>
@@ -36,7 +36,7 @@ Trying this for a few values we see that
   </tbody>
 </table>
 </center>
-So we notice here that $$(m-1)! \bmod m$$ is $$-1$$ when $$m$$ is prime. This is Wilson's Theorem
+Observe here that $$(m-1)! \bmod m$$ is $$-1$$ when $$m$$ is prime. This is precisely Wilson's Theorem. We state it again as follow
 <!----------------------------------------------------------------------->
 <div class="thm">
 	If \(p\) is prime, then
@@ -46,28 +46,41 @@ So we notice here that $$(m-1)! \bmod m$$ is $$-1$$ when $$m$$ is prime. This is
 	\end{align*}
 	$$
 </div>
+Next, we will see an example to informally show why this theorem works.
 <!----------------------------------------------------------------------->
-Example: Take $$p = 11$$. But instead of finding $$(11-1)!$$, we can pair the numbers together to see that
+<hr>
+<h3>Informal Proof</h3>
+Let's start with finding $$(11-1)! \pmod{11}$$. We can expand $$(11-1)!$$ to see that
 <div>
 	$$
 	\begin{align*}
-	2 \cdot 6 \equiv 1 \pmod{11} \\
-	3 \cdot 4 \equiv 1 \pmod{11} \\
-	5 \cdot 9 \equiv 1 \pmod{11} \\
-	7 \cdot 8 \equiv 1 \pmod{11}
+	10 \cdot 9 \cdot 8 \cdot 7 \cdot 6 \cdot 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 \pmod{11}
 	\end{align*}
 	$$
 </div>
-So what's left is
+We can pair the numbers together to see that
 <div>
 	$$
 	\begin{align*}
-	1 \cdot 10 &\equiv 10 \pmod{11} \\
-	           &\equiv -1 \pmod{11}
+	2 \cdot 6 \equiv 12 \equiv 1 \pmod{11} \\
+	3 \cdot 4 \equiv 12 \equiv 1 \pmod{11} \\
+	5 \cdot 9 \equiv 45 \equiv 1 \pmod{11} \\
+	7 \cdot 8 \equiv 56 \equiv 1 \pmod{11}
 	\end{align*}
 	$$
 </div>
-Also note that $$1$$ and $$10$$ are inverses of each other module 11 which is why they were the ones left over at the end. So given $$a$$, if $$a \neq a^{-1}$$, we see that they cancel. When $$a^{-1} = a$$, they don't cancel but notice here that there is the same as 
+Therefore
+<div>
+	$$
+	\begin{align*}
+	&\equiv 1 \cdot (2 \cdot 6) \cdot (3 \cdot 4) \cdot (5 \cdot 9) \cdot (7 \cdot 8) \cdot 10 \pmod{11} \\
+	&\equiv 1 \cdot 10 \pmod{11} \\
+	&\equiv 10 \pmod{11} \\
+	&\equiv -1 \pmod{11}
+	\end{align*}
+	$$
+</div>
+Also note here that $$1$$ is its own inverse module $$11$$. Similarly, $$10$$ is its own inverse module $$11$$. This is the reason they were the ones left over at the end. In general, given $$a$$, if $$a \neq a^{-1}$$, we see that they cancel. When $$a^{-1} = a$$, they don't cancel. Moreover, we see that in this case
 <div>
 	$$
 	\begin{align*}
@@ -78,7 +91,15 @@ Also note that $$1$$ and $$10$$ are inverses of each other module 11 which is wh
 	\end{align*}
 	$$
 </div>
-But $$p$$ is prime so either $$a - 1 \equiv 0 \pmod{11}$$ or $$a + 1\equiv 0 \pmod{11}$$. Therefore, $$a \equiv \pm 1 \pmod{11}$$. So now let's see why the expansion for any prime $$p$$. The expansion of $$(p-1)$$ is
+But $$11$$ is prime so either $$a - 1 \equiv 0 \pmod{11}$$ or $$a + 1\equiv 0 \pmod{11}$$ (Reminder: this is because $$ab \equiv 0 \pmod {p}$$ means that $$p$$ divides $$ab$$ but $$p$$ is prime so it must divide $$a$$ or $$b$$ or both). Therefore, 
+<div class="ediv">
+	$$
+	\begin{align*}
+	a \equiv \pm 1 \pmod{11}	
+	\end{align*}
+	$$
+</div>
+We can now generalize this for any prime $$p$$. The expansion of $$(p-1)!$$ is
 <div>
 	$$
 	\begin{align*}
@@ -86,8 +107,8 @@ But $$p$$ is prime so either $$a - 1 \equiv 0 \pmod{11}$$ or $$a + 1\equiv 0 \pm
 	\end{align*}
 	$$
 </div>
-All the numbers in the middle from 2 to $$p-2$$ will pair off. So 
-<div>
+All the numbers in the middle from $$2$$ to $$p-2$$ will pair off. What remains is
+<div class="ediv">
 	$$
 	\begin{align*}
 	(p-1)! &\equiv 1 \cdot (p-1) \pmod{p} \\
@@ -96,7 +117,25 @@ All the numbers in the middle from 2 to $$p-2$$ will pair off. So
 	\end{align*}
 	$$
 </div>
-What if $$p$$ is not prime? Is $$(m-1)! \equiv 0 \pmod{m}$$? Since $$m$$ is not prime, then we can write
+This is great because now we have another test for primality as follows 
+<!----------------------------------------------------------------------->
+<div class="stmt">
+	\(m > 1\) is prime if and only if \((m-1) \equiv -1 \pmod{m}\)
+</div>
+<!----------------------------------------------------------------------->
+But this test is totally useless! since it's hard to figure out $$(m-1)! \bmod m$$ without knowing whether $$m$$ itself is prime to be able to use Wilson's theorem. In general, it is hard to compute $$a! \bmod m $$
+<!----------------------------------------------------------------------->
+<hr>
+<h3>When \(m\) is not Prime</h3>
+What if $$m$$ is not prime? From the table above, can we conclude that
+<div>
+	$$
+	\begin{align*}
+	(m-1)! \equiv 0 \pmod{m}?
+	\end{align*}
+	$$
+</div>
+Since $$m$$ is not prime, then we can write
 <div>
 	$$
 	\begin{align*}
@@ -104,38 +143,30 @@ What if $$p$$ is not prime? Is $$(m-1)! \equiv 0 \pmod{m}$$? Since $$m$$ is not 
 	\end{align*}
 	$$
 </div>
-So $$a$$ and $$b$$ are strictly less than $$m$$ so they must show up in the expansion of $$(m-1)!$$ so $$ab = m \mid (m-1)$$ But this is not true in general. Take $$m = 4$$. Then $$4 = 2 \cdot 2$$. The issue here that the two factors are exactly the same so the argument above doesn't work. Exercise: work out the argument for when $$m \neq 4$$. This should work even though some numbers do have square factors.
-<br>
-<br>
-This is great because now we have another test for primality. So 
-<!----------------------------------------------------------------------->
-<div class="stmt">
-	\(m > 1\) is prime if and only if \((m-1) \equiv -1 \pmod{m}\)
-</div>
-<!----------------------------------------------------------------------->
-But this test is totally useless! since it's hard to figure out $$(m-1)! \bmod m$$ without knowing whether $$m$$ itself is prime to be able to use Wilson's theorem. In general, it is hard to compute
+$$a$$ and $$b$$ are strictly less than $$m$$. This means that they must show up in the expansion of $$(m-1)!$$. But this means that
 <div>
 	$$
 	\begin{align*}
-	 a! \bmod m 
+	ab \mid (m-1)!
 	\end{align*}
 	$$
 </div>
+which makes the claim correct. However this is not true in general. Take $$m = 4$$. Then $$4 = 2 \cdot 2$$. The issue here that the two factors are exactly the same so the argument above doesn't work. Exercise: work out the argument for when $$m$$ is composite and $$m \neq 4$$. This should work even though some numbers do have square factors.
 <!----------------------------------------------------------------------->
 <hr>
 <h3>Application 1: Square Root of \(-1\)</h3>
 <div class="stmt">
 	Find \(\sqrt{-1}\).
 </div>
-Over $$\mathbb{R}$$, we don't have a solution. Over $$\mathbb{C}$$, there is a solution but we're not interested in that. We're interested in a solution over $$\mathbb{Z}_p$$. So does $$-1$$ have a square root module $$p$$? This is the same as asking
-<div>
+Over $$\mathbb{R}$$, we don't have a solution. Over $$\mathbb{C}$$, there is a solution but we're not interested in that. We're interested in a solution over $$\mathbb{Z}_p$$. So does $$-1$$ have a square root module $$p$$ when $$p$$ is prime? This statement is equivalent to solving
+<div class="ediv">
 	$$
 	\begin{align*}
 	 x^2 \equiv -1 \pmod{p}
 	\end{align*}
 	$$
 </div>
-But we can't always do this. For $$p = 3$$, there is no solution. In general if $$p \equiv 3 \bmod 4$$, there isn't a solution since
+Square both sides to see that
 <div>
 	$$
 	\begin{align*}
@@ -144,7 +175,7 @@ But we can't always do this. For $$p = 3$$, there is no solution. In general if 
 	\end{align*}
 	$$
 </div>
-so $$x$$ has order 4. Then, by Fermat's Theorem and since $$p$$ is prime
+so $$x$$ has order $$4$$. But by Fermat's Theorem and since $$p$$ is prime, we know that
 <div>
 	$$
 	\begin{align*}
@@ -152,7 +183,7 @@ so $$x$$ has order 4. Then, by Fermat's Theorem and since $$p$$ is prime
 	\end{align*}
 	$$
 </div>
-So the order of $$x$$ must divide $$p - 1$$. Then $$4 \mid p - 1$$. This just means that
+We also know from the last lecture that the order of $$x$$ must divide $$p - 1$$. So this means that we must have $$4 \mid p - 1$$. We can then write this as
 <div class="ediv">
 	$$
 	\begin{align*}
@@ -160,10 +191,12 @@ So the order of $$x$$ must divide $$p - 1$$. Then $$4 \mid p - 1$$. This just me
 	\end{align*}
 	$$
 </div>
-So to have a solution $$p$$ must be congruent to 1 module 4. Not 3 module 4. So now the problem can be stated as
+So to have a solution $$p$$ must be congruent to $$1$$ module $$4$$. So now the problem can be stated as
+<!---------------->
 <div class="stmt">
 	If \(p \equiv 1 \pmod{4}\), Does \(-1\) have a square root module \(p\)?
 </div>
+<!---------------->
 Checking a few cases. Take $$p = 5, 13, 17 \cdots$$. We will see that
 <div>
 	$$
@@ -174,40 +207,81 @@ Checking a few cases. Take $$p = 5, 13, 17 \cdots$$. We will see that
 	\end{align*}
 	$$
 </div>
-Things seem to work. Can we prove that this work in general? yes, It turns out that when $$p \equiv 1 \bmod 4$$, then
-<div>
+Things seem to work. Can we prove that this work in general? yes, It turns out that
+
+<!---------------->
+<div class="stmt">
+If \(p \equiv 1 \bmod 4\), then \(-1\) has a square root module \(p\). Furthermore, the square root of \(-1\) is as follows
 	$$
 	\begin{align*}
-	\left(\frac{p-1}{2}\right)! \equiv -1 \pmod{p}
+	\left[\left(\frac{p-1}{2}\right)!\right]^2 \equiv -1 \pmod{p} \\
+	\left(\frac{p-1}{2}\right)! \equiv \sqrt{-1} \pmod{p}
 	\end{align*}
 	$$
 </div>
-Why? Take $$p = 13$$, then the numbers that are coprime to 13 are
+<!---------------->
+Why? Take $$p = 13$$. The expansion of $$(13-1)!$$ is
 <div>
 	$$
 	\begin{align*}
-	1 \quad 2 \quad 3 \quad 4 \quad 6 \quad 7 \quad 8 \quad 9 \quad 10 \quad 11 \quad 12
+	1 \cdot 2 \cdot 3 \cdot 4 \cdot 6 \cdot 7 \cdot 8 \cdot 9 \cdot 10 \cdot 11 \cdot 12
 	\end{align*}
 	$$
 </div>
-Now, the product of $$1 \cdot 2 \cdot 3 \cdot 4 \cdot 6$$ is $$\left(\frac{p-1}{2}\right)!$$ but these first 6 elements pair off with the remaining 6 numbers meaning that $$7 \bmod 13$$ is $$-6 \bmod 13$$. $$8 \bmod 13$$ is $$-5 \bmod 13$$ and so on. Therefore, we can write
+Now, $$\left(\frac{p-1}{2}\right)!$$ is the product of the first $$6$$ elements above. But these $$6$$ elements pair off with the remaining $$6$$ numbers (except for the sign) meaning that
 <div>
+	$$
+	\begin{align*}
+	7 \equiv -6 \pmod{13} \\
+	8 \equiv -5 \pmod{13} \\
+	9 \equiv -4 \pmod{13} \\
+	10 \equiv -3 \pmod{13}  \\
+	11 \equiv -2 \pmod{13}  \\
+	12 \equiv -1 \pmod{13}  \\
+	\end{align*}
+	$$
+</div>
+Therefore, we can write
+<div class="ediv">
 	$$
 	\begin{align*}
 	(p-1)! \equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^6 \pmod{13}
 	\end{align*}
 	$$
 </div>
-But by Wilson's theorem, we know that $$(p-1)! \equiv -1 \pmod{13}$$. Thus
+But by Wilson's theorem, we know that 
 <div>
 	$$
 	\begin{align*}
-	-1 &\equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^6 \pmod{13} \\
+	(p-1)! \equiv -1 \pmod{13}
+	\end{align*}
+	$$
+</div>
+Thus
+<div>
+	$$
+	\begin{align*}
+	-1 &\equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^6 \pmod{13}
+	\end{align*}
+	$$
+</div>
+But this just means that
+<div class="ediv">
+	$$
+	\begin{align*}
 	-1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \pmod{13}
 	\end{align*}
 	$$
 </div>
-But this is only true if we have an even number of minus signs. The number of minus signs is $$\frac{p-1}{2}$$. So this works if $$\frac{p-1}{2}$$ is even. But recall that $$p \equiv 1 \pmod{4}$$ so $$p - 1 = 4k$$ for some $$k$$. So this works since $$p = 4k + 1$$. And the square root of $$-1$$ is $$\left(\frac{p-1}{2}\right)!$$. 
+But this is only true if we have an even number of minus signs. The number of minus signs is $$\frac{p-1}{2}$$. So this works if $$\frac{p-1}{2}$$ is even. But recall that 
+<div class="ediv">
+	$$
+	\begin{align*}
+p \equiv 1 \pmod{4}
+	\end{align*}
+	$$
+</div>
+so $$p - 1 = 4k$$ for some $$k$$. Thus, $$p = 4k + 1$$. Therefore, $$\frac{p-1}{2}$$ is even. 
 <br>
 <br>
 So now we might ask
@@ -222,7 +296,7 @@ Again, we have the same equation
 	\end{align*}
 	$$
 </div>
-But we can see here that $$\frac{p-1}{2}$$ is now odd and not even. so 
+But we can see here that $$p = 4k + 3$$. Therefore, $$\frac{p-1}{2}$$ is now odd and not even. Then 
 <div>
 	$$
 	\begin{align*}
@@ -230,8 +304,8 @@ But we can see here that $$\frac{p-1}{2}$$ is now odd and not even. so
 	\end{align*}
 	$$
 </div>
-so $$\left(\frac{p-1}{2}\right)!$$ is a square root of 1. Thus
-<div>
+so $$\left(\frac{p-1}{2}\right)!$$ is a square root of $$1$$ and not $$-1$$. In general
+<div class="ediv">
 	$$
 	\begin{align*}
 	\pm 1 &\equiv \left(\frac{p-1}{2}\right)!  \pmod{13}
@@ -267,8 +341,8 @@ and then compare this against
 	\end{align*}
 	$$
 </div>
-Since we're working module $$p$$, then the numbers above are just a different order of the first product. So
-<div>
+Since we're working module $$p$$, then the numbers above are exactly the same as the first product but just in a  different order. So
+<div class="ediv">
 	$$
 	\begin{align*}
 	P &\equiv Q \pmod{p} \\
@@ -276,18 +350,29 @@ Since we're working module $$p$$, then the numbers above are just a different or
 	\end{align*}
 	$$
 </div>
-But now we explicitly factor out the $$p-1$$ copies of $$a$$ to see that
+But now observe that we can group these factors in a way to get
 <div>
 	$$
 	\begin{align*}
+	1 \cdot 2 \cdots (p-1)  \pmod{p} &\equiv a \cdot (2a) \cdot (3a) \cdots (p-1)a \pmod{p} \\
+	(p-1)!  \pmod{p} &\equiv (1 \cdot 2 \cdot 3 \cdot 4 \cdots (p-1)) \cdot a^{p-1} \pmod{p} \\
 	(p-1)!  &\equiv (p-1)! \cdot a^{p-1}  \pmod{p}
 	\end{align*}
 	$$
 </div>
-We now use Wilson's theorem that states $$(p-1)! \equiv -1  \pmod{p}$$ when $$p$$ is prime to see that
+Recall that Wilson's theorem that states that
 <div>
 	$$
 	\begin{align*}
+	(p-1)! \equiv -1  \pmod{p}
+	\end{align*}
+	$$
+</div>
+Therefore
+<div>
+	$$
+	\begin{align*}
+	(p-1)!  &\equiv (p-1)! \cdot a^{p-1}  \pmod{p} \\
 	-1  &\equiv -1 \cdot a^{p-1}  \pmod{p} \\
 	1  &\equiv a^{p-1}  \pmod{p} 
 	\end{align*}

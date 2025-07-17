@@ -420,10 +420,69 @@ Another question we can ask is
 <div class="stmt">
 What is the average of \(\phi(n)/n\)?
 </div>
-We saw that we can make this value go to zero but just adding more prime factors. We also saw that can we make it get very close to 1 but just choosing $$n$$ to be prime. What about the average value? 
-
-
-
+We saw two extremes here. We saw that we can make $$\phi(n)/n$$ go to zero by just adding many small prime factors. We also saw that can we make  $$\phi(n)/n$$ get very close to 1 just by choosing $$n$$ to be prime. What about the average value of $$\phi(n)/n$$? We can think of this asking
+"What is the chance that a randomly chosen integer less than $$n$$ is coprime to $$n$$?" or more general we can ask
+<div class="stmt">
+So what is the chance of that two numbers \(m\) and \(n\) chosen at random are coprime? 
+</div>
+The first issue is that we can't really choose two numbers at random because this would mean that every integer is equally likely of being selected. This implies that every integer has the same chance of being selected, equal to some $$\epsilon$$. This means $$\epsilon$$ is zero. We can fix this if we have some upper bound $$N$$ on $$m$$ and $$n$$. Furthermore, being coprime to each other means that they are both divisible by $$2$$ for instance, so we can ask
+<div class="stmt">
+So what is the chance of having two numbers \(m\) and \(n\) not divisible by \(2\)?
+</div>
+The chance of having both numbers be divisible by $$2$$ is
+<div>
+	$$
+	\begin{align*}
+	 \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}
+	\end{align*}
+	$$
+</div>
+Therefore, the chance of having both not divisible by $$2$$ is $$1-\frac{1}{4}$$. Similarly, the chance of having both numbers not divisible by $$3$$ is $$1 - \frac{1}{3^2}$$ and so on. Then, the probability that $$m$$ and $$n$$ are coprime is about 
+<div>
+	$$
+	\begin{align*}
+	 \left(1 - \frac{1}{2^2}\right) \cdot \left(1 - \frac{1}{3^2}\right) \cdot \left( 1 - \frac{1}{5^2}\right) \cdots
+	\end{align*}
+	$$
+</div>
+Obviously there are issues here since if we limit $$m$$ and $$n$$ to some bound $$N$$, then we need to stop testing after some limit. Also the chance of being divisible by $$3$$ changes a tiny bit if we have an upper bound on both numbers. But, we ignore this for now to focus on whether the product above tends to zero or some other limit. Well, we saw before that 
+<div>
+	$$
+	\begin{align*}
+	 \left(1 - \frac{1}{2}\right) \cdot \left(1 - \frac{1}{3}\right) \cdot \left( 1 - \frac{1}{5}\right) \cdots \rightarrow 0
+	\end{align*}
+	$$
+</div>
+So we might think our product must also go to zero but in fact it doesn't. To see why, we can take the inverse of the product to analyze it just like we did before so
+<div>
+	$$
+	\begin{align*}
+	 &= \frac{1}{\left(1 - \frac{1}{2^2}\right)} \cdot \frac{1}{\left(1 - \frac{1}{3^2}\right)} \cdot \frac{1}{\left( 1 - \frac{1}{5^2}\right)} \cdots \\
+	 &= \left(1 + \frac{1}{2^2} + \frac{1}{2^4} + \cdots\right) \cdots \left(1 + \frac{1}{3^2} + \frac{1}{3^4} + \cdots\right) \cdots \\
+	 &= \prod_p \left(1 + \frac{1}{p^2} + \frac{1}{p^4} + \cdots\right)
+	\end{align*}
+	$$
+</div>
+So now at this step, multiplying all of these, we get all the numbers with prime factorization consisting of primes squared (and their powers). Therefore, this product gives
+<div>
+	$$
+	\begin{align*}
+	 &= \sum_n^{\infty} \frac{1}{n^2} 
+	\end{align*}
+	$$
+</div>
+Euler managed to actually compute this sum and finding that it's equal to 
+<div class=ediv>
+	$$
+	\begin{align*}
+	 \sum_n^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+	\end{align*}
+	$$
+</div>
+<!----------------------------------------------------------------------->
+<hr>
+<h3>Generating Functions</h3>
+TODO
 
 
 <!----------------------------------------------------------------------->

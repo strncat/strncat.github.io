@@ -41,6 +41,9 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/27/lec14-euler-totient-function.html">
 	   Lecture 14: Euler Totient Function
    </a></li>
+   <li><a href="/jekyll/update/2025/06/28/lec14-numerical-calculations.html">
+	   Lecture 15: Numerical Calculations [TODO]
+   </a></li>
 </ol>
 
 <!------------------------ Math115a (Problems) --------------------------->
@@ -99,6 +102,9 @@ mathjax: true
    </a></li>
    <li><a href="/jekyll/update/2025/06/21/2.1-problem-12.html" class="truncated-link">
 	   2.1: Problem 12: Prove that 19 is not a divisor of \(4n^2 + 4\) for any integer \(n\).
+   </a></li>
+   <li><a href="/jekyll/update/2025/06/29/2.1-problem-17.html" class="truncated-link">
+	   2.1: Problem 17: Show that \(61! + 1 \equiv 63! + 1 \equiv 0 \pmod{71}\).
    </a></li>
    <li><a href="/jekyll/update/2025/06/22/2.1-problem-18.html" class="truncated-link">
 	   2.1: Problem 18: Show that if \(p \equiv 3 \pmod{4}\), then \(\left(\frac{p-1}{2}\right)! \equiv \pm 1 \pmod{p}\)

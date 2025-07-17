@@ -245,7 +245,7 @@ Therefore, we can write
 <div class="ediv">
 	$$
 	\begin{align*}
-	(p-1)! \equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^6 \pmod{13}
+	(p-1)! \equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^{\frac{p-1}{2}} \pmod{p}
 	\end{align*}
 	$$
 </div>
@@ -253,7 +253,7 @@ But by Wilson's theorem, we know that
 <div>
 	$$
 	\begin{align*}
-	(p-1)! \equiv -1 \pmod{13}
+	(p-1)! \equiv -1 \pmod{p}
 	\end{align*}
 	$$
 </div>
@@ -261,19 +261,19 @@ Thus
 <div>
 	$$
 	\begin{align*}
-	-1 &\equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^6 \pmod{13}
+	-1 &\equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^{\frac{p-1}{2}} \pmod{p}
 	\end{align*}
 	$$
 </div>
-But this just means that
+In other words,
 <div class="ediv">
 	$$
 	\begin{align*}
-	-1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \pmod{13}
+	-1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \cdot (-1)^{\frac{p-1}{2}} \pmod{p}
 	\end{align*}
 	$$
 </div>
-But this is only true if we have an even number of minus signs. The number of minus signs is $$\frac{p-1}{2}$$. So this works if $$\frac{p-1}{2}$$ is even. But recall that 
+Recall that 
 <div class="ediv">
 	$$
 	\begin{align*}
@@ -281,7 +281,25 @@ p \equiv 1 \pmod{4}
 	\end{align*}
 	$$
 </div>
-so $$p - 1 = 4k$$ for some $$k$$. Thus, $$p = 4k + 1$$. Therefore, $$\frac{p-1}{2}$$ is even. 
+so $$p - 1 = 4k$$ for some $$k$$. Therefore
+<div class="ediv">
+	$$
+	\begin{align*}
+	\frac{p-1}{2} = \frac{4k}{2} = 2k 
+	\end{align*}
+	$$
+</div>
+So $$\frac{p-1}{2}$$ is even. Therefore
+In other words,
+<div class="ediv">
+	$$
+	\begin{align*}
+	-1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \cdot (-1)^{\frac{p-1}{2}} \pmod{p} \\
+	-1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \pmod{p} \\
+	\end{align*}
+	$$
+</div>
+as we wanted to show. $$\blacksquare$$
 <br>
 <br>
 So now we might ask
@@ -292,23 +310,31 @@ Again, we have the same equation
 <div>
 	$$
 	\begin{align*}
-	-1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \cdot (-1)^{\frac{p-1}{2}}\pmod{13}
+	-1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \cdot (-1)^{\frac{p-1}{2}}\pmod{p}
 	\end{align*}
 	$$
 </div>
-But we can see here that $$p = 4k + 3$$. Therefore, $$\frac{p-1}{2}$$ is now odd and not even. Then 
+But we can see here that $$p = 4k + 3$$. Therefore, 
 <div>
 	$$
 	\begin{align*}
-	1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \pmod{13}
+	\frac{p-1}{2} = \frac{4k+3-1}{2} = \frac{4k+2}{2} = 2k+1
 	\end{align*}
 	$$
 </div>
-so $$\left(\frac{p-1}{2}\right)!$$ is a square root of $$1$$ and not $$-1$$. In general
+Thus, $$\frac{p-1}{2}$$ is now odd and not even. Therefore 
 <div class="ediv">
 	$$
 	\begin{align*}
-	\pm 1 &\equiv \left(\frac{p-1}{2}\right)!  \pmod{13}
+	1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \pmod{p}
+	\end{align*}
+	$$
+</div>
+But this means that we have two solutions so
+<div class="ediv">
+	$$
+	\begin{align*}
+	\pm 1 &\equiv \left(\frac{p-1}{2}\right)!  \pmod{p}
 	\end{align*}
 	$$
 </div>

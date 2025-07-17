@@ -8,17 +8,85 @@ mathjax: true
 <div class="stmt">
 2.1: Problem 18: Show that if \(p \equiv 3 \pmod{4}\), then \(\left(\frac{p-1}{2}\right)! \equiv \pm 1 \pmod{p}\)
 </div>
-<!------------------------------------------------------------------------------------>
+<!-------------------------------------------------------------------------->
 <h3>Proof</h3>
-We know by Wilson's theorem that
+The expansion of $$(p-1)!$$ is
 <div>
-$$
-\begin{align*}
-(p-1)! \equiv -1 \pmod{p}
-\end{align*}
-$$
+	$$
+	\begin{align*}
+	1 \cdot 2 \cdot 3 \cdot 4 \cdots (p-1)
+	\end{align*}
+	$$
 </div>
-Therefore, the only possible last digits are 0,1,4,5,6,9. $$\ \blacksquare$$
+Observe that $$\left(\frac{p-1}{2}\right)!$$ is the product of the first $$\frac{p-1}{2}$$ elements above. But these elements pair off with the remaining $$\frac{p-1}{2}$$ numbers (except for the sign) meaning that
+<div>
+	$$
+	\begin{align*}
+	(p-1) &\equiv -1 \pmod{p} \\
+	(p-2) &\equiv -2 \pmod{p} \\
+	(p-3) &\equiv -3 \pmod{p} \\
+	&\cdots
+	\end{align*}
+	$$
+</div>
+Therefore, we can write
+<div class="ediv">
+	$$
+	\begin{align*}
+	(p-1)! \equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^{\frac{p-1}{2}} \pmod{p}
+	\end{align*}
+	$$
+</div>
+But by Wilson's theorem, we know that 
+<div>
+	$$
+	\begin{align*}
+	(p-1)! \equiv -1 \pmod{p}
+	\end{align*}
+	$$
+</div>
+Thus
+<div>
+	$$
+	\begin{align*}
+	-1 &\equiv \left(\frac{p-1}{2}\right)! \cdot \left(\frac{p-1}{2}\right)! \cdot (-1)^{\frac{p-1}{2}} \pmod{p} \\
+	-1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \cdot (-1)^{\frac{p-1}{2}} \pmod{p}
+	\end{align*}
+	$$
+</div>
+Now, recall that 
+<div class="ediv">
+	$$
+	\begin{align*}
+p \equiv 3 \pmod{4}
+	\end{align*}
+	$$
+</div>
+so $$p - 3 = 4k$$ for some $$k$$. Thus,
+<div>
+	$$
+	\begin{align*}
+	\frac{p-1}{2} = \frac{4k+3-1}{2} = \frac{4k+2}{2} = 2k+1
+	\end{align*}
+	$$
+</div>
+This means that $$\frac{p-1}{2}$$ is odd and not even. Therefore 
+<div>
+	$$
+	\begin{align*}
+	1 &\equiv \left[\left(\frac{p-1}{2}\right)!\right]^2 \pmod{p}
+	\end{align*}
+	$$
+</div>
+Since the only square roots of $$1 \pmod{p}$$ are $$\pm 1$$ we conclude
+<div class="ediv">
+	$$
+	\begin{align*}
+	\pm 1 &\equiv \left(\frac{p-1}{2}\right)!  \pmod{p}
+	\end{align*}
+	$$
+</div>
+as desired. $$\ \blacksquare$$
 
 <!-------------------------------------------------------------------------->
 <hr>

@@ -109,6 +109,24 @@ mathjax: true
    <li><a href="/jekyll/update/2025/06/22/2.1-problem-18.html" class="truncated-link">
 	   2.1: Problem 18: Show that if \(p \equiv 3 \pmod{4}\), then \(\left(\frac{p-1}{2}\right)! \equiv \pm 1 \pmod{p}\)
    </a></li>
+   <li><a href="/jekyll/update/2025/06/30/2.1-problem-19.html" class="truncated-link">
+	   2.1: Problem 19: Prove that \(n^6 - 1\) is divisible by \(7\) if \((n,7) = 1\).
+   </a></li>
+   <li><a href="/jekyll/update/2025/07/01/2.1-problem-20.html" class="truncated-link">
+	   2.1: Problem 20: Prove that \(n^7 - n\) is divisible by \(42\) for any integer \(n\).
+   </a></li>
+   <li><a href="/jekyll/update/2025/07/02/2.1-problem-21.html" class="truncated-link">
+	   2.1: Problem 21: Prove that \(n^{12} - 1\) is divisible by \(7\) if \((n,7) = 1\).
+   </a></li>
+   <li><a href="/jekyll/update/2025/07/03/2.1-problem-23.html" class="truncated-link">
+	   2.1: Problem 23: Prove that \(n^{13} - n\) is divisible by \(2,3,5,7\) and \(13\) for any integer \(n\).
+   </a></li>
+   <li><a href="/jekyll/update/2025/07/04/2.1-problem-24.html" class="truncated-link">
+	   2.1: Problem 21: Prove that \(n^{12} - a^{12}\) is divisible by \(13\) if \(n\) and \(a\) are prime to \(13\).
+   </a></li>
+   <li><a href="/jekyll/update/2025/07/05/2.1-problem-24.html" class="truncated-link">
+	   [TODO] 2.1: Problem 21: Prove that \(\frac{1}{5}n^{5} + \frac{1}{3}n^{3} + \frac{7}{15}n\) is an integer for every integer \(n\).
+   </a></li>
 </ol>
 
 
